@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MmorpgClient.World.Tianyong;
 using UnityEngine;
 
 namespace MmorpgClient.World
@@ -40,22 +41,70 @@ namespace MmorpgClient.World
     public sealed class ActorWorld
     {
         private readonly Dictionary<ulong, ActorView> _actors = new();
-        private readonly UnityEngine.Transform _root;
+        private readonly string _rootName;
+        private UnityEngine.Transform _root;
         private ulong _localEntity;
+        private readonly MaterialPropertyBlock _colorProperties = new();
+        private static readonly int ColorProperty = Shader.PropertyToID("_Color");
+        private static readonly int BaseColorProperty = Shader.PropertyToID("_BaseColor");
 
-        public ActorWorld(string rootName = "[ActorWorld]")
+        public ActorWorld(string rootName = "[ActorWorld]", UnityEngine.Transform rootParent = null)
         {
+            _rootName = rootName;
             var go = GameObject.Find(rootName) ?? new GameObject(rootName);
             _root = go.transform;
+            // A pre-existing root may already live under the persistent
+            // AppRoot. A null argument means "leave ownership unchanged",
+            // not "detach it back into the active scene".
+            if (rootParent != null)
+                SetRootParent(rootParent);
         }
 
         public IReadOnlyDictionary<ulong, ActorView> Actors => _actors;
         public ulong LocalEntity => _localEntity;
+        public UnityEngine.Transform Root => _root;
+
+        public event System.Action<ActorView> OnActorSpawned;
+        public event System.Action<ulong> OnActorDespawned;
+        public event System.Action<ActorView> OnLocalPlayerChanged;
+
+        /// <summary>
+        /// Places the actor container under the persistent application root.
+        /// Network positions remain actor-local coordinates, so the default
+        /// path normalizes the root transform after reparenting.
+        /// </summary>
+        public void SetRootParent(UnityEngine.Transform parent, bool worldPositionStays = false)
+        {
+            if (_root == null)
+                _root = new GameObject(_rootName).transform;
+
+            _root.SetParent(parent, worldPositionStays);
+            if (worldPositionStays) return;
+            _root.localPosition = UnityEngine.Vector3.zero;
+            _root.localRotation = Quaternion.identity;
+            _root.localScale = UnityEngine.Vector3.one;
+        }
 
         public void SetLocalPlayer(ulong entity)
         {
+            var previousLocal = _localEntity;
             _localEntity = entity;
-            if (_actors.TryGetValue(entity, out var v)) Recolor(v);
+
+            if (previousLocal != 0 && previousLocal != entity &&
+                _actors.TryGetValue(previousLocal, out var previous))
+                Recolor(previous);
+
+            if (_actors.TryGetValue(entity, out var v))
+            {
+                v.HasTarget = false;
+                v.Velocity = UnityEngine.Vector3.zero;
+                Recolor(v);
+                OnLocalPlayerChanged?.Invoke(v);
+            }
+            else if (entity == 0)
+            {
+                OnLocalPlayerChanged?.Invoke(null);
+            }
         }
 
         public void SpawnActor(ulong entity, ActorKind kind, ulong configId,
@@ -91,20 +140,33 @@ namespace MmorpgClient.World
             };
             _actors[entity] = view;
             Recolor(view);
+            OnActorSpawned?.Invoke(view);
         }
 
         public void DespawnActor(ulong entity)
         {
             if (!_actors.TryGetValue(entity, out var view)) return;
-            if (view.Go) Object.Destroy(view.Go);
+            DisableLocalMovement(view);
+            DestroyActorObject(view.Go);
             _actors.Remove(entity);
+            OnActorDespawned?.Invoke(entity);
+            if (_localEntity == entity)
+            {
+                _localEntity = 0;
+                OnLocalPlayerChanged?.Invoke(null);
+            }
         }
 
         public void Clear()
         {
+            if (_localEntity != 0 && _actors.TryGetValue(_localEntity, out var local))
+                DisableLocalMovement(local);
+
             foreach (var v in _actors.Values)
-                if (v.Go) Object.Destroy(v.Go);
+                DestroyActorObject(v.Go);
             _actors.Clear();
+            _localEntity = 0;
+            OnLocalPlayerChanged?.Invoke(null);
         }
 
         public bool TryGetActor(ulong entity, out ActorView view)
@@ -119,6 +181,10 @@ namespace MmorpgClient.World
                       UnityEngine.Vector3 velocity, float interpDuration = 0.15f)
         {
             if (!_actors.TryGetValue(entity, out var v) || v.Go == null) return;
+            // The local actor is driven by CharacterController prediction.
+            // Authoritative corrections arrive through Teleport/MoveAck; using
+            // the remote interpolation path here would race the local motor.
+            if (entity == _localEntity) return;
             v.InterpFromPos   = v.Go.transform.localPosition;
             v.InterpFromEuler = v.Go.transform.localEulerAngles;
             v.TargetPos       = targetPos;
@@ -136,8 +202,33 @@ namespace MmorpgClient.World
         public void Teleport(ulong entity, UnityEngine.Vector3 pos, UnityEngine.Vector3 euler)
         {
             if (!_actors.TryGetValue(entity, out var v) || v.Go == null) return;
-            v.Go.transform.localPosition    = pos;
-            v.Go.transform.localEulerAngles = euler;
+            var localMovement = entity == _localEntity
+                ? v.Go.GetComponent<TianyongPlayerController>()
+                : null;
+            if (localMovement != null)
+            {
+                // Protocol positions are feet coordinates; the Tianyong actor
+                // transform is the capsule centre. WarpTo preserves that pivot
+                // distinction and safely toggles its CharacterController.
+                var worldFeet = _root != null ? _root.TransformPoint(pos) : pos;
+                localMovement.WarpTo(worldFeet);
+                v.Go.transform.localEulerAngles = euler;
+            }
+            else
+            {
+                var motor = v.Go.GetComponent<CharacterController>();
+                var restoreMotor = motor != null && motor.enabled;
+                if (restoreMotor) motor.enabled = false;
+                try
+                {
+                    v.Go.transform.localPosition = pos;
+                    v.Go.transform.localEulerAngles = euler;
+                }
+                finally
+                {
+                    if (restoreMotor && motor != null) motor.enabled = true;
+                }
+            }
             v.TargetPos = pos;
             v.TargetEuler = euler;
             v.Velocity = UnityEngine.Vector3.zero;
@@ -154,6 +245,7 @@ namespace MmorpgClient.World
             float dt  = Time.deltaTime;
             foreach (var v in _actors.Values)
             {
+                if (v.Entity == _localEntity) continue;
                 if (!v.HasTarget || v.Go == null) continue;
                 float t = (now - v.InterpStart) / v.InterpDuration;
                 if (t < 1f)
@@ -185,8 +277,29 @@ namespace MmorpgClient.World
             if (v.Entity == _localEntity)            c = new Color(0.2f, 0.9f, 0.3f);
             else if (v.Kind == ActorKind.Player)     c = new Color(0.3f, 0.5f, 0.95f);
             else                                     c = new Color(0.85f, 0.55f, 0.2f);
-            // Use a runtime material so we don't share + mutate the shared one.
-            rend.material = new Material(rend.sharedMaterial) { color = c };
+
+            // Per-renderer overrides preserve the shared primitive material and
+            // avoid allocating a new Material on every recolor/respawn.
+            rend.GetPropertyBlock(_colorProperties);
+            _colorProperties.SetColor(ColorProperty, c);
+            _colorProperties.SetColor(BaseColorProperty, c);
+            rend.SetPropertyBlock(_colorProperties);
+            _colorProperties.Clear();
+        }
+
+        private void DisableLocalMovement(ActorView view)
+        {
+            if (view == null || view.Entity != _localEntity || view.Go == null) return;
+            var movement = view.Go.GetComponent<TianyongPlayerController>();
+            if (movement != null && movement.enabled)
+                movement.enabled = false;
+        }
+
+        private static void DestroyActorObject(GameObject actor)
+        {
+            if (actor == null) return;
+            if (Application.isPlaying) Object.Destroy(actor);
+            else Object.DestroyImmediate(actor);
         }
     }
 }

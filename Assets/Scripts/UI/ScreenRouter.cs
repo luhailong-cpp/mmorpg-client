@@ -26,6 +26,13 @@ namespace MmorpgClient.UI
         public IScreen Current { get; private set; }
         public GComponent Host => _host;
 
+        /// <summary>
+        /// 路由切屏通知(FairyGUI 兼容模式)。战斗 UI 是独立的 UGUI 悬浮层
+        /// (UI/Ugui/Battle/BattleUiRoot),用静态事件感知「是否在场景屏」来
+        /// 显示战斗入口/收起悬浮面板,避免 FairyGUI 层反向依赖战斗模块。
+        /// </summary>
+        public static event Action<IScreen> ScreenChanged;
+
         public ScreenRouter(AppBootstrap app, GComponent host)
         {
             _app = app;
@@ -54,6 +61,7 @@ namespace MmorpgClient.UI
 
             Current = screen;
             screen.OnEnter();
+            ScreenChanged?.Invoke(screen);
             return (T)screen;
         }
 

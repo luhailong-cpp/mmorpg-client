@@ -52,7 +52,12 @@ $files = @(
     "proto/scene/player_skill.proto",
     "proto/scene/player_movement.proto",
     "proto/scene/player_lifecycle.proto",
-    "proto/scene/client_player_common.proto"
+    "proto/scene/client_player_common.proto",
+
+    # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
+    "proto/battle/battle_data.proto",
+    "proto/battle/player_battle.proto",
+    "proto/match/match_service.proto"
 )
 
 Push-Location $ProtoRoot

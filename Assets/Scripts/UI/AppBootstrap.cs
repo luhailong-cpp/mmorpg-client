@@ -4,13 +4,16 @@ using FairyGUI;
 using MmorpgClient.Game;
 using MmorpgClient.Net;
 using MmorpgClient.UI.Screens;
+using MmorpgClient.UI.Ugui;
+using MmorpgClient.World.Tianyong;
 using UnityEngine;
 
 namespace MmorpgClient.UI
 {
     /// <summary>
-    /// Single entry point for the production client. Auto-spawns on play
-    /// (no scene asset required), bootstraps the FairyGUI Stage / GRoot,
+    /// Single entry point for the production client. Normally serialized in
+    /// the AppRoot prefab, with auto-spawn retained for empty test scenes.
+    /// Bootstraps the selected UI runtime,
     /// owns the long-lived <see cref="GameClient"/> + <see cref="GatewayHttpClient"/>
     /// and drives the screen stack via <see cref="Router"/>.
     /// </summary>
@@ -19,36 +22,98 @@ namespace MmorpgClient.UI
     {
         public const string GameObjectName = "[MmorpgClient]";
 
+        private static AppBootstrap _instance;
+
+        [SerializeField]
+        [Tooltip("Use the native Unity uGUI migration. Disable only to compare the legacy FairyGUI implementation.")]
+        private bool useUgui = true;
+
+        [Header("Persistent scene rig")]
+        [SerializeField] private Camera worldCamera;
+        [SerializeField] private Light directionalSun;
+        [SerializeField] private TianyongMapConfig mapConfig;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
         {
+            // The sandbox owns its own camera, light and offline player. A
+            // production client root would cover it with login UI and make
+            // scene tests depend on network state.
+            if (FindAnyObjectByType<TianyongSandboxBootstrap>() != null) return;
             if (FindAnyObjectByType<AppBootstrap>() != null) return;
             var go = new GameObject(GameObjectName);
-            DontDestroyOnLoad(go);
             go.AddComponent<AppBootstrap>();
         }
+
+        public static AppBootstrap Instance => _instance;
 
         public SessionModel Session { get; private set; }
         public GameClient   GameClient { get; private set; }
         public GatewayHttpClient Gateway { get; private set; }
         public ScreenRouter Router { get; private set; }
+        public QdaoUguiRuntime Ugui { get; private set; }
+        public TianyongMapRuntime WorldMap { get; private set; }
         public bool QdaoPackageLoaded { get; private set; }
 
         private GComponent _root;
         private GComponent _host;
+        private Action<string> _gameLogHandler;
+        private UnityEngine.Transform _actorWorldRoot;
+
         private void Awake()
         {
-            Debug.Log("[AppBootstrap] Awake (FairyGUI mode)");
+            if (_instance != null && _instance != this)
+            {
+                var duplicateRoot = transform.root;
+                if (_instance.transform.root == duplicateRoot) Destroy(this);
+                else Destroy(duplicateRoot.gameObject);
+                return;
+            }
 
+            _instance = this;
+            DontDestroyOnLoad(transform.root.gameObject);
             EnsureSceneRig();
+
+            if (mapConfig == null) mapConfig = TianyongMapConfig.LoadDefault();
+
+            Session    = new SessionModel();  // gateway URL / last account come from ClientSettings (PlayerPrefs)
+            Gateway    = new GatewayHttpClient(Session.GatewayBaseUrl);
+            GameClient = new GameClient(Session.GatewayBaseUrl);
+            GameClient.World.SetRootParent(_actorWorldRoot);
+            GameClient.CoroutineRunner = Run; // RedirectToGateNotify 重连流程需要宿主协程
+            _gameLogHandler = s => Debug.Log("[GameClient] " + s);
+            GameClient.OnLog += _gameLogHandler;
+            WorldMap = GetComponent<TianyongMapRuntime>();
+            if (WorldMap == null) WorldMap = gameObject.AddComponent<TianyongMapRuntime>();
+            WorldMap.Initialize(GameClient, worldCamera, directionalSun, mapConfig);
+
+            if (useUgui)
+            {
+                Debug.Log("[AppBootstrap] Awake (uGUI migration mode)");
+                try
+                {
+                    Ugui = QdaoUguiRuntime.Create(this);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                    Debug.LogError(
+                        "[AppBootstrap] Native uGUI bootstrap failed. " +
+                        "Destroying the incomplete persistent root; legacy fallback is disabled.");
+                    enabled = false;
+                    // Do not leave a disabled DontDestroyOnLoad singleton that
+                    // blocks a clean bootstrap after a scene reload. OnDestroy
+                    // owns the normal client/event cleanup and clears _instance.
+                    Destroy(transform.root.gameObject);
+                    return;
+                }
+            }
+
+            Debug.Log("[AppBootstrap] Awake (FairyGUI compatibility mode)");
             EnsureFairyGUIStage();
             ExcludeFairyGuiLayerFromWorldCameras();
             TryLoadUiPackage();
-
-            Session    = new SessionModel();
-            Gateway    = new GatewayHttpClient(Session.GatewayBaseUrl);
-            GameClient = new GameClient(Session.GatewayBaseUrl);
-            GameClient.OnLog += s => Debug.Log("[GameClient] " + s);
 
             BuildRoot();
             Router = new ScreenRouter(this, _host);
@@ -64,6 +129,7 @@ namespace MmorpgClient.UI
         {
             GameClient?.Tick();
             GameClient?.World?.Tick();
+            Ugui?.Tick(Time.deltaTime);
             Router?.Tick(Time.deltaTime);
         }
 
@@ -153,7 +219,7 @@ namespace MmorpgClient.UI
         {
             // UIContentScaler (configured in EnsureFairyGUIStage) already maps
             // the 2560x1080 design space to the actual window with a single
-            // uniform scale + letterbox via MatchWidthOrHeight. We MUST NOT
+            // uniform scale + letterbox via MatchWidth. We MUST NOT
             // apply a second SetScale on _root, otherwise every sprite goes
             // through two non-integer scales and lands on sub-pixel offsets,
             // which is exactly what makes the entire UI look blurry.
@@ -197,25 +263,112 @@ namespace MmorpgClient.UI
 
         private void EnsureSceneRig()
         {
-            if (Camera.main == null)
+            if (worldCamera == null)
+                worldCamera = GetComponentInChildren<Camera>(true) ?? Camera.main;
+            if (worldCamera == null)
             {
                 var camGo = new GameObject("[MainCamera]");
                 camGo.tag = "MainCamera";
-                var cam = camGo.AddComponent<Camera>();
-                cam.clearFlags = CameraClearFlags.SolidColor;
-                cam.backgroundColor = new Color(0.20f, 0.23f, 0.19f);
-                cam.transform.position = new UnityEngine.Vector3(0f, 4f, -10f);
-                cam.transform.rotation = Quaternion.Euler(15f, 0f, 0f);
+                camGo.transform.SetParent(transform, false);
+                worldCamera = camGo.AddComponent<Camera>();
+                worldCamera.clearFlags = CameraClearFlags.SolidColor;
+                worldCamera.backgroundColor = new Color(0.20f, 0.23f, 0.19f);
+                worldCamera.transform.position = new UnityEngine.Vector3(0f, 4f, -10f);
+                worldCamera.transform.rotation = Quaternion.Euler(15f, 0f, 0f);
                 camGo.AddComponent<AudioListener>();
             }
-            if (FindAnyObjectByType<Light>() == null)
+            else
+            {
+                AdoptIntoPersistentRoot(worldCamera.transform);
+                if (FindAnyObjectByType<AudioListener>() == null)
+                    worldCamera.gameObject.AddComponent<AudioListener>();
+            }
+
+            if (directionalSun == null)
+            {
+                foreach (var light in GetComponentsInChildren<Light>(true))
+                {
+                    if (light.type != LightType.Directional) continue;
+                    directionalSun = light;
+                    break;
+                }
+            }
+            if (directionalSun == null)
+            {
+                foreach (var light in FindObjectsByType<Light>())
+                {
+                    if (light.type != LightType.Directional) continue;
+                    directionalSun = light;
+                    break;
+                }
+            }
+            if (directionalSun == null)
             {
                 var lightGo = new GameObject("[DirLight]");
-                var light = lightGo.AddComponent<Light>();
-                light.type = LightType.Directional;
-                light.intensity = 1.1f;
+                lightGo.transform.SetParent(transform, false);
+                directionalSun = lightGo.AddComponent<Light>();
+                directionalSun.type = LightType.Directional;
+                directionalSun.intensity = 1.1f;
                 lightGo.transform.rotation = Quaternion.Euler(40f, 30f, 0f);
             }
+            else
+            {
+                AdoptIntoPersistentRoot(directionalSun.transform);
+            }
+
+            _actorWorldRoot = transform.Find("[ActorWorld]");
+            if (_actorWorldRoot == null)
+            {
+                var existing = GameObject.Find("[ActorWorld]");
+                _actorWorldRoot = existing != null ? existing.transform : null;
+            }
+            if (_actorWorldRoot == null)
+            {
+                var actorRootObject = new GameObject("[ActorWorld]");
+                actorRootObject.transform.SetParent(transform, false);
+                _actorWorldRoot = actorRootObject.transform;
+            }
+            else
+            {
+                AdoptIntoPersistentRoot(_actorWorldRoot);
+            }
+        }
+
+        private void AdoptIntoPersistentRoot(UnityEngine.Transform child)
+        {
+            if (child == null || child == transform || child.IsChildOf(transform)) return;
+            child.SetParent(transform, true);
+        }
+
+        private void OnDestroy()
+        {
+            if (_instance != this) return;
+            _instance = null;
+
+            StopAllCoroutines();
+            if (_root != null)
+            {
+                GRoot.inst.onSizeChanged.Remove(OnRootResize);
+                _root.Dispose();
+                _root = null;
+                _host = null;
+            }
+
+            if (GameClient != null)
+            {
+                GameClient.CoroutineRunner = null;
+                if (_gameLogHandler != null) GameClient.OnLog -= _gameLogHandler;
+                GameClient.Disconnect();
+            }
+
+            _gameLogHandler = null;
+            WorldMap = null;
+            Ugui = null;
+            Router = null;
+            GameClient = null;
+            Gateway = null;
+            Session = null;
+            _actorWorldRoot = null;
         }
 
         private static void ExcludeFairyGuiLayerFromWorldCameras()
@@ -224,7 +377,7 @@ namespace MmorpgClient.UI
             if (uiLayer < 0) return;
 
             int uiMask = 1 << uiLayer;
-            foreach (var camera in FindObjectsByType<Camera>(FindObjectsSortMode.None))
+            foreach (var camera in FindObjectsByType<Camera>())
             {
                 if (camera == null || camera.GetComponent<StageCamera>() != null) continue;
                 camera.cullingMask &= ~uiMask;

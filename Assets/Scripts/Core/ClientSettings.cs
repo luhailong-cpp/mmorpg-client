@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MmorpgClient.Core
@@ -19,10 +20,12 @@ namespace MmorpgClient.Core
         private const string K_Account  = "mmorpg.account";
         private const string K_Zone     = "mmorpg.zone";
         private const string K_LogLevel = "mmorpg.loglevel";
+        private const string K_RecentZones = "mmorpg.recentzones";
 
         public static string GatewayBaseUrl
         {
-            get => PlayerPrefs.GetString(K_Gateway, "http://127.0.0.1:8080");
+            // Java gateway_node listens on 8081 (application.yaml server.port).
+            get => PlayerPrefs.GetString(K_Gateway, "http://127.0.0.1:8081");
             set { PlayerPrefs.SetString(K_Gateway, value ?? ""); PlayerPrefs.Save(); }
         }
 
@@ -36,6 +39,31 @@ namespace MmorpgClient.Core
         {
             get => (uint)PlayerPrefs.GetInt(K_Zone, 1);
             set { PlayerPrefs.SetInt(K_Zone, (int)value); PlayerPrefs.Save(); }
+        }
+
+        /// <summary>Comma-separated most-recent-first zone ids (e.g. "3,1,7").</summary>
+        public static string RecentZones
+        {
+            get => PlayerPrefs.GetString(K_RecentZones, "");
+            set { PlayerPrefs.SetString(K_RecentZones, value ?? ""); PlayerPrefs.Save(); }
+        }
+
+        public static List<uint> ParseRecentZones()
+        {
+            var result = new List<uint>();
+            var raw = RecentZones;
+            if (string.IsNullOrEmpty(raw)) return result;
+            foreach (var part in raw.Split(','))
+            {
+                if (uint.TryParse(part.Trim(), out var z) && z != 0 && !result.Contains(z))
+                    result.Add(z);
+            }
+            return result;
+        }
+
+        public static void SaveRecentZones(IReadOnlyList<uint> zones)
+        {
+            RecentZones = zones == null ? "" : string.Join(",", zones);
         }
 
         public static MmorpgLogger.LogLevel LogLevel

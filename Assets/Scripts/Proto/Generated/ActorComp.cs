@@ -31,14 +31,14 @@ public static partial class ActorCompReflection {
           "KAsyCS5Sb3RhdGlvbhIVCgVzY2FsZRgDIAEoCzIGLlNjYWxlIisKCFZlbG9j",
           "aXR5EgkKAXgYASABKAESCQoBeRgCIAEoARIJCgF6GAMgASgBIi8KDEFjY2Vs",
           "ZXJhdGlvbhIJCgF4GAEgASgBEgkKAXkYAiABKAESCQoBehgDIAEoASIcCgpW",
-          "aWV3UmFkaXVzEg4KBnJhZGl1cxgBIAEoAiKMAQoSQmFzZUF0dHJpYnV0ZXND",
+          "aWV3UmFkaXVzEg4KBnJhZGl1cxgBIAEoAiKbAQoSQmFzZUF0dHJpYnV0ZXND",
           "b21wEhAKCHN0cmVuZ3RoGAEgASgEEg8KB3N0YW1pbmEYAiABKAQSDgoGaGVh",
           "bHRoGAMgASgEEgwKBG1hbmEYBCABKAQSEgoKY3JpdGNoYW5jZRgFIAEoBBIN",
-          "CgVhcm1vchgGIAEoBBISCgpyZXNpc3RhbmNlGAcgASgEIhoKCUxldmVsQ29t",
-          "cBINCgVsZXZlbBgBIAEoDSJ2Cg5BY3RvclN0YXRlQ29tcBIyCgpzdGF0ZV9s",
-          "aXN0GAEgAygLMh4uQWN0b3JTdGF0ZUNvbXAuU3RhdGVMaXN0RW50cnkaMAoO",
-          "U3RhdGVMaXN0RW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgIOgI4",
-          "AUISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
+          "CgVhcm1vchgGIAEoBBISCgpyZXNpc3RhbmNlGAcgASgEEg0KBXNwZWVkGAgg",
+          "ASgEIhoKCUxldmVsQ29tcBINCgVsZXZlbBgBIAEoDSJ2Cg5BY3RvclN0YXRl",
+          "Q29tcBIyCgpzdGF0ZV9saXN0GAEgAygLMh4uQWN0b3JTdGF0ZUNvbXAuU3Rh",
+          "dGVMaXN0RW50cnkaMAoOU3RhdGVMaXN0RW50cnkSCwoDa2V5GAEgASgNEg0K",
+          "BXZhbHVlGAIgASgIOgI4AUISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::BaseCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -49,7 +49,7 @@ public static partial class ActorCompReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::Velocity), global::Velocity.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Acceleration), global::Acceleration.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ViewRadius), global::ViewRadius.Parser, new[]{ "Radius" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BaseAttributesComp), global::BaseAttributesComp.Parser, new[]{ "Strength", "Stamina", "Health", "Mana", "Critchance", "Armor", "Resistance" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BaseAttributesComp), global::BaseAttributesComp.Parser, new[]{ "Strength", "Stamina", "Health", "Mana", "Critchance", "Armor", "Resistance", "Speed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LevelComp), global::LevelComp.Parser, new[]{ "Level" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorStateComp), global::ActorStateComp.Parser, new[]{ "StateList" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
         }));
@@ -1964,6 +1964,7 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
     critchance_ = other.critchance_;
     armor_ = other.armor_;
     resistance_ = other.resistance_;
+    speed_ = other.speed_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2078,6 +2079,21 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
     }
   }
 
+  /// <summary>Field number for the "speed" field.</summary>
+  public const int SpeedFieldNumber = 8;
+  private ulong speed_;
+  /// <summary>
+  /// 速度:回合制战斗出手序(降序结算),实时战斗暂不消费
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Speed {
+    get { return speed_; }
+    set {
+      speed_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2100,6 +2116,7 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
     if (Critchance != other.Critchance) return false;
     if (Armor != other.Armor) return false;
     if (Resistance != other.Resistance) return false;
+    if (Speed != other.Speed) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2114,6 +2131,7 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
     if (Critchance != 0UL) hash ^= Critchance.GetHashCode();
     if (Armor != 0UL) hash ^= Armor.GetHashCode();
     if (Resistance != 0UL) hash ^= Resistance.GetHashCode();
+    if (Speed != 0UL) hash ^= Speed.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2160,6 +2178,10 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
       output.WriteRawTag(56);
       output.WriteUInt64(Resistance);
     }
+    if (Speed != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(Speed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2198,6 +2220,10 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
       output.WriteRawTag(56);
       output.WriteUInt64(Resistance);
     }
+    if (Speed != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(Speed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2228,6 +2254,9 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
     }
     if (Resistance != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Resistance);
+    }
+    if (Speed != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Speed);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2261,6 +2290,9 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
     }
     if (other.Resistance != 0UL) {
       Resistance = other.Resistance;
+    }
+    if (other.Speed != 0UL) {
+      Speed = other.Speed;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2309,6 +2341,10 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
           Resistance = input.ReadUInt64();
           break;
         }
+        case 64: {
+          Speed = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -2354,6 +2390,10 @@ public sealed partial class BaseAttributesComp : pb::IMessage<BaseAttributesComp
         }
         case 56: {
           Resistance = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          Speed = input.ReadUInt64();
           break;
         }
       }

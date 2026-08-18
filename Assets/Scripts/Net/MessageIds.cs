@@ -6,10 +6,15 @@ namespace MmorpgClient.Net
 {
     public static class MessageIds
     {
+        public const uint CancelQueue            =  148; // MatchServiceCancelQueue
+        public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
         public const uint CreatePlayer           =   14; // ClientPlayerLoginCreatePlayer
         public const uint Disconnect             =   58; // ClientPlayerLoginDisconnect
         public const uint EnterGame              =   26; // ClientPlayerLoginEnterGame
         public const uint EnterScene             =   63; // SceneSceneClientPlayerEnterScene
+        public const uint GetBattleState         =  140; // BattleClientPlayerGetBattleState
+        public const uint GetQueueStatus         =  153; // MatchServiceGetQueueStatus
+        public const uint JoinQueue              =  157; // MatchServiceJoinQueue
         public const uint KickPlayer             =   34; // SceneClientPlayerCommonKickPlayer
         public const uint LeaveGame              =   17; // ClientPlayerLoginLeaveGame
         public const uint ListSkills             =   77; // SceneSkillClientPlayerListSkills
@@ -23,15 +28,24 @@ namespace MmorpgClient.Net
         public const uint NotifyActorListDestroy =   64; // SceneSceneClientPlayerNotifyActorListDestroy
         public const uint NotifyActorMove        =  133; // SceneMovementClientPlayerNotifyActorMove
         public const uint NotifyActorMoveList    =  135; // SceneMovementClientPlayerNotifyActorMoveList
+        public const uint NotifyBattleEnd        =  150; // BattleClientPlayerNotifyBattleEnd
+        public const uint NotifyBattleReconnect  =  144; // BattleClientPlayerNotifyBattleReconnect
+        public const uint NotifyBattleStart      =  143; // BattleClientPlayerNotifyBattleStart
+        public const uint NotifyChallengeInvite  =  156; // MatchServiceNotifyChallengeInvite
+        public const uint NotifyChallengeResult  =  154; // MatchServiceNotifyChallengeResult
         public const uint NotifyEnterScene       =   79; // SceneSceneClientPlayerNotifyEnterScene
         public const uint NotifyMoveAck          =  137; // SceneMovementClientPlayerNotifyMoveAck
         public const uint NotifySceneInfo        =   31; // SceneSceneClientPlayerNotifySceneInfo
         public const uint NotifySkillInterrupted =   33; // SceneSkillClientPlayerNotifySkillInterrupted
         public const uint NotifySkillUsed        =   70; // SceneSkillClientPlayerNotifySkillUsed
         public const uint NotifyTeleport         =  130; // SceneMovementClientPlayerNotifyTeleport
+        public const uint NotifyTurnResult       =  139; // BattleClientPlayerNotifyTurnResult
+        public const uint RedirectToGate         =  124; // SceneClientPlayerCommonRedirectToGate
         public const uint RefreshToken           =  127; // ClientPlayerLoginRefreshToken
         public const uint ReleaseSkill           =   84; // SceneSkillClientPlayerReleaseSkill
+        public const uint RespondChallenge       =  151; // MatchServiceRespondChallenge
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
+        public const uint SubmitBattleAction     =  149; // BattleClientPlayerSubmitBattleAction
         public const uint TeleportRequest        =  136; // SceneMovementClientPlayerTeleportRequest
         public const uint TipToClient            =   23; // SceneClientPlayerCommonSendTipToClient
     }

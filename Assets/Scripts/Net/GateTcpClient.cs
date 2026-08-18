@@ -25,6 +25,7 @@ namespace MmorpgClient.Net
         private readonly ConcurrentQueue<IMessage> _inbox = new();
         private readonly ConcurrentQueue<string> _errors = new();
         private volatile bool _running;
+        private volatile bool _disposed;
         private int _disconnectFired;
 
         /// <summary>Bounded outbox to apply backpressure if the writer thread
@@ -70,8 +71,12 @@ namespace MmorpgClient.Net
         /// <summary>Drain queued events on the Unity main thread.</summary>
         public void Poll()
         {
-            while (_errors.TryDequeue(out var err)) OnError?.Invoke(err);
-            while (_inbox.TryDequeue(out var msg))
+            // _disposed 检查覆盖两种时序:重定向流程在本 Poll 的调用栈内
+            // Dispose 旧连接后,inbox 里排在后面的残留消息(KickPlayer、
+            // 断线哨兵、旧场景推送)必须立刻停止派发,不能作用到新连接
+            // 建立后的状态上。
+            while (!_disposed && _errors.TryDequeue(out var err)) OnError?.Invoke(err);
+            while (!_disposed && _inbox.TryDequeue(out var msg))
             {
                 if (msg is DisconnectedSentinel)
                 {
@@ -155,6 +160,7 @@ namespace MmorpgClient.Net
 
         public void Dispose()
         {
+            _disposed = true;
             _running = false;
             try { _outbox.CompleteAdding(); } catch { }
             try { _stream?.Close(); } catch { }

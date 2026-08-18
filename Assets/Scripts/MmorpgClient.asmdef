@@ -2,7 +2,9 @@
   "name": "MmorpgClient",
   "rootNamespace": "MmorpgClient",
   "references": [
-    "FairyGUI"
+    "FairyGUI",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

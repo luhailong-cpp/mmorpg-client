@@ -1,12 +1,12 @@
 # MMORPG Unity Client
 
-Unity 6000.0.32f1 client for the MMORPG server (parent repo:
+Unity 6000.5.8f1 client for the MMORPG server (parent repo:
 [luyuancpp/mmorpg](https://github.com/luyuancpp/mmorpg)). This repo is
 mounted as a git submodule at `client/unity/` inside the superproject.
 
 ## Quick start
 
-1. **Open in Unity**: Unity Hub -> Open -> select this repo's root.
+1. **Open in Unity**: use Unity `6000.5.8f1`, then select this repo's root.
 2. **Generate proto C# stubs** (required after first checkout and after
    any `.proto` change in the parent repo):
 
@@ -20,21 +20,24 @@ mounted as a git submodule at `client/unity/` inside the superproject.
    `gen_messageids.ps1` regenerates `Assets/Scripts/Net/MessageIds.cs`
    from the server's authoritative `proto/message_id.txt`.
 
-3. **Bootstrap scene**: create an empty scene with one GameObject and
-   add the `MmorpgClient.Core.Bootstrap` component, then add a child
-   GameObject with `MmorpgClient.UI.GameDemo` for the developer panel.
-   `Bootstrap` survives scene loads via `DontDestroyOnLoad` and owns
-   the gate connection.
+3. **Generate standard scenes and prefabs**: after scripts compile, run
+   `MMORPG > World > Tianyong > Rebuild standard test content` once. It creates
+   `AppRoot.prefab`, `Bootstrap.unity`, the offline `TianyongSandbox.unity`, the
+   Tianyong config/materials and its debug-player prefab, then registers both
+   scenes in Build Settings. See `Docs/TianyongMap.md` for PlayMode controls and
+   batch commands.
 
 ## Architecture
 
 ```
-Bootstrap (DontDestroyOnLoad)
-  +-- GameClient
+Bootstrap.unity
+  +-- AppRoot.prefab / AppBootstrap
+       +-- GameClient
        +-- GatewayHttpClient   (HTTP -> Java gateway: server-list, assign-gate)
        +-- GateTcpClient       (TCP  -> C++ Gate node, MuduoCodec framing)
        +-- ActorWorld          (entity_id -> GameObject view cache)
        +-- SkillFx             (cast ring / beam / hit flash primitives)
+       +-- TianyongMapRuntime  (chunked world, navigation and themes)
 ```
 
 * **Wire format** is muduo's `ProtobufCodec`:
@@ -56,13 +59,13 @@ still need to address:
 | Area                | Status                                              |
 | ------------------- | --------------------------------------------------- |
 | Login flow          | done (HTTP gateway + token verify + Login + Enter)  |
-| Scene rendering     | placeholder primitives in `ActorWorld`              |
+| Scene rendering     | playable Tianyong map; actor models remain placeholders |
 | Skill FX            | placeholder ring/beam/flash in `SkillFx`            |
 | Reconnect           | exponential backoff in `GameDemo`                   |
 | Refresh token       | wired (`MessageIds.RefreshToken=127`)               |
 | Logging             | leveled file sink under `persistentDataPath/logs/`  |
 | Settings            | PlayerPrefs (`ClientSettings`) for gateway/account  |
-| **Movement**        | **NEEDS server proto** (no `MoveC2S` defined yet)   |
+| **Movement**        | client movement wired; server nav validation pending |
 | **Real assets**     | Addressables / animations / audio not yet wired     |
 | **Localization**    | tip table loader not yet wired                      |
 | **Secure storage**  | refresh token must NOT live in `PlayerPrefs`        |
@@ -73,17 +76,21 @@ still need to address:
 
 ```
 Assets/
+  Scenes/Bootstrap.unity              production entry scene (generated)
+  Scenes/World/TianyongSandbox.unity  offline map test scene (generated)
+  Prefabs/App/AppRoot.prefab           production root (generated)
+  Resources/World/Tianyong/            config + source textures
   Plugins/Google.Protobuf.dll          vendored (netstandard2.0, 3.28.3)
   Scripts/
-    Core/Bootstrap.cs                  DontDestroyOnLoad entry
     Core/MmorpgLogger.cs               leveled console + file logger
     Core/ClientSettings.cs             PlayerPrefs settings
     Game/GameClient.cs                 high-level client facade
     Net/                               gateway HTTP, gate TCP, codec, ids
     Proto/Generated/                   protoc output (regenerated)
-    UI/GameDemo.cs                     developer IMGUI panel
+    UI/AppBootstrap.cs                 production uGUI/client entry
     World/ActorWorld.cs                entity_id -> GameObject cache
     World/SkillFx.cs                   placeholder skill FX
+    World/Tianyong/                    playable Tianyong runtime
 tools/
   gen_proto.ps1                        protoc invoker
   gen_messageids.ps1                   message_id.txt -> MessageIds.cs

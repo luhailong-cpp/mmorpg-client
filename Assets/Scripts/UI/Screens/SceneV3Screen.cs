@@ -1,5 +1,6 @@
 using System;
 using FairyGUI;
+using MmorpgClient.UI.Ugui.Battle;
 using UnityEngine;
 
 namespace MmorpgClient.UI.Screens
@@ -35,8 +36,10 @@ namespace MmorpgClient.UI.Screens
             return _root;
         }
 
-        public void OnEnter() { }
-        public void OnExit()  { }
+        // 战斗入口:场景屏亮起时激活 UGUI 战斗悬浮层(排队面板入口按钮、
+        // 挑战弹窗宿主、战斗屏切换都由 BattleUiRoot 承载,禁止在此加 FairyGUI UI)。
+        public void OnEnter() { BattleUiRoot.NotifySceneScreenEntered(); }
+        public void OnExit()  { BattleUiRoot.NotifySceneScreenExited(); }
         public void Tick(float _) { }
 
         private void BindIfPresent(string childName, Action handler)

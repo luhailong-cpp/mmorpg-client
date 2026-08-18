@@ -93,6 +93,9 @@ crashlytics-build.properties
 # TestRunner generated files
 InitTestScene*.unity*
 
+# Unity Test Runner reports are CI/local artifacts, not project assets.
+/*-results*.xml
+
 # Addressables default ignores, before user customizations
 /ServerData
 /[Aa]ssets/StreamingAssets/aa*

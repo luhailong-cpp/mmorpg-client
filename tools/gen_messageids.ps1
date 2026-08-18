@@ -18,9 +18,12 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$source = Join-Path $ProtoRoot "generated/proto/_unified/proto/message_id.txt"
+# proto/message_id.txt 是源契约(服务器 CLAUDE.md §4:proto 源在 proto/,
+# proto-gen 会把新分配的 id 写回这里);generated/_unified 只是某次生成的
+# 快照,可能落后于源(2026-08 就因它缺 battle/match 段漏生成过)。
+$source = Join-Path $ProtoRoot "proto/message_id.txt"
 if (-not (Test-Path $source)) {
-    $source = Join-Path $ProtoRoot "proto/message_id.txt"
+    $source = Join-Path $ProtoRoot "generated/proto/_unified/proto/message_id.txt"
 }
 if (-not (Test-Path $source)) { throw "message_id.txt not found under $ProtoRoot" }
 
@@ -55,11 +58,29 @@ $whitelist = @{
     "SceneSkillClientPlayerNotifySkillInterrupted" = "NotifySkillInterrupted"
     "SceneClientPlayerCommonSendTipToClient"       = "TipToClient"
     "SceneClientPlayerCommonKickPlayer"            = "KickPlayer"
+    "SceneClientPlayerCommonRedirectToGate"        = "RedirectToGate"
 
     "SceneMovementClientPlayerNotifyMoveAck"       = "NotifyMoveAck"
     "SceneMovementClientPlayerNotifyActorMove"     = "NotifyActorMove"
     "SceneMovementClientPlayerNotifyActorMoveList" = "NotifyActorMoveList"
     "SceneMovementClientPlayerNotifyTeleport"      = "NotifyTeleport"
+
+    # 回合制战斗(proto/battle/player_battle.proto, service BattleClientPlayer)
+    "BattleClientPlayerSubmitBattleAction"         = "SubmitBattleAction"
+    "BattleClientPlayerGetBattleState"             = "GetBattleState"
+    "BattleClientPlayerNotifyBattleStart"          = "NotifyBattleStart"
+    "BattleClientPlayerNotifyTurnResult"           = "NotifyTurnResult"
+    "BattleClientPlayerNotifyBattleEnd"            = "NotifyBattleEnd"
+    "BattleClientPlayerNotifyBattleReconnect"      = "NotifyBattleReconnect"
+
+    # 匹配/切磋(proto/match/match_service.proto, service MatchService)
+    "MatchServiceJoinQueue"                        = "JoinQueue"
+    "MatchServiceCancelQueue"                      = "CancelQueue"
+    "MatchServiceGetQueueStatus"                   = "GetQueueStatus"
+    "MatchServiceChallengePlayer"                  = "ChallengePlayer"
+    "MatchServiceRespondChallenge"                 = "RespondChallenge"
+    "MatchServiceNotifyChallengeInvite"            = "NotifyChallengeInvite"
+    "MatchServiceNotifyChallengeResult"            = "NotifyChallengeResult"
 }
 
 $idByMethod = @{}
