@@ -1,0 +1,23 @@
+{
+  "name": "MmorpgClient.Tests.EditMode.Tianyong",
+  "rootNamespace": "MmorpgClient.Tests.EditMode.Tianyong",
+  "references": [
+    "MmorpgClient",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

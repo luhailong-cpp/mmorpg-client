@@ -42,56 +42,56 @@ namespace Loginpb {
             "c3RSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01l",
             "c3NhZ2USNAoHcGxheWVycxgCIAMoCzIjLmxvZ2lucGIuQWNjb3VudFNpbXBs",
             "ZVBsYXllcldyYXBwZXISEgoKdGVzdHN0cmluZxgDIAMoCRIPCgd0ZXN0aW50",
-            "GAQgAygFIhUKE0NyZWF0ZVBsYXllclJlcXVlc3QidAoUQ3JlYXRlUGxheWVy",
-            "UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNz",
-            "YWdlEjQKB3BsYXllcnMYAiADKAsyIy5sb2dpbnBiLkFjY291bnRTaW1wbGVQ",
-            "bGF5ZXJXcmFwcGVyIjkKEEVudGVyR2FtZVJlcXVlc3QSEQoJcGxheWVyX2lk",
-            "GAEgASgEEhIKCnJlcXVlc3RfaWQYAiABKAkiiwEKEUVudGVyR2FtZVJlc3Bv",
-            "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIR",
-            "CglwbGF5ZXJfaWQYAiABKAQSHAoUcG9zdF9tZXJnZV9ub3RpY2VfdHMYAyAB",
-            "KAMSHQoVZm9yY2VfcmVuYW1lX3JlcXVpcmVkGAQgASgIIhIKEExlYXZlR2Ft",
-            "ZVJlcXVlc3QiMAoaTG9naW5Ob2RlRGlzY29ubmVjdFJlcXVlc3QSEgoKc2Vz",
-            "c2lvbl9pZBgBIAEoDSIUChJMb2dpbkVtcHR5UmVzcG9uc2UiLAoTUmVmcmVz",
-            "aFRva2VuUmVxdWVzdBIVCg1yZWZyZXNoX3Rva2VuGAEgASgJIqYBChRSZWZy",
-            "ZXNoVG9rZW5SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-            "SW5mb01lc3NhZ2USFAoMYWNjZXNzX3Rva2VuGAIgASgJEhUKDXJlZnJlc2hf",
-            "dG9rZW4YAyABKAkSGwoTYWNjZXNzX3Rva2VuX2V4cGlyZRgEIAEoAxIcChRy",
-            "ZWZyZXNoX3Rva2VuX2V4cGlyZRgFIAEoAyJdChFBc3NpZ25HYXRlUmVxdWVz",
-            "dBIPCgd6b25lX2lkGAEgASgNEhMKC3F1ZXVlX3Rva2VuGAIgASgJEg8KB2Fj",
-            "Y291bnQYAyABKAkSEQoJZGV2aWNlX2lkGAQgASgJIusBChJBc3NpZ25HYXRl",
-            "UmVzcG9uc2USCgoCaXAYASABKAkSDAoEcG9ydBgCIAEoDRIVCg10b2tlbl9w",
-            "YXlsb2FkGAMgASgMEhcKD3Rva2VuX3NpZ25hdHVyZRgEIAEoDBIWCg50b2tl",
-            "bl9kZWFkbGluZRgFIAEoAxINCgVlcnJvchgGIAEoCRIOCgZzdGF0dXMYByAB",
-            "KA0SEwoLcXVldWVfdG9rZW4YCCABKAkSEgoKcXVldWVfcmFuaxgJIAEoDRIT",
-            "CgtxdWV1ZV90b3RhbBgKIAEoDRIWCg5yZXRyeV9hZnRlcl9tcxgLIAEoDSIu",
-            "ChdRdWVyeVF1ZXVlU3RhdHVzUmVxdWVzdBITCgtxdWV1ZV90b2tlbhgBIAEo",
-            "CSLcAQoYUXVlcnlRdWV1ZVN0YXR1c1Jlc3BvbnNlEg4KBnN0YXR1cxgBIAEo",
-            "DRIKCgJpcBgCIAEoCRIMCgRwb3J0GAMgASgNEhUKDXRva2VuX3BheWxvYWQY",
-            "BCABKAwSFwoPdG9rZW5fc2lnbmF0dXJlGAUgASgMEhYKDnRva2VuX2RlYWRs",
-            "aW5lGAYgASgDEhIKCnF1ZXVlX3JhbmsYByABKA0SEwoLcXVldWVfdG90YWwY",
-            "CCABKA0SFgoOcmV0cnlfYWZ0ZXJfbXMYCSABKA0SDQoFZXJyb3IYCiABKAki",
-            "NgogUmVtb3ZlUGxheWVyc0Zyb21BY2NvdW50c1JlcXVlc3QSEgoKcGxheWVy",
-            "X2lkcxgBIAMoBCJpCiFSZW1vdmVQbGF5ZXJzRnJvbUFjY291bnRzUmVzcG9u",
-            "c2USFQoNcmVtb3ZlZF9jb3VudBgBIAEoDRIXCg9ub3RfZm91bmRfY291bnQY",
-            "AiABKA0SFAoMZmFpbGVkX2NvdW50GAMgASgNMsUDChFDbGllbnRQbGF5ZXJM",
-            "b2dpbhI2CgVMb2dpbhIVLmxvZ2lucGIuTG9naW5SZXF1ZXN0GhYubG9naW5w",
-            "Yi5Mb2dpblJlc3BvbnNlEksKDENyZWF0ZVBsYXllchIcLmxvZ2lucGIuQ3Jl",
-            "YXRlUGxheWVyUmVxdWVzdBodLmxvZ2lucGIuQ3JlYXRlUGxheWVyUmVzcG9u",
-            "c2USQgoJRW50ZXJHYW1lEhkubG9naW5wYi5FbnRlckdhbWVSZXF1ZXN0Ghou",
-            "bG9naW5wYi5FbnRlckdhbWVSZXNwb25zZRJDCglMZWF2ZUdhbWUSGS5sb2dp",
-            "bnBiLkxlYXZlR2FtZVJlcXVlc3QaGy5sb2dpbnBiLkxvZ2luRW1wdHlSZXNw",
-            "b25zZRJOCgpEaXNjb25uZWN0EiMubG9naW5wYi5Mb2dpbk5vZGVEaXNjb25u",
-            "ZWN0UmVxdWVzdBobLmxvZ2lucGIuTG9naW5FbXB0eVJlc3BvbnNlEksKDFJl",
-            "ZnJlc2hUb2tlbhIcLmxvZ2lucGIuUmVmcmVzaFRva2VuUmVxdWVzdBodLmxv",
-            "Z2lucGIuUmVmcmVzaFRva2VuUmVzcG9uc2UaBYiowwEBMq4BCgxMb2dpblBy",
-            "ZUdhdGUSRQoKQXNzaWduR2F0ZRIaLmxvZ2lucGIuQXNzaWduR2F0ZVJlcXVl",
-            "c3QaGy5sb2dpbnBiLkFzc2lnbkdhdGVSZXNwb25zZRJXChBRdWVyeVF1ZXVl",
-            "U3RhdHVzEiAubG9naW5wYi5RdWVyeVF1ZXVlU3RhdHVzUmVxdWVzdBohLmxv",
-            "Z2lucGIuUXVlcnlRdWV1ZVN0YXR1c1Jlc3BvbnNlMoABCgpMb2dpbkFkbWlu",
-            "EnIKGVJlbW92ZVBsYXllcnNGcm9tQWNjb3VudHMSKS5sb2dpbnBiLlJlbW92",
-            "ZVBsYXllcnNGcm9tQWNjb3VudHNSZXF1ZXN0GioubG9naW5wYi5SZW1vdmVQ",
-            "bGF5ZXJzRnJvbUFjY291bnRzUmVzcG9uc2VCE1oRbG9naW4vcHJvdG8vbG9n",
-            "aW5iBnByb3RvMw=="));
+            "GAQgAygFIjcKE0NyZWF0ZVBsYXllclJlcXVlc3QSEAoIY2xhc3NfaWQYASAB",
+            "KA0SDgoGZ2VuZGVyGAIgASgNInQKFENyZWF0ZVBsYXllclJlc3BvbnNlEiYK",
+            "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRI0CgdwbGF5",
+            "ZXJzGAIgAygLMiMubG9naW5wYi5BY2NvdW50U2ltcGxlUGxheWVyV3JhcHBl",
+            "ciI5ChBFbnRlckdhbWVSZXF1ZXN0EhEKCXBsYXllcl9pZBgBIAEoBBISCgpy",
+            "ZXF1ZXN0X2lkGAIgASgJIosBChFFbnRlckdhbWVSZXNwb25zZRImCg1lcnJv",
+            "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USEQoJcGxheWVyX2lk",
+            "GAIgASgEEhwKFHBvc3RfbWVyZ2Vfbm90aWNlX3RzGAMgASgDEh0KFWZvcmNl",
+            "X3JlbmFtZV9yZXF1aXJlZBgEIAEoCCISChBMZWF2ZUdhbWVSZXF1ZXN0IjAK",
+            "GkxvZ2luTm9kZURpc2Nvbm5lY3RSZXF1ZXN0EhIKCnNlc3Npb25faWQYASAB",
+            "KA0iFAoSTG9naW5FbXB0eVJlc3BvbnNlIiwKE1JlZnJlc2hUb2tlblJlcXVl",
+            "c3QSFQoNcmVmcmVzaF90b2tlbhgBIAEoCSKmAQoUUmVmcmVzaFRva2VuUmVz",
+            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+            "EhQKDGFjY2Vzc190b2tlbhgCIAEoCRIVCg1yZWZyZXNoX3Rva2VuGAMgASgJ",
+            "EhsKE2FjY2Vzc190b2tlbl9leHBpcmUYBCABKAMSHAoUcmVmcmVzaF90b2tl",
+            "bl9leHBpcmUYBSABKAMiXQoRQXNzaWduR2F0ZVJlcXVlc3QSDwoHem9uZV9p",
+            "ZBgBIAEoDRITCgtxdWV1ZV90b2tlbhgCIAEoCRIPCgdhY2NvdW50GAMgASgJ",
+            "EhEKCWRldmljZV9pZBgEIAEoCSLrAQoSQXNzaWduR2F0ZVJlc3BvbnNlEgoK",
+            "AmlwGAEgASgJEgwKBHBvcnQYAiABKA0SFQoNdG9rZW5fcGF5bG9hZBgDIAEo",
+            "DBIXCg90b2tlbl9zaWduYXR1cmUYBCABKAwSFgoOdG9rZW5fZGVhZGxpbmUY",
+            "BSABKAMSDQoFZXJyb3IYBiABKAkSDgoGc3RhdHVzGAcgASgNEhMKC3F1ZXVl",
+            "X3Rva2VuGAggASgJEhIKCnF1ZXVlX3JhbmsYCSABKA0SEwoLcXVldWVfdG90",
+            "YWwYCiABKA0SFgoOcmV0cnlfYWZ0ZXJfbXMYCyABKA0iLgoXUXVlcnlRdWV1",
+            "ZVN0YXR1c1JlcXVlc3QSEwoLcXVldWVfdG9rZW4YASABKAki3AEKGFF1ZXJ5",
+            "UXVldWVTdGF0dXNSZXNwb25zZRIOCgZzdGF0dXMYASABKA0SCgoCaXAYAiAB",
+            "KAkSDAoEcG9ydBgDIAEoDRIVCg10b2tlbl9wYXlsb2FkGAQgASgMEhcKD3Rv",
+            "a2VuX3NpZ25hdHVyZRgFIAEoDBIWCg50b2tlbl9kZWFkbGluZRgGIAEoAxIS",
+            "CgpxdWV1ZV9yYW5rGAcgASgNEhMKC3F1ZXVlX3RvdGFsGAggASgNEhYKDnJl",
+            "dHJ5X2FmdGVyX21zGAkgASgNEg0KBWVycm9yGAogASgJIjYKIFJlbW92ZVBs",
+            "YXllcnNGcm9tQWNjb3VudHNSZXF1ZXN0EhIKCnBsYXllcl9pZHMYASADKAQi",
+            "aQohUmVtb3ZlUGxheWVyc0Zyb21BY2NvdW50c1Jlc3BvbnNlEhUKDXJlbW92",
+            "ZWRfY291bnQYASABKA0SFwoPbm90X2ZvdW5kX2NvdW50GAIgASgNEhQKDGZh",
+            "aWxlZF9jb3VudBgDIAEoDTLFAwoRQ2xpZW50UGxheWVyTG9naW4SNgoFTG9n",
+            "aW4SFS5sb2dpbnBiLkxvZ2luUmVxdWVzdBoWLmxvZ2lucGIuTG9naW5SZXNw",
+            "b25zZRJLCgxDcmVhdGVQbGF5ZXISHC5sb2dpbnBiLkNyZWF0ZVBsYXllclJl",
+            "cXVlc3QaHS5sb2dpbnBiLkNyZWF0ZVBsYXllclJlc3BvbnNlEkIKCUVudGVy",
+            "R2FtZRIZLmxvZ2lucGIuRW50ZXJHYW1lUmVxdWVzdBoaLmxvZ2lucGIuRW50",
+            "ZXJHYW1lUmVzcG9uc2USQwoJTGVhdmVHYW1lEhkubG9naW5wYi5MZWF2ZUdh",
+            "bWVSZXF1ZXN0GhsubG9naW5wYi5Mb2dpbkVtcHR5UmVzcG9uc2USTgoKRGlz",
+            "Y29ubmVjdBIjLmxvZ2lucGIuTG9naW5Ob2RlRGlzY29ubmVjdFJlcXVlc3Qa",
+            "Gy5sb2dpbnBiLkxvZ2luRW1wdHlSZXNwb25zZRJLCgxSZWZyZXNoVG9rZW4S",
+            "HC5sb2dpbnBiLlJlZnJlc2hUb2tlblJlcXVlc3QaHS5sb2dpbnBiLlJlZnJl",
+            "c2hUb2tlblJlc3BvbnNlGgWIqMMBATKuAQoMTG9naW5QcmVHYXRlEkUKCkFz",
+            "c2lnbkdhdGUSGi5sb2dpbnBiLkFzc2lnbkdhdGVSZXF1ZXN0GhsubG9naW5w",
+            "Yi5Bc3NpZ25HYXRlUmVzcG9uc2USVwoQUXVlcnlRdWV1ZVN0YXR1cxIgLmxv",
+            "Z2lucGIuUXVlcnlRdWV1ZVN0YXR1c1JlcXVlc3QaIS5sb2dpbnBiLlF1ZXJ5",
+            "UXVldWVTdGF0dXNSZXNwb25zZTKAAQoKTG9naW5BZG1pbhJyChlSZW1vdmVQ",
+            "bGF5ZXJzRnJvbUFjY291bnRzEikubG9naW5wYi5SZW1vdmVQbGF5ZXJzRnJv",
+            "bUFjY291bnRzUmVxdWVzdBoqLmxvZ2lucGIuUmVtb3ZlUGxheWVyc0Zyb21B",
+            "Y2NvdW50c1Jlc3BvbnNlQhNaEWxvZ2luL3Byb3RvL2xvZ2luYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::UserAccountsReflection.Descriptor, global::CommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -100,7 +100,7 @@ namespace Loginpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.LoginRequest), global::Loginpb.LoginRequest.Parser, new[]{ "Account", "Password", "AuthType", "AuthToken" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.LoginResponse), global::Loginpb.LoginResponse.Parser, new[]{ "ErrorMessage", "Players", "AccessToken", "RefreshToken", "AccessTokenExpire", "RefreshTokenExpire" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.TestResponse), global::Loginpb.TestResponse.Parser, new[]{ "ErrorMessage", "Players", "Teststring", "Testint" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.CreatePlayerRequest), global::Loginpb.CreatePlayerRequest.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.CreatePlayerRequest), global::Loginpb.CreatePlayerRequest.Parser, new[]{ "ClassId", "Gender" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.CreatePlayerResponse), global::Loginpb.CreatePlayerResponse.Parser, new[]{ "ErrorMessage", "Players" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.EnterGameRequest), global::Loginpb.EnterGameRequest.Parser, new[]{ "PlayerId", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Loginpb.EnterGameResponse), global::Loginpb.EnterGameResponse.Parser, new[]{ "ErrorMessage", "PlayerId", "PostMergeNoticeTs", "ForceRenameRequired" }, null, null, null, null),
@@ -1741,6 +1741,8 @@ namespace Loginpb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CreatePlayerRequest(CreatePlayerRequest other) : this() {
+      classId_ = other.classId_;
+      gender_ = other.gender_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1748,6 +1750,36 @@ namespace Loginpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CreatePlayerRequest Clone() {
       return new CreatePlayerRequest(this);
+    }
+
+    /// <summary>Field number for the "class_id" field.</summary>
+    public const int ClassIdFieldNumber = 1;
+    private uint classId_;
+    /// <summary>
+    /// 职业(Class 配表 id);0 = 兼容旧客户端,取配表第一个职业
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint ClassId {
+      get { return classId_; }
+      set {
+        classId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gender" field.</summary>
+    public const int GenderFieldNumber = 2;
+    private uint gender_;
+    /// <summary>
+    /// 1=男 2=女;0 = 兼容旧客户端,默认 1
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Gender {
+      get { return gender_; }
+      set {
+        gender_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1765,6 +1797,8 @@ namespace Loginpb {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (ClassId != other.ClassId) return false;
+      if (Gender != other.Gender) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1772,6 +1806,8 @@ namespace Loginpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (ClassId != 0) hash ^= ClassId.GetHashCode();
+      if (Gender != 0) hash ^= Gender.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1790,6 +1826,14 @@ namespace Loginpb {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (ClassId != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(ClassId);
+      }
+      if (Gender != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Gender);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1800,6 +1844,14 @@ namespace Loginpb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (ClassId != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(ClassId);
+      }
+      if (Gender != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Gender);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1810,6 +1862,12 @@ namespace Loginpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (ClassId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClassId);
+      }
+      if (Gender != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gender);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1821,6 +1879,12 @@ namespace Loginpb {
     public void MergeFrom(CreatePlayerRequest other) {
       if (other == null) {
         return;
+      }
+      if (other.ClassId != 0) {
+        ClassId = other.ClassId;
+      }
+      if (other.Gender != 0) {
+        Gender = other.Gender;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1841,6 +1905,14 @@ namespace Loginpb {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 8: {
+            ClassId = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            Gender = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -1860,6 +1932,14 @@ namespace Loginpb {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 8: {
+            ClassId = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            Gender = input.ReadUInt32();
+            break;
+          }
         }
       }
     }

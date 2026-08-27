@@ -66,6 +66,19 @@ namespace MmorpgClient.Core
             RecentZones = zones == null ? "" : string.Join(",", zones);
         }
 
+        /// <summary>某区最近一次进入的角色 id(0 = 无记录)。key: mmorpg.lastplayer.{zoneId}。</summary>
+        public static ulong GetLastPlayer(uint zoneId)
+        {
+            var raw = PlayerPrefs.GetString($"mmorpg.lastplayer.{zoneId}", "");
+            return ulong.TryParse(raw, out var v) ? v : 0;
+        }
+
+        public static void SetLastPlayer(uint zoneId, ulong playerId)
+        {
+            PlayerPrefs.SetString($"mmorpg.lastplayer.{zoneId}", playerId.ToString());
+            PlayerPrefs.Save();
+        }
+
         public static MmorpgLogger.LogLevel LogLevel
         {
             get => (MmorpgLogger.LogLevel)PlayerPrefs.GetInt(K_LogLevel,

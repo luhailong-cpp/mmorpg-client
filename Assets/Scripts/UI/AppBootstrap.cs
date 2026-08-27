@@ -93,6 +93,9 @@ namespace MmorpgClient.UI
                 try
                 {
                     Ugui = QdaoUguiRuntime.Create(this);
+                    // 选角/建角界面:挂接 GameClient.PlayerChooser,EnterZone 管线
+                    // 在 TCP Login 后弹出(见 RoleFlowUi)
+                    MmorpgClient.UI.Ugui.Role.RoleFlowUi.Attach(this);
                     return;
                 }
                 catch (Exception ex)

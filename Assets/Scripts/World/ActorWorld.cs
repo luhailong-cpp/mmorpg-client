@@ -127,8 +127,16 @@ namespace MmorpgClient.World
             tm.text = $"{kind}#{entity}";
             tm.characterSize = 0.08f;
             tm.fontSize = 32;
-            tm.anchor = TextAnchor.LowerCenter;
+            tm.anchor = TextAnchor.UpperCenter;
             tm.alignment = TextAlignment.Center;
+            // Names sit under the feet and always face the world camera.
+            WorldLabelBillboard.Attach(labelGo);
+
+            // Players get the qdao sprite walker when its Resources are
+            // present; the cube stays as a fallback (and in edit-mode tests,
+            // which assert against the primitive's renderer).
+            if (kind == ActorKind.Player && Application.isPlaying)
+                QdaoBoySpriteAnimator.TryAttach(prim);
 
             var view = new ActorView
             {

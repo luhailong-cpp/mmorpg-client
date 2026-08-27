@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b2adef993d165408cf41d7413e9e20, type: 3}
+  m_Name: TianyongMapConfig
+  m_EditorClassIdentifier: MmorpgClient::MmorpgClient.World.Tianyong.TianyongMapConfig
+  sceneConfigId: 1
+  initialTheme: 0
+  visibleChunkRadius: 3
+  paintedCityGround: 1
+  cameraZoomMin: 5
+  cameraZoomMax: 30
+  cameraZoomDefault: 27
+  moveSpeed: 9
+  playerHeight: 1.8
+  playerRadius: 0.38
+  playerStepOffset: 0.35
+  debugPlayerPrefab: {fileID: 3861543400149562834, guid: 768389ea0895b174eb487d988a01a3c1, type: 3}
+  grassMaterial: {fileID: 2100000, guid: 2f6228d004db1ee4da191b3a3be81363, type: 2}
+  stoneMaterial: {fileID: 2100000, guid: 56d6dbea3f2bc9746b6b87a48899430b, type: 2}
+  waterMaterial: {fileID: 2100000, guid: 661b2ceab811de74f8c4ebf25d0f214e, type: 2}
+  timberMaterial: {fileID: 2100000, guid: 517969d556965d24dab20ff0c653b339, type: 2}
+  roofMaterial: {fileID: 2100000, guid: 0011634741bef6846bfc564b70c87295, type: 2}
+  neutralMaterial: {fileID: 2100000, guid: 57ad74a099c9c01408250a300bae8208, type: 2}

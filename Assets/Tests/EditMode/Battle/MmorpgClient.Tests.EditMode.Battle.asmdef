@@ -1,0 +1,23 @@
+{
+  "name": "MmorpgClient.Tests.EditMode.Battle",
+  "rootNamespace": "MmorpgClient.Tests.EditMode.Battle",
+  "references": [
+    "MmorpgClient"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Google.Protobuf.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

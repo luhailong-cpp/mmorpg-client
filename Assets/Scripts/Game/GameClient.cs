@@ -53,6 +53,7 @@ namespace MmorpgClient.Game
         private float _lastRefreshAttempt;     // realtimeSinceStartup
         private bool _enteredScene;            // set by NotifyEnterScene
         private bool _redirecting;             // RedirectToGateNotify flow active
+        private ulong _redirectPlayerId;       // 重定向前的角色 id(重连后沿用,不重新选角)
         private bool _disconnectNotificationSent = true;
         private bool _disconnectInProgress;
 
@@ -99,6 +100,28 @@ namespace MmorpgClient.Game
         /// from inside a notify handler.
         /// </summary>
         public Func<IEnumerator, Coroutine> CoroutineRunner;
+
+        /// <summary>选角/建角界面回填的结果(见 <see cref="PlayerChooser"/>)。</summary>
+        public sealed class PlayerChoice
+        {
+            /// <summary>>0 = 用这个已有角色进入游戏。</summary>
+            public ulong SelectedPlayerId;
+            /// <summary>true = 用下面的职业/性别创建新角色并进入。</summary>
+            public bool CreateNew;
+            public uint ClassId;   // Class 配表 id
+            public uint Gender;    // 1=男 2=女
+            /// <summary>true = 放弃进入,回到选服界面。</summary>
+            public bool Cancelled;
+        }
+
+        /// <summary>
+        /// 选角/建角 UI 钩子。TCP Login 拿到账号角色列表后,管线把「按选中区过滤后
+        /// 的角色列表」交给它,协程结束时从 PlayerChoice 读结果再继续 EnterGame。
+        /// 参数:(zoneId, 该区角色列表, 待回填的结果)。
+        /// 不挂接(null)时保持旧行为:区内无角色则按默认职业静默建号,有则进第一个
+        /// —— 现有 EditMode 回归与无 UI 的调试路径依赖这一行为。
+        /// </summary>
+        public Func<uint, IReadOnlyList<AccountSimplePlayer>, PlayerChoice, IEnumerator> PlayerChooser;
 
         public GameClient(string gatewayBaseUrl)
         {
@@ -250,7 +273,7 @@ namespace MmorpgClient.Game
             Log($"assigned gate {assigned.gate_ip}:{assigned.gate_port}");
 
             // ── 3~6. Connect, verify, bind session, enter ──
-            yield return ConnectAndEnter(gen,
+            yield return ConnectAndEnter(gen, zoneId,
                 assigned.gate_ip, (int)assigned.gate_port,
                 SafeBase64(assigned.token_payload), SafeBase64(assigned.token_signature),
                 password, onSuccess, onError);
@@ -261,7 +284,7 @@ namespace MmorpgClient.Game
         /// receives raw token bytes from RedirectToGateNotify instead of
         /// base64 JSON fields).
         /// </summary>
-        private IEnumerator ConnectAndEnter(int gen, string ip, int port, byte[] payload, byte[] signature,
+        private IEnumerator ConnectAndEnter(int gen, uint zoneId, string ip, int port, byte[] payload, byte[] signature,
                                             string passwordFallback,
                                             Action onSuccess, Action<string> onError)
         {
@@ -318,26 +341,105 @@ namespace MmorpgClient.Game
                 SetTokens(loginResp.AccessToken, loginResp.RefreshToken, loginResp.AccessTokenExpire);
             Log($"session login ok, players={loginResp.Players.Count}");
 
-            // ── Create player if needed ──
-            if (loginResp.Players.Count == 0)
+            // ── 选角 / 建角 ──
+            ulong playerId = 0;
+            if (_redirecting && _redirectPlayerId != 0)
             {
-                Status("正在创建角色…");
-                CreatePlayerResponse cpResp = null;
-                yield return Call(MessageIds.CreatePlayer, new CreatePlayerRequest(),
-                    CreatePlayerResponse.Parser, r => cpResp = r,
-                    e => FailPipeline(gen, onError, $"create player: {e}"));
-                if (gen != _pipelineGen) yield break;
-                if (cpResp == null) yield break;
-                if (cpResp.ErrorMessage != null && cpResp.ErrorMessage.Id != 0)
-                { FailPipeline(gen, onError, $"创建角色失败(tip={cpResp.ErrorMessage.Id})"); yield break; }
-                if (cpResp.Players.Count == 0)
-                { FailPipeline(gen, onError, "create player returned empty list"); yield break; }
-                loginResp.Players.AddRange(cpResp.Players);
-                Log("created new player");
+                // 跨区/跨 gate 重定向:沿用当前角色,不重新弹选角
+                playerId = _redirectPlayerId;
             }
+            else
+            {
+                // 按选中区过滤;zone_id==0 的存量角色(加字段前创建)在任何区都可见,
+                // 避免旧账号一夜之间"角色消失"。
+                var zonePlayers = new List<AccountSimplePlayer>();
+                foreach (var w in loginResp.Players)
+                {
+                    var p = w.Player;
+                    if (p == null) continue;
+                    if (zoneId == 0 || p.ZoneId == zoneId || p.ZoneId == 0)
+                        zonePlayers.Add(p);
+                }
 
-            ulong playerId = loginResp.Players[0].Player.PlayerId;
+                if (PlayerChooser != null)
+                {
+                    var choice = new PlayerChoice();
+                    yield return PlayerChooser(zoneId, zonePlayers, choice);
+                    if (gen != _pipelineGen) yield break;
+                    if (choice.Cancelled)
+                    { FailPipeline(gen, onError, "已返回选服"); yield break; }
+                    if (choice.CreateNew)
+                    {
+                        ulong newId = 0;
+                        yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender,
+                            loginResp.Players, id => newId = id, onError);
+                        if (gen != _pipelineGen) yield break;
+                        if (newId == 0) yield break; // CreatePlayerCo 已 FailPipeline
+                        playerId = newId;
+                    }
+                    else
+                    {
+                        playerId = choice.SelectedPlayerId;
+                    }
+                }
+                else if (zonePlayers.Count == 0)
+                {
+                    ulong newId = 0;
+                    yield return CreatePlayerCo(gen, 0, 0, loginResp.Players, id => newId = id, onError);
+                    if (gen != _pipelineGen) yield break;
+                    if (newId == 0) yield break;
+                    playerId = newId;
+                }
+                else
+                {
+                    playerId = zonePlayers[0].PlayerId;
+                }
+            }
+            if (playerId == 0)
+            { FailPipeline(gen, onError, "未选择角色"); yield break; }
+
+            // 记住该区最近进入的角色(选角屏用来标注 [上次])
+            if (!_redirecting && zoneId != 0)
+                MmorpgClient.Core.ClientSettings.SetLastPlayer(zoneId, playerId);
+
             yield return EnterGameAndWaitScene(gen, playerId, onSuccess, onError);
+        }
+
+        /// <summary>
+        /// CreatePlayer(带职业/性别)并从"全量列表响应"里 diff 出新角色 id。
+        /// classId/gender 传 0 表示交给服务端取默认(配表第一个职业 / 男)。
+        /// </summary>
+        private IEnumerator CreatePlayerCo(int gen, uint classId, uint gender,
+            Google.Protobuf.Collections.RepeatedField<AccountSimplePlayerWrapper> known,
+            Action<ulong> onCreated, Action<string> onError)
+        {
+            Status("正在创建角色…");
+            var knownIds = new HashSet<ulong>();
+            foreach (var w in known)
+                if (w.Player != null) knownIds.Add(w.Player.PlayerId);
+
+            CreatePlayerResponse cpResp = null;
+            yield return Call(MessageIds.CreatePlayer,
+                new CreatePlayerRequest { ClassId = classId, Gender = gender },
+                CreatePlayerResponse.Parser, r => cpResp = r,
+                e => FailPipeline(gen, onError, $"create player: {e}"));
+            if (gen != _pipelineGen) yield break;
+            if (cpResp == null) yield break;
+            if (cpResp.ErrorMessage != null && cpResp.ErrorMessage.Id != 0)
+            { FailPipeline(gen, onError, $"创建角色失败(tip={cpResp.ErrorMessage.Id})"); yield break; }
+
+            // 响应是账号全量角色列表:新角色 = 不在请求前列表里的那一个
+            ulong newId = 0;
+            foreach (var w in cpResp.Players)
+                if (w.Player != null && !knownIds.Contains(w.Player.PlayerId))
+                    newId = w.Player.PlayerId;
+            if (newId == 0 && cpResp.Players.Count > 0)
+                newId = cpResp.Players[cpResp.Players.Count - 1].Player?.PlayerId ?? 0;
+            if (newId == 0)
+            { FailPipeline(gen, onError, "create player returned empty list"); yield break; }
+
+            Log($"created new player {newId} class={classId} gender={gender}");
+            onCreated(newId);
         }
 
         /// <summary>
@@ -390,12 +492,13 @@ namespace MmorpgClient.Game
         {
             int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
             _redirecting = true;
+            _redirectPlayerId = PlayerId; // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色
             Status("正在切换服务器…");
             Log($"[gate] redirect to {ev.TargetIp}:{ev.TargetPort}");
             try
             {
                 ResetConnectionState();
-                yield return ConnectAndEnter(gen,
+                yield return ConnectAndEnter(gen, 0,
                     ev.TargetIp, (int)ev.TargetPort,
                     ev.TokenPayload.ToByteArray(), ev.TokenSignature.ToByteArray(),
                     null,

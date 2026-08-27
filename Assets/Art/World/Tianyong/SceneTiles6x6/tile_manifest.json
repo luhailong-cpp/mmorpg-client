@@ -1,0 +1,728 @@
+{
+  "name": "Tianyong Main City 6x6 Wide-Road Scene Tiles",
+  "assetRoot": "Assets/Resources/World/Tianyong/SceneTiles6x6",
+  "grid": {
+    "columns": 6,
+    "rows": 6,
+    "origin": "top-left",
+    "order": "row-major"
+  },
+  "tileSize": {
+    "width": 1024,
+    "height": 1024
+  },
+  "assembledSize": {
+    "width": 6144,
+    "height": 6144
+  },
+  "gameplayLayout": {
+    "priority": "wide multiplayer circulation and crowd-capacity standing areas",
+    "protectedAreas": [
+      "main avenues",
+      "central plaza",
+      "district courtyards",
+      "gate forecourts",
+      "bridges"
+    ]
+  },
+  "seamTreatment": {
+    "contextPerSidePixels": 256,
+    "adjacentPatchOverlapPixels": 512,
+    "patchSize": {
+      "width": 1536,
+      "height": 1536
+    },
+    "refinementSourceSize": {
+      "width": 1254,
+      "height": 1254
+    },
+    "blendMethod": "minimum-error seam with narrow feathering",
+    "description": "Every tile was refined with neighboring context; 36 overlapping patches were quilted along low-error paths into one master and then re-sliced, so adjacent final pixels share one assembled raster."
+  },
+  "tiles": [
+    {
+      "id": "r01_c01",
+      "row": 1,
+      "column": 1,
+      "file": "Tiles/tianyong_r01_c01.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c01",
+      "pixelBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": null,
+        "south": "r02_c01",
+        "west": null,
+        "east": "r01_c02"
+      }
+    },
+    {
+      "id": "r01_c02",
+      "row": 1,
+      "column": 2,
+      "file": "Tiles/tianyong_r01_c02.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c02",
+      "pixelBounds": {
+        "x": 1024,
+        "y": 0,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": null,
+        "south": "r02_c02",
+        "west": "r01_c01",
+        "east": "r01_c03"
+      }
+    },
+    {
+      "id": "r01_c03",
+      "row": 1,
+      "column": 3,
+      "file": "Tiles/tianyong_r01_c03.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c03",
+      "pixelBounds": {
+        "x": 2048,
+        "y": 0,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": null,
+        "south": "r02_c03",
+        "west": "r01_c02",
+        "east": "r01_c04"
+      }
+    },
+    {
+      "id": "r01_c04",
+      "row": 1,
+      "column": 4,
+      "file": "Tiles/tianyong_r01_c04.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c04",
+      "pixelBounds": {
+        "x": 3072,
+        "y": 0,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": null,
+        "south": "r02_c04",
+        "west": "r01_c03",
+        "east": "r01_c05"
+      }
+    },
+    {
+      "id": "r01_c05",
+      "row": 1,
+      "column": 5,
+      "file": "Tiles/tianyong_r01_c05.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c05",
+      "pixelBounds": {
+        "x": 4096,
+        "y": 0,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": null,
+        "south": "r02_c05",
+        "west": "r01_c04",
+        "east": "r01_c06"
+      }
+    },
+    {
+      "id": "r01_c06",
+      "row": 1,
+      "column": 6,
+      "file": "Tiles/tianyong_r01_c06.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c06",
+      "pixelBounds": {
+        "x": 5120,
+        "y": 0,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": null,
+        "south": "r02_c06",
+        "west": "r01_c05",
+        "east": null
+      }
+    },
+    {
+      "id": "r02_c01",
+      "row": 2,
+      "column": 1,
+      "file": "Tiles/tianyong_r02_c01.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c01",
+      "pixelBounds": {
+        "x": 0,
+        "y": 1024,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r01_c01",
+        "south": "r03_c01",
+        "west": null,
+        "east": "r02_c02"
+      }
+    },
+    {
+      "id": "r02_c02",
+      "row": 2,
+      "column": 2,
+      "file": "Tiles/tianyong_r02_c02.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c02",
+      "pixelBounds": {
+        "x": 1024,
+        "y": 1024,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r01_c02",
+        "south": "r03_c02",
+        "west": "r02_c01",
+        "east": "r02_c03"
+      }
+    },
+    {
+      "id": "r02_c03",
+      "row": 2,
+      "column": 3,
+      "file": "Tiles/tianyong_r02_c03.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c03",
+      "pixelBounds": {
+        "x": 2048,
+        "y": 1024,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r01_c03",
+        "south": "r03_c03",
+        "west": "r02_c02",
+        "east": "r02_c04"
+      }
+    },
+    {
+      "id": "r02_c04",
+      "row": 2,
+      "column": 4,
+      "file": "Tiles/tianyong_r02_c04.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c04",
+      "pixelBounds": {
+        "x": 3072,
+        "y": 1024,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r01_c04",
+        "south": "r03_c04",
+        "west": "r02_c03",
+        "east": "r02_c05"
+      }
+    },
+    {
+      "id": "r02_c05",
+      "row": 2,
+      "column": 5,
+      "file": "Tiles/tianyong_r02_c05.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c05",
+      "pixelBounds": {
+        "x": 4096,
+        "y": 1024,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r01_c05",
+        "south": "r03_c05",
+        "west": "r02_c04",
+        "east": "r02_c06"
+      }
+    },
+    {
+      "id": "r02_c06",
+      "row": 2,
+      "column": 6,
+      "file": "Tiles/tianyong_r02_c06.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c06",
+      "pixelBounds": {
+        "x": 5120,
+        "y": 1024,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r01_c06",
+        "south": "r03_c06",
+        "west": "r02_c05",
+        "east": null
+      }
+    },
+    {
+      "id": "r03_c01",
+      "row": 3,
+      "column": 1,
+      "file": "Tiles/tianyong_r03_c01.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c01",
+      "pixelBounds": {
+        "x": 0,
+        "y": 2048,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r02_c01",
+        "south": "r04_c01",
+        "west": null,
+        "east": "r03_c02"
+      }
+    },
+    {
+      "id": "r03_c02",
+      "row": 3,
+      "column": 2,
+      "file": "Tiles/tianyong_r03_c02.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c02",
+      "pixelBounds": {
+        "x": 1024,
+        "y": 2048,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r02_c02",
+        "south": "r04_c02",
+        "west": "r03_c01",
+        "east": "r03_c03"
+      }
+    },
+    {
+      "id": "r03_c03",
+      "row": 3,
+      "column": 3,
+      "file": "Tiles/tianyong_r03_c03.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c03",
+      "pixelBounds": {
+        "x": 2048,
+        "y": 2048,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r02_c03",
+        "south": "r04_c03",
+        "west": "r03_c02",
+        "east": "r03_c04"
+      }
+    },
+    {
+      "id": "r03_c04",
+      "row": 3,
+      "column": 4,
+      "file": "Tiles/tianyong_r03_c04.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c04",
+      "pixelBounds": {
+        "x": 3072,
+        "y": 2048,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r02_c04",
+        "south": "r04_c04",
+        "west": "r03_c03",
+        "east": "r03_c05"
+      }
+    },
+    {
+      "id": "r03_c05",
+      "row": 3,
+      "column": 5,
+      "file": "Tiles/tianyong_r03_c05.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c05",
+      "pixelBounds": {
+        "x": 4096,
+        "y": 2048,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r02_c05",
+        "south": "r04_c05",
+        "west": "r03_c04",
+        "east": "r03_c06"
+      }
+    },
+    {
+      "id": "r03_c06",
+      "row": 3,
+      "column": 6,
+      "file": "Tiles/tianyong_r03_c06.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c06",
+      "pixelBounds": {
+        "x": 5120,
+        "y": 2048,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r02_c06",
+        "south": "r04_c06",
+        "west": "r03_c05",
+        "east": null
+      }
+    },
+    {
+      "id": "r04_c01",
+      "row": 4,
+      "column": 1,
+      "file": "Tiles/tianyong_r04_c01.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c01",
+      "pixelBounds": {
+        "x": 0,
+        "y": 3072,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r03_c01",
+        "south": "r05_c01",
+        "west": null,
+        "east": "r04_c02"
+      }
+    },
+    {
+      "id": "r04_c02",
+      "row": 4,
+      "column": 2,
+      "file": "Tiles/tianyong_r04_c02.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c02",
+      "pixelBounds": {
+        "x": 1024,
+        "y": 3072,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r03_c02",
+        "south": "r05_c02",
+        "west": "r04_c01",
+        "east": "r04_c03"
+      }
+    },
+    {
+      "id": "r04_c03",
+      "row": 4,
+      "column": 3,
+      "file": "Tiles/tianyong_r04_c03.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c03",
+      "pixelBounds": {
+        "x": 2048,
+        "y": 3072,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r03_c03",
+        "south": "r05_c03",
+        "west": "r04_c02",
+        "east": "r04_c04"
+      }
+    },
+    {
+      "id": "r04_c04",
+      "row": 4,
+      "column": 4,
+      "file": "Tiles/tianyong_r04_c04.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c04",
+      "pixelBounds": {
+        "x": 3072,
+        "y": 3072,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r03_c04",
+        "south": "r05_c04",
+        "west": "r04_c03",
+        "east": "r04_c05"
+      }
+    },
+    {
+      "id": "r04_c05",
+      "row": 4,
+      "column": 5,
+      "file": "Tiles/tianyong_r04_c05.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c05",
+      "pixelBounds": {
+        "x": 4096,
+        "y": 3072,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r03_c05",
+        "south": "r05_c05",
+        "west": "r04_c04",
+        "east": "r04_c06"
+      }
+    },
+    {
+      "id": "r04_c06",
+      "row": 4,
+      "column": 6,
+      "file": "Tiles/tianyong_r04_c06.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c06",
+      "pixelBounds": {
+        "x": 5120,
+        "y": 3072,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r03_c06",
+        "south": "r05_c06",
+        "west": "r04_c05",
+        "east": null
+      }
+    },
+    {
+      "id": "r05_c01",
+      "row": 5,
+      "column": 1,
+      "file": "Tiles/tianyong_r05_c01.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c01",
+      "pixelBounds": {
+        "x": 0,
+        "y": 4096,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r04_c01",
+        "south": "r06_c01",
+        "west": null,
+        "east": "r05_c02"
+      }
+    },
+    {
+      "id": "r05_c02",
+      "row": 5,
+      "column": 2,
+      "file": "Tiles/tianyong_r05_c02.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c02",
+      "pixelBounds": {
+        "x": 1024,
+        "y": 4096,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r04_c02",
+        "south": "r06_c02",
+        "west": "r05_c01",
+        "east": "r05_c03"
+      }
+    },
+    {
+      "id": "r05_c03",
+      "row": 5,
+      "column": 3,
+      "file": "Tiles/tianyong_r05_c03.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c03",
+      "pixelBounds": {
+        "x": 2048,
+        "y": 4096,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r04_c03",
+        "south": "r06_c03",
+        "west": "r05_c02",
+        "east": "r05_c04"
+      }
+    },
+    {
+      "id": "r05_c04",
+      "row": 5,
+      "column": 4,
+      "file": "Tiles/tianyong_r05_c04.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c04",
+      "pixelBounds": {
+        "x": 3072,
+        "y": 4096,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r04_c04",
+        "south": "r06_c04",
+        "west": "r05_c03",
+        "east": "r05_c05"
+      }
+    },
+    {
+      "id": "r05_c05",
+      "row": 5,
+      "column": 5,
+      "file": "Tiles/tianyong_r05_c05.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c05",
+      "pixelBounds": {
+        "x": 4096,
+        "y": 4096,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r04_c05",
+        "south": "r06_c05",
+        "west": "r05_c04",
+        "east": "r05_c06"
+      }
+    },
+    {
+      "id": "r05_c06",
+      "row": 5,
+      "column": 6,
+      "file": "Tiles/tianyong_r05_c06.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c06",
+      "pixelBounds": {
+        "x": 5120,
+        "y": 4096,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r04_c06",
+        "south": "r06_c06",
+        "west": "r05_c05",
+        "east": null
+      }
+    },
+    {
+      "id": "r06_c01",
+      "row": 6,
+      "column": 1,
+      "file": "Tiles/tianyong_r06_c01.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c01",
+      "pixelBounds": {
+        "x": 0,
+        "y": 5120,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r05_c01",
+        "south": null,
+        "west": null,
+        "east": "r06_c02"
+      }
+    },
+    {
+      "id": "r06_c02",
+      "row": 6,
+      "column": 2,
+      "file": "Tiles/tianyong_r06_c02.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c02",
+      "pixelBounds": {
+        "x": 1024,
+        "y": 5120,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r05_c02",
+        "south": null,
+        "west": "r06_c01",
+        "east": "r06_c03"
+      }
+    },
+    {
+      "id": "r06_c03",
+      "row": 6,
+      "column": 3,
+      "file": "Tiles/tianyong_r06_c03.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c03",
+      "pixelBounds": {
+        "x": 2048,
+        "y": 5120,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r05_c03",
+        "south": null,
+        "west": "r06_c02",
+        "east": "r06_c04"
+      }
+    },
+    {
+      "id": "r06_c04",
+      "row": 6,
+      "column": 4,
+      "file": "Tiles/tianyong_r06_c04.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c04",
+      "pixelBounds": {
+        "x": 3072,
+        "y": 5120,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r05_c04",
+        "south": null,
+        "west": "r06_c03",
+        "east": "r06_c05"
+      }
+    },
+    {
+      "id": "r06_c05",
+      "row": 6,
+      "column": 5,
+      "file": "Tiles/tianyong_r06_c05.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c05",
+      "pixelBounds": {
+        "x": 4096,
+        "y": 5120,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r05_c05",
+        "south": null,
+        "west": "r06_c04",
+        "east": "r06_c06"
+      }
+    },
+    {
+      "id": "r06_c06",
+      "row": 6,
+      "column": 6,
+      "file": "Tiles/tianyong_r06_c06.png",
+      "resourcesPath": "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c06",
+      "pixelBounds": {
+        "x": 5120,
+        "y": 5120,
+        "width": 1024,
+        "height": 1024
+      },
+      "neighbors": {
+        "north": "r05_c06",
+        "south": null,
+        "west": "r06_c05",
+        "east": null
+      }
+    }
+  ]
+}

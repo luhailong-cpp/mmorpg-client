@@ -22,14 +22,15 @@ public static partial class UserAccountsReflection {
   static UserAccountsReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CiVwcm90by9jb21tb24vYmFzZS91c2VyX2FjY291bnRzLnByb3RvIigKE0Fj",
-          "Y291bnRTaW1wbGVQbGF5ZXISEQoJcGxheWVyX2lkGAEgASgEIkAKF0FjY291",
-          "bnRTaW1wbGVQbGF5ZXJMaXN0EiUKB3BsYXllcnMYASADKAsyFC5BY2NvdW50",
-          "U2ltcGxlUGxheWVyQg1aC2NvbW1vbi9iYXNlYgZwcm90bzM="));
+          "CiVwcm90by9jb21tb24vYmFzZS91c2VyX2FjY291bnRzLnByb3RvIlsKE0Fj",
+          "Y291bnRTaW1wbGVQbGF5ZXISEQoJcGxheWVyX2lkGAEgASgEEhAKCGNsYXNz",
+          "X2lkGAIgASgNEg4KBmdlbmRlchgDIAEoDRIPCgd6b25lX2lkGAQgASgNIkAK",
+          "F0FjY291bnRTaW1wbGVQbGF5ZXJMaXN0EiUKB3BsYXllcnMYASADKAsyFC5B",
+          "Y2NvdW50U2ltcGxlUGxheWVyQg1aC2NvbW1vbi9iYXNlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::AccountSimplePlayer), global::AccountSimplePlayer.Parser, new[]{ "PlayerId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AccountSimplePlayer), global::AccountSimplePlayer.Parser, new[]{ "PlayerId", "ClassId", "Gender", "ZoneId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AccountSimplePlayerList), global::AccountSimplePlayerList.Parser, new[]{ "Players" }, null, null, null, null)
         }));
   }
@@ -73,6 +74,9 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public AccountSimplePlayer(AccountSimplePlayer other) : this() {
     playerId_ = other.playerId_;
+    classId_ = other.classId_;
+    gender_ = other.gender_;
+    zoneId_ = other.zoneId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -94,6 +98,51 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
     }
   }
 
+  /// <summary>Field number for the "class_id" field.</summary>
+  public const int ClassIdFieldNumber = 2;
+  private uint classId_;
+  /// <summary>
+  /// 职业(Class 配表 id);0 = 旧数据未设置
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ClassId {
+    get { return classId_; }
+    set {
+      classId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "gender" field.</summary>
+  public const int GenderFieldNumber = 3;
+  private uint gender_;
+  /// <summary>
+  /// 1=男 2=女;0 = 旧数据未设置
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Gender {
+    get { return gender_; }
+    set {
+      gender_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "zone_id" field.</summary>
+  public const int ZoneIdFieldNumber = 4;
+  private uint zoneId_;
+  /// <summary>
+  /// 建角归属区(建角时的 Node.ZoneId);0 = 旧数据未设置
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ZoneId {
+    get { return zoneId_; }
+    set {
+      zoneId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -110,6 +159,9 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
       return true;
     }
     if (PlayerId != other.PlayerId) return false;
+    if (ClassId != other.ClassId) return false;
+    if (Gender != other.Gender) return false;
+    if (ZoneId != other.ZoneId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -118,6 +170,9 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
   public override int GetHashCode() {
     int hash = 1;
     if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
+    if (ClassId != 0) hash ^= ClassId.GetHashCode();
+    if (Gender != 0) hash ^= Gender.GetHashCode();
+    if (ZoneId != 0) hash ^= ZoneId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -140,6 +195,18 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
       output.WriteRawTag(8);
       output.WriteUInt64(PlayerId);
     }
+    if (ClassId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ClassId);
+    }
+    if (Gender != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Gender);
+    }
+    if (ZoneId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ZoneId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -154,6 +221,18 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
       output.WriteRawTag(8);
       output.WriteUInt64(PlayerId);
     }
+    if (ClassId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ClassId);
+    }
+    if (Gender != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Gender);
+    }
+    if (ZoneId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ZoneId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -166,6 +245,15 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
     int size = 0;
     if (PlayerId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PlayerId);
+    }
+    if (ClassId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClassId);
+    }
+    if (Gender != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gender);
+    }
+    if (ZoneId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ZoneId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -181,6 +269,15 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
     }
     if (other.PlayerId != 0UL) {
       PlayerId = other.PlayerId;
+    }
+    if (other.ClassId != 0) {
+      ClassId = other.ClassId;
+    }
+    if (other.Gender != 0) {
+      Gender = other.Gender;
+    }
+    if (other.ZoneId != 0) {
+      ZoneId = other.ZoneId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -205,6 +302,18 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
           PlayerId = input.ReadUInt64();
           break;
         }
+        case 16: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Gender = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ZoneId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -226,6 +335,18 @@ public sealed partial class AccountSimplePlayer : pb::IMessage<AccountSimplePlay
           break;
         case 8: {
           PlayerId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Gender = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ZoneId = input.ReadUInt32();
           break;
         }
       }
