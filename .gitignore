@@ -117,3 +117,7 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+/My project (1)/
+/.codex/
+/.codex-artifacts/
