@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using MmorpgClient.Game;
+using MmorpgClient.Net;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
@@ -192,6 +194,61 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 client.Disconnect();
 
                 Assert.That(notifications, Is.EqualTo(1));
+            }
+            finally
+            {
+                client.Disconnect();
+                if (client.World.Root != null)
+                    UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);
+            }
+        }
+
+        [Test]
+        public void MovementEmptyReplies_AreConsumedWithoutFourHertzUnhandledLogs()
+        {
+            var client = new GameClient("http://127.0.0.1:1");
+            var logs = new List<string>();
+            client.OnLog += logs.Add;
+            try
+            {
+                var dispatch = typeof(GameClient).GetMethod(
+                    "DispatchInbound",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                Assert.That(dispatch, Is.Not.Null);
+
+                foreach (var messageId in new[]
+                         {
+                             MessageIds.MoveStart,
+                             MessageIds.MoveSync,
+                             MessageIds.MoveStop,
+                         })
+                {
+                    dispatch.Invoke(client, new object[]
+                    {
+                        new MessageContent { Id = 42, MessageId = messageId },
+                    });
+                }
+
+                Assert.That(logs, Has.None.Contains("[unhandled]"),
+                    "Expected Empty movement replies must not emit a main-thread stack trace.");
+
+                dispatch.Invoke(client, new object[]
+                {
+                    new MessageContent
+                    {
+                        Id = 43,
+                        MessageId = MessageIds.MoveSync,
+                        ErrorMessage = new TipInfoMessage { Id = 42 },
+                    },
+                });
+                Assert.That(logs, Has.Some.EqualTo("[movement] MoveSync rejected: tip=42"));
+
+                dispatch.Invoke(client, new object[]
+                {
+                    new MessageContent { Id = 44, MessageId = uint.MaxValue },
+                });
+                Assert.That(logs, Has.Some.Contains($"[unhandled] message_id={uint.MaxValue}"),
+                    "Unknown messages must remain observable.");
             }
             finally
             {

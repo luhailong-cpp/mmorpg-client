@@ -37,7 +37,7 @@ public static partial class BattleDataReflection {
           "BSABKAQSEAoIbWF4X21hbmEYBiABKAQSFwoPc2tpbGxfdGFibGVfaWRzGAcg",
           "AygNEh8KBWJ1ZmZzGAggAygLMhAuQmF0dGxlQnVmZkVudHJ5Eh8KBWl0ZW1z",
           "GAkgAygLMhAuQmF0dGxlSXRlbUVudHJ5Eh8KB3JvdXRpbmcYCiABKAsyDi5C",
-          "YXR0bGVSb3V0aW5nEhIKCnRlYW1faW5kZXgYCyABKA0i2wMKEEJhdHRsZUFj",
+          "YXR0bGVSb3V0aW5nEhIKCnRlYW1faW5kZXgYCyABKA0i7AMKEEJhdHRsZUFj",
           "dG9yU3RhdGUSEAoIYWN0b3JfaWQYASABKAQSJQoKYWN0b3JfdHlwZRgCIAEo",
           "DjIRLmVCYXR0bGVBY3RvclR5cGUSEgoKdGVhbV9pbmRleBgDIAEoDRIMCgRu",
           "YW1lGAQgASgJEg0KBWxldmVsGAUgASgNEicKCmF0dHJpYnV0ZXMYBiABKAsy",
@@ -47,40 +47,40 @@ public static partial class BattleDataReflection {
           "QnVmZkVudHJ5EhcKD3NraWxsX3RhYmxlX2lkcxgNIAMoDRIYChBtb25zdGVy",
           "X3RhYmxlX2lkGA4gASgNEkkKFXNraWxsX2Nvb2xkb3duX3JvdW5kcxgPIAMo",
           "CzIqLkJhdHRsZUFjdG9yU3RhdGUuU2tpbGxDb29sZG93blJvdW5kc0VudHJ5",
-          "GjoKGFNraWxsQ29vbGRvd25Sb3VuZHNFbnRyeRILCgNrZXkYASABKA0SDQoF",
-          "dmFsdWUYAiABKA06AjgBInkKDEJhdHRsZUFjdGlvbhInCgthY3Rpb25fdHlw",
-          "ZRgBIAEoDjISLmVCYXR0bGVBY3Rpb25UeXBlEhYKDnNraWxsX3RhYmxlX2lk",
-          "GAIgASgNEhEKCXRhcmdldF9pZBgDIAEoBBIVCg1pdGVtX3RhYmxlX2lkGAQg",
-          "ASgNIvYBCg9CYXR0bGVFdmVudEl0ZW0SJQoKZXZlbnRfdHlwZRgBIAEoDjIR",
-          "LmVCYXR0bGVFdmVudFR5cGUSEQoJc291cmNlX2lkGAIgASgEEhEKCXRhcmdl",
-          "dF9pZBgDIAEoBBIWCg5za2lsbF90YWJsZV9pZBgEIAEoDRIVCg1idWZmX3Rh",
-          "YmxlX2lkGAUgASgNEg0KBXZhbHVlGAYgASgEEhMKC2lzX2NyaXRpY2FsGAcg",
-          "ASgIEg8KB3N1Y2Nlc3MYCCABKAgSGwoTdGFyZ2V0X2hlYWx0aF9hZnRlchgJ",
-          "IAEoBBIVCg1pdGVtX3RhYmxlX2lkGAogASgNIsMCChRCYXR0bGVTZXR0bGVt",
-          "ZW50RGF0YRIRCgliYXR0bGVfaWQYASABKAQSEQoJcGxheWVyX2lkGAIgASgE",
-          "EiAKB291dGNvbWUYAyABKA4yDy5lQmF0dGxlT3V0Y29tZRIZChFwbGF5ZXJf",
-          "dGVhbV9pbmRleBgEIAEoDRIOCgZoZWFsdGgYBSABKAQSDAoEbWFuYRgGIAEo",
-          "BBIQCghleHBfZ2FpbhgHIAEoBBIRCglnb2xkX2dhaW4YCCABKAQSKAoOaXRl",
-          "bXNfY29uc3VtZWQYCSADKAsyEC5CYXR0bGVJdGVtRW50cnkSJgoMaXRlbXNf",
-          "Z2FpbmVkGAogAygLMhAuQmF0dGxlSXRlbUVudHJ5Eg8KB2lzX2RlYWQYCyAB",
-          "KAgSDAoEZmxlZBgMIAEoCBIUCgx0b3RhbF9yb3VuZHMYDSABKA0qawoQZUJh",
-          "dHRsZUFjdG9yVHlwZRIaChZCQVRUTEVfQUNUT1JfVFlQRV9OT05FEAASHAoY",
-          "QkFUVExFX0FDVE9SX1RZUEVfUExBWUVSEAESHQoZQkFUVExFX0FDVE9SX1RZ",
-          "UEVfTU9OU1RFUhACKqgBChFlQmF0dGxlQWN0aW9uVHlwZRIWChJCQVRUTEVf",
-          "QUNUSU9OX05PTkUQABIYChRCQVRUTEVfQUNUSU9OX0FUVEFDSxABEhcKE0JB",
-          "VFRMRV9BQ1RJT05fU0tJTEwQAhIYChRCQVRUTEVfQUNUSU9OX0RFRkVORBAD",
-          "EhYKEkJBVFRMRV9BQ1RJT05fSVRFTRAEEhYKEkJBVFRMRV9BQ1RJT05fRkxF",
-          "RRAFKr4CChBlQmF0dGxlRXZlbnRUeXBlEhUKEUJBVFRMRV9FVkVOVF9OT05F",
-          "EAASFwoTQkFUVExFX0VWRU5UX0FUVEFDSxABEhYKEkJBVFRMRV9FVkVOVF9T",
-          "S0lMTBACEhcKE0JBVFRMRV9FVkVOVF9EQU1BR0UQAxIVChFCQVRUTEVfRVZF",
-          "TlRfSEVBTBAEEhkKFUJBVFRMRV9FVkVOVF9CVUZGX0FERBAFEhwKGEJBVFRM",
-          "RV9FVkVOVF9CVUZGX1JFTU9WRRAGEhoKFkJBVFRMRV9FVkVOVF9CVUZGX1RJ",
-          "Q0sQBxIWChJCQVRUTEVfRVZFTlRfREVBVEgQCBIXChNCQVRUTEVfRVZFTlRf",
-          "REVGRU5EEAkSFQoRQkFUVExFX0VWRU5UX0lURU0QChIVChFCQVRUTEVfRVZF",
-          "TlRfRkxFRRALKoMBCg5lQmF0dGxlT3V0Y29tZRIaChZCQVRUTEVfT1VUQ09N",
-          "RV9PTkdPSU5HEAASHQoZQkFUVExFX09VVENPTUVfU0lERV9BX1dJThABEh0K",
-          "GUJBVFRMRV9PVVRDT01FX1NJREVfQl9XSU4QAhIXChNCQVRUTEVfT1VUQ09N",
-          "RV9EUkFXEANCCFoGYmF0dGxlYgZwcm90bzM="));
+          "Eg8KB2lzX2F1dG8YECABKAgaOgoYU2tpbGxDb29sZG93blJvdW5kc0VudHJ5",
+          "EgsKA2tleRgBIAEoDRINCgV2YWx1ZRgCIAEoDToCOAEieQoMQmF0dGxlQWN0",
+          "aW9uEicKC2FjdGlvbl90eXBlGAEgASgOMhIuZUJhdHRsZUFjdGlvblR5cGUS",
+          "FgoOc2tpbGxfdGFibGVfaWQYAiABKA0SEQoJdGFyZ2V0X2lkGAMgASgEEhUK",
+          "DWl0ZW1fdGFibGVfaWQYBCABKA0i9gEKD0JhdHRsZUV2ZW50SXRlbRIlCgpl",
+          "dmVudF90eXBlGAEgASgOMhEuZUJhdHRsZUV2ZW50VHlwZRIRCglzb3VyY2Vf",
+          "aWQYAiABKAQSEQoJdGFyZ2V0X2lkGAMgASgEEhYKDnNraWxsX3RhYmxlX2lk",
+          "GAQgASgNEhUKDWJ1ZmZfdGFibGVfaWQYBSABKA0SDQoFdmFsdWUYBiABKAQS",
+          "EwoLaXNfY3JpdGljYWwYByABKAgSDwoHc3VjY2VzcxgIIAEoCBIbChN0YXJn",
+          "ZXRfaGVhbHRoX2FmdGVyGAkgASgEEhUKDWl0ZW1fdGFibGVfaWQYCiABKA0i",
+          "wwIKFEJhdHRsZVNldHRsZW1lbnREYXRhEhEKCWJhdHRsZV9pZBgBIAEoBBIR",
+          "CglwbGF5ZXJfaWQYAiABKAQSIAoHb3V0Y29tZRgDIAEoDjIPLmVCYXR0bGVP",
+          "dXRjb21lEhkKEXBsYXllcl90ZWFtX2luZGV4GAQgASgNEg4KBmhlYWx0aBgF",
+          "IAEoBBIMCgRtYW5hGAYgASgEEhAKCGV4cF9nYWluGAcgASgEEhEKCWdvbGRf",
+          "Z2FpbhgIIAEoBBIoCg5pdGVtc19jb25zdW1lZBgJIAMoCzIQLkJhdHRsZUl0",
+          "ZW1FbnRyeRImCgxpdGVtc19nYWluZWQYCiADKAsyEC5CYXR0bGVJdGVtRW50",
+          "cnkSDwoHaXNfZGVhZBgLIAEoCBIMCgRmbGVkGAwgASgIEhQKDHRvdGFsX3Jv",
+          "dW5kcxgNIAEoDSprChBlQmF0dGxlQWN0b3JUeXBlEhoKFkJBVFRMRV9BQ1RP",
+          "Ul9UWVBFX05PTkUQABIcChhCQVRUTEVfQUNUT1JfVFlQRV9QTEFZRVIQARId",
+          "ChlCQVRUTEVfQUNUT1JfVFlQRV9NT05TVEVSEAIqqAEKEWVCYXR0bGVBY3Rp",
+          "b25UeXBlEhYKEkJBVFRMRV9BQ1RJT05fTk9ORRAAEhgKFEJBVFRMRV9BQ1RJ",
+          "T05fQVRUQUNLEAESFwoTQkFUVExFX0FDVElPTl9TS0lMTBACEhgKFEJBVFRM",
+          "RV9BQ1RJT05fREVGRU5EEAMSFgoSQkFUVExFX0FDVElPTl9JVEVNEAQSFgoS",
+          "QkFUVExFX0FDVElPTl9GTEVFEAUqvgIKEGVCYXR0bGVFdmVudFR5cGUSFQoR",
+          "QkFUVExFX0VWRU5UX05PTkUQABIXChNCQVRUTEVfRVZFTlRfQVRUQUNLEAES",
+          "FgoSQkFUVExFX0VWRU5UX1NLSUxMEAISFwoTQkFUVExFX0VWRU5UX0RBTUFH",
+          "RRADEhUKEUJBVFRMRV9FVkVOVF9IRUFMEAQSGQoVQkFUVExFX0VWRU5UX0JV",
+          "RkZfQUREEAUSHAoYQkFUVExFX0VWRU5UX0JVRkZfUkVNT1ZFEAYSGgoWQkFU",
+          "VExFX0VWRU5UX0JVRkZfVElDSxAHEhYKEkJBVFRMRV9FVkVOVF9ERUFUSBAI",
+          "EhcKE0JBVFRMRV9FVkVOVF9ERUZFTkQQCRIVChFCQVRUTEVfRVZFTlRfSVRF",
+          "TRAKEhUKEUJBVFRMRV9FVkVOVF9GTEVFEAsqgwEKDmVCYXR0bGVPdXRjb21l",
+          "EhoKFkJBVFRMRV9PVVRDT01FX09OR09JTkcQABIdChlCQVRUTEVfT1VUQ09N",
+          "RV9TSURFX0FfV0lOEAESHQoZQkFUVExFX09VVENPTUVfU0lERV9CX1dJThAC",
+          "EhcKE0JBVFRMRV9PVVRDT01FX0RSQVcQA0IIWgZiYXR0bGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleOutcome), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -88,7 +88,7 @@ public static partial class BattleDataReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleBuffEntry), global::BattleBuffEntry.Parser, new[]{ "BuffId", "BuffTableId", "Layer", "RemainRounds", "CasterId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleItemEntry), global::BattleItemEntry.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePlayerSnapshot), global::BattlePlayerSnapshot.Parser, new[]{ "PlayerId", "PlayerName", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "SkillTableIds", "Buffs", "Items", "Routing", "TeamIndex" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorState), global::BattleActorState.Parser, new[]{ "ActorId", "ActorType", "TeamIndex", "Name", "Level", "Attributes", "MaxHealth", "MaxMana", "IsDead", "IsDefending", "Fled", "Buffs", "SkillTableIds", "MonsterTableId", "SkillCooldownRounds" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorState), global::BattleActorState.Parser, new[]{ "ActorId", "ActorType", "TeamIndex", "Name", "Level", "Attributes", "MaxHealth", "MaxMana", "IsDead", "IsDefending", "Fled", "Buffs", "SkillTableIds", "MonsterTableId", "SkillCooldownRounds", "IsAuto" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleAction), global::BattleAction.Parser, new[]{ "ActionType", "SkillTableId", "TargetId", "ItemTableId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleEventItem), global::BattleEventItem.Parser, new[]{ "EventType", "SourceId", "TargetId", "SkillTableId", "BuffTableId", "Value", "IsCritical", "Success", "TargetHealthAfter", "ItemTableId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds" }, null, null, null, null)
@@ -1797,6 +1797,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     skillTableIds_ = other.skillTableIds_.Clone();
     monsterTableId_ = other.monsterTableId_;
     skillCooldownRounds_ = other.skillCooldownRounds_.Clone();
+    isAuto_ = other.isAuto_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1998,6 +1999,21 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     get { return skillCooldownRounds_; }
   }
 
+  /// <summary>Field number for the "is_auto" field.</summary>
+  public const int IsAutoFieldNumber = 16;
+  private bool isAuto_;
+  /// <summary>
+  /// 自动战斗(挂机):回合内视为已就绪,结算时按默认行动出手
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool IsAuto {
+    get { return isAuto_; }
+    set {
+      isAuto_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2028,6 +2044,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     if(!skillTableIds_.Equals(other.skillTableIds_)) return false;
     if (MonsterTableId != other.MonsterTableId) return false;
     if (!SkillCooldownRounds.Equals(other.SkillCooldownRounds)) return false;
+    if (IsAuto != other.IsAuto) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2050,6 +2067,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     hash ^= skillTableIds_.GetHashCode();
     if (MonsterTableId != 0) hash ^= MonsterTableId.GetHashCode();
     hash ^= SkillCooldownRounds.GetHashCode();
+    if (IsAuto != false) hash ^= IsAuto.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2119,6 +2137,10 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       output.WriteUInt32(MonsterTableId);
     }
     skillCooldownRounds_.WriteTo(output, _map_skillCooldownRounds_codec);
+    if (IsAuto != false) {
+      output.WriteRawTag(128, 1);
+      output.WriteBool(IsAuto);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2180,6 +2202,10 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       output.WriteUInt32(MonsterTableId);
     }
     skillCooldownRounds_.WriteTo(ref output, _map_skillCooldownRounds_codec);
+    if (IsAuto != false) {
+      output.WriteRawTag(128, 1);
+      output.WriteBool(IsAuto);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2229,6 +2255,9 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MonsterTableId);
     }
     size += skillCooldownRounds_.CalculateSize(_map_skillCooldownRounds_codec);
+    if (IsAuto != false) {
+      size += 2 + 1;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -2283,6 +2312,9 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       MonsterTableId = other.MonsterTableId;
     }
     skillCooldownRounds_.MergeFrom(other.skillCooldownRounds_);
+    if (other.IsAuto != false) {
+      IsAuto = other.IsAuto;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -2366,6 +2398,10 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
           skillCooldownRounds_.AddEntriesFrom(input, _map_skillCooldownRounds_codec);
           break;
         }
+        case 128: {
+          IsAuto = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -2447,6 +2483,10 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
         }
         case 122: {
           skillCooldownRounds_.AddEntriesFrom(ref input, _map_skillCooldownRounds_codec);
+          break;
+        }
+        case 128: {
+          IsAuto = input.ReadBool();
           break;
         }
       }

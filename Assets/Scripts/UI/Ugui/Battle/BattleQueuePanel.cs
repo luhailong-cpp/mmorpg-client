@@ -5,7 +5,10 @@ namespace MmorpgClient.UI.Ugui.Battle
 {
     /// <summary>
     /// 排队面板(场景内悬浮):
-    ///   - 模式选择:PVE 单人 / PVP 1v1(battle_config_id 用 BattleUiStyle 可配常量)
+    ///   - 模式选择:PVE 单人 / PVE 组队(5人) / PVP 1v1 / PVP 5v5
+    ///     (battle_config_id 用 BattleUiStyle 可配常量)
+    ///   - 「连续战斗」开关:纯客户端(BattleClient.ContinuousBattle),
+    ///     结算面板收起(AckBattleEnd)后按上次参数自动重排(§11.2)
     ///   - 排队中状态:已等秒数 / 预计等待(来自 BattleClient.OnQueueStatus)
     ///   - 取消排队
     ///   - 切磋 PK 极简入口:当前场景没有 actor 点击选中交互(见 open_issues),
@@ -14,14 +17,17 @@ namespace MmorpgClient.UI.Ugui.Battle
     public sealed class BattleQueuePanel
     {
         private const float PanelX = 60f;
-        private const float PanelY = 240f;
+        private const float PanelY = 90f;
         private const float PanelW = 520f;
-        private const float PanelH = 640f;
+        private const float PanelH = 920f;
 
         private readonly BattleUiRoot _owner;
         private readonly RectTransform _root;
         private readonly UiTextButton _pveButton;
+        private readonly UiTextButton _pveTeamButton;
         private readonly UiTextButton _pvpButton;
+        private readonly UiTextButton _pvp5V5Button;
+        private readonly UiTextButton _continuousButton;
         private readonly UiTextButton _cancelButton;
         private readonly UiTextButton _duelButton;
         private readonly UiTextButton _closeButton;
@@ -55,42 +61,56 @@ namespace MmorpgClient.UI.Ugui.Battle
                 "匹配 PVE(单人)", 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _pveButton.Button.onClick.AddListener(OnJoinPveClicked);
 
-            _pvpButton = BattleUiWidgets.CreateTextButton("JoinPvp", _root, 30f, 166f, 460f, 74f,
+            _pveTeamButton = BattleUiWidgets.CreateTextButton("JoinPveTeam", _root, 30f, 166f, 460f, 74f,
+                "匹配 PVE(组队5人)", 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _pveTeamButton.Button.onClick.AddListener(OnJoinPveTeamClicked);
+
+            _pvpButton = BattleUiWidgets.CreateTextButton("JoinPvp", _root, 30f, 256f, 460f, 74f,
                 "匹配 PVP(1v1)", 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _pvpButton.Button.onClick.AddListener(OnJoinPvpClicked);
 
-            _queueText = QdaoUguiFactory.CreateText("QueueText", _root, 30f, 256f, 460f, 40f,
+            _pvp5V5Button = BattleUiWidgets.CreateTextButton("JoinPvp5V5", _root, 30f, 346f, 460f, 74f,
+                "匹配 PVP(5v5)", 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _pvp5V5Button.Button.onClick.AddListener(OnJoinPvp5V5Clicked);
+
+            _queueText = QdaoUguiFactory.CreateText("QueueText", _root, 30f, 436f, 460f, 40f,
                 string.Empty, 20f, BattleUiStyle.WarnText);
 
-            _cancelButton = BattleUiWidgets.CreateTextButton("CancelQueue", _root, 30f, 304f, 460f, 64f,
+            _cancelButton = BattleUiWidgets.CreateTextButton("CancelQueue", _root, 30f, 480f, 460f, 64f,
                 "取消排队", 22f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             _cancelButton.Button.onClick.AddListener(OnCancelClicked);
 
-            QdaoUguiFactory.CreateText("DuelDivider", _root, 30f, 392f, 460f, 30f,
+            _continuousButton = BattleUiWidgets.CreateTextButton("Continuous", _root, 30f, 556f, 460f, 56f,
+                "连续战斗:关", 20f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _continuousButton.Button.onClick.AddListener(OnContinuousClicked);
+
+            QdaoUguiFactory.CreateText("DuelDivider", _root, 30f, 636f, 460f, 30f,
                 "── 切磋 PK ──", 20f, QdaoUguiTheme.MutedBrown, TextAlignmentOptions.Center);
-            QdaoUguiFactory.CreateText("DuelHint", _root, 30f, 428f, 460f, 30f,
+            QdaoUguiFactory.CreateText("DuelHint", _root, 30f, 672f, 460f, 30f,
                 "暂无场景点选目标,请输入对方玩家ID:", 18f, QdaoUguiTheme.StatusCream);
 
             var inputPlate = BattleUiWidgets.CreatePanel("DuelInputPlate", _root,
-                30f, 466f, 296f, 56f, BattleUiStyle.PanelBgLight);
+                30f, 710f, 296f, 56f, BattleUiStyle.PanelBgLight);
             _targetInput = QdaoUguiFactory.CreateInputField("DuelInput", inputPlate.transform,
                 0f, 0f, 296f, 56f, "对方玩家ID", 20);
             _targetInput.contentType = TMP_InputField.ContentType.IntegerNumber;
 
-            _duelButton = BattleUiWidgets.CreateTextButton("Duel", _root, 342f, 466f, 148f, 56f,
+            _duelButton = BattleUiWidgets.CreateTextButton("Duel", _root, 342f, 710f, 148f, 56f,
                 "发起切磋", 20f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _duelButton.Button.onClick.AddListener(OnDuelClicked);
 
-            _statusText = BattleUiWidgets.CreateWrappedText("Status", _root, 30f, 540f, 460f, 88f,
+            _statusText = BattleUiWidgets.CreateWrappedText("Status", _root, 30f, 784f, 460f, 110f,
                 string.Empty, 18f, QdaoUguiTheme.StatusCream);
 
             RefreshButtons();
+            RefreshContinuousButton();
             Hide();
         }
 
         public void Show()
         {
             if (_root != null) _root.gameObject.SetActive(true);
+            RefreshContinuousButton(); // 文案与 BattleClient.ContinuousBattle 对齐(懒绑定时序)
         }
 
         public void Hide()
@@ -171,6 +191,36 @@ namespace MmorpgClient.UI.Ugui.Battle
             SetStatus("已请求匹配 PVP(1v1),等待服务器…");
         }
 
+        private void OnJoinPveTeamClicked()
+        {
+            var client = _owner?.Client;
+            if (client == null) { SetStatus("战斗模块未就绪"); return; }
+            client.JoinQueue(Match.MatchMode.PveTeam, BattleUiStyle.PveTeamBattleConfigId);
+            SetStatus("已请求匹配 PVE(组队 5 人),等待凑满队伍…");
+        }
+
+        private void OnJoinPvp5V5Clicked()
+        {
+            var client = _owner?.Client;
+            if (client == null) { SetStatus("战斗模块未就绪"); return; }
+            client.JoinQueue(Match.MatchMode._5V5, BattleUiStyle.Pvp5V5BattleConfigId);
+            SetStatus("已请求匹配 PVP(5v5),等待凑满 10 人…");
+        }
+
+        private void OnContinuousClicked()
+        {
+            var client = _owner?.Client;
+            if (client == null) { SetStatus("战斗模块未就绪"); return; }
+            client.ContinuousBattle = !client.ContinuousBattle;
+            RefreshContinuousButton();
+        }
+
+        private void RefreshContinuousButton()
+        {
+            bool on = _owner?.Client != null && _owner.Client.ContinuousBattle;
+            _continuousButton?.SetText(on ? "连续战斗:开" : "连续战斗:关");
+        }
+
         private void OnCancelClicked()
         {
             var client = _owner?.Client;
@@ -202,7 +252,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             bool idle = !_queueing;
             _pveButton?.SetInteractable(idle);
+            _pveTeamButton?.SetInteractable(idle);
             _pvpButton?.SetInteractable(idle);
+            _pvp5V5Button?.SetInteractable(idle);
             _duelButton?.SetInteractable(idle);
             _cancelButton?.SetVisible(_queueing);
             if (_queueText != null && !_queueing) _queueText.text = string.Empty;

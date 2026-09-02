@@ -74,14 +74,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
             var frameWorldHeight = texture.height /
                                    MmorpgClient.World.QdaoBoySpriteAnimator.PixelsPerUnit;
-            Assert.That(frameWorldHeight, Is.EqualTo(16f).Within(0.001f),
-                "512 px / 32 ppu should render as a 16-unit-tall visual without scaling the actor root");
+            Assert.That(frameWorldHeight, Is.EqualTo(8f).Within(0.001f),
+                "512 px / 64 ppu should render as an 8-unit-tall visual without scaling the actor root");
 
             var config = TianyongMapConfig.LoadDefault();
             Assert.That(config, Is.Not.Null);
             var frameScreenHeight = frameWorldHeight * 1080f / (2f * config.CameraZoomDefault);
-            Assert.That(frameScreenHeight, Is.InRange(300f, 340f),
-                "The full character frame should be readable at the default 1080p camera");
+            Assert.That(frameScreenHeight, Is.InRange(150f, 170f),
+                "The run frame should match the reference character-to-travel ratio at 1080p");
             Assert.That(frameScreenHeight, Is.LessThanOrEqualTo(texture.height),
                 "The default camera should downsample the HD character frame, not magnify it");
         }

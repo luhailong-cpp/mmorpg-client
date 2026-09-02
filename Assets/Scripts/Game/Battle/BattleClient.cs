@@ -64,6 +64,12 @@ namespace MmorpgClient.Game.Battle
         private ulong _battleId;             // 当前(或重连恢复中)战斗 id;0 = 无
         private string _queueTicket = string.Empty;
 
+        // 连续战斗:最近一次显式 JoinQueue 的参数记忆(切磋不计,§11.2 只按队列参数重排)
+        private Match.MatchMode _lastQueueMode;
+        private uint _lastQueueConfigId;
+        private bool _hasQueueMemory;
+        private bool _endAckPending;         // 战斗已结束、等 UI AckBattleEnd(连续战斗的触发闸)
+
         // ── 契约属性 ────────────────────────────────────────
 
         public BattlePhase Phase { get; private set; } = BattlePhase.None;
@@ -74,6 +80,25 @@ namespace MmorpgClient.Game.Battle
         /// <summary>本地玩家 id(战斗内 actor_id 即 player_id)。</summary>
         public ulong MyPlayerId => _net.PlayerId;
 
+        /// <summary>
+        /// 自动战斗本地记忆开关(§11.2):开着时每次 BattleStart 自动补发
+        /// SetAutoBattle(true),连续挂机免手点。SetAutoBattle() 会同步更新;
+        /// UI 也可在战斗外直接置位预设下一场。纯本地,不触发网络。
+        /// </summary>
+        public bool AutoBattleLatched { get; set; }
+
+        /// <summary>
+        /// 连续战斗本地开关(§11.2):战斗结束且 UI 调 AckBattleEnd() 后,
+        /// 自动按最近一次 JoinQueue 的 mode/config 重新入队。纯客户端行为。
+        /// </summary>
+        public bool ContinuousBattle { get; set; }
+
+        /// <summary>
+        /// 本人自动战斗的服务端权威状态(数据源 BattleStateS2C.actors[本人].is_auto;
+        /// 与 AutoBattleLatched 的区别:这是渲染开关用的真值,那是本地意愿)。
+        /// </summary>
+        public bool IsMyActorAuto { get; private set; }
+
         // ── 契约事件 ────────────────────────────────────────
 
         public event Action<BattlePhase> OnPhaseChanged;
@@ -83,6 +108,8 @@ namespace MmorpgClient.Game.Battle
         public event Action<Match.ChallengeInviteS2C> OnChallengeInvite;
         public event Action<Match.ChallengeResultS2C> OnChallengeResult;
         public event Action<Match.GetQueueStatusResponse> OnQueueStatus;
+        /// <summary>本人 is_auto 权威值变化(true=服务端已挂机;UI 据此渲染「自动」按钮态)。</summary>
+        public event Action<bool> OnAutoStateChanged;
         public event Action<string> OnError;
 
         // ── 构造/挂接 ───────────────────────────────────────
@@ -133,6 +160,12 @@ namespace MmorpgClient.Game.Battle
                 OnError?.Invoke("当前状态不能排队(需先结束当前匹配/战斗)");
                 return;
             }
+
+            // 连续战斗的参数记忆:含自动重排本身(同值覆写无害),新排队作废未消费的结束 Ack
+            _lastQueueMode = mode;
+            _lastQueueConfigId = battleConfigId;
+            _hasQueueMemory = true;
+            _endAckPending = false;
 
             // 先进 Queued 再发请求:失败响应回退 None;若开战抢先到达
             // (solo 即配),迟到的成功响应不允许把相位拉回 Queued。
@@ -303,6 +336,33 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>
+        /// 自动战斗开关(§11.2):同步更新本地记忆 AutoBattleLatched;
+        /// 战斗中(WaitingAction/Resolving)立即发 SetAutoBattle,否则只记忆
+        /// (下一场 BattleStart 自动补发)。权威状态经 OnAutoStateChanged 回来。
+        /// </summary>
+        public void SetAutoBattle(bool enabled)
+        {
+            AutoBattleLatched = enabled;
+            if (_battleId == 0) return; // 不在战斗:纯记忆,不报错(排队面板预设场景)
+            if (Phase != BattlePhase.WaitingAction && Phase != BattlePhase.Resolving) return;
+            SendSetAutoBattle(enabled, revertLatchOnFailure: true);
+        }
+
+        /// <summary>
+        /// UI 收起结算面板后调用(契约):消费结束 Ack;连续战斗开关打开且有
+        /// 排队参数记忆时自动重新 JoinQueue(§11.2)。相位早已回 None(既有
+        /// Ended→None 流转不变),故本方法不改相位;迟到/多余 Ack 丢弃。
+        /// </summary>
+        public void AckBattleEnd()
+        {
+            if (!_endAckPending) return;
+            _endAckPending = false;
+            if (!ContinuousBattle || !_hasQueueMemory) return;
+            if (Phase != BattlePhase.None) return; // 已在新排队/新战斗(重连等):不抢入口
+            JoinQueue(_lastQueueMode, _lastQueueConfigId);
+        }
+
+        /// <summary>
         /// 补拉权威状态(重连/异常兜底):GetBattleState,按返回态置
         /// WaitingAction / Resolving(战斗已结束则收敛回 None)。
         /// </summary>
@@ -376,6 +436,10 @@ namespace MmorpgClient.Game.Battle
             var phase = DecidePhaseFromState(ev.State, MyPlayerId);
             if (phase == BattlePhase.None) phase = BattlePhase.WaitingAction; // 开局态不可能已结束,容错
             SetPhase(phase);
+            RefreshMyAutoState();
+
+            // 自动战斗记忆补发(§11.2):新战斗引擎侧 is_auto 归零,由本地记忆续上
+            if (AutoBattleLatched) SendSetAutoBattle(true, revertLatchOnFailure: false);
         }
 
         private void HandleTurnResult(TurnResultS2C ev)
@@ -386,6 +450,7 @@ namespace MmorpgClient.Game.Battle
             if (_battleId != 0 && ev.BattleId != 0 && ev.BattleId != _battleId) return;
 
             if (ev.State != null) State = ev.State;
+            RefreshMyAutoState();
             SetPhase(BattlePhase.Resolving);
             OnTurnResult?.Invoke(ev); // UI 播完调 AckTurnPlayed() 回 WaitingAction
         }
@@ -401,6 +466,8 @@ namespace MmorpgClient.Game.Battle
             OnBattleEnd?.Invoke(ev);   // 先抛事件(UI 记结算/排队播完),再收尾回 None
             ClearBattleContext();
             SetPhase(BattlePhase.None);
+            RefreshMyAutoState();      // 战斗上下文已清 → 权威 auto 归 false
+            _endAckPending = true;     // 收尾之后才挂闸:事件回调内的同步 Ack 视为无效
         }
 
         private void HandleBattleReconnect(BattleReconnectS2C ev)
@@ -427,9 +494,12 @@ namespace MmorpgClient.Game.Battle
         {
             // 断线:本地战斗/排队态整体作废(补偿矩阵:排队票据失效;战斗照打,
             // 重连后 scene 发现 InBattleComp 会推 NotifyBattleReconnect → RequestState 恢复)。
+            // 未消费的结束 Ack 一并作废:断线重连后不允许凭旧 Ack 自动入队。
             ClearBattleContext();
             State = null;
+            _endAckPending = false;
             SetPhase(BattlePhase.None);
+            RefreshMyAutoState();
         }
 
         private void ApplyAuthoritativeState(BattleStateS2C state)
@@ -441,9 +511,72 @@ namespace MmorpgClient.Game.Battle
             var phase = DecidePhaseFromState(state, MyPlayerId);
             if (phase == BattlePhase.None) ClearBattleContext(); // 战斗已结束:结算由 scene 侧另行通知
             SetPhase(phase);
+            RefreshMyAutoState();
         }
 
         // ── 内部工具 ────────────────────────────────────────
+
+        /// <summary>
+        /// 发 SetAutoBattle(不含记忆更新;记忆由公开 API/补发路径各自负责)。
+        /// revertLatchOnFailure:失败时把 AutoBattleLatched 回滚到权威值 IsMyActorAuto,
+        /// 免得用户点一次失败后本地意愿与权威态分叉(得点两次才真正生效)。
+        /// 用户显式开关传 true;BattleStart 记忆补发传 false —— 补发瞬时失败
+        /// 不得抹掉跨场挂机记忆(§11.2 连续挂机语义)。
+        /// </summary>
+        private void SendSetAutoBattle(bool enabled, bool revertLatchOnFailure)
+        {
+            var req = new SetAutoBattleRequest
+            {
+                BattleId = _battleId,
+                Enabled = enabled,
+            };
+            _net.Call(MessageIds.SetAutoBattle, req, SetAutoBattleResponse.Parser,
+                resp =>
+                {
+                    if (HasTip(resp.ErrorMessage))
+                    {
+                        OnError?.Invoke(DescribeTip("设置自动战斗失败", resp.ErrorMessage));
+                        RevertLatchIfNeeded(revertLatchOnFailure);
+                    }
+                    // 成功不改本地态:权威 is_auto 随下一帧 BattleStateS2C 回来
+                },
+                err =>
+                {
+                    OnError?.Invoke($"设置自动战斗失败:{err}");
+                    RevertLatchIfNeeded(revertLatchOnFailure);
+                });
+        }
+
+        /// <summary>
+        /// SetAutoBattle 失败后的记忆回滚:_battleId==0 说明战斗已收尾,此时
+        /// latch 是下一场预设,不回滚。权威值本身未变,不触发 OnAutoStateChanged。
+        /// </summary>
+        private void RevertLatchIfNeeded(bool revertLatchOnFailure)
+        {
+            if (revertLatchOnFailure && _battleId != 0)
+                AutoBattleLatched = IsMyActorAuto;
+        }
+
+        /// <summary>
+        /// 从权威状态重算本人 is_auto,变化时抛 OnAutoStateChanged。
+        /// 战斗上下文已清(_battleId==0)时恒为 false(State 保留旧值也不误报)。
+        /// </summary>
+        private void RefreshMyAutoState()
+        {
+            bool isAuto = false;
+            if (_battleId != 0 && State != null)
+            {
+                foreach (var actor in State.Actors)
+                {
+                    if (actor.ActorId != MyPlayerId) continue;
+                    isAuto = actor.IsAuto;
+                    break;
+                }
+            }
+            if (isAuto == IsMyActorAuto) return;
+            IsMyActorAuto = isAuto;
+            OnAutoStateChanged?.Invoke(isAuto);
+        }
 
         private void EnterPreparing()
         {

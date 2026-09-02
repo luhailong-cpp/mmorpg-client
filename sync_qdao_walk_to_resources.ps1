@@ -1,9 +1,11 @@
-# Sync the qdao headband-boy 8-direction walk strips from the imagegen output
+# Sync the qdao headband-boy 8-direction run strips from the imagegen output
 # into Unity Resources, where QdaoBoySpriteAnimator loads them via
 # `Resources.Load<Texture2D>("World/Characters/QdaoHeadbandBoy/walk_<DIR>")`.
 #
-# Source strips are the HD masters, 4096x512 (8 frames of 512x512, left to right); the animator
-# slices them at runtime, so no editor sprite setup is needed.
+# Source strips are the HD masters, 4096x512 (8 frames of 512x512, left to
+# right). The animator slices them at runtime and plays them at 16 fps using
+# 64 ppu and a normalized feet pivot of 0.08, so no editor sprite setup is
+# needed. Destination names stay `walk_<DIR>.png` for Resources compatibility.
 #
 # Run:
 #     pwsh -File mmorpg-client/sync_qdao_walk_to_resources.ps1
@@ -12,9 +14,7 @@
 
 [CmdletBinding()]
 param(
-    # v3_fixed = v1 strips with the S/N gait repaired (mirrored lower-body
-    # frames giving a real alternating step; see fix_walk_gait.ps1 in there).
-    [string]$Source = 'E:\work\output\imagegen\qdao_headband_boy_walk_v3_fixed',
+    [string]$Source = 'E:\work\output\imagegen\qdao_headband_boy_run_v1',
     [string]$ProjectRoot = $PSScriptRoot
 )
 
@@ -28,7 +28,7 @@ if (-not (Test-Path $Source)) {
 New-Item -ItemType Directory -Force $dst | Out-Null
 $copied = 0
 foreach ($dir in @('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW')) {
-    $strip = Join-Path $Source "qdao_headband_boy_walk_${dir}_strip_4096x512_v1.png"
+    $strip = Join-Path $Source "qdao_headband_boy_run_${dir}_strip_4096x512_v1.png"
     if (-not (Test-Path $strip)) {
         Write-Error "missing strip: $strip"
         exit 1

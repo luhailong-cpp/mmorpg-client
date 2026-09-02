@@ -18,6 +18,7 @@ namespace MmorpgClient.Net
         public const uint KickPlayer             =   34; // SceneClientPlayerCommonKickPlayer
         public const uint LeaveGame              =   17; // ClientPlayerLoginLeaveGame
         public const uint ListSkills             =   77; // SceneSkillClientPlayerListSkills
+        public const uint ListWatchableBattles   =  164; // MatchServiceListWatchableBattles
         public const uint Login                  =   48; // ClientPlayerLoginLogin
         public const uint MoveStart              =  134; // SceneMovementClientPlayerMoveStart
         public const uint MoveStop               =  131; // SceneMovementClientPlayerMoveStop
@@ -38,6 +39,9 @@ namespace MmorpgClient.Net
         public const uint NotifySceneInfo        =   31; // SceneSceneClientPlayerNotifySceneInfo
         public const uint NotifySkillInterrupted =   33; // SceneSkillClientPlayerNotifySkillInterrupted
         public const uint NotifySkillUsed        =   70; // SceneSkillClientPlayerNotifySkillUsed
+        public const uint NotifySpectateEnd      =  166; // BattleClientPlayerNotifySpectateEnd
+        public const uint NotifySpectateState    =  161; // BattleClientPlayerNotifySpectateState
+        public const uint NotifySpectateTurnResult =  158; // BattleClientPlayerNotifySpectateTurnResult
         public const uint NotifyTeleport         =  130; // SceneMovementClientPlayerNotifyTeleport
         public const uint NotifyTurnResult       =  139; // BattleClientPlayerNotifyTurnResult
         public const uint RedirectToGate         =  124; // SceneClientPlayerCommonRedirectToGate
@@ -45,8 +49,11 @@ namespace MmorpgClient.Net
         public const uint ReleaseSkill           =   84; // SceneSkillClientPlayerReleaseSkill
         public const uint RespondChallenge       =  151; // MatchServiceRespondChallenge
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
+        public const uint SetAutoBattle          =  162; // BattleClientPlayerSetAutoBattle
+        public const uint StopWatchBattle        =  165; // BattleClientPlayerStopWatchBattle
         public const uint SubmitBattleAction     =  149; // BattleClientPlayerSubmitBattleAction
         public const uint TeleportRequest        =  136; // SceneMovementClientPlayerTeleportRequest
         public const uint TipToClient            =   23; // SceneClientPlayerCommonSendTipToClient
+        public const uint WatchBattle            =  163; // MatchServiceWatchBattle
     }
 }

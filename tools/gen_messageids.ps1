@@ -73,6 +73,13 @@ $whitelist = @{
     "BattleClientPlayerNotifyBattleEnd"            = "NotifyBattleEnd"
     "BattleClientPlayerNotifyBattleReconnect"      = "NotifyBattleReconnect"
 
+    # 二期:观战 + 自动战斗(设计文档 §10/§11,service BattleClientPlayer)
+    "BattleClientPlayerStopWatchBattle"            = "StopWatchBattle"
+    "BattleClientPlayerSetAutoBattle"              = "SetAutoBattle"
+    "BattleClientPlayerNotifySpectateState"        = "NotifySpectateState"
+    "BattleClientPlayerNotifySpectateTurnResult"   = "NotifySpectateTurnResult"
+    "BattleClientPlayerNotifySpectateEnd"          = "NotifySpectateEnd"
+
     # 匹配/切磋(proto/match/match_service.proto, service MatchService)
     "MatchServiceJoinQueue"                        = "JoinQueue"
     "MatchServiceCancelQueue"                      = "CancelQueue"
@@ -81,6 +88,10 @@ $whitelist = @{
     "MatchServiceRespondChallenge"                 = "RespondChallenge"
     "MatchServiceNotifyChallengeInvite"            = "NotifyChallengeInvite"
     "MatchServiceNotifyChallengeResult"            = "NotifyChallengeResult"
+
+    # 二期:观战匹配(设计文档 §10,service MatchService)
+    "MatchServiceWatchBattle"                      = "WatchBattle"
+    "MatchServiceListWatchableBattles"             = "ListWatchableBattles"
 }
 
 $idByMethod = @{}

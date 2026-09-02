@@ -15,7 +15,9 @@ namespace MmorpgClient.UI.Ugui.Battle
     ///   - 只调用/订阅 BattleClient API 契约(Game/Battle/BattleClient.cs,NET 路实现),
     ///     实例解析集中在 <see cref="ResolveBattleClient"/> 一处;
     ///   - 重连:Phase 由 None 直接变 WaitingAction/Resolving 时自动打开战斗屏;
-    ///   - OnTurnResult 事件流播完后调用 AckTurnPlayed()。
+    ///   - OnTurnResult 事件流播完后调用 AckTurnPlayed();
+    ///   - 观战(SpectateClient):入口面板 + 复用 BattleScreen 的只读模式;
+    ///     观战回合播放不 Ack(只读流无该契约),新回合直接抢占旧播放。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class BattleUiRoot : MonoBehaviour
@@ -28,6 +30,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private AppBootstrap _app;
         private BattleClient _client;
         private bool _clientBound;
+        private SpectateClient _spectate;
+        private bool _spectateBound;
         private Game.GameClient _boundGameClient;
 
         private GameObject _canvasGo;
@@ -40,7 +44,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         private TMP_Text _toastText;
 
         private UiTextButton _entryButton;
+        private UiTextButton _spectateEntryButton;
         private BattleQueuePanel _queuePanel;
+        private SpectatePanel _spectatePanel;
         private BattleChallengePopup _challengePopup;
         private BattleScreen _battleScreen;
         private BattleResultPanel _resultPanel;
@@ -52,8 +58,18 @@ namespace MmorpgClient.UI.Ugui.Battle
         private Coroutine _playCo;
         private Coroutine _toastCo;
 
+        // 观战屏状态(与参战流程分离:两条播放链互不复用协程句柄)
+        private bool _spectateOpen;
+        private bool _spectatePlaying;
+        private Coroutine _spectatePlayCo;
+        private TurnResultS2C _spectatePlayingResult; // 播放被新回合抢占时用其 State 收尾
+        private SpectateEndS2C _pendingSpectateEnd;
+
         /// <summary>供子面板取 BattleClient(可能为 null:NET 路尚未初始化)。</summary>
         public BattleClient Client => _client;
+
+        /// <summary>供子面板取 SpectateClient(可能为 null:NET 路尚未初始化)。</summary>
+        public SpectateClient Spectate => _spectate;
 
         // ── 生命周期 ────────────────────────────────────────
 
@@ -103,7 +119,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_canvasGo == null) return;
 
             // 兜底自愈:重连补拉完成但事件时序错位时,按 Phase+State 打开战斗屏
-            if (_clientBound && !_battleOpen && _client.State != null &&
+            // (观战屏开着时不抢:观战与排队/战斗由服务端 D11 互斥,不该同时发生)
+            if (_clientBound && !_battleOpen && !_spectateOpen && _client.State != null &&
                 (_client.Phase == BattlePhase.WaitingAction || _client.Phase == BattlePhase.Resolving))
             {
                 EnsureBattleOpen();
@@ -119,6 +136,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             ScreenRouter.ScreenChanged -= HandleScreenChanged;
             UnbindClient();
+            UnbindSpectate();
             if (_boundGameClient != null)
             {
                 _boundGameClient.OnDisconnected -= HandleDisconnected;
@@ -148,6 +166,16 @@ namespace MmorpgClient.UI.Ugui.Battle
                     _clientBound = true;
                 }
             }
+            if (!_spectateBound)
+            {
+                var spectate = ResolveSpectateClient();
+                if (spectate != null)
+                {
+                    _spectate = spectate;
+                    BindSpectate();
+                    _spectateBound = true;
+                }
+            }
             if (_boundGameClient == null && _app.GameClient != null)
             {
                 _boundGameClient = _app.GameClient;
@@ -161,6 +189,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         private static BattleClient ResolveBattleClient() => BattleClient.Instance;
 
+        /// <summary>解析 SpectateClient 单例(挂接方式照 ResolveBattleClient)。</summary>
+        private static SpectateClient ResolveSpectateClient() => SpectateClient.Instance;
+
         private void BindClient()
         {
             _client.OnPhaseChanged += HandlePhaseChanged;
@@ -170,6 +201,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnChallengeInvite += HandleChallengeInvite;
             _client.OnChallengeResult += HandleChallengeResult;
             _client.OnQueueStatus += HandleQueueStatus;
+            _client.OnAutoStateChanged += HandleAutoStateChanged;
             _client.OnError += HandleClientError;
         }
 
@@ -183,8 +215,31 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnChallengeInvite -= HandleChallengeInvite;
             _client.OnChallengeResult -= HandleChallengeResult;
             _client.OnQueueStatus -= HandleQueueStatus;
+            _client.OnAutoStateChanged -= HandleAutoStateChanged;
             _client.OnError -= HandleClientError;
             _clientBound = false;
+        }
+
+        private void BindSpectate()
+        {
+            _spectate.OnPhaseChanged += HandleSpectatePhaseChanged;
+            _spectate.OnSpectateState += HandleSpectateState;
+            _spectate.OnSpectateTurn += HandleSpectateTurn;
+            _spectate.OnSpectateEnd += HandleSpectateEnd;
+            _spectate.OnListUpdated += HandleSpectateList;
+            _spectate.OnError += HandleSpectateError;
+        }
+
+        private void UnbindSpectate()
+        {
+            if (!_spectateBound || _spectate == null) return;
+            _spectate.OnPhaseChanged -= HandleSpectatePhaseChanged;
+            _spectate.OnSpectateState -= HandleSpectateState;
+            _spectate.OnSpectateTurn -= HandleSpectateTurn;
+            _spectate.OnSpectateEnd -= HandleSpectateEnd;
+            _spectate.OnListUpdated -= HandleSpectateList;
+            _spectate.OnError -= HandleSpectateError;
+            _spectateBound = false;
         }
 
         // ── Canvas 构建(参数与 QdaoUguiRuntime 保持一致) ──
@@ -254,7 +309,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
 
+            _spectateEntryButton = BattleUiWidgets.CreateTextButton("SpectateEntry", _hudRoot,
+                2350f, 296f, 150f, 70f, "观战", 26f,
+                BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _spectateEntryButton.Button.onClick.AddListener(OnSpectateEntryClicked);
+            _spectateEntryButton.SetVisible(false);
+
             _queuePanel = new BattleQueuePanel(this, _hudRoot);
+            _spectatePanel = new SpectatePanel(this, _hudRoot);
             _battleScreen = new BattleScreen(this, _battleRoot);
             _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed);
             _challengePopup = new BattleChallengePopup(this, _modalPopupRoot);
@@ -418,6 +480,169 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _queuePanel.SetStatus(message);
         }
 
+        private void HandleAutoStateChanged(bool isAuto)
+        {
+            if (_battleOpen) _battleScreen?.OnAutoStateChanged(isAuto);
+        }
+
+        // ── SpectateClient 事件 ─────────────────────────────
+
+        private void HandleSpectatePhaseChanged(SpectatePhase phase)
+        {
+            switch (phase)
+            {
+                case SpectatePhase.Requesting:
+                    _spectatePanel?.SetStatus("正在进入观战…");
+                    break;
+                case SpectatePhase.Watching:
+                    _spectatePanel?.Hide();
+                    break;
+                case SpectatePhase.None:
+                    // 主动退出/首帧超时/断线都收敛到 None:观战屏兜底关闭。
+                    // 正常结束路径(Ended → AckEnd → None)此时屏已在 FinishSpectate 关过,幂等。
+                    AbortSpectatePlayback();
+                    CloseSpectate();
+                    break;
+            }
+        }
+
+        private void HandleSpectateState(SpectateStateS2C ev)
+        {
+            if (ev?.State == null) return;
+            bool wasOpen = _spectateOpen;
+            EnsureSpectateOpen(ev.State, ev.ObserverCount);
+            if (wasOpen && _spectateOpen)
+            {
+                // 补帧(重发的全量快照):不重开屏,直接全量刷新
+                _battleScreen.ApplyState(ev.State);
+                _battleScreen.SetObserverCount(ev.ObserverCount);
+            }
+        }
+
+        private void HandleSpectateTurn(TurnResultS2C result)
+        {
+            if (result == null) return;
+            // 竞速兜底:首帧事件丢失但回合流已到,用 result.State 开屏(照 HandleTurnResult 惯例)
+            if (!_spectateOpen && result.State != null)
+                EnsureSpectateOpen(result.State, _spectate?.ObserverCount ?? 0);
+            if (!_spectateOpen) return;
+
+            // 观战流无 Ack 契约,服务端不等播放:新回合抢占旧播放,先用旧回合权威 State 收尾
+            if (_spectatePlayCo != null)
+            {
+                StopCoroutine(_spectatePlayCo);
+                _spectatePlayCo = null;
+                _battleScreen.AbortPlayback();
+                if (_spectatePlayingResult?.State != null)
+                    _battleScreen.ApplyState(_spectatePlayingResult.State);
+            }
+            _spectatePlayingResult = result;
+            _spectatePlayCo = StartCoroutine(CoPlaySpectateTurn(result));
+        }
+
+        private IEnumerator CoPlaySpectateTurn(TurnResultS2C result)
+        {
+            _spectatePlaying = true;
+            yield return _battleScreen.CoPlayTurn(result);
+            _spectatePlaying = false;
+            _spectatePlayCo = null;
+            _spectatePlayingResult = null;
+
+            if (_pendingSpectateEnd != null)
+            {
+                var end = _pendingSpectateEnd;
+                _pendingSpectateEnd = null;
+                FinishSpectate(end);
+            }
+        }
+
+        private void HandleSpectateEnd(SpectateEndS2C end)
+        {
+            if (_spectatePlaying)
+            {
+                // 最后一回合表现还在播,播完再收尾
+                _pendingSpectateEnd = end;
+                return;
+            }
+            FinishSpectate(end);
+        }
+
+        private void FinishSpectate(SpectateEndS2C end)
+        {
+            ShowToast(DescribeSpectateEnd(end));
+            CloseSpectate();
+            _spectate?.AckEnd(); // 契约:UI 收尾后必须 Ack,Ended → None
+        }
+
+        private static string DescribeSpectateEnd(SpectateEndS2C end)
+        {
+            if (end == null) return "观战结束";
+            switch (end.Reason)
+            {
+                case eSpectateEndReason.SpectateEndRemoved:
+                    return "观战结束:你已进入排队/战斗,被移出观战";
+                case eSpectateEndReason.SpectateEndBattleAborted:
+                    return "观战结束:战斗已作废";
+                default:
+                    // 观战屏固定 team 0 在下排(OpenSpectate 契约),按此翻译胜负方
+                    switch (end.Outcome)
+                    {
+                        case eBattleOutcome.BattleOutcomeSideAWin: return "观战结束:下方队伍获胜";
+                        case eBattleOutcome.BattleOutcomeSideBWin: return "观战结束:上方队伍获胜";
+                        case eBattleOutcome.BattleOutcomeDraw: return "观战结束:平局";
+                        default: return "观战结束";
+                    }
+            }
+        }
+
+        private void HandleSpectateList(Match.ListWatchableBattlesResponse resp)
+        {
+            _spectatePanel?.ApplyList(resp);
+        }
+
+        private void HandleSpectateError(string message)
+        {
+            ShowToast($"观战:{message}", true);
+            if (_spectatePanel != null && _spectatePanel.IsVisible)
+                _spectatePanel.SetStatus(message);
+        }
+
+        /// <summary>观战屏「退出观战」入口(BattleScreen 只依赖 BattleUiRoot,不直连 SpectateClient)。</summary>
+        public void RequestStopSpectate()
+        {
+            // 本地立即回 None(SpectateClient 契约)→ HandleSpectatePhaseChanged 关屏
+            _spectate?.StopWatch();
+        }
+
+        private void EnsureSpectateOpen(BattleStateS2C state, uint observerCount)
+        {
+            if (_spectateOpen || state == null || _battleScreen == null) return;
+            if (_battleOpen) return; // 参战屏优先:迟到的观战帧宁可丢弃也不抢屏
+            _spectateOpen = true;
+            _spectatePanel?.Hide();
+            _queuePanel?.Hide();
+            _battleLayerGo.SetActive(true);
+            _battleScreen.OpenSpectate(state, observerCount);
+        }
+
+        private void CloseSpectate()
+        {
+            _pendingSpectateEnd = null;
+            if (!_spectateOpen) return;
+            _spectateOpen = false;
+            _battleScreen?.Close();
+            // 战斗层与参战流程共用:仅参战屏也没占用时才熄灯
+            if (_battleLayerGo != null && !_battleOpen) _battleLayerGo.SetActive(false);
+        }
+
+        private void AbortSpectatePlayback()
+        {
+            if (_spectatePlayCo != null) { StopCoroutine(_spectatePlayCo); _spectatePlayCo = null; }
+            _spectatePlaying = false;
+            _spectatePlayingResult = null;
+            _pendingSpectateEnd = null;
+        }
+
         private void HandleDisconnected()
         {
             // 断线:战斗态整体作废(重连后由 NotifyBattleReconnect → RequestState 恢复)
@@ -427,6 +652,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             _playing = false;
             _battleScreen?.AbortPlayback();
             CloseBattle();
+            // 观战态同样作废(SpectateClient 断线自身也会回 None,此处是 UI 侧兜底)
+            AbortSpectatePlayback();
+            CloseSpectate();
+            _spectatePanel?.Hide();
             _resultPanel?.Hide();
             _queuePanel?.SetQueueing(false);
             _queuePanel?.Hide();
@@ -458,6 +687,13 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void OpenBattle(BattleStateS2C state)
         {
             if (state == null || _battleScreen == null) return;
+            // 极端时序兜底:参战开局必然晚于观战清退(D11 互斥 + Kafka 同 key 有序),
+            // 观战屏若还开着先收掉,避免两条流程抢同一个 BattleScreen
+            if (_spectateOpen)
+            {
+                AbortSpectatePlayback();
+                CloseSpectate();
+            }
             _battleOpen = true;
             _battleLayerGo.SetActive(true);
             _battleScreen.Open(state, _client?.MyPlayerId ?? 0);
@@ -467,6 +703,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void CloseBattle()
         {
+            // 战斗层被观战屏占用时,参战流程无屏可关(误关会拆掉观战画面)
+            if (_spectateOpen && !_battleOpen) return;
             if (!_battleOpen && (_battleLayerGo == null || !_battleLayerGo.activeSelf)) return;
             _battleOpen = false;
             _battleScreen?.Close();
@@ -486,6 +724,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _resultPanel?.Hide();
             RefreshModalDim();
             CloseBattle();
+            // 契约:结算面板收起后必须 Ack(连续战斗开着时 BattleClient 自动按记忆重排)
+            _client?.AckBattleEnd();
         }
 
         // ── HUD ─────────────────────────────────────────────
@@ -498,20 +738,37 @@ namespace MmorpgClient.UI.Ugui.Battle
             _queuePanel.Toggle();
         }
 
+        private void OnSpectateEntryClicked()
+        {
+            if (_spectatePanel == null) return;
+            _spectatePanel.Toggle();
+            if (_spectatePanel.IsVisible) _spectatePanel.RefreshList();
+        }
+
         private void RefreshEntryVisibility()
         {
             if (_entryButton == null) return;
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame;
-            bool visible = _clientBound && inGame && !_battleOpen;
+            bool spectating = _spectateBound && _spectate.Phase != SpectatePhase.None;
+            bool visible = _clientBound && inGame && !_battleOpen && !_spectateOpen && !spectating;
             // FairyGUI 兼容模式(Router 存在)下,仅场景屏亮着时显示
             if (_app != null && _app.Router != null) visible = visible && s_sceneScreenActive;
             _entryButton.SetVisible(visible);
-            if (!visible && !inGame) _queuePanel?.Hide();
+            // 观战入口在「战斗」条件之上再要求不在排队/战斗任何相位
+            // (D11 服务端互斥,入口先行隐藏避免必败请求)
+            bool spectateVisible = visible && _spectateBound && _client.Phase == BattlePhase.None;
+            _spectateEntryButton?.SetVisible(spectateVisible);
+            if (!visible && !inGame)
+            {
+                _queuePanel?.Hide();
+                _spectatePanel?.Hide();
+            }
         }
 
         private void HideTransientPanels()
         {
             _queuePanel?.Hide();
+            _spectatePanel?.Hide();
             _challengePopup?.HideSilently();
             RefreshModalDim();
         }

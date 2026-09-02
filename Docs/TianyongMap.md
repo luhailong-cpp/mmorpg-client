@@ -33,11 +33,15 @@ It is built for **Unity 6000.5.8f1** and does not depend on FairyGUI.
   `Assets/Art/World/Tianyong/SceneTiles6x6/Previews/tianyong_walkmask_overlay_2048.png`). Procedural
   building footprints only drive navigation for the 3D themes. Every collider
   above `y = 0` is disabled in painted mode; only the chunk ground stays.
-- Actors: the qdao 8-direction walk sprites (4096×512 HD strips, 512 px
-  frames at 32 ppu → ~16 visual units tall, imported uncompressed) face the camera (so they lie flat
+- Actors: the qdao 8-direction run sprites (4096×512 HD strips, eight 512 px
+  frames per direction at 16 fps, 64 ppu → ~8 visual units tall, feet pivot at
+  normalized Y `0.08`, imported uncompressed) face the camera (so they lie flat
   under the top-down view), sort by Z (south in front), names sit under the
   feet (`WorldLabelBillboard`), and a procedural blue ring
-  (`TianyongClickMarker`) marks each click-to-move destination
+  (`TianyongClickMarker`) marks each click-to-move destination. The camera
+  follows in `LateUpdate`, after actor movement, while painted-map tiles,
+  buildings, foliage and other occluders remain world-static and never inherit
+  the actor's run motion.
 
 ## Rebuild the standard Unity content
 
@@ -95,6 +99,11 @@ point lights; the remaining lanterns use emissive materials.
 5. city wall and four gates;
 6. collider-backed landmark buildings and martial arena;
 7. non-blocking market, tree and festival-lantern decoration.
+
+Map geometry and decoration are world-static. In particular, foreground
+occluders never move with the player; only the camera follows the local actor,
+and that follow step runs in `LateUpdate` so it observes the completed movement
+for the current frame.
 
 Textures live in `Assets/Resources/World/Tianyong/Textures`. Their importer forces
 repeat wrap, Trilinear filtering, NPOT ToNearest, mipmaps, anisotropic filtering

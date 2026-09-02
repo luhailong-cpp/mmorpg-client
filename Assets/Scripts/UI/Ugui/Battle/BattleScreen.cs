@@ -14,6 +14,11 @@ namespace MmorpgClient.UI.Ugui.Battle
     ///   - 目标选择:点单位槽高亮,确认后 SubmitAction
     ///   - 回合倒计时(action_deadline_ms),已提交时显示「等待其他玩家…」
     ///   - OnTurnResult 事件流按序播放表现,播完全量应用 state(Ack 由 BattleUiRoot 调)
+    ///   - 行动条末位「自动」开关:权威态取 BattleClient.IsMyActorAuto(点击只表达意愿,
+    ///     is_auto 随下一帧权威状态回来),开自动时其余行动按钮置灰
+    ///   - 观战只读模式(OpenSpectate):隐藏全部行动输入,顶部显示观众数,
+    ///     「退出观战」走 SpectateClient.StopWatch;回合播放复用 CoPlayTurn
+    ///     (观战流无 AckTurnPlayed 契约,Ack 与否由 BattleUiRoot 按模式区分)
     /// </summary>
     public sealed class BattleScreen
     {
@@ -37,6 +42,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly UiTextButton _defendButton;
         private readonly UiTextButton _itemButton;
         private readonly UiTextButton _fleeButton;
+        private readonly UiTextButton _autoButton;
+
+        // 观战只读模式
+        private readonly TMP_Text _spectateText;
+        private readonly UiTextButton _stopWatchButton;
 
         // 目标选择 / 确认
         private readonly TMP_Text _targetHintText;
@@ -71,6 +81,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private ulong _selectedTargetId;
         private bool _submitted;
         private bool _playing;
+        private bool _spectate;
+        private uint _observerCount;
 
         public bool IsOpen => _root != null && _root.gameObject.activeSelf;
         public uint MyTeamIndex => _myTeam;
@@ -104,6 +116,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _defendButton = CreateActionButton(2, "防御", OnDefendClicked);
             _itemButton   = CreateActionButton(3, "道具", OnItemMenuClicked);
             _fleeButton   = CreateActionButton(4, "逃跑", OnFleeClicked);
+            // 「自动」挂在行动五键右侧(index 5):文案跟权威 is_auto,不跟本地意愿
+            _autoButton   = CreateActionButton(5, "自动:关", OnAutoClicked);
 
             // ── 技能子面板 ──
             var skillBg = BattleUiWidgets.CreatePanel("SkillPanel", _root,
@@ -140,6 +154,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             _hintText = QdaoUguiFactory.CreateText("Hint", _root, 680f, 952f, 1200f, 40f,
                 string.Empty, 22f, QdaoUguiTheme.StatusCream, TextAlignmentOptions.Center);
 
+            // ── 观战头部(仅 spectate 模式可见) ──
+            _spectateText = QdaoUguiFactory.CreateText("SpectateInfo", _root, 40f, 16f, 620f, 54f,
+                string.Empty, 30f, QdaoUguiTheme.Cream);
+            _stopWatchButton = BattleUiWidgets.CreateTextButton("StopWatch", _root, 2330f, 16f, 190f, 64f,
+                "退出观战", 24f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+            _stopWatchButton.Button.onClick.AddListener(() => _owner?.RequestStopSpectate());
+            _spectateText.gameObject.SetActive(false);
+            _stopWatchButton.SetVisible(false);
+
             _skillPanel.gameObject.SetActive(false);
             _itemPanel.gameObject.SetActive(false);
             _root.gameObject.SetActive(false);
@@ -160,7 +183,27 @@ namespace MmorpgClient.UI.Ugui.Battle
         // ── 开关 ─────────────────────────────────────────────
 
         public void Open(BattleStateS2C state, ulong myPlayerId)
+            => OpenInternal(state, myPlayerId, spectate: false, observerCount: 0);
+
+        /// <summary>
+        /// 观战只读模式开屏(§10 D8 观众零写权):无本人 actor(myId=0,
+        /// FindMyActor 恒空),行动输入整体隐藏;_myTeam 保持 0,即 team 0
+        /// 固定显示在下排。回合播放复用 CoPlayTurn,Ack 与否由 BattleUiRoot 区分。
+        /// </summary>
+        public void OpenSpectate(BattleStateS2C state, uint observerCount)
+            => OpenInternal(state, 0, spectate: true, observerCount: observerCount);
+
+        private void OpenInternal(BattleStateS2C state, ulong myPlayerId, bool spectate, uint observerCount)
         {
+            _spectate = spectate;
+            _observerCount = observerCount;
+            // 观战不走 OnPhaseChanged(BattleClient 相位与观战无关),留在 None;
+            // _myTeam 归零保证 team 0 固定在下排(上一场参战残留值会翻转排布)
+            if (spectate)
+            {
+                _phase = BattlePhase.None;
+                _myTeam = 0;
+            }
             _myId = myPlayerId;
             _submitted = false;
             _playing = false;
@@ -170,6 +213,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _root.gameObject.SetActive(true);
             ApplyState(state);
             ExitTargetMode();
+            RefreshSpectateHeader();
         }
 
         public void Close()
@@ -179,7 +223,17 @@ namespace MmorpgClient.UI.Ugui.Battle
             _slots.Clear();
             _slotById.Clear();
             _state = null;
+            _spectate = false;
+            _observerCount = 0;
+            RefreshSpectateHeader();
             _root.gameObject.SetActive(false);
+        }
+
+        /// <summary>观战补帧(NotifySpectateState 可重发)刷新观众数。</summary>
+        public void SetObserverCount(uint count)
+        {
+            _observerCount = count;
+            RefreshSpectateHeader();
         }
 
         public void OnPhaseChanged(BattlePhase phase)
@@ -288,6 +342,22 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _phaseText.text = "回合播放中…";
                 return;
             }
+            if (_spectate)
+            {
+                // 观众没有本地相位,顶部信息完全由权威状态推导
+                if (_state != null && _state.Outcome == eBattleOutcome.BattleOutcomeOngoing)
+                {
+                    long remainMs = (long)_deadlineMs - BattleUiWidgets.NowUnixMs();
+                    _phaseText.text = remainMs > 0
+                        ? $"等待玩家行动 {(int)(remainMs / 1000)} 秒"
+                        : "等待回合结算…";
+                }
+                else
+                {
+                    _phaseText.text = "战斗已结束";
+                }
+                return;
+            }
             switch (_phase)
             {
                 case BattlePhase.WaitingAction:
@@ -376,6 +446,23 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (!CanAct()) return;
             CloseSubPanels();
             Submit(new BattleAction { ActionType = eBattleActionType.BattleActionFlee });
+        }
+
+        private void OnAutoClicked()
+        {
+            var client = _owner?.Client;
+            if (client == null) { SetHint("战斗模块未就绪"); return; }
+            // 切换基准取本地意愿(AutoBattleLatched)而非权威值:服务器未回执前
+            // 再点一次也能撤销;按钮文案只跟 is_auto 权威回执翻转(§11.2)
+            bool enable = !client.AutoBattleLatched;
+            client.SetAutoBattle(enable);
+            SetHint(enable ? "已请求开启自动战斗…" : "已请求关闭自动战斗…");
+        }
+
+        /// <summary>BattleClient.OnAutoStateChanged(is_auto 权威变化)驱动:刷按钮文案与行动条置灰。</summary>
+        public void OnAutoStateChanged(bool isAuto)
+        {
+            RefreshActionBar();
         }
 
         // ── 目标选择 ────────────────────────────────────────
@@ -473,6 +560,9 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private bool CanAct()
         {
+            if (_spectate) return false;
+            // 自动战斗中禁止手动出招(is_auto 单位不进 pending,提交会被服务端拒)
+            if (_owner?.Client != null && _owner.Client.IsMyActorAuto) return false;
             var me = FindMyActor();
             return _phase == BattlePhase.WaitingAction && !_playing && !_submitted
                    && me != null && !me.IsDead && !me.Fled;
@@ -610,7 +700,10 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void RefreshPendingText()
         {
-            if (_state == null || _phase != BattlePhase.WaitingAction || _state.PendingActorIds.Count == 0)
+            // 观战没有本地相位,只要权威 pending 列表非空就展示
+            bool show = _state != null && _state.PendingActorIds.Count > 0
+                        && (_spectate || _phase == BattlePhase.WaitingAction);
+            if (!show)
             {
                 _pendingText.text = string.Empty;
                 return;
@@ -634,9 +727,25 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void RefreshActionBar()
         {
+            // 观战只读:行动输入整体隐藏(不是置灰,观众根本没有行动语义)
+            bool showActions = !_spectate;
+            _attackButton.SetVisible(showActions);
+            _skillButton.SetVisible(showActions);
+            _defendButton.SetVisible(showActions);
+            _itemButton.SetVisible(showActions);
+            _fleeButton.SetVisible(showActions);
+            _autoButton.SetVisible(showActions);
+            if (_spectate)
+            {
+                SetHint(string.Empty);
+                return;
+            }
+
             var me = FindMyActor();
+            bool myAuto = _owner?.Client != null && _owner.Client.IsMyActorAuto;
+            bool alive = me != null && !me.IsDead && !me.Fled;
             bool canAct = _phase == BattlePhase.WaitingAction && !_playing && !_submitted
-                          && me != null && !me.IsDead && !me.Fled;
+                          && alive && !myAuto;
 
             _attackButton.SetInteractable(canAct);
             _skillButton.SetInteractable(canAct);
@@ -645,14 +754,27 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 一期规则:PVP 不可逃跑(客户端以「敌方含玩家」近似判定,见 open_issues)
             bool canFlee = canAct && IsPveBattle();
             _fleeButton.SetInteractable(canFlee);
+            // 「自动」不受已提交/播放中限制:战斗内活着随时可切(Resolving 切换下回合生效)
+            bool inRound = _phase == BattlePhase.WaitingAction || _phase == BattlePhase.Resolving;
+            _autoButton.SetInteractable(alive && inRound);
+            _autoButton.SetText(myAuto ? "自动:开" : "自动:关");
 
             if (me == null) SetHint(string.Empty);
             else if (me.IsDead) SetHint("你已阵亡,等待战斗结束…");
             else if (me.Fled) SetHint("你已逃离战斗…");
+            else if (myAuto) SetHint("自动战斗中,点「自动:开」可关闭");
             else if (_playing) SetHint("回合播放中…");
             else if (_submitted && _phase == BattlePhase.WaitingAction) SetHint("已提交行动,等待其他玩家…");
             else if (_phase == BattlePhase.WaitingAction) SetHint(canFlee ? string.Empty : "PVP 战斗不可逃跑");
             else SetHint(string.Empty);
+        }
+
+        private void RefreshSpectateHeader()
+        {
+            if (_spectateText == null) return;
+            _spectateText.gameObject.SetActive(_spectate);
+            _stopWatchButton.SetVisible(_spectate);
+            if (_spectate) _spectateText.text = $"观战中 · 观众 {_observerCount} 人";
         }
 
         private bool IsPveBattle()

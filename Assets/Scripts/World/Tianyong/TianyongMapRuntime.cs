@@ -158,6 +158,11 @@ namespace MmorpgClient.World.Tianyong
 
             var focus = GetFocusPosition();
             _map.UpdateVisibleChunks(focus, VisibleChunkRadius);
+        }
+
+        private void LateUpdate()
+        {
+            if (_map == null) return;
             _cameraController?.Tick(Time.deltaTime, !GameplayInputGate.IsPointerBlocked);
         }
 

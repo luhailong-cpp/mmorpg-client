@@ -6,7 +6,7 @@ namespace MmorpgClient.World
     using Vector3 = UnityEngine.Vector3;
 
     /// <summary>
-    /// Billboarded eight-direction walk animation for player actors, fed by the
+    /// Billboarded eight-direction run animation for player actors, fed by the
     /// qdao headband-boy frame strips under
     /// Resources/World/Characters/QdaoHeadbandBoy (one 8-frame 4096x512 strip per
     /// direction, N/NE/E/SE/S/SW/W/NW, frames left to right).
@@ -19,30 +19,24 @@ namespace MmorpgClient.World
     {
         private const string ResourceFolder = "World/Characters/QdaoHeadbandBoy";
         private const int FramesPerDirection = 8;
-        private const float FramesPerSecond = 12f;
-        // Procedural gait layered over the frame strips: the AI-painted
-        // front/back strips barely move the legs, so a two-steps-per-cycle
-        // bob, an alternating lean and a contact squash carry the walk read.
-        private const float BobAmplitude = 0.5f;   // world units (~10 px at 32 ppu)
-        private const float SwayDegrees = 3.5f;    // lean around the camera axis, sign flips per step
-        private const float SquashAmount = 0.035f; // stretch at bob top, squash at foot contact
-        private const float GaitBlendSpeed = 8f;   // per-second fade of the gait on start/stop
+        private const float RunFramesPerSecond = 16f;
+        private const float ReferenceRunSpeed = 9f;
+        // Drive the cycle from distance instead of rendered frame time. This
+        // keeps foot cadence stable through frame hitches and remote actor
+        // interpolation while still matching 16 fps at the player's run speed.
+        private const float FramesPerWorldUnit = RunFramesPerSecond / ReferenceRunSpeed;
         // 512 px HD frames (the drawn figure stands roughly 400-445 px). At
-        // 32 ppu the full billboard is 16 world units tall and renders at
-        // about 320 px at the painted city's default 1080p camera. This keeps
-        // the source downsampled rather than magnified while restoring the
-        // readable character size lost when the city camera was pulled back.
-        // The actor root and capsule stay at their physics size; only the
-        // rendered picture is enlarged.
-        public const float PixelsPerUnit = 32f;
-        // The feet sit a few pixels above the strip's bottom edge.
-        private const float FeetPivotY = 0.03f;
+        // 64 ppu the full billboard is 8 world units tall, matching the
+        // reference video's character-to-travel ratio without magnification.
+        public const float PixelsPerUnit = 64f;
+        // Packed strips put the opaque foot line at row 40 of 512.
+        private const float FeetPivotY = 0.08f;
         private const float WalkSpeedThreshold = 0.5f; // metres per second, planar
         // Lift above the painted ground so the flat sprite wins the depth test.
         private const float SpriteLift = 0.1f;
 
-        // Sheet order; index = clockwise 45° steps of the actor yaw relative to
-        // the camera yaw. Index 0 (N) is "facing away from the camera".
+        // Sheet order; index = clockwise 45° steps of travel relative to the
+        // camera yaw. Index 0 (N) is "moving away from the camera".
         private static readonly string[] DirectionNames = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
         private const int FacingCameraIndex = 4; // S
 
@@ -53,7 +47,7 @@ namespace MmorpgClient.World
         private Transform _billboard;
         private Vector3 _lastPosition;
         private float _animationClock;
-        private float _gaitWeight;
+        private int _lastDirection = FacingCameraIndex;
 
         /// <summary>
         /// Adds the animator to an actor and hides its placeholder mesh.
@@ -83,6 +77,9 @@ namespace MmorpgClient.World
             var frames = new Sprite[DirectionNames.Length][];
             for (var d = 0; d < DirectionNames.Length; d++)
             {
+                // Keep the established walk_* resource names so existing
+                // scenes and import metadata remain stable; their contents are
+                // authored run cycles.
                 var strip = Resources.Load<Texture2D>($"{ResourceFolder}/walk_{DirectionNames[d]}");
                 if (strip == null)
                 {
@@ -105,7 +102,7 @@ namespace MmorpgClient.World
                         PixelsPerUnit,
                         0,
                         SpriteMeshType.FullRect);
-                    sprite.name = $"qdao_walk_{DirectionNames[d]}_{f:00}";
+                    sprite.name = $"qdao_run_{DirectionNames[d]}_{f:00}";
                     frames[d][f] = sprite;
                 }
             }
@@ -143,34 +140,32 @@ namespace MmorpgClient.World
             _lastPosition = position;
             delta.y = 0f;
             var dt = Mathf.Max(Time.deltaTime, 0.0001f);
-            var walking = delta.magnitude / dt >= WalkSpeedThreshold;
+            var running = delta.magnitude / dt >= WalkSpeedThreshold;
 
-            var cameraYaw = CameraYaw(worldCamera);
-            var relativeYaw = Mathf.Repeat(transform.eulerAngles.y - cameraYaw, 360f);
-            var direction = Mathf.RoundToInt(relativeYaw / 45f) % DirectionNames.Length;
+            if (running)
+            {
+                // Use actual travel, not the controller's smoothed root yaw.
+                // The latter can lag a direction change by several frames and
+                // briefly select a strip whose feet disagree with the motion.
+                var movementYaw = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+                var relativeYaw = Mathf.Repeat(movementYaw - CameraYaw(worldCamera), 360f);
+                _lastDirection = Mathf.RoundToInt(relativeYaw / 45f) % DirectionNames.Length;
+            }
 
-            _animationClock = walking
-                ? Mathf.Repeat(_animationClock + dt * FramesPerSecond, FramesPerDirection)
+            _animationClock = running
+                ? Mathf.Repeat(_animationClock + delta.magnitude * FramesPerWorldUnit, FramesPerDirection)
                 : 0f;
-            _renderer.sprite = _sharedFrames[direction][(int)_animationClock];
-
-            // Gait phase over one 8-frame cycle; the wave crosses zero at the
-            // contact frames (0 and 4) and its sign picks the leaning side.
-            _gaitWeight = Mathf.MoveTowards(_gaitWeight, walking ? 1f : 0f, dt * GaitBlendSpeed);
-            var stepWave = Mathf.Sin(_animationClock / FramesPerDirection * Mathf.PI * 2f);
-            var bob = Mathf.Abs(stepWave) * BobAmplitude * _gaitWeight;
-            var sway = stepWave * SwayDegrees * _gaitWeight;
-            var squash = (Mathf.Abs(stepWave) - 0.5f) * 2f * SquashAmount * _gaitWeight;
+            _renderer.sprite = _sharedFrames[_lastDirection][(int)_animationClock];
 
             // The root rotates with the actor facing, but the sprite must face
             // the camera: under the isometric camera it stands up, under the
-            // painted city's straight-down camera it lies flat on the art.
-            // Gait sway tilts it around the view axis, bob lifts it along
-            // screen-up, squash scales around the feet pivot.
-            _billboard.rotation = cameraRotation * Quaternion.Euler(0f, 0f, sway);
-            _billboard.position = position + new Vector3(0f, SpriteLift, 0f)
-                + cameraRotation * new Vector3(0f, bob, 0f);
-            _billboard.localScale = new Vector3(1f - squash * 0.6f, 1f + squash, 1f);
+            // painted city's straight-down camera it lies flat on the art. The
+            // authored run frames contain all gait motion; keeping this child
+            // rigid prevents the whole character card (and nearby scenery by
+            // visual association) from bobbing, leaning or breathing.
+            _billboard.rotation = cameraRotation;
+            _billboard.position = position + new Vector3(0f, SpriteLift, 0f);
+            _billboard.localScale = Vector3.one;
             _renderer.sortingOrder = WorldSortingOrder(position, worldCamera);
         }
 

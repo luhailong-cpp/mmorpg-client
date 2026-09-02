@@ -21,6 +21,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>PVP 1v1 匹配的 battle_config_id(0 = 服务器默认规则)。</summary>
         public const uint Pvp1V1BattleConfigId = 0;
 
+        /// <summary>PVE 组队(5人)匹配的 battle_config_id(对应 DungeonTable id;人数由服务端按 min(配置,5) 收口)。</summary>
+        public const uint PveTeamBattleConfigId = 1;
+
+        /// <summary>PVP 5v5 匹配的 battle_config_id(0 = 服务器默认规则)。</summary>
+        public const uint Pvp5V5BattleConfigId = 0;
+
         // ── 回合播放节奏 ──
 
         /// <summary>事件流逐条播放的间隔秒数。</summary>

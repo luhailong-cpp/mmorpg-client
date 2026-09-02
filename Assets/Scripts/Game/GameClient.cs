@@ -79,6 +79,13 @@ namespace MmorpgClient.Game
         /// </summary>
         public BattleClient Battle { get; }
 
+        /// <summary>
+        /// 观战网络层(与 Battle 平行的只读状态机,消息号不同互不干扰)。
+        /// 各持一个 GameClientBattleTransport 实例:该传输无状态(纯转发本管线),
+        /// 分持只为事件订阅/注册边界清晰,底层仍是同一条 gate 连接。
+        /// </summary>
+        public SpectateClient Spectate { get; }
+
         /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
         public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
 
@@ -140,6 +147,7 @@ namespace MmorpgClient.Game
             // 经传输接口完成;单例挂接方式与 GameClient 一致(实例由宿主持有,
             // 静态 Instance 供 UI 层解析)。
             Battle = BattleClient.Attach(new GameClientBattleTransport(this));
+            Spectate = SpectateClient.Attach(new GameClientBattleTransport(this));
         }
 
         public GatewayHttpClient Http => _http;
@@ -149,6 +157,7 @@ namespace MmorpgClient.Game
             _gate?.Poll();
             MaybeRefreshToken();
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动
+            Spectate?.Tick(Time.realtimeSinceStartup); // 观战首帧超时由主循环驱动
         }
 
         public void OnNotify(uint messageId, Action<MessageContent> handler)
@@ -818,6 +827,10 @@ namespace MmorpgClient.Game
 
         private void WireSceneNotifyHandlers()
         {
+            RegisterMovementReply(MessageIds.MoveStart, "MoveStart");
+            RegisterMovementReply(MessageIds.MoveSync, "MoveSync");
+            RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
+
             OnNotify(MessageIds.NotifyEnterScene, mc =>
             {
                 var ev = EnterSceneS2C.Parser.ParseFrom(mc.SerializedMessage);
@@ -950,6 +963,16 @@ namespace MmorpgClient.Game
             {
                 Log("[gate] kicked by server");
                 Disconnect();
+            });
+        }
+
+        private void RegisterMovementReply(uint messageId, string name)
+        {
+            OnNotify(messageId, mc =>
+            {
+                var tipId = mc.ErrorMessage?.Id ?? 0;
+                if (tipId != 0)
+                    Log($"[movement] {name} rejected: tip={tipId}");
             });
         }
 

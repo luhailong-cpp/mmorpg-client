@@ -101,6 +101,11 @@ namespace MmorpgClient.World.Tianyong
 
             var focus = Player != null ? Player.transform.position : TianyongMapDefinition.DefaultSpawn;
             _map.UpdateVisibleChunks(focus, config?.VisibleChunkRadius ?? 3);
+        }
+
+        private void LateUpdate()
+        {
+            if (_map == null) return;
             _cameraController?.Tick(Time.deltaTime, !GameplayInputGate.IsPointerBlocked);
         }
 
