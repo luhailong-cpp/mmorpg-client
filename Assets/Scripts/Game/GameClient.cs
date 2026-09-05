@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Google.Protobuf;
+using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
 using MmorpgClient.World;
@@ -73,6 +74,13 @@ namespace MmorpgClient.Game
         public uint CurrentSceneConfigId { get; private set; }
 
         /// <summary>
+        /// 当前 gate 连接地址 "ip:port"(assign-gate 分配或 RedirectToGateNotify 重定向后更新;
+        /// 未连过为 null)。跨区验证用它当"落区证据":本地部署里各 zone 的 gate 端口不同,
+        /// 两实例地址相同即说明其实进了同一个 zone(对齐服务端 robot 的 zone-placement 断言)。
+        /// </summary>
+        public string AssignedGate { get; private set; }
+
+        /// <summary>
         /// 回合制战斗网络层(状态机 + battle/match 消息收发)。构造时经
         /// <see cref="GameClientBattleTransport"/> 挂到本管线(OnNotify/Call/SendOneWay),
         /// UI 路经 BattleClient.Instance 解析。
@@ -85,6 +93,13 @@ namespace MmorpgClient.Game
         /// 分持只为事件订阅/注册边界清晰,底层仍是同一条 gate 连接。
         /// </summary>
         public SpectateClient Spectate { get; }
+
+        /// <summary>
+        /// 角色属性加点网络层(docs/design/player-attribute-allocation.md)。与 Battle/Spectate
+        /// 平行:各持一个无状态 GameClientBattleTransport,底层仍是同一条 gate 连接。
+        /// 本身无定时器(纯请求-响应 + 一条 S2C 推送),不需要 Tick。
+        /// </summary>
+        public AttributeClient Attributes { get; }
 
         /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
         public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
@@ -148,6 +163,7 @@ namespace MmorpgClient.Game
             // 静态 Instance 供 UI 层解析)。
             Battle = BattleClient.Attach(new GameClientBattleTransport(this));
             Spectate = SpectateClient.Attach(new GameClientBattleTransport(this));
+            Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
         }
 
         public GatewayHttpClient Http => _http;
@@ -299,6 +315,7 @@ namespace MmorpgClient.Game
         {
             if (gen != _pipelineGen) yield break;
             Status("正在连接服务器…");
+            AssignedGate = $"{ip}:{port}";
             try { ConnectGate(ip, port); }
             catch (Exception ex) { FailPipeline(gen, onError, $"connect gate: {ex.Message}"); yield break; }
 

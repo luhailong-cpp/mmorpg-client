@@ -1,0 +1,119 @@
+{
+  "character_id": "17_ghost_script_calligrapher_boy",
+  "index": 17,
+  "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/17_ghost_script_calligrapher_boy_v3.png",
+  "source_size": [
+    1024,
+    1024
+  ],
+  "keying": "alpha",
+  "alpha_threshold": 16,
+  "bbox_xywh": [
+    87,
+    109,
+    850,
+    806
+  ],
+  "dropped_components": 16,
+  "height": 175,
+  "fit_height": 180,
+  "scale": 0.217122,
+  "placed_size": [
+    185,
+    175
+  ],
+  "idle_top_row": 60,
+  "cell": [
+    256,
+    256
+  ],
+  "frames": 8,
+  "feet_baseline_px_from_bottom": 20,
+  "feet_baseline_row": 235,
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "dominant_rgb": [
+    131,
+    135,
+    124
+  ],
+  "gender": "male",
+  "class_tag": "caster",
+  "role_cn": "法系",
+  "actions": [
+    {
+      "action": "idle",
+      "fps": 6,
+      "frames": 8,
+      "cell": [
+        256,
+        256
+      ],
+      "strip": [
+        2048,
+        256
+      ],
+      "files": [
+        "idle_E_strip.png"
+      ],
+      "desc": "站立呼吸:±2px 上下 + 1.5% 纵向脉动,8 帧无缝循环"
+    },
+    {
+      "action": "attack",
+      "fps": 12,
+      "frames": 8,
+      "cell": [
+        256,
+        256
+      ],
+      "strip": [
+        2048,
+        256
+      ],
+      "files": [
+        "attack_E_strip.png"
+      ],
+      "hit_frame_hint": 3,
+      "desc": "前冲预备(后引/下蹲)→ 第 3 帧前倾挥击(拖影 + 提亮)→ 收势回位"
+    },
+    {
+      "action": "cast",
+      "fps": 10,
+      "frames": 8,
+      "cell": [
+        256,
+        256
+      ],
+      "strip": [
+        2048,
+        256
+      ],
+      "files": [
+        "cast_E_strip.png"
+      ],
+      "hit_frame_hint": 3,
+      "desc": "下蹲蓄力 → 抬手 → 脚底光晕升起(程序化加法辉光,着色取角色主色)"
+    },
+    {
+      "action": "hit",
+      "fps": 12,
+      "frames": 8,
+      "cell": [
+        256,
+        256
+      ],
+      "strip": [
+        2048,
+        256
+      ],
+      "files": [
+        "hit_E_strip.png"
+      ],
+      "desc": "受击后仰 + 闪白衰减 + 左右抖动"
+    }
+  ],
+  "generated_at": "2026-09-04T10:34:39-04:00",
+  "tool": "tools/battle_art_gen -mode characters"
+}

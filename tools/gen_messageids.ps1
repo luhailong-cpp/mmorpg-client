@@ -92,6 +92,17 @@ $whitelist = @{
     # 二期:观战匹配(设计文档 §10,service MatchService)
     "MatchServiceWatchBattle"                      = "WatchBattle"
     "MatchServiceListWatchableBattles"             = "ListWatchableBattles"
+
+    # 角色属性加点(proto/scene/player_attribute.proto, service SceneAttributeClientPlayer)
+    "SceneAttributeClientPlayerGetAttributePanel"            = "GetAttributePanel"
+    "SceneAttributeClientPlayerAllocateAttributePoints"      = "AllocateAttributePoints"
+    "SceneAttributeClientPlayerResetAttributePoints"         = "ResetAttributePoints"
+    "SceneAttributeClientPlayerAutoAllocateAttributePoints"  = "AutoAllocateAttributePoints"
+    "SceneAttributeClientPlayerCreateAttributeScheme"        = "CreateAttributeScheme"
+    "SceneAttributeClientPlayerSwitchAttributeScheme"        = "SwitchAttributeScheme"
+    "SceneAttributeClientPlayerRenameAttributeScheme"        = "RenameAttributeScheme"
+    "SceneAttributeClientPlayerNotifyAttributePanelChanged"  = "NotifyAttributePanelChanged"
+    "SceneAttributeClientPlayerGmSetPlayerLevel"             = "GmSetPlayerLevel"
 }
 
 $idByMethod = @{}

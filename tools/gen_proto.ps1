@@ -45,6 +45,8 @@ $files = @(
     "proto/common/component/actor_comp.proto",
     "proto/common/component/base_comp.proto",
     "proto/common/component/player_skill_comp.proto",
+    "proto/common/component/actor_attribute_state_comp.proto",
+    "proto/common/component/player_attribute_comp.proto",
     "proto/db/proto_option.proto",
     "proto/login/login.proto",
     "proto/scene/scene_info.proto",
@@ -53,6 +55,9 @@ $files = @(
     "proto/scene/player_movement.proto",
     "proto/scene/player_lifecycle.proto",
     "proto/scene/client_player_common.proto",
+
+    # 角色属性加点(docs/design/player-attribute-allocation.md)
+    "proto/scene/player_attribute.proto",
 
     # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
     "proto/battle/battle_data.proto",

@@ -18,8 +18,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>PVE 单人匹配的 battle_config_id(对应 DungeonTable id)。</summary>
         public const uint PveSoloBattleConfigId = 1;
 
-        /// <summary>PVP 1v1 匹配的 battle_config_id(0 = 服务器默认规则)。</summary>
-        public const uint Pvp1V1BattleConfigId = 0;
+        /// <summary>
+        /// PVP 1v1 匹配的 battle_config_id。取 1(DungeonTable 首行),与服务端
+        /// robot 跨区冒烟 battle_smoke_cross_zone_scenario.go 的 crossZoneBattleConfigId=1
+        /// 对齐:match 队列按 (mode, battle_config_id) 分 key,客户端填 0 而 robot
+        /// 填 1 时两边永远凑不到一起。PVP 下该值不影响 CreateBattle 成败
+        /// (turn_battle_engine 查不到只回落缺省回合数),DevAutoPilot 可用 -battleConfig 覆盖。
+        /// </summary>
+        public const uint Pvp1V1BattleConfigId = 1;
 
         /// <summary>PVE 组队(5人)匹配的 battle_config_id(对应 DungeonTable id;人数由服务端按 min(配置,5) 收口)。</summary>
         public const uint PveTeamBattleConfigId = 1;

@@ -1,0 +1,64 @@
+{
+  "cell_width": 48,
+  "cell_height": 64,
+  "cell_count": 15,
+  "chars_string": "0123456789-+闪暴击",
+  "chars": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "-",
+    "+",
+    "闪",
+    "暴",
+    "击"
+  ],
+  "char_index": {
+    "+": 11,
+    "-": 10,
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "击": 14,
+    "暴": 13,
+    "闪": 12
+  },
+  "font": "C:/Windows/Fonts/simhei.ttf",
+  "variants": [
+    {
+      "name": "normal",
+      "file": "digits_normal.png",
+      "note": "普通伤害:纯白字 + 黑边"
+    },
+    {
+      "name": "crit",
+      "file": "digits_crit.png",
+      "note": "暴击:金黄渐变 + 深红厚边,字形放大约 1.15 撑满格"
+    },
+    {
+      "name": "heal",
+      "file": "digits_heal.png",
+      "note": "治疗:翠绿渐变 + 深绿边"
+    },
+    {
+      "name": "miss",
+      "file": "digits_miss.png",
+      "note": "闪避 / 未命中:灰白字 + 灰边,字号略小"
+    }
+  ],
+  "usage": "等宽单格横条,cell i 的像素范围 = [i*cell_width, (i+1)*cell_width);按 char_index 取格拼数字。"
+}

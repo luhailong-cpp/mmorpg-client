@@ -77,12 +77,18 @@ namespace MmorpgClient.UI
             if (mapConfig == null) mapConfig = TianyongMapConfig.LoadDefault();
 
             Session    = new SessionModel();  // gateway URL / last account come from ClientSettings (PlayerPrefs)
+            // 自动驾驶(-zone 命令行)激活时 gateway/account/password 以命令行为准,
+            // 不读 PlayerPrefs 默认值(双实例同机共用 PlayerPrefs)
+            App.DevAutoPilot.ApplyToSession(Session);
             Gateway    = new GatewayHttpClient(Session.GatewayBaseUrl);
             GameClient = new GameClient(Session.GatewayBaseUrl);
             GameClient.World.SetRootParent(_actorWorldRoot);
             GameClient.CoroutineRunner = Run; // RedirectToGateNotify 重连流程需要宿主协程
             _gameLogHandler = s => Debug.Log("[GameClient] " + s);
             GameClient.OnLog += _gameLogHandler;
+            // 无人值守流程(选区→登录→排队→自动战斗→退出);未带 -zone 时不挂,零影响。
+            // 其 Start 在下一帧跑,晚于下面 RoleFlowUi.Attach,故能把 PlayerChooser 置回 null。
+            App.DevAutoPilot.Attach(this);
             WorldMap = GetComponent<TianyongMapRuntime>();
             if (WorldMap == null) WorldMap = gameObject.AddComponent<TianyongMapRuntime>();
             WorldMap.Initialize(GameClient, worldCamera, directionalSun, mapConfig);

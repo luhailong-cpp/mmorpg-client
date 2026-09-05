@@ -1,0 +1,68 @@
+{
+  "id": 4,
+  "name": "石灵",
+  "template": "golem",
+  "main_color": "#82868E",
+  "eye_color": "#8CE6FF",
+  "scale_requested": 1.06,
+  "fit": {
+    "scale": 1.06,
+    "origin_x": 118,
+    "origin_y": 237,
+    "fit_iters": 2,
+    "bottom_row": 235
+  },
+  "hover_px": 0,
+  "note": "棱角岩块堆叠、青苔斑、冰蓝眼缝",
+  "name_source": "battle-art-prompts.md §2.2",
+  "actions": [
+    {
+      "action": "idle",
+      "frames": 8,
+      "fps_hint": 6,
+      "cell": 256,
+      "width": 2048,
+      "height": 256,
+      "pivot": [
+        0.5,
+        0.08
+      ],
+      "files": [
+        "idle_E_strip.png"
+      ],
+      "desc": "呼吸/漂浮循环(整周期 8 帧无缝循环)"
+    },
+    {
+      "action": "attack",
+      "frames": 8,
+      "fps_hint": 12,
+      "cell": 256,
+      "width": 2048,
+      "height": 256,
+      "pivot": [
+        0.5,
+        0.08
+      ],
+      "files": [
+        "attack_E_strip.png"
+      ],
+      "desc": "后引 → 前扑(带拖影)→ 命中顶点(第 5 帧)→ 收势回中立"
+    },
+    {
+      "action": "hit",
+      "frames": 8,
+      "fps_hint": 12,
+      "cell": 256,
+      "width": 2048,
+      "height": 256,
+      "pivot": [
+        0.5,
+        0.08
+      ],
+      "files": [
+        "hit_E_strip.png"
+      ],
+      "desc": "后仰闪白 → 最大后仰 → 回弹归位"
+    }
+  ]
+}

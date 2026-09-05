@@ -71,6 +71,10 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>供子面板取 SpectateClient(可能为 null:NET 路尚未初始化)。</summary>
         public SpectateClient Spectate => _spectate;
 
+        /// <summary>战斗层(参战屏或观战屏)正占着屏幕。属性 UI 据此隐藏入口:
+        /// 战斗中服务端本来就拒绝改属性(InBattleComp),入口先行隐藏免得点了必失败。</summary>
+        public bool IsBattleLayerVisible => _battleOpen || _spectateOpen;
+
         // ── 生命周期 ────────────────────────────────────────
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -242,7 +246,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectateBound = false;
         }
 
-        // ── Canvas 构建(参数与 QdaoUguiRuntime 保持一致) ──
+        // ── Canvas 构建(缩放参数与 QdaoUguiRuntime 保持一致:Expand) ──
 
         private void BuildCanvas()
         {
@@ -259,13 +263,17 @@ namespace MmorpgClient.UI.Ugui.Battle
             var canvas = _canvasGo.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 200; // QdaoUgui 主画布是 100,战斗层压在其上
-            canvas.pixelPerfect = true;
+            // 战斗屏 20 个单位常驻呼吸缩放:pixelPerfect 会把 ±2% 缩放吸附成整像素台阶,
+            // 且每个动画元素都要做像素吸附;Unity 文档也不建议对动画 UI 开启
+            canvas.pixelPerfect = false;
 
             var scaler = _canvasGo.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
-            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-            scaler.matchWidthOrHeight = 0.5f;
+            // Expand:2560×1080 设计面在任何更窄比例(1920×1080 / 1920×1200 / 手机 19.5:9)下都不裁横向,
+            // 只在上下多出空间(BattleUiLayout.VisibleDesignRect);右下命令环/取消自动/角色卡等按绝对
+            // 设计坐标铺到 x=2520 的控件因此始终可见。MatchWidthOrHeight 0.5 在 1920×1080 会把两侧各裁 171px
+            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             scaler.referencePixelsPerUnit = 100f;
 
             // 层级(兄弟顺序即绘制顺序):HUD < 战斗全屏 < 模态 < toast

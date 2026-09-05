@@ -1,0 +1,793 @@
+{
+  "tool": "tools/battle_art_gen -mode monsters",
+  "mode": "monsters",
+  "generated_at": "2026-09-04T10:32:31-04:00",
+  "spec": "docs/design/battle-art-prompts.md §2.2/§3;turn-battle-presentation.md §1/§5;BattleArtCatalog(权威)",
+  "cell": 256,
+  "frames": 8,
+  "feet_margin_px": 20,
+  "pivot_hint": [
+    0.5,
+    0.08
+  ],
+  "notes": [
+    "帧条 = 8 帧 × 256×256 → 2048×256;客户端 BattleArtCatalog.LoadStrip 以贴图高为格宽自动切帧,不依赖 Sprite 导入设置。",
+    "脚底(含 3.2px 厚描边)钉在第 235 行 = 底边上方 20px = BattleArtCatalog.FeetPivot (0.5, 0.08) × 256,与 Battle/Characters 的角色帧条同一基线,直接用 FeetPivot 贴不用改任何客户端常量。(battle-art-prompts.md 里写的 8px 与该 pivot 对不上,以 pivot 为准。)",
+    "灵体模板(spirit)整体抬高 22px 表示漂浮;其余模板脚底落在基线上。",
+    "每只怪的 (scale, origin_x, origin_y) 是自动量出来的(见 meta.json 的 fit):先把 idle 首帧脚底钉到基线,再检查 3 动作 × 8 帧的总包围盒有没有出框,出框就等比缩小 / 横向平移。所以同一只怪所有帧共用一组落笔参数,动画位移不受影响。",
+    "只出 E 向;W 由客户端 BattleArtCatalog.LoadDirectionalStrip 缺图降级取 E 并置 Mirrored=true 运行时翻转。落盘 W 只是 E 的逐格镜像副本(受光正上方,镜像不破坏明暗),画面零差异却让未压缩纹理体积翻倍,故默认不写。",
+    "同模板的怪形体各不相同(beastForm / humanForm 按怪逐只给体长比、腿长、头径、耳/角/尾/武器模块),不只是换色;自检断言任意两只 idle 首帧归一化剪影 IoU ≤ 0.60(24×32 重采样),受击闪白或色弱也分得清。",
+    "idle 为整周期采样(相位 = 2π·f/8),首尾无缝循环;attack 命中帧 = 第 5 帧(0 基 index 4);hit 前两帧闪白最强。",
+    "Monster 表(generated/tables/Monster.json)只有 id + 战斗数值,没有 name / level 列;名字取自 battle-art-prompts.md §2.2 首批清单,按表内 id 升序一一对应。",
+    "ground_band_* 是羽化椭圆光带,**不能九宫**(边缘羽化会被九宫切开),用 Image.Type = Simple 直接拉伸;推荐尺寸 1120×340 设计像素(2560×1080 设计坐标),此时贴图里烘的 -13.88° 正好等于 BattleStage.RowStep 的斜率,RectTransform 不用旋转。",
+    "地台摆放锚点(按 BattleStage 常量算出的 10 个槽位包围盒中心,2560×1080 设计坐标,y 向下):ground_band_far 放敌方 (1310, 499)(槽位跨度 890×204)、ground_band_near 放我方 (1350, 766)(910×174);sizeDelta 都用 1120×340,siblingIndex 排在竞技场背景之后、全部单位之前。"
+  ],
+  "monsters": [
+    {
+      "id": 1,
+      "name": "野狼",
+      "template": "beast4",
+      "main_color": "#7E8A9E",
+      "eye_color": "#FF5C48",
+      "scale_requested": 1,
+      "fit": {
+        "scale": 0.8574549512060535,
+        "origin_x": 113,
+        "origin_y": 229,
+        "fit_iters": 5,
+        "bottom_row": 235
+      },
+      "hover_px": 0,
+      "note": "灰狼、红眼、竖耳长吻、单尾",
+      "name_source": "battle-art-prompts.md §2.2",
+      "actions": [
+        {
+          "action": "idle",
+          "frames": 8,
+          "fps_hint": 6,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "idle_E_strip.png"
+          ],
+          "desc": "呼吸/漂浮循环(整周期 8 帧无缝循环)"
+        },
+        {
+          "action": "attack",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "attack_E_strip.png"
+          ],
+          "desc": "后引 → 前扑(带拖影)→ 命中顶点(第 5 帧)→ 收势回中立"
+        },
+        {
+          "action": "hit",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "hit_E_strip.png"
+          ],
+          "desc": "后仰闪白 → 最大后仰 → 回弹归位"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "山鬼",
+      "template": "humanoid",
+      "main_color": "#62AA70",
+      "eye_color": "#FFD640",
+      "scale_requested": 0.94,
+      "fit": {
+        "scale": 0.94,
+        "origin_x": 98,
+        "origin_y": 228,
+        "fit_iters": 2,
+        "bottom_row": 235
+      },
+      "hover_px": 0,
+      "note": "青面小鬼、双角、骨棒",
+      "name_source": "battle-art-prompts.md §2.2",
+      "actions": [
+        {
+          "action": "idle",
+          "frames": 8,
+          "fps_hint": 6,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "idle_E_strip.png"
+          ],
+          "desc": "呼吸/漂浮循环(整周期 8 帧无缝循环)"
+        },
+        {
+          "action": "attack",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "attack_E_strip.png"
+          ],
+          "desc": "后引 → 前扑(带拖影)→ 命中顶点(第 5 帧)→ 收势回中立"
+        },
+        {
+          "action": "hit",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "hit_E_strip.png"
+          ],
+          "desc": "后仰闪白 → 最大后仰 → 回弹归位"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "狐妖",
+      "template": "beast4",
+      "main_color": "#EA6C40",
+      "eye_color": "#7EF0FF",
+      "scale_requested": 0.96,
+      "fit": {
+        "scale": 0.7884358573129161,
+        "origin_x": 137,
+        "origin_y": 231,
+        "fit_iters": 5,
+        "bottom_row": 235
+      },
+      "hover_px": 0,
+      "note": "赤狐、三尾、大耳尖吻、妖异青瞳",
+      "name_source": "battle-art-prompts.md §2.2",
+      "actions": [
+        {
+          "action": "idle",
+          "frames": 8,
+          "fps_hint": 6,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "idle_E_strip.png"
+          ],
+          "desc": "呼吸/漂浮循环(整周期 8 帧无缝循环)"
+        },
+        {
+          "action": "attack",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "attack_E_strip.png"
+          ],
+          "desc": "后引 → 前扑(带拖影)→ 命中顶点(第 5 帧)→ 收势回中立"
+        },
+        {
+          "action": "hit",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "hit_E_strip.png"
+          ],
+          "desc": "后仰闪白 → 最大后仰 → 回弹归位"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "石灵",
+      "template": "golem",
+      "main_color": "#82868E",
+      "eye_color": "#8CE6FF",
+      "scale_requested": 1.06,
+      "fit": {
+        "scale": 1.06,
+        "origin_x": 118,
+        "origin_y": 237,
+        "fit_iters": 2,
+        "bottom_row": 235
+      },
+      "hover_px": 0,
+      "note": "棱角岩块堆叠、青苔斑、冰蓝眼缝",
+      "name_source": "battle-art-prompts.md §2.2",
+      "actions": [
+        {
+          "action": "idle",
+          "frames": 8,
+          "fps_hint": 6,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "idle_E_strip.png"
+          ],
+          "desc": "呼吸/漂浮循环(整周期 8 帧无缝循环)"
+        },
+        {
+          "action": "attack",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "attack_E_strip.png"
+          ],
+          "desc": "后引 → 前扑(带拖影)→ 命中顶点(第 5 帧)→ 收势回中立"
+        },
+        {
+          "action": "hit",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "hit_E_strip.png"
+          ],
+          "desc": "后仰闪白 → 最大后仰 → 回弹归位"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "蛇妖",
+      "template": "serpent",
+      "main_color": "#4AB870",
+      "eye_color": "#FFC83C",
+      "scale_requested": 1,
+      "fit": {
+        "scale": 1,
+        "origin_x": 102,
+        "origin_y": 238,
+        "fit_iters": 2,
+        "bottom_row": 235
+      },
+      "hover_px": 0,
+      "note": "翠绿大蛇、三段盘身、分叉信子",
+      "name_source": "battle-art-prompts.md §2.2",
+      "actions": [
+        {
+          "action": "idle",
+          "frames": 8,
+          "fps_hint": 6,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "idle_E_strip.png"
+          ],
+          "desc": "呼吸/漂浮循环(整周期 8 帧无缝循环)"
+        },
+        {
+          "action": "attack",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "attack_E_strip.png"
+          ],
+          "desc": "后引 → 前扑(带拖影)→ 命中顶点(第 5 帧)→ 收势回中立"
+        },
+        {
+          "action": "hit",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "hit_E_strip.png"
+          ],
+          "desc": "后仰闪白 → 最大后仰 → 回弹归位"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "山贼",
+      "template": "humanoid",
+      "main_color": "#98724E",
+      "eye_color": "#FF7A52",
+      "scale_requested": 0.99,
+      "fit": {
+        "scale": 0.99,
+        "origin_x": 118,
+        "origin_y": 229,
+        "fit_iters": 2,
+        "bottom_row": 235
+      },
+      "hover_px": 0,
+      "note": "布衣刀客、头巾、单刀",
+      "name_source": "battle-art-prompts.md §2.2",
+      "actions": [
+        {
+          "action": "idle",
+          "frames": 8,
+          "fps_hint": 6,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "idle_E_strip.png"
+          ],
+          "desc": "呼吸/漂浮循环(整周期 8 帧无缝循环)"
+        },
+        {
+          "action": "attack",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "attack_E_strip.png"
+          ],
+          "desc": "后引 → 前扑(带拖影)→ 命中顶点(第 5 帧)→ 收势回中立"
+        },
+        {
+          "action": "hit",
+          "frames": 8,
+          "fps_hint": 12,
+          "cell": 256,
+          "width": 2048,
+          "height": 256,
+          "pivot": [
+            0.5,
+            0.08
+          ],
+          "files": [
+            "hit_E_strip.png"
+          ],
+          "desc": "后仰闪白 → 最大后仰 → 回弹归位"
+        }
+      ]
+    }
+  ],
+  "ground_bands": [
+    {
+      "path": "UI/ground_band_far.png",
+      "kind": "ground_band",
+      "width": 1024,
+      "height": 512,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "敌方(画面左上)那条:冷青灰、窄而暗,配合 0.88 后排缩放读作'远';倾角 -13.88°(按 1120×340 设计像素拉伸后 = BattleStage.RowStep 斜率 -0.15,免旋转);Image.Type=Simple 拉伸,勿九宫"
+    },
+    {
+      "path": "UI/ground_band_near.png",
+      "kind": "ground_band",
+      "width": 1024,
+      "height": 512,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "我方(画面右下)那条:暖玉金、宽而亮,压住前排单位的脚底;倾角 -13.88°(按 1120×340 设计像素拉伸后 = BattleStage.RowStep 斜率 -0.15,免旋转);Image.Type=Simple 拉伸,勿九宫"
+    }
+  ],
+  "verify": {
+    "assertions": [
+      "尺寸 = 2048×256(8 帧 × 256)",
+      "宽 / 高 = 8(客户端 LoadStrip(cell=0) 的切帧口径)",
+      "每帧 alpha≥8 的像素数 \u003e 0(不是空帧)",
+      "同时存在 alpha=0 与 alpha=255 的像素(真透明背景 + 实心厚描边)",
+      "idle 首帧最低实体行 = 235±1(灵体模板整体抬高 22px)",
+      "含 W 时:W 向 = E 向逐格水平镜像(逐像素含 RGB,零误差);不含 W 时:目录里不得残留 W",
+      "任意两只怪 idle 首帧归一化剪影(24×32,alpha\u003e=128)IoU ≤ 0.60",
+      "每只怪的 meta.json 存在",
+      "地台 1024×512 / 外 2px 全透明 / 峰值 alpha\u003c250 / 下 1/4 亮于上 1/4"
+    ],
+    "directions": [
+      "E"
+    ],
+    "expected_strip_size": "2048x256",
+    "feet_baseline_row": 235,
+    "feet_baseline_tolerance": 1,
+    "frames_per_strip": 8,
+    "ground": [
+      {
+        "border2px_max_alpha": 0,
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/UI/ground_band_far.png",
+        "height": 512,
+        "luma_bot_quarter": "160.2",
+        "luma_top_quarter": "66.5",
+        "max_alpha": 133,
+        "nonzero_alpha_px": 236637,
+        "width": 1024
+      },
+      {
+        "border2px_max_alpha": 0,
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/UI/ground_band_near.png",
+        "height": 512,
+        "luma_bot_quarter": "200.9",
+        "luma_top_quarter": "84.4",
+        "max_alpha": 171,
+        "nonzero_alpha_px": 291192,
+        "width": 1024
+      }
+    ],
+    "ground_bands_checked": 2,
+    "min_opaque_px_any_frame": 8353,
+    "mirror_pairs_checked": 0,
+    "per_strip_bottom_row_of_f0": {
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/1/attack_E_strip.png": 236,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/1/hit_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/1/idle_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/2/attack_E_strip.png": 236,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/2/hit_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/2/idle_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/3/attack_E_strip.png": 237,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/3/hit_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/3/idle_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/4/attack_E_strip.png": 238,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/4/hit_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/4/idle_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/5/attack_E_strip.png": 237,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/5/hit_E_strip.png": 236,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/5/idle_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/6/attack_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/6/hit_E_strip.png": 235,
+      "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/6/idle_E_strip.png": 235
+    },
+    "silhouette": {
+      "alpha_min": 128,
+      "grid": "24x32",
+      "max_iou": 0.6,
+      "pairs": [
+        {
+          "iou": "0.556",
+          "pair": "2 山鬼 vs 5 蛇妖",
+          "same_template": false
+        },
+        {
+          "iou": "0.472",
+          "pair": "2 山鬼 vs 4 石灵",
+          "same_template": false
+        },
+        {
+          "iou": "0.451",
+          "pair": "1 野狼 vs 2 山鬼",
+          "same_template": false
+        },
+        {
+          "iou": "0.450",
+          "pair": "4 石灵 vs 5 蛇妖",
+          "same_template": false
+        },
+        {
+          "iou": "0.442",
+          "pair": "1 野狼 vs 5 蛇妖",
+          "same_template": false
+        },
+        {
+          "iou": "0.424",
+          "pair": "4 石灵 vs 6 山贼",
+          "same_template": false
+        },
+        {
+          "iou": "0.414",
+          "pair": "2 山鬼 vs 6 山贼",
+          "same_template": true
+        },
+        {
+          "iou": "0.399",
+          "pair": "3 狐妖 vs 4 石灵",
+          "same_template": false
+        },
+        {
+          "iou": "0.396",
+          "pair": "1 野狼 vs 4 石灵",
+          "same_template": false
+        },
+        {
+          "iou": "0.307",
+          "pair": "1 野狼 vs 6 山贼",
+          "same_template": false
+        },
+        {
+          "iou": "0.302",
+          "pair": "1 野狼 vs 3 狐妖",
+          "same_template": true
+        },
+        {
+          "iou": "0.300",
+          "pair": "2 山鬼 vs 3 狐妖",
+          "same_template": false
+        },
+        {
+          "iou": "0.300",
+          "pair": "5 蛇妖 vs 6 山贼",
+          "same_template": false
+        },
+        {
+          "iou": "0.292",
+          "pair": "3 狐妖 vs 6 山贼",
+          "same_template": false
+        },
+        {
+          "iou": "0.238",
+          "pair": "3 狐妖 vs 5 蛇妖",
+          "same_template": false
+        }
+      ],
+      "worst_iou": "0.556",
+      "worst_pair": "2 山鬼 vs 5 蛇妖"
+    },
+    "spirit_hover_px": 22,
+    "strip_stats": [
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/1/idle_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 9035,
+        "fully_opaque_px": 67658,
+        "fully_clear_px": 449914,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/1/attack_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 9057,
+        "fully_opaque_px": 68346,
+        "fully_clear_px": 429811,
+        "bottom_row_frame0": 236
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/1/hit_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 8962,
+        "fully_opaque_px": 66786,
+        "fully_clear_px": 450818,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/2/idle_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 10416,
+        "fully_opaque_px": 80056,
+        "fully_clear_px": 438136,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/2/attack_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 10490,
+        "fully_opaque_px": 81335,
+        "fully_clear_px": 410391,
+        "bottom_row_frame0": 236
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/2/hit_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 10375,
+        "fully_opaque_px": 79566,
+        "fully_clear_px": 438503,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/3/idle_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 8353,
+        "fully_opaque_px": 63368,
+        "fully_clear_px": 454826,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/3/attack_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 8530,
+        "fully_opaque_px": 63979,
+        "fully_clear_px": 432330,
+        "bottom_row_frame0": 237
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/3/hit_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 8451,
+        "fully_opaque_px": 62557,
+        "fully_clear_px": 455690,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/4/idle_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 15103,
+        "fully_opaque_px": 118988,
+        "fully_clear_px": 400142,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/4/attack_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 15060,
+        "fully_opaque_px": 120053,
+        "fully_clear_px": 378964,
+        "bottom_row_frame0": 238
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/4/hit_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 14792,
+        "fully_opaque_px": 117463,
+        "fully_clear_px": 401716,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/5/idle_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 11396,
+        "fully_opaque_px": 88006,
+        "fully_clear_px": 431415,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/5/attack_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 11229,
+        "fully_opaque_px": 88433,
+        "fully_clear_px": 410374,
+        "bottom_row_frame0": 237
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/5/hit_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 11017,
+        "fully_opaque_px": 86716,
+        "fully_clear_px": 432738,
+        "bottom_row_frame0": 236
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/6/idle_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 10859,
+        "fully_opaque_px": 81969,
+        "fully_clear_px": 434407,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/6/attack_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 10872,
+        "fully_opaque_px": 81029,
+        "fully_clear_px": 408055,
+        "bottom_row_frame0": 235
+      },
+      {
+        "file": "E:/work/mmorpg-client/Assets/Resources/Battle/Monsters/6/hit_E_strip.png",
+        "width": 2048,
+        "height": 256,
+        "frames": 8,
+        "min_opaque_px_per_frame": 10477,
+        "fully_opaque_px": 79954,
+        "fully_clear_px": 436703,
+        "bottom_row_frame0": 235
+      }
+    ],
+    "strips_checked": 18,
+    "warnings": null
+  }
+}

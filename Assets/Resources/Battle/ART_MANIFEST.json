@@ -1,0 +1,707 @@
+{
+  "tool": "tools/battle_art_gen",
+  "generated_at": "2026-09-03T06:30:58-04:00",
+  "seed": 20260903,
+  "spec": "docs/design/battle-art-prompts.md §3/§4;turn-battle-presentation.md §5",
+  "notes": [
+    "Fx 横条:8 帧 × 256×256,左→右时间序,真实 alpha 透明背景(NRGBA,直通 alpha)。",
+    "Fx 建议 pivot 见各条目:范围型(slash/thrust/fire/ice/lightning/hit_star)用 (0.5,0.5) 贴在目标中心;地面型(heal_ring/buff_rise/death_dissolve)用 (0.5,0.1) 贴在脚底。",
+    "九宫图的 border_9slice_lbrt 是 Unity Sprite Editor 的 Border(左/下/右/上)。",
+    "数字字集为等宽单格,序号 = 字符在 chars_string 中的下标;客户端按下标切图即可。",
+    "Buff.json 共 20 行,取前 20 行 id;不足 24 个,用连续 id 补齐 4 个占位图标",
+    "Buff.json 无极性字段(buff_type 仅为数值),底色按 distinct buff_type 升序 %3 分配:0→buff, 1→debuff, 13→control, 34→buff, 35→debuff, 36→control, 42→buff, 43→debuff, 100→control",
+    "本目录未生成 .meta,Unity 首次导入时自动生成;导入设置参考 sprite_import_hint。"
+  ],
+  "sprite_import_hint": {
+    "buff_icon": {
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sprite_mode": "Single"
+    },
+    "compression": "建议 RGBA32 / 关闭 Crunch,特效带真实 alpha 渐变,压缩会出色带",
+    "digits": {
+      "full_rect": true,
+      "grid_h": 64,
+      "grid_w": 48,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sprite_mode": "Multiple"
+    },
+    "fx_strip": {
+      "filter": "Bilinear",
+      "full_rect": true,
+      "grid": 256,
+      "mipmap": false,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "sprite_mode": "Multiple"
+    },
+    "nine_slice": {
+      "border": "见各条目 border_9slice_lbrt",
+      "mesh_type": "Full Rect",
+      "sprite_mode": "Single"
+    }
+  },
+  "file_count": 43,
+  "fx": [
+    {
+      "path": "Fx/slash_arc_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "弧形斩击:白芯青边的月牙刀光横扫,后方两层残影 + 碎风刃"
+    },
+    {
+      "path": "Fx/thrust_line_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "刺击直线冲击:枪尖白芯穿刺,后拖速度线,命中处爆出竖向冲击波"
+    },
+    {
+      "path": "Fx/fire_burst_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 12,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "火球爆裂:白黄内芯向外翻滚成橙红火舌,四散飞火星,尾帧上飘消散"
+    },
+    {
+      "path": "Fx/ice_shard_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 12,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "冰锥破碎:冰晶向心汇聚,中段爆闪,随后碎片四射并扩出霜环裂纹"
+    },
+    {
+      "path": "Fx/lightning_strike_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 20,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "雷击竖闪:紫白主雷自上贯下,分叉支雷,落点炸开地面电环与余光抖闪"
+    },
+    {
+      "path": "Fx/heal_ring_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 10,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "desc": "治疗光环:两道翠绿光圈自脚下升起收束,伴随上浮光点与柔和绿柱"
+    },
+    {
+      "path": "Fx/buff_rise_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 10,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "desc": "增益光柱:金黄光柱自地面拔起,内部流光上冲,底环外扩,顶端散出金星"
+    },
+    {
+      "path": "Fx/hit_star_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "desc": "命中星爆:白黄星芒瞬闪,四长四短星角外扩,冲击圆环 + 火星四溅"
+    },
+    {
+      "path": "Fx/death_dissolve_strip.png",
+      "kind": "fx_strip",
+      "width": 2048,
+      "height": 256,
+      "frames": 8,
+      "cell_width": 256,
+      "cell_height": 256,
+      "fps_hint": 8,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "desc": "死亡消散:灰紫剪影自下而上碎成粒子飘散,残留一缕紫雾"
+    }
+  ],
+  "ui": [
+    {
+      "path": "UI/panel_9slice.png",
+      "kind": "ui_9slice",
+      "width": 256,
+      "height": 256,
+      "border_9slice_lbrt": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "desc": "圆角金边深棕木纹面板底,四角铆钉,九宫边距 64"
+    },
+    {
+      "path": "UI/button_9slice.png",
+      "kind": "ui_9slice",
+      "width": 160,
+      "height": 64,
+      "border_9slice_lbrt": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "desc": "金边玉色按钮底,顶部高光 + 底部内阴影,九宫边距 22"
+    },
+    {
+      "path": "UI/bar_slot.png",
+      "kind": "ui_9slice",
+      "width": 320,
+      "height": 32,
+      "border_9slice_lbrt": [
+        16,
+        15,
+        16,
+        15
+      ],
+      "desc": "血条槽:深色内凹 + 细金框,左右可拉伸"
+    },
+    {
+      "path": "UI/command_ring.png",
+      "kind": "ui",
+      "width": 512,
+      "height": 512,
+      "desc": "问道式 7 扇区命令环底,含扇区分隔线、内外金框与外沿刻点"
+    }
+  ],
+  "digits": {
+    "cell_width": 48,
+    "cell_height": 64,
+    "cell_count": 15,
+    "chars_string": "0123456789-+闪暴击",
+    "chars": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "-",
+      "+",
+      "闪",
+      "暴",
+      "击"
+    ],
+    "char_index": {
+      "+": 11,
+      "-": 10,
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "击": 14,
+      "暴": 13,
+      "闪": 12
+    },
+    "font": "C:/Windows/Fonts/simhei.ttf",
+    "variants": [
+      {
+        "name": "normal",
+        "file": "digits_normal.png",
+        "note": "普通伤害:纯白字 + 黑边"
+      },
+      {
+        "name": "crit",
+        "file": "digits_crit.png",
+        "note": "暴击:金黄渐变 + 深红厚边,字形放大约 1.15 撑满格"
+      },
+      {
+        "name": "heal",
+        "file": "digits_heal.png",
+        "note": "治疗:翠绿渐变 + 深绿边"
+      },
+      {
+        "name": "miss",
+        "file": "digits_miss.png",
+        "note": "闪避 / 未命中:灰白字 + 灰边,字号略小"
+      }
+    ],
+    "usage": "等宽单格横条,cell i 的像素范围 = [i*cell_width, (i+1)*cell_width);按 char_index 取格拼数字。"
+  },
+  "digits_files": [
+    {
+      "path": "UI/digits_normal.png",
+      "kind": "digits_strip",
+      "width": 720,
+      "height": 64,
+      "frames": 15,
+      "cell_width": 48,
+      "cell_height": 64,
+      "desc": "普通伤害:纯白字 + 黑边"
+    },
+    {
+      "path": "UI/digits_crit.png",
+      "kind": "digits_strip",
+      "width": 720,
+      "height": 64,
+      "frames": 15,
+      "cell_width": 48,
+      "cell_height": 64,
+      "desc": "暴击:金黄渐变 + 深红厚边,字形放大约 1.15 撑满格"
+    },
+    {
+      "path": "UI/digits_heal.png",
+      "kind": "digits_strip",
+      "width": 720,
+      "height": 64,
+      "frames": 15,
+      "cell_width": 48,
+      "cell_height": 64,
+      "desc": "治疗:翠绿渐变 + 深绿边"
+    },
+    {
+      "path": "UI/digits_miss.png",
+      "kind": "digits_strip",
+      "width": 720,
+      "height": 64,
+      "frames": 15,
+      "cell_width": 48,
+      "cell_height": 64,
+      "desc": "闪避 / 未命中:灰白字 + 灰边,字号略小"
+    }
+  ],
+  "buff_files": [
+    {
+      "path": "Buff/1.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 1(buff_type=1)debuff 底 + arrow_up 符号"
+    },
+    {
+      "path": "Buff/2.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 2(buff_type=1)debuff 底 + arrow_down 符号"
+    },
+    {
+      "path": "Buff/3.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 3(buff_type=1)debuff 底 + chain 符号"
+    },
+    {
+      "path": "Buff/4.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 4(buff_type=1)debuff 底 + flame 符号"
+    },
+    {
+      "path": "Buff/5.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 5(buff_type=100)control 底 + ice 符号"
+    },
+    {
+      "path": "Buff/6.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 6(buff_type=100)control 底 + shield 符号"
+    },
+    {
+      "path": "Buff/7.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 7(buff_type=100)control 底 + sword 符号"
+    },
+    {
+      "path": "Buff/8.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 8(buff_type=100)control 底 + leaf 符号"
+    },
+    {
+      "path": "Buff/9.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 9(buff_type=100)control 底 + arrow_up 符号"
+    },
+    {
+      "path": "Buff/10.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 10(buff_type=100)control 底 + arrow_down 符号"
+    },
+    {
+      "path": "Buff/11.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 11(buff_type=100)control 底 + chain 符号"
+    },
+    {
+      "path": "Buff/12.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 12(buff_type=100)control 底 + flame 符号"
+    },
+    {
+      "path": "Buff/13.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 13(buff_type=1)debuff 底 + ice 符号"
+    },
+    {
+      "path": "Buff/14.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 14(buff_type=35)debuff 底 + shield 符号"
+    },
+    {
+      "path": "Buff/15.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 15(buff_type=34)buff 底 + sword 符号"
+    },
+    {
+      "path": "Buff/16.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 16(buff_type=13)control 底 + leaf 符号"
+    },
+    {
+      "path": "Buff/17.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 17(buff_type=42)buff 底 + arrow_up 符号"
+    },
+    {
+      "path": "Buff/18.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 18(buff_type=43)debuff 底 + arrow_down 符号"
+    },
+    {
+      "path": "Buff/19.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 19(buff_type=36)control 底 + chain 符号"
+    },
+    {
+      "path": "Buff/20.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 20(buff_type=36)control 底 + flame 符号"
+    },
+    {
+      "path": "Buff/21.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 21(buff_type=0)buff 底 + ice 符号"
+    },
+    {
+      "path": "Buff/22.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 22(buff_type=0)buff 底 + shield 符号"
+    },
+    {
+      "path": "Buff/23.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 23(buff_type=0)buff 底 + sword 符号"
+    },
+    {
+      "path": "Buff/24.png",
+      "kind": "buff_icon",
+      "width": 64,
+      "height": 64,
+      "desc": "buff 24(buff_type=0)buff 底 + leaf 符号"
+    }
+  ],
+  "buff_table_mapping": [
+    {
+      "id": 1,
+      "file": "Buff/1.png",
+      "buff_type": 1,
+      "category": "debuff",
+      "symbol": "arrow_up",
+      "source": "Buff.json"
+    },
+    {
+      "id": 2,
+      "file": "Buff/2.png",
+      "buff_type": 1,
+      "category": "debuff",
+      "symbol": "arrow_down",
+      "source": "Buff.json"
+    },
+    {
+      "id": 3,
+      "file": "Buff/3.png",
+      "buff_type": 1,
+      "category": "debuff",
+      "symbol": "chain",
+      "source": "Buff.json"
+    },
+    {
+      "id": 4,
+      "file": "Buff/4.png",
+      "buff_type": 1,
+      "category": "debuff",
+      "symbol": "flame",
+      "source": "Buff.json"
+    },
+    {
+      "id": 5,
+      "file": "Buff/5.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "ice",
+      "source": "Buff.json"
+    },
+    {
+      "id": 6,
+      "file": "Buff/6.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "shield",
+      "source": "Buff.json"
+    },
+    {
+      "id": 7,
+      "file": "Buff/7.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "sword",
+      "source": "Buff.json"
+    },
+    {
+      "id": 8,
+      "file": "Buff/8.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "leaf",
+      "source": "Buff.json"
+    },
+    {
+      "id": 9,
+      "file": "Buff/9.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "arrow_up",
+      "source": "Buff.json"
+    },
+    {
+      "id": 10,
+      "file": "Buff/10.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "arrow_down",
+      "source": "Buff.json"
+    },
+    {
+      "id": 11,
+      "file": "Buff/11.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "chain",
+      "source": "Buff.json"
+    },
+    {
+      "id": 12,
+      "file": "Buff/12.png",
+      "buff_type": 100,
+      "category": "control",
+      "symbol": "flame",
+      "source": "Buff.json"
+    },
+    {
+      "id": 13,
+      "file": "Buff/13.png",
+      "buff_type": 1,
+      "category": "debuff",
+      "symbol": "ice",
+      "source": "Buff.json"
+    },
+    {
+      "id": 14,
+      "file": "Buff/14.png",
+      "buff_type": 35,
+      "category": "debuff",
+      "symbol": "shield",
+      "source": "Buff.json"
+    },
+    {
+      "id": 15,
+      "file": "Buff/15.png",
+      "buff_type": 34,
+      "category": "buff",
+      "symbol": "sword",
+      "source": "Buff.json"
+    },
+    {
+      "id": 16,
+      "file": "Buff/16.png",
+      "buff_type": 13,
+      "category": "control",
+      "symbol": "leaf",
+      "source": "Buff.json"
+    },
+    {
+      "id": 17,
+      "file": "Buff/17.png",
+      "buff_type": 42,
+      "category": "buff",
+      "symbol": "arrow_up",
+      "source": "Buff.json"
+    },
+    {
+      "id": 18,
+      "file": "Buff/18.png",
+      "buff_type": 43,
+      "category": "debuff",
+      "symbol": "arrow_down",
+      "source": "Buff.json"
+    },
+    {
+      "id": 19,
+      "file": "Buff/19.png",
+      "buff_type": 36,
+      "category": "control",
+      "symbol": "chain",
+      "source": "Buff.json"
+    },
+    {
+      "id": 20,
+      "file": "Buff/20.png",
+      "buff_type": 36,
+      "category": "control",
+      "symbol": "flame",
+      "source": "Buff.json"
+    },
+    {
+      "id": 21,
+      "file": "Buff/21.png",
+      "buff_type": 0,
+      "category": "buff",
+      "symbol": "ice",
+      "source": "padding"
+    },
+    {
+      "id": 22,
+      "file": "Buff/22.png",
+      "buff_type": 0,
+      "category": "buff",
+      "symbol": "shield",
+      "source": "padding"
+    },
+    {
+      "id": 23,
+      "file": "Buff/23.png",
+      "buff_type": 0,
+      "category": "buff",
+      "symbol": "sword",
+      "source": "padding"
+    },
+    {
+      "id": 24,
+      "file": "Buff/24.png",
+      "buff_type": 0,
+      "category": "buff",
+      "symbol": "leaf",
+      "source": "padding"
+    }
+  ]
+}

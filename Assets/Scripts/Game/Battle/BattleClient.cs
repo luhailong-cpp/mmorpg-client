@@ -181,10 +181,15 @@ namespace MmorpgClient.Game.Battle
             _net.Call(MessageIds.JoinQueue, req, Match.JoinQueueResponse.Parser,
                 resp =>
                 {
-                    if (Phase != BattlePhase.Queued) return; // 已开战/已取消:忽略迟到响应
-                    if (resp.ErrorCode != 0 || HasTip(resp.ErrorMessage))
-                    {
+                    // 拒绝原因无论相位是否已变都要抛出来:典型场景是 JoinQueue 发出后
+                    // NotifyBattleReconnect 才到、相位已被权威状态拉到 WaitingAction,
+                    // 服务端 ErrInBattle 若被静默吞掉,自动驾驶/UI 只能空等超时。
+                    bool rejected = resp.ErrorCode != 0 || HasTip(resp.ErrorMessage);
+                    if (rejected)
                         OnError?.Invoke(DescribeTip("加入队列失败", resp.ErrorMessage, resp.ErrorCode));
+                    if (Phase != BattlePhase.Queued) return; // 已开战/已取消/重连恢复:迟到响应不改相位
+                    if (rejected)
+                    {
                         SetPhase(BattlePhase.None);
                         return;
                     }
@@ -192,8 +197,8 @@ namespace MmorpgClient.Game.Battle
                 },
                 err =>
                 {
-                    if (Phase != BattlePhase.Queued) return;
                     OnError?.Invoke($"加入队列失败:{err}");
+                    if (Phase != BattlePhase.Queued) return;
                     SetPhase(BattlePhase.None);
                 });
         }

@@ -1,0 +1,968 @@
+{
+  "tool": "tools/battle_art_gen",
+  "command": "go run . -mode characters",
+  "generated_at": "2026-09-04T10:34:40-04:00",
+  "spec": "BattleArtCatalog.cs(权威);docs/design/battle-art-prompts.md §1/§3;turn-battle-presentation.md §5",
+  "cell": [
+    256,
+    256
+  ],
+  "frames": 8,
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "feet_baseline_px_from_bottom": 20,
+  "strip_layout": "横条 = 8 帧 × 256×256,左→右时间序;客户端 LoadStrip(cellSize=0) 用贴图高当格宽自动切成 8 帧",
+  "actions": [
+    {
+      "name": "idle",
+      "fps": 6,
+      "frames": 8,
+      "desc": "站立呼吸:±2px 上下 + 1.5% 纵向脉动,8 帧无缝循环"
+    },
+    {
+      "name": "attack",
+      "fps": 12,
+      "frames": 8,
+      "hit_frame_hint": 3,
+      "desc": "前冲预备(后引/下蹲)→ 第 3 帧前倾挥击(拖影 + 提亮)→ 收势回位"
+    },
+    {
+      "name": "cast",
+      "fps": 10,
+      "frames": 8,
+      "hit_frame_hint": 3,
+      "desc": "下蹲蓄力 → 抬手 → 脚底光晕升起(程序化加法辉光,着色取角色主色)"
+    },
+    {
+      "name": "hit",
+      "fps": 12,
+      "frames": 8,
+      "desc": "受击后仰 + 闪白衰减 + 左右抖动"
+    }
+  ],
+  "directions": [
+    "E"
+  ],
+  "params": {
+    "src_dir": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters",
+    "out_dir": "E:/work/mmorpg-client/Assets/Resources/Battle/Characters",
+    "actions": [
+      "idle",
+      "attack",
+      "cast",
+      "hit"
+    ],
+    "directions": [
+      "E"
+    ],
+    "max_height": 232,
+    "alpha_threshold": 16,
+    "chroma_tolerance": 0.18,
+    "min_component_pct": 0.01,
+    "supersample": 2,
+    "fitted_height": 175
+  },
+  "sprite_import_hint": {
+    "compression": "Uncompressed(帧条有真实 alpha 软边,压缩会出脏边)",
+    "filter": "Bilinear",
+    "grid": 256,
+    "importer": "Assets/Editor/QdaoCharacterSpriteImporter.cs 已覆盖 Assets/Resources/Battle/(Default 贴图 + Bilinear + 无 mip + 无压缩 + alphaIsTransparency + maxSize 4096)",
+    "max_size": 4096,
+    "path": "Assets/Resources/Battle/Characters/\u003cid\u003e/\u003caction\u003e_E_strip.png(W 由客户端镜像;-char-dirs E,W 时才有 \u003caction\u003e_W_strip.png)",
+    "pivot": [
+      0.5,
+      0.08
+    ],
+    "sprite_mode": "运行时 Sprite.Create 切格(BattleArtCatalog.LoadStrip),不依赖 Sprite 导入设置"
+  },
+  "notes": [
+    "单格 256×256、每动作 8 帧、横条 2048×256;客户端切格口径见 BattleArtCatalog.LoadStrip(cellSize=0 → 格宽=贴图高)。",
+    "脚底基线固定在距底边 20px(= FeetPivot.y 0.08 × 256)的第 235 行;idle 首帧最低不透明像素严格落在该行。",
+    "只出 E 向;W 由客户端 BattleArtCatalog.LoadDirectionalStrip 缺图降级取 E 并置 Mirrored=true,BattleUnitView 翻 localScale.x。不再落盘 W:它只是 E 的逐格镜像副本,画面零差异,却让 Resources 里的未压缩纹理体积翻倍。",
+    "全体按**身高**统一到 175px(不是长边):22 个 idle 首帧头顶行离差 ≤ 4px 由自检断言;横向超宽(持矛/持剑)的立绘也和别人一样高,近大远小只由 BattleStage 的排深缩放表达。",
+    "所有动作帧都是同一张底图的几何/色彩变换(平移·旋转·错切·缩放·闪白·拖影)+ cast 的程序化脚底光晕,不含逐帧重绘。",
+    "character_id 稳定 = 立绘文件名去 .png 与 _v3;客户端按 actor_id 取模选 character_ids 即可保证同一玩家每场一致。",
+    "gender / class_tag 由文件名关键词推断,仅作选择与降级的提示,不是服务端权威数据。",
+    "本目录未生成 .meta,Unity 首次导入时自动生成。"
+  ],
+  "character_ids": [
+    "01_ice_sword_girl",
+    "02_fire_talisman_boy",
+    "03_lotus_healer_girl",
+    "04_mountain_guardian_boy",
+    "05_celestial_musician_girl",
+    "06_thunder_caster_boy",
+    "07_moon_shadow_assassin_girl",
+    "08_alchemy_prodigy_boy",
+    "09_bamboo_archer_girl",
+    "10_crimson_spear_girl",
+    "11_jade_fist_flat_top_boy",
+    "12_iron_saber_flat_top_boy",
+    "13_short_hair_wind_blade_girl",
+    "14_short_hair_snow_summoner_girl",
+    "15_water_dragon_scholar_boy",
+    "16_golden_bell_dancer_girl",
+    "17_ghost_script_calligrapher_boy",
+    "18_desert_sun_monk_girl",
+    "19_spirit_beast_tamer_boy",
+    "20_star_formation_master_girl",
+    "21_lidazui_hair_cook_boy",
+    "22_lidazui_hair_waiter_saber_boy"
+  ],
+  "characters": [
+    {
+      "character_id": "01_ice_sword_girl",
+      "index": 1,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/01_ice_sword_girl_v3.png",
+      "gender": "female",
+      "class_tag": "blade",
+      "role_cn": "近战",
+      "dir": "Characters/01_ice_sword_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        127,
+        155,
+        180
+      ],
+      "scale": 0.228758,
+      "height": 175,
+      "fit_height": 175,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        87,
+        129,
+        850,
+        765
+      ],
+      "placed_size": [
+        194,
+        175
+      ],
+      "meta": "Characters/01_ice_sword_girl/meta.json"
+    },
+    {
+      "character_id": "02_fire_talisman_boy",
+      "index": 2,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/02_fire_talisman_boy_v3.png",
+      "gender": "male",
+      "class_tag": "caster",
+      "role_cn": "法系",
+      "dir": "Characters/02_fire_talisman_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        153,
+        81,
+        50
+      ],
+      "scale": 0.210337,
+      "height": 175,
+      "fit_height": 189,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        88,
+        96,
+        849,
+        832
+      ],
+      "placed_size": [
+        179,
+        175
+      ],
+      "meta": "Characters/02_fire_talisman_boy/meta.json"
+    },
+    {
+      "character_id": "03_lotus_healer_girl",
+      "index": 3,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/03_lotus_healer_girl_v3.png",
+      "gender": "female",
+      "class_tag": "healer",
+      "role_cn": "治疗",
+      "dir": "Characters/03_lotus_healer_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        207,
+        155,
+        127
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 197,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        100,
+        87,
+        824,
+        850
+      ],
+      "placed_size": [
+        170,
+        175
+      ],
+      "meta": "Characters/03_lotus_healer_girl/meta.json"
+    },
+    {
+      "character_id": "04_mountain_guardian_boy",
+      "index": 4,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/04_mountain_guardian_boy_v3.png",
+      "gender": "male",
+      "class_tag": "guardian",
+      "role_cn": "防御",
+      "dir": "Characters/04_mountain_guardian_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        151,
+        117,
+        71
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 216,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        167,
+        87,
+        690,
+        850
+      ],
+      "placed_size": [
+        142,
+        175
+      ],
+      "meta": "Characters/04_mountain_guardian_boy/meta.json"
+    },
+    {
+      "character_id": "05_celestial_musician_girl",
+      "index": 5,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/05_celestial_musician_girl_v3.png",
+      "gender": "female",
+      "class_tag": "support",
+      "role_cn": "辅助",
+      "dir": "Characters/05_celestial_musician_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        162,
+        137,
+        170
+      ],
+      "scale": 0.213936,
+      "height": 175,
+      "fit_height": 203,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        87,
+        103,
+        850,
+        818
+      ],
+      "placed_size": [
+        182,
+        175
+      ],
+      "meta": "Characters/05_celestial_musician_girl/meta.json"
+    },
+    {
+      "character_id": "06_thunder_caster_boy",
+      "index": 6,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/06_thunder_caster_boy_v3.png",
+      "gender": "male",
+      "class_tag": "caster",
+      "role_cn": "法系",
+      "dir": "Characters/06_thunder_caster_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        179,
+        143,
+        74
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 197,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        94,
+        87,
+        836,
+        850
+      ],
+      "placed_size": [
+        172,
+        175
+      ],
+      "meta": "Characters/06_thunder_caster_boy/meta.json"
+    },
+    {
+      "character_id": "07_moon_shadow_assassin_girl",
+      "index": 7,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/07_moon_shadow_assassin_girl_v3.png",
+      "gender": "female",
+      "class_tag": "assassin",
+      "role_cn": "刺客",
+      "dir": "Characters/07_moon_shadow_assassin_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        111,
+        105,
+        120
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 212,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        140,
+        87,
+        744,
+        850
+      ],
+      "placed_size": [
+        153,
+        175
+      ],
+      "meta": "Characters/07_moon_shadow_assassin_girl/meta.json"
+    },
+    {
+      "character_id": "08_alchemy_prodigy_boy",
+      "index": 8,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/08_alchemy_prodigy_boy_v3.png",
+      "gender": "male",
+      "class_tag": "caster",
+      "role_cn": "法系",
+      "dir": "Characters/08_alchemy_prodigy_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        167,
+        118,
+        76
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 218,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        157,
+        87,
+        710,
+        850
+      ],
+      "placed_size": [
+        146,
+        175
+      ],
+      "meta": "Characters/08_alchemy_prodigy_boy/meta.json"
+    },
+    {
+      "character_id": "09_bamboo_archer_girl",
+      "index": 9,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/09_bamboo_archer_girl_v3.png",
+      "gender": "female",
+      "class_tag": "archer",
+      "role_cn": "远程",
+      "dir": "Characters/09_bamboo_archer_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        154,
+        141,
+        110
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 208,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        118,
+        87,
+        788,
+        850
+      ],
+      "placed_size": [
+        162,
+        175
+      ],
+      "meta": "Characters/09_bamboo_archer_girl/meta.json"
+    },
+    {
+      "character_id": "10_crimson_spear_girl",
+      "index": 10,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/10_crimson_spear_girl_v3.png",
+      "gender": "female",
+      "class_tag": "spear",
+      "role_cn": "近战",
+      "dir": "Characters/10_crimson_spear_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        179,
+        92,
+        64
+      ],
+      "scale": 0.220681,
+      "height": 175,
+      "fit_height": 175,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        87,
+        115,
+        850,
+        793
+      ],
+      "placed_size": [
+        188,
+        175
+      ],
+      "meta": "Characters/10_crimson_spear_girl/meta.json"
+    },
+    {
+      "character_id": "11_jade_fist_flat_top_boy",
+      "index": 11,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/11_jade_fist_flat_top_boy_v3.png",
+      "gender": "male",
+      "class_tag": "guardian",
+      "role_cn": "防御",
+      "dir": "Characters/11_jade_fist_flat_top_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        137,
+        121,
+        96
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 218,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        171,
+        87,
+        678,
+        850
+      ],
+      "placed_size": [
+        140,
+        175
+      ],
+      "meta": "Characters/11_jade_fist_flat_top_boy/meta.json"
+    },
+    {
+      "character_id": "12_iron_saber_flat_top_boy",
+      "index": 12,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/12_iron_saber_flat_top_boy_v3.png",
+      "gender": "male",
+      "class_tag": "blade",
+      "role_cn": "近战",
+      "dir": "Characters/12_iron_saber_flat_top_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        109,
+        93,
+        90
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 209,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        148,
+        87,
+        727,
+        850
+      ],
+      "placed_size": [
+        150,
+        175
+      ],
+      "meta": "Characters/12_iron_saber_flat_top_boy/meta.json"
+    },
+    {
+      "character_id": "13_short_hair_wind_blade_girl",
+      "index": 13,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/13_short_hair_wind_blade_girl_v3.png",
+      "gender": "female",
+      "class_tag": "blade",
+      "role_cn": "近战",
+      "dir": "Characters/13_short_hair_wind_blade_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        173,
+        177,
+        160
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 193,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        100,
+        87,
+        823,
+        850
+      ],
+      "placed_size": [
+        169,
+        175
+      ],
+      "meta": "Characters/13_short_hair_wind_blade_girl/meta.json"
+    },
+    {
+      "character_id": "14_short_hair_snow_summoner_girl",
+      "index": 14,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/14_short_hair_snow_summoner_girl_v3.png",
+      "gender": "female",
+      "class_tag": "summoner",
+      "role_cn": "召唤",
+      "dir": "Characters/14_short_hair_snow_summoner_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        178,
+        175,
+        201
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 219,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        117,
+        87,
+        790,
+        850
+      ],
+      "placed_size": [
+        163,
+        175
+      ],
+      "meta": "Characters/14_short_hair_snow_summoner_girl/meta.json"
+    },
+    {
+      "character_id": "15_water_dragon_scholar_boy",
+      "index": 15,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/15_water_dragon_scholar_boy_v3.png",
+      "gender": "male",
+      "class_tag": "caster",
+      "role_cn": "法系",
+      "dir": "Characters/15_water_dragon_scholar_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        110,
+        123,
+        144
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 217,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        134,
+        87,
+        757,
+        850
+      ],
+      "placed_size": [
+        156,
+        175
+      ],
+      "meta": "Characters/15_water_dragon_scholar_boy/meta.json"
+    },
+    {
+      "character_id": "16_golden_bell_dancer_girl",
+      "index": 16,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/16_golden_bell_dancer_girl_v3.png",
+      "gender": "female",
+      "class_tag": "support",
+      "role_cn": "辅助",
+      "dir": "Characters/16_golden_bell_dancer_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        213,
+        161,
+        111
+      ],
+      "scale": 0.209581,
+      "height": 175,
+      "fit_height": 194,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        87,
+        94,
+        850,
+        835
+      ],
+      "placed_size": [
+        178,
+        175
+      ],
+      "meta": "Characters/16_golden_bell_dancer_girl/meta.json"
+    },
+    {
+      "character_id": "17_ghost_script_calligrapher_boy",
+      "index": 17,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/17_ghost_script_calligrapher_boy_v3.png",
+      "gender": "male",
+      "class_tag": "caster",
+      "role_cn": "法系",
+      "dir": "Characters/17_ghost_script_calligrapher_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        131,
+        135,
+        124
+      ],
+      "scale": 0.217122,
+      "height": 175,
+      "fit_height": 180,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        87,
+        109,
+        850,
+        806
+      ],
+      "placed_size": [
+        185,
+        175
+      ],
+      "meta": "Characters/17_ghost_script_calligrapher_boy/meta.json"
+    },
+    {
+      "character_id": "18_desert_sun_monk_girl",
+      "index": 18,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/18_desert_sun_monk_girl_v3.png",
+      "gender": "female",
+      "class_tag": "guardian",
+      "role_cn": "防御",
+      "dir": "Characters/18_desert_sun_monk_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        184,
+        135,
+        78
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 211,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        146,
+        87,
+        732,
+        850
+      ],
+      "placed_size": [
+        151,
+        175
+      ],
+      "meta": "Characters/18_desert_sun_monk_girl/meta.json"
+    },
+    {
+      "character_id": "19_spirit_beast_tamer_boy",
+      "index": 19,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/19_spirit_beast_tamer_boy_v3.png",
+      "gender": "male",
+      "class_tag": "summoner",
+      "role_cn": "召唤",
+      "dir": "Characters/19_spirit_beast_tamer_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        143,
+        116,
+        94
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 218,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        166,
+        87,
+        691,
+        850
+      ],
+      "placed_size": [
+        142,
+        175
+      ],
+      "meta": "Characters/19_spirit_beast_tamer_boy/meta.json"
+    },
+    {
+      "character_id": "20_star_formation_master_girl",
+      "index": 20,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/20_star_formation_master_girl_v3.png",
+      "gender": "female",
+      "class_tag": "caster",
+      "role_cn": "法系",
+      "dir": "Characters/20_star_formation_master_girl",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        148,
+        96,
+        72
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 204,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        110,
+        87,
+        804,
+        850
+      ],
+      "placed_size": [
+        166,
+        175
+      ],
+      "meta": "Characters/20_star_formation_master_girl/meta.json"
+    },
+    {
+      "character_id": "21_lidazui_hair_cook_boy",
+      "index": 21,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/21_lidazui_hair_cook_boy_v3.png",
+      "gender": "male",
+      "class_tag": "civilian",
+      "role_cn": "杂役",
+      "dir": "Characters/21_lidazui_hair_cook_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        143,
+        112,
+        79
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 216,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        160,
+        87,
+        704,
+        850
+      ],
+      "placed_size": [
+        145,
+        175
+      ],
+      "meta": "Characters/21_lidazui_hair_cook_boy/meta.json"
+    },
+    {
+      "character_id": "22_lidazui_hair_waiter_saber_boy",
+      "index": 22,
+      "source": "E:/work/mmorpg-client/Assets/Resources/UI/qdao_v3/characters/22_lidazui_hair_waiter_saber_boy_v3.png",
+      "gender": "male",
+      "class_tag": "blade",
+      "role_cn": "近战",
+      "dir": "Characters/22_lidazui_hair_waiter_saber_boy",
+      "actions": [
+        "idle",
+        "attack",
+        "cast",
+        "hit"
+      ],
+      "directions": [
+        "E"
+      ],
+      "dominant_rgb": [
+        138,
+        105,
+        83
+      ],
+      "scale": 0.205882,
+      "height": 175,
+      "fit_height": 200,
+      "idle_top_row": 60,
+      "bbox_xywh": [
+        117,
+        87,
+        790,
+        850
+      ],
+      "placed_size": [
+        163,
+        175
+      ],
+      "meta": "Characters/22_lidazui_hair_waiter_saber_boy/meta.json"
+    }
+  ],
+  "skipped": [],
+  "verify": {
+    "assertions": [
+      "每张 strip 尺寸 2048×256、NRGBA 直通 alpha、切格 8 帧、每帧非全透明",
+      "idle 首帧最低不透明行 == 235(脚底基线)",
+      "全部角色 idle 首帧头顶行(alpha\u003e=16)最大离差 ≤ 4px(统一身高)",
+      "若 -char-dirs 含 W:W 与 E 逐格水平镜像逐像素一致"
+    ],
+    "feet_baseline_row": 235,
+    "idle_top_row_max": 60,
+    "idle_top_row_min": 60,
+    "idle_top_row_spread": 0,
+    "idle_top_row_tolerance": 4
+  },
+  "file_count": 110,
+  "total_bytes": 32107162
+}

@@ -78,6 +78,17 @@ namespace MmorpgClient.UI.Ugui
                 _view.Tick(deltaTime);
         }
 
+        /// <summary>
+        /// 显示/隐藏选区登录屏。正常流程由 QdaoServerSelectView 在进入成功后自己
+        /// 收起;自动驾驶(DevAutoPilot)绕过该视图直接 EnterZone,进场景后经此收起,
+        /// 避免整屏 UI 盖住场景/战斗层(断线时视图自身会重新显示)。
+        /// </summary>
+        public void SetServerSelectVisible(bool visible)
+        {
+            if (_view == null) return;
+            _view.gameObject.SetActive(visible);
+        }
+
         private static GameObject EnsureEventSystem(UnityEngine.Transform parent)
         {
             if (Object.FindAnyObjectByType<EventSystem>() != null)

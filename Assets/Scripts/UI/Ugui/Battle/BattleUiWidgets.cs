@@ -65,6 +65,32 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static long NowUnixMs()
             => System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
+        /// <summary>
+        /// 给 TMP 文字加描边。TMP_Text.outlineWidth 只写材质的 _OutlineWidth,而工程字体(SimKai SDF)用的是
+        /// Mobile/Distance Field shader,描边靠 OUTLINE_ON 关键字开关 —— 不打开关键字描边根本不画
+        /// (2026-09-04 帧验收:脚下名字"无描边"就是这个原因)。这里在实例材质上把关键字一并打开。
+        /// </summary>
+        public static void ApplyOutline(TMP_Text text, float width, Color32 color)
+        {
+            if (text == null) return;
+            try
+            {
+                text.outlineWidth = width;
+                text.outlineColor = color;
+                var mat = text.fontMaterial; // 取实例材质(首次访问即拷贝)
+                if (mat != null)
+                {
+                    mat.EnableKeyword("OUTLINE_ON");
+                    mat.SetFloat("_OutlineWidth", width);
+                    mat.SetColor("_OutlineColor", color);
+                }
+            }
+            catch (System.Exception)
+            {
+                // 字体无 SDF 材质实例时描边不可用,忽略
+            }
+        }
+
         /// <summary>纯色面板(无 sprite 的 Image)。</summary>
         public static Image CreatePanel(string name, UnityEngine.Transform parent,
             float x, float y, float width, float height, Color color, bool raycastTarget = true)

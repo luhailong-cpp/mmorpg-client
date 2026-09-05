@@ -164,6 +164,48 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void JoinQueue_WhileReconnectRestoredBattle_RejectsWithErrorAndKeepsPhase()
+        {
+            // 上一局被强杀后重新登录:scene 推 BattleReconnect → 权威状态把相位拉到 WaitingAction
+            _net.PushNotify(MessageIds.NotifyBattleReconnect,
+                new BattleReconnectS2C { BattleId = TheBattleId });
+            _net.CallsOf(MessageIds.GetBattleState)[0]
+                .Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction));
+
+            _client.JoinQueue(Match.MatchMode._1V1, 1);
+
+            Assert.That(_net.CallsOf(MessageIds.JoinQueue), Is.Empty, "前置拒绝,不发请求");
+            Assert.That(_errors, Has.Count.EqualTo(1), "拒绝原因经 OnError 抛出(自动驾驶据此判失败)");
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "拒绝不改相位");
+        }
+
+        [Test]
+        public void JoinQueue_LateRejectionAfterReconnect_StillReportsErrorWithoutTouchingPhase()
+        {
+            // JoinQueue 已发出、BattleReconnect 才到:相位被权威状态改成 WaitingAction,
+            // 随后服务端 ErrInBattle 响应迟到 —— 拒绝原因仍要抛出,但不能把相位拉回 None
+            _client.JoinQueue(Match.MatchMode._1V1, 1);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Queued));
+
+            _net.PushNotify(MessageIds.NotifyBattleReconnect,
+                new BattleReconnectS2C { BattleId = TheBattleId });
+            _net.CallsOf(MessageIds.GetBattleState)[0]
+                .Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction));
+
+            _net.CallsOf(MessageIds.JoinQueue)[0].Respond(new Match.JoinQueueResponse
+            {
+                ErrorCode = 7,
+                ErrorMessage = new TipInfoMessage { Id = 7 },
+            });
+
+            Assert.That(_errors, Has.Count.EqualTo(1), "迟到的拒绝响应不再静默吞掉");
+            Assert.That(_errors[0], Does.Contain("7"));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "迟到响应不改相位");
+        }
+
+        [Test]
         public void CancelQueue_ConvergesToNoneAndStopsPolling()
         {
             _client.Tick(0);
