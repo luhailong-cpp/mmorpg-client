@@ -30,7 +30,7 @@ public static partial class BattleDataReflection {
           "DSJyCg9CYXR0bGVCdWZmRW50cnkSDwoHYnVmZl9pZBgBIAEoBBIVCg1idWZm",
           "X3RhYmxlX2lkGAIgASgNEg0KBWxheWVyGAMgASgNEhUKDXJlbWFpbl9yb3Vu",
           "ZHMYBCABKA0SEQoJY2FzdGVyX2lkGAUgASgEIjcKD0JhdHRsZUl0ZW1FbnRy",
-          "eRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNvdW50GAIgASgEIswCChRC",
+          "eRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNvdW50GAIgASgEIowDChRC",
           "YXR0bGVQbGF5ZXJTbmFwc2hvdBIRCglwbGF5ZXJfaWQYASABKAQSEwoLcGxh",
           "eWVyX25hbWUYAiABKAkSDQoFbGV2ZWwYAyABKA0SLAoPYmFzZV9hdHRyaWJ1",
           "dGVzGAQgASgLMhMuQmFzZUF0dHJpYnV0ZXNDb21wEhIKCm1heF9oZWFsdGgY",
@@ -38,62 +38,63 @@ public static partial class BattleDataReflection {
           "AygNEh8KBWJ1ZmZzGAggAygLMhAuQmF0dGxlQnVmZkVudHJ5Eh8KBWl0ZW1z",
           "GAkgAygLMhAuQmF0dGxlSXRlbUVudHJ5Eh8KB3JvdXRpbmcYCiABKAsyDi5C",
           "YXR0bGVSb3V0aW5nEhIKCnRlYW1faW5kZXgYCyABKA0SGQoRdGFibGVfZmlu",
-          "Z2VycHJpbnQYDCABKAkixAQKEEJhdHRsZUFjdG9yU3RhdGUSEAoIYWN0b3Jf",
-          "aWQYASABKAQSJQoKYWN0b3JfdHlwZRgCIAEoDjIRLmVCYXR0bGVBY3RvclR5",
-          "cGUSEgoKdGVhbV9pbmRleBgDIAEoDRIMCgRuYW1lGAQgASgJEg0KBWxldmVs",
-          "GAUgASgNEicKCmF0dHJpYnV0ZXMYBiABKAsyEy5CYXNlQXR0cmlidXRlc0Nv",
-          "bXASEgoKbWF4X2hlYWx0aBgHIAEoBBIQCghtYXhfbWFuYRgIIAEoBBIPCgdp",
-          "c19kZWFkGAkgASgIEhQKDGlzX2RlZmVuZGluZxgKIAEoCBIMCgRmbGVkGAsg",
-          "ASgIEh8KBWJ1ZmZzGAwgAygLMhAuQmF0dGxlQnVmZkVudHJ5EhcKD3NraWxs",
-          "X3RhYmxlX2lkcxgNIAMoDRIYChBtb25zdGVyX3RhYmxlX2lkGA4gASgNEkkK",
-          "FXNraWxsX2Nvb2xkb3duX3JvdW5kcxgPIAMoCzIqLkJhdHRsZUFjdG9yU3Rh",
-          "dGUuU2tpbGxDb29sZG93blJvdW5kc0VudHJ5Eg8KB2lzX2F1dG8YECABKAgS",
-          "FgoOZm9ybWF0aW9uX3Nsb3QYESABKA0SFwoPcGh5c2ljYWxfYXR0YWNrGBIg",
-          "ASgEEhQKDG1hZ2ljX2F0dGFjaxgTIAEoBBIPCgdkZWZlbnNlGBQgASgEGjoK",
-          "GFNraWxsQ29vbGRvd25Sb3VuZHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFs",
-          "dWUYAiABKA06AjgBInkKDEJhdHRsZUFjdGlvbhInCgthY3Rpb25fdHlwZRgB",
-          "IAEoDjISLmVCYXR0bGVBY3Rpb25UeXBlEhYKDnNraWxsX3RhYmxlX2lkGAIg",
-          "ASgNEhEKCXRhcmdldF9pZBgDIAEoBBIVCg1pdGVtX3RhYmxlX2lkGAQgASgN",
-          "IrYCCg9CYXR0bGVFdmVudEl0ZW0SJQoKZXZlbnRfdHlwZRgBIAEoDjIRLmVC",
-          "YXR0bGVFdmVudFR5cGUSEQoJc291cmNlX2lkGAIgASgEEhEKCXRhcmdldF9p",
-          "ZBgDIAEoBBIWCg5za2lsbF90YWJsZV9pZBgEIAEoDRIVCg1idWZmX3RhYmxl",
-          "X2lkGAUgASgNEg0KBXZhbHVlGAYgASgEEhMKC2lzX2NyaXRpY2FsGAcgASgI",
-          "Eg8KB3N1Y2Nlc3MYCCABKAgSGwoTdGFyZ2V0X2hlYWx0aF9hZnRlchgJIAEo",
-          "BBIVCg1pdGVtX3RhYmxlX2lkGAogASgNEhAKCGdyb3VwX2lkGAsgASgNEhEK",
-          "CWhpdF9pbmRleBgMIAEoDRIZChF0YXJnZXRfbWFuYV9hZnRlchgNIAEoBCLD",
-          "AgoUQmF0dGxlU2V0dGxlbWVudERhdGESEQoJYmF0dGxlX2lkGAEgASgEEhEK",
-          "CXBsYXllcl9pZBgCIAEoBBIgCgdvdXRjb21lGAMgASgOMg8uZUJhdHRsZU91",
-          "dGNvbWUSGQoRcGxheWVyX3RlYW1faW5kZXgYBCABKA0SDgoGaGVhbHRoGAUg",
-          "ASgEEgwKBG1hbmEYBiABKAQSEAoIZXhwX2dhaW4YByABKAQSEQoJZ29sZF9n",
-          "YWluGAggASgEEigKDml0ZW1zX2NvbnN1bWVkGAkgAygLMhAuQmF0dGxlSXRl",
-          "bUVudHJ5EiYKDGl0ZW1zX2dhaW5lZBgKIAMoCzIQLkJhdHRsZUl0ZW1FbnRy",
-          "eRIPCgdpc19kZWFkGAsgASgIEgwKBGZsZWQYDCABKAgSFAoMdG90YWxfcm91",
-          "bmRzGA0gASgNKmsKEGVCYXR0bGVBY3RvclR5cGUSGgoWQkFUVExFX0FDVE9S",
-          "X1RZUEVfTk9ORRAAEhwKGEJBVFRMRV9BQ1RPUl9UWVBFX1BMQVlFUhABEh0K",
-          "GUJBVFRMRV9BQ1RPUl9UWVBFX01PTlNURVIQAiqoAQoRZUJhdHRsZUFjdGlv",
-          "blR5cGUSFgoSQkFUVExFX0FDVElPTl9OT05FEAASGAoUQkFUVExFX0FDVElP",
-          "Tl9BVFRBQ0sQARIXChNCQVRUTEVfQUNUSU9OX1NLSUxMEAISGAoUQkFUVExF",
-          "X0FDVElPTl9ERUZFTkQQAxIWChJCQVRUTEVfQUNUSU9OX0lURU0QBBIWChJC",
-          "QVRUTEVfQUNUSU9OX0ZMRUUQBSqEAwoQZUJhdHRsZUV2ZW50VHlwZRIVChFC",
-          "QVRUTEVfRVZFTlRfTk9ORRAAEhcKE0JBVFRMRV9FVkVOVF9BVFRBQ0sQARIW",
-          "ChJCQVRUTEVfRVZFTlRfU0tJTEwQAhIXChNCQVRUTEVfRVZFTlRfREFNQUdF",
-          "EAMSFQoRQkFUVExFX0VWRU5UX0hFQUwQBBIZChVCQVRUTEVfRVZFTlRfQlVG",
-          "Rl9BREQQBRIcChhCQVRUTEVfRVZFTlRfQlVGRl9SRU1PVkUQBhIaChZCQVRU",
-          "TEVfRVZFTlRfQlVGRl9USUNLEAcSFgoSQkFUVExFX0VWRU5UX0RFQVRIEAgS",
-          "FwoTQkFUVExFX0VWRU5UX0RFRkVORBAJEhUKEUJBVFRMRV9FVkVOVF9JVEVN",
-          "EAoSFQoRQkFUVExFX0VWRU5UX0ZMRUUQCxIVChFCQVRUTEVfRVZFTlRfTUlT",
-          "UxAMEhYKEkJBVFRMRV9FVkVOVF9CTE9DSxANEhUKEUJBVFRMRV9FVkVOVF9N",
-          "QU5BEA4qgwEKDmVCYXR0bGVPdXRjb21lEhoKFkJBVFRMRV9PVVRDT01FX09O",
-          "R09JTkcQABIdChlCQVRUTEVfT1VUQ09NRV9TSURFX0FfV0lOEAESHQoZQkFU",
-          "VExFX09VVENPTUVfU0lERV9CX1dJThACEhcKE0JBVFRMRV9PVVRDT01FX0RS",
-          "QVcQA0IIWgZiYXR0bGViBnByb3RvMw=="));
+          "Z2VycHJpbnQYDCABKAkSFwoPcGh5c2ljYWxfYXR0YWNrGA0gASgEEhQKDG1h",
+          "Z2ljX2F0dGFjaxgOIAEoBBIPCgdkZWZlbnNlGA8gASgEIsQEChBCYXR0bGVB",
+          "Y3RvclN0YXRlEhAKCGFjdG9yX2lkGAEgASgEEiUKCmFjdG9yX3R5cGUYAiAB",
+          "KA4yES5lQmF0dGxlQWN0b3JUeXBlEhIKCnRlYW1faW5kZXgYAyABKA0SDAoE",
+          "bmFtZRgEIAEoCRINCgVsZXZlbBgFIAEoDRInCgphdHRyaWJ1dGVzGAYgASgL",
+          "MhMuQmFzZUF0dHJpYnV0ZXNDb21wEhIKCm1heF9oZWFsdGgYByABKAQSEAoI",
+          "bWF4X21hbmEYCCABKAQSDwoHaXNfZGVhZBgJIAEoCBIUCgxpc19kZWZlbmRp",
+          "bmcYCiABKAgSDAoEZmxlZBgLIAEoCBIfCgVidWZmcxgMIAMoCzIQLkJhdHRs",
+          "ZUJ1ZmZFbnRyeRIXCg9za2lsbF90YWJsZV9pZHMYDSADKA0SGAoQbW9uc3Rl",
+          "cl90YWJsZV9pZBgOIAEoDRJJChVza2lsbF9jb29sZG93bl9yb3VuZHMYDyAD",
+          "KAsyKi5CYXR0bGVBY3RvclN0YXRlLlNraWxsQ29vbGRvd25Sb3VuZHNFbnRy",
+          "eRIPCgdpc19hdXRvGBAgASgIEhYKDmZvcm1hdGlvbl9zbG90GBEgASgNEhcK",
+          "D3BoeXNpY2FsX2F0dGFjaxgSIAEoBBIUCgxtYWdpY19hdHRhY2sYEyABKAQS",
+          "DwoHZGVmZW5zZRgUIAEoBBo6ChhTa2lsbENvb2xkb3duUm91bmRzRW50cnkS",
+          "CwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgNOgI4ASJ5CgxCYXR0bGVBY3Rp",
+          "b24SJwoLYWN0aW9uX3R5cGUYASABKA4yEi5lQmF0dGxlQWN0aW9uVHlwZRIW",
+          "Cg5za2lsbF90YWJsZV9pZBgCIAEoDRIRCgl0YXJnZXRfaWQYAyABKAQSFQoN",
+          "aXRlbV90YWJsZV9pZBgEIAEoDSK2AgoPQmF0dGxlRXZlbnRJdGVtEiUKCmV2",
+          "ZW50X3R5cGUYASABKA4yES5lQmF0dGxlRXZlbnRUeXBlEhEKCXNvdXJjZV9p",
+          "ZBgCIAEoBBIRCgl0YXJnZXRfaWQYAyABKAQSFgoOc2tpbGxfdGFibGVfaWQY",
+          "BCABKA0SFQoNYnVmZl90YWJsZV9pZBgFIAEoDRINCgV2YWx1ZRgGIAEoBBIT",
+          "Cgtpc19jcml0aWNhbBgHIAEoCBIPCgdzdWNjZXNzGAggASgIEhsKE3Rhcmdl",
+          "dF9oZWFsdGhfYWZ0ZXIYCSABKAQSFQoNaXRlbV90YWJsZV9pZBgKIAEoDRIQ",
+          "Cghncm91cF9pZBgLIAEoDRIRCgloaXRfaW5kZXgYDCABKA0SGQoRdGFyZ2V0",
+          "X21hbmFfYWZ0ZXIYDSABKAQiwwIKFEJhdHRsZVNldHRsZW1lbnREYXRhEhEK",
+          "CWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQSIAoHb3V0Y29t",
+          "ZRgDIAEoDjIPLmVCYXR0bGVPdXRjb21lEhkKEXBsYXllcl90ZWFtX2luZGV4",
+          "GAQgASgNEg4KBmhlYWx0aBgFIAEoBBIMCgRtYW5hGAYgASgEEhAKCGV4cF9n",
+          "YWluGAcgASgEEhEKCWdvbGRfZ2FpbhgIIAEoBBIoCg5pdGVtc19jb25zdW1l",
+          "ZBgJIAMoCzIQLkJhdHRsZUl0ZW1FbnRyeRImCgxpdGVtc19nYWluZWQYCiAD",
+          "KAsyEC5CYXR0bGVJdGVtRW50cnkSDwoHaXNfZGVhZBgLIAEoCBIMCgRmbGVk",
+          "GAwgASgIEhQKDHRvdGFsX3JvdW5kcxgNIAEoDSprChBlQmF0dGxlQWN0b3JU",
+          "eXBlEhoKFkJBVFRMRV9BQ1RPUl9UWVBFX05PTkUQABIcChhCQVRUTEVfQUNU",
+          "T1JfVFlQRV9QTEFZRVIQARIdChlCQVRUTEVfQUNUT1JfVFlQRV9NT05TVEVS",
+          "EAIqqAEKEWVCYXR0bGVBY3Rpb25UeXBlEhYKEkJBVFRMRV9BQ1RJT05fTk9O",
+          "RRAAEhgKFEJBVFRMRV9BQ1RJT05fQVRUQUNLEAESFwoTQkFUVExFX0FDVElP",
+          "Tl9TS0lMTBACEhgKFEJBVFRMRV9BQ1RJT05fREVGRU5EEAMSFgoSQkFUVExF",
+          "X0FDVElPTl9JVEVNEAQSFgoSQkFUVExFX0FDVElPTl9GTEVFEAUqhAMKEGVC",
+          "YXR0bGVFdmVudFR5cGUSFQoRQkFUVExFX0VWRU5UX05PTkUQABIXChNCQVRU",
+          "TEVfRVZFTlRfQVRUQUNLEAESFgoSQkFUVExFX0VWRU5UX1NLSUxMEAISFwoT",
+          "QkFUVExFX0VWRU5UX0RBTUFHRRADEhUKEUJBVFRMRV9FVkVOVF9IRUFMEAQS",
+          "GQoVQkFUVExFX0VWRU5UX0JVRkZfQUREEAUSHAoYQkFUVExFX0VWRU5UX0JV",
+          "RkZfUkVNT1ZFEAYSGgoWQkFUVExFX0VWRU5UX0JVRkZfVElDSxAHEhYKEkJB",
+          "VFRMRV9FVkVOVF9ERUFUSBAIEhcKE0JBVFRMRV9FVkVOVF9ERUZFTkQQCRIV",
+          "ChFCQVRUTEVfRVZFTlRfSVRFTRAKEhUKEUJBVFRMRV9FVkVOVF9GTEVFEAsS",
+          "FQoRQkFUVExFX0VWRU5UX01JU1MQDBIWChJCQVRUTEVfRVZFTlRfQkxPQ0sQ",
+          "DRIVChFCQVRUTEVfRVZFTlRfTUFOQRAOKoMBCg5lQmF0dGxlT3V0Y29tZRIa",
+          "ChZCQVRUTEVfT1VUQ09NRV9PTkdPSU5HEAASHQoZQkFUVExFX09VVENPTUVf",
+          "U0lERV9BX1dJThABEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQl9XSU4QAhIX",
+          "ChNCQVRUTEVfT1VUQ09NRV9EUkFXEANCCFoGYmF0dGxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleOutcome), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRouting), global::BattleRouting.Parser, new[]{ "SessionId", "GateNodeId", "GateInstanceId", "SceneNodeId", "SceneInstanceId", "ZoneId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleBuffEntry), global::BattleBuffEntry.Parser, new[]{ "BuffId", "BuffTableId", "Layer", "RemainRounds", "CasterId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleItemEntry), global::BattleItemEntry.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePlayerSnapshot), global::BattlePlayerSnapshot.Parser, new[]{ "PlayerId", "PlayerName", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "SkillTableIds", "Buffs", "Items", "Routing", "TeamIndex", "TableFingerprint" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePlayerSnapshot), global::BattlePlayerSnapshot.Parser, new[]{ "PlayerId", "PlayerName", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "SkillTableIds", "Buffs", "Items", "Routing", "TeamIndex", "TableFingerprint", "PhysicalAttack", "MagicAttack", "Defense" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorState), global::BattleActorState.Parser, new[]{ "ActorId", "ActorType", "TeamIndex", "Name", "Level", "Attributes", "MaxHealth", "MaxMana", "IsDead", "IsDefending", "Fled", "Buffs", "SkillTableIds", "MonsterTableId", "SkillCooldownRounds", "IsAuto", "FormationSlot", "PhysicalAttack", "MagicAttack", "Defense" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleAction), global::BattleAction.Parser, new[]{ "ActionType", "SkillTableId", "TargetId", "ItemTableId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleEventItem), global::BattleEventItem.Parser, new[]{ "EventType", "SourceId", "TargetId", "SkillTableId", "BuffTableId", "Value", "IsCritical", "Success", "TargetHealthAfter", "ItemTableId", "GroupId", "HitIndex", "TargetManaAfter" }, null, null, null, null),
@@ -1242,6 +1243,9 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     routing_ = other.routing_ != null ? other.routing_.Clone() : null;
     teamIndex_ = other.teamIndex_;
     tableFingerprint_ = other.tableFingerprint_;
+    physicalAttack_ = other.physicalAttack_;
+    magicAttack_ = other.magicAttack_;
+    defense_ = other.defense_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1410,6 +1414,51 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     }
   }
 
+  /// <summary>Field number for the "physical_attack" field.</summary>
+  public const int PhysicalAttackFieldNumber = 13;
+  private ulong physicalAttack_;
+  /// <summary>
+  /// 二级属性(属性加点系统):物伤,scene 侧由 DerivedAttributes 填;引擎 InitPlayers 直接透传给 BattleActorState
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PhysicalAttack {
+    get { return physicalAttack_; }
+    set {
+      physicalAttack_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "magic_attack" field.</summary>
+  public const int MagicAttackFieldNumber = 14;
+  private ulong magicAttack_;
+  /// <summary>
+  /// 法伤
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MagicAttack {
+    get { return magicAttack_; }
+    set {
+      magicAttack_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "defense" field.</summary>
+  public const int DefenseFieldNumber = 15;
+  private ulong defense_;
+  /// <summary>
+  /// 防御
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Defense {
+    get { return defense_; }
+    set {
+      defense_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1437,6 +1486,9 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (!object.Equals(Routing, other.Routing)) return false;
     if (TeamIndex != other.TeamIndex) return false;
     if (TableFingerprint != other.TableFingerprint) return false;
+    if (PhysicalAttack != other.PhysicalAttack) return false;
+    if (MagicAttack != other.MagicAttack) return false;
+    if (Defense != other.Defense) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1456,6 +1508,9 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (routing_ != null) hash ^= Routing.GetHashCode();
     if (TeamIndex != 0) hash ^= TeamIndex.GetHashCode();
     if (TableFingerprint.Length != 0) hash ^= TableFingerprint.GetHashCode();
+    if (PhysicalAttack != 0UL) hash ^= PhysicalAttack.GetHashCode();
+    if (MagicAttack != 0UL) hash ^= MagicAttack.GetHashCode();
+    if (Defense != 0UL) hash ^= Defense.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1513,6 +1568,18 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
       output.WriteRawTag(98);
       output.WriteString(TableFingerprint);
     }
+    if (PhysicalAttack != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      output.WriteRawTag(112);
+      output.WriteUInt64(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(Defense);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1562,6 +1629,18 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
       output.WriteRawTag(98);
       output.WriteString(TableFingerprint);
     }
+    if (PhysicalAttack != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      output.WriteRawTag(112);
+      output.WriteUInt64(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(Defense);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1601,6 +1680,15 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     }
     if (TableFingerprint.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(TableFingerprint);
+    }
+    if (PhysicalAttack != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Defense);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1649,6 +1737,15 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     }
     if (other.TableFingerprint.Length != 0) {
       TableFingerprint = other.TableFingerprint;
+    }
+    if (other.PhysicalAttack != 0UL) {
+      PhysicalAttack = other.PhysicalAttack;
+    }
+    if (other.MagicAttack != 0UL) {
+      MagicAttack = other.MagicAttack;
+    }
+    if (other.Defense != 0UL) {
+      Defense = other.Defense;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1724,6 +1821,18 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
           TableFingerprint = input.ReadString();
           break;
         }
+        case 104: {
+          PhysicalAttack = input.ReadUInt64();
+          break;
+        }
+        case 112: {
+          MagicAttack = input.ReadUInt64();
+          break;
+        }
+        case 120: {
+          Defense = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1796,6 +1905,18 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
         }
         case 98: {
           TableFingerprint = input.ReadString();
+          break;
+        }
+        case 104: {
+          PhysicalAttack = input.ReadUInt64();
+          break;
+        }
+        case 112: {
+          MagicAttack = input.ReadUInt64();
+          break;
+        }
+        case 120: {
+          Defense = input.ReadUInt64();
           break;
         }
       }

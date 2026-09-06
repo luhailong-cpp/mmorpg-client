@@ -103,6 +103,10 @@ $whitelist = @{
     "SceneAttributeClientPlayerRenameAttributeScheme"        = "RenameAttributeScheme"
     "SceneAttributeClientPlayerNotifyAttributePanelChanged"  = "NotifyAttributePanelChanged"
     "SceneAttributeClientPlayerGmSetPlayerLevel"             = "GmSetPlayerLevel"
+
+    # 客户端直连 battle 节点(turn-based-battle-server.md §18):落点分配推送 + 丢票补签
+    "BattleClientPlayerNotifyBattleAssigned"       = "NotifyBattleAssigned"
+    "MatchServiceRequestBattleTicket"              = "RequestBattleTicket"
 }
 
 $idByMethod = @{}

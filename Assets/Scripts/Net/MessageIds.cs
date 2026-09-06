@@ -35,6 +35,7 @@ namespace MmorpgClient.Net
         public const uint NotifyActorMove        =  133; // SceneMovementClientPlayerNotifyActorMove
         public const uint NotifyActorMoveList    =  135; // SceneMovementClientPlayerNotifyActorMoveList
         public const uint NotifyAttributePanelChanged =  170; // SceneAttributeClientPlayerNotifyAttributePanelChanged
+        public const uint NotifyBattleAssigned   =  177; // BattleClientPlayerNotifyBattleAssigned
         public const uint NotifyBattleEnd        =  150; // BattleClientPlayerNotifyBattleEnd
         public const uint NotifyBattleReconnect  =  144; // BattleClientPlayerNotifyBattleReconnect
         public const uint NotifyBattleStart      =  143; // BattleClientPlayerNotifyBattleStart
@@ -54,6 +55,7 @@ namespace MmorpgClient.Net
         public const uint RefreshToken           =  127; // ClientPlayerLoginRefreshToken
         public const uint ReleaseSkill           =   84; // SceneSkillClientPlayerReleaseSkill
         public const uint RenameAttributeScheme  =  169; // SceneAttributeClientPlayerRenameAttributeScheme
+        public const uint RequestBattleTicket    =  179; // MatchServiceRequestBattleTicket
         public const uint ResetAttributePoints   =  172; // SceneAttributeClientPlayerResetAttributePoints
         public const uint RespondChallenge       =  151; // MatchServiceRespondChallenge
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
