@@ -90,6 +90,9 @@ namespace MmorpgClient.App
 
         private AppBootstrap _app;
         private GameClient _client;
+        // 战斗直连证据(§18 验收判据"战斗流量零字节经 gate"的客户端侧对照):
+        // 收到回合结果时直连已验证的次数;0 = 本局从未建立直连(全程 gate 中继)
+        private int _directTurns;
         private BattleClient _battle;
         private Options _opt;
         private string _prefix;
@@ -387,6 +390,7 @@ namespace MmorpgClient.App
             if (_finished || ev == null) return;
             _battleId = ev.BattleId != 0 ? ev.BattleId : ev.State?.BattleId ?? 0;
             _turns = 0;
+            _directTurns = 0;
             _lastRound = ev.State?.RoundIndex ?? 0;
             _stage = Stage.Battle;
             _deadline = Time.realtimeSinceStartup + _opt.BattleTimeout;
@@ -402,8 +406,10 @@ namespace MmorpgClient.App
             if (_battleId != 0 && ev.BattleId != 0 && ev.BattleId != _battleId) return;
             _turns++;
             _lastRound = ev.RoundIndex;
+            bool direct = _client?.BattleLink != null && _client.BattleLink.IsVerified;
+            if (direct) _directTurns++;
             MarkShot($"turn{_turns}");
-            Log($"Turn battle_id={_battleId} round={ev.RoundIndex} events={ev.Events.Count} turns={_turns}");
+            Log($"Turn battle_id={_battleId} round={ev.RoundIndex} events={ev.Events.Count} turns={_turns} direct={(direct ? 1 : 0)}");
         }
 
         private void HandleBattleEnd(BattleEndS2C ev)
@@ -417,7 +423,8 @@ namespace MmorpgClient.App
                 return;
             }
             MarkShot("end");
-            Log($"BattleEnd battle_id={_battleId} outcome={ev.Outcome} turns={_turns} last_round={_lastRound}");
+            // direct_turns:从直连收到的回合结果数(对齐服务端 robot 的 a_direct_turns 断言口径)
+            Log($"BattleEnd battle_id={_battleId} outcome={ev.Outcome} turns={_turns} last_round={_lastRound} direct_turns={_directTurns}");
             // 对齐 robot 的 turn-count 断言:开局即终局(一回合没打)不算打完。
             // 已知会命中的既有缺陷:上一局阵亡玩家带 0 血再入队,引擎开局即判负。
             if (_turns < 1)

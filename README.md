@@ -50,6 +50,16 @@ Bootstrap.unity
 * **Token verify** is the first protobuf frame after TCP connect:
   `ClientTokenVerifyRequest{ payload, signature }` from the gateway's
   `assign-gate` response. Server replies `ClientTokenVerifyResponse{ success }`.
+* **战斗直连(第二条连接)**:回合制战斗的流量不经 gate。开局 / 观战接入时
+  battle 节点经大厅推 `NotifyBattleAssigned{ host, port, token_payload,
+  token_signature, expire_at_ms, role }`,`BattleDirectLink` 据此连 battle 节点
+  客户端面,首包 `BattleTokenVerifyRequest{ payload, signature }`(两字段原样透传),
+  握手通过后 `SubmitBattleAction / GetBattleState / StopWatchBattle / SetAutoBattle`
+  与本人的战斗 S2C 走这条连接,其余消息仍走大厅(`DirectRoutingBattleTransport`
+  按消息号分流)。直连建不起来或中途断开时自动回落 gate 中继;意外断开先用同票
+  重连 1 次,再经大厅 `MatchService.RequestBattleTicket` 补签 1 次。线协议与大厅
+  连接完全一致,复用 `GateTcpClient` / `MuduoCodec`。契约与服务端实现见父仓
+  `docs/design/turn-based-battle-server.md` §18。
 
 ## Production checklist
 
@@ -62,6 +72,7 @@ still need to address:
 | Scene rendering     | playable Tianyong map; actor models remain placeholders |
 | Skill FX            | placeholder ring/beam/flash in `SkillFx`            |
 | Reconnect           | exponential backoff in `GameDemo`                   |
+| Battle direct link  | wired (`BattleDirectLink`, ticket handshake, fallback to gate); needs a live-stack smoke against the parent repo's battle node |
 | Refresh token       | wired (`MessageIds.RefreshToken=127`)               |
 | Logging             | leveled file sink under `persistentDataPath/logs/`  |
 | Settings            | PlayerPrefs (`ClientSettings`) for gateway/account  |

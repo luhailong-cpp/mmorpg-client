@@ -101,6 +101,15 @@ namespace MmorpgClient.Game
         /// </summary>
         public AttributeClient Attributes { get; }
 
+        /// <summary>
+        /// 战斗直连链路(turn-based-battle-server.md §18):客户端第二条 TCP 连接,直连 battle
+        /// 节点、票据入场。落点分配经大厅 NotifyBattleAssigned 到达后由它建连;Battle / Spectate
+        /// 的四条战斗 RPC 在它验证通过后经 <see cref="DirectRoutingBattleTransport"/> 分流过去,
+        /// 未建立 / 已断开时自动回落 gate 中继。大厅断线即关闭(重连后由 NotifyBattleReconnect
+        /// 触发补签重建)。
+        /// </summary>
+        public BattleDirectLink BattleLink { get; }
+
         /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
         public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
 
@@ -154,15 +163,28 @@ namespace MmorpgClient.Game
             _codec.Register<MessageContent>();
             _codec.Register<ClientTokenVerifyRequest>();
             _codec.Register<ClientTokenVerifyResponse>();
+            // 战斗直连握手包(§18.2);两条连接共用同一个 codec 实例
+            _codec.Register<BattleTokenVerifyRequest>();
+            _codec.Register<BattleTokenVerifyResponse>();
 
             World = new ActorWorld();
+
+            // 战斗直连链路要先于 WireSceneNotifyHandlers 建好:NotifyBattleAssigned 的处理器指向它
+            BattleLink = new BattleDirectLink(() => new GateTcpClient(_codec), s => Log($"[battle-direct] {s}"));
+            BattleLink.TicketReissuer = RequestBattleTicket;
+            BattleLink.OnVerified += id =>
+                Log($"[battle-direct] verified battle_id={id} role={BattleLink.Role} endpoint={BattleLink.Assignment?.Host}:{BattleLink.Assignment?.Port}");
+            BattleLink.OnClosed += reason => Log($"[battle-direct] closed reason={reason}");
+
             WireSceneNotifyHandlers();
 
             // 回合制战斗:BattleClient 的 battle/match OnNotify 注册在其构造时
             // 经传输接口完成;单例挂接方式与 GameClient 一致(实例由宿主持有,
             // 静态 Instance 供 UI 层解析)。
-            Battle = BattleClient.Attach(new GameClientBattleTransport(this));
-            Spectate = SpectateClient.Attach(new GameClientBattleTransport(this));
+            // Battle / Spectate 经 DirectRoutingBattleTransport 分流:四条战斗 RPC 与本人的
+            // 战斗 S2C 在直连验证后走 BattleLink,其余照旧走本管线(gate 中继)。
+            Battle = BattleClient.Attach(new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink));
+            Spectate = SpectateClient.Attach(new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink));
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
         }
 
@@ -172,8 +194,31 @@ namespace MmorpgClient.Game
         {
             _gate?.Poll();
             MaybeRefreshToken();
+            BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动
             Spectate?.Tick(Time.realtimeSinceStartup); // 观战首帧超时由主循环驱动
+        }
+
+        /// <summary>
+        /// 战斗票据补签(§18 D25):客户端丢票 / 大厅重连后,经大厅会话调 MatchService.RequestBattleTicket,
+        /// match 定位房间所在 battle 节点由其自签。BattleLink 的 TicketReissuer 挂点。
+        /// 返回 false = 此刻发不出(大厅未就绪 / 无协程宿主)。
+        /// </summary>
+        private bool RequestBattleTicket(ulong battleId, Action<BattleAssignedS2C> onAssigned, Action<string> onError)
+        {
+            var runner = CoroutineRunner;
+            if (runner == null || !IsGateReady) return false;
+            runner(Call(MessageIds.RequestBattleTicket,
+                new RequestBattleTicketRequest { BattleId = battleId },
+                RequestBattleTicketResponse.Parser,
+                r =>
+                {
+                    if (r.ErrorMessage != null && r.ErrorMessage.Id != 0) { onError($"tip={r.ErrorMessage.Id}"); return; }
+                    if (r.Assignment == null || r.Assignment.BattleId == 0) { onError("empty assignment"); return; }
+                    onAssigned(r.Assignment);
+                },
+                onError));
+            return true;
         }
 
         public void OnNotify(uint messageId, Action<MessageContent> handler)
@@ -519,6 +564,14 @@ namespace MmorpgClient.Game
             int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
             _redirecting = true;
             _redirectPlayerId = PlayerId; // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色
+            // 战斗直连要在重定向后自愈,而 ResetConnectionState 会 Close 链路并清掉 battle_id,
+            // 先捕获。**不能只指望服务端推 NotifyBattleReconnect**:那条推送只在
+            // enter_gs_type==LOGIN_RECONNECT(旧会话已 StateDisconnecting)或实体被重建走
+            // RestoreBattleFreezeOnLogin 时发出;gate 迁移时旧会话通常仍是 StateOnline →
+            // login 判 ReplaceLogin → 两条分支都不触发(scene 侧 player_battle.cpp
+            // OnPlayerEnterScene 的两步守卫)。那种情况下服务端连 BindBattleEvent 也不会重发,
+            // 新 gate 上没有战斗绑定,gate 中继同样断 —— 主动补签直连是唯一能自愈的一侧。
+            ulong battleIdBeforeRedirect = BattleLink?.BattleId ?? 0;
             Status("正在切换服务器…");
             Log($"[gate] redirect to {ev.TargetIp}:{ev.TargetPort}");
             try
@@ -528,7 +581,17 @@ namespace MmorpgClient.Game
                     ev.TargetIp, (int)ev.TargetPort,
                     ev.TokenPayload.ToByteArray(), ev.TokenSignature.ToByteArray(),
                     null,
-                    () => Log("[gate] redirect complete"),
+                    () =>
+                    {
+                        Log("[gate] redirect complete");
+                        if (battleIdBeforeRedirect != 0)
+                        {
+                            // 与服务端可能推来的 NotifyBattleReconnect 幂等(链路内部按
+                            // battle_id + 在途补签去重),两者谁先到都只补签一次
+                            Log($"[battle-direct] redirect 后重建直连 battle_id={battleIdBeforeRedirect}");
+                            BattleLink?.HandleReconnectHint(battleIdBeforeRedirect);
+                        }
+                    },
                     e =>
                     {
                         Log($"[gate] redirect failed: {e}");
@@ -870,6 +933,12 @@ namespace MmorpgClient.Game
                 CoroutineRunner(RedirectFlow(ev));
             });
 
+            // 战斗落点分配(§18 D26):开局 / 观战接入时 battle 节点经大厅推来
+            // host:port + 票据,直连链路据此建第二条连接。同 message_id 只能有一个处理器,
+            // 这里是唯一注册点,Battle / Spectate 都不要再抢注。
+            OnNotify(MessageIds.NotifyBattleAssigned, mc =>
+                BattleLink.HandleAssigned(BattleAssignedS2C.Parser.ParseFrom(mc.SerializedMessage)));
+
             // Fire-and-forget TCP token refresh replies come back with id==0
             // and no pending entry (SendOneWay) — capture the rotated pair here.
             OnNotify(MessageIds.RefreshToken, mc =>
@@ -1098,6 +1167,9 @@ namespace MmorpgClient.Game
                 _pending.Clear();
                 _pendingIdsByMsg.Clear();
                 gate?.Dispose();
+                // 大厅会话没了,战斗直连的票据与路由也随之作废(§18.2:两连接互不拆台,但
+                // 直连的身份来自大厅会话;重连后 scene 推 NotifyBattleReconnect 再补签重建)
+                if (hadSessionState) BattleLink?.Close("lobby_disconnected");
                 World.Clear();
             }
             finally

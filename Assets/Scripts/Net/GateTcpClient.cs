@@ -13,8 +13,12 @@ namespace MmorpgClient.Net
     /// All protobuf messages are queued and flushed by a writer thread; the
     /// reader thread parses inbound frames into the inbox queue, which the
     /// Unity main thread drains via <see cref="Poll"/> each frame.
+    ///
+    /// 也是战斗直连(battle 节点客户端面,turn-based-battle-server.md §18)的连接实现:
+    /// 两条连接线协议完全一致,只是握手首包不同(ClientTokenVerifyRequest vs
+    /// BattleTokenVerifyRequest),由各自的持有者(GameClient / BattleDirectLink)发。
     /// </summary>
-    public sealed class GateTcpClient : IDisposable
+    public sealed class GateTcpClient : IFramedConnection
     {
         private readonly MuduoCodec _codec;
         private TcpClient _tcp;
