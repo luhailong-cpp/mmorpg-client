@@ -32,10 +32,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static readonly Rect LogButtonRect = new Rect(356f, 28f, 170f, 54f);
         public static readonly Rect TimerRect = new Rect(2080f, 24f, 90f, 90f);
         public static readonly Rect StopWatchRect = new Rect(2300f, 980f, 220f, 64f);
-        /// <summary>目标提示/确认/取消条:贴在 BattleStage.HudBottomBand 之下,不压我方后排。</summary>
-        public static readonly Rect TargetHintRect = new Rect(724f, BattleStage.HudBottomBand + 4f, 560f, 56f);
-        public static readonly Rect ConfirmRect = new Rect(1310f, BattleStage.HudBottomBand, 240f, 64f);
-        public static readonly Rect CancelRect = new Rect(1570f, BattleStage.HudBottomBand, 240f, 64f);
+        /// <summary>
+        /// 目标提示/确认/取消条:贴在 BattleStage.HudBottomBand(992,按视频我方玩家排 slot0 脚底 948.6 + 名字 40 定)之下,
+        /// 不压我方后排;高 56 → 底边 1048,再往下 1048..1080 是底部提示文字(HintRect)。
+        /// </summary>
+        public static readonly Rect TargetHintRect = new Rect(724f, BattleStage.HudBottomBand + 4f, 560f, 48f);
+        public static readonly Rect ConfirmRect = new Rect(1310f, BattleStage.HudBottomBand, 240f, 56f);
+        public static readonly Rect CancelRect = new Rect(1570f, BattleStage.HudBottomBand, 240f, 56f);
+        /// <summary>底部提示文字(确认/取消条底边 1048 之下,贴屏底)。</summary>
+        public static readonly Rect HintRect = new Rect(680f, 1048f, 1200f, 32f);
 
         private readonly BattleUiRoot _owner;
         private readonly RectTransform _root;
@@ -211,7 +216,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 "选定", 22f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             itemUse.Button.onClick.AddListener(OnItemPicked);
 
-            _hintText = QdaoUguiFactory.CreateText("Hint", _hudRoot, 680f, 1000f, 1200f, 40f,
+            _hintText = QdaoUguiFactory.CreateText("Hint", _hudRoot, HintRect.x, HintRect.y, HintRect.width, HintRect.height,
                 string.Empty, 22f, QdaoUguiTheme.StatusCream, TextAlignmentOptions.Center);
 
             // ── 观战头部(仅 spectate 模式可见;左列第三行) ──
@@ -397,6 +402,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _views.Clear();
             _viewById.Clear();
 
+            // 槽位分配:宝宝(BattleStage.PetOwnerResolver 判定,主人在场)不占槽,条目沿用主人的 (teamIsMine, slot),
+            // 摆到主人的宝宝位(PetSlotPosition,视频里主人左上方贴着站)并按 PetSlotScale 缩小
             var placement = BattleStage.AssignAll(state.Actors, _myTeam);
             foreach (var actor in state.Actors)
             {
@@ -408,19 +415,23 @@ namespace MmorpgClient.UI.Ugui.Battle
                     mine = p.teamIsMine;
                     slot = p.slot;
                 }
+                bool pet = BattleStage.IsPetPlacement(actor, placement);
                 var view = new BattleUnitView(_owner, _stageRoot, actor.ActorId, actor.ActorId == _myId && _myId != 0, mine, slot, OnUnitClicked, _plateLayer)
                 {
                     Fx = _presenter.Fx,
                     Numbers = _presenter.Numbers,
                     Ghosts = _presenter.Ghosts,
                 };
-                view.SetPlacement(BattleStage.SlotPosition(mine, slot), BattleStage.SlotScale(mine, slot), slot);
+                if (pet)
+                    view.SetPlacement(BattleStage.PetSlotPosition(mine, slot), BattleStage.PetSlotScale(mine, slot), slot);
+                else
+                    view.SetPlacement(BattleStage.SlotPosition(mine, slot), BattleStage.SlotScale(mine, slot), slot);
                 view.Apply(actor);
                 _views.Add(view);
                 _viewById[actor.ActorId] = view;
             }
 
-            // 绘制顺序:脚底 y 升序(下方的后画,盖住上方的)
+            // 绘制顺序:脚底 y 升序(下方的后画,盖住上方的);宝宝脚底在主人左上方,自然被主人盖住(与视频一致)
             _views.Sort((a, b) => BattleStage.CompareDepth(a.FootPosition, b.FootPosition));
             for (int i = 0; i < _views.Count; i++) _views[i].SetSiblingIndex(i);
         }
