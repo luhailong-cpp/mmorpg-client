@@ -957,16 +957,31 @@ namespace MmorpgClient.Game
             OnNotify(MessageIds.NotifyMoveAck, mc =>
             {
                 var ev = MoveAckS2C.Parser.ParseFrom(mc.SerializedMessage);
+                MoveAckCount++;
                 // For now we just trust the server; a full client-prediction
                 // pipeline would rewind/replay any pending input > ev.InputSeq.
-                if (World.LocalEntity != 0)
+                if (World.LocalEntity == 0) return;
+                var pos = WorldCoordinateConverter.FromServerLocation(ev.ServerLocation);
+                var local = GetActorPos(World.LocalEntity);
+                var dist = UnityEngine.Vector3.Distance(pos, local);
+                // Every ack is a server-side correction (the server only sends
+                // one when its verdict differs from the report), so log the
+                // coordinates: diagnosing "pulled back to where?" needs them.
+                Log($"[move] ack input_seq={ev.InputSeq} server={FormatServer(ev.ServerLocation)} " +
+                    $"unity={FormatUnity(pos)} local={FormatUnity(local)} dist={FormatF2(dist)} moving={_isMoving}");
+                // While moving, small disagreements stay inside the prediction
+                // dead-band (the next report re-converges). While stationary
+                // there is nothing to predict, so any server verdict is final:
+                // a MoveStop that the server clamped at a wall must land the
+                // actor on the server's point, not leave it 0.3-1.5 m inside.
+                var settle = !_isMoving && dist > 0.05f;
+                if (dist > 1.5f || settle)
                 {
-                    var pos = WorldCoordinateConverter.FromServerLocation(ev.ServerLocation);
-                    if (UnityEngine.Vector3.Distance(pos, GetActorPos(World.LocalEntity)) > 1.5f)
-                    {
-                        World.Teleport(World.LocalEntity, pos, GetActorEuler(World.LocalEntity));
-                        Log($"[move] reconcile snap input_seq={ev.InputSeq}");
-                    }
+                    World.Teleport(World.LocalEntity, pos, GetActorEuler(World.LocalEntity));
+                    MoveReconcileCount++;
+                    Log($"[move] reconcile {(dist > 1.5f ? "snap" : "settle")} input_seq={ev.InputSeq} to={FormatUnity(pos)} " +
+                        $"after={FormatUnity(GetActorPos(World.LocalEntity))}");
+                    OnMoveReconcile?.Invoke(ev.InputSeq, pos);
                 }
             });
 
@@ -1014,9 +1029,36 @@ namespace MmorpgClient.Game
             // owning client's actor.
             if (kind == ActorKind.Player && ev.Guid == PlayerId && PlayerId != 0)
             {
+                // The authoritative enter position: the server validates it
+                // against the scene navmesh and respawns illegal saves before
+                // sending this, so it should already be walkable client-side.
+                Log($"[actor] self entity={ev.Entity} server={FormatServer(loc)} unity={FormatUnity(pos)}");
                 World.SetLocalPlayer(ev.Entity);
             }
         }
+
+        // ── Movement diagnostics ─────────────────────────────────
+        // Counters/events for automated acceptance (DevAutoPilot -moveTest):
+        // an ack means the server disagreed with a report; a reconcile means
+        // the disagreement was large enough (>1.5m) to snap the local actor.
+
+        public int MoveAckCount { get; private set; }
+        public int MoveReconcileCount { get; private set; }
+        public event Action<uint, UnityEngine.Vector3> OnMoveReconcile;
+
+        // Machine-parsed by tools/run_move_test.ps1: always '.' decimals, whatever the OS locale.
+        private static readonly System.Globalization.CultureInfo Inv = System.Globalization.CultureInfo.InvariantCulture;
+
+        private static string FormatF2(double d) => d.ToString("F2", Inv);
+
+        private static string FormatUnity(UnityEngine.Vector3 v)
+            => string.Format(Inv, "({0:F2},{1:F2},{2:F2})", v.x, v.y, v.z);
+
+        private static string FormatServer(global::Location l)
+            => l == null ? "(null)" : string.Format(Inv, "({0:F2},{1:F2},{2:F2})", l.X, l.Y, l.Z);
+
+        private static string FormatServer(global::Vector3 v)
+            => v == null ? "(null)" : string.Format(Inv, "({0:F2},{1:F2},{2:F2})", v.X, v.Y, v.Z);
 
         private void ApplyServerMove(ActorMoveS2C ev)
         {

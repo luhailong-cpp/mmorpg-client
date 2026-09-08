@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 using UnityEngine;
 using MmorpgClient.Game.Battle.Presentation;
 using Image = UnityEngine.UI.Image;
@@ -134,7 +134,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>只清演出残留(特效/数字/残影/一次性覆盖层/震屏),不动单位状态。</summary>
         public void ClearTransient()
         {
-            GTween.Kill(_token);
+            RealtimeTween.Kill(_token);
             Fx.Clear();
             Numbers.Clear();
             Ghosts.Clear();
@@ -142,7 +142,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach (var go in _transient)
             {
                 if (go == null) continue;
-                GTween.Kill(go);
+                RealtimeTween.Kill(go);
                 UnityEngine.Object.Destroy(go);
             }
             _transient.Clear();
@@ -171,15 +171,15 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var rect = image.rectTransform;
                 var go = image.gameObject;
                 _transient.Add(go);
-                GTween.To(w, -w * 1.2f, 1.3f).SetEase(EaseType.QuadInOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                    .OnUpdate((GTweenCallback1)(t =>
+                RealtimeTween.To(w, -w * 1.2f, 1.3f).SetEase(RealtimeEase.QuadInOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                    .OnUpdate((RealtimeTweenCallback1)(t =>
                     {
-                        if (go == null) { GTween.Kill(go); return; }
-                        rect.anchoredPosition = new Vector2(t.value.x, 0f);
-                        float p = 1f - Mathf.Abs(t.value.x + w * 0.1f) / (w * 1.1f);
+                        if (go == null) { RealtimeTween.Kill(go); return; }
+                        rect.anchoredPosition = new Vector2(t.Value.x, 0f);
+                        float p = 1f - Mathf.Abs(t.Value.x + w * 0.1f) / (w * 1.1f);
                         image.color = new Color(1f, 1f, 1f, Mathf.Clamp01(p * 1.6f));
                     }))
-                    .OnComplete((GTweenCallback)(() => DestroyTransient(go)));
+                    .OnComplete((RealtimeTweenCallback)(() => DestroyTransient(go)));
             }
 
             if (views == null) return;
@@ -201,22 +201,22 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var go = image.gameObject;
                 _transient.Add(go);
                 float delay = 0.25f + 0.05f * index++;
-                GTween.To(0f, 1f, 0.45f).SetDelay(delay).SetEase(EaseType.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                    .OnUpdate((GTweenCallback1)(t =>
+                RealtimeTween.To(0f, 1f, 0.45f).SetDelay(delay).SetEase(RealtimeEase.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                    .OnUpdate((RealtimeTweenCallback1)(t =>
                     {
-                        if (go == null) { GTween.Kill(go); return; }
-                        rect.localScale = new Vector3(t.value.x, t.value.x, 1f);
+                        if (go == null) { RealtimeTween.Kill(go); return; }
+                        rect.localScale = new Vector3(t.Value.x, t.Value.x, 1f);
                     }))
-                    .OnComplete((GTweenCallback)(() =>
+                    .OnComplete((RealtimeTweenCallback)(() =>
                     {
                         if (go == null) return;
-                        GTween.To(1f, 0f, 0.5f).SetDelay(0.35f).SetEase(EaseType.QuadIn).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                            .OnUpdate((GTweenCallback1)(t2 =>
+                        RealtimeTween.To(1f, 0f, 0.5f).SetDelay(0.35f).SetEase(RealtimeEase.QuadIn).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                            .OnUpdate((RealtimeTweenCallback1)(t2 =>
                             {
-                                if (go == null) { GTween.Kill(go); return; }
-                                image.color = new Color(1f, 1f, 1f, t2.value.x);
+                                if (go == null) { RealtimeTween.Kill(go); return; }
+                                image.color = new Color(1f, 1f, 1f, t2.Value.x);
                             }))
-                            .OnComplete((GTweenCallback)(() => DestroyTransient(go)));
+                            .OnComplete((RealtimeTweenCallback)(() => DestroyTransient(go)));
                     }));
             }
         }
@@ -533,8 +533,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void Delay(float seconds, Action action)
         {
             if (action == null) return;
-            GTween.DelayedCall(BattleTempo.Scale(seconds)).SetIgnoreEngineTimeScale(true).SetTarget(_token)
-                .OnComplete((GTweenCallback)(() =>
+            RealtimeTween.DelayedCall(BattleTempo.Scale(seconds)).SetIgnoreEngineTimeScale(true).SetTarget(_token)
+                .OnComplete((RealtimeTweenCallback)(() =>
                 {
                     try { action(); }
                     catch (Exception e) { Debug.LogException(e); }

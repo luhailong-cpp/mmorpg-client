@@ -9,8 +9,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 {
     /// <summary>
     /// 回合战斗 UI 总根(UGUI 悬浮层):
-    ///   - 自建独立 Canvas(sortingOrder 高于 QdaoUgui 主画布),两种 UI 模式
-    ///     (uGUI / FairyGUI 兼容模式)下都可用;
+    ///   - 自建独立 Canvas(sortingOrder 高于 QdaoUgui 主画布);
     ///   - 持有排队面板、挑战弹窗、全屏战斗屏、结算屏、提示 toast;
     ///   - 只调用/订阅 BattleClient API 契约(Game/Battle/BattleClient.cs,NET 路实现),
     ///     实例解析集中在 <see cref="ResolveBattleClient"/> 一处;
@@ -23,9 +22,6 @@ namespace MmorpgClient.UI.Ugui.Battle
     public sealed class BattleUiRoot : MonoBehaviour
     {
         public static BattleUiRoot Instance { get; private set; }
-
-        // FairyGUI 兼容模式下,仅场景屏(SceneV3Screen)激活时显示战斗入口
-        private static bool s_sceneScreenActive;
 
         private AppBootstrap _app;
         private BattleClient _client;
@@ -92,20 +88,6 @@ namespace MmorpgClient.UI.Ugui.Battle
             go.AddComponent<BattleUiRoot>();
         }
 
-        /// <summary>FairyGUI 场景屏进入(SceneV3Screen.OnEnter)。</summary>
-        public static void NotifySceneScreenEntered()
-        {
-            EnsureSpawned();
-            s_sceneScreenActive = true;
-        }
-
-        /// <summary>FairyGUI 场景屏退出(SceneV3Screen.OnExit):收起悬浮面板。</summary>
-        public static void NotifySceneScreenExited()
-        {
-            s_sceneScreenActive = false;
-            Instance?.HideTransientPanels();
-        }
-
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -114,7 +96,6 @@ namespace MmorpgClient.UI.Ugui.Battle
                 return;
             }
             Instance = this;
-            ScreenRouter.ScreenChanged += HandleScreenChanged;
         }
 
         private void Update()
@@ -138,7 +119,6 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnDestroy()
         {
-            ScreenRouter.ScreenChanged -= HandleScreenChanged;
             UnbindClient();
             UnbindSpectate();
             if (_boundGameClient != null)
@@ -360,7 +340,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void EnsureEventSystem()
         {
-            // FairyGUI 兼容模式下场上可能没有 EventSystem(照 QdaoUguiRuntime 模式补建)
+            // 场上可能没有 EventSystem 时按 QdaoUguiRuntime 的约定补建。
             if (FindAnyObjectByType<EventSystem>() != null) return;
             var go = new GameObject("[EventSystem]", typeof(EventSystem), typeof(StandaloneInputModule));
             go.transform.SetParent(transform, false);
@@ -671,13 +651,6 @@ namespace MmorpgClient.UI.Ugui.Battle
             RefreshModalDim();
         }
 
-        private void HandleScreenChanged(IScreen screen)
-        {
-            // FairyGUI 兼容模式:只有场景屏亮着才显示战斗入口;切屏时收起悬浮面板
-            s_sceneScreenActive = screen is Screens.SceneV3Screen;
-            if (!s_sceneScreenActive) HideTransientPanels();
-        }
-
         // ── 战斗屏开关 ──────────────────────────────────────
 
         private void EnsureBattleOpen()
@@ -759,8 +732,6 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame;
             bool spectating = _spectateBound && _spectate.Phase != SpectatePhase.None;
             bool visible = _clientBound && inGame && !_battleOpen && !_spectateOpen && !spectating;
-            // FairyGUI 兼容模式(Router 存在)下,仅场景屏亮着时显示
-            if (_app != null && _app.Router != null) visible = visible && s_sceneScreenActive;
             _entryButton.SetVisible(visible);
             // 观战入口在「战斗」条件之上再要求不在排队/战斗任何相位
             // (D11 服务端互斥,入口先行隐藏避免必败请求)

@@ -127,11 +127,22 @@ namespace MmorpgClient.World.Tianyong
         private void AttachLocalController(ActorView view)
         {
             var controller = view.Go.GetComponent<TianyongPlayerController>();
-            var feetPosition = controller != null && controller.Motor != null
+            var serverFeet = controller != null && controller.Motor != null
                 ? controller.FeetPosition
                 : view.Go.transform.position;
+            var feetPosition = serverFeet;
+            // The server now validates the enter position against the same
+            // walk mask and respawns illegal saves, so this branch is a safety
+            // net (scene without navdata, stale server data). When it fires the
+            // relocation must be reported back, otherwise the server keeps the
+            // illegal point and the first movement is judged from it.
+            var relocated = false;
             if (!_map.Navigation.IsWalkable(feetPosition))
-                feetPosition = TianyongMapDefinition.DefaultSpawn;
+            {
+                if (!_map.Navigation.TryFindNearestWalkable(feetPosition, out feetPosition))
+                    feetPosition = TianyongMapDefinition.DefaultSpawn;
+                relocated = true;
+            }
 
             view.HasTarget = false;
             view.Velocity = Vector3.zero;
@@ -140,6 +151,12 @@ namespace MmorpgClient.World.Tianyong
             controller.enabled = true;
             controller.Initialize(_client, _map.Navigation, worldCamera, config);
             controller.WarpTo(feetPosition);
+            if (relocated)
+            {
+                Debug.LogWarning(
+                    $"[TianyongMapRuntime] server spawn {serverFeet} is not walkable; relocated local actor to {controller.FeetPosition} and reported it");
+                controller.ReportPositionToServer();
+            }
             _cameraController?.SetTarget(view.Go.transform);
             _map.UpdateVisibleChunks(feetPosition, VisibleChunkRadius);
         }

@@ -216,10 +216,13 @@ namespace MmorpgClient.World
             if (localMovement != null)
             {
                 // Protocol positions are feet coordinates; the Tianyong actor
-                // transform is the capsule centre. WarpTo preserves that pivot
-                // distinction and safely toggles its CharacterController.
+                // transform is the capsule centre. WarpFromServer preserves that
+                // pivot distinction, safely toggles its CharacterController and
+                // recovers to the nearest walkable cell (reporting it back) if
+                // the authoritative point is off the client walk mask, so a
+                // correction can never strand the local actor.
                 var worldFeet = _root != null ? _root.TransformPoint(pos) : pos;
-                localMovement.WarpTo(worldFeet);
+                localMovement.WarpFromServer(worldFeet);
                 v.Go.transform.localEulerAngles = euler;
             }
             else

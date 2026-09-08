@@ -6,7 +6,7 @@ the artwork for navigation, networking and collision compatibility, while the
 login and turn-based battle canvases continue to render above it. The offline
 sandbox still exposes the procedural geometry for movement validation.
 
-It is built for **Unity 6000.5.8f1** and does not depend on FairyGUI.
+It is built for **Unity 6000.5.8f1** and uses Unity's native uGUI stack.
 
 - Scene config: `1` (`0` is accepted only as the current first-enter fallback)
 - World size: `400 x 300` Unity units
@@ -113,7 +113,18 @@ and high-quality compression.
 
 The authored client map uses positive Unity `X/Z` coordinates in the ranges
 `0..400` and `0..300`. The current server's first-enter message omits
-`scene_conf_id` and creates a new actor at `(0,0,0)`, so the client temporarily
-falls back to config `1` and moves an invalid local spawn to the city center.
-Before authoritative multiplayer movement is enabled, the server navmesh,
-spawn and movement validation must use the same coordinate system and scale.
+`scene_conf_id`, so the client falls back to config `1` for that value.
+
+Since 2026-09-05 the server owns the spawn: on scene entry it validates the
+saved Transform against a navmesh baked from this project's
+`TianyongPaintedCity.WalkMaskBase64` (`xuanming-server-mmo/tools/navmesh_baker
+--painted-city`) and relocates illegal saves (including the `(0,0,0)` proto
+default of a new character) to server `(180, 200, 0)`, which is Unity
+`(200, 0, 180)` under `WorldCoordinateConverter` (`server.x = unity.z`,
+`server.y = unity.x`, `server.z = unity.y`). The client no longer needs to
+relocate silently; `TianyongMapRuntime` keeps a nearest-walkable fallback for
+scenes without server navdata and reports it back with a `MoveStop`, and a
+`MoveAck` snap that lands off the mask recovers the same way
+(`TianyongPlayerController.WarpFromServer`). Movement acceptance runs through
+`DevAutoPilot -moveTest` / `tools/run_move_test.ps1`; see
+`xuanming-server-mmo/docs/design/nav-spawn-fix-2026-09-05.md`.

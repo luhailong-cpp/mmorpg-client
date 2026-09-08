@@ -90,7 +90,6 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var config = AssetDatabase.LoadAssetAtPath<TianyongMapConfig>(ConfigPath);
             Assert.That(config, Is.Not.Null);
             var bootstrapSerialized = new SerializedObject(bootstrap);
-            Assert.That(bootstrapSerialized.FindProperty("useUgui").boolValue, Is.True);
             Assert.That(bootstrapSerialized.FindProperty("worldCamera").objectReferenceValue,
                 Is.EqualTo(camera));
             Assert.That(bootstrapSerialized.FindProperty("directionalSun").objectReferenceValue,

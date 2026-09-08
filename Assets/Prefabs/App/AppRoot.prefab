@@ -305,7 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd4fee79f618464e980a74d81698965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MmorpgClient::MmorpgClient.UI.AppBootstrap
-  useUgui: 1
   worldCamera: {fileID: 5530806398236212388}
   directionalSun: {fileID: 4556184750194653185}
   mapConfig: {fileID: 11400000, guid: 6aef98b5e7df8384ca8489d3c1247c6f, type: 2}

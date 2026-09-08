@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using MmorpgClient.Game.Battle.Presentation;
-// FairyGUI 也有 Image 类型(只借用其 GTween),UI 图一律指 UGUI 的 Image
+// UI 图统一显式使用 UnityEngine.UI.Image。
 using Image = UnityEngine.UI.Image;
 
 namespace MmorpgClient.UI.Ugui.Battle
@@ -28,7 +28,7 @@ namespace MmorpgClient.UI.Ugui.Battle
     ///    <see cref="BattlePlateFollower"/> 每帧 LateUpdate 跟随单位根(位移/缩放/透明),
     ///    条的高度按立绘**实际可见顶点**(BattleArtCatalog.MeasureVisibleTop)贴着头顶 8px,而不是固定偏移;
     ///  - 动作 API:PlayIdle / PlayAttackLunge / PlayCast / PlayHit / PlayDeath / PlayWin / PlayDodge,
-    ///    全部程序化(位移/缩放/闪白/残影,GTween realtime);若 Battle/Characters/&lt;id&gt;/&lt;action&gt;_E_strip 存在则切帧播放;
+    ///    全部程序化(位移/缩放/闪白/残影,RealtimeTween realtime);若 Battle/Characters/&lt;id&gt;/&lt;action&gt;_E_strip 存在则切帧播放;
     ///  - 伤害数字(digits 字集,缺则 TMP 飘字)与特效帧条(SpawnFx)挂在舞台层,不随本单位位移;
     ///  - 根节点 pivot 在脚底:SetPlacement(foot, scale) 直接用 BattleStage 的槽位坐标与缩放。
     /// 与 BattleUnitSlot 的旧接口(Apply / SetHealthDuringPlayback / ShowDeadMark / SetHighlight /
@@ -356,7 +356,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 死亡:尸体不保留(spec §1),立绘与名牌一并隐藏;逃离:半透明留位
             _group.alpha = dead ? 0f : fled ? 0.4f : 1f;
             SetHighlight(SlotHighlight.None);
-            if (!dead && !fled && !GTween.IsTweening(_idleToken)) PlayIdle();
+            if (!dead && !fled && !RealtimeTween.IsTweening(_idleToken)) PlayIdle();
         }
 
         /// <summary>回合播放期间按 target_health_after 刷 HP(带缓动与掉血虚影)。</summary>
@@ -365,18 +365,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             ulong prev = _health;
             _health = current;
             float ratio = Ratio(current, _maxHealth);
-            GTween.Kill(_hpFillRect);
-            GTween.Kill(_hpGhostRect);
+            RealtimeTween.Kill(_hpFillRect);
+            RealtimeTween.Kill(_hpGhostRect);
             float fromW = _hpFillRect != null ? _hpFillRect.sizeDelta.x : 0f;
             float toW = (BarWidth - 2f) * ratio;
-            Tween(fromW, toW, 0.15f, EaseType.QuadOut, t => SetWidth(_hpFillRect, t.value.x)).SetTarget(_hpFillRect);
+            Tween(fromW, toW, 0.15f, RealtimeEase.QuadOut, t => SetWidth(_hpFillRect, t.Value.x)).SetTarget(_hpFillRect);
             if (current < prev)
             {
                 // 虚影停留 0.3s 再缩,形成"刚掉的血"残留(按倍率缩放)
                 float ghostFrom = _hpGhostRect != null ? _hpGhostRect.sizeDelta.x : fromW;
-                GTween.To(Mathf.Max(ghostFrom, fromW), toW, BattleTempo.Scale(0.4f)).SetDelay(BattleTempo.Scale(0.3f)).SetEase(EaseType.QuadOut)
+                RealtimeTween.To(Mathf.Max(ghostFrom, fromW), toW, BattleTempo.Scale(0.4f)).SetDelay(BattleTempo.Scale(0.3f)).SetEase(RealtimeEase.QuadOut)
                     .SetIgnoreEngineTimeScale(true).SetTarget(_hpGhostRect)
-                    .OnUpdate((GTweenCallback1)(t => SetWidth(_hpGhostRect, t.value.x)));
+                    .OnUpdate((RealtimeTweenCallback1)(t => SetWidth(_hpGhostRect, t.Value.x)));
             }
             else
             {
@@ -390,9 +390,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             _mana = current;
             float toW = (BarWidth - 2f) * Ratio(current, _maxMana);
-            GTween.Kill(_mpFillRect);
+            RealtimeTween.Kill(_mpFillRect);
             float fromW = _mpFillRect != null ? _mpFillRect.sizeDelta.x : 0f;
-            Tween(fromW, toW, 0.2f, EaseType.QuadOut, t => SetWidth(_mpFillRect, t.value.x)).SetTarget(_mpFillRect);
+            Tween(fromW, toW, 0.2f, RealtimeEase.QuadOut, t => SetWidth(_mpFillRect, t.Value.x)).SetTarget(_mpFillRect);
         }
 
         /// <summary>回合播放中的死亡终态(PlayDeath 播完或权威状态直接给):整个单位(含名牌/条/buff)隐藏,尸体不保留。</summary>
@@ -431,22 +431,22 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void PlayIdle()
         {
             if (_root == null || IsDead || Fled) return;
-            GTween.Kill(_idleToken);
+            RealtimeTween.Kill(_idleToken);
             ResetBodyTransform();
             if (_idleStrip != null && _idleStrip.Count > 1)
             {
                 var strip = _idleStrip;
-                GTween.To(0f, strip.Count, strip.DurationSeconds).SetEase(EaseType.Linear).SetRepeat(-1)
+                RealtimeTween.To(0f, strip.Count, strip.DurationSeconds).SetEase(RealtimeEase.Linear).SetRepeat(-1)
                     .SetIgnoreEngineTimeScale(true).SetTarget(_idleToken)
-                    .OnUpdate((GTweenCallback1)(t => SetFrame(strip, t.value.x)));
+                    .OnUpdate((RealtimeTweenCallback1)(t => SetFrame(strip, t.Value.x)));
                 return;
             }
-            GTween.To(1f, 1.02f, 0.9f).SetEase(EaseType.SineInOut).SetRepeat(-1, true)
+            RealtimeTween.To(1f, 1.02f, 0.9f).SetEase(RealtimeEase.SineInOut).SetRepeat(-1, true)
                 .SetIgnoreEngineTimeScale(true).SetTarget(_idleToken)
-                .OnUpdate((GTweenCallback1)(t =>
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (_bodyRect == null) { GTween.Kill(_idleToken); return; }
-                    _bodyRect.localScale = new UnityEngine.Vector3(_mirrored ? -1f : 1f, t.value.x, 1f);
+                    if (_bodyRect == null) { RealtimeTween.Kill(_idleToken); return; }
+                    _bodyRect.localScale = new UnityEngine.Vector3(_mirrored ? -1f : 1f, t.Value.x, 1f);
                 }));
         }
 
@@ -467,10 +467,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (IsMonster) strip = BattleArtCatalog.LoadMonsterAction(MonsterTableId, "attack", _facingEast);
 
             // 1) 冲刺 0.22s + 残影
-            Tween(0f, 1f, 0.22f, EaseType.QuadOut, t =>
+            Tween(0f, 1f, 0.22f, RealtimeEase.QuadOut, t =>
             {
                 if (_root == null) return;
-                var p = Vector2.LerpUnclamped(from, dest, t.value.x);
+                var p = Vector2.LerpUnclamped(from, dest, t.Value.x);
                 _root.anchoredPosition = new Vector2(p.x, -p.y);
             });
             Delay(0.07f, () => SpawnAfterimage());
@@ -492,19 +492,19 @@ namespace MmorpgClient.UI.Ugui.Battle
                 else
                 {
                     float tilt = _facingEast ? -18f : 18f;
-                    Tween(0f, 1f, 0.1f, EaseType.QuadOut, t =>
+                    Tween(0f, 1f, 0.1f, RealtimeEase.QuadOut, t =>
                     {
                         if (_bodyRect == null) return;
-                        float k = t.value.x;
+                        float k = t.Value.x;
                         _bodyRect.localRotation = Quaternion.Euler(0f, 0f, tilt * k);
                         _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * (1f + 0.12f * k), 1f + 0.12f * k, 1f);
                     }, () =>
                     {
                         onHit?.Invoke();
-                        Tween(1f, 0f, 0.12f, EaseType.QuadIn, t =>
+                        Tween(1f, 0f, 0.12f, RealtimeEase.QuadIn, t =>
                         {
                             if (_bodyRect == null) return;
-                            float k = t.value.x;
+                            float k = t.Value.x;
                             _bodyRect.localRotation = Quaternion.Euler(0f, 0f, tilt * k);
                             _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * (1f + 0.12f * k), 1f + 0.12f * k, 1f);
                         });
@@ -517,10 +517,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 if (_root == null) return;
                 ResetBodyTransform();
-                Tween(0f, 1f, AttackReturnSeconds, EaseType.QuadIn, t =>
+                Tween(0f, 1f, AttackReturnSeconds, RealtimeEase.QuadIn, t =>
                 {
                     if (_root == null) return;
-                    var p = Vector2.LerpUnclamped(dest, from, t.value.x);
+                    var p = Vector2.LerpUnclamped(dest, from, t.Value.x);
                     _root.anchoredPosition = new Vector2(p.x, -p.y);
                 }, () => EndAction());
             });
@@ -553,10 +553,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
 
             // 聚气:0.35s 放大 + 抬升;释放:0.45s;收势:0.55s 起 0.2s(整段 CastActionSeconds ≤ TurnPlan.CastSeconds)
-            Tween(0f, 1f, 0.35f, EaseType.QuadOut, t =>
+            Tween(0f, 1f, 0.35f, RealtimeEase.QuadOut, t =>
             {
                 if (_bodyRect == null) return;
-                float k = t.value.x;
+                float k = t.Value.x;
                 _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * (1f + 0.06f * k), 1f + 0.06f * k, 1f);
                 _bodyRect.anchoredPosition = new Vector2(RootWidth * 0.5f, _bodyBaseY + 10f * k);
             });
@@ -564,10 +564,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             Delay(CastReleaseDelaySeconds, () => onRelease?.Invoke());
             Delay(CastSettleStartSeconds, () =>
             {
-                Tween(1f, 0f, CastSettleSeconds, EaseType.QuadIn, t =>
+                Tween(1f, 0f, CastSettleSeconds, RealtimeEase.QuadIn, t =>
                 {
                     if (_bodyRect == null) return;
-                    float k = t.value.x;
+                    float k = t.Value.x;
                     _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * (1f + 0.06f * k), 1f + 0.06f * k, 1f);
                     _bodyRect.anchoredPosition = new Vector2(RootWidth * 0.5f, _bodyBaseY + 10f * k);
                 }, () => EndAction());
@@ -590,16 +590,16 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             float push = (isCrit ? 16f : 8f) * (TeamIsMine ? 1f : -1f); // 远离战场中心
             var basePos = new Vector2(FootPosition.x, -FootPosition.y);
-            Tween(0f, 1f, 0.06f, EaseType.QuadOut, t =>
+            Tween(0f, 1f, 0.06f, RealtimeEase.QuadOut, t =>
             {
                 if (_root == null) return;
-                _root.anchoredPosition = basePos + new Vector2(push * t.value.x, 0f);
+                _root.anchoredPosition = basePos + new Vector2(push * t.Value.x, 0f);
             }, () =>
             {
-                Tween(1f, 0f, 0.15f, EaseType.BackOut, t =>
+                Tween(1f, 0f, 0.15f, RealtimeEase.BackOut, t =>
                 {
                     if (_root == null) return;
-                    _root.anchoredPosition = basePos + new Vector2(push * t.value.x, 0f);
+                    _root.anchoredPosition = basePos + new Vector2(push * t.Value.x, 0f);
                 }, () =>
                 {
                     if (_root != null) _root.anchoredPosition = basePos;
@@ -613,10 +613,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             else if (isCrit)
             {
-                Tween(1.1f, 1f, 0.2f, EaseType.QuadOut, t =>
+                Tween(1.1f, 1f, 0.2f, RealtimeEase.QuadOut, t =>
                 {
                     if (_bodyRect == null) return;
-                    _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * t.value.x, t.value.x, 1f);
+                    _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * t.Value.x, t.Value.x, 1f);
                 });
             }
         }
@@ -629,18 +629,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             ResetBodyTransform();
             float side = TeamIsMine ? 24f : -24f;
             var basePos = new Vector2(FootPosition.x, -FootPosition.y);
-            Tween(0f, 1f, 0.12f, EaseType.QuadOut, t =>
+            Tween(0f, 1f, 0.12f, RealtimeEase.QuadOut, t =>
             {
                 if (_root == null) return;
-                _root.anchoredPosition = basePos + new Vector2(side * t.value.x, 0f);
-                _group.alpha = 1f - 0.5f * t.value.x;
+                _root.anchoredPosition = basePos + new Vector2(side * t.Value.x, 0f);
+                _group.alpha = 1f - 0.5f * t.Value.x;
             }, () =>
             {
-                Tween(1f, 0f, 0.18f, EaseType.QuadIn, t =>
+                Tween(1f, 0f, 0.18f, RealtimeEase.QuadIn, t =>
                 {
                     if (_root == null) return;
-                    _root.anchoredPosition = basePos + new Vector2(side * t.value.x, 0f);
-                    _group.alpha = 1f - 0.5f * t.value.x;
+                    _root.anchoredPosition = basePos + new Vector2(side * t.Value.x, 0f);
+                    _group.alpha = 1f - 0.5f * t.Value.x;
                 }, () => { if (!IsDead) PlayIdle(); });
             });
         }
@@ -661,22 +661,22 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (strip != null && strip.Count > 0)
             {
                 PlayStrip(strip, 0.9f, null, () => ShowDeadMark());
-                Tween(1f, 0f, 1.0f, EaseType.QuadIn, t => { if (_group != null) _group.alpha = t.value.x; });
+                Tween(1f, 0f, 1.0f, RealtimeEase.QuadIn, t => { if (_group != null) _group.alpha = t.Value.x; });
                 return;
             }
 
             float fall = TeamIsMine ? -75f : 75f;
             var startColor = _body.color;
-            Tween(0f, 1f, 0.5f, EaseType.QuadIn, t =>
+            Tween(0f, 1f, 0.5f, RealtimeEase.QuadIn, t =>
             {
                 if (_bodyRect == null) return;
-                float k = t.value.x;
+                float k = t.Value.x;
                 _bodyRect.localRotation = Quaternion.Euler(0f, 0f, fall * k);
                 _bodyRect.anchoredPosition = new Vector2(RootWidth * 0.5f, _bodyBaseY - 12f * k);
                 _body.color = Color.Lerp(startColor, new Color(0.45f, 0.45f, 0.5f, 1f), k);
             }, () =>
             {
-                Tween(1f, 0f, 0.5f, EaseType.QuadIn, t => { if (_group != null) _group.alpha = t.value.x; },
+                Tween(1f, 0f, 0.5f, RealtimeEase.QuadIn, t => { if (_group != null) _group.alpha = t.Value.x; },
                     () => ShowDeadMark());
             });
         }
@@ -688,17 +688,17 @@ namespace MmorpgClient.UI.Ugui.Battle
             BeginAction();
             ShowBadge("防", BattleUiStyle.WarnText);
             FlashTint(new Color(1f, 0.85f, 0.35f, 1f), 0.5f, 0.9f);
-            Tween(0f, 1f, 0.12f, EaseType.QuadOut, t =>
+            Tween(0f, 1f, 0.12f, RealtimeEase.QuadOut, t =>
             {
                 if (_bodyRect == null) return;
-                float k = t.value.x;
+                float k = t.Value.x;
                 _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * (1f + 0.08f * k), 1f - 0.08f * k, 1f);
             }, () =>
             {
-                Tween(1f, 0f, 0.2f, EaseType.BackOut, t =>
+                Tween(1f, 0f, 0.2f, RealtimeEase.BackOut, t =>
                 {
                     if (_bodyRect == null) return;
-                    float k = t.value.x;
+                    float k = t.Value.x;
                     _bodyRect.localScale = new UnityEngine.Vector3((_mirrored ? -1f : 1f) * (1f + 0.08f * k), 1f - 0.08f * k, 1f);
                 }, () => EndAction());
             });
@@ -716,10 +716,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 Delay(0.05f, () => SpawnAfterimage());
                 Delay(0.15f, () => SpawnAfterimage());
-                Tween(0f, 1f, 0.45f, EaseType.QuadIn, t =>
+                Tween(0f, 1f, 0.45f, RealtimeEase.QuadIn, t =>
                 {
                     if (_root == null) return;
-                    float k = t.value.x;
+                    float k = t.Value.x;
                     _root.anchoredPosition = basePos + dir * (320f * k);
                     if (_group != null) _group.alpha = 1f - 0.8f * k;
                 }, () =>
@@ -728,20 +728,20 @@ namespace MmorpgClient.UI.Ugui.Battle
                     ShowBadge("逃", BattleUiStyle.BuffCutText);
                     if (_root != null) _root.anchoredPosition = basePos;
                     if (_group != null) _group.alpha = 0.4f;
-                    GTween.Kill(_idleToken);
+                    RealtimeTween.Kill(_idleToken);
                 });
                 return;
             }
-            Tween(0f, 1f, 0.18f, EaseType.QuadOut, t =>
+            Tween(0f, 1f, 0.18f, RealtimeEase.QuadOut, t =>
             {
                 if (_root == null) return;
-                _root.anchoredPosition = basePos + dir * (60f * t.value.x);
+                _root.anchoredPosition = basePos + dir * (60f * t.Value.x);
             }, () =>
             {
-                Tween(1f, 0f, 0.22f, EaseType.BackOut, t =>
+                Tween(1f, 0f, 0.22f, RealtimeEase.BackOut, t =>
                 {
                     if (_root == null) return;
-                    _root.anchoredPosition = basePos + dir * (60f * t.value.x);
+                    _root.anchoredPosition = basePos + dir * (60f * t.Value.x);
                 }, () => EndAction());
             });
         }
@@ -773,11 +773,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             _buffIcons.Add(go);
             var rect = (RectTransform)go.transform;
             rect.localScale = UnityEngine.Vector3.zero;
-            GTween.To(0f, 1f, BattleTempo.Scale(0.28f)).SetEase(EaseType.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0f, 1f, BattleTempo.Scale(0.28f)).SetEase(RealtimeEase.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    rect.localScale = new UnityEngine.Vector3(t.value.x, t.value.x, 1f);
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    rect.localScale = new UnityEngine.Vector3(t.Value.x, t.Value.x, 1f);
                 }));
         }
 
@@ -796,13 +796,13 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_root == null || _destroyed) return;
             KillActionTweens();
-            GTween.Kill(_idleToken);
-            GTween.Kill(_hpFillRect);
-            GTween.Kill(_hpGhostRect);
-            GTween.Kill(_mpFillRect);
+            RealtimeTween.Kill(_idleToken);
+            RealtimeTween.Kill(_hpFillRect);
+            RealtimeTween.Kill(_hpGhostRect);
+            RealtimeTween.Kill(_mpFillRect);
             if (_flash != null)
             {
-                GTween.Kill(_flash);
+                RealtimeTween.Kill(_flash);
                 _flash.color = new Color(1f, 1f, 1f, 0f);
             }
             if (_body != null) _body.color = IsDead ? new Color(0.45f, 0.45f, 0.5f, 1f) : Color.white;
@@ -831,14 +831,14 @@ namespace MmorpgClient.UI.Ugui.Battle
                 PlayStrip(strip, 0.8f, null, () => EndAction());
                 return;
             }
-            GTween.To(0f, 28f, 0.2f).SetEase(EaseType.QuadOut).SetRepeat(3, true)
+            RealtimeTween.To(0f, 28f, 0.2f).SetEase(RealtimeEase.QuadOut).SetRepeat(3, true)
                 .SetIgnoreEngineTimeScale(true).SetTarget(this)
-                .OnUpdate((GTweenCallback1)(t =>
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
                     if (_bodyRect == null) return;
-                    _bodyRect.anchoredPosition = new Vector2(RootWidth * 0.5f, _bodyBaseY + t.value.x);
+                    _bodyRect.anchoredPosition = new Vector2(RootWidth * 0.5f, _bodyBaseY + t.Value.x);
                 }))
-                .OnComplete((GTweenCallback)(() => EndAction()));
+                .OnComplete((RealtimeTweenCallback)(() => EndAction()));
         }
 
         // ── 旧接口兼容 ──────────────────────────────────────
@@ -910,22 +910,22 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             var go = container.gameObject;
             var startPos = container.anchoredPosition;
-            GTween.To(1.5f, 1f, 0.16f).SetDelay(delay).SetEase(EaseType.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                .OnStart((GTweenCallback)(() => { if (group != null) group.alpha = 1f; }))
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(1.5f, 1f, 0.16f).SetDelay(delay).SetEase(RealtimeEase.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                .OnStart((RealtimeTweenCallback)(() => { if (group != null) group.alpha = 1f; }))
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    container.localScale = new UnityEngine.Vector3(t.value.x, t.value.x, 1f);
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    container.localScale = new UnityEngine.Vector3(t.Value.x, t.Value.x, 1f);
                 }));
-            GTween.To(0f, 1f, 1.15f).SetDelay(delay + 0.1f).SetEase(EaseType.QuadOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0f, 1f, 1.15f).SetDelay(delay + 0.1f).SetEase(RealtimeEase.QuadOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    float p = t.value.x;
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    float p = t.Value.x;
                     container.anchoredPosition = startPos + new Vector2(0f, 60f * p);
                     if (group != null) group.alpha = p < 0.6f ? 1f : 1f - (p - 0.6f) / 0.4f;
                 }))
-                .OnComplete((GTweenCallback)(() => { if (go != null) UnityEngine.Object.Destroy(go); }));
+                .OnComplete((RealtimeTweenCallback)(() => { if (go != null) UnityEngine.Object.Destroy(go); }));
         }
 
         /// <summary>
@@ -948,13 +948,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             image.transform.SetAsLastSibling();
             var go = image.gameObject;
             float seconds = strip.DurationSeconds;
-            GTween.To(0f, strip.Count, seconds).SetEase(EaseType.Linear).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0f, strip.Count, seconds).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    image.sprite = strip.FrameAt(t.value.x / strip.Count);
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    image.sprite = strip.FrameAt(t.Value.x / strip.Count);
                 }))
-                .OnComplete((GTweenCallback)(() => { if (go != null) UnityEngine.Object.Destroy(go); }));
+                .OnComplete((RealtimeTweenCallback)(() => { if (go != null) UnityEngine.Object.Destroy(go); }));
             return seconds;
         }
 
@@ -964,12 +964,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_destroyed) return;
             _destroyed = true;
-            GTween.Kill(this);
-            GTween.Kill(_idleToken);
-            GTween.Kill(_hpFillRect);
-            GTween.Kill(_hpGhostRect);
-            GTween.Kill(_mpFillRect);
-            if (_flash != null) GTween.Kill(_flash);
+            RealtimeTween.Kill(this);
+            RealtimeTween.Kill(_idleToken);
+            RealtimeTween.Kill(_hpFillRect);
+            RealtimeTween.Kill(_hpGhostRect);
+            RealtimeTween.Kill(_mpFillRect);
+            if (_flash != null) RealtimeTween.Kill(_flash);
             if (_plateGroup != null && _plate != null) UnityEngine.Object.Destroy(_plate.gameObject);
             if (_root != null) UnityEngine.Object.Destroy(_root.gameObject);
         }
@@ -1067,11 +1067,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (strip == null || strip.Count == 0) { onDone?.Invoke(); return; }
             _mirrored = strip.Mirrored;
             int lastFrame = -1;
-            GTween.To(0f, strip.Count, BattleTempo.Scale(seconds)).SetEase(EaseType.Linear).SetIgnoreEngineTimeScale(true).SetTarget(this)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0f, strip.Count, BattleTempo.Scale(seconds)).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true).SetTarget(this)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
                     if (_body == null) return;
-                    int frame = Mathf.Clamp(Mathf.FloorToInt(t.value.x), 0, strip.Count - 1);
+                    int frame = Mathf.Clamp(Mathf.FloorToInt(t.Value.x), 0, strip.Count - 1);
                     if (frame == lastFrame) return;
                     lastFrame = frame;
                     _body.sprite = strip.Frames[frame];
@@ -1079,7 +1079,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     _bodyRect.localScale = new UnityEngine.Vector3(_mirrored ? -1f : 1f, 1f, 1f);
                     onFrame?.Invoke(frame);
                 }))
-                .OnComplete((GTweenCallback)(() =>
+                .OnComplete((RealtimeTweenCallback)(() =>
                 {
                     if (_body != null && _idleSprite != null)
                     {
@@ -1102,7 +1102,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void BeginAction()
         {
             KillActionTweens();
-            GTween.Kill(_idleToken);
+            RealtimeTween.Kill(_idleToken);
             ResetBodyTransform();
         }
 
@@ -1112,7 +1112,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (!IsDead && !Fled) PlayIdle();
         }
 
-        private void KillActionTweens() => GTween.Kill(this);
+        private void KillActionTweens() => RealtimeTween.Kill(this);
 
         private void ReviveVisual()
         {
@@ -1130,21 +1130,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             var target = _flash;
             bool additive = _flash.material != null && _flash.material.shader != null
                             && _flash.material.shader.name == "Battle/UiAdditive";
-            GTween.Kill(target);
+            RealtimeTween.Kill(target);
             // 无加色材质时:白色覆盖层只会显示原图,改用米白高亮 + 降低峰值
             float cap = additive ? peak : peak * 0.6f;
             var tint = additive ? color : Color.Lerp(color, new Color(1f, 0.97f, 0.85f, 1f), 0.5f);
             // "闪白一帧":立刻打到峰值(暴击顿帧时定格在这一帧),随后线性衰减
             target.color = new Color(tint.r, tint.g, tint.b, cap);
-            GTween.To(0f, 1f, BattleTempo.Scale(seconds)).SetEase(EaseType.Linear).SetIgnoreEngineTimeScale(true).SetTarget(target)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0f, 1f, BattleTempo.Scale(seconds)).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true).SetTarget(target)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (target == null) { GTween.Kill(target); return; }
-                    float p = t.value.x;
+                    if (target == null) { RealtimeTween.Kill(target); return; }
+                    float p = t.Value.x;
                     float a = p < 0.15f ? 1f : 1f - (p - 0.15f) / 0.85f;
                     target.color = new Color(tint.r, tint.g, tint.b, a * cap);
                 }))
-                .OnComplete((GTweenCallback)(() => { if (target != null) target.color = new Color(1f, 1f, 1f, 0f); }));
+                .OnComplete((RealtimeTweenCallback)(() => { if (target != null) target.color = new Color(1f, 1f, 1f, 0f); }));
         }
 
         private void SpawnAfterimage()
@@ -1165,22 +1165,22 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_mirrored) ghost.rectTransform.localScale = new UnityEngine.Vector3(-1f, 1f, 1f);
             ghost.transform.SetSiblingIndex(Mathf.Max(0, _root.GetSiblingIndex()));
             var go = ghost.gameObject;
-            GTween.To(0.45f, 0f, 0.25f).SetEase(EaseType.QuadOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0.45f, 0f, 0.25f).SetEase(RealtimeEase.QuadOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    ghost.color = new Color(0.8f, 0.9f, 1f, t.value.x);
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    ghost.color = new Color(0.8f, 0.9f, 1f, t.Value.x);
                 }))
-                .OnComplete((GTweenCallback)(() => { if (go != null) UnityEngine.Object.Destroy(go); }));
+                .OnComplete((RealtimeTweenCallback)(() => { if (go != null) UnityEngine.Object.Destroy(go); }));
         }
 
         // ── 内部:条 / buff / 徽标 ──────────────────────────
 
         private void SetBarsImmediate()
         {
-            GTween.Kill(_hpFillRect);
-            GTween.Kill(_hpGhostRect);
-            GTween.Kill(_mpFillRect);
+            RealtimeTween.Kill(_hpFillRect);
+            RealtimeTween.Kill(_hpGhostRect);
+            RealtimeTween.Kill(_mpFillRect);
             float hp = Ratio(_health, _maxHealth);
             SetWidth(_hpFillRect, (BarWidth - 2f) * hp);
             SetWidth(_hpGhostRect, (BarWidth - 2f) * hp);
@@ -1252,9 +1252,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         // ── 内部:tween 小工具 ──────────────────────────────
 
         /// <summary>动作 tween(seconds 为 1x 秒数,按 BattleTempo 倍率缩放,与拍时长同步)。</summary>
-        private GTweener Tween(float from, float to, float seconds, EaseType ease, GTweenCallback1 onUpdate, GTweenCallback onComplete = null)
+        private RealtimeTweener Tween(float from, float to, float seconds, RealtimeEase ease, RealtimeTweenCallback1 onUpdate, RealtimeTweenCallback onComplete = null)
         {
-            var tween = GTween.To(from, to, BattleTempo.Scale(seconds)).SetEase(ease).SetIgnoreEngineTimeScale(true).SetTarget(this).OnUpdate(onUpdate);
+            var tween = RealtimeTween.To(from, to, BattleTempo.Scale(seconds)).SetEase(ease).SetIgnoreEngineTimeScale(true).SetTarget(this).OnUpdate(onUpdate);
             if (onComplete != null) tween.OnComplete(onComplete);
             return tween;
         }
@@ -1263,8 +1263,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void Delay(float seconds, Action action)
         {
             if (action == null) return;
-            GTween.DelayedCall(BattleTempo.Scale(seconds)).SetIgnoreEngineTimeScale(true).SetTarget(this)
-                .OnComplete((GTweenCallback)(() => { if (!_destroyed) action(); }));
+            RealtimeTween.DelayedCall(BattleTempo.Scale(seconds)).SetIgnoreEngineTimeScale(true).SetTarget(this)
+                .OnComplete((RealtimeTweenCallback)(() => { if (!_destroyed) action(); }));
         }
 
         private static void SetWidth(RectTransform rect, float width)
