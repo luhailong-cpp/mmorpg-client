@@ -19,6 +19,7 @@ MonoBehaviour:
   cameraZoomMin: 5
   cameraZoomMax: 30
   cameraZoomDefault: 27
+  groundDiscAspect: 0.66
   moveSpeed: 9
   playerHeight: 1.8
   playerRadius: 0.38

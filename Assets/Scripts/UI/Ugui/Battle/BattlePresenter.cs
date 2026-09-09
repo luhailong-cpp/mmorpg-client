@@ -143,7 +143,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 if (go == null) continue;
                 RealtimeTween.Kill(go);
-                UnityEngine.Object.Destroy(go);
+                DestroyPresentationObject(go);
             }
             _transient.Clear();
         }
@@ -541,11 +541,24 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }));
         }
 
+        private static void DestroyPresentationObject(GameObject target)
+        {
+            if (target == null) return;
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                UnityEngine.Object.DestroyImmediate(target);
+                return;
+            }
+#endif
+            UnityEngine.Object.Destroy(target);
+        }
+
         private void DestroyTransient(GameObject go)
         {
             if (go == null) return;
             _transient.Remove(go);
-            UnityEngine.Object.Destroy(go);
+            DestroyPresentationObject(go);
         }
     }
 }

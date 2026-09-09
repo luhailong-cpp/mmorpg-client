@@ -57,7 +57,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
     /// <summary>
     /// 战斗 UI 专用小部件工厂。基础控件(矩形/文本/输入框)复用
-    /// <see cref="QdaoUguiFactory"/>,此处只补齐纯色面板/文字按钮/进度条/飘字。
+    /// <see cref="QdaoUguiFactory"/>,此处提供图片窗体/按钮与原生进度条/飘字。
     /// 与既有 Qdao 视图一致:纯代码构建,不依赖 prefab。
     /// </summary>
     public static class BattleUiWidgets
@@ -91,13 +91,46 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
         }
 
-        /// <summary>纯色面板(无 sprite 的 Image)。</summary>
+        /// <summary>Painted window chrome for named windows; meters, masks and rules stay plain.</summary>
         public static Image CreatePanel(string name, UnityEngine.Transform parent,
             float x, float y, float width, float height, Color color, bool raycastTarget = true)
         {
             var image = QdaoUguiFactory.CreateImage(name, parent, x, y, width, height, null, raycastTarget);
             image.color = color;
+            if (IsPaintedBattleWindow(name))
+            {
+                // A dark jade center preserves the existing cream text contract.
+                // Keep a separate untinted frame so the authored gold stays gold.
+                QdaoRefreshArt.Skin(image, "main_frame");
+                image.pixelsPerUnitMultiplier = 6f;
+                image.color = BattleUiStyle.PanelBg;
+                var frame = QdaoUguiFactory.CreateImage("PaintedWindowFrame", image.transform,
+                    0f, 0f, width, height, image.sprite);
+                frame.type = Image.Type.Sliced;
+                frame.fillCenter = false;
+                frame.pixelsPerUnitMultiplier = image.pixelsPerUnitMultiplier;
+            }
+            else if (name == "DuelInputPlate" || name == "ItemInputPlate")
+            {
+                QdaoRefreshArt.Skin(image, "search_normal");
+            }
             return image;
+        }
+
+        private static bool IsPaintedBattleWindow(string name)
+        {
+            switch (name)
+            {
+                case "BattleQueuePanel":
+                case "SpectatePanel":
+                case "BattleChallengePopup":
+                case "BattleLogPanel":
+                case "SkillPanel":
+                case "ItemPanel":
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         /// <summary>铺满父节点的整幅遮罩/底色(适配任意窗口比例)。</summary>
@@ -117,11 +150,47 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             var widget = new UiTextButton();
             widget.Plate = CreatePanel($"{name}Plate", parent, x, y, width, height, plateColor);
+            if (width >= height * 1.6f && width >= 100f)
+            {
+                bool lightText = textColor.r + textColor.g + textColor.b > 1.9f;
+                QdaoRefreshArt.Skin(widget.Plate, lightText ? "primary_button_normal" : "tab_normal");
+            }
+            else
+            {
+                // Compact +/- and close buttons use the existing square-safe border.
+                var compact = BattleArtCatalog.LoadUiSprite("button_9slice");
+                if (compact != null)
+                {
+                    widget.Plate.sprite = compact;
+                    widget.Plate.type = Image.Type.Sliced;
+                }
+            }
             widget.Rect = (RectTransform)widget.Plate.transform;
             widget.Button = widget.Plate.gameObject.AddComponent<Button>();
             ConfigureButtonVisual(widget.Button, widget.Plate);
             widget.Label = QdaoUguiFactory.CreateText($"{name}Text", widget.Rect, 0f, 0f, width, height,
                 text, fontSize, textColor, TextAlignmentOptions.Center);
+            return widget;
+        }
+
+        /// <summary>
+        /// City entry with an authored jade-and-gold button and a stable outer rect.
+        /// Signature stays compatible with existing battle/spectate/attribute callers.
+        /// </summary>
+        public static UiTextButton CreateFramedTextButton(string name, UnityEngine.Transform parent,
+            float x, float y, float width, float height, string text, float fontSize,
+            Color plateColor, Color frameColor, Color textColor,
+            float frameWidth = 2f, FontStyles fontStyle = FontStyles.Bold)
+        {
+            var widget = new UiTextButton();
+            widget.Rect = QdaoUguiFactory.CreateRect(name, parent, x, y, width, height);
+            widget.Button = QdaoRefreshArt.Button(name + "Plate", widget.Rect,
+                0f, 0f, width, height, "primary_button_normal", out widget.Plate);
+            ConfigureButtonVisual(widget.Button, widget.Plate);
+            widget.Label = QdaoUguiFactory.CreateText($"{name}Text", widget.Plate.transform,
+                32f, 0f, width - 64f, height, text, fontSize,
+                QdaoRefreshArt.Ivory, TextAlignmentOptions.Center);
+            widget.Label.fontStyle = fontStyle;
             return widget;
         }
 
@@ -131,12 +200,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (button == null || visual == null) return;
             button.targetGraphic = visual;
             button.transition = Selectable.Transition.ColorTint;
-            button.navigation = new Navigation { mode = Navigation.Mode.None };
+            button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
             var colors = button.colors;
             colors.normalColor = Color.white;
-            colors.highlightedColor = Color.white;
+            colors.highlightedColor = new Color(1f, 0.95f, 0.82f, 1f);
             colors.pressedColor = new Color(0.82f, 0.82f, 0.82f, 1f);
-            colors.selectedColor = Color.white;
+            colors.selectedColor = new Color(1f, 0.90f, 0.66f, 1f);
             colors.disabledColor = new Color(0.62f, 0.62f, 0.62f, 0.72f);
             colors.colorMultiplier = 1f;
             colors.fadeDuration = 0.08f;

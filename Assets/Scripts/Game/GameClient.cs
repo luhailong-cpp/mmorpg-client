@@ -960,7 +960,7 @@ namespace MmorpgClient.Game
                 MoveAckCount++;
                 // For now we just trust the server; a full client-prediction
                 // pipeline would rewind/replay any pending input > ev.InputSeq.
-                if (World.LocalEntity == 0) return;
+                if (!World.HasLocalPlayer) return;
                 var pos = WorldCoordinateConverter.FromServerLocation(ev.ServerLocation);
                 var local = GetActorPos(World.LocalEntity);
                 var dist = UnityEngine.Vector3.Distance(pos, local);

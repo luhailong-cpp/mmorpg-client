@@ -38,9 +38,15 @@ namespace MmorpgClient.World.Tianyong
 
         private Vector3 _debugDirection;
         private bool _debugIgnoreMask;
+        private bool _ignoreLocalInput;
         private bool _pendingReport;
         private float _lastRecoveryAt = -100f;
         private int _recoveryBurst;
+        private float _lastReplanAt = -100f;
+        private int _replanBurst;
+        private const int MaxReplansOnBlock = 3;
+        private Vector3? _destination;
+        private int _replanOnBlock;
 
         public CharacterController Motor => _motor;
         public bool IsMoving => _moving;
@@ -53,8 +59,38 @@ namespace MmorpgClient.World.Tianyong
         /// </summary>
         public void SetDebugIgnoreMask(bool ignore) => _debugIgnoreMask = ignore;
 
+        /// <summary>
+        /// Acceptance-only switch: when true, real local input (mouse clicks
+        /// AND the keyboard/joystick movement axes) no longer moves the actor,
+        /// so a scripted drive (TianyongSandboxAutoDrive) owns movement
+        /// exclusively. SetDebugDirection and ClickAt keep working, so the
+        /// drive still exercises the real motor and click-to-move paths.
+        /// <para>
+        /// Both halves are needed. A stray click while the player window takes
+        /// focus walks the actor off its observation point; and a stray key is
+        /// worse, because <see cref="ReadKeyboardDirection"/> outranks path
+        /// following (it clears _path every frame it is non-zero), so a single
+        /// held arrow key silently converts a click-to-move test into a
+        /// free-walk test. That is not hypothetical: the 2026-09-08 acceptance
+        /// run was captured while the operator was typing, the player window
+        /// had focus, and every click-to-move frame in it showed the actor
+        /// walking along Z while the ring sat correctly on the clicked point
+        /// several units away. Gating only the mouse let that through.
+        /// </para>
+        /// </summary>
+        public void SetScriptedInputOwner(bool owned) => _ignoreLocalInput = owned;
+
         /// <summary>The client-side walk mask this controller validates against (null before Initialize).</summary>
         public TianyongNavigationGrid Navigation => _navigation;
+
+        /// <summary>
+        /// End point of the path currently being walked, i.e. the destination
+        /// the actor actually adopted, or null when it is not path-following.
+        /// This is the exact point <see cref="ClickAt"/> drops the click ring
+        /// on, so an acceptance run can assert "the ring never lies" straight
+        /// from the log instead of measuring pixels.
+        /// </summary>
+        public Vector3? PathDestination => _waypoint < _path.Count ? _path[^1] : (Vector3?)null;
 
         /// <summary>
         /// Scripted movement input in world XZ (unit-length or zero). Non-zero
@@ -164,7 +200,33 @@ namespace MmorpgClient.World.Tianyong
         /// </summary>
         public bool WarpFromServer(Vector3 feetPosition)
         {
+            // A correction while click-pathing must not silently drop the
+            // player's destination (WarpTo clears the path): re-plan from the
+            // corrected point once the warp is done.
+            var destination = _waypoint < _path.Count ? _path[^1] : (Vector3?)null;
             WarpTo(feetPosition);
+            var recovered = WarpFromServerCore();
+            if (destination.HasValue)
+            {
+                // Corrections arriving faster than a few per second while
+                // pathing mean client mask and server navmesh disagree about
+                // this route; re-planning would just walk back into the
+                // disagreement (2026-09-08: 4 corrections/s along a wall).
+                // Drop the destination instead and let the player re-click.
+                var now = Time.unscaledTime;
+                _replanBurst = now - _lastReplanAt < RecoveryBurstWindow ? _replanBurst + 1 : 1;
+                _lastReplanAt = now;
+                if (_replanBurst <= RecoveryBurstLimit)
+                    SetDestination(destination.Value);
+                else if (_replanBurst == RecoveryBurstLimit + 1)
+                    Debug.LogWarning(
+                        $"[TianyongPlayerController] server keeps correcting the click path to {destination.Value}; dropping it");
+            }
+            return recovered;
+        }
+
+        private bool WarpFromServerCore()
+        {
             if (_navigation == null || _navigation.IsWalkable(FeetPosition)) return false;
 
             var stranded = FeetPosition;
@@ -220,11 +282,18 @@ namespace MmorpgClient.World.Tianyong
         /// <summary>Routes to a feet/world destination. Returns false when no legal path exists.</summary>
         public bool SetDestination(Vector3 feetDestination)
         {
+            _replanOnBlock = 0;
+            return PlanPath(feetDestination);
+        }
+
+        private bool PlanPath(Vector3 feetDestination)
+        {
             if (_navigation == null) return false;
 
             feetDestination = TianyongMapDefinition.ClampXZ(feetDestination, 2f);
             var feet = FeetPosition;
             feetDestination.y = feet.y;
+            _destination = feetDestination;
 
             _path.Clear();
             _path.AddRange(_navigation.FindPath(feet, feetDestination));
@@ -234,6 +303,23 @@ namespace MmorpgClient.World.Tianyong
 
             StopMoving();
             return false;
+        }
+
+        /// <summary>
+        /// A path-following step was refused by the walk mask (the smoothed
+        /// segment grazed a blocked cell and the capsule drifted into it).
+        /// Re-plan from where the actor actually is instead of stalling in
+        /// place; give up after a few attempts so a genuinely unreachable
+        /// destination does not loop.
+        /// </summary>
+        private void HandleBlockedPathStep()
+        {
+            if (_destination.HasValue && _replanOnBlock < MaxReplansOnBlock)
+            {
+                _replanOnBlock++;
+                if (PlanPath(_destination.Value)) return;
+            }
+            CancelPath(true);
         }
 
         private void Update()
@@ -264,8 +350,10 @@ namespace MmorpgClient.World.Tianyong
                 return;
             }
 
-            if (!pointerBlocked && !scripted) HandleClick();
-            var keyboard = scripted ? _debugDirection : ReadKeyboardDirection();
+            if (!pointerBlocked && !scripted && !_ignoreLocalInput) HandleClick();
+            var keyboard = scripted ? _debugDirection
+                : _ignoreLocalInput ? Vector3.zero
+                : ReadKeyboardDirection();
             if (keyboard.sqrMagnitude > 0.01f)
             {
                 _path.Clear();
@@ -297,7 +385,8 @@ namespace MmorpgClient.World.Tianyong
                     delta.y = 0f;
                 }
 
-                MoveInDirection(delta.normalized, Time.deltaTime);
+                if (!MoveInDirection(delta.normalized, Time.deltaTime))
+                    HandleBlockedPathStep();
                 return;
             }
 
@@ -313,8 +402,21 @@ namespace MmorpgClient.World.Tianyong
             var plane = new Plane(Vector3.up, new Vector3(0f, feet.y, 0f));
             if (!plane.Raycast(ray, out var distance)) return;
             var point = ray.GetPoint(distance);
-            if (SetDestination(point))
-                TianyongClickMarker.Spawn(_path[^1], _camera);
+            ClickAt(point);
+        }
+
+        /// <summary>
+        /// Click-to-move entry shared by the mouse and scripted drives
+        /// (TianyongSandboxAutoDrive): routes to the ground point and drops
+        /// the click marker on the destination actually adopted, i.e. the
+        /// nearest legal cell when the click landed on a roof/canal, so the
+        /// feedback never points somewhere the actor will not go.
+        /// </summary>
+        public bool ClickAt(Vector3 groundPoint)
+        {
+            if (!SetDestination(groundPoint)) return false;
+            TianyongClickMarker.Spawn(_path[^1], _camera);
+            return true;
         }
 
         private Vector3 ReadKeyboardDirection()
@@ -339,12 +441,13 @@ namespace MmorpgClient.World.Tianyong
             return forward.normalized * vertical + right.normalized * horizontal;
         }
 
-        private void MoveInDirection(Vector3 direction, float deltaTime)
+        /// <summary>Returns false when the walk mask refused the step (the actor stopped).</summary>
+        private bool MoveInDirection(Vector3 direction, float deltaTime)
         {
             if (direction.sqrMagnitude < 0.001f)
             {
                 StopMoving();
-                return;
+                return false;
             }
 
             var dt = Mathf.Min(Mathf.Max(deltaTime, 0f), 0.05f);
@@ -353,7 +456,7 @@ namespace MmorpgClient.World.Tianyong
             if (!_debugIgnoreMask && !_navigation.IsWalkable(candidateFeet))
             {
                 StopMoving();
-                return;
+                return false;
             }
 
             var desiredRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
@@ -361,7 +464,21 @@ namespace MmorpgClient.World.Tianyong
                 transform.rotation,
                 desiredRotation,
                 1f - Mathf.Exp(-TurnSpeed * dt));
+            var before = FeetPosition;
             _motor.Move(velocity * dt + Vector3.down * (Gravity * dt));
+            // The CharacterController can slide a few centimetres off the
+            // intended line (leftover collider edges, capsule skin). The mask
+            // check above validated the intended step, not where the motor
+            // actually ended up; if that is a cell the mask rejects, put the
+            // feet back on the last legal point so a legal walk never reports
+            // an illegal position (the server would correct it and the
+            // correction would look like a random pull-back to the player).
+            if (!_debugIgnoreMask && !_navigation.IsWalkable(FeetPosition))
+            {
+                var back = before;
+                back.y = FeetPosition.y;
+                PlaceFeet(back);
+            }
 
             if (!_moving)
             {
@@ -375,6 +492,21 @@ namespace MmorpgClient.World.Tianyong
                 _client.SendMoveSync(FeetPosition, transform.eulerAngles, velocity);
                 _nextSyncAt = Time.unscaledTime + 0.25f;
             }
+            return true;
+        }
+
+        /// <summary>Moves the feet without touching the current path or network state.</summary>
+        private void PlaceFeet(Vector3 feetPosition)
+        {
+            if (_motor == null)
+            {
+                transform.position = feetPosition;
+                return;
+            }
+            var wasEnabled = _motor.enabled;
+            if (wasEnabled) _motor.enabled = false;
+            transform.position += feetPosition - FeetPosition;
+            if (wasEnabled) _motor.enabled = true;
         }
 
         private void CancelPath(bool notifyServer)

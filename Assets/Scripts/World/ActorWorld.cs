@@ -15,7 +15,8 @@ namespace MmorpgClient.World
         public ActorKind Kind;
         public ulong ConfigId;
         public GameObject Go;
-        public TextMesh Label;
+        /// <summary>World-space nameplate (3D TextMeshPro) built by <see cref="WorldNameplate"/>.</summary>
+        public TMPro.TMP_Text Label;
 
         // Interpolation state. We snap on first sample, then linearly
         // interpolate from current transform toward _target* over
@@ -44,6 +45,10 @@ namespace MmorpgClient.World
         private readonly string _rootName;
         private UnityEngine.Transform _root;
         private ulong _localEntity;
+        private bool _hasLocal;
+        // SetLocalPlayer was called for an entity that has not spawned yet;
+        // SpawnActor promotes it to _hasLocal when that entity arrives.
+        private bool _pendingLocal;
         private readonly MaterialPropertyBlock _colorProperties = new();
         private static readonly int ColorProperty = Shader.PropertyToID("_Color");
         private static readonly int BaseColorProperty = Shader.PropertyToID("_BaseColor");
@@ -69,6 +74,14 @@ namespace MmorpgClient.World
         public event System.Action<ActorView> OnLocalPlayerChanged;
 
         /// <summary>
+        /// Resolves the readable name shown on an actor's nameplate. Returning
+        /// null/empty falls back to a kind label ("玩家" / "NPC" / "?"). Queried
+        /// on spawn, on every recolor and again when the local player binding
+        /// changes (the local entity is usually bound after its spawn).
+        /// </summary>
+        public System.Func<ActorView, string> DisplayNameProvider;
+
+        /// <summary>
         /// Places the actor container under the persistent application root.
         /// Network positions remain actor-local coordinates, so the default
         /// path normalizes the root transform after reparenting.
@@ -85,12 +98,32 @@ namespace MmorpgClient.World
             _root.localScale = UnityEngine.Vector3.one;
         }
 
+        /// <summary>
+        /// True while a spawned actor is bound as the local player. Entity ids
+        /// are raw entt handles from the server and 0 is a perfectly valid one
+        /// (the first actor created on a fresh scene process), so "no local
+        /// player" is tracked explicitly instead of as LocalEntity == 0.
+        /// </summary>
+        public bool HasLocalPlayer => _hasLocal;
+
+        private bool IsLocal(ulong entity) => _hasLocal && entity == _localEntity;
+
+        /// <summary>
+        /// Binds <paramref name="entity"/> as the local player. GameClient
+        /// spawns the actor first and binds afterwards; binding before the
+        /// spawn is also allowed: the binding stays pending (HasLocalPlayer
+        /// false, LocalEntity set) and SpawnActor promotes it, colouring the
+        /// actor as local and raising <see cref="OnLocalPlayerChanged"/> then.
+        /// </summary>
         public void SetLocalPlayer(ulong entity)
         {
+            var hadLocal = _hasLocal;
             var previousLocal = _localEntity;
             _localEntity = entity;
+            _hasLocal = _actors.ContainsKey(entity);
+            _pendingLocal = !_hasLocal;
 
-            if (previousLocal != 0 && previousLocal != entity &&
+            if (hadLocal && previousLocal != entity &&
                 _actors.TryGetValue(previousLocal, out var previous))
                 Recolor(previous);
 
@@ -101,7 +134,7 @@ namespace MmorpgClient.World
                 Recolor(v);
                 OnLocalPlayerChanged?.Invoke(v);
             }
-            else if (entity == 0)
+            else if (hadLocal)
             {
                 OnLocalPlayerChanged?.Invoke(null);
             }
@@ -111,6 +144,16 @@ namespace MmorpgClient.World
                        UnityEngine.Vector3 position, UnityEngine.Vector3 eulerDeg)
         {
             if (_actors.ContainsKey(entity)) return; // dedupe
+
+            // A SetLocalPlayer that ran before this spawn lands now, so the
+            // nameplate/primitive below are built with the local colours.
+            var promotedToLocal = _pendingLocal && entity == _localEntity;
+            if (promotedToLocal)
+            {
+                _pendingLocal = false;
+                _hasLocal = true;
+            }
+
             var prim = kind == ActorKind.Player
                 ? GameObject.CreatePrimitive(PrimitiveType.Cube)
                 : GameObject.CreatePrimitive(PrimitiveType.Cylinder);
@@ -119,18 +162,18 @@ namespace MmorpgClient.World
             prim.transform.localPosition = position;
             prim.transform.localEulerAngles = eulerDeg;
 
-            // Floating label
-            var labelGo = new GameObject("label");
-            labelGo.transform.SetParent(prim.transform, false);
-            labelGo.transform.localPosition = new UnityEngine.Vector3(0, 1.2f, 0);
-            var tm = labelGo.AddComponent<TextMesh>();
-            tm.text = $"{kind}#{entity}";
-            tm.characterSize = 0.08f;
-            tm.fontSize = 32;
-            tm.anchor = TextAnchor.UpperCenter;
-            tm.alignment = TextAlignment.Center;
-            // Names sit under the feet and always face the world camera.
-            WorldLabelBillboard.Attach(labelGo);
+            var view = new ActorView
+            {
+                Entity = entity,
+                Kind = kind,
+                ConfigId = configId,
+                Go = prim,
+            };
+
+            // Nameplate: readable name (never the dev "Player#123" text), parked
+            // under the feet/contact shadow and always facing the world camera.
+            view.Label = WorldNameplate.Create(prim.transform, ResolveDisplayName(view), NameplateColor(view));
+            WorldLabelBillboard.Attach(view.Label.gameObject);
 
             // Players get the qdao sprite walker when its Resources are
             // present; the cube stays as a fallback (and in edit-mode tests,
@@ -138,17 +181,54 @@ namespace MmorpgClient.World
             if (kind == ActorKind.Player && Application.isPlaying)
                 QdaoBoySpriteAnimator.TryAttach(prim);
 
-            var view = new ActorView
-            {
-                Entity = entity,
-                Kind = kind,
-                ConfigId = configId,
-                Go = prim,
-                Label = tm,
-            };
             _actors[entity] = view;
             Recolor(view);
             OnActorSpawned?.Invoke(view);
+            if (promotedToLocal)
+                OnLocalPlayerChanged?.Invoke(view);
+        }
+
+        /// <summary>
+        /// Re-queries <see cref="DisplayNameProvider"/> for every actor, e.g.
+        /// after the session's player list arrives later than the spawns.
+        /// </summary>
+        public void RefreshDisplayNames()
+        {
+            foreach (var v in _actors.Values)
+                RefreshNameplate(v);
+        }
+
+        private string ResolveDisplayName(ActorView v)
+        {
+            string name = null;
+            try
+            {
+                name = DisplayNameProvider?.Invoke(v);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+            if (!string.IsNullOrEmpty(name)) return name;
+            return v.Kind switch
+            {
+                ActorKind.Player => "玩家",
+                ActorKind.Npc => "NPC",
+                _ => "?",
+            };
+        }
+
+        private Color NameplateColor(ActorView v)
+        {
+            if (IsLocal(v.Entity)) return WorldNameplate.LocalPlayerColor;
+            return v.Kind == ActorKind.Player ? WorldNameplate.RemotePlayerColor : WorldNameplate.NpcColor;
+        }
+
+        private void RefreshNameplate(ActorView v)
+        {
+            if (v == null || v.Label == null) return;
+            v.Label.text = ResolveDisplayName(v);
+            v.Label.color = NameplateColor(v);
         }
 
         public void DespawnActor(ulong entity)
@@ -158,8 +238,9 @@ namespace MmorpgClient.World
             DestroyActorObject(view.Go);
             _actors.Remove(entity);
             OnActorDespawned?.Invoke(entity);
-            if (_localEntity == entity)
+            if (IsLocal(entity))
             {
+                _hasLocal = false;
                 _localEntity = 0;
                 OnLocalPlayerChanged?.Invoke(null);
             }
@@ -167,12 +248,14 @@ namespace MmorpgClient.World
 
         public void Clear()
         {
-            if (_localEntity != 0 && _actors.TryGetValue(_localEntity, out var local))
+            if (_hasLocal && _actors.TryGetValue(_localEntity, out var local))
                 DisableLocalMovement(local);
 
             foreach (var v in _actors.Values)
                 DestroyActorObject(v.Go);
             _actors.Clear();
+            _hasLocal = false;
+            _pendingLocal = false;
             _localEntity = 0;
             OnLocalPlayerChanged?.Invoke(null);
         }
@@ -192,7 +275,7 @@ namespace MmorpgClient.World
             // The local actor is driven by CharacterController prediction.
             // Authoritative corrections arrive through Teleport/MoveAck; using
             // the remote interpolation path here would race the local motor.
-            if (entity == _localEntity) return;
+            if (IsLocal(entity)) return;
             v.InterpFromPos   = v.Go.transform.localPosition;
             v.InterpFromEuler = v.Go.transform.localEulerAngles;
             v.TargetPos       = targetPos;
@@ -210,7 +293,7 @@ namespace MmorpgClient.World
         public void Teleport(ulong entity, UnityEngine.Vector3 pos, UnityEngine.Vector3 euler)
         {
             if (!_actors.TryGetValue(entity, out var v) || v.Go == null) return;
-            var localMovement = entity == _localEntity
+            var localMovement = IsLocal(entity)
                 ? v.Go.GetComponent<TianyongPlayerController>()
                 : null;
             if (localMovement != null)
@@ -256,7 +339,7 @@ namespace MmorpgClient.World
             float dt  = Time.deltaTime;
             foreach (var v in _actors.Values)
             {
-                if (v.Entity == _localEntity) continue;
+                if (IsLocal(v.Entity)) continue;
                 if (!v.HasTarget || v.Go == null) continue;
                 float t = (now - v.InterpStart) / v.InterpDuration;
                 if (t < 1f)
@@ -282,10 +365,14 @@ namespace MmorpgClient.World
         private void Recolor(ActorView v)
         {
             if (v.Go == null) return;
+            // Nameplate text + colour follow the local/remote/NPC role too; the
+            // local binding usually lands after SpawnActor, so this re-queries
+            // DisplayNameProvider as well.
+            RefreshNameplate(v);
             var rend = v.Go.GetComponent<Renderer>();
             if (rend == null) return;
             Color c;
-            if (v.Entity == _localEntity)            c = new Color(0.2f, 0.9f, 0.3f);
+            if (IsLocal(v.Entity))                   c = new Color(0.2f, 0.9f, 0.3f);
             else if (v.Kind == ActorKind.Player)     c = new Color(0.3f, 0.5f, 0.95f);
             else                                     c = new Color(0.85f, 0.55f, 0.2f);
 
@@ -300,7 +387,7 @@ namespace MmorpgClient.World
 
         private void DisableLocalMovement(ActorView view)
         {
-            if (view == null || view.Entity != _localEntity || view.Go == null) return;
+            if (view == null || !IsLocal(view.Entity) || view.Go == null) return;
             var movement = view.Go.GetComponent<TianyongPlayerController>();
             if (movement != null && movement.enabled)
                 movement.enabled = false;

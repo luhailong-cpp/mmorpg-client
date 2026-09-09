@@ -46,17 +46,41 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // ── 面板底色 ──
 
-        public static readonly Color PanelBg      = WithAlpha(QdaoUguiTheme.Html("#2B2016"), 0.94f);
-        public static readonly Color PanelBgLight = WithAlpha(QdaoUguiTheme.Html("#3D2914"), 0.96f);
+        public static readonly Color PanelBg      = WithAlpha(QdaoUguiTheme.Html("#163E34"), 0.94f);
+        public static readonly Color PanelBgLight = WithAlpha(QdaoUguiTheme.Html("#225044"), 0.96f);
         public static readonly Color BattleBg     = WithAlpha(QdaoUguiTheme.Html("#17100A"), 0.97f);
         public static readonly Color BattleBackdropShade = new Color(0.02f, 0.015f, 0.01f, 0.12f);
         public static readonly Color ModalDim     = new Color(0f, 0f, 0f, 0.6f);
 
         // ── 控件颜色 ──
 
-        public static readonly Color ButtonPlate       = QdaoUguiTheme.Brown;
-        public static readonly Color ButtonPlateAccent = QdaoUguiTheme.SelectedRed;
+        public static readonly Color ButtonPlate       = QdaoRefreshArt.Jade;
+        public static readonly Color ButtonPlateAccent = QdaoUguiTheme.Html("#246E59");
         public static readonly Color ButtonText        = QdaoUguiTheme.Cream;
+
+        // ── 右侧 HUD 入口按钮(战斗 / 观战 / 角色,自上而下) ──
+        // 2560x1080 design pixels, top-left origin. All three city entries
+        // share authored jade-and-gold art, readable labels and the same spacing.
+
+        public const float HudEntryWidth  = 260f;
+        public const float HudEntryHeight = 72f;
+        /// <summary>右缘留 40px。</summary>
+        public const float HudEntryX      = QdaoUguiTheme.DesignWidth - HudEntryWidth - 40f; // 2260
+        public const float HudEntryFirstY = 238f;
+        public const float HudEntryGap    = 18f;
+        public const float HudEntryFrame  = 2f;
+        public const float HudEntryFontSize = 32f;
+
+        /// <summary>Shared right-side city entry column.</summary>
+        public static float HudEntryY(int index)
+            => HudEntryFirstY + index * (HudEntryHeight + HudEntryGap);
+
+        public static readonly Color HudEntryPlate       = WithAlpha(QdaoRefreshArt.Jade, 0.95f);
+        public static readonly Color HudEntryFrameColor  = QdaoUguiTheme.Html("#C9A15E");
+        public static readonly Color HudEntryText        = QdaoUguiTheme.Cream;
+        /// <summary>"战斗"入口:SelectedRed 底板 + 同色偏亮描边。</summary>
+        public static readonly Color HudEntryAccentPlate = WithAlpha(QdaoRefreshArt.Jade, 0.98f);
+        public static readonly Color HudEntryAccentFrame = QdaoUguiTheme.Html("#E2C77B");
 
         // ── 单位槽状态色 ──
 

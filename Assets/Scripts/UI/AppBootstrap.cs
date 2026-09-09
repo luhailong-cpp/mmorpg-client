@@ -3,6 +3,7 @@ using System;
 using MmorpgClient.Game;
 using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui;
+using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using UnityEngine;
 
@@ -73,6 +74,9 @@ namespace MmorpgClient.UI
             Gateway    = new GatewayHttpClient(Session.GatewayBaseUrl);
             GameClient = new GameClient(Session.GatewayBaseUrl);
             GameClient.World.SetRootParent(_actorWorldRoot);
+            // 名牌显示名:本地玩家取会话里的角色名;远端玩家/NPC 的名字协议
+            // (ActorCreateS2C)尚未下发,交给 ActorWorld 的种类回退("玩家"/"NPC")。
+            GameClient.World.DisplayNameProvider = ResolveActorDisplayName;
             GameClient.CoroutineRunner = Run; // RedirectToGateNotify 重连流程需要宿主协程
             _gameLogHandler = s => Debug.Log("[GameClient] " + s);
             GameClient.OnLog += _gameLogHandler;
@@ -113,6 +117,33 @@ namespace MmorpgClient.UI
         }
 
         public Coroutine Run(IEnumerator routine) => StartCoroutine(routine);
+
+        /// <summary>
+        /// Readable nameplate text for the local player: the gateway player
+        /// list entry matching <see cref="Game.GameClient.PlayerId"/>, else the
+        /// nickname chosen in the role flow. Remote actors return null so the
+        /// world falls back to its kind label until the protocol carries names.
+        /// </summary>
+        private string ResolveActorDisplayName(ActorView view)
+        {
+            var client = GameClient;
+            var session = Session;
+            if (view == null || client == null || session == null) return null;
+            if (view.Kind != ActorKind.Player) return null;
+            var world = client.World;
+            if (world == null || !world.HasLocalPlayer || view.Entity != world.LocalEntity) return null;
+
+            var playerId = client.PlayerId;
+            if (playerId != 0)
+            {
+                foreach (var p in session.Players)
+                {
+                    if (p == null || p.player_id != playerId) continue;
+                    if (!string.IsNullOrWhiteSpace(p.name)) return p.name;
+                }
+            }
+            return string.IsNullOrWhiteSpace(session.RoleNickname) ? null : session.RoleNickname;
+        }
 
         private void EnsureSceneRig()
         {

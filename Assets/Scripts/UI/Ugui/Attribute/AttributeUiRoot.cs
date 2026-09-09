@@ -133,9 +133,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var windowRoot = CreateDesignRoot("WindowRoot", _canvasGo.transform);
             var toastRoot = CreateDesignRoot("ToastRoot", _canvasGo.transform);
 
-            _entryButton = BattleUiWidgets.CreateTextButton("AttributeEntry", _hudRoot,
-                AttributeUiStyle.EntryX, AttributeUiStyle.EntryY, 150f, 70f, "角色", 26f,
-                BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _entryButton = BattleUiWidgets.CreateFramedTextButton("AttributeEntry", _hudRoot,
+                AttributeUiStyle.EntryX, AttributeUiStyle.EntryY,
+                BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, "角色", BattleUiStyle.HudEntryFontSize,
+                BattleUiStyle.HudEntryPlate, BattleUiStyle.HudEntryFrameColor, BattleUiStyle.HudEntryText,
+                BattleUiStyle.HudEntryFrame);
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
 

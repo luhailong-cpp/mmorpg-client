@@ -35,6 +35,10 @@ namespace MmorpgClient.World.Tianyong
         [Tooltip("27 keeps the 6144 px painted city at roughly one source texel per screen pixel at 1080p. Closer defaults magnify and blur the artwork.")]
         [SerializeField, Min(1f)] private float cameraZoomDefault = 27f;
 
+        [Header("Ground presentation")]
+        [Tooltip("Height/width of discs drawn on the painted ground (actor contact shadow, click marker). The town art draws ground circles as circles (straight-down painting) while figures are seen from the side, so a mild ellipse reads as 'lying on the ground' under the sprite. 1 = circle.")]
+        [SerializeField, Range(0.3f, 1f)] private float groundDiscAspect = DefaultGroundDiscAspect;
+
         [Header("Player")]
         [SerializeField, Min(0.1f)] private float moveSpeed = 9f;
         [SerializeField, Min(0.5f)] private float playerHeight = 1.8f;
@@ -61,6 +65,18 @@ namespace MmorpgClient.World.Tianyong
         public float CameraZoomMax => Mathf.Max(CameraZoomMin, cameraZoomMax >= 1f ? cameraZoomMax : 30f);
         public float CameraZoomDefault => Mathf.Clamp(
             cameraZoomDefault >= 1f ? cameraZoomDefault : 27f, CameraZoomMin, CameraZoomMax);
+
+        public const float DefaultGroundDiscAspect = 0.66f;
+
+        /// <summary>Height/width of ground discs (contact shadow, click ring); assets serialized before the field existed read 0 and fall back to the default.</summary>
+        public float GroundDiscAspect => groundDiscAspect >= 0.3f ? Mathf.Min(groundDiscAspect, 1f) : DefaultGroundDiscAspect;
+
+        /// <summary>Convenience for presentation code that has no config reference at hand.</summary>
+        public static float ResolveGroundDiscAspect()
+        {
+            var config = LoadDefault();
+            return config != null ? config.GroundDiscAspect : DefaultGroundDiscAspect;
+        }
 
         public float MoveSpeed => moveSpeed;
         public float PlayerHeight => playerHeight;
@@ -89,6 +105,7 @@ namespace MmorpgClient.World.Tianyong
             cameraZoomMin = Mathf.Max(1f, cameraZoomMin);
             cameraZoomMax = Mathf.Max(cameraZoomMin, cameraZoomMax);
             cameraZoomDefault = Mathf.Clamp(cameraZoomDefault, cameraZoomMin, cameraZoomMax);
+            groundDiscAspect = groundDiscAspect >= 0.3f ? Mathf.Min(groundDiscAspect, 1f) : DefaultGroundDiscAspect;
             moveSpeed = Mathf.Max(0.1f, moveSpeed);
             playerHeight = Mathf.Max(0.5f, playerHeight);
             playerRadius = Mathf.Clamp(playerRadius, 0.1f, playerHeight * 0.49f);

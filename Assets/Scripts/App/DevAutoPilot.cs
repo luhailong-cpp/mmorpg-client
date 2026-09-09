@@ -546,7 +546,7 @@ namespace MmorpgClient.App
             {
                 if (_finished) yield break;
                 var world = _client.World;
-                if (world != null && world.LocalEntity != 0 &&
+                if (world != null && world.HasLocalPlayer &&
                     world.TryGetActor(world.LocalEntity, out var view) && view.Go != null)
                 {
                     ctrl = view.Go.GetComponent<TianyongPlayerController>();

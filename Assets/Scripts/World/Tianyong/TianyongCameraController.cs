@@ -99,11 +99,33 @@ namespace MmorpgClient.World.Tianyong
             {
                 var wheel = Input.mouseScrollDelta.y;
                 if (Mathf.Abs(wheel) > 0.01f)
-                    _orthographicSize = Mathf.Clamp(_orthographicSize - wheel * 4f, _zoomMin, _zoomMax);
+                    SetZoom(_orthographicSize - wheel * 4f);
             }
 
             _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, _orthographicSize,
                 1f - Mathf.Exp(-10f * Mathf.Max(0.0001f, deltaTime)));
+            // Clamp against the size actually being RENDERED this frame, not
+            // the target SetZoom jumped to. The margin the view needs is a
+            // function of the frame on screen, and only this size is on screen.
+            //
+            // The leak this closes is zooming OUT at the painting's edge:
+            // SetZoom raises _orthographicSize instantly, the viewport widens
+            // on a ~0.1 s ease, and _focus can only crawl inward at
+            // smoothTime 0.18 s - slower than the viewport widens - so the
+            // painting's edge is squeezed into frame for those frames (2.3 u /
+            // 47 px for one wheel notch, up to ~17 u on a fast flick). Zooming
+            // in never leaked: a narrowing viewport needs less margin, not
+            // more. An earlier revision of this comment had that backwards and
+            // clamped by max(target, rendered) to compensate.
+            //
+            // max() would also clamp correctly, but it over-clamps by
+            // (target - rendered) * aspect while the ease runs, and because
+            // _orthographicSize is assigned instantly that surplus lands as a
+            // single-frame content jump against the edge: 105 px for 27 -> 30,
+            // 385 px for one notch at the near end, 569 px on a flick. Using
+            // the rendered size is the smallest move that keeps the edge out,
+            // and holds those to 16 / 32 / 161 px.
+            _focus = ClampFocus(_focus, _camera.orthographicSize);
             PositionCamera();
         }
 
@@ -115,17 +137,26 @@ namespace MmorpgClient.World.Tianyong
         }
 
         /// <summary>
+        /// Zoom the camera eases towards (the mouse wheel goes through here),
+        /// clamped to the configured window.
+        /// </summary>
+        public void SetZoom(float orthographicSize)
+            => _orthographicSize = Mathf.Clamp(orthographicSize, _zoomMin, _zoomMax);
+
+        /// <summary>
         /// Keeps the view inside the map. Top-down, the visible half-extents
         /// are subtracted so the painting's edge never enters the frame; the
         /// isometric view only keeps a small margin as before.
         /// </summary>
-        private Vector3 ClampFocus(Vector3 world)
+        private Vector3 ClampFocus(Vector3 world) => ClampFocus(world, _orthographicSize);
+
+        private Vector3 ClampFocus(Vector3 world, float orthographicSize)
         {
             float marginX = 8f, marginZ = 8f;
             if (_topDown && _camera != null)
             {
-                marginZ = _orthographicSize;
-                marginX = _orthographicSize * Mathf.Max(0.1f, _camera.aspect);
+                marginZ = orthographicSize;
+                marginX = orthographicSize * Mathf.Max(0.1f, _camera.aspect);
                 // A view wider than the painting just centres on it.
                 marginX = Mathf.Min(marginX, _bounds.width * 0.5f);
                 marginZ = Mathf.Min(marginZ, _bounds.height * 0.5f);

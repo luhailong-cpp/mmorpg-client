@@ -81,7 +81,11 @@ namespace MmorpgClient.EditorDev
             // runtime instance — only the initialized one has _app wired.
             var views = UnityEngine.Object.FindObjectsByType<
                 MmorpgClient.UI.Ugui.QdaoServerSelectView>(
+#if UNITY_6000_6_OR_NEWER
+                    FindObjectsInactive.Include);
+#else
                     FindObjectsInactive.Include, FindObjectsSortMode.None);
+#endif
             MmorpgClient.UI.Ugui.QdaoServerSelectView comp = null;
             foreach (var v in views)
                 if (appField.GetValue(v) != null) { comp = v; break; }

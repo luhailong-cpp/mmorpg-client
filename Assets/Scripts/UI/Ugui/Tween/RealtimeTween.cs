@@ -310,7 +310,7 @@ namespace MmorpgClient.UI.Ugui.Tweening
     /// <summary>
     /// 无第三方依赖的 Unity tween 调度器。一个隐藏的 DontDestroyOnLoad 组件在 Update 中驱动所有实例。
     /// </summary>
-    public static class RealtimeTween
+    public static partial class RealtimeTween
     {
         private static readonly List<RealtimeTweener> Active = new List<RealtimeTweener>();
         private static RealtimeTweenRunner s_runner;
