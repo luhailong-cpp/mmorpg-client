@@ -59,6 +59,10 @@ $files = @(
     # 角色属性加点(docs/design/player-attribute-allocation.md)
     "proto/scene/player_attribute.proto",
 
+    # 宝宝(宠物)系统(docs/design/player-pet.md)
+    "proto/common/component/player_pet_comp.proto",
+    "proto/scene/player_pet.proto",
+
     # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
     "proto/battle/battle_data.proto",
     "proto/battle/player_battle.proto",

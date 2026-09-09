@@ -111,6 +111,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void PartyCardOrder_SkipsPetsSoTeammatesKeepTheirCards()
+        {
+            // 宝宝(owner_player_id != 0)跟着主人站,不是队友;占卡的话人类队友会被挤掉
+            var pet = Actor(400, 0, type: eBattleActorType.BattleActorTypePet);
+            pet.OwnerPlayerId = 7UL;
+            var actors = new List<BattleActorState> { Actor(7, 0), pet, Actor(1, 0), Actor(2, 0), Actor(3, 0) };
+
+            var cards = BattleHudLogic.PartyCardOrder(actors, myId: 7, myTeam: 0, maxCards: 4);
+
+            Assert.AreEqual(4, cards.Count);
+            CollectionAssert.AreEqual(new ulong[] { 7UL, 1UL, 2UL, 3UL },
+                cards.ConvertAll(a => a.ActorId));
+        }
+
+        [Test]
         public void IsPvp_TrueOnlyWhenEnemyHasPlayer()
         {
             var pve = new List<BattleActorState> { Actor(1, 0), Actor(2, 1, type: eBattleActorType.BattleActorTypeMonster) };

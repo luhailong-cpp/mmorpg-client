@@ -188,6 +188,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         public void Show()
         {
+            // 宝宝窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
+            Pet.PetUiRoot.Instance?.HidePanel();
             if (_root != null) _root.gameObject.SetActive(true);
             CloseSchemeList();
             HideTooltip();

@@ -30,7 +30,7 @@ public static partial class BattleDataReflection {
           "DSJyCg9CYXR0bGVCdWZmRW50cnkSDwoHYnVmZl9pZBgBIAEoBBIVCg1idWZm",
           "X3RhYmxlX2lkGAIgASgNEg0KBWxheWVyGAMgASgNEhUKDXJlbWFpbl9yb3Vu",
           "ZHMYBCABKA0SEQoJY2FzdGVyX2lkGAUgASgEIjcKD0JhdHRsZUl0ZW1FbnRy",
-          "eRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNvdW50GAIgASgEIswCChRC",
+          "eRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNvdW50GAIgASgEIq4DChRC",
           "YXR0bGVQbGF5ZXJTbmFwc2hvdBIRCglwbGF5ZXJfaWQYASABKAQSEwoLcGxh",
           "eWVyX25hbWUYAiABKAkSDQoFbGV2ZWwYAyABKA0SLAoPYmFzZV9hdHRyaWJ1",
           "dGVzGAQgASgLMhMuQmFzZUF0dHJpYnV0ZXNDb21wEhIKCm1heF9oZWFsdGgY",
@@ -38,66 +38,81 @@ public static partial class BattleDataReflection {
           "AygNEh8KBWJ1ZmZzGAggAygLMhAuQmF0dGxlQnVmZkVudHJ5Eh8KBWl0ZW1z",
           "GAkgAygLMhAuQmF0dGxlSXRlbUVudHJ5Eh8KB3JvdXRpbmcYCiABKAsyDi5C",
           "YXR0bGVSb3V0aW5nEhIKCnRlYW1faW5kZXgYCyABKA0SGQoRdGFibGVfZmlu",
-          "Z2VycHJpbnQYDCABKAkixAQKEEJhdHRsZUFjdG9yU3RhdGUSEAoIYWN0b3Jf",
-          "aWQYASABKAQSJQoKYWN0b3JfdHlwZRgCIAEoDjIRLmVCYXR0bGVBY3RvclR5",
-          "cGUSEgoKdGVhbV9pbmRleBgDIAEoDRIMCgRuYW1lGAQgASgJEg0KBWxldmVs",
-          "GAUgASgNEicKCmF0dHJpYnV0ZXMYBiABKAsyEy5CYXNlQXR0cmlidXRlc0Nv",
-          "bXASEgoKbWF4X2hlYWx0aBgHIAEoBBIQCghtYXhfbWFuYRgIIAEoBBIPCgdp",
-          "c19kZWFkGAkgASgIEhQKDGlzX2RlZmVuZGluZxgKIAEoCBIMCgRmbGVkGAsg",
-          "ASgIEh8KBWJ1ZmZzGAwgAygLMhAuQmF0dGxlQnVmZkVudHJ5EhcKD3NraWxs",
-          "X3RhYmxlX2lkcxgNIAMoDRIYChBtb25zdGVyX3RhYmxlX2lkGA4gASgNEkkK",
-          "FXNraWxsX2Nvb2xkb3duX3JvdW5kcxgPIAMoCzIqLkJhdHRsZUFjdG9yU3Rh",
-          "dGUuU2tpbGxDb29sZG93blJvdW5kc0VudHJ5Eg8KB2lzX2F1dG8YECABKAgS",
-          "FgoOZm9ybWF0aW9uX3Nsb3QYESABKA0SFwoPcGh5c2ljYWxfYXR0YWNrGBIg",
-          "ASgEEhQKDG1hZ2ljX2F0dGFjaxgTIAEoBBIPCgdkZWZlbnNlGBQgASgEGjoK",
-          "GFNraWxsQ29vbGRvd25Sb3VuZHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFs",
-          "dWUYAiABKA06AjgBInkKDEJhdHRsZUFjdGlvbhInCgthY3Rpb25fdHlwZRgB",
-          "IAEoDjISLmVCYXR0bGVBY3Rpb25UeXBlEhYKDnNraWxsX3RhYmxlX2lkGAIg",
-          "ASgNEhEKCXRhcmdldF9pZBgDIAEoBBIVCg1pdGVtX3RhYmxlX2lkGAQgASgN",
-          "IrYCCg9CYXR0bGVFdmVudEl0ZW0SJQoKZXZlbnRfdHlwZRgBIAEoDjIRLmVC",
-          "YXR0bGVFdmVudFR5cGUSEQoJc291cmNlX2lkGAIgASgEEhEKCXRhcmdldF9p",
-          "ZBgDIAEoBBIWCg5za2lsbF90YWJsZV9pZBgEIAEoDRIVCg1idWZmX3RhYmxl",
-          "X2lkGAUgASgNEg0KBXZhbHVlGAYgASgEEhMKC2lzX2NyaXRpY2FsGAcgASgI",
-          "Eg8KB3N1Y2Nlc3MYCCABKAgSGwoTdGFyZ2V0X2hlYWx0aF9hZnRlchgJIAEo",
-          "BBIVCg1pdGVtX3RhYmxlX2lkGAogASgNEhAKCGdyb3VwX2lkGAsgASgNEhEK",
-          "CWhpdF9pbmRleBgMIAEoDRIZChF0YXJnZXRfbWFuYV9hZnRlchgNIAEoBCLD",
-          "AgoUQmF0dGxlU2V0dGxlbWVudERhdGESEQoJYmF0dGxlX2lkGAEgASgEEhEK",
-          "CXBsYXllcl9pZBgCIAEoBBIgCgdvdXRjb21lGAMgASgOMg8uZUJhdHRsZU91",
-          "dGNvbWUSGQoRcGxheWVyX3RlYW1faW5kZXgYBCABKA0SDgoGaGVhbHRoGAUg",
-          "ASgEEgwKBG1hbmEYBiABKAQSEAoIZXhwX2dhaW4YByABKAQSEQoJZ29sZF9n",
-          "YWluGAggASgEEigKDml0ZW1zX2NvbnN1bWVkGAkgAygLMhAuQmF0dGxlSXRl",
-          "bUVudHJ5EiYKDGl0ZW1zX2dhaW5lZBgKIAMoCzIQLkJhdHRsZUl0ZW1FbnRy",
-          "eRIPCgdpc19kZWFkGAsgASgIEgwKBGZsZWQYDCABKAgSFAoMdG90YWxfcm91",
-          "bmRzGA0gASgNKmsKEGVCYXR0bGVBY3RvclR5cGUSGgoWQkFUVExFX0FDVE9S",
-          "X1RZUEVfTk9ORRAAEhwKGEJBVFRMRV9BQ1RPUl9UWVBFX1BMQVlFUhABEh0K",
-          "GUJBVFRMRV9BQ1RPUl9UWVBFX01PTlNURVIQAiqoAQoRZUJhdHRsZUFjdGlv",
-          "blR5cGUSFgoSQkFUVExFX0FDVElPTl9OT05FEAASGAoUQkFUVExFX0FDVElP",
-          "Tl9BVFRBQ0sQARIXChNCQVRUTEVfQUNUSU9OX1NLSUxMEAISGAoUQkFUVExF",
-          "X0FDVElPTl9ERUZFTkQQAxIWChJCQVRUTEVfQUNUSU9OX0lURU0QBBIWChJC",
-          "QVRUTEVfQUNUSU9OX0ZMRUUQBSqEAwoQZUJhdHRsZUV2ZW50VHlwZRIVChFC",
-          "QVRUTEVfRVZFTlRfTk9ORRAAEhcKE0JBVFRMRV9FVkVOVF9BVFRBQ0sQARIW",
-          "ChJCQVRUTEVfRVZFTlRfU0tJTEwQAhIXChNCQVRUTEVfRVZFTlRfREFNQUdF",
-          "EAMSFQoRQkFUVExFX0VWRU5UX0hFQUwQBBIZChVCQVRUTEVfRVZFTlRfQlVG",
-          "Rl9BREQQBRIcChhCQVRUTEVfRVZFTlRfQlVGRl9SRU1PVkUQBhIaChZCQVRU",
-          "TEVfRVZFTlRfQlVGRl9USUNLEAcSFgoSQkFUVExFX0VWRU5UX0RFQVRIEAgS",
-          "FwoTQkFUVExFX0VWRU5UX0RFRkVORBAJEhUKEUJBVFRMRV9FVkVOVF9JVEVN",
-          "EAoSFQoRQkFUVExFX0VWRU5UX0ZMRUUQCxIVChFCQVRUTEVfRVZFTlRfTUlT",
-          "UxAMEhYKEkJBVFRMRV9FVkVOVF9CTE9DSxANEhUKEUJBVFRMRV9FVkVOVF9N",
-          "QU5BEA4qgwEKDmVCYXR0bGVPdXRjb21lEhoKFkJBVFRMRV9PVVRDT01FX09O",
-          "R09JTkcQABIdChlCQVRUTEVfT1VUQ09NRV9TSURFX0FfV0lOEAESHQoZQkFU",
-          "VExFX09VVENPTUVfU0lERV9CX1dJThACEhcKE0JBVFRMRV9PVVRDT01FX0RS",
-          "QVcQA0IIWgZiYXR0bGViBnByb3RvMw=="));
+          "Z2VycHJpbnQYDCABKAkSFwoPcGh5c2ljYWxfYXR0YWNrGA0gASgEEhQKDG1h",
+          "Z2ljX2F0dGFjaxgOIAEoBBIPCgdkZWZlbnNlGA8gASgEEiAKBHBldHMYECAD",
+          "KAsyEi5CYXR0bGVQZXRTbmFwc2hvdCKgAgoRQmF0dGxlUGV0U25hcHNob3QS",
+          "DgoGcGV0X2lkGAEgASgEEhcKD293bmVyX3BsYXllcl9pZBgCIAEoBBIQCghw",
+          "ZXRfbmFtZRgDIAEoCRIUCgxwZXRfdGFibGVfaWQYBCABKA0SDQoFbGV2ZWwY",
+          "BSABKA0SLAoPYmFzZV9hdHRyaWJ1dGVzGAYgASgLMhMuQmFzZUF0dHJpYnV0",
+          "ZXNDb21wEhIKCm1heF9oZWFsdGgYByABKAQSEAoIbWF4X21hbmEYCCABKAQS",
+          "FwoPcGh5c2ljYWxfYXR0YWNrGAkgASgEEhQKDG1hZ2ljX2F0dGFjaxgKIAEo",
+          "BBIPCgdkZWZlbnNlGAsgASgEEhcKD3NraWxsX3RhYmxlX2lkcxgMIAMoDSLz",
+          "BAoQQmF0dGxlQWN0b3JTdGF0ZRIQCghhY3Rvcl9pZBgBIAEoBBIlCgphY3Rv",
+          "cl90eXBlGAIgASgOMhEuZUJhdHRsZUFjdG9yVHlwZRISCgp0ZWFtX2luZGV4",
+          "GAMgASgNEgwKBG5hbWUYBCABKAkSDQoFbGV2ZWwYBSABKA0SJwoKYXR0cmli",
+          "dXRlcxgGIAEoCzITLkJhc2VBdHRyaWJ1dGVzQ29tcBISCgptYXhfaGVhbHRo",
+          "GAcgASgEEhAKCG1heF9tYW5hGAggASgEEg8KB2lzX2RlYWQYCSABKAgSFAoM",
+          "aXNfZGVmZW5kaW5nGAogASgIEgwKBGZsZWQYCyABKAgSHwoFYnVmZnMYDCAD",
+          "KAsyEC5CYXR0bGVCdWZmRW50cnkSFwoPc2tpbGxfdGFibGVfaWRzGA0gAygN",
+          "EhgKEG1vbnN0ZXJfdGFibGVfaWQYDiABKA0SSQoVc2tpbGxfY29vbGRvd25f",
+          "cm91bmRzGA8gAygLMiouQmF0dGxlQWN0b3JTdGF0ZS5Ta2lsbENvb2xkb3du",
+          "Um91bmRzRW50cnkSDwoHaXNfYXV0bxgQIAEoCBIWCg5mb3JtYXRpb25fc2xv",
+          "dBgRIAEoDRIXCg9waHlzaWNhbF9hdHRhY2sYEiABKAQSFAoMbWFnaWNfYXR0",
+          "YWNrGBMgASgEEg8KB2RlZmVuc2UYFCABKAQSFwoPb3duZXJfcGxheWVyX2lk",
+          "GBUgASgEEhQKDHBldF90YWJsZV9pZBgWIAEoDRo6ChhTa2lsbENvb2xkb3du",
+          "Um91bmRzRW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgNOgI4ASJ5",
+          "CgxCYXR0bGVBY3Rpb24SJwoLYWN0aW9uX3R5cGUYASABKA4yEi5lQmF0dGxl",
+          "QWN0aW9uVHlwZRIWCg5za2lsbF90YWJsZV9pZBgCIAEoDRIRCgl0YXJnZXRf",
+          "aWQYAyABKAQSFQoNaXRlbV90YWJsZV9pZBgEIAEoDSK2AgoPQmF0dGxlRXZl",
+          "bnRJdGVtEiUKCmV2ZW50X3R5cGUYASABKA4yES5lQmF0dGxlRXZlbnRUeXBl",
+          "EhEKCXNvdXJjZV9pZBgCIAEoBBIRCgl0YXJnZXRfaWQYAyABKAQSFgoOc2tp",
+          "bGxfdGFibGVfaWQYBCABKA0SFQoNYnVmZl90YWJsZV9pZBgFIAEoDRINCgV2",
+          "YWx1ZRgGIAEoBBITCgtpc19jcml0aWNhbBgHIAEoCBIPCgdzdWNjZXNzGAgg",
+          "ASgIEhsKE3RhcmdldF9oZWFsdGhfYWZ0ZXIYCSABKAQSFQoNaXRlbV90YWJs",
+          "ZV9pZBgKIAEoDRIQCghncm91cF9pZBgLIAEoDRIRCgloaXRfaW5kZXgYDCAB",
+          "KA0SGQoRdGFyZ2V0X21hbmFfYWZ0ZXIYDSABKAQi6wIKFEJhdHRsZVNldHRs",
+          "ZW1lbnREYXRhEhEKCWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQYAiAB",
+          "KAQSIAoHb3V0Y29tZRgDIAEoDjIPLmVCYXR0bGVPdXRjb21lEhkKEXBsYXll",
+          "cl90ZWFtX2luZGV4GAQgASgNEg4KBmhlYWx0aBgFIAEoBBIMCgRtYW5hGAYg",
+          "ASgEEhAKCGV4cF9nYWluGAcgASgEEhEKCWdvbGRfZ2FpbhgIIAEoBBIoCg5p",
+          "dGVtc19jb25zdW1lZBgJIAMoCzIQLkJhdHRsZUl0ZW1FbnRyeRImCgxpdGVt",
+          "c19nYWluZWQYCiADKAsyEC5CYXR0bGVJdGVtRW50cnkSDwoHaXNfZGVhZBgL",
+          "IAEoCBIMCgRmbGVkGAwgASgIEhQKDHRvdGFsX3JvdW5kcxgNIAEoDRImCgRw",
+          "ZXRzGA4gAygLMhguQmF0dGxlUGV0U2V0dGxlbWVudERhdGEiWAoXQmF0dGxl",
+          "UGV0U2V0dGxlbWVudERhdGESDgoGcGV0X2lkGAEgASgEEg4KBmhlYWx0aBgC",
+          "IAEoBBIMCgRtYW5hGAMgASgEEg8KB2lzX2RlYWQYBCABKAgqhgEKEGVCYXR0",
+          "bGVBY3RvclR5cGUSGgoWQkFUVExFX0FDVE9SX1RZUEVfTk9ORRAAEhwKGEJB",
+          "VFRMRV9BQ1RPUl9UWVBFX1BMQVlFUhABEh0KGUJBVFRMRV9BQ1RPUl9UWVBF",
+          "X01PTlNURVIQAhIZChVCQVRUTEVfQUNUT1JfVFlQRV9QRVQQAyqoAQoRZUJh",
+          "dHRsZUFjdGlvblR5cGUSFgoSQkFUVExFX0FDVElPTl9OT05FEAASGAoUQkFU",
+          "VExFX0FDVElPTl9BVFRBQ0sQARIXChNCQVRUTEVfQUNUSU9OX1NLSUxMEAIS",
+          "GAoUQkFUVExFX0FDVElPTl9ERUZFTkQQAxIWChJCQVRUTEVfQUNUSU9OX0lU",
+          "RU0QBBIWChJCQVRUTEVfQUNUSU9OX0ZMRUUQBSqEAwoQZUJhdHRsZUV2ZW50",
+          "VHlwZRIVChFCQVRUTEVfRVZFTlRfTk9ORRAAEhcKE0JBVFRMRV9FVkVOVF9B",
+          "VFRBQ0sQARIWChJCQVRUTEVfRVZFTlRfU0tJTEwQAhIXChNCQVRUTEVfRVZF",
+          "TlRfREFNQUdFEAMSFQoRQkFUVExFX0VWRU5UX0hFQUwQBBIZChVCQVRUTEVf",
+          "RVZFTlRfQlVGRl9BREQQBRIcChhCQVRUTEVfRVZFTlRfQlVGRl9SRU1PVkUQ",
+          "BhIaChZCQVRUTEVfRVZFTlRfQlVGRl9USUNLEAcSFgoSQkFUVExFX0VWRU5U",
+          "X0RFQVRIEAgSFwoTQkFUVExFX0VWRU5UX0RFRkVORBAJEhUKEUJBVFRMRV9F",
+          "VkVOVF9JVEVNEAoSFQoRQkFUVExFX0VWRU5UX0ZMRUUQCxIVChFCQVRUTEVf",
+          "RVZFTlRfTUlTUxAMEhYKEkJBVFRMRV9FVkVOVF9CTE9DSxANEhUKEUJBVFRM",
+          "RV9FVkVOVF9NQU5BEA4qgwEKDmVCYXR0bGVPdXRjb21lEhoKFkJBVFRMRV9P",
+          "VVRDT01FX09OR09JTkcQABIdChlCQVRUTEVfT1VUQ09NRV9TSURFX0FfV0lO",
+          "EAESHQoZQkFUVExFX09VVENPTUVfU0lERV9CX1dJThACEhcKE0JBVFRMRV9P",
+          "VVRDT01FX0RSQVcQA0IIWgZiYXR0bGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleOutcome), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRouting), global::BattleRouting.Parser, new[]{ "SessionId", "GateNodeId", "GateInstanceId", "SceneNodeId", "SceneInstanceId", "ZoneId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleBuffEntry), global::BattleBuffEntry.Parser, new[]{ "BuffId", "BuffTableId", "Layer", "RemainRounds", "CasterId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleItemEntry), global::BattleItemEntry.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePlayerSnapshot), global::BattlePlayerSnapshot.Parser, new[]{ "PlayerId", "PlayerName", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "SkillTableIds", "Buffs", "Items", "Routing", "TeamIndex", "TableFingerprint" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorState), global::BattleActorState.Parser, new[]{ "ActorId", "ActorType", "TeamIndex", "Name", "Level", "Attributes", "MaxHealth", "MaxMana", "IsDead", "IsDefending", "Fled", "Buffs", "SkillTableIds", "MonsterTableId", "SkillCooldownRounds", "IsAuto", "FormationSlot", "PhysicalAttack", "MagicAttack", "Defense" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePlayerSnapshot), global::BattlePlayerSnapshot.Parser, new[]{ "PlayerId", "PlayerName", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "SkillTableIds", "Buffs", "Items", "Routing", "TeamIndex", "TableFingerprint", "PhysicalAttack", "MagicAttack", "Defense", "Pets" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSnapshot), global::BattlePetSnapshot.Parser, new[]{ "PetId", "OwnerPlayerId", "PetName", "PetTableId", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "PhysicalAttack", "MagicAttack", "Defense", "SkillTableIds" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorState), global::BattleActorState.Parser, new[]{ "ActorId", "ActorType", "TeamIndex", "Name", "Level", "Attributes", "MaxHealth", "MaxMana", "IsDead", "IsDefending", "Fled", "Buffs", "SkillTableIds", "MonsterTableId", "SkillCooldownRounds", "IsAuto", "FormationSlot", "PhysicalAttack", "MagicAttack", "Defense", "OwnerPlayerId", "PetTableId" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleAction), global::BattleAction.Parser, new[]{ "ActionType", "SkillTableId", "TargetId", "ItemTableId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleEventItem), global::BattleEventItem.Parser, new[]{ "EventType", "SourceId", "TargetId", "SkillTableId", "BuffTableId", "Value", "IsCritical", "Success", "TargetHealthAfter", "ItemTableId", "GroupId", "HitIndex", "TargetManaAfter" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSettlementData), global::BattlePetSettlementData.Parser, new[]{ "PetId", "Health", "Mana", "IsDead" }, null, null, null, null)
         }));
   }
   #endregion
@@ -111,6 +126,10 @@ public enum eBattleActorType {
   [pbr::OriginalName("BATTLE_ACTOR_TYPE_NONE")] BattleActorTypeNone = 0,
   [pbr::OriginalName("BATTLE_ACTOR_TYPE_PLAYER")] BattleActorTypePlayer = 1,
   [pbr::OriginalName("BATTLE_ACTOR_TYPE_MONSTER")] BattleActorTypeMonster = 2,
+  /// <summary>
+  /// 宝宝:与主人同队,无客户端行动权,由默认行动路径代打
+  /// </summary>
+  [pbr::OriginalName("BATTLE_ACTOR_TYPE_PET")] BattleActorTypePet = 3,
 }
 
 /// <summary>
@@ -1242,6 +1261,10 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     routing_ = other.routing_ != null ? other.routing_.Clone() : null;
     teamIndex_ = other.teamIndex_;
     tableFingerprint_ = other.tableFingerprint_;
+    physicalAttack_ = other.physicalAttack_;
+    magicAttack_ = other.magicAttack_;
+    defense_ = other.defense_;
+    pets_ = other.pets_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1410,6 +1433,66 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     }
   }
 
+  /// <summary>Field number for the "physical_attack" field.</summary>
+  public const int PhysicalAttackFieldNumber = 13;
+  private ulong physicalAttack_;
+  /// <summary>
+  /// 二级属性(属性加点系统):物伤,scene 侧由 DerivedAttributes 填;引擎 InitPlayers 直接透传给 BattleActorState
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PhysicalAttack {
+    get { return physicalAttack_; }
+    set {
+      physicalAttack_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "magic_attack" field.</summary>
+  public const int MagicAttackFieldNumber = 14;
+  private ulong magicAttack_;
+  /// <summary>
+  /// 法伤
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MagicAttack {
+    get { return magicAttack_; }
+    set {
+      magicAttack_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "defense" field.</summary>
+  public const int DefenseFieldNumber = 15;
+  private ulong defense_;
+  /// <summary>
+  /// 防御
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Defense {
+    get { return defense_; }
+    set {
+      defense_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pets" field.</summary>
+  public const int PetsFieldNumber = 16;
+  private static readonly pb::FieldCodec<global::BattlePetSnapshot> _repeated_pets_codec
+      = pb::FieldCodec.ForMessage(130, global::BattlePetSnapshot.Parser);
+  private readonly pbc::RepeatedField<global::BattlePetSnapshot> pets_ = new pbc::RepeatedField<global::BattlePetSnapshot>();
+  /// <summary>
+  /// 出战宝宝(宝宝系统,player-pet.md §5):与主人同队的独立行动单位。
+  /// 核心线同时只能带 1 只,repeated 是为了二期多宠不改 wire。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::BattlePetSnapshot> Pets {
+    get { return pets_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1437,6 +1520,10 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (!object.Equals(Routing, other.Routing)) return false;
     if (TeamIndex != other.TeamIndex) return false;
     if (TableFingerprint != other.TableFingerprint) return false;
+    if (PhysicalAttack != other.PhysicalAttack) return false;
+    if (MagicAttack != other.MagicAttack) return false;
+    if (Defense != other.Defense) return false;
+    if(!pets_.Equals(other.pets_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1456,6 +1543,10 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (routing_ != null) hash ^= Routing.GetHashCode();
     if (TeamIndex != 0) hash ^= TeamIndex.GetHashCode();
     if (TableFingerprint.Length != 0) hash ^= TableFingerprint.GetHashCode();
+    if (PhysicalAttack != 0UL) hash ^= PhysicalAttack.GetHashCode();
+    if (MagicAttack != 0UL) hash ^= MagicAttack.GetHashCode();
+    if (Defense != 0UL) hash ^= Defense.GetHashCode();
+    hash ^= pets_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1513,6 +1604,19 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
       output.WriteRawTag(98);
       output.WriteString(TableFingerprint);
     }
+    if (PhysicalAttack != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      output.WriteRawTag(112);
+      output.WriteUInt64(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(Defense);
+    }
+    pets_.WriteTo(output, _repeated_pets_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1562,6 +1666,19 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
       output.WriteRawTag(98);
       output.WriteString(TableFingerprint);
     }
+    if (PhysicalAttack != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      output.WriteRawTag(112);
+      output.WriteUInt64(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(Defense);
+    }
+    pets_.WriteTo(ref output, _repeated_pets_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1602,6 +1719,16 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (TableFingerprint.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(TableFingerprint);
     }
+    if (PhysicalAttack != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Defense);
+    }
+    size += pets_.CalculateSize(_repeated_pets_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1650,6 +1777,16 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (other.TableFingerprint.Length != 0) {
       TableFingerprint = other.TableFingerprint;
     }
+    if (other.PhysicalAttack != 0UL) {
+      PhysicalAttack = other.PhysicalAttack;
+    }
+    if (other.MagicAttack != 0UL) {
+      MagicAttack = other.MagicAttack;
+    }
+    if (other.Defense != 0UL) {
+      Defense = other.Defense;
+    }
+    pets_.Add(other.pets_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1722,6 +1859,22 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
         }
         case 98: {
           TableFingerprint = input.ReadString();
+          break;
+        }
+        case 104: {
+          PhysicalAttack = input.ReadUInt64();
+          break;
+        }
+        case 112: {
+          MagicAttack = input.ReadUInt64();
+          break;
+        }
+        case 120: {
+          Defense = input.ReadUInt64();
+          break;
+        }
+        case 130: {
+          pets_.AddEntriesFrom(input, _repeated_pets_codec);
           break;
         }
       }
@@ -1798,6 +1951,640 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
           TableFingerprint = input.ReadString();
           break;
         }
+        case 104: {
+          PhysicalAttack = input.ReadUInt64();
+          break;
+        }
+        case 112: {
+          MagicAttack = input.ReadUInt64();
+          break;
+        }
+        case 120: {
+          Defense = input.ReadUInt64();
+          break;
+        }
+        case 130: {
+          pets_.AddEntriesFrom(ref input, _repeated_pets_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// ---- 宝宝战斗快照:与主人同队、独立行动的战斗单位(设计文档 player-pet.md §5)----
+/// 属性口径与玩家快照逐项对齐:base_attributes 带 speed(出手序)与当前 HP/MP,
+/// max_* 与物伤/法伤/防御来自 PetSystem 现算的二级属性。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class BattlePetSnapshot : pb::IMessage<BattlePetSnapshot>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<BattlePetSnapshot> _parser = new pb::MessageParser<BattlePetSnapshot>(() => new BattlePetSnapshot());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<BattlePetSnapshot> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[4]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattlePetSnapshot() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattlePetSnapshot(BattlePetSnapshot other) : this() {
+    petId_ = other.petId_;
+    ownerPlayerId_ = other.ownerPlayerId_;
+    petName_ = other.petName_;
+    petTableId_ = other.petTableId_;
+    level_ = other.level_;
+    baseAttributes_ = other.baseAttributes_ != null ? other.baseAttributes_.Clone() : null;
+    maxHealth_ = other.maxHealth_;
+    maxMana_ = other.maxMana_;
+    physicalAttack_ = other.physicalAttack_;
+    magicAttack_ = other.magicAttack_;
+    defense_ = other.defense_;
+    skillTableIds_ = other.skillTableIds_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattlePetSnapshot Clone() {
+    return new BattlePetSnapshot(this);
+  }
+
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 1;
+  private ulong petId_;
+  /// <summary>
+  /// SnowFlake guid(scene 的 item guid 发号器铸),直接作为局内 actor_id。
+  /// 注意它与 player_id **不是**同一套位布局(AGENTS §7 不变量 1),数值域理论上可相交;
+  /// 引擎 InitPets 因此显式查重,撞了拒绝开局,不靠"同域不撞"的假设。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "owner_player_id" field.</summary>
+  public const int OwnerPlayerIdFieldNumber = 2;
+  private ulong ownerPlayerId_;
+  /// <summary>
+  /// 主人;决定队伍与结算归属
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong OwnerPlayerId {
+    get { return ownerPlayerId_; }
+    set {
+      ownerPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_name" field.</summary>
+  public const int PetNameFieldNumber = 3;
+  private string petName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string PetName {
+    get { return petName_; }
+    set {
+      petName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "pet_table_id" field.</summary>
+  public const int PetTableIdFieldNumber = 4;
+  private uint petTableId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PetTableId {
+    get { return petTableId_; }
+    set {
+      petTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "level" field.</summary>
+  public const int LevelFieldNumber = 5;
+  private uint level_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Level {
+    get { return level_; }
+    set {
+      level_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "base_attributes" field.</summary>
+  public const int BaseAttributesFieldNumber = 6;
+  private global::BaseAttributesComp baseAttributes_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::BaseAttributesComp BaseAttributes {
+    get { return baseAttributes_; }
+    set {
+      baseAttributes_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_health" field.</summary>
+  public const int MaxHealthFieldNumber = 7;
+  private ulong maxHealth_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MaxHealth {
+    get { return maxHealth_; }
+    set {
+      maxHealth_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_mana" field.</summary>
+  public const int MaxManaFieldNumber = 8;
+  private ulong maxMana_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MaxMana {
+    get { return maxMana_; }
+    set {
+      maxMana_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "physical_attack" field.</summary>
+  public const int PhysicalAttackFieldNumber = 9;
+  private ulong physicalAttack_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PhysicalAttack {
+    get { return physicalAttack_; }
+    set {
+      physicalAttack_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "magic_attack" field.</summary>
+  public const int MagicAttackFieldNumber = 10;
+  private ulong magicAttack_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MagicAttack {
+    get { return magicAttack_; }
+    set {
+      magicAttack_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "defense" field.</summary>
+  public const int DefenseFieldNumber = 11;
+  private ulong defense_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Defense {
+    get { return defense_; }
+    set {
+      defense_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "skill_table_ids" field.</summary>
+  public const int SkillTableIdsFieldNumber = 12;
+  private static readonly pb::FieldCodec<uint> _repeated_skillTableIds_codec
+      = pb::FieldCodec.ForUInt32(98);
+  private readonly pbc::RepeatedField<uint> skillTableIds_ = new pbc::RepeatedField<uint>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<uint> SkillTableIds {
+    get { return skillTableIds_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as BattlePetSnapshot);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(BattlePetSnapshot other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PetId != other.PetId) return false;
+    if (OwnerPlayerId != other.OwnerPlayerId) return false;
+    if (PetName != other.PetName) return false;
+    if (PetTableId != other.PetTableId) return false;
+    if (Level != other.Level) return false;
+    if (!object.Equals(BaseAttributes, other.BaseAttributes)) return false;
+    if (MaxHealth != other.MaxHealth) return false;
+    if (MaxMana != other.MaxMana) return false;
+    if (PhysicalAttack != other.PhysicalAttack) return false;
+    if (MagicAttack != other.MagicAttack) return false;
+    if (Defense != other.Defense) return false;
+    if(!skillTableIds_.Equals(other.skillTableIds_)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
+    if (OwnerPlayerId != 0UL) hash ^= OwnerPlayerId.GetHashCode();
+    if (PetName.Length != 0) hash ^= PetName.GetHashCode();
+    if (PetTableId != 0) hash ^= PetTableId.GetHashCode();
+    if (Level != 0) hash ^= Level.GetHashCode();
+    if (baseAttributes_ != null) hash ^= BaseAttributes.GetHashCode();
+    if (MaxHealth != 0UL) hash ^= MaxHealth.GetHashCode();
+    if (MaxMana != 0UL) hash ^= MaxMana.GetHashCode();
+    if (PhysicalAttack != 0UL) hash ^= PhysicalAttack.GetHashCode();
+    if (MagicAttack != 0UL) hash ^= MagicAttack.GetHashCode();
+    if (Defense != 0UL) hash ^= Defense.GetHashCode();
+    hash ^= skillTableIds_.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
+    if (OwnerPlayerId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(OwnerPlayerId);
+    }
+    if (PetName.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(PetName);
+    }
+    if (PetTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PetTableId);
+    }
+    if (Level != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(Level);
+    }
+    if (baseAttributes_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(BaseAttributes);
+    }
+    if (MaxHealth != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(MaxHealth);
+    }
+    if (MaxMana != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(MaxMana);
+    }
+    if (PhysicalAttack != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(Defense);
+    }
+    skillTableIds_.WriteTo(output, _repeated_skillTableIds_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
+    if (OwnerPlayerId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(OwnerPlayerId);
+    }
+    if (PetName.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(PetName);
+    }
+    if (PetTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PetTableId);
+    }
+    if (Level != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(Level);
+    }
+    if (baseAttributes_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(BaseAttributes);
+    }
+    if (MaxHealth != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(MaxHealth);
+    }
+    if (MaxMana != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(MaxMana);
+    }
+    if (PhysicalAttack != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(Defense);
+    }
+    skillTableIds_.WriteTo(ref output, _repeated_skillTableIds_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
+    }
+    if (OwnerPlayerId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(OwnerPlayerId);
+    }
+    if (PetName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(PetName);
+    }
+    if (PetTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PetTableId);
+    }
+    if (Level != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Level);
+    }
+    if (baseAttributes_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(BaseAttributes);
+    }
+    if (MaxHealth != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MaxHealth);
+    }
+    if (MaxMana != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MaxMana);
+    }
+    if (PhysicalAttack != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PhysicalAttack);
+    }
+    if (MagicAttack != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MagicAttack);
+    }
+    if (Defense != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Defense);
+    }
+    size += skillTableIds_.CalculateSize(_repeated_skillTableIds_codec);
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(BattlePetSnapshot other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
+    }
+    if (other.OwnerPlayerId != 0UL) {
+      OwnerPlayerId = other.OwnerPlayerId;
+    }
+    if (other.PetName.Length != 0) {
+      PetName = other.PetName;
+    }
+    if (other.PetTableId != 0) {
+      PetTableId = other.PetTableId;
+    }
+    if (other.Level != 0) {
+      Level = other.Level;
+    }
+    if (other.baseAttributes_ != null) {
+      if (baseAttributes_ == null) {
+        BaseAttributes = new global::BaseAttributesComp();
+      }
+      BaseAttributes.MergeFrom(other.BaseAttributes);
+    }
+    if (other.MaxHealth != 0UL) {
+      MaxHealth = other.MaxHealth;
+    }
+    if (other.MaxMana != 0UL) {
+      MaxMana = other.MaxMana;
+    }
+    if (other.PhysicalAttack != 0UL) {
+      PhysicalAttack = other.PhysicalAttack;
+    }
+    if (other.MagicAttack != 0UL) {
+      MagicAttack = other.MagicAttack;
+    }
+    if (other.Defense != 0UL) {
+      Defense = other.Defense;
+    }
+    skillTableIds_.Add(other.skillTableIds_);
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          OwnerPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 26: {
+          PetName = input.ReadString();
+          break;
+        }
+        case 32: {
+          PetTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Level = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          if (baseAttributes_ == null) {
+            BaseAttributes = new global::BaseAttributesComp();
+          }
+          input.ReadMessage(BaseAttributes);
+          break;
+        }
+        case 56: {
+          MaxHealth = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          MaxMana = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          PhysicalAttack = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          MagicAttack = input.ReadUInt64();
+          break;
+        }
+        case 88: {
+          Defense = input.ReadUInt64();
+          break;
+        }
+        case 98:
+        case 96: {
+          skillTableIds_.AddEntriesFrom(input, _repeated_skillTableIds_codec);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          OwnerPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 26: {
+          PetName = input.ReadString();
+          break;
+        }
+        case 32: {
+          PetTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Level = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          if (baseAttributes_ == null) {
+            BaseAttributes = new global::BaseAttributesComp();
+          }
+          input.ReadMessage(BaseAttributes);
+          break;
+        }
+        case 56: {
+          MaxHealth = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          MaxMana = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          PhysicalAttack = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          MagicAttack = input.ReadUInt64();
+          break;
+        }
+        case 88: {
+          Defense = input.ReadUInt64();
+          break;
+        }
+        case 98:
+        case 96: {
+          skillTableIds_.AddEntriesFrom(ref input, _repeated_skillTableIds_codec);
+          break;
+        }
       }
     }
   }
@@ -1820,7 +2607,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::BattleDataReflection.Descriptor.MessageTypes[4]; }
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1860,6 +2647,8 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     physicalAttack_ = other.physicalAttack_;
     magicAttack_ = other.magicAttack_;
     defense_ = other.defense_;
+    ownerPlayerId_ = other.ownerPlayerId_;
+    petTableId_ = other.petTableId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2136,6 +2925,36 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     }
   }
 
+  /// <summary>Field number for the "owner_player_id" field.</summary>
+  public const int OwnerPlayerIdFieldNumber = 21;
+  private ulong ownerPlayerId_;
+  /// <summary>
+  /// 仅宝宝有效:主人 player_id(结算按它归属到主人名下)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong OwnerPlayerId {
+    get { return ownerPlayerId_; }
+    set {
+      ownerPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pet_table_id" field.</summary>
+  public const int PetTableIdFieldNumber = 22;
+  private uint petTableId_;
+  /// <summary>
+  /// 仅宝宝有效(Pet 表 id)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PetTableId {
+    get { return petTableId_; }
+    set {
+      petTableId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2171,6 +2990,8 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     if (PhysicalAttack != other.PhysicalAttack) return false;
     if (MagicAttack != other.MagicAttack) return false;
     if (Defense != other.Defense) return false;
+    if (OwnerPlayerId != other.OwnerPlayerId) return false;
+    if (PetTableId != other.PetTableId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2198,6 +3019,8 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     if (PhysicalAttack != 0UL) hash ^= PhysicalAttack.GetHashCode();
     if (MagicAttack != 0UL) hash ^= MagicAttack.GetHashCode();
     if (Defense != 0UL) hash ^= Defense.GetHashCode();
+    if (OwnerPlayerId != 0UL) hash ^= OwnerPlayerId.GetHashCode();
+    if (PetTableId != 0) hash ^= PetTableId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2287,6 +3110,14 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       output.WriteRawTag(160, 1);
       output.WriteUInt64(Defense);
     }
+    if (OwnerPlayerId != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(OwnerPlayerId);
+    }
+    if (PetTableId != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(PetTableId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2368,6 +3199,14 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       output.WriteRawTag(160, 1);
       output.WriteUInt64(Defense);
     }
+    if (OwnerPlayerId != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(OwnerPlayerId);
+    }
+    if (PetTableId != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(PetTableId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2431,6 +3270,12 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     }
     if (Defense != 0UL) {
       size += 2 + pb::CodedOutputStream.ComputeUInt64Size(Defense);
+    }
+    if (OwnerPlayerId != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(OwnerPlayerId);
+    }
+    if (PetTableId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(PetTableId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2500,6 +3345,12 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     }
     if (other.Defense != 0UL) {
       Defense = other.Defense;
+    }
+    if (other.OwnerPlayerId != 0UL) {
+      OwnerPlayerId = other.OwnerPlayerId;
+    }
+    if (other.PetTableId != 0) {
+      PetTableId = other.PetTableId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2602,6 +3453,14 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
         }
         case 160: {
           Defense = input.ReadUInt64();
+          break;
+        }
+        case 168: {
+          OwnerPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          PetTableId = input.ReadUInt32();
           break;
         }
       }
@@ -2707,6 +3566,14 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
           Defense = input.ReadUInt64();
           break;
         }
+        case 168: {
+          OwnerPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          PetTableId = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -2729,7 +3596,7 @@ public sealed partial class BattleAction : pb::IMessage<BattleAction>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::BattleDataReflection.Descriptor.MessageTypes[5]; }
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3047,7 +3914,7 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::BattleDataReflection.Descriptor.MessageTypes[6]; }
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3710,7 +4577,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::BattleDataReflection.Descriptor.MessageTypes[7]; }
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3743,6 +4610,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     isDead_ = other.isDead_;
     fled_ = other.fled_;
     totalRounds_ = other.totalRounds_;
+    pets_ = other.pets_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3915,6 +4783,20 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
   }
 
+  /// <summary>Field number for the "pets" field.</summary>
+  public const int PetsFieldNumber = 14;
+  private static readonly pb::FieldCodec<global::BattlePetSettlementData> _repeated_pets_codec
+      = pb::FieldCodec.ForMessage(114, global::BattlePetSettlementData.Parser);
+  private readonly pbc::RepeatedField<global::BattlePetSettlementData> pets_ = new pbc::RepeatedField<global::BattlePetSettlementData>();
+  /// <summary>
+  /// 该玩家出战宝宝的战后终值(scene 回写实例)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::BattlePetSettlementData> Pets {
+    get { return pets_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3943,6 +4825,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (IsDead != other.IsDead) return false;
     if (Fled != other.Fled) return false;
     if (TotalRounds != other.TotalRounds) return false;
+    if(!pets_.Equals(other.pets_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3963,6 +4846,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (IsDead != false) hash ^= IsDead.GetHashCode();
     if (Fled != false) hash ^= Fled.GetHashCode();
     if (TotalRounds != 0) hash ^= TotalRounds.GetHashCode();
+    hash ^= pets_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4027,6 +4911,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
       output.WriteRawTag(104);
       output.WriteUInt32(TotalRounds);
     }
+    pets_.WriteTo(output, _repeated_pets_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4083,6 +4968,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
       output.WriteRawTag(104);
       output.WriteUInt32(TotalRounds);
     }
+    pets_.WriteTo(ref output, _repeated_pets_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4128,6 +5014,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (TotalRounds != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalRounds);
     }
+    size += pets_.CalculateSize(_repeated_pets_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -4175,6 +5062,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (other.TotalRounds != 0) {
       TotalRounds = other.TotalRounds;
     }
+    pets_.Add(other.pets_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -4246,6 +5134,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
           TotalRounds = input.ReadUInt32();
           break;
         }
+        case 114: {
+          pets_.AddEntriesFrom(input, _repeated_pets_codec);
+          break;
+        }
       }
     }
   #endif
@@ -4315,6 +5207,325 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
         }
         case 104: {
           TotalRounds = input.ReadUInt32();
+          break;
+        }
+        case 114: {
+          pets_.AddEntriesFrom(ref input, _repeated_pets_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// ---- 出战宝宝的结算数据(随主人的 BattleSettlementData 一起回 scene)----
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class BattlePetSettlementData : pb::IMessage<BattlePetSettlementData>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<BattlePetSettlementData> _parser = new pb::MessageParser<BattlePetSettlementData>(() => new BattlePetSettlementData());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<BattlePetSettlementData> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattlePetSettlementData() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattlePetSettlementData(BattlePetSettlementData other) : this() {
+    petId_ = other.petId_;
+    health_ = other.health_;
+    mana_ = other.mana_;
+    isDead_ = other.isDead_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattlePetSettlementData Clone() {
+    return new BattlePetSettlementData(this);
+  }
+
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 1;
+  private ulong petId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "health" field.</summary>
+  public const int HealthFieldNumber = 2;
+  private ulong health_;
+  /// <summary>
+  /// 战后终值
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Health {
+    get { return health_; }
+    set {
+      health_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "mana" field.</summary>
+  public const int ManaFieldNumber = 3;
+  private ulong mana_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Mana {
+    get { return mana_; }
+    set {
+      mana_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "is_dead" field.</summary>
+  public const int IsDeadFieldNumber = 4;
+  private bool isDead_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool IsDead {
+    get { return isDead_; }
+    set {
+      isDead_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as BattlePetSettlementData);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(BattlePetSettlementData other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PetId != other.PetId) return false;
+    if (Health != other.Health) return false;
+    if (Mana != other.Mana) return false;
+    if (IsDead != other.IsDead) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
+    if (Health != 0UL) hash ^= Health.GetHashCode();
+    if (Mana != 0UL) hash ^= Mana.GetHashCode();
+    if (IsDead != false) hash ^= IsDead.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
+    if (Health != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Health);
+    }
+    if (Mana != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(Mana);
+    }
+    if (IsDead != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(IsDead);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
+    if (Health != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Health);
+    }
+    if (Mana != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(Mana);
+    }
+    if (IsDead != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(IsDead);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
+    }
+    if (Health != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Health);
+    }
+    if (Mana != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Mana);
+    }
+    if (IsDead != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(BattlePetSettlementData other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
+    }
+    if (other.Health != 0UL) {
+      Health = other.Health;
+    }
+    if (other.Mana != 0UL) {
+      Mana = other.Mana;
+    }
+    if (other.IsDead != false) {
+      IsDead = other.IsDead;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Health = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Mana = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          IsDead = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Health = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Mana = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          IsDead = input.ReadBool();
           break;
         }
       }

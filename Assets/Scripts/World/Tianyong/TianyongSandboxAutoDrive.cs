@@ -410,6 +410,22 @@ namespace MmorpgClient.World.Tianyong
                 Log("zoom section skipped: sandbox exposes no camera rig");
             }
 
+            // 9. 遮挡穿帮定点:从走路掩码里挑出四周可走的独立小障碍(灯柱/石柱/花台),
+            //    站到它正北方第一个可走格 —— 透视上人物比它更远,底图画的柱身应当
+            //    挡住人物下半身。底图是单张 Unlit quad、永远画在所有精灵之下,所以
+            //    这里必然穿帮;这一组就是把穿帮拍下来当作补前景层的依据。
+            Vector3[] behindProps =
+            {
+                new(229f, 0f, 231f), new(239f, 0f, 179f), new(187f, 0f, 131f),
+                new(159f, 0f, 179f), new(185f, 0f, 153f), new(203f, 0f, 195f),
+            };
+            for (var i = 0; i < behindProps.Length; i++)
+            {
+                Warp(behindProps[i]);
+                yield return new WaitForSeconds(0.8f);
+                yield return Shot($"10_behind_prop_{i}");
+            }
+
             Log($"RESULT=PASS shots={_shotSeq} dir={_opt.ShotDir ?? "-"}");
             Finish(0);
         }

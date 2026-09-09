@@ -1,46 +1,42 @@
-using MmorpgClient.Game.Attribute;
-using MmorpgClient.UI.Ugui.Battle;
 using System.Collections;
 using System.Collections.Generic;
+using MmorpgClient.Game.Pet;
+using MmorpgClient.UI.Ugui.Battle;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace MmorpgClient.UI.Ugui.Attribute
+namespace MmorpgClient.UI.Ugui.Pet
 {
     /// <summary>
-    /// 属性加点 UI 层:自有 Canvas(sortingOrder 160,压在选服 100 / 角色流 150 之上、
-    /// 战斗层 200 之下 —— 战斗一开就该盖住属性窗)。
+    /// 宝宝 UI 层:自有 Canvas(sortingOrder 161,紧挨属性窗 160 之上、战斗层 200 之下 ——
+    /// 两个窗不会同时开,谁后点谁在上,战斗一开都盖住)。
     ///
-    /// 生命周期与绑定方式照 <see cref="BattleUiRoot"/>:`[RuntimeInitializeOnLoadMethod]`
-    /// 自举单例 + `DontDestroyOnLoad`,每帧 `EnsureBound` 懒绑 <see cref="AttributeClient"/>
+    /// 生命周期与绑定方式照 <see cref="Attribute.AttributeUiRoot"/>:`[RuntimeInitializeOnLoadMethod]`
+    /// 自举单例 + `DontDestroyOnLoad`,每帧 `EnsureBound` 懒绑 <see cref="PetClient"/>
     /// (NET 路可能晚于 UI 路初始化)。
     /// </summary>
-    public sealed class AttributeUiRoot : MonoBehaviour
+    public sealed class PetUiRoot : MonoBehaviour
     {
-        public static AttributeUiRoot Instance { get; private set; }
+        public static PetUiRoot Instance { get; private set; }
 
         private AppBootstrap _app;
         private GameObject _canvasGo;
         private RectTransform _hudRoot;
 
-        private AttributeClient _client;
+        private PetClient _client;
         private bool _clientBound;
 
         private UiTextButton _entryButton;
-        private AttributePanel _panel;
+        private PetPanel _panel;
         private TMP_Text _toastText;
         private Coroutine _toastCo;
 
-        /// <summary>供子面板取 AttributeClient(可能为 null:NET 路尚未初始化)。</summary>
-        public AttributeClient Client => _client;
+        /// <summary>供子面板取 PetClient(可能为 null:NET 路尚未初始化)。</summary>
+        public PetClient Client => _client;
 
-        /// <summary>
-        /// 关掉属性窗。宝宝窗开的时候调:两个窗同位置同尺寸、Canvas 只差一层
-        /// (属性 160 / 宝宝 161),不互斥的话后开的那个会把前一个整个盖住,
-        /// 玩家以为自己关掉了、其实它还开着在下面吃点击。
-        /// </summary>
+        /// <summary>关掉宝宝窗(属性窗打开时调;理由见 AttributeUiRoot.HidePanel)。</summary>
         public void HidePanel() => _panel?.Hide();
 
         // ── 生命周期 ────────────────────────────────────────
@@ -51,9 +47,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
         public static void EnsureSpawned()
         {
             if (Instance != null) return;
-            var go = new GameObject("[AttributeUi]");
+            var go = new GameObject("[PetUi]");
             DontDestroyOnLoad(go);
-            go.AddComponent<AttributeUiRoot>();
+            go.AddComponent<PetUiRoot>();
         }
 
         private void Awake()
@@ -89,11 +85,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
             if (!_clientBound)
             {
-                var client = AttributeClient.Instance;
+                var client = PetClient.Instance;
                 if (client != null)
                 {
                     _client = client;
-                    _client.OnPanel += HandlePanel;
+                    _client.OnList += HandleList;
                     _client.OnAutoSuggestion += HandleAutoSuggestion;
                     _client.OnBusyChanged += HandleBusyChanged;
                     _client.OnError += HandleError;
@@ -105,7 +101,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private void UnbindClient()
         {
             if (!_clientBound || _client == null) return;
-            _client.OnPanel -= HandlePanel;
+            _client.OnList -= HandleList;
             _client.OnAutoSuggestion -= HandleAutoSuggestion;
             _client.OnBusyChanged -= HandleBusyChanged;
             _client.OnError -= HandleError;
@@ -119,20 +115,20 @@ namespace MmorpgClient.UI.Ugui.Attribute
             EnsureEventSystem();
 
             _canvasGo = new GameObject(
-                "[AttributeUgui]",
+                "[PetUgui]",
                 typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             _canvasGo.transform.SetParent(transform, false);
 
             var canvas = _canvasGo.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 160; // 选服 100 < 角色流 150 < 本层 < 战斗 200
+            canvas.sortingOrder = 161; // 属性 160 < 本层 < 战斗 200
             canvas.pixelPerfect = true;
 
             var scaler = _canvasGo.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
-            // Expand 与 BattleUiRoot / QdaoUguiRuntime 一致:本层有贴右缘的 HUD 入口(x=2350),
-            // MatchWidthOrHeight 0.5 在 16:9 / 16:10 会把设计面两侧裁掉 ~170/230 像素,入口直接出屏
+            // Expand:本层有贴右缘的 HUD 入口,MatchWidthOrHeight 0.5 在 16:9 会把入口裁出屏
+            // (AttributeUiRoot 同一条注释背后的同一个坑)
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             scaler.referencePixelsPerUnit = 100f;
 
@@ -140,17 +136,17 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var windowRoot = CreateDesignRoot("WindowRoot", _canvasGo.transform);
             var toastRoot = CreateDesignRoot("ToastRoot", _canvasGo.transform);
 
-            _entryButton = BattleUiWidgets.CreateFramedTextButton("AttributeEntry", _hudRoot,
-                AttributeUiStyle.EntryX, AttributeUiStyle.EntryY,
-                BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, "角色", BattleUiStyle.HudEntryFontSize,
+            _entryButton = BattleUiWidgets.CreateFramedTextButton("PetEntry", _hudRoot,
+                PetUiStyle.EntryX, PetUiStyle.EntryY,
+                BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, "宝宝", BattleUiStyle.HudEntryFontSize,
                 BattleUiStyle.HudEntryPlate, BattleUiStyle.HudEntryFrameColor, BattleUiStyle.HudEntryText,
                 BattleUiStyle.HudEntryFrame);
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
 
-            _panel = new AttributePanel(this, windowRoot);
+            _panel = new PetPanel(this, windowRoot);
 
-            _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot, 680f, 210f, 1200f, 56f,
+            _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot, 680f, 270f, 1200f, 56f,
                 string.Empty, 26f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
         }
 
@@ -176,10 +172,10 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         // ── 事件 ────────────────────────────────────────────
 
-        private void HandlePanel(AttributePanelInfo panel) => _panel?.ApplyPanel(panel);
+        private void HandleList(PetListInfo list) => _panel?.ApplyList(list);
 
-        private void HandleAutoSuggestion(uint poolId, IReadOnlyDictionary<uint, uint> suggested)
-            => _panel?.ApplyAutoSuggestion(poolId, suggested);
+        private void HandleAutoSuggestion(ulong petId, IReadOnlyDictionary<uint, uint> suggested)
+            => _panel?.ApplyAutoSuggestion(petId, suggested);
 
         private void HandleBusyChanged(bool busy) => _panel?.ApplyBusy(busy);
 
@@ -197,7 +193,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         {
             if (_entryButton == null) return;
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame;
-            // 战斗屏/观战屏亮着时不显示入口(战斗中服务端也拒绝改属性)
+            // 战斗屏/观战屏亮着时不显示入口(战斗中服务端也拒绝改宝宝)
             bool battleBusy = BattleUiRoot.Instance != null && BattleUiRoot.Instance.IsBattleLayerVisible;
             bool visible = _clientBound && inGame && !battleBusy;
             _entryButton.SetVisible(visible);

@@ -178,7 +178,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             _client.Allocate(1, new Dictionary<uint, uint> { { 101, 3 } });
             _net.CallsOf(MessageIds.AllocateAttributePoints)[0].Respond(
-                new AllocateAttributePointsResponse { ErrorMessage = new TipInfoMessage { Id = 134 } });
+                new AllocateAttributePointsResponse { ErrorMessage = new TipInfoMessage { Id = 25004 } });
 
             Assert.That(_client.Busy, Is.False);
             Assert.That(error, Does.Contain("不能减少"));
@@ -197,7 +197,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             _client.AutoAllocate(3);
             _net.CallsOf(MessageIds.AutoAllocateAttributePoints)[0].Respond(
-                new AutoAllocateAttributePointsResponse { ErrorMessage = new TipInfoMessage { Id = 131 } });
+                new AutoAllocateAttributePointsResponse { ErrorMessage = new TipInfoMessage { Id = 25001 } });
 
             Assert.That(suggestion, Is.Null);
             Assert.That(error, Does.Contain("尚未解锁"));
