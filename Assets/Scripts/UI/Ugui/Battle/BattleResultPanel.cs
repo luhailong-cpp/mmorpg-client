@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
@@ -118,13 +118,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             var titleRect = _titleText.rectTransform;
             titleRect.localScale = Vector3.one * 2.4f;
             var tc = _titleText.color; tc.a = 0f; _titleText.color = tc;
-            GTween.To(2.4f, 1f, 0.42f).SetEase(EaseType.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(_token)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(2.4f, 1f, 0.42f).SetEase(RealtimeEase.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(_token)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
                     if (titleRect == null) return;
-                    titleRect.localScale = new Vector3(t.value.x, t.value.x, 1f);
+                    titleRect.localScale = new Vector3(t.Value.x, t.Value.x, 1f);
                     var c = _titleText.color;
-                    c.a = Mathf.Clamp01((2.4f - t.value.x) / 1.0f);
+                    c.a = Mathf.Clamp01((2.4f - t.Value.x) / 1.0f);
                     _titleText.color = c;
                 }));
 
@@ -139,11 +139,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var rect = text.rectTransform;
                 var c0 = text.color; c0.a = 0f; text.color = c0;
                 float rowY = -i * RowHeight;
-                GTween.To(0f, 1f, 0.3f).SetDelay(0.45f + i * RowDelay).SetEase(EaseType.CubicOut).SetIgnoreEngineTimeScale(true).SetTarget(_token)
-                    .OnUpdate((GTweenCallback1)(t =>
+                RealtimeTween.To(0f, 1f, 0.3f).SetDelay(0.45f + i * RowDelay).SetEase(RealtimeEase.CubicOut).SetIgnoreEngineTimeScale(true).SetTarget(_token)
+                    .OnUpdate((RealtimeTweenCallback1)(t =>
                     {
                         if (go == null) return;
-                        float k = t.value.x;
+                        float k = t.Value.x;
                         rect.anchoredPosition = new Vector2(260f * (1f - k), rowY);
                         var c = text.color; c.a = k; text.color = c;
                     }));
@@ -154,9 +154,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             _confirmGroup.interactable = false;
             _confirmGroup.blocksRaycasts = false;
             float confirmDelay = 0.45f + lines.Count * RowDelay + 0.2f;
-            GTween.To(0f, 1f, 0.3f).SetDelay(confirmDelay).SetIgnoreEngineTimeScale(true).SetTarget(_token)
-                .OnUpdate((GTweenCallback1)(t => { if (_confirmGroup != null) _confirmGroup.alpha = t.value.x; }))
-                .OnComplete((GTweenCallback)(() =>
+            RealtimeTween.To(0f, 1f, 0.3f).SetDelay(confirmDelay).SetIgnoreEngineTimeScale(true).SetTarget(_token)
+                .OnUpdate((RealtimeTweenCallback1)(t => { if (_confirmGroup != null) _confirmGroup.alpha = t.Value.x; }))
+                .OnComplete((RealtimeTweenCallback)(() =>
                 {
                     if (_confirmGroup == null) return;
                     _confirmGroup.alpha = 1f;
@@ -205,7 +205,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void KillTweens()
         {
-            GTween.Kill(_token);
+            RealtimeTween.Kill(_token);
             if (_confirmGroup != null)
             {
                 _confirmGroup.alpha = 1f;

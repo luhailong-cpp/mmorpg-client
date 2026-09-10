@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,22 +57,22 @@ namespace MmorpgClient.UI.Ugui.Battle
             var outgoing = _front;
             _front = back;
             back.text = text;
-            GTween.Kill(_root);
+            RealtimeTween.Kill(_root);
             var outRect = outgoing.rectTransform;
             var inRect = back.rectTransform;
             inRect.anchoredPosition = new Vector2(0f, -Height);
             outRect.anchoredPosition = Vector2.zero;
-            GTween.To(0f, 1f, 0.32f).SetEase(EaseType.CubicOut).SetIgnoreEngineTimeScale(true).SetTarget(_root)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0f, 1f, 0.32f).SetEase(RealtimeEase.CubicOut).SetIgnoreEngineTimeScale(true).SetTarget(_root)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
                     if (_root == null) return;
-                    float k = t.value.x;
+                    float k = t.Value.x;
                     outRect.anchoredPosition = new Vector2(0f, Height * k);
                     inRect.anchoredPosition = new Vector2(0f, -Height * (1f - k));
                     var c = outgoing.color; c.a = 1f - k; outgoing.color = c;
                     var c2 = back.color; c2.a = k; back.color = c2;
                 }))
-                .OnComplete((GTweenCallback)(() =>
+                .OnComplete((RealtimeTweenCallback)(() =>
                 {
                     if (_root == null) return;
                     outRect.anchoredPosition = new Vector2(0f, -Height);

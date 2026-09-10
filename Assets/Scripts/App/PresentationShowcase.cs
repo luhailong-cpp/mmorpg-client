@@ -85,6 +85,8 @@ namespace MmorpgClient.App
         // 合成战斗的可变模型:actorId → 权威状态(每回合克隆进 BattleStateS2C)
         private readonly List<BattleActorState> _actors = new List<BattleActorState>();
         private readonly Dictionary<ulong, BattleActorState> _byId = new Dictionary<ulong, BattleActorState>();
+        /// <summary>宝宝 actorId → 主人 actorId(服务端暂无宠物实体,演出台用 BattleStage.PetOwnerResolver 标记归属)。</summary>
+        private readonly Dictionary<ulong, ulong> _petOwner = new Dictionary<ulong, ulong>();
         private uint _round;
 
         // 截图状态
@@ -364,27 +366,50 @@ namespace MmorpgClient.App
         {
             _actors.Clear();
             _byId.Clear();
-            // team 0(我方,下方右下斜带):slot 0..4 前排 + 5..9 后排混用,覆盖前后两排
-            AddActor(MeId,   0, "凌霄客",   62, 1, 8600, 3200, 980, 420, 610);
-            AddActor(9002UL, 0, "白芷仙子", 60, 2, 6400, 5200, 380, 1180, 420);
-            AddActor(9003UL, 0, "雷破天",   63, 3, 9200, 2600, 1120, 300, 700);
-            AddActor(9004UL, 0, "素心娘",   59, 5, 5800, 6100, 300, 960, 380);
-            AddActor(9005UL, 0, "玄石道人", 61, 7, 10400, 3000, 640, 720, 880);
-            // team 1(敌方,左上斜带)
-            AddActor(9101UL, 1, "血罗刹",   61, 1, 5200, 2400, 1040, 260, 520);
-            AddActor(9102UL, 1, "蚀骨僧",   62, 2, 7400, 4800, 420, 1240, 560);
-            AddActor(9103UL, 1, "黑风童子", 58, 3, 6100, 2200, 880, 340, 460);
-            AddActor(9104UL, 1, "幽泉女",   60, 6, 5600, 5400, 320, 1080, 400);
-            AddActor(9105UL, 1, "骨甲卫",   64, 8, 11200, 1800, 760, 200, 1040);
+            _petOwner.Clear();
+            // team 0(我方,右下斜带):5 名玩家全在后排 5..9 —— 与参考视频一致(视频里我方后排是 5 名玩家、
+            // 前排是各自的宝宝),这样宝宝正好落在实测的宝宝排(BattleStage.AllyFront)上
+            AddActor(MeId,   0, "凌霄客",   62, 5, 8600, 3200, 980, 420, 610);
+            AddActor(9002UL, 0, "白芷仙子", 60, 6, 6400, 5200, 380, 1180, 420);
+            AddActor(9003UL, 0, "雷破天",   63, 7, 9200, 2600, 1120, 300, 700);
+            AddActor(9004UL, 0, "素心娘",   59, 8, 5800, 6100, 300, 960, 380);
+            AddActor(9005UL, 0, "玄石道人", 61, 9, 10400, 3000, 640, 720, 880);
+            // 我方 5 只宝宝(视频:雪女 / 酷酷龙×3 / 水神):服务端没有宠物实体,先用 Battle/Monsters 的怪物帧条做临时形象,
+            // 通过 BattleStage.PetOwnerResolver 标记归属 → 摆到主人的 PetSlotPosition;不参与回合事件,只验证站位
+            AddPet(9201UL, MeId,   "雪女",   58, 1);
+            AddPet(9202UL, 9002UL, "酷酷龙", 57, 2);
+            AddPet(9203UL, 9003UL, "酷酷龙", 59, 3);
+            AddPet(9204UL, 9004UL, "酷酷龙", 56, 4);
+            AddPet(9205UL, 9005UL, "水神",   60, 5);
+            // team 1(敌方,左上斜带):3 只后排 + 2 只前排,两排都有人可对照视频
+            AddActor(9101UL, 1, "血罗刹",   61, 5, 5200, 2400, 1040, 260, 520);
+            AddActor(9102UL, 1, "蚀骨僧",   62, 7, 7400, 4800, 420, 1240, 560);
+            AddActor(9103UL, 1, "黑风童子", 58, 9, 6100, 2200, 880, 340, 460);
+            AddActor(9104UL, 1, "幽泉女",   60, 1, 5600, 5400, 320, 1080, 400);
+            AddActor(9105UL, 1, "骨甲卫",   64, 3, 11200, 1800, 760, 200, 1040);
+
+            var owners = _petOwner;
+            BattleStage.PetOwnerResolver = actor => actor != null && owners.TryGetValue(actor.ActorId, out var owner) ? owner : 0UL;
+        }
+
+        /// <summary>合成一只宝宝:怪物类型(走 Battle/Monsters/&lt;monsterId&gt; 帧条)、与主人同队;归属记进 _petOwner。</summary>
+        private void AddPet(ulong id, ulong ownerId, string name, uint level, uint monsterId)
+        {
+            var owner = Actor(ownerId);
+            uint team = owner?.TeamIndex ?? 0u;
+            AddActor(id, team, name, level, 0, 3200, 800, 420, 260, 300, eBattleActorType.BattleActorTypeMonster, monsterId);
+            _petOwner[id] = ownerId;
         }
 
         private void AddActor(ulong id, uint team, string name, uint level, uint slot,
-            ulong hp, ulong mp, ulong physical, ulong magic, ulong defense)
+            ulong hp, ulong mp, ulong physical, ulong magic, ulong defense,
+            eBattleActorType type = eBattleActorType.BattleActorTypePlayer, uint monsterId = 0)
         {
             var actor = new BattleActorState
             {
                 ActorId = id,
-                ActorType = eBattleActorType.BattleActorTypePlayer,
+                ActorType = type,
+                MonsterTableId = monsterId,
                 TeamIndex = team,
                 Name = name,
                 Level = level,

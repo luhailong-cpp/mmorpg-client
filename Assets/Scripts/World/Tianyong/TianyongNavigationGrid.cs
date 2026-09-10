@@ -80,6 +80,34 @@ namespace MmorpgClient.World.Tianyong
             return IsWalkable(cell.x, cell.y);
         }
 
+        /// <summary>
+        /// Nearest legal feet point to <paramref name="world"/> (the point
+        /// itself when already walkable, otherwise the centre of the closest
+        /// walkable cell within the search ring). Used to recover from an
+        /// authoritative snap that lands off the client mask; false means
+        /// nothing walkable exists nearby and the caller should fall back to
+        /// the map's default spawn.
+        /// </summary>
+        public bool TryFindNearestWalkable(Vector3 world, out Vector3 result)
+        {
+            world = TianyongMapDefinition.ClampXZ(world);
+            if (IsWalkable(world))
+            {
+                result = world;
+                return true;
+            }
+
+            var cell = FindNearestWalkable(WorldToCell(world));
+            if (cell.x < 0)
+            {
+                result = world;
+                return false;
+            }
+
+            result = CellToWorld(cell, world.y);
+            return true;
+        }
+
         public List<Vector3> FindPath(Vector3 start, Vector3 target)
         {
             start = TianyongMapDefinition.ClampXZ(start);

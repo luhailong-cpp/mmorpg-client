@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 using UnityEngine;
 using MmorpgClient.Game.Battle.Presentation;
 using Image = UnityEngine.UI.Image;
@@ -88,13 +88,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             int clampedHit = Mathf.Clamp(hitFrame, 0, strip.Count - 1);
             int lastFrame = -1;
             var go = image.gameObject;
-            var tween = GTween.To(0f, strip.Count, seconds).SetEase(EaseType.Linear).SetIgnoreEngineTimeScale(true)
+            var tween = RealtimeTween.To(0f, strip.Count, seconds).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true)
                 .SetTarget(go)
-                .OnStart((GTweenCallback)(() => { if (go != null) go.SetActive(true); }))
-                .OnUpdate((GTweenCallback1)(t =>
+                .OnStart((RealtimeTweenCallback)(() => { if (go != null) go.SetActive(true); }))
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    int frame = Mathf.Clamp(Mathf.FloorToInt(t.value.x), 0, strip.Count - 1);
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    int frame = Mathf.Clamp(Mathf.FloorToInt(t.Value.x), 0, strip.Count - 1);
                     if (frame != lastFrame)
                     {
                         lastFrame = frame;
@@ -106,7 +106,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                         SafeInvoke(onHitFrame);
                     }
                 }))
-                .OnComplete((GTweenCallback)(() =>
+                .OnComplete((RealtimeTweenCallback)(() =>
                 {
                     if (!hitFired) { hitFired = true; SafeInvoke(onHitFrame); }
                     Recycle(image);
@@ -121,7 +121,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             for (int i = _active.Count - 1; i >= 0; i--)
             {
                 var image = _active[i];
-                if (image != null) GTween.Kill(image.gameObject);
+                if (image != null) RealtimeTween.Kill(image.gameObject);
                 ReturnToPool(image);
             }
             _active.Clear();
@@ -214,14 +214,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             _active.Add(image);
 
             var go = image.gameObject;
-            GTween.To(alpha, 0f, BattleTempo.Scale(seconds)).SetEase(EaseType.QuadOut).SetIgnoreEngineTimeScale(true)
+            RealtimeTween.To(alpha, 0f, BattleTempo.Scale(seconds)).SetEase(RealtimeEase.QuadOut).SetIgnoreEngineTimeScale(true)
                 .SetTarget(go)
-                .OnUpdate((GTweenCallback1)(t =>
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    image.color = new Color(GhostTint.r, GhostTint.g, GhostTint.b, t.value.x);
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    image.color = new Color(GhostTint.r, GhostTint.g, GhostTint.b, t.Value.x);
                 }))
-                .OnComplete((GTweenCallback)(() => Recycle(image)));
+                .OnComplete((RealtimeTweenCallback)(() => Recycle(image)));
         }
 
         /// <summary>立刻回收全部在播残影(观战抢占/关屏)。</summary>
@@ -230,7 +230,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             for (int i = _active.Count - 1; i >= 0; i--)
             {
                 var image = _active[i];
-                if (image != null) GTween.Kill(image.gameObject);
+                if (image != null) RealtimeTween.Kill(image.gameObject);
                 ReturnToPool(image);
             }
             _active.Clear();

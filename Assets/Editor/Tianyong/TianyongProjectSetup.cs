@@ -235,7 +235,6 @@ namespace MmorpgClient.Editor.Tianyong
             eventSystemGo.AddComponent<StandaloneInputModule>();
 
             var bootstrapSerialized = new SerializedObject(bootstrap);
-            bootstrapSerialized.FindProperty("useUgui").boolValue = true;
             bootstrapSerialized.FindProperty("worldCamera").objectReferenceValue = camera;
             bootstrapSerialized.FindProperty("directionalSun").objectReferenceValue = sun;
             bootstrapSerialized.FindProperty("mapConfig").objectReferenceValue = config;

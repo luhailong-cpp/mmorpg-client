@@ -33,9 +33,43 @@ namespace MmorpgClient.World.Tianyong
         private float _moveSpeed = DefaultMoveSpeed;
         private float _arrivalDistance = 0.35f;
         private Vector3? _networkTarget;
+        private const float RecoveryBurstWindow = 2f;
+        private const int RecoveryBurstLimit = 3;
+
+        private Vector3 _debugDirection;
+        private bool _debugIgnoreMask;
+        private bool _pendingReport;
+        private float _lastRecoveryAt = -100f;
+        private int _recoveryBurst;
 
         public CharacterController Motor => _motor;
         public bool IsMoving => _moving;
+
+        /// <summary>
+        /// Acceptance-only switch: when true, <see cref="MoveInDirection"/>
+        /// skips the client walk-mask check so a scripted drive can push into
+        /// a wall and prove that the *server* still blocks and corrects it
+        /// (MoveAck). Never enable for real input.
+        /// </summary>
+        public void SetDebugIgnoreMask(bool ignore) => _debugIgnoreMask = ignore;
+
+        /// <summary>The client-side walk mask this controller validates against (null before Initialize).</summary>
+        public TianyongNavigationGrid Navigation => _navigation;
+
+        /// <summary>
+        /// Scripted movement input in world XZ (unit-length or zero). Non-zero
+        /// overrides the keyboard exactly like a held WASD key and is not
+        /// subject to the UI keyboard gate, so automated acceptance runs
+        /// (DevAutoPilot -moveTest) can drive the real motor/network path
+        /// without synthesising key presses. Zero restores keyboard control.
+        /// </summary>
+        public void SetDebugDirection(Vector3 worldDirection)
+        {
+            worldDirection.y = 0f;
+            _debugDirection = worldDirection.sqrMagnitude > 0.0001f
+                ? worldDirection.normalized
+                : Vector3.zero;
+        }
 
         /// <summary>The actor's authoritative ground/feet position in world space.</summary>
         public Vector3 FeetPosition
@@ -117,6 +151,72 @@ namespace MmorpgClient.World.Tianyong
             if (wasEnabled) _motor.enabled = true;
         }
 
+        /// <summary>
+        /// Authoritative snap from the server (MoveAck reconcile / TeleportS2C).
+        /// The server validates against the same walk mask, so the point is
+        /// normally legal. If it is not (stale server navdata, a scene without
+        /// navdata, or the map-edge clamp in <see cref="WarpTo"/>), the actor
+        /// would otherwise be stranded where neither WASD nor click pathing can
+        /// move it. Recover to the nearest walkable cell and report that point
+        /// back with a MoveStop so the server adopts it (its movement handler
+        /// snaps a reported point when its own position is off-mesh) instead of
+        /// leaving the two sides disagreeing. Returns true when recovery ran.
+        /// </summary>
+        public bool WarpFromServer(Vector3 feetPosition)
+        {
+            WarpTo(feetPosition);
+            if (_navigation == null || _navigation.IsWalkable(FeetPosition)) return false;
+
+            var stranded = FeetPosition;
+            if (!_navigation.TryFindNearestWalkable(stranded, out var recovered))
+                recovered = TianyongMapDefinition.DefaultSpawn;
+            recovered.y = stranded.y;
+            WarpTo(recovered);
+
+            // Loop breaker: if the server keeps answering our recovery report
+            // with the same off-mask point (client mask and server navmesh
+            // disagree about this spot), stop re-reporting after a few rounds
+            // and stay on the client-legal point; the next real movement
+            // report re-converges from there.
+            var now = Time.unscaledTime;
+            _recoveryBurst = now - _lastRecoveryAt < RecoveryBurstWindow ? _recoveryBurst + 1 : 1;
+            _lastRecoveryAt = now;
+            if (_recoveryBurst > RecoveryBurstLimit)
+            {
+                if (_recoveryBurst == RecoveryBurstLimit + 1)
+                    Debug.LogError(
+                        $"[TianyongPlayerController] server keeps snapping to non-walkable {stranded}; " +
+                        $"giving up recovery reports (client mask and server navmesh disagree here)");
+                return true;
+            }
+            Debug.LogWarning(
+                $"[TianyongPlayerController] server snap {stranded} is not walkable; recovered to {FeetPosition}");
+            ReportPositionToServer();
+            return true;
+        }
+
+        /// <summary>
+        /// Tells the server where the client actually placed the local actor
+        /// (a MoveStop at the current feet point). Used after a client-side
+        /// relocation so the authoritative position follows instead of the
+        /// next movement report being judged from a stale server point.
+        /// The self ActorCreate can be dispatched in the same poll as
+        /// NotifyEnterScene, before GameClient flips InGame, so a report that
+        /// cannot go out yet is deferred to the first Update where it can.
+        /// </summary>
+        public void ReportPositionToServer()
+        {
+            if (_client == null) return;
+            _moving = false;
+            if (!_client.InGame)
+            {
+                _pendingReport = true;
+                return;
+            }
+            _pendingReport = false;
+            _client.SendMoveStop(FeetPosition, transform.eulerAngles);
+        }
+
         /// <summary>Routes to a feet/world destination. Returns false when no legal path exists.</summary>
         public bool SetDestination(Vector3 feetDestination)
         {
@@ -149,9 +249,13 @@ namespace MmorpgClient.World.Tianyong
                 WarpTo(feet);
             }
 
+            if (_pendingReport && _client != null && _client.InGame)
+                ReportPositionToServer();
+
             var keyboardBlocked = GameplayInputGate.IsKeyboardBlocked;
             var pointerBlocked = GameplayInputGate.IsPointerBlocked;
-            if (keyboardBlocked)
+            var scripted = _debugDirection.sqrMagnitude > 0.01f;
+            if (keyboardBlocked && !scripted)
             {
                 // Keep the authored path so movement may resume after an input
                 // field/modal releases focus, but stop both motor and network
@@ -160,8 +264,8 @@ namespace MmorpgClient.World.Tianyong
                 return;
             }
 
-            if (!pointerBlocked) HandleClick();
-            var keyboard = ReadKeyboardDirection();
+            if (!pointerBlocked && !scripted) HandleClick();
+            var keyboard = scripted ? _debugDirection : ReadKeyboardDirection();
             if (keyboard.sqrMagnitude > 0.01f)
             {
                 _path.Clear();
@@ -246,7 +350,7 @@ namespace MmorpgClient.World.Tianyong
             var dt = Mathf.Min(Mathf.Max(deltaTime, 0f), 0.05f);
             var velocity = direction.normalized * _moveSpeed;
             var candidateFeet = TianyongMapDefinition.ClampXZ(FeetPosition + velocity * dt, 2f);
-            if (!_navigation.IsWalkable(candidateFeet))
+            if (!_debugIgnoreMask && !_navigation.IsWalkable(candidateFeet))
             {
                 StopMoving();
                 return;

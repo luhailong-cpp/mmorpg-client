@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
 using MmorpgClient.Game.Battle.Presentation;
@@ -187,20 +187,20 @@ namespace MmorpgClient.UI.Ugui.Battle
             _active.Add(entry);
 
             var go = root.gameObject;
-            GTween.To(DamageNumberLayout.PopScaleFrom, 1f, popSeconds)
-                .SetDelay(delay).SetEase(EaseType.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                .OnStart((GTweenCallback)(() => { if (entry.Group != null) entry.Group.alpha = 1f; }))
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(DamageNumberLayout.PopScaleFrom, 1f, popSeconds)
+                .SetDelay(delay).SetEase(RealtimeEase.BackOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                .OnStart((RealtimeTweenCallback)(() => { if (entry.Group != null) entry.Group.alpha = 1f; }))
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    root.localScale = new Vector3(t.value.x, t.value.x, 1f);
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    root.localScale = new Vector3(t.Value.x, t.Value.x, 1f);
                 }));
-            GTween.To(0f, 1f, lifeSeconds)
-                .SetDelay(delay).SetEase(EaseType.QuadOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
-                .OnUpdate((GTweenCallback1)(t =>
+            RealtimeTween.To(0f, 1f, lifeSeconds)
+                .SetDelay(delay).SetEase(RealtimeEase.QuadOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (go == null) { GTween.Kill(go); return; }
-                    float p = t.value.x;
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    float p = t.Value.x;
                     root.anchoredPosition = startPos + new Vector2(0f, DamageNumberLayout.RiseDistance * p);
                     if (entry.Group != null)
                     {
@@ -208,7 +208,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                         entry.Group.alpha = p < fs ? 1f : 1f - (p - fs) / (1f - fs);
                     }
                 }))
-                .OnComplete((GTweenCallback)(() => Recycle(entry)));
+                .OnComplete((RealtimeTweenCallback)(() => Recycle(entry)));
         }
 
         /// <summary>立刻回收全部数字。</summary>
@@ -217,7 +217,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             for (int i = _active.Count - 1; i >= 0; i--)
             {
                 var entry = _active[i];
-                if (entry?.Root != null) GTween.Kill(entry.Root.gameObject);
+                if (entry?.Root != null) RealtimeTween.Kill(entry.Root.gameObject);
                 ReturnToPool(entry);
             }
             _active.Clear();

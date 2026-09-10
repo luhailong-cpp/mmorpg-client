@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 
 namespace MmorpgClient.Game.Battle.Presentation
 {
     /// <summary>
     /// 回合演出序列器:按 <see cref="TurnPlan"/> 的拍序列串行计时,拍内的并行轨
-    /// (多目标同时受击、特效、飘字)由订阅者在 OnBeatStart 里自行用 GTween 铺开,
+    /// (多目标同时受击、特效、飘字)由订阅者在 OnBeatStart 里自行用 RealtimeTween 铺开,
     /// 本类只负责"什么时候进下一拍"。
     ///
-    ///  - 计时基于 FairyGUI GTween(Plugins/FairyGUI/Runtime/Tween),realtime
+    ///  - 计时基于项目自有 RealtimeTween,使用 realtime/unscaled time
     ///    (SetIgnoreEngineTimeScale)—— 战斗 UI 不受 Time.timeScale 影响;
     ///  - Skip():立即把剩余拍全部"开始+结束"跑完(订阅者据此把终态一次性应用),然后 OnFinished;
     ///  - Abort():静默终止(观战抢占/关屏),不触发 OnFinished,只触发 OnAborted;
     ///  - 驱动方(BattleUiRoot)在 OnFinished 里调 BattleClient.AckTurnPlayed()。
     ///
-    /// 注意:GTween 只在 Application.isPlaying 下由 TweenManager 自建的 TweenEngine 驱动,
+    /// 注意:RealtimeTween 只在 Application.isPlaying 下由原生 RealtimeTweenRunner 驱动,
     /// EditMode 里不会走时;拍序列的纯逻辑(合并/时长)由 TurnPlan 承担并在 EditMode 测。
     /// </summary>
     public sealed class BattleSequencer
@@ -45,7 +45,7 @@ namespace MmorpgClient.Game.Battle.Presentation
         }
 
         private readonly List<Beat> _beats = new List<Beat>();
-        private GTweener _timer;
+        private RealtimeTweener _timer;
         private int _runId;          // 每次 Run/Abort 递增,旧计时回调据此作废
         private float _speedScale = 1f;
 
@@ -139,7 +139,7 @@ namespace MmorpgClient.Game.Battle.Presentation
             float seconds = TurnPlan.EffectiveSeconds(beat, index == _beats.Count - 1) / _speedScale;
             if (seconds < MinBeatSeconds) seconds = MinBeatSeconds;
 
-            _timer = GTween.DelayedCall(seconds)
+            _timer = RealtimeTween.DelayedCall(seconds)
                 .SetIgnoreEngineTimeScale(true)
                 .SetTarget(this)
                 .OnComplete(() =>

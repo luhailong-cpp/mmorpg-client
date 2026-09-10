@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using FairyGUI;
+using MmorpgClient.UI.Ugui.Tweening;
 using UnityEngine;
 
 namespace MmorpgClient.UI.Ugui.Battle
@@ -11,90 +8,30 @@ namespace MmorpgClient.UI.Ugui.Battle
 
     /// <summary>
     /// 暴击顿帧(turn-battle-presentation.md §3 Camera/Screen FX:realtime 0.08s):
-    /// 战斗表现全部走 GTween 且忽略 Time.timeScale,所以顿帧不能用 timeScale;
-    /// 这里把 TweenManager 当前活跃的 tween 全部 SetPaused,再由宿主协程按 realtime 恢复。
-    /// TweenManager 是 FairyGUI 的 internal 类,活跃列表只能反射取;取不到时降级为不顿帧(不报错)。
+    /// 战斗表现全部走 realtime tween 且忽略 Time.timeScale,所以顿帧不能用 timeScale;
+    /// 这里通过原生调度器的暂停快照冻结当前活跃 tween,再按 realtime 恢复。
     /// 顿帧期间新建的 tween 不受影响(飘字弹出等照常)。
     /// </summary>
     public static class BattleHitStop
     {
         public const float CritFreezeSeconds = 0.08f;
 
-        private static FieldInfo s_activeField;
-        private static FieldInfo s_countField;
-        private static bool s_resolved;
-        private static bool s_available;
-        private static int s_depth;
+        /// <summary>原生 tween 调度器始终支持顿帧。</summary>
+        public static bool IsAvailable => true;
 
-        /// <summary>顿帧是否可用(反射解析 TweenManager 成功)。</summary>
-        public static bool IsAvailable
-        {
-            get
-            {
-                Resolve();
-                return s_available;
-            }
-        }
-
-        /// <summary>冻结当前所有 tween seconds 秒(realtime);runner 提供协程宿主。返回是否真的冻结了。</summary>
+        /// <summary>冻结当前所有 tween seconds 秒(realtime)。返回是否真的冻结了。</summary>
         public static bool Freeze(MonoBehaviour runner, float seconds)
         {
             if (runner == null || seconds <= 0f) return false;
-            Resolve();
-            if (!s_available) return false;
-            var paused = new List<GTweener>();
-            try
-            {
-                var active = s_activeField.GetValue(null) as GTweener[];
-                int count = (int)s_countField.GetValue(null);
-                if (active == null) return false;
-                for (int i = 0; i < count && i < active.Length; i++)
-                {
-                    var tween = active[i];
-                    if (tween == null || tween.completed) continue;
-                    tween.SetPaused(true);
-                    paused.Add(tween);
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning($"[BattleHitStop] 顿帧不可用:{e.Message}");
-                s_available = false;
-                foreach (var t in paused) t.SetPaused(false);
-                return false;
-            }
-            s_depth++;
-            runner.StartCoroutine(CoResume(paused, seconds));
+            var snapshot = RealtimeTween.PauseSnapshot();
+            runner.StartCoroutine(CoResume(snapshot, seconds));
             return true;
         }
 
-        private static IEnumerator CoResume(List<GTweener> paused, float seconds)
+        private static IEnumerator CoResume(RealtimeTweenPauseSnapshot snapshot, float seconds)
         {
             yield return new WaitForSecondsRealtime(seconds);
-            s_depth = Math.Max(0, s_depth - 1);
-            foreach (var tween in paused)
-            {
-                if (tween == null) continue;
-                try { tween.SetPaused(false); }
-                catch (Exception) { }
-            }
-        }
-
-        private static void Resolve()
-        {
-            if (s_resolved) return;
-            s_resolved = true;
-            try
-            {
-                var type = typeof(GTween).Assembly.GetType("FairyGUI.TweenManager");
-                s_activeField = type?.GetField("_activeTweens", BindingFlags.NonPublic | BindingFlags.Static);
-                s_countField = type?.GetField("_totalActiveTweens", BindingFlags.NonPublic | BindingFlags.Static);
-                s_available = s_activeField != null && s_countField != null;
-            }
-            catch (Exception)
-            {
-                s_available = false;
-            }
+            snapshot.Resume();
         }
     }
 
@@ -120,23 +57,23 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void Shake(float amplitude = CritShakePixels, float seconds = CritShakeSeconds)
         {
             if (_stage == null) return;
-            GTween.Kill(_stage);
+            RealtimeTween.Kill(_stage);
             var stage = _stage;
             var basePos = _basePos;
-            GTween.Shake(new Vector3(basePos.x, basePos.y, 0f), amplitude, seconds)
+            RealtimeTween.Shake(new Vector3(basePos.x, basePos.y, 0f), amplitude, seconds)
                 .SetIgnoreEngineTimeScale(true).SetTarget(stage)
-                .OnUpdate((GTweenCallback1)(t =>
+                .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
                     if (stage == null) return;
-                    stage.anchoredPosition = new Vector2(t.value.x, t.value.y);
+                    stage.anchoredPosition = new Vector2(t.Value.x, t.Value.y);
                 }))
-                .OnComplete((GTweenCallback)(() => { if (stage != null) stage.anchoredPosition = basePos; }));
+                .OnComplete((RealtimeTweenCallback)(() => { if (stage != null) stage.anchoredPosition = basePos; }));
         }
 
         public void Reset()
         {
             if (_stage == null) return;
-            GTween.Kill(_stage);
+            RealtimeTween.Kill(_stage);
             _stage.anchoredPosition = _basePos;
         }
     }

@@ -30,9 +30,7 @@ namespace MmorpgClient.Tests.PlayMode
             Assert.That(app.Gateway, Is.Not.Null);
             Assert.That(app.WorldMap, Is.Not.Null);
             Assert.That(app.Ugui, Is.Not.Null,
-                "Native uGUI failed to initialize and fell back to FairyGUI.");
-            Assert.That(app.Router, Is.Null,
-                "The native startup path must return before creating the legacy router.");
+                "Native uGUI failed to initialize.");
             app.StopAllCoroutines();
 
             var view = Object.FindAnyObjectByType<QdaoServerSelectView>();

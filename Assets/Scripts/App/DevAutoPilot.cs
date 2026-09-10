@@ -4,10 +4,13 @@ using System.Globalization;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.UI;
+using MmorpgClient.World.Tianyong;
 using UnityEngine;
 
 namespace MmorpgClient.App
 {
+    using Vector3 = UnityEngine.Vector3;
+
     /// <summary>
     /// 无人值守自动驾驶(开发/验证用):按命令行参数绕过选区 UI 直接
     /// EnterZone → 进场景 → JoinQueue → 自动战斗 → 打完退出。用途是双实例
@@ -64,10 +67,15 @@ namespace MmorpgClient.App
             public int ShotMax = 400;           // 单实例最多截多少张(防跑飞把磁盘写满)
             public bool ShotAll;                // true = 从登录就开始截;默认只截战斗段
 
+            // ── 移动验收(-moveTest):进场后按脚本驱动真实控制器走 WASD/撞墙/寻路 ──
+            public bool MoveTest;               // 与 -autoQueue 互斥,同时给时以 -moveTest 为准
+            public bool QuitOnMoveTestEnd;      // 移动验收结束后退出进程(退出码同 -quitOnBattleEnd 语义)
+            public float MoveTestTimeout = 90f; // 整段移动验收的兜底超时(秒)
+
             public bool Active => Zone != 0;
         }
 
-        private enum Stage { Login, Queue, Battle, Done }
+        private enum Stage { Login, Queue, Battle, MoveTest, Done }
 
         private static Options _current;
         private static bool _parsed;
@@ -110,6 +118,9 @@ namespace MmorpgClient.App
         private bool _shotRunning;
         private int _shotSeq;
         private string _shotMarker = "boot";
+
+        // 移动验收当前小阶段(超时 FAIL 行里带上,方便定位卡在哪一步)
+        private string _movePhase = "-";
 
         // ── 参数解析 ──────────────────────────────────────
 
@@ -177,6 +188,9 @@ namespace MmorpgClient.App
                     case "shotsupersize":   opt.ShotSuperSize = (int)ParseUInt(NextValue()); break;
                     case "shotmax":         opt.ShotMax = (int)ParseUInt(NextValue()); break;
                     case "shotall":         opt.ShotAll = true; break;
+                    case "movetest":        opt.MoveTest = true; break;
+                    case "quitonmovetestend": opt.QuitOnMoveTestEnd = true; break;
+                    case "movetesttimeout": opt.MoveTestTimeout = ParseFloat(NextValue(), opt.MoveTestTimeout); break;
                 }
             }
             if (string.IsNullOrEmpty(opt.LogTag))
@@ -304,6 +318,7 @@ namespace MmorpgClient.App
                 case Stage.Login:  Fail("login", $"登录/进场景超时({_opt.LoginTimeout}s)"); break;
                 case Stage.Queue:  Fail("queue", $"排队等 BattleStart 超时({_opt.QueueTimeout}s) phase={_battle?.Phase}"); break;
                 case Stage.Battle: Fail("battle", $"战斗超时({_opt.BattleTimeout}s) battle_id={_battleId} turns={_turns} phase={_battle?.Phase}"); break;
+                case Stage.MoveTest: Fail("move_test", $"移动验收超时({_opt.MoveTestTimeout}s) phase={_movePhase}"); break;
                 default: _deadline = 0f; break;
             }
         }
@@ -326,10 +341,25 @@ namespace MmorpgClient.App
         private void HandleEnterSuccess()
         {
             if (_finished) return;
+            if (_client == null || _client.World == null)
+            {
+                Fail("login", "GameClient/World 未就绪");
+                return;
+            }
             // gate 地址是"真落在哪个 zone"的运行时证据(脚本据此断言 A/B 不同 gate)
             Log($"stage=in_game player_id={_client.PlayerId} scene_id={_client.CurrentSceneId} " +
                 $"scene_config={_client.CurrentSceneConfigId} gate={_client.AssignedGate ?? "-"}");
             _app.Ugui?.SetServerSelectVisible(false); // 选区屏不再遮挡战斗层
+
+            if (_opt.MoveTest)
+            {
+                if (!string.IsNullOrEmpty(_opt.AutoQueue))
+                    Debug.LogWarning($"{_prefix} -moveTest 与 -autoQueue 同时给出,忽略 -autoQueue");
+                _stage = Stage.MoveTest;
+                _deadline = Time.realtimeSinceStartup + _opt.MoveTestTimeout;
+                StartCoroutine(MoveTestRoutine());
+                return;
+            }
 
             if (string.IsNullOrEmpty(_opt.AutoQueue))
             {
@@ -456,6 +486,306 @@ namespace MmorpgClient.App
             Fail(_stage.ToString().ToLowerInvariant(), "与服务器断开连接");
         }
 
+        // ── 移动验收(-moveTest)──────────────────────────
+        // 目的:把"登录 → 首次移动 → 连续 WASD → 撞墙 → 点击寻路"变成可离线判定的
+        // 一条流水线,验收 2026-09-05 的出生点/导航修复:
+        //   * 出生点必须在客户端 WalkMask 上(服务器权威落位后自身 ActorCreate 的坐标);
+        //   * 合法道路上的移动不能被服务器回拉(MoveReconcileCount 不增);
+        //   * 绕过客户端 mask 硬冲墙时服务器必须回 MoveAck 纠偏(证明服务端导航是这张图);
+        //   * 点击寻路能到达。
+        // 关键日志行(tools/run_move_test.ps1 按此解析):
+        //   move: spawn feet=(x,y,z) walkable=True|False
+        //   move: wasd dir=… from=… to=… moved=… walkable=…
+        //   move: wall … / move: server_wall … / move: path …
+        //   RESULT=PASS stage=move_test spawn=… final=… acks=N snaps=0  或 RESULT=FAIL stage=move_test reason=…
+        // 移动全部走 TianyongPlayerController 的真实路径(SetDebugDirection 等价于按住 WASD,
+        // SetDestination 等价于点击),网络消息与人手操作完全一致。
+
+        private static readonly (string Name, Vector3 Dir)[] WasdDirections =
+        {
+            ("W(+Z)", Vector3.forward),
+            ("D(+X)", Vector3.right),
+            ("S(-Z)", Vector3.back),
+            ("A(-X)", Vector3.left),
+        };
+
+        // 日志被 run_move_test.ps1 用正则解析:小数点必须是 '.',与 OS 区域无关
+        private static string F(Vector3 v)
+            => string.Format(CultureInfo.InvariantCulture, "({0:F2},{1:F2},{2:F2})", v.x, v.y, v.z);
+
+        private static string N(float f, string fmt = "F2") => f.ToString(fmt, CultureInfo.InvariantCulture);
+
+        // Unity 的 == null 对已销毁组件返回 true;角色被 Despawn/重进场景后继续用 ctrl 会抛
+        // MissingReferenceException 把协程静默掐死,只剩超时。每个阶段的 yield 之后都查一次。
+        private bool MoveCtrlGone(TianyongPlayerController ctrl)
+        {
+            if (ctrl != null && ctrl.Motor != null) return false;
+            Fail("move_test", $"本地角色/控制器在 {_movePhase} 阶段被销毁(重进场景/断线/ActorDestroy)");
+            return true;
+        }
+
+        private TianyongPlayerController _moveCtrl;
+
+        /// <summary>任何退出路径都把脚本驱动关掉,免得下一个控制器/真人输入被残留标志影响。</summary>
+        private void ResetMoveDrive()
+        {
+            var ctrl = _moveCtrl;
+            _moveCtrl = null;
+            if (ctrl == null || ctrl.Motor == null) return;
+            ctrl.SetDebugDirection(Vector3.zero);
+            ctrl.SetDebugIgnoreMask(false);
+        }
+
+        private static float DistXZ(Vector3 a, Vector3 b)
+        {
+            a.y = 0f;
+            b.y = 0f;
+            return Vector3.Distance(a, b);
+        }
+
+        private System.Collections.IEnumerator MoveTestRoutine()
+        {
+            // 1. 等本地角色 + 控制器就绪(自身 ActorCreate → SetLocalPlayer → AttachLocalController)
+            _movePhase = "wait_local";
+            TianyongPlayerController ctrl = null;
+            float waitUntil = Time.realtimeSinceStartup + 15f;
+            while (Time.realtimeSinceStartup < waitUntil)
+            {
+                if (_finished) yield break;
+                var world = _client.World;
+                if (world != null && world.LocalEntity != 0 &&
+                    world.TryGetActor(world.LocalEntity, out var view) && view.Go != null)
+                {
+                    ctrl = view.Go.GetComponent<TianyongPlayerController>();
+                    if (ctrl != null && ctrl.Motor != null && ctrl.Navigation != null) break;
+                    ctrl = null;
+                }
+                yield return null;
+            }
+            if (ctrl == null)
+            {
+                Fail("move_test", "本地角色/移动控制器 15s 内未就绪(没收到自身 ActorCreate 或地图未加载)");
+                yield break;
+            }
+            _moveCtrl = ctrl;
+            // 让进场时可能的本地兜底落位 + MoveStop 上报先跑完
+            yield return new WaitForSecondsRealtime(0.8f);
+            if (MoveCtrlGone(ctrl)) yield break;
+
+            var nav = ctrl.Navigation;
+            var spawn = ctrl.FeetPosition;
+            var spawnWalkable = nav.IsWalkable(spawn);
+            int acks0 = _client.MoveAckCount;
+            int snaps0 = _client.MoveReconcileCount;
+            Log($"move: spawn feet={F(spawn)} walkable={spawnWalkable} acks={acks0} snaps={snaps0}");
+            if (!spawnWalkable)
+            {
+                Fail("move_test", $"出生点不可走 feet={F(spawn)}");
+                yield break;
+            }
+
+            // 2. 连续 WASD:四个方向各按 1.2s。合法移动不能被回拉。
+            _movePhase = "wasd";
+            float maxMoved = 0f;
+            foreach (var (name, dir) in WasdDirections)
+            {
+                if (_finished) yield break;
+                var from = ctrl.FeetPosition;
+                int snapsBefore = _client.MoveReconcileCount;
+                ctrl.SetDebugDirection(dir);
+                yield return new WaitForSecondsRealtime(1.2f);
+                if (MoveCtrlGone(ctrl)) yield break;
+                ctrl.SetDebugDirection(Vector3.zero);
+                // 停下后再等一拍:MoveStop 发出、可能的 MoveAck 回来
+                yield return new WaitForSecondsRealtime(0.4f);
+                if (MoveCtrlGone(ctrl)) yield break;
+                var to = ctrl.FeetPosition;
+                var moved = DistXZ(from, to);
+                var walkable = nav.IsWalkable(to);
+                int snapped = _client.MoveReconcileCount - snapsBefore;
+                maxMoved = Mathf.Max(maxMoved, moved);
+                Log($"move: wasd dir={name} from={F(from)} to={F(to)} moved={N(moved)} walkable={walkable} snaps={snapped}");
+                if (!walkable)
+                {
+                    Fail("move_test", $"WASD {name} 后落在不可走点 feet={F(to)}");
+                    yield break;
+                }
+                if (snapped > 0)
+                {
+                    Fail("move_test", $"WASD {name} 合法移动被服务器回拉 {snapped} 次(from={F(from)} to={F(to)})");
+                    yield break;
+                }
+            }
+            if (maxMoved < 2f)
+            {
+                Fail("move_test", $"WASD 四向最大位移仅 {N(maxMoved)}m,角色被卡住");
+                yield break;
+            }
+
+            // 3. 客户端撞墙:找最近的不可走方向,硬按过去,mask 必须挡住(不穿墙、不被回拉)。
+            _movePhase = "wall";
+            var here = ctrl.FeetPosition;
+            string wallName = null;
+            Vector3 wallDir = Vector3.zero;
+            float wallDist = float.PositiveInfinity;
+            foreach (var (name, dir) in WasdDirections)
+            {
+                for (float d = 1f; d <= 60f; d += 1f)
+                {
+                    if (nav.IsWalkable(here + dir * d)) continue;
+                    if (d < wallDist)
+                    {
+                        wallDist = d;
+                        wallDir = dir;
+                        wallName = name;
+                    }
+                    break;
+                }
+            }
+            if (wallName == null)
+            {
+                Log("move: wall skipped (no blocked cell within 60m in any axis direction)");
+            }
+            else
+            {
+                var from = ctrl.FeetPosition;
+                int snapsBefore = _client.MoveReconcileCount;
+                float hold = Mathf.Clamp(wallDist / 9f + 1.5f, 2f, 8f);
+                ctrl.SetDebugDirection(wallDir);
+                yield return new WaitForSecondsRealtime(hold);
+                if (MoveCtrlGone(ctrl)) yield break;
+                ctrl.SetDebugDirection(Vector3.zero);
+                yield return new WaitForSecondsRealtime(0.4f);
+                if (MoveCtrlGone(ctrl)) yield break;
+                var to = ctrl.FeetPosition;
+                var along = Vector3.Dot(to - from, wallDir);
+                var walkable = nav.IsWalkable(to);
+                int snapped = _client.MoveReconcileCount - snapsBefore;
+                Log($"move: wall dir={wallName} wall_at={N(wallDist, "F0")}m hold={N(hold, "F1")}s from={F(from)} to={F(to)} along={N(along)} walkable={walkable} snaps={snapped}");
+                if (!walkable || along > wallDist + 0.5f)
+                {
+                    Fail("move_test", $"客户端撞墙穿透:沿 {wallName} 走了 {N(along)}m(墙在 {N(wallDist, "F0")}m)walkable={walkable}");
+                    yield break;
+                }
+                if (snapped > 0)
+                {
+                    Fail("move_test", $"贴墙停下的合法位置被服务器回拉 {snapped} 次(to={F(to)})");
+                    yield break;
+                }
+
+                // 4. 服务端撞墙:绕过客户端 mask 硬冲进墙 1.5s(约 13m),服务器必须回 MoveAck 把人拉回。
+                //    没有 ack = 服务端对这张图没有导航(旧 bin 被拒注册后 fail-open),验收不过。
+                _movePhase = "server_wall";
+                from = ctrl.FeetPosition;
+                int acksBefore = _client.MoveAckCount;
+                snapsBefore = _client.MoveReconcileCount;
+                ctrl.SetDebugIgnoreMask(true);
+                ctrl.SetDebugDirection(wallDir);
+                yield return new WaitForSecondsRealtime(1.5f);
+                if (MoveCtrlGone(ctrl)) yield break;
+                ctrl.SetDebugDirection(Vector3.zero);
+                ctrl.SetDebugIgnoreMask(false);
+                // 等最后一个 MoveStop 的裁决回来(静止时 GameClient 会应用任何幅度的 ack,
+                // 所以最终位置 = 服务器的阻挡点,而不是停在墙里等下一次移动)
+                yield return new WaitForSecondsRealtime(1.0f);
+                if (MoveCtrlGone(ctrl)) yield break;
+                to = ctrl.FeetPosition;
+                along = Vector3.Dot(to - from, wallDir);
+                walkable = nav.IsWalkable(to);
+                int acksGot = _client.MoveAckCount - acksBefore;
+                snapped = _client.MoveReconcileCount - snapsBefore;
+                Log($"move: server_wall dir={wallName} wall_at={N(wallDist, "F0")}m from={F(from)} to={F(to)} along={N(along)} walkable={walkable} acks={acksGot} snaps={snapped}");
+                if (acksGot == 0)
+                {
+                    Fail("move_test", $"绕过客户端 mask 冲墙 {wallName} 后服务器没有回 MoveAck(服务端无导航或未校验) to={F(to)}");
+                    yield break;
+                }
+                if (!walkable || along > wallDist + 2.5f)
+                {
+                    Fail("move_test", $"服务器纠偏后仍在墙内:along={N(along)}m(墙在 {N(wallDist, "F0")}m)walkable={walkable} to={F(to)}");
+                    yield break;
+                }
+            }
+
+            // 5. 点击寻路:挑一个 ≥8m、有路可达的合法目标,SetDestination 等价于点击地面。
+            _movePhase = "path";
+            var start = ctrl.FeetPosition;
+            Vector3? target = null;
+            Vector3[] offsets =
+            {
+                new(0f, 0f, -30f), new(0f, 0f, 30f), new(30f, 0f, 0f), new(-30f, 0f, 0f),
+                new(20f, 0f, -20f), new(-20f, 0f, -20f), new(20f, 0f, 20f), new(-20f, 0f, 20f),
+                new(0f, 0f, -15f), new(0f, 0f, 15f), new(15f, 0f, 0f), new(-15f, 0f, 0f),
+            };
+            foreach (var off in offsets)
+            {
+                if (!nav.TryFindNearestWalkable(start + off, out var cand)) continue;
+                if (DistXZ(start, cand) < 8f) continue;
+                var path = nav.FindPath(start, cand);
+                if (path.Count < 2) continue;
+                target = cand;
+                break;
+            }
+            if (target == null)
+            {
+                Fail("move_test", $"从 {F(start)} 找不到任何 ≥8m 可达的寻路目标");
+                yield break;
+            }
+            {
+                int snapsBefore = _client.MoveReconcileCount;
+                if (!ctrl.SetDestination(target.Value))
+                {
+                    Fail("move_test", $"SetDestination({F(target.Value)}) 无合法路径");
+                    yield break;
+                }
+                float pathDeadline = Time.realtimeSinceStartup + 25f;
+                bool started = false;
+                float idleSince = -1f;
+                while (Time.realtimeSinceStartup < pathDeadline)
+                {
+                    if (_finished) yield break;
+                    if (MoveCtrlGone(ctrl)) yield break;
+                    if (ctrl.IsMoving) { started = true; idleSince = -1f; }
+                    else if (started)
+                    {
+                        if (idleSince < 0f) idleSince = Time.realtimeSinceStartup;
+                        else if (Time.realtimeSinceStartup - idleSince > 0.5f) break;
+                    }
+                    yield return null;
+                }
+                yield return new WaitForSecondsRealtime(0.4f);
+                if (MoveCtrlGone(ctrl)) yield break;
+                var end = ctrl.FeetPosition;
+                var remain = DistXZ(end, target.Value);
+                var walkable = nav.IsWalkable(end);
+                int snapped = _client.MoveReconcileCount - snapsBefore;
+                Log($"move: path from={F(start)} target={F(target.Value)} end={F(end)} remain={N(remain)} started={started} walkable={walkable} snaps={snapped}");
+                if (!started || remain > 1.5f)
+                {
+                    // 寻路阶段走正常 Update 路径,受 UI 键盘门控影响(脚本 WASD 阶段不受),
+                    // 失败时把门控状态一起打出来,免得误判成导航问题
+                    Fail("move_test", $"点击寻路未到达 target={F(target.Value)} end={F(end)} remain={N(remain)} started={started} keyboardBlocked={GameplayInputGate.IsKeyboardBlocked}");
+                    yield break;
+                }
+                if (snapped > 0)
+                {
+                    Fail("move_test", $"寻路途中被服务器回拉 {snapped} 次");
+                    yield break;
+                }
+            }
+
+            _movePhase = "done";
+            var final = ctrl.FeetPosition;
+            // 让最后一个 MoveStop 落地并被服务器存成"重登出生点"(下一次登录应从这里起)
+            yield return new WaitForSecondsRealtime(0.5f);
+            if (MoveCtrlGone(ctrl)) yield break;
+            final = ctrl.FeetPosition;
+            Finish(true,
+                $"RESULT=PASS stage=move_test spawn={F(spawn)} final={F(final)} " +
+                $"acks={_client.MoveAckCount - acks0} snaps={_client.MoveReconcileCount - snaps0} " +
+                $"player_id={_client.PlayerId} gate={_client.AssignedGate ?? "-"}");
+        }
+
         // ── 收尾 ─────────────────────────────────────────
 
         private void Fail(string stage, string reason)
@@ -470,9 +800,11 @@ namespace MmorpgClient.App
             _finished = true;
             _stage = Stage.Done;
             _deadline = 0f;
+            ResetMoveDrive();
             if (ok) Log(line); else Debug.LogError($"{_prefix} {line}");
 
-            if (!_opt.QuitOnBattleEnd)
+            var quit = _opt.QuitOnBattleEnd || (_opt.MoveTest && _opt.QuitOnMoveTestEnd);
+            if (!quit)
             {
                 _shotRunning = false;   // 不退出也停截图,避免一直写盘
                 return;
