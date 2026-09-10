@@ -74,14 +74,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
             var frameWorldHeight = texture.height /
                                    MmorpgClient.World.QdaoBoySpriteAnimator.PixelsPerUnit;
-            Assert.That(frameWorldHeight, Is.EqualTo(8f).Within(0.001f),
-                "512 px / 64 ppu should render as an 8-unit-tall visual without scaling the actor root");
+            Assert.That(frameWorldHeight, Is.EqualTo(512f / 52f).Within(0.01f),
+                "512 px / 52 ppu should render as a ~9.846-unit-tall visual without scaling the actor root");
 
             var config = TianyongMapConfig.LoadDefault();
             Assert.That(config, Is.Not.Null);
+            // ortho 27 at 1080p: 9.846 u x 1080 / 54 = 196.9 px per frame.
             var frameScreenHeight = frameWorldHeight * 1080f / (2f * config.CameraZoomDefault);
-            Assert.That(frameScreenHeight, Is.InRange(150f, 170f),
-                "The run frame should match the reference character-to-travel ratio at 1080p");
+            Assert.That(frameScreenHeight, Is.InRange(185f, 210f),
+                "At the default zoom the 512 px frame should be ~197 px tall at 1080p, so the drawn " +
+                "figure (418/512 of the frame) is ~161 px = 14.9 % of the screen height; the reference " +
+                "video's character stands 15-16 % of the screen height (64 ppu gave only 12 %)");
             Assert.That(frameScreenHeight, Is.LessThanOrEqualTo(texture.height),
                 "The default camera should downsample the HD character frame, not magnify it");
         }

@@ -87,6 +87,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach (var actor in actors)
             {
                 if (actor == null || actor.TeamIndex != myTeam) continue;
+                // 宝宝不占角色卡:它跟着主人站(BattleStage.PetOwnerOf),不是一名队友。
+                // 不跳过的话带宝宝进 4 人队,会有一个人类队友被自己的宝宝挤掉。
+                if (BattleStage.PetOwnerOf(actor) != 0UL) continue;
                 if (myId != 0 && actor.ActorId == myId) self = actor;
                 else mates.Add(actor);
             }

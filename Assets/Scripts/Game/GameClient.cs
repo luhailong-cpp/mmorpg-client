@@ -5,6 +5,7 @@ using System.Threading;
 using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Pet;
 using MmorpgClient.Net;
 using MmorpgClient.World;
 using UnityEngine;
@@ -111,6 +112,13 @@ namespace MmorpgClient.Game
         /// </summary>
         public BattleDirectLink BattleLink { get; }
 
+        /// <summary>
+        /// 宝宝(宠物)网络层(docs/design/player-pet.md)。与 Attributes 平行:
+        /// 各持一个无状态 GameClientBattleTransport,底层仍是同一条 gate 连接。
+        /// 本身无定时器(纯请求-响应 + 一条 S2C 推送),不需要 Tick。
+        /// </summary>
+        public PetClient Pets { get; }
+
         /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
         public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
 
@@ -187,6 +195,7 @@ namespace MmorpgClient.Game
             Battle = BattleClient.Attach(new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink));
             Spectate = SpectateClient.Attach(new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink));
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
+            Pets = PetClient.Attach(new GameClientBattleTransport(this));
         }
 
         public GatewayHttpClient Http => _http;
@@ -1265,7 +1274,7 @@ namespace MmorpgClient.Game
                 MoveAckCount++;
                 // For now we just trust the server; a full client-prediction
                 // pipeline would rewind/replay any pending input > ev.InputSeq.
-                if (World.LocalEntity == 0) return;
+                if (!World.HasLocalPlayer) return;
                 var pos = WorldCoordinateConverter.FromServerLocation(ev.ServerLocation);
                 var local = GetActorPos(World.LocalEntity);
                 var dist = UnityEngine.Vector3.Distance(pos, local);

@@ -81,6 +81,8 @@ namespace MmorpgClient.Tests.PlayMode
             Assert.That(dots.All(image => image.sprite != null), Is.True);
 
             var topButtons = view.GetComponentsInChildren<Button>(true);
+            topButtons.Single(button => button.name == "SelectServer").onClick.Invoke();
+            Assert.That(FindTransform(view.gameObject, "ServerPage").gameObject.activeInHierarchy, Is.True);
             app.Session.Zones.Clear();
             for (var i = 1; i <= 17; i++)
             {
@@ -102,14 +104,14 @@ namespace MmorpgClient.Tests.PlayMode
             var allTop = labels.Single(label => label.name == "TopTabText_2");
             var recentCategory = labels.Single(label => label.name == "CategoryText_0");
             var allCategory = labels.Single(label => label.name == "CategoryText_2");
-            Assert.That(recentTop.color, Is.EqualTo(QdaoUguiTheme.Brown));
-            Assert.That(allTop.color, Is.EqualTo(QdaoUguiTheme.SelectedRed));
-            Assert.That(recentCategory.color, Is.EqualTo(QdaoUguiTheme.Brown));
-            Assert.That(allCategory.color, Is.EqualTo(QdaoUguiTheme.SelectedRed));
-            Assert.That(FindTransform(view.gameObject, "TopDefaultDimmer").GetComponent<Image>().enabled, Is.True);
-            Assert.That(FindTransform(view.gameObject, "TopTabSelection_2").GetComponent<Image>().enabled, Is.True);
-            Assert.That(FindTransform(view.gameObject, "CategoryDefaultDimmer").GetComponent<Image>().enabled, Is.True);
-            Assert.That(FindTransform(view.gameObject, "CategorySelection_2").GetComponent<Image>().enabled, Is.True);
+            Assert.That(recentTop.color, Is.EqualTo(QdaoRefreshArt.Ink));
+            Assert.That(allTop.color, Is.EqualTo(QdaoRefreshArt.Ivory));
+            Assert.That(recentCategory.color, Is.EqualTo(QdaoRefreshArt.Ink));
+            Assert.That(allCategory.color, Is.EqualTo(QdaoRefreshArt.Ivory));
+            Assert.That(FindTransform(view.gameObject, "TopTab_2").GetComponent<Image>().sprite,
+                Is.SameAs(QdaoRefreshArt.Load("tab_selected")));
+            Assert.That(FindTransform(view.gameObject, "CategoryArt_2").GetComponent<Image>().sprite,
+                Is.SameAs(QdaoRefreshArt.Load("list_row_selected")));
 
             var firstServer = topButtons.Single(button => button.name == "ServerCardArt_0");
             firstServer.onClick.Invoke();
@@ -120,13 +122,13 @@ namespace MmorpgClient.Tests.PlayMode
             var prevPageText = labels.Single(label => label.name == "PrevPageText");
             var nextPageText = labels.Single(label => label.name == "NextPageText");
             var next = topButtons.Single(button => button.name == "NextPage");
-            Assert.That(pageText.text, Is.EqualTo("1/3"));
+            Assert.That(pageText.text, Is.EqualTo("1 / 3"));
             Assert.That(prevPageText.gameObject.activeInHierarchy, Is.True);
             Assert.That(nextPageText.gameObject.activeInHierarchy, Is.True);
             next.onClick.Invoke();
-            Assert.That(pageText.text, Is.EqualTo("2/3"));
+            Assert.That(pageText.text, Is.EqualTo("2 / 3"));
             next.onClick.Invoke();
-            Assert.That(pageText.text, Is.EqualTo("3/3"));
+            Assert.That(pageText.text, Is.EqualTo("3 / 3"));
             Assert.That(next.interactable, Is.False);
 
             var search = inputs.Single(input => input.name == "SearchInput");
@@ -135,14 +137,19 @@ namespace MmorpgClient.Tests.PlayMode
             Assert.That(pageText.text, Is.Empty, "Searching must reset paging to the first page.");
             search.onValueChanged.Invoke("__no_matching_zone__");
             yield return null;
-            Assert.That(dots.All(image => !image.enabled), Is.True,
+            Assert.That(dots.All(image => !image.gameObject.activeInHierarchy), Is.True,
                 "Empty native card slots must hide their independent status lights.");
             Assert.That(topButtons.Where(button => button.name.StartsWith("ServerCardArt_"))
-                .All(button => !button.interactable), Is.True);
+                .All(button => !button.gameObject.activeInHierarchy), Is.True);
 
             var backButton = view.GetComponentsInChildren<Button>(true)
                 .Single(button => button.name == "BackButton");
             backButton.onClick.Invoke();
+            yield return null;
+            Assert.That(FindTransform(view.gameObject, "LoginPage").gameObject.activeInHierarchy, Is.True);
+            Assert.That(FindTransform(view.gameObject, "ServerPage").gameObject.activeInHierarchy, Is.False);
+            Assert.That(account.gameObject.activeInHierarchy, Is.False);
+            topButtons.Single(button => button.name == "SwitchAccount").onClick.Invoke();
             yield return null;
             Assert.That(account.gameObject.activeInHierarchy, Is.True);
             Assert.That(password.gameObject.activeInHierarchy, Is.True);

@@ -22,8 +22,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
     /// </summary>
     public sealed class AttributePanel
     {
-        private const float RowHeight = 68f;
-        private const float RowGap = 14f;
+        private const float RowHeight = 54f;
+        private const float RowGap = 10f;
         private const int MaxRows = 8;
 
         private readonly AttributeUiRoot _owner;
@@ -64,11 +64,14 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var window = BattleUiWidgets.CreatePanel("AttributeWindow", parent,
                 AttributeUiStyle.WindowX, AttributeUiStyle.WindowY,
                 AttributeUiStyle.WindowW, AttributeUiStyle.WindowH, AttributeUiStyle.WindowPaper);
+            QdaoRefreshArt.Skin(window, "main_frame");
+            window.pixelsPerUnitMultiplier = 4f;
             _root = (RectTransform)window.transform;
 
             // ── 标题栏 ──
-            BattleUiWidgets.CreatePanel("TitlePlate", _root, 340f, -22f, 560f, 74f, AttributeUiStyle.TitlePlate);
-            _titleText = QdaoUguiFactory.CreateText("Title", _root, 340f, -22f, 560f, 74f,
+            float titleX = (AttributeUiStyle.WindowW - 560f) * 0.5f;
+            QdaoRefreshArt.Panel("TitlePlate", _root, titleX, -22f, 560f, 74f, "primary_button_normal");
+            _titleText = QdaoUguiFactory.CreateText("Title", _root, titleX, -22f, 560f, 74f,
                 "属 性 加 点", 34f, AttributeUiStyle.TitleText, TextAlignmentOptions.Center);
 
             var close = BattleUiWidgets.CreateTextButton("Close", _root,
@@ -99,7 +102,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             float w = AttributeUiStyle.LeftW;
 
             _schemeButton = BattleUiWidgets.CreateTextButton("SchemeButton", _root, x, 76f, w, 66f,
-                "方案一  ▾", 26f, AttributeUiStyle.FieldPlate, AttributeUiStyle.FieldLabel);
+                "方案一 · 切换", 26f, AttributeUiStyle.FieldPlate, AttributeUiStyle.FieldLabel);
             _schemeButton.Button.onClick.AddListener(ToggleSchemeList);
 
             // 下拉列表(点方案按钮展开;选项按面板 schemes 动态重建)
@@ -116,6 +119,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _createSchemeButton = BattleUiWidgets.CreateTextButton("CreateScheme", _root,
                 x, AttributeUiStyle.WindowH - 116f, w - 60f, 74f,
                 "开启新方案", 26f, AttributeUiStyle.ConfirmPlate, AttributeUiStyle.ActionText);
+            QdaoRefreshArt.Skin(_createSchemeButton.Plate, "primary_button_normal");
+            _createSchemeButton.Label.color = QdaoRefreshArt.Ivory;
             _createSchemeButton.Button.onClick.AddListener(OnCreateSchemeClicked);
         }
 
@@ -166,6 +171,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _confirmButton = BattleUiWidgets.CreateTextButton("Confirm", _root,
                 x + w - 280f, AttributeUiStyle.WindowH - 116f, 240f, 74f,
                 "确 认", 28f, AttributeUiStyle.ConfirmPlate, AttributeUiStyle.ActionText);
+            QdaoRefreshArt.Skin(_confirmButton.Plate, "primary_button_normal");
+            _confirmButton.Label.color = QdaoRefreshArt.Ivory;
             _confirmButton.Button.onClick.AddListener(OnConfirmClicked);
         }
 
@@ -181,6 +188,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         public void Show()
         {
+            // 宝宝窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
+            Pet.PetUiRoot.Instance?.HidePanel();
             if (_root != null) _root.gameObject.SetActive(true);
             CloseSchemeList();
             HideTooltip();
@@ -269,7 +278,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                     break;
                 }
             }
-            _schemeButton?.SetText($"{name}  ▾");
+            _schemeButton?.SetText($"{name} · 切换");
             bool canCreate = _panel.Schemes.Count < _panel.MaxSchemes;
             _createSchemeButton?.SetInteractable(canCreate && !(_owner.Client?.Busy ?? false));
             _createSchemeButton?.SetText(canCreate && _panel.CreateSchemeCostGold > 0
@@ -311,11 +320,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
                     bool active = pool.PoolId == _activePoolId;
                     if (_tabs[i].Plate != null)
                     {
-                        _tabs[i].Plate.color = active ? AttributeUiStyle.TabActive : AttributeUiStyle.TabIdle;
+                        QdaoRefreshArt.Skin(_tabs[i].Plate, !pool.Unlocked ? "tab_disabled" :
+                            active ? "tab_selected" : "tab_normal");
                     }
                     if (_tabs[i].Label != null)
                     {
-                        _tabs[i].Label.color = pool.Unlocked ? AttributeUiStyle.TabText : AttributeUiStyle.TabLockedText;
+                        _tabs[i].Label.color = !pool.Unlocked ? AttributeUiStyle.TabLockedText :
+                            active ? QdaoRefreshArt.Ivory : AttributeUiStyle.TabText;
                     }
                 }
                 else

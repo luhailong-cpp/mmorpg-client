@@ -36,6 +36,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
         /// <summary>供子面板取 AttributeClient(可能为 null:NET 路尚未初始化)。</summary>
         public AttributeClient Client => _client;
 
+        /// <summary>
+        /// 关掉属性窗。宝宝窗开的时候调:两个窗同位置同尺寸、Canvas 只差一层
+        /// (属性 160 / 宝宝 161),不互斥的话后开的那个会把前一个整个盖住,
+        /// 玩家以为自己关掉了、其实它还开着在下面吃点击。
+        /// </summary>
+        public void HidePanel() => _panel?.Hide();
+
         // ── 生命周期 ────────────────────────────────────────
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -133,9 +140,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var windowRoot = CreateDesignRoot("WindowRoot", _canvasGo.transform);
             var toastRoot = CreateDesignRoot("ToastRoot", _canvasGo.transform);
 
-            _entryButton = BattleUiWidgets.CreateTextButton("AttributeEntry", _hudRoot,
-                AttributeUiStyle.EntryX, AttributeUiStyle.EntryY, 150f, 70f, "角色", 26f,
-                BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _entryButton = BattleUiWidgets.CreateFramedTextButton("AttributeEntry", _hudRoot,
+                AttributeUiStyle.EntryX, AttributeUiStyle.EntryY,
+                BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, "角色", BattleUiStyle.HudEntryFontSize,
+                BattleUiStyle.HudEntryPlate, BattleUiStyle.HudEntryFrameColor, BattleUiStyle.HudEntryText,
+                BattleUiStyle.HudEntryFrame);
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
 

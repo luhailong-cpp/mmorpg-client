@@ -144,12 +144,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
         public static TMP_Text CreateStatField(string name, UnityEngine.Transform parent,
             float x, float y, float width, float height, string label)
         {
-            BattleUiWidgets.CreatePanel($"{name}Plate", parent, x, y, width, height,
-                AttributeUiStyle.FieldPlate, false);
-            QdaoUguiFactory.CreateText($"{name}Label", parent, x + 14f, y, 120f, height,
+            QdaoRefreshArt.Panel($"{name}Plate", parent, x, y, width, height, "list_row_normal");
+            QdaoUguiFactory.CreateText($"{name}Label", parent, x + 66f, y, 110f, height,
                 label, 24f, AttributeUiStyle.FieldLabel);
-            return QdaoUguiFactory.CreateText($"{name}Value", parent, x + 140f, y, width - 154f, height,
-                "-", 24f, AttributeUiStyle.FieldValue, TextAlignmentOptions.MidlineLeft);
+            return QdaoUguiFactory.CreateText($"{name}Value", parent, x + 180f, y, width - 246f, height,
+                "-", 24f, AttributeUiStyle.FieldValue, TextAlignmentOptions.MidlineRight);
         }
 
         /// <summary>

@@ -1,12 +1,12 @@
 # MMORPG Unity Client
 
-Unity 6000.5.8f1 client for the MMORPG server (parent repo:
+Unity 6000.6.0f1 client for the MMORPG server (parent repo:
 [luyuancpp/mmorpg](https://github.com/luyuancpp/mmorpg)). This repo is
 mounted as a git submodule at `client/unity/` inside the superproject.
 
 ## Quick start
 
-1. **Open in Unity**: use Unity `6000.5.8f1`, then select this repo's root.
+1. **Open in Unity**: use Unity `6000.6.0f1`, then select this repo's root.
 2. **Generate proto C# stubs** (required after first checkout and after
    any `.proto` change in the parent repo):
 

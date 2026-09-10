@@ -277,7 +277,11 @@ namespace MmorpgClient.UI.EditorTools
             if (!File.Exists(packagePath))
                 throw new FileNotFoundException("TMP Essential Resources package is missing", packagePath);
 
+#if UNITY_6000_6_OR_NEWER
+            UnityEditor.AssetPackage.Package.Import(packagePath, false);
+#else
             AssetDatabase.ImportPackage(packagePath, false);
+#endif
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
 
             hasSettings = AssetDatabase.FindAssets("t:TMP_Settings").Length > 0;

@@ -213,7 +213,7 @@ namespace MmorpgClient.UI.Ugui
             input.contentType = TMP_InputField.ContentType.Standard;
             input.characterLimit = characterLimit;
 
-            var viewport = CreateStretch("Viewport", rect, new Vector4(12f, 8f, 8f, 8f));
+            var viewport = CreateStretch("Viewport", rect, new Vector4(backgroundSprite != null ? 40f : 12f, 8f, backgroundSprite != null ? 40f : 8f, 8f));
             viewport.gameObject.AddComponent<RectMask2D>();
 
             var textRect = CreateStretch("Text", viewport, Vector4.zero);

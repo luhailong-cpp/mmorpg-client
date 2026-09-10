@@ -104,6 +104,17 @@ $whitelist = @{
     "SceneAttributeClientPlayerNotifyAttributePanelChanged"  = "NotifyAttributePanelChanged"
     "SceneAttributeClientPlayerGmSetPlayerLevel"             = "GmSetPlayerLevel"
 
+    # 宝宝(宠物)系统(proto/scene/player_pet.proto, service ScenePetClientPlayer)
+    "ScenePetClientPlayerGetPetList"                         = "GetPetList"
+    "ScenePetClientPlayerSummonPet"                          = "SummonPet"
+    "ScenePetClientPlayerRecallPet"                          = "RecallPet"
+    "ScenePetClientPlayerAllocatePetPoints"                  = "AllocatePetPoints"
+    "ScenePetClientPlayerResetPetPoints"                     = "ResetPetPoints"
+    "ScenePetClientPlayerAutoAllocatePetPoints"              = "AutoAllocatePetPoints"
+    "ScenePetClientPlayerRenamePet"                          = "RenamePet"
+    "ScenePetClientPlayerNotifyPetListChanged"               = "NotifyPetListChanged"
+    "ScenePetClientPlayerGmGrantPet"                         = "GmGrantPet"
+
     # 客户端直连 battle 节点(turn-based-battle-server.md §18):落点分配推送 + 丢票补签
     "BattleClientPlayerNotifyBattleAssigned"       = "NotifyBattleAssigned"
     "MatchServiceRequestBattleTicket"              = "RequestBattleTicket"

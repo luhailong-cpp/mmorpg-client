@@ -75,11 +75,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float PetRelativeScale = 0.65f;
 
         /// <summary>
-        /// 宝宝归属判定入口:返回该单位主人的 actorId,0 = 不是宝宝。默认恒 0。
-        /// 服务端目前没有宠物实体(BattleActorState 无 owner 字段),先由客户端表现层按数据决定是否出现:
-        /// 演出台(PresentationShowcase)用它给合成战斗标记宝宝;将来服务端补 owner_actor_id 后在这里接上即可。
+        /// 宝宝归属判定入口:返回该单位主人的 actorId,0 = 不是宝宝。
+        /// 2026-09-09 起服务端真的下发归属了(宝宝系统:BattleActorState.owner_player_id,
+        /// 见 docs/design/player-pet.md §5),所以**默认实现直接读那个字段** —— 正式战斗路径
+        /// 不需要任何额外接线,宝宝就会站到主人身边、不占槽位。
+        /// 演出台(PresentationShowcase)用合成数据时覆盖它。
         /// </summary>
-        public static Func<BattleActorState, ulong> PetOwnerResolver = _ => 0UL;
+        public static Func<BattleActorState, ulong> PetOwnerResolver =
+            actor => actor != null ? actor.OwnerPlayerId : 0UL;
 
         /// <summary>一个槽位的实测数据(设计坐标,y 向下):脚底点 + 宝宝脚底点。</summary>
         private readonly struct SlotEntry

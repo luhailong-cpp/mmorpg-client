@@ -7,7 +7,9 @@ namespace MmorpgClient.Net
     public static class MessageIds
     {
         public const uint AllocateAttributePoints =  168; // SceneAttributeClientPlayerAllocateAttributePoints
+        public const uint AllocatePetPoints      =  186; // ScenePetClientPlayerAllocatePetPoints
         public const uint AutoAllocateAttributePoints =  173; // SceneAttributeClientPlayerAutoAllocateAttributePoints
+        public const uint AutoAllocatePetPoints  =  188; // ScenePetClientPlayerAutoAllocatePetPoints
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
         public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
         public const uint CreateAttributeScheme  =  174; // SceneAttributeClientPlayerCreateAttributeScheme
@@ -17,7 +19,9 @@ namespace MmorpgClient.Net
         public const uint EnterScene             =   63; // SceneSceneClientPlayerEnterScene
         public const uint GetAttributePanel      =  167; // SceneAttributeClientPlayerGetAttributePanel
         public const uint GetBattleState         =  140; // BattleClientPlayerGetBattleState
+        public const uint GetPetList             =  181; // ScenePetClientPlayerGetPetList
         public const uint GetQueueStatus         =  153; // MatchServiceGetQueueStatus
+        public const uint GmGrantPet             =  187; // ScenePetClientPlayerGmGrantPet
         public const uint GmSetPlayerLevel       =  175; // SceneAttributeClientPlayerGmSetPlayerLevel
         public const uint JoinQueue              =  157; // MatchServiceJoinQueue
         public const uint KickPlayer             =   34; // SceneClientPlayerCommonKickPlayer
@@ -43,6 +47,7 @@ namespace MmorpgClient.Net
         public const uint NotifyChallengeResult  =  154; // MatchServiceNotifyChallengeResult
         public const uint NotifyEnterScene       =   79; // SceneSceneClientPlayerNotifyEnterScene
         public const uint NotifyMoveAck          =  137; // SceneMovementClientPlayerNotifyMoveAck
+        public const uint NotifyPetListChanged   =  184; // ScenePetClientPlayerNotifyPetListChanged
         public const uint NotifySceneInfo        =   31; // SceneSceneClientPlayerNotifySceneInfo
         public const uint NotifySkillInterrupted =   33; // SceneSkillClientPlayerNotifySkillInterrupted
         public const uint NotifySkillUsed        =   70; // SceneSkillClientPlayerNotifySkillUsed
@@ -51,17 +56,21 @@ namespace MmorpgClient.Net
         public const uint NotifySpectateTurnResult =  158; // BattleClientPlayerNotifySpectateTurnResult
         public const uint NotifyTeleport         =  130; // SceneMovementClientPlayerNotifyTeleport
         public const uint NotifyTurnResult       =  139; // BattleClientPlayerNotifyTurnResult
+        public const uint RecallPet              =  185; // ScenePetClientPlayerRecallPet
         public const uint RedirectToGate         =  124; // SceneClientPlayerCommonRedirectToGate
         public const uint RefreshToken           =  127; // ClientPlayerLoginRefreshToken
         public const uint ReleaseSkill           =   84; // SceneSkillClientPlayerReleaseSkill
         public const uint RenameAttributeScheme  =  169; // SceneAttributeClientPlayerRenameAttributeScheme
+        public const uint RenamePet              =  189; // ScenePetClientPlayerRenamePet
         public const uint RequestBattleTicket    =  179; // MatchServiceRequestBattleTicket
         public const uint ResetAttributePoints   =  172; // SceneAttributeClientPlayerResetAttributePoints
+        public const uint ResetPetPoints         =  182; // ScenePetClientPlayerResetPetPoints
         public const uint RespondChallenge       =  151; // MatchServiceRespondChallenge
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
         public const uint SetAutoBattle          =  162; // BattleClientPlayerSetAutoBattle
         public const uint StopWatchBattle        =  165; // BattleClientPlayerStopWatchBattle
         public const uint SubmitBattleAction     =  149; // BattleClientPlayerSubmitBattleAction
+        public const uint SummonPet              =  183; // ScenePetClientPlayerSummonPet
         public const uint SwitchAttributeScheme  =  171; // SceneAttributeClientPlayerSwitchAttributeScheme
         public const uint TeleportRequest        =  136; // SceneMovementClientPlayerTeleportRequest
         public const uint TipToClient            =   23; // SceneClientPlayerCommonSendTipToClient

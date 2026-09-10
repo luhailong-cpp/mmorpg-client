@@ -25,6 +25,13 @@ namespace MmorpgClient.World.Tianyong
         public TianyongMapInstance Map => _map;
         public GameObject Player => _playerController != null ? _playerController.gameObject : null;
         public Camera WorldCamera => worldCamera;
+
+        /// <summary>
+        /// The camera rig, so an acceptance drive can exercise zoom (the edge
+        /// clamp only misbehaves while the ortho size is easing, which no
+        /// screenshot can catch unless something calls SetZoom).
+        /// </summary>
+        public TianyongCameraController CameraRig => _cameraController;
         public Light DirectionalLight => directionalLight;
 
         private void Start() => BuildSandbox();
@@ -51,16 +58,8 @@ namespace MmorpgClient.World.Tianyong
             // Same look as production actors: the qdao walk sprite when present
             // and a name label parked under the feet.
             QdaoBoySpriteAnimator.TryAttach(player);
-            var labelGo = new GameObject("label");
-            labelGo.transform.SetParent(player.transform, false);
-            var label = labelGo.AddComponent<TextMesh>();
-            label.text = "Player#1";
-            label.characterSize = 0.08f;
-            label.fontSize = 32;
-            label.anchor = TextAnchor.UpperCenter;
-            label.alignment = TextAlignment.Center;
-            label.color = new Color(0.45f, 1f, 0.45f);
-            WorldLabelBillboard.Attach(labelGo);
+            var label = WorldNameplate.Create(player.transform, "云行客", WorldNameplate.LocalPlayerColor);
+            WorldLabelBillboard.Attach(label.gameObject);
 
             _playerController = player.GetComponent<TianyongPlayerController>();
             if (_playerController == null) _playerController = player.AddComponent<TianyongPlayerController>();
@@ -73,7 +72,13 @@ namespace MmorpgClient.World.Tianyong
             _cameraController.SetTheme(initialTheme, TianyongPaintedCity.IsEnabledFor(initialTheme, config));
             TianyongLighting.Apply(initialTheme, directionalLight);
             _map.UpdateVisibleChunks(player.transform.position, config?.VisibleChunkRadius ?? 3);
+
+            // 离线验收:-sandboxDrive 时自动走位截图(TianyongSandboxAutoDrive);未带参数时无副作用。
+            TianyongSandboxAutoDrive.TryAttach(this);
         }
+
+        /// <summary>验收截图时隐藏左上角的操作提示框。</summary>
+        public void SetHelpVisible(bool visible) => showHelp = visible;
 
         public void SetTheme(TianyongTheme theme)
         {

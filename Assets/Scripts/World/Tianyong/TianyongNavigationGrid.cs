@@ -225,6 +225,17 @@ namespace MmorpgClient.World.Tianyong
             return result;
         }
 
+        /// <summary>
+        /// Lateral clearance a smoothed segment keeps from blocked cells. The
+        /// walk mask is a point test but the actor is a capsule that drifts a
+        /// few centimetres while following a segment; a line that merely
+        /// grazes a blocked cell corner (2026-09-08: the single-cell pillar at
+        /// (212,148)) would then step into it and stall. Cell-centre waypoints
+        /// are always at least one metre from any wall, so a segment that fails
+        /// this test simply falls back to them.
+        /// </summary>
+        private const float SmoothingClearance = 0.35f;
+
         private bool HasLineOfSight(Vector3 from, Vector3 to)
         {
             var distance = Vector3.Distance(from, to);
@@ -232,10 +243,15 @@ namespace MmorpgClient.World.Tianyong
             // cannot slip diagonally across the corner of a blocked grid cell
             // (most visibly at a bridge/canal boundary).
             var samples = Mathf.Max(1, Mathf.CeilToInt(distance / (CellSize * 0.2f)));
+            var dir = to - from;
+            dir.y = 0f;
+            var side = dir.sqrMagnitude > 0.0001f
+                ? new Vector3(-dir.z, 0f, dir.x).normalized * SmoothingClearance
+                : Vector3.zero;
             for (var i = 0; i <= samples; i++)
             {
                 var p = Vector3.Lerp(from, to, i / (float)samples);
-                if (!IsWalkable(p)) return false;
+                if (!IsWalkable(p) || !IsWalkable(p + side) || !IsWalkable(p - side)) return false;
             }
             return true;
         }

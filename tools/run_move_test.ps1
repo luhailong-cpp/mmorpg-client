@@ -63,6 +63,8 @@ function Invoke-Round([string]$tag, [string]$account) {
         "-password", $Password,
         "-moveTest",
         "-quitOnMoveTestEnd",
+        # scene 节点刚重拉时 etcd 端口租约要等几十秒才释放,进场会晚;GameClient 自己等 60s,别让驾驶员 30s 先放弃
+        "-loginTimeout", "60",
         "-logTag", $tag
     )
     Write-Host "[move] round=$tag account=$account"

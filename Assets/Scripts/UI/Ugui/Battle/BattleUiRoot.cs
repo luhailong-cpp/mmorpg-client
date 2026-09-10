@@ -291,15 +291,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             var toastRoot = CreateDesignRoot("ToastRoot", _canvasGo.transform);
 
             // ── 内容 ──
-            _entryButton = BattleUiWidgets.CreateTextButton("BattleEntry", _hudRoot,
-                2350f, 210f, 150f, 70f, "战斗", 26f,
-                BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+            _entryButton = BattleUiWidgets.CreateFramedTextButton("BattleEntry", _hudRoot,
+                BattleUiStyle.HudEntryX, BattleUiStyle.HudEntryY(0),
+                BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, "战斗", BattleUiStyle.HudEntryFontSize,
+                BattleUiStyle.HudEntryAccentPlate, BattleUiStyle.HudEntryAccentFrame, BattleUiStyle.HudEntryText,
+                BattleUiStyle.HudEntryFrame);
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
 
-            _spectateEntryButton = BattleUiWidgets.CreateTextButton("SpectateEntry", _hudRoot,
-                2350f, 296f, 150f, 70f, "观战", 26f,
-                BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            _spectateEntryButton = BattleUiWidgets.CreateFramedTextButton("SpectateEntry", _hudRoot,
+                BattleUiStyle.HudEntryX, BattleUiStyle.HudEntryY(1),
+                BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, "观战", BattleUiStyle.HudEntryFontSize,
+                BattleUiStyle.HudEntryPlate, BattleUiStyle.HudEntryFrameColor, BattleUiStyle.HudEntryText,
+                BattleUiStyle.HudEntryFrame);
             _spectateEntryButton.Button.onClick.AddListener(OnSpectateEntryClicked);
             _spectateEntryButton.SetVisible(false);
 
