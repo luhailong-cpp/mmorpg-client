@@ -137,6 +137,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             scaler.referencePixelsPerUnit = 100f;
 
             _hudRoot = CreateDesignRoot("HudRoot", _canvasGo.transform);
+            QdaoUguiFactory.ConfigureHudCanvas(_hudRoot);
             var windowRoot = CreateDesignRoot("WindowRoot", _canvasGo.transform);
             var toastRoot = CreateDesignRoot("ToastRoot", _canvasGo.transform);
 

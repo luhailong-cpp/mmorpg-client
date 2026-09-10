@@ -18,7 +18,7 @@ public static class ClientBattleUiQaCapture
     private const int Width = 2560;
     private const int Height = 1080;
     private const int CaptureLayer = 31;
-    private const string OutputDirectory = "E:/work/image/client_ui_refresh_20260908/qa";
+    private static string OutputDirectory => ClientUiRefreshVerification.OutputDirectory;
     private static readonly string[] Names =
     {
         "08-battle-native", "09-queue-native", "10-spectate-native", "11-result-native",

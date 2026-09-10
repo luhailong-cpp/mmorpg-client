@@ -2,7 +2,9 @@
   "name": "MmorpgClient.Tests.EditMode.Battle",
   "rootNamespace": "MmorpgClient.Tests.EditMode.Battle",
   "references": [
-    "MmorpgClient"
+    "MmorpgClient",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
   ],
   "includePlatforms": [
     "Editor"

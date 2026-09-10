@@ -20,7 +20,8 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$Tag = "after",
+    [ValidatePattern('^[A-Za-z0-9_-]+$')]
+    [string]$Tag = (Get-Date -Format 'yyyyMMdd_HHmmss'),
     [string]$Src = "E:\work\mmorpg-client",
     [string]$Dst = "E:\work\tmp\citymove_verify_project",
     [string]$LibrarySeed = "E:\work\tmp\shotverify_project\Library",
@@ -35,11 +36,56 @@ param(
 )
 $ErrorActionPreference = 'Continue'
 
+# Sync uses /PURGE: never let a typo target the user's project or another workspace.
+$Src = [IO.Path]::GetFullPath($Src).TrimEnd('\', '/')
+$Dst = [IO.Path]::GetFullPath($Dst).TrimEnd('\', '/')
+$verifyRoot = [IO.Path]::GetFullPath('E:\work\tmp').TrimEnd('\', '/') + '\'
+if (-not $Dst.StartsWith($verifyRoot, [StringComparison]::OrdinalIgnoreCase) -or
+    $Src.Equals($Dst, [StringComparison]::OrdinalIgnoreCase) -or
+    $Src.StartsWith($Dst + '\', [StringComparison]::OrdinalIgnoreCase) -or
+    $Dst.StartsWith($Src + '\', [StringComparison]::OrdinalIgnoreCase)) {
+    throw "Verification copy must be a separate child of $verifyRoot : $Dst"
+}
+$inspectPath = $Dst
+while ($inspectPath) {
+    if (Test-Path -LiteralPath $inspectPath) {
+        if ((Get-Item -LiteralPath $inspectPath).Attributes -band [IO.FileAttributes]::ReparsePoint) {
+            throw "Verification copy must not traverse a reparse point: $inspectPath"
+        }
+    }
+    $inspectPath = [IO.Path]::GetDirectoryName($inspectPath)
+}
+if (-not (Test-Path -LiteralPath (Join-Path $Src 'Assets')) -or
+    -not (Test-Path -LiteralPath (Join-Path $Src 'ProjectSettings'))) {
+    throw "Source is not a Unity project: $Src"
+}
+
+
 $playerDir = "E:\work\tmp\citymove_player\$Tag"
 $shotDir   = "E:\work\tmp\citymove_shots\$Tag"
 $buildLog  = "E:\work\tmp\citymove_build_$Tag.log"
 $playerLog = "E:\work\tmp\citymove_player_$Tag.log"
 $exe       = Join-Path $playerDir "mmorpg_sandbox.exe"
+
+# Output cleanup and recursive sync must not follow links into another location.
+foreach ($guardedPath in @($playerDir, $shotDir, $buildLog, $playerLog)) {
+    $ancestor = [IO.Path]::GetFullPath($guardedPath)
+    while ($ancestor) {
+        if ((Test-Path -LiteralPath $ancestor) -and
+            ((Get-Item -LiteralPath $ancestor -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+            throw "Verification output must not traverse a reparse point: $ancestor"
+        }
+        $ancestor = [IO.Path]::GetDirectoryName($ancestor)
+    }
+}
+foreach ($guardedTree in @($Dst, $playerDir, $shotDir)) {
+    if (Test-Path -LiteralPath $guardedTree) {
+        $linkedItem = Get-ChildItem -LiteralPath $guardedTree -Force -Recurse -Attributes ReparsePoint -ErrorAction Stop |
+            Select-Object -First 1
+        if ($linkedItem) { throw "Verification target contains a reparse point: $($linkedItem.FullName)" }
+    }
+}
+
 
 function L($m) { "$(Get-Date -Format T) $m" }
 
@@ -75,7 +121,7 @@ if (-not $SkipBuild) {
     if (Test-Path $buildLog) { Remove-Item $buildLog -Force -ErrorAction SilentlyContinue }
     L "unity batchmode build ($UnityExe) -> $playerDir"
     # Unity.exe 是启动器,直接调用会立即返回;必须 Start-Process -Wait
-    $ub = Start-Process -FilePath $UnityExe -PassThru -ArgumentList @(
+    $ub = Start-Process -FilePath $UnityExe -WindowStyle Hidden -PassThru -ArgumentList @(
         "-batchmode", "-nographics", "-quit", "-accept-apiupdate",
         "-projectPath", $Dst,
         "-executeMethod", "MmorpgClient.Editor.Tianyong.TianyongSandboxVerifyBuild.Build",
@@ -89,6 +135,10 @@ if (-not $SkipBuild) {
     L "unity exit=$($ub.ExitCode)"
     Select-String -Path $buildLog -Pattern "error CS|SandboxVerifyBuild|Build completed|Exiting batchmode|Aborting batchmode" -ErrorAction SilentlyContinue |
         Select-Object -Last 14 | ForEach-Object { L ("  " + $_.Line.Substring(0, [Math]::Min(200, $_.Line.Length))) }
+    if ($ub.ExitCode -ne 0 -or -not (Select-String -LiteralPath $buildLog -Pattern '\[SandboxVerifyBuild\] result=Succeeded' -Quiet)) {
+        L 'BUILD FAILED - refusing to run a stale player'
+        exit 4
+    }
 }
 
 if (-not (Test-Path $exe)) { L "NO EXE: $exe"; exit 5 }
@@ -109,11 +159,11 @@ $playerArgs = @(
     "-driveTimeout", "$([Math]::Max(60, $RunTimeout - 20))"
 )
 L "run player: $exe $($playerArgs -join ' ')"
-$p = Start-Process -FilePath $exe -ArgumentList $playerArgs -PassThru
+$p = Start-Process -FilePath $exe -WindowStyle Hidden -ArgumentList $playerArgs -PassThru
 if (-not $p.WaitForExit($RunTimeout * 1000)) {
     L "RUN TIMEOUT ${RunTimeout}s - killing player"
     try { $p.Kill() } catch {}
-    Start-Sleep -Seconds 2
+    exit 6
 }
 Start-Sleep -Seconds 1
 L "player exit=$($p.ExitCode)"
@@ -127,6 +177,7 @@ L "---- exceptions ----"
 $bad = Select-String -Path $playerLog -Pattern "NullReference|Exception|error CS|Could not load|Failed to load|shot failed" -ErrorAction SilentlyContinue
 if ($bad) { $bad | Select-Object -First 30 | ForEach-Object { L ("  " + $_.Line.Substring(0, [Math]::Min(200, $_.Line.Length))) } }
 else { L "  (none)" }
+if ($bad -or $p.ExitCode -ne 0) { L 'FAIL: player reported errors'; exit 6 }
 
 $pass = Select-String -Path $playerLog -Pattern "\[SandboxDrive\] RESULT=PASS" -Quiet -ErrorAction SilentlyContinue
 if (-not $pass) { L "FAIL: drive did not report RESULT=PASS"; exit 6 }

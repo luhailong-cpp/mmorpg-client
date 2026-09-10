@@ -121,3 +121,7 @@ InitTestScene*.unity*
 /My project (1)/
 /.codex/
 /.codex-artifacts/
+
+# Python tool caches
+__pycache__/
+*.py[cod]

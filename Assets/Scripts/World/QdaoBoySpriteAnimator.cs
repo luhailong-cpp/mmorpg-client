@@ -6,10 +6,11 @@ namespace MmorpgClient.World
     using Vector3 = UnityEngine.Vector3;
 
     /// <summary>
-    /// Billboarded eight-direction run animation for player actors, fed by the
+    /// Billboarded eight-direction run and dedicated standing poses for player actors, fed by the
     /// qdao headband-boy frame strips under
     /// Resources/World/Characters/QdaoHeadbandBoy (one 8-frame 4096x512 strip per
-    /// direction, N/NE/E/SE/S/SW/W/NW, frames left to right), plus a soft
+    /// direction, N/NE/E/SE/S/SW/W/NW, frames left to right), eight idle_*
+    /// textures with the same frame size and feet anchor, plus a soft
     /// contact shadow on the ground.
     /// The actor root transform stays the authoritative feet/yaw source
     /// (TianyongPlayerController locally, ActorWorld interpolation remotely);
@@ -32,16 +33,15 @@ namespace MmorpgClient.World
     /// Motion: the run cycle is advanced by actual travel distance (foot
     /// cadence survives frame hitches and remote interpolation). Stopping does
     /// not freeze mid-stride: the cycle keeps playing at run cadence until it
-    /// reaches the direction's standing pose (IdleFrames), at most one lap,
-    /// then holds it; starting resumes from that pose so the first step is a
-    /// real step out of standing. No standalone idle strips exist for the
-    /// character yet, so the standing poses are the feet-together frames of
-    /// the run cycles.
+    /// reaches the direction's grounded run phase (IdleFrames), at most one
+    /// lap, then switches to its dedicated neutral idle texture. Starting
+    /// resumes the run from that grounded phase. Idle textures are authored
+    /// standing poses with relaxed arms and planted feet, not held run frames.
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class QdaoBoySpriteAnimator : MonoBehaviour
     {
-        /// <summary>Readable locomotion state of the sprite (Settling = stopped, finishing the cycle to the standing pose).</summary>
+        /// <summary>Readable locomotion state (Settling = stopped, finishing the run before the dedicated idle).</summary>
         public enum LocomotionState
         {
             Idle,
@@ -118,41 +118,14 @@ namespace MmorpgClient.World
         private static readonly string[] DirectionNames = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
         private const int FacingCameraIndex = 4; // S
 
-        // Standing pose per direction: the frame of each run cycle that reads
-        // as standing still. Temporary stand-in until dedicated
-        // eight-direction idle strips exist - the run strips contain no frame
-        // with both feet together AND the arms hanging, so every entry here is
-        // a compromise.
-        //
-        // Chosen by eye against the rendered strips, not by picking the
-        // narrowest silhouette. Narrowest alone is wrong: the narrowest W and
-        // NE frames (W_3, NE_6) are mid-air passing poses with a knee raised,
-        // which read worse standing still than a slightly wider grounded
-        // stance. The rule applied instead, in order:
-        //   1. both boots flat on the ground (no raised heel or toe),
-        //   2. feet close together,
-        //   3. torso upright and arms low.
-        //
-        // Per-direction foot span in source pixels, current pick starred:
-        //   N   65  50  53* 50  65 112  69 112
-        //   NE 125  98 125 140  63 118  68  44*
-        //   E  219  96* 147 222 222 127 134 215
-        //   SE 139  90 114 139 147  86  61* 138
-        //   S   94  75  45* 75  94  42  45  42
-        //   SW 210 167 201 157 171  92* 176 162
-        //   W  233 227 142* 74 236 212 138  80
-        //   NW  66  71 153 167  63  72*  89 168
-        // Only W changed (6 -> 2) on 2026-09-08: W_6 plants the boots 17 px
-        // apart and read as frozen mid-walk; W_2 is the one W frame with both
-        // boots flat and close. NE_7 was tried and reverted - it measures
-        // narrowest, but that is because its rear boot is lifted out of the
-        // contact band, and at the 197 px the player actually sees, NE_1 has
-        // the tighter planted stance. Judge these at game scale, not on the
-        // 512 px source: a raised knee shrinks the measured span while making
-        // the pose worse.
+        // Grounded phase per run direction for the stop/start handoff. These
+        // indices describe run-cycle phases only; LocomotionState.Idle always
+        // displays the independent idle_* texture. Keep the established phase
+        // table so stopping continues the current gait before changing pose.
         private static readonly int[] IdleFrames = { 2, 1, 1, 6, 2, 5, 2, 5 };
 
         private static Sprite[][] _sharedFrames;
+        private static Sprite[] _sharedIdleFrames;
         private static bool _loadAttempted;
         private static Sprite _shadowSprite;
 
@@ -197,14 +170,14 @@ namespace MmorpgClient.World
             return true;
         }
 
-        /// <summary>Standing-pose frame index for a strip index.</summary>
+        /// <summary>Grounded run-cycle handoff index for a direction (not an idle texture index).</summary>
         public static int IdleFrame(int direction)
         {
             if (direction < 0 || direction >= IdleFrames.Length) return IdleFrames[FacingCameraIndex];
             return IdleFrames[direction];
         }
 
-        /// <summary>Copy of the standing-pose table, indexed like DirectionNames (N, NE, E, SE, S, SW, W, NW).</summary>
+        /// <summary>Copy of the run-cycle handoff table, indexed N, NE, E, SE, S, SW, W, NW.</summary>
         public static int[] IdleFrameTable() => (int[])IdleFrames.Clone();
 
         /// <summary>
@@ -244,6 +217,7 @@ namespace MmorpgClient.World
             _loadAttempted = true;
 
             var frames = new Sprite[DirectionNames.Length][];
+            var idleFrames = new Sprite[DirectionNames.Length];
             for (var d = 0; d < DirectionNames.Length; d++)
             {
                 // Keep the established walk_* resource names so existing
@@ -259,6 +233,23 @@ namespace MmorpgClient.World
                 }
 
                 var frameWidth = strip.width / FramesPerDirection;
+                var idle = Resources.Load<Texture2D>($"{ResourceFolder}/idle_{DirectionNames[d]}");
+                if (idle == null || idle.width != frameWidth || idle.height != strip.height)
+                {
+                    Debug.LogWarning(
+                        $"[QdaoBoySpriteAnimator] Missing or incompatible {ResourceFolder}/idle_{DirectionNames[d]}; " +
+                        "dedicated idle textures must match one run frame's dimensions.");
+                    return null;
+                }
+                idleFrames[d] = Sprite.Create(
+                    idle,
+                    new Rect(0f, 0f, idle.width, idle.height),
+                    new Vector2(0.5f, FeetPivotY),
+                    PixelsPerUnit,
+                    0,
+                    SpriteMeshType.FullRect);
+                idleFrames[d].name = $"qdao_idle_{DirectionNames[d]}_00";
+
                 frames[d] = new Sprite[FramesPerDirection];
                 for (var f = 0; f < FramesPerDirection; f++)
                 {
@@ -276,6 +267,7 @@ namespace MmorpgClient.World
                 }
             }
 
+            _sharedIdleFrames = idleFrames;
             _sharedFrames = frames;
             return _sharedFrames;
         }
@@ -335,7 +327,7 @@ namespace MmorpgClient.World
             _billboard = go.transform;
             _billboard.SetParent(transform, false);
             _renderer = go.AddComponent<SpriteRenderer>();
-            _renderer.sprite = frames[FacingCameraIndex][IdleFrame(FacingCameraIndex)];
+            _renderer.sprite = _sharedIdleFrames[FacingCameraIndex];
 
             // Shadow: flat on the ground, sized once; only position and
             // sorting change per frame (LateUpdate).
@@ -402,7 +394,9 @@ namespace MmorpgClient.World
             }
 
             var frame = Mathf.Clamp((int)_animationClock, 0, FramesPerDirection - 1);
-            _renderer.sprite = _sharedFrames[_lastDirection][frame];
+            _renderer.sprite = State == LocomotionState.Idle
+                ? _sharedIdleFrames[_lastDirection]
+                : _sharedFrames[_lastDirection][frame];
 
             // The root rotates with the actor facing, but the sprite must face
             // the camera: under the isometric camera it stands up, under the
@@ -430,7 +424,8 @@ namespace MmorpgClient.World
 
         /// <summary>
         /// Plays the cycle on at run cadence until the displayed frame is the
-        /// direction's standing pose, then holds it. Bounded to one lap so a
+        /// direction's grounded handoff phase, then shows its dedicated idle.
+        /// Bounded to one lap so a
         /// stop always lands within ~0.6 s (8 frames at ~13 fps).
         /// </summary>
         private void Settle(float deltaTime)

@@ -8,36 +8,24 @@ using UnityEngine.UI;
 namespace MmorpgClient.UI.Ugui.Attribute
 {
     /// <summary>
-    /// 属性加点面板(问道式两栏窗):
-    ///   左栏 = 方案选择 + 六项二级属性(气血/法力/物伤/法伤/速度/防御)+ 开启新方案;
-    ///   右栏 = 三个点数池页签(属性点/相性点/仙魔点)+ 剩余点 + 自动加点 + 加点行 + 重置/确认。
-    ///
-    /// 数据契约:面板内容 **全部** 来自服务器 <see cref="AttributePanelInfo"/> —— 维度名、
-    /// 说明 tooltip、单项上限、剩余点、二级属性都不在客户端配表,改表不用改客户端
-    /// (设计文档 player-attribute-allocation.md §4)。
-    ///
-    /// 本地只保留"待提交增量":滑条/± 改的是 <see cref="UiPointRow.Pending"/>,
-    /// 「确认」才把整池目标值发给服务器;服务器回全量面板后整体覆盖。
-    /// 未提交时切页签/切方案会被拦下(避免玩家以为已生效)。
+    /// Native character window matching the approved affinity-free painted UI.
+    /// All values, pool limits, schemes and allocation actions remain server-authoritative.
+    /// Only pending allocation deltas live locally until the player confirms.
     /// </summary>
     public sealed class AttributePanel
     {
-        private const float RowHeight = 54f;
-        private const float RowGap = 10f;
+        private const float RowHeight = 76f;
+        private const float RowGap = 32f;
         private const int MaxRows = 8;
 
         private readonly AttributeUiRoot _owner;
         private readonly RectTransform _root;
-
-        // 左栏
         private UiTextButton _schemeButton;
         private RectTransform _schemeDropdown;
         private readonly List<UiTextButton> _schemeOptions = new();
         private readonly TMP_Text[] _statValues = new TMP_Text[6];
+        private readonly TMP_Text[] _overviewValues = new TMP_Text[6];
         private UiTextButton _createSchemeButton;
-
-        // 右栏
-        private TMP_Text _titleText;
         private readonly List<UiTextButton> _tabs = new();
         private readonly List<uint> _tabPoolIds = new();
         private TMP_Text _remainText;
@@ -46,11 +34,14 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private UiTextButton _resetButton;
         private UiTextButton _confirmButton;
         private TMP_Text _statusText;
+        private RectTransform _allocationRoot;
+        private RectTransform _overviewRoot;
+        private RectTransform _rowsRoot;
+        private UiTextButton _attributeNavigation;
+        private UiTextButton _allocationNavigation;
 
-        // tooltip(悬浮说明,对应截图里的"体质:提高气血上限和防御。")
         private readonly RectTransform _tooltip;
         private readonly TMP_Text _tooltipText;
-
         private AttributePanelInfo _panel;
         private uint _activePoolId;
         private bool _schemeListOpen;
@@ -60,120 +51,154 @@ namespace MmorpgClient.UI.Ugui.Attribute
         public AttributePanel(AttributeUiRoot owner, UnityEngine.Transform parent)
         {
             _owner = owner;
-
             var window = BattleUiWidgets.CreatePanel("AttributeWindow", parent,
-                AttributeUiStyle.WindowX, AttributeUiStyle.WindowY,
-                AttributeUiStyle.WindowW, AttributeUiStyle.WindowH, AttributeUiStyle.WindowPaper);
-            QdaoRefreshArt.Skin(window, "main_frame");
-            window.pixelsPerUnitMultiplier = 4f;
+                CharacterAttributeVisuals.WindowX, CharacterAttributeVisuals.WindowY,
+                CharacterAttributeVisuals.WindowW, CharacterAttributeVisuals.WindowH, AttributeUiStyle.WindowPaper);
+            CharacterAttributeVisuals.Skin(window, "window_frame");
             _root = (RectTransform)window.transform;
 
-            // ── 标题栏 ──
-            float titleX = (AttributeUiStyle.WindowW - 560f) * 0.5f;
-            QdaoRefreshArt.Panel("TitlePlate", _root, titleX, -22f, 560f, 74f, "primary_button_normal");
-            _titleText = QdaoUguiFactory.CreateText("Title", _root, titleX, -22f, 560f, 74f,
-                "属 性 加 点", 34f, AttributeUiStyle.TitleText, TextAlignmentOptions.Center);
-
+            float titleX = (CharacterAttributeVisuals.WindowW - 820f) * 0.5f;
+            CharacterAttributeVisuals.Panel("TitlePlate", _root, titleX, -64f, 820f, 138f, "title_plate");
+            CharacterAttributeVisuals.Panel("Title", _root,
+                (CharacterAttributeVisuals.WindowW - 288f) * 0.5f, -2f, 288f, 62f, "title_character");
+            CharacterAttributeVisuals.Panel("CloseTassel", _root,
+                CharacterAttributeVisuals.WindowW + 36f, 24f, 32f, 80f, "close_tassel");
             var close = BattleUiWidgets.CreateTextButton("Close", _root,
-                AttributeUiStyle.WindowW - 76f, -18f, 62f, 62f, "×", 34f,
+                CharacterAttributeVisuals.WindowW - 36f, -24f, 88f, 88f, string.Empty, 48f,
                 AttributeUiStyle.ClosePlate, AttributeUiStyle.CloseText);
+            CharacterAttributeVisuals.Skin(close.Plate, "close_button");
+            close.Label.gameObject.SetActive(false);
+            close.Button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
             close.Button.onClick.AddListener(Hide);
 
             BuildLeftColumn();
             BuildRightColumn();
+            BuildSideNavigation();
 
-            // tooltip 最后建,保证兄弟序在最上层
-            _tooltip = QdaoUguiFactory.CreateRect("Tooltip", _root, 0f, 0f, 460f, 56f);
+            _tooltip = QdaoUguiFactory.CreateRect("Tooltip", _root, 0f, 0f, 680f, 76f);
             var tooltipPlate = _tooltip.gameObject.AddComponent<Image>();
             tooltipPlate.color = AttributeUiStyle.TooltipPlate;
             tooltipPlate.raycastTarget = false;
-            _tooltipText = QdaoUguiFactory.CreateText("TooltipText", _tooltip, 16f, 0f, 428f, 56f,
-                string.Empty, 22f, AttributeUiStyle.TooltipText);
+            _tooltipText = QdaoUguiFactory.CreateText("TooltipText", _tooltip, 20f, 0f, 640f, 76f,
+                string.Empty, 28f, AttributeUiStyle.TooltipText);
             _tooltip.gameObject.SetActive(false);
-
             Hide();
         }
 
-        // ── 构建 ────────────────────────────────────────────
-
         private void BuildLeftColumn()
         {
-            float x = AttributeUiStyle.LeftX;
-            float w = AttributeUiStyle.LeftW;
-
-            _schemeButton = BattleUiWidgets.CreateTextButton("SchemeButton", _root, x, 76f, w, 66f,
-                "方案一 · 切换", 26f, AttributeUiStyle.FieldPlate, AttributeUiStyle.FieldLabel);
+            float x = CharacterAttributeVisuals.LeftX;
+            float w = CharacterAttributeVisuals.LeftW;
+            _schemeButton = CharacterAttributeVisuals.Button("SchemeButton", _root, x, 76f, w, 88f,
+                "方案一");
+            CharacterAttributeVisuals.Skin(_schemeButton.Plate, "button_scheme");
+            CharacterAttributeVisuals.Panel("SchemeArrow", _schemeButton.Rect,
+                w - 66f, 32f, 36f, 27f, "dropdown_arrow");
             _schemeButton.Button.onClick.AddListener(ToggleSchemeList);
-
-            // 下拉列表(点方案按钮展开;选项按面板 schemes 动态重建)
-            _schemeDropdown = QdaoUguiFactory.CreateRect("SchemeDropdown", _root, x, 144f, w, 0f);
+            _schemeDropdown = QdaoUguiFactory.CreateRect("SchemeDropdown", _root, x, 166f, w, 0f);
             _schemeDropdown.gameObject.SetActive(false);
 
             string[] labels = { "气 血", "法 力", "物 伤", "法 伤", "速 度", "防 御" };
             for (int i = 0; i < labels.Length; i++)
-            {
-                _statValues[i] = AttributeUiWidgets.CreateStatField($"Stat{i}", _root,
-                    x, 176f + i * 104f, w, 72f, labels[i]);
-            }
+                _statValues[i] = CharacterAttributeVisuals.Stat($"Stat{i}", _root,
+                    x, 194f + i * 88f, w, labels[i]);
 
-            _createSchemeButton = BattleUiWidgets.CreateTextButton("CreateScheme", _root,
-                x, AttributeUiStyle.WindowH - 116f, w - 60f, 74f,
-                "开启新方案", 26f, AttributeUiStyle.ConfirmPlate, AttributeUiStyle.ActionText);
-            QdaoRefreshArt.Skin(_createSchemeButton.Plate, "primary_button_normal");
-            _createSchemeButton.Label.color = QdaoRefreshArt.Ivory;
+            _createSchemeButton = CharacterAttributeVisuals.Button("CreateScheme", _root,
+                x, 792f, w, 96f, "开启新方案", true);
             _createSchemeButton.Button.onClick.AddListener(OnCreateSchemeClicked);
+            _createSchemeButton.SetInteractable(false);
+
+            CharacterAttributeVisuals.Panel("ColumnDivider", _root, 643f, 92f, 40f, 776f, "divider");
         }
 
         private void BuildRightColumn()
         {
-            float x = AttributeUiStyle.RightX;
-            float w = AttributeUiStyle.RightW;
+            float x = CharacterAttributeVisuals.RightX;
+            float w = CharacterAttributeVisuals.RightW;
+            _allocationRoot = QdaoUguiFactory.CreateRect("AllocationPage", _root, 0f, 0f,
+                CharacterAttributeVisuals.WindowW, CharacterAttributeVisuals.WindowH);
 
-            // 三个池页签由面板数据驱动建(池名来自服务器),这里先占位建满 3 个
-            const int tabCount = 3;
-            float tabW = (w - 2 * 16f) / tabCount;
-            for (int i = 0; i < tabCount; i++)
-            {
-                int index = i;
-                var tab = BattleUiWidgets.CreateTextButton($"Tab{i}", _root,
-                    x + i * (tabW + 16f), 76f, tabW, 66f, string.Empty, 26f,
-                    AttributeUiStyle.TabIdle, AttributeUiStyle.TabText);
-                tab.Button.onClick.AddListener(() => OnTabClicked(index));
-                tab.SetVisible(false);
-                _tabs.Add(tab);
-                _tabPoolIds.Add(0);
-            }
+            // The latest accepted image has one attribute-points tab; no affinity page.
+            var tab = CharacterAttributeVisuals.Button("AttributePoolTab", _allocationRoot,
+                x, 98f, 356f, 80f, "属性点", true);
+            CharacterAttributeVisuals.Skin(tab.Plate, "tab_horizontal");
+            tab.Button.onClick.AddListener(() => OnTabClicked(0));
+            _tabs.Add(tab);
+            _tabPoolIds.Add(0);
 
-            _remainText = QdaoUguiFactory.CreateText("Remain", _root, x, 168f, w - 220f, 52f,
-                string.Empty, 26f, AttributeUiStyle.RemainText);
-
-            _autoButton = BattleUiWidgets.CreateTextButton("Auto", _root, x + w - 200f, 164f, 200f, 60f,
-                "自动加点", 24f, AttributeUiStyle.ActionPlate, AttributeUiStyle.ActionText);
+            CharacterAttributeVisuals.Panel("RemainNotice", _allocationRoot, x, 221f, 47f, 47f, "notice_icon");
+            _remainText = QdaoUguiFactory.CreateText("Remain", _allocationRoot, x + 64f, 210f, w - 364f, 68f,
+                "正在读取属性…", 34f, AttributeUiStyle.RemainText);
+            _autoButton = CharacterAttributeVisuals.Button("Auto", _allocationRoot,
+                x + w - 276f, 204f, 276f, 80f, "自动加点", false, 30f);
             _autoButton.Button.onClick.AddListener(OnAutoClicked);
 
+            // Extra server-defined dimensions scroll within the same four-row visual space.
+            var viewport = QdaoUguiFactory.CreateRect("PointsViewport", _allocationRoot, x, 304f, w, 418f);
+            var viewportHit = viewport.gameObject.AddComponent<Image>();
+            viewportHit.color = new Color(1f, 1f, 1f, 0.001f);
+            viewportHit.raycastTarget = true;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            _rowsRoot = QdaoUguiFactory.CreateRect("PointsRows", viewport, 0f, 0f, w, 418f);
+            var scroll = viewport.gameObject.AddComponent<ScrollRect>();
+            scroll.viewport = viewport;
+            scroll.content = _rowsRoot;
+            scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 48f;
             for (int i = 0; i < MaxRows; i++)
             {
-                _rows[i] = AttributeUiWidgets.CreatePointRow($"Row{i}", _root,
-                    x, 240f + i * (RowHeight + RowGap), w, RowHeight);
+                _rows[i] = CharacterAttributeVisuals.PointRow($"Row{i}", _rowsRoot,
+                    0f, i * (RowHeight + RowGap), w, RowHeight);
                 _rows[i].Bind(OnRowChanged);
                 AttachRowTooltip(_rows[i]);
+                CharacterAttributeScrollFocus.Bind(_rows[i].Minus, scroll, _rows[i].Rect);
+                CharacterAttributeScrollFocus.Bind(_rows[i].Slider, scroll, _rows[i].Rect);
+                CharacterAttributeScrollFocus.Bind(_rows[i].Plus, scroll, _rows[i].Rect);
                 _rows[i].Rect.gameObject.SetActive(false);
             }
 
-            _statusText = BattleUiWidgets.CreateWrappedText("Status", _root, x, AttributeUiStyle.WindowH - 190f,
-                w, 60f, string.Empty, 22f, AttributeUiStyle.HintText);
-
-            _resetButton = BattleUiWidgets.CreateTextButton("Reset", _root,
-                x + 40f, AttributeUiStyle.WindowH - 116f, 240f, 74f,
-                "重 置", 28f, AttributeUiStyle.ActionPlate, AttributeUiStyle.ActionText);
+            _statusText = BattleUiWidgets.CreateWrappedText("Status", _root, x, 726f,
+                w, 60f, string.Empty, 26f, AttributeUiStyle.HintText);
+            _resetButton = CharacterAttributeVisuals.Button("Reset", _allocationRoot,
+                x + 44f, 792f, 356f, 96f, "重 置");
             _resetButton.Button.onClick.AddListener(OnResetClicked);
-
-            _confirmButton = BattleUiWidgets.CreateTextButton("Confirm", _root,
-                x + w - 280f, AttributeUiStyle.WindowH - 116f, 240f, 74f,
-                "确 认", 28f, AttributeUiStyle.ConfirmPlate, AttributeUiStyle.ActionText);
-            QdaoRefreshArt.Skin(_confirmButton.Plate, "primary_button_normal");
-            _confirmButton.Label.color = QdaoRefreshArt.Ivory;
+            _confirmButton = CharacterAttributeVisuals.Button("Confirm", _allocationRoot,
+                x + w - 590f, 792f, 488f, 96f, "确认加点", true, 38f);
             _confirmButton.Button.onClick.AddListener(OnConfirmClicked);
+            _autoButton.SetInteractable(false);
+            _resetButton.SetInteractable(false);
+            _confirmButton.SetInteractable(false);
+
+            _overviewRoot = QdaoUguiFactory.CreateRect("OverviewPage", _root, x, 104f, w, 602f);
+            QdaoUguiFactory.CreateText("OverviewHeading", _overviewRoot, 0f, 0f, w, 88f,
+                "属 性 总 览", 40f, QdaoRefreshArt.Ink);
+            string[] labels = { "气 血", "法 力", "物 伤", "法 伤", "速 度", "防 御" };
+            for (int i = 0; i < labels.Length; i++)
+                _overviewValues[i] = CharacterAttributeVisuals.Stat($"OverviewStat{i}", _overviewRoot,
+                    (i % 2) * 602f, 152f + (i / 2) * 126f, 570f, labels[i]);
+            _overviewRoot.gameObject.SetActive(false);
+        }
+
+        private void BuildSideNavigation()
+        {
+            _attributeNavigation = CharacterAttributeVisuals.SideTab("AttributeTab", _root, 116f, "属\n性", false);
+            _allocationNavigation = CharacterAttributeVisuals.SideTab("AllocationTab", _root, 302f, "加\n点", true);
+            var skill = CharacterAttributeVisuals.SideTab("SkillTab", _root, 488f, "技\n能", false);
+            // The attribute protocol has no skills-page response or action to bind.
+            skill.SetInteractable(false);
+            _attributeNavigation.Button.onClick.AddListener(() => ShowAllocationPage(false));
+            _allocationNavigation.Button.onClick.AddListener(() => ShowAllocationPage(true));
+        }
+
+        private void ShowAllocationPage(bool allocation)
+        {
+            _allocationRoot.gameObject.SetActive(allocation);
+            _overviewRoot.gameObject.SetActive(!allocation);
+            CharacterAttributeVisuals.SelectSideTab(_attributeNavigation, !allocation);
+            CharacterAttributeVisuals.SelectSideTab(_allocationNavigation, allocation);
+            HideTooltip();
         }
 
         /// <summary>给一行挂 hover 事件:显示服务器下发的维度说明(截图里的黑底提示条)。</summary>
@@ -227,7 +252,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
             if (_activePoolId == 0 || FindPool(_activePoolId) == null)
             {
-                _activePoolId = panel.Pools.Count > 0 ? panel.Pools[0].PoolId : 0;
+                _activePoolId = FindAttributePool()?.PoolId ?? 0;
             }
 
             RefreshSchemeButton();
@@ -269,6 +294,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         private void RefreshSchemeButton()
         {
+            if (_panel == null) return;
             var name = "方案一";
             foreach (var scheme in _panel.Schemes)
             {
@@ -278,7 +304,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
                     break;
                 }
             }
-            _schemeButton?.SetText($"{name} · 切换");
+            _schemeButton?.SetText(name);
+            _schemeButton?.SetInteractable(!(_owner.Client?.Busy ?? false));
             bool canCreate = _panel.Schemes.Count < _panel.MaxSchemes;
             _createSchemeButton?.SetInteractable(canCreate && !(_owner.Client?.Busy ?? false));
             _createSchemeButton?.SetText(canCreate && _panel.CreateSchemeCostGold > 0
@@ -304,52 +331,30 @@ namespace MmorpgClient.UI.Ugui.Attribute
             if (index >= 0 && index < _statValues.Length && _statValues[index] != null)
             {
                 _statValues[index].text = value;
+                _overviewValues[index].text = value;
             }
+        }
+
+        private AttributePoolInfo FindAttributePool()
+        {
+            if (_panel == null) return null;
+            foreach (var pool in _panel.Pools)
+                if (!string.IsNullOrEmpty(pool.Name) && pool.Name.Contains("属性")) return pool;
+            foreach (var pool in _panel.Pools)
+                if (string.IsNullOrEmpty(pool.Name) ||
+                    (!pool.Name.Contains("相性") && !pool.Name.Contains("仙魔"))) return pool;
+            return null;
         }
 
         private void RefreshTabs()
         {
-            for (int i = 0; i < _tabs.Count; i++)
-            {
-                if (i < _panel.Pools.Count)
-                {
-                    var pool = _panel.Pools[i];
-                    _tabPoolIds[i] = pool.PoolId;
-                    _tabs[i].SetVisible(true);
-                    _tabs[i].SetText(pool.Unlocked ? pool.Name : $"{pool.Name}({pool.UnlockLevel}级)");
-                    bool active = pool.PoolId == _activePoolId;
-                    if (_tabs[i].Plate != null)
-                    {
-                        QdaoRefreshArt.Skin(_tabs[i].Plate, !pool.Unlocked ? "tab_disabled" :
-                            active ? "tab_selected" : "tab_normal");
-                    }
-                    if (_tabs[i].Label != null)
-                    {
-                        _tabs[i].Label.color = !pool.Unlocked ? AttributeUiStyle.TabLockedText :
-                            active ? QdaoRefreshArt.Ivory : AttributeUiStyle.TabText;
-                    }
-                }
-                else
-                {
-                    _tabPoolIds[i] = 0;
-                    _tabs[i].SetVisible(false);
-                }
-            }
-
-            var activePool = FindPool(_activePoolId);
-            _titleText.text = activePool != null && activePool.PoolId != 0
-                ? SpacedTitle(activePool.Name)
-                : "属 性 加 点";
-        }
-
-        /// <summary>标题按截图风格分字("属性点" → "属 性 加 点")。</summary>
-        private static string SpacedTitle(string poolName)
-        {
-            string trimmed = poolName != null && poolName.EndsWith("点") && poolName.Length > 1
-                ? poolName.Substring(0, poolName.Length - 1)
-                : poolName;
-            var chars = (trimmed ?? "属性") + "加点";
-            return string.Join(" ", chars.ToCharArray());
+            var pool = FindPool(_activePoolId);
+            _tabPoolIds[0] = pool?.PoolId ?? 0;
+            _tabs[0].SetText(pool == null ? "属性点" :
+                pool.Unlocked ? pool.Name : $"{pool.Name}({pool.UnlockLevel}级)");
+            _tabs[0].SetInteractable(pool != null && pool.Unlocked);
+            CharacterAttributeVisuals.Skin(_tabs[0].Plate, "tab_horizontal");
+            _tabs[0].Label.color = pool != null && !pool.Unlocked ? AttributeUiStyle.TabLockedText : QdaoRefreshArt.Ivory;
         }
 
         private void RebuildRows()
@@ -372,6 +377,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
             {
                 _rows[i].Rect.gameObject.SetActive(false);
             }
+            _rowsRoot.sizeDelta = new Vector2(CharacterAttributeVisuals.RightW,
+                Mathf.Max(418f, index * (RowHeight + RowGap) - RowGap));
+            _rowsRoot.anchoredPosition = Vector2.zero;
             RefreshRemainText();
         }
 
@@ -416,18 +424,19 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private void RefreshRemainText()
         {
             var pool = FindPool(_activePoolId);
-            if (pool == null || _remainText == null) return;
+            if (_remainText == null) return;
+            if (pool == null) { _remainText.text = "暂无可分配属性点"; return; }
             uint left = RemainingAfterPending();
             string poolName = string.IsNullOrEmpty(pool.Name) ? "点数" : pool.Name;
             if (!pool.Unlocked)
             {
-                _remainText.text = $"! {poolName} 需 {pool.UnlockLevel} 级解锁";
+                _remainText.text = $"{poolName} 需 {pool.UnlockLevel} 级解锁";
                 return;
             }
             uint delta = PendingDelta();
             _remainText.text = delta > 0
-                ? $"! 剩余{poolName} {left}(待分配 {delta})"
-                : $"! 剩余{poolName} {left}";
+                ? $"剩余{poolName} {left}(待分配 {delta})"
+                : $"剩余{poolName} {left}";
         }
 
         private void RefreshActionButtons()
@@ -569,19 +578,17 @@ namespace MmorpgClient.UI.Ugui.Attribute
             }
             _schemeOptions.Clear();
 
-            float w = AttributeUiStyle.LeftW;
+            float w = CharacterAttributeVisuals.LeftW;
             for (int i = 0; i < _panel.Schemes.Count; i++)
             {
                 var scheme = _panel.Schemes[i];
                 uint schemeId = scheme.SchemeId;
-                var option = BattleUiWidgets.CreateTextButton($"SchemeOption{i}", _schemeDropdown,
-                    0f, i * 62f, w, 58f, scheme.Name, 24f,
-                    schemeId == _panel.ActiveSchemeId ? AttributeUiStyle.TabActive : AttributeUiStyle.FieldPlate,
-                    AttributeUiStyle.FieldLabel);
+                var option = CharacterAttributeVisuals.Button($"SchemeOption{i}", _schemeDropdown,
+                    0f, i * 84f, w, 80f, scheme.Name, schemeId == _panel.ActiveSchemeId, 30f);
                 option.Button.onClick.AddListener(() => OnSchemeChosen(schemeId));
                 _schemeOptions.Add(option);
             }
-            _schemeDropdown.sizeDelta = new Vector2(w, _panel.Schemes.Count * 62f);
+            _schemeDropdown.sizeDelta = new Vector2(w, _panel.Schemes.Count * 84f);
             // 下拉建在六项属性栏之前(兄弟序更早),展开时置顶,否则被不透明的 Stat 底板盖住
             _schemeDropdown.SetAsLastSibling();
             _schemeDropdown.gameObject.SetActive(true);
@@ -615,8 +622,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
             if (string.IsNullOrEmpty(desc) || _tooltip == null) return;
             _tooltipText.text = desc;
             // 贴在该行下方偏左(截图里提示条压在下一行上方)
-            var anchored = row.Rect.anchoredPosition;
-            _tooltip.anchoredPosition = new Vector2(anchored.x + 120f, anchored.y - RowHeight + 4f);
+            UnityEngine.Vector3 local = _root.InverseTransformPoint(row.Rect.TransformPoint(UnityEngine.Vector3.zero));
+            _tooltip.anchoredPosition = new Vector2(
+                Mathf.Min(CharacterAttributeVisuals.WindowW - 700f, local.x + 100f), local.y - RowHeight);
             _tooltip.SetAsLastSibling();
             _tooltip.gameObject.SetActive(true);
         }

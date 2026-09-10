@@ -1,4 +1,5 @@
 using TMPro;
+using MmorpgClient.Net;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,10 @@ namespace MmorpgClient.UI.Ugui
         [SerializeField] private TMP_Text _landingStatusText;
         [SerializeField] private TMP_Text _emptyListText;
         [SerializeField] private Image[] _serverBadges;
+        [SerializeField] private Image[] _serverChecks;
+        [SerializeField] private Image[] _serverRecommendations;
+        [SerializeField] private TMP_Text _landingAvailability;
+        [SerializeField] private Image _landingServerDot;
 
         private TMP_Text Label(string name, UnityEngine.Transform parent, float x, float y,
             float w, float h, string value, float size = 30f, bool light = false,
@@ -27,7 +32,7 @@ namespace MmorpgClient.UI.Ugui
         {
             var button = QdaoRefreshArt.Button(name, parent, x, y, w, h, asset, out _);
             float sourceHeight = QdaoRefreshArt.Load(asset).rect.height;
-            float padding = 78f * h / sourceHeight;
+            float padding = Mathf.Min(78f * h / sourceHeight, w * 0.18f);
             text = Label(name + "Text", button.transform, padding, 0f, w - padding * 2f, h, label,
                 30f, asset.StartsWith("primary"), TextAlignmentOptions.Center);
             return button;
@@ -59,7 +64,7 @@ namespace MmorpgClient.UI.Ugui
         {
             var title = Resources.Load<Sprite>(QdaoRefreshArt.Root + "title_logo");
             if (title != null)
-                QdaoUguiFactory.CreateImage("GameTitleArtwork", _landingRoot, 110f, 70f, 1000f, 475f, title).preserveAspect = true;
+                QdaoUguiFactory.CreateImage("GameTitleArtwork", _landingRoot, 150f, 62f, 960f, 485f, title).preserveAspect = true;
             else
             {
                 QdaoRefreshArt.Panel("GameTitlePlaque", _landingRoot, 160f, 240f, 880f, 210f, "primary_button_normal");
@@ -67,29 +72,44 @@ namespace MmorpgClient.UI.Ugui
             }
             QdaoUguiFactory.CreateImage("Hero", _landingRoot, 1490f, 90f, 860f, 910f,
                 QdaoRefreshArt.Load("hero")).preserveAspect = true;
-            QdaoUguiFactory.CreateImage("NineTailedFox", _landingRoot, 1000f, 555f, 640f, 480f,
+            QdaoUguiFactory.CreateImage("NineTailedFox", _landingRoot, 930f, 360f, 880f, 680f,
                 QdaoRefreshArt.Load("companion_fox")).preserveAspect = true;
-            _landingServers = ArtButton("SelectServer", _landingRoot, 235f, 555f, 730f, 96f,
+            _landingServers = ArtButton("SelectServer", _landingRoot, 230f, 548f, 810f, 100f,
                 "选择服务器", "list_row_normal", out _landingServerText);
-            _landingEnter = ArtButton("EnterGame", _landingRoot, 235f, 686f, 730f, 132f,
+            _landingServerText.rectTransform.anchoredPosition = new Vector2(62f, 0f);
+            _landingServerText.rectTransform.sizeDelta = new Vector2(300f, 100f);
+            _landingServerText.alignment = TextAlignmentOptions.MidlineLeft;
+            _landingServerText.fontSize = 34f;
+            _landingServerDot = QdaoUguiFactory.CreateImage("CurrentServerDot", _landingServers.transform,
+                367f, 40f, 20f, 20f, _statusDotSprite);
+            _landingAvailability = Label("CurrentServerAvailability", _landingServers.transform,
+                403f, 0f, 150f, 100f, string.Empty, 30f);
+            var changePlate = QdaoRefreshArt.Panel("ChooseServerAction", _landingServers.transform,
+                573f, 13f, 211f, 74f, "primary_button_normal");
+            Label("ChooseServerActionText", changePlate.transform, 20f, 0f, 171f, 74f,
+                "选择服务器", 25f, true, TextAlignmentOptions.Center);
+            _landingEnter = ArtButton("EnterGame", _landingRoot, 270f, 668f, 740f, 166f,
                 "进入游戏", "primary_button_normal", out var enterLabel);
-            enterLabel.fontSize = 55f;
-            _landingAccount = ArtButton("SwitchAccount", _landingRoot, 380f, 846f, 430f, 86f,
-                "切换账号", "tab_normal", out _);
+            enterLabel.fontSize = 76f;
+            _landingAccount = ArtButton("SwitchAccount", _landingRoot, 467f, 856f, 340f, 80f,
+                "切换账号", "tab_normal", out var accountLabel);
+            accountLabel.fontSize = 35f;
             _landingStatusText = Label("LoginStatus", _landingRoot, 185f, 965f, 860f, 48f,
                 string.Empty, 27f, false, TextAlignmentOptions.Center);
         }
 
         private void BuildServerPage()
         {
-            QdaoRefreshArt.Panel("ServerFrame", _serverRoot, 325f, 80f, 1950f, 970f, "main_frame");
-            QdaoRefreshArt.Panel("ServerTitlePlate", _serverRoot, 920f, 72f, 780f, 126f, "primary_button_normal");
-            Label("ServerTitle", _serverRoot, 1010f, 83f, 600f, 94f, "选择服务器", 62f, true, TextAlignmentOptions.Center);
-            QdaoUguiFactory.CreateImage("ServerFox", _serverRoot, -20f, 590f, 535f, 465f,
+            QdaoRefreshArt.Panel("ServerFrame", _serverRoot, 380f, 126f, 1860f, 920f, "main_frame");
+            QdaoRefreshArt.Panel("ServerTitlePlate", _serverRoot, 958f, 82f, 702f, 142f, "primary_button_normal");
+            QdaoUguiFactory.CreateImage("ServerTitleEmblem", _serverRoot, 1252f, 8f, 108f, 108f,
+                QdaoRefreshArt.Load("round_badge_taiji")).preserveAspect = true;
+            Label("ServerTitle", _serverRoot, 1030f, 105f, 555f, 94f, "选择服务器", 65f, true, TextAlignmentOptions.Center);
+            QdaoUguiFactory.CreateImage("ServerFox", _serverRoot, -104f, 430f, 660f, 650f,
                 QdaoRefreshArt.Load("companion_fox")).preserveAspect = true;
 
             _searchInput = QdaoUguiFactory.CreateInputField("SearchInput", _serverRoot,
-                1770f, 191f, 380f, 70f, "搜索服务器", 64, QdaoRefreshArt.Load("search_normal"));
+                1762f, 149f, 384f, 74f, "搜索服务器", 64, QdaoRefreshArt.Load("search_normal"));
             QdaoRefreshArt.Skin(_searchInput.GetComponent<Image>(), "search_normal");
             _searchInput.textComponent.fontSize = 25f;
             ((TMP_Text)_searchInput.placeholder).fontSize = 25f;
@@ -107,6 +127,9 @@ namespace MmorpgClient.UI.Ugui
                 _topSelectionMarks[i] = QdaoUguiFactory.CreateImage("TopTabSelection_" + i,
                     _topButtons[i].transform, 29f, 35f, 15f, 15f, QdaoRefreshArt.Load("check"));
                 _topSelectionMarks[i].enabled = false;
+                // These legacy shortcuts are the same filters as the left rail.
+                // Keep their serialized controls for compatibility; expose each filter once.
+                _topButtons[i].gameObject.SetActive(false);
             }
             _topDefaultDimmer = QdaoUguiFactory.CreateImage("TopDefaultDimmer", _serverRoot, 0f, 0f, 1f, 1f, null);
             _topDefaultDimmer.enabled = false;
@@ -114,12 +137,19 @@ namespace MmorpgClient.UI.Ugui
             _categoryTexts = new TMP_Text[6]; _categorySelectionMarks = new Image[6];
             for (var i = 0; i < 6; i++)
             {
+                bool auxiliary = i >= 4;
+                float width = auxiliary ? 152f : 320f;
+                float height = auxiliary ? 76f : 112f;
+                float x = auxiliary ? 490f + (i - 4) * 164f : 484f;
+                float y = auxiliary ? 816f : 246f + i * 138f;
+                string[] labels = { "最近登录", "推荐服务器", "全部区服", "新服推荐", "流畅", "维护" };
                 _categoryButtons[i] = QdaoRefreshArt.Button("CategoryArt_" + i, _serverRoot,
-                    445f, 292f + i * 91f, 325f, 83f, "list_row_normal", out _categoryImages[i]);
+                    x, y, width, height, "list_row_normal", out _categoryImages[i]);
                 _categoryTexts[i] = Label("CategoryText_" + i, _categoryButtons[i].transform,
-                    26f, 0f, 270f, 83f, CategoryLabels[i], 31f, false, TextAlignmentOptions.Center);
+                    28f, 0f, width - 56f, height, labels[i], auxiliary ? 25f : 34f,
+                    false, TextAlignmentOptions.Center);
                 _categorySelectionMarks[i] = QdaoUguiFactory.CreateImage("CategorySelection_" + i,
-                    _categoryButtons[i].transform, 33f, 34f, 17f, 17f, QdaoRefreshArt.Load("check"));
+                    _categoryButtons[i].transform, 12f, height * .5f - 8f, 16f, 16f, QdaoRefreshArt.Load("check"));
                 _categorySelectionMarks[i].enabled = false;
             }
             _categoryDefaultDimmer = QdaoUguiFactory.CreateImage("CategoryDefaultDimmer", _serverRoot, 0f, 0f, 1f, 1f, null);
@@ -128,38 +158,45 @@ namespace MmorpgClient.UI.Ugui
             _serverNames = new TMP_Text[PageSize]; _serverSubtitles = new TMP_Text[PageSize];
             _serverDots = new Image[PageSize]; _serverEmptyCovers = new Image[PageSize];
             _serverBadges = new Image[PageSize];
+            _serverChecks = new Image[PageSize];
+            _serverRecommendations = new Image[PageSize];
             string[] emblems = { "pagoda", "pagoda", "mountain", "pagoda", "lotus", "water", "peach_spirit", "lotus" };
             for (var i = 0; i < PageSize; i++)
             {
-                float x = 840f + (i % 2) * 665f, y = 288f + (i / 2) * 143f;
+                float x = 830f + (i % 2) * 678f, y = 244f + (i / 2) * 159f;
                 _serverButtons[i] = QdaoRefreshArt.Button("ServerCardArt_" + i, _serverRoot,
-                    x, y, 650f, 130f, "server_card_wide_normal", out _serverCardImages[i]);
+                    x, y, 650f, 148f, "server_card_wide_normal", out _serverCardImages[i]);
                 var parent = _serverButtons[i].transform;
                 _serverBadges[i] = QdaoUguiFactory.CreateImage("ServerEmblem_" + i, parent,
-                    25f, 27f, 74f, 74f, QdaoRefreshArt.Load("round_badge_" + emblems[i]));
-                _serverNames[i] = Label("ServerName_" + i, parent, 116f, 19f, 330f, 52f, "", 38f);
-                _serverSubtitles[i] = Label("ServerStatus_" + i, parent, 116f, 73f, 370f, 35f, "", 24f);
-                _serverDots[i] = QdaoUguiFactory.CreateImage("ServerDot_" + i, parent, 494f, 52f, 23f, 23f, _statusDotSprite);
+                    38f, 24f, 102f, 102f, QdaoRefreshArt.Load("round_badge_" + emblems[i]));
+                _serverNames[i] = Label("ServerName_" + i, parent, 164f, 24f, 277f, 74f, "", 40f);
+                _serverSubtitles[i] = Label("ServerStatus_" + i, parent, 477f, 32f, 108f, 60f, "", 29f);
+                _serverDots[i] = QdaoUguiFactory.CreateImage("ServerDot_" + i, parent, 443f, 54f, 23f, 23f, _statusDotSprite);
+                _serverChecks[i] = QdaoUguiFactory.CreateImage("ServerSelected_" + i, parent,
+                    588f, 51f, 38f, 38f, QdaoRefreshArt.Load("check"));
+                _serverRecommendations[i] = QdaoUguiFactory.CreateImage("ServerRecommended_" + i, parent,
+                    8f, 4f, 97f, 46f, QdaoRefreshArt.Load("recommend_badge"));
                 _serverEmptyCovers[i] = QdaoUguiFactory.CreateImage("ServerEmptyCover_" + i, parent, 0f, 0f, 1f, 1f, null);
                 _serverEmptyCovers[i].enabled = false;
             }
             _emptyListText = Label("EmptyServers", _serverRoot, 880f, 440f, 1220f, 200f,
                 "没有匹配的服务器\n请修改搜索或切换分类", 35f, false, TextAlignmentOptions.Center);
             _emptyListText.textWrappingMode = TextWrappingModes.Normal;
-            _prevPageButton = ArtButton("PrevPage", _serverRoot, 810f, 862f, 130f, 69f,
+            _prevPageButton = ArtButton("PrevPage", _serverRoot, 830f, 881f, 104f, 62f,
                 "〈", "tab_normal", out _prevPageText);
-            _nextPageButton = ArtButton("NextPage", _serverRoot, 2025f, 862f, 130f, 69f,
+            _nextPageButton = ArtButton("NextPage", _serverRoot, 944f, 881f, 104f, 62f,
                 "〉", "tab_normal", out _nextPageText);
-            _pageText = Label("PageText", _serverRoot, 1400f, 855f, 150f, 48f, "", 26f, false, TextAlignmentOptions.Center);
-            _backButton = ArtButton("BackButton", _serverRoot, 450f, 883f, 310f, 93f,
+            _pageText = Label("PageText", _serverRoot, 1052f, 888f, 118f, 40f, "", 26f, false, TextAlignmentOptions.Center);
+            _backButton = ArtButton("BackButton", _serverRoot, 515f, 908f, 300f, 103f,
                 "返回", "tab_normal", out _);
-            _lastLoginText = Label("LastLoginText", _serverRoot, 855f, 937f, 490f, 37f, "", 24f);
-            _selectedText = Label("SelectedServerText", _serverRoot, 855f, 890f, 720f, 44f, "", 31f);
-            _statusText = Label("StatusText", _serverRoot, 855f, 984f, 1260f, 35f, "", 23f);
-            _refreshButton = ArtButton("RefreshButton", _serverRoot, 1535f, 900f, 190f, 79f,
+            _lastLoginText = Label("LastLoginText", _serverRoot, 850f, 985f, 570f, 35f, "", 24f);
+            _selectedText = Label("SelectedServerText", _serverRoot, 1005f, 936f, 625f, 54f, "", 35f);
+            _statusText = Label("StatusText", _serverRoot, 855f, 1025f, 1260f, 35f, "", 23f);
+            _refreshButton = ArtButton("RefreshButton", _serverRoot, 1984f, 875f, 170f, 64f,
                 "刷新", "tab_normal", out _refreshText);
-            _enterButton = ArtButton("EnterButton", _serverRoot, 1755f, 885f, 410f, 108f,
+            _enterButton = ArtButton("EnterButton", _serverRoot, 1670f, 927f, 495f, 115f,
                 "进入选角", "primary_button_normal", out _enterText);
+            _enterText.fontSize = 48f;
         }
 
         private void BuildRefreshCredentialPanel()
@@ -192,6 +229,49 @@ namespace MmorpgClient.UI.Ugui
             _credentialStatusText = Label("CredentialStatus", _credentialPanel, 790f, 778f, 980f, 56f,
                 "", 27f, false, TextAlignmentOptions.Center);
             _credentialPanel.gameObject.SetActive(false);
+        }
+
+        private static string CompactAvailability(ServerListZone zone)
+        {
+            if (zone == null) return string.Empty;
+            if (zone.status == "MAINTENANCE") return "维护";
+            if (zone.status == "CLOSED") return "关闭";
+            if (zone.status == "PREVIEW") return "未开放";
+            return zone.load_level == "FULL" ? "爆满" : zone.load_level == "BUSY" ? "繁忙"
+                : zone.load_level == "SMOOTH" ? "流畅" : "在线";
+        }
+
+        private void RefreshLandingServer(ServerListZone zone)
+        {
+            _landingServerText.text = zone == null ? "选择服务器" : CardDisplayName(zone);
+            if (_landingAvailability != null)
+                _landingAvailability.text = CompactAvailability(zone);
+            if (_landingServerDot != null)
+            {
+                _landingServerDot.enabled = zone != null;
+                if (zone != null) _landingServerDot.color = StatusDotColor(zone);
+            }
+        }
+
+        private void RefreshCardMarkers(int slot, ServerListZone zone, bool selected, bool closed)
+        {
+            if (_serverChecks != null && slot < _serverChecks.Length && _serverChecks[slot] != null)
+                _serverChecks[slot].enabled = selected && !closed;
+            if (_serverRecommendations != null && slot < _serverRecommendations.Length && _serverRecommendations[slot] != null)
+                _serverRecommendations[slot].enabled = zone.recommended;
+            // Availability has its own reserved column; selection and recommendation
+            // are independent shapes rather than appending text into the status label.
+            _serverSubtitles[slot].text = CompactAvailability(zone);
+            if (closed)
+            {
+                _serverBadges[slot].sprite = QdaoRefreshArt.Load("lock");
+                _serverBadges[slot].enabled = true;
+            }
+            else
+            {
+                string[] emblems = { "pagoda", "pagoda", "mountain", "pagoda", "lotus", "water", "peach_spirit", "lotus" };
+                _serverBadges[slot].sprite = QdaoRefreshArt.Load("round_badge_" + emblems[slot % emblems.Length]);
+            }
         }
 
         private static void SetInputInsets(TMP_InputField input, float height)

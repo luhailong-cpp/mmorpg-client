@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Passed" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="10.6087421">
+  <test-suite type="TestSuite" id="1024" name="unity" fullname="unity" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="10.608742" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1018" name="MmorpgClient.Tests.PlayMode.dll" fullname="E:/work/tmp/citymove_verify_project/Library/ScriptAssemblies/MmorpgClient.Tests.PlayMode.dll" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="10.601154" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31176" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1019" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="10.600481" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1020" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="10.600145" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1021" name="PlayMode" fullname="MmorpgClient.Tests.PlayMode" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="10.599828" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="QdaoBootstrapPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests" classname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.139321" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="AppBootstrap_StartsNativeLoginAndServerSelectView" fullname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests.AppBootstrap_StartsNativeLoginAndServerSelectView" methodname="AppBootstrap_StartsNativeLoginAndServerSelectView" classname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests" runstate="Runnable" seed="696231170" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.084600" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="ReferenceResolution_UsesUnitScaleAndCenteredDesignRoot" fullname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests.ReferenceResolution_UsesUnitScaleAndCenteredDesignRoot" methodname="ReferenceResolution_UsesUnitScaleAndCenteredDesignRoot" classname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests" runstate="Runnable" seed="728861653" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.031177" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1004" name="SixteenByNine_UsesSolidLetterboxAndKeepsArtworkAtAuthoredAspect" fullname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests.SixteenByNine_UsesSolidLetterboxAndKeepsArtworkAtAuthoredAspect" methodname="SixteenByNine_UsesSolidLetterboxAndKeepsArtworkAtAuthoredAspect" classname="MmorpgClient.Tests.PlayMode.QdaoBootstrapPlayModeTests" runstate="Runnable" seed="1910522267" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.006585" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1005" name="QdaoBoySpriteAnimatorPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.137905" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1008" name="EveryDirection_StopsOnItsOwnDedicatedIdleTexture" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.EveryDirection_StopsOnItsOwnDedicatedIdleTexture" methodname="EveryDirection_StopsOnItsOwnDedicatedIdleTexture" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" seed="1997041313" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.110955" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1006" name="Running_KeepsFeetAndWorldRigidWhileAdvancingAtRunCadence" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.Running_KeepsFeetAndWorldRigidWhileAdvancingAtRunCadence" methodname="Running_KeepsFeetAndWorldRigidWhileAdvancingAtRunCadence" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" seed="264391564" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.014625" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt" methodname="Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" seed="919223646" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.010816" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1009" name="RealtimeTweenPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests" classname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.239772" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1012" name="Kill_CancelsEveryTweenWithTheSameTarget" fullname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests.Kill_CancelsEveryTweenWithTheSameTarget" methodname="Kill_CancelsEveryTweenWithTheSameTarget" classname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests" runstate="Runnable" seed="138272441" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.003647" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="Kill_DoesNotInvokeOnComplete" fullname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests.Kill_DoesNotInvokeOnComplete" methodname="Kill_DoesNotInvokeOnComplete" classname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests" runstate="Runnable" seed="339967442" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.001631" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1013" name="PauseSnapshot_IsReferenceCountedAndResumesAfterEverySnapshot" fullname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests.PauseSnapshot_IsReferenceCountedAndResumesAfterEverySnapshot" methodname="PauseSnapshot_IsReferenceCountedAndResumesAfterEverySnapshot" classname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests" runstate="Runnable" seed="1320469844" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.111518" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1014" name="RepeatWithYoyo_ReturnsToItsStartingValue" fullname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests.RepeatWithYoyo_ReturnsToItsStartingValue" methodname="RepeatWithYoyo_ReturnsToItsStartingValue" classname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests" runstate="Runnable" seed="965398512" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.080779" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1010" name="UnscaledTween_CompletesWhileTimeScaleIsZero" fullname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests.UnscaledTween_CompletesWhileTimeScaleIsZero" methodname="UnscaledTween_CompletesWhileTimeScaleIsZero" classname="MmorpgClient.Tests.PlayMode.RealtimeTweenPlayModeTests" runstate="Runnable" seed="1088456687" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:49Z" duration="0.040844" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1015" name="TianyongMapPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.TianyongMapPlayModeTests" classname="MmorpgClient.Tests.PlayMode.TianyongMapPlayModeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="10.081268" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1016" name="SandboxScene_BuildsAndWalksAcrossAllThreePhysicalBridges" fullname="MmorpgClient.Tests.PlayMode.TianyongMapPlayModeTests.SandboxScene_BuildsAndWalksAcrossAllThreePhysicalBridges" methodname="SandboxScene_BuildsAndWalksAcrossAllThreePhysicalBridges" classname="MmorpgClient.Tests.PlayMode.TianyongMapPlayModeTests" runstate="Runnable" seed="553064823" result="Passed" start-time="2026-09-10 06:55:49Z" end-time="2026-09-10 06:55:59Z" duration="9.938666" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="ThemeSwitch_RebuildsAllThemesAndCapsRealTimeLights" fullname="MmorpgClient.Tests.PlayMode.TianyongMapPlayModeTests.ThemeSwitch_RebuildsAllThemesAndCapsRealTimeLights" methodname="ThemeSwitch_RebuildsAllThemesAndCapsRealTimeLights" classname="MmorpgClient.Tests.PlayMode.TianyongMapPlayModeTests" runstate="Runnable" seed="1748677059" result="Passed" start-time="2026-09-10 06:55:59Z" end-time="2026-09-10 06:55:59Z" duration="0.141208" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

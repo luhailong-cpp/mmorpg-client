@@ -89,15 +89,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void IdleFrames_CoverAllEightDirections_WithTheMeasuredFeetTogetherPoses()
+        public void RunHandoffFrames_CoverAllEightDirections()
         {
-            // N, NE, E, SE, S, SW, W, NW (0-based): the frame of each run
-            // strip that reads as standing - both boots flat, feet close,
-            // torso upright - chosen by eye, NOT simply the narrowest
-            // silhouette (the narrowest W and NE frames are mid-air passing
-            // poses). W was 6 until 2026-09-08 and read as frozen mid-walk;
-            // NE_7 measures narrower than NE_1 only because its rear boot is
-            // lifted clear of the contact band, so NE stays at 1.
+            // The established grounded run phases are used only for the
+            // handoff. Actual Idle rendering uses independent idle_* textures.
             var expected = new[] { 2, 1, 1, 6, 2, 5, 2, 5 };
             var table = QdaoBoySpriteAnimator.IdleFrameTable();
 

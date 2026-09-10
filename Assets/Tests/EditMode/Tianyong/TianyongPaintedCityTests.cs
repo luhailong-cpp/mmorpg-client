@@ -148,14 +148,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
                 var ground = map.Root.transform.Find(TianyongPaintedCity.RootName);
                 Assert.That(ground, Is.Not.Null, "painted ground root must exist under the map root");
+                var foreground = ground.Find(TianyongPaintedForeground.WestLampObjectName);
+                Assert.That(foreground, Is.Not.Null, "the traced lamp foreground must accompany the painting");
+                Assert.That(foreground.GetComponent<TianyongPaintedForeground>(), Is.Not.Null);
+                Assert.That(foreground.GetComponent<MeshRenderer>().enabled, Is.True);
+                Assert.That(foreground.GetComponent<Collider>(), Is.Null,
+                    "the foreground must not intercept click-to-move rays");
                 Assert.That(ground.childCount,
-                    Is.EqualTo(TianyongPaintedCity.TileColumns * TianyongPaintedCity.TileRows));
+                    Is.EqualTo(TianyongPaintedCity.TileColumns * TianyongPaintedCity.TileRows + 1));
 
                 var tileUnits = TianyongPaintedCity.TilePixels / TianyongPaintedCity.PixelsPerUnit;
                 var bounds = new Bounds();
                 var first = true;
+                var tileCount = 0;
                 foreach (Transform tile in ground)
                 {
+                    if (tile == foreground) continue;
+                    tileCount++;
+                    Assert.That(tile.name, Does.StartWith("Tile_r"));
                     Assert.That(tile.GetComponent<MeshRenderer>().enabled, Is.True);
                     Assert.That(tile.GetComponent<Collider>(), Is.Null,
                         "the painting must not intercept click-to-move rays");
@@ -166,6 +176,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     else bounds.Encapsulate(tileBounds);
                 }
 
+                Assert.That(tileCount, Is.EqualTo(TianyongPaintedCity.TileColumns * TianyongPaintedCity.TileRows));
                 var rect = TianyongPaintedCity.PaintingWorldRect;
                 Assert.That(bounds.min.x, Is.EqualTo(rect.xMin).Within(0.01f));
                 Assert.That(bounds.max.x, Is.EqualTo(rect.xMax).Within(0.01f));

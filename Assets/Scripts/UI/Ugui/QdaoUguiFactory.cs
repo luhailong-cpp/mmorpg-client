@@ -7,6 +7,18 @@ namespace MmorpgClient.UI.Ugui
     /// <summary>Small, deterministic helpers for constructing pixel-measured uGUI trees.</summary>
     public static class QdaoUguiFactory
     {
+        /// <summary>主城入口独立排序，防止高层战斗 Canvas 的 HUD 盖住属性/宝宝窗口。</summary>
+        public static void ConfigureHudCanvas(RectTransform hudRoot)
+        {
+            var canvas = hudRoot.GetComponent<Canvas>();
+            if (canvas == null) canvas = hudRoot.gameObject.AddComponent<Canvas>();
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 140;
+            // Graphic 注册到最近的 Canvas；独立排序后需要自己的射线检测器。
+            if (hudRoot.GetComponent<GraphicRaycaster>() == null)
+                hudRoot.gameObject.AddComponent<GraphicRaycaster>();
+        }
+
         public static RectTransform CreateRect(
             string name,
             UnityEngine.Transform parent,

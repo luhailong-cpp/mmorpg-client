@@ -97,6 +97,63 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_camera.orthographicSize, Is.EqualTo(30f).Within(0.05f));
         }
 
+
+        [Test]
+        public void Snap_AfterZoomOutAtEdge_ReclampsImmediately()
+        {
+            var controller = CreateTopDown(12f, new Vector3(50f, 0f, 0f));
+            controller.SetZoom(30f);
+            controller.Snap();
+            AssertPaintingEdgeOutOfView("snap after zoom out, before any Tick");
+            Assert.That(_camera.orthographicSize, Is.EqualTo(30f).Within(0.001f));
+        }
+
+        [Test]
+        public void AspectChange_ToViewportWiderThanPainting_RefitsZoomBeforeRendering()
+        {
+            var controller = CreateTopDown(30f, new Vector3(50f, 0f, 0f));
+            _camera.aspect = 10f;
+            controller.Tick(FrameTime, allowScrollZoom: false);
+            AssertPaintingEdgeOutOfView("first frame after aspect change");
+            Assert.That(_camera.orthographicSize, Is.EqualTo(15f).Within(0.001f));
+            controller.Snap();
+            AssertPaintingEdgeOutOfView("snap with oversized requested zoom");
+        }
+
+        [Test]
+        public void Zoom_AllEdgesAndCorners_StaysInsidePaintingEveryFrame(
+            [Values(9f / 16f, 16f / 9f, 21f / 9f, 6f)] float aspect,
+            [Values(1f / 30f, 1f / 60f, 1f / 144f)] float deltaTime)
+        {
+            _camera.aspect = aspect;
+            var bounds = TianyongPaintedCity.PaintingWorldRect;
+            var feet = new[]
+            {
+                new Vector3(bounds.xMin, 0f, bounds.center.y),
+                new Vector3(bounds.xMax, 0f, bounds.center.y),
+                new Vector3(bounds.center.x, 0f, bounds.yMin),
+                new Vector3(bounds.center.x, 0f, bounds.yMax),
+                new Vector3(bounds.xMin, 0f, bounds.yMin),
+                new Vector3(bounds.xMax, 0f, bounds.yMin),
+                new Vector3(bounds.xMin, 0f, bounds.yMax),
+                new Vector3(bounds.xMax, 0f, bounds.yMax),
+            };
+            foreach (var point in feet)
+            {
+                var controller = CreateTopDown(5f, point);
+                AssertPaintingEdgeOutOfView($"initial aspect={aspect} point={point}");
+                foreach (var zoom in new[] { 30f, 12f, 30f })
+                {
+                    controller.SetZoom(zoom);
+                    for (var frame = 0; frame < 180; frame++)
+                    {
+                        controller.Tick(deltaTime, allowScrollZoom: false);
+                        AssertPaintingEdgeOutOfView($"aspect={aspect} point={point} zoom={zoom} frame={frame}");
+                    }
+                }
+            }
+        }
+
         [Test]
         public void SetZoom_IsClampedToTheConfiguredWindow()
         {

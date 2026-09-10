@@ -1,0 +1,131 @@
+{
+  "processor": "generate2dsprite",
+  "uniform_final_translation_y": 2,
+  "alpha_threshold": 8,
+  "directions": {
+    "N": {
+      "frames": [
+        {
+          "frame": 0,
+          "height": 424,
+          "foot_from_bottom": 41,
+          "coverage": 0.185272216796875,
+          "upperbody_sha256": "cffda4824f6760d530ef48f61b42c05ab39b50eca5c2a285e486ad52c8c72cbb"
+        },
+        {
+          "frame": 1,
+          "height": 421,
+          "foot_from_bottom": 41,
+          "coverage": 0.17967987060546875,
+          "upperbody_sha256": "216f72b1513ea34da362968f2821da94f638454511acaaeb19831633f7287334"
+        },
+        {
+          "frame": 2,
+          "height": 419,
+          "foot_from_bottom": 41,
+          "coverage": 0.194366455078125,
+          "upperbody_sha256": "5bbb1011bef907c1977f8dffa66b3072560782e6e1f3ff1805980be30400d470"
+        },
+        {
+          "frame": 3,
+          "height": 422,
+          "foot_from_bottom": 41,
+          "coverage": 0.17830657958984375,
+          "upperbody_sha256": "3796ba699a178e55fdf231414e99c58261f98ddacb0514e4f7e53fd99a42ea04"
+        },
+        {
+          "frame": 4,
+          "height": 420,
+          "foot_from_bottom": 41,
+          "coverage": 0.18121337890625,
+          "upperbody_sha256": "5018326e11dd6227dffadfed351fe72fac72d421cdb9af4ffc683e78b413eb64"
+        },
+        {
+          "frame": 5,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.18325042724609375,
+          "upperbody_sha256": "f9dc66f01b4a361e1f96484362e4a6769f64d11eaf8c2759d851caf266c2f8ed"
+        },
+        {
+          "frame": 6,
+          "height": 419,
+          "foot_from_bottom": 41,
+          "coverage": 0.18510055541992188,
+          "upperbody_sha256": "b23dcc02b7eb3495c302ec9dd327cce62825f0400e127b33656544ff3005d069"
+        },
+        {
+          "frame": 7,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.1861419677734375,
+          "upperbody_sha256": "54c9c76c35e5d658ae5fd48cbf93d1e4a2fd22f9b65849e617a4d195d0e777bf"
+        }
+      ],
+      "unique_upperbody_poses": 8,
+      "runtime_sha256": "8b650cdf353397ea4ce360889b986c4169bfc8e928a97633a0b435cc879c59f7"
+    },
+    "S": {
+      "frames": [
+        {
+          "frame": 0,
+          "height": 424,
+          "foot_from_bottom": 41,
+          "coverage": 0.2064361572265625,
+          "upperbody_sha256": "6e39ab1377fbece03c9f4600e599610532c8e2f54385d47ddb1a70fafac14525"
+        },
+        {
+          "frame": 1,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.20418930053710938,
+          "upperbody_sha256": "c41fa1af81b25cc3b26cc0fc5f293a84777599f03dab4dfb47985c21f88a0d6b"
+        },
+        {
+          "frame": 2,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.20363235473632812,
+          "upperbody_sha256": "f4381eb67d6dc0db0ab16c682e24724aeae729e7435f291eb5b89fae74f1a8c9"
+        },
+        {
+          "frame": 3,
+          "height": 424,
+          "foot_from_bottom": 41,
+          "coverage": 0.19742202758789062,
+          "upperbody_sha256": "92d5141d486f43336d331a2cc9ffa1e9d0f0f218bfd4b31ab8c510591a2c16b4"
+        },
+        {
+          "frame": 4,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.19610595703125,
+          "upperbody_sha256": "786178856231ca4d6c80f0ee07543022e8a400aa0aa9150cc5f98844fedac46b"
+        },
+        {
+          "frame": 5,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.20119094848632812,
+          "upperbody_sha256": "ba38271888fae6f167aa09fb2ce2adf62df6c8d397d806749b66d3031603d7d9"
+        },
+        {
+          "frame": 6,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.19459152221679688,
+          "upperbody_sha256": "d4db0f1043c2175aa0a2b052281fc22141d217b91193bb3c1cb379e22656e87f"
+        },
+        {
+          "frame": 7,
+          "height": 423,
+          "foot_from_bottom": 41,
+          "coverage": 0.20153427124023438,
+          "upperbody_sha256": "8824203a680243462254deb7c290307d5a72526bb1421838c68317e08e76c603"
+        }
+      ],
+      "unique_upperbody_poses": 8,
+      "runtime_sha256": "b4b56d6368081c6353fe0e0cec2573ca68bcf970d11095473c70344b3e97639c"
+    }
+  }
+}

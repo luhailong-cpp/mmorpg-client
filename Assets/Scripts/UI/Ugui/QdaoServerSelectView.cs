@@ -758,6 +758,8 @@ namespace MmorpgClient.UI.Ugui
                 int index = _page * PageSize + slot;
                 bool present = index < _filtered.Count;
                 _serverButtons[slot].gameObject.SetActive(present);
+                // 空槽也要同步忙碌状态，避免保留预制体或上一页的可交互值。
+                _serverButtons[slot].interactable = canInteract && present;
                 _serverEmptyCovers[slot].enabled = false;
                 if (!present) continue;
                 var zone = _filtered[index];
@@ -765,7 +767,6 @@ namespace MmorpgClient.UI.Ugui
                 bool closed = zone.status == "MAINTENANCE" || zone.status == "CLOSED" || zone.status == "PREVIEW";
                 QdaoRefreshArt.Skin(_serverCardImages[slot], "server_card_wide_" +
                     (closed ? "disabled" : selected ? "selected" : "normal"));
-                _serverButtons[slot].interactable = canInteract;
                 _serverNames[slot].text = CardDisplayName(zone);
                 _serverSubtitles[slot].text = ZoneSubtitle(zone) + (selected ? " · 已选择" : string.Empty);
                 var ink = selected && !closed ? QdaoRefreshArt.Ivory : QdaoRefreshArt.Ink;
@@ -774,6 +775,7 @@ namespace MmorpgClient.UI.Ugui
                 _serverDots[slot].color = StatusDotColor(zone);
                 _serverDots[slot].enabled = true;
                 _serverBadges[slot].enabled = !closed;
+                RefreshCardMarkers(slot, zone, selected, closed);
             }
             var chosen = FindRenderedZone(_selectedZoneId);
             bool enterable = chosen != null && chosen.status != "MAINTENANCE" &&
@@ -795,7 +797,7 @@ namespace MmorpgClient.UI.Ugui
             _landingServers.interactable = canInteract;
             _landingAccount.interactable = canInteract;
             _landingEnter.interactable = canInteract && !_serverListLoading && (chosen == null || enterable);
-            _landingServerText.text = chosen == null ? "选择服务器  ›" : $"{CardDisplayName(chosen)}   ·   {ZoneSubtitle(chosen)}   ›";
+            RefreshLandingServer(chosen);
         }
 
         private static string ZoneDisplayName(ServerListZone z)

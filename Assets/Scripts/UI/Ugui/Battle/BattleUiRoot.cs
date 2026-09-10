@@ -31,7 +31,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private Game.GameClient _boundGameClient;
 
         private GameObject _canvasGo;
-        private RectTransform _hudRoot;      // 入口按钮 + 排队面板
+        private RectTransform _hudRoot;      // 主城入口按钮，独立排序 140
         private GameObject _battleLayerGo;   // 全屏底 + 战斗屏
         private RectTransform _battleRoot;
         private RectTransform _modalResultRoot;
@@ -258,6 +258,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             // 层级(兄弟顺序即绘制顺序):HUD < 战斗全屏 < 模态 < toast
             _hudRoot = CreateDesignRoot("HudRoot", _canvasGo.transform);
+            QdaoUguiFactory.ConfigureHudCanvas(_hudRoot);
+            var windowRoot = CreateDesignRoot("WindowRoot", _canvasGo.transform);
 
             _battleLayerGo = new GameObject("BattleLayer", typeof(RectTransform));
             var battleLayerRect = (RectTransform)_battleLayerGo.transform;
@@ -307,8 +309,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectateEntryButton.Button.onClick.AddListener(OnSpectateEntryClicked);
             _spectateEntryButton.SetVisible(false);
 
-            _queuePanel = new BattleQueuePanel(this, _hudRoot);
-            _spectatePanel = new SpectatePanel(this, _hudRoot);
+            _queuePanel = new BattleQueuePanel(this, windowRoot);
+            _spectatePanel = new SpectatePanel(this, windowRoot);
             _battleScreen = new BattleScreen(this, _battleRoot);
             _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed);
             _challengePopup = new BattleChallengePopup(this, _modalPopupRoot);

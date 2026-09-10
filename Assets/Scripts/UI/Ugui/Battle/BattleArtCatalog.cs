@@ -319,7 +319,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static Sprite LoadUiSprite(string name)
         {
             string key = $"{UiRoot}/{name}";
-            if (s_sprites.TryGetValue(key, out var cached)) return cached;
+            if (TryGetCachedSprite(key, out var cached)) return cached;
 
             Sprite sprite = null;
             var tex = LoadTexture(key);
@@ -340,11 +340,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             return sprite;
         }
 
+        private static bool TryGetCachedSprite(string key, out Sprite sprite)
+        {
+            if (!s_sprites.TryGetValue(key, out sprite)) return false;
+            // 真正的缺图仍缓存 null；已销毁的 Unity 对象及失效贴图必须重新加载。
+            if (ReferenceEquals(sprite, null)) return true;
+            if (sprite != null && sprite.texture != null) return true;
+            s_sprites.Remove(key);
+            sprite = null;
+            return false;
+        }
         /// <summary>通用单图:先按 Sprite 读,再退回 Texture2D 整图建 Sprite;缺图 null。</summary>
         public static Sprite LoadSprite(string resourcePath)
         {
             if (string.IsNullOrEmpty(resourcePath)) return null;
-            if (s_sprites.TryGetValue(resourcePath, out var cached)) return cached;
+            if (TryGetCachedSprite(resourcePath, out var cached)) return cached;
 
             Sprite sprite = null;
             try
@@ -386,7 +396,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (PortraitFiles.Length == 0) return null;
             int index = BattleHudLogic.PortraitIndexFor(actorId, PortraitFiles.Length);
             string key = $"{PortraitsRoot}/{PortraitFiles[index]}#head";
-            if (s_sprites.TryGetValue(key, out var cached)) return cached;
+            if (TryGetCachedSprite(key, out var cached)) return cached;
 
             Sprite sprite = null;
             var tex = LoadTexture($"{PortraitsRoot}/{PortraitFiles[index]}");
@@ -665,7 +675,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 RenderTexture.active = prevActive;
                 if (rt != null) RenderTexture.ReleaseTemporary(rt);
-                if (read != null) UnityEngine.Object.Destroy(read);
+                if (read != null)
+                {
+                    if (Application.isPlaying) UnityEngine.Object.Destroy(read);
+                    else UnityEngine.Object.DestroyImmediate(read);
+                }
             }
             s_visibleBounds[sprite] = result;
             return result;
@@ -677,7 +691,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static Texture2D LoadTexture(string resourcePath)
         {
             if (string.IsNullOrEmpty(resourcePath)) return null;
-            if (s_textures.TryGetValue(resourcePath, out var cached)) return cached;
+            if (s_textures.TryGetValue(resourcePath, out var cached) &&
+                (ReferenceEquals(cached, null) || cached != null)) return cached;
             Texture2D tex = null;
             try { tex = Resources.Load<Texture2D>(resourcePath); }
             catch (Exception e) { Debug.LogWarning($"[BattleArtCatalog] 读取 {resourcePath} 失败:{e.Message}"); }

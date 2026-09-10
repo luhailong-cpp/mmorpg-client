@@ -1,0 +1,193 @@
+{
+  "validation": "PASS",
+  "source_shots": "E:\\work\\tmp\\citymove_shots\\audit_20260909d",
+  "source_log": "E:\\work\\tmp\\citymove_player_audit_20260909d.log",
+  "samples": 3528,
+  "offscreen_renders": 3528,
+  "capture_mode": "offscreen_render",
+  "first_frame": 4,
+  "last_frame": 3531,
+  "failed_frames": 0,
+  "max_overflow_world_units": 3.05175781e-05,
+  "aspects": [
+    1.77778
+  ],
+  "screen": [
+    1920,
+    1080
+  ],
+  "png_count": 134,
+  "runtime_pass": true,
+  "png_validation": "Every logged PNG decoded at the declared resolution; blank and nearly uniform images rejected. This is not a pixel-wise map-edge leak detector.",
+  "camera_geometry_only": true,
+  "scope": "Every explicit offscreen Camera.Render in the contiguous captured Unity frame interval is matched to a viewport-versus-painting bounds check, tolerance 0.001 world units. PNGs sample those offscreen renders and include the actual production HUD canvases; this does not certify OS window presentation or arbitrary uncaptured rendering configurations.",
+  "phases": {
+    "startup": {
+      "samples": 2711,
+      "min_actual_size": 27.0,
+      "max_actual_size": 27.0,
+      "failed_frames": 0
+    },
+    "zoom_w_base": {
+      "samples": 1,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_w_out": {
+      "samples": 32,
+      "min_actual_size": 23.4802589,
+      "max_actual_size": 29.9947166,
+      "failed_frames": 0
+    },
+    "zoom_w_in": {
+      "samples": 33,
+      "min_actual_size": 12.0045233,
+      "max_actual_size": 17.8028965,
+      "failed_frames": 0
+    },
+    "zoom_e_base": {
+      "samples": 1,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_e_out": {
+      "samples": 33,
+      "min_actual_size": 23.592638,
+      "max_actual_size": 29.9951878,
+      "failed_frames": 0
+    },
+    "zoom_e_in": {
+      "samples": 33,
+      "min_actual_size": 12.0051575,
+      "max_actual_size": 18.0907021,
+      "failed_frames": 0
+    },
+    "zoom_s_base": {
+      "samples": 1,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_s_out": {
+      "samples": 33,
+      "min_actual_size": 23.9736786,
+      "max_actual_size": 29.9954147,
+      "failed_frames": 0
+    },
+    "zoom_s_in": {
+      "samples": 33,
+      "min_actual_size": 12.0046349,
+      "max_actual_size": 17.9730816,
+      "failed_frames": 0
+    },
+    "zoom_n_base": {
+      "samples": 2,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_n_out": {
+      "samples": 32,
+      "min_actual_size": 23.6332455,
+      "max_actual_size": 29.9947281,
+      "failed_frames": 0
+    },
+    "zoom_n_in": {
+      "samples": 33,
+      "min_actual_size": 12.0031261,
+      "max_actual_size": 16.7157116,
+      "failed_frames": 0
+    },
+    "zoom_sw_base": {
+      "samples": 1,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_sw_out": {
+      "samples": 33,
+      "min_actual_size": 24.16485,
+      "max_actual_size": 29.9960575,
+      "failed_frames": 0
+    },
+    "zoom_sw_in": {
+      "samples": 33,
+      "min_actual_size": 12.0038528,
+      "max_actual_size": 17.5746613,
+      "failed_frames": 0
+    },
+    "zoom_se_base": {
+      "samples": 1,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_se_out": {
+      "samples": 32,
+      "min_actual_size": 23.79097,
+      "max_actual_size": 29.99525,
+      "failed_frames": 0
+    },
+    "zoom_se_in": {
+      "samples": 33,
+      "min_actual_size": 12.004035,
+      "max_actual_size": 17.62393,
+      "failed_frames": 0
+    },
+    "zoom_nw_base": {
+      "samples": 1,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_nw_out": {
+      "samples": 32,
+      "min_actual_size": 24.2311325,
+      "max_actual_size": 29.995657,
+      "failed_frames": 0
+    },
+    "zoom_nw_in": {
+      "samples": 33,
+      "min_actual_size": 12.0039091,
+      "max_actual_size": 17.4009533,
+      "failed_frames": 0
+    },
+    "zoom_ne_base": {
+      "samples": 1,
+      "min_actual_size": 12.0,
+      "max_actual_size": 12.0,
+      "failed_frames": 0
+    },
+    "zoom_ne_out": {
+      "samples": 32,
+      "min_actual_size": 24.48973,
+      "max_actual_size": 29.9956551,
+      "failed_frames": 0
+    },
+    "zoom_ne_in": {
+      "samples": 33,
+      "min_actual_size": 12.0042534,
+      "max_actual_size": 17.7371426,
+      "failed_frames": 0
+    },
+    "zoom_restored": {
+      "samples": 285,
+      "min_actual_size": 27.0,
+      "max_actual_size": 27.0,
+      "failed_frames": 0
+    }
+  },
+  "hud_checks": [
+    "[SandboxHud] ready=True mode=production_canvas_offline_preview entries=3 roots=BattleUiRoot,AttributeUiRoot network_validation=false",
+    "[SandboxHud] capture=offscreen_actual_canvas camera=[MainCamera] target=1920x1080",
+    "[SandboxHud] layout=PASS screen=1920x1080 BattleEntry:(1620.0,753.0,247.5,60.0);SpectateEntry:(1620.0,675.0,247.5,60.0);AttributeEntry:(1620.0,597.0,247.5,60.0)",
+    "[SandboxHud] nameplate_case=short RESULT=PASS width=4.310 required_width=4.310 height=1.530 required_height=1.530 text_order=6200 backdrop_order=6199 alpha=0.72 shader=Sprites/Default",
+    "[SandboxHud] nameplate_case=long_cjk RESULT=PASS width=10.560 required_width=10.560 height=1.530 required_height=1.530 text_order=6200 backdrop_order=6199 alpha=0.72 shader=Sprites/Default",
+    "[SandboxHud] nameplate_case=empty RESULT=PASS backdrop_hidden=true",
+    "[SandboxHud] nameplate_case=disabled RESULT=PASS backdrop_hidden=true",
+    "[SandboxHud] nameplate_case=restored RESULT=PASS width=4.310 required_width=4.310 height=1.530 required_height=1.530 text_order=6200 backdrop_order=6199 alpha=0.72 shader=Sprites/Default",
+    "[SandboxHud] nameplate=PASS cases=short,long_cjk,empty,disabled,restored"
+  ]
+}

@@ -71,14 +71,20 @@ namespace MmorpgClient.Tests.PlayMode
             for (var bridgeIndex = 0; bridgeIndex < TianyongMapDefinition.Bridges.Length; bridgeIndex++)
             {
                 var bridge = TianyongMapDefinition.Bridges[bridgeIndex];
-                Assert.That(bridgeDecks.Any(deck =>
+                var start = new Vector3(bridge.center.x, 0f, TianyongMapDefinition.Canal.yMin - 4f);
+                var target = new Vector3(bridge.center.x, 0f, TianyongMapDefinition.Canal.yMax + 4f);
+                controller.WarpTo(start);
+                // Far chunks can be inactive at spawn; their collider bounds are
+                // empty. Enter the bridge's streamed area before inspecting its
+                // real collider, exactly as normal travel activates that area.
+                yield return null;
+                yield return new WaitForFixedUpdate();
+                Physics.SyncTransforms();
+                Assert.That(bridgeDecks.Any(deck => deck.enabled && deck.gameObject.activeInHierarchy &&
                         deck.bounds.Contains(new Vector3(bridge.center.x, deck.bounds.center.y, bridge.center.y))),
                     Is.True,
                     $"Bridge {bridgeIndex} has no collider covering its authored centre.");
 
-                var start = new Vector3(bridge.center.x, 0f, TianyongMapDefinition.Canal.yMin - 4f);
-                var target = new Vector3(bridge.center.x, 0f, TianyongMapDefinition.Canal.yMax + 4f);
-                controller.WarpTo(start);
                 Assert.That(controller.SetDestination(target), Is.True,
                     $"Navigation could not create a route over bridge {bridgeIndex}.");
 

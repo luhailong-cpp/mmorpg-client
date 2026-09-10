@@ -1,0 +1,10 @@
+{
+  "positive": "PASS",
+  "source_run": "E:\\work\\tmp\\citymove_shots\\audit_20260909d",
+  "source_png_count": 134,
+  "source_samples": 3528,
+  "frozen_zoom_negative": "REJECTED",
+  "negative_reason": "Camera actual zoom span is insufficient: zoom_w_out",
+  "negative_copy": "E:\\work\\tmp\\summary_actual_zoom_kzo16i61",
+  "original_evidence_unchanged": true
+}

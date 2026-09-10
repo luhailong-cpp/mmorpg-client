@@ -1,0 +1,122 @@
+{
+  "directions": {
+    "N": {
+      "feet_from_bottom": 41,
+      "height": 398,
+      "run_handoff_height": 410,
+      "height_ratio": 0.9707,
+      "bbox": [
+        168,
+        73,
+        343,
+        471
+      ],
+      "coverage": 0.1768,
+      "sha256": "264fab657fc4ea5cd75a9b8392da51f5b572e4fc9b18b8792b40b132af6b5952"
+    },
+    "NE": {
+      "feet_from_bottom": 41,
+      "height": 418,
+      "run_handoff_height": 436,
+      "height_ratio": 0.9587,
+      "bbox": [
+        172,
+        53,
+        340,
+        471
+      ],
+      "coverage": 0.1873,
+      "sha256": "d50fb87183b54e63d0b23101217179907ac069641a8bb5243d50da8a0bc399f7"
+    },
+    "E": {
+      "feet_from_bottom": 41,
+      "height": 411,
+      "run_handoff_height": 422,
+      "height_ratio": 0.9739,
+      "bbox": [
+        178,
+        60,
+        334,
+        471
+      ],
+      "coverage": 0.1477,
+      "sha256": "765e176d57227e088147eb4294f7d53e8bb8ee9cf4d486580bdfaf694c6a27d3"
+    },
+    "SE": {
+      "feet_from_bottom": 41,
+      "height": 413,
+      "run_handoff_height": 425,
+      "height_ratio": 0.9718,
+      "bbox": [
+        169,
+        58,
+        343,
+        471
+      ],
+      "coverage": 0.1818,
+      "sha256": "75b2cae87528236c47071c0fd761d15bdc7f4973d035ae7ab2f0b22bc314caa8"
+    },
+    "S": {
+      "feet_from_bottom": 41,
+      "height": 409,
+      "run_handoff_height": 420,
+      "height_ratio": 0.9738,
+      "bbox": [
+        165,
+        62,
+        347,
+        471
+      ],
+      "coverage": 0.192,
+      "sha256": "63f76977313e5421e8d434d22e8e987135d6450cef3d71cdc3f4c099273aa0b8"
+    },
+    "SW": {
+      "feet_from_bottom": 41,
+      "height": 424,
+      "run_handoff_height": 445,
+      "height_ratio": 0.9528,
+      "bbox": [
+        165,
+        47,
+        346,
+        471
+      ],
+      "coverage": 0.1922,
+      "sha256": "c08d37e8d33114ac231d7e64efefb68404f79cb7b85dcfd15c3c01915947fbdd"
+    },
+    "W": {
+      "feet_from_bottom": 41,
+      "height": 421,
+      "run_handoff_height": 417,
+      "height_ratio": 1.0096,
+      "bbox": [
+        177,
+        50,
+        334,
+        471
+      ],
+      "coverage": 0.152,
+      "sha256": "4606b350775adb6648284b80cbe72f49e9b6e461cb2f6e7e97b2a741081151b3"
+    },
+    "NW": {
+      "feet_from_bottom": 41,
+      "height": 418,
+      "run_handoff_height": 401,
+      "height_ratio": 1.0424,
+      "bbox": [
+        172,
+        53,
+        339,
+        471
+      ],
+      "coverage": 0.1807,
+      "sha256": "e5ef7e0488e92b2b4e9f8efb9593dac07a801237b58d7294c7de2c531716f8af"
+    }
+  },
+  "shared_translation_y_pixels": 2,
+  "pixels_per_unit": 52,
+  "pivot": [
+    0.5,
+    0.08
+  ]
+}

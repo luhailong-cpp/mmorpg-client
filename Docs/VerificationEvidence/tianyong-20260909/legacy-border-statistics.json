@@ -1,0 +1,119 @@
+[
+  {
+    "file": "59_08_edge_w.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 17,
+    "max_exact_color_percent": 0.1419,
+    "most_common_color": "#D5C6AD"
+  },
+  {
+    "file": "60_08_edge_w_arrive.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 15,
+    "max_exact_color_percent": 0.1252,
+    "most_common_color": "#D6C7AF"
+  },
+  {
+    "file": "61_08_edge_e.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 18,
+    "max_exact_color_percent": 0.1502,
+    "most_common_color": "#D5C8AF"
+  },
+  {
+    "file": "62_08_edge_s.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 15,
+    "max_exact_color_percent": 0.1252,
+    "most_common_color": "#D0C3AB"
+  },
+  {
+    "file": "63_08_edge_n.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 11,
+    "max_exact_color_percent": 0.0918,
+    "most_common_color": "#D4C5AB"
+  },
+  {
+    "file": "64_09_zoom_base.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 17,
+    "max_exact_color_percent": 0.1419,
+    "most_common_color": "#D6C8AF"
+  },
+  {
+    "file": "65_09_zoom_out_f1.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 13,
+    "max_exact_color_percent": 0.1085,
+    "most_common_color": "#D6C7AF"
+  },
+  {
+    "file": "66_09_zoom_out_f2.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 16,
+    "max_exact_color_percent": 0.1335,
+    "most_common_color": "#D0C1A8"
+  },
+  {
+    "file": "67_09_zoom_out_settled.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 15,
+    "max_exact_color_percent": 0.1252,
+    "most_common_color": "#D7C9B1"
+  },
+  {
+    "file": "68_09_zoom_in_f1.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 15,
+    "max_exact_color_percent": 0.1252,
+    "most_common_color": "#D4C6AD"
+  },
+  {
+    "file": "69_09_zoom_in_f2.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 14,
+    "max_exact_color_percent": 0.1168,
+    "most_common_color": "#D2C4AB"
+  },
+  {
+    "file": "70_09_zoom_in_settled.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 17,
+    "max_exact_color_percent": 0.1419,
+    "most_common_color": "#D0C1A6"
+  },
+  {
+    "file": "71_09_zoom_restored.png",
+    "width": 1920,
+    "height": 1080,
+    "border_pixels": 11984,
+    "max_exact_color_count": 16,
+    "max_exact_color_percent": 0.1335,
+    "most_common_color": "#D7C8AF"
+  }
+]

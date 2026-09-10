@@ -10,7 +10,7 @@ using UnityEngine.UI;
 namespace MmorpgClient.UI.Ugui.Pet
 {
     /// <summary>
-    /// 宝宝 UI 层:自有 Canvas(sortingOrder 161,紧挨属性窗 160 之上、战斗层 200 之下 ——
+    /// 宝宝 UI 层:自有 Canvas(sortingOrder 170,紧挨属性窗 160 之上、战斗层 200 之下 ——
     /// 两个窗不会同时开,谁后点谁在上,战斗一开都盖住)。
     ///
     /// 生命周期与绑定方式照 <see cref="Attribute.AttributeUiRoot"/>:`[RuntimeInitializeOnLoadMethod]`
@@ -121,7 +121,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
             var canvas = _canvasGo.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 161; // 属性 160 < 本层 < 战斗 200
+            canvas.sortingOrder = 170; // 属性 160 < 本层 < 战斗 200
             canvas.pixelPerfect = true;
 
             var scaler = _canvasGo.GetComponent<CanvasScaler>();
@@ -133,6 +133,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             scaler.referencePixelsPerUnit = 100f;
 
             _hudRoot = CreateDesignRoot("HudRoot", _canvasGo.transform);
+            QdaoUguiFactory.ConfigureHudCanvas(_hudRoot);
             var windowRoot = CreateDesignRoot("WindowRoot", _canvasGo.transform);
             var toastRoot = CreateDesignRoot("ToastRoot", _canvasGo.transform);
 

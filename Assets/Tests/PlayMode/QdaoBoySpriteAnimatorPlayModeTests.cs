@@ -107,7 +107,7 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator Stopping_FinishesTheCycleIntoTheStandingPose_AndStartingLeavesIt()
+        public IEnumerator Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt()
         {
             var previousCaptureFramerate = Time.captureFramerate;
             Time.captureFramerate = 60;
@@ -123,9 +123,9 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(animator, Is.Not.Null);
                 var renderer = actor.transform.Find("sprite").GetComponent<SpriteRenderer>();
 
-                // Fresh actor: standing, facing the camera, in the S standing pose.
+                // Fresh actor uses the separately authored S standing texture.
                 Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
-                Assert.That(renderer.sprite.name, Is.EqualTo("qdao_run_S_02"));
+                Assert.That(renderer.sprite.name, Is.EqualTo("qdao_idle_S_00"));
 
                 // Start north: the first step is taken from the N standing pose (frame 2).
                 actor.transform.position += Vector3.forward * StepPerFrame;
@@ -143,7 +143,7 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(renderer.sprite.name, Is.EqualTo("qdao_run_N_00"));
 
                 // Stop. The cycle must play on (0 -> 1 -> 2) at run cadence
-                // instead of snapping, and hold the N standing pose.
+                // instead of snapping, then show the separate N idle texture.
                 var settling = new List<string>();
                 for (var frame = 0; frame < 60; frame++)
                 {
@@ -154,18 +154,18 @@ namespace MmorpgClient.Tests.PlayMode
                 }
                 Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle),
                     "the stop must settle within one lap of the cycle");
-                Assert.That(settling[^1], Is.EqualTo("qdao_run_N_02"));
+                Assert.That(settling[^1], Is.EqualTo("qdao_idle_N_00"));
                 Assert.That(settling.Count, Is.InRange(2, 20),
                     "1.5 frames at ~13 fps take several 60 Hz frames: no instant jump, no long wait");
                 Assert.That(settling.IndexOf("qdao_run_N_01"), Is.GreaterThanOrEqualTo(0)
-                    .And.LessThan(settling.IndexOf("qdao_run_N_02")),
+                    .And.LessThan(settling.IndexOf("qdao_idle_N_00")),
                     "the cycle walks through pose 1 on its way to the standing pose");
 
                 // Standing still holds the pose.
                 for (var frame = 0; frame < 10; frame++)
                 {
                     yield return null;
-                    Assert.That(renderer.sprite.name, Is.EqualTo("qdao_run_N_02"));
+                    Assert.That(renderer.sprite.name, Is.EqualTo("qdao_idle_N_00"));
                     Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
                 }
 
@@ -182,6 +182,55 @@ namespace MmorpgClient.Tests.PlayMode
                 Object.Destroy(cameraObject);
             }
 
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator EveryDirection_StopsOnItsOwnDedicatedIdleTexture()
+        {
+            var previousCaptureFramerate = Time.captureFramerate;
+            Time.captureFramerate = 60;
+            var cameraObject = CreateTopDownCamera();
+            var actor = new GameObject("EightDirectionIdleActor");
+            var directions = new[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+            try
+            {
+                Assert.That(QdaoBoySpriteAnimator.TryAttach(actor), Is.True);
+                yield return null;
+                var animator = actor.GetComponent<QdaoBoySpriteAnimator>();
+                var renderer = actor.transform.Find("sprite").GetComponent<SpriteRenderer>();
+                for (var direction = 0; direction < directions.Length; direction++)
+                {
+                    var yaw = direction * 45f * Mathf.Deg2Rad;
+                    var step = new Vector3(Mathf.Sin(yaw), 0f, Mathf.Cos(yaw)) * StepPerFrame;
+                    for (var frame = 0; frame < 30; frame++)
+                    {
+                        actor.transform.position += step;
+                        yield return null;
+                    }
+                    Assert.That(animator.Direction, Is.EqualTo(direction));
+                    Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Run));
+                    for (var frame = 0; frame < 48; frame++)
+                    {
+                        yield return null;
+                        if (animator.State == QdaoBoySpriteAnimator.LocomotionState.Idle) break;
+                    }
+                    Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
+                    Assert.That(animator.Direction, Is.EqualTo(direction), "stopping preserves facing");
+                    Assert.That(renderer.sprite.name, Is.EqualTo($"qdao_idle_{directions[direction]}_00"));
+                    Assert.That(renderer.sprite.texture, Is.SameAs(Resources.Load<Texture2D>(
+                        $"World/Characters/QdaoHeadbandBoy/idle_{directions[direction]}")),
+                        "Idle must use dedicated artwork, never a held run frame.");
+                    Assert.That(renderer.sprite.pixelsPerUnit, Is.EqualTo(QdaoBoySpriteAnimator.PixelsPerUnit));
+                    Assert.That(renderer.sprite.pivot.y, Is.EqualTo(512f * 0.08f).Within(0.01f));
+                }
+            }
+            finally
+            {
+                Time.captureFramerate = previousCaptureFramerate;
+                Object.Destroy(actor);
+                Object.Destroy(cameraObject);
+            }
             yield return null;
         }
 

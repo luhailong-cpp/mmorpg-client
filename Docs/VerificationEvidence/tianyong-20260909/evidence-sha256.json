@@ -1,0 +1,97 @@
+[
+  {
+    "file": "00_00_runtime_hud.png",
+    "sha256": "b7b469fd1cb63ce6bb14a433ae53d3b3e10c8ded47d383c4534661f6fd0432de",
+    "bytes": 3531482
+  },
+  {
+    "file": "02_00_nameplate_long_cjk.png",
+    "sha256": "3f20d7cb426e5d9cfc77254e8b89b6c6adca4e4e2c9b53dedd0cf6365281a385",
+    "bytes": 3534262
+  },
+  {
+    "file": "05_00_nameplate_restored.png",
+    "sha256": "b7b469fd1cb63ce6bb14a433ae53d3b3e10c8ded47d383c4534661f6fd0432de",
+    "bytes": 3531482
+  },
+  {
+    "file": "26_03_stop_W_b.png",
+    "sha256": "940626f488fab789cc38b3e74fa6714d89c0c18737425cf7f84990094c20742e",
+    "bytes": 3437510
+  },
+  {
+    "file": "45_04_click_a.png",
+    "sha256": "87c4788c3d5192bbe2523fef73006d41855f07f0d0ad134987a98c151a8c7858",
+    "bytes": 3446213
+  },
+  {
+    "file": "50_04_click_arrive_a.png",
+    "sha256": "54fa63e6e16d11039aab68cc9a13cda39c3d97bcb2c6f6f91232b4242ad0d0b3",
+    "bytes": 3442546
+  },
+  {
+    "file": "51_04_click_arrive_b.png",
+    "sha256": "da1e1abb4c15ce0be42736bd600445c396466fb6f46aea5c7bd39ac819944824",
+    "bytes": 3442357
+  },
+  {
+    "file": "60_07_occluder_west_before_foreground.png",
+    "sha256": "3288111d097cf4660dc86ed2e7fcad4e24cb1170d8bef7d5159f8caf02f93c6f",
+    "bytes": 3574930
+  },
+  {
+    "file": "61_07_occluder_west_behind.png",
+    "sha256": "fd8a07ecfb7a6e64baa58043e04190eb0d3ed9ac2046b099e83e3ce67e4d527c",
+    "bytes": 3575161
+  },
+  {
+    "file": "62_07_occluder_south_front.png",
+    "sha256": "10228f32205026b425d3fa713dc5a6d31457e996657ed826eeb24d3ea18da56c",
+    "bytes": 3561389
+  },
+  {
+    "file": "63_07_occluder_east.png",
+    "sha256": "fc03bef7eb59374151ed13191ad4f1ff8ca2539bbb5a819a0e9906f6400fda7e",
+    "bytes": 3549541
+  },
+  {
+    "file": "72_09_zoom_w_out_f1.png",
+    "sha256": "2ddaa455ffe6beb0e307dd835ef8535f8521f7de79170d89b3e73feb81afdcd8",
+    "bytes": 3539461
+  },
+  {
+    "file": "122_09_zoom_ne_out_006.png",
+    "sha256": "3afc15124a845412dbd97ad49d7226f81fb32efaf34b1fd76534ba7446ea3ed8",
+    "bytes": 3932308
+  },
+  {
+    "file": "128_10_behind_prop_0.png",
+    "sha256": "e987944bfdfa0e0db45c1b5a398315fd5c4d3ed02719489d311597ebfa2b787d",
+    "bytes": 3662540
+  },
+  {
+    "file": "129_10_behind_prop_1.png",
+    "sha256": "7474829f556382a7cde88c1541cf45e51367b12f237b4eb9d9272d7736cd0135",
+    "bytes": 3514250
+  },
+  {
+    "file": "130_10_behind_prop_2.png",
+    "sha256": "4809f33853eebb4f3a1699b14dff6342764abb6dc2fd1d562ae8bcf2067cb0ab",
+    "bytes": 3554424
+  },
+  {
+    "file": "131_10_behind_prop_3.png",
+    "sha256": "3f8f03bdddbe996dcf7a6c5c05e9d3c46634fe7f7d0d0cf9bd6c744d28ebdf8b",
+    "bytes": 3629989
+  },
+  {
+    "file": "132_10_behind_prop_4.png",
+    "sha256": "3c7c5832c95f037a15eef1f85b29d0e49b8a7ed48b8dd6ceae394fd12ef18600",
+    "bytes": 3602205
+  },
+  {
+    "file": "133_10_behind_prop_5.png",
+    "sha256": "180fefbf3caa7577a09ea3a6f1b471cfc2f6ecf0957e68cbc87a684f5df60560",
+    "bytes": 3590145
+  }
+]

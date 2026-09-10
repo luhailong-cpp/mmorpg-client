@@ -177,7 +177,11 @@ namespace MmorpgClient.World.Tianyong
             root.transform.SetParent(instance.Root.transform, false);
 
             if (tiles != null)
+            {
                 CreateTileGround(instance, root.transform, tiles);
+                TianyongPaintedForeground.AddWestLamp(instance, root.transform,
+                    tiles[TianyongPaintedForeground.SourceTileRow * TileColumns + TianyongPaintedForeground.SourceTileColumn]);
+            }
             else
                 CreateSingleImageGround(instance, root.transform, fallback,
                     new Rect(0f, 0f, TianyongMapDefinition.Width, TianyongMapDefinition.Depth));

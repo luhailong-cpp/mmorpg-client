@@ -5,6 +5,7 @@ using System.Linq;
 
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Attribute;
+using MmorpgClient.UI.Ugui.Pet;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
@@ -23,6 +24,7 @@ public static class ClientUiQaCapture
     public static void CaptureCityAttribute()
     {
         if (EditorApplication.isPlayingOrWillChangePlaymode) throw new Exception("Expected Edit Mode");
+        Directory.CreateDirectory(ClientUiRefreshVerification.OutputDirectory);
         var previousScene = SceneManager.GetActiveScene();
         var scene = EditorSceneManager.OpenScene("Assets/Scenes/World/TianyongSandbox.unity",OpenSceneMode.Additive);
         SceneManager.SetActiveScene(scene);
@@ -65,6 +67,9 @@ public static class ClientUiQaCapture
             var attribute = attributeGo.AddComponent<AttributeUiRoot>();
             Invoke(attribute,"BuildCanvas");
             Named(attributeGo,"AttributeEntry").SetActive(true);
+            var petGo = new GameObject("[CityQaPetUi]");
+            var pet = petGo.AddComponent<PetUiRoot>();
+            Invoke(pet,"BuildCanvas"); Named(petGo,"PetEntry").SetActive(true);
             var uiCameraGo = new GameObject("[CityQaOverlayCamera]");
             var uiCamera = uiCameraGo.AddComponent<Camera>();
             uiCamera.enabled = false;
@@ -76,7 +81,7 @@ public static class ClientUiQaCapture
             uiCamera.clearFlags = CameraClearFlags.Depth;
             uiCamera.targetTexture = target;
             camera.cullingMask &= ~(1 << 31);
-            foreach (var root in new[]{battleGo,attributeGo})
+            foreach (var root in new[]{battleGo,attributeGo,petGo})
             {
                 foreach (var node in root.GetComponentsInChildren<UnityEngine.Transform>(true)) node.gameObject.layer=31;
                 foreach (var canvas in root.GetComponentsInChildren<Canvas>(true))
@@ -89,10 +94,10 @@ public static class ClientUiQaCapture
                 foreach (var root in scene.GetRootGameObjects()) foreach (var text in root.GetComponentsInChildren<TMP_Text>(true)) text.ForceMeshUpdate(true,true);
                 Canvas.ForceUpdateCanvases(); camera.Render(); uiCamera.Render();
                 RenderTexture.active = target; texture.ReadPixels(new Rect(0,0,2560,1080),0,0,false); texture.Apply(false,false);
-                var path = "E:/work/image/client_ui_refresh_20260908/qa/" + name + ".png";
+                var path = Path.Combine(ClientUiRefreshVerification.OutputDirectory, name + ".png");
                 File.WriteAllBytes(path,texture.EncodeToPNG()); Debug.Log("CAPTURE_OK|"+path);
             }
-            File.WriteAllText("E:/work/image/client_ui_refresh_20260908/qa/city-render-details.txt",
+            File.WriteAllText(Path.Combine(ClientUiRefreshVerification.OutputDirectory, "city-render-details.txt"),
                 "Camera="+camera.name+" rot="+camera.transform.eulerAngles+" main="+(Camera.main==null?"NULL":Camera.main.name)+" aspect="+camera.aspect+" near="+camera.nearClipPlane+" far="+camera.farClipPlane+"\n"+
                 string.Join("\n",sandbox.Player.GetComponentsInChildren<Renderer>(true).Select(r=>r.name+" active="+r.gameObject.activeInHierarchy+" enabled="+r.enabled+" layer="+r.gameObject.layer+" position="+r.transform.position+" rotation="+r.transform.eulerAngles+" scale="+r.transform.lossyScale+" shader="+(r.sharedMaterial==null?"NULL":r.sharedMaterial.shader.name)+" bounds="+r.bounds+" sorting="+r.sortingOrder+(r is SpriteRenderer sr?" sprite="+(sr.sprite==null?"NULL":sr.sprite.name)+" color="+sr.color:""))));
             Shoot("06-main-city-native");
@@ -110,7 +115,9 @@ public static class ClientUiQaCapture
             attribute.SendMessage("HandlePanel",data); Named(attributeGo,"AttributeWindow").SetActive(true);
             Shoot("07-attribute-native");
             for(uint i=4;i<8;i++) data.Dimensions.Add(new AttributeDimensionInfo{DimensionId=101+i,PoolId=1,Name=new[]{"\u6839\u9aa8","\u609f\u6027","\u8eab\u6cd5","\u5b9a\u529b"}[i-4],Desc="\u6700\u5927\u516b\u884c\u5e03\u5c40\u9a8c\u6536\u3002",Allocated=10,Value=25,Cap=300,Sort=i});
-            attribute.SendMessage("HandlePanel",data); Shoot("07b-attribute-eight-rows-native");
+            attribute.SendMessage("HandlePanel",data); Canvas.ForceUpdateCanvases();
+            foreach(var scroll in attributeGo.GetComponentsInChildren<ScrollRect>(true)) scroll.verticalNormalizedPosition = 0f;
+            Shoot("07b-attribute-eight-rows-native");
             Debug.Log("ATTRIBUTE_OK|ROWS=8|NETWORK=disconnected");
         }
         finally

@@ -74,6 +74,7 @@ namespace MmorpgClient.World.Tianyong
             _map.UpdateVisibleChunks(player.transform.position, config?.VisibleChunkRadius ?? 3);
 
             // 离线验收:-sandboxDrive 时自动走位截图(TianyongSandboxAutoDrive);未带参数时无副作用。
+            TianyongSandboxHudVerification.TryAttach(this);
             TianyongSandboxAutoDrive.TryAttach(this);
         }
 
