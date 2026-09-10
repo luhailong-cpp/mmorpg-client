@@ -10,6 +10,18 @@ namespace MmorpgClient.Net.Generated
     {
         public static void Register(GameClient client)
         {
+            client.OnNotify(BattleClientPlayerGetBattleStateHandler.MessageId, mc => BattleClientPlayerGetBattleStateHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifyBattleAssignedHandler.MessageId, mc => BattleClientPlayerNotifyBattleAssignedHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifyBattleEndHandler.MessageId, mc => BattleClientPlayerNotifyBattleEndHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifyBattleReconnectHandler.MessageId, mc => BattleClientPlayerNotifyBattleReconnectHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifyBattleStartHandler.MessageId, mc => BattleClientPlayerNotifyBattleStartHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifySpectateEndHandler.MessageId, mc => BattleClientPlayerNotifySpectateEndHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifySpectateStateHandler.MessageId, mc => BattleClientPlayerNotifySpectateStateHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifySpectateTurnResultHandler.MessageId, mc => BattleClientPlayerNotifySpectateTurnResultHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerNotifyTurnResultHandler.MessageId, mc => BattleClientPlayerNotifyTurnResultHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerSetAutoBattleHandler.MessageId, mc => BattleClientPlayerSetAutoBattleHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerStopWatchBattleHandler.MessageId, mc => BattleClientPlayerStopWatchBattleHandler.Dispatch(client, mc));
+            client.OnNotify(BattleClientPlayerSubmitBattleActionHandler.MessageId, mc => BattleClientPlayerSubmitBattleActionHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerChatPullChatHistoryHandler.MessageId, mc => ClientPlayerChatPullChatHistoryHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerChatSendChatHandler.MessageId, mc => ClientPlayerChatSendChatHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginCreatePlayerHandler.MessageId, mc => ClientPlayerLoginCreatePlayerHandler.Dispatch(client, mc));
@@ -18,9 +30,23 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(ClientPlayerLoginLeaveGameHandler.MessageId, mc => ClientPlayerLoginLeaveGameHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginLoginHandler.MessageId, mc => ClientPlayerLoginLoginHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginRefreshTokenHandler.MessageId, mc => ClientPlayerLoginRefreshTokenHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerAllocateAttributePointsHandler.MessageId, mc => SceneAttributeClientPlayerAllocateAttributePointsHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerAutoAllocateAttributePointsHandler.MessageId, mc => SceneAttributeClientPlayerAutoAllocateAttributePointsHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerCreateAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerCreateAttributeSchemeHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerGetAttributePanelHandler.MessageId, mc => SceneAttributeClientPlayerGetAttributePanelHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerGmSetPlayerLevelHandler.MessageId, mc => SceneAttributeClientPlayerGmSetPlayerLevelHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerNotifyAttributePanelChangedHandler.MessageId, mc => SceneAttributeClientPlayerNotifyAttributePanelChangedHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerRenameAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerRenameAttributeSchemeHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerResetAttributePointsHandler.MessageId, mc => SceneAttributeClientPlayerResetAttributePointsHandler.Dispatch(client, mc));
+            client.OnNotify(SceneAttributeClientPlayerSwitchAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerSwitchAttributeSchemeHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonKickPlayerHandler.MessageId, mc => SceneClientPlayerCommonKickPlayerHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonRedirectToGateHandler.MessageId, mc => SceneClientPlayerCommonRedirectToGateHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonSendTipToClientHandler.MessageId, mc => SceneClientPlayerCommonSendTipToClientHandler.Dispatch(client, mc));
+            client.OnNotify(SceneCurrencyClientPlayerGetCurrencyListHandler.MessageId, mc => SceneCurrencyClientPlayerGetCurrencyListHandler.Dispatch(client, mc));
+            client.OnNotify(SceneCurrencyClientPlayerGmAddCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmAddCurrencyHandler.Dispatch(client, mc));
+            client.OnNotify(SceneCurrencyClientPlayerGmBlockCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmBlockCurrencyHandler.Dispatch(client, mc));
+            client.OnNotify(SceneCurrencyClientPlayerGmDeductCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmDeductCurrencyHandler.Dispatch(client, mc));
+            client.OnNotify(SceneCurrencyClientPlayerGmUnblockCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmUnblockCurrencyHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveStartHandler.MessageId, mc => SceneMovementClientPlayerMoveStartHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveStopHandler.MessageId, mc => SceneMovementClientPlayerMoveStopHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveSyncHandler.MessageId, mc => SceneMovementClientPlayerMoveSyncHandler.Dispatch(client, mc));
@@ -29,6 +55,15 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(SceneMovementClientPlayerNotifyMoveAckHandler.MessageId, mc => SceneMovementClientPlayerNotifyMoveAckHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerNotifyTeleportHandler.MessageId, mc => SceneMovementClientPlayerNotifyTeleportHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerTeleportRequestHandler.MessageId, mc => SceneMovementClientPlayerTeleportRequestHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerAllocatePetPointsHandler.MessageId, mc => ScenePetClientPlayerAllocatePetPointsHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerAutoAllocatePetPointsHandler.MessageId, mc => ScenePetClientPlayerAutoAllocatePetPointsHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerGetPetListHandler.MessageId, mc => ScenePetClientPlayerGetPetListHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerGmGrantPetHandler.MessageId, mc => ScenePetClientPlayerGmGrantPetHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerNotifyPetListChangedHandler.MessageId, mc => ScenePetClientPlayerNotifyPetListChangedHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerRecallPetHandler.MessageId, mc => ScenePetClientPlayerRecallPetHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerRenamePetHandler.MessageId, mc => ScenePetClientPlayerRenamePetHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerResetPetPointsHandler.MessageId, mc => ScenePetClientPlayerResetPetPointsHandler.Dispatch(client, mc));
+            client.OnNotify(ScenePetClientPlayerSummonPetHandler.MessageId, mc => ScenePetClientPlayerSummonPetHandler.Dispatch(client, mc));
             client.OnNotify(SceneSceneClientPlayerEnterSceneHandler.MessageId, mc => SceneSceneClientPlayerEnterSceneHandler.Dispatch(client, mc));
             client.OnNotify(SceneSceneClientPlayerNotifyActorCreateHandler.MessageId, mc => SceneSceneClientPlayerNotifyActorCreateHandler.Dispatch(client, mc));
             client.OnNotify(SceneSceneClientPlayerNotifyActorDestroyHandler.MessageId, mc => SceneSceneClientPlayerNotifyActorDestroyHandler.Dispatch(client, mc));

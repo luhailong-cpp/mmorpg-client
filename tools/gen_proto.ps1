@@ -47,6 +47,7 @@ $files = @(
     "proto/common/component/player_skill_comp.proto",
     "proto/common/component/actor_attribute_state_comp.proto",
     "proto/common/component/player_attribute_comp.proto",
+    "proto/common/component/currency_comp.proto",
     "proto/db/proto_option.proto",
     "proto/login/login.proto",
     "proto/scene/scene_info.proto",
@@ -62,7 +63,13 @@ $files = @(
     # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
     "proto/battle/battle_data.proto",
     "proto/battle/player_battle.proto",
-    "proto/match/match_service.proto"
+    "proto/match/match_service.proto",
+
+    # 货币 / 宠物。handler 生成器(gen_messageids.ps1 + protogen)是按服务端 proto 全量出
+    # handler 的,这份清单漏配哪个 proto,就会多出一批引用不存在类型的 handler(CS0246)。
+    # 服务端新增 proto 时,这里必须同步加,否则下次重生成必红。
+    "proto/scene/player_currency.proto",
+    "proto/scene/player_pet.proto"
 )
 
 Push-Location $ProtoRoot
