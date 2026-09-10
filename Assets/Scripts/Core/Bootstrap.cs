@@ -37,6 +37,10 @@ namespace MmorpgClient.Core
             MmorpgLogger.Info($"client boot, log={MmorpgLogger.LogPath}", "boot");
 
             Client = new GameClient(ClientSettings.GatewayBaseUrl);
+            // 跨区/跨 gate 重定向(msg 124 RedirectToGateNotify)要在通知处理器里起一条协程
+            // 换连接重登录;没有宿主的话 GameClient 只能报错断线,玩家会被服务端的重定向丢下。
+            // AppBootstrap 走的是它自己的 Run,这里是另一个持有 GameClient 的根,同样要挂。
+            Client.CoroutineRunner = StartCoroutine;
             Client.OnLog += s => MmorpgLogger.Info(s, "net");
             Application.targetFrameRate = 60;
         }

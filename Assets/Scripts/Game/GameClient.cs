@@ -55,6 +55,7 @@ namespace MmorpgClient.Game
         private bool _enteredScene;            // set by NotifyEnterScene
         private bool _redirecting;             // RedirectToGateNotify flow active
         private ulong _redirectPlayerId;       // 重定向前的角色 id(重连后沿用,不重新选角)
+        private int _redirectHops;             // 本会话已跟随的重定向次数(环路熔断,EnterZone 归零)
         private bool _disconnectNotificationSent = true;
         private bool _disconnectInProgress;
 
@@ -246,6 +247,9 @@ namespace MmorpgClient.Game
         {
             int gen = ++_pipelineGen;
             ResetConnectionState(); // 清掉上一次失败/遗留的连接与 pending 状态
+            // 重定向跳数按"一次登录会话"计:这里是新会话的起点,把熔断计数归零,
+            // 否则上一条会话用掉的跳数会把这条会话的正常重定向提前掐死。
+            _redirectHops = 0;
             Account = account;
 
             // ── 1. HTTP login (issues access/refresh tokens + player list) ──
@@ -353,16 +357,31 @@ namespace MmorpgClient.Game
         /// Steps 3-6 of the pipeline, shared with the redirect flow (which
         /// receives raw token bytes from RedirectToGateNotify instead of
         /// base64 JSON fields).
+        ///
+        /// <paramref name="preConnected"/> 是重定向专用:那条路必须"先连上新 gate、
+        /// 再关旧的",所以建连接这一步由 <see cref="RedirectFlow"/> 提前做掉,这里只接管。
+        /// 传 null 时按老路自己建连接(EnterZone 首次进入,本来就没有旧连接要保)。
         /// </summary>
         private IEnumerator ConnectAndEnter(int gen, uint zoneId, string ip, int port, byte[] payload, byte[] signature,
                                             string passwordFallback,
-                                            Action onSuccess, Action<string> onError)
+                                            Action onSuccess, Action<string> onError,
+                                            GateTcpClient preConnected = null)
         {
-            if (gen != _pipelineGen) yield break;
+            // 世代已经翻篇:预建的连接没人接管了,必须自己关掉,否则泄漏一条 TCP + 两个线程。
+            if (gen != _pipelineGen) { preConnected?.Dispose(); yield break; }
             Status("正在连接服务器…");
+            if (preConnected != null)
+            {
+                AdoptGate(preConnected);
+            }
+            else
+            {
+                try { ConnectGate(ip, port); }
+                catch (Exception ex) { FailPipeline(gen, onError, $"connect gate: {ex.Message}"); yield break; }
+            }
+            // 连上之后才认这个地址:失败时 AssignedGate 还是老 gate,
+            // 跨区验证脚本读到的"落区证据"就不会是一条从没连上过的地址。
             AssignedGate = $"{ip}:{port}";
-            try { ConnectGate(ip, port); }
-            catch (Exception ex) { FailPipeline(gen, onError, $"connect gate: {ex.Message}"); yield break; }
 
             _gate.OnMessage += DispatchInbound;
             _gate.OnDisconnected += HandleTransportDisconnected;
@@ -558,9 +577,140 @@ namespace MmorpgClient.Game
         }
 
         // ── Redirect (cross-zone / gate migration) ───────────────────────
+        //
+        // 服务端半边只做一件事:cpp/nodes/gate/handler/event/gate_event_handler.cpp
+        // 的 RedirectToGateEventHandler 把 target_ip / target_port / token_payload /
+        // token_signature / token_deadline 打进 RedirectToGateNotify(msg 124)推给客户端,
+        // **搬迁动作全在客户端**。login 侧开关 HomeZone.RedirectOnEnterEnabled 默认关着,
+        // 正是因为客户端不做下面这套动作就会卡死:login 的 EnterGame 那时已经回了成功
+        // 并清掉了登录会话,老 gate 上再没有任何东西会推进这个玩家,客户端自己重试只会撞
+        // kLoginSessionNotFound。
+        //
+        // 契约里最容易误解的一点:票据只认证**这一条 TCP**,不是跨区的登录会话转移。
+        // 目标 gate 校验 HMAC-SHA256(gate_token_secret, token_payload) 与 token_signature
+        // 常数时间相等,再解出 GateTokenPayload 校验 gate_node_id == 本 gate、
+        // expire_timestamp > now(cpp/nodes/gate/handler/rpc/client_message_processor.cpp
+        // DispatchTokenVerify)。校验通过只是把这条连接标成 verified —— 新 zone 的 login
+        // 那边**没有**任何会话。所以必须完整重跑 Login + EnterGame,这正是 ConnectAndEnter
+        // 干的事,**不能跳**;跳掉的客户端会连上一个哑连接,表现为"重定向后卡死"。
+        //
+        // 参考实现逐条对齐 robot/pkg/redirect.go 的 FollowRedirect:
+        //   ① 本地校验目标(地址 + token_deadline)  ② 环路熔断  ③ 可达性探测
+        //   ④ 换连接(先连新、后关旧)              ⑤ 票据原样转发  ⑥ 重跑 Login+EnterGame
+        //
+        // robot 的第 ⑦ 步"补投握手期间攒下的推送"(ReplayDeferred)在这里**不需要对应代码**:
+        // GateTcpClient 的读线程始终把帧塞进 _inbox 这条 ConcurrentQueue,握手期间到达的推送
+        // 一条都没丢;ConnectAndEnter 的等待循环每帧调 Tick() → _gate.Poll(),队列自然被排空。
+        // 换句话说 inbox 本身就是 robot 那个 deferred 队列,而且不需要显式 replay。
+        // (对应地,GateTcpClient.Poll 里的 _disposed 判据保证旧连接残留的帧不会漏到新会话上。)
+
+        /// <summary>
+        /// 一条登录会话允许连续跟随的重定向次数上限,与 robot 的 MaxRedirectHops 同值。
+        /// 配错的归属映射(A 的映射指向 B、B 的又指回 A)会让两边 gate 互相踢皮球,
+        /// 没有这道熔断就是一个不停重连的死循环。
+        /// </summary>
+        public const int MaxRedirectHops = 3;
+
+        /// <summary>目标 gate 可达性探测预算(秒),与 robot redirectDialTimeout 同值。</summary>
+        private const float RedirectProbeTimeoutSec = 5f;
+
+        /// <summary>
+        /// 只做本地可判的检查,不碰网络;返回 null 表示通过,否则是给人看的失败原因。
+        /// 对齐 robot/pkg/redirect.go 的 RedirectTarget.Validate。
+        /// </summary>
+        private static string ValidateRedirectTarget(RedirectToGateNotify ev)
+        {
+            if (ev == null) return "empty notify";
+            if (string.IsNullOrWhiteSpace(ev.TargetIp)) return "empty target_ip";
+            if (ev.TargetPort == 0 || ev.TargetPort > 65535) return $"invalid target_port {ev.TargetPort}";
+            // token_deadline 是 gate 侧 GateTokenPayload.expire_timestamp 的副本,单位是
+            // **unix 秒**(不是本仓库常见的毫秒)。已经过期就不用白跑一趟:换完连接目标 gate
+            // 必然回 token_expired 并把连接关掉,那时老连接已经没了,会话就此报废 ——
+            // 不如趁还连着老 gate 的时候失败出去。
+            if (ev.TokenDeadline > 0)
+            {
+                long now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                if (now >= ev.TokenDeadline)
+                    return $"gate token already expired (deadline={ev.TokenDeadline}, now={now})";
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 目标 gate 可达性探测:拨通就挂,只为把"地址不对"变成一条立刻可见的错误。
+        ///
+        /// 为什么非探不可:换连接用的 <c>TcpClient.Connect</c> 是**同步阻塞**的,拿它去连一个
+        /// 被黑洞掉的 target_ip,Unity 主线程会卡满 SYN 重试(Windows 上约 21 秒),整个客户端
+        /// 表现为"静默卡死" —— 与 robot 那边 muduo 拨号永不返回错误是同一类症状
+        /// (见 robot/pkg/redirect.go 的 probeTCP)。先用带超时的异步连接探一次,不通就在
+        /// **还连着老 gate** 的时候失败出去。
+        /// </summary>
+        private static IEnumerator ProbeGate(string host, int port, float timeoutSec, Action<string> onFail)
+        {
+            System.Net.Sockets.TcpClient probe = null;
+            System.Threading.Tasks.Task task = null;
+            string err = null;
+            try
+            {
+                probe = new System.Net.Sockets.TcpClient { NoDelay = true };
+                task = probe.ConnectAsync(host, port);
+            }
+            catch (Exception ex) { err = ex.Message; }
+
+            if (err == null)
+            {
+                float deadline = Time.realtimeSinceStartup + timeoutSec;
+                while (!task.IsCompleted && Time.realtimeSinceStartup < deadline) yield return null;
+                if (!task.IsCompleted)
+                {
+                    err = $"connect timed out after {timeoutSec:0.#}s";
+                    // 下面 Close 之后这个 Task 必然以异常收场。不观察它,.NET 会在终结器线程上
+                    // 抛 UnobservedTaskException,在播放器日志里就是一条没有上下文的无主报错。
+                    task.ContinueWith(t => { _ = t.Exception; },
+                                      System.Threading.Tasks.TaskScheduler.Default);
+                }
+                else if (task.IsFaulted)
+                {
+                    err = task.Exception?.GetBaseException().Message ?? "connect failed";
+                }
+            }
+            try { probe?.Close(); } catch { }
+            if (err != null) onFail(err);
+        }
+
+        /// <summary>
+        /// 重定向失败的统一出口。**刻意不做静默丢弃**:走到这里说明这条会话已经没救了 ——
+        /// 老 gate 的登录会话在 EnterGame 成功时就被清掉,不会再有 RoutePlayer 到来,
+        /// 悄悄咽下去只会让玩家卡在一条哑连接上。所以既要炸出可见的错误,也要主动断线,
+        /// 把控制权交回外层(UI 回登录 / DevAutoPilot 判失败)。
+        ///
+        /// 换连接**之前**失败时老连接其实还活着,这里主动断掉是刻意的:重定向意味着服务端
+        /// 已经认定这个玩家的归属不在本 zone,继续赖在老 gate 上没有意义。
+        /// 换连接**之后**失败由 ConnectAndEnter 的 FailPipeline 走同一条路(见 RedirectFlow 的 onError)。
+        /// </summary>
+        private void FailRedirect(string target, string reason)
+        {
+            LogError($"[gate] redirect to {target} failed: {reason}");
+            Status("切换服务器失败,请重新登录");
+            DisconnectInternal(notify: true, forceNotification: true);
+        }
 
         private IEnumerator RedirectFlow(RedirectToGateNotify ev)
         {
+            string target = $"{ev?.TargetIp}:{ev?.TargetPort}";
+
+            // ① 本地判据先行。这一段全部在**老连接还活着**的时候做完,失败即就地作废。
+            string invalid = ValidateRedirectTarget(ev);
+            if (invalid != null) { FailRedirect(target, invalid); yield break; }
+
+            // ② 环路熔断(robot MaxRedirectHops 同值同语义)。
+            if (_redirectHops >= MaxRedirectHops)
+            {
+                FailRedirect(target, $"hop limit reached ({MaxRedirectHops} hops), refusing to follow");
+                yield break;
+            }
+            _redirectHops++;
+
             int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
             _redirecting = true;
             _redirectPlayerId = PlayerId; // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色
@@ -572,18 +722,58 @@ namespace MmorpgClient.Game
             // OnPlayerEnterScene 的两步守卫)。那种情况下服务端连 BindBattleEvent 也不会重发,
             // 新 gate 上没有战斗绑定,gate 中继同样断 —— 主动补签直连是唯一能自愈的一侧。
             ulong battleIdBeforeRedirect = BattleLink?.BattleId ?? 0;
+
+            // 从这一刻起,老连接不再驱动任何状态 —— 但**先不关**(还要留着兜底,见 ③)。
+            //
+            // robot 那边靠"换连接必须由 RecvLoop 自己做"来保证这件事:单线程的接收循环
+            // 停在处理器里,老连接期间不可能再派发任何东西。Unity 这边没有这种天然屏障:
+            // 本处理器是在 _gate.Poll() 的调用栈里跑的,Poll 返回之后主循环每帧还会接着
+            // 派发老连接的消息,而 ③ 的探测会 yield 几帧甚至几秒。那段时间里,老 zone 的
+            // 推送是噪声,更糟的是老 gate 万一先断开,HandleTransportDisconnected 会抢在
+            // 重定向完成之前把 UI 打回登录。摘掉这两个事件就把窗口封死了。
+            var stale = _gate;
+            if (stale != null)
+            {
+                stale.OnMessage -= DispatchInbound;
+                stale.OnDisconnected -= HandleTransportDisconnected;
+            }
+
             Status("正在切换服务器…");
-            Log($"[gate] redirect to {ev.TargetIp}:{ev.TargetPort}");
+            Log($"[gate] redirect to {target} hop={_redirectHops}/{MaxRedirectHops} " +
+                $"token_payload={ev.TokenPayload.Length}B deadline={ev.TokenDeadline}");
             try
             {
-                ResetConnectionState();
+                // ③ 探一次目标 gate 通不通(理由见 ProbeGate)。
+                //    老连接此刻还连着(只是上面刚摘掉了事件,不再派发),探不通就在这里失败,
+                //    不会出现"关了旧的又连不上新的"的裸奔窗口。
+                string probeErr = null;
+                yield return ProbeGate(ev.TargetIp, (int)ev.TargetPort, RedirectProbeTimeoutSec,
+                                       e => probeErr = e);
+                if (gen != _pipelineGen) yield break;
+                if (probeErr != null)
+                {
+                    FailRedirect(target, $"target gate unreachable: {probeErr}");
+                    yield break;
+                }
+
+                // ④ 换连接:**先把新连接建起来**,确认成功之后才关旧的
+                //    (次序对齐 robot SwapConn;理由见 OpenGate 的注释)。
+                GateTcpClient fresh = null;
+                string connErr = null;
+                try { fresh = OpenGate(ev.TargetIp, (int)ev.TargetPort); }
+                catch (Exception exc) { connErr = exc.Message; }
+                if (connErr != null) { FailRedirect(target, $"connect gate: {connErr}"); yield break; }
+
+                ResetConnectionState();   // 旧连接与旧 zone 的会话状态到这一刻才清掉
+                // ⑤⑥ 票据 payload / signature **原样**转发(签名是 64 个 ASCII 十六进制字符
+                //     装在 bytes 里,绝不能解码),随后在新连接上完整重跑 Login + EnterGame。
                 yield return ConnectAndEnter(gen, 0,
                     ev.TargetIp, (int)ev.TargetPort,
                     ev.TokenPayload.ToByteArray(), ev.TokenSignature.ToByteArray(),
                     null,
                     () =>
                     {
-                        Log("[gate] redirect complete");
+                        Log($"[gate] redirect complete gate={AssignedGate} player_id={PlayerId} hops={_redirectHops}");
                         if (battleIdBeforeRedirect != 0)
                         {
                             // 与服务端可能推来的 NotifyBattleReconnect 幂等(链路内部按
@@ -594,9 +784,13 @@ namespace MmorpgClient.Game
                     },
                     e =>
                     {
-                        Log($"[gate] redirect failed: {e}");
+                        // 已经换过连接了:老连接关了、老 zone 的登录会话也早没了,这条会话就是死的。
+                        // FailPipeline 已经 ResetConnectionState,这里补一次带通知的断线让 UI 收场。
+                        LogError($"[gate] redirect to {target} failed after swap: {e}");
+                        Status("切换服务器失败,请重新登录");
                         DisconnectInternal(notify: true, forceNotification: true);
-                    });
+                    },
+                    preConnected: fresh);
             }
             finally { _redirecting = false; }
         }
@@ -707,7 +901,30 @@ namespace MmorpgClient.Game
 
         // ── internals ────────────────────────────────────────────
 
-        private void ConnectGate(string host, int port)
+        private void ConnectGate(string host, int port) => AdoptGate(OpenGate(host, port));
+
+        /// <summary>
+        /// 建一条新的 gate 连接但**不接管**:不碰 _gate / _pending / TokenVerified。
+        /// 抛异常时内部已经把半成品连接关掉了,调用方不用善后。
+        ///
+        /// 之所以要把"建连接"和"接管"拆开:重定向必须先把新连接建起来、确认成功之后
+        /// 才允许关旧连接(对齐 robot/pkg/client.go GameClient.SwapConn 的次序)。
+        /// 反过来先关旧的,一旦新 gate 连不上,玩家就被扔在一条已经关掉的连接上,
+        /// 谁也救不回来 —— 老 gate 那边的登录会话早在 EnterGame 成功时就被清掉了。
+        /// </summary>
+        private GateTcpClient OpenGate(string host, int port)
+        {
+            var fresh = new GateTcpClient(_codec);
+            fresh.OnError += e => Log($"[gate] error: {e}");
+            try { fresh.Connect(host, port); }
+            catch { fresh.Dispose(); throw; }
+            return fresh;
+        }
+
+        /// <summary>
+        /// 接管一条已经建好的连接。旧连接在这一刻(新连接确定可用之后)才关。
+        /// </summary>
+        private void AdoptGate(GateTcpClient fresh)
         {
             _gate?.Dispose();
             // A fresh connection means a fresh session: stale pending entries
@@ -715,9 +932,7 @@ namespace MmorpgClient.Game
             _pending.Clear();
             _pendingIdsByMsg.Clear();
             TokenVerified = false;
-            _gate = new GateTcpClient(_codec);
-            _gate.OnError += e => Log($"[gate] error: {e}");
-            _gate.Connect(host, port);
+            _gate = fresh;
             _disconnectNotificationSent = false;
         }
 
@@ -923,13 +1138,34 @@ namespace MmorpgClient.Game
             });
 
             // Cross-zone / gate migration: the server hands us a fresh gate
-            // endpoint + token; drop the old link and re-run the connect
-            // pipeline against the new gate.
+            // endpoint + token; connect to the new gate, then drop the old link
+            // and re-run the whole connect pipeline there. 详见 RedirectFlow 上方的注释。
+            //
+            // 这里是 msg 124 在本工程里**唯一**的处理器。Net/Generated/Handlers 下那个
+            // SceneClientPlayerCommonRedirectToGateHandler 是 protogen 出的空壳:它要靠
+            // Net/Generated/HandlerRegistry.Register(client) 才会挂上,而本工程从未调用过
+            // 那个 Register(全仓唯一出现处就是它自己的定义)。真正的注册表是这里的 OnNotify。
+            // ⚠️ OnNotify 是覆盖语义:一旦有人把 HandlerRegistry.Register 接上,生成的空壳
+            // 会**静默盖掉**下面这个处理器,重定向就又变回"服务端推了、客户端什么都不做"。
+            // 要接生成层的话,必须让它在 WireSceneNotifyHandlers 之前跑,或者干脆别接。
             OnNotify(MessageIds.RedirectToGate, mc =>
             {
                 var ev = RedirectToGateNotify.Parser.ParseFrom(mc.SerializedMessage);
-                if (_redirecting) { Log("[gate] redirect ignored (already redirecting)"); return; }
-                if (CoroutineRunner == null) { Log("[gate] redirect dropped: no coroutine runner"); return; }
+                if (_redirecting)
+                {
+                    // 已经在搬了,重复推送忽略即可 —— 玩家没有被丢下,不算静默丢弃。
+                    Log($"[gate] redirect ignored (already redirecting) target={ev.TargetIp}:{ev.TargetPort}");
+                    return;
+                }
+                if (CoroutineRunner == null)
+                {
+                    // 没有协程宿主 = 没人能跑这套流程。老 gate 的登录会话早已被 EnterGame 清掉,
+                    // 静默丢弃就是把玩家永久钉死在一条哑连接上(重试只会撞 kLoginSessionNotFound)。
+                    // 宁可炸出来并断线,让外层重连兜底。
+                    LogError($"[gate] redirect dropped: no coroutine runner (target={ev.TargetIp}:{ev.TargetPort})");
+                    DisconnectInternal(notify: true, forceNotification: true);
+                    return;
+                }
                 CoroutineRunner(RedirectFlow(ev));
             });
 
@@ -1127,6 +1363,18 @@ namespace MmorpgClient.Game
 
         private void Log(string s) => OnLog?.Invoke(s);
         private void Status(string s) { OnFlowStatus?.Invoke(s); Log(s); }
+
+        /// <summary>
+        /// 会让会话报废的错误走这里,要炸得看得见:Debug.LogError 在编辑器 Console 里是红的,
+        /// 也会带堆栈进播放器日志 —— 跨区验证脚本(tools/run_crosszone_pair.ps1)与
+        /// tools/build_crosszone_player.ps1 都是直接 grep 播放器日志的。同时照常走 OnLog,
+        /// 挂在上面的文件日志(MmorpgLogger)与 UI 一条都不少。
+        /// </summary>
+        private void LogError(string s)
+        {
+            OnLog?.Invoke(s);
+            Debug.LogError("[GameClient] " + s);
+        }
 
         private void HandleTransportDisconnected()
             => DisconnectInternal(notify: true, forceNotification: false);
