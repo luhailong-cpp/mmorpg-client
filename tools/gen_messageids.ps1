@@ -114,6 +114,11 @@ $whitelist = @{
     "ScenePetClientPlayerRenamePet"                          = "RenamePet"
     "ScenePetClientPlayerNotifyPetListChanged"               = "NotifyPetListChanged"
     "ScenePetClientPlayerGmGrantPet"                         = "GmGrantPet"
+    # 背包、任务、活动窗口（正式协议注册表分配编号）。
+    "SceneBagClientPlayerGetBag"                            = "GetBag"
+    "SceneBagClientPlayerSortBag"                           = "SortBag"
+    "SceneMissionClientPlayerGetMissionList"                = "GetMissionList"
+    "SceneActivityClientPlayerGetActivityList"              = "GetActivityList"
 
     # 客户端直连 battle 节点(turn-based-battle-server.md §18):落点分配推送 + 丢票补签
     "BattleClientPlayerNotifyBattleAssigned"       = "NotifyBattleAssigned"
@@ -156,7 +161,7 @@ foreach ($e in $emit) {
 [void]$sb.AppendLine("    }")
 [void]$sb.AppendLine("}")
 
-Set-Content -LiteralPath $outFile -Value $sb.ToString() -Encoding UTF8 -NoNewline
+Set-Content -LiteralPath $outFile -Value ($sb.ToString().Replace("`r`n", "`n")) -Encoding UTF8 -NoNewline
 Write-Host "[gen_messageids] wrote $outFile ($($emit.Count) entries)"
 if ($missing.Count -gt 0) {
     Write-Warning ("[gen_messageids] missing in message_id.txt: " + ($missing -join ", "))

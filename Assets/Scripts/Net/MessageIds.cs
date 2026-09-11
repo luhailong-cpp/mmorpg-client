@@ -17,8 +17,11 @@ namespace MmorpgClient.Net
         public const uint Disconnect             =   58; // ClientPlayerLoginDisconnect
         public const uint EnterGame              =   26; // ClientPlayerLoginEnterGame
         public const uint EnterScene             =   63; // SceneSceneClientPlayerEnterScene
+        public const uint GetActivityList        =  190; // SceneActivityClientPlayerGetActivityList
         public const uint GetAttributePanel      =  167; // SceneAttributeClientPlayerGetAttributePanel
+        public const uint GetBag                 =  191; // SceneBagClientPlayerGetBag
         public const uint GetBattleState         =  140; // BattleClientPlayerGetBattleState
+        public const uint GetMissionList         =  193; // SceneMissionClientPlayerGetMissionList
         public const uint GetPetList             =  181; // ScenePetClientPlayerGetPetList
         public const uint GetQueueStatus         =  153; // MatchServiceGetQueueStatus
         public const uint GmGrantPet             =  187; // ScenePetClientPlayerGmGrantPet
@@ -68,6 +71,7 @@ namespace MmorpgClient.Net
         public const uint RespondChallenge       =  151; // MatchServiceRespondChallenge
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
         public const uint SetAutoBattle          =  162; // BattleClientPlayerSetAutoBattle
+        public const uint SortBag                =  192; // SceneBagClientPlayerSortBag
         public const uint StopWatchBattle        =  165; // BattleClientPlayerStopWatchBattle
         public const uint SubmitBattleAction     =  149; // BattleClientPlayerSubmitBattleAction
         public const uint SummonPet              =  183; // ScenePetClientPlayerSummonPet

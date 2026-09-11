@@ -6,6 +6,7 @@ using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Pet;
+using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Net;
 using MmorpgClient.World;
 using UnityEngine;
@@ -119,6 +120,8 @@ namespace MmorpgClient.Game
         /// </summary>
         public PetClient Pets { get; }
 
+        public PlayerFeaturesClient Features { get; }
+
         /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
         public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
 
@@ -196,6 +199,7 @@ namespace MmorpgClient.Game
             Spectate = SpectateClient.Attach(new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink));
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
             Pets = PetClient.Attach(new GameClientBattleTransport(this));
+            Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));
         }
 
         public GatewayHttpClient Http => _http;

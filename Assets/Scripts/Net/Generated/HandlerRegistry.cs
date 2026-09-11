@@ -30,6 +30,7 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(ClientPlayerLoginLeaveGameHandler.MessageId, mc => ClientPlayerLoginLeaveGameHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginLoginHandler.MessageId, mc => ClientPlayerLoginLoginHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginRefreshTokenHandler.MessageId, mc => ClientPlayerLoginRefreshTokenHandler.Dispatch(client, mc));
+            client.OnNotify(SceneActivityClientPlayerGetActivityListHandler.MessageId, mc => SceneActivityClientPlayerGetActivityListHandler.Dispatch(client, mc));
             client.OnNotify(SceneAttributeClientPlayerAllocateAttributePointsHandler.MessageId, mc => SceneAttributeClientPlayerAllocateAttributePointsHandler.Dispatch(client, mc));
             client.OnNotify(SceneAttributeClientPlayerAutoAllocateAttributePointsHandler.MessageId, mc => SceneAttributeClientPlayerAutoAllocateAttributePointsHandler.Dispatch(client, mc));
             client.OnNotify(SceneAttributeClientPlayerCreateAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerCreateAttributeSchemeHandler.Dispatch(client, mc));
@@ -39,6 +40,8 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(SceneAttributeClientPlayerRenameAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerRenameAttributeSchemeHandler.Dispatch(client, mc));
             client.OnNotify(SceneAttributeClientPlayerResetAttributePointsHandler.MessageId, mc => SceneAttributeClientPlayerResetAttributePointsHandler.Dispatch(client, mc));
             client.OnNotify(SceneAttributeClientPlayerSwitchAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerSwitchAttributeSchemeHandler.Dispatch(client, mc));
+            client.OnNotify(SceneBagClientPlayerGetBagHandler.MessageId, mc => SceneBagClientPlayerGetBagHandler.Dispatch(client, mc));
+            client.OnNotify(SceneBagClientPlayerSortBagHandler.MessageId, mc => SceneBagClientPlayerSortBagHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonKickPlayerHandler.MessageId, mc => SceneClientPlayerCommonKickPlayerHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonRedirectToGateHandler.MessageId, mc => SceneClientPlayerCommonRedirectToGateHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonSendTipToClientHandler.MessageId, mc => SceneClientPlayerCommonSendTipToClientHandler.Dispatch(client, mc));
@@ -47,6 +50,7 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(SceneCurrencyClientPlayerGmBlockCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmBlockCurrencyHandler.Dispatch(client, mc));
             client.OnNotify(SceneCurrencyClientPlayerGmDeductCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmDeductCurrencyHandler.Dispatch(client, mc));
             client.OnNotify(SceneCurrencyClientPlayerGmUnblockCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmUnblockCurrencyHandler.Dispatch(client, mc));
+            client.OnNotify(SceneMissionClientPlayerGetMissionListHandler.MessageId, mc => SceneMissionClientPlayerGetMissionListHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveStartHandler.MessageId, mc => SceneMovementClientPlayerMoveStartHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveStopHandler.MessageId, mc => SceneMovementClientPlayerMoveStopHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveSyncHandler.MessageId, mc => SceneMovementClientPlayerMoveSyncHandler.Dispatch(client, mc));

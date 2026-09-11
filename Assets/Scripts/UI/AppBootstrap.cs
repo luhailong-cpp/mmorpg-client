@@ -236,6 +236,7 @@ namespace MmorpgClient.UI
                 GameClient.CoroutineRunner = null;
                 if (_gameLogHandler != null) GameClient.OnLog -= _gameLogHandler;
                 GameClient.Disconnect();
+                GameClient.Features?.Dispose();
             }
 
             _gameLogHandler = null;
