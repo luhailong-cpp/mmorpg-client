@@ -59,7 +59,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             _root = window.rectTransform;
 
             CreatePaintedPanel("TitlePlate", _root, 630f, -70f, 780f, 131f, "title_plate");
-            QdaoUguiFactory.CreateImage("Title", _root, 885f, -12f, 270f, 60f,
+            QdaoUguiFactory.CreateImage("Title", _root, 885f, -32f, 270f, 60f,
                 LoadPainted("title_pet")).preserveAspect = true;
             var close = CreateAction("Close", _root,
                 PetUiStyle.WindowW - 34f, -14f, 82f, 82f, string.Empty, false);

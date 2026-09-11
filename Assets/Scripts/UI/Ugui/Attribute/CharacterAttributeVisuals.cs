@@ -120,7 +120,10 @@ namespace MmorpgClient.UI.Ugui.Attribute
             Skin(fill, "slider_fill");
             fill.pixelsPerUnitMultiplier = 23f / 24f;
             Place((RectTransform)slider.handleRect.parent, 30f, 0f, sliderWidth - 60f, 60f);
-            slider.handleRect.sizeDelta = new Vector2(60f, 60f);
+            // Slider stretches the handle's vertical anchors across its area; a 60px sizeDelta
+            // would add another 60px to that area. Size the rect without changing driven anchors.
+            slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 60f);
+            slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 60f);
             Skin(slider.handleRect.GetComponent<Image>(), "slider_thumb");
             slider.transition = Selectable.Transition.ColorTint;
             return row;

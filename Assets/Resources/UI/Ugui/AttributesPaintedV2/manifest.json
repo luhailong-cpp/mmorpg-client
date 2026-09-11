@@ -1,1 +1,2559 @@
-{"tool":"Unity official MCP / Unity_RunCommand","unityVersion":"6000.6.0f1","referenceCoordinates":"1440-wide top-left reference coordinates; each source is mapped independently to native pixels","sprites":[{"name":"window_frame","source":"character","width":1546,"height":743,"sourceRectTopLeft":[128,31,1152,554],"sourceRectNativeTopLeft":[172,42,1545,743],"borderLeftBottomRightTop":[97,74,97,99],"processing":"Nine-part assembly from original gold corners/edges and blank paper; excludes all controls and data.","resourcePath":"UI/Ugui/AttributesPaintedV2/window_frame","containsDynamicText":false,"containsStaticTitle":false},{"name":"paper_tile","source":"character","width":375,"height":57,"sourceRectTopLeft":[862,95,280,42],"sourceRectNativeTopLeft":[1157,127,375,57],"borderLeftBottomRightTop":[11,11,11,11],"processing":"Exact native-pixel crop.","resourcePath":"UI/Ugui/AttributesPaintedV2/paper_tile","containsDynamicText":false,"containsStaticTitle":false},{"name":"title_plate","source":"character","width":655,"height":110,"sourceRectTopLeft":[477,0,488,82],"sourceRectNativeTopLeft":[640,0,655,110],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Original title ornament and taiji; lettering replaced from clean jade pixels.","resourcePath":"UI/Ugui/AttributesPaintedV2/title_plate","containsDynamicText":false,"containsStaticTitle":false},{"name":"title_character","source":"character","width":221,"height":48,"sourceRectTopLeft":[638,37,165,36],"sourceRectNativeTopLeft":[856,50,221,48],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Fixed title calligraphy extracted by luminance from jade background; transparent, no dynamic values.","resourcePath":"UI/Ugui/AttributesPaintedV2/title_character","containsDynamicText":false,"containsStaticTitle":true},{"name":"title_pet","source":"pet","width":212,"height":47,"sourceRectTopLeft":[640,38,158,35],"sourceRectNativeTopLeft":[858,51,212,47],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Fixed title calligraphy extracted by luminance from jade background; transparent, no dynamic values.","resourcePath":"UI/Ugui/AttributesPaintedV2/title_pet","containsDynamicText":false,"containsStaticTitle":true},{"name":"button_primary","source":"character","width":376,"height":97,"sourceRectTopLeft":[815,483,280,72],"sourceRectNativeTopLeft":[1093,648,376,97],"borderLeftBottomRightTop":[66,30,66,30],"processing":"Original gold scroll ends and jade plate; text removed from clean neighboring rows.","resourcePath":"UI/Ugui/AttributesPaintedV2/button_primary","containsDynamicText":false,"containsStaticTitle":false},{"name":"button_secondary","source":"character","width":271,"height":82,"sourceRectTopLeft":[575,488,202,61],"sourceRectNativeTopLeft":[771,655,271,82],"borderLeftBottomRightTop":[30,27,30,27],"processing":"Original ivory button frame; text removed.","resourcePath":"UI/Ugui/AttributesPaintedV2/button_secondary","containsDynamicText":false,"containsStaticTitle":false},{"name":"button_scheme","source":"character","width":389,"height":79,"sourceRectTopLeft":[189,76,290,59],"sourceRectNativeTopLeft":[254,102,389,79],"borderLeftBottomRightTop":[30,24,30,24],"processing":"Empty scheme dropdown plate; arrow supplied separately.","resourcePath":"UI/Ugui/AttributesPaintedV2/button_scheme","containsDynamicText":false,"containsStaticTitle":false},{"name":"dropdown_arrow","source":"character","width":36,"height":27,"sourceRectTopLeft":[431,96,27,20],"sourceRectNativeTopLeft":[578,129,36,27],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Original fixed dropdown symbol.","resourcePath":"UI/Ugui/AttributesPaintedV2/dropdown_arrow","containsDynamicText":false,"containsStaticTitle":false},{"name":"tab_horizontal","source":"character","width":279,"height":71,"sourceRectTopLeft":[527,91,208,53],"sourceRectNativeTopLeft":[707,122,279,71],"borderLeftBottomRightTop":[27,24,27,24],"processing":"Empty jade attribute-points tab.","resourcePath":"UI/Ugui/AttributesPaintedV2/tab_horizontal","containsDynamicText":false,"containsStaticTitle":false},{"name":"section_header","source":"pet","width":422,"height":57,"sourceRectTopLeft":[714,237,314,43],"sourceRectNativeTopLeft":[957,318,422,57],"borderLeftBottomRightTop":[42,20,42,20],"processing":"Ivory section heading with two gold studs; text-free.","resourcePath":"UI/Ugui/AttributesPaintedV2/section_header","containsDynamicText":false,"containsStaticTitle":false},{"name":"tab_vertical_normal","source":"character","width":92,"height":127,"sourceRectTopLeft":[1260,108,68,95],"sourceRectNativeTopLeft":[1690,145,92,127],"borderLeftBottomRightTop":[13,21,24,21],"processing":"Original vertical tab; text removed; attach to the window's right edge.","resourcePath":"UI/Ugui/AttributesPaintedV2/tab_vertical_normal","containsDynamicText":false,"containsStaticTitle":false},{"name":"tab_vertical_selected","source":"character","width":97,"height":127,"sourceRectTopLeft":[1260,207,72,95],"sourceRectNativeTopLeft":[1690,278,97,127],"borderLeftBottomRightTop":[13,21,24,21],"processing":"Original vertical tab; text removed; attach to the window's right edge.","resourcePath":"UI/Ugui/AttributesPaintedV2/tab_vertical_selected","containsDynamicText":false,"containsStaticTitle":false},{"name":"close_button","source":"character","width":81,"height":80,"sourceRectTopLeft":[1259,23,60,60],"sourceRectNativeTopLeft":[1689,31,81,80],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Original fixed circular icon; geometric alpha excludes neighboring UI.","resourcePath":"UI/Ugui/AttributesPaintedV2/close_button","containsDynamicText":false,"containsStaticTitle":false},{"name":"close_tassel","source":"character","width":30,"height":81,"sourceRectTopLeft":[1310,50,23,60],"sourceRectNativeTopLeft":[1758,67,30,81],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Separate jade beads and red tassel.","resourcePath":"UI/Ugui/AttributesPaintedV2/close_tassel","containsDynamicText":false,"containsStaticTitle":false},{"name":"step_minus","source":"character","width":66,"height":65,"sourceRectTopLeft":[685,221,49,49],"sourceRectNativeTopLeft":[919,297,66,65],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Fixed minus symbol.","resourcePath":"UI/Ugui/AttributesPaintedV2/step_minus","containsDynamicText":false,"containsStaticTitle":false},{"name":"step_plus","source":"character","width":66,"height":65,"sourceRectTopLeft":[1135,221,49,49],"sourceRectNativeTopLeft":[1523,297,66,65],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Fixed plus symbol.","resourcePath":"UI/Ugui/AttributesPaintedV2/step_plus","containsDynamicText":false,"containsStaticTitle":false},{"name":"step_plate","source":"character","width":66,"height":65,"sourceRectTopLeft":[685,221,49,49],"sourceRectNativeTopLeft":[919,297,66,65],"borderLeftBottomRightTop":[15,15,15,15],"processing":"Empty square step button; use a native plus/minus label when desired.","resourcePath":"UI/Ugui/AttributesPaintedV2/step_plate","containsDynamicText":false,"containsStaticTitle":false},{"name":"slider_track","source":"character","width":324,"height":23,"sourceRectTopLeft":[876,235,241,17],"sourceRectNativeTopLeft":[1175,315,324,23],"borderLeftBottomRightTop":[7,7,7,7],"processing":"Exact native-pixel crop.","resourcePath":"UI/Ugui/AttributesPaintedV2/slider_track","containsDynamicText":false,"containsStaticTitle":false},{"name":"slider_fill","source":"character","width":60,"height":23,"sourceRectTopLeft":[749,235,45,17],"sourceRectNativeTopLeft":[1005,315,60,23],"borderLeftBottomRightTop":[7,7,7,7],"processing":"Exact native-pixel crop.","resourcePath":"UI/Ugui/AttributesPaintedV2/slider_fill","containsDynamicText":false,"containsStaticTitle":false},{"name":"slider_thumb","source":"character","width":51,"height":51,"sourceRectTopLeft":[800,225,38,38],"sourceRectNativeTopLeft":[1073,302,51,51],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Original fixed circular icon; geometric alpha excludes neighboring UI.","resourcePath":"UI/Ugui/AttributesPaintedV2/slider_thumb","containsDynamicText":false,"containsStaticTitle":false},{"name":"notice_icon","source":"character","width":47,"height":47,"sourceRectTopLeft":[531,164,35,35],"sourceRectNativeTopLeft":[712,220,47,47],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Original fixed circular icon; geometric alpha excludes neighboring UI.","resourcePath":"UI/Ugui/AttributesPaintedV2/notice_icon","containsDynamicText":false,"containsStaticTitle":false},{"name":"stat_field","source":"character","width":273,"height":62,"sourceRectTopLeft":[277,147,204,46],"sourceRectNativeTopLeft":[372,197,273,62],"borderLeftBottomRightTop":[12,12,12,12],"processing":"Empty value field, no reference numeric value.","resourcePath":"UI/Ugui/AttributesPaintedV2/stat_field","containsDynamicText":false,"containsStaticTitle":false},{"name":"divider","source":"character","width":34,"height":661,"sourceRectTopLeft":[496,67,25,493],"sourceRectNativeTopLeft":[665,90,34,661],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Original gold divider and ornaments; paper background removed.","resourcePath":"UI/Ugui/AttributesPaintedV2/divider","containsDynamicText":false,"containsStaticTitle":false},{"name":"pet_card_normal","source":"pet","width":419,"height":135,"sourceRectTopLeft":[175,208,313,101],"sourceRectNativeTopLeft":[235,279,419,135],"borderLeftBottomRightTop":[21,21,21,21],"processing":"Original outer card border; cleared portrait, name, level and state; clean source-color interior.","resourcePath":"UI/Ugui/AttributesPaintedV2/pet_card_normal","containsDynamicText":false,"containsStaticTitle":false},{"name":"pet_card_selected","source":"pet","width":419,"height":135,"sourceRectTopLeft":[175,105,313,101],"sourceRectNativeTopLeft":[235,141,419,135],"borderLeftBottomRightTop":[21,21,21,21],"processing":"Original outer card border; cleared portrait, name, level and state; clean source-color interior.","resourcePath":"UI/Ugui/AttributesPaintedV2/pet_card_selected","containsDynamicText":false,"containsStaticTitle":false},{"name":"portrait_lingyue","source":"E:/work/image/designs/attribute-panels/assets/lingyue.png","width":160,"height":160,"sourceRectTopLeft":[340.5,370,389,389],"sourceRectNativeTopLeft":[340.5,370,389,389],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Head crop of existing approved transparent pet art, resampled to 160x160; no baked level.","resourcePath":"UI/Ugui/AttributesPaintedV2/portrait_lingyue","containsDynamicText":false,"containsStaticTitle":false},{"name":"portrait_hutuantuan","source":"E:/work/image/designs/attribute-panels/assets/hutuantuan.png","width":160,"height":160,"sourceRectTopLeft":[311.5,77,629,629],"sourceRectNativeTopLeft":[311.5,77,629,629],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Head crop of existing approved transparent pet art, resampled to 160x160; no baked level.","resourcePath":"UI/Ugui/AttributesPaintedV2/portrait_hutuantuan","containsDynamicText":false,"containsStaticTitle":false},{"name":"portrait_fuxiaohu","source":"E:/work/image/designs/attribute-panels/assets/fuxiaohu.png","width":160,"height":160,"sourceRectTopLeft":[311.5,77,629,629],"sourceRectNativeTopLeft":[311.5,77,629,629],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Head crop of existing approved transparent pet art, resampled to 160x160; no baked level.","resourcePath":"UI/Ugui/AttributesPaintedV2/portrait_fuxiaohu","containsDynamicText":false,"containsStaticTitle":false},{"name":"portrait_yunjiujiu","source":"E:/work/image/designs/attribute-panels/assets/yunjiujiu.png","width":160,"height":160,"sourceRectTopLeft":[311.5,77,629,629],"sourceRectNativeTopLeft":[311.5,77,629,629],"borderLeftBottomRightTop":[0,0,0,0],"processing":"Head crop of existing approved transparent pet art, resampled to 160x160; no baked level.","resourcePath":"UI/Ugui/AttributesPaintedV2/portrait_yunjiujiu","containsDynamicText":false,"containsStaticTitle":false},{"name":"portrait_frame","source":"pet","width":134,"height":115,"sourceRectTopLeft":[184,114,100,86],"sourceRectNativeTopLeft":[247,153,134,115],"borderLeftBottomRightTop":[11,11,11,11],"processing":"Frame only. Portrait and level are separate runtime elements.","resourcePath":"UI/Ugui/AttributesPaintedV2/portrait_frame","containsDynamicText":false,"containsStaticTitle":false}]}
+{
+  "tool": "Pillow mechanical recrop/resample of built-in GPT Image 2 artwork",
+  "recutVersion": "v10",
+  "sourceArtworkIndexSha256": "34d5aba2776874eff2347e6c8df5cf958dbfcf1edd0a41e16036b551a5583b7b",
+  "styleReference": "docs/references/ui-style-20260910.png",
+  "unityImportExecutedThisBuild": false,
+  "referenceCoordinates": "New painted art uses the central artKey crop map; legacy reference rectangles are retained separately.",
+  "sprites": [
+    {
+      "name": "window_frame",
+      "source": "qdao_ui_style_recut_v10/source/02-main-window.png",
+      "width": 1546,
+      "height": 743,
+      "sourceRectTopLeft": [
+        47,
+        68,
+        1578,
+        793
+      ],
+      "sourceRectNativeTopLeft": [
+        47,
+        68,
+        1578,
+        793
+      ],
+      "borderLeftBottomRightTop": [
+        97,
+        74,
+        97,
+        99
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/window_frame",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          128,
+          31,
+          1152,
+          554
+        ],
+        "sourceRectNativeTopLeft": [
+          172,
+          42,
+          1545,
+          743
+        ],
+        "processing": "Nine-part assembly from original gold corners/edges and blank paper; excludes all controls and data."
+      },
+      "artKey": "frame",
+      "cleanArtSize": [
+        1578,
+        793
+      ],
+      "cleanArtPixelSha256": "ec4d7009c2e294664bcc4c63c520742f4c60a7443c0e41a5f93f076d7c348191",
+      "sourceSha256": "5f94cdb6f8867323f20e5834349a9297d4df569b99f1da686b8bb9a6a365933b",
+      "sourceArtworkEntry": {
+        "file": "frame.png",
+        "size": [
+          1578,
+          793
+        ],
+        "source": "source/02-main-window.png",
+        "source_sha256": "5f94cdb6f8867323f20e5834349a9297d4df569b99f1da686b8bb9a6a365933b",
+        "source_box_xyxy": [
+          47,
+          68,
+          1625,
+          861
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 290,
+          "top": 200,
+          "right": 285,
+          "bottom": 205
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        97,
+        99,
+        97,
+        74
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663"
+    },
+    {
+      "name": "paper_tile",
+      "source": "qdao_ui_style_recut_v10/source/03-content-window.png",
+      "width": 375,
+      "height": 57,
+      "sourceRectTopLeft": [
+        43,
+        68,
+        1586,
+        802
+      ],
+      "sourceRectNativeTopLeft": [
+        43,
+        68,
+        1586,
+        802
+      ],
+      "borderLeftBottomRightTop": [
+        11,
+        11,
+        11,
+        11
+      ],
+      "processing": "Text-free paper texture cropped from the clean center of the new painted panel, resampled to the contracted tile size.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/paper_tile",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          862,
+          95,
+          280,
+          42
+        ],
+        "sourceRectNativeTopLeft": [
+          1157,
+          127,
+          375,
+          57
+        ],
+        "processing": "Exact native-pixel crop."
+      },
+      "artKey": "panel",
+      "cleanArtSize": [
+        1586,
+        802
+      ],
+      "cleanArtPixelSha256": "fc2821d9b8ce4aaa58e83301002e4ba91a5ea20eef7832e78d1c95636b6bc2d1",
+      "sourceSha256": "13dec555aecee13b7da0b32301b2339843aef3e813ee6373aede8db16f78dd22",
+      "sourceArtworkEntry": {
+        "file": "panel.png",
+        "size": [
+          1586,
+          802
+        ],
+        "source": "source/03-content-window.png",
+        "source_sha256": "13dec555aecee13b7da0b32301b2339843aef3e813ee6373aede8db16f78dd22",
+        "source_box_xyxy": [
+          43,
+          68,
+          1629,
+          870
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 180,
+          "top": 130,
+          "right": 180,
+          "bottom": 130
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "cleanArtCropXYXY": [
+        571,
+        305,
+        1015,
+        497
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 0,
+      "recutVersion": "v10",
+      "sha256": "1e49b07c8c1fd508ab4798d3b68c28dd827b2421afa6438a15f6c81175d26992"
+    },
+    {
+      "name": "title_plate",
+      "source": "qdao_ui_style_recut_v10/source/01-plates.png",
+      "width": 655,
+      "height": 110,
+      "sourceRectTopLeft": [
+        16,
+        905,
+        598,
+        199
+      ],
+      "sourceRectNativeTopLeft": [
+        16,
+        905,
+        598,
+        199
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Nine-part assembly of the new title artwork with continuous painted ends, integrated tassels, separate fixed center stamps and a text-free jade middle. Original whole-title sprite remains non-sliced at runtime.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/title_plate",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          477,
+          0,
+          488,
+          82
+        ],
+        "sourceRectNativeTopLeft": [
+          640,
+          0,
+          655,
+          110
+        ],
+        "processing": "Original title ornament and taiji; lettering replaced from clean jade pixels."
+      },
+      "artKey": "title",
+      "cleanArtSize": [
+        598,
+        199
+      ],
+      "cleanArtPixelSha256": "5156dec42e2b7448260e78dfa1944a67797530d26bf1f2b30e6d9bccfe3cabcd",
+      "sourceSha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+      "sourceArtworkEntry": {
+        "resize_mode": "nine_slice",
+        "file": "title.png",
+        "size": [
+          598,
+          199
+        ],
+        "source": "source/01-plates.png",
+        "source_sha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+        "source_box_xyxy": [
+          16,
+          905,
+          614,
+          1104
+        ],
+        "nine_slice": {
+          "left": 146,
+          "top": 65,
+          "right": 145,
+          "bottom": 99
+        },
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "edge_samples": {
+          "top": [
+            195,
+            0,
+            220,
+            65
+          ],
+          "bottom": [
+            195,
+            100,
+            220,
+            199
+          ]
+        },
+        "horizontal_center_sample": [
+          195,
+          0,
+          220,
+          199
+        ],
+        "fixed_stamps": [
+          {
+            "file": "title.stamp-0.png",
+            "source_box_xyxy": [
+              277,
+              13,
+              322,
+              45
+            ],
+            "anchor": "center-top"
+          },
+          {
+            "file": "title.stamp-1.png",
+            "source_box_xyxy": [
+              277,
+              137,
+              322,
+              161
+            ],
+            "anchor": "center-bottom"
+          }
+        ],
+        "extracted_hanging_parts": [
+          {
+            "file": "title.tassel-0.png",
+            "source_box_xyxy": [
+              23,
+              112,
+              62,
+              199
+            ],
+            "anchor": "bottom-left"
+          },
+          {
+            "file": "title.tassel-1.png",
+            "source_box_xyxy": [
+              541,
+              112,
+              581,
+              199
+            ],
+            "anchor": "bottom-right"
+          }
+        ]
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "assemblyBordersLeftTopRightBottom": [
+        92,
+        36,
+        92,
+        38
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8"
+    },
+    {
+      "name": "title_character",
+      "source": "designs/attribute-panels/v2-painted/unity-slices/png/title_character.png",
+      "width": 221,
+      "height": 48,
+      "sourceRectTopLeft": [
+        0,
+        0,
+        221,
+        48
+      ],
+      "sourceRectNativeTopLeft": [
+        0,
+        0,
+        221,
+        48
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Preserve the latest approved separate static calligraphy layer at native pixels. No resampling, recoloring, artificial pixel difference, or dynamic values.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/title_character",
+      "containsDynamicText": false,
+      "containsStaticTitle": true,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          638,
+          37,
+          165,
+          36
+        ],
+        "sourceRectNativeTopLeft": [
+          856,
+          50,
+          221,
+          48
+        ],
+        "processing": "Fixed title calligraphy extracted by luminance from jade background; transparent, no dynamic values."
+      },
+      "sourceSha256": "9a411bf95a6be9653188f72b7a88a5fdbde74e250132dce6e2be9ddc69ce1c2a",
+      "sourceNativeSize": [
+        221,
+        48
+      ],
+      "originalCalligraphyScreenshot": "designs/attribute-panels/v2-painted/01-character-ui-no-affinity.png",
+      "originalCalligraphyScreenshotSha256": "e64a817c55b59cf5cc47533428f2e560c64a83f3577067a6fb5969244baf3d6b",
+      "originalCalligraphyScreenshotCrop": [
+        856,
+        50,
+        221,
+        48
+      ],
+      "preservedArtwork": true,
+      "preservationReason": "Approved static Chinese calligraphy is a separate text layer, not an old UI skin. Its current clean alpha is retained; rerunning screenshot luminance extraction would introduce a faint non-letter stroke.",
+      "recutVersion": "v10",
+      "sha256": "fbadd8f375baced08becff9e6f100854f331dc1bb36029a7251e7ebd23407f2b"
+    },
+    {
+      "name": "title_pet",
+      "source": "designs/attribute-panels/v2-painted/unity-slices/png/title_pet.png",
+      "width": 212,
+      "height": 47,
+      "sourceRectTopLeft": [
+        0,
+        0,
+        212,
+        47
+      ],
+      "sourceRectNativeTopLeft": [
+        0,
+        0,
+        212,
+        47
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Preserve the latest approved separate static calligraphy layer at native pixels. No resampling, recoloring, artificial pixel difference, or dynamic values.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/title_pet",
+      "containsDynamicText": false,
+      "containsStaticTitle": true,
+      "legacySourceContract": {
+        "source": "pet",
+        "sourceRectTopLeft": [
+          640,
+          38,
+          158,
+          35
+        ],
+        "sourceRectNativeTopLeft": [
+          858,
+          51,
+          212,
+          47
+        ],
+        "processing": "Fixed title calligraphy extracted by luminance from jade background; transparent, no dynamic values."
+      },
+      "sourceSha256": "6fc1b01f6454e0a7fcebb50dda787a4ead3ce30d6a3ac4d53553382bd879c997",
+      "sourceNativeSize": [
+        212,
+        47
+      ],
+      "originalCalligraphyScreenshot": "designs/attribute-panels/v2-painted/02-pet-ui.png",
+      "originalCalligraphyScreenshotSha256": "b30b4117b18f3e3550e222068b610b1914d5195b8c4e54ab6f70c764813ca91d",
+      "originalCalligraphyScreenshotCrop": [
+        858,
+        51,
+        212,
+        47
+      ],
+      "preservedArtwork": true,
+      "preservationReason": "Approved static Chinese calligraphy is a separate text layer, not an old UI skin. Its current clean alpha is retained; rerunning screenshot luminance extraction would introduce a faint non-letter stroke.",
+      "recutVersion": "v10",
+      "sha256": "9da8791da335ece5dcbc2665b316944c2dd7fb4910e1eec2ddd1d93101099bc8"
+    },
+    {
+      "name": "button_primary",
+      "source": "qdao_ui_style_recut_v10/source/01-plates.png",
+      "width": 376,
+      "height": 97,
+      "sourceRectTopLeft": [
+        16,
+        153,
+        597,
+        215
+      ],
+      "sourceRectNativeTopLeft": [
+        16,
+        153,
+        597,
+        215
+      ],
+      "borderLeftBottomRightTop": [
+        66,
+        30,
+        66,
+        30
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/button_primary",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          815,
+          483,
+          280,
+          72
+        ],
+        "sourceRectNativeTopLeft": [
+          1093,
+          648,
+          376,
+          97
+        ],
+        "processing": "Original gold scroll ends and jade plate; text removed from clean neighboring rows."
+      },
+      "artKey": "jade",
+      "cleanArtSize": [
+        597,
+        215
+      ],
+      "cleanArtPixelSha256": "dbc3665a315fe43f472697c7f96d10e94fea1f937cf2531c3fa5ce6b3346dffd",
+      "sourceSha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+      "sourceArtworkEntry": {
+        "resize_mode": "nine_slice",
+        "file": "jade.png",
+        "size": [
+          597,
+          215
+        ],
+        "source": "source/01-plates.png",
+        "source_sha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+        "source_box_xyxy": [
+          16,
+          153,
+          613,
+          368
+        ],
+        "nine_slice": {
+          "left": 144,
+          "top": 69,
+          "right": 144,
+          "bottom": 107
+        },
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "extracted_hanging_parts": [
+          {
+            "file": "jade.tassel-0.png",
+            "source_box_xyxy": [
+              20,
+              116,
+              60,
+              214
+            ],
+            "anchor": "bottom-left"
+          },
+          {
+            "file": "jade.tassel-1.png",
+            "source_box_xyxy": [
+              539,
+              116,
+              578,
+              214
+            ],
+            "anchor": "bottom-right"
+          }
+        ]
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        66,
+        30,
+        66,
+        30
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e"
+    },
+    {
+      "name": "button_secondary",
+      "source": "qdao_ui_style_recut_v10/source/01-plates.png",
+      "width": 271,
+      "height": 82,
+      "sourceRectTopLeft": [
+        641,
+        153,
+        597,
+        180
+      ],
+      "sourceRectNativeTopLeft": [
+        641,
+        153,
+        597,
+        180
+      ],
+      "borderLeftBottomRightTop": [
+        30,
+        27,
+        30,
+        27
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/button_secondary",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          575,
+          488,
+          202,
+          61
+        ],
+        "sourceRectNativeTopLeft": [
+          771,
+          655,
+          271,
+          82
+        ],
+        "processing": "Original ivory button frame; text removed."
+      },
+      "artKey": "ivory",
+      "cleanArtSize": [
+        597,
+        180
+      ],
+      "cleanArtPixelSha256": "d7a2cb11e60f19a9013605f1bf11aac9eb423b2b550c1eb89af35dddc99aac12",
+      "sourceSha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+      "sourceArtworkEntry": {
+        "resize_mode": "nine_slice",
+        "file": "ivory.png",
+        "size": [
+          597,
+          180
+        ],
+        "source": "source/01-plates.png",
+        "source_sha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+        "source_box_xyxy": [
+          641,
+          153,
+          1238,
+          333
+        ],
+        "nine_slice": {
+          "left": 142,
+          "top": 68,
+          "right": 142,
+          "bottom": 66
+        },
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        30,
+        27,
+        30,
+        27
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5"
+    },
+    {
+      "name": "button_scheme",
+      "source": "qdao_ui_style_recut_v10/source/01-plates.png",
+      "width": 389,
+      "height": 79,
+      "sourceRectTopLeft": [
+        641,
+        153,
+        597,
+        180
+      ],
+      "sourceRectNativeTopLeft": [
+        641,
+        153,
+        597,
+        180
+      ],
+      "borderLeftBottomRightTop": [
+        30,
+        24,
+        30,
+        24
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/button_scheme",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          189,
+          76,
+          290,
+          59
+        ],
+        "sourceRectNativeTopLeft": [
+          254,
+          102,
+          389,
+          79
+        ],
+        "processing": "Empty scheme dropdown plate; arrow supplied separately."
+      },
+      "artKey": "ivory",
+      "cleanArtSize": [
+        597,
+        180
+      ],
+      "cleanArtPixelSha256": "d7a2cb11e60f19a9013605f1bf11aac9eb423b2b550c1eb89af35dddc99aac12",
+      "sourceSha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+      "sourceArtworkEntry": {
+        "resize_mode": "nine_slice",
+        "file": "ivory.png",
+        "size": [
+          597,
+          180
+        ],
+        "source": "source/01-plates.png",
+        "source_sha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+        "source_box_xyxy": [
+          641,
+          153,
+          1238,
+          333
+        ],
+        "nine_slice": {
+          "left": 142,
+          "top": 68,
+          "right": 142,
+          "bottom": 66
+        },
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        30,
+        24,
+        30,
+        24
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "451990db93a0bba54cf0dc7856196c215ba8cc348672b00bf107a464505f5a32"
+    },
+    {
+      "name": "dropdown_arrow",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 36,
+      "height": 27,
+      "sourceRectTopLeft": [
+        967,
+        1011,
+        156,
+        108
+      ],
+      "sourceRectNativeTopLeft": [
+        967,
+        1011,
+        156,
+        108
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Proportional fit of complete newly painted element onto original transparent canvas; fixed ornament geometry preserved.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/dropdown_arrow",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          431,
+          96,
+          27,
+          20
+        ],
+        "sourceRectNativeTopLeft": [
+          578,
+          129,
+          36,
+          27
+        ],
+        "processing": "Original fixed dropdown symbol."
+      },
+      "artKey": "dropdown_arrow",
+      "cleanArtSize": [
+        156,
+        108
+      ],
+      "cleanArtPixelSha256": "41f8956c49722ad093a1e7759272aabe5430a7ed9079f3f0d6eeb57b1ad7dcf1",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "dropdown_arrow.png",
+        "size": [
+          156,
+          108
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          967,
+          1011,
+          1123,
+          1119
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "3e7782d11939e08db08a68ac58e750394ba59f5dc97b74779b8cfc82b239172e"
+    },
+    {
+      "name": "tab_horizontal",
+      "source": "qdao_ui_style_recut_v10/source/01-plates.png",
+      "width": 279,
+      "height": 71,
+      "sourceRectTopLeft": [
+        16,
+        153,
+        597,
+        215
+      ],
+      "sourceRectNativeTopLeft": [
+        16,
+        153,
+        597,
+        215
+      ],
+      "borderLeftBottomRightTop": [
+        27,
+        24,
+        27,
+        24
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/tab_horizontal",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          527,
+          91,
+          208,
+          53
+        ],
+        "sourceRectNativeTopLeft": [
+          707,
+          122,
+          279,
+          71
+        ],
+        "processing": "Empty jade attribute-points tab."
+      },
+      "artKey": "jade",
+      "cleanArtSize": [
+        597,
+        215
+      ],
+      "cleanArtPixelSha256": "dbc3665a315fe43f472697c7f96d10e94fea1f937cf2531c3fa5ce6b3346dffd",
+      "sourceSha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+      "sourceArtworkEntry": {
+        "resize_mode": "nine_slice",
+        "file": "jade.png",
+        "size": [
+          597,
+          215
+        ],
+        "source": "source/01-plates.png",
+        "source_sha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+        "source_box_xyxy": [
+          16,
+          153,
+          613,
+          368
+        ],
+        "nine_slice": {
+          "left": 144,
+          "top": 69,
+          "right": 144,
+          "bottom": 107
+        },
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "extracted_hanging_parts": [
+          {
+            "file": "jade.tassel-0.png",
+            "source_box_xyxy": [
+              20,
+              116,
+              60,
+              214
+            ],
+            "anchor": "bottom-left"
+          },
+          {
+            "file": "jade.tassel-1.png",
+            "source_box_xyxy": [
+              539,
+              116,
+              578,
+              214
+            ],
+            "anchor": "bottom-right"
+          }
+        ]
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        27,
+        24,
+        27,
+        24
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65"
+    },
+    {
+      "name": "section_header",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 422,
+      "height": 57,
+      "sourceRectTopLeft": [
+        849,
+        699,
+        390,
+        97
+      ],
+      "sourceRectNativeTopLeft": [
+        849,
+        699,
+        390,
+        97
+      ],
+      "borderLeftBottomRightTop": [
+        42,
+        20,
+        42,
+        20
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/section_header",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "pet",
+        "sourceRectTopLeft": [
+          714,
+          237,
+          314,
+          43
+        ],
+        "sourceRectNativeTopLeft": [
+          957,
+          318,
+          422,
+          57
+        ],
+        "processing": "Ivory section heading with two gold studs; text-free."
+      },
+      "artKey": "section_header",
+      "cleanArtSize": [
+        390,
+        97
+      ],
+      "cleanArtPixelSha256": "d8dc1c091546334628bb0d5585e848cefafa6394118be6eb1438c00cb56b4867",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "section_header.png",
+        "size": [
+          390,
+          97
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          849,
+          699,
+          1239,
+          796
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 70,
+          "top": 32,
+          "right": 100,
+          "bottom": 35
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        42,
+        20,
+        42,
+        20
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "98dc6c9898d54286999b7be1010e94019582b7232a24df8cfc714ecebbc0fbda"
+    },
+    {
+      "name": "tab_vertical_normal",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 92,
+      "height": 127,
+      "sourceRectTopLeft": [
+        156,
+        598,
+        100,
+        284
+      ],
+      "sourceRectNativeTopLeft": [
+        156,
+        598,
+        100,
+        284
+      ],
+      "borderLeftBottomRightTop": [
+        13,
+        21,
+        24,
+        21
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/tab_vertical_normal",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          1260,
+          108,
+          68,
+          95
+        ],
+        "sourceRectNativeTopLeft": [
+          1690,
+          145,
+          92,
+          127
+        ],
+        "processing": "Original vertical tab; text removed; attach to the window's right edge."
+      },
+      "artKey": "tab_vertical_normal",
+      "cleanArtSize": [
+        100,
+        284
+      ],
+      "cleanArtPixelSha256": "1769f25ee8a22aab3f3dfd7496da282bfb58cef1528c4506679c170725a79f9c",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "tab_vertical_normal.png",
+        "size": [
+          100,
+          284
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          156,
+          598,
+          256,
+          882
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 35,
+          "top": 68,
+          "right": 35,
+          "bottom": 85
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        13,
+        21,
+        24,
+        21
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "1e2f8ff206c9e208c206ea94aab3befe965aefae05546a9b5eedfa1275b1f7bc"
+    },
+    {
+      "name": "tab_vertical_selected",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 97,
+      "height": 127,
+      "sourceRectTopLeft": [
+        577,
+        598,
+        100,
+        284
+      ],
+      "sourceRectNativeTopLeft": [
+        577,
+        598,
+        100,
+        284
+      ],
+      "borderLeftBottomRightTop": [
+        13,
+        21,
+        24,
+        21
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/tab_vertical_selected",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          1260,
+          207,
+          72,
+          95
+        ],
+        "sourceRectNativeTopLeft": [
+          1690,
+          278,
+          97,
+          127
+        ],
+        "processing": "Original vertical tab; text removed; attach to the window's right edge."
+      },
+      "artKey": "tab_vertical_selected",
+      "cleanArtSize": [
+        100,
+        284
+      ],
+      "cleanArtPixelSha256": "22404a3be3abfefb5fef17946917f00a978fc8439e1429633f3e4456b21b46c4",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "tab_vertical_selected.png",
+        "size": [
+          100,
+          284
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          577,
+          598,
+          677,
+          882
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 35,
+          "top": 68,
+          "right": 35,
+          "bottom": 85
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        13,
+        21,
+        24,
+        21
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "67ac18f09129d07a0b52aabdf90e34ae62f3c16e7fb7b8730f10713d2f5f5fb9"
+    },
+    {
+      "name": "close_button",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 81,
+      "height": 80,
+      "sourceRectTopLeft": [
+        535,
+        974,
+        183,
+        176
+      ],
+      "sourceRectNativeTopLeft": [
+        535,
+        974,
+        183,
+        176
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "New painted blank circular close-button skin with an antialiased native fixed close cross glyph.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/close_button",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          1259,
+          23,
+          60,
+          60
+        ],
+        "sourceRectNativeTopLeft": [
+          1689,
+          31,
+          81,
+          80
+        ],
+        "processing": "Original fixed circular icon; geometric alpha excludes neighboring UI."
+      },
+      "artKey": "close_button",
+      "cleanArtSize": [
+        183,
+        176
+      ],
+      "cleanArtPixelSha256": "1c950a4ae35cdedfe12ace8c4f560506f4305529a8a07b0852d1434c39a90891",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "close_button.png",
+        "size": [
+          183,
+          176
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          535,
+          974,
+          718,
+          1150
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339"
+    },
+    {
+      "name": "close_tassel",
+      "source": "qdao_ui_style_recut_v10/source/05-ornaments.png",
+      "width": 30,
+      "height": 81,
+      "sourceRectTopLeft": [
+        124,
+        440,
+        190,
+        384
+      ],
+      "sourceRectNativeTopLeft": [
+        124,
+        440,
+        190,
+        384
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Proportional fit of complete newly painted element onto original transparent canvas; fixed ornament geometry preserved.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/close_tassel",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          1310,
+          50,
+          23,
+          60
+        ],
+        "sourceRectNativeTopLeft": [
+          1758,
+          67,
+          30,
+          81
+        ],
+        "processing": "Separate jade beads and red tassel."
+      },
+      "artKey": "tassel",
+      "cleanArtSize": [
+        190,
+        384
+      ],
+      "cleanArtPixelSha256": "36d4b143d7889b918f0e70a840ee6d80ba32aae99797086cdb6185facbe32c92",
+      "sourceSha256": "b1ba6592bc76aa39dd0153b106f5cb2b1a5653a131e7b1aef7cb40028a904d87",
+      "sourceArtworkEntry": {
+        "file": "tassel.png",
+        "size": [
+          190,
+          384
+        ],
+        "source": "source/05-ornaments.png",
+        "source_sha256": "b1ba6592bc76aa39dd0153b106f5cb2b1a5653a131e7b1aef7cb40028a904d87",
+        "source_box_xyxy": [
+          124,
+          440,
+          314,
+          824
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5"
+    },
+    {
+      "name": "step_minus",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 66,
+      "height": 65,
+      "sourceRectTopLeft": [
+        528,
+        348,
+        198,
+        188
+      ],
+      "sourceRectNativeTopLeft": [
+        528,
+        348,
+        198,
+        188
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "New painted blank step button with an antialiased native fixed minus glyph; dynamic data remains separate.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/step_minus",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          685,
+          221,
+          49,
+          49
+        ],
+        "sourceRectNativeTopLeft": [
+          919,
+          297,
+          66,
+          65
+        ],
+        "processing": "Fixed minus symbol."
+      },
+      "artKey": "step_normal",
+      "cleanArtSize": [
+        198,
+        188
+      ],
+      "cleanArtPixelSha256": "6b667e1366cc3e9db4d4bb074526def00d2049dccf7d41b5fb0ea2d773f78234",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "step_normal.png",
+        "size": [
+          198,
+          188
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          528,
+          348,
+          726,
+          536
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 72,
+          "top": 66,
+          "right": 76,
+          "bottom": 76
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "e788695456c8d65c590bf0b35fbfc027b7baaccb4e42ae39983fb72e529feaa6"
+    },
+    {
+      "name": "step_plus",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 66,
+      "height": 65,
+      "sourceRectTopLeft": [
+        528,
+        348,
+        198,
+        188
+      ],
+      "sourceRectNativeTopLeft": [
+        528,
+        348,
+        198,
+        188
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "New painted blank step button with an antialiased native fixed plus glyph; dynamic data remains separate.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/step_plus",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          1135,
+          221,
+          49,
+          49
+        ],
+        "sourceRectNativeTopLeft": [
+          1523,
+          297,
+          66,
+          65
+        ],
+        "processing": "Fixed plus symbol."
+      },
+      "artKey": "step_normal",
+      "cleanArtSize": [
+        198,
+        188
+      ],
+      "cleanArtPixelSha256": "6b667e1366cc3e9db4d4bb074526def00d2049dccf7d41b5fb0ea2d773f78234",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "step_normal.png",
+        "size": [
+          198,
+          188
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          528,
+          348,
+          726,
+          536
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 72,
+          "top": 66,
+          "right": 76,
+          "bottom": 76
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "cc5a01c6224ab1d2c5b29e448ccd8a18d4fd30d431dd068c279d598f2237e71f"
+    },
+    {
+      "name": "step_plate",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 66,
+      "height": 65,
+      "sourceRectTopLeft": [
+        528,
+        348,
+        198,
+        188
+      ],
+      "sourceRectNativeTopLeft": [
+        528,
+        348,
+        198,
+        188
+      ],
+      "borderLeftBottomRightTop": [
+        15,
+        15,
+        15,
+        15
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/step_plate",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          685,
+          221,
+          49,
+          49
+        ],
+        "sourceRectNativeTopLeft": [
+          919,
+          297,
+          66,
+          65
+        ],
+        "processing": "Empty square step button; use a native plus/minus label when desired."
+      },
+      "artKey": "step_normal",
+      "cleanArtSize": [
+        198,
+        188
+      ],
+      "cleanArtPixelSha256": "6b667e1366cc3e9db4d4bb074526def00d2049dccf7d41b5fb0ea2d773f78234",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "step_normal.png",
+        "size": [
+          198,
+          188
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          528,
+          348,
+          726,
+          536
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 72,
+          "top": 66,
+          "right": 76,
+          "bottom": 76
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        15,
+        15,
+        15,
+        15
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "e90a79a03cfc48f8716c57c39bfeb922e3d3f4c052642c8d1c1b90c5b5358033"
+    },
+    {
+      "name": "slider_track",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 324,
+      "height": 23,
+      "sourceRectTopLeft": [
+        445,
+        113,
+        364,
+        64
+      ],
+      "sourceRectNativeTopLeft": [
+        445,
+        113,
+        364,
+        64
+      ],
+      "borderLeftBottomRightTop": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/slider_track",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          876,
+          235,
+          241,
+          17
+        ],
+        "sourceRectNativeTopLeft": [
+          1175,
+          315,
+          324,
+          23
+        ],
+        "processing": "Exact native-pixel crop."
+      },
+      "artKey": "slider_track",
+      "cleanArtSize": [
+        364,
+        64
+      ],
+      "cleanArtPixelSha256": "cdc872a4a218d79749b87a1c50ac9337ff23f4913a7b17af1108cd9b9a37ffa1",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "slider_track.png",
+        "size": [
+          364,
+          64
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          445,
+          113,
+          809,
+          177
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 48,
+          "top": 21,
+          "right": 48,
+          "bottom": 21
+        },
+        "resize_mode": "horizontal_caps"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "f35d337bd76d4481db6636aba64172c0d86621fbddc043f3af1c6f7e1ae9697f"
+    },
+    {
+      "name": "slider_fill",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 60,
+      "height": 23,
+      "sourceRectTopLeft": [
+        864,
+        113,
+        363,
+        64
+      ],
+      "sourceRectNativeTopLeft": [
+        864,
+        113,
+        363,
+        64
+      ],
+      "borderLeftBottomRightTop": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/slider_fill",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          749,
+          235,
+          45,
+          17
+        ],
+        "sourceRectNativeTopLeft": [
+          1005,
+          315,
+          60,
+          23
+        ],
+        "processing": "Exact native-pixel crop."
+      },
+      "artKey": "slider_fill",
+      "cleanArtSize": [
+        363,
+        64
+      ],
+      "cleanArtPixelSha256": "93a2056bcea86beeada55f781de5ff2947169e6bf757883be72f1fd38ce856be",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "slider_fill.png",
+        "size": [
+          363,
+          64
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          864,
+          113,
+          1227,
+          177
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 46,
+          "top": 21,
+          "right": 46,
+          "bottom": 21
+        },
+        "resize_mode": "horizontal_caps"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "6613b6f5a4ac1d03e1e92082efc92fd61c339b98d04523ac2a289bdac75acf0f"
+    },
+    {
+      "name": "slider_thumb",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 51,
+      "height": 51,
+      "sourceRectTopLeft": [
+        115,
+        362,
+        187,
+        157
+      ],
+      "sourceRectNativeTopLeft": [
+        115,
+        362,
+        187,
+        157
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Proportional fit of complete newly painted element onto original transparent canvas; fixed ornament geometry preserved.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/slider_thumb",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          800,
+          225,
+          38,
+          38
+        ],
+        "sourceRectNativeTopLeft": [
+          1073,
+          302,
+          51,
+          51
+        ],
+        "processing": "Original fixed circular icon; geometric alpha excludes neighboring UI."
+      },
+      "artKey": "slider_thumb",
+      "cleanArtSize": [
+        187,
+        157
+      ],
+      "cleanArtPixelSha256": "d7871fcc6bc226f439ba5efaab0a908d846f2e14eb4c25c2828e622aad015232",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "slider_thumb.png",
+        "size": [
+          187,
+          157
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          115,
+          362,
+          302,
+          519
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "9cab35f55f601663f5f0020600e5815b81de09e303262ddda4be2571207d2aef"
+    },
+    {
+      "name": "notice_icon",
+      "source": "qdao_ui_style_recut_v10/source/05-ornaments.png",
+      "width": 47,
+      "height": 47,
+      "sourceRectTopLeft": [
+        485,
+        900,
+        273,
+        242
+      ],
+      "sourceRectNativeTopLeft": [
+        485,
+        900,
+        273,
+        242
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "New painted blank circular knob skin with a native fixed notice exclamation glyph.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/notice_icon",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          531,
+          164,
+          35,
+          35
+        ],
+        "sourceRectNativeTopLeft": [
+          712,
+          220,
+          47,
+          47
+        ],
+        "processing": "Original fixed circular icon; geometric alpha excludes neighboring UI."
+      },
+      "artKey": "knob",
+      "cleanArtSize": [
+        273,
+        242
+      ],
+      "cleanArtPixelSha256": "2f956709d103c4e1f81a4aa6c9ada991c52281cf4e9b1d6bb02c96e46f7112d9",
+      "sourceSha256": "b1ba6592bc76aa39dd0153b106f5cb2b1a5653a131e7b1aef7cb40028a904d87",
+      "sourceArtworkEntry": {
+        "file": "knob.png",
+        "size": [
+          273,
+          242
+        ],
+        "source": "source/05-ornaments.png",
+        "source_sha256": "b1ba6592bc76aa39dd0153b106f5cb2b1a5653a131e7b1aef7cb40028a904d87",
+        "source_box_xyxy": [
+          485,
+          900,
+          758,
+          1142
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained"
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b"
+    },
+    {
+      "name": "stat_field",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 273,
+      "height": 62,
+      "sourceRectTopLeft": [
+        25,
+        100,
+        368,
+        93
+      ],
+      "sourceRectNativeTopLeft": [
+        25,
+        100,
+        368,
+        93
+      ],
+      "borderLeftBottomRightTop": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/stat_field",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          277,
+          147,
+          204,
+          46
+        ],
+        "sourceRectNativeTopLeft": [
+          372,
+          197,
+          273,
+          62
+        ],
+        "processing": "Empty value field, no reference numeric value."
+      },
+      "artKey": "stat_field",
+      "cleanArtSize": [
+        368,
+        93
+      ],
+      "cleanArtPixelSha256": "8961df30fd439a20ae326d4e92255da444ce436db41ef8bb5e3327e576085fd1",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "stat_field.png",
+        "size": [
+          368,
+          93
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          25,
+          100,
+          393,
+          193
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 65,
+          "top": 32,
+          "right": 80,
+          "bottom": 32
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46"
+    },
+    {
+      "name": "divider",
+      "source": "qdao_ui_style_recut_v10/source/05-ornaments.png",
+      "width": 34,
+      "height": 661,
+      "sourceRectTopLeft": [
+        828,
+        180,
+        398,
+        82
+      ],
+      "sourceRectNativeTopLeft": [
+        828,
+        180,
+        398,
+        82
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Rotate new horizontal painted divider 90 degrees; preserve both fixed end ornaments and the round crescent center, stretching only the unornamented rails to the original vertical canvas.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/divider",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "character",
+        "sourceRectTopLeft": [
+          496,
+          67,
+          25,
+          493
+        ],
+        "sourceRectNativeTopLeft": [
+          665,
+          90,
+          34,
+          661
+        ],
+        "processing": "Original gold divider and ornaments; paper background removed."
+      },
+      "artKey": "divider",
+      "cleanArtSize": [
+        398,
+        82
+      ],
+      "cleanArtPixelSha256": "c10de246bf28c8067a53b18296d3deeb96d8af5747730fc978fc47730243b4cb",
+      "sourceSha256": "b1ba6592bc76aa39dd0153b106f5cb2b1a5653a131e7b1aef7cb40028a904d87",
+      "sourceArtworkEntry": {
+        "file": "divider.png",
+        "size": [
+          398,
+          82
+        ],
+        "source": "source/05-ornaments.png",
+        "source_sha256": "b1ba6592bc76aa39dd0153b106f5cb2b1a5653a131e7b1aef7cb40028a904d87",
+        "source_box_xyxy": [
+          828,
+          180,
+          1226,
+          262
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "fixed_horizontal_segments": {
+          "left_end": [
+            0,
+            0,
+            126,
+            82
+          ],
+          "left_rail": [
+            127,
+            0,
+            155,
+            82
+          ],
+          "center": [
+            155,
+            0,
+            243,
+            82
+          ],
+          "right_rail": [
+            244,
+            0,
+            272,
+            82
+          ],
+          "right_end": [
+            272,
+            0,
+            398,
+            82
+          ]
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "rotationDegrees": 90,
+      "centerOrnamentPreserved": true,
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "628ddbfc48a51b5c7e0375ad4fd25d734e559c051c5b69b41963fc9c3a40bbe3"
+    },
+    {
+      "name": "pet_card_normal",
+      "source": "qdao_ui_style_recut_v10/source/01-plates.png",
+      "width": 419,
+      "height": 135,
+      "sourceRectTopLeft": [
+        13,
+        514,
+        601,
+        200
+      ],
+      "sourceRectNativeTopLeft": [
+        13,
+        514,
+        601,
+        200
+      ],
+      "borderLeftBottomRightTop": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/pet_card_normal",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "pet",
+        "sourceRectTopLeft": [
+          175,
+          208,
+          313,
+          101
+        ],
+        "sourceRectNativeTopLeft": [
+          235,
+          279,
+          419,
+          135
+        ],
+        "processing": "Original outer card border; cleared portrait, name, level and state; clean source-color interior."
+      },
+      "artKey": "card_normal",
+      "cleanArtSize": [
+        601,
+        200
+      ],
+      "cleanArtPixelSha256": "25abeef0b399e46ff8a37fa01d157c84be583d0dbd1068f68c1086878ed2e29a",
+      "sourceSha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+      "sourceArtworkEntry": {
+        "resize_mode": "nine_slice",
+        "file": "card_normal.png",
+        "size": [
+          601,
+          200
+        ],
+        "source": "source/01-plates.png",
+        "source_sha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+        "source_box_xyxy": [
+          13,
+          514,
+          614,
+          714
+        ],
+        "nine_slice": {
+          "left": 89,
+          "top": 51,
+          "right": 89,
+          "bottom": 54
+        },
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "fixed_side_edge_ornaments": true,
+        "fit_borders_within_contract": true,
+        "side_rail_x": {
+          "left": 31,
+          "right": 64
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "ad58f542cacdea60ef0e9bbae2d40819c7fa39a8a4ebedc1fc46d8d675ee27fa"
+    },
+    {
+      "name": "pet_card_selected",
+      "source": "qdao_ui_style_recut_v10/source/01-plates.png",
+      "width": 419,
+      "height": 135,
+      "sourceRectTopLeft": [
+        640,
+        514,
+        600,
+        200
+      ],
+      "sourceRectNativeTopLeft": [
+        640,
+        514,
+        600,
+        200
+      ],
+      "borderLeftBottomRightTop": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/pet_card_selected",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "pet",
+        "sourceRectTopLeft": [
+          175,
+          105,
+          313,
+          101
+        ],
+        "sourceRectNativeTopLeft": [
+          235,
+          141,
+          419,
+          135
+        ],
+        "processing": "Original outer card border; cleared portrait, name, level and state; clean source-color interior."
+      },
+      "artKey": "card_selected",
+      "cleanArtSize": [
+        600,
+        200
+      ],
+      "cleanArtPixelSha256": "23c7f345eddd46185bfb0c61ad7391df7cd515a375adbfddbb3e82a0ef4022c4",
+      "sourceSha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+      "sourceArtworkEntry": {
+        "resize_mode": "nine_slice",
+        "file": "card_selected.png",
+        "size": [
+          600,
+          200
+        ],
+        "source": "source/01-plates.png",
+        "source_sha256": "02e2156e95676c54b3e94fd2f71f31c176000b0cbdac1f0aa82201a980ee0af3",
+        "source_box_xyxy": [
+          640,
+          514,
+          1240,
+          714
+        ],
+        "nine_slice": {
+          "left": 87,
+          "top": 51,
+          "right": 87,
+          "bottom": 54
+        },
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "fixed_side_edge_ornaments": true,
+        "fit_borders_within_contract": true,
+        "side_rail_x": {
+          "left": 31,
+          "right": 61
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "f8ad6f7d944af4f7c5b5c8daeb2d62ec45f977e579656fee7759d99f7b793260"
+    },
+    {
+      "name": "portrait_lingyue",
+      "source": "designs/attribute-panels/assets/lingyue.png",
+      "width": 160,
+      "height": 160,
+      "sourceRectTopLeft": [
+        340.5,
+        370,
+        389,
+        389
+      ],
+      "sourceRectNativeTopLeft": [
+        340.5,
+        370,
+        389,
+        389
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Square head recrop from latest approved transparent pet artwork using original crop bounds; Lanczos resample to 160x160. No painted alteration, stretched anatomy, or baked level.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/portrait_lingyue",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "E:/work/image/designs/attribute-panels/assets/lingyue.png",
+        "sourceRectTopLeft": [
+          340.5,
+          370,
+          389,
+          389
+        ],
+        "sourceRectNativeTopLeft": [
+          340.5,
+          370,
+          389,
+          389
+        ],
+        "processing": "Head crop of existing approved transparent pet art, resampled to 160x160; no baked level."
+      },
+      "sourceSha256": "eb55d459871737d1c49ff49097d1c7612cf60a35095c60bfca0198e425c04b11",
+      "sourceNativeSize": [
+        1254,
+        1254
+      ],
+      "preservedArtwork": true,
+      "preservationReason": "Approved pet identity and exposure corrections are preserved. Portrait content is separate from the newly painted UI skin; resampling does not claim a newly generated pet.",
+      "recutVersion": "v10",
+      "sha256": "f0506e1ea727f492ab9b316ada94794d96fa7a78031861a7c2639868778172ae",
+      "edge_rgb_repair": {
+        "id": "support-20260911T072712Z",
+        "report": "qdao_cutout_edge_repair_20260910/published-support.json",
+        "processing": "Existing artwork only; matte-edge RGB decontamination. Source alpha, dimensions and silhouettes preserved.",
+        "pet_and_item_visual_review": "passed by main agent on full artwork and magnified light/dark edge evidence",
+        "portraits_review": "docs/style-repair-20260911/ui-portraits-final-review.json",
+        "source_count": 6,
+        "atlas_cells_verified": 124
+      }
+    },
+    {
+      "name": "portrait_hutuantuan",
+      "source": "designs/attribute-panels/assets/hutuantuan.png",
+      "width": 160,
+      "height": 160,
+      "sourceRectTopLeft": [
+        311.5,
+        77,
+        629,
+        629
+      ],
+      "sourceRectNativeTopLeft": [
+        311.5,
+        77,
+        629,
+        629
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Square head recrop from latest approved transparent pet artwork using original crop bounds; Lanczos resample to 160x160. No painted alteration, stretched anatomy, or baked level.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/portrait_hutuantuan",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "E:/work/image/designs/attribute-panels/assets/hutuantuan.png",
+        "sourceRectTopLeft": [
+          311.5,
+          77,
+          629,
+          629
+        ],
+        "sourceRectNativeTopLeft": [
+          311.5,
+          77,
+          629,
+          629
+        ],
+        "processing": "Head crop of existing approved transparent pet art, resampled to 160x160; no baked level."
+      },
+      "sourceSha256": "8c309927e2a38ba0dabdb7ba24f4e383059335a2d7e5cc6ecb57b61ceaa9ef99",
+      "sourceNativeSize": [
+        1254,
+        1254
+      ],
+      "preservedArtwork": true,
+      "preservationReason": "Approved pet identity and exposure corrections are preserved. Portrait content is separate from the newly painted UI skin; resampling does not claim a newly generated pet.",
+      "recutVersion": "v10",
+      "sha256": "dd62e68f9ebce2bf9c53c2008a1322dfcb016f7fd82e41bff7be323646323c81",
+      "edge_rgb_repair": {
+        "id": "support-20260911T072712Z",
+        "report": "qdao_cutout_edge_repair_20260910/published-support.json",
+        "processing": "Existing artwork only; matte-edge RGB decontamination. Source alpha, dimensions and silhouettes preserved.",
+        "pet_and_item_visual_review": "passed by main agent on full artwork and magnified light/dark edge evidence",
+        "portraits_review": "docs/style-repair-20260911/ui-portraits-final-review.json",
+        "source_count": 6,
+        "atlas_cells_verified": 124
+      }
+    },
+    {
+      "name": "portrait_fuxiaohu",
+      "source": "designs/attribute-panels/assets/fuxiaohu.png",
+      "width": 160,
+      "height": 160,
+      "sourceRectTopLeft": [
+        311.5,
+        77,
+        629,
+        629
+      ],
+      "sourceRectNativeTopLeft": [
+        311.5,
+        77,
+        629,
+        629
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Square head recrop from latest approved transparent pet artwork using original crop bounds; Lanczos resample to 160x160. No painted alteration, stretched anatomy, or baked level.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/portrait_fuxiaohu",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "E:/work/image/designs/attribute-panels/assets/fuxiaohu.png",
+        "sourceRectTopLeft": [
+          311.5,
+          77,
+          629,
+          629
+        ],
+        "sourceRectNativeTopLeft": [
+          311.5,
+          77,
+          629,
+          629
+        ],
+        "processing": "Head crop of existing approved transparent pet art, resampled to 160x160; no baked level."
+      },
+      "sourceSha256": "3a1bf4308670d5287ca713361e28c52377a79da9b41d636bd178747a3a2b84b0",
+      "sourceNativeSize": [
+        1254,
+        1254
+      ],
+      "preservedArtwork": true,
+      "preservationReason": "Approved pet identity and exposure corrections are preserved. Portrait content is separate from the newly painted UI skin; resampling does not claim a newly generated pet.",
+      "recutVersion": "v10",
+      "sha256": "e20c92128ec0ab1156c61ed0344fa386f1ab0a9f714eb2612585d03caeb6b9df",
+      "edge_rgb_repair": {
+        "id": "support-20260911T072712Z",
+        "report": "qdao_cutout_edge_repair_20260910/published-support.json",
+        "processing": "Existing artwork only; matte-edge RGB decontamination. Source alpha, dimensions and silhouettes preserved.",
+        "pet_and_item_visual_review": "passed by main agent on full artwork and magnified light/dark edge evidence",
+        "portraits_review": "docs/style-repair-20260911/ui-portraits-final-review.json",
+        "source_count": 6,
+        "atlas_cells_verified": 124
+      }
+    },
+    {
+      "name": "portrait_yunjiujiu",
+      "source": "designs/attribute-panels/assets/yunjiujiu.png",
+      "width": 160,
+      "height": 160,
+      "sourceRectTopLeft": [
+        311.5,
+        77,
+        629,
+        629
+      ],
+      "sourceRectNativeTopLeft": [
+        311.5,
+        77,
+        629,
+        629
+      ],
+      "borderLeftBottomRightTop": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "processing": "Square head recrop from latest approved transparent pet artwork using original crop bounds; Lanczos resample to 160x160. No painted alteration, stretched anatomy, or baked level.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/portrait_yunjiujiu",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "E:/work/image/designs/attribute-panels/assets/yunjiujiu.png",
+        "sourceRectTopLeft": [
+          311.5,
+          77,
+          629,
+          629
+        ],
+        "sourceRectNativeTopLeft": [
+          311.5,
+          77,
+          629,
+          629
+        ],
+        "processing": "Head crop of existing approved transparent pet art, resampled to 160x160; no baked level."
+      },
+      "sourceSha256": "7bb35de3e74535801f640f4489d41639ba84c65d680e82a0cd4397f832fa003f",
+      "sourceNativeSize": [
+        1254,
+        1254
+      ],
+      "preservedArtwork": true,
+      "preservationReason": "Approved pet identity and exposure corrections are preserved. Portrait content is separate from the newly painted UI skin; resampling does not claim a newly generated pet.",
+      "recutVersion": "v10",
+      "sha256": "5fa824d73f866a24475dd28cc849261fcdcdf0cc966784e1fbd9824fc2028d86",
+      "edge_rgb_repair": {
+        "id": "support-20260911T072712Z",
+        "report": "qdao_cutout_edge_repair_20260910/published-support.json",
+        "processing": "Existing artwork only; matte-edge RGB decontamination. Source alpha, dimensions and silhouettes preserved.",
+        "pet_and_item_visual_review": "passed by main agent on full artwork and magnified light/dark edge evidence",
+        "portraits_review": "docs/style-repair-20260911/ui-portraits-final-review.json",
+        "source_count": 6,
+        "atlas_cells_verified": 124
+      }
+    },
+    {
+      "name": "portrait_frame",
+      "source": "qdao_ui_style_recut_v10/source/06-attribute-fields.png",
+      "width": 134,
+      "height": 115,
+      "sourceRectTopLeft": [
+        57,
+        912,
+        303,
+        296
+      ],
+      "sourceRectNativeTopLeft": [
+        57,
+        912,
+        303,
+        296
+      ],
+      "borderLeftBottomRightTop": [
+        11,
+        11,
+        11,
+        11
+      ],
+      "processing": "Nine-part mechanical assembly from new text-free painted art, preserving original Unity destination borders; no legacy skin pixels.",
+      "resourcePath": "UI/Ugui/AttributesPaintedV2/portrait_frame",
+      "containsDynamicText": false,
+      "containsStaticTitle": false,
+      "legacySourceContract": {
+        "source": "pet",
+        "sourceRectTopLeft": [
+          184,
+          114,
+          100,
+          86
+        ],
+        "sourceRectNativeTopLeft": [
+          247,
+          153,
+          134,
+          115
+        ],
+        "processing": "Frame only. Portrait and level are separate runtime elements."
+      },
+      "artKey": "portrait_frame",
+      "cleanArtSize": [
+        303,
+        296
+      ],
+      "cleanArtPixelSha256": "6607cd24bfe87851821ffe59221a79d2a11355e7c9beca3d6f6e81afef7bdd40",
+      "sourceSha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+      "sourceArtworkEntry": {
+        "file": "portrait_frame.png",
+        "size": [
+          303,
+          296
+        ],
+        "source": "source/06-attribute-fields.png",
+        "source_sha256": "68f1ba166730c224886a115cf221c86bc3e8981b386a626195c7f270dda4220d",
+        "source_box_xyxy": [
+          57,
+          912,
+          360,
+          1208
+        ],
+        "alpha_cleanup": "Strong magenta field plus a 3px fringe only; chroma-key coverage and magenta edge unmatting, opaque painted interiors, every disconnected foreground component retained",
+        "nine_slice": {
+          "left": 78,
+          "top": 75,
+          "right": 88,
+          "bottom": 84
+        }
+      },
+      "cropProvenance": "qdao_ui_style_recut_v10/artwork/index.json",
+      "destinationBordersLeftTopRightBottom": [
+        11,
+        11,
+        11,
+        11
+      ],
+      "preservedArtwork": false,
+      "transparentGuardPixels": 1,
+      "recutVersion": "v10",
+      "sha256": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0"
+    }
+  ]
+}

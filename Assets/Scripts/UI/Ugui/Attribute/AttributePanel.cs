@@ -60,7 +60,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             float titleX = (CharacterAttributeVisuals.WindowW - 820f) * 0.5f;
             CharacterAttributeVisuals.Panel("TitlePlate", _root, titleX, -64f, 820f, 138f, "title_plate");
             CharacterAttributeVisuals.Panel("Title", _root,
-                (CharacterAttributeVisuals.WindowW - 288f) * 0.5f, -2f, 288f, 62f, "title_character");
+                (CharacterAttributeVisuals.WindowW - 288f) * 0.5f, -22f, 288f, 62f, "title_character");
             CharacterAttributeVisuals.Panel("CloseTassel", _root,
                 CharacterAttributeVisuals.WindowW + 36f, 24f, 32f, 80f, "close_tassel");
             var close = BattleUiWidgets.CreateTextButton("Close", _root,

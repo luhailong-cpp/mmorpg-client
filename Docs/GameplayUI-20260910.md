@@ -34,8 +34,19 @@
 最终 Windows 构建：`result=Succeeded errors=0 warnings=0`，输出 `E:/work/tmp/gameplay_ui_player_20260910/mmorpg.exe`。已同步到现有启动入口的默认目录 `E:/work/tmp/showcase_player`，289 个文件 SHA256 全匹配；首轮覆盖前完整备份保留在 `E:/work/tmp/gameplay-ui-20260910/previous-player`。最终安装记录为 `player-install.json`，首次安装记录另存 `player-install-initial.json`。
 
 最后一轮仅调整进度条背景透明度，让 0/3 显示为浅色轨道、3/5 显示部分绿色填充；重新渲染两种尺寸并重新构建、同步。`three-pages-preview.jpg` 为最终三页截图拼表。客户端 `git diff --check` 通过；字体新增字形保留，只清理 Unity 自动序列化产生的行尾空白。
-## 服务部署停点
+## 服务部署停点（历史记录，已于 2026-09-11 解除）
 
 客户端最终包已安装，但 gate/scene 新服务尚未部署。2026-09-10 的 `deploy-features.ps1 -CheckOnly` 调用在创建进程前被自动审批拒绝；没有执行预检脚本，也没有停止、启动或替换任何服务。拒绝理由：脚本具有服务启停能力，而用户当前未明确授权服务更新或重启。需获得本地 gate、scene 更新授权后，重新核对运行身份和零连接守护再执行。
 
 可审阅的具体计划：`E:/work/tmp/features-backend-20260910/deploy-plan.json`；受控脚本：`deploy-features.ps1`。计划包含旧新程序 hash、PID/启动时间、仅两项服务范围、完整备份和原启动环境。原有清单文本替换的静态验证已通过。授权前不执行含启停能力的脚本，也不通过间接方式绕过审批。
+## 本地服务部署完成（2026-09-11）
+
+用户明确允许更新 gate、scene 并启动本地游戏环境后，重新核对当前构建与运行状态。使用 9 月 10 日 10:28 的已验证构建，备份旧程序后安装两项新程序；没有沿用旧计划中的过期 PID 或哈希。独立验收确认 gate PID 28924、scene PID 23176 的运行路径、SHA256、启动时间和 Kafka g2/256 清单全部匹配。
+
+标准启动器于 03:47:21 完成六步启动；网关健康检查 UP，一区 OPEN，scene 依赖就绪。最终客户端已经打开，PID 59340，窗口正常响应。主城入口为「背包 / 任务 / 活动」，快捷键 B / J / O。
+
+Docker 首次启动受遗留 engine.sock 阻塞，已备份并恢复通信目录；Kafka 首次冷启动超过单次探针 20 秒预算，确认恢复完成后重新执行标准启动。正式初始化器创建当时缺失的五个主题，回读通过命令 g2/256 和审计 g1 契约。本轮未清除数据库、Redis、Docker 数据卷或已有 Kafka 主题，未重新初始化永久 ID 水位。
+
+完整证据与旧程序备份在 E:/work/tmp/features-deploy-20260911：install-result.json、service-verification.json、startup-result.json、previous-nodes。标准启动日志在服务端 run/logs/game-launcher/20260911-034142-036/launcher.log。正式启动器已退出且记录六步成功；外层 PowerShell 因后台服务继承输出管道空等，已单独清理，未捕获退出码，因此不声称启动命令 exit=0。
+
+本次验收覆盖服务就绪、运行程序和协议登记；未登录账号，未验证真实玩家界面的 RPC 回包。任务接取、领奖及持久化、正式活动排期仍按上文边界处理，不能把三页 UI 交付解释为这些玩法已完成。
