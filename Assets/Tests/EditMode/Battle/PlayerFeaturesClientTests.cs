@@ -333,6 +333,183 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.BagError, Is.Not.Empty);
         }
 
+        private GetMissionListResponse LoadMission(uint scope = 0, bool claim = false)
+        {
+            var response = new GetMissionListResponse { StatePersistent = true };
+            response.Missions.Add(new PlayerMissionInfo
+            {
+                Scope = scope, MissionId = 15, CanAccept = !claim, CanClaim = claim,
+                Status = (PlayerMissionStatus)(claim ? 3 : 0), Configured = true,
+            });
+            _client.RequestMissions();
+            _net.Calls[_net.Calls.Count - 1].Respond(response);
+            return _client.Missions;
+        }
+
+        [Test]
+        public void AcceptUsesScopeAndServerCapabilityAndSerializesMissionActions()
+        {
+            var before = LoadMission(5);
+            _client.AcceptMission(5, 15);
+            Assert.That(_client.BusyMissionAction, Is.True);
+            Assert.That(_net.Calls[1].MessageId, Is.EqualTo(SceneMissionClientPlayerAcceptMissionHandler.MessageId));
+            var request = (MissionActionRequest)_net.Calls[1].Request;
+            Assert.That(request.Scope, Is.EqualTo(5));
+            Assert.That(request.MissionId, Is.EqualTo(15));
+            _client.AcceptMission(5, 15);
+            _client.ClaimMissionReward(5, 15);
+            _client.RequestMissions();
+            _client.RequestActivities();
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+            Assert.That(_client.Missions, Is.SameAs(before), "点击不得乐观修改任务状态");
+            var authoritative = before.Clone();
+            authoritative.Missions[0].CanAccept = false;
+            authoritative.Missions[0].Status = (PlayerMissionStatus)1;
+            _net.Calls[1].Respond(authoritative);
+            Assert.That(_client.BusyMissionAction, Is.False);
+            Assert.That(_client.Missions.Equals(authoritative), Is.True);
+            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneActivityClientPlayerGetActivityListHandler.MessageId));
+            Assert.That(_net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId), Is.Empty);
+        }
+
+        [Test]
+        public void MissionActionInvalidatesPendingListAndActivityCallbacks()
+        {
+            var before = LoadMission();
+            _client.RequestMissions();
+            _client.RequestActivities();
+            _client.AcceptMission(0, 15);
+            Assert.That(_client.MissionsLoading || _client.ActivitiesLoading, Is.False);
+            var accepted = before.Clone();
+            accepted.Missions[0].Status = (PlayerMissionStatus)1;
+            accepted.Missions[0].CanAccept = false;
+            _net.Calls[3].Respond(accepted);
+            _net.Calls[1].Respond(before);
+            _net.Calls[2].FailWith("旧活动请求失败");
+            Assert.That(_client.Missions.Equals(accepted), Is.True);
+            Assert.That(_errors, Is.Empty);
+            Assert.That(_client.ActivitiesLoading, Is.True);
+        }
+
+        [Test]
+        public void ClaimOnlyAppliesServerMissionSnapshotAndRefreshesCurrentBagAndActivities()
+        {
+            LoadBag(1);
+            var bagBefore = _client.Bag;
+            var before = LoadMission(claim: true);
+            _client.ClaimMissionReward(0, 15);
+            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneMissionClientPlayerClaimMissionRewardHandler.MessageId));
+            Assert.That(_client.Bag, Is.SameAs(bagBefore));
+            var claimed = before.Clone();
+            claimed.Missions[0].CanClaim = false;
+            claimed.Missions[0].Status = (PlayerMissionStatus)2;
+            _net.Calls[2].Respond(claimed);
+            Assert.That(_client.Missions.Equals(claimed), Is.True);
+            Assert.That(_net.Calls[3].MessageId, Is.EqualTo(SceneActivityClientPlayerGetActivityListHandler.MessageId));
+            Assert.That(_net.Calls[4].MessageId, Is.EqualTo(SceneBagClientPlayerGetBagHandler.MessageId));
+            Assert.That(((GetBagRequest)_net.Calls[4].Request).BagType, Is.EqualTo(1));
+            Assert.That(_client.Bag, Is.SameAs(bagBefore), "领奖本身不伪造背包增量");
+            _net.Calls[4].Respond(new GetBagResponse { Bag = Bag(1, count: 12) });
+            Assert.That(_client.Bag.Items[0].Count, Is.EqualTo(12));
+            _client.ClaimMissionReward(0, 15);
+            Assert.That(_net.CallsOf(SceneMissionClientPlayerClaimMissionRewardHandler.MessageId).Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void MissionActionsRejectMissingScopeAndServerDisabledCapabilities()
+        {
+            _client.AcceptMission(0, 15);
+            _client.ClaimMissionReward(0, 15);
+            Assert.That(_net.Calls, Is.Empty);
+            LoadMission(5);
+            _client.AcceptMission(0, 15);
+            _client.ClaimMissionReward(5, 15);
+            Assert.That(_net.Calls.Count, Is.EqualTo(1));
+            Assert.That(_client.BusyMissionAction, Is.False);
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void MissionFailureClearsBusyKeepsSnapshotAndAllowsExplicitRetry(bool bodyRejection)
+        {
+            var before = LoadMission();
+            _client.AcceptMission(0, 15);
+            if (bodyRejection) _net.Calls[1].Respond(new GetMissionListResponse { ErrorMessage = new TipInfoMessage { Id = 7 } });
+            else _net.Calls[1].FailWith("请求超时");
+            Assert.That(_client.BusyMissionAction, Is.False);
+            Assert.That(_client.Missions, Is.SameAs(before));
+            Assert.That(_client.MissionsError, Is.Not.Empty);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+            _client.AcceptMission(0, 15);
+            Assert.That(_client.BusyMissionAction, Is.True);
+            Assert.That(_client.MissionsError, Is.Empty);
+            Assert.That(_net.Calls.Count, Is.EqualTo(3));
+            _net.Calls[1].FailWith("更早的旧错误");
+            Assert.That(_client.BusyMissionAction, Is.True);
+            Assert.That(_client.MissionsError, Is.Empty);
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void MissionActionsCannotRepopulateAfterDisconnectOrCharacterChange(bool disconnect)
+        {
+            var before = LoadMission(claim: true);
+            _client.ClaimMissionReward(0, 15);
+            if (disconnect) _net.RaiseDisconnected();
+            else _net.PlayerId = 9202;
+            _client.RequestActivities();
+            _net.Calls[1].Respond(before);
+            _net.Calls[1].FailWith("旧角色的失败");
+            Assert.That(_client.HasMissions || _client.BusyMissionAction, Is.False);
+            Assert.That(_errors, Is.Empty);
+            Assert.That(_net.Calls.Count, Is.EqualTo(3), "旧角色领奖回包不得补拉新角色背包");
+        }
+
+        [Test]
+        public void BagSortAndMissionActionsAreMutuallyExclusive()
+        {
+            LoadBag();
+            LoadMission();
+            _client.SortBag();
+            _client.AcceptMission(0, 15);
+            Assert.That(_net.Calls.Count, Is.EqualTo(3));
+            _net.Calls[2].Respond(new SortBagResponse { Bag = Bag() });
+            _client.AcceptMission(0, 15);
+            _client.SortBag();
+            Assert.That(_net.Calls.Count, Is.EqualTo(4));
+            Assert.That(_client.BusyMissionAction, Is.True);
+            Assert.That(_client.BusySort, Is.False);
+        }
+
+        [Test]
+        public void ActivityParticipationUsesServerCapabilityAndBaseMissionScope()
+        {
+            _client.RequestActivities();
+            var activities = new GetActivityListResponse();
+            activities.Activities.Add(new PlayerActivityInfo { ActivityId = 99, MissionId = 15, CanParticipate = true, Status = (PlayerActivityStatus)2 });
+            _net.Calls[0].Respond(activities);
+            _client.AcceptMission(5, 15);
+            Assert.That(_net.Calls.Count, Is.EqualTo(1));
+            _client.AcceptMission(0, 15);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+            Assert.That(((MissionActionRequest)_net.Calls[1].Request).Scope, Is.Zero);
+            Assert.That(((MissionActionRequest)_net.Calls[1].Request).MissionId, Is.EqualTo(15));
+        }
+        [Test]
+        public void CharacterChangeDuringBusyNotificationPreventsSendingOldMissionAction()
+        {
+            LoadMission();
+            _client.OnChanged += () =>
+            {
+                if (!_client.BusyMissionAction) return;
+                _net.PlayerId = 9202;
+                _client.RequestActivities();
+            };
+            _client.AcceptMission(0, 15);
+            Assert.That(_net.CallsOf(SceneMissionClientPlayerAcceptMissionHandler.MessageId), Is.Empty);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+            Assert.That(_client.HasMissions || _client.BusyMissionAction, Is.False);
+        }
         [Test]
         public void DisposeUnsubscribesAndInvalidatesCallbacks()
         {

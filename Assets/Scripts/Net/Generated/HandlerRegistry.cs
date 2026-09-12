@@ -50,6 +50,8 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(SceneCurrencyClientPlayerGmBlockCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmBlockCurrencyHandler.Dispatch(client, mc));
             client.OnNotify(SceneCurrencyClientPlayerGmDeductCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmDeductCurrencyHandler.Dispatch(client, mc));
             client.OnNotify(SceneCurrencyClientPlayerGmUnblockCurrencyHandler.MessageId, mc => SceneCurrencyClientPlayerGmUnblockCurrencyHandler.Dispatch(client, mc));
+            client.OnNotify(SceneMissionClientPlayerAcceptMissionHandler.MessageId, mc => SceneMissionClientPlayerAcceptMissionHandler.Dispatch(client, mc));
+            client.OnNotify(SceneMissionClientPlayerClaimMissionRewardHandler.MessageId, mc => SceneMissionClientPlayerClaimMissionRewardHandler.Dispatch(client, mc));
             client.OnNotify(SceneMissionClientPlayerGetMissionListHandler.MessageId, mc => SceneMissionClientPlayerGetMissionListHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveStartHandler.MessageId, mc => SceneMovementClientPlayerMoveStartHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerMoveStopHandler.MessageId, mc => SceneMovementClientPlayerMoveStopHandler.Dispatch(client, mc));

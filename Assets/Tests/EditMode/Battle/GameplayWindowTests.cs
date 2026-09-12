@@ -15,6 +15,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private GameplayWindow _window;
         private int _bagReads, _missionReads, _activityReads, _sorts;
         private readonly List<PlayerMissionInfo> _tracking = new();
+        private readonly List<(uint Scope, uint Id)> _accepts = new(), _claims = new();
 
         [SetUp]
         public void SetUp()
@@ -23,12 +24,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
             ((RectTransform)_fixture.transform).sizeDelta = new Vector2(2560, 1080);
             _window = new GameplayWindow(_fixture.transform);
             _bagReads = _missionReads = _activityReads = _sorts = 0;
-            _tracking.Clear();
+            _tracking.Clear(); _accepts.Clear(); _claims.Clear();
             _window.BagRequested += _ => ++_bagReads;
             _window.MissionsRequested += () => ++_missionReads;
             _window.ActivitiesRequested += () => ++_activityReads;
             _window.SortRequested += () => ++_sorts;
             _window.TrackingChanged += _tracking.Add;
+            _window.MissionAcceptRequested += (scope, id) => _accepts.Add((scope, id));
+            _window.MissionClaimRequested += (scope, id) => _claims.Add((scope, id));
         }
 
         [TearDown]
@@ -268,6 +271,131 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(FindButton("下一页").interactable, Is.False);
         }
 
+        [Test]
+        public void MissionAcceptIsExplicitUsesScopeAndBusyDisablesActionAndRefresh()
+        {
+            var missions = MakeMissions(1);
+            var mission = missions.Missions[0];
+            mission.Scope = 5; mission.Status = (PlayerMissionStatus)0; mission.CanAccept = true;
+            _window.SetMissions(missions, false, null);
+            _window.Show(GameplayPage.Missions);
+            Assert.That(_accepts, Is.Empty, "显示或刷新不得自动接取任务");
+            _window.MissionAcceptRequested += (_, __) => _window.SetMissions(missions, false, null, true);
+            Click("接取任务");
+            Assert.That(_accepts.Single(), Is.EqualTo((5u, 1u)));
+            Assert.That(FindButton("处理中…").interactable, Is.False);
+            Assert.That(FindButton("刷新任务").interactable, Is.False);
+            AssertText("正在处理任务，请稍候…");
+            Assert.That(_claims, Is.Empty);
+            Assert.That(_tracking, Is.Empty);
+        }
+
+        [Test]
+        public void ClaimButtonFollowsServerCapabilityAndRendersActionFailure()
+        {
+            var missions = MakeMissions(1);
+            var mission = missions.Missions[0];
+            mission.Scope = 7; mission.Status = (PlayerMissionStatus)3;
+            mission.UnavailableReason = "行囊已满，请先整理";
+            _window.SetMissions(missions, false, null);
+            _window.Show(GameplayPage.Missions);
+            Assert.That(FindButton("领取奖励").interactable, Is.False);
+            AssertText("行囊已满，请先整理");
+            mission.CanClaim = true; mission.UnavailableReason = "";
+            _window.SetMissions(missions, false, null);
+            Click("领取奖励");
+            Assert.That(_claims.Single(), Is.EqualTo((7u, 1u)));
+            Assert.That(_accepts, Is.Empty);
+            _window.SetMissions(missions, false, "领取奖励失败（错误码 7）");
+            AssertText("领取奖励失败（错误码 7）");
+            Assert.That(FindButton("领取奖励").interactable, Is.True);
+        }
+
+        [Test]
+        public void MissingAcceptCapabilityKeepsButtonDisabledWithoutHidingReason()
+        {
+            var missions = MakeMissions(1);
+            missions.Missions[0].Status = (PlayerMissionStatus)0;
+            missions.Missions[0].UnavailableReason = "请先完成前置任务";
+            _window.SetMissions(missions, false, null);
+            _window.Show(GameplayPage.Missions);
+            Assert.That(FindButton("接取任务").interactable, Is.False);
+            AssertText("请先完成前置任务");
+            Assert.That(_accepts, Is.Empty);
+        }
+
+        [Test]
+        public void ActivityParticipationUsesBaseScopeAndBusyBlocksDuplicateSubmission()
+        {
+            var activities = MakeActivities(1);
+            activities.Activities[0].Status = (PlayerActivityStatus)2;
+            activities.Activities[0].CanParticipate = true;
+            _window.SetMissions(new GetMissionListResponse(), false, null);
+            _window.SetActivities(activities, false, null);
+            _window.Show(GameplayPage.Activities);
+            Assert.That(_accepts, Is.Empty);
+            Assert.That(_missionReads, Is.EqualTo(1), "活动开启时同步任务，以识别已参与状态");
+            _window.MissionAcceptRequested += (_, __) => _window.SetMissions(new GetMissionListResponse(), false, null, true);
+            Click("参与活动");
+            Assert.That(_accepts.Single(), Is.EqualTo((0u, 1u)));
+            Assert.That(FindButton("处理中…").interactable, Is.False);
+            Assert.That(FindButton("刷新").interactable, Is.False);
+            AssertText("正在处理任务，请稍候…");
+        }
+
+        [Test]
+        public void ActivityWithExistingMissionOpensCorrectMissionPageWithoutAcceptingAgain()
+        {
+            _window.SetMissions(MakeMissions(7), false, null);
+            var activities = MakeActivities(1);
+            activities.Activities[0].MissionId = 7;
+            _window.SetActivities(activities, false, null);
+            _window.Show(GameplayPage.Activities);
+            Click("查看任务");
+            Assert.That(_window.Page, Is.EqualTo(GameplayPage.Missions));
+            AssertText("任务说明7");
+            AssertText("任务六");
+            Assert.That(_accepts, Is.Empty);
+        }
+
+        [Test]
+        public void ActivityScheduleFormatsServerTimestampsInExplicitUtcPlusEightWithoutInferringState()
+        {
+            var activities = MakeActivities(1);
+            var activity = activities.Activities[0];
+            activity.Status = (PlayerActivityStatus)1;
+            activity.StartsAtMs = 86400000; activity.EndsAtMs = 172800000;
+            activity.UnavailableReason = "尚未到开放时间";
+            _window.SetActivities(activities, false, null);
+            _window.Show(GameplayPage.Activities);
+            AssertText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）");
+            AssertText("即将开启");
+            AssertText("尚未到开放时间");
+            Assert.That(FindButton("参与活动").interactable, Is.False, "不因系统日期晚于排期而自行开放");
+            activity.Status = (PlayerActivityStatus)0;
+            _window.SetActivities(activities, false, null);
+            AssertText("尚未排期");
+            Assert.That(HasText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）"), Is.False);
+        }
+
+        [Test]
+        public void InvalidScheduleBoundariesAreReadableAndResetSessionClearsActionBusy()
+        {
+            var activities = MakeActivities(1);
+            activities.Activities[0].Status = (PlayerActivityStatus)2;
+            activities.Activities[0].EndsAtMs = ulong.MaxValue;
+            _window.SetActivities(activities, false, null);
+            _window.Show(GameplayPage.Activities);
+            AssertText("开始 待公布\n结束 待公布 北京时间（UTC+8）");
+            _window.SetMissions(new GetMissionListResponse(), false, null, true);
+            _window.ResetSession();
+            var missions = MakeMissions(1);
+            missions.Missions[0].Status = (PlayerMissionStatus)0;
+            missions.Missions[0].CanAccept = true;
+            _window.SetMissions(missions, false, null);
+            _window.Show(GameplayPage.Missions);
+            Assert.That(FindButton("接取任务").interactable, Is.True);
+        }
         private TMP_InputField Search()
             => _fixture.GetComponentsInChildren<TMP_InputField>(true).Single(i => i.name == "BagSearch");
 

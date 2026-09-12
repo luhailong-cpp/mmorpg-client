@@ -154,8 +154,11 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(foreground.GetComponent<MeshRenderer>().enabled, Is.True);
                 Assert.That(foreground.GetComponent<Collider>(), Is.Null,
                     "the foreground must not intercept click-to-move rays");
+                foreach (var cutout in TianyongPaintedForeground.Cutouts)
+                    Assert.That(ground.Find(cutout.Name), Is.Not.Null, "cutout missing: " + cutout.Name);
                 Assert.That(ground.childCount,
-                    Is.EqualTo(TianyongPaintedCity.TileColumns * TianyongPaintedCity.TileRows + 1));
+                    Is.EqualTo(TianyongPaintedCity.TileColumns * TianyongPaintedCity.TileRows
+                               + TianyongPaintedForeground.Cutouts.Count));
 
                 var tileUnits = TianyongPaintedCity.TilePixels / TianyongPaintedCity.PixelsPerUnit;
                 var bounds = new Bounds();
@@ -163,7 +166,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 var tileCount = 0;
                 foreach (Transform tile in ground)
                 {
-                    if (tile == foreground) continue;
+                    if (tile.GetComponent<TianyongPaintedForeground>() != null) continue;
                     tileCount++;
                     Assert.That(tile.name, Does.StartWith("Tile_r"));
                     Assert.That(tile.GetComponent<MeshRenderer>().enabled, Is.True);

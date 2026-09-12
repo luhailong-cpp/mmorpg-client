@@ -31,6 +31,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public bool MissionsLoading { get; private set; }
         public bool ActivitiesLoading { get; private set; }
         public bool BusySort { get; private set; }
+        public bool BusyMissionAction { get; private set; }
         public uint RequestedBagType { get; private set; }
         public string BagError { get; private set; } = string.Empty;
         public string MissionsError { get; private set; } = string.Empty;
@@ -89,6 +90,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public void SortBag()
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (BusyMissionAction) { FailBag("任务正在处理中，请稍候"); return; }
             if (BusySort || BagLoading) { FailBag("背包正在处理中，请稍候"); return; }
             if (Bag?.Layout == null) { FailBag("请先读取背包"); return; }
             if (!Bag.Layout.CanSort || Bag.Layout.BagType > 1) { FailBag("此背包暂不支持整理"); return; }
@@ -122,6 +124,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public void RequestMissions()
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (BusyMissionAction) return;
             int epoch = _epoch;
             int request = ++_missionRequest;
             MissionsLoading = true;
@@ -149,6 +152,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public void RequestActivities()
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (BusyMissionAction) return;
             int epoch = _epoch;
             int request = ++_activityRequest;
             ActivitiesLoading = true;
@@ -173,6 +177,61 @@ namespace MmorpgClient.Game.PlayerFeatures
                 });
         }
 
+        public void AcceptMission(uint scope, uint missionId) => PerformMissionAction(scope, missionId, false);
+
+        public void ClaimMissionReward(uint scope, uint missionId) => PerformMissionAction(scope, missionId, true);
+
+        private void PerformMissionAction(uint scope, uint missionId, bool claim)
+        {
+            if (!PrepareRequest(out var playerId)) return;
+            if (BusyMissionAction) return;
+            if (BusySort) { FailMissions("背包正在整理，请稍候"); return; }
+            PlayerMissionInfo mission = null;
+            if (Missions != null)
+                foreach (var entry in Missions.Missions)
+                    if (entry.Scope == scope && entry.MissionId == missionId) { mission = entry; break; }
+            bool allowed = mission != null && (claim ? mission.CanClaim : mission.CanAccept);
+            if (!claim && mission == null && scope == 0 && Activities != null)
+                foreach (var activity in Activities.Activities)
+                    if (activity.MissionId == missionId && activity.CanParticipate) { allowed = true; break; }
+            if (missionId == 0 || !allowed)
+            {
+                FailMissions(!string.IsNullOrWhiteSpace(mission?.UnavailableReason) ? mission.UnavailableReason :
+                    claim ? "当前任务暂不可领奖，请刷新查看" : "当前任务暂不可接取，请刷新查看");
+                return;
+            }
+
+            int epoch = _epoch;
+            int request = ++_missionRequest;
+            ++_activityRequest;
+            MissionsLoading = ActivitiesLoading = false;
+            BusyMissionAction = true;
+            MissionsError = string.Empty;
+            OnChanged?.Invoke();
+            if (!IsCurrent(epoch, playerId) || request != _missionRequest) return;
+            _net.Call(claim ? SceneMissionClientPlayerClaimMissionRewardHandler.MessageId :
+                    SceneMissionClientPlayerAcceptMissionHandler.MessageId,
+                new MissionActionRequest { Scope = scope, MissionId = missionId }, GetMissionListResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(epoch, playerId) || request != _missionRequest) return;
+                    BusyMissionAction = false;
+                    if (HasTip(response.ErrorMessage))
+                    { FailMissions(DescribeTip(claim ? "领取奖励失败" : "接取任务失败", response.ErrorMessage)); return; }
+                    Missions = response;
+                    MissionsError = string.Empty;
+                    OnChanged?.Invoke();
+                    if (!IsCurrent(epoch, playerId)) return;
+                    RequestActivities();
+                    if (claim && IsCurrent(epoch, playerId)) RequestBag(RequestedBagType);
+                },
+                error =>
+                {
+                    if (!IsCurrent(epoch, playerId) || request != _missionRequest) return;
+                    BusyMissionAction = false;
+                    FailMissions(error);
+                });
+        }
         private bool PrepareRequest(out ulong playerId)
         {
             playerId = _net.PlayerId;
@@ -235,7 +294,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             Bag = null;
             Missions = null;
             Activities = null;
-            BagLoading = MissionsLoading = ActivitiesLoading = BusySort = false;
+            BagLoading = MissionsLoading = ActivitiesLoading = BusySort = BusyMissionAction = false;
             BagError = MissionsError = ActivitiesError = string.Empty;
             RequestedBagType = 0;
             OnChanged?.Invoke();

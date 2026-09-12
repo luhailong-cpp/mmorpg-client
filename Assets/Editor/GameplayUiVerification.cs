@@ -19,7 +19,7 @@ using UnityEngine.UI;
 public static class GameplayUiVerification
 {
     public static string OutputDirectory { get; set; } = Path.GetFullPath(Path.Combine(
-        Application.dataPath, "../.codex-artifacts/gameplay-ui-20260910"));
+        Application.dataPath, "../.codex-artifacts/gameplay-ui-20260911"));
 
     [MenuItem("MMORPG/UI/Capture gameplay screens")]
     public static void CaptureAll()
@@ -27,7 +27,7 @@ public static class GameplayUiVerification
         Capture(2560, 1080);
         Capture(1920, 1080);
         File.WriteAllText(Path.Combine(OutputDirectory, "capture-status.txt"),
-            "Completed 16 native uGUI screenshots: eight states at each resolution.\n" +
+            "Completed 26 native uGUI screenshots: thirteen states at each resolution.\n" +
             "Editor fixtures only; no live account, server request, inventory mutation or activity schedule.\n");
     }
 
@@ -127,7 +127,29 @@ public static class GameplayUiVerification
             window.Show(GameplayPage.Bag); Shoot("07-bag-error");
             window.SetBag(null, true, null, false);
             window.Show(GameplayPage.Bag); Shoot("08-bag-loading");
-            Debug.Log("GAMEPLAY_UI_CAPTURE_OK|" + width + "x" + height + "|8 fixtures|" + OutputDirectory);
+            var actionFixture = new GetMissionListResponse { StatePersistent = true };
+            var actionMission = MissionFixture().Missions[0].Clone();
+            actionMission.Status = PlayerMissionStatus.PlayerMissionNotAccepted;
+            actionMission.CanAccept = true; actionMission.RewardId = 990001;
+            actionFixture.Missions.Add(actionMission);
+            window.SetMissions(actionFixture, false, null);
+            window.Show(GameplayPage.Missions); Shoot("09-mission-accept");
+            actionMission.Status = PlayerMissionStatus.PlayerMissionClaimable;
+            actionMission.CanAccept = false; actionMission.CanClaim = true;
+            foreach (var objective in actionMission.Objectives) { objective.Progress = objective.Target; objective.Completed = true; }
+            window.SetMissions(actionFixture, false, null); Shoot("10-mission-claim");
+            window.SetMissions(actionFixture, false, null, true); Shoot("11-mission-busy");
+            window.SetMissions(actionFixture, false, "行囊已满，请整理后重试"); Shoot("12-mission-error");
+            var scheduleFixture = ActivityFixture();
+            var openActivity = scheduleFixture.Activities[0];
+            openActivity.MissionId = 930001; openActivity.Status = PlayerActivityStatus.PlayerActivityOpen;
+            openActivity.CanParticipate = true; openActivity.UnavailableReason = "";
+            openActivity.StartsAtMs = 1790956800000; openActivity.EndsAtMs = 1791561600000;
+            openActivity.Description = "服务器时间展示样例；日期仅用于检查布局，不是正式活动排期。";
+            window.SetMissions(new GetMissionListResponse(), false, null);
+            window.SetActivities(scheduleFixture, false, null);
+            window.Show(GameplayPage.Activities); Shoot("13-activity-participate");
+            Debug.Log("GAMEPLAY_UI_CAPTURE_OK|" + width + "x" + height + "|13 fixtures|" + OutputDirectory);
         }
         finally
         {

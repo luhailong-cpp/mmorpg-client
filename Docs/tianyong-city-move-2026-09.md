@@ -2,6 +2,8 @@
 
 本报告替代上一轮交付说明。原先列出的八方向待机、名牌底板、右侧三按钮画面和障碍物后方截图已补齐；另外修复了核查中新发现的南北跑步重复姿势、西侧灯柱遮挡及验收脚本误报风险。
 
+> 2026-09-11 补充见[第 5 节](#5-2026-09-11-补充东侧灯柱与全城遮挡范围)：东侧灯柱已修；遮挡是全城性的，其余地点需要美术出前景素材。
+
 最终轮次 **audit_20260909d**：构建成功、0 错误；**EditMode 249/249、PlayMode 13/13**；**134 张有效画面、3,528 次连续离屏渲染边界检查通过**。结论针对下文列出的配置、站位与运行副本。
 
 [完整运行画面](VerificationEvidence/tianyong-20260909/00_00_runtime_hud.jpg) · [八方向待机](VerificationEvidence/tianyong-20260909/idle-directions-review.jpg) · [灯柱前后对照](VerificationEvidence/tianyong-20260909/foreground-before-after.jpg) · [点击反馈](VerificationEvidence/tianyong-20260909/45_04_click_a.jpg)
@@ -74,3 +76,60 @@ PNG 用于画面复核，灰图检查只排除无效图；它不是逐像素露�
 pwsh -NoProfile -File tools/run_city_move_verify.ps1 -Tag review_20260909 -RunTimeout 300
 python tools/summarize_city_move_verify.py --shots E:/work/tmp/citymove_shots/review_20260909 --log E:/work/tmp/citymove_player_review_20260909.log --output E:/work/output/citymove-review-20260909
 ```
+
+## 5. 2026-09-11 补充：东侧灯柱与全城遮挡范围
+
+本节更新第 2 节"此次新增前景只覆盖已复现问题的西侧灯柱"这一范围说明。
+
+**东侧灯柱已修。** 出生点两侧各有一根灯柱，关于轴线对称。上一轮只修了西侧；东侧同样中招，而且它的宝顶是一串更高的金珠，人物站在它西北侧时会把整串宝顶盖住。已按原图描出东灯宝顶和灯罩的轮廓，按灯柱底座深度排序，并排除了宝顶正后方的花坛（花坛在人物身后，重画到人物身上反而是新错误）。[修正前](VerificationEvidence/tianyong-20260911/east-lamp-defect-before.jpg) · [描边](VerificationEvidence/tianyong-20260911/east-lamp-trace.jpg) · [两灯同站位关/开对照](VerificationEvidence/tianyong-20260911/lamps-foreground-ab.jpg)
+
+**机理比第 1 节写的更广。** 复现的重叠像素其实落在**不可走的灯柱格子里面**。走路掩码只管脚点能不能站，人物身体约两个单位宽，站在立体物旁边那一列时，半个身子就伸进了物体的画面。只要脚点在物体底座北侧，物体本该挡住人物，却被画在人物下面。所以这不是个别灯柱的问题，而是"整张地图一层画"这种做法的系统性缺陷。
+
+**前景层改成可登记多个物体。** `TianyongPaintedForeground.Cutouts` 里每一项是一个物体：来源地砖、底座点、逐行轮廓。修一个物体就加一项，再补一组同站位关/开截图和对应测试。西灯原有的接口（`AddWestLamp`、`CreateWestLampRoofMesh`、`SetWestLampVisible`）保留不变。
+
+**本轮验证。** 基点是 HEAD `cb443ea` 加本轮 6 个文件的独立快照。当时主工作区另有并行会话的任务系统在途改动，缺 `MissionActionRequest` 生成类而编译不过，未纳入快照，也未被本轮改动。
+
+| 检查 | 结果 |
+| --- | --- |
+| 离线编译 | 254 个运行时 C# 文件，0 错误 |
+| 出包加自动走位 | 136/136 张，RESULT=PASS，0 失败，0 异常 |
+| EditMode | 336/336 |
+| PlayMode | 13/13 |
+| 东灯同站位对照 | 两帧相机完全同位；差异 2315 像素，全部落在脚点左上方 38×124 像素内 |
+| 西灯回归 | 差异 332 像素，只在鞋尖与檐口，与上一轮一致 |
+
+[测试结果](VerificationEvidence/tianyong-20260911/EditMode.xml) · [PlayMode](VerificationEvidence/tianyong-20260911/PlayMode.xml) · [播放器日志摘录](VerificationEvidence/tianyong-20260911/player-log-excerpt.txt)
+
+验收脚本顺带修了一处会让对照图失效的问题。瞬移后相机还在追赶，首轮东灯两帧之间相机差了 0.04 单位，不到 1 像素，却让整屏重采样都变了，差异不再只来自前景。现在对照前会等相机连续 0.3 秒不动，并核对两帧相机同位，不同位就判验收失败。
+
+**全城范围与美术需求。** 为了给这个缺陷定范围，从走路掩码的边界上找出 242 处"物体画面伸进人物站位"的候选点，每处出一张复核图：左边原画，中间疑似区域，右边把人物按现在的画法叠上去。7 个复核员逐张目视判定，每批再由一个反方复核员重判全部阳性，并抽查判成阴性的高分项。
+
+| 判定 | 处数 |
+| --- | --- |
+| 两方都判为真缺陷 | 139 |
+| 复核员与反方意见不一 | 10 |
+| 不确定 | 3 |
+| 平地花纹，无需处理 | 73 |
+| 物体在人物身后，本来就对 | 16 |
+
+另有 1 处复核员没有交回结论，已人工补看，判为真缺陷，但只是单人判定。确认的 140 处里，西灯和东灯各占 1 处，已修；**其余 138 处未修**。
+
+| 物体类型 | 处数 |
+| --- | --- |
+| 屋顶、檐角、屋脊 | 58 |
+| 树冠、树干 | 26 |
+| 灯柱、宝顶 | 22 |
+| 柱子、门、牌坊 | 16 |
+| 雕像、石件、栏杆、店铺、墙角等 | 18 |
+
+以上 140 处含单人补看的那一处屋脊。严重程度上，102 处是一眼能看出的（屋顶、宝顶、树冠这类可辨认的部件整块消失在人物身后），25 处是明显的边缘，13 处只有鞋尖几个像素。
+
+这 138 处不适合逐个手描。半自动描边仍要每个物体人工加裁剪框、再目检；屋顶和树冠这类大物体沿着自身的深度会变化，只用一个底座点排序，站在它两侧的人物会被排错。建议请美术从地图原稿导出**独立的物体层**：每个立体物（房屋、树、灯柱、柱门、雕像）一张带透明通道的切图，外加它的地面底座线。代码侧按底座深度排序的前景机制已经就绪，拿到素材后按 `Cutouts` 的格式登记即可。这份清单可以直接当验收用例：修一处，就在那个站位补一组关/开对照。
+
+**140 是下限，不是全部。** 候选点只取了"物体跨过掩码北边界"这一类站位。人物站在细高物体的东西两侧、又在其底座以北时同样会压住它，这类站位没有纳入这次复核。
+
+[逐点清单（坐标、物体、严重程度、复核理由、复核图文件名）](VerificationEvidence/tianyong-20260911/occlusion-sites.csv) · [全城分布图](VerificationEvidence/tianyong-20260911/occlusion-sites-map.jpg) · [严重的前 40 处](VerificationEvidence/tianyong-20260911/occlusion-sites-high.jpg)。复核图（`clusters.json` 列出的 242 张，外加更早一轮的候选图与对照图）和复核工作流的原始结论存放在仓库外的 `E:\work\tmp\tianyong_occlusion_review_20260911`。
+
+**试过但不可靠的自动检测。** 为了给全城定范围，试了三种从画面自动找缺陷的方法，都不能直接用：按颜色饱和度分物体（铺地和檐口的饱和度分布大面积重叠，5892 个可站格里 5112 个报警）；从掩码边界往北做颜色填充（会漏进阴影和地面花纹，连已确认的西灯都报出 2000 多像素）；按"同列连续不可走区最南端"当物体底座算热力图（对南北走向的长墙、长房子判错前后，86% 的不可走像素被当成物体）。根本原因是这张画本身不带物体深度信息。半自动描边在西灯上与手描轮廓的重合度最高 0.775，所以每个物体仍要人工加裁剪框再目检。
+
+**本轮文件范围。** `Assets/Scripts/World/Tianyong/TianyongPaintedForeground.cs`、`TianyongPaintedCity.cs`、`TianyongSandboxAutoDrive.cs`，`Assets/Tests/EditMode/Tianyong/TianyongPaintedForegroundTests.cs`、`TianyongPaintedCityTests.cs`，`tools/summarize_city_move_verify.py`，以及 `Docs/VerificationEvidence/tianyong-20260911/`。未提交。

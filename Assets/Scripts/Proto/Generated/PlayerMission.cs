@@ -36,22 +36,27 @@ public static partial class PlayerMissionReflection {
           "DRITCgthdXRvX3Jld2FyZBgKIAEoCBISCgpjYW5fYWNjZXB0GAsgASgIEhEK",
           "CWNhbl9jbGFpbRgMIAEoCBIaChJ1bmF2YWlsYWJsZV9yZWFzb24YDSABKAkS",
           "EgoKY29uZmlndXJlZBgOIAEoCCIXChVHZXRNaXNzaW9uTGlzdFJlcXVlc3Qi",
-          "gAEKFkdldE1pc3Npb25MaXN0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgB",
-          "IAEoCzIPLlRpcEluZm9NZXNzYWdlEiQKCG1pc3Npb25zGAIgAygLMhIuUGxh",
-          "eWVyTWlzc2lvbkluZm8SGAoQc3RhdGVfcGVyc2lzdGVudBgDIAEoCCqoAQoT",
-          "UGxheWVyTWlzc2lvblN0YXR1cxIfChtQTEFZRVJfTUlTU0lPTl9OT1RfQUND",
-          "RVBURUQQABIZChVQTEFZRVJfTUlTU0lPTl9BQ1RJVkUQARIcChhQTEFZRVJf",
-          "TUlTU0lPTl9DT01QTEVURUQQAhIcChhQTEFZRVJfTUlTU0lPTl9DTEFJTUFC",
-          "TEUQAxIZChVQTEFZRVJfTUlTU0lPTl9GQUlMRUQQBDJpChhTY2VuZU1pc3Np",
-          "b25DbGllbnRQbGF5ZXISQQoOR2V0TWlzc2lvbkxpc3QSFi5HZXRNaXNzaW9u",
-          "TGlzdFJlcXVlc3QaFy5HZXRNaXNzaW9uTGlzdFJlc3BvbnNlGgqAqMMBAYio",
-          "wwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
+          "OQoUTWlzc2lvbkFjdGlvblJlcXVlc3QSDQoFc2NvcGUYASABKA0SEgoKbWlz",
+          "c2lvbl9pZBgCIAEoDSKAAQoWR2V0TWlzc2lvbkxpc3RSZXNwb25zZRImCg1l",
+          "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJAoIbWlzc2lv",
+          "bnMYAiADKAsyEi5QbGF5ZXJNaXNzaW9uSW5mbxIYChBzdGF0ZV9wZXJzaXN0",
+          "ZW50GAMgASgIKqgBChNQbGF5ZXJNaXNzaW9uU3RhdHVzEh8KG1BMQVlFUl9N",
+          "SVNTSU9OX05PVF9BQ0NFUFRFRBAAEhkKFVBMQVlFUl9NSVNTSU9OX0FDVElW",
+          "RRABEhwKGFBMQVlFUl9NSVNTSU9OX0NPTVBMRVRFRBACEhwKGFBMQVlFUl9N",
+          "SVNTSU9OX0NMQUlNQUJMRRADEhkKFVBMQVlFUl9NSVNTSU9OX0ZBSUxFRBAE",
+          "MvABChhTY2VuZU1pc3Npb25DbGllbnRQbGF5ZXISQQoOR2V0TWlzc2lvbkxp",
+          "c3QSFi5HZXRNaXNzaW9uTGlzdFJlcXVlc3QaFy5HZXRNaXNzaW9uTGlzdFJl",
+          "c3BvbnNlEj8KDUFjY2VwdE1pc3Npb24SFS5NaXNzaW9uQWN0aW9uUmVxdWVz",
+          "dBoXLkdldE1pc3Npb25MaXN0UmVzcG9uc2USRAoSQ2xhaW1NaXNzaW9uUmV3",
+          "YXJkEhUuTWlzc2lvbkFjdGlvblJlcXVlc3QaFy5HZXRNaXNzaW9uTGlzdFJl",
+          "c3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PlayerMissionStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::MissionObjectiveInfo), global::MissionObjectiveInfo.Parser, new[]{ "ObjectiveIndex", "ConditionId", "Category", "Progress", "Target", "Completed", "Description" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerMissionInfo), global::PlayerMissionInfo.Parser, new[]{ "MissionId", "Scope", "MissionType", "MissionSubType", "Status", "Name", "Description", "Objectives", "RewardId", "AutoReward", "CanAccept", "CanClaim", "UnavailableReason", "Configured" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetMissionListRequest), global::GetMissionListRequest.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::MissionActionRequest), global::MissionActionRequest.Parser, new[]{ "Scope", "MissionId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetMissionListResponse), global::GetMissionListResponse.Parser, new[]{ "ErrorMessage", "Missions", "StatePersistent" }, null, null, null, null)
         }));
   }
@@ -1329,6 +1334,241 @@ public sealed partial class GetMissionListRequest : pb::IMessage<GetMissionListR
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class MissionActionRequest : pb::IMessage<MissionActionRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<MissionActionRequest> _parser = new pb::MessageParser<MissionActionRequest>(() => new MissionActionRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<MissionActionRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerMissionReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public MissionActionRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public MissionActionRequest(MissionActionRequest other) : this() {
+    scope_ = other.scope_;
+    missionId_ = other.missionId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public MissionActionRequest Clone() {
+    return new MissionActionRequest(this);
+  }
+
+  /// <summary>Field number for the "scope" field.</summary>
+  public const int ScopeFieldNumber = 1;
+  private uint scope_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Scope {
+    get { return scope_; }
+    set {
+      scope_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "mission_id" field.</summary>
+  public const int MissionIdFieldNumber = 2;
+  private uint missionId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MissionId {
+    get { return missionId_; }
+    set {
+      missionId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as MissionActionRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(MissionActionRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Scope != other.Scope) return false;
+    if (MissionId != other.MissionId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Scope != 0) hash ^= Scope.GetHashCode();
+    if (MissionId != 0) hash ^= MissionId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Scope != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Scope);
+    }
+    if (MissionId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(MissionId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Scope != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Scope);
+    }
+    if (MissionId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(MissionId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Scope != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Scope);
+    }
+    if (MissionId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MissionId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(MissionActionRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Scope != 0) {
+      Scope = other.Scope;
+    }
+    if (other.MissionId != 0) {
+      MissionId = other.MissionId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Scope = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          MissionId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Scope = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          MissionId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class GetMissionListResponse : pb::IMessage<GetMissionListResponse>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
@@ -1343,7 +1583,7 @@ public sealed partial class GetMissionListResponse : pb::IMessage<GetMissionList
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerMissionReflection.Descriptor.MessageTypes[3]; }
+    get { return global::PlayerMissionReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1402,7 +1642,7 @@ public sealed partial class GetMissionListResponse : pb::IMessage<GetMissionList
   public const int StatePersistentFieldNumber = 3;
   private bool statePersistent_;
   /// <summary>
-  /// 现有任务尚未接存档，客户端不可承诺跨登录保留。
+  /// 任务状态随完整玩家快照保存。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

@@ -48,7 +48,7 @@ namespace MmorpgClient.Tests.EditMode.Ugui
             Assert.That(_instance.transform.Find("ReferenceArtwork"), Is.Null);
             Assert.That(_instance.transform.Find("ScreenBaseHeadband"), Is.Null);
 
-            foreach (var name in new[] { "ScreenArtwork", "Hero", "NineTailedFox", "ServerFrame", "CredentialArt" })
+            foreach (var name in new[] { "ScreenArtwork", "Hero", "ServerFrame", "CredentialArt" })
             {
                 var image = Required<Image>(name);
                 Assert.That(image.sprite, Is.Not.Null, name);

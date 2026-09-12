@@ -427,6 +427,23 @@ namespace MmorpgClient.World.Tianyong
             yield return WaitStop(6f);
             yield return new WaitForSeconds(0.3f);
             yield return Shot("07_occluder_east");
+            // 东侧灯柱:与西灯关于出生点轴线对称,宝顶是一串更高的金珠。站到它西北侧最近的
+            // 可走格,人物左半身正好压在宝顶上;同一站位先关前景拍原始穿帮,再开前景拍修正。
+            // 瞬移 20u 后相机还在 SmoothDamp 追赶;0.8s 时仍差约 0.04u,足以让整屏重采样
+            // 都变、对照失效(2026-09-11 首轮就是这样)。所以等相机真正停稳再拍,并核对两张
+            // 图拍摄时相机完全同位。
+            Warp(new Vector3(212.0f, 0f, 182.2f));
+            yield return new WaitForSeconds(0.8f);
+            yield return WaitCameraSettled(3f);
+            var eastPairCamera = _sandbox.CameraRig.RenderCamera.transform.position;
+            if (!TianyongPaintedForeground.SetVisible(_sandbox.transform, TianyongPaintedForeground.EastLampObjectName, false))
+                Fail("east lamp foreground missing for before/after verification");
+            yield return Shot("07_occluder_east_lamp_before_foreground");
+            if (!TianyongPaintedForeground.SetVisible(_sandbox.transform, TianyongPaintedForeground.EastLampObjectName, true))
+                Fail("east lamp foreground could not be restored");
+            yield return Shot("07_occluder_east_lamp_behind");
+            if ((_sandbox.CameraRig.RenderCamera.transform.position - eastPairCamera).sqrMagnitude > 1e-6f)
+                Fail("camera moved between the east lamp before/after shots; the A/B pair is not comparable");
             // 明亮地砖与高柱/建筑阴影交界:大殿台阶西侧的高柱脚下,以及殿前
             Warp(new Vector3(165f, 0f, 183f));
             yield return new WaitForSeconds(0.9f);
@@ -707,6 +724,29 @@ namespace MmorpgClient.World.Tianyong
             _lastClickName = why;
             Log($"click {why} at={F(groundPoint)} routed={ok} " +
                 $"adopted={(adopted.HasValue ? F(adopted.Value) : "-")} feet={F(_ctrl.FeetPosition)}");
+        }
+
+        /// <summary>
+        /// 等相机停稳:连续 0.3s 每帧位移都小于 0.0005u。同站位前后对照(关/开前景)的两张图
+        /// 必须相机完全同位,否则亚像素平移会让整屏重采样都变,差异就不再只来自前景。
+        /// </summary>
+        private IEnumerator WaitCameraSettled(float maxSeconds)
+        {
+            var camera = _sandbox.CameraRig.RenderCamera;
+            var deadline = Time.realtimeSinceStartup + maxSeconds;
+            var last = camera.transform.position;
+            var stableSince = -1f;
+            while (Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+                var now = Time.realtimeSinceStartup;
+                var position = camera.transform.position;
+                if ((position - last).sqrMagnitude > 0.0005f * 0.0005f) stableSince = -1f;
+                else if (stableSince < 0f) stableSince = now;
+                else if (now - stableSince >= 0.3f) yield break;
+                last = position;
+            }
+            Fail($"camera did not settle within {maxSeconds:F1}s");
         }
 
         /// <summary>

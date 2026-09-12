@@ -70,10 +70,8 @@ namespace MmorpgClient.UI.Ugui
                 QdaoRefreshArt.Panel("GameTitlePlaque", _landingRoot, 160f, 240f, 880f, 210f, "primary_button_normal");
                 Label("GameTitle", _landingRoot, 200f, 255f, 800f, 170f, "五行奇谈", 140f, true, TextAlignmentOptions.Center);
             }
-            QdaoUguiFactory.CreateImage("Hero", _landingRoot, 1490f, 90f, 860f, 910f,
+            QdaoUguiFactory.CreateImage("Hero", _landingRoot, 1250f, 90f, 860f, 910f,
                 QdaoRefreshArt.Load("hero")).preserveAspect = true;
-            QdaoUguiFactory.CreateImage("NineTailedFox", _landingRoot, 930f, 360f, 880f, 680f,
-                QdaoRefreshArt.Load("companion_fox")).preserveAspect = true;
             _landingServers = ArtButton("SelectServer", _landingRoot, 230f, 548f, 810f, 100f,
                 "选择服务器", "list_row_normal", out _landingServerText);
             _landingServerText.rectTransform.anchoredPosition = new Vector2(62f, 0f);
@@ -105,8 +103,6 @@ namespace MmorpgClient.UI.Ugui
             QdaoUguiFactory.CreateImage("ServerTitleEmblem", _serverRoot, 1252f, 8f, 108f, 108f,
                 QdaoRefreshArt.Load("round_badge_taiji")).preserveAspect = true;
             Label("ServerTitle", _serverRoot, 1030f, 105f, 555f, 94f, "选择服务器", 65f, true, TextAlignmentOptions.Center);
-            QdaoUguiFactory.CreateImage("ServerFox", _serverRoot, -104f, 430f, 660f, 650f,
-                QdaoRefreshArt.Load("companion_fox")).preserveAspect = true;
 
             _searchInput = QdaoUguiFactory.CreateInputField("SearchInput", _serverRoot,
                 1762f, 149f, 384f, 74f, "搜索服务器", 64, QdaoRefreshArt.Load("search_normal"));

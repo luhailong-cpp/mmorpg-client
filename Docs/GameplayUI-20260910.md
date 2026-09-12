@@ -50,3 +50,23 @@ Docker 首次启动受遗留 engine.sock 阻塞，已备份并恢复通信目录
 完整证据与旧程序备份在 E:/work/tmp/features-deploy-20260911：install-result.json、service-verification.json、startup-result.json、previous-nodes。标准启动日志在服务端 run/logs/game-launcher/20260911-034142-036/launcher.log。正式启动器已退出且记录六步成功；外层 PowerShell 因后台服务继承输出管道空等，已单独清理，未捕获退出码，因此不声称启动命令 exit=0。
 
 本次验收覆盖服务就绪、运行程序和协议登记；未登录账号，未验证真实玩家界面的 RPC 回包。任务接取、领奖及持久化、正式活动排期仍按上文边界处理，不能把三页 UI 交付解释为这些玩法已完成。
+
+## 任务操作与活动排期续作（2026-09-11，验证中）
+
+在上次只读交付基础上增加正式 RPC 194 接取、195 领奖，原编号不变。三页 UI 按服务端 can_accept/can_claim/can_participate 显示真实能力；点击期间阻止重复提交，拒绝旧请求、旧连接和旧角色回包覆盖。领奖成功刷新当前背包；活动参与跳转对应任务。活动时间统一标注北京时间 UTC+8，开放判断采用服务器结果，未排期不显示虚构日期。
+
+本轮服务端补生产背包/任务数据库保存恢复、真实奖励及可配置活动排期，详情见同级服务端 docs/design/player-features-ui.md 最新节。此前关于“任务写操作未实现”的描述是旧交付边界。活动 15/16/17 仍待用户给出日期，保持未开放。
+
+新增操作回归测试和 26 张两种宽高比原生控件截图计划在 .codex-artifacts/gameplay-ui-20260911 验证。结果尚待实际执行，旧 78 通过的结果不能代替本轮验收。没有使用已有账号登录，也没有创建角色或初始化永久 ID 水位。
+## 本轮最终交互交付（2026-09-11）
+
+接取、领奖、活动参与按钮与服务器能力/错误/忙碌状态已接通。Unity 官方 MCP 96/96 回归通过，两种尺寸26张原生控件截图检查通过，任务底部文字已避开边框及角花。最终 Windows 包 Succeeded、0 errors、0 warnings；现有启动目录 E:/work/tmp/showcase_player 的289个候选文件全部hash匹配，旧包完整备份保留。
+
+服务端生产任务领奖与背包/任务存档桥已补齐，完整 C++ 测试214+16+93项通过；本地三个存档列及台账已迁移，gate/scene/battle/db四项程序已备份安装，启动结果另记。正式 RPC 0–193 不变，追加194/195。活动仍待指定日期，15/16/17保持未排期；未登录真实账号，原生截图是明确标记的编辑器夹具，不能代替联机验收。
+
+证据：.codex-artifacts/gameplay-ui-20260911 的 tests.xml、tests-status.txt、player-build.txt、26张截图和 three-pages-preview.jpg；服务/安装/迁移证据在 E:/work/tmp/features-completion-20260911。
+### 本地环境最终就绪（2026-09-11 09:49:48 起）
+
+标准启动器完成全部六阶段，网关 UP、一区 OPEN，最终游戏窗口已打开。独立校验 gate/scene/battle/db 四个运行进程的绝对路径、候选 SHA256 和监听端口均通过。另发现启动器遗漏 gate 的 gRPC 路由依赖 client_rpc_router：现已从既有源码通过全模块测试/构建，补入标准启动清单并由正式服务管理器启动，50600 监听和运行文件哈希核对通过。该无状态路由不使用账号、Redis 或 Kafka。外层 PowerShell 受后台子进程继承输出管道影响仍可能等待，未将未捕获的命令退出码写成0；成功依据六步启动日志及独立运行时复核。
+
+最终证据为 E:/work/tmp/features-completion-20260911/running-service-verification.json、final-validation-summary.json、router-install.json 与 router-tests.log。任务实施和本地运行已完成；尚未执行真实账号联机验证，等待用户指定已有本地测试账号，未自行使用存储凭据。春节/元宵/中秋活动正式日期仍未提供，保持未排期。

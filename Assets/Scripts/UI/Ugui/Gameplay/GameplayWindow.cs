@@ -17,6 +17,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action SortRequested;
         public event Action MissionsRequested;
         public event Action ActivitiesRequested;
+        public event Action<uint, uint> MissionAcceptRequested;
+        public event Action<uint, uint> MissionClaimRequested;
         public event Action<PlayerMissionInfo> TrackingChanged;
         public event Action Closed;
         public bool IsVisible => _root.gameObject.activeSelf;
@@ -28,7 +30,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private BagInfo _bag;
         private GetMissionListResponse _missions;
         private GetActivityListResponse _activities;
-        private bool _bagLoading, _missionLoading, _activityLoading, _sorting;
+        private bool _bagLoading, _missionLoading, _activityLoading, _sorting, _missionActionBusy;
         private string _bagError, _missionError, _activityError, _query = "";
         private int _objectivePage;
         private int _bagFilter, _missionFilter, _activityFilter, _bagPage, _missionPage, _activityPage;
@@ -85,12 +87,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (Page == GameplayPage.Bag) BagRequested?.Invoke(_bagType);
             else if (Page == GameplayPage.Missions) MissionsRequested?.Invoke();
-            else ActivitiesRequested?.Invoke();
+            else { ActivitiesRequested?.Invoke(); MissionsRequested?.Invoke(); }
         }
         public void SetBag(BagInfo bag, bool loading, string error, bool sorting)
         { _bag = bag; _bagLoading = loading; _bagError = error; _sorting = sorting; if (IsVisible && Page == GameplayPage.Bag) Render(); }
-        public void SetMissions(GetMissionListResponse missions, bool loading, string error)
-        { _missions = missions; if (_trackedMission != 0 && missions != null && !missions.Missions.Any(m => MissionKey(m) == _trackedMission)) { _trackedMission = 0; TrackingChanged?.Invoke(null); } _missionLoading = loading; _missionError = error; if (IsVisible && Page == GameplayPage.Missions) Render(); }
+        public void SetMissions(GetMissionListResponse missions, bool loading, string error, bool actionBusy = false)
+        {
+            _missions = missions;
+            if (_trackedMission != 0 && missions != null && !missions.Missions.Any(m => MissionKey(m) == _trackedMission))
+            { _trackedMission = 0; TrackingChanged?.Invoke(null); }
+            _missionLoading = loading; _missionError = error; _missionActionBusy = actionBusy;
+            if (IsVisible && (Page == GameplayPage.Missions || Page == GameplayPage.Activities)) Render();
+        }
         public void SetActivities(GetActivityListResponse activities, bool loading, string error)
         { _activities = activities; _activityLoading = loading; _activityError = error; if (IsVisible && Page == GameplayPage.Activities) Render(); }
         public void ResetSession()
@@ -100,7 +108,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _bagPage = _missionPage = _activityPage = _objectivePage = 0;
             _bagFilter = _missionFilter = _activityFilter = 0; _query = string.Empty;
             _search.SetTextWithoutNotify(string.Empty); _search.DeactivateInputField();
-            _bagLoading = _missionLoading = _activityLoading = _sorting = false;
+            _bagLoading = _missionLoading = _activityLoading = _sorting = _missionActionBusy = false;
             _bagError = _missionError = _activityError = string.Empty;
             TrackingChanged?.Invoke(null); Hide();
         }
@@ -229,7 +237,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     key: _missionFilter == i ? "tab_selected" : "tab_normal");
             }
             Art(_body, "icon_scroll", 101, 466, 108, 108, true);
-            Button(_body, "刷新任务", 22, 638, 266, 62, Refresh, enabled: !_missionLoading);
+            Button(_body, "刷新任务", 22, 638, 266, 62, Refresh, enabled: !_missionLoading && !_missionActionBusy);
             Art(_body, "content_panel", 1056, 0, 984, 614);
             if (_missions == null)
             {
@@ -260,19 +268,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Text(_body, MissionStatus(detail.Status), 1167, 117, 800, 40, 27, Gold);
             Text(_body, string.IsNullOrWhiteSpace(detail.Description) ? "暂无任务说明。" : detail.Description,
                 1108, 156, 840, 102, 30, Muted, true);
-            Text(_body, "此行目标", 1108, 280, 620, 40, 31);
+            Text(_body, "此行目标", 1108, 252, 620, 40, 31);
             int objectivePages = Math.Max(1, (detail.Objectives.Count + 2) / 3);
             _objectivePage = Math.Min(_objectivePage, objectivePages - 1);
             if (objectivePages > 1)
             {
-                Text(_body, $"{_objectivePage + 1} / {objectivePages}", 1650, 280, 95, 40, 24, Muted);
-                Button(_body, "上组", 1750, 280, 95, 40, () => { --_objectivePage; Render(); }, enabled: _objectivePage > 0, fontSize: 22);
-                Button(_body, "下组", 1855, 280, 95, 40, () => { ++_objectivePage; Render(); }, enabled: _objectivePage + 1 < objectivePages, fontSize: 22);
+                Text(_body, $"{_objectivePage + 1} / {objectivePages}", 1650, 252, 95, 40, 24, Muted);
+                Button(_body, "上组", 1750, 252, 95, 40, () => { --_objectivePage; Render(); }, enabled: _objectivePage > 0, fontSize: 22);
+                Button(_body, "下组", 1855, 252, 95, 40, () => { ++_objectivePage; Render(); }, enabled: _objectivePage + 1 < objectivePages, fontSize: 22);
             }
             var objectives = detail.Objectives.Skip(_objectivePage * 3).Take(3).ToList();
             for (int i = 0; i < objectives.Count; ++i)
             {
-                var goal = objectives[i]; float y = 325 + i * 64;
+                var goal = objectives[i]; float y = 296 + i * 56;
                 Text(_body, string.IsNullOrWhiteSpace(goal.Description) ? $"目标 {goal.ObjectiveIndex + 1}" : goal.Description,
                     1108, y, 629, 39, 27, Muted);
                 Text(_body, $"{goal.Progress} / {goal.Target}", 1744, y, 210, 39, 27, Ink, alignment: TextAlignmentOptions.MidlineRight);
@@ -281,15 +289,48 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (ratio > 0) Art(_body, "slider_fill", 1108, y + 40, Math.Max(14, 844 * ratio), 23);
             }
             if (objectives.Count == 0) Text(_body, "暂无目标记录", 1108, 344, 840, 52, 29, Muted);
-            string reward = detail.RewardId == 0 ? "奖励尚未配置" : "奖励详情待开放";
-            Text(_body, reward, 1170, 524, 724, 37, 26, Muted);
-            Text(_body, (int)detail.Status == 3 ? "领奖暂未开放，请留意后续更新" : (int)detail.Status == 0 ? "任务尚未开启" : "目标进度以当前手札为准",
-                1088, 643, 615, 58, 26, Muted);
-            Button(_body, _trackedMission == MissionKey(detail) ? "取消追踪" : "追踪任务", 1763, 638, 255, 62,
+            string reward = detail.RewardId == 0 ? "本任务未配置奖励" : "完成任务后可领取奖励";
+            Text(_body, reward, 1170, 484, 724, 32, 26, Muted);
+            string reason = !string.IsNullOrWhiteSpace(_missionError) ? _missionError : _missionActionBusy ? "正在处理任务，请稍候…" :
+                !string.IsNullOrWhiteSpace(detail.UnavailableReason) ? detail.UnavailableReason :
+                detail.CanClaim ? "目标已达成，可以领取奖励" : detail.CanAccept ? "准备妥当，便可开始此行" : "目标进度以当前手札为准";
+            Text(_body, reason, 1170, 523, 724, 32, 25,
+                !string.IsNullOrWhiteSpace(_missionError) ? QdaoUguiTheme.Html("#9A442D") : Muted);
+            bool claim = detail.CanClaim || (int)detail.Status == 3;
+            bool showAction = claim || detail.CanAccept || (int)detail.Status == 0;
+            Button(_body, _trackedMission == MissionKey(detail) ? "取消追踪" : "追踪任务", showAction ? 1480 : 1763, 638, 255, 62,
                 () => { _trackedMission = _trackedMission == MissionKey(detail) ? 0 : MissionKey(detail); TrackingChanged?.Invoke(_trackedMission == 0 ? null : detail); Render(); },
-                true, (int)detail.Status == 1 || _trackedMission == MissionKey(detail));
+                !showAction, (int)detail.Status == 1 || _trackedMission == MissionKey(detail));
+            if (showAction)
+                Button(_body, _missionActionBusy ? "处理中…" : claim ? "领取奖励" : "接取任务", 1763, 638, 255, 62,
+                    () => { if (claim) MissionClaimRequested?.Invoke(detail.Scope, detail.MissionId); else MissionAcceptRequested?.Invoke(detail.Scope, detail.MissionId); },
+                    true, !_missionActionBusy && !_missionLoading && (claim ? detail.CanClaim : detail.CanAccept));
         }
 
+        private void ShowMission(PlayerMissionInfo mission)
+        {
+            _missionFilter = 0; _objectivePage = 0; _selectedMission = MissionKey(mission);
+            var ordered = _missions.Missions.OrderBy(m => m.MissionId).ToList();
+            _missionPage = Math.Max(0, ordered.FindIndex(m => MissionKey(m) == _selectedMission)) / 5;
+            Show(GameplayPage.Missions);
+        }
+
+        private static string ActivitySchedule(PlayerActivityInfo activity)
+        {
+            if ((int)activity.Status == 0) return "尚未排期";
+            return "开始 " + ActivityTime(activity.StartsAtMs) + "\n结束 " + ActivityTime(activity.EndsAtMs) + " 北京时间（UTC+8）";
+        }
+
+        private static string ActivityTime(ulong milliseconds)
+        {
+            if (milliseconds == 0 || milliseconds > 253402300799999ul) return "待公布";
+            try
+            {
+                return DateTimeOffset.FromUnixTimeMilliseconds((long)milliseconds).ToOffset(TimeSpan.FromHours(8))
+                    .ToString("yyyy/MM/dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            catch (ArgumentOutOfRangeException) { return "待公布"; }
+        }
         private void RenderActivities()
         {
             Art(_body, "pet_card_normal", 0, 0, 2040, 128);
@@ -304,7 +345,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Button(_body, filters[i], i * 252, 148, 232, 62, () => { _activityFilter = f; _activityPage = 0; Render(); },
                     key: i == _activityFilter ? "tab_selected" : "tab_normal", fontSize: 28);
             }
-            Button(_body, "刷新", 1862, 148, 176, 62, Refresh, enabled: !_activityLoading, fontSize: 28);
+            Button(_body, "刷新", 1862, 148, 176, 62, Refresh, enabled: !_activityLoading && !_missionActionBusy, fontSize: 28);
             if (_activities == null)
             {
                 Notice(_activityLoading ? "正在查看雅集…" : !string.IsNullOrEmpty(_activityError) ? "活动暂未同步，请刷新重试" : "雅集尚未开放", 0, 398, 2040);
@@ -320,8 +361,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 string ornament = i == 0 ? "tassel" : i == 1 ? "lantern" : "moon_rabbit";
                 Art(_body, ornament, x + 230, 253, 196, 122, true);
                 Text(_body, ActivityName(activity), x + 36, 379, 584, 48, 37, Ink, alignment: TextAlignmentOptions.Center);
-                Text(_body, ActivityStatus(activity.Status), x + 36, 442, 584, 30, 28, Gold, alignment: TextAlignmentOptions.Center);
-                Button(_body, _selectedActivity == activity.ActivityId ? "正在查看" : "查看详情", x + 172, 498, 312, 60,
+                Text(_body, ActivityStatus(activity.Status), x + 36, 432, 584, 30, 28, Gold, alignment: TextAlignmentOptions.Center);
+                Text(_body, ActivitySchedule(activity), x + 36, 469, 584, 51, 22, Muted, false, TextAlignmentOptions.Center);
+                Button(_body, _selectedActivity == activity.ActivityId ? "正在查看" : "查看详情", x + 172, 529, 312, 60,
                     () => { _selectedActivity = activity.ActivityId; Render(); }, _selectedActivity == activity.ActivityId, fontSize: 28);
             }
             if (list.Count == 0) Notice("此时暂无活动，静候下一场相聚", 0, 390, 2040);
@@ -330,9 +372,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 string description = !string.IsNullOrWhiteSpace(detail.Description) ? detail.Description :
                     (int)detail.Status == 0 ? "活动尚未排期，敬请期待。" : "具体安排请留意活动公告。";
-                Text(_body, description, 20, 619, 1470, 80, 28, Muted, true);
+                Text(_body, description, 20, 608, 1225, 43, 26, Muted);
+                var mission = _missions?.Missions.FirstOrDefault(m => m.Scope == 0 && m.MissionId == detail.MissionId && (int)m.Status != 0);
+                string reason = !string.IsNullOrWhiteSpace(_missionError) ? _missionError : _missionActionBusy ? "正在处理任务，请稍候…" :
+                    !string.IsNullOrWhiteSpace(detail.UnavailableReason) ? detail.UnavailableReason : mission != null ? "已加入活动，可查看任务进度" :
+                    detail.CanParticipate ? "雅集已开启，欢迎道友参与" : "活动暂不可参与";
+                Text(_body, reason, 20, 656, 1225, 38, 24, !string.IsNullOrWhiteSpace(_missionError) ? QdaoUguiTheme.Html("#9A442D") : Muted);
+                Button(_body, _missionActionBusy ? "处理中…" : mission != null ? "查看任务" : "参与活动", 1300, 638, 250, 62,
+                    () => { if (mission != null) ShowMission(mission); else MissionAcceptRequested?.Invoke(0, detail.MissionId); },
+                    true, !_missionActionBusy && !_missionLoading && (mission != null || (detail.CanParticipate && detail.MissionId != 0)), fontSize: 28);
             }
-            if (!string.IsNullOrEmpty(_activityError) || _activityLoading) StateLine(_activityError, _activityLoading, 20, 611, 1450);
+            if (!string.IsNullOrEmpty(_activityError) || _activityLoading) StateLine(_activityError, _activityLoading, 20, 574, 1225);
             Pager(_activityPage, list.Count, 3, 1574, 641, p => { _activityPage = p; _selectedActivity = list[p * 3].ActivityId; Render(); });
         }
     }

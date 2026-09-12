@@ -37,7 +37,8 @@ def same_path(left, right):
 
 
 def required_shots():
-    names = {"00_runtime_hud", "09_zoom_restored", "07_occluder_west_before_foreground"}
+    names = {"00_runtime_hud", "09_zoom_restored", "07_occluder_west_before_foreground",
+             "07_occluder_east_lamp_before_foreground", "07_occluder_east_lamp_behind"}
     names.update("00_nameplate_" + case for case in NAMEPLATE_CASES)
     names.update(f"03_stop_{direction}_{sample}" for direction in DIRECTIONS for sample in ("a", "b"))
     names.update(f"02_run_{direction}_b" for direction in DIRECTIONS)

@@ -71,6 +71,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.SortRequested += () => _client?.SortBag();
             _window.MissionsRequested += () => _client?.RequestMissions();
             _window.ActivitiesRequested += () => _client?.RequestActivities();
+            _window.MissionAcceptRequested += (scope, id) => _client?.AcceptMission(scope, id);
+            _window.MissionClaimRequested += (scope, id) => _client?.ClaimMissionReward(scope, id);
             _window.TrackingChanged += Track;
             _hud.gameObject.SetActive(false);
         }
@@ -120,7 +122,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_client == null) return;
             _window.SetBag(_client.Bag, _client.BagLoading, _client.BagError, _client.BusySort);
-            _window.SetMissions(_client.Missions, _client.MissionsLoading, _client.MissionsError);
+            _window.SetMissions(_client.Missions, _client.MissionsLoading, _client.MissionsError, _client.BusyMissionAction);
             _window.SetActivities(_client.Activities, _client.ActivitiesLoading, _client.ActivitiesError);
             if (_trackedMission != 0 && _client.Missions != null)
             {

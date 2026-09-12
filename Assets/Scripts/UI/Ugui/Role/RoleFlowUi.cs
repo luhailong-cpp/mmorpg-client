@@ -333,10 +333,6 @@ namespace MmorpgClient.UI.Ugui.Role
             _hero = QdaoUguiFactory.CreateImage("CharacterArtwork", _designRoot,
                 985f, 256f, 720f, 830f, null);
             _hero.preserveAspect = true;
-            var fox = QdaoUguiFactory.CreateImage("CompanionFox", _designRoot,
-                1380f, 334f, 620f, 620f, QdaoRefreshArt.Load("companion_fox"));
-            fox.preserveAspect = true;
-            fox.enabled = fox.sprite != null;
 
             QdaoRefreshArt.Panel("RoleListWindow", _designRoot, 112f, 142f, 624f, 814f, "main_frame");
             var titlePlate = QdaoRefreshArt.Panel("TitleJade", _designRoot,
