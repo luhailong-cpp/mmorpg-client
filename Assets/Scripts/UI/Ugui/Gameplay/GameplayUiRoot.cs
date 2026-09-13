@@ -115,6 +115,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void Open(GameplayPage page)
         {
             if (!_available) return;
+            Guild.GuildUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel(); PetUiRoot.Instance?.HidePanel();
             Changed(); _window.Show(page);

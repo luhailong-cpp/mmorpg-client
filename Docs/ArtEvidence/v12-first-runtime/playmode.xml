@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:14Z" duration="5.3267317">
+  <test-suite type="TestSuite" id="1036" name="unity" fullname="unity" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:14Z" duration="5.326732" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1030" name="MmorpgClient.Tests.PlayMode.dll" fullname="E:/work/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.PlayMode.dll" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:14Z" duration="5.296955" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27432" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1031" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:14Z" duration="5.294366" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1032" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:14Z" duration="5.292918" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1033" name="PlayMode" fullname="MmorpgClient.Tests.PlayMode" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:14Z" duration="5.291599" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1007" name="QdaoBoySpriteAnimatorPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:09Z" duration="0.647840" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1010" name="EveryDirection_StopsOnItsOwnDedicatedIdleTexture" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.EveryDirection_StopsOnItsOwnDedicatedIdleTexture" methodname="EveryDirection_StopsOnItsOwnDedicatedIdleTexture" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" seed="578022414" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:09Z" duration="0.516818" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[QdaoUgui] server-list: GET /api/server-list failed: Cannot connect to destination host
+]]></output>
+              </test-case>
+              <test-case id="1008" name="Running_KeepsFeetAndWorldRigidWhileAdvancingAtRunCadence" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.Running_KeepsFeetAndWorldRigidWhileAdvancingAtRunCadence" methodname="Running_KeepsFeetAndWorldRigidWhileAdvancingAtRunCadence" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" seed="1448807967" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:09Z" duration="0.058494" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt" fullname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt" methodname="Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt" classname="MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests" runstate="Runnable" seed="367156145" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:09Z" duration="0.035788" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1011" name="QdaoRosterAnimatorPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests" classname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:13Z" duration="3.356548" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1014" name="ApprovedRoster_RendersTogetherWithIndependentTextures" fullname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests.ApprovedRoster_RendersTogetherWithIndependentTextures" methodname="ApprovedRoster_RendersTogetherWithIndependentTextures" classname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests" runstate="Runnable" seed="2094640191" result="Passed" start-time="2026-09-13 12:51:09Z" end-time="2026-09-13 12:51:11Z" duration="1.496396" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[QdaoRosterCapture] E:\work\mmorpg-client\Docs\ArtEvidence\v12-first-runtime\approved-roster-runtime.png
+]]></output>
+              </test-case>
+              <test-case id="1012" name="EveryCharacter_WalksItsDeclaredFramesInAllEightDirections_AndSettlesOnItsIdlePose" fullname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests.EveryCharacter_WalksItsDeclaredFramesInAllEightDirections_AndSettlesOnItsIdlePose" methodname="EveryCharacter_WalksItsDeclaredFramesInAllEightDirections_AndSettlesOnItsIdlePose" classname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests" runstate="Runnable" seed="1335171478" result="Passed" start-time="2026-09-13 12:51:11Z" end-time="2026-09-13 12:51:13Z" duration="1.841341" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[QdaoUgui] announcement: GET /api/announcement failed: Cannot connect to destination host
+]]></output>
+              </test-case>
+              <test-case id="1013" name="SwitchingAppearance_PreservesActorTransformFacingAndChildren_AndDoesNotChangeOtherActors" fullname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests.SwitchingAppearance_PreservesActorTransformFacingAndChildren_AndDoesNotChangeOtherActors" methodname="SwitchingAppearance_PreservesActorTransformFacingAndChildren_AndDoesNotChangeOtherActors" classname="MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests" runstate="Runnable" seed="129516528" result="Passed" start-time="2026-09-13 12:51:13Z" end-time="2026-09-13 12:51:13Z" duration="0.015889" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1015" name="QdaoRosterSandboxPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.QdaoRosterSandboxPlayModeTests" classname="MmorpgClient.Tests.PlayMode.QdaoRosterSandboxPlayModeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-13 12:51:13Z" end-time="2026-09-13 12:51:14Z" duration="1.281443" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1016" name="RealCitySandbox_SwitchesAllEightAppearancesWithoutReplacingThePlayer_AndWalksWithTheRealMotor" fullname="MmorpgClient.Tests.PlayMode.QdaoRosterSandboxPlayModeTests.RealCitySandbox_SwitchesAllEightAppearancesWithoutReplacingThePlayer_AndWalksWithTheRealMotor" methodname="RealCitySandbox_SwitchesAllEightAppearancesWithoutReplacingThePlayer_AndWalksWithTheRealMotor" classname="MmorpgClient.Tests.PlayMode.QdaoRosterSandboxPlayModeTests" runstate="Runnable" seed="2068770471" result="Passed" start-time="2026-09-13 12:51:13Z" end-time="2026-09-13 12:51:14Z" duration="1.279817" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[QdaoRosterCityCapture] E:\work\mmorpg-client\Docs\ArtEvidence\v12-first-runtime\tianyong-24_lu_dongbin.png (offline Tianyong sandbox)
+[QdaoRosterCityCapture] E:\work\mmorpg-client\Docs\ArtEvidence\v12-first-runtime\tianyong-29_he_xiangu.png (offline Tianyong sandbox)
+[QdaoRosterCity] eight appearances switched; real motor travelled 4.80 world units; 4 poses observed; stopped idle. Offline sandbox, no online login asserted.
+Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

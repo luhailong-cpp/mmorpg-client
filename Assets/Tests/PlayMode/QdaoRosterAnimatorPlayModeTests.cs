@@ -220,7 +220,7 @@ namespace MmorpgClient.Tests.PlayMode
                     var path = Path.Combine(outputDirectory, "approved-roster-runtime.png");
                     File.WriteAllBytes(path, capture.EncodeToPNG());
                     var labels = new List<string> { "Controlled Unity PlayMode scene. Top row then bottom row, left to right:" };
-                    foreach (var definition in QdaoCharacterCatalog.All) labels.Add(definition.Id + " " + definition.Name);
+                    foreach (var definition in QdaoCharacterCatalog.All) labels.Add(definition.Id + " " + definition.Name + " V" + definition.Version + " frames=" + definition.FrameCount);
                     File.WriteAllLines(Path.Combine(outputDirectory, "approved-roster-runtime.txt"), labels);
                     Debug.Log("[QdaoRosterCapture] " + path);
                     Assert.That(new FileInfo(path).Length, Is.GreaterThan(10000));
