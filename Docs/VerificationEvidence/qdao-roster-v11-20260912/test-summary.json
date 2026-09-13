@@ -1,0 +1,358 @@
+{
+  "unity_version": "6000.6.0f1",
+  "project": "E:/work/mmorpg-client",
+  "status": "passed",
+  "online_login_verified": false,
+  "independent_frames": 256,
+  "character_count": 8,
+  "directions_per_character": 8,
+  "poses_per_direction": 4,
+  "runtime_motor_travel_world_units": 4.8,
+  "checks": {
+    "editmode": {
+      "result": "Passed",
+      "total": "68",
+      "passed": "68",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-09-12 08:23:35Z",
+      "end-time": "2026-09-12 08:24:01Z",
+      "duration": "25.8495279",
+      "tests": [
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleArtCatalogCacheTests.PortraitReloadsAfterCachedTextureIsDestroyed",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleArtCatalogCacheTests.SpawnRingReloadsAfterCachedSpriteIsDestroyed",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.BattlePortraitUsesTheSameApprovedCharacterAsTheBody",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.EveryNewCharacterUsesItsOwnUnmirroredDirectionalContactFrame",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.KnownPlayerUsesItsAccountRoleAndNotPetOwnerField",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.NonPlayerNeverUsesItsOwnersAppearance(BattleActorTypePet)",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.NonPlayerNeverUsesItsOwnersAppearance(BattleActorTypeMonster)",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.NonPlayerNeverUsesItsOwnersAppearance(BattleActorTypeNone)",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.UnknownOrRejectedAppearanceKeepsExistingFallback(null)",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.UnknownOrRejectedAppearanceKeepsExistingFallback(\"24_crane_hermit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.WalkArtIsNeverReturnedAsAuthoredCombatActions",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.Disconnect_ClearsStateBeforeRaisingExactlyOneNotification",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.LocalActor_DoesNotEnterRemoteInterpolationPath",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.MovementEmptyReplies_AreConsumedWithoutFourHertzUnhandledLogs",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.MovementSend_WithoutConnectedGate_IsSafeNoOp",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.Recolor_UsesPropertyBlockWithoutInstantiatingMaterial",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.SetRootParent_NormalizesPersistentActorRoot",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.Teleport_LocalTianyongActor_TreatsProtocolPositionAsFeet",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.ActorWorldFoundationTests.Teleport_PreservesEnabledCharacterController",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.RunHandoffFrames_CoverAllEightDirections",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.ScaleAndStrideCalibration_MatchTheDerivation",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_HandlesTheZeroThreeSixtyWrap",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_InvalidCurrent_FallsBackToTheNearestSector",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_LeavesTheSectorOnlyBeyondTheHysteresisBand",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_RealTurn_SwitchesOnTheFirstSample",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_WithHysteresis_HoldsTheStripThroughBoundaryJitter",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirectionRaw_JittersWhenTheYawHoversOnASectorBoundary",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.ApprovedRoster_HasEightDistinctCharactersAndExcludesRejectedHermit",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.EveryPortraitAndDirectionalStrip_LoadsWithCleanImportSettingsAndFourDistinctGroundedFrames",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(1,1,\"24_lu_dongbin\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(1,2,\"23_lantern_courier\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(2,1,\"30_han_xiangzi\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(2,2,\"28_moon_rabbit_artificer\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(3,1,\"27_ink_kite_ranger\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(3,2,\"29_he_xiangu\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(4,1,\"25_lion_drum_guard\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(4,2,\"26_osmanthus_healer\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.UnknownRoleMetadata_UsesTheDocumentedSwordImmortalDefault",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.AuthoritativeRoleList_ClonesMetadataAndReplacesStaleEntries",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.Disconnect_ClearsAccountAppearanceMetadata",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.LateRoleMetadata_RefreshesAlreadySpawnedActor",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.LocalBindingAfterSpawn_RefreshesLegacyGuidlessActorAndPreviousOwner",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(1,1,\"24_lu_dongbin\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(1,2,\"23_lantern_courier\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(2,1,\"30_han_xiangzi\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(2,2,\"28_moon_rabbit_artificer\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(3,1,\"27_ink_kite_ranger\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(3,2,\"29_he_xiangu\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(4,1,\"25_lion_drum_guard\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(4,2,\"26_osmanthus_healer\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.UnknownRemote_DoesNotGuessAppearanceFromEntityOrConfigId",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Tianyong.QdaoRunAssetTests.DirectionalRunStrips_HaveDistinctUpperBodyPosesAndGroundedFeet",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.BusyEntry_FreezesLoginServerAndCredentialActions",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.EmptySearch_WithPreviouslySelectedSessionZone_DoesNotEnterOrAskForCredentials",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_landingRoot\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_serverRoot\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_landingServers\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_landingEnter\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_landingAccount\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_landingServerText\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_landingStatusText\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_emptyListText\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.IncompleteLandingPrefab_IsRejectedBeforeRuntimeUse(\"_serverBadges\")",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.Loading_EnterHandlerDoesNotOpenCredentialsOrStartEntry(False)",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.Loading_EnterHandlerDoesNotOpenCredentialsOrStartEntry(True)",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.LoginNavigation_OpensServerPageAndAccountModalAndReturnsWithoutEntering",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.MaintenanceSelection_DisablesBothEntryButtonsAndRejectsStaleClicks",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.EditMode.Ugui.QdaoServerSelectPrefabTests.ProductionPrefab_HasNativeLoginServerAndCredentialControlsWithIndependentArt",
+          "result": "Passed"
+        }
+      ]
+    },
+    "playmode": {
+      "result": "Passed",
+      "total": "7",
+      "passed": "7",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-09-12 08:26:43Z",
+      "end-time": "2026-09-12 08:26:50Z",
+      "duration": "6.7889868",
+      "tests": [
+        {
+          "name": "MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.EveryDirection_StopsOnItsOwnDedicatedIdleTexture",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.Running_KeepsFeetAndWorldRigidWhileAdvancingAtRunCadence",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests.Stopping_FinishesTheCycleIntoDedicatedIdle_AndStartingLeavesIt",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests.ApprovedRoster_RendersTogetherWithIndependentTextures",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests.EveryCharacter_WalksAllEightDirectionsWithFourDistinctFrames_AndSettlesOnItsContactPose",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests.SwitchingAppearance_PreservesActorTransformFacingAndChildren_AndDoesNotChangeOtherActors",
+          "result": "Passed"
+        },
+        {
+          "name": "MmorpgClient.Tests.PlayMode.QdaoRosterSandboxPlayModeTests.RealCitySandbox_SwitchesAllEightAppearancesWithoutReplacingThePlayer_AndWalksWithTheRealMotor",
+          "result": "Passed"
+        }
+      ]
+    }
+  },
+  "captures": [
+    {
+      "path": "E:/work/tmp/qdao-roster-integration-20260912/runtime-captures/approved-roster-runtime.png",
+      "sha256": "02266f29d81a87475301e39ca49476ea998d3001ed730bd40b438a93b136cdf3",
+      "bytes": 382699
+    },
+    {
+      "path": "E:/work/tmp/qdao-roster-integration-20260912/runtime-captures/tianyong-24_lu_dongbin.png",
+      "sha256": "5803481f7445bfe7f3497bef26dddd08510d4ad41eb5a5a4391d89e2bced2f73",
+      "bytes": 3228095
+    },
+    {
+      "path": "E:/work/tmp/qdao-roster-integration-20260912/runtime-captures/tianyong-29_he_xiangu.png",
+      "sha256": "b887928937aafa5bc5a105bf3b645bfc2c144c330afcef1b8e6a5ab9ba51f450",
+      "bytes": 3227866
+    }
+  ],
+  "visual_review": {
+    "status": "passed",
+    "notes": "All eight distinct appearances visible in controlled Unity scene. Lu Dongbin and He Xiangu correctly render with nameplates, planted feet and contact shadows on the real offline Tianyong map. No online login asserted."
+  }
+}

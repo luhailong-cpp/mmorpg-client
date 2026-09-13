@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using MmorpgClient.World;
 
 namespace MmorpgClient.UI.Ugui.Battle
 {
@@ -177,6 +178,17 @@ namespace MmorpgClient.UI.Ugui.Battle
             return CharacterIds[index];
         }
 
+        /// <summary>Only real player actor IDs identify account roles; OwnerPlayerId belongs to pets.</summary>
+        public static string CharacterIdFor(BattleActorState actor, Func<ulong, string> resolveCharacterId)
+        {
+            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && resolveCharacterId != null)
+            {
+                var known = resolveCharacterId(actor.ActorId);
+                if (QdaoCharacterCatalog.Find(known) != null) return known;
+            }
+            return CharacterIdFor(actor);
+        }
+
         /// <summary>动作缺省帧率(battle-art-prompts.md §1)。</summary>
         public static float ActionFps(string action)
         {
@@ -196,7 +208,23 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>角色动作帧条;缺 W 用 E 镜像;都缺返回 null(调用方走程序化动作)。</summary>
         public static StripAnim LoadCharacterAction(string characterId, string action, bool facingEast)
-            => LoadDirectionalStrip($"{CharactersRoot}/{characterId}/{action}", action, facingEast);
+        {
+            var entry = QdaoCharacterCatalog.Find(characterId);
+            if (entry == null)
+                return LoadDirectionalStrip($"{CharactersRoot}/{characterId}/{action}", action, facingEast);
+            // V12 has an authored neutral stance; V11 retains its contact pose.
+            // Neither pack supplies authored attack/cast/hit body animations.
+            if (action != "idle") return null;
+            var appearance = entry.ResolveAppearance();
+            string key = $"{appearance.CacheKey}/idle_{(facingEast ? "E" : "W")}";
+            if (s_strips.TryGetValue(key, out var cached)) return cached;
+            string direction = facingEast ? "E" : "W";
+            var stance = LoadAppearanceFrame(appearance, appearance.IdleResourcePath(direction));
+            if (stance == null) return null;
+            var idle = new StripAnim { Frames = new[] { stance }, Fps = ActionFps("idle"), Pivot = FeetPivot };
+            s_strips[key] = idle;
+            return idle;
+        }
 
         /// <summary>怪物动作帧条;缺图返回 null(调用方用剪影)。</summary>
         public static StripAnim LoadMonsterAction(uint monsterId, string action, bool facingEast)
@@ -217,6 +245,47 @@ namespace MmorpgClient.UI.Ugui.Battle
             var fallback = LoadStrip(other, 0, FeetPivot, 12f);
             if (fallback == null) return null;
             return new StripAnim { Frames = fallback.Frames, Fps = fallback.Fps, Pivot = fallback.Pivot, Mirrored = true };
+        }
+
+        /// <summary>Uses the selected character's four/eight real poses and independently authored E/W facings.</summary>
+        public static StripAnim LoadPlayerWalk(string characterId, bool facingEast)
+        {
+            var entry = QdaoCharacterCatalog.Find(characterId);
+            if (entry == null) return LoadPlayerWalk(facingEast);
+            var appearance = entry.ResolveAppearance();
+            string direction = facingEast ? "E" : "W";
+            string key = $"{appearance.CacheKey}/walk/{direction}#individual-frames";
+            if (s_strips.TryGetValue(key, out var cached)) return cached;
+            var frames = new Sprite[appearance.FrameCount];
+            for (int frame = 0; frame < frames.Length; frame++)
+            {
+                frames[frame] = LoadAppearanceFrame(appearance, appearance.FrameResourcePath(direction, frame));
+                if (frames[frame] == null) return null;
+            }
+            var walk = new StripAnim { Frames = frames, Fps = appearance.FramesPerSecond, Pivot = FeetPivot };
+            s_strips[key] = walk;
+            return walk;
+        }
+
+        private static Sprite LoadAppearanceFrame(QdaoCharacterCatalog.Appearance appearance, string path)
+        {
+            string key = $"{appearance.CacheKey}/{path}#pose";
+            if (s_strips.TryGetValue(key, out var cached)) return cached?.Frames[0];
+            var texture = Resources.Load<Texture2D>(path);
+            if (texture == null || texture.width != 512 || texture.height != 512) return null;
+            var sprite = Sprite.Create(texture, new Rect(0f, 0f, 512f, 512f), FeetPivot,
+                SpritePixelsPerUnit, 0, SpriteMeshType.FullRect);
+            sprite.name = path;
+            s_strips[key] = new StripAnim { Frames = new[] { sprite }, Fps = appearance.FramesPerSecond, Pivot = FeetPivot };
+            return sprite;
+        }
+
+        public static Sprite LoadPlayerIdle(string characterId, bool facingEast, out bool mirrored)
+        {
+            if (QdaoCharacterCatalog.Find(characterId) == null) return LoadPlayerIdle(facingEast, out mirrored);
+            var idle = LoadCharacterAction(characterId, "idle", facingEast);
+            mirrored = false;
+            return idle?.Count > 0 ? idle.Frames[0] : null;
         }
 
         /// <summary>玩家 idle 单帧(跑步条首帧);缺则 null。</summary>
@@ -387,10 +456,18 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>入场云层前景(开场扫过);缺图 null。</summary>
         public static Sprite LoadEntryClouds() => LoadSprite(EntryCloudsPath);
 
-        /// <summary>
-        /// 玩家头像:按 actor_id 稳定挑一张 qdao_v3 立绘并裁头部(<see cref="PortraitHeadCrop"/>);
-        /// 立绘缺失返回 null(调用方画首字母块)。
-        /// </summary>
+        /// <summary>Known players use their approved role portrait; other actors retain the existing portrait fallback.</summary>
+        public static Sprite LoadPlayerPortrait(BattleActorState actor, Func<ulong, string> resolveCharacterId)
+        {
+            if (actor == null) return null;
+            string characterId = CharacterIdFor(actor, resolveCharacterId);
+            var entry = QdaoCharacterCatalog.Find(characterId);
+            if (entry == null) return LoadPlayerPortrait(actor.ActorId);
+            // The V11 portrait framing differs from old v3 head crops: retain its full composition.
+            return QdaoCharacterCatalog.LoadPortrait(characterId);
+        }
+
+        /// <summary>Unknown players keep the stable legacy portrait and its original head crop.</summary>
         public static Sprite LoadPlayerPortrait(ulong actorId)
         {
             if (PortraitFiles.Length == 0) return null;

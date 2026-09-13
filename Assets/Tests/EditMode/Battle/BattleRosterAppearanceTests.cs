@@ -1,0 +1,106 @@
+using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.World;
+using NUnit.Framework;
+
+namespace MmorpgClient.Tests.EditMode.Battle
+{
+    public sealed class BattleRosterAppearanceTests
+    {
+        [SetUp]
+        public void SetUp() => BattleArtCatalog.ResetCaches();
+
+        [Test]
+        public void KnownPlayerUsesItsAccountRoleAndNotPetOwnerField()
+        {
+            var actor = new BattleActorState
+            {
+                ActorId = 101,
+                OwnerPlayerId = 999,
+                ActorType = eBattleActorType.BattleActorTypePlayer,
+            };
+            ulong queried = 0;
+            var id = BattleArtCatalog.CharacterIdFor(actor, playerId =>
+            {
+                queried = playerId;
+                return "29_he_xiangu";
+            });
+            Assert.That(queried, Is.EqualTo(101ul));
+            Assert.That(id, Is.EqualTo("29_he_xiangu"));
+        }
+
+        [TestCase(eBattleActorType.BattleActorTypePet)]
+        [TestCase(eBattleActorType.BattleActorTypeMonster)]
+        [TestCase(eBattleActorType.BattleActorTypeNone)]
+        public void NonPlayerNeverUsesItsOwnersAppearance(eBattleActorType type)
+        {
+            var actor = new BattleActorState { ActorId = 201, OwnerPlayerId = 101, ActorType = type };
+            int calls = 0;
+            var id = BattleArtCatalog.CharacterIdFor(actor, _ => { calls++; return "24_lu_dongbin"; });
+            Assert.That(calls, Is.Zero);
+            Assert.That(id, Is.EqualTo(BattleArtCatalog.CharacterIdFor(actor)));
+        }
+
+        [TestCase(null)]
+        [TestCase("24_crane_hermit")]
+        public void UnknownOrRejectedAppearanceKeepsExistingFallback(string resolved)
+        {
+            var actor = new BattleActorState { ActorId = 501, ActorType = eBattleActorType.BattleActorTypePlayer };
+            Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => resolved),
+                Is.EqualTo(BattleArtCatalog.CharacterIdFor(actor)));
+        }
+
+        [Test]
+        public void EveryCharacterUsesItsOwnUnmirroredDirectionalIdleAndDeclaredWalkFrames()
+        {
+            foreach (var entry in QdaoCharacterCatalog.All)
+            foreach (bool east in new[] { false, true })
+            {
+                var walk = BattleArtCatalog.LoadPlayerWalk(entry.Id, east);
+                Assert.That(walk, Is.Not.Null, entry.Id);
+                Assert.That(walk.Count, Is.EqualTo(entry.FrameCount), entry.Id);
+                Assert.That(walk.Fps, Is.EqualTo(entry.FramesPerSecond).Within(.001f), entry.Id);
+                var idle = BattleArtCatalog.LoadCharacterAction(entry.Id, "idle", east);
+                Assert.That(idle, Is.Not.Null, entry.Id);
+                Assert.That(idle.Count, Is.EqualTo(1), entry.Id);
+                Assert.That(idle.Mirrored, Is.False, entry.Id);
+                if (entry.HasDedicatedIdle)
+                    Assert.That(idle.Frames[0].texture, Is.Not.SameAs(walk.Frames[0].texture), entry.Id);
+                else
+                    Assert.That(idle.Frames[0], Is.SameAs(walk.Frames[0]), entry.Id);
+                var directIdle = BattleArtCatalog.LoadPlayerIdle(entry.Id, east, out var mirrored);
+                Assert.That(directIdle, Is.SameAs(idle.Frames[0]));
+                Assert.That(mirrored, Is.False);
+                var contactTexture = UnityEngine.Resources.Load<UnityEngine.Texture2D>(entry.IdleResourcePath(east ? "E" : "W"));
+                Assert.That(idle.Frames[0].texture, Is.SameAs(contactTexture), entry.Id);
+                Assert.That(idle.Frames[0].texture.width, Is.EqualTo(512), entry.Id);
+                Assert.That(idle.Frames[0].texture.height, Is.EqualTo(512), entry.Id);
+                Assert.That(idle.Frames[0].rect.width, Is.EqualTo(512f), entry.Id);
+            }
+            var first = BattleArtCatalog.LoadCharacterAction(QdaoCharacterCatalog.All[0].Id, "idle", true);
+            var second = BattleArtCatalog.LoadCharacterAction(QdaoCharacterCatalog.All[1].Id, "idle", true);
+            Assert.That(first.Frames[0].texture, Is.Not.SameAs(second.Frames[0].texture));
+        }
+
+        [Test]
+        public void WalkArtIsNeverReturnedAsAuthoredCombatActions()
+        {
+            foreach (var entry in QdaoCharacterCatalog.All)
+            foreach (string action in new[] { "attack", "cast", "hit", "die", "win" })
+            foreach (bool east in new[] { false, true })
+                Assert.That(BattleArtCatalog.LoadCharacterAction(entry.Id, action, east), Is.Null, entry.Id + "/" + action);
+        }
+
+        [Test]
+        public void BattlePortraitUsesTheSameApprovedCharacterAsTheBody()
+        {
+            var actor = new BattleActorState { ActorId = 101, ActorType = eBattleActorType.BattleActorTypePlayer };
+            foreach (var entry in QdaoCharacterCatalog.All)
+            {
+                var portrait = BattleArtCatalog.LoadPlayerPortrait(actor, _ => entry.Id);
+                Assert.That(portrait, Is.Not.Null, entry.Id);
+                Assert.That(portrait, Is.SameAs(QdaoCharacterCatalog.LoadPortrait(entry.Id)), entry.Id);
+                Assert.That(portrait.name, Is.EqualTo(entry.Id + "_portrait"));
+            }
+        }
+    }
+}

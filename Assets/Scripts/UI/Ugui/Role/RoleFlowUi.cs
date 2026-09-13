@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MmorpgClient.Core;
 using MmorpgClient.Game;
+using MmorpgClient.World;
 using MmorpgClient.UI.Ugui.Battle;
 using TMPro;
 using UnityEngine;
@@ -22,24 +23,14 @@ namespace MmorpgClient.UI.Ugui.Role
         // These ids are accepted by the server's Class table.
         private static readonly (uint id, string name, string desc)[] Classes =
         {
-            (1u, "剑修", "近战爆发"),
-            (2u, "法修", "远程法术"),
-            (3u, "丹修", "治疗辅助"),
-            (4u, "体修", "坚韧防御"),
+            (1u, "破军", "近战物攻"),
+            (2u, "玄霄", "法术输出"),
+            (3u, "丹心", "治疗辅助"),
+            (4u, "逐风", "高速先手"),
         };
         private static readonly string[] ClassBadges =
         {
             "round_badge_sword", "round_badge_water", "round_badge_furnace", "round_badge_mountain",
-        };
-        private static readonly string[] MalePortraits =
-        {
-            "02_fire_talisman_boy_v3", "02_fire_talisman_boy_v3",
-            "08_alchemy_prodigy_boy_v3", "04_mountain_guardian_boy_v3",
-        };
-        private static readonly string[] FemalePortraits =
-        {
-            "01_ice_sword_girl_v3", "14_short_hair_snow_summoner_girl_v3",
-            "03_lotus_healer_girl_v3", "10_crimson_spear_girl_v3",
         };
 
         private const int MaxRows = 5;
@@ -234,7 +225,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 float textX = portraitSize + 54f;
                 float textWidth = 540f - textX - 60f;
                 card.Name = Label("Name", card.Plate.transform, textX, _roleCardHeight * .24f, textWidth, 60f,
-                    ClassName(player.ClassId), _roleCardHeight > 170f ? 44f : 33f, Ink);
+                    CharacterName(player.ClassId, player.Gender), _roleCardHeight > 170f ? 44f : 33f, Ink);
                 card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 40f,
                     $"{GenderName(player.Gender)} · {ShortId(player.PlayerId)}" + (player.PlayerId == lastPlayed ? " · 上次" : string.Empty),
                     _roleCardHeight > 170f ? 27f : 23f, Wood);
@@ -289,7 +280,7 @@ namespace MmorpgClient.UI.Ugui.Role
             int index = ClassIndex(classId);
             _hero.sprite = ResolvePortrait(classId, gender);
             _hero.enabled = _hero.sprite != null;
-            _previewTitle.text = ClassName(classId);
+            _previewTitle.text = CharacterName(classId, gender);
             _classBadge.sprite = QdaoRefreshArt.Load(ClassBadges[index]);
             _classValue.text = ClassName(classId);
             _genderValue.text = GenderName(gender);
@@ -530,17 +521,12 @@ namespace MmorpgClient.UI.Ugui.Role
             return value.Length > 8 ? "…" + value.Substring(value.Length - 8) : value;
         }
 
+        private static string CharacterName(uint classId, uint gender)
+            => QdaoCharacterCatalog.Find(QdaoCharacterCatalog.ResolveRole(classId, gender))?.Name
+               ?? ClassName(classId);
+
         private static Sprite ResolvePortrait(uint classId, uint gender)
-        {
-            int index = ClassIndex(classId);
-            if (index == 0 && gender != 2)
-            {
-                var hero = QdaoRefreshArt.Load("hero");
-                if (hero != null) return hero;
-            }
-            string file = gender == 2 ? FemalePortraits[index] : MalePortraits[index];
-            return BattleArtCatalog.LoadSprite("UI/qdao_v3/characters/" + file);
-        }
+            => QdaoCharacterCatalog.LoadPortrait(QdaoCharacterCatalog.ResolveRole(classId, gender));
 
 #if UNITY_EDITOR
         private static GameObject _editorPreviewObject;

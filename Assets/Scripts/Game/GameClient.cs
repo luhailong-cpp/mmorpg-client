@@ -51,6 +51,10 @@ namespace MmorpgClient.Game
         private readonly Dictionary<uint, List<ulong>> _pendingIdsByMsg = new();
 
         private readonly Dictionary<uint, Action<MessageContent>> _notifyHandlers = new();
+        // Appearance derives from the server-owned role class/gender, never
+        // from transient scene entity handles. Login/create replies are the
+        // authoritative source until ActorCreateS2C carries remote role data.
+        private readonly Dictionary<ulong, AccountSimplePlayer> _knownRoles = new();
 
         private long _accessTokenExpire;       // unix seconds
         private float _lastRefreshAttempt;     // realtimeSinceStartup
@@ -180,6 +184,7 @@ namespace MmorpgClient.Game
             _codec.Register<BattleTokenVerifyResponse>();
 
             World = new ActorWorld();
+            World.AppearanceProvider = ResolveActorCharacterId;
 
             // 战斗直连链路要先于 WireSceneNotifyHandlers 建好:NotifyBattleAssigned 的处理器指向它
             BattleLink = new BattleDirectLink(() => new GateTcpClient(_codec), s => Log($"[battle-direct] {s}"));
@@ -203,6 +208,33 @@ namespace MmorpgClient.Game
         }
 
         public GatewayHttpClient Http => _http;
+
+        /// <summary>Known account role appearance; null means the server has not supplied its class/gender.</summary>
+        public string ResolveCharacterId(ulong playerId)
+            => playerId != 0 && _knownRoles.TryGetValue(playerId, out var role)
+                ? QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender)
+                : null;
+
+        private string ResolveActorCharacterId(ActorView view)
+        {
+            if (view == null || view.Kind != ActorKind.Player) return null;
+            ulong playerId = view.PlayerId;
+            if (playerId == 0 && World.HasLocalPlayer && view.Entity == World.LocalEntity)
+                playerId = PlayerId;
+            return ResolveCharacterId(playerId);
+        }
+
+        private void CacheRoleMetadata(IEnumerable<AccountSimplePlayerWrapper> players)
+        {
+            _knownRoles.Clear();
+            foreach (var wrapper in players)
+            {
+                var role = wrapper?.Player;
+                if (role == null || role.PlayerId == 0) continue;
+                _knownRoles[role.PlayerId] = role.Clone();
+            }
+            World.RefreshAppearances();
+        }
 
         public void Tick()
         {
@@ -443,6 +475,7 @@ namespace MmorpgClient.Game
             if (!string.IsNullOrEmpty(loginResp.AccessToken))
                 SetTokens(loginResp.AccessToken, loginResp.RefreshToken, loginResp.AccessTokenExpire);
             Log($"session login ok, players={loginResp.Players.Count}");
+            CacheRoleMetadata(loginResp.Players);
 
             // ── 选角 / 建角 ──
             ulong playerId = 0;
@@ -531,6 +564,7 @@ namespace MmorpgClient.Game
             if (cpResp.ErrorMessage != null && cpResp.ErrorMessage.Id != 0)
             { FailPipeline(gen, onError, $"创建角色失败(tip={cpResp.ErrorMessage.Id})"); yield break; }
 
+            CacheRoleMetadata(cpResp.Players);
             // 响应是账号全量角色列表:新角色 = 不在请求前列表里的那一个
             ulong newId = 0;
             foreach (var w in cpResp.Players)
@@ -1341,7 +1375,7 @@ namespace MmorpgClient.Game
                 ActorType.Npc => ActorKind.Npc,
                 _ => ActorKind.Unknown,
             };
-            World.SpawnActor(ev.Entity, kind, ev.ConfigId, pos, euler);
+            World.SpawnActor(ev.Entity, kind, ev.ConfigId, pos, euler, ev.Guid);
 
             // Local player binding: server uses `guid == player_id` for the
             // owning client's actor.
@@ -1464,6 +1498,7 @@ namespace MmorpgClient.Game
                 CurrentSceneId = 0;
                 CurrentSceneConfigId = 0;
                 PlayerId = 0;
+                _knownRoles.Clear();
                 _enteredScene = false;
                 _isMoving = false;
                 _moveInputSeq = 0;

@@ -1,0 +1,18 @@
+{
+  "verified_source_sha256": {
+    "Assets/Scripts/World/QdaoCharacterCatalog.cs": "5eea9bd9a029fb5472530660e9a4482027324ee67d19e3dd9aa6ebdebad64f2c",
+    "Assets/Scripts/World/QdaoBoySpriteAnimator.cs": "fb8ab9f3cb21bd005eed3dfc172736c23277fffda33d9ae913938bf7fbe8e618",
+    "Assets/Scripts/World/ActorWorld.cs": "920822dec89381a0707a3a0d15bee26ef9e26738cafce3e09f46bde72cd38371",
+    "Assets/Scripts/Game/GameClient.cs": "6e6cb81477a028e609871a470d4e4f13408606d679899f85bb42ee949f4961fc",
+    "Assets/Scripts/UI/Ugui/Role/RoleFlowUi.cs": "ef35a8e94fe4c7d5dfd00a1d5713a7d838a4b03b8538310179004e6dac934363",
+    "Assets/Scripts/UI/Ugui/Battle/BattleArtCatalog.cs": "1bd630d46ff77e326448ce35d23c90c0445a34e0be82c3e254b3e95103982f7b",
+    "Assets/Scripts/UI/Ugui/Battle/BattleUnitView.cs": "199579038ca004c16df042a3c2a6a0380ff6867932b9a9af4bbd3f1f69c6f2e2",
+    "Assets/Scripts/UI/Ugui/Battle/BattleScreen.cs": "3fc0909739fa103f378f13291e527b23fd7cf4d4fa9cee9bb08e60fcc8131450",
+    "Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs": "f016fcf6555d854c23159a43e66a0a0f9efd542da5570bc4c8a067f17d5585c4"
+  },
+  "editmode_passed": 68,
+  "playmode_passed": 7,
+  "failed": 0,
+  "visual_review": "8 direction/action contact sheets and graphical PlayMode captures reviewed",
+  "scope": "Client integration and actual offline sandbox; remote appearance protocol unchanged"
+}

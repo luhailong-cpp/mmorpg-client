@@ -800,7 +800,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 bool monster = actor.ActorType == eBattleActorType.BattleActorTypeMonster;
                 info.Portrait = monster
                     ? BattleArtCatalog.LoadMonsterPortrait(actor.MonsterTableId)
-                    : BattleArtCatalog.LoadPlayerPortrait(actorId);
+                    : BattleArtCatalog.LoadPlayerPortrait(actor, playerId => AppBootstrap.Instance?.GameClient?.ResolveCharacterId(playerId));
             }
             else
             {

@@ -17,6 +17,8 @@ namespace MmorpgClient.World.Tianyong
         [SerializeField] private GameObject debugPlayerPrefab;
         [SerializeField] private TianyongTheme initialTheme = TianyongTheme.City;
         [SerializeField] private bool showHelp = true;
+        [SerializeField] private string characterId = QdaoCharacterCatalog.DefaultId;
+        private TMPro.TMP_Text _playerLabel;
 
         private TianyongMapInstance _map;
         private TianyongCameraController _cameraController;
@@ -57,9 +59,10 @@ namespace MmorpgClient.World.Tianyong
 
             // Same look as production actors: the qdao walk sprite when present
             // and a name label parked under the feet.
-            QdaoBoySpriteAnimator.TryAttach(player);
-            var label = WorldNameplate.Create(player.transform, "云行客", WorldNameplate.LocalPlayerColor);
-            WorldLabelBillboard.Attach(label.gameObject);
+            QdaoBoySpriteAnimator.TryAttach(player, characterId);
+            _playerLabel = WorldNameplate.Create(player.transform,
+                QdaoCharacterCatalog.Find(characterId)?.Name ?? "云行客", WorldNameplate.LocalPlayerColor);
+            WorldLabelBillboard.Attach(_playerLabel.gameObject);
 
             _playerController = player.GetComponent<TianyongPlayerController>();
             if (_playerController == null) _playerController = player.AddComponent<TianyongPlayerController>();
@@ -76,6 +79,25 @@ namespace MmorpgClient.World.Tianyong
             // 离线验收:-sandboxDrive 时自动走位截图(TianyongSandboxAutoDrive);未带参数时无副作用。
             TianyongSandboxHudVerification.TryAttach(this);
             TianyongSandboxAutoDrive.TryAttach(this);
+        }
+
+        /// <summary>Switch the offline playable appearance without rebuilding the map or controller.</summary>
+        public bool SelectCharacter(string id)
+        {
+            if (QdaoCharacterCatalog.Find(id) == null || Player == null) return false;
+            var previousId = Player.GetComponent<QdaoBoySpriteAnimator>()?.CharacterId;
+            if (!QdaoBoySpriteAnimator.TryAttach(Player, id)) return false;
+            var animator = Player.GetComponent<QdaoBoySpriteAnimator>();
+            if (animator.CharacterId != id)
+            {
+                // Incomplete imports may resolve to the legacy fallback. Keep
+                // the previous visible character/name and report the failed switch.
+                animator.SetAppearance(previousId);
+                return false;
+            }
+            characterId = id;
+            if (_playerLabel != null) _playerLabel.text = QdaoCharacterCatalog.Find(id).Name;
+            return true;
         }
 
         /// <summary>验收截图时隐藏左上角的操作提示框。</summary>
@@ -103,6 +125,14 @@ namespace MmorpgClient.World.Tianyong
                 else if (Input.GetKeyDown(KeyCode.F2)) SetTheme(TianyongTheme.Market);
                 else if (Input.GetKeyDown(KeyCode.F3)) SetTheme(TianyongTheme.Snow);
                 else if (Input.GetKeyDown(KeyCode.F4)) SetTheme(TianyongTheme.Lantern);
+                else if (Input.GetKeyDown(KeyCode.F5))
+                {
+                    var roster = QdaoCharacterCatalog.All;
+                    var index = 0;
+                    for (var i = 0; i < roster.Count; i++)
+                        if (roster[i].Id == characterId) { index = (i + 1) % roster.Count; break; }
+                    SelectCharacter(roster[index].Id);
+                }
             }
 
             var focus = Player != null ? Player.transform.position : TianyongMapDefinition.DefaultSpawn;
@@ -148,8 +178,8 @@ namespace MmorpgClient.World.Tianyong
         private void OnGUI()
         {
             if (!showHelp) return;
-            GUI.Box(new Rect(16f, 16f, 360f, 78f),
-                "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会");
+            GUI.Box(new Rect(16f, 16f, 400f, 102f),
+                "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换八位新人物");
         }
 
         private void OnDestroy()

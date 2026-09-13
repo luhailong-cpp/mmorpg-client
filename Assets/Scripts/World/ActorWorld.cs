@@ -14,6 +14,10 @@ namespace MmorpgClient.World
         public ulong Entity;
         public ActorKind Kind;
         public ulong ConfigId;
+        /// <summary>Stable server actor guid (player_id for players), distinct from the scene Entity handle.</summary>
+        public ulong PlayerId;
+        /// <summary>Resolved catalog id, or null while no role appearance metadata is available.</summary>
+        public string CharacterId;
         public GameObject Go;
         /// <summary>World-space nameplate (3D TextMeshPro) built by <see cref="WorldNameplate"/>.</summary>
         public TMPro.TMP_Text Label;
@@ -81,6 +85,9 @@ namespace MmorpgClient.World
         /// </summary>
         public System.Func<ActorView, string> DisplayNameProvider;
 
+        /// <summary>Resolves server-known role appearance; null retains the legacy fallback for unknown actors.</summary>
+        public System.Func<ActorView, string> AppearanceProvider;
+
         /// <summary>
         /// Places the actor container under the persistent application root.
         /// Network positions remain actor-local coordinates, so the default
@@ -125,13 +132,17 @@ namespace MmorpgClient.World
 
             if (hadLocal && previousLocal != entity &&
                 _actors.TryGetValue(previousLocal, out var previous))
+            {
                 Recolor(previous);
+                RefreshAppearance(previous);
+            }
 
             if (_actors.TryGetValue(entity, out var v))
             {
                 v.HasTarget = false;
                 v.Velocity = UnityEngine.Vector3.zero;
                 Recolor(v);
+                RefreshAppearance(v);
                 OnLocalPlayerChanged?.Invoke(v);
             }
             else if (hadLocal)
@@ -141,7 +152,7 @@ namespace MmorpgClient.World
         }
 
         public void SpawnActor(ulong entity, ActorKind kind, ulong configId,
-                       UnityEngine.Vector3 position, UnityEngine.Vector3 eulerDeg)
+                       UnityEngine.Vector3 position, UnityEngine.Vector3 eulerDeg, ulong playerId = 0)
         {
             if (_actors.ContainsKey(entity)) return; // dedupe
 
@@ -167,6 +178,7 @@ namespace MmorpgClient.World
                 Entity = entity,
                 Kind = kind,
                 ConfigId = configId,
+                PlayerId = kind == ActorKind.Player ? playerId : 0,
                 Go = prim,
             };
 
@@ -175,11 +187,9 @@ namespace MmorpgClient.World
             view.Label = WorldNameplate.Create(prim.transform, ResolveDisplayName(view), NameplateColor(view));
             WorldLabelBillboard.Attach(view.Label.gameObject);
 
-            // Players get the qdao sprite walker when its Resources are
-            // present; the cube stays as a fallback (and in edit-mode tests,
-            // which assert against the primitive's renderer).
-            if (kind == ActorKind.Player && Application.isPlaying)
-                QdaoBoySpriteAnimator.TryAttach(prim);
+            // Resolve before exposing the actor to listeners. Edit-mode keeps
+            // the primitive while still exercising the identity/data binding.
+            RefreshAppearance(view);
 
             _actors[entity] = view;
             Recolor(view);
@@ -196,6 +206,30 @@ namespace MmorpgClient.World
         {
             foreach (var v in _actors.Values)
                 RefreshNameplate(v);
+        }
+
+        /// <summary>Refreshes live actors when authoritative login/create metadata arrives or changes.</summary>
+        public void RefreshAppearances()
+        {
+            foreach (var view in _actors.Values)
+                RefreshAppearance(view);
+        }
+
+        private void RefreshAppearance(ActorView view)
+        {
+            if (view == null || view.Kind != ActorKind.Player || view.Go == null) return;
+            string characterId = null;
+            try
+            {
+                characterId = AppearanceProvider?.Invoke(view);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogException(ex);
+            }
+            view.CharacterId = characterId;
+            if (Application.isPlaying)
+                QdaoBoySpriteAnimator.TryAttach(view.Go, characterId);
         }
 
         private string ResolveDisplayName(ActorView v)

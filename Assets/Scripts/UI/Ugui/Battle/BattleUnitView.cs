@@ -327,11 +327,15 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             bool wasMonster = IsMonster;
             uint prevMonster = MonsterTableId;
+            string previousCharacterId = CharacterId;
             IsMonster = state.ActorType == eBattleActorType.BattleActorTypeMonster;
             MonsterTableId = state.MonsterTableId;
-            CharacterId = BattleArtCatalog.CharacterIdFor(state);
-            if (_idleSprite == null || wasMonster != IsMonster || prevMonster != MonsterTableId)
+            CharacterId = BattleArtCatalog.CharacterIdFor(state, playerId => AppBootstrap.Instance?.GameClient?.ResolveCharacterId(playerId));
+            if (_idleSprite == null || wasMonster != IsMonster || prevMonster != MonsterTableId || previousCharacterId != CharacterId)
+            {
+                RealtimeTween.Kill(_idleToken);
                 ResolveAppearance();
+            }
 
             string name = string.IsNullOrEmpty(state.Name)
                 ? (IsMonster ? $"怪物{state.MonsterTableId}" : $"玩家{state.ActorId}")
@@ -1010,7 +1014,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
                 else
                 {
-                    sprite = BattleArtCatalog.LoadPlayerIdle(_facingEast, out mirrored);
+                    sprite = BattleArtCatalog.LoadPlayerIdle(CharacterId, _facingEast, out mirrored);
                 }
                 height = PlayerHeight;
             }
