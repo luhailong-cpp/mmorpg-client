@@ -1,0 +1,12 @@
+{
+  "startedUtc": "2026-09-13T07:37:18.6550333Z",
+  "account": "robot_festival_20260913_033718",
+  "pid": 28828,
+  "executable": "E:\\work\\tmp\\festival_player_20260913\\mmorpg.exe",
+  "executableSha256": "718444f6a718fa668da96eb0a58445b009673310e6129152a63dbf7a92b8de00",
+  "report": "E:\\work\\tmp\\festival_live_verify_20260913_run4\\festival-map-verification.json",
+  "requestedSize": [
+    1920,
+    1080
+  ]
+}

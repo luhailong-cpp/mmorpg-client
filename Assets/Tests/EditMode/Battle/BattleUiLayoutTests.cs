@@ -1,3 +1,6 @@
+using System.Reflection;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Battle;
 using NUnit.Framework;
@@ -78,6 +81,60 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.GreaterOrEqual(orderLeft, BattleScreen.LogButtonRect.xMax);
             Assert.LessOrEqual(orderLeft + BattleActionOrderBar.FullWidth, BattleScreen.TimerRect.xMin);
             Assert.LessOrEqual(BattleScreen.TimerRect.xMax, BattlePartyCards.CardRect(0).xMin);
+        }
+        [Test]
+        public void ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios()
+        {
+            var fixture = new GameObject("BattleGroundAlignmentTest");
+            try
+            {
+                new GameObject("EventSystem", typeof(EventSystem)).transform.SetParent(fixture.transform, false);
+                var ownerGo = new GameObject("BattleOwner");
+                ownerGo.SetActive(false);
+                ownerGo.transform.SetParent(fixture.transform, false);
+                var owner = ownerGo.AddComponent<BattleUiRoot>();
+                owner.enabled = false;
+                ownerGo.SetActive(true);
+                typeof(BattleUiRoot).GetMethod("BuildCanvas", BindingFlags.Instance | BindingFlags.NonPublic)
+                    .Invoke(owner, null);
+                var canvas = ownerGo.GetComponentInChildren<Canvas>(true);
+                canvas.GetComponent<CanvasScaler>().enabled = false;
+                canvas.renderMode = RenderMode.WorldSpace;
+                var canvasRect = (RectTransform)canvas.transform;
+                var layer = canvas.transform.Find("BattleLayer");
+                layer.gameObject.SetActive(true);
+                var stage = (RectTransform)layer.Find("BattleRoot/BattleScreen/World/Stage");
+                Image art = null;
+                foreach (var image in layer.GetComponentsInChildren<Image>(true))
+                    if (image.name == "BattleArenaArt") art = image;
+                Assert.NotNull(stage);
+                Assert.NotNull(art);
+                Assert.NotNull(art.sprite);
+                Assert.AreEqual(2560f / 1080f, art.sprite.rect.width / art.sprite.rect.height, 0.0001f);
+                layer.Find("BattleRoot/BattleScreen").gameObject.SetActive(true);
+
+                foreach (var (width, height) in Resolutions)
+                {
+                    var visible = BattleUiLayout.VisibleDesignRect(width, height);
+                    canvasRect.sizeDelta = visible.size;
+                    Canvas.ForceUpdateCanvases();
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(canvasRect);
+                    var picture = art.rectTransform;
+                    foreach (bool mine in new[] { false, true })
+                    for (int slot = 0; slot < BattleStage.SlotsPerTeam; slot++)
+                    {
+                        var foot = BattleStage.SlotPosition(mine, slot);
+                        var groundPixel = picture.TransformPoint(new UnityEngine.Vector3(
+                            picture.rect.xMin + foot.x / 2560f * picture.rect.width,
+                            picture.rect.yMax - foot.y / 1080f * picture.rect.height, 0f));
+                        var actorFoot = stage.TransformPoint(new UnityEngine.Vector3(
+                            stage.rect.xMin + foot.x, stage.rect.yMax - foot.y, 0f));
+                        Assert.Less(UnityEngine.Vector3.Distance(groundPixel, actorFoot), 0.01f,
+                            $"{width}x{height}: team={mine} slot={slot} ground drifted under the unit");
+                    }
+                }
+            }
+            finally { UnityEngine.Object.DestroyImmediate(fixture); }
         }
     }
 }

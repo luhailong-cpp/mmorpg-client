@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.1795939">
+  <test-suite type="TestSuite" id="1032" name="unity" fullname="unity" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.179594" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1026" name="MmorpgClient.Tests.PlayMode.dll" fullname="E:/work/tmp/festival_game_verify_project_20260913/Library/ScriptAssemblies/MmorpgClient.Tests.PlayMode.dll" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.159152" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29884" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1027" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.156974" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1028" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.155957" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1029" name="PlayMode" fullname="MmorpgClient.Tests.PlayMode" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.154848" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="CityTravelWindowPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.CityTravelWindowPlayModeTests" classname="MmorpgClient.Tests.PlayMode.CityTravelWindowPlayModeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.149527" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="OpenMap_BlocksMovementAndCloseRestoresInput" fullname="MmorpgClient.Tests.PlayMode.CityTravelWindowPlayModeTests.OpenMap_BlocksMovementAndCloseRestoresInput" methodname="OpenMap_BlocksMovementAndCloseRestoresInput" classname="MmorpgClient.Tests.PlayMode.CityTravelWindowPlayModeTests" runstate="Runnable" seed="1456327296" result="Passed" start-time="2026-09-13 06:56:24Z" end-time="2026-09-13 06:56:24Z" duration="0.082634" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

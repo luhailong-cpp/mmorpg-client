@@ -1,0 +1,188 @@
+{
+    "result": "PASS",
+    "phase": "move_1",
+    "reason": "四次真实传送、三组日景与节庆、四图移动及返城验收通过。",
+    "playerId": "404",
+    "gate": "127.0.0.1:10001",
+    "startedUtc": "2026-09-13T07:37:24.8146821Z",
+    "finishedUtc": "2026-09-13T07:37:56.6032279Z",
+    "elapsedSeconds": 31.789108276367188,
+    "sceneNotifications": 4,
+    "screenshots": 7,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "scenes": [
+        {
+            "sceneConfigId": 2,
+            "sceneInstanceId": "63941896849850384",
+            "sceneNotifications": 1,
+            "expectedSpawn": [
+                220.0,
+                0.0,
+                170.0
+            ],
+            "arrivedAt": [
+                220.0,
+                0.0,
+                170.0
+            ],
+            "spawnError": 0.0,
+            "walkableCells": 2265,
+            "blockedCells": 27735,
+            "navigationMismatches": 0,
+            "wasdDistance": 5.46636962890625,
+            "pathTarget": [
+                220.0,
+                0.006999969482421875,
+                191.46636962890625
+            ],
+            "pathEnd": [
+                220.0,
+                0.006999969482421875,
+                191.15362548828125
+            ],
+            "pathError": 0.312744140625,
+            "movementAcks": 0,
+            "movementReconciles": 0,
+            "festivalKeptSceneAndEntity": true,
+            "festivalKeptNavigation": true,
+            "festivalPositionError": 0.0,
+            "festivalPathError": 0.321711927652359,
+            "festivalMovementReconciles": 0,
+            "nativeWidth": 1254,
+            "nativeHeight": 1254,
+            "dayScreenshot": "scene-2-day.png",
+            "festivalScreenshot": "scene-2-festival.png",
+            "passed": true
+        },
+        {
+            "sceneConfigId": 3,
+            "sceneInstanceId": "63941896849850385",
+            "sceneNotifications": 1,
+            "expectedSpawn": [
+                200.0,
+                0.0,
+                180.0
+            ],
+            "arrivedAt": [
+                200.0,
+                0.0,
+                180.0
+            ],
+            "spawnError": 0.0,
+            "walkableCells": 2218,
+            "blockedCells": 27782,
+            "navigationMismatches": 0,
+            "wasdDistance": 5.46392822265625,
+            "pathTarget": [
+                200.0,
+                0.006999969482421875,
+                201.46392822265625
+            ],
+            "pathEnd": [
+                200.0,
+                0.006999969482421875,
+                201.12498474121094
+            ],
+            "pathError": 0.3389434814453125,
+            "movementAcks": 0,
+            "movementReconciles": 0,
+            "festivalKeptSceneAndEntity": true,
+            "festivalKeptNavigation": true,
+            "festivalPositionError": 0.0,
+            "festivalPathError": 0.3390478193759918,
+            "festivalMovementReconciles": 0,
+            "nativeWidth": 1254,
+            "nativeHeight": 1254,
+            "dayScreenshot": "scene-3-day.png",
+            "festivalScreenshot": "scene-3-festival.png",
+            "passed": true
+        },
+        {
+            "sceneConfigId": 4,
+            "sceneInstanceId": "63941896849850386",
+            "sceneNotifications": 1,
+            "expectedSpawn": [
+                200.0,
+                0.0,
+                180.0
+            ],
+            "arrivedAt": [
+                200.0,
+                0.0,
+                180.0
+            ],
+            "spawnError": 0.0,
+            "walkableCells": 2295,
+            "blockedCells": 27705,
+            "navigationMismatches": 0,
+            "wasdDistance": 5.4606170654296875,
+            "pathTarget": [
+                207.0,
+                0.006999969482421875,
+                199.0
+            ],
+            "pathEnd": [
+                207.3093719482422,
+                0.006999969482421875,
+                198.9477996826172
+            ],
+            "pathError": 0.3137449324131012,
+            "movementAcks": 0,
+            "movementReconciles": 0,
+            "festivalKeptSceneAndEntity": true,
+            "festivalKeptNavigation": true,
+            "festivalPositionError": 0.0,
+            "festivalPathError": 0.31910595297813416,
+            "festivalMovementReconciles": 0,
+            "nativeWidth": 1254,
+            "nativeHeight": 1254,
+            "dayScreenshot": "scene-4-day.png",
+            "festivalScreenshot": "scene-4-festival.png",
+            "passed": true
+        },
+        {
+            "sceneConfigId": 1,
+            "sceneInstanceId": "63941896849850368",
+            "sceneNotifications": 1,
+            "expectedSpawn": [
+                200.0,
+                0.0,
+                180.0
+            ],
+            "arrivedAt": [
+                200.0,
+                0.0,
+                180.0
+            ],
+            "spawnError": 0.0,
+            "walkableCells": 6203,
+            "blockedCells": 23797,
+            "navigationMismatches": 0,
+            "wasdDistance": 5.4566802978515625,
+            "pathTarget": [
+                195.0,
+                0.006999969482421875,
+                195.0
+            ],
+            "pathEnd": [
+                195.1510009765625,
+                0.007000088691711426,
+                194.71177673339844
+            ],
+            "pathError": 0.3253827691078186,
+            "movementAcks": 0,
+            "movementReconciles": 0,
+            "festivalKeptSceneAndEntity": false,
+            "festivalKeptNavigation": false,
+            "festivalPositionError": 0.0,
+            "festivalPathError": 0.0,
+            "festivalMovementReconciles": 0,
+            "nativeWidth": 0,
+            "nativeHeight": 0,
+            "dayScreenshot": "scene-1-day.png",
+            "festivalScreenshot": "",
+            "passed": true
+        }
+    ]
+}

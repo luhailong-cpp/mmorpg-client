@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="61" result="Passed" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:47Z" duration="4.3792594">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="495" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:47Z" duration="4.379259" total="61" passed="61" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1295" name="MmorpgClient.Tests.EditMode.Battle.dll" fullname="E:/work/tmp/festival_game_verify_project_20260913/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Battle.dll" runstate="Runnable" testcasecount="268" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:44Z" duration="1.246963" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40020" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1296" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="268" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:44Z" duration="1.200506" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1297" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="268" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:44Z" duration="1.153813" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1298" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="268" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:44Z" duration="1.107714" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1299" name="Battle" fullname="MmorpgClient.Tests.EditMode.Battle" runstate="Runnable" testcasecount="268" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:44Z" duration="1.060849" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1118" name="BattleStageTests" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.173194" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1131" name="AllSlotsAndPetShadows_StayInsidePaintedStonePlatforms" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AllSlotsAndPetShadows_StayInsidePaintedStonePlatforms" methodname="AllSlotsAndPetShadows_StayInsidePaintedStonePlatforms" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1133274541" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.047130" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1129" name="AllSlotsAndPetSlots_AreInsideScreen_AndBetweenHudBands" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AllSlotsAndPetSlots_AreInsideScreen_AndBetweenHudBands" methodname="AllSlotsAndPetSlots_AreInsideScreen_AndBetweenHudBands" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="223432877" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.006702" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1130" name="AllSlotsAndPetSlots_KeepClearOfCommandRing_AndPartyCards" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AllSlotsAndPetSlots_KeepClearOfCommandRing_AndPartyCards" methodname="AllSlotsAndPetSlots_KeepClearOfCommandRing_AndPartyCards" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1065150851" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.002827" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1135" name="AssignSlots_FallsBackToActorOrder_AndSeparatesTeams" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AssignSlots_FallsBackToActorOrder_AndSeparatesTeams" methodname="AssignSlots_FallsBackToActorOrder_AndSeparatesTeams" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1236497880" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.029261" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1136" name="AssignSlots_HonorsFormationSlot_AndResolvesConflicts" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AssignSlots_HonorsFormationSlot_AndResolvesConflicts" methodname="AssignSlots_HonorsFormationSlot_AndResolvesConflicts" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1346661083" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.002488" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1137" name="AssignSlots_MoreThanTenActors_WrapsWithoutThrowing" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AssignSlots_MoreThanTenActors_WrapsWithoutThrowing" methodname="AssignSlots_MoreThanTenActors_WrapsWithoutThrowing" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1220302885" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.001443" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1126" name="BackRow_IsFartherFromCenterLine_AndScaleFollowsDepth_SameColumn" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.BackRow_IsFartherFromCenterLine_AndScaleFollowsDepth_SameColumn" methodname="BackRow_IsFartherFromCenterLine_AndScaleFollowsDepth_SameColumn" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="661595791" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.002086" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1121" name="BackRowPets_StandOnSameColumnFrontRowSpots" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.BackRowPets_StandOnSameColumnFrontRowSpots" methodname="BackRowPets_StandOnSameColumnFrontRowSpots" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="49050254" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.001009" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1134" name="DepthOrder_SortsByFootY" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.DepthOrder_SortsByFootY" methodname="DepthOrder_SortsByFootY" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1211304292" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.001860" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1124" name="Enemy_UpperLeft_Ally_LowerRight" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Enemy_UpperLeft_Ally_LowerRight" methodname="Enemy_UpperLeft_Ally_LowerRight" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="585107537" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.000962" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1120" name="FrontRows_AreCloserToOpposingTeam_ThanBackRows" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.FrontRows_AreCloserToOpposingTeam_ThanBackRows" methodname="FrontRows_AreCloserToOpposingTeam_ThanBackRows" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="652530964" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.000635" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1132" name="PetOffset_FromOwner_FacesOpponent_AndFitsItsRow" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetOffset_FromOwner_FacesOpponent_AndFitsItsRow" methodname="PetOffset_FromOwner_FacesOpponent_AndFitsItsRow" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="512118538" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.001027" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1139" name="PetOwnerResolver_Throwing_IsTreatedAsNoPet" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetOwnerResolver_Throwing_IsTreatedAsNoPet" methodname="PetOwnerResolver_Throwing_IsTreatedAsNoPet" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="456894966" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.006836" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[BattleStage] PetOwnerResolver 异常 actor=7:boom
+[BattleStage] PetOwnerResolver 异常 actor=7:boom
+]]></output>
+                </test-case>
+                <test-case id="1138" name="Pets_DoNotConsumeSlots_AndFollowOwnerPlacement" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Pets_DoNotConsumeSlots_AndFollowOwnerPlacement" methodname="Pets_DoNotConsumeSlots_AndFollowOwnerPlacement" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1318826228" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.004303" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1128" name="PetScale_IsSmallerThanOwner_ByFixedRatio" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetScale_IsSmallerThanOwner_ByFixedRatio" methodname="PetScale_IsSmallerThanOwner_ByFixedRatio" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1272021830" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.001863" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1123" name="PetSlots_DoNotOverlap_EachOther_OrForeignSlots" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetSlots_DoNotOverlap_EachOther_OrForeignSlots" methodname="PetSlots_DoNotOverlap_EachOther_OrForeignSlots" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="401114756" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.003964" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1125" name="Rows_AreDiagonalBands_LowerLeftToUpperRight" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Rows_AreDiagonalBands_LowerLeftToUpperRight" methodname="Rows_AreDiagonalBands_LowerLeftToUpperRight" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1947756645" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.002279" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1127" name="Scale_IsWeakLinearDepth_NoRowOrTeamScaling" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Scale_IsWeakLinearDepth_NoRowOrTeamScaling" methodname="Scale_IsWeakLinearDepth_NoRowOrTeamScaling" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="2008951415" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.002934" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1133" name="SlotIndex_ColumnOrder_LeftToRight" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.SlotIndex_ColumnOrder_LeftToRight" methodname="SlotIndex_ColumnOrder_LeftToRight" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1945468432" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.000668" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1122" name="Slots_DoNotOverlap_AcrossBothTeams" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Slots_DoNotOverlap_AcrossBothTeams" methodname="Slots_DoNotOverlap_AcrossBothTeams" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1866108850" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.001644" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1119" name="Slots_KeepTenProtocolIndices_AndTwoFiveSlotRows" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Slots_KeepTenProtocolIndices_AndTwoFiveSlotRows" methodname="Slots_KeepTenProtocolIndices_AndTwoFiveSlotRows" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="2033572007" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.000808" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1140" name="BattleUiLayoutTests" fullname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests" classname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:44Z" duration="0.810832" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1142" name="AllInteractiveHudRects_AreInsideVisibleArea_AtEveryResolution" fullname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests.AllInteractiveHudRects_AreInsideVisibleArea_AtEveryResolution" methodname="AllInteractiveHudRects_AreInsideVisibleArea_AtEveryResolution" classname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests" runstate="Runnable" seed="1512894459" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.007173" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1141" name="Expand_VisibleRect_AlwaysCoversWholeDesignArea" fullname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests.Expand_VisibleRect_AlwaysCoversWholeDesignArea" methodname="Expand_VisibleRect_AlwaysCoversWholeDesignArea" classname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests" runstate="Runnable" seed="120958892" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.000625" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1144" name="HudBands_DoNotOverlapEachOther" fullname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests.HudBands_DoNotOverlapEachOther" methodname="HudBands_DoNotOverlapEachOther" classname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests" runstate="Runnable" seed="1689490293" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.000415" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1143" name="LegacyMatchWidthOrHeight_WouldClipCancelAutoAt1080p" fullname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests.LegacyMatchWidthOrHeight_WouldClipCancelAutoAt1080p" methodname="LegacyMatchWidthOrHeight_WouldClipCancelAutoAt1080p" classname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests" runstate="Runnable" seed="572865462" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:43Z" duration="0.000627" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1145" name="ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios" fullname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests.ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios" methodname="ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios" classname="MmorpgClient.Tests.EditMode.Battle.BattleUiLayoutTests" runstate="Runnable" seed="718338569" result="Passed" start-time="2026-09-13 06:52:43Z" end-time="2026-09-13 06:52:44Z" duration="0.795061" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1559" name="MmorpgClient.Tests.EditMode.Tianyong.dll" fullname="E:/work/tmp/festival_game_verify_project_20260913/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Tianyong.dll" runstate="Runnable" testcasecount="227" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:47Z" duration="3.049124" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40020" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1560" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="227" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:47Z" duration="3.026549" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1561" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="227" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:47Z" duration="3.019077" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1562" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="227" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:47Z" duration="3.012405" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1564" name="Tianyong" fullname="MmorpgClient.Tests.EditMode.Tianyong" runstate="Runnable" testcasecount="211" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:47Z" duration="3.003316" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1328" name="CityTravelRequestTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.010852" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1334" name="DisconnectReset_RejectsLateNotifications" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests.DisconnectReset_RejectsLateNotifications" methodname="DisconnectReset_RejectsLateNotifications" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" runstate="Runnable" seed="723896046" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.001476" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1333" name="DuplicateClick_DoesNotReplaceInFlightDestination" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests.DuplicateClick_DoesNotReplaceInFlightDestination" methodname="DuplicateClick_DoesNotReplaceInFlightDestination" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" runstate="Runnable" seed="309400692" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.002412" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1330" name="NotifyBeforeRpc_LateErrorCannotUndoArrival" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests.NotifyBeforeRpc_LateErrorCannotUndoArrival" methodname="NotifyBeforeRpc_LateErrorCannotUndoArrival" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" runstate="Runnable" seed="824414837" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.000523" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1331" name="OtherSceneNotification_DoesNotApplyRequestedAppearance" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests.OtherSceneNotification_DoesNotApplyRequestedAppearance" methodname="OtherSceneNotification_DoesNotApplyRequestedAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" runstate="Runnable" seed="140957496" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.000484" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1329" name="RpcAcceptance_DoesNotCompleteTravel" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests.RpcAcceptance_DoesNotCompleteTravel" methodname="RpcAcceptance_DoesNotCompleteTravel" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" runstate="Runnable" seed="1424457348" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.000603" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1332" name="Timeout_RejectsStaleCallbacksAndAllowsRetry" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests.Timeout_RejectsStaleCallbacksAndAllowsRetry" methodname="Timeout_RejectsStaleCallbacksAndAllowsRetry" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests" runstate="Runnable" seed="49889650" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.000516" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1335" name="CityTravelWindowTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.156217" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1337" name="FestivalTravel_EmitsChosenServerDestinationAndAppearance" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests.FestivalTravel_EmitsChosenServerDestinationAndAppearance" methodname="FestivalTravel_EmitsChosenServerDestinationAndAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests" runstate="Runnable" seed="1691216083" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.098153" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1338" name="PendingTravel_DisablesDestinationAndAppearanceControls" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests.PendingTravel_DisablesDestinationAndAppearanceControls" methodname="PendingTravel_DisablesDestinationAndAppearanceControls" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests" runstate="Runnable" seed="416201553" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.022304" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1336" name="SameCity_OnlyDifferentAppearanceCanBeApplied" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests.SameCity_OnlyDifferentAppearanceCanBeApplied" methodname="SameCity_OnlyDifferentAppearanceCanBeApplied" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests" runstate="Runnable" seed="1372536668" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:44Z" duration="0.029007" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1339" name="FestivalRegionMapTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:47Z" duration="2.420959" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="ParameterizedMethod" id="1343" name="DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests.DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:45Z" duration="1.210355" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1340" name="DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry(2)" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests.DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry(2)" methodname="DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests" runstate="Runnable" seed="1684570088" result="Passed" start-time="2026-09-13 06:52:44Z" end-time="2026-09-13 06:52:45Z" duration="0.429459" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1341" name="DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry(3)" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests.DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry(3)" methodname="DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests" runstate="Runnable" seed="871074205" result="Passed" start-time="2026-09-13 06:52:45Z" end-time="2026-09-13 06:52:45Z" duration="0.385274" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1342" name="DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry(4)" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests.DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry(4)" methodname="DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests" runstate="Runnable" seed="1884194258" result="Passed" start-time="2026-09-13 06:52:45Z" end-time="2026-09-13 06:52:45Z" duration="0.382103" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1344" name="SceneRoundTrip_RebindsActorNavigationAndDisconnectClearsMap" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests.SceneRoundTrip_RebindsActorNavigationAndDisconnectClearsMap" methodname="SceneRoundTrip_RebindsActorNavigationAndDisconnectClearsMap" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionMapTests" runstate="Runnable" seed="1539922607" result="Passed" start-time="2026-09-13 06:52:45Z" end-time="2026-09-13 06:52:47Z" duration="1.201764" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[FestivalRegion] ready scene=1 festival=False spawn=(200.00, 0.00, 180.00)
+[FestivalRegion] ready scene=2 festival=False spawn=(220.00, 0.00, 170.00)
+[FestivalRegion] ready scene=3 festival=True spawn=(200.00, 0.00, 180.00)
+[FestivalRegion] ready scene=4 festival=True spawn=(200.00, 0.00, 180.00)
+[FestivalRegion] ready scene=1 festival=False spawn=(200.00, 0.00, 180.00)
+[FestivalRegion] ready scene=3 festival=False spawn=(200.00, 0.00, 180.00)
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1345" name="FestivalRegionVerificationProbeTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.026778" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="ParameterizedMethod" id="1349" name="SpawnHasSafeWasdAndConnectedClickTargets" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests.SpawnHasSafeWasdAndConnectedClickTargets" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.023070" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1346" name="SpawnHasSafeWasdAndConnectedClickTargets(2)" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests.SpawnHasSafeWasdAndConnectedClickTargets(2)" methodname="SpawnHasSafeWasdAndConnectedClickTargets" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests" runstate="Runnable" seed="1323703137" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.013756" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1347" name="SpawnHasSafeWasdAndConnectedClickTargets(3)" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests.SpawnHasSafeWasdAndConnectedClickTargets(3)" methodname="SpawnHasSafeWasdAndConnectedClickTargets" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests" runstate="Runnable" seed="519281207" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.003066" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1348" name="SpawnHasSafeWasdAndConnectedClickTargets(4)" fullname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests.SpawnHasSafeWasdAndConnectedClickTargets(4)" methodname="SpawnHasSafeWasdAndConnectedClickTargets" classname="MmorpgClient.Tests.EditMode.Tianyong.FestivalRegionVerificationProbeTests" runstate="Runnable" seed="1455921985" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.003257" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+              <test-suite type="TestFixture" id="1527" name="TianyongPaintedCityTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.181339" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1537" name="CameraController_AppliesConfiguredZoomWindow" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.CameraController_AppliesConfiguredZoomWindow" methodname="CameraController_AppliesConfiguredZoomWindow" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="237110941" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.001394" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1535" name="CityBuild_HidesTownRenderers_AndLaysTilesOnPlayArea" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.CityBuild_HidesTownRenderers_AndLaysTilesOnPlayArea" methodname="CityBuild_HidesTownRenderers_AndLaysTilesOnPlayArea" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="903891513" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.055799" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1531" name="CityTiles_AreAvailableAsRuntimeTextures" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.CityTiles_AreAvailableAsRuntimeTextures" methodname="CityTiles_AreAvailableAsRuntimeTextures" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="1202559805" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.006038" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1530" name="CoverCrop_MatchingTarget_UsesTheWholeArtwork" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.CoverCrop_MatchingTarget_UsesTheWholeArtwork" methodname="CoverCrop_MatchingTarget_UsesTheWholeArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="678351764" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.002397" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1529" name="CoverCrop_NarrowTarget_CropsSidesWithoutDistortion" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.CoverCrop_NarrowTarget_CropsSidesWithoutDistortion" methodname="CoverCrop_NarrowTarget_CropsSidesWithoutDistortion" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="673474704" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.001164" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1538" name="DefaultPaintedCityZoom_KeepsNativeTexelDensityAt1080p" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.DefaultPaintedCityZoom_KeepsNativeTexelDensityAt1080p" methodname="DefaultPaintedCityZoom_KeepsNativeTexelDensityAt1080p" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="125774437" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.000732" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1528" name="MainCityArtwork_IsAvailableAsRuntimeTexture" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.MainCityArtwork_IsAvailableAsRuntimeTexture" methodname="MainCityArtwork_IsAvailableAsRuntimeTexture" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="997328452" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.019255" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1536" name="NonCityThemes_KeepTheGenerated3dTown" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.NonCityThemes_KeepTheGenerated3dTown" methodname="NonCityThemes_KeepTheGenerated3dTown" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="1817617029" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.042860" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1533" name="PaintingCoordinates_RoundTrip_AndAnchorTheSquareArtOnThePlayArea" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.PaintingCoordinates_RoundTrip_AndAnchorTheSquareArtOnThePlayArea" methodname="PaintingCoordinates_RoundTrip_AndAnchorTheSquareArtOnThePlayArea" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="365491132" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.001437" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1532" name="PlayerSprite_IsReadableAtDefaultZoom_AndKeepsHdSampling" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.PlayerSprite_IsReadableAtDefaultZoom_AndKeepsHdSampling" methodname="PlayerSprite_IsReadableAtDefaultZoom_AndKeepsHdSampling" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="1319522589" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.030723" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1534" name="WalkMask_FollowsThePaintedPavement" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests.WalkMask_FollowsThePaintedPavement" methodname="WalkMask_FollowsThePaintedPavement" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedCityTests" runstate="Runnable" seed="830357512" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.008087" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1539" name="TianyongPaintedForegroundTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.163153" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1547" name="BuiltEastLamp_SortsBetweenNorthAndSouthActorsAndTogglesIndependently" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.BuiltEastLamp_SortsBetweenNorthAndSouthActorsAndTogglesIndependently" methodname="BuiltEastLamp_SortsBetweenNorthAndSouthActorsAndTogglesIndependently" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="586219697" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.074897" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1546" name="BuiltForeground_SortsBetweenNorthAndSouthActorsAndLeavesGroundEnabled" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.BuiltForeground_SortsBetweenNorthAndSouthActorsAndLeavesGroundEnabled" methodname="BuiltForeground_SortsBetweenNorthAndSouthActorsAndLeavesGroundEnabled" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="1018826793" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.061396" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1544" name="EastLampSilhouette_CoversBannerAndEaveButNotAdjacentPavement" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.EastLampSilhouette_CoversBannerAndEaveButNotAdjacentPavement" methodname="EastLampSilhouette_CoversBannerAndEaveButNotAdjacentPavement" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="958510173" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.007667" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1542" name="EveryCutout_HasTopToBottomRowsInsideItsTileAndAboveItsBase" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.EveryCutout_HasTopToBottomRowsInsideItsTileAndAboveItsBase" methodname="EveryCutout_HasTopToBottomRowsInsideItsTileAndAboveItsBase" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="1643067946" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.003241" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1541" name="EveryCutout_UvProjectsOntoItsOwnSourceTilePixels" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.EveryCutout_UvProjectsOntoItsOwnSourceTilePixels" methodname="EveryCutout_UvProjectsOntoItsOwnSourceTilePixels" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="1830364872" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.003534" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1545" name="FestivalLampPieces_MeetAtTileSeamAndShareTheirGroundSortingAnchor" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.FestivalLampPieces_MeetAtTileSeamAndShareTheirGroundSortingAnchor" methodname="FestivalLampPieces_MeetAtTileSeamAndShareTheirGroundSortingAnchor" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="1490839579" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.001464" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1540" name="RoofUv_ProjectsOntoTheSameOriginalPaintingPixels" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.RoofUv_ProjectsOntoTheSameOriginalPaintingPixels" methodname="RoofUv_ProjectsOntoTheSameOriginalPaintingPixels" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="1531695494" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.001050" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1543" name="WestLampSilhouette_CoversFestivalPavilionButExcludesAdjacentPavement" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests.WestLampSilhouette_CoversFestivalPavilionButExcludesAdjacentPavement" methodname="WestLampSilhouette_CoversFestivalPavilionButExcludesAdjacentPavement" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongPaintedForegroundTests" runstate="Runnable" seed="377346723" result="Passed" start-time="2026-09-13 06:52:47Z" end-time="2026-09-13 06:52:47Z" duration="0.000593" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

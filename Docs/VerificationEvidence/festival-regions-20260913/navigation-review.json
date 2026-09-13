@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "review_date": "2026-09-13",
+  "mask_locked": true,
+  "visual_review": "Native 1254-pixel day and festival artwork and 100-pixel-grid navigation overlays were visually reviewed for all six maps, plus enlarged harbor, plaza, fishing-rack crops. The broad central plazas are fully represented by floor polygons, not just path centerlines.",
+  "changes": [
+    "Penglai: open the actual descending harbor staircase and upper stone dock, remove cargo/awning silhouettes from movement; relocate the former harbor probe away from cargo.",
+    "Lanxian: extend the wide central paved plaza perimeter and add two reachable pavement probes.",
+    "Donghai: refine front-shop and drying-rack contours to keep genuinely visible pavement open."
+  ],
+  "limitations": [
+    "Full-canvas walkable percentage includes the surrounding sea, mountains, forest and all opaque roofs; it is not a percentage of visible pavement.",
+    "Southern harbor and inner drying-rack pockets that cannot connect through complete safe 2 m cells are excluded rather than forcing paths through props.",
+    "Opaque baked gate roofs remain blocked. Traversal under a roof requires an independent foreground/occlusion implementation; no roof cells were made walkable merely to connect exterior courts."
+  ],
+  "geometry_contract": {
+    "grid": [
+      150,
+      150
+    ],
+    "cell_size_world_metres": 2,
+    "decoded_bytes": 2813,
+    "packing": "MSB first, row zero north, four zero pad bits",
+    "entire_cell_must_fit_safe_floor": true,
+    "source_pixel_margin": 1
+  },
+  "landmark_route_count": 31,
+  "blocked_probe_count": 37,
+  "regions": [
+    {
+      "region": "penglai",
+      "status": "passed",
+      "decoded_mask_sha256": "afcee81765c5ea79a5de19744aa6b1a61f401b6caac8221825a61f21a959b372",
+      "base64_text_sha256": "a32748f15289af61c2c30a39425239cdfa69d1faa2f3544fdafe2b845f6e4b96",
+      "walkable_cells": 2265,
+      "walkable_percent_full_canvas": 10.0667,
+      "walkable_world_square_metres": 9060,
+      "landmark_route_count": 9,
+      "blocked_probe_count": 14,
+      "spawn_world": [
+        220,
+        0,
+        170
+      ],
+      "spawn_cell": [
+        85,
+        65
+      ],
+      "review_images": [
+        "penglai-navigation-side-by-side.jpg",
+        "penglai-paths-side-by-side.jpg"
+      ]
+    },
+    {
+      "region": "donghai",
+      "status": "passed",
+      "decoded_mask_sha256": "41bb030b1cea6cedee6538ed3b9606a0f28b0e5c327b41fe7451fed31edf48a6",
+      "base64_text_sha256": "348af927072256b4d4aa9df00621d96c9b01bf5ae1ae5b592096d1c486d3f9da",
+      "walkable_cells": 2218,
+      "walkable_percent_full_canvas": 9.8578,
+      "walkable_world_square_metres": 8872,
+      "landmark_route_count": 10,
+      "blocked_probe_count": 14,
+      "spawn_world": [
+        200,
+        0,
+        180
+      ],
+      "spawn_cell": [
+        75,
+        60
+      ],
+      "review_images": [
+        "donghai-navigation-side-by-side.jpg",
+        "donghai-paths-side-by-side.jpg"
+      ]
+    },
+    {
+      "region": "lanxian",
+      "status": "passed",
+      "decoded_mask_sha256": "cf8b0c08b7f79b9d6de778d0a8bcc576041aa1811d729e951955237c466b6492",
+      "base64_text_sha256": "d12f9de91857ddd89ff4e0261abfd019a1ea4509cce8b709cbd756a71cf6b1b8",
+      "walkable_cells": 2295,
+      "walkable_percent_full_canvas": 10.2,
+      "walkable_world_square_metres": 9180,
+      "landmark_route_count": 12,
+      "blocked_probe_count": 9,
+      "spawn_world": [
+        200,
+        0,
+        180
+      ],
+      "spawn_cell": [
+        75,
+        60
+      ],
+      "review_images": [
+        "lanxian-navigation-side-by-side.jpg",
+        "lanxian-paths-side-by-side.jpg"
+      ]
+    }
+  ]
+}

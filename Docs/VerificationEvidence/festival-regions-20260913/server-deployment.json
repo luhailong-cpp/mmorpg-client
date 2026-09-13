@@ -1,0 +1,191 @@
+{
+  "runtime_working_directory": "E:\\work\\xuanming-server-mmo\\bin",
+  "table_data_directory": "../generated/tables/",
+  "navigation_data_root": "../",
+  "scene_log_path": "E:\\work\\xuanming-server-mmo\\run\\logs\\cpp_nodes\\z1_scene.stdout.log",
+  "scene_log_timestamp_note": "日志内时间原样保存;启动进程本地StartTime将在服务最终就绪时补入,不从混合时区日志推断。",
+  "scene_registration_lines": [
+    "20260913 14:51:55.540763  5584 INFO  nav loaded: ../data/scene_nav_bin/main_scene.bin tiles=61 orig=(70.01,-0.4,40.01) tile=32x32 spawn=(180,200,0) snapped=(180,200,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:81",
+    "20260913 14:51:55.543137  5584 INFO  nav registered for scene 1: ../data/scene_nav_bin/main_scene.bin - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:115",
+    "20260913 14:51:55.556170  5584 INFO  nav loaded: ../data/scene_nav_bin/penglai_scene.bin tiles=34 orig=(112.01,-0.4,68.01) tile=32x32 spawn=(170,220,0) snapped=(170,220,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:81",
+    "20260913 14:51:55.556259  5584 INFO  nav registered for scene 2: ../data/scene_nav_bin/penglai_scene.bin - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:115",
+    "20260913 14:51:55.567568  5584 INFO  nav loaded: ../data/scene_nav_bin/donghai_scene.bin tiles=40 orig=(98.01,-0.4,32.01) tile=32x32 spawn=(180,200,0) snapped=(180,200,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:81",
+    "20260913 14:51:55.567654  5584 INFO  nav registered for scene 3: ../data/scene_nav_bin/donghai_scene.bin - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:115",
+    "20260913 14:51:55.580079  5584 INFO  nav loaded: ../data/scene_nav_bin/lanxian_scene.bin tiles=45 orig=(102.01,-0.4,36.01) tile=32x32 spawn=(180,200,0) snapped=(180,200,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:81",
+    "20260913 14:51:55.580198  5584 INFO  nav registered for scene 4: ../data/scene_nav_bin/lanxian_scene.bin - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\navigation.cpp:115"
+  ],
+  "deployed_files": [
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\data\\scene_nav_bin\\main_scene.bin",
+      "bytes": 175024,
+      "sha256": "07f11490a9de3fd25ed5fc2b251a1d64b0c5ccf57ab4d5e0eec83880a9a239a4"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\data\\scene_nav_bin\\penglai_scene.bin",
+      "bytes": 86064,
+      "sha256": "c22b0147fac81a1dd36883558d837ae9d81031f3fc96c0c102b131f13b0a68ca"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\data\\scene_nav_bin\\donghai_scene.bin",
+      "bytes": 80520,
+      "sha256": "ec8d2f2cfd7fea4ffb15f2a3fe0808ee3237c79ce2361970ba8d687a7154671c"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\data\\scene_nav_bin\\lanxian_scene.bin",
+      "bytes": 102088,
+      "sha256": "191afe6382d9ec7b3ad94eca572cc05f865e6d93a9347600ff01cee3363ef2da"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\data\\BaseScene.xlsx",
+      "bytes": 5508,
+      "sha256": "e3059a357a6dd2817078727fd5b5e001de353d69061be22ec0c87afd068a0e7b"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\data\\schema\\basescene_table.proto",
+      "bytes": 711,
+      "sha256": "edb902771d0398ea342c15c31c2f8c157bc69110a2f1ba92046fefed7c8b9e4e"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\generated\\tables\\basescene.json",
+      "bytes": 2927,
+      "sha256": "1eac53654ef1a29b98f56f3c781e0ff4fd8a7c45c5895a597ee387110862c426"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\generated\\tables\\basescene.pb",
+      "bytes": 1219,
+      "sha256": "0b5edb5b943e738bea7acb31c15896e9ce4ec8ef8d4f7314f5b9b9e55927fc97"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\generated\\tables\\manifest.json",
+      "bytes": 18322,
+      "sha256": "45a09cb986f6a9794305da9ac579eadd683da7ad11c09a5e54a94bf6d76028a2"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\bin\\scene.exe",
+      "bytes": 87297024,
+      "sha256": "497c4526216f1af112cf0af06394b9c1e22f8effa4109e7f5f48e6d1370a8858"
+    },
+    {
+      "path": "E:\\work\\xuanming-server-mmo\\bin\\gate.exe",
+      "bytes": 73341440,
+      "sha256": "7a73caf816ce7fceae33a082d57757abc1cc275bd9ae4980294903adfc82a722"
+    }
+  ],
+  "tests": [
+    {
+      "suite": "gate_routing",
+      "xml": "E:\\work\\tmp\\festival-final-routing-tests.xml",
+      "tests": 26,
+      "failures": 0,
+      "disabled": 0,
+      "errors": 0
+    },
+    {
+      "suite": "scene_and_existing_bag",
+      "xml": "E:\\work\\tmp\\festival-final-bag-tests.xml",
+      "tests": 220,
+      "failures": 0,
+      "disabled": 0,
+      "errors": 0
+    }
+  ],
+  "baker_contract_tests": {
+    "passed": 6,
+    "log": "E:\\work\\tmp\\festival-final-baker-tests.log"
+  },
+  "new_gate_regressions": 7,
+  "gate_build_log": "E:\\work\\tmp\\festival-final-gate-travel-build.log",
+  "scope_note": "三地日景和节庆共用每地同一份导航;场景1为main,2/3/4为penglai/donghai/lanxian。",
+  "processes": [
+    {
+      "name": "gate",
+      "pid": 13588,
+      "started_at": "2026-09-13T03:24:58.7466617-04:00",
+      "binary_path": "E:\\work\\xuanming-server-mmo\\bin\\gate.exe",
+      "binary_sha256": "7a73caf816ce7fceae33a082d57757abc1cc275bd9ae4980294903adfc82a722"
+    },
+    {
+      "name": "login",
+      "pid": 45532,
+      "started_at": "2026-09-13T03:07:36.5500814-04:00",
+      "binary_path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\login.exe",
+      "binary_sha256": "5be4362354d33e26d4c0de909968ad7916c3d94ef3caee4bc4aa42b6147f3697"
+    },
+    {
+      "name": "player_locator",
+      "pid": 24548,
+      "started_at": "2026-09-13T03:07:35.4463487-04:00",
+      "binary_path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\player_locator.exe",
+      "binary_sha256": "5888fe10daf537b26f1c7197eb0a66dd0419c16f8898bf516ae97a2313d53f96"
+    },
+    {
+      "name": "scene",
+      "pid": 27624,
+      "started_at": "2026-09-13T02:51:54.7042064-04:00",
+      "binary_path": "E:\\work\\xuanming-server-mmo\\bin\\scene.exe",
+      "binary_sha256": "497c4526216f1af112cf0af06394b9c1e22f8effa4109e7f5f48e6d1370a8858"
+    },
+    {
+      "name": "scene_manager",
+      "pid": 32344,
+      "started_at": "2026-09-13T03:07:33.7254505-04:00",
+      "binary_path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\scene_manager.exe",
+      "binary_sha256": "564849dc4ae66799bd5cd841d3d9ef58c27b4799822a43b8dbaa828b75b045a4"
+    }
+  ],
+  "checked_at": "2026-09-13T03:26:37.1181277-04:00",
+  "gateway_health": "UP",
+  "zone1": [
+    {
+      "zone_id": 1,
+      "name": "zone-1",
+      "status": "OPEN",
+      "load_level": "SMOOTH",
+      "recommended": true,
+      "is_new": false
+    }
+  ],
+  "final_launcher_log": "E:\\work\\tmp\\festival-final-gate-travel-start.log",
+  "live_verification": {
+    "report_path": "E:\\work\\tmp\\festival_live_verify_20260913_run4\\festival-map-verification.json",
+    "report_sha256": "7dc6dc259c25b44fc4b2fd895d92d883433525ee62e592cf9e2eb126adc493a2",
+    "result": "PASS",
+    "started_utc": "2026-09-13T07:37:24.8146821Z",
+    "finished_utc": "2026-09-13T07:37:56.6032279Z",
+    "scene_sequence": [
+      2,
+      3,
+      4,
+      1
+    ],
+    "screenshots": 7,
+    "all_spawn_errors_zero": true,
+    "all_navigation_mismatches_zero": true,
+    "all_movement_reconciles_zero": true,
+    "scene_log_path": "E:\\work\\xuanming-server-mmo\\run\\logs\\cpp_nodes\\z1_scene.stdout.log",
+    "server_enter_lines": [
+      "20260913 15:37:26.908594  5584 INFO  EnterScene spawn: player 404 scene_config_id=2 location (180,200,0) map changed -> spawn (170,220,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\scene_spawn.cpp:142",
+      "20260913 15:37:34.922175  5584 INFO  EnterScene spawn: player 404 scene_config_id=3 location (196.824752808,211.269790649,0) map changed -> spawn (180,200,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\scene_spawn.cpp:142",
+      "20260913 15:37:43.473304  5584 INFO  EnterScene spawn: player 404 scene_config_id=4 location (216.815887451,199.860671997,0) map changed -> spawn (180,200,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\scene_spawn.cpp:142",
+      "20260913 15:37:52.215588  5584 INFO  EnterScene spawn: player 404 scene_config_id=1 location (210.699523926,203.107437134,0) map changed -> spawn (180,200,0) - E:\\work\\xuanming-server-mmo\\cpp\\libs\\services\\scene\\spatial\\system\\scene_spawn.cpp:142"
+    ]
+  },
+  "server_commit": "cd918f4f8314f88bc01ca43dbd977dc68fb3a59e",
+  "committed_file_count": 51,
+  "verified_gate_listener": {
+    "verified_at": "2026-09-13T03:42:59.6802798-04:00",
+    "run4_gate_endpoint": "127.0.0.1:10001",
+    "listening_local_addresses": [
+      "0.0.0.0"
+    ],
+    "listening_local_port": 10001,
+    "owning_process_id": 13588,
+    "process_name": "gate",
+    "process_start_time": "2026-09-13T03:24:58.7466617-04:00",
+    "binary_path": "E:\\work\\xuanming-server-mmo\\bin\\gate.exe",
+    "binary_sha256": "7a73caf816ce7fceae33a082d57757abc1cc275bd9ae4980294903adfc82a722",
+    "build_binary_path": "E:\\work\\xuanming-server-mmo\\build\\cpp\\nodes\\gate.exe",
+    "build_binary_sha256": "7a73caf816ce7fceae33a082d57757abc1cc275bd9ae4980294903adfc82a722",
+    "matches_current_build": true
+  }
+}

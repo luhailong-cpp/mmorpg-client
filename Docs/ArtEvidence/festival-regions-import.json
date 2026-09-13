@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "status": "native_assets_prepared_and_verified",
+  "scope": "Six native map resources; runtime scene, navigation and game-flow verification are tracked separately.",
+  "source_image_repository_head": "a0106c861fa2df1b95b7cb3e60d31361fbfae01e",
+  "rebuild_script": "qdao_large_city_maps_20260912/runtime/prepare_import.py",
+  "verification_command": "python qdao_large_city_maps_20260912/runtime/prepare_import.py --check",
+  "source_generation": "built-in image_gen; model/quality API flags were not exposed in the recorded generation tool",
+  "style": "Original Q-style Daoist regional maps with Spring Festival, Lantern Festival and Mid-Autumn variants; the latest user instruction does not mandate jade/green/gold.",
+  "import_settings": {
+    "texture_type": "Default / Texture2D",
+    "max_texture_size": 2048,
+    "npot_scale": "None",
+    "filter_mode": "Bilinear",
+    "wrap_mode": "Clamp",
+    "mipmaps": false,
+    "compression": "None",
+    "read_write_enabled": false,
+    "srgb": true,
+    "alpha_usage": "None",
+    "stable_guid_strategy": "UUIDv5 over repository-relative asset path with fixed namespace"
+  },
+  "resolution_limits": {
+    "native_pixels_per_side": 1254,
+    "painted_world_units_per_side": 300,
+    "native_pixels_per_world_unit": 4.18,
+    "note": "The complete native 1254 x 1254 image is displayed over a 300 x 300 world area. Close camera views magnify native artwork and can be soft. No extra detail or native 4K/6K is claimed; independently regenerated high-detail tiles are not part of these six imports."
+  },
+  "checks": {
+    "png_decode": 6,
+    "dimensions_1254_square": 6,
+    "source_manifest_hashes": 6,
+    "client_source_byte_equality": 6,
+    "texture_metadata_contract": 6,
+    "folder_metadata": 4,
+    "passed": true
+  },
+  "maps": [
+    {
+      "region": "penglai",
+      "atmosphere": "day",
+      "name": "蓬莱岛",
+      "source": "qdao_large_city_maps_20260912/penglai_island/penglai-island-native.png",
+      "source_prompt": "qdao_large_city_maps_20260912/penglai_island/penglai-island.prompt.txt",
+      "client_asset": "Assets/Resources/World/FestivalRegions/penglai/day.png",
+      "resources_path": "World/FestivalRegions/penglai/day",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "imported_source_size": [
+        1254,
+        1254
+      ],
+      "source_color_mode": "RGB",
+      "source_sha256": "47eb49fc467fa36fd2e5b984a8da4f91584f2a672befe36709909ce582fb79fc",
+      "client_sha256": "47eb49fc467fa36fd2e5b984a8da4f91584f2a672befe36709909ce582fb79fc",
+      "source_and_client_bytes_identical": true,
+      "native_no_upscale": true,
+      "crop": null,
+      "guid": "b907cd0df3f859238eabdc6db3833185",
+      "source_last_changed_commit": "85c052f573052bddc72231d758614f0ea7aa31ba"
+    },
+    {
+      "region": "penglai",
+      "atmosphere": "festival",
+      "name": "蓬莱岛·中秋月夜",
+      "source": "qdao_large_city_maps_20260912/festival_variants/penglai_mid_autumn/map-native.png",
+      "source_prompt": "qdao_large_city_maps_20260912/festival_variants/penglai_mid_autumn/map.prompt.txt",
+      "client_asset": "Assets/Resources/World/FestivalRegions/penglai/festival.png",
+      "resources_path": "World/FestivalRegions/penglai/festival",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "imported_source_size": [
+        1254,
+        1254
+      ],
+      "source_color_mode": "RGB",
+      "source_sha256": "610ad424de79a54550bae1a75d53596ce31a394b58dfcbe66b6ccf37d4675260",
+      "client_sha256": "610ad424de79a54550bae1a75d53596ce31a394b58dfcbe66b6ccf37d4675260",
+      "source_and_client_bytes_identical": true,
+      "native_no_upscale": true,
+      "crop": null,
+      "guid": "86e8771da8625834a3a4a7589b2ef2c1",
+      "source_last_changed_commit": "a0106c861fa2df1b95b7cb3e60d31361fbfae01e"
+    },
+    {
+      "region": "donghai",
+      "atmosphere": "day",
+      "name": "东海渔村",
+      "source": "qdao_large_city_maps_20260912/donghai_fishing_village/donghai-fishing-village-native.png",
+      "source_prompt": "qdao_large_city_maps_20260912/donghai_fishing_village/donghai-fishing-village.prompt.txt",
+      "client_asset": "Assets/Resources/World/FestivalRegions/donghai/day.png",
+      "resources_path": "World/FestivalRegions/donghai/day",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "imported_source_size": [
+        1254,
+        1254
+      ],
+      "source_color_mode": "RGB",
+      "source_sha256": "bc808c0e24ca8c78d43a2bb2b8558e219b646ea93f93b7c23cc7f5096dbdabdd",
+      "client_sha256": "bc808c0e24ca8c78d43a2bb2b8558e219b646ea93f93b7c23cc7f5096dbdabdd",
+      "source_and_client_bytes_identical": true,
+      "native_no_upscale": true,
+      "crop": null,
+      "guid": "e0fd306def225c4686a5719c8d793ecd",
+      "source_last_changed_commit": "c1ec78f5c424b8ccf8840b8849bc7054718cca21"
+    },
+    {
+      "region": "donghai",
+      "atmosphere": "festival",
+      "name": "东海渔村·元宵灯会",
+      "source": "qdao_large_city_maps_20260912/festival_variants/donghai_lantern_festival/map-native.png",
+      "source_prompt": "qdao_large_city_maps_20260912/festival_variants/donghai_lantern_festival/map.prompt.txt",
+      "client_asset": "Assets/Resources/World/FestivalRegions/donghai/festival.png",
+      "resources_path": "World/FestivalRegions/donghai/festival",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "imported_source_size": [
+        1254,
+        1254
+      ],
+      "source_color_mode": "RGB",
+      "source_sha256": "e891e554e28a9a771a30dd209a66b02d71fa94b8110c57666e889fdb6f6289ce",
+      "client_sha256": "e891e554e28a9a771a30dd209a66b02d71fa94b8110c57666e889fdb6f6289ce",
+      "source_and_client_bytes_identical": true,
+      "native_no_upscale": true,
+      "crop": null,
+      "guid": "3b4e70d8a4a05bfc9a0e5761adb59b7e",
+      "source_last_changed_commit": "7d1f98ba9340d5ebe77056475645cc24549c8c13"
+    },
+    {
+      "region": "lanxian",
+      "atmosphere": "day",
+      "name": "揽仙镇",
+      "source": "qdao_large_city_maps_20260912/lanxian_town/lanxian-town-native.png",
+      "source_prompt": "qdao_large_city_maps_20260912/lanxian_town/lanxian-town.prompt.txt",
+      "client_asset": "Assets/Resources/World/FestivalRegions/lanxian/day.png",
+      "resources_path": "World/FestivalRegions/lanxian/day",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "imported_source_size": [
+        1254,
+        1254
+      ],
+      "source_color_mode": "RGB",
+      "source_sha256": "94c8a550c7aad006786777b190f3f5b5cdaa0f5279f7994166cc979712b12d12",
+      "client_sha256": "94c8a550c7aad006786777b190f3f5b5cdaa0f5279f7994166cc979712b12d12",
+      "source_and_client_bytes_identical": true,
+      "native_no_upscale": true,
+      "crop": null,
+      "guid": "b5495fbb70f65870bcb0a77cbf910326",
+      "source_last_changed_commit": "85c052f573052bddc72231d758614f0ea7aa31ba"
+    },
+    {
+      "region": "lanxian",
+      "atmosphere": "festival",
+      "name": "揽仙镇·春节",
+      "source": "qdao_large_city_maps_20260912/festival_variants/lanxian_spring_festival/map-native.png",
+      "source_prompt": "qdao_large_city_maps_20260912/festival_variants/lanxian_spring_festival/map.prompt.txt",
+      "client_asset": "Assets/Resources/World/FestivalRegions/lanxian/festival.png",
+      "resources_path": "World/FestivalRegions/lanxian/festival",
+      "native_size": [
+        1254,
+        1254
+      ],
+      "imported_source_size": [
+        1254,
+        1254
+      ],
+      "source_color_mode": "RGB",
+      "source_sha256": "5c1dfcd2726899664ab67b87e144b06f26cab3734df342d3d5d0aef99b427407",
+      "client_sha256": "5c1dfcd2726899664ab67b87e144b06f26cab3734df342d3d5d0aef99b427407",
+      "source_and_client_bytes_identical": true,
+      "native_no_upscale": true,
+      "crop": null,
+      "guid": "323154f1599250b7af20b7a0ff0d3fd7",
+      "source_last_changed_commit": "8fb7303fbf595bd4245e9b09796b132fed946e11"
+    }
+  ]
+}

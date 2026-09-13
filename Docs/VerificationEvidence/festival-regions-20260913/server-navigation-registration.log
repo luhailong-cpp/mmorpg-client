@@ -1,0 +1,27 @@
+实际 scene 进程启动导航记录
+日志路径: E:\work\xuanming-server-mmo\run\logs\cpp_nodes\z1_scene.stdout.log
+
+20260913 14:51:55.540763  5584 INFO  nav loaded: ../data/scene_nav_bin/main_scene.bin tiles=61 orig=(70.01,-0.4,40.01) tile=32x32 spawn=(180,200,0) snapped=(180,200,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:81
+20260913 14:51:55.543137  5584 INFO  nav registered for scene 1: ../data/scene_nav_bin/main_scene.bin - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:115
+20260913 14:51:55.556170  5584 INFO  nav loaded: ../data/scene_nav_bin/penglai_scene.bin tiles=34 orig=(112.01,-0.4,68.01) tile=32x32 spawn=(170,220,0) snapped=(170,220,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:81
+20260913 14:51:55.556259  5584 INFO  nav registered for scene 2: ../data/scene_nav_bin/penglai_scene.bin - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:115
+20260913 14:51:55.567568  5584 INFO  nav loaded: ../data/scene_nav_bin/donghai_scene.bin tiles=40 orig=(98.01,-0.4,32.01) tile=32x32 spawn=(180,200,0) snapped=(180,200,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:81
+20260913 14:51:55.567654  5584 INFO  nav registered for scene 3: ../data/scene_nav_bin/donghai_scene.bin - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:115
+20260913 14:51:55.580079  5584 INFO  nav loaded: ../data/scene_nav_bin/lanxian_scene.bin tiles=45 orig=(102.01,-0.4,36.01) tile=32x32 spawn=(180,200,0) snapped=(180,200,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:81
+20260913 14:51:55.580198  5584 INFO  nav registered for scene 4: ../data/scene_nav_bin/lanxian_scene.bin - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\navigation.cpp:115
+
+gate 路由测试 26/26 (新增7条),scene/背包测试220/220,烘焙器6/6。
+gate PID=13588 StartTime=2026-09-13T03:24:58.7466617-04:00 binary=E:\work\xuanming-server-mmo\bin\gate.exe SHA256=7a73caf816ce7fceae33a082d57757abc1cc275bd9ae4980294903adfc82a722
+login PID=45532 StartTime=2026-09-13T03:07:36.5500814-04:00 binary=E:\work\xuanming-server-mmo\bin\go_services\login.exe SHA256=5be4362354d33e26d4c0de909968ad7916c3d94ef3caee4bc4aa42b6147f3697
+player_locator PID=24548 StartTime=2026-09-13T03:07:35.4463487-04:00 binary=E:\work\xuanming-server-mmo\bin\go_services\player_locator.exe SHA256=5888fe10daf537b26f1c7197eb0a66dd0419c16f8898bf516ae97a2313d53f96
+scene PID=27624 StartTime=2026-09-13T02:51:54.7042064-04:00 binary=E:\work\xuanming-server-mmo\bin\scene.exe SHA256=497c4526216f1af112cf0af06394b9c1e22f8effa4109e7f5f48e6d1370a8858
+scene_manager PID=32344 StartTime=2026-09-13T03:07:33.7254505-04:00 binary=E:\work\xuanming-server-mmo\bin\go_services\scene_manager.exe SHA256=564849dc4ae66799bd5cd841d3d9ef58c27b4799822a43b8dbaa828b75b045a4
+Final gateway health=UP, zone1=OPEN
+
+正式玩家四图游历 PASS (2 -> 3 -> 4 -> 1),所有出生/导航误差为0。
+20260913 15:37:26.908594  5584 INFO  EnterScene spawn: player 404 scene_config_id=2 location (180,200,0) map changed -> spawn (170,220,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\scene_spawn.cpp:142
+20260913 15:37:34.922175  5584 INFO  EnterScene spawn: player 404 scene_config_id=3 location (196.824752808,211.269790649,0) map changed -> spawn (180,200,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\scene_spawn.cpp:142
+20260913 15:37:43.473304  5584 INFO  EnterScene spawn: player 404 scene_config_id=4 location (216.815887451,199.860671997,0) map changed -> spawn (180,200,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\scene_spawn.cpp:142
+20260913 15:37:52.215588  5584 INFO  EnterScene spawn: player 404 scene_config_id=1 location (210.699523926,203.107437134,0) map changed -> spawn (180,200,0) - E:\work\xuanming-server-mmo\cpp\libs\services\scene\spatial\system\scene_spawn.cpp:142
+Server commit: cd918f4f8314f88bc01ca43dbd977dc68fb3a59e (51 files, no push)
+run4 gate 127.0.0.1:10001 -> listener PID 13588, E:\work\xuanming-server-mmo\bin\gate.exe, SHA256=7a73caf816ce7fceae33a082d57757abc1cc275bd9ae4980294903adfc82a722, exactly matches build/cpp/nodes/gate.exe

@@ -66,6 +66,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 {
                     var row = cutout.Rows[i];
                     if (i > 0) Assert.That(row.x, Is.GreaterThan(cutout.Rows[i - 1].x), cutout.Name + " rows must run top to bottom");
+                    Assert.That(row.x, Is.InRange(0f, 1024f), cutout.Name);
                     Assert.That(row.y, Is.LessThan(row.z), cutout.Name);
                     Assert.That(row.y, Is.GreaterThanOrEqualTo(0f), cutout.Name);
                     Assert.That(row.z, Is.LessThanOrEqualTo(1024f), cutout.Name);
@@ -78,39 +79,53 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void RoofSilhouette_CoversTheReproducedShoeOverlapButExcludesAdjacentPavement()
+        public void WestLampSilhouette_CoversFestivalPavilionButExcludesAdjacentPavement()
         {
             var mesh = TianyongPaintedForeground.CreateWestLampRoofMesh();
             try
             {
-                // The failed west-side screenshot overlaps this left eave pixel.
-                Assert.That(CoversTilePixel(mesh, new Vector2(735f, 350f)), Is.True);
+                // r03_c03: jade eave and the red festival banner are foreground.
+                Assert.That(CoversTilePixel(mesh, new Vector2(302f, 200f)), Is.True);
                 // A rectangle cutout would incorrectly conceal this pavement.
-                Assert.That(CoversTilePixel(mesh, new Vector2(724f, 350f)), Is.False);
-                Assert.That(CoversTilePixel(mesh, new Vector2(800f, 300f)), Is.False);
-                Assert.That(CoversTilePixel(mesh, new Vector2(770f, 385f)), Is.False);
+                Assert.That(CoversTilePixel(mesh, new Vector2(274f, 200f)), Is.False);
+                Assert.That(CoversTilePixel(mesh, new Vector2(402f, 70f)), Is.False);
+                Assert.That(CoversTilePixel(mesh, new Vector2(350f, 310f)), Is.False);
             }
             finally { Object.DestroyImmediate(mesh); }
         }
 
         [Test]
-        public void EastLampSilhouette_CoversFinialAndDomeButNotThePlanterBehindIt()
+        public void EastLampSilhouette_CoversBannerAndEaveButNotAdjacentPavement()
         {
             var mesh = TianyongPaintedForeground.CreateMesh(TianyongPaintedForeground.EastLamp);
             try
             {
-                // r03_c04 tile pixels. The finial's large bead and the dome are
-                // what an actor standing just north-west of the lamp hides today.
-                Assert.That(CoversTilePixel(mesh, new Vector2(228f, 295f)), Is.True, "finial bead");
-                Assert.That(CoversTilePixel(mesh, new Vector2(228f, 350f)), Is.True, "dome");
-                // The planter sits directly behind the finial. It is north of
-                // the actor, so re-drawing it on top would be a new error.
-                Assert.That(CoversTilePixel(mesh, new Vector2(250f, 280f)), Is.False, "planter foliage");
-                Assert.That(CoversTilePixel(mesh, new Vector2(240f, 256f)), Is.False, "planter gold flower");
-                Assert.That(CoversTilePixel(mesh, new Vector2(205f, 300f)), Is.False, "paving west of the finial");
-                Assert.That(CoversTilePixel(mesh, new Vector2(262f, 345f)), Is.False, "paving east of the dome");
+                Assert.That(CoversTilePixel(mesh, new Vector2(666f, 90f)), Is.True, "red banner");
+                Assert.That(CoversTilePixel(mesh, new Vector2(633f, 190f)), Is.True, "jade eave");
+                Assert.That(CoversTilePixel(mesh, new Vector2(620f, 90f)), Is.False, "pavement west of banner");
+                Assert.That(CoversTilePixel(mesh, new Vector2(715f, 90f)), Is.False, "pavement east of banner");
+                Assert.That(CoversTilePixel(mesh, new Vector2(600f, 190f)), Is.False, "pavement west of eave");
+                Assert.That(CoversTilePixel(mesh, new Vector2(675f, 310f)), Is.False, "pavement south of base");
             }
             finally { Object.DestroyImmediate(mesh); }
+        }
+
+        [Test]
+        public void FestivalLampPieces_MeetAtTileSeamAndShareTheirGroundSortingAnchor()
+        {
+            var lower = new[] { TianyongPaintedForeground.WestLamp, TianyongPaintedForeground.EastLamp };
+            var upper = new[] { TianyongPaintedForeground.WestLampUpper, TianyongPaintedForeground.EastLampUpper };
+            for (var i = 0; i < lower.Length; i++)
+            {
+                var last = upper[i].Rows[upper[i].Rows.Length - 1];
+                var first = lower[i].Rows[0];
+                Assert.That(last.x, Is.EqualTo(1024f));
+                Assert.That(first.x, Is.EqualTo(0f));
+                Assert.That(last.y, Is.EqualTo(first.y));
+                Assert.That(last.z, Is.EqualTo(first.z));
+                Assert.That(upper[i].BasePixel, Is.EqualTo(lower[i].BasePixel));
+                Assert.That(upper[i].VisibilityGroup, Is.EqualTo(lower[i].VisibilityGroup));
+            }
         }
 
         [Test]
@@ -127,8 +142,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(map.Root.GetComponentsInChildren<TianyongPaintedForeground>().Length,
                     Is.EqualTo(TianyongPaintedForeground.Cutouts.Count));
                 var renderer = FindCutoutRenderer(map, TianyongPaintedForeground.WestLampObjectName);
-                var northActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(185.55f, 0f, 182.98f), camera);
-                var southActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(187.75f, 0f, 176.54f), camera);
+                var northActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(163f, 0f, 189f), camera);
+                var southActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(167f, 0f, 182f), camera);
                 Assert.That(renderer.sortingOrder, Is.GreaterThan(northActor));
                 Assert.That(renderer.sortingOrder, Is.LessThan(southActor));
                 Assert.That(renderer.sharedMaterial.renderQueue, Is.EqualTo(3000));
@@ -136,6 +151,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
                 Assert.That(TianyongPaintedForeground.SetWestLampVisible(map.Root.transform, false), Is.True);
                 Assert.That(renderer.enabled, Is.False);
+                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.WestLampUpper.Name).enabled, Is.False);
                 var groundTiles = 0;
                 foreach (var ground in map.Root.GetComponentsInChildren<MeshRenderer>())
                 {
@@ -146,6 +162,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(groundTiles, Is.EqualTo(36));
                 Assert.That(TianyongPaintedForeground.SetWestLampVisible(map.Root.transform, true), Is.True);
                 Assert.That(renderer.enabled, Is.True);
+                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.WestLampUpper.Name).enabled, Is.True);
             }
             finally
             {
@@ -168,10 +185,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 map = TianyongMapBuilder.Build(parent.transform, TianyongTheme.City, null);
                 var east = FindCutoutRenderer(map, TianyongPaintedForeground.EastLampObjectName);
                 var west = FindCutoutRenderer(map, TianyongPaintedForeground.WestLampObjectName);
-                // North of the base: the standpoint the acceptance drive uses,
-                // where the actor's left half covers the finial today.
-                var northActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(212.0f, 0f, 182.2f), camera);
-                var southActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(211.3f, 0f, 176.54f), camera);
+                // Same legal side position used by the festival acceptance drive.
+                var northActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(227f, 0f, 189f), camera);
+                var southActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(233f, 0f, 182f), camera);
                 Assert.That(east.sortingOrder, Is.GreaterThan(northActor));
                 Assert.That(east.sortingOrder, Is.LessThan(southActor));
                 Assert.That(east.sharedMaterial.renderQueue, Is.EqualTo(3000));
@@ -180,10 +196,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(TianyongPaintedForeground.SetVisible(map.Root.transform,
                     TianyongPaintedForeground.EastLampObjectName, false), Is.True);
                 Assert.That(east.enabled, Is.False);
+                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.EastLampUpper.Name).enabled, Is.False);
+                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.WestLampUpper.Name).enabled, Is.True);
                 Assert.That(west.enabled, Is.True, "toggling one cutout must leave the others alone");
                 Assert.That(TianyongPaintedForeground.SetVisible(map.Root.transform,
                     TianyongPaintedForeground.EastLampObjectName, true), Is.True);
                 Assert.That(east.enabled, Is.True);
+                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.EastLampUpper.Name).enabled, Is.True);
                 Assert.That(TianyongPaintedForeground.SetVisible(map.Root.transform, "NoSuchCutout", false), Is.False);
             }
             finally

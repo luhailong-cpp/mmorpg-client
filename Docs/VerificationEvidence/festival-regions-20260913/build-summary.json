@@ -1,0 +1,10 @@
+{
+  "result": "Succeeded",
+  "errors": 0,
+  "warnings": 499,
+  "log": "E:\\work\\tmp\\festival-player-build-capture-fix-20260913.log",
+  "unity": "6000.6.0f1",
+  "graphical_backend_verified": "Direct3D12",
+  "screenshot_method": "ScreenCapture.CaptureScreenshotAsTexture(1) after WaitForEndOfFrame",
+  "runtime_logic_tests": "61 EditMode and 1 PlayMode pass; screenshot-only revision revalidated by 7 live captures in run4"
+}

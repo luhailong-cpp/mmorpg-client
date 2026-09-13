@@ -157,10 +157,30 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // ── 开场 / 收尾 ──────────────────────────────────────
 
-        /// <summary>开场:入场云层扫过 + 每个单位脚下出生光环展开。</summary>
+        /// <summary>开场:入场插画淡出、云层扫过、每个单位脚下出生光环展开。</summary>
         public void PlayEntrance(IEnumerable<BattleUnitView> views)
         {
             if (_overlayLayer == null) return;
+            // The accepted entrance painting is a brief visual transition only.
+            // It never gates protocol updates, turn playback, or player input.
+            var illustration = BattleArtCatalog.LoadSprite(BattleArtCatalog.EntryLoadingPath);
+            if (illustration != null)
+            {
+                var image = QdaoUguiFactory.CreateImage("EntryIllustration", _overlayLayer,
+                    0f, 0f, QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight, illustration);
+                image.preserveAspect = true;
+                image.raycastTarget = false;
+                var go = image.gameObject;
+                _transient.Add(go);
+                RealtimeTween.To(1f, 0f, 0.45f).SetDelay(0.35f).SetEase(RealtimeEase.QuadInOut)
+                    .SetIgnoreEngineTimeScale(true).SetTarget(go)
+                    .OnUpdate((RealtimeTweenCallback1)(t =>
+                    {
+                        if (go == null) { RealtimeTween.Kill(go); return; }
+                        image.color = new Color(1f, 1f, 1f, t.Value.x);
+                    }))
+                    .OnComplete((RealtimeTweenCallback)(() => DestroyTransient(go)));
+            }
             var clouds = BattleArtCatalog.LoadEntryClouds();
             if (clouds != null)
             {

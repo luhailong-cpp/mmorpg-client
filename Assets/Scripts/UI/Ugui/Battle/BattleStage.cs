@@ -5,69 +5,35 @@ using UnityEngine;
 namespace MmorpgClient.UI.Ugui.Battle
 {
     /// <summary>
-    /// 阵型舞台:10 个槽位(每方 5:前排 0-4、后排 5-9)在 2560×1080 设计坐标(y 向下)上的**逐槽位位置表**,
-    /// 外加每个槽位的"宝宝位"(宠物贴着主人站的位置)。纯计算、不建对象;EditMode 直接测。
-    ///
-    /// 【数据来源】用户录制的问道 5v5 回合战斗视频 a58f3434….mp4(1280×592,抽帧 f_001~f_036 每秒一帧、
-    /// d_001~d_145 每 0.25s 一帧),2026-09-05 由三份独立量测按单位逐个取中位数合并(位置分歧 ≤13px)。
-    /// 三帧(第 1 回合 f_005/f_017、第 2 回合 f_027)及另抽的 f_001/002/003/015/016/029 里站位一致(≤5px),
-    /// 即整场站位不变,本表就是站位表。"位置"以脚底点为准(名字文字上方、立绘最底部像素)。
-    ///
-    /// 【坐标换算】视频像素 (vx, vy) → 设计坐标 (dx, dy):按高度等比缩放并水平居中,
-    ///   s = 1080 / 592 = 1.8243;dx = (vx − 640) × s + 1280;dy = vy × s。
-    /// (视频 2.16:1、设计面 2.37:1,等比缩放后左右各留 ≈112px 空白,几何关系与视频完全一致。)
-    ///
-    /// 【行列定义】row=back 是各方远离中线的一排(视频里我方 = 5 名玩家,敌方 = 5 只怪含 3 只飘渺),
-    /// 对应槽位 5-9;row=front 是靠中线的一排(视频里我方 = 5 只宝宝,敌方 = 4 只爪牙 + 1 个外推空槽),
-    /// 对应槽位 0-4。列号 0..4 沿斜带从左下到右上。敌方前排第 5 槽视频里没有怪,按前排 0..3 的
-    /// 线性步长 (74.1, −46.5) 视频像素外推;其余 19 个槽位全部是实测值。
-    ///
-    /// 【几何(设计像素)】排方向(左下→右上)视频步长 ≈ (74, −46.5) → 设计 (134.5, −85),方向角 32.2°,
-    /// 槽间距 159;排间垂直距离 敌方 146 / 我方 173;前后排不是半格交错,而是"同列近乎垂直平移"再沿排方向
-    /// 错 0.22~0.25 槽(敌前排朝右上错 39.5px、我方宝宝排朝左下错 35px)。两阵后排中心 敌 (850,501)、我 (1673,778)。
-    /// 整场脚底范围 x 581..1946、y 330..949。
-    ///
-    /// 【宝宝位】视频里宝宝固定站在主人的"左上方"(朝敌方的前方偏左):我方 5 对实测 宝宝脚底 − 主人脚底
-    /// 均值 (−79.6, −62.2) 视频像素 → 设计 (−145, −113);后排(玩家)槽位的宝宝位 = 同列前排的实测位置,
-    /// 也就是视频里的宝宝排。敌方无宝宝,敌方后排"宝宝位"取同列前排实测位(前排相对后排 (+76, +47.2) 视频像素
-    /// → 设计 (+139, +86))。前排槽位的宝宝位是把同一偏移再套一次(向中线再推一排),视频里无实例,仅作预留。
-    ///
-    /// 【缩放】视频里几乎没有近大远小(同物种在不同深度高度差 ≤5~8%,在测量误差内),故用极弱线性深度模型:
-    /// unitScale = 1 − (948.6 − designY) / 10000,以我方玩家排 slot0(全场最低点、立绘 110 视频 px = 200 设计 px)为 1.0,
-    /// 每往上 100 设计像素缩 1%,全场 0.938~1.0;不做后排整排缩放、不做敌方整队缩放。物种体型差由美术资源本身体现。
-    ///
-    /// 【历史口径】2026-09-04 之前的版本是参数化几何:Center(1250,600) + RowStep(170,−52)(约 17°、槽距 178)+
-    /// FrontRowOffset 140 / BackRowOffset 225 + TeamRowShift 260 + 后排半格交错 + BackRowScale 0.85 × EnemyTeamScale 0.95 ×
-    /// 深度 1/3200。与视频差别最大的是排方向角(17° vs 32.2°)、排间距/交错方式与缩放,故整体替换为本表。
+    /// Forest-bridge battle stage in the same 2560x1080 design space as its painting.
+    /// Each team retains front slots 0-4 and back slots 5-9, ordered lower-left to
+    /// upper-right. The positions follow the two stone platforms rather than the
+    /// unrelated historical video coordinates. Slot assignment and protocol IDs
+    /// are unchanged. Back-row pets share the corresponding front-row position;
+    /// reserved front-row pets stand a short distance toward the opposing team.
+    /// Ground/shadow bounds were traced independently from the accepted painting
+    /// in qdao_festival_scenes_20260910/runtime/battle-platform-ground.json.
     /// </summary>
     public static class BattleStage
     {
         public const int SlotsPerTeam = 10;
         public const int FrontRowCount = 5;
 
-        /// <summary>视频 → 设计坐标的等比缩放系数(1080 / 592)。</summary>
-        public const float VideoToDesignScale = 1080f / 592f;
-        /// <summary>等比缩放后视频画面左边在设计面上的 x(左右各留白 ≈112px)。</summary>
-        public const float VideoOffsetX = 1280f - 640f * VideoToDesignScale;
-
-        /// <summary>
-        /// 顶部 HUD 带(设计坐标 y):行动预告条(12..132)+ 边距。所有槽位与宝宝位的脚底都在其下;
-        /// 全场最高的敌方后排 slot4(脚底 330)的头顶 HP 条约在 y≈150,恰好贴着预告条之下。
-        /// </summary>
+        /// <summary>Top action-order strip including its margin.</summary>
         public const float HudTopBand = 140f;
 
         /// <summary>
         /// 底部 HUD 带(设计坐标 y):目标提示/确认/取消条从这里开始。所有槽位脚下名字(脚底 + 40)必须落在其上。
-        /// 视频里我方玩家排 slot0 脚底 948.6(全场最低点),名字底 ≈989,故底部带从 992 起。
+        /// 校准后的最低脚点为 920；保留既有 992 的确认条布局合同。
         /// </summary>
         public const float HudBottomBand = 992f;
 
-        /// <summary>单位表现的名义尺寸(设计像素;视频玩家立绘 100~110 视频 px ≈ 182~200 设计 px)。</summary>
+        /// <summary>单位表现的名义尺寸(设计像素；完整名牌避让另按 BattleUnitView.OverheadReach)。</summary>
         public const float UnitWidth = 220f;
         public const float UnitHeight = 200f;
 
         /// <summary>深度缩放基准:我方玩家排 slot0 脚底 y(全场最低点)= 缩放 1.0。</summary>
-        public const float DepthScaleReferenceY = 948.6f;
+        public const float DepthScaleReferenceY = 920f;
         /// <summary>每往上 1 设计像素缩 0.01%(视频里可检出的深度缩放 ≤6%)。</summary>
         public const float DepthScalePerPixel = 1f / 10000f;
 
@@ -84,7 +50,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static Func<BattleActorState, ulong> PetOwnerResolver =
             actor => actor != null ? actor.OwnerPlayerId : 0UL;
 
-        /// <summary>一个槽位的实测数据(设计坐标,y 向下):脚底点 + 宝宝脚底点。</summary>
+        /// <summary>一个槽位的美术适配坐标(设计坐标,y 向下):脚底点 + 宝宝脚底点。</summary>
         private readonly struct SlotEntry
         {
             public readonly float X;
@@ -101,46 +67,40 @@ namespace MmorpgClient.UI.Ugui.Battle
             public Vector2 PetFoot => new Vector2(PetX, PetY);
         }
 
-        // ── 敌方(画面左上斜带)──
-        // 前排 0-4(靠中线;视频里的爪牙排,slot4 外推);宝宝位 = 再往中线推一排(预留)
         private static readonly SlotEntry[] EnemyFront =
         {
-            new SlotEntry(718.1f, 757.1f, 856.7f, 843.2f),   // 邪仙爪牙(绿皮兽人;视频 (332,415))
-            new SlotEntry(854.9f, 671.4f, 993.5f, 757.5f),   // 邪仙爪牙(灰色人形;视频 (407,368))
-            new SlotEntry(986.3f, 589.3f, 1124.9f, 675.4f),  // 邪仙爪牙(蓝灰小怪;视频 (479,323))
-            new SlotEntry(1124.9f, 501.7f, 1263.6f, 587.8f), // 邪仙爪牙(蓝灰瘦怪;视频 (555,275))
-            new SlotEntry(1259f, 417.8f, 1397.6f, 503.9f),   // 外推空槽(视频 (628.5,229))
+            new SlotEntry(520f, 515f, 555f, 522f),
+            new SlotEntry(615f, 505f, 650f, 512f),
+            new SlotEntry(710f, 495f, 745f, 502f),
+            new SlotEntry(805f, 475f, 840f, 482f),
+            new SlotEntry(950f, 405f, 980f, 415f),
         };
 
-        // 后排 5-9(远离中线;视频里的飘渺/爪牙排);宝宝位 = 同列前排实测位
         private static readonly SlotEntry[] EnemyBack =
         {
-            new SlotEntry(581.3f, 669.5f, 718.1f, 757.1f),   // 邪仙爪牙(视频 (257,367))
-            new SlotEntry(714.5f, 587.4f, 854.9f, 671.4f),   // 火地邪仙飘渺(视频 (330,322))
-            new SlotEntry(854.9f, 501.7f, 986.3f, 589.3f),   // 火地邪仙飘渺(视频 (407,275))
-            new SlotEntry(979f, 415.9f, 1124.9f, 501.7f),    // 火地邪仙飘渺(视频 (475,228))
-            new SlotEntry(1119.5f, 330.2f, 1259f, 417.8f),   // 邪仙爪牙(全场最高点;视频 (552,181))
+            new SlotEntry(450f, 440f, 520f, 515f),
+            new SlotEntry(550f, 430f, 615f, 505f),
+            new SlotEntry(650f, 420f, 710f, 495f),
+            new SlotEntry(750f, 400f, 805f, 475f),
+            new SlotEntry(846f, 393f, 950f, 405f),
         };
 
-        // ── 我方(画面右下斜带)──
-        // 前排 0-4(靠中线;视频里的宝宝排);宝宝位 = 再往中线推一排(预留)
         private static readonly SlotEntry[] AllyFront =
         {
-            new SlotEntry(1258.1f, 833.7f, 1112.9f, 720.2f), // 宝宝 雪女(视频 (628,457))
-            new SlotEntry(1394.9f, 748f, 1249.7f, 634.5f),   // 宝宝 酷酷龙(黄身小龙;视频 (703,410))
-            new SlotEntry(1526.3f, 660.4f, 1381.1f, 546.9f), // 宝宝 酷酷龙(蓝发人形幻化;视频 (775,362))
-            new SlotEntry(1663.1f, 582f, 1517.9f, 468.5f),   // 宝宝 酷酷龙(蓝发人形幻化;视频 (850,319))
-            new SlotEntry(1794.5f, 499.9f, 1649.3f, 386.4f), // 宝宝 水神(视频 (922,274))
+            new SlotEntry(1470f, 820f, 1450f, 795f),
+            new SlotEntry(1570f, 780f, 1540f, 750f),
+            new SlotEntry(1670f, 740f, 1640f, 710f),
+            new SlotEntry(1770f, 700f, 1740f, 670f),
+            new SlotEntry(1870f, 660f, 1840f, 630f),
         };
 
-        // 后排 5-9(远离中线;视频里的 5 名玩家);宝宝位 = 同列前排实测位(即视频里各自的宝宝)
         private static readonly SlotEntry[] AllyBack =
         {
-            new SlotEntry(1398.6f, 948.6f, 1258.1f, 833.7f), // 玩家 梦醒时夜续う(全场最低点;视频 (705,520))
-            new SlotEntry(1546.4f, 866.6f, 1394.9f, 748f),   // 玩家 逆天丶哀浪(视频 (786,475))
-            new SlotEntry(1668.6f, 773.5f, 1526.3f, 660.4f), // 玩家 陶の金帝(视频 (853,424))
-            new SlotEntry(1803.6f, 696.9f, 1663.1f, 582f),   // 玩家 jay一晴天(视频 (927,382))
-            new SlotEntry(1945.9f, 605.7f, 1794.5f, 499.9f), // 玩家 时光巷陌っ(全场最右点;视频 (1005,332))
+            new SlotEntry(1555f, 920f, 1470f, 820f),
+            new SlotEntry(1650f, 880f, 1570f, 780f),
+            new SlotEntry(1745f, 840f, 1670f, 740f),
+            new SlotEntry(1840f, 800f, 1770f, 700f),
+            new SlotEntry(1935f, 760f, 1870f, 660f),
         };
 
         public static bool IsBackRow(int slot) => NormalizeSlot(slot) >= FrontRowCount;
@@ -160,13 +120,13 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>槽位脚底点(设计坐标,y 向下)—— 直接查表。</summary>
         public static Vector2 SlotPosition(bool teamIsMine, int slot) => Entry(teamIsMine, slot).Foot;
 
-        /// <summary>槽位缩放:极弱线性深度模型(脚底越低越大),全场 0.938~1.0。</summary>
+        /// <summary>槽位缩放:极弱线性深度模型(脚底越低越大),全场约 0.947~1.0。</summary>
         public static float SlotScale(bool teamIsMine, int slot) => DepthScale(SlotPosition(teamIsMine, slot).y);
 
         /// <summary>按脚底 y 算深度缩放:基准 <see cref="DepthScaleReferenceY"/> 为 1.0,每往上 1px 缩 <see cref="DepthScalePerPixel"/>。</summary>
         public static float DepthScale(float footY) => 1f - (DepthScaleReferenceY - footY) * DepthScalePerPixel;
 
-        /// <summary>主人在 ownerSlot 时,其宝宝的脚底点(设计坐标)—— 直接查表(后排主人的宝宝位 = 同列前排实测位)。</summary>
+        /// <summary>主人在 ownerSlot 时,其宝宝的脚底点(设计坐标)—— 直接查表(后排主人的宝宝位 = 同列前排位置)。</summary>
         public static Vector2 PetSlotPosition(bool teamIsMine, int ownerSlot) => Entry(teamIsMine, ownerSlot).PetFoot;
 
         /// <summary>宝宝缩放:主人缩放 × <see cref="PetRelativeScale"/>。</summary>

@@ -265,22 +265,24 @@ namespace MmorpgClient.UI.Ugui.Battle
             var battleLayerRect = (RectTransform)_battleLayerGo.transform;
             battleLayerRect.SetParent(_canvasGo.transform, false);
             Stretch(battleLayerRect);
+            BattleUiWidgets.CreateStretchPanel("BattleLetterbox", battleLayerRect, QdaoUguiTheme.Letterbox);
+            _battleRoot = CreateDesignRoot("BattleRoot", battleLayerRect);
             var arenaBackground = BattleUiStyle.ResolveArenaBackground();
             if (arenaBackground != null)
             {
-                QdaoUguiFactory.CreateAspectFillImage(
-                    "BattleArenaArt",
-                    battleLayerRect,
-                    arenaBackground,
-                    QdaoUguiTheme.DesignWidth / QdaoUguiTheme.DesignHeight);
+                // Ground pixels and unit feet share this fixed design rectangle.
+                // Filling the expanding screen instead would move the platforms
+                // beneath the units at aspect ratios other than 2560:1080.
+                var art = QdaoUguiFactory.CreateImage("BattleArenaArt", _battleRoot,
+                    0f, 0f, QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight, arenaBackground);
+                art.preserveAspect = true;
                 BattleUiWidgets.CreateStretchPanel(
-                    "BattleBackdropShade", battleLayerRect, BattleUiStyle.BattleBackdropShade);
+                    "BattleBackdropShade", _battleRoot, BattleUiStyle.BattleBackdropShade);
             }
             else
             {
-                BattleUiWidgets.CreateStretchPanel("BattleBg", battleLayerRect, BattleUiStyle.BattleBg);
+                BattleUiWidgets.CreateStretchPanel("BattleBg", _battleRoot, BattleUiStyle.BattleBg);
             }
-            _battleRoot = CreateDesignRoot("BattleRoot", battleLayerRect);
 
             var modalLayer = new GameObject("ModalLayer", typeof(RectTransform));
             var modalRect = (RectTransform)modalLayer.transform;

@@ -1,0 +1,991 @@
+Mono path[0] = 'E:/work/tmp/festival_player_20260913/mmorpg_Data/Managed'
+Mono config path = 'E:/work/tmp/festival_player_20260913/MonoBleedingEdge/etc'
+CodeReloadManager initialized
+Found 3 interfaces on host : 0) 192.168.1.2 1) 192.168.112.1 2) 198.0.2.1
+Player connection [35472]  Target information:
+
+Player connection [35472]  * "[IP] 192.168.1.2 [Port] 55000 [Flags] 2 [Guid] 1198410491 [EditorId] 2548859914 [Version] 1048832 [Id] WindowsPlayer(2,luyuan) [Debug] 0 [PackageName] WindowsPlayer [ProjectName] unity" 
+
+Player connection [35472]  * "[IP] 192.168.112.1 [Port] 55000 [Flags] 2 [Guid] 1198410491 [EditorId] 2548859914 [Version] 1048832 [Id] WindowsPlayer(2,luyuan) [Debug] 0 [PackageName] WindowsPlayer [ProjectName] unity" 
+
+Player connection [35472]  * "[IP] 198.0.2.1 [Port] 55000 [Flags] 2 [Guid] 1198410491 [EditorId] 2548859914 [Version] 1048832 [Id] WindowsPlayer(2,luyuan) [Debug] 0 [PackageName] WindowsPlayer [ProjectName] unity" 
+
+Player connection [35472] Started UDP target info broadcast (1) on [225.0.0.222:54997].
+
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.6.0f1 (f7f8ed4d1e24)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path E:/work/tmp/festival_player_20260913/mmorpg_Data/UnitySubsystems
+[D3D12 Device Filter] Vendor Name: NVIDIA
+[D3D12 Device Filter] Device Name: NVIDIA GeForce RTX 5070 Ti Laptop GPU
+[D3D12 Device Filter] Driver Version: 32.0.15.9186
+[D3D12 Device Filter] Feature Level: 12.2
+[D3D12 Device Filter] Graphics Memory: 11944 MB
+[D3D12 Device Filter] Processor Count: 32
+[D3D12 Device Filter] Device Type: Discrete
+GfxDevice: creating device client; kGfxThreadingModeSplitJobs
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.2]
+    Renderer:        NVIDIA GeForce RTX 5070 Ti Laptop GPU (ID=0x2f18)
+    Vendor:          NVIDIA
+    VRAM:            11944 MB
+    App VRAM Budget: 11176 MB
+    Driver:          32.0.15.9186
+Begin MonoManager ReloadAssembly
+- Finished resetting the current domain, in  0.020 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+<RI> Initializing input.
+<RI> Input initialized.
+UnloadTime: 1.707300 ms
+[AppBootstrap] Awake (native uGUI)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap:Awake () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:90)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[AppBootstrap] uGUI server-select vertical slice active
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.Ugui.QdaoUguiRuntime:Create (MmorpgClient.UI.AppBootstrap) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/Ugui/QdaoUguiRuntime.cs:64)
+MmorpgClient.UI.AppBootstrap:Awake () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:93)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[AutoPilot][FESTIVAL] stage=login zone=1 account=robot_festival_20260913_033718 gateway=http://127.0.0.1:8081 autoQueue=- battleConfig=default autoBattle=False quitOnBattleEnd=False timeouts(login/queue/battle)=90/60/180s
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.DevAutoPilot:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:822)
+MmorpgClient.App.DevAutoPilot:Start () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:294)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] 正在登录账号…
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:Status (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1454)
+MmorpgClient.Game.GameClient/<EnterZone>d__105:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:301)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+UnityEngine.MonoBehaviour:StartCoroutineManaged2 (System.Collections.IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator) (at C:/build/output/unity/unity/Runtime/Export/Scripting/MonoBehaviour.bindings.cs:114)
+MmorpgClient.UI.AppBootstrap:Run (System.Collections.IEnumerator) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:119)
+MmorpgClient.App.DevAutoPilot:Start () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:308)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] http login ok, players=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient/<EnterZone>d__105:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:336)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] 正在分配服务器…
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:Status (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1454)
+MmorpgClient.Game.GameClient/<EnterZone>d__105:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:339)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] assigned gate 127.0.0.1:10001
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient/<EnterZone>d__105:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:392)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] 正在连接服务器…
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:Status (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1454)
+MmorpgClient.Game.GameClient/<ConnectAndEnter>d__106:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:417)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] gate token verified
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient/<ConnectAndEnter>d__106:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:456)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] 正在验证会话…
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:Status (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1454)
+MmorpgClient.Game.GameClient/<ConnectAndEnter>d__106:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:462)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] session login ok, players=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient/<ConnectAndEnter>d__106:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:477)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] 正在创建角色…
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:Status (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1454)
+MmorpgClient.Game.GameClient/<CreatePlayerCo>d__107:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:552)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] created new player 404 class=0 gender=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient/<CreatePlayerCo>d__107:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:578)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] 正在进入游戏…
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:Status (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1454)
+MmorpgClient.Game.GameClient/<EnterGameAndWaitScene>d__108:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:589)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] enter game accepted, player_id=404
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient/<EnterGameAndWaitScene>d__108:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:601)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [scene] entered scene_id=63941896849850368, config=1
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1182)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalRegion] ready scene=1 festival=False spawn=(200.00, 0.00, 180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:EnterScene (uint) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:164)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:115)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [actor] self entity=3 server=(180.00,200.00,0.00) unity=(200.00,0.00,180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:SpawnActorView (ActorCreateS2C) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1387)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_4 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1240)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] 进入游戏成功
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:Status (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1454)
+MmorpgClient.Game.GameClient/<EnterGameAndWaitScene>d__108:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:622)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[AutoPilot][FESTIVAL] stage=in_game player_id=404 scene_id=63941896849850368 scene_config=1 gate=127.0.0.1:10001
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.DevAutoPilot:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:822)
+MmorpgClient.App.DevAutoPilot:HandleEnterSuccess () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:350)
+MmorpgClient.Game.GameClient/<EnterGameAndWaitScene>d__108:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:623)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[AutoPilot][FESTIVAL] RESULT=PASS stage=in_game (no -autoQueue, staying in scene)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.DevAutoPilot:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:822)
+MmorpgClient.App.DevAutoPilot:HandleEnterSuccess () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:368)
+MmorpgClient.Game.GameClient/<EnterGameAndWaitScene>d__108:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:623)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=travel_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:163)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [scene] entered scene_id=63941896849850384, config=2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1182)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalRegion] ready scene=2 festival=False spawn=(220.00, 0.00, 170.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:EnterScene (uint) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:164)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:115)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCENE_NOTIFY config=2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:416)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [actor] self entity=3 server=(170.00,220.00,0.00) unity=(220.00,0.00,170.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:SpawnActorView (ActorCreateS2C) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1387)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_4 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1240)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] NAV scene=2 walkable=2265 blocked=27735 mismatches=0 spawn_error=0.000
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:203)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=move_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:208)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] MOVE scene=2 wasd=5.466 path_error=0.313 acks=0 reconciles=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:242)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCREENSHOT scene-2-day.png
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Capture>d__27:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:399)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=festival_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:252)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCREENSHOT scene-2-festival.png
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Capture>d__27:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:399)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=travel_3
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:163)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [scene] entered scene_id=63941896849850385, config=3
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1182)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalRegion] ready scene=3 festival=True spawn=(200.00, 0.00, 180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:EnterScene (uint) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:164)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:115)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCENE_NOTIFY config=3
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:416)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [actor] self entity=3 server=(180.00,200.00,0.00) unity=(200.00,0.00,180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:SpawnActorView (ActorCreateS2C) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1387)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_4 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1240)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] NAV scene=3 walkable=2218 blocked=27782 mismatches=0 spawn_error=0.000
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:203)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=move_3
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:208)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] MOVE scene=3 wasd=5.464 path_error=0.339 acks=0 reconciles=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:242)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCREENSHOT scene-3-day.png
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Capture>d__27:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:399)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=festival_3
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:252)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCREENSHOT scene-3-festival.png
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Capture>d__27:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:399)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=travel_4
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:163)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [scene] entered scene_id=63941896849850386, config=4
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1182)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalRegion] ready scene=4 festival=True spawn=(200.00, 0.00, 180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:EnterScene (uint) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:164)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:115)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCENE_NOTIFY config=4
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:416)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [actor] self entity=3 server=(180.00,200.00,0.00) unity=(200.00,0.00,180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:SpawnActorView (ActorCreateS2C) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1387)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_4 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1240)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] NAV scene=4 walkable=2295 blocked=27705 mismatches=0 spawn_error=0.000
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:203)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=move_4
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:208)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] MOVE scene=4 wasd=5.461 path_error=0.314 acks=0 reconciles=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:242)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCREENSHOT scene-4-day.png
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Capture>d__27:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:399)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=festival_4
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:252)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCREENSHOT scene-4-festival.png
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Capture>d__27:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:399)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=travel_1
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:163)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [scene] entered scene_id=63941896849850368, config=1
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1182)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalRegion] ready scene=1 festival=False spawn=(200.00, 0.00, 180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:EnterScene (uint) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:164)
+MmorpgClient.World.Tianyong.TianyongMapRuntime:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs:115)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCENE_NOTIFY config=1
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:HandleSceneEntered (SceneInfoComp) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:416)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_0 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1184)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[GameClient] [actor] self entity=3 server=(180.00,200.00,0.00) unity=(200.00,0.00,180.00)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.UI.AppBootstrap/<>c:<Awake>b__30_0 (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:81)
+MmorpgClient.Game.GameClient:Log (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1453)
+MmorpgClient.Game.GameClient:SpawnActorView (ActorCreateS2C) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1387)
+MmorpgClient.Game.GameClient:<WireSceneNotifyHandlers>b__140_4 (MessageContent) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1240)
+MmorpgClient.Game.GameClient:DispatchInbound (Google.Protobuf.IMessage) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1166)
+MmorpgClient.Net.GateTcpClient:Poll () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Net/GateTcpClient.cs:91)
+MmorpgClient.Game.GameClient:Tick () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:241)
+MmorpgClient.UI.AppBootstrap:Update () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:114)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] NAV scene=1 walkable=6203 blocked=23797 mismatches=0 spawn_error=0.000
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:203)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] phase=move_1
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:SetPhase (string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:409)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:208)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] MOVE scene=1 wasd=5.457 path_error=0.325 acks=0 reconciles=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Visit>d__21:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:242)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] SCREENSHOT scene-1-day.png
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify/<Capture>d__27:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:399)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[FestivalMapVerify] RESULT=PASS phase=move_1 scenes=4 screenshots=7 reason=四次真实传送、三组日景与节庆、四图移动及返城验收通过。
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+MmorpgClient.App.FestivalRegionAutoVerify:Finish (bool,string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:442)
+MmorpgClient.App.FestivalRegionAutoVerify/<Run>d__20:MoveNext () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/FestivalRegionAutoVerify.cs:158)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at C:/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+[AutoPilot][FESTIVAL] RESULT=FAIL stage=done reason=与服务器断开连接
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at C:/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at C:/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at C:/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:LogError (object) (at C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:158)
+MmorpgClient.App.DevAutoPilot:Finish (bool,string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:804)
+MmorpgClient.App.DevAutoPilot:Fail (string,string) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:794)
+MmorpgClient.App.DevAutoPilot:HandleDisconnected () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/App/DevAutoPilot.cs:486)
+MmorpgClient.Game.GameClient:DisconnectInternal (bool,bool) (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1518)
+MmorpgClient.Game.GameClient:Disconnect () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/Game/GameClient.cs:1475)
+MmorpgClient.UI.AppBootstrap:OnDestroy () (at E:/work/tmp/festival_game_verify_project_20260913/Assets/Scripts/UI/AppBootstrap.cs:238)
+
+(Filename: C:/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 158)
+
+SocketException: 一个封锁操作被对 WSACancelBlockingCall 的调用中断。
+  at System.Net.Sockets.Socket.Receive (System.Byte[] buffer, System.Int32 offset, System.Int32 size, System.Net.Sockets.SocketFlags socketFlags) [0x00016] in <3c0e69b4cd544897a25b0e700ba31a7c>:0 
+  at System.Net.Sockets.NetworkStream.Read (System.Byte[] buffer, System.Int32 offset, System.Int32 size) [0x00065] in <3c0e69b4cd544897a25b0e700ba31a7c>:0 
+Rethrow as IOException: Unable to read data from the transport connection: 一个封锁操作被对 WSACancelBlockingCall 的调用中断。
+
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+CodeReloadManager destroyed
+PlayerConnection::Cleanup##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1789285077048,"processId":28828,"allocatedMemory":392406,"memoryLabels":[{"Default":8440},{"NewDelete":760},{"Thread":8384},{"Manager":19287},{"GfxDevice":2488},{"GfxThread":2304},{"Audio":544},{"Serialization":17000},{"ScriptingNativeRuntime":323848},{"String":431},{"PoolAlloc":720},{"ScriptManager":5688},{"CodeReload":440},{"CloudService":144},{"VR":1928},{"Video":144},{"Subsystems":96},{"CoreBusinessMetrics":128}]}

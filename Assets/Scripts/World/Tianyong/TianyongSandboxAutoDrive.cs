@@ -377,10 +377,13 @@ namespace MmorpgClient.World.Tianyong
             yield return Shot("04_click_rapid_b");
             yield return WaitStop(4f);
 
-            // 4. 点击不可达位置(大殿屋顶):标记必须落在实际采用的目标上(殿前台阶下的主道)
+            // 4. 点击不可达位置(大殿屋顶):标记必须落在实际采用的目标上(殿前台阶下的主道)。
+            //    节庆版底图的大殿占 z 196.5..241,最近可走点搜索只找 8 格(16u);原来点
+            //    (200,215) 离殿南沿 18.5u,已经搜不到、routed=False,整轮误报失败。
+            //    改点 z=207,仍在屋顶上,距南沿 10.5u。
             Warp(new Vector3(200f, 0f, 176f));
             yield return new WaitForSeconds(0.9f);
-            Click(new Vector3(200f, 0f, 215f), "click_roof");
+            Click(new Vector3(200f, 0f, 207f), "click_roof");
             yield return new WaitForSeconds(0.05f);
             yield return Shot("05_click_roof_a");
             yield return new WaitForSeconds(0.25f);
@@ -403,12 +406,12 @@ namespace MmorpgClient.World.Tianyong
             yield return Shot("06_restart_go_b");
             yield return WaitStop(5f);
 
-            // 6. 灯柱:出生点西侧的小灯柱在掩码里占 x≈187..190 / z≈179..193 的两列格子(整根剪影
-            //    不可走),能站的最近位置是它西侧 (186,183)——脚点已在柱基之北,身体右缘与柱身重叠,
-            //    这是"人应被柱子遮住一部分"的前后关系验证点;再绕到柱子南侧与东侧对照。
-            Warp(new Vector3(184f, 0f, 177f));
+            // 6. 新版灯柱:西灯落地点约 (167.04,185.30)，东灯 (232.71,185.30)。
+            //    站在西灯西侧合法道路 (163,189)，脚点在落地线以北，身体右缘与屋檐
+            //    重叠。沿真实道路绕到南侧，再到东侧；整柱跨 tile 的两片同步开关。
+            Warp(new Vector3(163f, 0f, 182f));
             yield return new WaitForSeconds(0.8f);
-            Click(new Vector3(185.8f, 0f, 183f), "occluder_west_behind");
+            Click(new Vector3(163f, 0f, 189f), "occluder_west_behind");
             yield return WaitStop(6f);
             yield return new WaitForSeconds(0.3f);
             // Same actor, camera and position: expose the original overlap,
@@ -419,20 +422,17 @@ namespace MmorpgClient.World.Tianyong
             if (!TianyongPaintedForeground.SetWestLampVisible(_sandbox.transform, true))
                 Fail("west lamp foreground could not be restored");
             yield return Shot("07_occluder_west_behind");
-            Click(new Vector3(188f, 0f, 176.5f), "occluder_south_front");
+            Click(new Vector3(167f, 0f, 182f), "occluder_south_front");
             yield return WaitStop(6f);
             yield return new WaitForSeconds(0.3f);
             yield return Shot("07_occluder_south_front");
-            Click(new Vector3(191.5f, 0f, 183f), "occluder_east");
+            Click(new Vector3(173f, 0f, 189f), "occluder_east");
             yield return WaitStop(6f);
             yield return new WaitForSeconds(0.3f);
             yield return Shot("07_occluder_east");
-            // 东侧灯柱:与西灯关于出生点轴线对称,宝顶是一串更高的金珠。站到它西北侧最近的
-            // 可走格,人物左半身正好压在宝顶上;同一站位先关前景拍原始穿帮,再开前景拍修正。
-            // 瞬移 20u 后相机还在 SmoothDamp 追赶;0.8s 时仍差约 0.04u,足以让整屏重采样
-            // 都变、对照失效(2026-09-11 首轮就是这样)。所以等相机真正停稳再拍,并核对两张
-            // 图拍摄时相机完全同位。
-            Warp(new Vector3(212.0f, 0f, 182.2f));
+            // 东灯西側 (227,189) 对照同样的遮挡关系。先等相机完全停稳，确保
+            // 同站位 A/B 图的区别只来自整柱前景开关。
+            Warp(new Vector3(227f, 0f, 189f));
             yield return new WaitForSeconds(0.8f);
             yield return WaitCameraSettled(3f);
             var eastPairCamera = _sandbox.CameraRig.RenderCamera.transform.position;

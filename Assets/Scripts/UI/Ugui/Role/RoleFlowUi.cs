@@ -316,8 +316,8 @@ namespace MmorpgClient.UI.Ugui.Role
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             scaler.referencePixelsPerUnit = 100f;
 
-            var scene = Resources.Load<Sprite>(QdaoRefreshArt.Root + "login_background") ??
-                        QdaoRefreshArt.Load("sanctuary_background") ??
+            var scene = Resources.Load<Sprite>(QdaoRefreshArt.Root + "sanctuary_background") ??
+                        QdaoRefreshArt.Load("login_background") ??
                         BattleArtCatalog.LoadSprite("UI/Ugui/Native/scene_background");
             BattleUiWidgets.CreateStretchPanel("InputBlocker", _canvasGo.transform, QdaoUguiTheme.Letterbox);
             if (scene != null)

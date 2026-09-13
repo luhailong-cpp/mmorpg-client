@@ -28,6 +28,8 @@ namespace MmorpgClient.World.Tianyong
         {
             /// <summary>GameObject name; also the key for <see cref="SetVisible"/>.</summary>
             public readonly string Name;
+            /// <summary>All source-tile pieces of this prop toggle together.</summary>
+            public readonly string VisibilityGroup;
             /// <summary>Zero-based source tile row (r03 = 2).</summary>
             public readonly int TileRow;
             /// <summary>Zero-based source tile column (c03 = 2).</summary>
@@ -45,9 +47,10 @@ namespace MmorpgClient.World.Tianyong
             /// </summary>
             public readonly Vector3[] Rows;
 
-            public Cutout(string name, int tileRow, int tileColumn, Vector2 basePixel, Vector3[] rows)
+            public Cutout(string name, int tileRow, int tileColumn, Vector2 basePixel, Vector3[] rows, string visibilityGroup = null)
             {
                 Name = name;
+                VisibilityGroup = visibilityGroup ?? name;
                 TileRow = tileRow;
                 TileColumn = tileColumn;
                 BasePixel = basePixel;
@@ -64,76 +67,86 @@ namespace MmorpgClient.World.Tianyong
         public const int SourceTileColumn = 2;
         private const float SurfaceHeight = 0.01f;
 
-        public static readonly Vector2 WestLampBasePixel = new(2823f, 2503f);
-        /// <summary>
-        /// The temple steps are flanked by two lamps mirrored about the spawn
-        /// axis. Same ground-contact row as the west lamp; x is the centre of
-        /// the east lamp's dome and finial column on r03_c04.
-        /// </summary>
-        public static readonly Vector2 EastLampBasePixel = new(3299f, 2503f);
+        // Native festival painting: the two red knot standards and jade lamp
+        // pavilions cross y=2048. Both tile pieces sort from the same south
+        // ground contact, so the source seam cannot change actor occlusion.
+        public static readonly Vector2 WestLampBasePixel = new(2397f, 2349f);
+        public static readonly Vector2 EastLampBasePixel = new(3742f, 2349f);
 
-        // West lamp, traced by hand from r03_c03: finial and eave.
+        // Hand-traced silhouette in r03_c03; no rectangular pavement overlay.
         private static readonly Vector3[] WestLampRows =
         {
-            new(277f, 768f, 769f), new(282f, 768f, 770f),
-            new(285f, 767f, 771f), new(287f, 766f, 771f),
-            new(289f, 766f, 773f), new(292f, 766f, 775f),
-            new(295f, 762f, 774f), new(298f, 761f, 770f),
-            new(300f, 765f, 771f), new(303f, 764f, 773f),
-            new(306f, 761f, 774f), new(309f, 760f, 776f),
-            new(312f, 759f, 779f), new(315f, 760f, 779f),
-            new(318f, 763f, 776f), new(320f, 759f, 775f),
-            new(323f, 758f, 774f), new(326f, 756f, 775f),
-            new(329f, 754f, 778f), new(333f, 750f, 782f),
-            new(337f, 743f, 786f), new(339f, 737f, 790f),
-            new(341f, 732f, 800f), new(343f, 730f, 803f),
-            new(348f, 730f, 804f), new(353f, 732f, 803f),
-            new(358f, 734f, 801f), new(362f, 737f, 798f),
-            new(366f, 742f, 793f), new(370f, 749f, 785f),
-            new(373f, 758f, 777f), new(375f, 766f, 768f),
+            new(0f, 332f, 369f), new(4f, 330f, 372f), new(8f, 323f, 376f),
+            new(14f, 321f, 379f), new(20f, 326f, 382f), new(25f, 329f, 382f),
+            new(32f, 329f, 382f), new(47f, 326f, 383f), new(56f, 327f, 380f),
+            new(62f, 332f, 377f), new(67f, 332f, 375f), new(107f, 332f, 375f),
+            new(124f, 332f, 375f), new(127f, 310f, 375f), new(132f, 306f, 375f),
+            new(137f, 308f, 375f), new(141f, 302f, 397f), new(147f, 302f, 400f),
+            new(152f, 305f, 397f), new(157f, 309f, 402f), new(162f, 289f, 399f),
+            new(167f, 287f, 400f), new(172f, 290f, 416f), new(178f, 283f, 417f),
+            new(182f, 281f, 420f), new(187f, 285f, 420f), new(192f, 288f, 415f),
+            new(198f, 289f, 412f), new(202f, 288f, 407f), new(207f, 292f, 407f),
+            new(212f, 302f, 404f), new(216f, 309f, 400f), new(222f, 310f, 399f),
+            new(242f, 310f, 399f), new(262f, 310f, 399f), new(269f, 306f, 400f),
+            new(272f, 302f, 403f), new(282f, 302f, 404f), new(290f, 306f, 402f),
+            new(295f, 312f, 396f), new(298f, 326f, 389f),
         };
 
-        // East lamp, r03_c04: the tall bead finial (y 248-330) and the dome
-        // with its rim (y 330-375). Traced semi-automatically (colour flood
-        // from the rim, bounded per segment so the planter foliage and gold
-        // flowers directly behind the finial stay out), then checked by eye.
+        // Hand-traced silhouette in r03_c04; no rectangular pavement overlay.
         private static readonly Vector3[] EastLampRows =
         {
-            new(248f, 219f, 232f), new(252f, 219f, 232f), new(253f, 219f, 229f),
-            new(254f, 218f, 230f), new(255f, 218f, 232f), new(259f, 220f, 230f),
-            new(260f, 222f, 232f), new(261f, 223f, 232f), new(262f, 227f, 238f),
-            new(263f, 223f, 237f), new(264f, 222f, 237f), new(265f, 220f, 236f),
-            new(267f, 220f, 235f), new(268f, 219f, 233f), new(269f, 219f, 234f),
-            new(270f, 217f, 236f), new(271f, 217f, 238f), new(277f, 217f, 236f),
-            new(278f, 217f, 236f), new(279f, 217f, 238f), new(290f, 217f, 236f),
-            new(294f, 217f, 238f), new(304f, 218f, 238f), new(305f, 218f, 241f),
-            new(309f, 218f, 240f), new(310f, 218f, 238f), new(311f, 217f, 236f),
-            new(315f, 217f, 238f), new(317f, 217f, 239f), new(318f, 218f, 241f),
-            new(319f, 220f, 238f), new(321f, 220f, 238f), new(322f, 217f, 238f),
-            new(326f, 217f, 236f), new(327f, 217f, 236f), new(328f, 217f, 238f),
-            new(330f, 216f, 239f), new(331f, 216f, 245f), new(332f, 215f, 246f),
-            new(333f, 210f, 246f), new(334f, 210f, 246f), new(335f, 208f, 246f),
-            new(338f, 208f, 245f), new(339f, 207f, 248f), new(340f, 207f, 247f),
-            new(341f, 203f, 248f), new(343f, 201f, 248f), new(344f, 201f, 249f),
-            new(345f, 202f, 247f), new(346f, 202f, 247f), new(347f, 204f, 251f),
-            new(348f, 199f, 252f), new(349f, 199f, 254f), new(352f, 200f, 256f),
-            new(353f, 200f, 256f), new(354f, 200f, 254f), new(357f, 201f, 255f),
-            new(358f, 201f, 253f), new(362f, 201f, 254f), new(363f, 198f, 254f),
-            new(365f, 198f, 252f), new(366f, 198f, 254f), new(371f, 198f, 254f),
-            new(372f, 198f, 251f), new(373f, 198f, 250f), new(374f, 198f, 252f),
-            new(375f, 198f, 252f),
+            new(0f, 651.25f, 686.75f), new(1f, 651f, 688f), new(5f, 645f, 693f),
+            new(10f, 644f, 697f), new(15f, 639f, 695f), new(20f, 638f, 688f),
+            new(27f, 636f, 688f), new(47f, 636f, 688f), new(56f, 637f, 688f),
+            new(62f, 643f, 688f), new(64f, 648f, 687f), new(108f, 648f, 687f),
+            new(127f, 648f, 702f), new(132f, 643f, 708f), new(137f, 640f, 705f),
+            new(142f, 627f, 713f), new(147f, 623f, 714f), new(152f, 625f, 713f),
+            new(157f, 628f, 711f), new(162f, 610f, 710f), new(167f, 609f, 719f),
+            new(172f, 611f, 727f), new(178f, 610f, 727f), new(182f, 606f, 730f),
+            new(187f, 606f, 731f), new(192f, 610f, 731f), new(197f, 614f, 729f),
+            new(202f, 617f, 726f), new(207f, 620f, 723f), new(212f, 624f, 724f),
+            new(217f, 625f, 726f), new(222f, 624f, 725f), new(227f, 626f, 709f),
+            new(247f, 631f, 709f), new(262f, 630f, 712f), new(270f, 626f, 715f),
+            new(277f, 626f, 717f), new(286f, 629f, 718f), new(294f, 637f, 714f),
+            new(298f, 648f, 707f),
+        };
+
+        // Hand-traced silhouette in r02_c03; no rectangular pavement overlay.
+        private static readonly Vector3[] WestUpperLampRows =
+        {
+            new(968f, 350f, 354f), new(971f, 345f, 357f), new(976f, 344f, 359f),
+            new(981f, 345f, 358f), new(983f, 347f, 357f), new(988f, 345f, 358f),
+            new(990f, 323f, 379f), new(994f, 320f, 383f), new(999f, 319f, 384f),
+            new(1003f, 322f, 382f), new(1008f, 329f, 376f), new(1013f, 333f, 370f),
+            new(1016f, 345f, 360f), new(1020f, 345f, 361f), new(1024f, 332f, 369f),
+        };
+
+        // Hand-traced silhouette in r02_c04; no rectangular pavement overlay.
+        private static readonly Vector3[] EastUpperLampRows =
+        {
+            new(968f, 665f, 669f), new(972f, 660f, 673f), new(978f, 660f, 673f),
+            new(984f, 661f, 672f), new(988f, 662f, 672f), new(991f, 638f, 694f),
+            new(994f, 635f, 698f), new(998f, 636f, 699f), new(1002f, 641f, 695f),
+            new(1008f, 645f, 691f), new(1013f, 652f, 682f), new(1017f, 659f, 674f),
+            new(1021f, 652f, 683f), new(1024f, 651.25f, 686.75f),
         };
 
         public static readonly Cutout WestLamp =
             new(WestLampObjectName, SourceTileRow, SourceTileColumn, WestLampBasePixel, WestLampRows);
         public static readonly Cutout EastLamp =
             new(EastLampObjectName, 2, 3, EastLampBasePixel, EastLampRows);
+        public static readonly Cutout WestLampUpper =
+            new(WestLampObjectName + "Upper", 1, 2, WestLampBasePixel, WestUpperLampRows, WestLampObjectName);
+        public static readonly Cutout EastLampUpper =
+            new(EastLampObjectName + "Upper", 1, 3, EastLampBasePixel, EastUpperLampRows, EastLampObjectName);
 
-        /// <summary>Every cutout built with the painted city, in build order.</summary>
-        public static readonly IReadOnlyList<Cutout> Cutouts = new[] { WestLamp, EastLamp };
+        /// <summary>Every source-tile cutout built with the painted city.</summary>
+        public static readonly IReadOnlyList<Cutout> Cutouts =
+            new[] { WestLamp, EastLamp, WestLampUpper, EastLampUpper };
 
         private Mesh _ownedMesh;
         private MeshRenderer _renderer;
+        private string _visibilityGroup;
 
         /// <summary>Builds every registered cutout from the city's source tiles.</summary>
         public static int AddAll(TianyongMapInstance map, Transform parent, IReadOnlyList<Texture2D> tiles)
@@ -167,6 +180,7 @@ namespace MmorpgClient.World.Tianyong
             go.transform.localPosition = TianyongPaintedCity.PaintingToWorld(cutout.BasePixel, SurfaceHeight);
             var foreground = go.AddComponent<TianyongPaintedForeground>();
             foreground._ownedMesh = CreateMesh(cutout);
+            foreground._visibilityGroup = cutout.VisibilityGroup;
             go.AddComponent<MeshFilter>().sharedMesh = foreground._ownedMesh;
             var material = new Material(shader)
             {
@@ -238,17 +252,18 @@ namespace MmorpgClient.World.Tianyong
         public static bool SetWestLampVisible(Transform root, bool visible)
             => SetVisible(root, WestLampObjectName, visible);
 
-        /// <summary>Shows or hides one cutout by name. False when it was not built.</summary>
+        /// <summary>Shows or hides a prop group (or one piece by its name). False when absent.</summary>
         public static bool SetVisible(Transform root, string name, bool visible)
         {
             if (root == null) return false;
+            var found = false;
             foreach (var foreground in root.GetComponentsInChildren<TianyongPaintedForeground>(true))
             {
-                if (foreground.name != name || foreground._renderer == null) continue;
+                if ((foreground.name != name && foreground._visibilityGroup != name) || foreground._renderer == null) continue;
                 foreground._renderer.enabled = visible;
-                return true;
+                found = true;
             }
-            return false;
+            return found;
         }
 
         private void LateUpdate()
