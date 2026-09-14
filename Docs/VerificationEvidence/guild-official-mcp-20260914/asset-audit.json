@@ -1,0 +1,2373 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-09-14T09:07:16.5805757Z",
+  "reviewType": "Independent filesystem and static-code audit; no Unity API invoked",
+  "sourceManifest": "E:\\work\\image\\designs\\guild-ui-v2\\asset-manifest.json",
+  "importManifest": "E:\\work\\mmorpg-client\\Assets\\Resources\\UI\\Ugui\\GuildV2\\manifest.json",
+  "importerPath": "E:\\work\\mmorpg-client\\Assets\\Editor\\Guild\\GuildUiAssetImport.cs",
+  "gitHead": "13d248aa0719295eeb19d764b0c9c1c9afdc2e6a",
+  "counts": {
+    "approvedUiAssets": 27,
+    "importManifestAssets": 27,
+    "destinationPngFiles": 27,
+    "priorPngGuids": 9,
+    "excludedReferenceImages": 2
+  },
+  "findings": [],
+  "assetChecks": [
+    {
+      "source": "assets/window_frame.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/window_frame.png",
+      "resourceKey": "UI/Ugui/GuildV2/window_frame",
+      "sha256": {
+        "approved": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+        "sourceFile": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+        "destinationFile": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+        "importManifest": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          1546,
+          743
+        ],
+        "sourcePngHeader": [
+          1546,
+          743
+        ],
+        "destinationPngHeader": [
+          1546,
+          743
+        ],
+        "importManifest": [
+          1546,
+          743
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": [
+          97,
+          99,
+          97,
+          74
+        ],
+        "expectedLeftBottomRightTop": [
+          97,
+          74,
+          97,
+          99
+        ],
+        "importManifestLeftBottomRightTop": [
+          97.0,
+          74.0,
+          97.0,
+          99.0
+        ],
+        "metaLeftBottomRightTop": [
+          97.0,
+          74.0,
+          97.0,
+          99.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "d7e62177b72aad5479a3a6a69da1e593",
+        "importManifest": "d7e62177b72aad5479a3a6a69da1e593",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/title_plate.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/title_plate.png",
+      "resourceKey": "UI/Ugui/GuildV2/title_plate",
+      "sha256": {
+        "approved": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+        "sourceFile": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+        "destinationFile": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+        "importManifest": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          655,
+          110
+        ],
+        "sourcePngHeader": [
+          655,
+          110
+        ],
+        "destinationPngHeader": [
+          655,
+          110
+        ],
+        "importManifest": [
+          655,
+          110
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "653740727b568be49a9036d826b8d38b",
+        "importManifest": "653740727b568be49a9036d826b8d38b",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/button_primary.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/button_primary.png",
+      "resourceKey": "UI/Ugui/GuildV2/button_primary",
+      "sha256": {
+        "approved": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+        "sourceFile": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+        "destinationFile": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+        "importManifest": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          376,
+          97
+        ],
+        "sourcePngHeader": [
+          376,
+          97
+        ],
+        "destinationPngHeader": [
+          376,
+          97
+        ],
+        "importManifest": [
+          376,
+          97
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": [
+          66,
+          30,
+          66,
+          30
+        ],
+        "expectedLeftBottomRightTop": [
+          66,
+          30,
+          66,
+          30
+        ],
+        "importManifestLeftBottomRightTop": [
+          66.0,
+          30.0,
+          66.0,
+          30.0
+        ],
+        "metaLeftBottomRightTop": [
+          66.0,
+          30.0,
+          66.0,
+          30.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "17ef4b449ae5a324b9c3dd9b96cbcc63",
+        "importManifest": "17ef4b449ae5a324b9c3dd9b96cbcc63",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/button_secondary.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/button_secondary.png",
+      "resourceKey": "UI/Ugui/GuildV2/button_secondary",
+      "sha256": {
+        "approved": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+        "sourceFile": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+        "destinationFile": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+        "importManifest": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          271,
+          82
+        ],
+        "sourcePngHeader": [
+          271,
+          82
+        ],
+        "destinationPngHeader": [
+          271,
+          82
+        ],
+        "importManifest": [
+          271,
+          82
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": [
+          30,
+          27,
+          30,
+          27
+        ],
+        "expectedLeftBottomRightTop": [
+          30,
+          27,
+          30,
+          27
+        ],
+        "importManifestLeftBottomRightTop": [
+          30.0,
+          27.0,
+          30.0,
+          27.0
+        ],
+        "metaLeftBottomRightTop": [
+          30.0,
+          27.0,
+          30.0,
+          27.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "61947c00411ef7f47bf4331c180eb6ab",
+        "importManifest": "61947c00411ef7f47bf4331c180eb6ab",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/close_button.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/close_button.png",
+      "resourceKey": "UI/Ugui/GuildV2/close_button",
+      "sha256": {
+        "approved": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+        "sourceFile": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+        "destinationFile": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+        "importManifest": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          81,
+          80
+        ],
+        "sourcePngHeader": [
+          81,
+          80
+        ],
+        "destinationPngHeader": [
+          81,
+          80
+        ],
+        "importManifest": [
+          81,
+          80
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "676b3a169b6975e4bbcab13d65e0ce88",
+        "importManifest": "676b3a169b6975e4bbcab13d65e0ce88",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/close_tassel.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/close_tassel.png",
+      "resourceKey": "UI/Ugui/GuildV2/close_tassel",
+      "sha256": {
+        "approved": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+        "sourceFile": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+        "destinationFile": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+        "importManifest": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          30,
+          81
+        ],
+        "sourcePngHeader": [
+          30,
+          81
+        ],
+        "destinationPngHeader": [
+          30,
+          81
+        ],
+        "importManifest": [
+          30,
+          81
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "baccd7ea2aba8e540a36248612006135",
+        "importManifest": "baccd7ea2aba8e540a36248612006135",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/portrait_frame.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/portrait_frame.png",
+      "resourceKey": "UI/Ugui/GuildV2/portrait_frame",
+      "sha256": {
+        "approved": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+        "sourceFile": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+        "destinationFile": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+        "importManifest": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          134,
+          115
+        ],
+        "sourcePngHeader": [
+          134,
+          115
+        ],
+        "destinationPngHeader": [
+          134,
+          115
+        ],
+        "importManifest": [
+          134,
+          115
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": [
+          11,
+          11,
+          11,
+          11
+        ],
+        "expectedLeftBottomRightTop": [
+          11,
+          11,
+          11,
+          11
+        ],
+        "importManifestLeftBottomRightTop": [
+          11.0,
+          11.0,
+          11.0,
+          11.0
+        ],
+        "metaLeftBottomRightTop": [
+          11.0,
+          11.0,
+          11.0,
+          11.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "a90f8158afc9add4eaa8b434979368cf",
+        "importManifest": "a90f8158afc9add4eaa8b434979368cf",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/stat_field.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/stat_field.png",
+      "resourceKey": "UI/Ugui/GuildV2/stat_field",
+      "sha256": {
+        "approved": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+        "sourceFile": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+        "destinationFile": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+        "importManifest": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          273,
+          62
+        ],
+        "sourcePngHeader": [
+          273,
+          62
+        ],
+        "destinationPngHeader": [
+          273,
+          62
+        ],
+        "importManifest": [
+          273,
+          62
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": [
+          12,
+          12,
+          12,
+          12
+        ],
+        "expectedLeftBottomRightTop": [
+          12,
+          12,
+          12,
+          12
+        ],
+        "importManifestLeftBottomRightTop": [
+          12.0,
+          12.0,
+          12.0,
+          12.0
+        ],
+        "metaLeftBottomRightTop": [
+          12.0,
+          12.0,
+          12.0,
+          12.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "2a4e1a33bc4541d685e593b24fd54354",
+        "importManifest": "2a4e1a33bc4541d685e593b24fd54354",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/tab_horizontal.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/tab_horizontal.png",
+      "resourceKey": "UI/Ugui/GuildV2/tab_horizontal",
+      "sha256": {
+        "approved": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+        "sourceFile": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+        "destinationFile": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+        "importManifest": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          279,
+          71
+        ],
+        "sourcePngHeader": [
+          279,
+          71
+        ],
+        "destinationPngHeader": [
+          279,
+          71
+        ],
+        "importManifest": [
+          279,
+          71
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": [
+          27,
+          24,
+          27,
+          24
+        ],
+        "expectedLeftBottomRightTop": [
+          27,
+          24,
+          27,
+          24
+        ],
+        "importManifestLeftBottomRightTop": [
+          27.0,
+          24.0,
+          27.0,
+          24.0
+        ],
+        "metaLeftBottomRightTop": [
+          27.0,
+          24.0,
+          27.0,
+          24.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "92f36abad58c9964e8535457bddee7b8",
+        "importManifest": "92f36abad58c9964e8535457bddee7b8",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/notice_icon.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/notice.png",
+      "resourceKey": "UI/Ugui/GuildV2/notice",
+      "sha256": {
+        "approved": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+        "sourceFile": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+        "destinationFile": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+        "importManifest": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          47,
+          47
+        ],
+        "sourcePngHeader": [
+          47,
+          47
+        ],
+        "destinationPngHeader": [
+          47,
+          47
+        ],
+        "importManifest": [
+          47,
+          47
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "b230d172335147c49701a2adb6064f62",
+        "importManifest": "b230d172335147c49701a2adb6064f62",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/round_badge_taiji.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/crest.png",
+      "resourceKey": "UI/Ugui/GuildV2/crest",
+      "sha256": {
+        "approved": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+        "sourceFile": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+        "destinationFile": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+        "importManifest": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "0c5bf6c4806d471c954f777bd25859fb",
+        "importManifest": "0c5bf6c4806d471c954f777bd25859fb",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/round_badge_furnace.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/furnace.png",
+      "resourceKey": "UI/Ugui/GuildV2/furnace",
+      "sha256": {
+        "approved": "b342df3bd93be6c8e3109981ae712ebc55944161d8890e408417c2b84c929c81",
+        "sourceFile": "b342df3bd93be6c8e3109981ae712ebc55944161d8890e408417c2b84c929c81",
+        "destinationFile": "b342df3bd93be6c8e3109981ae712ebc55944161d8890e408417c2b84c929c81",
+        "importManifest": "b342df3bd93be6c8e3109981ae712ebc55944161d8890e408417c2b84c929c81",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "fbff4ee35fe640e3927187840ad05747",
+        "importManifest": "fbff4ee35fe640e3927187840ad05747",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/round_badge_sword.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/sword.png",
+      "resourceKey": "UI/Ugui/GuildV2/sword",
+      "sha256": {
+        "approved": "78fdcdcd01d7ca2e3bbb50969dadfec852fbbc42a99e626db904c0976cdc4268",
+        "sourceFile": "78fdcdcd01d7ca2e3bbb50969dadfec852fbbc42a99e626db904c0976cdc4268",
+        "destinationFile": "78fdcdcd01d7ca2e3bbb50969dadfec852fbbc42a99e626db904c0976cdc4268",
+        "importManifest": "78fdcdcd01d7ca2e3bbb50969dadfec852fbbc42a99e626db904c0976cdc4268",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "7c899724dfe445a69cb0725b997c760d",
+        "importManifest": "7c899724dfe445a69cb0725b997c760d",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/round_badge_lotus.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_lotus.png",
+      "resourceKey": "UI/Ugui/GuildV2/round_badge_lotus",
+      "sha256": {
+        "approved": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+        "sourceFile": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+        "destinationFile": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+        "importManifest": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "ca05d19ccbef83b40a1632427e65f561",
+        "importManifest": "ca05d19ccbef83b40a1632427e65f561",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/round_badge_pagoda.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_pagoda.png",
+      "resourceKey": "UI/Ugui/GuildV2/round_badge_pagoda",
+      "sha256": {
+        "approved": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "sourceFile": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "destinationFile": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "importManifest": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "6adab377b4a4c014fb14cf888f0c5ca1",
+        "importManifest": "6adab377b4a4c014fb14cf888f0c5ca1",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/round_badge_mountain.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_mountain.png",
+      "resourceKey": "UI/Ugui/GuildV2/round_badge_mountain",
+      "sha256": {
+        "approved": "c756fca7c376d892cd0ee36544684b436dbf03bf67155f9ae98f3aff7078aeb4",
+        "sourceFile": "c756fca7c376d892cd0ee36544684b436dbf03bf67155f9ae98f3aff7078aeb4",
+        "destinationFile": "c756fca7c376d892cd0ee36544684b436dbf03bf67155f9ae98f3aff7078aeb4",
+        "importManifest": "c756fca7c376d892cd0ee36544684b436dbf03bf67155f9ae98f3aff7078aeb4",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "821f561014d15e341a9a3ffe4c83ebb8",
+        "importManifest": "821f561014d15e341a9a3ffe4c83ebb8",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/round_badge_compass.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_compass.png",
+      "resourceKey": "UI/Ugui/GuildV2/round_badge_compass",
+      "sha256": {
+        "approved": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+        "sourceFile": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+        "destinationFile": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+        "importManifest": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "3f27a4b588ad8ca478ce8646cc306335",
+        "importManifest": "3f27a4b588ad8ca478ce8646cc306335",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/avatar-1.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-1.png",
+      "resourceKey": "UI/Ugui/GuildV2/avatar-1",
+      "sha256": {
+        "approved": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+        "sourceFile": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+        "destinationFile": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+        "importManifest": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          1024,
+          1024
+        ],
+        "sourcePngHeader": [
+          1024,
+          1024
+        ],
+        "destinationPngHeader": [
+          1024,
+          1024
+        ],
+        "importManifest": [
+          1024,
+          1024
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "74120a0f3c3208b4d9bc7f90dcd9afad",
+        "importManifest": "74120a0f3c3208b4d9bc7f90dcd9afad",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/avatar-2.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-2.png",
+      "resourceKey": "UI/Ugui/GuildV2/avatar-2",
+      "sha256": {
+        "approved": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+        "sourceFile": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+        "destinationFile": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+        "importManifest": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          1024,
+          1024
+        ],
+        "sourcePngHeader": [
+          1024,
+          1024
+        ],
+        "destinationPngHeader": [
+          1024,
+          1024
+        ],
+        "importManifest": [
+          1024,
+          1024
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "f699731771e6e3e4b88fabc68f959b17",
+        "importManifest": "f699731771e6e3e4b88fabc68f959b17",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/avatar-3.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-3.png",
+      "resourceKey": "UI/Ugui/GuildV2/avatar-3",
+      "sha256": {
+        "approved": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+        "sourceFile": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+        "destinationFile": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+        "importManifest": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          1024,
+          1024
+        ],
+        "sourcePngHeader": [
+          1024,
+          1024
+        ],
+        "destinationPngHeader": [
+          1024,
+          1024
+        ],
+        "importManifest": [
+          1024,
+          1024
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "2deccf6cc04d4fb49bfa3859c33ce04c",
+        "importManifest": "2deccf6cc04d4fb49bfa3859c33ce04c",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/avatar-4.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-4.png",
+      "resourceKey": "UI/Ugui/GuildV2/avatar-4",
+      "sha256": {
+        "approved": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+        "sourceFile": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+        "destinationFile": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+        "importManifest": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          1024,
+          1024
+        ],
+        "sourcePngHeader": [
+          1024,
+          1024
+        ],
+        "destinationPngHeader": [
+          1024,
+          1024
+        ],
+        "importManifest": [
+          1024,
+          1024
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "3fa82311678cb964eae0d5f12c859c91",
+        "importManifest": "3fa82311678cb964eae0d5f12c859c91",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/avatar-5.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-5.png",
+      "resourceKey": "UI/Ugui/GuildV2/avatar-5",
+      "sha256": {
+        "approved": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+        "sourceFile": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+        "destinationFile": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+        "importManifest": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          1024,
+          1024
+        ],
+        "sourcePngHeader": [
+          1024,
+          1024
+        ],
+        "destinationPngHeader": [
+          1024,
+          1024
+        ],
+        "importManifest": [
+          1024,
+          1024
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "4792fde7d1c71cc4e9e272bbe74477a5",
+        "importManifest": "4792fde7d1c71cc4e9e272bbe74477a5",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/icon-pill.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/pill.png",
+      "resourceKey": "UI/Ugui/GuildV2/pill",
+      "sha256": {
+        "approved": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+        "sourceFile": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+        "destinationFile": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+        "importManifest": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          600,
+          600
+        ],
+        "sourcePngHeader": [
+          600,
+          600
+        ],
+        "destinationPngHeader": [
+          600,
+          600
+        ],
+        "importManifest": [
+          600,
+          600
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "e0f5dcd46e9542f5a441f2bd024751f9",
+        "importManifest": "e0f5dcd46e9542f5a441f2bd024751f9",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/icon-scroll.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/scroll.png",
+      "resourceKey": "UI/Ugui/GuildV2/scroll",
+      "sha256": {
+        "approved": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+        "sourceFile": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+        "destinationFile": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+        "importManifest": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          600,
+          600
+        ],
+        "sourcePngHeader": [
+          600,
+          600
+        ],
+        "destinationPngHeader": [
+          600,
+          600
+        ],
+        "importManifest": [
+          600,
+          600
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "03832e2aaeef454daf62dd391f727fb8",
+        "importManifest": "03832e2aaeef454daf62dd391f727fb8",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/icon-talisman.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/talisman.png",
+      "resourceKey": "UI/Ugui/GuildV2/talisman",
+      "sha256": {
+        "approved": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+        "sourceFile": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+        "destinationFile": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+        "importManifest": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          600,
+          600
+        ],
+        "sourcePngHeader": [
+          600,
+          600
+        ],
+        "destinationPngHeader": [
+          600,
+          600
+        ],
+        "importManifest": [
+          600,
+          600
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "462434d134dd4b0aa01b79725c231708",
+        "importManifest": "462434d134dd4b0aa01b79725c231708",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/icon-chest.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/icon-chest.png",
+      "resourceKey": "UI/Ugui/GuildV2/icon-chest",
+      "sha256": {
+        "approved": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "sourceFile": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "destinationFile": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "importManifest": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          120,
+          120
+        ],
+        "sourcePngHeader": [
+          120,
+          120
+        ],
+        "destinationPngHeader": [
+          120,
+          120
+        ],
+        "importManifest": [
+          120,
+          120
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "67ddb3f98dcf1b84d90971db74b4e400",
+        "importManifest": "67ddb3f98dcf1b84d90971db74b4e400",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    },
+    {
+      "source": "assets/lantern.png",
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/lantern.png",
+      "resourceKey": "UI/Ugui/GuildV2/lantern",
+      "sha256": {
+        "approved": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+        "sourceFile": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+        "destinationFile": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+        "importManifest": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+        "pass": true
+      },
+      "dimensions": {
+        "sourceManifest": [
+          220,
+          393
+        ],
+        "sourcePngHeader": [
+          220,
+          393
+        ],
+        "destinationPngHeader": [
+          220,
+          393
+        ],
+        "importManifest": [
+          220,
+          393
+        ],
+        "pass": true
+      },
+      "border": {
+        "sourceLeftTopRightBottom": null,
+        "expectedLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "importManifestLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metaLeftBottomRightTop": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "guid": {
+        "meta": "1b069ee69ca542c791a3180244c260c2",
+        "importManifest": "1b069ee69ca542c791a3180244c260c2",
+        "pass": true
+      },
+      "meta": {
+        "settings": {
+          "spritePixelsToUnits": "100",
+          "alphaUsage": "1",
+          "spriteMode": "1",
+          "wrapU": "1",
+          "wrapV": "1",
+          "textureType": "8",
+          "wrapW": "1",
+          "nPOTScale": "0",
+          "alphaIsTransparency": "1",
+          "sRGBTexture": "1",
+          "filterMode": "1",
+          "isReadable": "0",
+          "enableMipMap": "0",
+          "spriteMeshType": "0"
+        },
+        "settingsPass": true,
+        "defaultPlatform": {
+          "maxTextureSize": 4096,
+          "textureCompression": 0,
+          "pass": true
+        },
+        "noPlatformOverride": true
+      }
+    }
+  ],
+  "existingGuidChecks": [
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/crest.png.meta",
+      "headGuid": "0c5bf6c4806d471c954f777bd25859fb",
+      "currentGuid": "0c5bf6c4806d471c954f777bd25859fb",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/furnace.png.meta",
+      "headGuid": "fbff4ee35fe640e3927187840ad05747",
+      "currentGuid": "fbff4ee35fe640e3927187840ad05747",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/lantern.png.meta",
+      "headGuid": "1b069ee69ca542c791a3180244c260c2",
+      "currentGuid": "1b069ee69ca542c791a3180244c260c2",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/notice.png.meta",
+      "headGuid": "b230d172335147c49701a2adb6064f62",
+      "currentGuid": "b230d172335147c49701a2adb6064f62",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/pill.png.meta",
+      "headGuid": "e0f5dcd46e9542f5a441f2bd024751f9",
+      "currentGuid": "e0f5dcd46e9542f5a441f2bd024751f9",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/scroll.png.meta",
+      "headGuid": "03832e2aaeef454daf62dd391f727fb8",
+      "currentGuid": "03832e2aaeef454daf62dd391f727fb8",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/stat_field.png.meta",
+      "headGuid": "2a4e1a33bc4541d685e593b24fd54354",
+      "currentGuid": "2a4e1a33bc4541d685e593b24fd54354",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/sword.png.meta",
+      "headGuid": "7c899724dfe445a69cb0725b997c760d",
+      "currentGuid": "7c899724dfe445a69cb0725b997c760d",
+      "pass": true
+    },
+    {
+      "assetPath": "Assets/Resources/UI/Ugui/GuildV2/talisman.png.meta",
+      "headGuid": "462434d134dd4b0aa01b79725c231708",
+      "currentGuid": "462434d134dd4b0aa01b79725c231708",
+      "pass": true
+    }
+  ],
+  "staticImporterReview": {
+    "conclusion": "No actionable issue found for the current approved package",
+    "evidence": [
+      "Lines 43-44 prohibit import while entering or in Play mode.",
+      "Lines 51-63 validate flat assets/*.png paths, unique mapped resource keys, dimension and border-array lengths, all source hashes, and exactly 27 images before destination writes.",
+      "Lines 69-72 use fixed destination and stable key mapping; equal-hash PNG files are not copied again; .meta files are retained.",
+      "Lines 76-95 apply deterministic Sprite Single / FullRect / PPU 100 / alpha / no mipmaps / uncompressed / NPOT None settings.",
+      "Lines 96-102 check the imported sprite size and border, unchanged existing GUID, and preserved PNG hash.",
+      "Lines 114-117 convert source L/T/R/B to Unity L/B/R/T."
+    ],
+    "repeatImportActuallyExecuted": false,
+    "repeatImportAssessment": "Static inspection only; equal-content copy is skipped, .meta is retained, and reported settings are reapplied deterministically."
+  },
+  "resourceUsageReview": {
+    "searchScope": "Assets excluding *.meta, manifest.json, and *.png",
+    "searchPattern": "avatar-[1-5]|74120a0f3c3208b4d9bc7f90dcd9afad|f699731771e6e3e4b88fabc68f959b17|2deccf6cc04d4fb49bfa3859c33ce04c|3fa82311678cb964eae0d5f12c859c91|4792fde7d1c71cc4e9e272bbe74477a5|icon-chest",
+    "rgExitCode": 1,
+    "matches": [],
+    "conclusion": "No direct asset-name or GUID reference found for the five demo avatars or icon-chest. The reviewed GuildWindow member renderer displays actual service member IDs, roles, contributions and online status; no demo portrait binding was observed.",
+    "approvedDuplicate": "assets/icon-chest.png and assets/round_badge_pagoda.png share source SHA-256 e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15; the import matches the approved source package."
+  },
+  "notPerformed": [
+    "Unity importer execution or repeated-import runtime test",
+    "Unity rendering or visual layout review",
+    "Runtime business interaction testing"
+  ],
+  "passed": true
+}

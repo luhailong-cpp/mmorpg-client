@@ -65,8 +65,7 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(animator.FrameCount, Is.EqualTo(definition.FrameCount));
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
                     Assert.That(player.GetComponentInChildren<TMPro.TMP_Text>().text, Is.EqualTo(definition.Name));
-                    if (definition.Id == "24_lu_dongbin" || definition.Id == "29_he_xiangu")
-                        CaptureIfRequested(sandbox, definition.Id);
+                    CaptureIfRequested(sandbox, definition.Id);
                 }
                 Assert.That(sandbox.SelectCharacter("24_crane_hermit"), Is.False);
 

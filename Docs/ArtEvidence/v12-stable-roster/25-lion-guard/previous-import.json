@@ -1,0 +1,504 @@
+{
+  "status": "passed",
+  "characters_this_import": [
+    "24_lu_dongbin"
+  ],
+  "source_root": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-stable-body",
+  "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
+  "png_count_this_import": 81,
+  "source_approvals": {
+    "24_lu_dongbin": {
+      "manifest_sha256": "3dbc699023fd7fe6f45304fd91ecea2f088e107d4c727d375dc1b23c31e68c68",
+      "qc_sha256": "836161119318bbd5c12222054204ea5c0dc1b127d1791d279a48baa7096e206c",
+      "validation_sha256": "60d1b7a094514d757a4db33de0a1690189075328b22abf2e023ccb41433af907"
+    }
+  },
+  "files": [
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/E.png",
+      "sha256": "097c68cf31fa891f4c85ee14704aeafbf8458b8e7961b96597d6f77d9d614225"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/N.png",
+      "sha256": "db3fd541ee18ad1bad7afeadd7b1260e72816454d62b67b6f6414244896265bf"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/NE.png",
+      "sha256": "f4a157e26e0d4b14081b3512b2fa631ea95b77157b9eb354432664350c88ef11"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/NW.png",
+      "sha256": "72f1c53c0fb992b9b2180c35a571f2a9db44a8c7862f585045dfa28785cd36b2"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/S.png",
+      "sha256": "6307b366583a14ac90eafa220a3ea099ba46406341c95a943d3a2e016ddac809"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/SE.png",
+      "sha256": "f053be7072c7637040996adc4fd50bf2b7309abae64b1d4503975063dc88f26d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/SW.png",
+      "sha256": "01e7e3a357bc529780b191975f068eb243838b9d22ad118634365dbbd825f718"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/W.png",
+      "sha256": "767a3ece285207644a65354aafd468cde8409e77200c8f7d935d9bd35fd72668"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/portrait.png",
+      "sha256": "e80160d554b0aebc697af0b335ace06f4d03211b4823b447174d64aeffb1931c"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/01.png",
+      "sha256": "f19bf8e1b4b36715be57b60a4e8075563e8b07626f70c4e2a8ac707b5867775a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/02.png",
+      "sha256": "94cdf75dd549f6331c0f095fdcb24a79eb139ff56595e7127f41344c15a2234f"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/03.png",
+      "sha256": "a7814e495f42dfa241fbcb30a6e8114888113588427ee4d9d2ae0b26a1f9d3f6"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/04.png",
+      "sha256": "f6f85a942a52cc8dc8486e6505176a42e0488699fc81388decf58d61490ff509"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/05.png",
+      "sha256": "901e410792df250c33f7cfeda52a078af34852a1efa9b1992beee01c54266752"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/06.png",
+      "sha256": "337aec17052f5771390dbdd142b1bc2ee7d57405f14cd5f8322d7ca18af6dd63"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/07.png",
+      "sha256": "e4669e334376640304f0d116f2e26a447955f221697df2215293c28f717aca12"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/08.png",
+      "sha256": "a082707f2c518de38419239b3e4db87d5050a75facd5c6c318222b7019357015"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/strip.png",
+      "sha256": "59361d3ba1147222dc4f88732b0ab3cb8be88cfbddb535a5e16017ea1a12f509"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/01.png",
+      "sha256": "6f162ec78db634f4342d46d0b6801b644ab7bf3d9ea740adb052f7f6b8adbf7a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/02.png",
+      "sha256": "fc36266394bc493761f186b59183e3cd9db428c039cc38a284a9974087d38eaa"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/03.png",
+      "sha256": "79692491b1145bd4ff22efed9583ea84b59aa25dfcbbcef19e6c414ed2fb9f34"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/04.png",
+      "sha256": "2a2c6e2033899b02edc531e08c4b83d78153ee4bb835dcdb8d96de769dd49459"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/05.png",
+      "sha256": "f340ca318ac7a59641565ab109c3f17fc737db449c4d0d6f115dbcae9fb51b6b"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/06.png",
+      "sha256": "c382b15c86e66a40af54b6d2e0384d813617fddc5fc003490c74d931830d9199"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/07.png",
+      "sha256": "ac27b683b14f95a27a8ba2a5ea25d79f370e3f5e717cf0c0a70fdb4600e3e302"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/08.png",
+      "sha256": "0061aadcb2877a9ba20b17317d539d309349c8488c4f6f1f0596c7b740f6e1b6"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/strip.png",
+      "sha256": "99555f4eeef7cb8cfa95025faffbd691c8648d43dc1d7e075f0b3cf9034e7916"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/01.png",
+      "sha256": "e1d748b68a9a42199507425250449d2054a29932ad46f4800c79f6a1e28e59ac"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/02.png",
+      "sha256": "7a63b0f0a24b01f9d5a6cd06ee71929adf6656aec64e25e741f481f2320aceee"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/03.png",
+      "sha256": "96bb16e59050ab276435a9f393797df8c9feeb9cba1fb3358ebfd078a5fea90e"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/04.png",
+      "sha256": "0ba076d44779b7db8ff2a69772faf5da03ff7fa12c172cb20d2ea3227dcb8326"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/05.png",
+      "sha256": "baa20b0bfc1c98ad7f9e999c364cc0042fce17bf69017acd85f6ed223d70a388"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/06.png",
+      "sha256": "1eb172df43c9dfb88960af76e99cc1447679790d70199e62654099c4c06e5582"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/07.png",
+      "sha256": "2a174ba7d9d142377286e929d9fea976c5fbeb88c69fe47c686484100f792759"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/08.png",
+      "sha256": "de95a0e8000c8a8f4d76d499cfcb35f2ba855db28be96a3745de99d343f408ff"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/strip.png",
+      "sha256": "17d482589a3575dac04111b9c55f0aacc3bb918febbebb8a72620d4c48fef548"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/01.png",
+      "sha256": "a326e56bbfc16c93d05023abfb8ef5c6910ff55a3ec9f96f359deab898fb89f1"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/02.png",
+      "sha256": "19e6eaa7b6516ac233bf3290ab4d9c42dbbcbd7e51051e47eb00c3af9cfd421b"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/03.png",
+      "sha256": "6a8f727d00d5ca9372411f6f549b485883f6d03f4d65238a44d740aca7012f52"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/04.png",
+      "sha256": "5e5addbed995a1ec9fa8311ffbab47c1fb92facdd50bc087776645b8b7635638"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/05.png",
+      "sha256": "2b435783f60791ff8288ddb9e888e134da8a75d47e0a4043165e8a4b94c3de56"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/06.png",
+      "sha256": "8b8407baff0bdbbbd1edcad8ed1b2bb71723b0d09b470b693bac5d204a159592"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/07.png",
+      "sha256": "414cdbec2fa7bbe30c18a5fee9b942dfad44e975e7ded98a0998cf0dac5b7064"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/08.png",
+      "sha256": "b3d7876d762dff843d56bd98e9acec58b117db76ea8269f7f3b1ecad7b2d8d17"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/strip.png",
+      "sha256": "b303c1a8fa748b16b13c133e7bedfe7c63875e27f037e7c50aa75431edf2d31d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/01.png",
+      "sha256": "90844387c36ad124f4d4653ec9bc0d44a366fb31aa270698ff41172c9c9a177e"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/02.png",
+      "sha256": "f45d6495c7fe337f97a292ec60e117580ea5c339f5e4c03ea57ea13b0c677f9b"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/03.png",
+      "sha256": "67375aed11484ab3d26b2a4f19d48c2316542067a6fc7fbe23ee90c0deacad08"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/04.png",
+      "sha256": "56a26c35afde925a07557b88eb8985bee8a7f3871f63e74db903c76c7b0b5620"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/05.png",
+      "sha256": "1ebe68a083cc5e65dabe25fb23d0969d584b7cf35e06b3267425960bcbf4988c"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/06.png",
+      "sha256": "3dbd7586f48c131d95ab91edeb487837e0367c0e0080f738c9b4ee877396e061"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/07.png",
+      "sha256": "43455fa222dba18bc72cf290893489a0a8b98eecd9b0d44693353d79cc3b4ee7"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/08.png",
+      "sha256": "8eb715ad509d4cb428b38c3fef1f229f86f363f59a7941468b287951ae4050c2"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/strip.png",
+      "sha256": "015dec436f3a84ea39c16764f0e33196ab5d19685f2375eb673f552f3bc99a61"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/01.png",
+      "sha256": "0cace2ad042c77a5d00e980b31ae817274d4f8d9daca977e12c89600479d4be8"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/02.png",
+      "sha256": "972ba0c431e7c40ad12b9d6d7b1f74ad3157037797e8143d77fa22f5cbde87b5"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/03.png",
+      "sha256": "2f998d66e538c427b41ee727c1a8de880dfa5bae3d5e9bce8218259a22450451"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/04.png",
+      "sha256": "6f6848da959002530affffec30d82871bb7486b4a2234f6f5de670b7ee725f96"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/05.png",
+      "sha256": "cb6fecc0be194f9fc541127b721c13964f7f4adc25294f479bfae910a9488c8f"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/06.png",
+      "sha256": "a35797226d6d3f75dbbdb35baea90a2dd717887bce512dc69a7eb1230248b012"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/07.png",
+      "sha256": "67da293dc485814db24a07ed8d081acaa843ac6627905a75a7b44c08793d123a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/08.png",
+      "sha256": "478f42645b78475ed4e8ca698ef78ce6bf929394f39281f81b08a51a3ad4c245"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/strip.png",
+      "sha256": "b5ce2734c71018b996e306672fbeaa6dcf47fd9c424b9e1195e626970cef5329"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/01.png",
+      "sha256": "505ad105e4aea636ffa65d1b2484733919715c2f4d7b69026e7141a3fa3bce8a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/02.png",
+      "sha256": "f7d21fd28204c2269ce72599b2f22cfdd3b966d0ab20b665aa77625e237e25b4"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/03.png",
+      "sha256": "8809baa9e80b847599b1d8062638597e5a3c04331140135aaae0b66c06d5b188"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/04.png",
+      "sha256": "65de77e777d446d9f769cea02ecdb42cc294f0d0d6cc38d35b256f6db7c21ae4"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/05.png",
+      "sha256": "08209c7c18de9e8000987013d59a5d83621cd0f79ca16ed881a1c9826d8c5677"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/06.png",
+      "sha256": "be915fa247eaebb3a03f0ee744a72ce72cc75f5e0288203557d7d0f458dddad7"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/07.png",
+      "sha256": "0e3e36a40aac255e6418ca26e916637e517f5d419e25a254fcaa9558cc4a8c5f"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/08.png",
+      "sha256": "828b0f4efac0fa1dac3c59846dff091f7008e4571b3ea7642408552638f07c80"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/strip.png",
+      "sha256": "9a7e6a7783d86fddc2b58e32d44e650bf3672955053c6a6b47237116322958a7"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/01.png",
+      "sha256": "fafa35120ab58fb0127a91a4044917bb7df04b0c00ad7ad09fde8f3630e144f8"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/02.png",
+      "sha256": "922b9cac546bf73359fb58b7b91f128120ec28124aeb9f901f7a926ed70ffb89"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/03.png",
+      "sha256": "703282b8ac7f8beb8189934def179806de0668ef1311b90825eb00a3285f1a7b"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/04.png",
+      "sha256": "1c00c24bc75643ecd900f145a455e79e0398172e885b7cfee269d7bae129a02d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/05.png",
+      "sha256": "0621bb288277b43ec69c437124a319b6fe25e33196734848ab9522381b52b6cd"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/06.png",
+      "sha256": "fef979e3d9e112c79f4addfb20ac1e46ba9a3eb7dcba5ce258d0acffc5ddadec"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/07.png",
+      "sha256": "b432b9f4ccc1123399ea85e086f613c01cb0fad979627a729ed8a2731f762624"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/08.png",
+      "sha256": "7154e836d83aa87ec51168d4bafb5448de81a716fb64cea2293966b4583af893"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/strip.png",
+      "sha256": "606f9e66cc79fbc1310ea8882aa8ec0aad563ca1c7e2710054be4013e5e88046"
+    }
+  ]
+}

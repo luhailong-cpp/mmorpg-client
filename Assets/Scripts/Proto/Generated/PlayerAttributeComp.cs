@@ -26,21 +26,21 @@ public static partial class PlayerAttributeCompReflection {
           "cC5wcm90byKYAQoPQXR0cmlidXRlU2NoZW1lEhEKCXNjaGVtZV9pZBgBIAEo",
           "DRIMCgRuYW1lGAIgASgJEjIKCWFsbG9jYXRlZBgDIAMoCzIfLkF0dHJpYnV0",
           "ZVNjaGVtZS5BbGxvY2F0ZWRFbnRyeRowCg5BbGxvY2F0ZWRFbnRyeRILCgNr",
-          "ZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBIuYCChNQbGF5ZXJBdHRyaWJ1",
+          "ZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBIoYDChNQbGF5ZXJBdHRyaWJ1",
           "dGVDb21wEiEKB3NjaGVtZXMYASADKAsyEC5BdHRyaWJ1dGVTY2hlbWUSGAoQ",
           "YWN0aXZlX3NjaGVtZV9pZBgCIAEoDRIWCg5uZXh0X3NjaGVtZV9pZBgDIAEo",
           "DRIYChBsYXN0X3N3aXRjaF90aW1lGAQgASgEEjsKDGJvbnVzX3BvaW50cxgF",
           "IAMoCzIlLlBsYXllckF0dHJpYnV0ZUNvbXAuQm9udXNQb2ludHNFbnRyeRI7",
           "Cgxib251c192YWx1ZXMYBiADKAsyJS5QbGF5ZXJBdHRyaWJ1dGVDb21wLkJv",
-          "bnVzVmFsdWVzRW50cnkaMgoQQm9udXNQb2ludHNFbnRyeRILCgNrZXkYASAB",
-          "KA0SDQoFdmFsdWUYAiABKA06AjgBGjIKEEJvbnVzVmFsdWVzRW50cnkSCwoD",
-          "a2V5GAEgASgNEg0KBXZhbHVlGAIgASgNOgI4AUISWhBjb21tb24vY29tcG9u",
-          "ZW50YgZwcm90bzM="));
+          "bnVzVmFsdWVzRW50cnkSHgoWYXR0cmlidXRlX3VuaXRfdmVyc2lvbhgHIAEo",
+          "DRoyChBCb251c1BvaW50c0VudHJ5EgsKA2tleRgBIAEoDRINCgV2YWx1ZRgC",
+          "IAEoDToCOAEaMgoQQm9udXNWYWx1ZXNFbnRyeRILCgNrZXkYASABKA0SDQoF",
+          "dmFsdWUYAiABKA06AjgBQhJaEGNvbW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::AttributeScheme), global::AttributeScheme.Parser, new[]{ "SchemeId", "Name", "Allocated" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerAttributeComp), global::PlayerAttributeComp.Parser, new[]{ "Schemes", "ActiveSchemeId", "NextSchemeId", "LastSwitchTime", "BonusPoints", "BonusValues" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerAttributeComp), global::PlayerAttributeComp.Parser, new[]{ "Schemes", "ActiveSchemeId", "NextSchemeId", "LastSwitchTime", "BonusPoints", "BonusValues", "AttributeUnitVersion" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
         }));
   }
   #endregion
@@ -359,6 +359,7 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     lastSwitchTime_ = other.lastSwitchTime_;
     bonusPoints_ = other.bonusPoints_.Clone();
     bonusValues_ = other.bonusValues_.Clone();
+    attributeUnitVersion_ = other.attributeUnitVersion_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -452,6 +453,22 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     get { return bonusValues_; }
   }
 
+  /// <summary>Field number for the "attribute_unit_version" field.</summary>
+  public const int AttributeUnitVersionFieldNumber = 7;
+  private uint attributeUnitVersion_;
+  /// <summary>
+  /// 数值单位版本(2026-09-14 起):0 = 旧存档;1 = 法力单位 ×4。加载时发现旧版本就把当前法力(角色 + 宝宝)换算后盖戳,
+  /// 只做一次。规则与调用约定见 cpp/libs/services/scene/player/system/attribute_unit_migration.h
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint AttributeUnitVersion {
+    get { return attributeUnitVersion_; }
+    set {
+      attributeUnitVersion_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -473,6 +490,7 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     if (LastSwitchTime != other.LastSwitchTime) return false;
     if (!BonusPoints.Equals(other.BonusPoints)) return false;
     if (!BonusValues.Equals(other.BonusValues)) return false;
+    if (AttributeUnitVersion != other.AttributeUnitVersion) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -486,6 +504,7 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     if (LastSwitchTime != 0UL) hash ^= LastSwitchTime.GetHashCode();
     hash ^= BonusPoints.GetHashCode();
     hash ^= BonusValues.GetHashCode();
+    if (AttributeUnitVersion != 0) hash ^= AttributeUnitVersion.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -519,6 +538,10 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     }
     bonusPoints_.WriteTo(output, _map_bonusPoints_codec);
     bonusValues_.WriteTo(output, _map_bonusValues_codec);
+    if (AttributeUnitVersion != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(AttributeUnitVersion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -544,6 +567,10 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     }
     bonusPoints_.WriteTo(ref output, _map_bonusPoints_codec);
     bonusValues_.WriteTo(ref output, _map_bonusValues_codec);
+    if (AttributeUnitVersion != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(AttributeUnitVersion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -566,6 +593,9 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     }
     size += bonusPoints_.CalculateSize(_map_bonusPoints_codec);
     size += bonusValues_.CalculateSize(_map_bonusValues_codec);
+    if (AttributeUnitVersion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AttributeUnitVersion);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -590,6 +620,9 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
     }
     bonusPoints_.MergeFrom(other.bonusPoints_);
     bonusValues_.MergeFrom(other.bonusValues_);
+    if (other.AttributeUnitVersion != 0) {
+      AttributeUnitVersion = other.AttributeUnitVersion;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -633,6 +666,10 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
           bonusValues_.AddEntriesFrom(input, _map_bonusValues_codec);
           break;
         }
+        case 56: {
+          AttributeUnitVersion = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -674,6 +711,10 @@ public sealed partial class PlayerAttributeComp : pb::IMessage<PlayerAttributeCo
         }
         case 50: {
           bonusValues_.AddEntriesFrom(ref input, _map_bonusValues_codec);
+          break;
+        }
+        case 56: {
+          AttributeUnitVersion = input.ReadUInt32();
           break;
         }
       }

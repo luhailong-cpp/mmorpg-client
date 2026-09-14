@@ -16,7 +16,7 @@ using UnityEngine.UI;
 public static class TeamUiVerification
 {
     public static string OutputDirectory { get; set; } = Path.GetFullPath(Path.Combine(
-        Application.dataPath, "../.codex-artifacts/team-ui"));
+        Application.dataPath, "../.codex-artifacts/team-ui-v2"));
 
     private static GameObject _previewCanvas;
     private static TeamWindow _previewWindow;
@@ -53,6 +53,7 @@ public static class TeamUiVerification
             _previewWindow = new TeamWindow(design);
             _previewState = new TeamUiState(() => (float)EditorApplication.timeSinceStartup);
             _previewSnapshot = CreateSnapshot();
+            _previewSnapshot.Applications.RemoveRange(2, _previewSnapshot.Applications.Count - 2);
             _previewState.SetSnapshot(_previewSnapshot);
             _previewState.Changed += RefreshPreview;
             _previewWindow.DecisionRequested += PreviewDecision;
@@ -94,13 +95,9 @@ public static class TeamUiVerification
                 return;
             }
             _previewSnapshot.Applications.Remove(role);
-            if (approve)
-            {
-                _previewSnapshot.Members.Add(role);
-                _previewSnapshot.Approved.Add(role);
-            }
+            if (approve) _previewSnapshot.Members.Add(role);
             _previewState.Complete(token, _previewSnapshot,
-                approve ? "离线预览：已同意示例申请。" : "离线预览：已拒绝示例申请。");
+                approve ? "离线预览：示例道友已加入队伍。" : "离线预览：已拒绝示例申请。");
         };
     }
 
@@ -163,7 +160,7 @@ public static class TeamUiVerification
         Capture(2560, 1080);
         Capture(1920, 1080);
         File.WriteAllText(Path.Combine(OutputDirectory, "capture-status.txt"),
-            "组队窗口离线截图完成：成员、申请、已同意、满员、空列表、服务不可用、处理中。\n" +
+            "组队窗口离线截图完成：成员与申请双栏、独立分页、满员、无申请、服务不可用、处理中。\n" +
             "所有角色和审批结果仅用于 Editor 截图；未创建网络连接、未发送组队请求。\n");
     }
 
@@ -220,7 +217,16 @@ public static class TeamUiVerification
                     foreach (var child in go.GetComponentsInChildren<UnityEngine.Transform>(true)) child.gameObject.layer = 31;
                 Canvas.ForceUpdateCanvases();
                 foreach (var go in scene.GetRootGameObjects())
-                    foreach (var label in go.GetComponentsInChildren<TMP_Text>(true)) label.ForceMeshUpdate(true, true);
+                    foreach (var label in go.GetComponentsInChildren<TMP_Text>(true))
+                    {
+                        label.ForceMeshUpdate(true, true);
+                        if (!label.gameObject.activeInHierarchy || string.IsNullOrWhiteSpace(label.text)) continue;
+                        bool visibleGlyph = false;
+                        for (int character = 0; character < label.textInfo.characterCount; character++)
+                            visibleGlyph |= label.textInfo.characterInfo[character].isVisible;
+                        if (!visibleGlyph)
+                            throw new InvalidOperationException("组队文字未渲染：" + label.name + " / " + label.text);
+                    }
                 Canvas.ForceUpdateCanvases();
                 camera.Render();
                 RenderTexture.active = target;
@@ -229,29 +235,58 @@ public static class TeamUiVerification
                 File.WriteAllBytes(Path.Combine(OutputDirectory, name + "_" + width + "x" + height + ".png"), pixels.EncodeToPNG());
             }
 
-            void Display(TeamSnapshot snapshot, TeamPage page, string name)
+            void Display(TeamSnapshot snapshot, string name)
             {
+                window.ResetSession();
                 state.SetSnapshot(snapshot);
                 window.SetState(state);
-                window.Show(page);
+                window.Show();
                 Shoot(name);
             }
 
+            void ClickPage(string buttonName)
+            {
+                foreach (var button in canvasObject.GetComponentsInChildren<Button>())
+                    if (button.name == buttonName && button.interactable)
+                    {
+                        button.onClick.Invoke();
+                        return;
+                    }
+                throw new InvalidOperationException("截图分页按钮不可用：" + buttonName);
+            }
+
+            var few = CreateSnapshot();
+            few.Applications.RemoveRange(2, few.Applications.Count - 2);
+            Display(few, "dual-lists-two-applicants");
+
             var populated = CreateSnapshot();
-            Display(populated, TeamPage.Members, "members");
-            Display(populated, TeamPage.Applications, "applications");
-            Display(populated, TeamPage.Approved, "approved");
+            Display(populated, "dual-lists");
+            ClickPage("ApplicationNextPage");
+            Shoot("application-page-2");
 
             var full = CreateSnapshot();
             full.Members.Add(Role(14, "云间客", 68, 3, 2));
             full.Members.Add(Role(15, "听雨", 64, 4, 1));
-            Display(full, TeamPage.Members, "full-members");
-            Display(full, TeamPage.Applications, "full-applications");
+            Display(full, "full-team");
+
+            var multipage = CreateSnapshot();
+            multipage.Capacity = 6;
+            multipage.Members.Add(Role(14, "云间客", 68, 3, 2));
+            multipage.Members.Add(Role(15, "听雨", 64, 4, 1));
+            multipage.Members.Add(Role(16, "第六位同行道友", 63, 2, 2));
+            multipage.Applications.Add(Role(26, "南风", 63, 2, 1));
+            multipage.Applications.Add(Role(27, "星河", 62, 4, 2));
+            multipage.Applications.Add(Role(28, "青山", 61, 1, 1));
+            multipage.Applications.Add(Role(29, "望月", 60, 3, 1));
+            Display(multipage, "dual-lists-multipage");
+            ClickPage("MemberNextPage");
+            Shoot("member-page-2");
+            ClickPage("ApplicationNextPage");
+            Shoot("independent-pages-2");
 
             var empty = new TeamSnapshot { TeamId = 1001, LeaderId = 11, LocalPlayerId = 11, Capacity = 5 };
             empty.Members.Add(Role(11, "清风", 72, 1, 1));
-            Display(empty, TeamPage.Applications, "empty-applications");
-            Display(empty, TeamPage.Approved, "empty-approved");
+            Display(empty, "empty-applications");
 
             state.Reset(11);
             state.SetUnavailable("组队服务暂未开放，当前无法获取申请列表。");
@@ -284,14 +319,13 @@ public static class TeamUiVerification
         snapshot.Members.Add(Role(11, "清风", 72, 1, 1));
         snapshot.Members.Add(Role(12, "桂月", 70, 4, 2));
         snapshot.Members.Add(Role(13, "长街听笛", 69, 2, 1));
+        snapshot.Members[2].IsOnline = false;
         snapshot.Applications.Add(Role(21, "灯火阑珊", 68, 1, 2));
         snapshot.Applications.Add(Role(22, "月白", 67, 2, 2));
         snapshot.Applications.Add(Role(23, "山海故人", 66, 3, 1));
         snapshot.Applications.Add(Role(24, "竹影", 65, 3, 2));
         snapshot.Applications.Add(Role(25, "踏歌行", 64, 4, 1));
-        snapshot.Approved.Add(Role(31, "雨落长安", 71, 1, 2));
-        snapshot.Approved.Add(Role(32, "南风知我意", 70, 3, 1));
-        snapshot.Approved.Add(Role(33, "星河", 69, 2, 2));
+
         return snapshot;
     }
 

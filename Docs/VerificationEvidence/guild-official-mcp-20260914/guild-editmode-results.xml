@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="28" result="Passed" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 09:27:52Z" end-time="2026-09-14 09:27:54Z" duration="1.6462715">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="556" result="Passed" start-time="2026-09-14 09:27:52Z" end-time="2026-09-14 09:27:54Z" duration="1.646272" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1332" name="MmorpgClient.Tests.EditMode.Guild.dll" fullname="E:/work/tmp/guild-mcp-verify-20260914/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Guild.dll" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:54Z" duration="1.569789" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="66076" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1333" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:54Z" duration="1.567188" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1334" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:54Z" duration="1.565931" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1335" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:54Z" duration="1.564844" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1336" name="Tianyong" fullname="MmorpgClient.Tests.EditMode.Tianyong" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:54Z" duration="1.563813" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1300" name="GuildClientTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.770273" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="ParameterizedMethod" id="1310" name="AnnouncementPermissionMatchesAuthoritativeServerRoles" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.AnnouncementPermissionMatchesAuthoritativeServerRoles" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.225215" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1306" name="AnnouncementPermissionMatchesAuthoritativeServerRoles(uint.MinValue,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.AnnouncementPermissionMatchesAuthoritativeServerRoles(uint.MinValue,False)" methodname="AnnouncementPermissionMatchesAuthoritativeServerRoles" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="82897717" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.178984" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1307" name="AnnouncementPermissionMatchesAuthoritativeServerRoles(1,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.AnnouncementPermissionMatchesAuthoritativeServerRoles(1,True)" methodname="AnnouncementPermissionMatchesAuthoritativeServerRoles" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1284300134" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.003783" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1308" name="AnnouncementPermissionMatchesAuthoritativeServerRoles(2,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.AnnouncementPermissionMatchesAuthoritativeServerRoles(2,False)" methodname="AnnouncementPermissionMatchesAuthoritativeServerRoles" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="961378592" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.001070" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1309" name="AnnouncementPermissionMatchesAuthoritativeServerRoles(3,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.AnnouncementPermissionMatchesAuthoritativeServerRoles(3,True)" methodname="AnnouncementPermissionMatchesAuthoritativeServerRoles" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1857475166" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.000816" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1312" name="DisconnectedCallIsNotSent" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.DisconnectedCallIsNotSent" methodname="DisconnectedCallIsNotSent" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1801546390" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.006599" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1305" name="DuplicateJoinIsBlockedAndDoesNotOptimisticallySetMembership" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.DuplicateJoinIsBlockedAndDoesNotOptimisticallySetMembership" methodname="DuplicateJoinIsBlockedAndDoesNotOptimisticallySetMembership" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="993659057" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.043447" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1311" name="FailedAnnouncementDoesNotOverwriteTheSnapshot" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.FailedAnnouncementDoesNotOverwriteTheSnapshot" methodname="FailedAnnouncementDoesNotOverwriteTheSnapshot" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1090664198" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.008062" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1302" name="LateSnapshotAfterResetCannotRepopulateTheSession" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.LateSnapshotAfterResetCannotRepopulateTheSession" methodname="LateSnapshotAfterResetCannotRepopulateTheSession" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="2084486426" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.002326" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1313" name="LeaderCannotUseLeaveAndMemberCannotDisband" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.LeaderCannotUseLeaveAndMemberCannotDisband" methodname="LeaderCannotUseLeaveAndMemberCannotDisband" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1677983343" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.002167" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1301" name="NotInGuildIsLoadedEmptyState" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.NotInGuildIsLoadedEmptyState" methodname="NotInGuildIsLoadedEmptyState" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1530066437" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.001422" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1317" name="OldConnectionCallbackCannotApplyBeforeNextUiObservation" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.OldConnectionCallbackCannotApplyBeforeNextUiObservation" methodname="OldConnectionCallbackCannotApplyBeforeNextUiObservation" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="271554924" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.001301" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1315" name="ResetWhilePendingDoesNotReuseAZeroIdResponseSlot" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.ResetWhilePendingDoesNotReuseAZeroIdResponseSlot" methodname="ResetWhilePendingDoesNotReuseAZeroIdResponseSlot" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="2056826020" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.000741" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1316" name="SilentGameClientGateReplacementClearsQuarantineWithoutDisconnectNotification" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.SilentGameClientGateReplacementClearsQuarantineWithoutDisconnectNotification" methodname="SilentGameClientGateReplacementClearsQuarantineWithoutDisconnectNotification" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="24164419" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.407814" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1303" name="SnapshotFromAnotherPlayerIsRejected" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.SnapshotFromAnotherPlayerIsRejected" methodname="SnapshotFromAnotherPlayerIsRejected" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1158094069" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.000501" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1314" name="TransportFailurePreservesDataButBlocksRetryUntilRealDisconnect" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.TransportFailurePreservesDataButBlocksRetryUntilRealDisconnect" methodname="TransportFailurePreservesDataButBlocksRetryUntilRealDisconnect" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="480708839" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.004242" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1304" name="UnconfirmedMembershipCannotSendJoin" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests.UnconfirmedMembershipCannotSendJoin" methodname="UnconfirmedMembershipCannotSendJoin" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildClientTests" runstate="Runnable" seed="1457148240" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:53Z" duration="0.000588" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1318" name="GuildWindowTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:54Z" duration="0.789933" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1326" name="DestructiveActionRequiresAnExplicitConfirmation" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.DestructiveActionRequiresAnExplicitConfirmation" methodname="DestructiveActionRequiresAnExplicitConfirmation" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1525757618" result="Passed" start-time="2026-09-14 09:27:53Z" end-time="2026-09-14 09:27:54Z" duration="0.283525" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1325" name="EscapeBackClosesConfirmationBeforeClosingTheWindow" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.EscapeBackClosesConfirmationBeforeClosingTheWindow" methodname="EscapeBackClosesConfirmationBeforeClosingTheWindow" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="541648209" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.023141" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1330" name="GuildArtImportsAsRealSpritesWithTheIntendedInputBorder" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.GuildArtImportsAsRealSpritesWithTheIntendedInputBorder" methodname="GuildArtImportsAsRealSpritesWithTheIntendedInputBorder" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="517607118" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.062142" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1324" name="MemberPaginationAndOnlineFilterConsumeTheRealSnapshot" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.MemberPaginationAndOnlineFilterConsumeTheRealSnapshot" methodname="MemberPaginationAndOnlineFilterConsumeTheRealSnapshot" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1948318719" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.103742" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1329" name="ModalDisablesBackgroundControlsAndRestoresThemOnBack" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.ModalDisablesBackgroundControlsAndRestoresThemOnBack" methodname="ModalDisablesBackgroundControlsAndRestoresThemOnBack" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1347916197" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.022608" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1323" name="OverviewStatisticsUpdateOnlyFromTheGuildSnapshot" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.OverviewStatisticsUpdateOnlyFromTheGuildSnapshot" methodname="OverviewStatisticsUpdateOnlyFromTheGuildSnapshot" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1664366484" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.041323" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1328" name="RecoveryDisablesRequestsButKeepsReadOnlyNavigationAvailable" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.RecoveryDisablesRequestsButKeepsReadOnlyNavigationAvailable" methodname="RecoveryDisablesRequestsButKeepsReadOnlyNavigationAvailable" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1942036829" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.051038" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1331" name="ServerStringsAreNotRichText" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.ServerStringsAreNotRichText" methodname="ServerStringsAreNotRichText" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1494518266" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.028484" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1327" name="SessionResetClearsMembersAndClosesModal" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.SessionResetClearsMembersAndClosesModal" methodname="SessionResetClearsMembersAndClosesModal" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1004729113" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.036237" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1322" name="UnsupportedActionsAreClearlyDisabled" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.UnsupportedActionsAreClearlyDisabled" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.102073" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1319" name="UnsupportedActionsAreClearlyDisabled(Donate)" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.UnsupportedActionsAreClearlyDisabled(Donate)" methodname="UnsupportedActionsAreClearlyDisabled" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="83407635" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.038567" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1320" name="UnsupportedActionsAreClearlyDisabled(Activities)" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.UnsupportedActionsAreClearlyDisabled(Activities)" methodname="UnsupportedActionsAreClearlyDisabled" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1941022769" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.019313" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1321" name="UnsupportedActionsAreClearlyDisabled(Shop)" fullname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests.UnsupportedActionsAreClearlyDisabled(Shop)" methodname="UnsupportedActionsAreClearlyDisabled" classname="MmorpgClient.Tests.EditMode.Tianyong.GuildWindowTests" runstate="Runnable" seed="1805361849" result="Passed" start-time="2026-09-14 09:27:54Z" end-time="2026-09-14 09:27:54Z" duration="0.025650" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

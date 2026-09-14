@@ -1,0 +1,14 @@
+{
+  "version": 12,
+  "characterId": "23_lantern_courier",
+  "frameCount": 8,
+  "frameDurationMs": 60,
+  "dedicatedIdle": true,
+  "contactFrame": 0,
+  "status": "passed",
+  "visualReview": "passed",
+  "manifest_sha256": "385c3158106d5e5a9b439d2015a714a0e13c6c24c90dd9d801699f08c7bd72b6",
+  "qc_sha256": "56e98410dbd5e35bbac7d4fb01b5e163630ed5d2361df35a70f642c699b9eb10",
+  "validation_sha256": "0161eb28308449a5f00ab4d3d71b7257b54f119d31c5f6a4a9e190648cc50e8c",
+  "alignmentVersion": 3
+}

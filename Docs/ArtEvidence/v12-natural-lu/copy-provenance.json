@@ -1,0 +1,48 @@
+{
+  "validationMode": "independent project copy; original Unity editor and dirty scenes preserved",
+  "sourceProject": "E:\\work\\mmorpg-client",
+  "validationProject": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "copiedUtc": "2026-09-14T10:28:03.1902152Z",
+  "copiedFolders": [
+    {
+      "folder": "Assets",
+      "sourceFiles": 3767,
+      "copiedFiles": 3767,
+      "sourceBytes": 598640527.0,
+      "copiedBytes": 598640527.0
+    },
+    {
+      "folder": "Packages",
+      "sourceFiles": 2,
+      "copiedFiles": 2,
+      "sourceBytes": 9869.0,
+      "copiedBytes": 9869.0
+    },
+    {
+      "folder": "ProjectSettings",
+      "sourceFiles": 26,
+      "copiedFiles": 26,
+      "sourceBytes": 58713.0,
+      "copiedBytes": 58713.0
+    }
+  ],
+  "excludedDirectories": [
+    ".git",
+    "Library",
+    "Temp",
+    "Logs",
+    "UserSettings"
+  ],
+  "copyMode": "regular file copies; no hard links or reparse points",
+  "localPackages": [
+    {
+      "reference": "file:C:/Users/luyua/Downloads/com.unity.ai.assistant-2.17.0-pre.1.tgz",
+      "package": "com.unity.ai.assistant",
+      "change": "none: existing absolute path verified and retained read-only",
+      "sha256": "e854fcdd81d34762dc439817dbac929001af18f2e1fd7829011ec0f6dfb6a7b4"
+    }
+  ],
+  "unityExecutable": "C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Unity.exe",
+  "testsStarted": false,
+  "pending": "Wait for final 24 artwork publication, resync the 81 PNGs and appearance approval, then verify equality of every relevant SHA256 before batchmode tests."
+}

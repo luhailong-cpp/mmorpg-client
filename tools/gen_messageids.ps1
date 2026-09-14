@@ -31,6 +31,17 @@ if (-not (Test-Path $source)) { throw "message_id.txt not found under $ProtoRoot
 # This is the contract surface the Unity client speaks. Keep it small and
 # audited; new RPCs require an explicit entry here.
 $whitelist = @{
+    # 帮会：只公开玩家读取与成员操作；评分写入属于服务端。
+    "GuildServiceCreateGuild" = "CreateGuild"
+    "GuildServiceGetGuild" = "GetGuild"
+    "GuildServiceGetPlayerGuild" = "GetPlayerGuild"
+    "GuildServiceJoinGuild" = "JoinGuild"
+    "GuildServiceLeaveGuild" = "LeaveGuild"
+    "GuildServiceDisbandGuild" = "DisbandGuild"
+    "GuildServiceSetAnnouncement" = "SetGuildAnnouncement"
+    "GuildServiceGetGuildRank" = "GetGuildRank"
+    "GuildServiceGetGuildRankByGuild" = "GetGuildRankByGuild"
+
     "ClientPlayerLoginLogin"                       = "Login"
     "ClientPlayerLoginCreatePlayer"                = "CreatePlayer"
     "ClientPlayerLoginEnterGame"                   = "EnterGame"

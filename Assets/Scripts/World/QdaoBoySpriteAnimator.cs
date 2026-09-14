@@ -16,7 +16,7 @@ namespace MmorpgClient.World
     [DisallowMultipleComponent]
     public sealed class QdaoBoySpriteAnimator : MonoBehaviour
     {
-        /// <summary>Readable locomotion state (Settling = stopped, finishing the run before the dedicated idle).</summary>
+        /// <summary>Readable locomotion state (Settling is the legacy stop handoff; V12 stops directly on its authored idle).</summary>
         public enum LocomotionState
         {
             Idle,
@@ -432,8 +432,10 @@ namespace MmorpgClient.World
                 // Use actual travel, not the controller's smoothed root yaw.
                 // The latter can lag a direction change by several frames and
                 // briefly select a strip whose feet disagree with the motion.
-                // A reversal switches the strip at once but keeps the cycle
-                // phase, so the feet carry on instead of restarting.
+                // A reversal switches the strip at once and keeps its frame phase.
+                // TODO: unify anatomical left/right phases across the artwork
+                // before mapping phases between directions; frame indices alone
+                // do not guarantee that the same leg remains planted.
                 var movementYaw = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
                 var relativeYaw = Mathf.Repeat(movementYaw - cameraYaw, 360f);
                 _lastDirection = SelectDirection(relativeYaw, _lastDirection);
@@ -445,7 +447,15 @@ namespace MmorpgClient.World
             }
             else
             {
-                if (State == LocomotionState.Run)
+                // V12 has an authored standing pose for every direction. Once
+                // travel stops, continuing the walk in place would slide the
+                // feet for up to a whole cycle before that pose appears.
+                if (_frames.Version == 12 && _frames.DedicatedIdle && speed < WalkSpeedThreshold)
+                {
+                    State = LocomotionState.Idle;
+                    _settleBudget = 0f;
+                }
+                else if (State == LocomotionState.Run)
                 {
                     State = LocomotionState.Settling;
                     _settleBudget = _frames.Count; // at most one lap
@@ -488,7 +498,7 @@ namespace MmorpgClient.World
         /// <summary>
         /// Plays the cycle on at run cadence until the displayed frame is the
         /// direction's contact phase, then holds it (V11) or shows its authored
-        /// idle (V12/legacy). V11 and V12 both finish within 0.48 seconds at reference speed.
+        /// idle (legacy or V11 with standing textures). V12 uses its idle immediately when travel stops.
         /// </summary>
         private void Settle(float deltaTime)
         {

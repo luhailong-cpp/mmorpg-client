@@ -72,7 +72,7 @@ public static partial class BattleDataReflection {
           "ASgEEhUKDWl0ZW1fdGFibGVfaWQYCiABKA0SEAoIZ3JvdXBfaWQYCyABKA0S",
           "EQoJaGl0X2luZGV4GAwgASgNEhkKEXRhcmdldF9tYW5hX2FmdGVyGA0gASgE",
           "Ij8KE0JhdHRsZU1vbnN0ZXJEZWZlYXQSGQoRbW9uc3Rlcl9jb25maWdfaWQY",
-          "ASABKA0SDQoFY291bnQYAiABKA0inAMKFEJhdHRsZVNldHRsZW1lbnREYXRh",
+          "ASABKA0SDQoFY291bnQYAiABKA0ivAMKFEJhdHRsZVNldHRsZW1lbnREYXRh",
           "EhEKCWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQSIAoHb3V0",
           "Y29tZRgDIAEoDjIPLmVCYXR0bGVPdXRjb21lEhkKEXBsYXllcl90ZWFtX2lu",
           "ZGV4GAQgASgNEg4KBmhlYWx0aBgFIAEoBBIMCgRtYW5hGAYgASgEEhAKCGV4",
@@ -81,28 +81,29 @@ public static partial class BattleDataReflection {
           "CiADKAsyEC5CYXR0bGVJdGVtRW50cnkSDwoHaXNfZGVhZBgLIAEoCBIMCgRm",
           "bGVkGAwgASgIEhQKDHRvdGFsX3JvdW5kcxgNIAEoDRImCgRwZXRzGA4gAygL",
           "MhguQmF0dGxlUGV0U2V0dGxlbWVudERhdGESLwoRZGVmZWF0ZWRfbW9uc3Rl",
-          "cnMYDyADKAsyFC5CYXR0bGVNb25zdGVyRGVmZWF0IlgKF0JhdHRsZVBldFNl",
-          "dHRsZW1lbnREYXRhEg4KBnBldF9pZBgBIAEoBBIOCgZoZWFsdGgYAiABKAQS",
-          "DAoEbWFuYRgDIAEoBBIPCgdpc19kZWFkGAQgASgIKoYBChBlQmF0dGxlQWN0",
-          "b3JUeXBlEhoKFkJBVFRMRV9BQ1RPUl9UWVBFX05PTkUQABIcChhCQVRUTEVf",
-          "QUNUT1JfVFlQRV9QTEFZRVIQARIdChlCQVRUTEVfQUNUT1JfVFlQRV9NT05T",
-          "VEVSEAISGQoVQkFUVExFX0FDVE9SX1RZUEVfUEVUEAMqqAEKEWVCYXR0bGVB",
-          "Y3Rpb25UeXBlEhYKEkJBVFRMRV9BQ1RJT05fTk9ORRAAEhgKFEJBVFRMRV9B",
-          "Q1RJT05fQVRUQUNLEAESFwoTQkFUVExFX0FDVElPTl9TS0lMTBACEhgKFEJB",
-          "VFRMRV9BQ1RJT05fREVGRU5EEAMSFgoSQkFUVExFX0FDVElPTl9JVEVNEAQS",
-          "FgoSQkFUVExFX0FDVElPTl9GTEVFEAUqhAMKEGVCYXR0bGVFdmVudFR5cGUS",
-          "FQoRQkFUVExFX0VWRU5UX05PTkUQABIXChNCQVRUTEVfRVZFTlRfQVRUQUNL",
-          "EAESFgoSQkFUVExFX0VWRU5UX1NLSUxMEAISFwoTQkFUVExFX0VWRU5UX0RB",
-          "TUFHRRADEhUKEUJBVFRMRV9FVkVOVF9IRUFMEAQSGQoVQkFUVExFX0VWRU5U",
-          "X0JVRkZfQUREEAUSHAoYQkFUVExFX0VWRU5UX0JVRkZfUkVNT1ZFEAYSGgoW",
-          "QkFUVExFX0VWRU5UX0JVRkZfVElDSxAHEhYKEkJBVFRMRV9FVkVOVF9ERUFU",
-          "SBAIEhcKE0JBVFRMRV9FVkVOVF9ERUZFTkQQCRIVChFCQVRUTEVfRVZFTlRf",
-          "SVRFTRAKEhUKEUJBVFRMRV9FVkVOVF9GTEVFEAsSFQoRQkFUVExFX0VWRU5U",
-          "X01JU1MQDBIWChJCQVRUTEVfRVZFTlRfQkxPQ0sQDRIVChFCQVRUTEVfRVZF",
-          "TlRfTUFOQRAOKoMBCg5lQmF0dGxlT3V0Y29tZRIaChZCQVRUTEVfT1VUQ09N",
-          "RV9PTkdPSU5HEAASHQoZQkFUVExFX09VVENPTUVfU0lERV9BX1dJThABEh0K",
-          "GUJBVFRMRV9PVVRDT01FX1NJREVfQl9XSU4QAhIXChNCQVRUTEVfT1VUQ09N",
-          "RV9EUkFXEANCCFoGYmF0dGxlYgZwcm90bzM="));
+          "cnMYDyADKAsyFC5CYXR0bGVNb25zdGVyRGVmZWF0Eh4KFmF0dHJpYnV0ZV91",
+          "bml0X3ZlcnNpb24YECABKA0iWAoXQmF0dGxlUGV0U2V0dGxlbWVudERhdGES",
+          "DgoGcGV0X2lkGAEgASgEEg4KBmhlYWx0aBgCIAEoBBIMCgRtYW5hGAMgASgE",
+          "Eg8KB2lzX2RlYWQYBCABKAgqhgEKEGVCYXR0bGVBY3RvclR5cGUSGgoWQkFU",
+          "VExFX0FDVE9SX1RZUEVfTk9ORRAAEhwKGEJBVFRMRV9BQ1RPUl9UWVBFX1BM",
+          "QVlFUhABEh0KGUJBVFRMRV9BQ1RPUl9UWVBFX01PTlNURVIQAhIZChVCQVRU",
+          "TEVfQUNUT1JfVFlQRV9QRVQQAyqoAQoRZUJhdHRsZUFjdGlvblR5cGUSFgoS",
+          "QkFUVExFX0FDVElPTl9OT05FEAASGAoUQkFUVExFX0FDVElPTl9BVFRBQ0sQ",
+          "ARIXChNCQVRUTEVfQUNUSU9OX1NLSUxMEAISGAoUQkFUVExFX0FDVElPTl9E",
+          "RUZFTkQQAxIWChJCQVRUTEVfQUNUSU9OX0lURU0QBBIWChJCQVRUTEVfQUNU",
+          "SU9OX0ZMRUUQBSqEAwoQZUJhdHRsZUV2ZW50VHlwZRIVChFCQVRUTEVfRVZF",
+          "TlRfTk9ORRAAEhcKE0JBVFRMRV9FVkVOVF9BVFRBQ0sQARIWChJCQVRUTEVf",
+          "RVZFTlRfU0tJTEwQAhIXChNCQVRUTEVfRVZFTlRfREFNQUdFEAMSFQoRQkFU",
+          "VExFX0VWRU5UX0hFQUwQBBIZChVCQVRUTEVfRVZFTlRfQlVGRl9BREQQBRIc",
+          "ChhCQVRUTEVfRVZFTlRfQlVGRl9SRU1PVkUQBhIaChZCQVRUTEVfRVZFTlRf",
+          "QlVGRl9USUNLEAcSFgoSQkFUVExFX0VWRU5UX0RFQVRIEAgSFwoTQkFUVExF",
+          "X0VWRU5UX0RFRkVORBAJEhUKEUJBVFRMRV9FVkVOVF9JVEVNEAoSFQoRQkFU",
+          "VExFX0VWRU5UX0ZMRUUQCxIVChFCQVRUTEVfRVZFTlRfTUlTUxAMEhYKEkJB",
+          "VFRMRV9FVkVOVF9CTE9DSxANEhUKEUJBVFRMRV9FVkVOVF9NQU5BEA4qgwEK",
+          "DmVCYXR0bGVPdXRjb21lEhoKFkJBVFRMRV9PVVRDT01FX09OR09JTkcQABId",
+          "ChlCQVRUTEVfT1VUQ09NRV9TSURFX0FfV0lOEAESHQoZQkFUVExFX09VVENP",
+          "TUVfU0lERV9CX1dJThACEhcKE0JBVFRMRV9PVVRDT01FX0RSQVcQA0IIWgZi",
+          "YXR0bGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleOutcome), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -115,7 +116,7 @@ public static partial class BattleDataReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleAction), global::BattleAction.Parser, new[]{ "ActionType", "SkillTableId", "TargetId", "ItemTableId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleEventItem), global::BattleEventItem.Parser, new[]{ "EventType", "SourceId", "TargetId", "SkillTableId", "BuffTableId", "Value", "IsCritical", "Success", "TargetHealthAfter", "ItemTableId", "GroupId", "HitIndex", "TargetManaAfter" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleMonsterDefeat), global::BattleMonsterDefeat.Parser, new[]{ "MonsterConfigId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters", "AttributeUnitVersion" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSettlementData), global::BattlePetSettlementData.Parser, new[]{ "PetId", "Health", "Mana", "IsDead" }, null, null, null, null)
         }));
   }
@@ -4891,6 +4892,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     totalRounds_ = other.totalRounds_;
     pets_ = other.pets_.Clone();
     defeatedMonsters_ = other.defeatedMonsters_.Clone();
+    attributeUnitVersion_ = other.attributeUnitVersion_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5091,6 +5093,23 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     get { return defeatedMonsters_; }
   }
 
+  /// <summary>Field number for the "attribute_unit_version" field.</summary>
+  public const int AttributeUnitVersionFieldNumber = 16;
+  private uint attributeUnitVersion_;
+  /// <summary>
+  /// 数值单位版本(2026-09-14 起,取值见 turn_battle_constants.h 的 kAttributeUnitVersion;0 = 旧 battle 二进制产出)。
+  /// mana 与 pets[].mana 是绝对值:离线挂起(Redis 7 天)、部署时在途、发件箱重投的旧结算若原样写回,
+  /// 会把登录时已 ×4 迁移的法力永久写回旧单位。scene 应用时按本字段换算到当前单位。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint AttributeUnitVersion {
+    get { return attributeUnitVersion_; }
+    set {
+      attributeUnitVersion_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -5121,6 +5140,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (TotalRounds != other.TotalRounds) return false;
     if(!pets_.Equals(other.pets_)) return false;
     if(!defeatedMonsters_.Equals(other.defeatedMonsters_)) return false;
+    if (AttributeUnitVersion != other.AttributeUnitVersion) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -5143,6 +5163,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (TotalRounds != 0) hash ^= TotalRounds.GetHashCode();
     hash ^= pets_.GetHashCode();
     hash ^= defeatedMonsters_.GetHashCode();
+    if (AttributeUnitVersion != 0) hash ^= AttributeUnitVersion.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -5209,6 +5230,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     pets_.WriteTo(output, _repeated_pets_codec);
     defeatedMonsters_.WriteTo(output, _repeated_defeatedMonsters_codec);
+    if (AttributeUnitVersion != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(AttributeUnitVersion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -5267,6 +5292,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     pets_.WriteTo(ref output, _repeated_pets_codec);
     defeatedMonsters_.WriteTo(ref output, _repeated_defeatedMonsters_codec);
+    if (AttributeUnitVersion != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(AttributeUnitVersion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -5314,6 +5343,9 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     size += pets_.CalculateSize(_repeated_pets_codec);
     size += defeatedMonsters_.CalculateSize(_repeated_defeatedMonsters_codec);
+    if (AttributeUnitVersion != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(AttributeUnitVersion);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -5363,6 +5395,9 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     pets_.Add(other.pets_);
     defeatedMonsters_.Add(other.defeatedMonsters_);
+    if (other.AttributeUnitVersion != 0) {
+      AttributeUnitVersion = other.AttributeUnitVersion;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -5442,6 +5477,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
           defeatedMonsters_.AddEntriesFrom(input, _repeated_defeatedMonsters_codec);
           break;
         }
+        case 128: {
+          AttributeUnitVersion = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -5519,6 +5558,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
         }
         case 122: {
           defeatedMonsters_.AddEntriesFrom(ref input, _repeated_defeatedMonsters_codec);
+          break;
+        }
+        case 128: {
+          AttributeUnitVersion = input.ReadUInt32();
           break;
         }
       }

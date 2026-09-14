@@ -1,0 +1,1866 @@
+{
+  "validationMode": "independent project copy",
+  "sourceProject": "E:\\work\\mmorpg-client",
+  "validationProject": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "verifiedUtc": "2026-09-14T10:41:15.2685989Z",
+  "characterId": "24_lu_dongbin",
+  "alignmentVersion": 3,
+  "pngCount": 81,
+  "appearance": {
+    "version": 12,
+    "characterId": "24_lu_dongbin",
+    "frameCount": 8,
+    "frameDurationMs": 60,
+    "dedicatedIdle": true,
+    "contactFrame": 0,
+    "status": "passed",
+    "visualReview": "passed",
+    "manifest_sha256": "3dbc699023fd7fe6f45304fd91ecea2f088e107d4c727d375dc1b23c31e68c68",
+    "qc_sha256": "836161119318bbd5c12222054204ea5c0dc1b127d1791d279a48baa7096e206c",
+    "validation_sha256": "60d1b7a094514d757a4db33de0a1690189075328b22abf2e023ccb41433af907",
+    "alignmentVersion": 3
+  },
+  "files": [
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/portrait.png",
+      "formalSha256": "e80160d554b0aebc697af0b335ace06f4d03211b4823b447174d64aeffb1931c",
+      "validationSha256": "e80160d554b0aebc697af0b335ace06f4d03211b4823b447174d64aeffb1931c"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/E.png",
+      "formalSha256": "097c68cf31fa891f4c85ee14704aeafbf8458b8e7961b96597d6f77d9d614225",
+      "validationSha256": "097c68cf31fa891f4c85ee14704aeafbf8458b8e7961b96597d6f77d9d614225"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/N.png",
+      "formalSha256": "db3fd541ee18ad1bad7afeadd7b1260e72816454d62b67b6f6414244896265bf",
+      "validationSha256": "db3fd541ee18ad1bad7afeadd7b1260e72816454d62b67b6f6414244896265bf"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/NE.png",
+      "formalSha256": "f4a157e26e0d4b14081b3512b2fa631ea95b77157b9eb354432664350c88ef11",
+      "validationSha256": "f4a157e26e0d4b14081b3512b2fa631ea95b77157b9eb354432664350c88ef11"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/NW.png",
+      "formalSha256": "72f1c53c0fb992b9b2180c35a571f2a9db44a8c7862f585045dfa28785cd36b2",
+      "validationSha256": "72f1c53c0fb992b9b2180c35a571f2a9db44a8c7862f585045dfa28785cd36b2"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/S.png",
+      "formalSha256": "6307b366583a14ac90eafa220a3ea099ba46406341c95a943d3a2e016ddac809",
+      "validationSha256": "6307b366583a14ac90eafa220a3ea099ba46406341c95a943d3a2e016ddac809"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/SE.png",
+      "formalSha256": "f053be7072c7637040996adc4fd50bf2b7309abae64b1d4503975063dc88f26d",
+      "validationSha256": "f053be7072c7637040996adc4fd50bf2b7309abae64b1d4503975063dc88f26d"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/SW.png",
+      "formalSha256": "01e7e3a357bc529780b191975f068eb243838b9d22ad118634365dbbd825f718",
+      "validationSha256": "01e7e3a357bc529780b191975f068eb243838b9d22ad118634365dbbd825f718"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/W.png",
+      "formalSha256": "767a3ece285207644a65354aafd468cde8409e77200c8f7d935d9bd35fd72668",
+      "validationSha256": "767a3ece285207644a65354aafd468cde8409e77200c8f7d935d9bd35fd72668"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/01.png",
+      "formalSha256": "f19bf8e1b4b36715be57b60a4e8075563e8b07626f70c4e2a8ac707b5867775a",
+      "validationSha256": "f19bf8e1b4b36715be57b60a4e8075563e8b07626f70c4e2a8ac707b5867775a"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/02.png",
+      "formalSha256": "94cdf75dd549f6331c0f095fdcb24a79eb139ff56595e7127f41344c15a2234f",
+      "validationSha256": "94cdf75dd549f6331c0f095fdcb24a79eb139ff56595e7127f41344c15a2234f"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/03.png",
+      "formalSha256": "a7814e495f42dfa241fbcb30a6e8114888113588427ee4d9d2ae0b26a1f9d3f6",
+      "validationSha256": "a7814e495f42dfa241fbcb30a6e8114888113588427ee4d9d2ae0b26a1f9d3f6"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/04.png",
+      "formalSha256": "f6f85a942a52cc8dc8486e6505176a42e0488699fc81388decf58d61490ff509",
+      "validationSha256": "f6f85a942a52cc8dc8486e6505176a42e0488699fc81388decf58d61490ff509"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/05.png",
+      "formalSha256": "901e410792df250c33f7cfeda52a078af34852a1efa9b1992beee01c54266752",
+      "validationSha256": "901e410792df250c33f7cfeda52a078af34852a1efa9b1992beee01c54266752"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/06.png",
+      "formalSha256": "337aec17052f5771390dbdd142b1bc2ee7d57405f14cd5f8322d7ca18af6dd63",
+      "validationSha256": "337aec17052f5771390dbdd142b1bc2ee7d57405f14cd5f8322d7ca18af6dd63"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/07.png",
+      "formalSha256": "e4669e334376640304f0d116f2e26a447955f221697df2215293c28f717aca12",
+      "validationSha256": "e4669e334376640304f0d116f2e26a447955f221697df2215293c28f717aca12"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/08.png",
+      "formalSha256": "a082707f2c518de38419239b3e4db87d5050a75facd5c6c318222b7019357015",
+      "validationSha256": "a082707f2c518de38419239b3e4db87d5050a75facd5c6c318222b7019357015"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/strip.png",
+      "formalSha256": "59361d3ba1147222dc4f88732b0ab3cb8be88cfbddb535a5e16017ea1a12f509",
+      "validationSha256": "59361d3ba1147222dc4f88732b0ab3cb8be88cfbddb535a5e16017ea1a12f509"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/01.png",
+      "formalSha256": "6f162ec78db634f4342d46d0b6801b644ab7bf3d9ea740adb052f7f6b8adbf7a",
+      "validationSha256": "6f162ec78db634f4342d46d0b6801b644ab7bf3d9ea740adb052f7f6b8adbf7a"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/02.png",
+      "formalSha256": "fc36266394bc493761f186b59183e3cd9db428c039cc38a284a9974087d38eaa",
+      "validationSha256": "fc36266394bc493761f186b59183e3cd9db428c039cc38a284a9974087d38eaa"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/03.png",
+      "formalSha256": "79692491b1145bd4ff22efed9583ea84b59aa25dfcbbcef19e6c414ed2fb9f34",
+      "validationSha256": "79692491b1145bd4ff22efed9583ea84b59aa25dfcbbcef19e6c414ed2fb9f34"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/04.png",
+      "formalSha256": "2a2c6e2033899b02edc531e08c4b83d78153ee4bb835dcdb8d96de769dd49459",
+      "validationSha256": "2a2c6e2033899b02edc531e08c4b83d78153ee4bb835dcdb8d96de769dd49459"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/05.png",
+      "formalSha256": "f340ca318ac7a59641565ab109c3f17fc737db449c4d0d6f115dbcae9fb51b6b",
+      "validationSha256": "f340ca318ac7a59641565ab109c3f17fc737db449c4d0d6f115dbcae9fb51b6b"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/06.png",
+      "formalSha256": "c382b15c86e66a40af54b6d2e0384d813617fddc5fc003490c74d931830d9199",
+      "validationSha256": "c382b15c86e66a40af54b6d2e0384d813617fddc5fc003490c74d931830d9199"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/07.png",
+      "formalSha256": "ac27b683b14f95a27a8ba2a5ea25d79f370e3f5e717cf0c0a70fdb4600e3e302",
+      "validationSha256": "ac27b683b14f95a27a8ba2a5ea25d79f370e3f5e717cf0c0a70fdb4600e3e302"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/08.png",
+      "formalSha256": "0061aadcb2877a9ba20b17317d539d309349c8488c4f6f1f0596c7b740f6e1b6",
+      "validationSha256": "0061aadcb2877a9ba20b17317d539d309349c8488c4f6f1f0596c7b740f6e1b6"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/strip.png",
+      "formalSha256": "99555f4eeef7cb8cfa95025faffbd691c8648d43dc1d7e075f0b3cf9034e7916",
+      "validationSha256": "99555f4eeef7cb8cfa95025faffbd691c8648d43dc1d7e075f0b3cf9034e7916"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/01.png",
+      "formalSha256": "e1d748b68a9a42199507425250449d2054a29932ad46f4800c79f6a1e28e59ac",
+      "validationSha256": "e1d748b68a9a42199507425250449d2054a29932ad46f4800c79f6a1e28e59ac"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/02.png",
+      "formalSha256": "7a63b0f0a24b01f9d5a6cd06ee71929adf6656aec64e25e741f481f2320aceee",
+      "validationSha256": "7a63b0f0a24b01f9d5a6cd06ee71929adf6656aec64e25e741f481f2320aceee"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/03.png",
+      "formalSha256": "96bb16e59050ab276435a9f393797df8c9feeb9cba1fb3358ebfd078a5fea90e",
+      "validationSha256": "96bb16e59050ab276435a9f393797df8c9feeb9cba1fb3358ebfd078a5fea90e"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/04.png",
+      "formalSha256": "0ba076d44779b7db8ff2a69772faf5da03ff7fa12c172cb20d2ea3227dcb8326",
+      "validationSha256": "0ba076d44779b7db8ff2a69772faf5da03ff7fa12c172cb20d2ea3227dcb8326"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/05.png",
+      "formalSha256": "baa20b0bfc1c98ad7f9e999c364cc0042fce17bf69017acd85f6ed223d70a388",
+      "validationSha256": "baa20b0bfc1c98ad7f9e999c364cc0042fce17bf69017acd85f6ed223d70a388"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/06.png",
+      "formalSha256": "1eb172df43c9dfb88960af76e99cc1447679790d70199e62654099c4c06e5582",
+      "validationSha256": "1eb172df43c9dfb88960af76e99cc1447679790d70199e62654099c4c06e5582"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/07.png",
+      "formalSha256": "2a174ba7d9d142377286e929d9fea976c5fbeb88c69fe47c686484100f792759",
+      "validationSha256": "2a174ba7d9d142377286e929d9fea976c5fbeb88c69fe47c686484100f792759"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/08.png",
+      "formalSha256": "de95a0e8000c8a8f4d76d499cfcb35f2ba855db28be96a3745de99d343f408ff",
+      "validationSha256": "de95a0e8000c8a8f4d76d499cfcb35f2ba855db28be96a3745de99d343f408ff"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/strip.png",
+      "formalSha256": "17d482589a3575dac04111b9c55f0aacc3bb918febbebb8a72620d4c48fef548",
+      "validationSha256": "17d482589a3575dac04111b9c55f0aacc3bb918febbebb8a72620d4c48fef548"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/01.png",
+      "formalSha256": "a326e56bbfc16c93d05023abfb8ef5c6910ff55a3ec9f96f359deab898fb89f1",
+      "validationSha256": "a326e56bbfc16c93d05023abfb8ef5c6910ff55a3ec9f96f359deab898fb89f1"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/02.png",
+      "formalSha256": "19e6eaa7b6516ac233bf3290ab4d9c42dbbcbd7e51051e47eb00c3af9cfd421b",
+      "validationSha256": "19e6eaa7b6516ac233bf3290ab4d9c42dbbcbd7e51051e47eb00c3af9cfd421b"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/03.png",
+      "formalSha256": "6a8f727d00d5ca9372411f6f549b485883f6d03f4d65238a44d740aca7012f52",
+      "validationSha256": "6a8f727d00d5ca9372411f6f549b485883f6d03f4d65238a44d740aca7012f52"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/04.png",
+      "formalSha256": "5e5addbed995a1ec9fa8311ffbab47c1fb92facdd50bc087776645b8b7635638",
+      "validationSha256": "5e5addbed995a1ec9fa8311ffbab47c1fb92facdd50bc087776645b8b7635638"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/05.png",
+      "formalSha256": "2b435783f60791ff8288ddb9e888e134da8a75d47e0a4043165e8a4b94c3de56",
+      "validationSha256": "2b435783f60791ff8288ddb9e888e134da8a75d47e0a4043165e8a4b94c3de56"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/06.png",
+      "formalSha256": "8b8407baff0bdbbbd1edcad8ed1b2bb71723b0d09b470b693bac5d204a159592",
+      "validationSha256": "8b8407baff0bdbbbd1edcad8ed1b2bb71723b0d09b470b693bac5d204a159592"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/07.png",
+      "formalSha256": "414cdbec2fa7bbe30c18a5fee9b942dfad44e975e7ded98a0998cf0dac5b7064",
+      "validationSha256": "414cdbec2fa7bbe30c18a5fee9b942dfad44e975e7ded98a0998cf0dac5b7064"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/08.png",
+      "formalSha256": "b3d7876d762dff843d56bd98e9acec58b117db76ea8269f7f3b1ecad7b2d8d17",
+      "validationSha256": "b3d7876d762dff843d56bd98e9acec58b117db76ea8269f7f3b1ecad7b2d8d17"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/strip.png",
+      "formalSha256": "b303c1a8fa748b16b13c133e7bedfe7c63875e27f037e7c50aa75431edf2d31d",
+      "validationSha256": "b303c1a8fa748b16b13c133e7bedfe7c63875e27f037e7c50aa75431edf2d31d"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/01.png",
+      "formalSha256": "90844387c36ad124f4d4653ec9bc0d44a366fb31aa270698ff41172c9c9a177e",
+      "validationSha256": "90844387c36ad124f4d4653ec9bc0d44a366fb31aa270698ff41172c9c9a177e"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/02.png",
+      "formalSha256": "f45d6495c7fe337f97a292ec60e117580ea5c339f5e4c03ea57ea13b0c677f9b",
+      "validationSha256": "f45d6495c7fe337f97a292ec60e117580ea5c339f5e4c03ea57ea13b0c677f9b"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/03.png",
+      "formalSha256": "67375aed11484ab3d26b2a4f19d48c2316542067a6fc7fbe23ee90c0deacad08",
+      "validationSha256": "67375aed11484ab3d26b2a4f19d48c2316542067a6fc7fbe23ee90c0deacad08"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/04.png",
+      "formalSha256": "56a26c35afde925a07557b88eb8985bee8a7f3871f63e74db903c76c7b0b5620",
+      "validationSha256": "56a26c35afde925a07557b88eb8985bee8a7f3871f63e74db903c76c7b0b5620"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/05.png",
+      "formalSha256": "1ebe68a083cc5e65dabe25fb23d0969d584b7cf35e06b3267425960bcbf4988c",
+      "validationSha256": "1ebe68a083cc5e65dabe25fb23d0969d584b7cf35e06b3267425960bcbf4988c"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/06.png",
+      "formalSha256": "3dbd7586f48c131d95ab91edeb487837e0367c0e0080f738c9b4ee877396e061",
+      "validationSha256": "3dbd7586f48c131d95ab91edeb487837e0367c0e0080f738c9b4ee877396e061"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/07.png",
+      "formalSha256": "43455fa222dba18bc72cf290893489a0a8b98eecd9b0d44693353d79cc3b4ee7",
+      "validationSha256": "43455fa222dba18bc72cf290893489a0a8b98eecd9b0d44693353d79cc3b4ee7"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/08.png",
+      "formalSha256": "8eb715ad509d4cb428b38c3fef1f229f86f363f59a7941468b287951ae4050c2",
+      "validationSha256": "8eb715ad509d4cb428b38c3fef1f229f86f363f59a7941468b287951ae4050c2"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/strip.png",
+      "formalSha256": "015dec436f3a84ea39c16764f0e33196ab5d19685f2375eb673f552f3bc99a61",
+      "validationSha256": "015dec436f3a84ea39c16764f0e33196ab5d19685f2375eb673f552f3bc99a61"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/01.png",
+      "formalSha256": "0cace2ad042c77a5d00e980b31ae817274d4f8d9daca977e12c89600479d4be8",
+      "validationSha256": "0cace2ad042c77a5d00e980b31ae817274d4f8d9daca977e12c89600479d4be8"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/02.png",
+      "formalSha256": "972ba0c431e7c40ad12b9d6d7b1f74ad3157037797e8143d77fa22f5cbde87b5",
+      "validationSha256": "972ba0c431e7c40ad12b9d6d7b1f74ad3157037797e8143d77fa22f5cbde87b5"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/03.png",
+      "formalSha256": "2f998d66e538c427b41ee727c1a8de880dfa5bae3d5e9bce8218259a22450451",
+      "validationSha256": "2f998d66e538c427b41ee727c1a8de880dfa5bae3d5e9bce8218259a22450451"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/04.png",
+      "formalSha256": "6f6848da959002530affffec30d82871bb7486b4a2234f6f5de670b7ee725f96",
+      "validationSha256": "6f6848da959002530affffec30d82871bb7486b4a2234f6f5de670b7ee725f96"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/05.png",
+      "formalSha256": "cb6fecc0be194f9fc541127b721c13964f7f4adc25294f479bfae910a9488c8f",
+      "validationSha256": "cb6fecc0be194f9fc541127b721c13964f7f4adc25294f479bfae910a9488c8f"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/06.png",
+      "formalSha256": "a35797226d6d3f75dbbdb35baea90a2dd717887bce512dc69a7eb1230248b012",
+      "validationSha256": "a35797226d6d3f75dbbdb35baea90a2dd717887bce512dc69a7eb1230248b012"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/07.png",
+      "formalSha256": "67da293dc485814db24a07ed8d081acaa843ac6627905a75a7b44c08793d123a",
+      "validationSha256": "67da293dc485814db24a07ed8d081acaa843ac6627905a75a7b44c08793d123a"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/08.png",
+      "formalSha256": "478f42645b78475ed4e8ca698ef78ce6bf929394f39281f81b08a51a3ad4c245",
+      "validationSha256": "478f42645b78475ed4e8ca698ef78ce6bf929394f39281f81b08a51a3ad4c245"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/strip.png",
+      "formalSha256": "b5ce2734c71018b996e306672fbeaa6dcf47fd9c424b9e1195e626970cef5329",
+      "validationSha256": "b5ce2734c71018b996e306672fbeaa6dcf47fd9c424b9e1195e626970cef5329"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/01.png",
+      "formalSha256": "505ad105e4aea636ffa65d1b2484733919715c2f4d7b69026e7141a3fa3bce8a",
+      "validationSha256": "505ad105e4aea636ffa65d1b2484733919715c2f4d7b69026e7141a3fa3bce8a"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/02.png",
+      "formalSha256": "f7d21fd28204c2269ce72599b2f22cfdd3b966d0ab20b665aa77625e237e25b4",
+      "validationSha256": "f7d21fd28204c2269ce72599b2f22cfdd3b966d0ab20b665aa77625e237e25b4"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/03.png",
+      "formalSha256": "8809baa9e80b847599b1d8062638597e5a3c04331140135aaae0b66c06d5b188",
+      "validationSha256": "8809baa9e80b847599b1d8062638597e5a3c04331140135aaae0b66c06d5b188"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/04.png",
+      "formalSha256": "65de77e777d446d9f769cea02ecdb42cc294f0d0d6cc38d35b256f6db7c21ae4",
+      "validationSha256": "65de77e777d446d9f769cea02ecdb42cc294f0d0d6cc38d35b256f6db7c21ae4"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/05.png",
+      "formalSha256": "08209c7c18de9e8000987013d59a5d83621cd0f79ca16ed881a1c9826d8c5677",
+      "validationSha256": "08209c7c18de9e8000987013d59a5d83621cd0f79ca16ed881a1c9826d8c5677"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/06.png",
+      "formalSha256": "be915fa247eaebb3a03f0ee744a72ce72cc75f5e0288203557d7d0f458dddad7",
+      "validationSha256": "be915fa247eaebb3a03f0ee744a72ce72cc75f5e0288203557d7d0f458dddad7"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/07.png",
+      "formalSha256": "0e3e36a40aac255e6418ca26e916637e517f5d419e25a254fcaa9558cc4a8c5f",
+      "validationSha256": "0e3e36a40aac255e6418ca26e916637e517f5d419e25a254fcaa9558cc4a8c5f"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/08.png",
+      "formalSha256": "828b0f4efac0fa1dac3c59846dff091f7008e4571b3ea7642408552638f07c80",
+      "validationSha256": "828b0f4efac0fa1dac3c59846dff091f7008e4571b3ea7642408552638f07c80"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/strip.png",
+      "formalSha256": "9a7e6a7783d86fddc2b58e32d44e650bf3672955053c6a6b47237116322958a7",
+      "validationSha256": "9a7e6a7783d86fddc2b58e32d44e650bf3672955053c6a6b47237116322958a7"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/01.png",
+      "formalSha256": "fafa35120ab58fb0127a91a4044917bb7df04b0c00ad7ad09fde8f3630e144f8",
+      "validationSha256": "fafa35120ab58fb0127a91a4044917bb7df04b0c00ad7ad09fde8f3630e144f8"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/02.png",
+      "formalSha256": "922b9cac546bf73359fb58b7b91f128120ec28124aeb9f901f7a926ed70ffb89",
+      "validationSha256": "922b9cac546bf73359fb58b7b91f128120ec28124aeb9f901f7a926ed70ffb89"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/03.png",
+      "formalSha256": "703282b8ac7f8beb8189934def179806de0668ef1311b90825eb00a3285f1a7b",
+      "validationSha256": "703282b8ac7f8beb8189934def179806de0668ef1311b90825eb00a3285f1a7b"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/04.png",
+      "formalSha256": "1c00c24bc75643ecd900f145a455e79e0398172e885b7cfee269d7bae129a02d",
+      "validationSha256": "1c00c24bc75643ecd900f145a455e79e0398172e885b7cfee269d7bae129a02d"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/05.png",
+      "formalSha256": "0621bb288277b43ec69c437124a319b6fe25e33196734848ab9522381b52b6cd",
+      "validationSha256": "0621bb288277b43ec69c437124a319b6fe25e33196734848ab9522381b52b6cd"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/06.png",
+      "formalSha256": "fef979e3d9e112c79f4addfb20ac1e46ba9a3eb7dcba5ce258d0acffc5ddadec",
+      "validationSha256": "fef979e3d9e112c79f4addfb20ac1e46ba9a3eb7dcba5ce258d0acffc5ddadec"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/07.png",
+      "formalSha256": "b432b9f4ccc1123399ea85e086f613c01cb0fad979627a729ed8a2731f762624",
+      "validationSha256": "b432b9f4ccc1123399ea85e086f613c01cb0fad979627a729ed8a2731f762624"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/08.png",
+      "formalSha256": "7154e836d83aa87ec51168d4bafb5448de81a716fb64cea2293966b4583af893",
+      "validationSha256": "7154e836d83aa87ec51168d4bafb5448de81a716fb64cea2293966b4583af893"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/strip.png",
+      "formalSha256": "606f9e66cc79fbc1310ea8882aa8ec0aad563ca1c7e2710054be4013e5e88046",
+      "validationSha256": "606f9e66cc79fbc1310ea8882aa8ec0aad563ca1c7e2710054be4013e5e88046"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/appearance.json",
+      "formalSha256": "f2c130caaf5223b2425a406dd1b87eff2084b506b9719ba978fc8aa7104cfb94",
+      "validationSha256": "f2c130caaf5223b2425a406dd1b87eff2084b506b9719ba978fc8aa7104cfb94"
+    }
+  ],
+  "matchingCSharpFiles": [
+    {
+      "path": "Assets/Editor/AttributePanelV10Verification.cs",
+      "sha256": "197b5953c13abf662a143a25141e0b7bd89a15089f9ef716b12bd3d11afdb552"
+    },
+    {
+      "path": "Assets/Editor/AutoEnterGameDev.cs",
+      "sha256": "90bc51f3e061ddc2199728f19881baa8500b7bbff481f079aa81cb081d38938b"
+    },
+    {
+      "path": "Assets/Editor/CityTravelUiVerification.cs",
+      "sha256": "78127f38e848848896c9cb09fd761ae8b4ff6bfb2eb36ac557ea7ed350f19b13"
+    },
+    {
+      "path": "Assets/Editor/ClientBattleUiQaCapture.cs",
+      "sha256": "276c588d63e268cb053cd30c014d96c9a615328274db389b5807e8cd6d53f3a1"
+    },
+    {
+      "path": "Assets/Editor/ClientUiQaCapture.cs",
+      "sha256": "9b361f6e08d52493830eed96ef748db863fd89cc0d01c589388ce4f339ff4e38"
+    },
+    {
+      "path": "Assets/Editor/ClientUiRefreshVerification.cs",
+      "sha256": "ff0413c24035f27b4bef94d70f58f546886e80a4a764f6b223b8972fb6c345b6"
+    },
+    {
+      "path": "Assets/Editor/CrossZoneVerifyBuild.cs",
+      "sha256": "5c800570bb011fbc3df287a6272b9c2fdac4e1e6f95a0d9658e2310458dee21f"
+    },
+    {
+      "path": "Assets/Editor/FestivalIntegrationBuild.cs",
+      "sha256": "89611962a25bda0b9077d7e870855bb15aaf43567b666c17f452dec35428a8e7"
+    },
+    {
+      "path": "Assets/Editor/FestivalRegionMapVerification.cs",
+      "sha256": "026729b97a2f70be60c44dded2fe6c7147492524270b772327fbe5c67f07032d"
+    },
+    {
+      "path": "Assets/Editor/GameplayUiTestRunner.cs",
+      "sha256": "feffed5f3aa78c9cd40a4d49b70c2f9e05d750c4a7b858ba6f9644fa8aa723ad"
+    },
+    {
+      "path": "Assets/Editor/GameplayUiVerification.cs",
+      "sha256": "f5faf245c157cd5989907e1cd8e497114fb6ba1fd0562461960326a194187d74"
+    },
+    {
+      "path": "Assets/Editor/PresentationVerifyBuild.cs",
+      "sha256": "c1e0e4caae31109ff66ce24a004ef4d978d2d4bcf2355a686eaa0926c755fa7a"
+    },
+    {
+      "path": "Assets/Editor/QdaoCharacterSpriteImporter.cs",
+      "sha256": "d1ce9fd8e6d589961e150e43b410036ae70f29d94e2ff7928c49ab0a7e58e2e6"
+    },
+    {
+      "path": "Assets/Editor/QdaoFrameAlphaProcessor.cs",
+      "sha256": "68f3aa376165d161134c2792c185bcfb2bce7d64a15dca17fb469894bf5ecc1c"
+    },
+    {
+      "path": "Assets/Editor/QdaoMcpBridgeBootstrap.cs",
+      "sha256": "2a019487d6ead281fe61e5195fce714de5d8dff9831071daf680829a062f37e3"
+    },
+    {
+      "path": "Assets/Editor/QdaoNaturalLuVerification.cs",
+      "sha256": "d482e3a269669abb4ceb9aab50a04a0e477ad14dcb3f39da38cd670168b19a79"
+    },
+    {
+      "path": "Assets/Editor/QdaoUguiBuilder.cs",
+      "sha256": "832828d93ac348ceba7f1c55200104f75dddef41c62ad28fec6ac29d67f11495"
+    },
+    {
+      "path": "Assets/Editor/ShowcaseBuild.cs",
+      "sha256": "204ff903c24d3ae33c79a72056b4ea9df3bbb6626fd9054444b002f077ad187e"
+    },
+    {
+      "path": "Assets/Editor/TeamUiVerification.cs",
+      "sha256": "1b167b924925ff47767297c513a61262a0c976bb2ebe57994923128896ba8a2b"
+    },
+    {
+      "path": "Assets/Editor/Guild/GuildUiAssetImport.cs",
+      "sha256": "ba196b50ad0a5b547454e2f6008b18d1f19bead74235f61afe8bab23355bd03f"
+    },
+    {
+      "path": "Assets/Editor/Guild/GuildUiVerification.cs",
+      "sha256": "42f10cdf910bb52721cd846f6b727a18805aaf4e63dd349696b376d598d8cfec"
+    },
+    {
+      "path": "Assets/Editor/Jubaozhai/JubaozhaiAssetBuilder.cs",
+      "sha256": "50e8d2fcd2f3a7f5ab616bab3215fb89a34bbd8251f7560bf094d683690bccbf"
+    },
+    {
+      "path": "Assets/Editor/Jubaozhai/JubaozhaiUiVerification.cs",
+      "sha256": "fd805325a3e25f4ff31cc177dbd7dd77aa3b7c20e1ecc5e7d5dbf227e8d7356a"
+    },
+    {
+      "path": "Assets/Editor/Tianyong/TianyongProjectSetup.cs",
+      "sha256": "6a822375c2e5b45f28396ddfe44797e1999223d043a27d74a3e6594c14bfc3b4"
+    },
+    {
+      "path": "Assets/Editor/Tianyong/TianyongSandboxVerifyBuild.cs",
+      "sha256": "a6ab69b41c92147b96060dff49585cce62ef2550a425ba81d169c838222aaedc"
+    },
+    {
+      "path": "Assets/Editor/Tianyong/TianyongTextureImporter.cs",
+      "sha256": "95056dfbfe6633a63e94f674e9a5557de71d1709dc6120bd514aea910106e50f"
+    },
+    {
+      "path": "Assets/Scripts/App/DevAutoPilot.cs",
+      "sha256": "fd5af6bab177faae421c4332a655b9a6fbe62deae4a8464c3acdcd07c2b3a3ed"
+    },
+    {
+      "path": "Assets/Scripts/App/FestivalRegionAutoVerify.cs",
+      "sha256": "4c467faffeb0b47534e6c001000052618e5aa202926a5f72efb5d6987f309638"
+    },
+    {
+      "path": "Assets/Scripts/App/PresentationShowcase.cs",
+      "sha256": "d531a343e7803312e4063249f0efad0dc2adfdb6d6ce3fe1c6ae3cbbfe54bfc6"
+    },
+    {
+      "path": "Assets/Scripts/Core/Bootstrap.cs",
+      "sha256": "5f77e2c0ffec38201b6fe5f4b9d969d18315f14b255d004c366a8522e820830e"
+    },
+    {
+      "path": "Assets/Scripts/Core/ClientSettings.cs",
+      "sha256": "447c5118c973ca3fdcf2ae62785987f975649b1196228647d17e38e70a6ae456"
+    },
+    {
+      "path": "Assets/Scripts/Core/MmorpgLogger.cs",
+      "sha256": "884250d60b37fd1ec290a7853988db29fbc1f0fc20cd5b01af84045c44dc2c85"
+    },
+    {
+      "path": "Assets/Scripts/Game/GameClient.cs",
+      "sha256": "03ba79450c7b290df61cc6cb9c05f4f1ea9930e3b926f89faf121eb1c440196e"
+    },
+    {
+      "path": "Assets/Scripts/Game/Attribute/AttributeClient.cs",
+      "sha256": "a56fd9718dd608f386d1bb01cdeed8a00466ae1731754cde8aac15f504102a83"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/BattleClient.cs",
+      "sha256": "fa38226e63f3720ac429bdb2214a00b6472a2fd4976c58a0b0eb8618629728e5"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/DirectRoutingBattleTransport.cs",
+      "sha256": "d86c8c4516a664a80906d1f4523fafba28459857a1b324c1bce8dc1b2dc16812"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/GameClientBattleTransport.cs",
+      "sha256": "43193259b57c3d9edfc2a026d55ddefb240c6e5968ba0f68d14f352b54c2e94e"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/IBattleTransport.cs",
+      "sha256": "a642e2b9e551d4c9d47f9ec47d68c2ffa84bf4067536a6fc6e65bc8996751861"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/SpectateClient.cs",
+      "sha256": "36f454015000fdb2f31c021bae343c25e37d415c62b17d9bf3894c29006672d1"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/Presentation/BattleSequencer.cs",
+      "sha256": "4f0d4c3e9d62fc9d5042794282ae416a8c347a0760214800c4619f290abe7718"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/Presentation/BattleTempo.cs",
+      "sha256": "5c74d5916d373ec937d4c81670eea7892020b2b4961126b5adc23e6e39735f04"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/Presentation/PlaybackBudget.cs",
+      "sha256": "a70d844b2e322fd1542204debd36588301fa4340b9de34875e90ec4a584b4aec"
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/Presentation/TurnPlan.cs",
+      "sha256": "52d6ba2c4e81b8c7ab9fa6ea80649b9be3a0babac07c2cd2f3798806869b7008"
+    },
+    {
+      "path": "Assets/Scripts/Game/Guild/GuildClient.cs",
+      "sha256": "d32a83189605a38119c1a9fdd45e0cf9c24627f7d7e58c8c3f610fd1efe376c2"
+    },
+    {
+      "path": "Assets/Scripts/Game/Jubaozhai/JubaozhaiModels.cs",
+      "sha256": "1d3d2a8783aca55a34ca229db0a805f53208f4809320f8633126bdaa018d5020"
+    },
+    {
+      "path": "Assets/Scripts/Game/Pet/PetClient.cs",
+      "sha256": "91557c610e4aca3bba80a7f1696e912cfdc0a2d091f3d8864f59f76cd9d38cd9"
+    },
+    {
+      "path": "Assets/Scripts/Game/PlayerFeatures/PlayerFeaturesClient.cs",
+      "sha256": "e64638514b62a4bcb25c3516d4a9f133497ef3175267e599684eedddc01fd657"
+    },
+    {
+      "path": "Assets/Scripts/Game/Team/TeamUiState.cs",
+      "sha256": "5e7982197ee41137676d0320c8d56ec85860c1c2de133787efac57e8d548d337"
+    },
+    {
+      "path": "Assets/Scripts/Game/WorldTravel/CityTravelRequest.cs",
+      "sha256": "29edc7fa1bb794cd1ab7975d55819ca1de6956b6236eefa5f051456a4418e5b3"
+    },
+    {
+      "path": "Assets/Scripts/Net/Adler32.cs",
+      "sha256": "6c7d960bcd4936987ef4617086b165e8e9e85d38cb4453651bb855417ae10a7a"
+    },
+    {
+      "path": "Assets/Scripts/Net/BattleDirectLink.cs",
+      "sha256": "faec1af3ffc24636f99f69d10ddee330e7caecc05878202606d0297b97adbd61"
+    },
+    {
+      "path": "Assets/Scripts/Net/GateTcpClient.cs",
+      "sha256": "9a9f4dcbed43e788fd96e774f5fd0e4b55121d4a7bb12b344cd67915a0d8c607"
+    },
+    {
+      "path": "Assets/Scripts/Net/GatewayHttpClient.cs",
+      "sha256": "69a8fc0be7b2ce80039b9374933ed48e6343b31a8e9fdd1061bad981ed84e0f6"
+    },
+    {
+      "path": "Assets/Scripts/Net/IFramedConnection.cs",
+      "sha256": "490d32c70993e60d0ba747e1dc2c54ff18e728330218529b8ac7db754c36d940"
+    },
+    {
+      "path": "Assets/Scripts/Net/MessageIds.cs",
+      "sha256": "6e9214b475e77f61813398b67b1f93373b58abd73522d683f8131ed67014b6ae"
+    },
+    {
+      "path": "Assets/Scripts/Net/MuduoCodec.cs",
+      "sha256": "3f7f1099c3944d837d4ef5b748305d544f5a6fcdeb14c90ffe02865e595feb37"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/HandlerRegistry.cs",
+      "sha256": "d746bfc51f8523f2a0900b64a3b2f74437adb525c44fdf1292e281670e62e886"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerGetBattleStateHandler.cs",
+      "sha256": "14f31472daaba30dbaee8e8416b60c21f1dfdf8f19b1c63a2a0a2d8e9d5bd26e"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifyBattleAssignedHandler.cs",
+      "sha256": "a5129e8d295a9da5559d0fb1e407bda47f039537b8c26a04db33fa37ca087ac1"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifyBattleEndHandler.cs",
+      "sha256": "6208654fc11c8a6d519ca931dd00de884e83978fb157a608caa4407af8400c5e"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifyBattleReconnectHandler.cs",
+      "sha256": "55937aa04a32533e6442254404da649c617350e19669fed77cc14d60f6402735"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifyBattleStartHandler.cs",
+      "sha256": "aa1e36fe4331106bc192ab2373b31af82dfe1e0567a7c9b47b4ebfcb646189c7"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifySpectateEndHandler.cs",
+      "sha256": "00d29203e0ab7d40b9fad998fe1a2e7f96a00fcf3937d42896fba276a72e9c7c"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifySpectateStateHandler.cs",
+      "sha256": "da68e29bd4cae0e30abde612dc1f4d08869c141ad0c852cf3d92f52ea430e1f7"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifySpectateTurnResultHandler.cs",
+      "sha256": "49031846cc9ef310540eeec3ca24967bf0174a99ea860d2549482e7ecf4ec078"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerNotifyTurnResultHandler.cs",
+      "sha256": "24620e095beb3295493e81c8becdce5ad6be49195b793fd2876f1f92ca3e57ad"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerSetAutoBattleHandler.cs",
+      "sha256": "9c4acadcd47eb3752bab923f697cc94f2a64e6302023d11720a4d19904af5f1c"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerStopWatchBattleHandler.cs",
+      "sha256": "d7fafcaf970d9319da84c299165648955cbe3348942906d8f1578886aa9a51c4"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/BattleClientPlayerSubmitBattleActionHandler.cs",
+      "sha256": "bbfb5d1d7489eac167b7458acb9f8fc702ff766a8a1bff0642af26b5ed0ed957"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerChatPullChatHistoryHandler.cs",
+      "sha256": "ba515833f214e74bdb1ae5f03c170b63c565f468c1ead97e699c5791dd58c4be"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerChatSendChatHandler.cs",
+      "sha256": "2b0b5ef0fbd306d777b1ccb9961d6c96f8370efe528ac77660d2402ae51cdf26"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerLoginCreatePlayerHandler.cs",
+      "sha256": "166893686a1d7acff72c41b55856195986d1a520022478425e2ec33bd2de7723"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerLoginDisconnectHandler.cs",
+      "sha256": "29c7e33ea944145413a50d0c2cc7f113796dcaa17d73c9c78f6caddf62291218"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerLoginEnterGameHandler.cs",
+      "sha256": "5ebfe83db2737082ad4c0f69105391ea4365e517d30d04402f1da5827ba916e1"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerLoginLeaveGameHandler.cs",
+      "sha256": "fa3562a232c3ae562a00f0505237d10c8e12bf559aa930f9170a1f254f5b08f1"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerLoginLoginHandler.cs",
+      "sha256": "89fb4821851aa57746b83f76090fdb41aed5af18ea0e1b6f3d4b9f7351fa1caa"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ClientPlayerLoginRefreshTokenHandler.cs",
+      "sha256": "e591207026b7c4f715766f177d97469c015103fa6f68c2f79c4fd2ee2eda76b0"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneActivityClientPlayerGetActivityListHandler.cs",
+      "sha256": "26795dcd1432ff9d3f4d8868b4080be3cb42687bd5f3171d5ee3b6e34454f42e"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerAllocateAttributePointsHandler.cs",
+      "sha256": "57d99ef88d7d29f7b97a36c05d33f3d58042e040bb7516c92ced8fd2df24cb2f"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerAutoAllocateAttributePointsHandler.cs",
+      "sha256": "fad7a0a30b951140467c8c4c248b3d0577420e063b9cfd0a9db4f98cd14fd392"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerCreateAttributeSchemeHandler.cs",
+      "sha256": "56702e9c8e9b9c285f99d84ea8f95428a673ef21e39df4ba672dc44f5348902b"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerGetAttributePanelHandler.cs",
+      "sha256": "3f4fbc50d105590d42577a5af68cc2c272a55ee4a44d7a2ed4fff25fe43bae58"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerGmSetPlayerLevelHandler.cs",
+      "sha256": "c7c5884f3f43823f3f286863ba2a5dbdf34e060ddf7bee6d676ec836e9942c90"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerNotifyAttributePanelChangedHandler.cs",
+      "sha256": "bd76a0bc5d33c82075d06da1163df825081b04446174a9cf996297fed906126a"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerRenameAttributeSchemeHandler.cs",
+      "sha256": "b5f6693876c6933e79af5fc3287e1df5bba6e2c367de4539be1b0b053478d2d2"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerResetAttributePointsHandler.cs",
+      "sha256": "438220bc6ae826e15b12133837721cf7a0b8e296d31f99cdc4ed7b2ad1e17411"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneAttributeClientPlayerSwitchAttributeSchemeHandler.cs",
+      "sha256": "130294e6455b311664dedc38a988f5e87b602413bac22a5d58cb787f766c6a0b"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneBagClientPlayerGetBagHandler.cs",
+      "sha256": "fec4cc3511f124aaa1a3e5e15a2109c242ee325da9131a20e6174a19ae27b068"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneBagClientPlayerSortBagHandler.cs",
+      "sha256": "bbab0198a1de72aac335781a210fffb715e7f9ded8970a9af94b920c8501126c"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneClientPlayerCommonKickPlayerHandler.cs",
+      "sha256": "2fc3e8096fe220f7df1458206c602a59fded2977e6a40570978c9b364f838149"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneClientPlayerCommonRedirectToGateHandler.cs",
+      "sha256": "4291fd15d2e984b1acb1e888b0a7b3b9aa9d07bce70260bd1f115149cee16042"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneClientPlayerCommonSendTipToClientHandler.cs",
+      "sha256": "136b427d39f8939bfec8b5bd3072d07ba5333c0c1451589ca5c60660f583766a"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneCurrencyClientPlayerGetCurrencyListHandler.cs",
+      "sha256": "f7ad148418d38922dae675272f427a9ea30a56cc0aad8bb1f723ac4c64b8013c"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneCurrencyClientPlayerGmAddCurrencyHandler.cs",
+      "sha256": "3b3e147342830ea286025a6009cad58a59a16d91f212651f62bdd3f8f876cd8c"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneCurrencyClientPlayerGmBlockCurrencyHandler.cs",
+      "sha256": "c1fe15b190abacfc03ab078ff82203c4e0718f5e89ab72e2fb07d85a94835d98"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneCurrencyClientPlayerGmDeductCurrencyHandler.cs",
+      "sha256": "9c2c876cfd92f382943dd223ce77d664fcae6e1a2ac254452c97fe590ba12b09"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneCurrencyClientPlayerGmUnblockCurrencyHandler.cs",
+      "sha256": "74486151d67d27bbea913af4be17951ba766def09ceb32bf1cc6ea18482a1ee0"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMissionClientPlayerAcceptMissionHandler.cs",
+      "sha256": "6e9794a4fd41cde3104629149e002325169b5fcd862c5880c44ab8d2ebb5d5c2"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMissionClientPlayerClaimMissionRewardHandler.cs",
+      "sha256": "c1637ae8ebecc16ba87af720a0e8765622489f3d26cab222f1321d9119163fdf"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMissionClientPlayerGetMissionListHandler.cs",
+      "sha256": "6078c1a8e9223c19d1dd69f85913b6cd69b3fa8bfc6ce019542f6988575a6003"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerMoveStartHandler.cs",
+      "sha256": "accf89165f9b493fbc30425f6ca454ccbd949bef1e17d21f3ad2849aac336e02"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerMoveStopHandler.cs",
+      "sha256": "0711bf6e919fa93ed2e4b8287a31cf1efa63aed47c8511a440597cbd7a717ef2"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerMoveSyncHandler.cs",
+      "sha256": "d3949eb967dfe8d36f30449500f72b94839e725fedb4585f3ba58acff6fdc2ae"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerNotifyActorMoveHandler.cs",
+      "sha256": "fde19c01e70d0f4fed215c10a036c96ab48658d31d7fe4ad1ab5f38e0f56f5e8"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerNotifyActorMoveListHandler.cs",
+      "sha256": "428f4cd3da4a7e4e248ef070744b465c28b1404b0c9101722bce35a846f3b061"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerNotifyMoveAckHandler.cs",
+      "sha256": "748db17d68c9fec124dcb276f41d210c32b9ddc8563ceed8469a7880682613b1"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerNotifyTeleportHandler.cs",
+      "sha256": "d842eb70ec18b31446126173c581307079b651ecf2794a173a97e0af277f84ec"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneMovementClientPlayerTeleportRequestHandler.cs",
+      "sha256": "14a53e900444ec4707932ef985c228677cefb0572ee0ec5663ced1f9e81e6363"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerAllocatePetPointsHandler.cs",
+      "sha256": "fc3f0c39b2cc84a5558ab4b59a8f47c9c5f92b7b0019475da482a9ce96155fe8"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerAutoAllocatePetPointsHandler.cs",
+      "sha256": "82600d8cfe718181bdd758b25a0062373b2b762f371bd17505ac0262e8545577"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerGetPetListHandler.cs",
+      "sha256": "8b158a9992f26afb9060685da7ffbe35f9d86ef27025d7ebf56fbb7717b2e19b"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerGmGrantPetHandler.cs",
+      "sha256": "18f9b61bc9155d9b9f60c801cc5d96a92cc1389108f6f260b1b364cce10343de"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerNotifyPetListChangedHandler.cs",
+      "sha256": "91a07f009aa4468cfe46dd153f77471f85e6b0517110dcf4200dc4927be4f937"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerRecallPetHandler.cs",
+      "sha256": "ad3818d391548667e34a6c3461b811eb137d2723582091e3d560cd8942a74f52"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerRenamePetHandler.cs",
+      "sha256": "2d9a7e60bab8bb74ed65c11c3e7ef9e9c6bb2001398e800f0b2551a26415074a"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerResetPetPointsHandler.cs",
+      "sha256": "1125233c51fea9b8ff16516fdbe6241f70ddcc1891d5030cbc048d60a1baefde"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/ScenePetClientPlayerSummonPetHandler.cs",
+      "sha256": "0f0083347cd72b18af6638dce245cb6859844621863dc29668c0b59d32d10ef9"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerEnterSceneHandler.cs",
+      "sha256": "16af7f691c2bcd460be13b587bad6ff70edef896e7061e3fbaab3f7d0b68894c"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerNotifyActorCreateHandler.cs",
+      "sha256": "686e270ac9af45d7122076c27162f28a27b5525f1aa398ed7ca2f78e065dd0cc"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerNotifyActorDestroyHandler.cs",
+      "sha256": "828d3c310747d710f9428ecb126c6db2b74b82276e5bb2972cea88ebcc8e169b"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerNotifyActorListCreateHandler.cs",
+      "sha256": "ac85a9953969bb03ecaaf5bd4a94067b0cef28418830306aa35129eca5e94fc3"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerNotifyActorListDestroyHandler.cs",
+      "sha256": "276e837e6947ef6557cf901ca6d762ce6dc19c7a41fbfeac16211ff39026c7f0"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerNotifyEnterSceneHandler.cs",
+      "sha256": "3ca3582dffcbbcb37ab64b7d05240802d2abdde4295f957d8880d197a92d8533"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerNotifySceneInfoHandler.cs",
+      "sha256": "d3b5c62cb99b05fe02b13e88e2e5a7dceb8a2c79e12e920c97f570db44549191"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSceneClientPlayerSceneInfoC2SHandler.cs",
+      "sha256": "8c85b2ae115456c7a8018a75064e3881651f9d6ca03042173930f44f787ed79f"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSkillClientPlayerListSkillsHandler.cs",
+      "sha256": "d2f32b1d340cbb9bbb501d041893db3fc0e7057e97843f546995e3db1d3eeda5"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSkillClientPlayerNotifySkillInterruptedHandler.cs",
+      "sha256": "acd9046d8664aecbfc1ea67140137299ce1e8f9cdb2f858a6a2c63f930c7422f"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSkillClientPlayerNotifySkillUsedHandler.cs",
+      "sha256": "ec3925aafdfa8992c968e003605066cb1c1a6f98a2b05a61332dade54c929cce"
+    },
+    {
+      "path": "Assets/Scripts/Net/Generated/Handlers/SceneSkillClientPlayerReleaseSkillHandler.cs",
+      "sha256": "f5aa07ad80a6f1470817490d0cec43e3179bf023716ca9f628354e0f94ab7461"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/ActorAttributeStateComp.cs",
+      "sha256": "f5f14338c203d5db7bdb4f9c8384ab7b971fe860b96676d0bfaeb2b1eb27f7c3"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/ActorComp.cs",
+      "sha256": "cfdfffbcf34eae7f2a38c060c395d9e48df6361f2850da655bb8ac9a9bd53674"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/BaseComp.cs",
+      "sha256": "312f7ee67dbe3c19db49cb69ca73557f004196abf64f66c16e0dcdc5bef87701"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/BattleData.cs",
+      "sha256": "42f83cf103614a71961733f294f3bc189198129d40e3a583920e2b5643cd8e5c"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Chat.cs",
+      "sha256": "77b6ffa46b3e891a6a7a928a6970181730082af4d4fd19839afc9bb2524f712b"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/ClientPlayerCommon.cs",
+      "sha256": "ade9faa6b582ac72a4a6dce056c540086778b76a10afbb6dc44ebe4a49f74ba7"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Common.cs",
+      "sha256": "7ed32d16f664c7e1432e650226d2bb831103b7886467f69be2a1f76823d8ee52"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/CurrencyComp.cs",
+      "sha256": "93a6185fec468a7995a809c0b37e436e6a1a8f4f80fc67febdf812e431a6c86a"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Empty.cs",
+      "sha256": "4a7cf0c44bac9edf6945279beeeae225c533f55910a4e51bfe37ba63330728fd"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Guild.cs",
+      "sha256": "934577cb59d3406f89299b311f5ddb45951365b02c7e8e956475b27adb65a2ce"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/GuildErrorTip.cs",
+      "sha256": "00638cdcedd32b2ca20819c4899c3afaa1975a5f1da2faf85e12e3eba67ef762"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Login.cs",
+      "sha256": "1b611a3770c3dcf2fb4fc0fb960dc99896fd5d77ce9a48bcd1f2c59056476533"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/MatchService.cs",
+      "sha256": "15ed578e335b033f28396498ab18dd1147a724ec82b15343b1e1c9e0cb91da4b"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Message.cs",
+      "sha256": "2b5eee9e1f92e8106cb1fe282ff9a0b5b472636da241c430e87882b10d75219a"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerActivity.cs",
+      "sha256": "a753fb2d74ad501d47f7c21f09a76384b647d7e53ecfab607929e692dab0103c"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerAttribute.cs",
+      "sha256": "641018c7324d9293a82e7fb2da2e917688efa5f912594156aa79c3ba1b65cbd2"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerAttributeComp.cs",
+      "sha256": "312cb8d0cc0d05ca5f6f9d3727070994bd262dcf8b72747e4dbfa306e77dd144"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerBag.cs",
+      "sha256": "38574b5285e9f25e7dba826085576342404a06bb6c563ec6fdf7993db10a77dd"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerBattle.cs",
+      "sha256": "6506cc70359b9d09e255c849cdf0c4c70cb9eb62f42d9d3f8981fb47aa29f893"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerCurrency.cs",
+      "sha256": "831e5c68b2ab7f1f0b3c3825cd6ab65943df938c88bce284e10b271736179bd2"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerLifecycle.cs",
+      "sha256": "b5898e7b35d3cbd1bf455500403692b994ac417256b0f3db0e4865f71285d04a"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerMission.cs",
+      "sha256": "30b822e0deb683edc15b62646d4b4c086f5ef0e3d12e4d14ec24d053fdd6778f"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerMovement.cs",
+      "sha256": "82d4ba3b1470d94a8a431fc151b32ff2984d5db5f9877d0f8e09de9bcb1023da"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerPet.cs",
+      "sha256": "b9fb65f6da0f13dd84552d5b67049bc7178f67f032956397f9fcebbf2d2d2816"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerPetComp.cs",
+      "sha256": "a5a9ff1968017b0e882435eca522c888838e822f02731483b4b4dd3764165515"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerScene.cs",
+      "sha256": "2025c344739ebdc08def6142896362ea7dfe7b35fd4079568514314cca4a8905"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerSkill.cs",
+      "sha256": "16254da66a5c1809464d2a235a2a504105cfbea25bac8a6365e6d28034e4030a"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/PlayerSkillComp.cs",
+      "sha256": "01fef68ff8ee68bbc827c21686c93b97648f4f8bdef0f9b3803cb8f9a2b74959"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/ProtoOption.cs",
+      "sha256": "b247b1a060679cc741c71c190b783f29c19508b87255f0ab4d8f0f8b01cafa95"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/RpcMessage.cs",
+      "sha256": "8e87bdde2cca81f658b5338f8b66cff250148f953f698f5d6fd55dfce1407d88"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/SceneInfo.cs",
+      "sha256": "c6f21ee55a03e99584bfc8ee30e7b92229d18a01061d2e3a5e09f4e6919426b4"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Session.cs",
+      "sha256": "66a4a1071a5e5b6bf24f1323e4f2b8a882ecc27aefaefc9f9d77e75e9809af26"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/Tip.cs",
+      "sha256": "5e24e92fd6edbd6ae1a61c2234c0b9931c70a8ab56e6d720e630501de2df506e"
+    },
+    {
+      "path": "Assets/Scripts/Proto/Generated/UserAccounts.cs",
+      "sha256": "5045b1ddd297d0a54df0157dfaa6eed95210af7c073744e493dcc8bec8ddb8ab"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ActivityscheduleTable.cs",
+      "sha256": "ae1534cd67981233edf4d75df48e7fceb2f972284ead0c21aee61f400f42ba41"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ActivityScheduleTableForeignKeys.cs",
+      "sha256": "5e7285b8af3cd00360bb22d5b197fc7fa8504340449e6886ea4e381499a99230"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ActivityScheduleTableManager.cs",
+      "sha256": "a656d722e9d759646f27e278ffce460f726843548b13ae26ade7b992368fa219"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ActoractioncombatstateTable.cs",
+      "sha256": "8449b434825d78a36eaf8f139110f374d5797c0439f4b282fd34bbf89f89f6f9"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ActorActionCombatStateTableManager.cs",
+      "sha256": "08e620ab5784073e441b43dcf10b90e7acd65e36a0970579fa7a288a2d794dfc"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ActoractionstateTable.cs",
+      "sha256": "8f7e6217edf2b89c6aac18a5c91be9e5f903e7b66ae705550c487e92dcacd7e3"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ActorActionStateTableManager.cs",
+      "sha256": "f4e7a97298e4bd04a8b7c3b5b1a4d77566515da8af2df61d542838f5ede7949d"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AllTable.cs",
+      "sha256": "8566b1dcce0b434540fdacb5c9572b35237b90003ae13f5454ef3cda37c1e59c"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributeautoplanTable.cs",
+      "sha256": "aaf9be00e236c9c74e2b38c00ab82e4b9be31bec9cee4965157229699782af2f"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributeAutoPlanTableForeignKeys.cs",
+      "sha256": "0c9e082f25cda4a8b30eeeca03da5faf7b3ed5a99d437000d8a90a728f597491"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributeAutoPlanTableManager.cs",
+      "sha256": "0d03384f54fc9cc43a5f2e7b299c67fd3c767e87b0219f0bfb276a95806c59b1"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributedimensionTable.cs",
+      "sha256": "1e2dec84ffb1b690e86186946b75b1eb498a9004ab190cda8b1f112efd856f28"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributeDimensionTableForeignKeys.cs",
+      "sha256": "99402f95f68949eeba4f663240232b31342c3703e9f321351c05754679486644"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributeDimensionTableManager.cs",
+      "sha256": "d4be1ef88603d7ab687bee59f5e1103b1e450358b1b3d5fa44964ea531a3385b"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributepoolTable.cs",
+      "sha256": "0aca98a28aca9fe2c9824623a3720d0bbef3eeb3d3fbc1809d443db5655e9f42"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributePoolTableManager.cs",
+      "sha256": "3a086cdd4f56598c9421b99af2273ee886fe75b4eb1e62ce6776a9b2681e0355"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributeruleTable.cs",
+      "sha256": "0a6fdbc99ef6e3a16aa64d74e2bbf70049e853f96a0a79098b80aa597800fa09"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/AttributeRuleTableManager.cs",
+      "sha256": "e90603089e6264525b8bd2ea294f270a26a4748ccabdc0bca85dce167ed706d4"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/BasesceneTable.cs",
+      "sha256": "c07598252d9ec28d9a89ef11fa6eceadbec93eb470804ad8adf78d3e3bc51734"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/BaseSceneTableManager.cs",
+      "sha256": "afbb8a07bcb69d4ab89669a61b7a221df3c2666d9529f988469554b81becbd14"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/BuffTable.cs",
+      "sha256": "f2382340db235899e781a0bbc9700ce6ed3c55dcc3c68e16b0f81d1ea081b552"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/BuffTableManager.cs",
+      "sha256": "25b983e294de3b051824236645fc717591ea2ad254f00225d3f566dbce6556b7"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ClassTable.cs",
+      "sha256": "07c7fc3559e1250539e5a53d6eb9b8290a82539b1177eca7a777e1f2e015fe30"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ClassTableManager.cs",
+      "sha256": "9d65c5d806c82f13c754e550aa394e694d9a805e1419b685af46922a5dea4669"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ConditionTable.cs",
+      "sha256": "0af3edde2fb87e2c27204edf9581bdf67c17e88f37863b5df047831092984917"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ConditionTableManager.cs",
+      "sha256": "8cac51cf76d4f6bf6524756f04b262430d2afa33852174c90dd75c5815a13b5d"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/CooldownTable.cs",
+      "sha256": "cf7937ac339ec888cd74a854f530529e915f6e203c25d3bac2a0ea0c7e3476a8"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/CooldownTableManager.cs",
+      "sha256": "d3a4b75348553c5d1505e3abfcf202fa465a899ce68944d68bdbbf96abedcb02"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/DungeonTable.cs",
+      "sha256": "2d8f5b0b1767b318083999d967b09cfc1d140d541239ea22728746410e749d9c"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/DungeonTableForeignKeys.cs",
+      "sha256": "0c3a2f4b6942aa9dd4fb9b78f0431dfd717c0af094cf497258278f57a2ba290b"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/DungeonTableManager.cs",
+      "sha256": "0b07941092b7a1fbb299ea8135bb5b19326f57be48437f9f12bd0ac61da5fa04"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/EquipslotTable.cs",
+      "sha256": "e0b040b124047cc34e3c12efdd52192460a9657bca0ab837230067fdda7c3021"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/EquipSlotTableManager.cs",
+      "sha256": "e221d43729f706d291f3b9ca87b684044fe17e91c8847c4a532de514f7c0febf"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/GlobalvariableTable.cs",
+      "sha256": "5d2d4b4507ca7d1e2d00648fac8fe2f6297c7d0d933bc153145f590653365ee9"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/GlobalVariableTableManager.cs",
+      "sha256": "37403febba901a13781c92408adbca0f1fabf64ea63bfbf274b0941bcdca5aa1"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ItemTable.cs",
+      "sha256": "30ced759119eaff3141b889931bb75699c515ed4581039f586132b73fcbc5fd1"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/ItemTableManager.cs",
+      "sha256": "83e75fcb87ef3ea109cf9fbb8fed05de42494ece319df9adc6b693a45c95b6dc"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MessagelimiterTable.cs",
+      "sha256": "78fb6d8e6fa993c27eede970db914e861c72cae5fb4aae3e61b738d05d094bca"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MessageLimiterTableManager.cs",
+      "sha256": "c91f4714ca4df4112b9ebfbc88a6d1b914844f4f51e5b5808704033e76bd7cb4"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MirrorTable.cs",
+      "sha256": "3e899e808a6168562192a9286fe509452b512c72bf587fd73cee154521c0ddb7"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MirrorTableForeignKeys.cs",
+      "sha256": "84c51fd0362bb2d406e3389582e8b7c7ec9c60f1112f6b304df6dd511f647f41"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MirrorTableManager.cs",
+      "sha256": "faba7115649f2bbde350202fc073a93de3485fde77012da540b548ad06b028e3"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MissionTable.cs",
+      "sha256": "5af1d569d8a946ee1d4134cef4b7aaff4bb11b7a0765e156ba85d6d938cba907"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MissionTableForeignKeys.cs",
+      "sha256": "f0b3fe0f895ce09fdab042c7a46aa1ddffbc9e7360d12e7c2328010164af5ae7"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MissionTableManager.cs",
+      "sha256": "287538b05e5dc61a78ed5d0698069c9f3dcd10c1a717c1172d3adae21ec96223"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MonsterTable.cs",
+      "sha256": "74ffd458ce408b92ec51b39ec0078a54a5ffb30ac348c5a5fee2b127ed63bd45"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/MonsterTableManager.cs",
+      "sha256": "0bfb5487af89c78ef2f497cace4e104937b6184f97e623a6df6fa4bf4f8e55a2"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/PetruleTable.cs",
+      "sha256": "2b605f23d77414a1e1e7f2409257b79db00ee886b92bbf875be3a5974bae3301"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/PetRuleTableManager.cs",
+      "sha256": "31a3727c653665f6f71f53b1642903d5da5c89e6e085a36bfe0adac84b2b6c8b"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/PetTable.cs",
+      "sha256": "5ad2b8ff982627a0597a68b413e513ebdadded9071456d3828f8327b0db95fb8"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/PetTableManager.cs",
+      "sha256": "1de2c3ad0c422eb93bb4cd0bdf153ab17c502b8cbcb62a1de49c6de3d295444f"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/RewardTable.cs",
+      "sha256": "b0693c529f835c9004e412ab0726b03591568aedfcff1753c035848ece235b8b"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/RewardTableManager.cs",
+      "sha256": "e870fce4812aa0b5807236890d216c9a3181230bf1788dd12ef78e907b11742a"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/SkillpermissionTable.cs",
+      "sha256": "863479887d22004c8e13f53aa8ad47609a47ae0a7b5855deb7686f10fbe2e742"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/SkillPermissionTableManager.cs",
+      "sha256": "0713e8e2b65fd3622ba801a6ec7daf8748d254fda6a28c189de4af16ec824b2c"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/SkillTable.cs",
+      "sha256": "d3c6f9ca193c5aa4da78ae4fc7f3d3d739ec15804295e283f2894fca42e0e461"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/SkillTableManager.cs",
+      "sha256": "8d88345047a5c9a2ad343bdb7ece23c639fd3deb075dc5f18901dbaadf86e525"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/TestmultikeyTable.cs",
+      "sha256": "56cfea197fdb86e363e39ae69c8c0535f92eebd662e6e55096ea6ecc46395eeb"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/TestMultiKeyTableForeignKeys.cs",
+      "sha256": "f715f1f8dfc217f4b79d83a2a2c7e653e1cd12482802c02853e5d2707e149677"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/TestMultiKeyTableManager.cs",
+      "sha256": "749aaeb76c039bb5591f2a06dbf87d342e5fc6419153c908910ef9779598eae1"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/TestTable.cs",
+      "sha256": "03e2057334eadb37f56d00f2329a9dd7c97e28d0c1daba37e360f4c3a63426d6"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/TestTableManager.cs",
+      "sha256": "ac9104d54e7eb81cff6cdb056bf15ecb55952fcbf59baa091b086e46e86faec6"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/WorldTable.cs",
+      "sha256": "4047aab046939a1af25b0eea87e0a10bf5163d9c3a52fd65c29d3d409d7f220a"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/WorldTableForeignKeys.cs",
+      "sha256": "6f43f0494d76abb3f8e428acf0a93ca149a3bfe798e60858b67332a0f563a448"
+    },
+    {
+      "path": "Assets/Scripts/Table/Generated/WorldTableManager.cs",
+      "sha256": "0786cbfe5cb2d5ba3270d8f8995ca7a6449370443ba65ec1108c7b556b60979b"
+    },
+    {
+      "path": "Assets/Scripts/UI/AppBootstrap.cs",
+      "sha256": "a94d74bfccba85a610d49119bf7f508c1676b2f68954a74af9ff6329a361d93b"
+    },
+    {
+      "path": "Assets/Scripts/UI/SessionModel.cs",
+      "sha256": "4b36da0f6b1b5d42c666fa918e71db941581094e3547dc1a909b7452a8065353"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/QdaoRefreshArt.cs",
+      "sha256": "f0883011602415a34228b8d15ef51ff7343785713d623b195e7ff57aef7b706b"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/QdaoServerSelectView.cs",
+      "sha256": "c90d36d211a0554aea238e3ed4593c319026d498ff474d7b1e95013b1423aa6e"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/QdaoServerSelectView.Visuals.cs",
+      "sha256": "7a8db38efb8e8fcbb96d9aadb057f7f81efc92cf8e774dca61483d2f5ae3e43d"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/QdaoUguiFactory.cs",
+      "sha256": "441130cb119ba344b8b4a95e3e25d57b14de311fb0d3ce5ebce12b7ae0b23edf"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/QdaoUguiRuntime.cs",
+      "sha256": "b2c738a26d33513831d06b9ce7aad34d48656dc81a9942da425703165c36eb14"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/QdaoUguiTheme.cs",
+      "sha256": "ceccd9211345ce353404e0b0db98c7a9f706e9b549aa4d75a9d561c9c5f88944"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Attribute/AttributePanel.cs",
+      "sha256": "691dadde4d8beb4862a73a692e4bde55b82089a8f34f5f6a2ee888d015d6c8ce"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiRoot.cs",
+      "sha256": "8a0648f72e28ca887f8b3e19c05011f907314be733db4819869d62538d7f04cb"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiStyle.cs",
+      "sha256": "6609954376435820899c831c0231d707b7e94efd269102ae682a7372933484d7"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiWidgets.cs",
+      "sha256": "54f8157bed83bce073c0b9167baad8e229fd143258ae9ba946312d68943bfb56"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Attribute/CharacterAttributeScrollFocus.cs",
+      "sha256": "5f6fe3bf916b423686e4e69740ab485b7d8c1c32007bfe177915a5ad3f5565bc"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Attribute/CharacterAttributeVisuals.cs",
+      "sha256": "ffbfc2c9bb728d4592f07393df70b3e16d95ce3b25dbee8deffbab3305b0a629"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleArtCatalog.cs",
+      "sha256": "c5e76c70312902936dfe6524e30c0da9880fa9fe851b18bc0a8f9f6ab6086a34"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleChallengePopup.cs",
+      "sha256": "e22f8bdf7c0a0a698845e6df814f1e60d071fec12dd6b0698db62b32d66431d9"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleCommandRing.cs",
+      "sha256": "1204b9ccc3298d51e5554377371f1a8b33ca2adb7b7c3a63d1ff25f977b967b4"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleFx.cs",
+      "sha256": "bbae1b88c8e15fca751315448105060686c636b2519d636b6e93298cf29700b2"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleHud.cs",
+      "sha256": "726dfea0fd7bfea7c4c219c0de6c1810ec000a62547d240d2b2923addafb9a33"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleHudLogic.cs",
+      "sha256": "ef14fbecf7d7d836678432f31cd19121bbeaa96e4bfc3b11d7c334d38fe52073"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattlePlateFollower.cs",
+      "sha256": "6fa514780be72ef8cdb5714f5cd54945533fa1f7cac07a83b4517a986f9343d6"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattlePresenter.cs",
+      "sha256": "8941a87384174838ffaa263a5a709ac8b04ebd4dd0a22290e1631d9798296800"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleQueuePanel.cs",
+      "sha256": "137461e034b75797987e08504a678155620bf1d070054e31f862bfd59e674fa3"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleResultPanel.cs",
+      "sha256": "65444afcb13fc6c0b3c3c57d3bad8613e517679b6b2e3c388ae63551c19ea310"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleScreen.cs",
+      "sha256": "3fc0909739fa103f378f13291e527b23fd7cf4d4fa9cee9bb08e60fcc8131450"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleScreenFx.cs",
+      "sha256": "fa890a2cf721dd5bfde8596503c511264a6b9382ab29eebbd7ee23200935eec5"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleStage.cs",
+      "sha256": "af378069db981b473a7037e8175d3ecc4de2fce20f75b076aabaec5770cdcb04"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleUiRoot.cs",
+      "sha256": "bd2398cb81c7ad4c38793456949c1da3ffbf2b7ec9b37b8ff182ece534476566"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleUiStyle.cs",
+      "sha256": "cc9d8af69a971a1141a8de77dd9b65e73fe583593f10da20fadc0e8e04e8cf29"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleUiWidgets.cs",
+      "sha256": "91dab79269c36f2ea71523ccbd07f8d639cd14115bf6a4aaa7e765c8a77abf46"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleUnitSlot.cs",
+      "sha256": "bb45da0ba49d0e1c42b0317f811bf60c5ed7fb628fffb7ede110f28a4b1fc5bb"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleUnitView.cs",
+      "sha256": "199579038ca004c16df042a3c2a6a0380ff6867932b9a9af4bbd3f1f69c6f2e2"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/DamageNumber.cs",
+      "sha256": "1ec0db254c26c0afde4b1d7bbc873ce6238bd7a77cc5c9c40ef0649b25b473a4"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/SpectatePanel.cs",
+      "sha256": "c54aa57eff711e9f516a56767a9c7c8cfa5c01a60d56213637e2bc2edd7b756e"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/CityTravelUiRoot.cs",
+      "sha256": "b142058454602f864e32697c668ed473d21bb85a168f5e145611887c43c07be1"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/CityTravelWindow.cs",
+      "sha256": "35cfc8c245fc12aa1dbef464b6bd58fd5593982d223d491595cee6655f161413"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/GameplayUiArt.cs",
+      "sha256": "e237cec151422e15e84f5483ce9d2c70bff26b2d2ea0fb6bb433501753d192a7"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/GameplayUiRoot.cs",
+      "sha256": "198a5460c581495c2cbc34c33c51cfb60d000d1b70904d7bc982615dcab51e15"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/GameplayWindow.cs",
+      "sha256": "66bc9ddc2e53a759cecfbfa47a2c93ca5349931dd13d673614208b4865b22493"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiArt.cs",
+      "sha256": "3be4e71fc8d4668aa5f4df6cd1ebc4be912184a8c09bb5704ff7edf96bfbbd11"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiRoot.cs",
+      "sha256": "545d1b8e7e10ec5d34b6368676361bdaeffe812a7a4b443f51b35987a6f54962"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildWindow.cs",
+      "sha256": "659571bdd4915f7e14b41c3ee90466c8119845a3a2719a1b2b00522dd37b0be0"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiArt.cs",
+      "sha256": "cf6dac3709f9420204deaae4d52cd2c60589514e02a4925623ca32299be47d7e"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiPreviewHost.cs",
+      "sha256": "a1b55682dfac1e164ef55a2eda59de7084eb72d3435cf830ca5570ac7052a53f"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiUiRoot.cs",
+      "sha256": "91a0c82f9e534071ba2cdfbb5c3fa17ba81e912afda5a8ead232b039819671db"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiWindow.cs",
+      "sha256": "cfe54d1b7e4a1ba181aff354f245931b1bfcc34abfad70bc8342d8b6abf0d8de"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Pet/PetPanel.cs",
+      "sha256": "b494eb50e70d8f6f7e173c9aa28e21024dcfccb5aef60a763fa6828640911d61"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Pet/PetUiRoot.cs",
+      "sha256": "dd221b67950640dd9298348f32acec5a7e37cc6e41bddfe051f7df6d269db3d8"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Pet/PetUiStyle.cs",
+      "sha256": "95867f0fca5fd7a42da4040fcdf49b73253cb1c489fef925175814235f5cbc59"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Role/RoleFlowUi.cs",
+      "sha256": "4947a0816b14f65c34c87fc499c43d1075e17787dd25827e1d878a089804c95c"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Team/TeamUiArt.cs",
+      "sha256": "b1f43e54f507db7b3fc0407c26db68353e0a293fafdb8a9dd7719832bf9dba8d"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Team/TeamUiRoot.cs",
+      "sha256": "3c979b1c2664c185f9ef04215206aeadff96578784c40e2445bbd172f417181e"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Team/TeamWindow.cs",
+      "sha256": "406e1130ed82cf41d041788b92e0ad9822b22d201ae6a547d739de1be28218d7"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Tween/RealtimeTween.cs",
+      "sha256": "adf0b9f9a94ce5f3a4e1814586de25ca9d244f2752dac6581bafdc09037af142"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Tween/RealtimeTween.EditorCapture.cs",
+      "sha256": "f28be4aabff974e9779288bf1d71b8e0a7592172955b65e3c4be8caedd979a1b"
+    },
+    {
+      "path": "Assets/Scripts/World/ActorWorld.cs",
+      "sha256": "920822dec89381a0707a3a0d15bee26ef9e26738cafce3e09f46bde72cd38371"
+    },
+    {
+      "path": "Assets/Scripts/World/QdaoBoySpriteAnimator.cs",
+      "sha256": "c6db82d36c5a23df3296e25c4a37900207032894e2aa9eb0f6137d33f131fc81"
+    },
+    {
+      "path": "Assets/Scripts/World/QdaoCharacterCatalog.cs",
+      "sha256": "35276933fb6c507fd59e56453ff7e8a9562ec9500f794ce0b6fc2eb7659125fa"
+    },
+    {
+      "path": "Assets/Scripts/World/SkillFx.cs",
+      "sha256": "4388ae2f792cf906cf66c861032ec50d40fed0a8bccc34a969945a4ed360e829"
+    },
+    {
+      "path": "Assets/Scripts/World/WorldCoordinateConverter.cs",
+      "sha256": "bd180b5bfcf93d89900c7818a8c45c19ad4ff890a41ae8a56903c6a6f3d810b6"
+    },
+    {
+      "path": "Assets/Scripts/World/WorldLabelBillboard.cs",
+      "sha256": "2c75295200beb857fc323220a425604d6e492f8fd4c92f1c794c2fba737d0b20"
+    },
+    {
+      "path": "Assets/Scripts/World/WorldNameplate.cs",
+      "sha256": "cfe4c1354961c563260eeb2decbf15a0bc83b7c9ccc6e11b04e4c838ce261505"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/FestivalRegionMap.cs",
+      "sha256": "8604191f81d5e9c2addf521ac90bd7437f243a5b820aa539f7baa7f50ef819b0"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/GameplayInputGate.cs",
+      "sha256": "17de6fff06b9224f7ba4cf477e15f57b669d08dbf5f804756159d09da0a98efa"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongCameraController.cs",
+      "sha256": "d0c887165433cb8db5da889cdb0b1920f2f0a512b02a604b1f20ee17f92deb1d"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongClickMarker.cs",
+      "sha256": "17159a15d389be326234f87b2f3775362fc6c2c682ba04def9bc442eb5d43b80"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongLighting.cs",
+      "sha256": "b8f74253a728b3b7e98307426a50bace771b099c305b4b26662ec7afb2f4aa94"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongMapBuilder.cs",
+      "sha256": "e49f5330247492272d7bd543340501da82155f535454caa3da0f98e6a4502360"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongMapConfig.cs",
+      "sha256": "6dba3b4cde8f0febf14097ff9e24da018469fff4f8d68eea00cddfe7af68f4fc"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongMapDefinition.cs",
+      "sha256": "a8034b71c774fcb7b99538106b71ce6aa47fdbeaa2e4d699ad81e322ec92dd86"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs",
+      "sha256": "7cf9145f4af3773872d60ce023e825dbd22eba600af996e16016e0d2f20d6cc0"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongNavigationGrid.cs",
+      "sha256": "c5e5424f6e5ad2c34dd0bf6216e7fdf3f77fbd6d0c30220fbeef3e1953810260"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongPaintedCity.cs",
+      "sha256": "44ae0a0d0913ae52ac4c0c633f13eef0f46a08646f0240905b7404bee3b57adf"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongPaintedForeground.cs",
+      "sha256": "e5d8cc55c111759b222b333b0b0d6dbeea014a357d750ed47e667d174a254dd3"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongPlayerController.cs",
+      "sha256": "5aad4fafebe8f38640e613f63075b3c6b0ebf88a95267a95c65e4ef9c925cba4"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongSandboxAutoDrive.cs",
+      "sha256": "132c5538faed07b4ca4c534c3cddbc745fb2311a4f772d5654cfc00cba6e7eac"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs",
+      "sha256": "f016fcf6555d854c23159a43e66a0a0f9efd542da5570bc4c8a067f17d5585c4"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongSandboxHudVerification.cs",
+      "sha256": "50bcaa192d18a7a37ee65954563a972dbfeccbf729b1fa705575b947b34f24f5"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/AttributeClientTests.cs",
+      "sha256": "96bf276ca515729da1ce192e63848b8a8e19986584a7453df4d8b2a34b4107bb"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleArtCatalogCacheTests.cs",
+      "sha256": "7524bce333f7b08c98516d35182e2ad5349f85548c7c253eb724d63b0e0c6c01"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleClientAutoBattleTests.cs",
+      "sha256": "e4733fd145487027f34f2060ad5e077ab2e70cf220c789ba2e25198930eb7c90"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleClientStateMachineTests.cs",
+      "sha256": "a0c05ca598a3baa15933d436e8e6e7793becddddfaf8ba8f3fae8386df3cf95c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleDirectLinkTests.cs",
+      "sha256": "00bab579634d5bf46f2ce124746759932d6d7632da9d33b0b57b714bee0834ed"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleHudLogicTests.cs",
+      "sha256": "c652eb2f697ef18b9bf728e43a4589e801b71c129ca38dc2afeae2aaabc94516"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleRosterAppearanceTests.cs",
+      "sha256": "ac5ae30af68289a517e812fe22ef9df420d9a68e4a1d20256af13a278675f6be"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleStageTests.cs",
+      "sha256": "992330ac07005771cc2f33176e50ffa21e02470a8463b859c981ff8fdf2006ae"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleUiLayoutTests.cs",
+      "sha256": "474bfcd0001a913ca4744d535242c1d08948886a97042ce68133f6aed691e5dc"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/DamageNumberLayoutTests.cs",
+      "sha256": "57a38de5715771baded57ea3fe4717a116a55d01be2b1f5b357f02f1af8b6caf"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/DirectRoutingBattleTransportTests.cs",
+      "sha256": "194402b07b1b339a1c4de5e0bb978c9e75e2731a9472946e3018583569b9d2ab"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/FakeBattleTransport.cs",
+      "sha256": "60a10f0db9df03e4a960a9bdadd702be6e7a23e15508370b5b5a89a9e76b3551"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/FakeFramedConnection.cs",
+      "sha256": "337a20ad5321b1af552d4dbe72dc8db3661ba98db0c46c52fe61ba3b4528d7f8"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/GameplayWindowTests.cs",
+      "sha256": "0f23d10efb9b0141f285ff64290488569c24cc6339fbb41dc462e1aed6ac816c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/HudCanvasLayeringTests.cs",
+      "sha256": "89248dfe36ee40ad1924c0e3e993280af61d64daf477bb6092243de82422a960"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/PetClientTests.cs",
+      "sha256": "6774d0178b6b2d802f2e1734776e622e636482ae15e2112a9292ca823ab95e7d"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/PetPanelInteractionTests.cs",
+      "sha256": "abf13e7fb683d53b08eb481a894fe20b7c7d102ef27505a8ec44e02e2be9d8ac"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/PlaybackBudgetTests.cs",
+      "sha256": "8e612b4e1967c0734ee9b05fb553c564691cc244f3c1c2ba5404d0027a49e1c8"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/PlayerFeaturesClientTests.cs",
+      "sha256": "7664b6f9225f46387e2ed96f47e51e6f61bfcfcd1869a53d6dcd8300d62b96fd"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/SpectateClientStateMachineTests.cs",
+      "sha256": "ed60fa4e44ef03227a62ad865658f9645ba3719b0e3d9baf2554a9814b59795f"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/TurnPlanTests.cs",
+      "sha256": "b476faea0fb8e456ba1d3a5177291150b7db2ebefbba8d3c8ed2827e86928c46"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Guild/GuildUiTests.cs",
+      "sha256": "5e805088d860df411958f899e64e852e42b097365451e9ea1569e8862f8c21d8"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/ActorWorldFoundationTests.cs",
+      "sha256": "cf13aec65c1fd3b679d3d826066f4be470dbff5cea552de65099eb0e69a0ba09"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/CityTravelRequestTests.cs",
+      "sha256": "d7fa21d6c5c1ee51ed6f3373f1deb11430d665548815128baf3338fabce25d69"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/CityTravelWindowTests.cs",
+      "sha256": "96be085465f0cde5249ed92348580d3c8d402cbf2598f571089c670e6bf5ff23"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/FestivalRegionMapTests.cs",
+      "sha256": "a88b320291362dd7e945517dbc879919dff1e8df842a60acc06303de10b66de6"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/FestivalRegionVerificationProbeTests.cs",
+      "sha256": "d91446fe8fc285472a8f1d9232049d4604d104f50204fa5ff2fe2cee9e079d9c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/JubaozhaiModelTests.cs",
+      "sha256": "9a73df459bc37e0668272954f47f43d3e49ddd24fae0b4c727e5b842e35a0668"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/QdaoAppearanceVersionTests.cs",
+      "sha256": "377d87ce0f1db35a2dd75f472010de2607efa24e78dc04bebe61c00eb8b334b1"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/QdaoBoySpriteAnimatorLogicTests.cs",
+      "sha256": "fb04bd32d63f248135b6ab4fa851f0de4540b28b6d5c575a2e90ab443f733891"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/QdaoCharacterCatalogTests.cs",
+      "sha256": "755cd00484267811f2a8c1ee22110ea1e9e0759eb220fcfc624833f3b0904c53"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/QdaoRoleAppearanceBindingTests.cs",
+      "sha256": "faeeca281fc6f02fd2fb0a9e46c89b2d4a78de2fdddcfeb309fea160710dd543"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/QdaoRunAssetTests.cs",
+      "sha256": "081ad63d1424ae289be91cee2bc3c62781afaee9e250ce798427071ddfd9d598"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/QdaoServerSelectPrefabTests.cs",
+      "sha256": "b74687842a964ced1ec92017c5bef6fd35cf72d3324b077b5be4e61809d87f63"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TeamUiStateTests.cs",
+      "sha256": "7038e98ccb85ecafc3909f527dbbdb5e9f07b9c2fc620386b432b8c0f9ad9676"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TeamWindowTests.cs",
+      "sha256": "00c0ffb8dec6d5181efc4d5e210771925648206941eaa49f1ddab255c2ab9f18"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TianyongCameraControllerTests.cs",
+      "sha256": "d6d6f935772989469692abe2ae6decf8a9e9c898815897c7a29f85ddcf4b3d75"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TianyongClickMarkerTests.cs",
+      "sha256": "825289597378af1a9359c26cff74d1d1a208a9332d197f0c2d553fda28a94c38"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TianyongNavigationGridTests.cs",
+      "sha256": "68034cc3b1c44fefc1577ad83be3067f745b7235b3cac2e737be52d8b2481adf"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TianyongPaintedCityTests.cs",
+      "sha256": "840a85c50c8e41a7f9ce44f2987bf3a570689daa3a1bacdfd521de4022b38116"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TianyongPaintedForegroundTests.cs",
+      "sha256": "5697fd9fd15b1cccc9df730a180455f9c23ec47a0369060eb379a416f6e535a2"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/TianyongProjectAssetTests.cs",
+      "sha256": "a1abebe3de146d5b8c426123a44ac3f54e455876848761417c11d2ddaa437377"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Tianyong/WorldCoordinateConverterTests.cs",
+      "sha256": "f5e5f1ba0e7e18dd4b721e60acd66c5c19994ee96a67072a5aa64abc3aa111b5"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/CityTravelWindowPlayModeTests.cs",
+      "sha256": "d246a7df2bdf10b77b26edc2ee5eff46eab6a2c58ee976f89ca9ad172b292451"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/QdaoBootstrapPlayModeTests.cs",
+      "sha256": "bfed17be2627a4e94c86c2ecebd5392f0c91ae8ba031c8b610fb3bb29db59894"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/QdaoBoySpriteAnimatorPlayModeTests.cs",
+      "sha256": "3e8840c3bd64f9a43e0837ce9d4be2e459403b71af8bf9457e5e67a640d02930"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/QdaoRosterAnimatorPlayModeTests.cs",
+      "sha256": "79ba9c4543057ba142016db38e837aca095243566c8fc26759ee8f8748fb3e4b"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/QdaoRosterSandboxPlayModeTests.cs",
+      "sha256": "fb662eab79f56ac617403e43fc87c9bad610c695a1a847e8b9f902583f3ca058"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/RealtimeTweenPlayModeTests.cs",
+      "sha256": "ba1e172886f2ccfbd736686a2984f25c78682260409efda15b2314a8a9d1f28a"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/TeamWindowPlayModeTests.cs",
+      "sha256": "c1283bc5902ac4065914ff583702fdabe33c84c761b4667f57da1b6d2fe77f8a"
+    },
+    {
+      "path": "Assets/Tests/PlayMode/TianyongMapPlayModeTests.cs",
+      "sha256": "97dd228d2af378407cdb599407d6d06b6c4abfd9cf161ed2cad2d40982ef09c4"
+    }
+  ],
+  "testsStarted": false
+}

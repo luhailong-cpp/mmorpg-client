@@ -107,6 +107,36 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(selected.FrameResourcePath("NW", 7), Is.EqualTo(V12 + "walk/NW/08"));
         }
 
+        [TestCase(0, 2)]
+        [TestCase(2, 2)]
+        [TestCase(3, 3)]
+        public void SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract(int declared, int expected)
+        {
+            var definition = QdaoCharacterCatalog.Find(Character);
+            var json = Approval().Replace("\"version\":12", "\"version\":12,\"alignmentVersion\":" + declared);
+            var selected = QdaoCharacterCatalog.SelectAppearance(definition, json, (_, _, _) => true);
+            Assert.That(selected.AlignmentVersion, Is.EqualTo(expected));
+            Assert.That(selected.Version, Is.EqualTo(12));
+            Assert.That(selected.FrameCount, Is.EqualTo(8));
+            Assert.That(selected.ResourceFolder, Is.EqualTo(V12.TrimEnd('/')));
+            var legacy = QdaoCharacterCatalog.SelectAppearance(definition, Approval(), (_, _, _) => true);
+            Assert.That(legacy.AlignmentVersion, Is.EqualTo(2));
+            if (expected == 3) Assert.That(selected.CacheKey, Is.Not.EqualTo(legacy.CacheKey));
+        }
+
+        [TestCase(-1)]
+        [TestCase(1)]
+        [TestCase(4)]
+        public void UnknownAlignmentVersions_CannotActivateArtwork(int declared)
+        {
+            var definition = QdaoCharacterCatalog.Find(Character);
+            var json = Approval().Replace("\"version\":12", "\"version\":12,\"alignmentVersion\":" + declared);
+            var calls = 0;
+            var selected = QdaoCharacterCatalog.SelectAppearance(definition, json, (_, _, _) => { calls++; return true; });
+            Assert.That(selected, Is.SameAs(definition.BaselineAppearance));
+            Assert.That(calls, Is.Zero);
+        }
+
         [Test]
         public void MixedVersionsAndNewAcceptedRevisions_DoNotShareSpriteCacheKeys()
         {

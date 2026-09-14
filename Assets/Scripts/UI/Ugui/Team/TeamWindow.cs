@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using MmorpgClient.Game.Team;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
@@ -7,11 +6,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static MmorpgClient.UI.Ugui.Gameplay.GameplayUiArt;
+using static MmorpgClient.UI.Ugui.Team.TeamUiArt;
 
 namespace MmorpgClient.UI.Ugui.Team
 {
-    /// <summary>Team views consume authoritative snapshots and only emit player intent.</summary>
+    /// <summary>Member and application lists share one view, driven only by authoritative snapshots.</summary>
     public sealed class TeamWindow
     {
         public const int RowsPerPage = 4;
@@ -20,13 +19,21 @@ namespace MmorpgClient.UI.Ugui.Team
         public event Action<ulong, bool> DecisionRequested;
         public event Action Closed;
         public bool IsVisible => _root.gameObject.activeSelf;
+        // Kept for callers that open a particular list. Both lists remain visible.
         public TeamPage Page { get; private set; }
-        public int PageIndex { get; private set; }
+        public int MemberPageIndex { get; private set; }
+        public int ApplicationPageIndex { get; private set; }
+        public int PageIndex => Page == TeamPage.Applications ? ApplicationPageIndex : MemberPageIndex;
 
-        private readonly RectTransform _root, _body;
-        private readonly TMP_Text _summary, _status, _pageLabel;
-        private readonly Button[] _tabs = new Button[3];
-        private readonly Button _refresh, _previous, _next;
+        private static readonly Color BodyInk = QdaoUguiTheme.Html("#304736");
+        private static readonly Color BodyMuted = QdaoUguiTheme.Html("#70634E");
+        private static readonly Color Jade = QdaoUguiTheme.Html("#205B46");
+        private static readonly Color Border = QdaoUguiTheme.Html("#C7B68E");
+        private static TMP_FontAsset _bodyFont;
+        private readonly RectTransform _root, _members, _applications;
+        private readonly TMP_Text _summary, _status, _memberCount, _applicationCount;
+        private readonly TMP_Text _memberPageLabel, _applicationPageLabel;
+        private readonly Button _refresh, _close, _memberPrevious, _memberNext, _applicationPrevious, _applicationNext;
         private TeamUiState _state;
         private GameObject _returnFocus;
 
@@ -38,30 +45,41 @@ namespace MmorpgClient.UI.Ugui.Team
             shade.color = new Color(.025f, .10f, .08f, .68f);
             shade.raycastTarget = true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
-            var frame = QdaoUguiFactory.CreateCenteredRect("TeamFrame", _root, 2160, 924);
-            Art(frame, "main_frame", 0, 0, 2160, 924);
-            Art(frame, "title_plate", 62, -21, 480, 114);
-            Text(frame, "结伴同游", 100, -7, 400, 84, 49, Cream, alignment: TextAlignmentOptions.Center);
-            _summary = Text(frame, "相逢即同道 · 携手赴山海", 82, 106, 1840, 46, 29, Muted);
-            string[] labels = { "队伍成员", "入队申请", "已同意" };
-            for (int i = 0; i < _tabs.Length; i++)
-            {
-                var page = (TeamPage)i;
-                _tabs[i] = Button(frame, labels[i], 1070 + i * 310, 36, 286, 80,
-                    () => Show(page), key: "tab_normal", fontSize: 32);
-                _tabs[i].name = "TeamTab_" + page;
-            }
-            var close = Button(frame, "", 2036, 28, 76, 76, Hide, key: "close");
-            close.name = "CloseTeamWindow";
-            _body = QdaoUguiFactory.CreateRect("TeamContent", frame, 60, 170, 2040, 640);
-            _status = Text(frame, "", 84, 828, 1240, 52, 27, Muted, true);
-            _previous = Button(frame, "上一页", 1340, 828, 182, 64, () => MovePage(-1), fontSize: 27);
-            _previous.name = "TeamPreviousPage";
-            _pageLabel = Text(frame, "", 1528, 828, 150, 64, 27, Muted, alignment: TextAlignmentOptions.Center);
-            _next = Button(frame, "下一页", 1684, 828, 182, 64, () => MovePage(1), fontSize: 27);
-            _next.name = "TeamNextPage";
-            _refresh = Button(frame, "刷新", 1890, 828, 180, 64,
-                () => { if (CanAct) RefreshRequested?.Invoke(); }, true, fontSize: 28);
+            var frame = QdaoUguiFactory.CreateCenteredRect("TeamFrame", _root, 2200, 916);
+            Art(frame, "main_frame", 0, 0, 2200, 916);
+            Art(frame, "title_plate", 680, -46, 840, 148);
+            Text(frame, "结伴同游", 778, -24, 644, 94, 60, Cream, alignment: TextAlignmentOptions.Center);
+            Text(frame, "组队", 972, 60, 256, 42, 28, Cream, alignment: TextAlignmentOptions.Center);
+            Art(frame, "lantern", 42, -20, 52, 98, true);
+            Art(frame, "close_tassel", 2107, 91, 33, 91, true);
+            _close = Control(frame, "", 2084, 20, 76, 76, Hide, key: "close");
+            _close.name = "CloseTeamWindow";
+            _summary = Label(frame, "队伍信息尚未同步", 1264, 96, 846, 44, 24,
+                BodyMuted, TextAlignmentOptions.MidlineRight);
+            Art(frame, "section_plate", 84, 104, 700, 86);
+            Text(frame, "队伍成员", 188, 114, 504, 66, 44, Cream);
+            Art(frame, "section_plate", 1264, 156, 580, 78);
+            Text(frame, "申请列表", 1368, 163, 400, 64, 42, Cream);
+            _memberCount = Label(frame, "", 954, 128, 220, 46, 30, BodyMuted, TextAlignmentOptions.MidlineRight);
+            _applicationCount = Label(frame, "", 1890, 174, 220, 46, 30, Jade, TextAlignmentOptions.MidlineRight);
+            Solid(frame, "ListDivider", 1218, 184, 1, 596, Border);
+            _members = QdaoUguiFactory.CreateRect("TeamMembers", frame, 84, 202, 1090, 576);
+            _applications = QdaoUguiFactory.CreateRect("TeamApplications", frame, 1264, 254, 846, 514);
+
+            _memberPrevious = Control(frame, "上一页", 386, 790, 168, 54, () => MovePage(TeamPage.Members, -1), size: 25);
+            _memberPrevious.name = "MemberPreviousPage";
+            _memberPageLabel = Label(frame, "", 558, 790, 142, 54, 26, BodyMuted, TextAlignmentOptions.Center);
+            _memberNext = Control(frame, "下一页", 704, 790, 168, 54, () => MovePage(TeamPage.Members, 1), size: 25);
+            _memberNext.name = "MemberNextPage";
+            _applicationPrevious = Control(frame, "上一页", 1442, 790, 168, 54, () => MovePage(TeamPage.Applications, -1), size: 25);
+            _applicationPrevious.name = "ApplicationPreviousPage";
+            _applicationPageLabel = Label(frame, "", 1614, 790, 142, 54, 26, BodyMuted, TextAlignmentOptions.Center);
+            _applicationNext = Control(frame, "下一页", 1760, 790, 168, 54, () => MovePage(TeamPage.Applications, 1), size: 25);
+            _applicationNext.name = "ApplicationNextPage";
+            Solid(frame, "FooterDivider", 84, 850, 2032, 1, Border);
+            _status = Label(frame, "", 88, 857, 1660, 48, 28, BodyMuted);
+            _refresh = Control(frame, "刷新", 1894, 851, 216, 60,
+                () => { if (CanAct) RefreshRequested?.Invoke(); }, size: 30);
             _refresh.name = "RefreshTeam";
         }
 
@@ -75,12 +93,12 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             bool opening = !IsVisible;
             if (opening) _returnFocus = EventSystem.current?.currentSelectedGameObject;
-            if (Page != page) PageIndex = 0;
-            Page = page;
+            // Legacy Approved callers land on members; approval history is never rendered.
+            Page = page == TeamPage.Applications ? TeamPage.Applications : TeamPage.Members;
             _root.gameObject.SetActive(true);
             Render();
             if (opening && EventSystem.current != null)
-                EventSystem.current.SetSelectedGameObject(_tabs[(int)Page].gameObject);
+                EventSystem.current.SetSelectedGameObject(_close.gameObject);
         }
 
         public void Hide()
@@ -97,18 +115,19 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             Hide();
             _state = null;
-            PageIndex = 0;
+            MemberPageIndex = ApplicationPageIndex = 0;
             Page = TeamPage.Members;
-            Clear(_body);
+            Clear(_members);
+            Clear(_applications);
         }
 
         private bool CanAct => _state != null && _state.ServiceAvailable && !_state.IsBusy;
-        private IReadOnlyList<TeamRole> CurrentList => Page == TeamPage.Applications
-            ? _state?.Snapshot?.Applications : _state?.Snapshot?.Approved;
 
-        private void MovePage(int delta)
+        private void MovePage(TeamPage page, int delta)
         {
-            PageIndex += delta;
+            Page = page;
+            if (page == TeamPage.Applications) ApplicationPageIndex += delta;
+            else MemberPageIndex += delta;
             Render();
         }
 
@@ -116,127 +135,138 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             string focusName = null;
             var selected = EventSystem.current?.currentSelectedGameObject;
-            if (selected != null && selected.transform.IsChildOf(_body)) focusName = selected.name;
-            Clear(_body);
+            if (selected != null && (selected.transform.IsChildOf(_members) || selected.transform.IsChildOf(_applications)))
+                focusName = selected.name;
+            Clear(_members);
+            Clear(_applications);
             var data = _state?.Snapshot;
             int members = data?.Members.Count ?? 0;
             int capacity = Math.Max(1, data?.Capacity ?? MaxMemberCards);
+            int applications = data?.Applications.Count ?? 0;
             _summary.text = data != null && data.TeamId != 0
-                ? $"队伍人数 {members} / {capacity}     ·     队伍编号 {data.TeamId}     ·     " + (_state.IsLeader ? "你是队长" : "你是队员")
-                : "相逢即同道 · 携手赴山海";
-            string[] titles = { $"队伍成员 {members}", $"入队申请 {data?.Applications.Count ?? 0}", $"已同意 {data?.Approved.Count ?? 0}" };
-            for (int i = 0; i < _tabs.Length; i++)
-            {
-                bool active = i == (int)Page;
-                ((Image)_tabs[i].targetGraphic).sprite = Load(active ? "tab_selected" : "tab_normal");
-                var label = _tabs[i].GetComponentInChildren<TMP_Text>();
-                label.text = titles[i];
-                label.color = active ? Cream : Ink;
-            }
+                ? $"队伍人数  {members} / {capacity}        队伍编号  {data.TeamId}        " + (_state.IsLeader ? "你是队长" : "你是队员")
+                : "队伍信息尚未同步";
+            _memberCount.text = $"{members} / {capacity}";
+            _applicationCount.text = $"{applications} 人";
             _status.text = !string.IsNullOrWhiteSpace(_state?.Status) ? _state.Status
                 : _state?.IsBusy == true ? "正在同步队伍，请稍候…"
                 : _state?.ServiceAvailable != true ? "组队暂未开放，敬请期待。"
+                : !_state.IsLeader ? "你是队员，入队申请由队长处理。"
                 : _state.IsFull ? "队伍已满，可拒绝剩余申请。"
-                : _state.IsLeader ? "同意申请后，道友将加入你的队伍。" : "入队申请由队长处理。";
+                : "同意申请后，道友将加入你的队伍。";
             _refresh.interactable = CanAct;
             _refresh.GetComponentInChildren<TMP_Text>().text = _state?.IsLoading == true ? "同步中…" : "刷新";
-            bool listing = Page != TeamPage.Members;
-            int pages = listing ? Math.Max(1, ((CurrentList?.Count ?? 0) + RowsPerPage - 1) / RowsPerPage)
-                : 1 + (Math.Max(capacity, members) - 1) / MaxMemberCards;
-            PageIndex = Mathf.Clamp(PageIndex, 0, pages - 1);
-            _pageLabel.gameObject.SetActive(listing || pages > 1);
-            _previous.gameObject.SetActive(listing || pages > 1);
-            _next.gameObject.SetActive(listing || pages > 1);
-            _pageLabel.text = $"{PageIndex + 1} / {pages}";
-            _previous.interactable = PageIndex > 0;
-            _next.interactable = PageIndex + 1 < pages;
-            if (listing) RenderList();
-            else RenderMembers(capacity);
+            int memberPages = 1 + (Math.Max(capacity, members) - 1) / MaxMemberCards;
+            int applicationPages = Math.Max(1, (applications + RowsPerPage - 1) / RowsPerPage);
+            MemberPageIndex = Mathf.Clamp(MemberPageIndex, 0, memberPages - 1);
+            ApplicationPageIndex = Mathf.Clamp(ApplicationPageIndex, 0, applicationPages - 1);
+            Pagination(_memberPrevious, _memberNext, _memberPageLabel, MemberPageIndex, memberPages);
+            Pagination(_applicationPrevious, _applicationNext, _applicationPageLabel, ApplicationPageIndex, applicationPages);
+            RenderMembers(capacity);
+            RenderApplications();
             if (focusName != null && EventSystem.current != null)
             {
-                Button nextFocus = null;
-                foreach (var button in _body.GetComponentsInChildren<Button>())
-                    if (button.name == focusName && button.interactable) { nextFocus = button; break; }
-                EventSystem.current.SetSelectedGameObject(nextFocus != null ? nextFocus.gameObject : _tabs[(int)Page].gameObject);
+                Button target = null;
+                foreach (var button in _applications.GetComponentsInChildren<Button>())
+                    if (button.name == focusName && button.interactable) { target = button; break; }
+                if (target == null)
+                    foreach (var button in _applications.GetComponentsInChildren<Button>())
+                        if (button.interactable) { target = button; break; }
+                EventSystem.current.SetSelectedGameObject(target != null ? target.gameObject
+                    : _refresh.interactable ? _refresh.gameObject : _close.gameObject);
             }
+            else if (selected != null && (!selected.activeInHierarchy || selected.GetComponent<Button>()?.interactable == false)
+                     && selected.transform.IsChildOf(_root) && EventSystem.current != null)
+                EventSystem.current.SetSelectedGameObject(_close.gameObject);
+        }
+
+        private static void Pagination(Button previous, Button next, TMP_Text label, int page, int pages)
+        {
+            previous.interactable = page > 0;
+            next.interactable = page + 1 < pages;
+            previous.gameObject.SetActive(pages > 1);
+            next.gameObject.SetActive(pages > 1);
+            label.gameObject.SetActive(pages > 1);
+            label.text = $"{page + 1} / {pages}";
         }
 
         private void RenderMembers(int capacity)
         {
             var data = _state?.Snapshot;
-            int start = PageIndex * MaxMemberCards;
-            int visibleSlots = Math.Min(MaxMemberCards, Math.Max(capacity, data?.Members.Count ?? 0) - start);
-            for (int i = 0; i < visibleSlots; i++)
+            int start = MemberPageIndex * MaxMemberCards;
+            int visible = Math.Min(MaxMemberCards, Math.Max(capacity, data?.Members.Count ?? 0) - start);
+            for (int i = 0; i < visible; i++)
             {
                 int slot = start + i;
-                float width = 386;
-                float x = (2040 - visibleSlots * 402 + 16) / 2 + i * 402;
-                var card = QdaoUguiFactory.CreateRect("TeamMemberSlot_" + slot, _body, x, 12, width, 618);
-                Art(card, "content_panel", 0, 0, width, 618);
                 var role = data != null && slot < data.Members.Count ? data.Members[slot] : null;
+                bool self = role != null && role.PlayerId == data.LocalPlayerId;
+                var row = Row(_members, "TeamMemberSlot_" + slot, 0, i * 116, 1090, 112,
+                    "member_row", role == null ? QdaoUguiTheme.Html("#F0EEE6") : Color.white);
                 if (role == null)
                 {
-                    Text(card, $"席位 {slot + 1:00}", 36, 34, 314, 42, 28, Gold, alignment: TextAlignmentOptions.Center);
-                    Art(card, "portrait_frame", 58, 116, 270, 270);
-                    Text(card, "待结缘", 73, 186, 240, 102, 43, Muted, alignment: TextAlignmentOptions.Center);
-                    Text(card, "虚位以待", 35, 433, 316, 56, 34, alignment: TextAlignmentOptions.Center);
-                    Text(card, "静候同道，一路同行", 26, 512, 334, 48, 25, Muted, alignment: TextAlignmentOptions.Center);
+                    Art(row, "empty_slot", 20, 13, 86, 86, true);
+                    Label(row, "空余席位", 130, 8, 480, 52, 34, BodyMuted);
+                    Label(row, "等待道友加入", 130, 64, 480, 40, 25, BodyMuted);
+                    Label(row, $"席位 {slot + 1:00}", 846, 32, 216, 50, 26, BodyMuted, TextAlignmentOptions.MidlineRight);
                     continue;
                 }
+                Portrait(row, role, 14, 7, 98);
+                Label(row, DisplayName(role), 130, 4, 442, 58, 36, bold: true).name = "TeamName_" + role.PlayerId;
+                Label(row, Level(role), 130, 64, 152, 40, 25, BodyMuted).name = "TeamLevel_" + role.PlayerId;
+                Label(row, "·", 282, 64, 40, 40, 25, BodyMuted, TextAlignmentOptions.Center);
+                Label(row, School(role), 322, 64, 264, 40, 25, BodyMuted).name = "TeamSchool_" + role.PlayerId;
                 bool leader = role.PlayerId == data.LeaderId;
-                Text(card, leader ? "队长" : "队员", 36, 30, 314, 46, 29, leader ? Gold : Muted, alignment: TextAlignmentOptions.Center);
-                Portrait(card, role, 58, 100, 270);
-                Text(card, DisplayName(role), 27, 403, 332, 54, 36, alignment: TextAlignmentOptions.Center).name = "TeamName_" + role.PlayerId;
-                Text(card, Level(role) + "  ·  " + School(role), 24, 474, 338, 46, 28, Muted, alignment: TextAlignmentOptions.Center).name = "TeamDetails_" + role.PlayerId;
-                Text(card, (role.PlayerId == data.LocalPlayerId ? "自己 · " : "") + (role.IsOnline ? "在线" : "离线"),
-                    24, 540, 338, 38, 26, role.IsOnline ? Ink : Muted, alignment: TextAlignmentOptions.Center);
+                Art(row, "badge_leader", 602, 34, 132, 44);
+                Label(row, leader ? "队长" : "队员", 612, 34, 112, 44, 25,
+                    leader ? QdaoUguiTheme.Html("#6E4C1B") : BodyMuted, TextAlignmentOptions.Center);
+                if (self)
+                {
+                    Art(row, "badge_self", 752, 34, 106, 44);
+                    Label(row, "自己", 760, 34, 90, 44, 24, Cream, TextAlignmentOptions.Center);
+                }
+                Art(row, role.IsOnline ? "status_online" : "status_offline", 952, 44, 24, 24, true);
+                Label(row, role.IsOnline ? "在线" : "离线", 988, 30, 84, 52, 28,
+                    role.IsOnline ? BodyInk : BodyMuted, TextAlignmentOptions.MidlineRight);
             }
         }
 
-        private void RenderList()
+        private void RenderApplications()
         {
-            var list = CurrentList;
-            Text(_body, Page == TeamPage.Applications ? "申请道友" : "已同意的道友", 44, 0, 640, 42, 28, Muted);
-            Text(_body, "等级", 1060, 0, 160, 42, 28, Muted);
-            Text(_body, "门派", 1270, 0, 250, 42, 28, Muted);
-            Text(_body, Page == TeamPage.Applications ? "处理申请" : "处理结果", 1690, 0, 290, 42, 28, Muted);
+            var list = _state?.Snapshot?.Applications;
             if (list == null || list.Count == 0)
             {
-                Art(_body, "content_panel", 22, 58, 1996, 572);
-                string title = _state?.IsLoading == true ? "正在寻找同行道友…"
-                    : Page == TeamPage.Applications ? "暂无入队申请" : "暂无已同意记录";
-                Text(_body, title, 280, 239, 1480, 76, 46, alignment: TextAlignmentOptions.Center);
-                Text(_body, Page == TeamPage.Applications ? "收到申请后，可在这里查看角色资料并同意或拒绝。" : "同意的道友会显示在这里，当前成员可在队伍成员中查看。",
-                    280, 338, 1480, 68, 29, Muted, alignment: TextAlignmentOptions.Center);
+                Row(_applications, "EmptyApplications", 0, 0, 846, 514, "application_card");
+                string title = _state?.IsBusy == true ? "正在同步申请…" : "暂无入队申请";
+                Label(_applications, title, 32, 162, 782, 66, 42, BodyInk, TextAlignmentOptions.Center, bold: true);
+                string detail = _state?.ServiceAvailable == true
+                    ? "收到申请后，可在这里查看道友资料。" : "组队开放后，可在这里查看并处理申请。";
+                Label(_applications, detail, 72, 254, 702, 96, 30, BodyMuted, TextAlignmentOptions.Center, wrap: true);
                 return;
             }
-            int end = Math.Min(list.Count, (PageIndex + 1) * RowsPerPage);
-            for (int index = PageIndex * RowsPerPage; index < end; index++)
+            int start = ApplicationPageIndex * RowsPerPage;
+            int count = Math.Min(RowsPerPage, list.Count - start);
+            bool compact = count > 2;
+            for (int i = 0; i < count; i++)
             {
-                var role = list[index];
+                var role = list[start + i];
                 if (role == null) continue;
-                var row = QdaoUguiFactory.CreateRect("TeamRow_" + role.PlayerId, _body, 22,
-                    58 + (index % RowsPerPage) * 146, 1996, 134);
-                Art(row, "content_panel", 0, 0, 1996, 134);
-                Portrait(row, role, 14, 10, 114);
-                Text(row, DisplayName(role), 164, 18, 790, 48, 34).name = "TeamName_" + role.PlayerId;
-                Text(row, Page == TeamPage.Applications ? "申请加入队伍" : IsMember(role.PlayerId) ? "已加入当前队伍" : "已同意入队申请",
-                    164, 76, 790, 38, 26, Muted);
-                Text(row, Level(role), 1038, 41, 184, 52, 30).name = "TeamLevel_" + role.PlayerId;
-                Text(row, School(role), 1248, 41, 294, 52, 30).name = "TeamSchool_" + role.PlayerId;
-                if (Page == TeamPage.Approved)
-                {
-                    Text(row, "已同意", 1590, 41, 372, 52, 31, Ink, alignment: TextAlignmentOptions.Center);
-                    continue;
-                }
+                var row = Row(_applications, "TeamRow_" + role.PlayerId, 0, i * (compact ? 126 : 264), 846,
+                    compact ? 114 : 242, "application_card");
+                Portrait(row, role, compact ? 14 : 24, compact ? 16 : 20, compact ? 82 : 132);
+                Label(row, DisplayName(role), compact ? 114 : 184, compact ? 10 : 24, compact ? 346 : 622, 56,
+                    compact ? 32 : 38, bold: true).name = "TeamName_" + role.PlayerId;
+                Label(row, Level(role) + "  ·  " + School(role), compact ? 114 : 184, compact ? 65 : 91,
+                    compact ? 346 : 622, 48, compact ? 26 : 30, BodyMuted).name = "TeamDetails_" + role.PlayerId;
                 bool pending = _state?.PendingPlayerId == role.PlayerId;
                 bool allowed = CanAct && _state.IsLeader;
-                var approve = Button(row, pending ? "处理中…" : "同意", 1590, 33, 178, 68,
-                    () => Decide(role.PlayerId, true), true, allowed && !_state.IsFull, fontSize: 28);
-                approve.name = "Approve_" + role.PlayerId;
-                var reject = Button(row, "拒绝", 1784, 33, 178, 68,
-                    () => Decide(role.PlayerId, false), enabled: allowed, fontSize: 28);
+                float y = compact ? 24 : 162;
+                var reject = Control(row, "拒绝", compact ? 476 : 190, y, compact ? 158 : 292,
+                    compact ? 66 : 64, () => Decide(role.PlayerId, false), enabled: allowed, size: compact ? 28 : 32);
                 reject.name = "Reject_" + role.PlayerId;
+                var approve = Control(row, pending ? "处理中" : "同意", compact ? 648 : 512, y, compact ? 174 : 292,
+                    compact ? 66 : 64, () => Decide(role.PlayerId, true), primary: true,
+                    enabled: allowed && !_state.IsFull, size: pending ? 27 : compact ? 28 : 32);
+                approve.name = "Approve_" + role.PlayerId;
             }
         }
 
@@ -247,27 +277,69 @@ namespace MmorpgClient.UI.Ugui.Team
                 if (role.PlayerId == playerId) { DecisionRequested?.Invoke(playerId, approve); return; }
         }
 
-        private bool IsMember(ulong playerId)
-        {
-            if (_state?.Snapshot == null) return false;
-            foreach (var member in _state.Snapshot.Members)
-                if (member.PlayerId == playerId) return true;
-            return false;
-        }
-
         private static void Portrait(UnityEngine.Transform parent, TeamRole role, float x, float y, float size)
         {
-            Art(parent, "portrait_frame", x, y, size, size);
             string id = role.CharacterId;
             if (string.IsNullOrEmpty(id) && role.ClassId >= 1 && role.ClassId <= 4 && (role.Gender == 1 || role.Gender == 2))
                 id = QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender);
             var sprite = QdaoCharacterCatalog.LoadPortrait(id);
-            var image = QdaoUguiFactory.CreateImage("TeamPortrait_" + role.PlayerId, parent,
-                x + size * .07f, y + size * .07f, size * .86f, size * .86f, sprite);
-            image.preserveAspect = true;
-            image.gameObject.SetActive(sprite != null);
-            if (sprite == null) Text(parent, "待同步", x + 8, y + size * .3f, size - 16, size * .4f,
-                size > 160 ? 32 : 20, Muted, alignment: TextAlignmentOptions.Center);
+            var mask = QdaoUguiFactory.CreateImage("PortraitMask", parent, x, y, size, size,
+                QdaoUguiTheme.RequireSprite(QdaoUguiTheme.StatusDotSpritePath));
+            mask.gameObject.AddComponent<Mask>().showMaskGraphic = false;
+            var portrait = QdaoUguiFactory.CreateImage("TeamPortrait_" + role.PlayerId, mask.transform,
+                -size * .5f, -size * .07f, size * 2, size * 2, sprite);
+            portrait.preserveAspect = true;
+            portrait.gameObject.SetActive(sprite != null);
+            Art(parent, "portrait_frame", x, y, size, size);
+            if (sprite == null) Label(parent, "待同步", x + 3, y + size * .3f, size - 6, size * .4f,
+                20, BodyMuted, TextAlignmentOptions.Center);
+        }
+
+        private static RectTransform Row(UnityEngine.Transform parent, string name, float x, float y, float w, float h,
+            string key, Color? tint = null)
+        {
+            var row = QdaoUguiFactory.CreateRect(name, parent, x, y, w, h);
+            var paper = Art(row, key, 0, 0, w, h);
+            paper.color = tint ?? Color.white;
+            return row;
+        }
+
+        private static void Solid(UnityEngine.Transform parent, string name, float x, float y, float w, float h, Color color)
+        {
+            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, null);
+            image.color = color;
+        }
+
+        private static TMP_FontAsset BodyFont()
+        {
+            if (_bodyFont != null) return _bodyFont;
+            var source = Resources.Load<Font>("Fonts/TeamNotoSansSC");
+            if (source == null) return QdaoUguiTheme.ResolveFont();
+            _bodyFont = TMP_FontAsset.CreateFontAsset(source);
+            _bodyFont.name = "Team Noto Sans SC (Dynamic)";
+            _bodyFont.isMultiAtlasTexturesEnabled = true;
+            return _bodyFont;
+        }
+
+        private static TextMeshProUGUI Label(UnityEngine.Transform parent, string value, float x, float y, float w, float h,
+            float size, Color? color = null, TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft,
+            bool bold = false, bool wrap = false)
+        {
+            // Noto CJK line metrics exceed the old KaiTi boxes; Ellipsis otherwise hides a whole line.
+            h = Mathf.Max(h, size * 1.6f);
+            var label = Text(parent, value, x, y, w, h, size, color ?? BodyInk, alignment: alignment);
+            label.font = BodyFont();
+            label.fontStyle = bold ? FontStyles.Bold : FontStyles.Normal;
+            label.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+            return label;
+        }
+
+        private static Button Control(UnityEngine.Transform parent, string value, float x, float y, float w, float h,
+            Action click, bool primary = false, bool enabled = true, string key = null, float size = 30)
+        {
+            var button = Button(parent, value, x, y, w, h, click, primary, enabled, key, size);
+            button.GetComponentInChildren<TMP_Text>().font = BodyFont();
+            return button;
         }
 
         private static string DisplayName(TeamRole role) => string.IsNullOrWhiteSpace(role.Name) ? "无名道友" : role.Name;

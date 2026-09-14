@@ -215,6 +215,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         {
             // 宝宝窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
             Pet.PetUiRoot.Instance?.HidePanel();
+            Guild.GuildUiRoot.Instance?.HidePanel();
             Gameplay.GameplayUiRoot.Instance?.HidePanel();
             if (_root != null) _root.gameObject.SetActive(true);
             CloseSchemeList();

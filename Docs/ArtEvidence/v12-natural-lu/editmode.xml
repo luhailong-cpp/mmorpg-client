@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="127" result="Passed" total="127" passed="127" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:54Z" duration="31.2562817">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="562" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:54Z" duration="31.256282" total="127" passed="127" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1642" name="MmorpgClient.Tests.EditMode.Tianyong.dll" fullname="E:/work/output/qdao-natural-lu-validation/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Tianyong.dll" runstate="Runnable" testcasecount="266" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:54Z" duration="31.172879" total="127" passed="127" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27624" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1643" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="266" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:54Z" duration="31.163569" total="127" passed="127" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1644" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="266" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:54Z" duration="31.138928" total="127" passed="127" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1645" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="266" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:54Z" duration="31.114482" total="127" passed="127" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1647" name="Tianyong" fullname="MmorpgClient.Tests.EditMode.Tianyong" runstate="Runnable" testcasecount="250" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:54Z" duration="31.104421" total="127" passed="127" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1394" name="QdaoAppearanceVersionTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" testcasecount="95" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:24Z" duration="0.287021" total="95" passed="95" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1409" name="AnApprovalForAnotherIdentityOrWithoutAcceptanceHashes_CannotReplaceThisCharacter" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.AnApprovalForAnotherIdentityOrWithoutAcceptanceHashes_CannotReplaceThisCharacter" methodname="AnApprovalForAnotherIdentityOrWithoutAcceptanceHashes_CannotReplaceThisCharacter" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1096330440" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.027849" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1486" name="CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.034408" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1484" name="CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration(0)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration(0)" methodname="CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1300444327" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.022366" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1485" name="CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration(4)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration(4)" methodname="CompleteUpgrade_UsesEightPosesAndDedicatedIdleAtTheSameCycleDuration" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="488014732" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.002963" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1483" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" testcasecount="73" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.079391" total="73" passed="73" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1410" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;portrait&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;portrait&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1191765232" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.001746" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1411" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/N&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/N&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1803033144" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000338" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1412" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="169984294" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000259" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1413" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="308486245" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000242" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1414" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1113715869" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000234" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1415" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1776411579" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000235" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1416" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="2036954431" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000201" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1417" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1237902483" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000160" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1418" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1277652193" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000213" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1419" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/N/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="905907910" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000196" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1420" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/NE&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/NE&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1366851535" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000188" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1421" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="198788373" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000136" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1422" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="288805338" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000465" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1423" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="163158645" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000258" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1424" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1652421953" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000137" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1425" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1129567341" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000093" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1426" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1297274744" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000089" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1427" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="57572643" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000224" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1428" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NE/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="208365064" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000268" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1429" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/E&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/E&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1778210211" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000213" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1430" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1121433300" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000204" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1431" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1449821402" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000305" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1432" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="754658567" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000323" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1433" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1006264772" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000247" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1434" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="117104359" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000598" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1435" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="892397828" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000293" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1436" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="580137659" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000258" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1437" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/E/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="361183595" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000346" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1438" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/SE&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/SE&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1155385626" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000252" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1439" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1897067221" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000175" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1440" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1483669526" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000217" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1441" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="51197341" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000298" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1442" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1422905595" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000142" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1443" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="909281956" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000125" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1444" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="708598088" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000109" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1445" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="11537064" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000106" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1446" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SE/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="11581993" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000256" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1447" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/S&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/S&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1867973210" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000265" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1448" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1232346679" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000161" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1449" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="550229119" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000136" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1450" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1621781810" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000133" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1451" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="191518793" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000219" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1452" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="207978" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000142" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1453" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="946352377" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000115" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1454" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="649971576" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000122" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1455" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/S/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1028701267" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000120" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1456" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/SW&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/SW&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="104984475" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000121" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1457" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1864561088" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000125" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1458" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="144067118" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000289" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1459" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1993212340" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000208" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1460" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="681121170" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000217" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1461" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1982743525" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000244" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1462" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1615228922" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000136" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1463" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1182402665" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000123" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1464" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/SW/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="428149256" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000126" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1465" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/W&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/W&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1889427477" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000125" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1466" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1048374577" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000123" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1467" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1311203169" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000127" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1468" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="191381886" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000160" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1469" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="221318041" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000248" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1470" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1196273920" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000158" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1471" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1675770836" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000132" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1472" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="82516857" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000129" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1473" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/W/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1528068619" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000132" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1474" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/NW&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;idle/NW&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1569722031" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000124" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1475" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/01&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1315654194" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000362" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1476" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/02&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="923366425" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000188" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1477" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/03&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/03&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1527007029" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000150" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1478" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/04&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/04&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1602044204" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000144" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1479" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/05&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/05&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1640884889" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000149" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1480" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/06&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/06&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1117985348" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000178" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1481" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/07&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/07&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1576785181" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000220" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1482" name="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/08&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation(&quot;walk/NW/08&quot;)" methodname="EverySingleMissingDirectionPoseIdleOrPortrait_PreventsPartialActivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="972709611" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.003419" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1408" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.006027" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1400" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;version\&quot;:12&quot;,&quot;\&quot;version\&quot;:11&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;version\&quot;:12&quot;,&quot;\&quot;version\&quot;:11&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1520962218" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000989" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1401" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;frameCount\&quot;:8&quot;,&quot;\&quot;frameCount\&quot;:4&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;frameCount\&quot;:8&quot;,&quot;\&quot;frameCount\&quot;:4&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1415178488" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000335" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1402" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;frameCount\&quot;:8&quot;,&quot;\&quot;frameCount\&quot;:16&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;frameCount\&quot;:8&quot;,&quot;\&quot;frameCount\&quot;:16&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="2081397486" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000132" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1403" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;frameDurationMs\&quot;:60&quot;,&quot;\&quot;frameDurationMs\&quot;:120&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;frameDurationMs\&quot;:60&quot;,&quot;\&quot;frameDurationMs\&quot;:120&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="218614985" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000089" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1404" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;dedicatedIdle\&quot;:true&quot;,&quot;\&quot;dedicatedIdle\&quot;:false&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;dedicatedIdle\&quot;:true&quot;,&quot;\&quot;dedicatedIdle\&quot;:false&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1522989022" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000222" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1405" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;contactFrame\&quot;:0&quot;,&quot;\&quot;contactFrame\&quot;:6&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;contactFrame\&quot;:0&quot;,&quot;\&quot;contactFrame\&quot;:6&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1087321153" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000145" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1406" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;status\&quot;:\&quot;passed\&quot;&quot;,&quot;\&quot;status\&quot;:\&quot;processing\&quot;&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;status\&quot;:\&quot;passed\&quot;&quot;,&quot;\&quot;status\&quot;:\&quot;processing\&quot;&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1938491495" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000082" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1407" name="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;visualReview\&quot;:\&quot;passed\&quot;&quot;,&quot;\&quot;visualReview\&quot;:\&quot;required\&quot;&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork(&quot;\&quot;visualReview\&quot;:\&quot;passed\&quot;&quot;,&quot;\&quot;visualReview\&quot;:\&quot;required\&quot;&quot;)" methodname="IncompleteOrIncompatibleApproval_DoesNotActivateEightPoseArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1058426371" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:23Z" duration="0.000218" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1399" name="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:24Z" duration="0.066817" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1395" name="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(null)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(null)" methodname="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1644422737" result="Passed" start-time="2026-09-14 10:44:23Z" end-time="2026-09-14 10:44:24Z" duration="0.063713" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1396" name="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(&quot;&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(&quot;&quot;)" methodname="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="2126508084" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000232" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1397" name="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(&quot; &quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(&quot; &quot;)" methodname="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1492997424" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000112" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1398" name="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(&quot;{broken&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter(&quot;{broken&quot;)" methodname="MissingOrMalformedUpgrade_KeepsTheSameFourPoseCharacter" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="280916604" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000290" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1495" name="MixedVersionsAndNewAcceptedRevisions_DoNotShareSpriteCacheKeys" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.MixedVersionsAndNewAcceptedRevisions_DoNotShareSpriteCacheKeys" methodname="MixedVersionsAndNewAcceptedRevisions_DoNotShareSpriteCacheKeys" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="899035366" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.001372" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1490" name="SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.006957" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1487" name="SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract(0,2)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract(0,2)" methodname="SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="896264805" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.001355" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1488" name="SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract(2,2)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract(2,2)" methodname="SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1027980032" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000377" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1489" name="SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract(3,3)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract(3,3)" methodname="SupportedAlignmentVersions_KeepTheSameFramesAndWorldRootContract" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1334931821" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.003309" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1494" name="UnknownAlignmentVersions_CannotActivateArtwork" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.UnknownAlignmentVersions_CannotActivateArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.002361" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1491" name="UnknownAlignmentVersions_CannotActivateArtwork(-1)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.UnknownAlignmentVersions_CannotActivateArtwork(-1)" methodname="UnknownAlignmentVersions_CannotActivateArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1354344000" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000663" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1492" name="UnknownAlignmentVersions_CannotActivateArtwork(1)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.UnknownAlignmentVersions_CannotActivateArtwork(1)" methodname="UnknownAlignmentVersions_CannotActivateArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="1712935959" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000100" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1493" name="UnknownAlignmentVersions_CannotActivateArtwork(4)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests.UnknownAlignmentVersions_CannotActivateArtwork(4)" methodname="UnknownAlignmentVersions_CannotActivateArtwork" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests" runstate="Runnable" seed="435458819" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000076" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+              <test-suite type="TestFixture" id="1496" name="QdaoBoySpriteAnimatorLogicTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.013909" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1503" name="RunHandoffFrames_CoverAllEightDirections" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.RunHandoffFrames_CoverAllEightDirections" methodname="RunHandoffFrames_CoverAllEightDirections" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="684109813" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.004442" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1504" name="ScaleAndStrideCalibration_MatchTheDerivation" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.ScaleAndStrideCalibration_MatchTheDerivation" methodname="ScaleAndStrideCalibration_MatchTheDerivation" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="1910779824" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000704" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1501" name="SelectDirection_HandlesTheZeroThreeSixtyWrap" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_HandlesTheZeroThreeSixtyWrap" methodname="SelectDirection_HandlesTheZeroThreeSixtyWrap" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="273527681" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000936" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1502" name="SelectDirection_InvalidCurrent_FallsBackToTheNearestSector" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_InvalidCurrent_FallsBackToTheNearestSector" methodname="SelectDirection_InvalidCurrent_FallsBackToTheNearestSector" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="1193458293" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000256" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1499" name="SelectDirection_LeavesTheSectorOnlyBeyondTheHysteresisBand" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_LeavesTheSectorOnlyBeyondTheHysteresisBand" methodname="SelectDirection_LeavesTheSectorOnlyBeyondTheHysteresisBand" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="1402152064" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000280" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1500" name="SelectDirection_RealTurn_SwitchesOnTheFirstSample" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_RealTurn_SwitchesOnTheFirstSample" methodname="SelectDirection_RealTurn_SwitchesOnTheFirstSample" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="1915554452" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000391" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1498" name="SelectDirection_WithHysteresis_HoldsTheStripThroughBoundaryJitter" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirection_WithHysteresis_HoldsTheStripThroughBoundaryJitter" methodname="SelectDirection_WithHysteresis_HoldsTheStripThroughBoundaryJitter" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="1684080467" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000568" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1497" name="SelectDirectionRaw_JittersWhenTheYawHoversOnASectorBoundary" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests.SelectDirectionRaw_JittersWhenTheYawHoversOnASectorBoundary" methodname="SelectDirectionRaw_JittersWhenTheYawHoversOnASectorBoundary" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests" runstate="Runnable" seed="1581823703" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.000265" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1505" name="QdaoCharacterCatalogTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:54Z" duration="30.046672" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1506" name="ApprovedRoster_HasEightDistinctCharactersAndExcludesRejectedHermit" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.ApprovedRoster_HasEightDistinctCharactersAndExcludesRejectedHermit" methodname="ApprovedRoster_HasEightDistinctCharactersAndExcludesRejectedHermit" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="719549601" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:24Z" duration="0.820943" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1517" name="EveryPortraitAndDirectionalStrip_LoadsWithCleanImportSettingsAndItsDeclaredGroundedFrames" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.EveryPortraitAndDirectionalStrip_LoadsWithCleanImportSettingsAndItsDeclaredGroundedFrames" methodname="EveryPortraitAndDirectionalStrip_LoadsWithCleanImportSettingsAndItsDeclaredGroundedFrames" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="1137964876" result="Passed" start-time="2026-09-14 10:44:24Z" end-time="2026-09-14 10:44:54Z" duration="29.213181" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1515" name="PersistedProfessionAndGender_SelectTheSameAppearance" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.009214" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1507" name="PersistedProfessionAndGender_SelectTheSameAppearance(1,1,&quot;24_lu_dongbin&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(1,1,&quot;24_lu_dongbin&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="737890453" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000654" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1508" name="PersistedProfessionAndGender_SelectTheSameAppearance(1,2,&quot;23_lantern_courier&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(1,2,&quot;23_lantern_courier&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="2011421872" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000129" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1509" name="PersistedProfessionAndGender_SelectTheSameAppearance(2,1,&quot;30_han_xiangzi&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(2,1,&quot;30_han_xiangzi&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="709598186" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000066" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1510" name="PersistedProfessionAndGender_SelectTheSameAppearance(2,2,&quot;28_moon_rabbit_artificer&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(2,2,&quot;28_moon_rabbit_artificer&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="1972083012" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000083" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1511" name="PersistedProfessionAndGender_SelectTheSameAppearance(3,1,&quot;27_ink_kite_ranger&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(3,1,&quot;27_ink_kite_ranger&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="1687891584" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000062" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1512" name="PersistedProfessionAndGender_SelectTheSameAppearance(3,2,&quot;29_he_xiangu&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(3,2,&quot;29_he_xiangu&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="1129399346" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000057" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1513" name="PersistedProfessionAndGender_SelectTheSameAppearance(4,1,&quot;25_lion_drum_guard&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(4,1,&quot;25_lion_drum_guard&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="1757454590" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000075" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1514" name="PersistedProfessionAndGender_SelectTheSameAppearance(4,2,&quot;26_osmanthus_healer&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.PersistedProfessionAndGender_SelectTheSameAppearance(4,2,&quot;26_osmanthus_healer&quot;)" methodname="PersistedProfessionAndGender_SelectTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="915566619" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000066" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1516" name="UnknownRoleMetadata_UsesTheDocumentedSwordImmortalDefault" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests.UnknownRoleMetadata_UsesTheDocumentedSwordImmortalDefault" methodname="UnknownRoleMetadata_UsesTheDocumentedSwordImmortalDefault" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests" runstate="Runnable" seed="843657309" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000249" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1518" name="QdaoRoleAppearanceBindingTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.684883" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1531" name="AuthoritativeRoleList_ClonesMetadataAndReplacesStaleEntries" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.AuthoritativeRoleList_ClonesMetadataAndReplacesStaleEntries" methodname="AuthoritativeRoleList_ClonesMetadataAndReplacesStaleEntries" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="282472251" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.617965" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1532" name="Disconnect_ClearsAccountAppearanceMetadata" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.Disconnect_ClearsAccountAppearanceMetadata" methodname="Disconnect_ClearsAccountAppearanceMetadata" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="630683133" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.000864" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1528" name="LateRoleMetadata_RefreshesAlreadySpawnedActor" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.LateRoleMetadata_RefreshesAlreadySpawnedActor" methodname="LateRoleMetadata_RefreshesAlreadySpawnedActor" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="567026654" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001765" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1530" name="LocalBindingAfterSpawn_RefreshesLegacyGuidlessActorAndPreviousOwner" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.LocalBindingAfterSpawn_RefreshesLegacyGuidlessActorAndPreviousOwner" methodname="LocalBindingAfterSpawn_RefreshesLegacyGuidlessActorAndPreviousOwner" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="1678794582" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.003947" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1527" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.023370" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1519" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(1,1,&quot;24_lu_dongbin&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(1,1,&quot;24_lu_dongbin&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="698507717" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.004352" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1520" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(1,2,&quot;23_lantern_courier&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(1,2,&quot;23_lantern_courier&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="862765047" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001686" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1521" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(2,1,&quot;30_han_xiangzi&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(2,1,&quot;30_han_xiangzi&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="1276833826" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001602" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1522" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(2,2,&quot;28_moon_rabbit_artificer&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(2,2,&quot;28_moon_rabbit_artificer&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="1499030203" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001570" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1523" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(3,1,&quot;27_ink_kite_ranger&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(3,1,&quot;27_ink_kite_ranger&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="1947735700" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001852" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1524" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(3,2,&quot;29_he_xiangu&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(3,2,&quot;29_he_xiangu&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="1343192036" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001574" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1525" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(4,1,&quot;25_lion_drum_guard&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(4,1,&quot;25_lion_drum_guard&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="360675662" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001726" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1526" name="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(4,2,&quot;26_osmanthus_healer&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole(4,2,&quot;26_osmanthus_healer&quot;)" methodname="NetworkSpawn_UsesStablePlayerGuidAndAuthoritativeRole" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="397415698" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001431" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1529" name="UnknownRemote_DoesNotGuessAppearanceFromEntityOrConfigId" fullname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests.UnknownRemote_DoesNotGuessAppearanceFromEntityOrConfigId" methodname="UnknownRemote_DoesNotGuessAppearanceFromEntityOrConfigId" classname="MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests" runstate="Runnable" seed="743432356" result="Passed" start-time="2026-09-14 10:44:54Z" end-time="2026-09-14 10:44:54Z" duration="0.001719" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

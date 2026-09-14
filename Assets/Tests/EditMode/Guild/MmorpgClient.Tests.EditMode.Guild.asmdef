@@ -1,0 +1,25 @@
+{
+  "allowUnsafeCode": false,
+  "noEngineReferences": false,
+  "versionDefines": [],
+  "references": [
+    "MmorpgClient",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "autoReferenced": false,
+  "includePlatforms": [
+    "Editor"
+  ],
+  "rootNamespace": "MmorpgClient.Tests.EditMode.Guild",
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "overrideReferences": true,
+  "name": "MmorpgClient.Tests.EditMode.Guild",
+  "defineConstraints": [],
+  "excludePlatforms": [],
+  "precompiledReferences": [
+    "Google.Protobuf.dll"
+  ]
+}

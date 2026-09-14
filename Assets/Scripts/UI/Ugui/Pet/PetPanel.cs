@@ -408,6 +408,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         {
             // 属性窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
             AttributeUiRoot.Instance?.HidePanel();
+            Guild.GuildUiRoot.Instance?.HidePanel();
             Gameplay.GameplayUiRoot.Instance?.HidePanel();
             if (_root != null) _root.gameObject.SetActive(true);
             HideTooltip();

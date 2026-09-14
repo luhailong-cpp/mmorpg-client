@@ -18,6 +18,7 @@ namespace MmorpgClient.World
         {
             public string Id { get; }
             public int Version { get; }
+            public int AlignmentVersion { get; }
             public string ResourceFolder { get; }
             public int FrameCount => Version == 12 ? 8 : 4;
             public float FramesPerSecond => Version == 12 ? 1f / 0.06f : 1f / 0.12f;
@@ -43,13 +44,15 @@ namespace MmorpgClient.World
             }
             public int ContactFrame { get; }
             public string CacheKey { get; }
-            internal Appearance(string id, int version, int contactFrame = 0, string revision = "")
+            internal Appearance(string id, int version, int contactFrame = 0, string revision = "", int alignmentVersion = 2)
             {
                 Id = id;
                 Version = version;
+                AlignmentVersion = alignmentVersion;
                 ContactFrame = contactFrame;
                 ResourceFolder = (version == 12 ? V12Root : V11Root) + "/" + id;
-                CacheKey = id + "@v" + version + ":" + revision + ":contact" + contactFrame;
+                CacheKey = id + "@v" + version + ":" + revision + ":contact" + contactFrame +
+                           (alignmentVersion == 2 ? "" : ":alignment" + alignmentVersion);
             }
             public string FrameResourcePath(string direction, int frameIndex)
                 => $"{ResourceFolder}/walk/{direction}/{frameIndex + 1:00}";
@@ -101,6 +104,7 @@ namespace MmorpgClient.World
             public int version;
             public string characterId;
             public int frameCount;
+            public int alignmentVersion;
             public int frameDurationMs;
             public bool dedicatedIdle;
             public int contactFrame;
@@ -131,7 +135,10 @@ namespace MmorpgClient.World
                 record.status != "passed" || record.visualReview != "passed" ||
                 !IsSha256(record.manifest_sha256) || !IsSha256(record.qc_sha256) || !IsSha256(record.validation_sha256))
                 return fallback;
-            var candidate = new Appearance(definition.Id, 12, record.contactFrame, record.manifest_sha256);
+            // Missing field is the unchanged legacy v2 approval format.
+            var alignmentVersion = record.alignmentVersion == 0 ? 2 : record.alignmentVersion;
+            if (alignmentVersion != 2 && alignmentVersion != 3) return fallback;
+            var candidate = new Appearance(definition.Id, 12, record.contactFrame, record.manifest_sha256, alignmentVersion);
             if (!validTexture(candidate.ResourceFolder + "/portrait", 1024, 1024)) return fallback;
             foreach (var direction in Directions)
             {

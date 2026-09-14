@@ -1,0 +1,21 @@
+{
+  "mode": "independent project copy",
+  "platform": "PlayMode",
+  "processId": 63752,
+  "project": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "startedUtc": "2026-09-14T10:46:11.2022677Z",
+  "arguments": [
+    "-batchmode",
+    "-projectPath",
+    "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+    "-runTests",
+    "-testPlatform",
+    "PlayMode",
+    "-testFilter",
+    "MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests;MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests;MmorpgClient.Tests.PlayMode.QdaoRosterSandboxPlayModeTests",
+    "-testResults",
+    "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-natural-lu\\playmode.xml",
+    "-logFile",
+    "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-natural-lu\\playmode.log"
+  ]
+}

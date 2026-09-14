@@ -1,0 +1,415 @@
+{
+  "source": "E:\\work\\mmorpg-client",
+  "target": "E:\\work\\tmp\\guild-mcp-verify-20260914",
+  "completedUtc": "2026-09-14T09:20:45.3238544Z",
+  "unityVersion": "6000.6.0f1",
+  "unityExecutable": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
+  "copyMode": "Independent physical copies; no hardlinks, junctions, or shared writable Assets",
+  "copiedScopes": [
+    "Assets",
+    "Packages",
+    "ProjectSettings",
+    "Library\\PackageCache"
+  ],
+  "excludedAssetFiles": [],
+  "omittedSourceRootScopes": [
+    "Library except PackageCache",
+    "Temp",
+    "Logs",
+    "UserSettings",
+    ".git",
+    ".codex",
+    ".codex-artifacts",
+    "root development/login sentinels and output files"
+  ],
+  "sourceWritesPerformed": false,
+  "allAssetsCopied": true,
+  "sourceCodeHashChecks": 7,
+  "spriteHashChecks": 27,
+  "scopeCopyChecks": [
+    {
+      "scope": "Assets",
+      "sourceCount": 3760,
+      "destinationCount": 3681,
+      "sourceBytes": 592217613.0,
+      "destinationBytes": 588881061.0,
+      "pathAndLengthMatch": false,
+      "differences": [
+        {
+          "InputObject": "Editor\\Jubaozhai\\JubaozhaiUiVerification.cs|11684",
+          "SideIndicator": "=>"
+        },
+        {
+          "InputObject": "Editor\\Jubaozhai\\JubaozhaiAssetBuilder.cs.meta|59",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Editor\\Jubaozhai\\JubaozhaiUiVerification.cs|12026",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1.meta|172",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_01.png.meta|3307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_01.png|46460",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_02.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_02.png|45198",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_03.png.meta|3307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_03.png|45307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_04.png.meta|3307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_04.png|43868",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_primary.png.meta|3320",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_primary.png|15630",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_secondary.png.meta|3320",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_secondary.png|8796",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_01.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_01.png|49252",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_02.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_02.png|48583",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_03.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_03.png|48416",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_04.png.meta|3315",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_04.png|46209",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\close.png.meta|3299",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\close.png|12003",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\empty_guide.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\empty_guide.png|195000",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\input.png.meta|3304",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\input.png|9782",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\main_frame.png.meta|3314",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\main_frame.png|1572982",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\manifest.json.meta|158",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\manifest.json|87585",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\panel.png.meta|3302",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\panel.png|9339",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_01.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_01.png|49076",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_02.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_02.png|48212",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_03.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_03.png|49807",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_04.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_04.png|45560",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_normal.png.meta|3315",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_normal.png|24941",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_selected.png.meta|3319",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_selected.png|27080",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_01.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_01.png|48495",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_02.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_02.png|48567",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_03.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_03.png|48277",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_04.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_04.png|45851",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_01.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_01.png|44594",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_02.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_02.png|44086",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_03.png.meta|3315",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_03.png|43859",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_04.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_04.png|41435",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_normal.png.meta|3314",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_normal.png|9511",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_selected.png.meta|3318",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_selected.png|11044",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\title_plate.png.meta|3311",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\title_plate.png|111675",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_01.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_01.png|46850",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_02.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_02.png|45821",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_03.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_03.png|45450",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_04.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_04.png|43572",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Scenes\\Recovery.meta|172",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Scenes\\Recovery\\JubaozhaiOriginalUntitled_20260914.unity.meta|155",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Scenes\\Recovery\\JubaozhaiOriginalUntitled_20260914.unity|8190",
+          "SideIndicator": "<="
+        }
+      ]
+    },
+    {
+      "scope": "Packages",
+      "sourceCount": 2,
+      "destinationCount": 2,
+      "sourceBytes": 9869.0,
+      "destinationBytes": 9869.0,
+      "pathAndLengthMatch": true,
+      "differences": []
+    },
+    {
+      "scope": "ProjectSettings",
+      "sourceCount": 26,
+      "destinationCount": 26,
+      "sourceBytes": 58713.0,
+      "destinationBytes": 58713.0,
+      "pathAndLengthMatch": true,
+      "differences": []
+    },
+    {
+      "scope": "Library\\PackageCache",
+      "sourceCount": 20040,
+      "destinationCount": 20040,
+      "sourceBytes": 701826749.0,
+      "destinationBytes": 701826749.0,
+      "pathAndLengthMatch": true,
+      "differences": []
+    }
+  ],
+  "independentPathAndLengthAudit": true,
+  "entireLibraryHashAudit": false,
+  "reparsePointCount": 0,
+  "packageCopyRobocopyExitCode": 1,
+  "testsStarted": false,
+  "screenshotsStarted": false,
+  "notes": [
+    "All Assets, Fonts, UI, Tests, editor code and scenes are included.",
+    "All seven recorded guild source hashes and all 27 sprite hashes are checked; remaining copied file paths and byte sizes are compared.",
+    "The existing package manifest and lock are unchanged; only Library/PackageCache is seeded independently.",
+    "No Library AI.MCP, AssistantRunCommand, cache locks, session files or root login sentinels are copied.",
+    "The official Unity assistant package retains the installed absolute local .tgz reference.",
+    "No Unity process has yet been launched for this snapshot.",
+    "Final live-source comparison observed concurrent changes only in Jubaozhai and its recovery scene. The snapshot retains the earlier complete Assets listing; all seven guild source hashes and 27 guild sprite hashes match the recorded acceptance source."
+  ],
+  "snapshotAcceptedForGuildVerification": true,
+  "concurrentSourceDrift": {
+    "scope": "Assets",
+    "observedDifferenceEntries": 81,
+    "paths": "Only unrelated Jubaozhai editor/resources and its recovery scene changed after the Assets copy began",
+    "policy": "Retain the complete 3681-file Assets snapshot as copied; do not chase another task changes",
+    "requiredGuildCodeAndSpritesMatch": true
+  }
+}

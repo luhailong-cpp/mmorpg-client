@@ -1,0 +1,7 @@
+{
+  "date_utc": "2026-09-14T12:24:08.011594+00:00",
+  "target": "E:\\work\\mmorpg-client\\Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard",
+  "previous_v12_directory_existed": false,
+  "fallback_before_import": "QdaoRosterV11/25_lion_drum_guard if no V12 appearance.json",
+  "v11_files_untouched": true
+}

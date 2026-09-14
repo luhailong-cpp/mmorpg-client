@@ -1,0 +1,21 @@
+{
+  "log": "E:/work/output/qdao-natural-lu-validation/prewarm.log",
+  "state": "exited",
+  "checkedUtc": "2026-09-14T10:33:25.0150984Z",
+  "tail": [
+    "Input Polling Thread exited.",
+    "Input System module state changed to: Shutdown.",
+    "[Licensing::IpcConnector] LicenseClient-luyua-notifications channel disconnected successfully.",
+    "[Licensing::IpcConnector] LicenseClient-luyua channel disconnected successfully.",
+    "Lingering sessions upon destruction of worker manager",
+    "Unity Data Store service was successfully shut down",
+    "UDS shutting down local client system",
+    "AcceleratorClientConnectionCallback - disconnected - :0",
+    "Cleanup mono",
+    "CodeReloadManager destroyed",
+    "Exiting batchmode successfully now!",
+    "[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 0"
+  ],
+  "pid": 27068,
+  "exitCode": null
+}

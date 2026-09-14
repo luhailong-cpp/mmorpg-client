@@ -114,6 +114,7 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
+            Guild.GuildUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();
