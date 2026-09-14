@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static MmorpgClient.UI.Ugui.Gameplay.GameplayUiArt;
+using static MmorpgClient.UI.Ugui.Team.TeamUiArt;
 
 namespace MmorpgClient.UI.Ugui.Team
 {
@@ -47,21 +47,24 @@ namespace MmorpgClient.UI.Ugui.Team
             _root.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("TeamFrame", _root, 2200, 916);
             Art(frame, "main_frame", 0, 0, 2200, 916);
-            Art(frame, "title_plate", 770, -30, 660, 112);
-            Text(frame, "结伴同游", 806, -20, 588, 94, 56, Cream, alignment: TextAlignmentOptions.Center);
-            Art(frame, "lantern", 60, -28, 52, 98, true);
+            Art(frame, "title_plate", 680, -46, 840, 148);
+            Text(frame, "结伴同游", 778, -24, 644, 94, 60, Cream, alignment: TextAlignmentOptions.Center);
+            Text(frame, "组队", 972, 60, 256, 42, 28, Cream, alignment: TextAlignmentOptions.Center);
+            Art(frame, "lantern", 42, -20, 52, 98, true);
             Art(frame, "close_tassel", 2107, 91, 33, 91, true);
             _close = Control(frame, "", 2084, 20, 76, 76, Hide, key: "close");
             _close.name = "CloseTeamWindow";
-            _summary = Label(frame, "队伍信息尚未同步", 86, 104, 2014, 58, 32);
-            Solid(frame, "SummaryDivider", 84, 178, 2032, 1, Border);
-            Text(frame, "队伍成员", 88, 195, 430, 54, 44, BodyInk);
-            Text(frame, "申请列表", 1266, 195, 380, 54, 44, BodyInk);
-            _memberCount = Label(frame, "", 976, 200, 200, 46, 32, BodyMuted, TextAlignmentOptions.MidlineRight);
-            _applicationCount = Label(frame, "", 1930, 200, 180, 46, 32, Jade, TextAlignmentOptions.MidlineRight);
-            Solid(frame, "ListDivider", 1218, 206, 1, 586, Border);
-            _members = QdaoUguiFactory.CreateRect("TeamMembers", frame, 84, 266, 1090, 514);
-            _applications = QdaoUguiFactory.CreateRect("TeamApplications", frame, 1264, 266, 846, 514);
+            _summary = Label(frame, "队伍信息尚未同步", 1264, 96, 846, 44, 24,
+                BodyMuted, TextAlignmentOptions.MidlineRight);
+            Art(frame, "section_plate", 84, 104, 700, 86);
+            Text(frame, "队伍成员", 188, 114, 504, 66, 44, Cream);
+            Art(frame, "section_plate", 1264, 156, 580, 78);
+            Text(frame, "申请列表", 1368, 163, 400, 64, 42, Cream);
+            _memberCount = Label(frame, "", 954, 128, 220, 46, 30, BodyMuted, TextAlignmentOptions.MidlineRight);
+            _applicationCount = Label(frame, "", 1890, 174, 220, 46, 30, Jade, TextAlignmentOptions.MidlineRight);
+            Solid(frame, "ListDivider", 1218, 184, 1, 596, Border);
+            _members = QdaoUguiFactory.CreateRect("TeamMembers", frame, 84, 202, 1090, 576);
+            _applications = QdaoUguiFactory.CreateRect("TeamApplications", frame, 1264, 254, 846, 514);
 
             _memberPrevious = Control(frame, "上一页", 386, 790, 168, 54, () => MovePage(TeamPage.Members, -1), size: 25);
             _memberPrevious.name = "MemberPreviousPage";
@@ -197,24 +200,33 @@ namespace MmorpgClient.UI.Ugui.Team
                 int slot = start + i;
                 var role = data != null && slot < data.Members.Count ? data.Members[slot] : null;
                 bool self = role != null && role.PlayerId == data.LocalPlayerId;
-                var row = Row(_members, "TeamMemberSlot_" + slot, 0, i * 104, 1090, 98,
-                    self ? QdaoUguiTheme.Html("#E6ECD9") : role == null ? QdaoUguiTheme.Html("#EFEADC") : QdaoUguiTheme.Html("#FAF3E6"));
+                var row = Row(_members, "TeamMemberSlot_" + slot, 0, i * 116, 1090, 112,
+                    "member_row", role == null ? QdaoUguiTheme.Html("#F0EEE6") : Color.white);
                 if (role == null)
                 {
-                    Label(row, "+", 22, 18, 64, 64, 44, BodyMuted, TextAlignmentOptions.Center);
-                    Label(row, "空余席位", 116, 22, 520, 54, 32, BodyMuted);
-                    Label(row, $"席位 {slot + 1:00}", 846, 24, 216, 50, 26, BodyMuted, TextAlignmentOptions.MidlineRight);
+                    Art(row, "empty_slot", 20, 13, 86, 86, true);
+                    Label(row, "空余席位", 130, 8, 480, 52, 34, BodyMuted);
+                    Label(row, "等待道友加入", 130, 64, 480, 40, 25, BodyMuted);
+                    Label(row, $"席位 {slot + 1:00}", 846, 32, 216, 50, 26, BodyMuted, TextAlignmentOptions.MidlineRight);
                     continue;
                 }
-                Portrait(row, role, 12, 8, 82);
-                Label(row, DisplayName(role), 114, 6, 496, 47, 36, bold: true).name = "TeamName_" + role.PlayerId;
+                Portrait(row, role, 14, 7, 98);
+                Label(row, DisplayName(role), 130, 4, 442, 58, 36, bold: true).name = "TeamName_" + role.PlayerId;
+                Label(row, Level(role), 130, 64, 152, 40, 25, BodyMuted).name = "TeamLevel_" + role.PlayerId;
+                Label(row, "·", 282, 64, 40, 40, 25, BodyMuted, TextAlignmentOptions.Center);
+                Label(row, School(role), 322, 64, 264, 40, 25, BodyMuted).name = "TeamSchool_" + role.PlayerId;
                 bool leader = role.PlayerId == data.LeaderId;
-                Label(row, (leader ? "队长" : "队员") + (self ? " · 自己" : ""), 114, 56, 476, 33, 25,
-                    leader ? QdaoUguiTheme.Html("#82601F") : BodyMuted);
-                Label(row, Level(role), 628, 22, 144, 56, role.Level > 0 ? 30 : 26).name = "TeamLevel_" + role.PlayerId;
-                Label(row, School(role), 778, 22, 176, 56, 30).name = "TeamSchool_" + role.PlayerId;
-                Label(row, role.IsOnline ? "● 在线" : "○ 离线", 962, 25, 112, 50, 27,
-                    role.IsOnline ? Jade : BodyMuted, TextAlignmentOptions.MidlineRight);
+                Art(row, "badge_leader", 602, 34, 132, 44);
+                Label(row, leader ? "队长" : "队员", 612, 34, 112, 44, 25,
+                    leader ? QdaoUguiTheme.Html("#6E4C1B") : BodyMuted, TextAlignmentOptions.Center);
+                if (self)
+                {
+                    Art(row, "badge_self", 752, 34, 106, 44);
+                    Label(row, "自己", 760, 34, 90, 44, 24, Cream, TextAlignmentOptions.Center);
+                }
+                Art(row, role.IsOnline ? "status_online" : "status_offline", 952, 44, 24, 24, true);
+                Label(row, role.IsOnline ? "在线" : "离线", 988, 30, 84, 52, 28,
+                    role.IsOnline ? BodyInk : BodyMuted, TextAlignmentOptions.MidlineRight);
             }
         }
 
@@ -223,7 +235,7 @@ namespace MmorpgClient.UI.Ugui.Team
             var list = _state?.Snapshot?.Applications;
             if (list == null || list.Count == 0)
             {
-                Row(_applications, "EmptyApplications", 0, 0, 846, 514, QdaoUguiTheme.Html("#FAF3E6"));
+                Row(_applications, "EmptyApplications", 0, 0, 846, 514, "application_card");
                 string title = _state?.IsBusy == true ? "正在同步申请…" : "暂无入队申请";
                 Label(_applications, title, 32, 162, 782, 66, 42, BodyInk, TextAlignmentOptions.Center, bold: true);
                 string detail = _state?.ServiceAvailable == true
@@ -238,20 +250,20 @@ namespace MmorpgClient.UI.Ugui.Team
             {
                 var role = list[start + i];
                 if (role == null) continue;
-                var row = Row(_applications, "TeamRow_" + role.PlayerId, 0, i * (compact ? 126 : 250), 846,
-                    compact ? 114 : 230, QdaoUguiTheme.Html("#FAF3E6"));
-                Portrait(row, role, compact ? 14 : 22, compact ? 16 : 20, compact ? 82 : 98);
-                Label(row, DisplayName(role), compact ? 114 : 142, compact ? 10 : 20, compact ? 346 : 672, 48,
+                var row = Row(_applications, "TeamRow_" + role.PlayerId, 0, i * (compact ? 126 : 264), 846,
+                    compact ? 114 : 242, "application_card");
+                Portrait(row, role, compact ? 14 : 24, compact ? 16 : 20, compact ? 82 : 132);
+                Label(row, DisplayName(role), compact ? 114 : 184, compact ? 10 : 24, compact ? 346 : 622, 56,
                     compact ? 32 : 38, bold: true).name = "TeamName_" + role.PlayerId;
-                Label(row, Level(role) + "  ·  " + School(role), compact ? 114 : 142, compact ? 65 : 80,
-                    compact ? 346 : 672, 40, compact ? 26 : 30, BodyMuted).name = "TeamDetails_" + role.PlayerId;
+                Label(row, Level(role) + "  ·  " + School(role), compact ? 114 : 184, compact ? 65 : 91,
+                    compact ? 346 : 622, 48, compact ? 26 : 30, BodyMuted).name = "TeamDetails_" + role.PlayerId;
                 bool pending = _state?.PendingPlayerId == role.PlayerId;
                 bool allowed = CanAct && _state.IsLeader;
-                float y = compact ? 24 : 146;
-                var reject = Control(row, "拒绝", compact ? 476 : 438, y, compact ? 158 : 178,
+                float y = compact ? 24 : 162;
+                var reject = Control(row, "拒绝", compact ? 476 : 190, y, compact ? 158 : 292,
                     compact ? 66 : 64, () => Decide(role.PlayerId, false), enabled: allowed, size: compact ? 28 : 32);
                 reject.name = "Reject_" + role.PlayerId;
-                var approve = Control(row, pending ? "处理中" : "同意", 648, y, 174,
+                var approve = Control(row, pending ? "处理中" : "同意", compact ? 648 : 512, y, compact ? 174 : 292,
                     compact ? 66 : 64, () => Decide(role.PlayerId, true), primary: true,
                     enabled: allowed && !_state.IsFull, size: pending ? 27 : compact ? 28 : 32);
                 approve.name = "Approve_" + role.PlayerId;
@@ -283,11 +295,12 @@ namespace MmorpgClient.UI.Ugui.Team
                 20, BodyMuted, TextAlignmentOptions.Center);
         }
 
-        private static RectTransform Row(UnityEngine.Transform parent, string name, float x, float y, float w, float h, Color fill)
+        private static RectTransform Row(UnityEngine.Transform parent, string name, float x, float y, float w, float h,
+            string key, Color? tint = null)
         {
             var row = QdaoUguiFactory.CreateRect(name, parent, x, y, w, h);
-            Solid(row, "FineBorder", 0, 0, w, h, Border);
-            Solid(row, "QuietPaper", 1, 1, w - 2, h - 2, fill);
+            var paper = Art(row, key, 0, 0, w, h);
+            paper.color = tint ?? Color.white;
             return row;
         }
 

@@ -95,6 +95,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool typing = EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null &&
                 EventSystem.current.currentSelectedGameObject.GetComponentInParent<TMP_InputField>()?.isFocused == true;
             if (typing) return;
+            if (!_window.IsVisible && MmorpgClient.World.Tianyong.GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
             if (keys == null) return;

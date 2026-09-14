@@ -1,0 +1,413 @@
+{
+    "sourcePackage": "designs/guild-ui-v2",
+    "operation": "Import approved individual PNG slices, preserve source pixels, configure native Unity sprites",
+    "unityVersion": "6000.6.0f1",
+    "sourcePixelsUnchanged": true,
+    "assets": [
+        {
+            "source": "assets/window_frame.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/window_frame.png",
+            "resourceKey": "UI/Ugui/GuildV2/window_frame",
+            "sha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+            "guid": "d7e62177b72aad5479a3a6a69da1e593",
+            "width": 1546,
+            "height": 743,
+            "borderLeftBottomRightTop": [
+                97.0,
+                74.0,
+                97.0,
+                99.0
+            ]
+        },
+        {
+            "source": "assets/title_plate.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/title_plate.png",
+            "resourceKey": "UI/Ugui/GuildV2/title_plate",
+            "sha256": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+            "guid": "653740727b568be49a9036d826b8d38b",
+            "width": 655,
+            "height": 110,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/button_primary.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/button_primary.png",
+            "resourceKey": "UI/Ugui/GuildV2/button_primary",
+            "sha256": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+            "guid": "17ef4b449ae5a324b9c3dd9b96cbcc63",
+            "width": 376,
+            "height": 97,
+            "borderLeftBottomRightTop": [
+                66.0,
+                30.0,
+                66.0,
+                30.0
+            ]
+        },
+        {
+            "source": "assets/button_secondary.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/button_secondary.png",
+            "resourceKey": "UI/Ugui/GuildV2/button_secondary",
+            "sha256": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+            "guid": "61947c00411ef7f47bf4331c180eb6ab",
+            "width": 271,
+            "height": 82,
+            "borderLeftBottomRightTop": [
+                30.0,
+                27.0,
+                30.0,
+                27.0
+            ]
+        },
+        {
+            "source": "assets/close_button.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/close_button.png",
+            "resourceKey": "UI/Ugui/GuildV2/close_button",
+            "sha256": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+            "guid": "676b3a169b6975e4bbcab13d65e0ce88",
+            "width": 81,
+            "height": 80,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/close_tassel.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/close_tassel.png",
+            "resourceKey": "UI/Ugui/GuildV2/close_tassel",
+            "sha256": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+            "guid": "baccd7ea2aba8e540a36248612006135",
+            "width": 30,
+            "height": 81,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/portrait_frame.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/portrait_frame.png",
+            "resourceKey": "UI/Ugui/GuildV2/portrait_frame",
+            "sha256": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+            "guid": "a90f8158afc9add4eaa8b434979368cf",
+            "width": 134,
+            "height": 115,
+            "borderLeftBottomRightTop": [
+                11.0,
+                11.0,
+                11.0,
+                11.0
+            ]
+        },
+        {
+            "source": "assets/stat_field.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/stat_field.png",
+            "resourceKey": "UI/Ugui/GuildV2/stat_field",
+            "sha256": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+            "guid": "2a4e1a33bc4541d685e593b24fd54354",
+            "width": 273,
+            "height": 62,
+            "borderLeftBottomRightTop": [
+                12.0,
+                12.0,
+                12.0,
+                12.0
+            ]
+        },
+        {
+            "source": "assets/tab_horizontal.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/tab_horizontal.png",
+            "resourceKey": "UI/Ugui/GuildV2/tab_horizontal",
+            "sha256": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+            "guid": "92f36abad58c9964e8535457bddee7b8",
+            "width": 279,
+            "height": 71,
+            "borderLeftBottomRightTop": [
+                27.0,
+                24.0,
+                27.0,
+                24.0
+            ]
+        },
+        {
+            "source": "assets/notice_icon.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/notice.png",
+            "resourceKey": "UI/Ugui/GuildV2/notice",
+            "sha256": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+            "guid": "b230d172335147c49701a2adb6064f62",
+            "width": 47,
+            "height": 47,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_taiji.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/crest.png",
+            "resourceKey": "UI/Ugui/GuildV2/crest",
+            "sha256": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+            "guid": "0c5bf6c4806d471c954f777bd25859fb",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_furnace.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/furnace.png",
+            "resourceKey": "UI/Ugui/GuildV2/furnace",
+            "sha256": "b342df3bd93be6c8e3109981ae712ebc55944161d8890e408417c2b84c929c81",
+            "guid": "fbff4ee35fe640e3927187840ad05747",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_sword.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/sword.png",
+            "resourceKey": "UI/Ugui/GuildV2/sword",
+            "sha256": "78fdcdcd01d7ca2e3bbb50969dadfec852fbbc42a99e626db904c0976cdc4268",
+            "guid": "7c899724dfe445a69cb0725b997c760d",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_lotus.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_lotus.png",
+            "resourceKey": "UI/Ugui/GuildV2/round_badge_lotus",
+            "sha256": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+            "guid": "ca05d19ccbef83b40a1632427e65f561",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_pagoda.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_pagoda.png",
+            "resourceKey": "UI/Ugui/GuildV2/round_badge_pagoda",
+            "sha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+            "guid": "6adab377b4a4c014fb14cf888f0c5ca1",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_mountain.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_mountain.png",
+            "resourceKey": "UI/Ugui/GuildV2/round_badge_mountain",
+            "sha256": "c756fca7c376d892cd0ee36544684b436dbf03bf67155f9ae98f3aff7078aeb4",
+            "guid": "821f561014d15e341a9a3ffe4c83ebb8",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_compass.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/round_badge_compass.png",
+            "resourceKey": "UI/Ugui/GuildV2/round_badge_compass",
+            "sha256": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+            "guid": "3f27a4b588ad8ca478ce8646cc306335",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/avatar-1.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-1.png",
+            "resourceKey": "UI/Ugui/GuildV2/avatar-1",
+            "sha256": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+            "guid": "74120a0f3c3208b4d9bc7f90dcd9afad",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/avatar-2.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-2.png",
+            "resourceKey": "UI/Ugui/GuildV2/avatar-2",
+            "sha256": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+            "guid": "f699731771e6e3e4b88fabc68f959b17",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/avatar-3.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-3.png",
+            "resourceKey": "UI/Ugui/GuildV2/avatar-3",
+            "sha256": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+            "guid": "2deccf6cc04d4fb49bfa3859c33ce04c",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/avatar-4.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-4.png",
+            "resourceKey": "UI/Ugui/GuildV2/avatar-4",
+            "sha256": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+            "guid": "3fa82311678cb964eae0d5f12c859c91",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/avatar-5.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/avatar-5.png",
+            "resourceKey": "UI/Ugui/GuildV2/avatar-5",
+            "sha256": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+            "guid": "4792fde7d1c71cc4e9e272bbe74477a5",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-pill.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/pill.png",
+            "resourceKey": "UI/Ugui/GuildV2/pill",
+            "sha256": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+            "guid": "e0f5dcd46e9542f5a441f2bd024751f9",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-scroll.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/scroll.png",
+            "resourceKey": "UI/Ugui/GuildV2/scroll",
+            "sha256": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+            "guid": "03832e2aaeef454daf62dd391f727fb8",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-talisman.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/talisman.png",
+            "resourceKey": "UI/Ugui/GuildV2/talisman",
+            "sha256": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+            "guid": "462434d134dd4b0aa01b79725c231708",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-chest.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/icon-chest.png",
+            "resourceKey": "UI/Ugui/GuildV2/icon-chest",
+            "sha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+            "guid": "67ddb3f98dcf1b84d90971db74b4e400",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/lantern.png",
+            "assetPath": "Assets/Resources/UI/Ugui/GuildV2/lantern.png",
+            "resourceKey": "UI/Ugui/GuildV2/lantern",
+            "sha256": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+            "guid": "1b069ee69ca542c791a3180244c260c2",
+            "width": 220,
+            "height": 393,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-09-14T09:32:46.9591995Z",
+  "status": "passed",
+  "unity": "6000.6.0f1",
+  "productionProject": "E:/work/mmorpg-client",
+  "importMethod": "Official Unity relay MCP Unity_RunCommand",
+  "importedSprites": 27,
+  "additionalSprites": 18,
+  "preservedSpriteGuids": 9,
+  "byteIdenticalToSource": 27,
+  "source": "E:/work/image/designs/guild-ui-v2",
+  "validationEnvironment": "Independent physical snapshot; production guild source hashes and sprite hashes verified",
+  "tests": {
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "report": "guild-editmode-results.xml"
+  },
+  "screenshots": {
+    "count": 20,
+    "resolutions": [
+      "2560x1080",
+      "1920x1080"
+    ],
+    "exitCode": 0,
+    "manifest": "capture-artifact-audit.json",
+    "manualReview": [
+      "Overview 2560",
+      "Members 1920",
+      "Ranking 2560",
+      "Announcement 2560",
+      "Empty 1920",
+      "Long name confirmation 1920",
+      "Reconnect 2560",
+      "Donation both sizes",
+      "Activities both sizes",
+      "Shop both sizes"
+    ],
+    "findings": []
+  },
+  "sourceIntegrityReport": "snapshot-integrity.json",
+  "assetAudit": "asset-audit.json",
+  "officialMcpResult": "official-mcp-import-result.json",
+  "spriteManifest": "sprite-manifest.json",
+  "entry": "Unity 主城帮会 [G]",
+  "liveServerVerified": false,
+  "unsupportedServerFeatures": [
+    "帮会捐献",
+    "帮会活动",
+    "帮会商店"
+  ],
+  "notes": [
+    "Official MCP imported assets in the production project. Later shared-editor commands timed out; tests and captures were run in an isolated Unity instance without touching the original unsaved scene.",
+    "Unrelated Jubaozhai source drift during snapshot preparation is recorded; seven guild source files match production before and after verification.",
+    "Capture log contains non-blocking license entitlement query diagnostics; process exited 0 and all 20 PNGs were produced."
+  ]
+}

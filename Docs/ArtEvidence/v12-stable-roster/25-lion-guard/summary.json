@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "finishedUtc": "2026-09-14T12:41:58.8994369Z",
+  "characterId": "25_lion_drum_guard",
+  "mode": "independent Unity project copy",
+  "results": [
+    {
+      "platform": "EditMode",
+      "result": "Passed",
+      "total": 127,
+      "passed": 127,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0
+    },
+    {
+      "platform": "PlayMode",
+      "result": "Passed",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0
+    }
+  ],
+  "resourceVerification": "resource-hash-verification.json",
+  "inputSnapshot": "input-snapshot.json",
+  "validation_scope": {
+    "code_scope": "exact previous passing 357 C# baseline; three Guild files restored only in independent clone",
+    "current_saved_project": "first attempt compilation blocked by 4 missing guild_error enum members; current source files untouched",
+    "resource_scope": "81 newly published character PNGs and appearance.json verified equal to game project"
+  },
+  "visual_runtime_review": {
+    "status": "passed",
+    "image": "tianyong-25_lion_drum_guard.png",
+    "reviewed_utc": "2026-09-14T12:52:09.218709+00:00"
+  }
+}

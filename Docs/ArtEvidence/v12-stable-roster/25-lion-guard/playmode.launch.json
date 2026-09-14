@@ -1,0 +1,20 @@
+{
+  "pid": 60948,
+  "platform": "PlayMode",
+  "startedUtc": "2026-09-14T12:41:02.9157662Z",
+  "validationProject": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "arguments": [
+    "-batchmode",
+    "-projectPath",
+    "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+    "-runTests",
+    "-testPlatform",
+    "PlayMode",
+    "-testFilter",
+    "MmorpgClient.Tests.PlayMode.QdaoBoySpriteAnimatorPlayModeTests;MmorpgClient.Tests.PlayMode.QdaoRosterAnimatorPlayModeTests;MmorpgClient.Tests.PlayMode.QdaoRosterSandboxPlayModeTests",
+    "-testResults",
+    "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-stable-roster\\25-lion-guard\\playmode.xml",
+    "-logFile",
+    "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-stable-roster\\25-lion-guard\\playmode.log"
+  ]
+}

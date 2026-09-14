@@ -1,0 +1,14 @@
+{
+  "version": 12,
+  "characterId": "25_lion_drum_guard",
+  "frameCount": 8,
+  "frameDurationMs": 60,
+  "dedicatedIdle": true,
+  "contactFrame": 0,
+  "status": "passed",
+  "visualReview": "passed",
+  "manifest_sha256": "5d90d5b04eea74bf5f780e221fc5cfb8e1de313faac344e9258a4e9b45a7b840",
+  "qc_sha256": "0cfcfe437ece9b143064b195bdb68f8ce5250a5a4a6f1fdc21fe90797399bb87",
+  "validation_sha256": "f8b0f821f07b57e01a27f0528dc782fcc4d651d4259b64015df8f640a9326a17",
+  "alignmentVersion": 3
+}

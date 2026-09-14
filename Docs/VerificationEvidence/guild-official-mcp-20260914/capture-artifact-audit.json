@@ -1,0 +1,226 @@
+{
+  "createdUtc": "2026-09-14T09:29:57.0933718Z",
+  "captureDirectory": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2",
+  "pngCount": 20,
+  "expectedPngCount": 20,
+  "resolutionCounts": [
+    {
+      "resolution": "1920, 1080",
+      "count": 10
+    },
+    {
+      "resolution": "2560, 1080",
+      "count": 10
+    }
+  ],
+  "images": [
+    {
+      "name": "01-overview_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\01-overview_1920x1080.png",
+      "bytes": 1308348,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "851cb899d3631d747ac0cfaea7062b4fa571a1636271d6e52a496d19b9dcbe3d"
+    },
+    {
+      "name": "01-overview_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\01-overview_2560x1080.png",
+      "bytes": 2081851,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "33ff79f5f20c3d80f13e7b4dbf33522e1f9c3748e44d1793b6a380b236266820"
+    },
+    {
+      "name": "02-members_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\02-members_1920x1080.png",
+      "bytes": 1272393,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "67ded3c8cbcb8b034b09af43b227aabaa198e4ee6d8f82b033882d8d8f5d42b9"
+    },
+    {
+      "name": "02-members_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\02-members_2560x1080.png",
+      "bytes": 2018942,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "c3d75df8193717a61c16c965bad71cf1a84b6cd1020b36f5b19d2cce0c8e17b2"
+    },
+    {
+      "name": "03-ranking_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\03-ranking_1920x1080.png",
+      "bytes": 1280997,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ea891290c935c0a54882c9ba8f5ec6a883651d0000b165ef773ab8ceff0a1ce2"
+    },
+    {
+      "name": "03-ranking_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\03-ranking_2560x1080.png",
+      "bytes": 2045023,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "422afe22554963d77b024d20397b49b4f12b2f8328e2222807b2839500fcc41a"
+    },
+    {
+      "name": "04-donate_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\04-donate_1920x1080.png",
+      "bytes": 1182338,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "fd64dbec0ab9e669f9d67bee9c9a87c4e3b04dd0d634806ab3d88b925e025a96"
+    },
+    {
+      "name": "04-donate_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\04-donate_2560x1080.png",
+      "bytes": 1902487,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "311bb1f4fcd491e18bcf569fe6541f9aac565afa7e79172f552ddeb07d832007"
+    },
+    {
+      "name": "05-activities_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\05-activities_1920x1080.png",
+      "bytes": 1172599,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "5e0dd41586e7389f828dcbc5efa8c79c74f189e1e6c99a9d360eb4a76740f349"
+    },
+    {
+      "name": "05-activities_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\05-activities_2560x1080.png",
+      "bytes": 1884524,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "0f7035582f7cb0ef550b0f58f7ed9f4adebc3ccb2b0a420729175f9300bc323f"
+    },
+    {
+      "name": "06-shop_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\06-shop_1920x1080.png",
+      "bytes": 1182494,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "e722fb5cae59e581ee6d68435d84b8cbabef13079f5f08898b30b1af63f9899c"
+    },
+    {
+      "name": "06-shop_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\06-shop_2560x1080.png",
+      "bytes": 1906570,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "e743b11fc329521db9d38f588add4de07b40a4fc0fd1f4d2a114a79e434b2c7d"
+    },
+    {
+      "name": "07-announcement_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\07-announcement_1920x1080.png",
+      "bytes": 1285911,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ddca84bb87901470ebdd91bb81620470da38f89d9b579ad6f0b73a2a2a48e336"
+    },
+    {
+      "name": "07-announcement_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\07-announcement_2560x1080.png",
+      "bytes": 2117684,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "c27e53cc4e610f07318f5fe613672a1e84bce65b5e2c7a5428468ffd0c559a0f"
+    },
+    {
+      "name": "08-empty_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\08-empty_1920x1080.png",
+      "bytes": 1363306,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "0c7f0435868f35a0482010a17418924a07755960d1260bd3d2131dee5db70d71"
+    },
+    {
+      "name": "08-empty_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\08-empty_2560x1080.png",
+      "bytes": 2190189,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "6e396e0caf79acb7dbab46117e49646048b115a560830d8506a61248dd9b96f7"
+    },
+    {
+      "name": "09-long-name-confirmation_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\09-long-name-confirmation_1920x1080.png",
+      "bytes": 1327466,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8c5a3b46326e5b9fb02bab7dc7f7dc88dc3843f8417911ad1b036b751bb14492"
+    },
+    {
+      "name": "09-long-name-confirmation_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\09-long-name-confirmation_2560x1080.png",
+      "bytes": 2185979,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "658e345b31b1a2f49ec0f9d48f521b3156373f7cbc48d1b705ecdd1e78276527"
+    },
+    {
+      "name": "10-reconnect-required_1920x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\10-reconnect-required_1920x1080.png",
+      "bytes": 1312955,
+      "width": 1920,
+      "height": 1080,
+      "sha256": "2d4dcf01ea5cc494902f1d80ee702716ed39fc595c8dbfe023c40ff18b8fb765"
+    },
+    {
+      "name": "10-reconnect-required_2560x1080.png",
+      "path": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2\\10-reconnect-required_2560x1080.png",
+      "bytes": 2092846,
+      "width": 2560,
+      "height": 1080,
+      "sha256": "825930f5b51fbce377bce0a00907079fa0ba295b975c98c6daddf31f96146a06"
+    }
+  ],
+  "guildSourceAfterUnity": [
+    {
+      "path": "Assets/Editor/Guild/GuildUiAssetImport.cs",
+      "expectedSha256": "ba196b50ad0a5b547454e2f6008b18d1f19bead74235f61afe8bab23355bd03f",
+      "actualSha256": "ba196b50ad0a5b547454e2f6008b18d1f19bead74235f61afe8bab23355bd03f",
+      "pass": true
+    },
+    {
+      "path": "Assets/Editor/Guild/GuildUiVerification.cs",
+      "expectedSha256": "42f10cdf910bb52721cd846f6b727a18805aaf4e63dd349696b376d598d8cfec",
+      "actualSha256": "42f10cdf910bb52721cd846f6b727a18805aaf4e63dd349696b376d598d8cfec",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiArt.cs",
+      "expectedSha256": "3be4e71fc8d4668aa5f4df6cd1ebc4be912184a8c09bb5704ff7edf96bfbbd11",
+      "actualSha256": "3be4e71fc8d4668aa5f4df6cd1ebc4be912184a8c09bb5704ff7edf96bfbbd11",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildWindow.cs",
+      "expectedSha256": "659571bdd4915f7e14b41c3ee90466c8119845a3a2719a1b2b00522dd37b0be0",
+      "actualSha256": "659571bdd4915f7e14b41c3ee90466c8119845a3a2719a1b2b00522dd37b0be0",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiRoot.cs",
+      "expectedSha256": "545d1b8e7e10ec5d34b6368676361bdaeffe812a7a4b443f51b35987a6f54962",
+      "actualSha256": "545d1b8e7e10ec5d34b6368676361bdaeffe812a7a4b443f51b35987a6f54962",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/Game/Guild/GuildClient.cs",
+      "expectedSha256": "d32a83189605a38119c1a9fdd45e0cf9c24627f7d7e58c8c3f610fd1efe376c2",
+      "actualSha256": "d32a83189605a38119c1a9fdd45e0cf9c24627f7d7e58c8c3f610fd1efe376c2",
+      "pass": true
+    },
+    {
+      "path": "Assets/Tests/EditMode/Guild/GuildUiTests.cs",
+      "expectedSha256": "5e805088d860df411958f899e64e852e42b097365451e9ea1569e8862f8c21d8",
+      "actualSha256": "5e805088d860df411958f899e64e852e42b097365451e9ea1569e8862f8c21d8",
+      "pass": true
+    }
+  ],
+  "testProcessExited": true,
+  "captureProcessExited": true,
+  "productionSourceModifiedByThisTask": false,
+  "visualQaPerformed": false
+}

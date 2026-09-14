@@ -72,6 +72,30 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(QdaoCharacterCatalog.ResolveRole(uint.MaxValue, uint.MaxValue), Is.EqualTo("24_lu_dongbin"));
         }
 
+        // PNG pixel Y is bottom-up in Unity; alignment metadata uses top-left.
+        private static Vector2 MeasureHead(Color32[] pixels, int width, int frame, int fixedRoi, out int roi)
+        {
+            var top = 512;
+            var bottom = -1;
+            for (var y = 0; y < 512; y++)
+            for (var x = 0; x < 512; x++)
+                if (pixels[y * width + frame * 512 + x].a > 8)
+                {
+                    top = Math.Min(top, 511 - y);
+                    bottom = Math.Max(bottom, 511 - y);
+                }
+            Assert.That(bottom, Is.GreaterThanOrEqualTo(top), "Missing head silhouette");
+            roi = fixedRoi > 0 ? fixedRoi : Math.Max(1, (int)((bottom - top) * .42));
+            var xs = new List<int>();
+            for (var y = top; y < Math.Min(512, top + roi); y++)
+            for (var x = 0; x < 512; x++)
+                if (pixels[(511 - y) * width + frame * 512 + x].a > 8) xs.Add(x);
+            Assert.That(xs.Count, Is.GreaterThan(0));
+            xs.Sort();
+            var axis = (xs[(xs.Count - 1) / 2] + xs[xs.Count / 2]) / 2f;
+            return new Vector2(axis, top);
+        }
+
         [Test]
         public void EveryPortraitAndDirectionalStrip_LoadsWithCleanImportSettingsAndItsDeclaredGroundedFrames()
         {
@@ -93,6 +117,20 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Assert.That(importer.wrapMode, Is.EqualTo(TextureWrapMode.Clamp), path);
                     Assert.That(importer.alphaSource, Is.EqualTo(TextureImporterAlphaSource.FromInput), path);
                     Assert.That(importer.alphaIsTransparency, Is.True, path);
+                    var idleHead = Vector2.zero;
+                    var idleHeadRoi = 0;
+                    if (appearance.AlignmentVersion == 3)
+                    {
+                        var idlePath = $"Assets/Resources/{appearance.IdleResourcePath(direction)}.png";
+                        var idlePixels = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                        try
+                        {
+                            Assert.That(ImageConversion.LoadImage(idlePixels, File.ReadAllBytes(idlePath), false), Is.True);
+                            idleHead = MeasureHead(idlePixels.GetPixels32(), 512, 0, 0, out idleHeadRoi);
+                            Assert.That(idleHead.x, Is.EqualTo(256).Within(.5f));
+                        }
+                        finally { UnityEngine.Object.DestroyImmediate(idlePixels); }
+                    }
                     var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
                     try
                     {
@@ -118,7 +156,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                                 if (x == 0 || x == 511 || y == 0 || y == 511)
                                     Assert.That(pixel.a, Is.Zero, $"{path} frame {frame} touches a frame edge.");
                             }
-                            Assert.That(bottom, Is.InRange(39, 41), $"{path} frame {frame} has a displaced foot anchor.");
+                            if (appearance.AlignmentVersion == 2)
+                                Assert.That(bottom, Is.InRange(39, 41), $"{path} frame {frame} has a displaced foot anchor.");
+                            else
+                            {
+                                var head = MeasureHead(pixels, texture.width, frame, idleHeadRoi, out _);
+                                Assert.That(head.x, Is.EqualTo(256).Within(.5f), $"{path} frame {frame} head axis");
+                                Assert.That(head.y, Is.EqualTo(idleHead.y), $"{path} frame {frame} must share its idle head height");
+                            }
                             using var sha = SHA256.Create();
                             var frameHash = BitConverter.ToString(sha.ComputeHash(bytes));
                             hashes.Add(frameHash);

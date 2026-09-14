@@ -45,3 +45,11 @@
 Unity 6000.6.0f1：EditMode 27/27、PlayMode 6/6，均为 Passed；CaptureAll 成功生成两种分辨率共 20 张截图。截图逐一断言所有可见非空文字包含可见字形，避免字体行高让整个名字被省略；手工复核双申请、紧凑列表、满员、空态、未连接、处理中和独立分页。
 
 实际截图、两份原始测试 XML、源码 SHA-256 与全部截图清单位于 `E:/work/image/designs/team-ui-v2`，汇总记录为 `qa/client-integration-report.json`。此次验收只覆盖客户端 UI 与离线快照，服务器边界见上文。
+
+### 2026-09-14 官方 MCP 原稿切图接入
+
+从已完成的 `team-ui-v2.png`（1931×814 原生）通过 Unity 官方 MCP 切出 14 张专用 PNG，导入 `Assets/Resources/UI/Ugui/TeamV2/`。`TeamUiArt` 负责独立资源加载；主框、标题牌、行底、申请卡、按钮和徽章使用九宫格，圆形资源使用透明 Alpha。原稿 baked 资料及动作文字清除，姓名、等级、门派、身份、数量和按钮文案均为原生 TMP。
+
+正式 `TeamWindow` 已换成原稿的云头玉牌、细金纸面、横向成员行和申请卡；现有状态机和主城入口继续沿用。共享 GameplayV1 仅用于既有灯笼与短流苏。实际截图及回归运行在独立验证工程，保留主编辑器当前未保存场景。
+
+切片、来源/九宫格清单、官方 MCP 成功响应和本轮验收证据位于 `E:/work/image/designs/team-ui-v2/unity-slices/`。原有服务边界不变，离线 UI 验证不代表主城组队 RPC 已实现。

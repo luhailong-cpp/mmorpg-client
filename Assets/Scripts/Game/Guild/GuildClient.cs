@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Google.Protobuf;
 using Guildpb;
 using MmorpgClient.Game.Battle;
@@ -21,6 +22,11 @@ namespace MmorpgClient.Game.Guild
         public bool Busy { get; private set; }
         public bool RequiresReconnect { get; private set; }
         public const string RecoveryMessage = "帮会请求状态尚未确认，请重新登录角色后再试。";
+        // 与服务端 go/guild/internal/constants 同值；服务端仍会自行校验。
+        public const int MaxNameLength = 24;
+        // 公告按 UTF-8 字节限长：Gate 单包上限 1KB，按字数给到 500 个汉字的包会在 Gate 被丢弃。
+        public const int MaxAnnouncementBytes = 600;
+        public const int MaxAnnouncementChars = 200;
         public string Status { get; private set; } = "请刷新帮会信息";
         public bool IsLeader => Info != null && Info.LeaderId == PlayerId;
         public uint Role
@@ -86,19 +92,20 @@ namespace MmorpgClient.Game.Guild
 
         public void Browse(uint page = 1, uint zoneId = 0)
         {
+            // 服务端只返回玩家归属区的榜单，zoneId 仅作请求提示。
             Request(MessageIds.GetGuildRank, new GetGuildRankRequest
                 { Page = Math.Max(1, page), PageSize = 5, ZoneId = zoneId },
                 GetGuildRankResponse.Parser, response =>
                 {
                     if (!Accept(response.ErrorMessage)) return;
-                    Rank = response; Status = response.Entries.Count == 0 ? "当前暂无帮会排行。" : "帮会排行已更新";
+                    Rank = response; Status = response.Entries.Count == 0 ? "本区暂无帮会排行。" : "本区帮会排行已更新";
                 });
         }
 
         public void Create(string name, uint zoneId)
         {
             name = (name ?? "").Trim();
-            if (!CanJoin() || name.Length == 0 || name.Length > 24 || zoneId == 0)
+            if (!CanJoin() || name.Length == 0 || name.Length > MaxNameLength || zoneId == 0)
             { Reject("请先确认未入帮状态，填写 1–24 字帮名并选择有效区服。"); return; }
             Request(MessageIds.CreateGuild, new CreateGuildRequest { PlayerId = PlayerId, Name = name, ZoneId = zoneId },
                 CreateGuildResponse.Parser, response =>
@@ -115,10 +122,12 @@ namespace MmorpgClient.Game.Guild
 
         public void SaveAnnouncement(string text)
         {
-            if (Info == null || !CanEditAnnouncement || (text ?? "").Length > 500)
-            { Reject("仅帮主或长老可修改公告，公告最多 500 字。"); return; }
+            text = (text ?? "").Trim();
+            if (Info == null || !CanEditAnnouncement) { Reject("仅帮主或长老可修改公告。"); return; }
+            if (text.Length > MaxAnnouncementChars || Encoding.UTF8.GetByteCount(text) > MaxAnnouncementBytes)
+            { Reject("公告最多 " + MaxAnnouncementChars + " 字，请精简后再保存。"); return; }
             Request(MessageIds.SetGuildAnnouncement, new SetAnnouncementRequest
-                { GuildId = Info.GuildId, PlayerId = PlayerId, Announcement = (text ?? "").Trim() },
+                { GuildId = Info.GuildId, PlayerId = PlayerId, Announcement = text },
                 SetAnnouncementResponse.Parser, response =>
                 { if (Accept(response.ErrorMessage)) Refresh(); });
         }
@@ -162,6 +171,10 @@ namespace MmorpgClient.Game.Guild
                 (uint)guild_error.KGuildNotLeader => "此操作仅帮主可用。",
                 (uint)guild_error.KGuildNoPermission => "当前身份无权进行此操作。",
                 (uint)guild_error.KGuildNotRanked => "此帮会暂未上榜。",
+                (uint)guild_error.KGuildNameInvalid => "帮会名称需为 1–24 个字，且不能包含换行等特殊字符。",
+                (uint)guild_error.KGuildNameTaken => "该帮会名称已被使用，请换一个。",
+                (uint)guild_error.KGuildAnnouncementTooLong => "公告过长，请精简后再保存。",
+                (uint)guild_error.KGuildHomeZoneUnknown => "角色所属区服尚未确认，暂时无法使用帮会，请联系管理员。",
                 _ => $"帮会服务暂未完成请求（{tip.Id}），请稍后重试。"
             };
             return false;

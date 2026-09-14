@@ -1,0 +1,575 @@
+{
+  "sourceHashesEvidence": "Docs/VerificationEvidence/guild-official-mcp-20260914/source-hashes.json",
+  "sourceCode": [
+    {
+      "path": "Assets/Editor/Guild/GuildUiAssetImport.cs",
+      "expectedSha256": "ba196b50ad0a5b547454e2f6008b18d1f19bead74235f61afe8bab23355bd03f",
+      "snapshotSha256": "ba196b50ad0a5b547454e2f6008b18d1f19bead74235f61afe8bab23355bd03f",
+      "pass": true
+    },
+    {
+      "path": "Assets/Editor/Guild/GuildUiVerification.cs",
+      "expectedSha256": "42f10cdf910bb52721cd846f6b727a18805aaf4e63dd349696b376d598d8cfec",
+      "snapshotSha256": "42f10cdf910bb52721cd846f6b727a18805aaf4e63dd349696b376d598d8cfec",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiArt.cs",
+      "expectedSha256": "3be4e71fc8d4668aa5f4df6cd1ebc4be912184a8c09bb5704ff7edf96bfbbd11",
+      "snapshotSha256": "3be4e71fc8d4668aa5f4df6cd1ebc4be912184a8c09bb5704ff7edf96bfbbd11",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildWindow.cs",
+      "expectedSha256": "659571bdd4915f7e14b41c3ee90466c8119845a3a2719a1b2b00522dd37b0be0",
+      "snapshotSha256": "659571bdd4915f7e14b41c3ee90466c8119845a3a2719a1b2b00522dd37b0be0",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiRoot.cs",
+      "expectedSha256": "545d1b8e7e10ec5d34b6368676361bdaeffe812a7a4b443f51b35987a6f54962",
+      "snapshotSha256": "545d1b8e7e10ec5d34b6368676361bdaeffe812a7a4b443f51b35987a6f54962",
+      "pass": true
+    },
+    {
+      "path": "Assets/Scripts/Game/Guild/GuildClient.cs",
+      "expectedSha256": "d32a83189605a38119c1a9fdd45e0cf9c24627f7d7e58c8c3f610fd1efe376c2",
+      "snapshotSha256": "d32a83189605a38119c1a9fdd45e0cf9c24627f7d7e58c8c3f610fd1efe376c2",
+      "pass": true
+    },
+    {
+      "path": "Assets/Tests/EditMode/Guild/GuildUiTests.cs",
+      "expectedSha256": "5e805088d860df411958f899e64e852e42b097365451e9ea1569e8862f8c21d8",
+      "snapshotSha256": "5e805088d860df411958f899e64e852e42b097365451e9ea1569e8862f8c21d8",
+      "pass": true
+    }
+  ],
+  "sprites": [
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/window_frame.png",
+      "expectedSha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+      "snapshotSha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/title_plate.png",
+      "expectedSha256": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+      "snapshotSha256": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/button_primary.png",
+      "expectedSha256": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+      "snapshotSha256": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/button_secondary.png",
+      "expectedSha256": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+      "snapshotSha256": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/close_button.png",
+      "expectedSha256": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+      "snapshotSha256": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/close_tassel.png",
+      "expectedSha256": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+      "snapshotSha256": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/portrait_frame.png",
+      "expectedSha256": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+      "snapshotSha256": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/stat_field.png",
+      "expectedSha256": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+      "snapshotSha256": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/tab_horizontal.png",
+      "expectedSha256": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+      "snapshotSha256": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/notice.png",
+      "expectedSha256": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+      "snapshotSha256": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/crest.png",
+      "expectedSha256": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+      "snapshotSha256": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/furnace.png",
+      "expectedSha256": "b342df3bd93be6c8e3109981ae712ebc55944161d8890e408417c2b84c929c81",
+      "snapshotSha256": "b342df3bd93be6c8e3109981ae712ebc55944161d8890e408417c2b84c929c81",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/sword.png",
+      "expectedSha256": "78fdcdcd01d7ca2e3bbb50969dadfec852fbbc42a99e626db904c0976cdc4268",
+      "snapshotSha256": "78fdcdcd01d7ca2e3bbb50969dadfec852fbbc42a99e626db904c0976cdc4268",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/round_badge_lotus.png",
+      "expectedSha256": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+      "snapshotSha256": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/round_badge_pagoda.png",
+      "expectedSha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+      "snapshotSha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/round_badge_mountain.png",
+      "expectedSha256": "c756fca7c376d892cd0ee36544684b436dbf03bf67155f9ae98f3aff7078aeb4",
+      "snapshotSha256": "c756fca7c376d892cd0ee36544684b436dbf03bf67155f9ae98f3aff7078aeb4",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/round_badge_compass.png",
+      "expectedSha256": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+      "snapshotSha256": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/avatar-1.png",
+      "expectedSha256": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+      "snapshotSha256": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/avatar-2.png",
+      "expectedSha256": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+      "snapshotSha256": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/avatar-3.png",
+      "expectedSha256": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+      "snapshotSha256": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/avatar-4.png",
+      "expectedSha256": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+      "snapshotSha256": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/avatar-5.png",
+      "expectedSha256": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+      "snapshotSha256": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/pill.png",
+      "expectedSha256": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+      "snapshotSha256": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/scroll.png",
+      "expectedSha256": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+      "snapshotSha256": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/talisman.png",
+      "expectedSha256": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+      "snapshotSha256": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/icon-chest.png",
+      "expectedSha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+      "snapshotSha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+      "pass": true
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/GuildV2/lantern.png",
+      "expectedSha256": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+      "snapshotSha256": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+      "pass": true
+    }
+  ],
+  "scopeCopyChecks": [
+    {
+      "scope": "Assets",
+      "sourceCount": 3760,
+      "destinationCount": 3681,
+      "sourceBytes": 592217613.0,
+      "destinationBytes": 588881061.0,
+      "pathAndLengthMatch": false,
+      "differences": [
+        {
+          "InputObject": "Editor\\Jubaozhai\\JubaozhaiUiVerification.cs|11684",
+          "SideIndicator": "=>"
+        },
+        {
+          "InputObject": "Editor\\Jubaozhai\\JubaozhaiAssetBuilder.cs.meta|59",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Editor\\Jubaozhai\\JubaozhaiUiVerification.cs|12026",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1.meta|172",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_01.png.meta|3307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_01.png|46460",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_02.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_02.png|45198",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_03.png.meta|3307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_03.png|45307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_04.png.meta|3307",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\armor_04.png|43868",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_primary.png.meta|3320",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_primary.png|15630",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_secondary.png.meta|3320",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\button_secondary.png|8796",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_01.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_01.png|49252",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_02.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_02.png|48583",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_03.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_03.png|48416",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_04.png.meta|3315",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\character_04.png|46209",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\close.png.meta|3299",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\close.png|12003",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\empty_guide.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\empty_guide.png|195000",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\input.png.meta|3304",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\input.png|9782",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\main_frame.png.meta|3314",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\main_frame.png|1572982",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\manifest.json.meta|158",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\manifest.json|87585",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\panel.png.meta|3302",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\panel.png|9339",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_01.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_01.png|49076",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_02.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_02.png|48212",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_03.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_03.png|49807",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_04.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\pet_04.png|45560",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_normal.png.meta|3315",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_normal.png|24941",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_selected.png.meta|3319",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\row_selected.png|27080",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_01.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_01.png|48495",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_02.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_02.png|48567",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_03.png.meta|3301",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_03.png|48277",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_04.png.meta|3303",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\set_04.png|45851",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_01.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_01.png|44594",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_02.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_02.png|44086",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_03.png.meta|3315",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_03.png|43859",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_04.png.meta|3313",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\summoning_04.png|41435",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_normal.png.meta|3314",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_normal.png|9511",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_selected.png.meta|3318",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\tab_selected.png|11044",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\title_plate.png.meta|3311",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\title_plate.png|111675",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_01.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_01.png|46850",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_02.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_02.png|45821",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_03.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_03.png|45450",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_04.png.meta|3309",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Resources\\UI\\Ugui\\JubaozhaiV1\\weapon_04.png|43572",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Scenes\\Recovery.meta|172",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Scenes\\Recovery\\JubaozhaiOriginalUntitled_20260914.unity.meta|155",
+          "SideIndicator": "<="
+        },
+        {
+          "InputObject": "Scenes\\Recovery\\JubaozhaiOriginalUntitled_20260914.unity|8190",
+          "SideIndicator": "<="
+        }
+      ]
+    },
+    {
+      "scope": "Packages",
+      "sourceCount": 2,
+      "destinationCount": 2,
+      "sourceBytes": 9869.0,
+      "destinationBytes": 9869.0,
+      "pathAndLengthMatch": true,
+      "differences": []
+    },
+    {
+      "scope": "ProjectSettings",
+      "sourceCount": 26,
+      "destinationCount": 26,
+      "sourceBytes": 58713.0,
+      "destinationBytes": 58713.0,
+      "pathAndLengthMatch": true,
+      "differences": []
+    },
+    {
+      "scope": "Library\\PackageCache",
+      "sourceCount": 20040,
+      "destinationCount": 20040,
+      "sourceBytes": 701826749.0,
+      "destinationBytes": 701826749.0,
+      "pathAndLengthMatch": true,
+      "differences": []
+    }
+  ],
+  "reparsePointCount": 0
+}

@@ -1,0 +1,23 @@
+{
+  "copiedUtc": "2026-09-14T12:28:23.1591940Z",
+  "sourceProject": "E:\\work\\mmorpg-client",
+  "validationProject": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "reason": "Current saved project inputs advanced since earlier Lu tests; copy current inputs into the independent verification project.",
+  "changedCSharp": [
+    {
+      "path": "Assets\\Scripts\\Game\\Guild\\GuildClient.cs",
+      "sourceSha256": "EC1E9955F719E5E918E748074F715127A207C0439DE6DD78FA36D43FE646F691",
+      "previousSnapshotSha256": "D32A83189605A38119C1A9FDD45E0CF9C24627F7D7E58C8C3F610FD1EFE376C2"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Guild\\GuildWindow.cs",
+      "sourceSha256": "C00DB7C7529DE1F52F5951293CF1A0E215FACD044EB200EF37AD0BE8586803C6",
+      "previousSnapshotSha256": "659571BDD4915F7E14B41C3EE90466C8119845A3A2719A1B2B00522DD37B0BE0"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Guild\\GuildUiTests.cs",
+      "sourceSha256": "07816881F879A487FEEC923D7992DBF88BDD49EDA25E88040A7538D2E98FBE99",
+      "previousSnapshotSha256": "5E805088D860DF411958F899E64E852E42B097365451E9EA1569E8862F8C21D8"
+    }
+  ]
+}

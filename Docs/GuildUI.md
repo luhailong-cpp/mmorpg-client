@@ -1,5 +1,9 @@
 # 帮会 UI 接入
 
+2026-09-14 更新：[官方 MCP 切图与原生布局接入](GuildUI-MCP-20260914.md)，27 张 Sprite、28 项测试通过、20 张本次原生截图。下文保留 9 月 13 日业务接入记录。
+
+2026-09-14 服务端接入（未编译、未联调）：帮会服务改为客户端可达并**按区服隔离**——建帮落在角色归属区服，只能浏览、加入本区帮会，排行为本区排行；身份与区服由服务端判定，请求里的 `PlayerId` / `ZoneId` 不再作为依据。帮名仍全服唯一。新增错误提示：帮名无效、帮名已被使用、公告过长、角色归属区服未确认。公告上限改为 200 字（服务端按 600 字节校验：Gate 单包上限 1KB，500 个汉字的包会在 Gate 被丢弃）。排行标题改为「本区帮会排行」。**必须先运行 `tools/gen_proto.ps1 -ProtoRoot E:\work\xuanming-server-mmo` 生成新错误码枚举，否则 `GuildClient.cs` 无法编译。** 服务端决策与验证清单见 `xuanming-server-mmo/docs/design/guild-zone-client-access.md`。
+
 2026-09-13。正式入口位于主城左侧「帮会 [G]」（组队下方），也可按 G 打开；Escape 先关闭弹窗，再关闭帮会。进入战斗时关闭窗口，离线和换角时关闭窗口并清理会话状态。
 
 界面使用原生 UGUI 与 TMP 文字，复用现有玉绿、米白、暖金手绘九宫格；新目录 `Assets/Resources/UI/Ugui/GuildV2/` 的 9 张独立图来自素材库已验收资产，原字节复制，不使用整屏静态图作为运行 UI。
@@ -13,7 +17,7 @@
 
 ## 协议与边界
 
-源契约为 `E:/work/xuanming-server-mmo/proto/guild/guild.proto`。按客户端原有生成流程增加 Guild 协议与错误码枚举，编号从服务端 `proto/message_id.txt` 生成，未改服务端契约或业务。
+源契约为 `E:/work/xuanming-server-mmo/proto/guild/guild.proto`。按客户端原有生成流程增加 Guild 协议与错误码枚举，编号从服务端 `proto/message_id.txt` 生成。9 月 13 日接入时未改服务端；9 月 14 日服务端改动见本文开头。
 
 | 客户端动作 | 真实 RPC |
 |---|---|

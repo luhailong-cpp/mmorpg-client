@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "character": "24_lu_dongbin",
+  "version": 12,
+  "alignment_version": 3,
+  "validation_mode": "independent project copy to preserve the unsaved scene in the active user editor",
+  "formal_project": "E:\\work\\mmorpg-client",
+  "tested_project": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "pngs_matching_formal_project": 81,
+  "matching_csharp_files_at_start": 357,
+  "results": {
+    "editmode": {
+      "passed": 127,
+      "failed": 0,
+      "total": 127,
+      "file": "editmode.xml",
+      "sha256": "31a6b42f0ea529fe6f51a62613fe22c9de458be8c10d6eba173875f7421d1242"
+    },
+    "playmode": {
+      "passed": 8,
+      "failed": 0,
+      "total": 8,
+      "file": "playmode.xml",
+      "sha256": "b567053c7d5d430a48c196c42051dd89ed77dafbf8c7dd117846099764857c0e"
+    }
+  },
+  "source": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-stable-body\\24_lu_dongbin",
+  "game_capture": "tianyong-24_lu_dongbin.png",
+  "scope": "offline imported assets, all direction playback, stopped-frame idle, city controller; not a network end-to-end or all-roster art approval"
+}

@@ -23,13 +23,15 @@ public static partial class GuildErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZ3VpbGRfZXJyb3JfdGlwLnBy",
-          "b3RvKvcBCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
+          "b3RvKuECCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
           "dWlsZEFscmVhZHlJbkd1aWxkELBtEhMKDmtHdWlsZE5vdEZvdW5kELFtEhUK",
           "EGtHdWlsZE5vdEluR3VpbGQQsm0SDwoKa0d1aWxkRnVsbBCzbRIaChVrR3Vp",
           "bGRMZWFkZXJDYW50TGVhdmUQtG0SFAoPa0d1aWxkTm90TGVhZGVyELVtEhcK",
           "EmtHdWlsZE5vUGVybWlzc2lvbhC2bRIUCg9rR3VpbGROb3RSYW5rZWQQt20S",
-          "GwoWa0d1aWxkSWRHZW5VbmF2YWlsYWJsZRC4bUIkCg5jb20uZ2FtZS50YWJs",
-          "ZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "GwoWa0d1aWxkSWRHZW5VbmF2YWlsYWJsZRC4bRIWChFrR3VpbGROYW1lSW52",
+          "YWxpZBC5bRIUCg9rR3VpbGROYW1lVGFrZW4Qum0SHgoZa0d1aWxkQW5ub3Vu",
+          "Y2VtZW50VG9vTG9uZxC7bRIaChVrR3VpbGRIb21lWm9uZVVua25vd24QvG1C",
+          "JAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::guild_error), }, null, null));
@@ -49,6 +51,10 @@ public enum guild_error {
   [pbr::OriginalName("kGuildNoPermission")] KGuildNoPermission = 14006,
   [pbr::OriginalName("kGuildNotRanked")] KGuildNotRanked = 14007,
   [pbr::OriginalName("kGuildIdGenUnavailable")] KGuildIdGenUnavailable = 14008,
+  [pbr::OriginalName("kGuildNameInvalid")] KGuildNameInvalid = 14009,
+  [pbr::OriginalName("kGuildNameTaken")] KGuildNameTaken = 14010,
+  [pbr::OriginalName("kGuildAnnouncementTooLong")] KGuildAnnouncementTooLong = 14011,
+  [pbr::OriginalName("kGuildHomeZoneUnknown")] KGuildHomeZoneUnknown = 14012,
 }
 
 #endregion

@@ -150,6 +150,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(client.Busy, Is.False);
             Assert.That(client.RequiresReconnect, Is.False);
             client.Refresh(); Assert.That(net.Calls.Count, Is.EqualTo(2));
+        }
+        [Test] public void AnnouncementThatWouldExceedTheGatePacketLimitIsNotSent()
+        {
+            Load(); _client.SaveAnnouncement(new string('汉', GuildClient.MaxAnnouncementChars + 1));
+            Assert.That(_net.Calls.Contains(MessageIds.SetGuildAnnouncement), Is.False);
+            Assert.That(_client.Status, Does.Contain(GuildClient.MaxAnnouncementChars.ToString()));
+            _client.SaveAnnouncement(new string('汉', GuildClient.MaxAnnouncementChars));
+            Assert.That(_net.Calls.Contains(MessageIds.SetGuildAnnouncement), Is.True);
+        }
+        [Test] public void ZoneAndNameRejectionsKeepTheEmptyStateWithReadableMessages()
+        {
+            Empty(); _client.Create("青云门", 1);
+            _net.Reply(new CreateGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNameTaken } });
+            Assert.That(_client.Status, Does.Contain("已被使用")); Assert.That(_client.Info, Is.Null);
+            _client.Create("青云门二", 1);
+            _net.Reply(new CreateGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildHomeZoneUnknown } });
+            Assert.That(_client.Status, Does.Contain("区服")); Assert.That(_client.Info, Is.Null);
+            Assert.That(_client.RequiresReconnect, Is.False);
         }        private void Empty() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } }); }
         private void Load() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() }); }
         public static GuildInfo Fixture()
@@ -184,6 +202,25 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var locked = Buttons().Where(b => b.name.StartsWith("GuildUnavailable_")).ToArray();
             Assert.That(locked.Length, Is.EqualTo(3)); Assert.That(locked.All(b => !b.interactable), Is.True);
             Assert.That(ActiveText(), Does.Contain("暂未开放"));
+        }
+        [Test] public void OverviewStatisticsUpdateOnlyFromTheGuildSnapshot()
+        {
+            _window.Show();
+            string Value(string name) => _root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == name).text;
+            Assert.That(Value("GuildMemberCount"), Is.EqualTo("7 / 50"));
+            Assert.That(Value("GuildOnlineCount"), Is.EqualTo("4 位"));
+            Assert.That(Value("GuildMyContribution"), Is.EqualTo("101"));
+            var updated = GuildClientTests.Fixture();
+            updated.Members.RemoveAt(6);
+            updated.Members[0].Contribution = 987;
+            updated.Members[1].Online = true;
+            _client.Refresh();
+            Assert.That(Value("GuildMyContribution"), Is.EqualTo("101"));
+            _net.Reply(new GetPlayerGuildResponse { Guild = updated });
+            _window.SetClient(_client);
+            Assert.That(Value("GuildMemberCount"), Is.EqualTo("6 / 50"));
+            Assert.That(Value("GuildOnlineCount"), Is.EqualTo("4 位"));
+            Assert.That(Value("GuildMyContribution"), Is.EqualTo("987"));
         }
         [Test] public void MemberPaginationAndOnlineFilterConsumeTheRealSnapshot()
         {
@@ -232,12 +269,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _window.Back(); Assert.That(refresh.IsInteractable(), Is.True);
         }        [Test] public void GuildArtImportsAsRealSpritesWithTheIntendedInputBorder()
         {
-            foreach (string key in new[] { "crest", "lantern", "furnace", "sword", "pill", "talisman", "scroll", "notice", "stat_field" })
+            foreach (string key in new[] { "crest", "lantern", "furnace", "sword", "pill", "talisman", "scroll", "notice", "stat_field",
+                "window_frame", "title_plate", "button_primary", "button_secondary", "close_button", "close_tassel",
+                "round_badge_lotus", "round_badge_compass", "round_badge_pagoda" })
                 Assert.That(Resources.Load<Sprite>("UI/Ugui/GuildV2/" + key), Is.Not.Null, key);
             Assert.That(Resources.Load<Sprite>("UI/Ugui/GuildV2/stat_field").border, Is.EqualTo(new Vector4(12, 12, 12, 12)));
             _window.Show();
             var crest = _root.GetComponentsInChildren<Image>().Single(i => i.name == "GuildCrest");
             Assert.That(crest.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/GuildV2/crest")));
+            var images = _root.GetComponentsInChildren<Image>();
+            Assert.That(images.Single(i => i.name == "title_plate").preserveAspect, Is.True);
+            Assert.That(images.Single(i => i.name == "close_tassel").raycastTarget, Is.False);
+            Assert.That(images.Single(i => i.name == "window_frame").sprite.border, Is.EqualTo(new Vector4(97, 74, 97, 99)));
         }        [Test] public void ServerStringsAreNotRichText()
         {
             _window.Show(GuildPage.Members);
