@@ -109,6 +109,67 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator V12_StoppingAtDifferentPhases_ShowsDirectionIdleOnTheNextFrame()
+        {
+            var previousCapture = Time.captureFramerate;
+            Time.captureFramerate = 60;
+            var cameraObject = CreateCamera();
+            var actor = new GameObject("V12ImmediateStopActor");
+            try
+            {
+                var definition = QdaoCharacterCatalog.Find("24_lu_dongbin");
+                var appearance = definition.ResolveAppearance();
+                Assert.That(appearance.Version, Is.EqualTo(12), "This regression requires the published eight-frame set.");
+                Assert.That(appearance.HasDedicatedIdle, Is.True);
+                Assert.That(QdaoBoySpriteAnimator.TryAttach(actor, definition.Id), Is.True);
+                yield return null;
+                var animator = actor.GetComponent<QdaoBoySpriteAnimator>();
+                var renderer = actor.transform.Find("sprite").GetComponent<SpriteRenderer>();
+
+                // Reach each phase through real, below-warp-threshold travel.
+                // 1.1 used to keep walking in place for ~0.42 s; the other
+                // phases cover the opposite step and the end of the cycle.
+                foreach (var phase in new[] { 1.1f, 4.2f, 7.8f })
+                for (var direction = 0; direction < Directions.Length; direction++)
+                {
+                    var radians = direction * 45f * Mathf.Deg2Rad;
+                    var heading = new Vector3(Mathf.Sin(radians), 0f, Mathf.Cos(radians));
+                    var remaining = phase * 9f / appearance.FramesPerSecond;
+                    while (remaining > 0.0001f)
+                    {
+                        var distance = Mathf.Min(StepPerFrame, remaining);
+                        actor.transform.position += heading * distance;
+                        remaining -= distance;
+                        yield return null;
+                    }
+                    Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Run));
+                    var expectedFrame = (appearance.ContactFrame + Mathf.FloorToInt(phase)) % appearance.FrameCount;
+                    Assert.That(renderer.sprite.texture, Is.SameAs(Resources.Load<Texture2D>(
+                        appearance.FrameResourcePath(Directions[direction], expectedFrame))),
+                        $"The stop must begin at the intended phase {phase}, direction {Directions[direction]}.");
+
+                    var stoppedPosition = actor.transform.position;
+                    yield return null;
+
+                    Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle),
+                        $"V12 must not finish a walk cycle after stopping at phase {phase}.");
+                    Assert.That(animator.Direction, Is.EqualTo(direction));
+                    Assert.That(actor.transform.position, Is.EqualTo(stoppedPosition));
+                    Assert.That(renderer.sprite.texture, Is.SameAs(Resources.Load<Texture2D>(
+                        appearance.IdleResourcePath(Directions[direction]))),
+                        "The first stationary frame must show the dedicated standing texture.");
+                }
+            }
+            finally
+            {
+                Time.captureFramerate = previousCapture;
+                Object.Destroy(actor);
+                Object.Destroy(cameraObject);
+            }
+            yield return null;
+        }
+
+        [UnityTest]
         public IEnumerator SwitchingAppearance_PreservesActorTransformFacingAndChildren_AndDoesNotChangeOtherActors()
         {
             var previousCapture = Time.captureFramerate;
