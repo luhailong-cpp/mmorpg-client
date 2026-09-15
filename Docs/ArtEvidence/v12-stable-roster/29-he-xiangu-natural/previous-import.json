@@ -1,0 +1,504 @@
+{
+  "status": "passed",
+  "characters_this_import": [
+    "30_han_xiangzi"
+  ],
+  "source_root": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-stable-body",
+  "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
+  "png_count_this_import": 81,
+  "source_approvals": {
+    "30_han_xiangzi": {
+      "manifest_sha256": "c625eb54989646761d4150ffe6ab6bb572ae7fbbaf1ea1c375ebee304a17ed62",
+      "qc_sha256": "fe5ca1f85ced20cc672e1af4ada1e6dbc946ed38afa81b80698dcad0bf613638",
+      "validation_sha256": "b357f9daecbcdd45f00c326f9c681e5c2244af4febaef37ef1e30fe17be7c9d1"
+    }
+  },
+  "files": [
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/E.png",
+      "sha256": "c0b65f0cb7df6ab1edfe0e1eb936a2673dd69755b873ee86b19a6d90e76f5739"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/N.png",
+      "sha256": "eb4e47bd07c82b768955fda1c5b83aab8489811ebc65c2628a3dc6c1a1196d27"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/NE.png",
+      "sha256": "c832d268cf8aa5e319002a165cfbb164d0152818b4da1489e032d97f9527d95c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/NW.png",
+      "sha256": "8e51d4b36094e47a3dce05ae26919c7955e7d5d742ebaa533a2810612c556bee"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/S.png",
+      "sha256": "d5c3689f44c5d945a92020b9ba8d728b21461af0e0a173d4cb377d21f523bd89"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/SE.png",
+      "sha256": "72a4669cef100dd69afea96435c1a698306d1e36c605639da55052ba2f36da88"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/SW.png",
+      "sha256": "585e8d9df0265b19e6bc3c98ac4601d2353898cf4116f8e496db8ad5e132eb3c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/W.png",
+      "sha256": "fa8e6b62b32319d5469d223a1a32bb697e68571db72bfb29c66fb35726a22890"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/portrait.png",
+      "sha256": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/01.png",
+      "sha256": "9ed1d24346715b8c5a839b65a9379a94b056f081dc7ae3ed281e0972d5a17532"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/02.png",
+      "sha256": "27a3c0b6f2999661a01b703a2ad928e68227ad9d35cf87e64c9d199f68dc2ee4"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/03.png",
+      "sha256": "53133f5a57ecc3ce372d7068a29f859573ed5e923413c1df5290e95798041847"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/04.png",
+      "sha256": "18d8f6f5c30dcce46cb8dbf56f445387db748ef66a6c280357d67a8f4b1b1416"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/05.png",
+      "sha256": "52735ef5805dc36db204d423eddedbe82cabf7ac0d23b869e1b5210675b5693a"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/06.png",
+      "sha256": "64234b063beabc0b4fa51019e74eeb46c10d957eebe62a46177322a72725c794"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/07.png",
+      "sha256": "ec6705f0655590ebbed28eba14f7c6024353b72a2192baa59f2fd5284fc231f8"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/08.png",
+      "sha256": "d0dea974d31dbff6d24d2bd826a27b146dc64e84b60196060b719960fe2e4f60"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/strip.png",
+      "sha256": "7cca4f37d132974a2499c32e52181fd7eab535c375c2f3988dc7bff03b995b2e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/01.png",
+      "sha256": "3bc05e084af974102b37c4a75fb9c820864a87de4f151e789b4e152c07a89876"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/02.png",
+      "sha256": "7fcb201cf2aac476d75727f180a71f16939e6f99c69ba1eb2cd3938b6c3a2e44"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/03.png",
+      "sha256": "a0e98c1c53b3a75631b9dc67e427016b28e123f06cdcb2aa9aad5dc0e11a66b6"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/04.png",
+      "sha256": "33b671a0654e6fb865c74488935bf4f93aa078ff63358326bbf9f490b0f97e9c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/05.png",
+      "sha256": "7272e63a062d20d39e8afff3124d21250a8d8bdaa190bccad0482b333145d7d8"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/06.png",
+      "sha256": "ac56da800bbbb6f2cad588d387f64cbd0388d7cc60ef33dab2941ded295d83af"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/07.png",
+      "sha256": "891de0d2263f9ef29ef854af409060dcb34c62105278b387d7def7755acb0661"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/08.png",
+      "sha256": "8fa4cdd390bab5b43a407f373e23e60a1ff35738e0406ff32be02ee64cd599ff"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/strip.png",
+      "sha256": "de9756c391e3c34b8135379aaee9892370affa8a3294d036d18c6d0497c0add5"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/01.png",
+      "sha256": "2f5ba3f4248f700c361557c6d982bca0f73730a2d84936772f89d88cb55f3eca"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/02.png",
+      "sha256": "e088a9ea8b535c01589b3f81416f7e10ae340b56bcd8496ffce9a5304d82851f"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/03.png",
+      "sha256": "445071e149ac38e0a255ca29e412d0286bafc3a212aa39b56c03aba4d5f773a3"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/04.png",
+      "sha256": "eb7be78514b9d2edcd52fdb4c99c908d1e9312ae377dfc94dcbfbc07df0fc8fe"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/05.png",
+      "sha256": "969ccb07e26fbfe6a475b3c2a2625dfe92b08efa5269e7708c5fc29fc1679a81"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/06.png",
+      "sha256": "1ec51fc1a1e316245df0553fef5f5401beb91a6f6583849f8e0716bb60edfdb8"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/07.png",
+      "sha256": "291676b327444d020856a2b7dc1558cb40718b40262bba1d90dbe2962ac5dc2d"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/08.png",
+      "sha256": "d27ab8ed0bf4229c3bd7584ff1d211f7dd4d0ee09d4e494ac44b6a6edb94eaf5"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/strip.png",
+      "sha256": "4e34ec9cfbc551fc3d0aa44e0826664ea4ce6c3e5989ec821bdf217414942b79"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/01.png",
+      "sha256": "1b8fa85b633d3651cbd3e90ca60c319e063202a9b3e099cc4b153d2a3294d0f8"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/02.png",
+      "sha256": "94fe9d5b8888b3516931e99a95ef54c2f4a54edaf7207015f3c9aedfe0d0254f"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/03.png",
+      "sha256": "d77695081beb80982c877c389dda0ef984e411ae7c32731c36fa4880b678f2cf"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/04.png",
+      "sha256": "7158fce809908345097e6714e71c50e8d0cea0c957d20e61f60ddb1b5de21afa"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/05.png",
+      "sha256": "df7bc190eda937128be7cd0ba2fb092cbad9e156e6d87e371b79f892b15bc46c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/06.png",
+      "sha256": "bcd9e9c5a78095cb63fc022511398c15b8a662ea973ecaea1a100880ad1ba0b4"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/07.png",
+      "sha256": "b5d5e86b648177ca23372a651320bedac0d7acc12db0fc216d07c82bf847c668"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/08.png",
+      "sha256": "1b9b560a943ec7be4aed74d024e630752532caa717522a7747cba3e60dd0923e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/strip.png",
+      "sha256": "ec6d0d68bf33f062856f31a54db402ae81a83e1452f89efa0429d724a0f067c8"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/01.png",
+      "sha256": "f0fcd423a18ebf8060c31a286d3bfc842b043bb4d8b4cb98d56b99c1082fd28b"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/02.png",
+      "sha256": "9818908255b8bd23124e0ef55e290a6ffee856bf8e36229e3cdc665c78190fb3"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/03.png",
+      "sha256": "1cd2b1d30f3c4bce611f9be566d2c3410da54599f0a95e6248199f79af48d1b0"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/04.png",
+      "sha256": "6a791834961dfd98d75694c5dc12e85d8e5ceca6d2cd62b2bf6d0b732000a039"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/05.png",
+      "sha256": "3b3b9637a48383f4cce5a7a23a23dd85ebd2da2adf7ca7572981a66c81be9d7c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/06.png",
+      "sha256": "bb7c829a424df1f7b888be2430a091f19fa27ee6c240d20768dbbbb3f614796c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/07.png",
+      "sha256": "064e61d171977fbc899f273ef5d324f38013531bd4b09e30ede056589e7d445c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/08.png",
+      "sha256": "698acd60e3ea8ca4f1ce076a6fb1b6cbb2ce93d677dbb4ad121f66e36147f8e8"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/strip.png",
+      "sha256": "774e02e12d6ef08a6be5a2d597aef6f33323dc7d5856edbc60ecf19595be81ff"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/01.png",
+      "sha256": "167a6b3666ccae0f77cefa213d944d6125951897f0cfa17f0b4a183aa79f69f4"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/02.png",
+      "sha256": "8e4dd00ce5bd5db3211b650eaf1fd9def9e8f625458258a149a1c766bc260a5d"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/03.png",
+      "sha256": "b4d8ef9f8f4f8e7dce93fbb41b5d7136b1296472bd1267dd8f90061bcfb3f143"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/04.png",
+      "sha256": "b9121a2d8b96499a4edc2d9ce06f8b215abd80b9c85a3a645b9d025b4109e238"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/05.png",
+      "sha256": "c88ebae1d0c34229220e820636c56b1e1e02683dc727d36a735b2e85cd3353e9"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/06.png",
+      "sha256": "7c6eb6900d2066a2b7bdde537ef5b8dd0fc9d62f971f5c4b0a102794ff01cc3e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/07.png",
+      "sha256": "96c3c7bcebeb9e9ec81ef10652d2cc8d1d7aa901a262c04d21da3c199ec0cc09"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/08.png",
+      "sha256": "2523f7d9c4d74932c7759a8c5648404ded273d4c75f113611a9e011c21a9ae67"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/strip.png",
+      "sha256": "736ddbd319bceb28bbe4e0e95de3f12a37ec8755fb4181f23c36a8e951cb698e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/01.png",
+      "sha256": "3c9a111a2a806b335cea03dafd38c859cf36d7706bda7af5b74214dfcaae09f3"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/02.png",
+      "sha256": "67523d12719fc0b46a9cdbca240a6b9e76551bd62f9ccf5ced97fbfeca1884c2"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/03.png",
+      "sha256": "57618684235fcf301a8cbf61fe2a6ef08bbc8f63e27c2d9d3545cf8ecc51ea59"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/04.png",
+      "sha256": "60e68dd03fcd6935c7a779599fd8ca74b2d03bbee299295c9ff1a07b575df181"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/05.png",
+      "sha256": "487c8c53c147ef4c3974b04b33a592ce72904b5152cb84770a823ef2420b1700"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/06.png",
+      "sha256": "0b631a81506bd8250622e0e52f2472183661bf1403f400432d5ff34f7eae2c1c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/07.png",
+      "sha256": "acddfa7d9d9ae6c3f34574654b51104329becad125e84243a8dd98e793b26b0e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/08.png",
+      "sha256": "ae8b4c873acacf84ee8e93c3cf32a413fd3fd9db590538dbfecffa941645f2d6"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/strip.png",
+      "sha256": "9d6c0ba4b0797868e72081068f6ce953c6073651e925877121e744990840e41b"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/01.png",
+      "sha256": "7e5374cf9ba0fa83251baccade330ca47aa04d21708ca904e993d44b450b715f"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/02.png",
+      "sha256": "29cf32b746003578369e02278ee18865c7df17c3e63c264cf1a9f9fecbee5f23"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/03.png",
+      "sha256": "0b1492420c7b485267326cf989bcaea052420a53475eca29bd39bd8e342b6618"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/04.png",
+      "sha256": "dc3be73bd5e60310909d77d87d20c00a93275969c8d2f9c41e481e7f44252c7a"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/05.png",
+      "sha256": "899246e48b4851b4d5373e46e65fc79d19348d6f83258e25f0481815ae23a8bc"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/06.png",
+      "sha256": "ddd3936af4f4248057db1f6002dbab42a089829445bc522e47249e2e369a92b6"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/07.png",
+      "sha256": "71970ede474401d069e32fc57bda831f091ef093c1cb7e5086028f7a3623dca8"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/08.png",
+      "sha256": "c466d8903d3f4b8a036c232f5e52cd2360cf5d4c4188199b0dddb34c9913c289"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/strip.png",
+      "sha256": "8e3bab07b6cffd00499a03598445452330683ba9a2ddfc1af5b1039dfce13290"
+    }
+  ]
+}

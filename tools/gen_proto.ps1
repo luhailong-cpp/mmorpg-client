@@ -78,7 +78,14 @@ $files = @(
     # 货币(docs/design/currency.md)。注意:handler 生成器(gen_messageids.ps1 + protogen)
     # 是按服务端 proto 全量出 handler 的,这份清单漏配哪个 proto,就会多出一批引用不存在
     # 类型的 handler(CS0246)。服务端新增 proto 时,这里必须同步加,否则下次重生成必红。
-    "proto/scene/player_currency.proto"
+    "proto/scene/player_currency.proto",
+
+    # 聚宝斋 P1(docs/design/jubaozhai-market.md,service ClientPlayerJubaozhai,namespace Trade)。
+    # 只列客户端协议文件:proto/trade/trade_admin.proto(内部 SeedListing)与 trade_table.proto(建表 schema)
+    # 刻意不进客户端包。trade_error / common_error 两份 tip 由服务端导表器生成,客户端按枚举映射文案。
+    "proto/trade/jubaozhai.proto",
+    "generated/code/proto/tip/trade_error_tip.proto",
+    "generated/code/proto/tip/common_error_tip.proto"
 )
 
 Push-Location $ProtoRoot

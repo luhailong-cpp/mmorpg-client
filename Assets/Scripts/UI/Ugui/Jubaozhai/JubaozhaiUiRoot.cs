@@ -1,4 +1,5 @@
 using MmorpgClient.Game;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Jubaozhai;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
@@ -15,14 +16,19 @@ using UnityEngine.InputSystem;
 
 namespace MmorpgClient.UI.Ugui.Jubaozhai
 {
-    /// <summary>Real-session city entry. Only a future service adapter can populate the production catalog.</summary>
+    /// <summary>
+    /// Real-session city entry. 正式商品只经 JubaozhaiClient(服务端分页,聚宝斋 P1)写入窗口 State;
+    /// 本根节点从不装载演示数据。
+    /// </summary>
     public sealed class JubaozhaiUiRoot : MonoBehaviour
     {
         public static JubaozhaiUiRoot Instance { get; private set; }
         public JubaozhaiWindow Window => _window;
         public JubaozhaiState State => _window?.State;
+        public JubaozhaiClient Client => _client;
         public const float EntryX = 68, EntryY = 704;
         private GameClient _game;
+        private JubaozhaiClient _client;
         private JubaozhaiWindow _window;
         private RectTransform _hud;
         private ulong _player;
@@ -67,13 +73,23 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (_game != game)
             {
                 if (_game != null) _game.OnDisconnected -= ResetSession;
+                DisposeClient();
                 ResetSession();
                 _game = game;
-                if (_game != null) _game.OnDisconnected += ResetSession;
+                if (_game != null)
+                {
+                    _game.OnDisconnected += ResetSession;
+                    // 服务端分页适配器与窗口共用同一个 State;连接身份取 Gate 对象,静默换 Gate 时解除隔离。
+                    _client = new JubaozhaiClient(new GameClientBattleTransport(game), _window.State,
+                        () => game.GateConnectionIdentity);
+                }
             }
+            _client?.ObserveConnection();
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             ulong player = inGame ? _game.PlayerId : 0;
-            if (_player != player) { ResetSession(); _player = player; }
+            if (_player != player) { ResetSession(); _client?.Reset(); _player = player; }
+            // 战斗层显示时只清窗口不 Reset client:在途请求被 Reset 会隔离到下次真实断线,
+            // 而 State.Reset 已退出服务端模式,迟到回包会按版本丢弃。
             bool available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             if (_available && !available) _window.ResetSession();
             _available = available;
@@ -103,9 +119,15 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             AttributeUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
             _window.Show();
+            _client?.Open();
         }
 
         public void HidePanel() => _window?.Hide();
+        private void DisposeClient()
+        {
+            _client?.Dispose();
+            _client = null;
+        }
         private void ResetSession()
         {
             _player = 0;
@@ -122,6 +144,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private void OnDestroy()
         {
             if (_game != null) _game.OnDisconnected -= ResetSession;
+            DisposeClient();
             _window?.Dispose();
             if (Instance == this) Instance = null;
         }

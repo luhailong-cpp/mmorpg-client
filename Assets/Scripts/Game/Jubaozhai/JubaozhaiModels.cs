@@ -27,6 +27,9 @@ namespace MmorpgClient.Game.Jubaozhai
         public long ExpiresAtUnixSeconds;
         public JubaozhaiTab Tab;
         public JubaozhaiSection Section;
+        // 以下两项只由服务端分页模式使用(ListingSummary.is_favorite / is_mine);本地模式忽略。
+        public bool Favorite;
+        public bool IsMine;
 
         internal JubaozhaiListing Copy() => (JubaozhaiListing)MemberwiseClone();
     }
@@ -94,14 +97,35 @@ namespace MmorpgClient.Game.Jubaozhai
     /// Local browsing and session-local favorites. A new instance contains no products.
     /// Inject an authoritative complete snapshot with SetListings; LoadDemo is explicitly opt-in.
     /// No trading, payment, or seller-contact request is simulated by this model.
+    ///
+    /// 服务端分页模式(EnterServerPaging 进入,Reset / SetListings / LoadDemo 退出):
+    /// 筛选与翻页只改查询状态并发 QueryChanged,由 JubaozhaiClient 发请求;GetPage 原样返回
+    /// ApplyServerPage 注入的那一页,不在本地过滤、排序或改页码;收藏与详情只发事件,
+    /// 服务端确认后经 ApplyFavorite / ApplyDetail 写回。每次查询变化 ++QueryVersion,
+    /// 回包带着发送时的版本号注入,过期回包自动丢弃。本地模式的行为与此前完全一致。
     /// </summary>
     public sealed class JubaozhaiState
     {
         private readonly List<JubaozhaiListing> _listings = new();
         private readonly HashSet<string> _favorites = new(StringComparer.Ordinal);
         private readonly Func<long> _clock;
+        // 服务端分页模式专用状态;本地模式下保持默认值且不参与任何计算。
+        private readonly HashSet<string> _detailedIds = new(StringComparer.Ordinal);
+        private int _serverTotalCount;
+        private int _serverPageCount = 1;
+        private long _clockOffsetSeconds;
 
         public event Action Changed;
+        /// <summary>服务端模式下查询条件或页码变化(已 ++QueryVersion)。本地模式从不触发。</summary>
+        public event Action QueryChanged;
+        /// <summary>服务端模式下请求把 (listingId) 的收藏置为 (favorite);确认前本地状态不变。</summary>
+        public event Action<string, bool> FavoriteRequested;
+        /// <summary>服务端模式下请求补全 (listingId) 的详情描述。</summary>
+        public event Action<string> DetailRequested;
+        public bool ServerPaged { get; private set; }
+        public int QueryVersion { get; private set; }
+        public bool Loading { get; private set; }
+        public string ServiceStatus { get; private set; } = "";
         public bool IsDemo { get; private set; }
         public bool ServiceAvailable { get; private set; }
         public JubaozhaiCategory Category { get; private set; }
@@ -114,7 +138,8 @@ namespace MmorpgClient.Game.Jubaozhai
         public int PageSize { get; }
         public bool FavoritesOnly { get; private set; }
         public int FavoriteCount => _favorites.Count;
-        public string Status => IsDemo ? JubaozhaiCatalog.DemoNotice : ServiceAvailable ? "" : JubaozhaiCatalog.ServiceUnavailableMessage;
+        public string Status => ServerPaged && ServiceStatus.Length > 0 ? ServiceStatus
+            : IsDemo ? JubaozhaiCatalog.DemoNotice : ServiceAvailable ? "" : JubaozhaiCatalog.ServiceUnavailableMessage;
 
         public JubaozhaiState(int pageSize = 4, Func<long> clock = null)
         {
@@ -133,6 +158,7 @@ namespace MmorpgClient.Game.Jubaozhai
             Section = JubaozhaiSection.Consignment;
             Sort = JubaozhaiSort.Default;
             FavoritesOnly = false; PageNumber = 1;
+            LeaveServerPaging();
             Changed?.Invoke();
         }
 
@@ -146,25 +172,9 @@ namespace MmorpgClient.Game.Jubaozhai
         private void ReplaceListings(IEnumerable<JubaozhaiListing> listings, bool serviceAvailable, bool demo)
         {
             // Materialize before changing state: a failing adapter cannot leave half a snapshot installed.
-            var records = new List<JubaozhaiListing>();
-            var ids = new HashSet<string>(StringComparer.Ordinal);
-            if (listings != null)
-            {
-                foreach (var value in listings)
-                {
-                    if (value == null || string.IsNullOrWhiteSpace(value.Id) || !JubaozhaiCatalog.IsCategory(value.Category)) continue;
-                    var record = value.Copy();
-                    record.Id = record.Id.Trim();
-                    if (!ids.Add(record.Id)) continue;
-                    record.Name ??= "";
-                    record.Subcategory ??= "";
-                    record.School ??= "";
-                    record.Summary ??= "";
-                    record.Details ??= "";
-                    record.IconKey ??= "";
-                    records.Add(record);
-                }
-            }
+            var records = Materialize(listings, out var ids);
+            // 服务端模式的收藏来自服务端页,不能混进本地整份快照。
+            if (ServerPaged) { _favorites.Clear(); LeaveServerPaging(); }
             if (IsDemo != demo) _favorites.Clear();
             _favorites.RemoveWhere(id => !ids.Contains(id));
             _listings.Clear(); _listings.AddRange(records);
@@ -221,6 +231,13 @@ namespace MmorpgClient.Game.Jubaozhai
         public void SetPage(int page)
         {
             var previous = PageNumber;
+            if (ServerPaged)
+            {
+                // 按上一次服务端回包的页数钳制;服务端仍会再钳一次。
+                PageNumber = Math.Min(Math.Max(1, page), _serverPageCount);
+                if (PageNumber != previous) QueryPending();
+                return;
+            }
             PageNumber = Math.Max(1, page); ClampPage();
             if (PageNumber != previous) Changed?.Invoke();
         }
@@ -237,16 +254,34 @@ namespace MmorpgClient.Game.Jubaozhai
         public bool ToggleFavorite(string id)
         {
             if (string.IsNullOrWhiteSpace(id) || !_listings.Any(item => item.Id == id)) return false;
+            if (ServerPaged)
+            {
+                // 不做乐观更新:服务端确认(ApplyFavorite)之前收藏状态保持不变。
+                FavoriteRequested?.Invoke(id, !_favorites.Contains(id));
+                return _favorites.Contains(id);
+            }
             if (!_favorites.Add(id)) _favorites.Remove(id);
             ClampPage(); Changed?.Invoke();
             return _favorites.Contains(id);
         }
 
         public string RemainingTime(JubaozhaiListing listing)
-            => JubaozhaiCatalog.RemainingTime(listing?.ExpiresAtUnixSeconds ?? 0, _clock());
+            => JubaozhaiCatalog.RemainingTime(listing?.ExpiresAtUnixSeconds ?? 0,
+                ServerPaged ? _clock() + _clockOffsetSeconds : _clock());
 
         public JubaozhaiPage GetPage()
         {
+            if (ServerPaged)
+            {
+                // 窗口的 Tick / SelectedListing 每次都会调用这里:只读注入页,不过滤、不改页码。
+                return new JubaozhaiPage
+                {
+                    Items = _listings.Select(item => item.Copy()).ToArray(),
+                    TotalCount = _serverTotalCount,
+                    PageNumber = PageNumber,
+                    PageCount = _serverPageCount
+                };
+            }
             var filtered = Filtered().ToList();
             int count = PageCountFor(filtered.Count);
             PageNumber = Math.Min(Math.Max(1, PageNumber), count);
@@ -259,7 +294,136 @@ namespace MmorpgClient.Game.Jubaozhai
             };
         }
 
-        private void FilterChanged() { PageNumber = 1; Changed?.Invoke(); }
+        /// <summary>
+        /// 进入服务端分页模式并发出一次查询。首次进入清空本地条目与收藏(演示数据不得混入);
+        /// 已在服务端模式时保留当前条件与页码,只刷新当前页。
+        /// </summary>
+        public void EnterServerPaging()
+        {
+            if (!ServerPaged)
+            {
+                _listings.Clear(); _favorites.Clear(); _detailedIds.Clear();
+                IsDemo = false; ServiceAvailable = false; ServiceStatus = "";
+                _serverTotalCount = 0; _serverPageCount = 1; _clockOffsetSeconds = 0;
+                PageNumber = 1;
+                ServerPaged = true;
+            }
+            QueryPending();
+        }
+
+        /// <summary>
+        /// 注入服务端的一页。queryVersion 必须等于当前 QueryVersion(即发送后查询未再变化),
+        /// 否则返回 false 且状态不变。条目校验与去重同 SetListings;收藏集合取条目上的 Favorite;
+        /// serverNowUnixSeconds &gt; 0 时据此重算服务端时钟偏移,0 表示沿用上次偏移。
+        /// </summary>
+        public bool ApplyServerPage(int queryVersion, IEnumerable<JubaozhaiListing> items, int totalCount,
+            int pageNumber, int pageCount, long serverNowUnixSeconds)
+        {
+            if (!ServerPaged || queryVersion != QueryVersion) return false;
+            // 先物化再改状态:枚举失败时旧页保持完整。
+            var records = Materialize(items, out _);
+            _listings.Clear(); _listings.AddRange(records);
+            _favorites.Clear();
+            foreach (var record in records) if (record.Favorite) _favorites.Add(record.Id);
+            _detailedIds.Clear();
+            _serverTotalCount = Math.Max(0, totalCount);
+            _serverPageCount = Math.Max(1, pageCount);
+            PageNumber = Math.Min(Math.Max(1, pageNumber), _serverPageCount);
+            if (serverNowUnixSeconds > 0) _clockOffsetSeconds = serverNowUnixSeconds - _clock();
+            IsDemo = false; ServiceAvailable = true; ServiceStatus = ""; Loading = false;
+            Changed?.Invoke();
+            return true;
+        }
+
+        /// <summary>服务端确认后的收藏状态。只写当前页里的条目:翻页后的回包自带权威标记。</summary>
+        public void ApplyFavorite(string id, bool favorite)
+        {
+            if (!ServerPaged || string.IsNullOrWhiteSpace(id)) return;
+            var listing = _listings.FirstOrDefault(item => item.Id == id);
+            if (listing == null) return;
+            listing.Favorite = favorite;
+            if (favorite) _favorites.Add(id); else _favorites.Remove(id);
+            Changed?.Invoke();
+        }
+
+        /// <summary>写入服务端返回的详情描述;描述未变化时不触发 Changed。</summary>
+        public void ApplyDetail(string id, string details)
+        {
+            if (!ServerPaged || string.IsNullOrWhiteSpace(id)) return;
+            var listing = _listings.FirstOrDefault(item => item.Id == id);
+            if (listing == null) return;
+            _detailedIds.Add(id);
+            details ??= "";
+            if (listing.Details == details) return;
+            listing.Details = details;
+            Changed?.Invoke();
+        }
+
+        /// <summary>
+        /// 请求补全详情。同一页内每条只请求一次:详情写回会触发窗口重绘详情弹窗并再次调用本方法,
+        /// 不去重会形成请求循环。重新注入页之后允许再次请求。
+        /// </summary>
+        public void RequestDetail(string id)
+        {
+            if (!ServerPaged || string.IsNullOrWhiteSpace(id) || _detailedIds.Contains(id) ||
+                !_listings.Any(item => item.Id == id)) return;
+            DetailRequested?.Invoke(id);
+        }
+
+        /// <summary>由 JubaozhaiClient 写入错误、隔离或读取中文案;服务端模式下 Status 优先返回它。本地模式忽略。</summary>
+        public void SetServiceStatus(string message, bool available)
+        {
+            if (!ServerPaged) return;
+            message ??= "";
+            if (ServiceStatus == message && ServiceAvailable == available) return;
+            ServiceStatus = message; ServiceAvailable = available;
+            Changed?.Invoke();
+        }
+
+        private void FilterChanged()
+        {
+            PageNumber = 1;
+            if (ServerPaged) { QueryPending(); return; }
+            Changed?.Invoke();
+        }
+
+        private void QueryPending()
+        {
+            ++QueryVersion; Loading = true;
+            Changed?.Invoke();
+            QueryChanged?.Invoke();
+        }
+
+        private void LeaveServerPaging()
+        {
+            // 版本前移:离开服务端模式前发出的请求,回包一律按过期丢弃。
+            if (ServerPaged) ++QueryVersion;
+            ServerPaged = false; Loading = false; ServiceStatus = "";
+            _serverTotalCount = 0; _serverPageCount = 1; _clockOffsetSeconds = 0;
+            _detailedIds.Clear();
+        }
+
+        private static List<JubaozhaiListing> Materialize(IEnumerable<JubaozhaiListing> listings, out HashSet<string> ids)
+        {
+            var records = new List<JubaozhaiListing>();
+            ids = new HashSet<string>(StringComparer.Ordinal);
+            if (listings == null) return records;
+            foreach (var value in listings)
+            {
+                if (value == null || string.IsNullOrWhiteSpace(value.Id) || !JubaozhaiCatalog.IsCategory(value.Category)) continue;
+                var record = value.Copy();
+                record.Id = record.Id.Trim();
+                if (!ids.Add(record.Id)) continue;
+                record.Name ??= "";
+                record.Subcategory ??= "";
+                record.School ??= "";
+                record.Summary ??= "";
+                record.Details ??= "";
+                record.IconKey ??= "";
+                records.Add(record);
+            }
+            return records;
+        }
         private int PageCountFor(int count) => count == 0 ? 1 : (count - 1) / PageSize + 1;
         private void ClampPage() => PageNumber = Math.Min(Math.Max(1, PageNumber), PageCountFor(Filtered().Count()));
 

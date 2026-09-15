@@ -7,7 +7,8 @@
   "contactFrame": 0,
   "status": "passed",
   "visualReview": "passed",
-  "manifest_sha256": "985981e192e764f7ee22241891ac09a22d1401a5f3b14bf2cc012f5e151ef401",
-  "qc_sha256": "89797ae70eadfcf1826fd68aa3b33b42a459e947dbac2276e5f9b9afc55ef8a8",
-  "validation_sha256": "92c86fe984e0960fc7e6f4c67c6f2652b86e5c96e463b626d436c657c061214b"
+  "manifest_sha256": "7533eebc4aa49229611f3a4d61b467dcef6744fc31c16ba6c18bcabce75576e2",
+  "qc_sha256": "ed76843902a567bfc859e1bffe6fc13ea93f085807e69a78ed5d0d7f4fa1595d",
+  "validation_sha256": "17f1b4e72ac29b69aa0bfdef9dfaee4392bc7ef7aab1668c97befea8b0fcb8a2",
+  "alignmentVersion": 3
 }

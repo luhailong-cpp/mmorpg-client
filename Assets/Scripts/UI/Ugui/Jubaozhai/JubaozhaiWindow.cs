@@ -39,6 +39,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private int _renderedTotal, _renderedPageNumber, _renderedPageCount;
         private JubaozhaiListing _detailSnapshot;
         private TMP_Text _modalRemainingText;
+        // 详情弹窗的状态行:服务端模式下收藏被拒、详情 NotFound 等只改 Status 不改条目,弹窗不会重建,需随 Render 刷新。
+        private TMP_Text _modalStatusText;
 
         public JubaozhaiWindow(UnityEngine.Transform parent, JubaozhaiState state = null)
         {
@@ -170,7 +172,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 SetButtonLabel(pair.Value, (active ? "已选 · " : "") + (pair.Key.Length == 0 ? "全部" : pair.Key));
             }
             if (!_search.isFocused) _search.SetTextWithoutNotify(State.Search);
-            _status.text = State.IsDemo ? "离线演示\n商品与价格均为样例" : State.ServiceAvailable ? "收藏仅在本次登录保留" : "聚宝斋尚未开放";
+            _status.text = State.IsDemo ? "离线演示\n商品与价格均为样例" : State.ServerPaged ? ServerStatusText()
+                : State.ServiceAvailable ? "收藏仅在本次登录保留" : "聚宝斋尚未开放";
             var page = State.GetPage();
             _pageItems = page.Items;
             _renderedTotal = page.TotalCount; _renderedPageNumber = page.PageNumber; _renderedPageCount = page.PageCount;
@@ -281,6 +284,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _view.interactable = listing != null;
             SetButtonLabel(_favorite, listing != null && State.IsFavorite(listing.Id) ? "取消收藏" : "收藏");
             if (_modalFavorite != null) SetButtonLabel(_modalFavorite, listing != null && State.IsFavorite(listing.Id) ? "取消收藏" : "收藏");
+            if (_modalStatusText != null) _modalStatusText.text = ModalStatusText();
             _selection.text = listing == null ? "选择商品后可查看详情" : "已选择 · " + listing.Name;
         }
 
@@ -309,7 +313,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             body.rectTransform.sizeDelta = new Vector2(1044, textHeight);
             details.sizeDelta = new Vector2(1044, textHeight);
             detailsScroll.verticalNormalizedPosition = 1;
-            Text(panel, State.IsDemo ? "离线演示商品，仅用于界面预览" : "收藏仅在本次登录保留", 72, 610, 680, 40, 24, Muted);
+            _modalStatusText = Text(panel, ModalStatusText(), 72, 610, 680, 40, 24, Muted);
             _modalFavorite = Button(panel, "JubaoModalFavorite", State.IsFavorite(item.Id) ? "取消收藏" : "收藏",
                 70, 670, 226, 62, ToggleSelectedFavorite);
             Button(panel, "JubaoContactSeller", "联系卖家", 314, 670, 260, 62,
@@ -317,7 +321,13 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             Button(panel, "JubaoPurchase", "购买 · 尚未开放", 690, 670, 440, 62,
                 () => ShowNotice("购买", "交易功能尚未开放，暂时无法购买商品。"), true);
             BoundNavigation(_modal);
+            // 放在弹窗建好之后:描述写回会触发重绘本弹窗,State 按条去重,不会形成请求循环。
+            if (State.ServerPaged) State.RequestDetail(item.Id);
         }
+
+        private string ServerStatusText() => string.IsNullOrEmpty(State.Status) ? "收藏已同步至账号" : State.Status;
+        // 建弹窗与 UpdateSelection 共用同一取值:本地模式结果恒定,重复赋值不改变显示。
+        private string ModalStatusText() => State.IsDemo ? "离线演示商品，仅用于界面预览" : State.ServerPaged ? ServerStatusText() : "收藏仅在本次登录保留";
 
         private void ShowNotice(string title, string message)
         {
@@ -349,7 +359,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _modal.gameObject.SetActive(false);
             if (Application.isPlaying) UnityEngine.Object.Destroy(_modal.gameObject);
             else UnityEngine.Object.DestroyImmediate(_modal.gameObject);
-            _modal = null; _modalFavorite = null; _detailSnapshot = null; _modalRemainingText = null;
+            _modal = null; _modalFavorite = null; _detailSnapshot = null; _modalRemainingText = null; _modalStatusText = null;
             _frameInput.interactable = true; _frameInput.blocksRaycasts = true;
             if (EventSystem.current != null)
                 EventSystem.current.SetSelectedGameObject(_modalReturnFocus != null && _modalReturnFocus.activeInHierarchy ? _modalReturnFocus : null);

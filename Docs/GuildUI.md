@@ -2,7 +2,11 @@
 
 2026-09-14 更新：[官方 MCP 切图与原生布局接入](GuildUI-MCP-20260914.md)，27 张 Sprite、28 项测试通过、20 张本次原生截图。下文保留 9 月 13 日业务接入记录。
 
-2026-09-14 服务端接入（未编译、未联调）：帮会服务改为客户端可达并**按区服隔离**——建帮落在角色归属区服，只能浏览、加入本区帮会，排行为本区排行；身份与区服由服务端判定，请求里的 `PlayerId` / `ZoneId` 不再作为依据。帮名仍全服唯一。新增错误提示：帮名无效、帮名已被使用、公告过长、角色归属区服未确认。公告上限改为 200 字（服务端按 600 字节校验：Gate 单包上限 1KB，500 个汉字的包会在 Gate 被丢弃）。排行标题改为「本区帮会排行」。**必须先运行 `tools/gen_proto.ps1 -ProtoRoot E:\work\xuanming-server-mmo` 生成新错误码枚举，否则 `GuildClient.cs` 无法编译。** 服务端决策与验证清单见 `xuanming-server-mmo/docs/design/guild-zone-client-access.md`。
+2026-09-14 Codex 本轮客户端验证：`tools/gen_proto.ps1 -ProtoRoot E:\work\xuanming-server-mmo` 已成功生成协议及新错误码；`tools/client_compile_check.ps1` 检查 **283 个源码文件，0 错误，退出码 0**。Unity 6000.6.0f1 在独立副本 `E:\work\tmp\guild-zone-verify-20260914` 运行帮会 EditMode 测试，**30/30 通过，0 失败、0 跳过，退出码 0**；新增公告边界及区服/重名提示两条测试均通过。本轮验证于 2026-09-14 13:11:47 UTC 完成，6 个帮会源码和协议文件的 SHA-256 与测试副本一致，正式 Unity 编辑器未关闭。
+
+本轮未进行独立客户端打包或游戏内界面手测。服务端双区机器人冒烟已于 2026-09-14 09:46:32–38 EDT 通过并输出 `GUILD_SMOKE_OK`：1 区角色 A（602）与 B（601）、2 区角色 C（701），测试帮会编号 101；同一窗口确认 `UpdateGuildScore` 被会话白名单以 `PermissionDenied` 拒绝，清理后帮会、成员及三份榜单均为 0。细节见服务端 `docs/design/guild-zone-client-access.md` §7，运行证据位于 `run/logs/guild-verify-20260914/`。下文此前的截图、测试和初始交接记录保留为历史证据；本轮机器人联机验证不代替客户端游戏内手测。本轮证据集中在服务端仓库 `run/logs/guild-verify-20260914/`：`client-compile.log`、`client-guild-editmode-results.xml`、`client-guild-editmode.log`、`client-guild-editmode-completion.json`、`client-snapshot.json`、`client-final-check.json`。
+
+2026-09-14 服务端接入初始交接（当时未编译、未联调）：帮会服务改为客户端可达并**按区服隔离**——建帮落在角色归属区服，只能浏览、加入本区帮会，排行为本区排行；身份与区服由服务端判定，请求里的 `PlayerId` / `ZoneId` 不再作为依据。帮名仍全服唯一。新增错误提示：帮名无效、帮名已被使用、公告过长、角色归属区服未确认。公告上限改为 200 字（服务端按 600 字节校验：Gate 单包上限 1KB，500 个汉字的包会在 Gate 被丢弃）。排行标题改为「本区帮会排行」。**必须先运行 `tools/gen_proto.ps1 -ProtoRoot E:\work\xuanming-server-mmo` 生成新错误码枚举，否则 `GuildClient.cs` 无法编译。** 服务端决策与验证清单见 `xuanming-server-mmo/docs/design/guild-zone-client-access.md`。
 
 2026-09-13。正式入口位于主城左侧「帮会 [G]」（组队下方），也可按 G 打开；Escape 先关闭弹窗，再关闭帮会。进入战斗时关闭窗口，离线和换角时关闭窗口并清理会话状态。
 

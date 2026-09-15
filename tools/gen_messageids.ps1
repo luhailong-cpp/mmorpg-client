@@ -42,6 +42,13 @@ $whitelist = @{
     "GuildServiceGetGuildRank" = "GetGuildRank"
     "GuildServiceGetGuildRankByGuild" = "GetGuildRankByGuild"
 
+    # 聚宝斋(proto/trade/jubaozhai.proto, service ClientPlayerJubaozhai)。
+    # 内部 TradeAdmin(SeedListing)刻意不列:gate 不转发,客户端也不应持有其消息号。
+    "ClientPlayerJubaozhaiBrowseListings"          = "JubaozhaiBrowseListings"
+    "ClientPlayerJubaozhaiGetListingDetail"        = "JubaozhaiGetListingDetail"
+    "ClientPlayerJubaozhaiSetFavorite"             = "JubaozhaiSetFavorite"
+    "ClientPlayerJubaozhaiGetMyShelf"              = "JubaozhaiGetMyShelf"
+
     "ClientPlayerLoginLogin"                       = "Login"
     "ClientPlayerLoginCreatePlayer"                = "CreatePlayer"
     "ClientPlayerLoginEnterGame"                   = "EnterGame"

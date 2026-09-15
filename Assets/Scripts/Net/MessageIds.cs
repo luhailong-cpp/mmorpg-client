@@ -34,6 +34,10 @@ namespace MmorpgClient.Net
         public const uint GmSetPlayerLevel       =  175; // SceneAttributeClientPlayerGmSetPlayerLevel
         public const uint JoinGuild              =   19; // GuildServiceJoinGuild
         public const uint JoinQueue              =  157; // MatchServiceJoinQueue
+        public const uint JubaozhaiBrowseListings =  196; // ClientPlayerJubaozhaiBrowseListings
+        public const uint JubaozhaiGetListingDetail =  197; // ClientPlayerJubaozhaiGetListingDetail
+        public const uint JubaozhaiGetMyShelf    =  200; // ClientPlayerJubaozhaiGetMyShelf
+        public const uint JubaozhaiSetFavorite   =  198; // ClientPlayerJubaozhaiSetFavorite
         public const uint KickPlayer             =   34; // SceneClientPlayerCommonKickPlayer
         public const uint LeaveGame              =   17; // ClientPlayerLoginLeaveGame
         public const uint LeaveGuild             =   29; // GuildServiceLeaveGuild

@@ -1,0 +1,7 @@
+{
+  "date_utc": "2026-09-14T14:07:37.029489+00:00",
+  "target": "E:\\work\\mmorpg-client\\Assets\\Resources\\World\\Characters\\QdaoRosterV12\\26_osmanthus_healer",
+  "previous_v12_directory_existed": true,
+  "fallback_before_import": "QdaoRosterV11/26_osmanthus_healer if no V12 appearance.json",
+  "v11_files_untouched": true
+}

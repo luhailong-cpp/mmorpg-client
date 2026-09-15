@@ -1,504 +1,504 @@
 {
   "status": "passed",
   "characters_this_import": [
-    "23_lantern_courier"
+    "26_osmanthus_healer"
   ],
   "source_root": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-stable-body",
   "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
   "png_count_this_import": 81,
   "source_approvals": {
-    "23_lantern_courier": {
-      "manifest_sha256": "385c3158106d5e5a9b439d2015a714a0e13c6c24c90dd9d801699f08c7bd72b6",
-      "qc_sha256": "56e98410dbd5e35bbac7d4fb01b5e163630ed5d2361df35a70f642c699b9eb10",
-      "validation_sha256": "0161eb28308449a5f00ab4d3d71b7257b54f119d31c5f6a4a9e190648cc50e8c"
+    "26_osmanthus_healer": {
+      "manifest_sha256": "7533eebc4aa49229611f3a4d61b467dcef6744fc31c16ba6c18bcabce75576e2",
+      "qc_sha256": "ed76843902a567bfc859e1bffe6fc13ea93f085807e69a78ed5d0d7f4fa1595d",
+      "validation_sha256": "17f1b4e72ac29b69aa0bfdef9dfaee4392bc7ef7aab1668c97befea8b0fcb8a2"
     }
   },
   "files": [
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/E.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/E.png",
-      "sha256": "edb00e6af014ef190d937da39b126da9751a298dfc73a299ef1c0e891668febd"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/E.png",
+      "sha256": "fe546c8a7f59b4eb2ab65f878741aa54e8aedd14b9f9d7c27bfc7ecb591d764a"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/N.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/N.png",
-      "sha256": "02727f3bbaf33634c3b7d5b3606b626f9492a993288c348ed64f1c380c0b6ae9"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/N.png",
+      "sha256": "fd39c7ca13e802398b780b8c97ada2527fb32c20a3430dd16cdbf6ba00b6081f"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/NE.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/NE.png",
-      "sha256": "c2d3150b4a9f2b37f918e7819bacb92ef889756ea8d834d4c627885eb5e90ac7"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/NE.png",
+      "sha256": "84765759e0e8003db60c74a0091a1b75c59c28aa665fb5460fabc60da61505b2"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/NW.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/NW.png",
-      "sha256": "ef5d21e2333c7a55d9bde6f5a99e46ab3a12326776e0075d68c8164aabbd51ca"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/NW.png",
+      "sha256": "af6b3bcd8adaaeaa743f71eb1979cc0f5da48380cb45c5137f47cbf805e46664"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/S.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/S.png",
-      "sha256": "652172e52e53776b0f767917777ef09a6b538f7a96085aed5d22bd6b2a348e0c"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/S.png",
+      "sha256": "efab4b22f2010d3356774d2148623de5cd3e7002014395cd9265b0b6ff52a331"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/SE.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/SE.png",
-      "sha256": "bfc93a69c7cb52c53cc70a518a506aef9088b3c6892a4e12442a5981fd67b7d4"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/SE.png",
+      "sha256": "4d753d14a3acd1c7b44cd59cce1f7ae21e424be2a3d1ae8f39d2d3c419f15c5d"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/SW.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/SW.png",
-      "sha256": "c9f4e6d63300c1ed2d2e88024355989d66bed182112833f95d748669bb26dedc"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/SW.png",
+      "sha256": "11a46601eb2de5aacd5db09b1141e988f7f7e0584c4a77180dca6f5a920a8502"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/idle/W.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/idle/W.png",
-      "sha256": "f8ee4645ba9bc771c6f470adc9ede0b2ee0be7b8dbc1558cb38cdccf82ce295c"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/W.png",
+      "sha256": "ed78e0707b22efd554328d5313b1b7f89eec18dada28a483c55fb8a2fc141faf"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/portrait.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/portrait.png",
-      "sha256": "355b33acff98a2d7652515e5d4266eebe1bc0138fbb859a26f3f6101b7a84c84"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/portrait.png",
+      "sha256": "556e8acc3110ca693a5a6631ce35285c16883b334c32dfc066cc09bb7727b6a3"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/01.png",
-      "sha256": "e9c146d57a5f625838a87bdc3d9e7deb716744575ed10afb565afe996008a824"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/01.png",
+      "sha256": "b70335b0dfe4095cd8f1c186275f3776647fb3e92b8e81465e0db393ac5d37fb"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/02.png",
-      "sha256": "17dad56b87ce9f1051cd9663e96f9224548ca7dc7426fd0b59476a4883792d13"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/02.png",
+      "sha256": "79ac67d12850bc4805563af34c0f1214a130df78fc4f206e48cba79dd7a3ad60"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/03.png",
-      "sha256": "4b99449b672ff2c9ffad0fcc9bc4bf02e2b99e931275d55d1d088654fa652b57"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/03.png",
+      "sha256": "b1bc48cbd5138a311b08ad3d5a8f6d44d3f813b43cf01021d969aa3efae45546"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/04.png",
-      "sha256": "34764b5cc31276cda81f67181cbff6ec3d74e1bca06f1190e7c4b268e38af7c7"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/04.png",
+      "sha256": "6fa25b8d781c127bc953f32629a8b4d873e789c2aee6272de0900b129c2a7eea"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/05.png",
-      "sha256": "53994097ad5b532c2141995481b3702a6209988c7e4ad44e93b334ca5c6d3c67"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/05.png",
+      "sha256": "f687e70308e17b110bf228f385e555c6f5f264c66845d76c2b20b6e4481bb049"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/06.png",
-      "sha256": "a2647794605ad4a5f0616591c00fd5db329a628181ad6ef8240b430e9001247e"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/06.png",
+      "sha256": "5ceb9597416272610bd7f0491b4327503319357fa52b260d3e454dc4e4d6e832"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/07.png",
-      "sha256": "4f172f80f998240db7302f7ad4bbf02605b6c608fa84a6b02be00d404e00555b"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/07.png",
+      "sha256": "1fcc2f4ab6e02948aa87f56eb6f780cf761e655df141462ca350231c4f02499d"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/08.png",
-      "sha256": "f6abd4725673042991469ca3176e04f8a0cf28c98f9f07fb88bac7f412db6e96"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/08.png",
+      "sha256": "c59ec683122eb32d6623c6b12bad2ff1f9f7a6ab6c358d6cab51e7142bc81395"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/E/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/E/strip.png",
-      "sha256": "286d103ef776574dd3e7649ec4ccf12d6712dae8b13a3380c71d1836bea872b8"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/strip.png",
+      "sha256": "4103517f4863e4c27676ab2c6e87e605a8d3e589c427c05aede671fbd38cce26"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/01.png",
-      "sha256": "927f9517398d5ad7a471644bd689d2cab0fbc097b7ae2de7574c151a2914ad09"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/01.png",
+      "sha256": "77d58f7fa0d82b3399ae3bd1418ae4a0fe750e9ae79eb75a614f83bead4ad999"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/02.png",
-      "sha256": "ae4da8d24e1ac98ae9fb8a90d56ca2cfcf80e8f8799a957ec507a541fc43a8b4"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/02.png",
+      "sha256": "c2b51e695c91d979b45b316290148bde7787f319369b7911274ab67d6e8630b2"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/03.png",
-      "sha256": "5e0ba81da5b1a29fbdeb5ad0817631daf40df134c31c0998b622d255a9ea711c"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/03.png",
+      "sha256": "50141ee59841bb05795106ac3f396ef1db1b0b18c36345cc7769ce966c735d39"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/04.png",
-      "sha256": "d0f3e11f26dd83a9b3e27c766fcf4283ce4c7f023cd0842a17ad05ff83c43b0b"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/04.png",
+      "sha256": "bf24abd792172422385b0c38be178b13886ad4167f7468292341aadd232218ea"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/05.png",
-      "sha256": "efd50527f5e6fa6311905a195f3773303db028ab35588150a926983f6f330fae"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/05.png",
+      "sha256": "e2ccbf118aa0df73aa991f90e9e8f362bbd5e5b1b8a1d4a13b818d1b9864eadc"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/06.png",
-      "sha256": "2ee9bc3d218ba31d3876510e0780144465752a44ad6c63fdff99789bad4a475a"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/06.png",
+      "sha256": "9e195ab8d9727ba78dbce65402a0504e2839cac39c8f77429e8fd59e0c29f5be"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/07.png",
-      "sha256": "38e83cc97f27292568d38647875eb23bdd29007af64dd5a59f78622be723cb60"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/07.png",
+      "sha256": "2f1da01243d9ee308366446305bf3d3dc5c01f69d9d7b9ef0ce23a34edabd542"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/08.png",
-      "sha256": "edbd81486e87ede31408b49c53489ba94c51575c5b2cc29608491e9b8400678e"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/08.png",
+      "sha256": "a8edf812689501a1146a60a9ce81b89a29a4f7414de2abbe97ada8fc2df22b32"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/N/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/N/strip.png",
-      "sha256": "03896efff9b03b7f5106ae94ebe602178a3a9daf3e97b78228d1b034a19685c2"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/strip.png",
+      "sha256": "508bf8fe4308ebadc8b945e78dd45a07c0815d4ee7858ae0d49ac9903003a023"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/01.png",
-      "sha256": "31008a11981680512e1ab67daf08940c3f17a50481d39e14e121e0bdfdcd9d01"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/01.png",
+      "sha256": "6d4075817ecfcb789648e9f9d40557c750f044b4188352e343bdca6b32130c83"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/02.png",
-      "sha256": "23474f22dab8881d89b3c3b7acdba2da1cf5ce6bc399662d28051f4dc4187613"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/02.png",
+      "sha256": "3f3eff498595fd56c96d59103a72ea2f836f558533c43cb8cbe1f69984261604"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/03.png",
-      "sha256": "918ac7c2fc00ed59d8387c6db88bf9e3b778f80a762a3b6d58a0c0619ccc1896"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/03.png",
+      "sha256": "de085efac0177d60bdaca493a28eace0c735e896da9be7ff8e200a87289a0cda"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/04.png",
-      "sha256": "ab0f7929ef60b359a84bfb4f45a0d56c8f4693a4e4627bef1f9a2f0313ef54ce"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/04.png",
+      "sha256": "539abe48cb9b95644ac24789b2fc98f3d27788d234cab007fd7d90d513d802a3"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/05.png",
-      "sha256": "56f0a2cb52993b88da4ab9ba1ab05bf90e2aaa5793802f9bf77f77f7b15e84fb"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/05.png",
+      "sha256": "975268a519fc505790318ccf3ee03082a58f0087cfd2d7018b5c43f638ca14a5"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/06.png",
-      "sha256": "f8cfd43b2dc9c2ae084d8f4a962081182637cac61fd8dfc0804631efdbc07f88"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/06.png",
+      "sha256": "01d53d70032a095725c9306c4a688c6db3b282c1c14edac6536fbc15a4bfdec4"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/07.png",
-      "sha256": "194d4024091d6d3a7b82a0c42dcfa592273c1a6ca331c85c0aab83efa6b0d410"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/07.png",
+      "sha256": "25123a82183106ed2b8331fd4e67110081e9a500caddf2391a12a53142782dcd"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/08.png",
-      "sha256": "622264b1427d6a7d29e082560159647e87302419aa1b8caee98c7b7825704644"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/08.png",
+      "sha256": "f6fc87a261bfe74b70c0f22d46dad850e4bb7972a3a469d51fbc044d99ae7c83"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NE/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NE/strip.png",
-      "sha256": "d144f1b210c6bf8ab0ab4bf90647cfabab832e991ad1a9f925b2dbf70f5eefc4"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/strip.png",
+      "sha256": "ff3c127d8487f696492d0d1b5139bc1152fa4edb93dc4f7d8a9dd47cdada4015"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/01.png",
-      "sha256": "d43c1701bde5bd065e388cfa8a98f6a7535e23d93aae03f725ea2884af7dc955"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/01.png",
+      "sha256": "b6033b43c027cb81c940644638e1bd4705ccb879bffac4d5386e70a10fbafb99"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/02.png",
-      "sha256": "bbdb1c4b9b621efd7227987f99222b0092ea3dd84f164a0e60fd7839faefe30d"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/02.png",
+      "sha256": "e4930cecb95c21bb214da077811fdfa17168bc8d143ed73da5ca86f585bea15e"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/03.png",
-      "sha256": "b07b444fd907a5fba0a26c6571a7d6c3e182262cd95afcbc763fa172d0bee031"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/03.png",
+      "sha256": "9e677079155be144cb0bc6ecdd0bb00ba476e8ea814f69e2c7f970445583689a"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/04.png",
-      "sha256": "1afa58fa5be1f72595dc1152b9c07152abd5e5ec27a4c9b172e33b36d4ea5e76"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/04.png",
+      "sha256": "c048e776a3776477c9dd79b06e680d6e2622c32d413a2617d68d5cf1bf612864"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/05.png",
-      "sha256": "27bc453dd03710b4c9e7b0f23ff4ca0a33ea3da15f5bd4e97a57708f11ae2efa"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/05.png",
+      "sha256": "87cfa7a14f5c4b2200cce26e639c9e8b97521ffab6bb221c6b82063024895814"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/06.png",
-      "sha256": "fbda9323d12fba591adf5f1ec9371653ae445fe47a8595baa0e03706209fe67e"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/06.png",
+      "sha256": "4bd82575a39e2a753d68299606887ad646d61233b3372b16ede3ac0715ee8c13"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/07.png",
-      "sha256": "22e604112f438bfd57b73c1bfe162f6819d4273bfbc17e40f8f41b6d8dae011f"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/07.png",
+      "sha256": "6c7cd32b4da6a971533ff9834cc10cf78aa9fd41185b29b09ed214bff0212fc1"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/08.png",
-      "sha256": "5679b327ca0b2f28af7d844166f9b28f9f6cbc3b245129037e0ad599d25e9c70"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/08.png",
+      "sha256": "958a773352a394f50d138587d69afd1491b3e559ed3e07fc8c3bb0c4df708bc0"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/NW/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/NW/strip.png",
-      "sha256": "e9011a980cb949901342b1501a67482f6f6d403596161d77a25c17d294ab4bcd"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/strip.png",
+      "sha256": "c4707d470f10604fc52d09e496838250b51c1594975597675c61e36f21d7f961"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/01.png",
-      "sha256": "58f39b01a372df33512f93939d26ff93e85b43849e72b55dfe5e68abb1bffca3"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/01.png",
+      "sha256": "daa009e6aec56afabf5ab2f76d5edd4aabaaaa2f3e615b0cfb33af7d3282c0d6"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/02.png",
-      "sha256": "7ea75baa098b554fb381a827084bd6af89dafd26df70b70a9916299dd86d0678"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/02.png",
+      "sha256": "e6dbdf43009d49b17d04a780f6ab5e40dcafa5a9f776d8d8b16700bc5869d1d4"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/03.png",
-      "sha256": "48820e9ea273bae003355f00c17361975468527ed8207263a1d937376cb2933d"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/03.png",
+      "sha256": "259cc9ef256c732e4cbfb774817faa8ec4929c30f9809b4a755cc17d12188946"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/04.png",
-      "sha256": "e1eb930d486bdab9f01370a2955d387de218d0de12c1641cf82ce3f745ffa138"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/04.png",
+      "sha256": "033582fb6ce813c2f230cd21797820c74e643f280223ebc3d1a99ce150ea0155"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/05.png",
-      "sha256": "67a494fb61699b3c29a2a70d9374f74ef7bcce06b07ce8e48900bf8f3120c200"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/05.png",
+      "sha256": "68d26be9e9075ae715764b530f36291408cece3cde0bb113f5c2e5821bbebe67"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/06.png",
-      "sha256": "ca10a3f9c38482fbeeb2ec9cab96d6a9bd83469cbaf8e1e7620945f567f2d072"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/06.png",
+      "sha256": "2c5041487380e31686019d10c87c3ccb28afc06efb77209ec99613428d720569"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/07.png",
-      "sha256": "f72707ef76b34efb65338d2d38402f740a15d3a8727aac7cd31dc91582fb7e25"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/07.png",
+      "sha256": "279b7b6faaa4f2c1921f927c65e407d9d14fcc10a20fa8995a94333609b1e6f1"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/08.png",
-      "sha256": "7e60f9b38b172e2dc968c994a23b708ea2d9bd6a3428ef9e7a905a0f6b11503d"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/08.png",
+      "sha256": "d43070f728bd018fb5d59c6778166728023524ad3a929bf14c6b7b19ff25bd52"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/S/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/S/strip.png",
-      "sha256": "93436609cd26b3ca2a5701565a9d06c3e9bba7469159bffb8c3e665a6e0308e5"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/strip.png",
+      "sha256": "6801254389a846aae1cb9ec805e8d79e8edd71859da117103178fdd198f3f775"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/01.png",
-      "sha256": "88cff9ade0b262b47c132a140151b93606dc63e215b602c49139af91ceefa968"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/01.png",
+      "sha256": "5ecb8e10b6806a35e8e621780d2a771fa1fee966982835141a22efcd4e88a26f"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/02.png",
-      "sha256": "45dcdcbd39e88f146b941810aae09f1281dc66e0e74b6325e2030c504d53a91d"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/02.png",
+      "sha256": "a3e62b849cb72bb0b3f30e09b5e9a34462fbf779f8d26e282c6826f473d0c6ff"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/03.png",
-      "sha256": "de82ce4cdd263025476f75c4e97a2adcdd644e56021f82cec81ca1a7b16d91ce"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/03.png",
+      "sha256": "05406cb1e03fd233ea99e59293b75fcd5b5d911a5bb3ac7199a6dd56581b8fd6"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/04.png",
-      "sha256": "f9ef4b90dcf14162000f399934531332d09b222645753fbe0971612129781440"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/04.png",
+      "sha256": "ab8a413efdba0ff344869dbb3261408eb4cf16d579e7dd1d948d0a5d71e6ff78"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/05.png",
-      "sha256": "fa671293636d72133e317d517caa58eee3bf0effcdb5923449a1973d6ff2dac3"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/05.png",
+      "sha256": "4f31080fe0952c4df5e7dc13c4b24aba71f9c404e2160dce5c9cc201028baca4"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/06.png",
-      "sha256": "32e1df534c552b89368bcd244ccae5266958d60bc9d406a5ef23c9ad1c1e63bc"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/06.png",
+      "sha256": "094d9463433b1449c88fedd8f9dc29dddd3245842c1c7d613cbbb0791f8934d5"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/07.png",
-      "sha256": "25a57822af2f4b67894bee177e28e7706977804a327fadd5e4ba5066ef8cbf26"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/07.png",
+      "sha256": "c311904a2e1953d08a8f66ba8d28d0a7475268d779ca5e12b1c11e814c558108"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/08.png",
-      "sha256": "2057295374bf790721a4c7f7682403da49c0d7834688dd4a923391293967eb91"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/08.png",
+      "sha256": "24bb62f9e1eb510050d8d0c13457ef42314706ed4ab8514b0762bb477bf321cf"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SE/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SE/strip.png",
-      "sha256": "bb96feda6e42b47d8d41c26bb3b8a8c4f271960abf37c26288938e8f02e4cf1c"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/strip.png",
+      "sha256": "327b67d07febc73d1a36e1a238f845abddc6f8bc2cc8d97edd0cc928672d8a34"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/01.png",
-      "sha256": "4b934fe42718391d30ac8e4b35dc1aa78e9d8f754d1057e19503cb132cf33356"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/01.png",
+      "sha256": "a13b82b35c05c19a12dbc36941cb842d767d87b8a9b8163dc9969636caddf9f6"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/02.png",
-      "sha256": "47d79966fdee138f75956a82b43c1ce58fdb3566b49872b1dcf02530795c349d"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/02.png",
+      "sha256": "5fe5d3b7592f4f76e08a6aaea1748c9f3ad51c8ed9c7e156963bef3e70565a70"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/03.png",
-      "sha256": "6f886996efa1e3c25be743ed3cc59a0aa7c1a09333808a125afa43f7a315520e"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/03.png",
+      "sha256": "2fcd8c1a29d21c9a29b55342d6e4e015b5ae544abc9c9bbb6514402d9be1ebb1"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/04.png",
-      "sha256": "e1325a66ef44b39a99328ac005362f3c3d14a8ad221bf1cfc0d1f33a433b7042"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/04.png",
+      "sha256": "4e58702c8d3b3d7f2dfd0dc719a0261734374ecc123ee8aa9faf9b7a70fd5927"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/05.png",
-      "sha256": "732da99c229ceb09245f093aea9282a8b581370aa64cee223a9a66568255b92c"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/05.png",
+      "sha256": "9db38844d94a71a34d048800971128ad444b6cd0f01acb295a9ba93edb68637f"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/06.png",
-      "sha256": "8702188c5ccd5d4691c88334ebf0b9bbeefa4b9f44957a8ff6e2bb6cb5181fef"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/06.png",
+      "sha256": "702361b4cec528fecb8ef69a6e3747006e3f0573c5477cfc7b9f55e2d11489f4"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/07.png",
-      "sha256": "bbc6860e0f667c6c46e46875b5e74b8acabfa1ed8b910e50f6c2f1a8b2b416df"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/07.png",
+      "sha256": "fb7ab6be5363997c037da00690d8ada110af6729924cad2d4bce7482b423f4e8"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/08.png",
-      "sha256": "8ecf539e38d62c6696c33366d50286f25e1e2dd292ac6ce3bade349c2571d47c"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/08.png",
+      "sha256": "c03d9ad68e8bb0aa68b7417adb595d2cb964d9f75ab969af224d725231ffcb6d"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/SW/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/SW/strip.png",
-      "sha256": "5aeb1ab651066254e7daa0296d35605ef2fa0400f224455c07cb36f6a408f56b"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/strip.png",
+      "sha256": "34bd5b0d73d1cc7b52f2516e7914b6789cf848f45696473d85cd027282de33c9"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/01.png",
-      "sha256": "4a9ce1922ceb9df4b715af7bc0d8fb3f3a077156165271c0a413c8a671202622"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/01.png",
+      "sha256": "bd71d0bf660bbc8c238352e12966c90e8c6439223e49f89030af9fbed3652e49"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/02.png",
-      "sha256": "c453d30f8614196d81baffc250c84fa888e90c67079d56a04f8fceac449c5cae"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/02.png",
+      "sha256": "7be2d3fab3fdb7c47444fc0d41764c3bff50de60c89d33dedcf0a17e6d98e235"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/03.png",
-      "sha256": "166751a42598591017fbc0eec8caad28fcd1b69288ba2c162affbfecf44141dd"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/03.png",
+      "sha256": "7e828faefe21be7b9238191a75bfb9082a39dd1d9ad6f098bbc9a9a40e34e07e"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/04.png",
-      "sha256": "ba6a75832851be4fa52c6ba6eb0729f331e7d592919de2d6399966b096e7188c"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/04.png",
+      "sha256": "17acd099e4b3032be12abd2535e6d832d522ae9efa836112ae520c934ccca211"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/05.png",
-      "sha256": "6a56d435d6116df3826009fab8ba63cdff2f3e6542ebd526d71ff6720fa4e499"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/05.png",
+      "sha256": "e802cfbf69c95608fc1c286b19108a0da6d5c8780f6a677636d2f3e2758bd19b"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/06.png",
-      "sha256": "e6c08f8583c54b43d1734bb70602bf732e104bf2ffaf5ac6da724873e54244c5"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/06.png",
+      "sha256": "0efdd5e5b6beafe8d4c53e38ee985e5f3080b4e366fda8268f2f8aeaf4605085"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/07.png",
-      "sha256": "084e5953c9612b2063cf4dfda0a6f26451b503c13bc136984a869224ef76177f"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/07.png",
+      "sha256": "fc88a37e67ebfaedef7387a1e19e102525ddb2a84c520581c7878b78349816f8"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/08.png",
-      "sha256": "da7e918caa5947004775f93159e8e603a9bb3e1a3d62a9b50b8e81148199fb73"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/08.png",
+      "sha256": "c8f89671253aeb67ae154fe0c504b00e80226b6e4784638c4a58f807363c4d69"
     },
     {
-      "character": "23_lantern_courier",
-      "source": "23_lantern_courier/walk/W/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/23_lantern_courier/walk/W/strip.png",
-      "sha256": "d023011692ea9a32864d888aeae577e1f6092499d446d2f025a5988a0392d969"
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/strip.png",
+      "sha256": "af2094d1acd74d03bbdea3788aad9ea1d50a2c79ca235adf45dc65c619a3a6ed"
     }
   ]
 }
