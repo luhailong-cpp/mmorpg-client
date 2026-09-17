@@ -1,0 +1,9 @@
+{
+  "status": "failed",
+  "finishedUtc": "2026-09-17T03:14:32.8001083Z",
+  "error": "EditMode Unity tests failed, exit 2",
+  "results": [],
+  "inputSnapshot": "input-snapshot.json",
+  "mode": "current saved source snapshot tested in independent Unity project copy",
+  "originalOpenUnityUntouched": true
+}

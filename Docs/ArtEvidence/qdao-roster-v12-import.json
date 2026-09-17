@@ -1,504 +1,504 @@
 {
   "status": "passed",
   "characters_this_import": [
-    "28_moon_rabbit_artificer"
+    "27_ink_kite_ranger"
   ],
   "source_root": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-stable-body",
   "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
   "png_count_this_import": 81,
   "source_approvals": {
-    "28_moon_rabbit_artificer": {
-      "manifest_sha256": "16bd72b1ebe9f070704dcaae361b34fd90d8db3e71b9c91b38043b6f9ccb0387",
-      "qc_sha256": "bbeae50a2de4833bc6ebfbb363949c2a78451824352090917e2948d78b1edf16",
-      "validation_sha256": "f36a63726b9237f49bbd87f46c94ff4e75eb1b5bd8bee90aad1e15922b74172f"
+    "27_ink_kite_ranger": {
+      "manifest_sha256": "ff24d843c121ea51ad76ffe24d48d2b3e44be082359aae62a4b81e4ac28aba2f",
+      "qc_sha256": "998484d363648067285797161c9cb7fbff7e82f56a4151361c66ea9f4b18641e",
+      "validation_sha256": "9cbc1183e642d5c34e8c4a7d886fe2c6dba0fa250adc9b4e006fcac87d58d076"
     }
   },
   "files": [
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/E.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/E.png",
-      "sha256": "2515f5c3b568a746af5c211e35af977127bd38f5c239c6d720f4cb53b853fc6d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/E.png",
+      "sha256": "ebd2fdacc38e8e55f5851a965951d96ec5228b7b9e176d98eaa77426987e0e63"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/N.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/N.png",
-      "sha256": "1ef4c1515d8cb166c35e2e0cd5e4ec2c2b14ff2236532be7f167e993965d09d4"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/N.png",
+      "sha256": "7c62bf5e5e9c1e6046dd11713c85bb4026181365cfaa1b24339697dbcf315871"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/NE.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/NE.png",
-      "sha256": "e3b9ed9f56234528b6a345b9ee03f3601d4c220a6c80dfba02e2958b547ec7a6"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/NE.png",
+      "sha256": "332ded7e367a3f82d87eb9f9b6b6c1d3c38f83d7b39628f89724145522350be1"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/NW.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/NW.png",
-      "sha256": "eb2c0cdeec5c00c9ea15d4753511c3cc84967455e44946154b23cd40375d8836"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/NW.png",
+      "sha256": "2d98ecb691fcdd1d19fd33996c6afe617294986163683b867dbe58d7315f818a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/S.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/S.png",
-      "sha256": "62b9cf1fcde9a50ddc0a25daf20ac3158a1d53b267faeffd3e3770831a44d5aa"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/S.png",
+      "sha256": "1eb9fc54ff43dd40879815462790f2abf9f2296930dd0b4b8fac0b4d4a8642db"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/SE.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/SE.png",
-      "sha256": "36e327bbabe9c70a54d9f17851514e345533430f6f2137720448e2681a09a0a1"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/SE.png",
+      "sha256": "7f6344940690e95128d90b1f0875e6747d6737443c75f99a7a31aea80a339a4d"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/SW.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/SW.png",
-      "sha256": "b4ee6baef923310bda14d60c85bf28ca1e1b50f815870ef00b19f13ec03f2b6c"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/SW.png",
+      "sha256": "92238e0408235c00b9f9acca7d570d877ad5ba1db7b05371861b269abde03e00"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/idle/W.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/W.png",
-      "sha256": "ac4933adf06c4311c3d8f5a3a6637e2b71aedc8a879e90ca5cab815a157a81fc"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/idle/W.png",
+      "sha256": "a638dc222203a98e67905edb03572399270018f343bda45e08c9a1cae5a4a55c"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/portrait.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/portrait.png",
-      "sha256": "c169c244e43795c2b46551df9fc165c59cbb1323f6640dfa319d098a4ad89330"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/portrait.png",
+      "sha256": "c365ab2767719fe50d0fb0243b0d5e70f2acca2d4635981adc98513805a161c7"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/01.png",
-      "sha256": "86fbe9b2c30a31097308c23d6c1266d8f413dc0a9720178acb44acfe6f5f99fe"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/01.png",
+      "sha256": "b267b46044d10556f395478804e8f60dfa5c94248f5ef398a116e725fbfa140a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/02.png",
-      "sha256": "43b628d818aa2bb5b75f87c15ce3f3872baed66c63a582cd7a2ed78b333fb69d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/02.png",
+      "sha256": "2b465396fb47fb1367f9c61cc4f2bc79b0749ffc0861e336218d4b29eabf3533"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/03.png",
-      "sha256": "7cc4f8f347c4b6bf40332f85d387529b32615f486d00bd211d3d100d6a34c378"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/03.png",
+      "sha256": "0920afdef051f8ba3084573544fea887323cc0f5338cf6bda27a30c43fbe9d75"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/04.png",
-      "sha256": "4b3959bbdd404b6b2cc76719e59f6cdaed66e6ab8d9c96eea11a57c5d8d30fb8"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/04.png",
+      "sha256": "e4a8ebe6b81e1a65331ba4d2fae1602ba94e967a5a31e8b8df13fc18a230303e"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/05.png",
-      "sha256": "ae0cba3b0bf55208d5452d85211f323c21c7cf84f12a91c666af2b2f71954131"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/05.png",
+      "sha256": "ad0c94889111e99766dc96f43370592580c5604e7253f95422ffe44bdebd926a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/06.png",
-      "sha256": "ab5b0e2dbf15ec85886f7d8d57003933e5373f022b867df0e15966a7c4dec3a0"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/06.png",
+      "sha256": "82296c09edaaf2fa4417a10bff60ca087d924fb276801615132857a9dbd2c835"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/07.png",
-      "sha256": "978fa4cf609452d93e6ba4a109b50cd11b00ac47740425cd1fc53e0256c23064"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/07.png",
+      "sha256": "59429060277ec54c2d48ef09ee83a7fc25c8785a8c3396c5290da360f09c848b"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/08.png",
-      "sha256": "146547ddffec86d1a4be94328bb2721182e07cb0def41ae77ccdbca5fe3e0407"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/08.png",
+      "sha256": "4e6ab29735dda0d06c61e89f0d4b7f2dc334577923118719295c25504b0b5d3b"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/E/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/strip.png",
-      "sha256": "3544a98e8fa0608a56ed8a42067c5224735f1cf053a3eb0ad0218e901e65d2d4"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/E/strip.png",
+      "sha256": "d3c23c0b05c45f6cc8ac629708567ea8cd8e37e317ea34b95f8f7bc8b81c11d8"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/01.png",
-      "sha256": "127eb664fd4573cbef76b111b4366d7a428ae021b5c5a0d52b08c9a012ede3ce"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/01.png",
+      "sha256": "7175440275d3a1c2206e7c9d3c58e7d753be4f5544c7c1deeae4e327c45c71b4"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/02.png",
-      "sha256": "d668b89f76dca06a995d92c41e36cd95e50fde3fa2dd91d84b8846aa96bcbb44"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/02.png",
+      "sha256": "dbb4b786aad4f5b28a0b66722dbc9dbf40911030a3648ade06232db9c7436807"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/03.png",
-      "sha256": "addab6a374cf6a146de46eb3bfefbd06d1c0bb7156a777bb0bd76286a9d6143e"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/03.png",
+      "sha256": "5b2981d191e6f79a87b0d9c165e65ed80e3820ddb8d45c3291c25cd538bebe84"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/04.png",
-      "sha256": "33ef646f7cda3087175fbca7f2e88689f8fa95b034832a859496892709139f9e"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/04.png",
+      "sha256": "bcfffae9c5c38a9956adc21907384e89f8693d90e0e190d33ff39c754d33a17c"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/05.png",
-      "sha256": "3f80added58f1bf7e8c8c2779ab6249bc70a43ab38ecbbe6bee94575ecc5a85d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/05.png",
+      "sha256": "4916c61c8ddaac3ff62b0678223a39d457a0db411017d83d4dd3325b03269f51"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/06.png",
-      "sha256": "a9079ed0e6b3c8d7153e017c61d8ac2a039df4c9747c490954d472eb6583d178"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/06.png",
+      "sha256": "6f876726423fb343cbd83d6cc5812ab1c814b5a14927969adc8ca330cde92bab"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/07.png",
-      "sha256": "3c2fbd3dcd0d4a6ed1e6ef2415128fbca585ea24660bd389ebb2333fae1c0e1e"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/07.png",
+      "sha256": "ede0772ac2e68945d4291d585fae2ce40363c1283ee53449ac77c4d6020dec45"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/08.png",
-      "sha256": "337b119c30e9591d0c0b661ab5e47587aa0be56e76aeafac3266af0e11c39b0d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/08.png",
+      "sha256": "d3e236306cce2b0d1efd8bf6a6c9e8b56cfedc6e5a58002328a651e70669ba28"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/N/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/strip.png",
-      "sha256": "a2d40f3f3641c0cbac3d9e9062caa2c939a0f9e4846acb7a4ca6a92e188bfb27"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/N/strip.png",
+      "sha256": "84ce84839f5908dd1b18eeb639806b6e398d278b4742de2c9eeda2888b1f170a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/01.png",
-      "sha256": "8f401cc2221c05e5846582532658efea6c2c0e515821d0215a9ea51076b61131"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/01.png",
+      "sha256": "daccbcbdd79d0212e3f899a5860399dfc8cd74cb786559b583afc8e503654982"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/02.png",
-      "sha256": "d7d4a4e4736d27d86435a598154a040142bca49163b05ad31063980fc63d8ed5"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/02.png",
+      "sha256": "2cf2863f6906d4bccfb16e92a4f68a1c7d593dc6ea79772975f3312c571ad8b3"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/03.png",
-      "sha256": "58c9b03e5d2e9a34e08f0ad657e8ae68fb0f052602d9ef7bea4c8c6d4b9cf948"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/03.png",
+      "sha256": "2ace1dad42242ecf3e1d51ac3f207f1b2954391d3b2b9ad51794b0bc31fb26c2"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/04.png",
-      "sha256": "b27bf83aede1a7f202e1d49c6e4fd19c113897fb28c868ca3e28ec5d290e7e27"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/04.png",
+      "sha256": "fdfda378de5867083d7cc30476b7916f7af4d61d43aba374e6d6c8b2aef7c5f8"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/05.png",
-      "sha256": "f7d91c8a278893c8f1c1ff4166ec25843c0b764785bbf74a5cdf304d48c886f0"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/05.png",
+      "sha256": "20b61952337be1499f2195f8ed2f1f545b63f2f921bd3461f43d6d630d9cc301"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/06.png",
-      "sha256": "99a683afed323591afdda7ef548a10bdaf0c277e491c51afef9f237d98cee49f"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/06.png",
+      "sha256": "1afa35ff712f99118de69a870014513e867d0301e0d9c8aaf6bfe4fad009ae9b"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/07.png",
-      "sha256": "200e46c0d38b3d1381f73699274eea6af020224cbfb3a2d66475437aa894b791"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/07.png",
+      "sha256": "d9a1cc4ea9e96a789a230cc457a423d0b4465019acc0914d9f48ae5e8b1ec641"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/08.png",
-      "sha256": "2b6c2d812dfa0552c4aac19afec8d79d7e55553c53addd821e60935147b47757"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/08.png",
+      "sha256": "0e569ec183299cb23569f85774e363a78c965fdd3ee4314e876f90190e179736"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NE/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/strip.png",
-      "sha256": "b49d714ae3e6226fce5623166adce1d6f63924381490e18cc88d3d25f426fa3d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NE/strip.png",
+      "sha256": "565108343aa3bbc9a1c0de702de50dba9665bc6f0a5b5702573f52b6f18d5f02"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/01.png",
-      "sha256": "54800e7e5c40837ce526e3cfeefd98b33edbe41d1c0d032bfbae9477bd453fd8"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/01.png",
+      "sha256": "d0522a0a565fed97815937d7136a3a4b0f3e5d7a6a49c20674a186a9e55f0488"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/02.png",
-      "sha256": "0fd3bf971e53eab4017e37b7c6c72529115d9e3b37bceef22e2e0014b7aae246"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/02.png",
+      "sha256": "f36619511f9c8aa465b50da796fa44541fc12a5e8d87a9c887c1d33d45d84475"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/03.png",
-      "sha256": "4b4b77b11f85269bf42cd36564a2c42fbcb0174d8d5f0c7033135058dfafb4c9"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/03.png",
+      "sha256": "948c29994d2ca0c55cdccece5dd18221d475514e864997dcef67c73edd8ba8d9"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/04.png",
-      "sha256": "d82b3d03658819b9425deff3d9557398e323841b60b6e71456b6d164f8bbb91c"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/04.png",
+      "sha256": "39c6e641182d220d43e2c6353ed960aac2283707ab64d57bed3aadbd863a0a59"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/05.png",
-      "sha256": "c39714af67c1620571b4d928b1f935e8f7fb03cb4d19c081f007d779c3d818f2"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/05.png",
+      "sha256": "2ba7d99435e05837efc6f149db987dcb30044f96172f7f887efbfae0338a9162"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/06.png",
-      "sha256": "951ccbac30b47aa71e68b95ff1318799403b17f2b6bf8f075097433b3b91fa08"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/06.png",
+      "sha256": "f48f9f9b66e88e7f31be96550ea638cdff9e7d03e5061b65231b274d12924df2"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/07.png",
-      "sha256": "c506179ba1bb9608b5775df3a3d9278eda9219da31c7fd64f72385bd73e4a6d1"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/07.png",
+      "sha256": "fd1a1dd248b2f39e69c3536c2040154d1a0bacd9f60f6dcbf41732d0e002ec32"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/08.png",
-      "sha256": "507b6b223abffe2ea7b31528f753ca2b59a8f7cb69f53f31331f08a77a8fddb4"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/08.png",
+      "sha256": "29728578eab2fdc4b03826ff946e031027740b649b525e00ef07312ca5674dcd"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/NW/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/strip.png",
-      "sha256": "bcec4604ed4f0e17d7f96886875ef466340260583b42c293f4f4c9e69cd475c6"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/NW/strip.png",
+      "sha256": "ebfdfb5b36cfb485245374ac0ca9418da143a8a17e227a58a08136752f63d978"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/01.png",
-      "sha256": "a52d97b765bfc5fd96d23eba4ac1cbf2a01e930e73fe3ed57effa79f30bcab5f"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/01.png",
+      "sha256": "debbc164bd8549b04d8173b73a97c5f9cf5067a572c307dc71094b4085abe99a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/02.png",
-      "sha256": "052ce1b7d9ff2e6f8ad18ca22e7a28d3bd4e6cd68de919253a20d4f34195cc0e"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/02.png",
+      "sha256": "047aa5bda5f2e39cc48e1e3d52e545116b48f58fb9efeb194f43d27c6f23573d"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/03.png",
-      "sha256": "e11645c26a7efe370a7341b5e8f301f6dec3c14ec5dd821dbf3c8cc81197fe2b"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/03.png",
+      "sha256": "50c6ce0fc4dcde0b5e098e35c297f4cabc61f5144c3253ca6e02eba9e581805c"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/04.png",
-      "sha256": "d4bbce8441ca85c872dd21404ae19cea68bd3976860c9bbe3b08017b73604f64"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/04.png",
+      "sha256": "4ad1408975e1d89acdbd11fb74da2ab692e7c9951bf6a644fb9a8b4216552a0a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/05.png",
-      "sha256": "b5a0f14db61cbe63d0c4cfe9624a056cc0882b0a7e2214dea90860e109e61663"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/05.png",
+      "sha256": "8768077231ea217906e163d3aa4db5bd4cf9a9e1cab871fcae1489e45e5a94e7"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/06.png",
-      "sha256": "ef2fd10e7b276f0efaf10e572e03a9e8bf1c32c8c0a4b7125d74163ad7d6dc38"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/06.png",
+      "sha256": "19c3557b8e6a707c2dae04bf61c41abcd7238ad05842b8db5117a1a43ae388c3"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/07.png",
-      "sha256": "3fbda241614b3065d532000709d9a197ada73400f13c3bdec893f18eb471361b"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/07.png",
+      "sha256": "e013479e32babded09cf95318f5fb50bbf674cf432a19d3e779a0ba315ea0fe8"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/08.png",
-      "sha256": "818d0d0644c59fb2e8791ef1b8e199c14548d5e633be24ce4a4f1b212eff140d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/08.png",
+      "sha256": "feec55ef74c49b6aadeed218ff144d5326174ce2160192e460d884ed3ee1dee4"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/S/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/strip.png",
-      "sha256": "08124a669932e2e1ab6c094fc448528e3753ed17f04a47372eea7a58d747b12b"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/S/strip.png",
+      "sha256": "39aaba2c93c2d50eb890856b292714d5277889b90951c87073195d8156d00bc1"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/01.png",
-      "sha256": "a1350b98ab04b5f9542cc1a0dce62aedc14bc0d96de55478d79e1143b7e9eb29"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/01.png",
+      "sha256": "d0e977855213b5c848cccd68ca7f6a090e9d4222fb4f72bc36ed8e61970d991d"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/02.png",
-      "sha256": "e9f4ed541c40e9a6564e96b181f65366eed1eb0d1f60d2ba69b9dd193980d8ea"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/02.png",
+      "sha256": "a7e78d581a29307203be2e81e507686e2c430a742fc4188c04c3dda2c8f38e2e"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/03.png",
-      "sha256": "24f0885b5b0229dbd1a190ad87f3575c893656e37197167c602da577adcb193b"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/03.png",
+      "sha256": "894d27e233339e91aa1e412ae2788858c359911046ed7fa1e9bd1f486ff34b04"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/04.png",
-      "sha256": "0a411d42cc0dbb1c73d250b25346b54ccb3c41927b3b23762abc3fca9a6cd48f"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/04.png",
+      "sha256": "c6ddb86759424e28e9f26d600f48d7f3321bdc1cbcc7a70653e1368d580cf2b1"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/05.png",
-      "sha256": "8207c85286cbee6a5bd67702e1437a0b95bc06c46c821c9fb3beaedbac37a2b2"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/05.png",
+      "sha256": "ec8dd3019d2d9a090a56bae5cf018509da8b32ff2c1a9f7e56562763ca5766cb"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/06.png",
-      "sha256": "18ef895760da743acf2b61ee87f662b8d42993a3bd1b4af2ca52a2cf2c302b0f"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/06.png",
+      "sha256": "bb561cf96c76a1a296a34965e99123af970e6cfc187d9b006d051a9fe3ebb4e1"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/07.png",
-      "sha256": "ef8f6db3058cfa8c03677eb2c22218adf525be91caa8c190b6a752c0fe96967d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/07.png",
+      "sha256": "cada158db3a33176f39fbeabe54fec68f4d985cf359cc86e738b4d27a25abfd8"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/08.png",
-      "sha256": "c3f30ec84e04a47536e0009a72981e0b4f868613b4daefcce1145c7f3592264b"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/08.png",
+      "sha256": "cc7c89da35f37eb1ac41ade25c99153e24cd66fb40445419aa201b0b2f080b1b"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SE/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/strip.png",
-      "sha256": "f7be69e4fc905e7371592f8ebfb29fe81e8b9cf30a60d013bb08a57a771a0a18"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SE/strip.png",
+      "sha256": "aa7b93a7dcdc3b142a957e611568a12eadbf143f35f0ad5283c598865159d22a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/01.png",
-      "sha256": "ba555d84376f82a3c2df0b9c99290fa2608c8964f9a7cabb278c30cdbb5ca35d"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/01.png",
+      "sha256": "82f9f8f890d3c368cb51afe3cb088cd1fe1e0f7af7011c7c448f89a8081b467c"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/02.png",
-      "sha256": "971a6ce28d975d72fbba8e24648cb42434b667395ecb67135aa53d3c54d59bab"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/02.png",
+      "sha256": "322e8184a7c23a118bad936d5cd8d4a6eb08fc4a43cf9bfdef47e4cd247aa790"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/03.png",
-      "sha256": "8e44a2a3870b4d530bdc5793e89249af4228379f8bf2808b445b8e6c615780bd"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/03.png",
+      "sha256": "165d65edd3dac9e1ba8bcefeb2175e43a0710695430f71f2c22c5be49efdbc4b"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/04.png",
-      "sha256": "b61a638cd15d820b01db96c19f6f4c662cdc550be3a593d8353354f10e91739c"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/04.png",
+      "sha256": "89027158af4551972c0a88eec21d17c64be4cdbe618e2993816dd2a95a73de70"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/05.png",
-      "sha256": "65e41b2c5cbaa5003c75055d7f115f860b3f9edc42addc81bdb51089dba06310"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/05.png",
+      "sha256": "25c543549950535342d436a0ee25978a0e354de592c8009f8ecf126253125e6e"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/06.png",
-      "sha256": "51a5d6bce6b317f0f4ccbea500f62aee0e321d9345f2a982ef596ea15ab810f7"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/06.png",
+      "sha256": "db57fed19fc4a958c89663d20a10a976196a0c104e78dc4434c328d642be5569"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/07.png",
-      "sha256": "c80f5ef820db718f5b54b0cb8373f58ac924039a26084c1dc16a5e72c21a2dd1"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/07.png",
+      "sha256": "2eb73b89b026db0702182e92f90794b4a74d7aa83fe671abe75aed023f5a41eb"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/08.png",
-      "sha256": "f9b49bec3ab4e7473d191b9bc94e15411067bcb89c6baca526b22bd9ef39651f"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/08.png",
+      "sha256": "eb350ba9b395f3e2412c2342a1b277d3721af09268c61b28448381fb7cec2052"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/SW/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/strip.png",
-      "sha256": "4b2a9aba3ccd2107ab3c66bbb8cbf148ba545724273ebb1479474d8d28dcefdb"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/SW/strip.png",
+      "sha256": "807d6bb751c6a5d22eeafbbf27fcc7a799bac5f2308104d40121a111d5472a71"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/01.png",
-      "sha256": "cf64c3702a2050d5bbf9c5dd216e6a237973bca46192ec3659a10d46160cd13e"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/01.png",
+      "sha256": "942e3371133acb8247dc87d149f0450a63abcc689e09501f21451d6a2cf9add5"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/02.png",
-      "sha256": "dd0aebe9bcda59701cb33b8ad3634b348d507b873bae9ab675a59f978bd823ca"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/02.png",
+      "sha256": "c8e6ddeebffcc16cb1e4f46435d86fd9bf5ed3963e91ac82892884b1b1b8ab2e"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/03.png",
-      "sha256": "5652df63b1d2887f8ee76c642f274fc2da08533dbca96ed5dd654bd6647864c2"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/03.png",
+      "sha256": "62cbda64cd5361e4f0bc4332198399f98e32bc56356efaa503494c9d476fab2a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/04.png",
-      "sha256": "d8ec29a461eea411cde9ed53386eb57cd1b5e3f9ddae6c81ff00ffa9fb2e38b2"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/04.png",
+      "sha256": "14782dd78f957a6ec977a27987814ca217e2284b951a1a47660c9fd8658f44ed"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/05.png",
-      "sha256": "a8adcdd4c04fc87c78640b9cf90ca95e6183adcc92f035d514507c141d58b347"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/05.png",
+      "sha256": "a9952a05de4f0907514a35e740c5247099e8184aa4c86a82b6fc24268896c94a"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/06.png",
-      "sha256": "493f36a87f20fda4bac945972c2bc38a569b9d07efb588ca947afd5787f6186f"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/06.png",
+      "sha256": "e4a167f9a26bcf81286aef2b677360c8a8c19e875ac6e8c3c1aeb936d238fd62"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/07.png",
-      "sha256": "34548e2c66991a2c0782b16ddbb961007b287165547f264a426253111a39d1eb"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/07.png",
+      "sha256": "fcf1cbeb47d76ed7f13b3efa2eaad52443cecbfc68b3a68e3d18efcd247dadd5"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/08.png",
-      "sha256": "11a9de473d1d7a2262d61390c9449ef7758038a8b87e1e0690c254e09eccf5c1"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/08.png",
+      "sha256": "6209cf5f6a9fe2f3562511546e6fe2f8c6c13539f2559430d5e420edad8f2b25"
     },
     {
-      "character": "28_moon_rabbit_artificer",
-      "source": "28_moon_rabbit_artificer/walk/W/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/strip.png",
-      "sha256": "79b9347bef4455ca05db5a59899f6527c1f3f820290dddd5a671cc09a12f9df5"
+      "character": "27_ink_kite_ranger",
+      "source": "27_ink_kite_ranger/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/27_ink_kite_ranger/walk/W/strip.png",
+      "sha256": "e1386192e1294120764d6894cba1d116715478e332aee92181b16d84a2cc7560"
     }
   ]
 }

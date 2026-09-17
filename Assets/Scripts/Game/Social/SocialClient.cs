@@ -52,7 +52,7 @@ namespace MmorpgClient.Game.Social
                 Publish("服务器已接受消息，正在更新频道。");Refresh(channel);
             });return true;
         }
-        private static bool Supported(SocialChannel c)=>c==SocialChannel.World||c==SocialChannel.Team||c==SocialChannel.System;
+        private static bool Supported(SocialChannel c)=>c==SocialChannel.World;
         private static ChatChannelType Proto(SocialChannel c)=>c==SocialChannel.World?ChatChannelType.World:c==SocialChannel.Team?ChatChannelType.Team:ChatChannelType.System;
         private bool Ready()
         {
@@ -72,8 +72,17 @@ namespace MmorpgClient.Game.Social
                 if(!_busy&&_queued.HasValue){var next=_queued.Value;_queued=null;Refresh(next);}
             },error=>
             {
-                if(!Current(generation,player,connection))return;_busy=false;_reconnect=true;_queued=null;Publish(RecoveryMessage);
+                if(!Current(generation,player,connection))return;_busy=false;_queued=null;
+                bool rejected=IsDefiniteRejection(error);_reconnect=!rejected;
+                Publish(rejected?"服务器暂未接受请求，请稍后刷新重试。":RecoveryMessage);
             });
+        }
+        private static bool IsDefiniteRejection(string error)
+        {
+            const string prefix="server tip=";
+            if(string.IsNullOrEmpty(error)||!error.StartsWith(prefix,StringComparison.Ordinal)||!uint.TryParse(error.Substring(prefix.Length),out uint tip))return false;
+            // ServiceUnavailable also represents an upstream timeout: a send may already have been stored.
+            return tip==(uint)common_error.KInvalidParameter||tip==(uint)common_error.KFeatureUnavailable||tip==(uint)common_error.KRateLimitExceeded||tip==(uint)common_error.KMessageSizeExceeded;
         }
         private bool Current(int generation,ulong player,object connection)=>!_disposed&&generation==_generation&&_net.IsReady&&_net.PlayerId==player&&ReferenceEquals(connection,_identity());
         public void Dispose(){_disposed=true;++_generation;_busy=false;_queued=null;_net.Disconnected-=Disconnected;}

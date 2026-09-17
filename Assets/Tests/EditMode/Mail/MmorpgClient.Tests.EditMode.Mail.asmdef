@@ -1,0 +1,15 @@
+{
+  "name": "MmorpgClient.Tests.EditMode.Mail",
+  "references": [
+    "MmorpgClient",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "autoReferenced": false
+}

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 #endif
 
 namespace MmorpgClient.UI.Ugui.Social
@@ -15,7 +16,7 @@ namespace MmorpgClient.UI.Ugui.Social
         private Keyboard _keyboard;
         private void OnEnable(){_keyboard=Keyboard.current;if(_keyboard!=null)_keyboard.onIMECompositionChange+=Composition;}
         private void OnDisable(){if(_keyboard!=null)_keyboard.onIMECompositionChange-=Composition;_keyboard=null;_composing=false;}
-        private void Composition(IMECompositionString text){bool previous=_composing;_composing=text.Count>0;if(previous&&!_composing)_compositionEndedFrame=Time.frameCount;}
+        private void Composition(IMECompositionString text){bool previous=_composing;_composing=!string.IsNullOrEmpty(text.ToString());if(previous&&!_composing)_compositionEndedFrame=Time.frameCount;}
 #endif
         public void LateUpdate()
         {
@@ -25,7 +26,7 @@ namespace MmorpgClient.UI.Ugui.Social
             bool enter=keyboard.enterKey.wasPressedThisFrame||keyboard.numpadEnterKey.wasPressedThisFrame;
             bool shift=keyboard.leftShiftKey.isPressed||keyboard.rightShiftKey.isPressed;
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            _composing=!string.IsNullOrEmpty(Input.compositionString);
+            bool previous=_composing;_composing=!string.IsNullOrEmpty(Input.compositionString);if(previous&&!_composing)_compositionEndedFrame=Time.frameCount;
             bool enter=Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter);
             bool shift=Input.GetKey(KeyCode.LeftShift)||Input.GetKey(KeyCode.RightShift);
 #else

@@ -147,7 +147,7 @@ namespace MmorpgClient.Game.Mail
         }
         public void Tick()
         {
-            if (IsBusy && Now - _started >= 10) { RequiresRefresh = _pendingOperation != MailOperation.Read && _pendingOperation != MailOperation.Refresh; Fail(_pending, RequiresRefresh ? "操作结果尚未确认，请刷新邮件后再试。" : "邮件请求超时，请稍后刷新。"); return; }
+            if (IsBusy && Now - _started >= 10) { RequiresRefresh = RequiresRefresh || (_pendingOperation != MailOperation.Read && _pendingOperation != MailOperation.Refresh); Fail(_pending, RequiresRefresh ? "操作结果尚未确认，请刷新邮件后再试。" : "邮件请求超时，请稍后刷新。"); return; }
             int count = _messages.Count(IsExpired);
             if (count != _expiredCount) { _expiredCount = count; Changed?.Invoke(); }
         }

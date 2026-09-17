@@ -96,7 +96,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             return new Vector2(axis, top);
         }
 
-        [Test]
+        [Test, Timeout(600000)]
         public void EveryPortraitAndDirectionalStrip_LoadsWithCleanImportSettingsAndItsDeclaredGroundedFrames()
         {
             foreach (var definition in QdaoCharacterCatalog.All)

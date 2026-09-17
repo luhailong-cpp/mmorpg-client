@@ -60,7 +60,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             if(!ReferenceEquals(_gate,gate)){ResetSession();_gate=gate;}
             bool inGame=game!=null&&game.InGame&&game.IsGateReady;
             ulong player=inGame?game.PlayerId:0;
-            if(_player!=player){ResetSession();_player=player;State.Reset(player);}
+            if(_player!=player){ResetSession();_player=player;_gate=gate;State.Reset(player);}
             _available=inGame&&!(BattleUiRoot.Instance?.IsBattleLayerVisible??false);
             _hud.gameObject.SetActive(_available);_window.Tick();
             if(!_available){HidePanel();return;}
@@ -75,7 +75,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         public void Toggle()
         {
             if(_window.IsVisible){HidePanel();return;}if(!_available)return;
-            Team.TeamUiRoot.Instance?.HidePanel();Guild.GuildUiRoot.Instance?.HidePanel();Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
+            Team.TeamUiRoot.Instance?.HidePanel();Guild.GuildUiRoot.Instance?.HidePanel();Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();Social.SocialUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();CityTravelUiRoot.Instance?.HidePanel();AttributeUiRoot.Instance?.HidePanel();PetUiRoot.Instance?.HidePanel();
             _window.Show();
         }

@@ -1,0 +1,14 @@
+{
+  "version": 12,
+  "characterId": "27_ink_kite_ranger",
+  "frameCount": 8,
+  "frameDurationMs": 60,
+  "dedicatedIdle": true,
+  "contactFrame": 0,
+  "status": "passed",
+  "visualReview": "passed",
+  "manifest_sha256": "ff24d843c121ea51ad76ffe24d48d2b3e44be082359aae62a4b81e4ac28aba2f",
+  "qc_sha256": "998484d363648067285797161c9cb7fbff7e82f56a4151361c66ea9f4b18641e",
+  "validation_sha256": "9cbc1183e642d5c34e8c4a7d886fe2c6dba0fa250adc9b4e006fcac87d58d076",
+  "alignmentVersion": 3
+}

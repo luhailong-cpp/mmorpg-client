@@ -23,6 +23,15 @@ namespace MmorpgClient.World.Tianyong
 
         internal readonly Dictionary<Vector2Int, GameObject> _chunks = new();
         internal readonly List<Material> _materials = new();
+        private CityTileStreaming _cityTiles;
+
+        internal void ConfigureCityTiles(string city, string variant)
+        {
+            if (_cityTiles == null) _cityTiles = Root.AddComponent<CityTileStreaming>();
+            _cityTiles.Configure(CityTileStreaming.ManifestPath(city, variant));
+        }
+
+        public void UpdateCityTiles(Camera camera) => _cityTiles?.Tick(camera);
 
         public void UpdateVisibleChunks(Vector3 focus, int radius = 3)
         {
@@ -40,6 +49,7 @@ namespace MmorpgClient.World.Tianyong
 
         public void Dispose()
         {
+            if (_cityTiles != null) _cityTiles.ReleaseAll();
             DestroyObject(Root);
             foreach (var material in _materials)
                 DestroyObject(material);

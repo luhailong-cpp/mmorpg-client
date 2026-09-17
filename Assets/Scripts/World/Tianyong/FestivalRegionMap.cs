@@ -94,6 +94,7 @@ namespace MmorpgClient.World.Tianyong
                 renderer.sharedMaterial = material;
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
+                instance.ConfigureCityTiles(region.Key, festival ? "festival" : "day");
                 return instance;
             }
             catch { instance.Dispose(); throw; }
@@ -106,6 +107,7 @@ namespace MmorpgClient.World.Tianyong
             var ground = map?.Root?.transform.Find(GroundName);
             if (texture == null || ground == null) throw new InvalidOperationException($"地区外观无法载入：{region.Name}");
             ground.GetComponent<MeshRenderer>().sharedMaterial.mainTexture = texture;
+            map.ConfigureCityTiles(region.Key, festival ? "festival" : "day");
             map.Root.name = $"[FestivalRegion:{region.Key}:{(festival ? "festival" : "day")} ]";
         }
     }

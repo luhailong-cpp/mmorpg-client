@@ -27,13 +27,13 @@ namespace MmorpgClient.UI.Ugui.Mail
             if (string.IsNullOrEmpty(key) || key.Contains("/") || key.Contains("\\") || key.Contains("..") || key.Contains(":")) return null;
             return Resources.Load<Sprite>(Root + key);
         }
-        public static Image Art(Transform parent,string key,float x,float y,float w,float h,bool aspect=false)
+        public static Image Art(UnityEngine.Transform parent,string key,float x,float y,float w,float h,bool aspect=false)
         {
             var image=QdaoUguiFactory.CreateImage(key,parent,x,y,w,h,Load(key));
             image.type=!aspect&&image.sprite!=null&&image.sprite.border.sqrMagnitude>0?Image.Type.Sliced:Image.Type.Simple;
             image.preserveAspect=aspect; image.raycastTarget=false; return image;
         }
-        public static TextMeshProUGUI Label(Transform parent,string name,string value,float x,float y,float w,float h,
+        public static TextMeshProUGUI Label(UnityEngine.Transform parent,string name,string value,float x,float y,float w,float h,
             float size=28,Color? color=null,bool wrap=false,bool title=false,TextAlignmentOptions align=TextAlignmentOptions.MidlineLeft)
         {
             var text=QdaoUguiFactory.CreateText(name,parent,x,y,w,Mathf.Max(h,size*1.6f),value,size,color??Ink,align);
@@ -41,7 +41,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             text.textWrappingMode=wrap?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
             text.overflowMode=wrap?TextOverflowModes.Overflow:TextOverflowModes.Ellipsis; return text;
         }
-        public static Button Button(Transform parent,string name,string label,float x,float y,float w,float h,
+        public static Button Button(UnityEngine.Transform parent,string name,string label,float x,float y,float w,float h,
             Action click,bool primary=false,float size=28,string key=null)
         {
             key??=primary?"button_primary":"button_secondary";
@@ -57,14 +57,14 @@ namespace MmorpgClient.UI.Ugui.Mail
         }
         public static void SetLabel(Button button,string value)
         {var text=button.GetComponentInChildren<TMP_Text>();if(text!=null)text.text=value;}
-        public static Image Solid(Transform parent,string name,float x,float y,float w,float h,Color color,bool hit=false)
+        public static Image Solid(UnityEngine.Transform parent,string name,float x,float y,float w,float h,Color color,bool hit=false)
         {var image=QdaoUguiFactory.CreateImage(name,parent,x,y,w,h,null,hit);image.color=color;return image;}
-        public static void Clear(Transform parent)
+        public static void Clear(UnityEngine.Transform parent)
         {
             for(int i=parent.childCount-1;i>=0;i--){var child=parent.GetChild(i).gameObject;child.SetActive(false);
                 if(Application.isPlaying)UnityEngine.Object.Destroy(child);else UnityEngine.Object.DestroyImmediate(child);}
         }
-        public static ScrollRect Scroll(Transform parent,string name,float x,float y,float w,float h,out RectTransform content)
+        public static ScrollRect Scroll(UnityEngine.Transform parent,string name,float x,float y,float w,float h,out RectTransform content)
         {
             var outer=QdaoUguiFactory.CreateRect(name,parent,x,y,w,h);
             var hit=outer.gameObject.AddComponent<Image>();hit.color=new Color(1,1,1,.001f);

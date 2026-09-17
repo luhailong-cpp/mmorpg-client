@@ -1,0 +1,14 @@
+{
+  "status": "applied",
+  "utc": "2026-09-17T03:17:18.256698+00:00",
+  "file": "E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Tianyong\\QdaoCharacterCatalogTests.cs",
+  "change": "Only the exhaustive all-roster image-contract test attribute changed from [Test] to [Test, Timeout(600000)]. Unity/NUnit default was 180000 ms. Assertions, test scope and character artifacts are unchanged.",
+  "beforeSha256": "755cd00484267811f2a8c1ee22110ea1e9e0759eb220fcfc624833f3b0904c53",
+  "afterSha256": "2a52a62b96054ace3f0e5af7349f0150317e6365072025b558af09e026f0c8d2",
+  "failedAttempt": "eight-natural-current-code-20260916",
+  "failedAttemptResult": {
+    "passed": 126,
+    "failed": 1,
+    "reason": "Default test timeout exceeded; no character asset assertion failure was reported."
+  }
+}

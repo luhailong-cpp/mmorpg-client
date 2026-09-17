@@ -143,6 +143,7 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_map == null) return;
             _cameraController?.Tick(Time.deltaTime, !GameplayInputGate.IsPointerBlocked);
+            _map.UpdateCityTiles(worldCamera);
         }
 
         private void ResolveSceneRig()

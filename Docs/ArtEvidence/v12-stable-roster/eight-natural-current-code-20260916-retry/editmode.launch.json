@@ -1,0 +1,21 @@
+{
+  "pid": 39652,
+  "platform": "EditMode",
+  "startedUtc": "2026-09-17T03:18:01.4807723Z",
+  "validationProject": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "arguments": [
+    "-nographics",
+    "-batchmode",
+    "-projectPath",
+    "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "MmorpgClient.Tests.EditMode.Tianyong.QdaoCharacterCatalogTests;MmorpgClient.Tests.EditMode.Tianyong.QdaoAppearanceVersionTests;MmorpgClient.Tests.EditMode.Tianyong.QdaoRoleAppearanceBindingTests;MmorpgClient.Tests.EditMode.Tianyong.QdaoBoySpriteAnimatorLogicTests",
+    "-testResults",
+    "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-stable-roster\\eight-natural-current-code-20260916-retry\\editmode.xml",
+    "-logFile",
+    "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-stable-roster\\eight-natural-current-code-20260916-retry\\editmode.log"
+  ]
+}

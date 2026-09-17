@@ -71,7 +71,7 @@ namespace MmorpgClient.Game.Social
             foreach (SocialChannel c in Enum.GetValues(typeof(SocialChannel))) { _messages[c] = new(); _drafts[c] = ""; _unread[c] = 0; } if (preview) LoadDemo();
         }
         public static string ChannelName(SocialChannel c) => c switch { SocialChannel.Current => "当前", SocialChannel.World => "世界", SocialChannel.Guild => "帮派", SocialChannel.Team => "队伍", _ => "系统" };
-        public bool Supports(SocialChannel c) => IsPreview || c == SocialChannel.World || c == SocialChannel.Team || c == SocialChannel.System;
+        public bool Supports(SocialChannel c) => IsPreview || c == SocialChannel.World;
         public bool CanSend(SocialChannel c) => c != SocialChannel.System && Supports(c) && IsReady && !Busy && !RequiresReconnect;
         public IReadOnlyList<SocialMessage> Messages(SocialChannel c) => _messages[c];
         public string Draft(SocialChannel c) => _drafts[c];
@@ -123,7 +123,7 @@ namespace MmorpgClient.Game.Social
         public bool PreviewSend(SocialChannel channel, string text, string card = null)
         {
             if (!IsPreview || channel == SocialChannel.System || (!ValidMessage(text) && string.IsNullOrEmpty(card))) return false;
-            _messages[channel].Add(NewMessage(PlayerId,text?.Trim() ?? "",card)); _drafts[channel] = "";
+            _messages[channel].Add(NewMessage(PlayerId,text?.Trim() ?? "",card)); if(string.IsNullOrEmpty(card)) _drafts[channel] = "";
             Status = "本地发送成功 · 尚未连接其他玩家"; Changed?.Invoke(); return true;
         }
         public void PreviewIncoming(SocialChannel channel = SocialChannel.World)
@@ -136,7 +136,7 @@ namespace MmorpgClient.Game.Social
         public bool CreateGroup(string name)
         {
             name=(name??"").Trim(); if(!IsPreview || name.Length==0 || TextLength(name)>24 || _groups.Any(g=>g.Name==name)) { Notify("群名需为1–24字，且不能与已有群组重名。"); return false; }
-            var g=new SocialGroup { Id=NowMs+_groups.Count,Name=name,Owner=PlayerId,Announcement="同道相逢，一起云游。" };g.Members.Add(PlayerId);_groups.Add(g);SelectedGroupId=g.Id;Notify("本地群组已创建");return true;
+            var g=new SocialGroup { Id=Math.Max(NowMs,_groups.Select(existing=>existing.Id).DefaultIfEmpty(0).Max()+1),Name=name,Owner=PlayerId,Announcement="同道相逢，一起云游。" };g.Members.Add(PlayerId);_groups.Add(g);SelectedGroupId=g.Id;Notify("本地群组已创建");return true;
         }
         public bool Invite(IEnumerable<ulong> ids)
         {

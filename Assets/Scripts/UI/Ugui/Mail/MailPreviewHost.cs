@@ -23,7 +23,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             var design=QdaoUguiFactory.CreateCenteredRect("DesignRoot",go.transform,2560,1080);
             MailUiArt.Art(design,"main-city",0,0,2560,1080);
             _open=MailUiArt.Button(design,"OpenOfflineMail","打开离线仙笺",1020,490,520,100,()=>Window.Show(),true,37);
-            Window=new MailWindow(design);Window.State.LoadDemo();Window.Show();
+            Window=new MailWindow(design);Window.State.LoadDemo();
             MailUiArt.Label(design,"OfflineMailBadge","离线邮件样例 · 不连接真实账号或背包",26,11,1180,48,24,MailUiArt.Cream);
             if(EventSystem.current==null){var events=new GameObject("MailPreviewEventSystem",typeof(EventSystem));events.transform.SetParent(transform,false);
 #if ENABLE_INPUT_SYSTEM
@@ -32,6 +32,7 @@ namespace MmorpgClient.UI.Ugui.Mail
                 events.AddComponent<StandaloneInputModule>();
 #endif
             }
+            Window.Show();
         }
         public void ResetDemo(){Initialize();Window.State.LoadDemo();Window.Show();}
         private void Update()
