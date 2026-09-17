@@ -26,7 +26,7 @@ namespace MmorpgClient.Tests.PlayMode
             GameObject actor = null;
             try
             {
-                foreach (var definition in QdaoCharacterCatalog.All)
+                foreach (var definition in QdaoCharacterCatalog.AvailableAll)
                 {
                     actor = new GameObject(definition.Id);
                     Assert.That(QdaoBoySpriteAnimator.TryAttach(actor, definition.Id), Is.True, definition.Id);
@@ -198,7 +198,7 @@ namespace MmorpgClient.Tests.PlayMode
                 var billboard = renderer.transform;
                 var shadow = first.transform.Find(QdaoBoySpriteAnimator.ShadowObjectName);
 
-                foreach (var definition in QdaoCharacterCatalog.All)
+                foreach (var definition in QdaoCharacterCatalog.AvailableAll)
                 {
                     Assert.That(animator.SetAppearance(definition.Id), Is.True);
                     Assert.That(QdaoBoySpriteAnimator.TryAttach(first, definition.Id), Is.True, "Repeated attach must be idempotent.");
@@ -231,6 +231,33 @@ namespace MmorpgClient.Tests.PlayMode
                 Object.Destroy(second);
                 Object.Destroy(cameraObject);
             }
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator OriginalIdsAwaitingApproval_DoNotReplaceTheCurrentActorWithLegacyOrAnotherRosterIdentity()
+        {
+            var actor = new GameObject("OriginalApprovalGuardActor");
+            try
+            {
+                Assert.That(QdaoBoySpriteAnimator.TryAttach(actor, "24_lu_dongbin"), Is.True);
+                yield return null;
+                var animator = actor.GetComponent<QdaoBoySpriteAnimator>();
+                var renderer = actor.transform.Find("sprite").GetComponent<SpriteRenderer>();
+                var identity = animator.CharacterId;
+                var sprite = renderer.sprite;
+                var position = actor.transform.position;
+                foreach (var entry in QdaoCharacterCatalog.OriginalAll)
+                {
+                    if (entry.ResolveAppearance() != null) continue;
+                    Assert.That(QdaoBoySpriteAnimator.TryAttach(actor, entry.Id), Is.False, entry.Id);
+                    Assert.That(animator.SetAppearance(entry.Id), Is.False, entry.Id);
+                    Assert.That(animator.CharacterId, Is.EqualTo(identity));
+                    Assert.That(renderer.sprite, Is.SameAs(sprite));
+                    Assert.That(actor.transform.position, Is.EqualTo(position));
+                }
+            }
+            finally { Object.Destroy(actor); }
             yield return null;
         }
 
@@ -283,7 +310,7 @@ namespace MmorpgClient.Tests.PlayMode
                     var path = Path.Combine(outputDirectory, "approved-roster-runtime.png");
                     File.WriteAllBytes(path, capture.EncodeToPNG());
                     var labels = new List<string> { "Controlled Unity PlayMode scene. Top row then bottom row, left to right:" };
-                    foreach (var definition in QdaoCharacterCatalog.All) labels.Add(definition.Id + " " + definition.Name + " V" + definition.Version + " frames=" + definition.FrameCount);
+                    foreach (var definition in QdaoCharacterCatalog.AvailableAll) labels.Add(definition.Id + " " + definition.Name + " V" + definition.Version + " frames=" + definition.FrameCount);
                     File.WriteAllLines(Path.Combine(outputDirectory, "approved-roster-runtime.txt"), labels);
                     Debug.Log("[QdaoRosterCapture] " + path);
                     Assert.That(new FileInfo(path).Length, Is.GreaterThan(10000));

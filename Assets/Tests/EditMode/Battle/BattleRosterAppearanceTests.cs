@@ -52,7 +52,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [Test]
         public void EveryCharacterUsesItsOwnUnmirroredDirectionalIdleAndDeclaredWalkFrames()
         {
-            foreach (var entry in QdaoCharacterCatalog.All)
+            foreach (var entry in QdaoCharacterCatalog.AvailableAll)
             foreach (bool east in new[] { false, true })
             {
                 var walk = BattleArtCatalog.LoadPlayerWalk(entry.Id, east);
@@ -82,9 +82,23 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void UnapprovedOriginalIdsDoNotBorrowRosterBodiesOrPortraitsInBattle()
+        {
+            var actor = new BattleActorState { ActorId = 101, ActorType = eBattleActorType.BattleActorTypePlayer };
+            foreach (var entry in QdaoCharacterCatalog.OriginalAll)
+            {
+                Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => entry.Id), Is.EqualTo(entry.Id));
+                if (entry.ResolveAppearance() != null) continue;
+                Assert.That(BattleArtCatalog.LoadPlayerWalk(entry.Id, true), Is.Null);
+                Assert.That(BattleArtCatalog.LoadPlayerIdle(entry.Id, true, out _), Is.Null);
+                Assert.That(QdaoCharacterCatalog.LoadPortrait(entry.Id), Is.Null);
+            }
+        }
+
+        [Test]
         public void WalkArtIsNeverReturnedAsAuthoredCombatActions()
         {
-            foreach (var entry in QdaoCharacterCatalog.All)
+            foreach (var entry in QdaoCharacterCatalog.AvailableAll)
             foreach (string action in new[] { "attack", "cast", "hit", "die", "win" })
             foreach (bool east in new[] { false, true })
                 Assert.That(BattleArtCatalog.LoadCharacterAction(entry.Id, action, east), Is.Null, entry.Id + "/" + action);
@@ -94,7 +108,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void BattlePortraitUsesTheSameApprovedCharacterAsTheBody()
         {
             var actor = new BattleActorState { ActorId = 101, ActorType = eBattleActorType.BattleActorTypePlayer };
-            foreach (var entry in QdaoCharacterCatalog.All)
+            foreach (var entry in QdaoCharacterCatalog.AvailableAll)
             {
                 var portrait = BattleArtCatalog.LoadPlayerPortrait(actor, _ => entry.Id);
                 Assert.That(portrait, Is.Not.Null, entry.Id);

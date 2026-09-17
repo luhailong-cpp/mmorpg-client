@@ -316,6 +316,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(definition.BaselineAppearance.Version, Is.EqualTo(11));
         }
 
+        [TestCase("QdaoOriginalRosterV13/01_ice_sword_girl/walk/S/strip.png", 8192, 512, 8192)]
+        [TestCase("QdaoOriginalRosterV13/01_ice_sword_girl/walk/S/01.png", 512, 512, 4096)]
         [TestCase("QdaoRosterV13/24_lu_dongbin/walk/S/strip.png", 8192, 512, 8192)]
         [TestCase("QdaoRosterV13/24_lu_dongbin/walk/S/01.png", 512, 512, 4096)]
         [TestCase("QdaoRosterV13/24_lu_dongbin/walk/S/strip.png", 4096, 512, 4096)]

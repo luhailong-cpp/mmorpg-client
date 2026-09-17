@@ -99,7 +99,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test, Timeout(600000)]
         public void EveryPortraitAndDirectionalStrip_LoadsWithCleanImportSettingsAndItsDeclaredGroundedFrames()
         {
-            foreach (var definition in QdaoCharacterCatalog.All)
+            foreach (var definition in QdaoCharacterCatalog.AvailableAll)
             {
                 var portrait = QdaoCharacterCatalog.LoadPortrait(definition.Id);
                 Assert.That(portrait, Is.Not.Null, definition.Id);

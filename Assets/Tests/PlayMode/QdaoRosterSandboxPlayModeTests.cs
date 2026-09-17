@@ -70,6 +70,28 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(player.GetComponentInChildren<TMPro.TMP_Text>().text, Is.EqualTo(definition.Name));
                     CaptureIfRequested(sandbox, definition.Id, observations);
                 }
+                foreach (var original in QdaoCharacterCatalog.OriginalAll)
+                {
+                    var available = original.ResolveAppearance() != null;
+                    var listed = false;
+                    foreach (var entry in sandbox.AvailableCharacters) if (entry.Id == original.Id) listed = true;
+                    Assert.That(listed, Is.EqualTo(available), "F5 must list exactly the approved original identities.");
+                    if (available)
+                    {
+                        Assert.That(sandbox.SelectCharacter(original.Id), Is.True);
+                        yield return null;
+                        Assert.That(animator.CharacterId, Is.EqualTo(original.Id));
+                        Assert.That(animator.FrameCount, Is.EqualTo(16));
+                        Assert.That(animator.ArtworkVersion, Is.EqualTo(13));
+                        Assert.That(controller.Motor, Is.SameAs(motor));
+                    }
+                    else
+                    {
+                        var previousIdentity = animator.CharacterId;
+                        Assert.That(sandbox.SelectCharacter(original.Id), Is.False);
+                        Assert.That(animator.CharacterId, Is.EqualTo(previousIdentity));
+                    }
+                }
                 Assert.That(sandbox.SelectCharacter("24_crane_hermit"), Is.False);
 
                 Assert.That(sandbox.SelectCharacter("24_lu_dongbin"), Is.True);
