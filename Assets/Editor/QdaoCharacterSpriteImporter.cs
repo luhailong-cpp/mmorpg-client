@@ -19,7 +19,8 @@ namespace MmorpgClient.Editor.Tianyong
 
         /// <summary>Only a complete sixteen-cell V13 review strip needs the 8192 import cap.</summary>
         public static int RequiredMaxTextureSize(string path, int width, int height)
-            => path.StartsWith(CharacterFolder + "QdaoRosterV13/", System.StringComparison.OrdinalIgnoreCase) &&
+            => (path.StartsWith(CharacterFolder + "QdaoRosterV13/", System.StringComparison.OrdinalIgnoreCase) ||
+                path.StartsWith(CharacterFolder + "QdaoOriginalRosterV13/", System.StringComparison.OrdinalIgnoreCase)) &&
                path.EndsWith("/strip.png", System.StringComparison.OrdinalIgnoreCase) &&
                path.Contains("/walk/") && width == 8192 && height == 512 ? 8192 : 4096;
 
@@ -29,7 +30,8 @@ namespace MmorpgClient.Editor.Tianyong
             // runtime cache keys, including the V11 fallback and standing probes.
             foreach (var group in new[] { imported, deleted, moved, movedFrom })
             foreach (var path in group)
-                if (path.StartsWith(CharacterFolder + "QdaoRosterV", System.StringComparison.OrdinalIgnoreCase))
+                if (path.StartsWith(CharacterFolder + "QdaoRosterV", System.StringComparison.OrdinalIgnoreCase) ||
+                    path.StartsWith(CharacterFolder + "QdaoOriginalRosterV13/", System.StringComparison.OrdinalIgnoreCase))
                 {
                     MmorpgClient.World.QdaoCharacterCatalog.RefreshAppearances();
                     return;

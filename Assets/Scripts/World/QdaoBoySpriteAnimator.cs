@@ -229,7 +229,14 @@ namespace MmorpgClient.World
         }
 
         private static FrameSet LoadFrames(string characterId)
-            => LoadFrameSet(QdaoCharacterCatalog.Find(characterId)?.ResolveAppearance());
+        {
+            var definition = QdaoCharacterCatalog.Find(characterId);
+            var appearance = definition?.ResolveAppearance();
+            // Known original identities cannot borrow another character's body
+            // while their authored set is incomplete or awaiting approval.
+            if (definition != null && definition.IsOriginalRoster && appearance == null) return null;
+            return LoadFrameSet(appearance);
+        }
 
         private static FrameSet LoadFrameSet(QdaoCharacterCatalog.Appearance appearance)
             => LoadFrameSetWithResources(appearance, Resources.Load<Texture2D>,

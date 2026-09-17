@@ -216,6 +216,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             // Neither pack supplies authored attack/cast/hit body animations.
             if (action != "idle") return null;
             var appearance = entry.ResolveAppearance();
+            if (appearance == null) return null;
             string key = $"{appearance.CacheKey}/idle_{(facingEast ? "E" : "W")}";
             if (s_strips.TryGetValue(key, out var cached)) return cached;
             string direction = facingEast ? "E" : "W";
@@ -253,6 +254,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var entry = QdaoCharacterCatalog.Find(characterId);
             if (entry == null) return LoadPlayerWalk(facingEast);
             var appearance = entry.ResolveAppearance();
+            if (appearance == null) return null;
             string direction = facingEast ? "E" : "W";
             string key = $"{appearance.CacheKey}/walk/{direction}#individual-frames";
             if (s_strips.TryGetValue(key, out var cached)) return cached;
