@@ -210,12 +210,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static StripAnim LoadCharacterAction(string characterId, string action, bool facingEast)
         {
             var entry = QdaoCharacterCatalog.Find(characterId);
-            if (entry == null)
+            var appearance = entry?.ResolveAppearance();
+            // Registering the original identities must preserve their existing same-ID battle art
+            // until the complete new appearance has passed acceptance.
+            if (entry == null || (entry.IsOriginalRoster && appearance == null))
                 return LoadDirectionalStrip($"{CharactersRoot}/{characterId}/{action}", action, facingEast);
             // V12 has an authored neutral stance; V11 retains its contact pose.
             // Neither pack supplies authored attack/cast/hit body animations.
             if (action != "idle") return null;
-            var appearance = entry.ResolveAppearance();
             if (appearance == null) return null;
             string key = $"{appearance.CacheKey}/idle_{(facingEast ? "E" : "W")}";
             if (s_strips.TryGetValue(key, out var cached)) return cached;
@@ -286,7 +288,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (QdaoCharacterCatalog.Find(characterId) == null) return LoadPlayerIdle(facingEast, out mirrored);
             var idle = LoadCharacterAction(characterId, "idle", facingEast);
-            mirrored = false;
+            mirrored = idle?.Mirrored ?? false;
             return idle?.Count > 0 ? idle.Frames[0] : null;
         }
 
@@ -465,6 +467,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             string characterId = CharacterIdFor(actor, resolveCharacterId);
             var entry = QdaoCharacterCatalog.Find(characterId);
             if (entry == null) return LoadPlayerPortrait(actor.ActorId);
+            if (entry.IsOriginalRoster && entry.ResolveAppearance() == null)
+                return LoadLegacyPlayerPortrait(Array.IndexOf(CharacterIds, characterId));
             // The V11 portrait framing differs from old v3 head crops: retain its full composition.
             return QdaoCharacterCatalog.LoadPortrait(characterId);
         }
@@ -474,6 +478,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (PortraitFiles.Length == 0) return null;
             int index = BattleHudLogic.PortraitIndexFor(actorId, PortraitFiles.Length);
+            return LoadLegacyPlayerPortrait(index);
+        }
+
+        private static Sprite LoadLegacyPlayerPortrait(int index)
+        {
+            if (index < 0 || index >= PortraitFiles.Length) return null;
             string key = $"{PortraitsRoot}/{PortraitFiles[index]}#head";
             if (TryGetCachedSprite(key, out var cached)) return cached;
 

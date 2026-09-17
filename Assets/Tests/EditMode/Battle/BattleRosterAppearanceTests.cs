@@ -90,8 +90,24 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => entry.Id), Is.EqualTo(entry.Id));
                 if (entry.ResolveAppearance() != null) continue;
                 Assert.That(BattleArtCatalog.LoadPlayerWalk(entry.Id, true), Is.Null);
-                Assert.That(BattleArtCatalog.LoadPlayerIdle(entry.Id, true, out _), Is.Null);
                 Assert.That(QdaoCharacterCatalog.LoadPortrait(entry.Id), Is.Null);
+                var expectedPortrait = UnityEngine.Resources.Load<UnityEngine.Texture2D>(
+                    BattleArtCatalog.PortraitsRoot + "/" + entry.Id + "_v3");
+                var portrait = BattleArtCatalog.LoadPlayerPortrait(actor, _ => entry.Id);
+                Assert.That(portrait?.texture, Is.SameAs(expectedPortrait), entry.Id);
+                foreach (bool east in new[] { false, true })
+                foreach (string action in BattleArtCatalog.CharacterActions)
+                {
+                    var path = BattleArtCatalog.CharactersRoot + "/" + entry.Id + "/" + action;
+                    var direct = UnityEngine.Resources.Load<UnityEngine.Texture2D>(path + (east ? "_E_strip" : "_W_strip"));
+                    var expected = direct ?? UnityEngine.Resources.Load<UnityEngine.Texture2D>(path + (east ? "_W_strip" : "_E_strip"));
+                    var actual = BattleArtCatalog.LoadCharacterAction(entry.Id, action, east);
+                    Assert.That(actual?.Frames[0].texture, Is.SameAs(expected), entry.Id + "/" + action);
+                    if (action != "idle") continue;
+                    var idle = BattleArtCatalog.LoadPlayerIdle(entry.Id, east, out var mirrored);
+                    Assert.That(idle?.texture, Is.SameAs(expected), entry.Id);
+                    Assert.That(mirrored, Is.EqualTo(expected != null && direct == null), entry.Id);
+                }
             }
         }
 

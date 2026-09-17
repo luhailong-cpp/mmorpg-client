@@ -16,7 +16,7 @@ namespace MmorpgClient.Tests.PlayMode
     public sealed class QdaoRosterSandboxPlayModeTests
     {
         [UnityTest]
-        public IEnumerator RealCitySandbox_SwitchesAllEightAppearancesWithoutReplacingThePlayer_AndWalksWithTheRealMotor()
+        public IEnumerator RealCitySandbox_SwitchesAllAvailableAppearancesWithoutReplacingThePlayer_AndWalksWithTheRealMotor()
         {
             var observations = new RuntimeObservedAppearances();
             var previousCapture = Time.captureFramerate;
@@ -26,7 +26,7 @@ namespace MmorpgClient.Tests.PlayMode
             var root = new GameObject("RosterCitySandboxTest");
             var cameraObject = new GameObject("RosterCityCamera");
             cameraObject.tag = "MainCamera";
-            var camera = cameraObject.AddComponent<Camera>();
+            cameraObject.AddComponent<Camera>();
             var lightObject = new GameObject("RosterCitySun");
             lightObject.transform.SetParent(root.transform, false);
             lightObject.AddComponent<Light>().type = LightType.Directional;
@@ -49,8 +49,10 @@ namespace MmorpgClient.Tests.PlayMode
                 var centre = motor.center;
                 yield return null;
                 yield return null;
+                var routeOrigin = controller.FeetPosition;
+                var availableAppearances = QdaoCharacterCatalog.AvailableAll;
 
-                foreach (var definition in QdaoCharacterCatalog.All)
+                foreach (var definition in availableAppearances)
                 {
                     var position = player.transform.position;
                     Assert.That(sandbox.SelectCharacter(definition.Id), Is.True);
@@ -68,7 +70,14 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(animator.FrameCount, Is.EqualTo(definition.FrameCount));
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
                     Assert.That(player.GetComponentInChildren<TMPro.TMP_Text>().text, Is.EqualTo(definition.Name));
+                    observations.selectedAppearanceCount++;
                     CaptureIfRequested(sandbox, definition.Id, observations);
+                    if (!definition.IsOriginalRoster) continue;
+                    Assert.That(animator.FrameCount, Is.EqualTo(16));
+                    Assert.That(animator.ArtworkVersion, Is.EqualTo(13));
+                    yield return WalkWithRealMotor(sandbox, definition.Id, routeOrigin, observations);
+                    observations.testedOriginalCount++;
+                    WriteObservationsIfRequested(observations);
                 }
                 foreach (var original in QdaoCharacterCatalog.OriginalAll)
                 {
@@ -76,63 +85,20 @@ namespace MmorpgClient.Tests.PlayMode
                     var listed = false;
                     foreach (var entry in sandbox.AvailableCharacters) if (entry.Id == original.Id) listed = true;
                     Assert.That(listed, Is.EqualTo(available), "F5 must list exactly the approved original identities.");
-                    if (available)
-                    {
-                        Assert.That(sandbox.SelectCharacter(original.Id), Is.True);
-                        yield return null;
-                        Assert.That(animator.CharacterId, Is.EqualTo(original.Id));
-                        Assert.That(animator.FrameCount, Is.EqualTo(16));
-                        Assert.That(animator.ArtworkVersion, Is.EqualTo(13));
-                        Assert.That(controller.Motor, Is.SameAs(motor));
-                    }
-                    else
-                    {
-                        var previousIdentity = animator.CharacterId;
-                        Assert.That(sandbox.SelectCharacter(original.Id), Is.False);
-                        Assert.That(animator.CharacterId, Is.EqualTo(previousIdentity));
-                    }
+                    if (available) continue; // Selection and actual movement were tested above.
+                    var previousIdentity = animator.CharacterId;
+                    Assert.That(sandbox.SelectCharacter(original.Id), Is.False);
+                    Assert.That(animator.CharacterId, Is.EqualTo(previousIdentity));
                 }
                 Assert.That(sandbox.SelectCharacter("24_crane_hermit"), Is.False);
 
+                // Keep the existing V12 real-motor baseline even when no Original has passed acceptance.
                 Assert.That(sandbox.SelectCharacter("24_lu_dongbin"), Is.True);
-                var start = controller.FeetPosition;
-                var direction = FindOpenDirection(map.Navigation, start);
-                Assert.That(direction, Is.Not.EqualTo(Vector3.zero), "The city spawn must expose a short walkable test route.");
-                var renderer = player.transform.Find("sprite").GetComponent<SpriteRenderer>();
-                var poses = new HashSet<Sprite>();
-                var lastFeet = start;
-                var pathDistance = 0f;
-                var movementStartTime = Time.time;
-                controller.SetDebugDirection(direction);
-                for (var frame = 0; frame < 32; frame++)
-                {
-                    yield return null;
-                    if (animator.State == QdaoBoySpriteAnimator.LocomotionState.Run) poses.Add(renderer.sprite);
-                    var step = controller.FeetPosition - lastFeet;
-                    step.y = 0f;
-                    pathDistance += step.magnitude;
-                    lastFeet = controller.FeetPosition;
-                }
-                var movementSeconds = Time.time - movementStartTime;
-                controller.SetDebugDirection(Vector3.zero);
-                var travel = controller.FeetPosition - start;
-                travel.y = 0f;
-                Assert.That(travel.magnitude, Is.GreaterThan(3f), "The real CharacterController must travel across the city pavement.");
-                Assert.That(poses.Count, Is.EqualTo(QdaoCharacterCatalog.Find("24_lu_dongbin").FrameCount), "Real controller movement must animate every separately imported pose.");
-                var stationaryFrames = 0;
-                for (var frame = 0; frame < 48; frame++)
-                {
-                    yield return null;
-                    stationaryFrames++;
-                    if (animator.State == QdaoBoySpriteAnimator.LocomotionState.Idle) break;
-                }
-                RecordMovementIfRequested(sandbox, observations, travel.magnitude, pathDistance,
-                    movementSeconds, poses, stationaryFrames);
-                Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
+                yield return WalkWithRealMotor(sandbox, "24_lu_dongbin", routeOrigin, observations);
                 Assert.That(controller.Motor, Is.SameAs(motor));
                 observations.behaviorAssertionsCompleted = true;
                 WriteObservationsIfRequested(observations);
-                Debug.Log($"[QdaoRosterCity] eight appearances switched; real motor travelled {travel.magnitude:0.00} world units; {poses.Count} poses observed; stopped idle. Offline sandbox, no online login asserted.");
+                Debug.Log($"[QdaoRosterCity] {observations.selectedAppearanceCount} appearances switched; {observations.testedOriginalCount} original appearances walked with the real motor; Lu baseline retained. Offline sandbox, no online login asserted.");
             }
             finally
             {
@@ -143,6 +109,61 @@ namespace MmorpgClient.Tests.PlayMode
                 Object.Destroy(cameraObject);
             }
             yield return null;
+        }
+
+        private static IEnumerator WalkWithRealMotor(TianyongSandboxBootstrap sandbox, string characterId,
+            Vector3 routeOrigin, RuntimeObservedAppearances observations)
+        {
+            var player = sandbox.Player;
+            var controller = player.GetComponent<TianyongPlayerController>();
+            var animator = player.GetComponent<QdaoBoySpriteAnimator>();
+            var motor = controller.Motor;
+            Assert.That(animator.CharacterId, Is.EqualTo(characterId));
+            controller.SetDebugDirection(Vector3.zero);
+            // Each character starts at the same open city route. This setup warp is
+            // deliberately outside the recorded interval and is never counted as walking.
+            controller.WarpTo(routeOrigin);
+            yield return null;
+            yield return null;
+            Assert.That(motor.enabled, Is.True);
+            var start = controller.FeetPosition;
+            var direction = FindOpenDirection(sandbox.Map.Navigation, start);
+            Assert.That(direction, Is.Not.EqualTo(Vector3.zero), "The city spawn must expose a short walkable test route.");
+            var renderer = player.transform.Find("sprite").GetComponent<SpriteRenderer>();
+            var poses = new HashSet<Sprite>();
+            var lastFeet = start;
+            var pathDistance = 0f;
+            var movementStartTime = Time.time;
+            controller.SetDebugDirection(direction);
+            for (var frame = 0; frame < 32; frame++)
+            {
+                yield return null;
+                if (animator.State == QdaoBoySpriteAnimator.LocomotionState.Run) poses.Add(renderer.sprite);
+                var step = controller.FeetPosition - lastFeet;
+                step.y = 0f;
+                pathDistance += step.magnitude;
+                lastFeet = controller.FeetPosition;
+            }
+            var movementSeconds = Time.time - movementStartTime;
+            controller.SetDebugDirection(Vector3.zero);
+            var end = controller.FeetPosition;
+            var travel = end - start;
+            travel.y = 0f;
+            Assert.That(travel.magnitude, Is.GreaterThan(3f), "The real CharacterController must travel across the city pavement.");
+            Assert.That(poses.Count, Is.EqualTo(QdaoCharacterCatalog.Find(characterId).FrameCount),
+                characterId + ": real controller movement must animate every separately imported pose.");
+            var stationaryFrames = 0;
+            for (var frame = 0; frame < 48; frame++)
+            {
+                yield return null;
+                stationaryFrames++;
+                if (animator.State == QdaoBoySpriteAnimator.LocomotionState.Idle) break;
+            }
+            Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
+            Assert.That(controller.Motor, Is.SameAs(motor));
+            Assert.That(animator.CharacterId, Is.EqualTo(characterId));
+            RecordMovementIfRequested(sandbox, observations, travel.magnitude, pathDistance,
+                movementSeconds, poses, stationaryFrames, start, end);
         }
 
         private static Vector3 FindOpenDirection(TianyongNavigationGrid navigation, Vector3 start)
@@ -168,7 +189,7 @@ namespace MmorpgClient.Tests.PlayMode
         [System.Serializable]
         private sealed class RuntimeObservedAppearances
         {
-            public int schemaVersion = 1;
+            public int schemaVersion = 2;
             public string scope = "Observed real offline Tianyong sandbox and real movement controller; this report does not approve artwork or assert online login.";
             public string generatedUtc;
             public string projectPath = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
@@ -177,6 +198,8 @@ namespace MmorpgClient.Tests.PlayMode
             public string unityVersion = Application.unityVersion;
             public int deviceMaxTextureSize = SystemInfo.maxTextureSize;
             public bool behaviorAssertionsCompleted;
+            public int selectedAppearanceCount;
+            public int testedOriginalCount;
             public List<ObservedAppearance> appearances = new();
         }
 
@@ -187,6 +210,7 @@ namespace MmorpgClient.Tests.PlayMode
             public string actualCharacterId;
             public int actualArtworkVersion;
             public int actualFrameCount;
+            public bool actualIsOriginalRoster;
             public bool actualHasDedicatedIdle;
             public float actualAnimationFramesPerSecond;
             public float actualFramesPerUnit;
@@ -205,6 +229,13 @@ namespace MmorpgClient.Tests.PlayMode
             public string activationResourcePath;
             public bool activationPresent;
             public string activationSha256;
+            public string activationManifestSha256;
+            public string activationQcSha256;
+            public string activationValidationSha256;
+            public string manifestResourcePath;
+            public bool manifestPresent;
+            public string manifestSha256;
+            public string manifestHashInput = "Resources.Load<TextAsset>(manifestResourcePath).bytes";
             public int activationAlignmentVersion;
             public int activationContactFrame;
             public string activationHashInput = "Resources.Load<TextAsset>(activationResourcePath).bytes";
@@ -223,6 +254,9 @@ namespace MmorpgClient.Tests.PlayMode
             public float actualTravelDistance;
             public float actualPathDistance;
             public float movementSeconds;
+            public Vector3 measuredRouteStart;
+            public Vector3 measuredRouteEnd;
+            public string routePreparation;
             public int observedWalkPoseCount;
             public List<string> observedWalkSpriteNames = new();
             public DirectionFrameCounts sampledPosesPerDirection = new();
@@ -243,6 +277,9 @@ namespace MmorpgClient.Tests.PlayMode
         {
             public int alignmentVersion;
             public int contactFrame;
+            public string manifest_sha256;
+            public string qc_sha256;
+            public string validation_sha256;
         }
 
         private static readonly string[] ObservationDirections = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
@@ -312,6 +349,7 @@ namespace MmorpgClient.Tests.PlayMode
             observed.actualCharacterId = animator.CharacterId;
             observed.actualArtworkVersion = animator.ArtworkVersion;
             observed.actualFrameCount = animator.FrameCount;
+            observed.actualIsOriginalRoster = appearance?.IsOriginalRoster == true;
             ObserveLoadedFrames(animator, appearance, observed);
             observed.controllerMoveSpeed = (float)typeof(TianyongPlayerController).GetField(
                 "_moveSpeed", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(player.GetComponent<TianyongPlayerController>());
@@ -328,6 +366,21 @@ namespace MmorpgClient.Tests.PlayMode
             var activationFields = activation != null ? JsonUtility.FromJson<ObservedActivation>(activation.text) : null;
             observed.activationAlignmentVersion = activationFields?.alignmentVersion ?? 0;
             observed.activationContactFrame = activationFields?.contactFrame ?? -1;
+            observed.activationManifestSha256 = activationFields?.manifest_sha256;
+            observed.activationQcSha256 = activationFields?.qc_sha256;
+            observed.activationValidationSha256 = activationFields?.validation_sha256;
+            observed.manifestResourcePath = appearance == null ? null : appearance.ResourceFolder + "/manifest";
+            var manifest = observed.manifestResourcePath == null ? null : Resources.Load<TextAsset>(observed.manifestResourcePath);
+            observed.manifestPresent = manifest != null;
+            using (var sha = SHA256.Create())
+                observed.manifestSha256 = manifest == null ? null :
+                    System.BitConverter.ToString(sha.ComputeHash(manifest.bytes)).Replace("-", "").ToLowerInvariant();
+            if (observed.actualIsOriginalRoster)
+            {
+                Assert.That(observed.manifestPresent, Is.True, "Actual Original appearance must retain its accepted manifest resource.");
+                Assert.That(observed.manifestSha256, Is.EqualTo(observed.activationManifestSha256).IgnoreCase,
+                    "Actual Original manifest bytes must match the activation SHA during observation.");
+            }
             observed.spriteName = sprite != null ? sprite.name : null;
             observed.spriteEntityId = sprite != null ? sprite.GetEntityId().ToString() : null;
             observed.textureName = texture != null ? texture.name : null;
@@ -347,7 +400,8 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         private static void RecordMovementIfRequested(TianyongSandboxBootstrap sandbox, RuntimeObservedAppearances observations,
-            float travel, float pathDistance, float movementSeconds, HashSet<Sprite> poses, int stationaryFrames)
+            float travel, float pathDistance, float movementSeconds, HashSet<Sprite> poses, int stationaryFrames,
+            Vector3 routeStart, Vector3 routeEnd)
         {
             if (string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("QDAO_ROSTER_CAPTURE_DIR"))) return;
             var animator = sandbox.Player.GetComponent<QdaoBoySpriteAnimator>();
@@ -356,6 +410,9 @@ namespace MmorpgClient.Tests.PlayMode
             observed.actualTravelDistance = travel;
             observed.actualPathDistance = pathDistance;
             observed.movementSeconds = movementSeconds;
+            observed.measuredRouteStart = routeStart;
+            observed.measuredRouteEnd = routeEnd;
+            observed.routePreparation = "WarpTo common open route before measurement; only subsequent real CharacterController travel is included.";
             observed.observedWalkPoseCount = poses.Count;
             observed.observedWalkSpriteNames.Clear();
             foreach (var pose in poses) observed.observedWalkSpriteNames.Add(pose != null ? pose.name : "<missing>");
