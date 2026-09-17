@@ -1,0 +1,17 @@
+{
+  "alignmentVersion": 2,
+  "characterId": "02_fire_talisman_boy",
+  "contactFrame": 0,
+  "cycleDurationMs": 480,
+  "dedicatedIdle": true,
+  "frameCount": 16,
+  "frameDurationMs": 30,
+  "manifest_sha256": "5ec4bdd5fa0a760393174a7522c9960d80f5bd9682137f2e962745b291c3f3be",
+  "qc_sha256": "6a76fe0f5332a64a6ef2567aade13e698f7a181779344b4f395ef7ff49baef51",
+  "sourceCommit": "9adcf9291e4a867601868889a5965f3cd48630ba",
+  "sourceFamily": "original-00-22",
+  "status": "passed",
+  "validation_sha256": "9b5684b0da63736ad3a3ba3e29dccddb6671b5501b5fe0cebd8d9daca31cdbcf",
+  "version": 13,
+  "visualReview": "passed"
+}

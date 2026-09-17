@@ -1,0 +1,17 @@
+{
+  "alignmentVersion": 2,
+  "characterId": "00_reference_topright_boy",
+  "contactFrame": 0,
+  "cycleDurationMs": 480,
+  "dedicatedIdle": true,
+  "frameCount": 16,
+  "frameDurationMs": 30,
+  "manifest_sha256": "2c326ade53a0a05899e397525cc55404242727917a9961d12e29cdfd19e46394",
+  "qc_sha256": "cc63a0e2721b2e2ea3a153120ecb7c0c7ee24d19df3ef6fcd7732534b29cd82e",
+  "sourceCommit": "9adcf9291e4a867601868889a5965f3cd48630ba",
+  "sourceFamily": "original-00-22",
+  "status": "passed",
+  "validation_sha256": "a64b32af64f1f3d16530356f6c6c2a36961becd9718b0a604855d25a43017f50",
+  "version": 13,
+  "visualReview": "passed"
+}
