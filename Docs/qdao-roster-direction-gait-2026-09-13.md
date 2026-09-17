@@ -2,6 +2,16 @@
 
 用户反馈"方向的动作不对"，并新出了一批序列图（`E:\work\image\qdao_chibi_roster_v12`）。本文记录核查结论、本轮修复、验证结果和仍需素材的部分。证据目录：`VerificationEvidence/qdao-roster-20260913/`。
 
+## 当前状态补记（2026-09-13）
+
+2026-09-14 当前状态：用户要求继续修正。年轻吕洞宾的新道家Q版已完成64张步行、8张独立站立及同身份肖像，按对齐v3接入游戏；候选源包为 `candidate-stable-body/24_lu_dongbin`。实际81张PNG及启用记录逐文件核对一致。独立Unity副本的127/127 EditMode、8/8 PlayMode通过，证据见客户端 `Docs/ArtEvidence/v12-natural-lu/summary.json`；原编辑器中的未保存场景保持原状。何仙姑、韩湘子正按具体原画问题修正，其余角色尚未全部完成。内部检查通过不等于用户已认可整批美术。
+
+游戏当前实际接入V12的仅有24吕洞宾、26桂香药婆、29何仙姑、30韩湘子；23灯穗小使、25狮鼓护卫、27墨鸢游侠、28月兔机关师仍使用同ID的V11。已接入的四位也在本次造型、步态和比例复核范围内，不能把已接入状态表述为用户已认可。
+
+停步修复的当前定向证据为`Docs/ArtEvidence/v12-stop-fix/playmode.xml`：2026-09-13 15:04:04–15:04:12 UTC，8/8 PlayMode Passed、0失败，包含`V12_StoppingAtDifferentPhases_ShowsDirectionIdleOnTheNextFrame`。这验证停下后的下一帧切至对应方向独立站姿，不能证明美术风格、自然步态、脸型大小已符合用户要求。
+
+以下第1–7节保留当时V11方向/步态核查和早期站姿补丁的历史记录，包括当时测试数量、03:00素材清单及待办；不代表当前V12全部朝向、步态或原画通过验收。三位及四位V12时期的121/121 EditMode、7/7 PlayMode亦属于各自历史范围，见`qdao-roster-v12-integration.md`，不是当前停步修复后的新全量测试。当前版本与工作范围以上述补记为准。
+
 ## 1. 结论：方向没错，错的是步态和站姿
 
 分三层核对，三层都对：
@@ -102,3 +112,12 @@ V12 每人需要：8 方向 × 8 帧走路（8 张 `walk-<DIR>` 或 8 张相位�
 ## 7. 本轮文件范围
 
 `Assets/Scripts/World/QdaoCharacterCatalog.cs`、`Assets/Scripts/World/QdaoBoySpriteAnimator.cs`、`Assets/Scripts/World/Tianyong/TianyongSandboxAutoDrive.cs`、`Assets/Tests/EditMode/Tianyong/QdaoCharacterCatalogTests.cs`、`Assets/Tests/EditMode/Tianyong/QdaoAppearanceVersionTests.cs`、`Assets/Resources/World/Characters/QdaoRosterV11/{24_lu_dongbin,29_he_xiangu,30_han_xiangzi}/idle/`（各 8 张 PNG 及 .meta）、本文与 `Docs/VerificationEvidence/qdao-roster-20260913/`。未提交。
+
+
+## 2026-09-14：吕洞宾稳定定位与完整接入
+
+对齐v3以同方向独立idle确定固定头部ROI和头顶Y；所有72帧共用一个scale，每帧只整数平移。世界根点仍为(256,471)，但步行时不同远近脚可围绕根点变化，不再把最低鞋像素强行锁死。独立验收按源RGBA重构平移结果，拒绝错位、裁断、改像素及错误参考元数据。旧角色v2仍按原规则验证。
+
+本次修正了SE06腿部遮挡和摆臂、NE头型，以及S/N/E/SE独立站立比例。追加边缘清理显式使用4px边缘及12px颜色参考；全部72帧alpha、G通道、位置和受保护红色不变。默认去色仍2px/6px，旧默认输出54次真实帧比较逐像素一致；细发梢中无可靠参考的像素未强行改色。
+
+最终源：`E:/work/image/qdao_chibi_roster_v12/candidate-stable-body/24_lu_dongbin`。81PNG已接入，alignmentVersion=3；导入前资源留存在 `Docs/ArtEvidence/v12-natural-lu/before-import/`。新运行结果是独立副本127/127 EditMode和8/8 PlayMode，副本81PNG、启用记录及357个C#文件在启动前与正式项目一致。真实城市图为 `Docs/ArtEvidence/v12-natural-lu/tianyong-24_lu_dongbin.png`。这些是离线游戏测试，不是整批8位角色的美术完成声明。

@@ -24,6 +24,10 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(BattleClientPlayerSubmitBattleActionHandler.MessageId, mc => BattleClientPlayerSubmitBattleActionHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerChatPullChatHistoryHandler.MessageId, mc => ClientPlayerChatPullChatHistoryHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerChatSendChatHandler.MessageId, mc => ClientPlayerChatSendChatHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerJubaozhaiBrowseListingsHandler.MessageId, mc => ClientPlayerJubaozhaiBrowseListingsHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerJubaozhaiGetListingDetailHandler.MessageId, mc => ClientPlayerJubaozhaiGetListingDetailHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerJubaozhaiGetMyShelfHandler.MessageId, mc => ClientPlayerJubaozhaiGetMyShelfHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerJubaozhaiSetFavoriteHandler.MessageId, mc => ClientPlayerJubaozhaiSetFavoriteHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginCreatePlayerHandler.MessageId, mc => ClientPlayerLoginCreatePlayerHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginDisconnectHandler.MessageId, mc => ClientPlayerLoginDisconnectHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerLoginEnterGameHandler.MessageId, mc => ClientPlayerLoginEnterGameHandler.Dispatch(client, mc));

@@ -129,6 +129,9 @@ namespace MmorpgClient.Game
         /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
         public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
 
+        /// <summary>当前真实 Gate 的不透明标识；仅用于引用比较，静默重登录/重定向也会改变。</summary>
+        public object GateConnectionIdentity => _gate;
+
         /// <summary>Account used by the last EnterZone run (needed for redirect re-login).</summary>
         public string Account { get; private set; }
 

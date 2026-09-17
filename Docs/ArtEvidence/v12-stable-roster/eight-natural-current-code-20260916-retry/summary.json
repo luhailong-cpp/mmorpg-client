@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "finishedUtc": "2026-09-17T03:28:05.8008203Z",
+  "characterIds": [
+    "23_lantern_courier",
+    "24_lu_dongbin",
+    "25_lion_drum_guard",
+    "26_osmanthus_healer",
+    "27_ink_kite_ranger",
+    "28_moon_rabbit_artificer",
+    "29_he_xiangu",
+    "30_han_xiangzi"
+  ],
+  "mode": "current saved source snapshot tested in independent Unity project copy",
+  "results": [
+    {
+      "platform": "EditMode",
+      "result": "Passed",
+      "total": 127,
+      "passed": 127,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0
+    },
+    {
+      "platform": "PlayMode",
+      "result": "Passed",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0
+    }
+  ],
+  "resourceVerification": "input-snapshot.json",
+  "inputSnapshot": "input-snapshot.json",
+  "sourceMatchesSnapshotAtFinish": false,
+  "sourceChangedFiles": [
+    "Assets\\Editor\\Social\\SocialUiVerification.cs",
+    "Assets\\Editor\\Tianyong\\CityTile4KImporter.cs",
+    "Assets\\Scripts\\UI\\Ugui\\Social\\SocialWindow.cs",
+    "Assets\\Scripts\\World\\Tianyong\\CityTileManifest.cs",
+    "Assets\\Scripts\\World\\Tianyong\\CityTileStreaming.cs",
+    "Assets\\Tests\\EditMode\\Tianyong\\CityTileStreamingTests.cs"
+  ],
+  "sourceCSharpCountAtFinish": 394,
+  "originalOpenUnityUntouched": true
+}

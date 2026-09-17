@@ -1,0 +1,10 @@
+{
+  "status": "preflight_failed",
+  "utc": "2026-09-17T03:01:38.4407246Z",
+  "phase": "source_clone_sha_verification",
+  "path": "Assets\\Scripts\\UI\\Ugui\\Mail\\MailUiArt.cs",
+  "message": "Source and clone SHA differed after copy; Unity tests were not launched.",
+  "sourceSha": "E5241B5A0D4DD11F97CA70C1D449E89AE34357CB5EA0FB8EE8B3744B532B6E91",
+  "cloneSha": "82B04044CA3AE6B22528B590618F65E6B3792813917A652634623F9C970C8229",
+  "mainProjectUnmodified": true
+}

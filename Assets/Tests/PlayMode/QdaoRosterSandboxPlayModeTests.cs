@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
+using System.Reflection;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
@@ -16,6 +18,7 @@ namespace MmorpgClient.Tests.PlayMode
         [UnityTest]
         public IEnumerator RealCitySandbox_SwitchesAllEightAppearancesWithoutReplacingThePlayer_AndWalksWithTheRealMotor()
         {
+            var observations = new RuntimeObservedAppearances();
             var previousCapture = Time.captureFramerate;
             var previousAmbientMode = RenderSettings.ambientMode;
             var previousAmbient = RenderSettings.ambientLight;
@@ -65,8 +68,7 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(animator.FrameCount, Is.EqualTo(definition.FrameCount));
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
                     Assert.That(player.GetComponentInChildren<TMPro.TMP_Text>().text, Is.EqualTo(definition.Name));
-                    if (definition.Id == "24_lu_dongbin" || definition.Id == "29_he_xiangu")
-                        CaptureIfRequested(sandbox, definition.Id);
+                    CaptureIfRequested(sandbox, definition.Id, observations);
                 }
                 Assert.That(sandbox.SelectCharacter("24_crane_hermit"), Is.False);
 
@@ -76,24 +78,38 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(direction, Is.Not.EqualTo(Vector3.zero), "The city spawn must expose a short walkable test route.");
                 var renderer = player.transform.Find("sprite").GetComponent<SpriteRenderer>();
                 var poses = new HashSet<Sprite>();
+                var lastFeet = start;
+                var pathDistance = 0f;
+                var movementStartTime = Time.time;
                 controller.SetDebugDirection(direction);
                 for (var frame = 0; frame < 32; frame++)
                 {
                     yield return null;
                     if (animator.State == QdaoBoySpriteAnimator.LocomotionState.Run) poses.Add(renderer.sprite);
+                    var step = controller.FeetPosition - lastFeet;
+                    step.y = 0f;
+                    pathDistance += step.magnitude;
+                    lastFeet = controller.FeetPosition;
                 }
+                var movementSeconds = Time.time - movementStartTime;
                 controller.SetDebugDirection(Vector3.zero);
                 var travel = controller.FeetPosition - start;
                 travel.y = 0f;
                 Assert.That(travel.magnitude, Is.GreaterThan(3f), "The real CharacterController must travel across the city pavement.");
                 Assert.That(poses.Count, Is.EqualTo(QdaoCharacterCatalog.Find("24_lu_dongbin").FrameCount), "Real controller movement must animate every separately imported pose.");
+                var stationaryFrames = 0;
                 for (var frame = 0; frame < 48; frame++)
                 {
                     yield return null;
+                    stationaryFrames++;
                     if (animator.State == QdaoBoySpriteAnimator.LocomotionState.Idle) break;
                 }
+                RecordMovementIfRequested(sandbox, observations, travel.magnitude, pathDistance,
+                    movementSeconds, poses, stationaryFrames);
                 Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
                 Assert.That(controller.Motor, Is.SameAs(motor));
+                observations.behaviorAssertionsCompleted = true;
+                WriteObservationsIfRequested(observations);
                 Debug.Log($"[QdaoRosterCity] eight appearances switched; real motor travelled {travel.magnitude:0.00} world units; {poses.Count} poses observed; stopped idle. Offline sandbox, no online login asserted.");
             }
             finally
@@ -127,10 +143,243 @@ namespace MmorpgClient.Tests.PlayMode
             return Vector3.zero;
         }
 
-        private static void CaptureIfRequested(TianyongSandboxBootstrap sandbox, string characterId)
+        [System.Serializable]
+        private sealed class RuntimeObservedAppearances
+        {
+            public int schemaVersion = 1;
+            public string scope = "Observed real offline Tianyong sandbox and real movement controller; this report does not approve artwork or assert online login.";
+            public string generatedUtc;
+            public string projectPath = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+            public string inputSnapshotPath;
+            public string inputSnapshotSha256;
+            public string unityVersion = Application.unityVersion;
+            public int deviceMaxTextureSize = SystemInfo.maxTextureSize;
+            public bool behaviorAssertionsCompleted;
+            public List<ObservedAppearance> appearances = new();
+        }
+
+        [System.Serializable]
+        private sealed class ObservedAppearance
+        {
+            public string requestedCharacterId;
+            public string actualCharacterId;
+            public int actualArtworkVersion;
+            public int actualFrameCount;
+            public bool actualHasDedicatedIdle;
+            public float actualAnimationFramesPerSecond;
+            public float actualFramesPerUnit;
+            public float actualCycleDurationMs;
+            public float actualCycleWorldDistance;
+            public float controllerMoveSpeed;
+            public string frameInventoryScope = "Loaded FrameSet.Walk arrays, distinct from direction poses sampled during actual movement.";
+            public DirectionFrameCounts actualFramesPerDirection = new();
+            public DirectionFrameCounts actualUniqueFrameSpritesPerDirection = new();
+            public DirectionFrameCounts actualUniqueFrameTexturesPerDirection = new();
+            public bool actualFramesMatchResources;
+            public int catalogVersion;
+            public float catalogFramesPerSecond;
+            public int catalogFrameDurationMs;
+            public string resourceFolder;
+            public string activationResourcePath;
+            public bool activationPresent;
+            public string activationSha256;
+            public int activationAlignmentVersion;
+            public int activationContactFrame;
+            public string activationHashInput = "Resources.Load<TextAsset>(activationResourcePath).bytes";
+            public string spriteName;
+            public string spriteEntityId;
+            public string textureName;
+            public string textureEntityId;
+            public int textureWidth;
+            public int textureHeight;
+            public float spriteRectWidth;
+            public float spriteRectHeight;
+            public string expectedIdleResourcePath;
+            public bool spriteMatchesDedicatedIdle;
+            public bool v13SixteenFrameContractObserved;
+            public bool movementObserved;
+            public float actualTravelDistance;
+            public float actualPathDistance;
+            public float movementSeconds;
+            public int observedWalkPoseCount;
+            public List<string> observedWalkSpriteNames = new();
+            public DirectionFrameCounts sampledPosesPerDirection = new();
+            public int stationaryFramesUntilObservation;
+            public bool stoppedIdle;
+            public bool realMotorEnabled;
+        }
+
+        [System.Serializable]
+        private sealed class DirectionFrameCounts
+        {
+            public int N, NE, E, SE, S, SW, W, NW;
+            public void Set(string direction, int count) => GetType().GetField(direction).SetValue(this, count);
+        }
+
+        [System.Serializable]
+        private sealed class ObservedActivation
+        {
+            public int alignmentVersion;
+            public int contactFrame;
+        }
+
+        private static readonly string[] ObservationDirections = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+
+        private static object ActualFrameSet(QdaoBoySpriteAnimator animator)
+            => typeof(QdaoBoySpriteAnimator).GetField("_frames", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(animator);
+
+        private static void ObserveLoadedFrames(QdaoBoySpriteAnimator animator,
+            QdaoCharacterCatalog.Appearance appearance, ObservedAppearance observed)
+        {
+            var frameSet = ActualFrameSet(animator);
+            Assert.That(frameSet, Is.Not.Null, "Runtime evidence must inspect an actually loaded animator FrameSet.");
+            var type = frameSet.GetType();
+            observed.actualHasDedicatedIdle = (bool)type.GetField("DedicatedIdle").GetValue(frameSet);
+            observed.actualAnimationFramesPerSecond = (float)type.GetField("Fps").GetValue(frameSet);
+            observed.actualFramesPerUnit = (float)type.GetProperty("FramesPerUnit").GetValue(frameSet);
+            observed.actualCycleDurationMs = observed.actualFrameCount / observed.actualAnimationFramesPerSecond * 1000f;
+            observed.actualCycleWorldDistance = observed.actualFrameCount / observed.actualFramesPerUnit;
+            var walk = (Sprite[][])type.GetField("Walk").GetValue(frameSet);
+            observed.actualFramesMatchResources = appearance != null && walk.Length == ObservationDirections.Length;
+            for (var direction = 0; direction < ObservationDirections.Length; direction++)
+            {
+                var poses = direction < walk.Length ? walk[direction] : null;
+                var sprites = new HashSet<Sprite>();
+                var textures = new HashSet<Texture2D>();
+                var validCount = 0;
+                if (poses != null)
+                for (var frame = 0; frame < poses.Length; frame++)
+                {
+                    var sprite = poses[frame];
+                    var texture = sprite != null ? sprite.texture : null;
+                    if (texture == null || texture.width != 512 || texture.height != 512 ||
+                        sprite.rect.width != 512 || sprite.rect.height != 512)
+                    {
+                        observed.actualFramesMatchResources = false;
+                        continue;
+                    }
+                    validCount++;
+                    sprites.Add(sprite);
+                    textures.Add(texture);
+                    if (appearance == null || texture != Resources.Load<Texture2D>(
+                            appearance.FrameResourcePath(ObservationDirections[direction], frame)))
+                        observed.actualFramesMatchResources = false;
+                }
+                observed.actualFramesPerDirection.Set(ObservationDirections[direction], validCount);
+                observed.actualUniqueFrameSpritesPerDirection.Set(ObservationDirections[direction], sprites.Count);
+                observed.actualUniqueFrameTexturesPerDirection.Set(ObservationDirections[direction], textures.Count);
+            }
+        }
+
+        private static ObservedAppearance ObserveAppearance(TianyongSandboxBootstrap sandbox, string requestedId,
+            RuntimeObservedAppearances observations)
+        {
+            ObservedAppearance observed = null;
+            foreach (var entry in observations.appearances)
+                if (entry.requestedCharacterId == requestedId) { observed = entry; break; }
+            if (observed == null)
+            {
+                observed = new ObservedAppearance { requestedCharacterId = requestedId };
+                observations.appearances.Add(observed);
+            }
+            var player = sandbox.Player;
+            var animator = player.GetComponent<QdaoBoySpriteAnimator>();
+            var appearance = QdaoCharacterCatalog.Find(animator.CharacterId)?.ResolveAppearance();
+            var sprite = player.transform.Find("sprite").GetComponent<SpriteRenderer>().sprite;
+            var texture = sprite != null ? sprite.texture : null;
+            observed.actualCharacterId = animator.CharacterId;
+            observed.actualArtworkVersion = animator.ArtworkVersion;
+            observed.actualFrameCount = animator.FrameCount;
+            ObserveLoadedFrames(animator, appearance, observed);
+            observed.controllerMoveSpeed = (float)typeof(TianyongPlayerController).GetField(
+                "_moveSpeed", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(player.GetComponent<TianyongPlayerController>());
+            observed.catalogVersion = appearance?.Version ?? 0;
+            observed.catalogFramesPerSecond = appearance?.FramesPerSecond ?? 0f;
+            observed.catalogFrameDurationMs = appearance?.FrameDurationMs ?? 0;
+            observed.resourceFolder = appearance?.ResourceFolder;
+            observed.activationResourcePath = appearance == null ? null : appearance.ResourceFolder + "/appearance";
+            var activation = observed.activationResourcePath == null ? null : Resources.Load<TextAsset>(observed.activationResourcePath);
+            observed.activationPresent = activation != null;
+            using (var sha = SHA256.Create())
+                observed.activationSha256 = activation == null ? null :
+                    System.BitConverter.ToString(sha.ComputeHash(activation.bytes)).Replace("-", "").ToLowerInvariant();
+            var activationFields = activation != null ? JsonUtility.FromJson<ObservedActivation>(activation.text) : null;
+            observed.activationAlignmentVersion = activationFields?.alignmentVersion ?? 0;
+            observed.activationContactFrame = activationFields?.contactFrame ?? -1;
+            observed.spriteName = sprite != null ? sprite.name : null;
+            observed.spriteEntityId = sprite != null ? sprite.GetEntityId().ToString() : null;
+            observed.textureName = texture != null ? texture.name : null;
+            observed.textureEntityId = texture != null ? texture.GetEntityId().ToString() : null;
+            observed.textureWidth = texture != null ? texture.width : 0;
+            observed.textureHeight = texture != null ? texture.height : 0;
+            observed.spriteRectWidth = sprite != null ? sprite.rect.width : 0f;
+            observed.spriteRectHeight = sprite != null ? sprite.rect.height : 0f;
+            observed.expectedIdleResourcePath = appearance?.IdleResourcePath(ObservationDirections[animator.Direction]);
+            observed.spriteMatchesDedicatedIdle = appearance != null && appearance.HasDedicatedIdle &&
+                texture != null && texture == Resources.Load<Texture2D>(observed.expectedIdleResourcePath);
+            observed.v13SixteenFrameContractObserved = animator.ArtworkVersion == 13 && animator.FrameCount == 16 &&
+                appearance != null && appearance.Version == 13 && appearance.FrameCount == 16 &&
+                appearance.FrameDurationMs == 30 && observed.activationPresent;
+            observed.realMotorEnabled = player.GetComponent<TianyongPlayerController>().Motor.enabled;
+            return observed;
+        }
+
+        private static void RecordMovementIfRequested(TianyongSandboxBootstrap sandbox, RuntimeObservedAppearances observations,
+            float travel, float pathDistance, float movementSeconds, HashSet<Sprite> poses, int stationaryFrames)
+        {
+            if (string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("QDAO_ROSTER_CAPTURE_DIR"))) return;
+            var animator = sandbox.Player.GetComponent<QdaoBoySpriteAnimator>();
+            var observed = ObserveAppearance(sandbox, animator.CharacterId, observations);
+            observed.movementObserved = true;
+            observed.actualTravelDistance = travel;
+            observed.actualPathDistance = pathDistance;
+            observed.movementSeconds = movementSeconds;
+            observed.observedWalkPoseCount = poses.Count;
+            observed.observedWalkSpriteNames.Clear();
+            foreach (var pose in poses) observed.observedWalkSpriteNames.Add(pose != null ? pose.name : "<missing>");
+            observed.observedWalkSpriteNames.Sort(System.StringComparer.Ordinal);
+            var frameSet = ActualFrameSet(animator);
+            var walk = (Sprite[][])frameSet.GetType().GetField("Walk").GetValue(frameSet);
+            for (var direction = 0; direction < ObservationDirections.Length; direction++)
+            {
+                var sampled = 0;
+                foreach (var pose in walk[direction]) if (poses.Contains(pose)) sampled++;
+                observed.sampledPosesPerDirection.Set(ObservationDirections[direction], sampled);
+            }
+            observed.stationaryFramesUntilObservation = stationaryFrames;
+            observed.stoppedIdle = animator.State == QdaoBoySpriteAnimator.LocomotionState.Idle;
+            WriteObservationsIfRequested(observations);
+        }
+
+        private static void WriteObservationsIfRequested(RuntimeObservedAppearances observations)
         {
             var outputDirectory = System.Environment.GetEnvironmentVariable("QDAO_ROSTER_CAPTURE_DIR");
-            if (string.IsNullOrEmpty(outputDirectory) || SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null) return;
+            if (string.IsNullOrEmpty(outputDirectory)) return;
+            Directory.CreateDirectory(outputDirectory);
+            var snapshot = System.Environment.GetEnvironmentVariable("QDAO_ROSTER_INPUT_SNAPSHOT");
+            if (!string.IsNullOrEmpty(snapshot))
+            {
+                var absoluteSnapshot = Path.GetFullPath(snapshot);
+                Assert.That(File.Exists(absoluteSnapshot), Is.True, "QDAO_ROSTER_INPUT_SNAPSHOT must name the existing saved input snapshot.");
+                using var sha = SHA256.Create();
+                var hash = System.BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(absoluteSnapshot))).Replace("-", "").ToLowerInvariant();
+                if (!string.IsNullOrEmpty(observations.inputSnapshotSha256))
+                    Assert.That(hash, Is.EqualTo(observations.inputSnapshotSha256), "The saved input snapshot changed during runtime observation.");
+                observations.inputSnapshotPath = absoluteSnapshot;
+                observations.inputSnapshotSha256 = hash;
+            }
+            observations.generatedUtc = System.DateTime.UtcNow.ToString("O");
+            File.WriteAllText(Path.Combine(outputDirectory, "runtime-observed-appearances.json"), JsonUtility.ToJson(observations, true));
+        }
+
+        private static void CaptureIfRequested(TianyongSandboxBootstrap sandbox, string characterId,
+            RuntimeObservedAppearances observations)
+        {
+            var outputDirectory = System.Environment.GetEnvironmentVariable("QDAO_ROSTER_CAPTURE_DIR");
+            if (string.IsNullOrEmpty(outputDirectory)) return;
+            ObserveAppearance(sandbox, characterId, observations);
+            WriteObservationsIfRequested(observations);
+            if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null) return;
             Directory.CreateDirectory(outputDirectory);
             var camera = sandbox.WorldCamera;
             var previousTarget = camera.targetTexture;

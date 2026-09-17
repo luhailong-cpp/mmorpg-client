@@ -1,0 +1,18 @@
+{
+  "status": "published_and_verified",
+  "verified_utc": "2026-09-14T13:15:56.130847+00:00",
+  "target_project": "E:\\work\\mmorpg-client",
+  "source_manifest_sha256": "3dbc699023fd7fe6f45304fd91ecea2f088e107d4c727d375dc1b23c31e68c68",
+  "approval_path": "E:\\work\\mmorpg-client\\Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\appearance.json",
+  "png_count": 81,
+  "alignment_version": 3,
+  "runtime_evidence": "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-stable-roster\\23-25-current-code\\summary.json",
+  "editmode_passed": 127,
+  "playmode_passed": 8,
+  "note": "manifest is immutable generation-time evidence; publication status is recorded here and in the client import log",
+  "validation_scope": {
+    "code": "current saved main project, all360 C# files matched at test start",
+    "art": "23/24/25,81 PNGs and appearance.json each,246 files matched at test start",
+    "earlier_guild_compile_failure": "resolved in current saved inputs; historical attempt retained"
+  }
+}

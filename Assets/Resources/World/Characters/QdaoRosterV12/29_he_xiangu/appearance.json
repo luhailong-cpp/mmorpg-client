@@ -1,0 +1,14 @@
+{
+  "version": 12,
+  "characterId": "29_he_xiangu",
+  "frameCount": 8,
+  "frameDurationMs": 60,
+  "dedicatedIdle": true,
+  "contactFrame": 0,
+  "status": "passed",
+  "visualReview": "passed",
+  "manifest_sha256": "1a6ea359e1b8b5d99653b624ceb197d204ab11300c6ce67824c301a18994070e",
+  "qc_sha256": "384a8a346cde03fb1e9feb400c85f5e97e6080e50641ecdaee92e4ea4ba9cfa6",
+  "validation_sha256": "12ebb9383e937f6779ef67a92be0ddf63cae78855fd6baf869c44bfec16bc873",
+  "alignmentVersion": 3
+}

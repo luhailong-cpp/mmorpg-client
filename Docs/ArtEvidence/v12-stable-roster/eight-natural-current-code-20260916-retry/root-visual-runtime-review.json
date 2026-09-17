@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "reviewed_utc": "2026-09-17T03:31:27.069267+00:00",
+  "reviewer": "root",
+  "reviewed_character_ids": [
+    "23_lantern_courier",
+    "24_lu_dongbin",
+    "25_lion_drum_guard",
+    "26_osmanthus_healer",
+    "27_ink_kite_ranger",
+    "28_moon_rabbit_artificer",
+    "29_he_xiangu",
+    "30_han_xiangzi"
+  ],
+  "evidence": [
+    "tianyong-23_lantern_courier.png",
+    "tianyong-24_lu_dongbin.png",
+    "tianyong-25_lion_drum_guard.png",
+    "tianyong-26_osmanthus_healer.png",
+    "tianyong-27_ink_kite_ranger.png",
+    "tianyong-28_moon_rabbit_artificer.png",
+    "tianyong-29_he_xiangu.png",
+    "tianyong-30_han_xiangzi.png",
+    "runtime-character-crops.jpg"
+  ],
+  "method": "Viewed full city scene for24 and equal-size unscaled character-region crops from all8 1920x1080 screenshots. Every crop contains the full character, floor contact and name label.",
+  "observations": [
+    "All8 approved V12 identities and correct name labels render in the actual city sandbox.",
+    "Young Lu Dongbin replaces the rejected elderly male; He Xiangu has the approved plain cloth tunic and long trousers.",
+    "No solid chroma-key background, clipping, unintended floating, missing equipment, or abrupt character placement change visible in the captures.",
+    "Different body builds remain distinct; feet sit consistently on the shared city ground position."
+  ],
+  "scope": "Visual check of actual in-game standing captures. Movement, facing, independent idle and switching are additionally verified by8 PlayMode tests and final authored-frame contact boards.",
+  "runtime_code_scope": "394-file saved snapshot tested in an independent game copy;6 concurrent Social/CityTile file changes recorded separately. Character resources and animation code stayed unchanged."
+}

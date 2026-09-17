@@ -1,0 +1,504 @@
+{
+  "status": "passed",
+  "characters_this_import": [
+    "29_he_xiangu"
+  ],
+  "source_root": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-natural-body",
+  "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
+  "png_count_this_import": 81,
+  "source_approvals": {
+    "29_he_xiangu": {
+      "manifest_sha256": "1a6ea359e1b8b5d99653b624ceb197d204ab11300c6ce67824c301a18994070e",
+      "qc_sha256": "384a8a346cde03fb1e9feb400c85f5e97e6080e50641ecdaee92e4ea4ba9cfa6",
+      "validation_sha256": "12ebb9383e937f6779ef67a92be0ddf63cae78855fd6baf869c44bfec16bc873"
+    }
+  },
+  "files": [
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/E.png",
+      "sha256": "e000e1d4d60c6f9a9f23cc26db031aec81c9d1ffc4a1a4be2c5d3865a99ef2d8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/N.png",
+      "sha256": "2677afce7b6a2c116665670b3c79c3b8b2a5b6ce442fc7eeff0c7557d94e99f4"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/NE.png",
+      "sha256": "5255818b1781ff7d74890c8e67e9bad1b97799d647e92e6dec19d747fea645b0"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/NW.png",
+      "sha256": "29beea7fcea1ad5e055762cff8c55334c2cc70e339da629e5903f87631990be1"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/S.png",
+      "sha256": "f30684f0a9366d2ae768c116a4ab219b7d03bd8fe2bfd07641ec708afc5d45c4"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/SE.png",
+      "sha256": "e39d41f0a2a6b4318885deee229a646342487cb010e39ba6c1baa5057cd2fd86"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/SW.png",
+      "sha256": "9768e428cbfe35d3ae1e69d7fa847c199c3a82b956933c0855be5b3d00a6c349"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/W.png",
+      "sha256": "f788a60432ec4ae7c8288949f6439c23a5ee46c31b0d00ae9c9b28465a85512c"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/portrait.png",
+      "sha256": "648e3459d2bfe79975795f595fe88550ce6bcab34899315072731b3cb0611c6a"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/01.png",
+      "sha256": "19bef0c2987588c1e31af7ebbdfdeae00ed2545405d62224014f39df80e961d8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/02.png",
+      "sha256": "0df5119c4fb1c666817b290faf671fef6ff42e25c4c5098ed11dc0132177fed0"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/03.png",
+      "sha256": "fc6dce6bd2355bda757df8954aee4d2b5da82bf1ee55a48012a9c323c1cc27b8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/04.png",
+      "sha256": "5768b574fc04d5da28bdbddca39137210dbf3eb49310b6b68d1c3ed1e2e9f7b2"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/05.png",
+      "sha256": "a67793784b9580029505204ce6a14c914f0f4c170ef4f477ca3422b8a4e8f089"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/06.png",
+      "sha256": "c9a2b2cb6adeba4ab29bf219bdd935680405d9e753b1825c3f9821ce56054673"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/07.png",
+      "sha256": "08a157467f66ec1153e2b471518f0fc72bbff2cb8f01aa093d75a937ca4ab71a"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/08.png",
+      "sha256": "866ba88c4d1cb9aef4b0bf0985dd57261d07676e99878a849b45d65928658c27"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/strip.png",
+      "sha256": "b494d035cb016938218ca02af217e1e2b77216e326ea8672fc9118750ce9eca2"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/01.png",
+      "sha256": "097b811f1d1449c785b7f8b459abfa74d40ae8a6e7e3e335f7e3b838d241e646"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/02.png",
+      "sha256": "c92392fce28b38a25ebef97260c0c3f96ab7426e14026145e1bd8d143dcedebe"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/03.png",
+      "sha256": "cbfac31124722eb8b36e5f901f11ee15f5155512c1b8813e69f989e8a570d595"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/04.png",
+      "sha256": "da97dbd3684a9057c40afccfa817ee85ed72d3fe271421d9a1b32a9eaee10cd8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/05.png",
+      "sha256": "f8d119ed74d7d30ce4ab1af04603615c72d34e6d209c6b24ae5188c53e1380d8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/06.png",
+      "sha256": "7e650b79b42d15e2dff85f525fa15f6996dcbba585c331ee1fcbee60c4f5bbd5"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/07.png",
+      "sha256": "e0df33466c36ec5a742712956646c02e47ff2903ed7e39fc48a7d84cf80e8b56"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/08.png",
+      "sha256": "2940219e73c449df91d3320809ba0a23c5245164255290e5e881b4a4e02609f3"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/strip.png",
+      "sha256": "97a13696136be66a14a6a5ede938f6a3bc18e74c243e6ad4d855e0c57cd164ac"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/01.png",
+      "sha256": "df21cab6f075c58469875bd967582e29d2024b86d629e888ebb5006c73c90413"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/02.png",
+      "sha256": "2f6d744efae9344372a2f8da411b0943920e27cad25f646e8adec7b8bb275b57"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/03.png",
+      "sha256": "cb562ce28e906cd22c04742cba4999ec32f8c35d0165eb11c0c220f529ddef20"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/04.png",
+      "sha256": "21f468fd9706a47a6c79a012431e91e427904a8aa67eeea1d358563c9118e4a1"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/05.png",
+      "sha256": "1f254d5ad66f6d50aee83b004e36b03d449bf38f98a3333e93f2d2467551a148"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/06.png",
+      "sha256": "edc1c996e585c7e8743f0df89cff82008fb0ec14dcdab35635aa16e56e147f91"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/07.png",
+      "sha256": "254e6daf8e3008f125b3aa3367e336235dc4c1e1ece584b8ede939f97c632d5d"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/08.png",
+      "sha256": "7b0e1cb4cff8805464b71df8e0e0d60df312af80edd18d9b0588fe7d9cee93cc"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/strip.png",
+      "sha256": "5af5cfec9e64eb2285759c530c6c67352bacf57c5135a0ac5d56502ef977dca5"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/01.png",
+      "sha256": "91a9af6875dacdb68d409af1bee3686b38e29308e94f08246356ba6536edffae"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/02.png",
+      "sha256": "1ffe5d9c2bec05b04e03c94fb25ff4a065393e7cc8e2cb62a733f5a3e8701aca"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/03.png",
+      "sha256": "6857089b0418f1c8b0ecafaf5b7a2c22f77bc9ffe095e4c84ce2f859ceb7c323"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/04.png",
+      "sha256": "93b3fce1bcfcbf45ce9707d12e25df5685af2582c54061fb92c0df629794a49d"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/05.png",
+      "sha256": "1d479905f50a23c69f5aef685a33e005c1aa12f9755d786760a630f25172cbe4"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/06.png",
+      "sha256": "9bafdffc117fa6eef48e7d31fe4aa8cb9c61f960b65d99cff68b98b7823174aa"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/07.png",
+      "sha256": "52f35853227145a59c1e320599e2ba4a7178ea8173a402cbe9a927bde3677de6"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/08.png",
+      "sha256": "639c1c58af8471dde9064a409cf0be1815b5e0f4005fdf5e557bbb8280332805"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/strip.png",
+      "sha256": "86723704e82b4177b3ee9f806015d34646cb4bdce61da3b04707db5d6cea7abf"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/01.png",
+      "sha256": "e973f1049425a3f4bb4fb7ba55e56efbcf4807836c23e0d9e698e4fa7918658b"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/02.png",
+      "sha256": "e078410aa1616e86d4d659fe5082b5b21024284eaa586b2592def5a69a9c8cd9"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/03.png",
+      "sha256": "bcad5f8e9516d5b0066ff1eb132806783f27cc2d5e17facd1e9c7c309d2964c9"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/04.png",
+      "sha256": "f13809fdc1177b3948db1719ec55da3fedd00479e3b9b30722705a524a81cf30"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/05.png",
+      "sha256": "ce3b25ec78151092c991fe776b80c689a43c27e59342c8e2f2e95adc1eba3661"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/06.png",
+      "sha256": "0834766fc42bcc83cb6fc4551ed2b0167e8ab01c71cef10b72ac7cb7acac67ad"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/07.png",
+      "sha256": "3ef023c12e81eb847f741b266b671ababbe42c5a6e4c5f6b6e38b677124e0c1b"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/08.png",
+      "sha256": "a3b886dfd0e8ee489fbcfd4bc6bce53bc6ce62051459a2dc112c65976b74d53c"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/strip.png",
+      "sha256": "5d11f75a9da2194a51d3b265990f1112307b3cd65f6b2883a5498b458c936beb"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/01.png",
+      "sha256": "1d058b8b384c1eac6da15ee1dcab40a47bb53de021cbf3cb8e87723e072abdb1"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/02.png",
+      "sha256": "bc586006b57ef9c5431d350541d63c0a4a66458e366567a75d600b5600f63a91"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/03.png",
+      "sha256": "3d1626d81ab53d273aeb8537067e23f906ed4f5145519346e647b93a98e57df7"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/04.png",
+      "sha256": "52a33a6ca9b2659a07dd900f60095fc2ebefee19d3b4f71a33a6e6a92ffaef14"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/05.png",
+      "sha256": "965c2e396b7a7ab2a98469ae41cf7739f91edac65a4bb02a40057eba231f1fda"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/06.png",
+      "sha256": "9087f06aef19b42b34031d1829131794ef335565c9db09a114d18691afc62427"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/07.png",
+      "sha256": "9c85d41ee6534b032bef3c1f0542b3345e828120261890b89b40fd6f73063a28"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/08.png",
+      "sha256": "8ae9606fbabe1ecd18bf8f8c3b0e36b7c07c0f8943195d6d21c47a0768384241"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/strip.png",
+      "sha256": "5d38f9077b04b0a29d48f46b4223e61313dcd621f5ad89e0cb7021c73a396ad7"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/01.png",
+      "sha256": "620712385d3400dcef7db7b5d63ad41c0969a15b5996ce86d59261ebbbacaf36"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/02.png",
+      "sha256": "17a2e69503a05bf05df41d841fc847d5558b45b837ee57bce2bb8c18fc8bc994"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/03.png",
+      "sha256": "07f784be4472bd8af455436b5f740ae68d1f02bf9b191800ed9c9646d83240d1"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/04.png",
+      "sha256": "95f8fde8e1ae6819bdf8e0168eee3aefe02ab311764869e1eeadceee0f428889"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/05.png",
+      "sha256": "08bb4c1aa2bd7f6a204e7f0515803118cf504daa4b17ff52041522b9cd8be364"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/06.png",
+      "sha256": "be9dee4d3913fb6062cf16ad340ea16718b483ad774dd58c4f615ef4459b1aa2"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/07.png",
+      "sha256": "79bd6620181a7a2e05f65979736f208e53f43de0a4888d0ba0ac71b9113bfe69"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/08.png",
+      "sha256": "d298694d06c60843fb2903c087a7722f2146bb11a866d1a18bafb4360423f320"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/strip.png",
+      "sha256": "97a72d89618014e31bfe553832839ef433804d9b9dd3b581f724536ffe60bfc6"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/01.png",
+      "sha256": "8f6c661f503a4a8c96dc48863e9fa00b3b7cf80be0b8c18a08870ead07710751"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/02.png",
+      "sha256": "531389d15fec7fde6e24bbb662bfce3caefa06b6dc30c01652d511152ea567c2"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/03.png",
+      "sha256": "e29ea85c22188126a981dd4747effb3f9bfc920f39e12b603f9ea52d875b9f79"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/04.png",
+      "sha256": "0f8cc447380f63faae47e5db5e542dab7a4dca09bb79118d03531542753b7d5f"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/05.png",
+      "sha256": "ecc5a997788edf02470383015c6eac70cfd97250cc6ea07205f80c06623485ff"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/06.png",
+      "sha256": "54c7cc9b47bdd6850813bd2cd1c59afaf4f4046ef484ccfd138958026a6f41a3"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/07.png",
+      "sha256": "c9e9cfd938892e37338e747c6cf836ecc85b9d53348f175351a0955171cb927a"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/08.png",
+      "sha256": "98859c3e7a3eeb11f7606511fecfe63ebff27b17819f01b8da217e8410873ea1"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/strip.png",
+      "sha256": "46dbd0865b9dbc528b00f0f0aea73f9895fa626a674e8ec3b6318fd56df200e7"
+    }
+  ]
+}

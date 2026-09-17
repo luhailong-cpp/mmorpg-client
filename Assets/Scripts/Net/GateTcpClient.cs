@@ -41,7 +41,7 @@ namespace MmorpgClient.Net
         public event Action<string> OnError;
         public event Action OnDisconnected;
 
-        public bool Connected => _tcp != null && _tcp.Connected && _running;
+        public bool Connected => _running && _tcp?.Client?.Connected == true;
 
         public GateTcpClient(MuduoCodec codec) { _codec = codec; }
 
@@ -136,11 +136,14 @@ namespace MmorpgClient.Net
                     }
                 }
             }
-            catch (Exception ex) when (_running)
+            catch (Exception ex)
             {
-                _errors.Enqueue($"reader: {ex.Message}");
+                // Dispose 先清运行标志再关流；关闭异常仍须捕获，避免逃出后台线程。
+                if (_running) _errors.Enqueue($"reader: {ex.Message}");
             }
             _running = false;
+            // EOF、解码或读取失败也要唤醒正在空 outbox 等待的 Writer。
+            try { _outbox.CompleteAdding(); } catch { }
             try { _tcp?.Close(); } catch { }
             _inbox.Enqueue(new DisconnectedSentinel());
         }
@@ -155,10 +158,13 @@ namespace MmorpgClient.Net
                     _stream.Write(bytes, 0, bytes.Length);
                 }
             }
-            catch (Exception ex) when (_running)
+            catch (Exception ex)
             {
-                _errors.Enqueue($"writer: {ex.Message}");
+                // 正常关闭不报告故障；运行中的真实写错误仍交给主线程。
+                if (_running) _errors.Enqueue($"writer: {ex.Message}");
                 _running = false;
+                // 唤醒阻塞中的 Reader，由它统一排入单个断线哨兵。
+                try { _tcp?.Close(); } catch { }
             }
         }
 

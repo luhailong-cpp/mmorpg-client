@@ -1,0 +1,7 @@
+{
+  "date_utc": "2026-09-14T12:59:05.734886+00:00",
+  "target": "E:\\work\\mmorpg-client\\Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier",
+  "previous_v12_directory_existed": false,
+  "fallback_before_import": "QdaoRosterV11/23_lantern_courier if no V12 appearance.json",
+  "v11_files_untouched": true
+}

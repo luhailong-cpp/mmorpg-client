@@ -1,0 +1,23 @@
+{
+  "unity": "6000.6.0f1",
+  "limitations": [
+    "New 4K art is not generated or integrated",
+    "Atomic day/festival transition remains unimplemented",
+    "Foreground requires both matching silhouettes and closest-zoom HD acceptance before activation",
+    "Device memory/performance and new-art PlayMode acceptance have not been run"
+  ],
+  "verifiedAt": "2026-09-16T23:28:46.6984965-04:00",
+  "productionManifestPublished": false,
+  "scope": "Isolated Unity EditMode project containing exact loader/importer/test source copies, fixed world rectangle fixture, and one unchanged legacy tile",
+  "tests": {
+    "passed": 13,
+    "failed": 0,
+    "total": 13
+  },
+  "runtimeCompile": {
+    "tool": "tools/client_compile_check.ps1",
+    "files": 306,
+    "errors": 0,
+    "verifiedAt": "2026-09-16T23:27:12-04:00"
+  }
+}

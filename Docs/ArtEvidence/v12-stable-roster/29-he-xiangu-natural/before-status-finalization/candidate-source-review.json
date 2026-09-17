@@ -1,0 +1,4768 @@
+{
+  "status": "art_sources_assembled_pending_full_visual_verification",
+  "character": "29_he_xiangu",
+  "style": "plain sage ivory Taoist cloth robes, long trousers and ivory flats; young low bun He Xiangu, no fantasy effects",
+  "phase_contract": [
+    "RIGHT contact",
+    "RIGHT support LEFT release",
+    "RIGHT support LEFT low pass",
+    "LEFT precontact",
+    "LEFT contact",
+    "LEFT support RIGHT release",
+    "LEFT support RIGHT low pass",
+    "RIGHT precontact"
+  ],
+  "directions_available": [
+    "S",
+    "E",
+    "SE",
+    "N",
+    "W",
+    "SW",
+    "NE",
+    "NW"
+  ],
+  "directions_missing": [],
+  "source_cells": {
+    "S": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\keys-raw.png",
+        "sha256": "963568078e5e5b1e8ddd38ef425a6146cf1ac61eb49ead7c149ade106ced8d53",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\inbetweens-arm-fixed-raw.png",
+        "sha256": "2c86d2a5c20ee1407230611a23baf5c9b6e454759ba048ba460bb165ed302d37",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\keys-raw.png",
+        "sha256": "963568078e5e5b1e8ddd38ef425a6146cf1ac61eb49ead7c149ade106ced8d53",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\inbetweens-arm-fixed-raw.png",
+        "sha256": "2c86d2a5c20ee1407230611a23baf5c9b6e454759ba048ba460bb165ed302d37",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\keys-raw.png",
+        "sha256": "963568078e5e5b1e8ddd38ef425a6146cf1ac61eb49ead7c149ade106ced8d53",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\inbetweens-arm-fixed-raw.png",
+        "sha256": "2c86d2a5c20ee1407230611a23baf5c9b6e454759ba048ba460bb165ed302d37",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\keys-raw.png",
+        "sha256": "963568078e5e5b1e8ddd38ef425a6146cf1ac61eb49ead7c149ade106ced8d53",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\S\\inbetweens-arm-fixed-raw.png",
+        "sha256": "2c86d2a5c20ee1407230611a23baf5c9b6e454759ba048ba460bb165ed302d37",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "S",
+        "output_phase": 8
+      }
+    ],
+    "E": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          1254,
+          0,
+          1881,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          1881,
+          0,
+          2508,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 5,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 6,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 7,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          1254,
+          627,
+          1881,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\E\\walk-final-raw.png",
+        "sha256": "79416c1376ddb6d50d36471e0b294a5b65c47bbebc2dfb3bd00ec2aed7e35da4",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          4,
+          2
+        ],
+        "native_grid_index": 8,
+        "normalized_sheet_size": [
+          2508,
+          1254
+        ],
+        "normalized_cell_box": [
+          1881,
+          627,
+          2508,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "E",
+        "output_phase": 8
+      }
+    ],
+    "SE": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SE\\keys-raw.png",
+        "sha256": "9d9f43fdf589e785c735e26dcad2ca894b65839008c699266b1daca1233906b9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SE\\inbetweens-raw.png",
+        "sha256": "3166d9bf2469257fedd3918d57b259958d356cba8975a727e4a43618412dcbb9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SE\\keys-raw.png",
+        "sha256": "9d9f43fdf589e785c735e26dcad2ca894b65839008c699266b1daca1233906b9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\precontact-fixes\\precontact-final-raw.png",
+        "sha256": "7417d33fc5330b8b20177150f4d70ee2bcf70ee0f37aa7947e0357631e05932e",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          2,
+          1
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          627
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SE\\keys-raw.png",
+        "sha256": "9d9f43fdf589e785c735e26dcad2ca894b65839008c699266b1daca1233906b9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SE\\inbetweens-raw.png",
+        "sha256": "3166d9bf2469257fedd3918d57b259958d356cba8975a727e4a43618412dcbb9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SE\\keys-raw.png",
+        "sha256": "9d9f43fdf589e785c735e26dcad2ca894b65839008c699266b1daca1233906b9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SE\\inbetweens-raw.png",
+        "sha256": "3166d9bf2469257fedd3918d57b259958d356cba8975a727e4a43618412dcbb9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SE",
+        "output_phase": 8
+      }
+    ],
+    "N": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\keys-final-raw.png",
+        "sha256": "07afc4247c2a0fad86ac1801c0d102ff0ad42b4980d6b3693f41d809470ab023",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\inbetweens-original-raw.png",
+        "sha256": "61d64f5c0df61d93eb89272eb65d5360c61f39d2692b17203fc1d9af514891aa",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\keys-final-raw.png",
+        "sha256": "07afc4247c2a0fad86ac1801c0d102ff0ad42b4980d6b3693f41d809470ab023",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\inbetweens-original-raw.png",
+        "sha256": "61d64f5c0df61d93eb89272eb65d5360c61f39d2692b17203fc1d9af514891aa",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\keys-final-raw.png",
+        "sha256": "07afc4247c2a0fad86ac1801c0d102ff0ad42b4980d6b3693f41d809470ab023",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\inbetweens-original-raw.png",
+        "sha256": "61d64f5c0df61d93eb89272eb65d5360c61f39d2692b17203fc1d9af514891aa",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\keys-final-raw.png",
+        "sha256": "07afc4247c2a0fad86ac1801c0d102ff0ad42b4980d6b3693f41d809470ab023",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\N\\inbetweens-original-raw.png",
+        "sha256": "61d64f5c0df61d93eb89272eb65d5360c61f39d2692b17203fc1d9af514891aa",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "N",
+        "output_phase": 8
+      }
+    ],
+    "W": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\keys-final-raw.png",
+        "sha256": "d98307f0c1bf07c99bf27b5d61b8c3a074a0a8c7ba4ab0d8be9a8f3d2325e8a9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\inbetweens-final-raw.png",
+        "sha256": "63b95474aeca6b9832737827dc278b65169b9f8f08814f2fe2ac33c916f562f3",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\keys-final-raw.png",
+        "sha256": "d98307f0c1bf07c99bf27b5d61b8c3a074a0a8c7ba4ab0d8be9a8f3d2325e8a9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\inbetweens-final-raw.png",
+        "sha256": "63b95474aeca6b9832737827dc278b65169b9f8f08814f2fe2ac33c916f562f3",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\keys-final-raw.png",
+        "sha256": "d98307f0c1bf07c99bf27b5d61b8c3a074a0a8c7ba4ab0d8be9a8f3d2325e8a9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\inbetweens-final-raw.png",
+        "sha256": "63b95474aeca6b9832737827dc278b65169b9f8f08814f2fe2ac33c916f562f3",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\keys-final-raw.png",
+        "sha256": "d98307f0c1bf07c99bf27b5d61b8c3a074a0a8c7ba4ab0d8be9a8f3d2325e8a9",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\W\\inbetweens-final-raw.png",
+        "sha256": "63b95474aeca6b9832737827dc278b65169b9f8f08814f2fe2ac33c916f562f3",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "W",
+        "output_phase": 8
+      }
+    ],
+    "SW": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SW\\keys-final-raw.png",
+        "sha256": "3f3c3db68a1ce7df4fc1af87e0dc385ddcad5f4eefed8d7461a25aa71abb7fd0",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SW\\inbetweens-refined-raw.png",
+        "sha256": "0c809e5c2b00d7c08f814dd0c7b42af7daad40cb8a6bad5f73dc02187746e815",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SW\\keys-final-raw.png",
+        "sha256": "3f3c3db68a1ce7df4fc1af87e0dc385ddcad5f4eefed8d7461a25aa71abb7fd0",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\precontact-fixes\\precontact-final-raw.png",
+        "sha256": "7417d33fc5330b8b20177150f4d70ee2bcf70ee0f37aa7947e0357631e05932e",
+        "native_size": [
+          1774,
+          887
+        ],
+        "native_grid": [
+          2,
+          1
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          627
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SW\\keys-final-raw.png",
+        "sha256": "3f3c3db68a1ce7df4fc1af87e0dc385ddcad5f4eefed8d7461a25aa71abb7fd0",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SW\\inbetweens-refined-raw.png",
+        "sha256": "0c809e5c2b00d7c08f814dd0c7b42af7daad40cb8a6bad5f73dc02187746e815",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SW\\keys-final-raw.png",
+        "sha256": "3f3c3db68a1ce7df4fc1af87e0dc385ddcad5f4eefed8d7461a25aa71abb7fd0",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\SW\\inbetweens-refined-raw.png",
+        "sha256": "0c809e5c2b00d7c08f814dd0c7b42af7daad40cb8a6bad5f73dc02187746e815",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "direction": "SW",
+        "output_phase": 8
+      }
+    ],
+    "NE": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+        "sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.assembly.json",
+          "sha256": "209983c451ec658110c657066226706dbb3ec8cb58433e0e85ecd024476e48ed",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+            "output_sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-native.png",
+                "source_sha256": "9041536815a327267e55ed598699ca3fc797176c99cfeee62a7d0894753cee52",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3d51fb71c4431c205c5b27dab42ff6efe75f200edd424c6f457535618978f9a2",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-source.json",
+                "generation_record_sha256": "b29593e576dd5c7505b6528f5e36bf3b5a37ec90e4958c2a72bb679bf6d42d3e",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-native.png",
+                "source_sha256": "d881392ac8f142894f194498968b685094e62fbd8f737a1f7c32dca835733370",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "054c41ba13751fdc24f1439ed32e0439157d91f731c71901abbb28debb670c26",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-source.json",
+                "generation_record_sha256": "10630a2e61d4cbde6d7e6437ae819f7f501456020f85382e8fae42f5f78474e1",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-native.png",
+                "source_sha256": "b42b458fae8c31722a6731a50c7cae881b9e1be5119cec287857e41c3c8b9d45",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "a94610de64c3457102868833f4d03c2e2ec128d975a1a2c129208d93ed6e3706",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-source.json",
+                "generation_record_sha256": "8c51816ae4736e78fd5255e279d0ac7fab06599c504cce5646e5eb6ed974ec44",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-local-leg-candidate.png",
+                "source_sha256": "5d4689d56c61440bf85ac25e36b88165c245c1abc037a3cfd610588a86ba9cc1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3bdb3953c278cd0d0be2b1b52edff40f8689f851823361e0b1ed2be73fbd402c",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase07-source.json",
+                "generation_record_sha256": "6cf25789f75750311af8bc4c998ef98b89f2f42145783b66791901da2f924e77",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+        "sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.assembly.json",
+          "sha256": "0f1efd1c2b651fbe192c856db1e600ea12fe8e26ac12ab687cd9eeb271b64362",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+            "output_sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-native.png",
+                "source_sha256": "d2304942d8facff514394e5f8b99507cb29e5a40abc24bf244f348ca52cc8b1e",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "11d5218db532c9a0ca6c201849806e74df90edd870e05197197d980589c8f55f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-source.json",
+                "generation_record_sha256": "c942d150fb2a1bfa300f88ca2554524cbd90eddfac3e989ccf49060f90b0d226",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-native.png",
+                "source_sha256": "7134f3d7250da29088c202687453b10b63bd29dc34f7f644dc97c88eab6127c1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "5495c8d9b26a65ec901a73b85d7073bd4158301e44ae6bb0cc7538aac57d418f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-source.json",
+                "generation_record_sha256": "171784968915cee29ac515e528aceef0820bd6524eaa708139bbf3adf6c9f960",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-native.png",
+                "source_sha256": "e71d227a835ffd31e74277f83751c782869f91c0f18f524c880ed2f59740a878",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "13d3d33b5aab83f5ddfe8482963cce326331399b4a42ef22554762dd437422ac",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-source.json",
+                "generation_record_sha256": "0cc413e3d6ba99565d337a380517c0a41c2eada04df5e50dad149116920d836b",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-native.png",
+                "source_sha256": "4b640089ea4877f5a3d48d0929984c66f811af534ffd7c6e6ca8e9a58498b121",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "aeea36b39c5f75c9bf02ecc5d81a1c14fc805ed785939f792b10777653121d54",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-source.json",
+                "generation_record_sha256": "d2e9edccf1d85eb3fded38770015bba498701d39c63c11a22e0972138fd46152",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+        "sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.assembly.json",
+          "sha256": "209983c451ec658110c657066226706dbb3ec8cb58433e0e85ecd024476e48ed",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+            "output_sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-native.png",
+                "source_sha256": "9041536815a327267e55ed598699ca3fc797176c99cfeee62a7d0894753cee52",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3d51fb71c4431c205c5b27dab42ff6efe75f200edd424c6f457535618978f9a2",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-source.json",
+                "generation_record_sha256": "b29593e576dd5c7505b6528f5e36bf3b5a37ec90e4958c2a72bb679bf6d42d3e",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-native.png",
+                "source_sha256": "d881392ac8f142894f194498968b685094e62fbd8f737a1f7c32dca835733370",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "054c41ba13751fdc24f1439ed32e0439157d91f731c71901abbb28debb670c26",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-source.json",
+                "generation_record_sha256": "10630a2e61d4cbde6d7e6437ae819f7f501456020f85382e8fae42f5f78474e1",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-native.png",
+                "source_sha256": "b42b458fae8c31722a6731a50c7cae881b9e1be5119cec287857e41c3c8b9d45",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "a94610de64c3457102868833f4d03c2e2ec128d975a1a2c129208d93ed6e3706",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-source.json",
+                "generation_record_sha256": "8c51816ae4736e78fd5255e279d0ac7fab06599c504cce5646e5eb6ed974ec44",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-local-leg-candidate.png",
+                "source_sha256": "5d4689d56c61440bf85ac25e36b88165c245c1abc037a3cfd610588a86ba9cc1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3bdb3953c278cd0d0be2b1b52edff40f8689f851823361e0b1ed2be73fbd402c",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase07-source.json",
+                "generation_record_sha256": "6cf25789f75750311af8bc4c998ef98b89f2f42145783b66791901da2f924e77",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+        "sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.assembly.json",
+          "sha256": "0f1efd1c2b651fbe192c856db1e600ea12fe8e26ac12ab687cd9eeb271b64362",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+            "output_sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-native.png",
+                "source_sha256": "d2304942d8facff514394e5f8b99507cb29e5a40abc24bf244f348ca52cc8b1e",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "11d5218db532c9a0ca6c201849806e74df90edd870e05197197d980589c8f55f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-source.json",
+                "generation_record_sha256": "c942d150fb2a1bfa300f88ca2554524cbd90eddfac3e989ccf49060f90b0d226",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-native.png",
+                "source_sha256": "7134f3d7250da29088c202687453b10b63bd29dc34f7f644dc97c88eab6127c1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "5495c8d9b26a65ec901a73b85d7073bd4158301e44ae6bb0cc7538aac57d418f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-source.json",
+                "generation_record_sha256": "171784968915cee29ac515e528aceef0820bd6524eaa708139bbf3adf6c9f960",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-native.png",
+                "source_sha256": "e71d227a835ffd31e74277f83751c782869f91c0f18f524c880ed2f59740a878",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "13d3d33b5aab83f5ddfe8482963cce326331399b4a42ef22554762dd437422ac",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-source.json",
+                "generation_record_sha256": "0cc413e3d6ba99565d337a380517c0a41c2eada04df5e50dad149116920d836b",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-native.png",
+                "source_sha256": "4b640089ea4877f5a3d48d0929984c66f811af534ffd7c6e6ca8e9a58498b121",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "aeea36b39c5f75c9bf02ecc5d81a1c14fc805ed785939f792b10777653121d54",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-source.json",
+                "generation_record_sha256": "d2e9edccf1d85eb3fded38770015bba498701d39c63c11a22e0972138fd46152",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+        "sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.assembly.json",
+          "sha256": "209983c451ec658110c657066226706dbb3ec8cb58433e0e85ecd024476e48ed",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+            "output_sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-native.png",
+                "source_sha256": "9041536815a327267e55ed598699ca3fc797176c99cfeee62a7d0894753cee52",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3d51fb71c4431c205c5b27dab42ff6efe75f200edd424c6f457535618978f9a2",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-source.json",
+                "generation_record_sha256": "b29593e576dd5c7505b6528f5e36bf3b5a37ec90e4958c2a72bb679bf6d42d3e",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-native.png",
+                "source_sha256": "d881392ac8f142894f194498968b685094e62fbd8f737a1f7c32dca835733370",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "054c41ba13751fdc24f1439ed32e0439157d91f731c71901abbb28debb670c26",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-source.json",
+                "generation_record_sha256": "10630a2e61d4cbde6d7e6437ae819f7f501456020f85382e8fae42f5f78474e1",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-native.png",
+                "source_sha256": "b42b458fae8c31722a6731a50c7cae881b9e1be5119cec287857e41c3c8b9d45",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "a94610de64c3457102868833f4d03c2e2ec128d975a1a2c129208d93ed6e3706",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-source.json",
+                "generation_record_sha256": "8c51816ae4736e78fd5255e279d0ac7fab06599c504cce5646e5eb6ed974ec44",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-local-leg-candidate.png",
+                "source_sha256": "5d4689d56c61440bf85ac25e36b88165c245c1abc037a3cfd610588a86ba9cc1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3bdb3953c278cd0d0be2b1b52edff40f8689f851823361e0b1ed2be73fbd402c",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase07-source.json",
+                "generation_record_sha256": "6cf25789f75750311af8bc4c998ef98b89f2f42145783b66791901da2f924e77",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+        "sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.assembly.json",
+          "sha256": "0f1efd1c2b651fbe192c856db1e600ea12fe8e26ac12ab687cd9eeb271b64362",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+            "output_sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-native.png",
+                "source_sha256": "d2304942d8facff514394e5f8b99507cb29e5a40abc24bf244f348ca52cc8b1e",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "11d5218db532c9a0ca6c201849806e74df90edd870e05197197d980589c8f55f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-source.json",
+                "generation_record_sha256": "c942d150fb2a1bfa300f88ca2554524cbd90eddfac3e989ccf49060f90b0d226",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-native.png",
+                "source_sha256": "7134f3d7250da29088c202687453b10b63bd29dc34f7f644dc97c88eab6127c1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "5495c8d9b26a65ec901a73b85d7073bd4158301e44ae6bb0cc7538aac57d418f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-source.json",
+                "generation_record_sha256": "171784968915cee29ac515e528aceef0820bd6524eaa708139bbf3adf6c9f960",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-native.png",
+                "source_sha256": "e71d227a835ffd31e74277f83751c782869f91c0f18f524c880ed2f59740a878",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "13d3d33b5aab83f5ddfe8482963cce326331399b4a42ef22554762dd437422ac",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-source.json",
+                "generation_record_sha256": "0cc413e3d6ba99565d337a380517c0a41c2eada04df5e50dad149116920d836b",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-native.png",
+                "source_sha256": "4b640089ea4877f5a3d48d0929984c66f811af534ffd7c6e6ca8e9a58498b121",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "aeea36b39c5f75c9bf02ecc5d81a1c14fc805ed785939f792b10777653121d54",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-source.json",
+                "generation_record_sha256": "d2e9edccf1d85eb3fded38770015bba498701d39c63c11a22e0972138fd46152",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+        "sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.assembly.json",
+          "sha256": "209983c451ec658110c657066226706dbb3ec8cb58433e0e85ecd024476e48ed",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-final-raw.png",
+            "output_sha256": "71abf1bf40c214de2b0c4947ffa3785ae7ce3314d1fccbfa452e4f0288f8c262",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-native.png",
+                "source_sha256": "9041536815a327267e55ed598699ca3fc797176c99cfeee62a7d0894753cee52",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3d51fb71c4431c205c5b27dab42ff6efe75f200edd424c6f457535618978f9a2",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase01-source.json",
+                "generation_record_sha256": "b29593e576dd5c7505b6528f5e36bf3b5a37ec90e4958c2a72bb679bf6d42d3e",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-native.png",
+                "source_sha256": "d881392ac8f142894f194498968b685094e62fbd8f737a1f7c32dca835733370",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "054c41ba13751fdc24f1439ed32e0439157d91f731c71901abbb28debb670c26",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase03-source.json",
+                "generation_record_sha256": "10630a2e61d4cbde6d7e6437ae819f7f501456020f85382e8fae42f5f78474e1",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-native.png",
+                "source_sha256": "b42b458fae8c31722a6731a50c7cae881b9e1be5119cec287857e41c3c8b9d45",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "a94610de64c3457102868833f4d03c2e2ec128d975a1a2c129208d93ed6e3706",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase05-source.json",
+                "generation_record_sha256": "8c51816ae4736e78fd5255e279d0ac7fab06599c504cce5646e5eb6ed974ec44",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\keys-local-leg-candidate.png",
+                "source_sha256": "5d4689d56c61440bf85ac25e36b88165c245c1abc037a3cfd610588a86ba9cc1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "3bdb3953c278cd0d0be2b1b52edff40f8689f851823361e0b1ed2be73fbd402c",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase07-source.json",
+                "generation_record_sha256": "6cf25789f75750311af8bc4c998ef98b89f2f42145783b66791901da2f924e77",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+        "sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.assembly.json",
+          "sha256": "0f1efd1c2b651fbe192c856db1e600ea12fe8e26ac12ab687cd9eeb271b64362",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NE",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\inbetweens-final-raw.png",
+            "output_sha256": "89c68a36464b9ef2c0595e95061c33df7b8e36526fb04cea332df215b61f121f",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NE",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-native.png",
+                "source_sha256": "d2304942d8facff514394e5f8b99507cb29e5a40abc24bf244f348ca52cc8b1e",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "11d5218db532c9a0ca6c201849806e74df90edd870e05197197d980589c8f55f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase02-source.json",
+                "generation_record_sha256": "c942d150fb2a1bfa300f88ca2554524cbd90eddfac3e989ccf49060f90b0d226",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-native.png",
+                "source_sha256": "7134f3d7250da29088c202687453b10b63bd29dc34f7f644dc97c88eab6127c1",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "5495c8d9b26a65ec901a73b85d7073bd4158301e44ae6bb0cc7538aac57d418f",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase04-source.json",
+                "generation_record_sha256": "171784968915cee29ac515e528aceef0820bd6524eaa708139bbf3adf6c9f960",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-native.png",
+                "source_sha256": "e71d227a835ffd31e74277f83751c782869f91c0f18f524c880ed2f59740a878",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "13d3d33b5aab83f5ddfe8482963cce326331399b4a42ef22554762dd437422ac",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase06-source.json",
+                "generation_record_sha256": "0cc413e3d6ba99565d337a380517c0a41c2eada04df5e50dad149116920d836b",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NE",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-native.png",
+                "source_sha256": "4b640089ea4877f5a3d48d0929984c66f811af534ffd7c6e6ca8e9a58498b121",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "aeea36b39c5f75c9bf02ecc5d81a1c14fc805ed785939f792b10777653121d54",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NE\\phase08-source.json",
+                "generation_record_sha256": "d2e9edccf1d85eb3fded38770015bba498701d39c63c11a22e0972138fd46152",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NE",
+        "output_phase": 8
+      }
+    ],
+    "NW": [
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+        "sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.assembly.json",
+          "sha256": "7722da46fbc73eb98d38da45a5887c9c417c03a097246ceb8f9f6eb2c79cff63",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+            "output_sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-native.png",
+                "source_sha256": "9a6b59539dc4d4b804a50937bc1b6c097063fabbf1b5c024412c6d5aa208172b",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c088a975e98216afbff1acf8c2d3327809b68b1f88691e30b32759770e1ab57e",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-source.json",
+                "generation_record_sha256": "de67b280edd17a7656c232c120e79ad06451eee7cda945e089fa6ed3ba6e0893",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 1,
+                "source_crop_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "055880bdf580fe1bdbe978ae39464b70c2bf17d9da880f30b9d566a7c0e32113",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase03-source.json",
+                "generation_record_sha256": "5a54b32f1f6f94896d4c5a0da84504b8fedf40ab4a8728ac8505fd184297e09c",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 2,
+                "source_crop_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "d4126c277ccd3e117de2626e74b2cee4ab9b8e76e04823632211de76b4e8b76d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase05-source.json",
+                "generation_record_sha256": "e4300b92a813637536bf0f73c34bac2ba6b0f373d2b09fd89204cf3447413dc7",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2a0459e0d52a0efbd7319a071f9c444e8f4d483dae849833d780af92b3cce2bc",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase07-source.json",
+                "generation_record_sha256": "2966ba72d2598c0edb2f510e695025dd393bc31c516e04fab4413fb0a219b792",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 1
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+        "sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 1,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.assembly.json",
+          "sha256": "77df70a64e7bfbf741bda294c13630f5b23cfc6ad49efaf5bbc3f05414d8f6e5",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+            "output_sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-native.png",
+                "source_sha256": "478c86ccad6c10472bfc80e9c7a628f87a4ac82ef3491ba4c057eff3a53784cd",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "fba12978c5361c43fce5113d06a9196ada542f94ba3c9216071da3b4a78c12ff",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-source.json",
+                "generation_record_sha256": "a96c27291bcc6c678bb02114a9fc76d630c19c41c399165b19c2b6eff4374f0b",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-native.png",
+                "source_sha256": "cb53791261e99695bcf4bc12c94b9aacc50bef406a3f4d3776ce9a161f02d45a",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "48ebd5fbf55681c4db0fd6b86885ff4e761dfd91fe69b0442f3ba33bf7d71522",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-source.json",
+                "generation_record_sha256": "df728ef6e1dfdaa9e303dc9a198655a005b9e4d52da035c5a55e895b44df0d98",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-native.png",
+                "source_sha256": "03143e3ce6c3828b177dbec1469e88ae9dbce58666721a073bb4dd0129491a67",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c4e661e4e822188ff4d79bcd57952e310d5d74b2f6c36b9d72495100c0b6989a",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-source.json",
+                "generation_record_sha256": "0f5eaa9ce2c7ef71de2624e2f42cc26951a9362f8e25bd587e690f334f2cd675",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-native.png",
+                "source_sha256": "e8509d00c5ccd987ec7315c31b804ccf60d859ec8d2b6fc66fda162a4763e8bb",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2c78d6cd21bbdaee9459616647326366efbf985d7dff3cb99644e6c48002d47d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-source.json",
+                "generation_record_sha256": "bfbd942d4352744c011faedfbb640cb6b4566a28d87fb023ba33ea0dd19f60f8",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 2
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+        "sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.assembly.json",
+          "sha256": "7722da46fbc73eb98d38da45a5887c9c417c03a097246ceb8f9f6eb2c79cff63",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+            "output_sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-native.png",
+                "source_sha256": "9a6b59539dc4d4b804a50937bc1b6c097063fabbf1b5c024412c6d5aa208172b",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c088a975e98216afbff1acf8c2d3327809b68b1f88691e30b32759770e1ab57e",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-source.json",
+                "generation_record_sha256": "de67b280edd17a7656c232c120e79ad06451eee7cda945e089fa6ed3ba6e0893",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 1,
+                "source_crop_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "055880bdf580fe1bdbe978ae39464b70c2bf17d9da880f30b9d566a7c0e32113",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase03-source.json",
+                "generation_record_sha256": "5a54b32f1f6f94896d4c5a0da84504b8fedf40ab4a8728ac8505fd184297e09c",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 2,
+                "source_crop_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "d4126c277ccd3e117de2626e74b2cee4ab9b8e76e04823632211de76b4e8b76d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase05-source.json",
+                "generation_record_sha256": "e4300b92a813637536bf0f73c34bac2ba6b0f373d2b09fd89204cf3447413dc7",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2a0459e0d52a0efbd7319a071f9c444e8f4d483dae849833d780af92b3cce2bc",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase07-source.json",
+                "generation_record_sha256": "2966ba72d2598c0edb2f510e695025dd393bc31c516e04fab4413fb0a219b792",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 3
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+        "sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 2,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          0,
+          1254,
+          627
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.assembly.json",
+          "sha256": "77df70a64e7bfbf741bda294c13630f5b23cfc6ad49efaf5bbc3f05414d8f6e5",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+            "output_sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-native.png",
+                "source_sha256": "478c86ccad6c10472bfc80e9c7a628f87a4ac82ef3491ba4c057eff3a53784cd",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "fba12978c5361c43fce5113d06a9196ada542f94ba3c9216071da3b4a78c12ff",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-source.json",
+                "generation_record_sha256": "a96c27291bcc6c678bb02114a9fc76d630c19c41c399165b19c2b6eff4374f0b",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-native.png",
+                "source_sha256": "cb53791261e99695bcf4bc12c94b9aacc50bef406a3f4d3776ce9a161f02d45a",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "48ebd5fbf55681c4db0fd6b86885ff4e761dfd91fe69b0442f3ba33bf7d71522",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-source.json",
+                "generation_record_sha256": "df728ef6e1dfdaa9e303dc9a198655a005b9e4d52da035c5a55e895b44df0d98",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-native.png",
+                "source_sha256": "03143e3ce6c3828b177dbec1469e88ae9dbce58666721a073bb4dd0129491a67",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c4e661e4e822188ff4d79bcd57952e310d5d74b2f6c36b9d72495100c0b6989a",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-source.json",
+                "generation_record_sha256": "0f5eaa9ce2c7ef71de2624e2f42cc26951a9362f8e25bd587e690f334f2cd675",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-native.png",
+                "source_sha256": "e8509d00c5ccd987ec7315c31b804ccf60d859ec8d2b6fc66fda162a4763e8bb",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2c78d6cd21bbdaee9459616647326366efbf985d7dff3cb99644e6c48002d47d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-source.json",
+                "generation_record_sha256": "bfbd942d4352744c011faedfbb640cb6b4566a28d87fb023ba33ea0dd19f60f8",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 4
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+        "sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.assembly.json",
+          "sha256": "7722da46fbc73eb98d38da45a5887c9c417c03a097246ceb8f9f6eb2c79cff63",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+            "output_sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-native.png",
+                "source_sha256": "9a6b59539dc4d4b804a50937bc1b6c097063fabbf1b5c024412c6d5aa208172b",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c088a975e98216afbff1acf8c2d3327809b68b1f88691e30b32759770e1ab57e",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-source.json",
+                "generation_record_sha256": "de67b280edd17a7656c232c120e79ad06451eee7cda945e089fa6ed3ba6e0893",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 1,
+                "source_crop_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "055880bdf580fe1bdbe978ae39464b70c2bf17d9da880f30b9d566a7c0e32113",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase03-source.json",
+                "generation_record_sha256": "5a54b32f1f6f94896d4c5a0da84504b8fedf40ab4a8728ac8505fd184297e09c",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 2,
+                "source_crop_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "d4126c277ccd3e117de2626e74b2cee4ab9b8e76e04823632211de76b4e8b76d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase05-source.json",
+                "generation_record_sha256": "e4300b92a813637536bf0f73c34bac2ba6b0f373d2b09fd89204cf3447413dc7",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2a0459e0d52a0efbd7319a071f9c444e8f4d483dae849833d780af92b3cce2bc",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase07-source.json",
+                "generation_record_sha256": "2966ba72d2598c0edb2f510e695025dd393bc31c516e04fab4413fb0a219b792",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 5
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+        "sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 3,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          0,
+          627,
+          627,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.assembly.json",
+          "sha256": "77df70a64e7bfbf741bda294c13630f5b23cfc6ad49efaf5bbc3f05414d8f6e5",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+            "output_sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-native.png",
+                "source_sha256": "478c86ccad6c10472bfc80e9c7a628f87a4ac82ef3491ba4c057eff3a53784cd",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "fba12978c5361c43fce5113d06a9196ada542f94ba3c9216071da3b4a78c12ff",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-source.json",
+                "generation_record_sha256": "a96c27291bcc6c678bb02114a9fc76d630c19c41c399165b19c2b6eff4374f0b",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-native.png",
+                "source_sha256": "cb53791261e99695bcf4bc12c94b9aacc50bef406a3f4d3776ce9a161f02d45a",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "48ebd5fbf55681c4db0fd6b86885ff4e761dfd91fe69b0442f3ba33bf7d71522",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-source.json",
+                "generation_record_sha256": "df728ef6e1dfdaa9e303dc9a198655a005b9e4d52da035c5a55e895b44df0d98",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-native.png",
+                "source_sha256": "03143e3ce6c3828b177dbec1469e88ae9dbce58666721a073bb4dd0129491a67",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c4e661e4e822188ff4d79bcd57952e310d5d74b2f6c36b9d72495100c0b6989a",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-source.json",
+                "generation_record_sha256": "0f5eaa9ce2c7ef71de2624e2f42cc26951a9362f8e25bd587e690f334f2cd675",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-native.png",
+                "source_sha256": "e8509d00c5ccd987ec7315c31b804ccf60d859ec8d2b6fc66fda162a4763e8bb",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2c78d6cd21bbdaee9459616647326366efbf985d7dff3cb99644e6c48002d47d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-source.json",
+                "generation_record_sha256": "bfbd942d4352744c011faedfbb640cb6b4566a28d87fb023ba33ea0dd19f60f8",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 6
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+        "sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.assembly.json",
+          "sha256": "7722da46fbc73eb98d38da45a5887c9c417c03a097246ceb8f9f6eb2c79cff63",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-final-raw.png",
+            "output_sha256": "3a371e3aa6530cb5d7997ae76338314afb023d44c8bcc2307d7b72cd8be2b33c",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 1,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-native.png",
+                "source_sha256": "9a6b59539dc4d4b804a50937bc1b6c097063fabbf1b5c024412c6d5aa208172b",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c088a975e98216afbff1acf8c2d3327809b68b1f88691e30b32759770e1ab57e",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase01-source.json",
+                "generation_record_sha256": "de67b280edd17a7656c232c120e79ad06451eee7cda945e089fa6ed3ba6e0893",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 3,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 1,
+                "source_crop_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "055880bdf580fe1bdbe978ae39464b70c2bf17d9da880f30b9d566a7c0e32113",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase03-source.json",
+                "generation_record_sha256": "5a54b32f1f6f94896d4c5a0da84504b8fedf40ab4a8728ac8505fd184297e09c",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 5,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 2,
+                "source_crop_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "d4126c277ccd3e117de2626e74b2cee4ab9b8e76e04823632211de76b4e8b76d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase05-source.json",
+                "generation_record_sha256": "e4300b92a813637536bf0f73c34bac2ba6b0f373d2b09fd89204cf3447413dc7",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 7,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\keys-initial-raw.png",
+                "source_sha256": "ab80d3f908302faf35d60df500492c8f583b4eecfbeda709f35ea569e33e084c",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  2,
+                  2
+                ],
+                "source_index": 3,
+                "source_crop_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 1.0,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2a0459e0d52a0efbd7319a071f9c444e8f4d483dae849833d780af92b3cce2bc",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase07-source.json",
+                "generation_record_sha256": "2966ba72d2598c0edb2f510e695025dd393bc31c516e04fab4413fb0a219b792",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 7
+      },
+      {
+        "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+        "sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+        "native_size": [
+          1254,
+          1254
+        ],
+        "native_grid": [
+          2,
+          2
+        ],
+        "native_grid_index": 4,
+        "normalized_sheet_size": [
+          1254,
+          1254
+        ],
+        "normalized_cell_box": [
+          627,
+          627,
+          1254,
+          1254
+        ],
+        "operation": "whole uniform sheet resolution normalization and exact complete-cell extraction; no body bbox scaling or pose warp",
+        "upstream_assembly": {
+          "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.assembly.json",
+          "sha256": "77df70a64e7bfbf741bda294c13630f5b23cfc6ad49efaf5bbc3f05414d8f6e5",
+          "data": {
+            "operation": "exact full authored cells; singles whole-canvas downscaled0.5 and627native cells retained1.0",
+            "art_source": "builtin image_gen",
+            "direction": "NW",
+            "canonical_phases": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "output_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\inbetweens-final-raw.png",
+            "output_sha256": "e85c68de2c5dbf4b32bf4787d24ae532ecb285cbad6613b9a10123d36a0eb2ad",
+            "output_size": [
+              1254,
+              1254
+            ],
+            "output_grid": [
+              2,
+              2
+            ],
+            "cell_size": [
+              627,
+              627
+            ],
+            "sources": [
+              {
+                "direction": "NW",
+                "canonical_phase": 2,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-native.png",
+                "source_sha256": "478c86ccad6c10472bfc80e9c7a628f87a4ac82ef3491ba4c057eff3a53784cd",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "fba12978c5361c43fce5113d06a9196ada542f94ba3c9216071da3b4a78c12ff",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase02-source.json",
+                "generation_record_sha256": "a96c27291bcc6c678bb02114a9fc76d630c19c41c399165b19c2b6eff4374f0b",
+                "output_index": 0,
+                "output_cell_box": [
+                  0,
+                  0,
+                  627,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 4,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-native.png",
+                "source_sha256": "cb53791261e99695bcf4bc12c94b9aacc50bef406a3f4d3776ce9a161f02d45a",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "48ebd5fbf55681c4db0fd6b86885ff4e761dfd91fe69b0442f3ba33bf7d71522",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase04-source.json",
+                "generation_record_sha256": "df728ef6e1dfdaa9e303dc9a198655a005b9e4d52da035c5a55e895b44df0d98",
+                "output_index": 1,
+                "output_cell_box": [
+                  627,
+                  0,
+                  1254,
+                  627
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 6,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-native.png",
+                "source_sha256": "03143e3ce6c3828b177dbec1469e88ae9dbce58666721a073bb4dd0129491a67",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "c4e661e4e822188ff4d79bcd57952e310d5d74b2f6c36b9d72495100c0b6989a",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase06-source.json",
+                "generation_record_sha256": "0f5eaa9ce2c7ef71de2624e2f42cc26951a9362f8e25bd587e690f334f2cd675",
+                "output_index": 2,
+                "output_cell_box": [
+                  0,
+                  627,
+                  627,
+                  1254
+                ]
+              },
+              {
+                "direction": "NW",
+                "canonical_phase": 8,
+                "source_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-native.png",
+                "source_sha256": "e8509d00c5ccd987ec7315c31b804ccf60d859ec8d2b6fc66fda162a4763e8bb",
+                "source_native_size": [
+                  1254,
+                  1254
+                ],
+                "source_grid": [
+                  1,
+                  1
+                ],
+                "source_index": 0,
+                "source_crop_box": [
+                  0,
+                  0,
+                  1254,
+                  1254
+                ],
+                "whole_cell_uniform_scale": 0.5,
+                "output_cell_size": [
+                  627,
+                  627
+                ],
+                "output_rgba_sha256": "2c78d6cd21bbdaee9459616647326366efbf985d7dff3cb99644e6c48002d47d",
+                "per_subject_bbox_fit": false,
+                "mirror": false,
+                "synthetic_pose_or_interpolation": false,
+                "generation_record_path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\directions\\NW\\phase08-source.json",
+                "generation_record_sha256": "bfbd942d4352744c011faedfbb640cb6b4566a28d87fb023ba33ea0dd19f60f8",
+                "output_index": 3,
+                "output_cell_box": [
+                  627,
+                  627,
+                  1254,
+                  1254
+                ]
+              }
+            ],
+            "new_poses_generated_by_script": false,
+            "per_subject_fit": false,
+            "mirroring": false,
+            "repeated_or_interpolated_pose": false
+          }
+        },
+        "direction": "NW",
+        "output_phase": 8
+      }
+    ]
+  },
+  "independent_idle_original": {
+    "path": "E:\\work\\image\\qdao_chibi_roster_v12\\review\\he_xiangu_natural_walk\\idle-eight-raw.png",
+    "sha256": "7213f71f2ea9d0955a1bcb6b6eb6d0596bd682f378f4b6bd94490fde73eba97c"
+  }
+}

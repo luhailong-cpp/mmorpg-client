@@ -1,0 +1,30 @@
+[
+  {
+    "path": "Assets/Editor/Guild/GuildUiAssetImport.cs",
+    "sha256": "ba196b50ad0a5b547454e2f6008b18d1f19bead74235f61afe8bab23355bd03f"
+  },
+  {
+    "path": "Assets/Editor/Guild/GuildUiVerification.cs",
+    "sha256": "42f10cdf910bb52721cd846f6b727a18805aaf4e63dd349696b376d598d8cfec"
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiArt.cs",
+    "sha256": "3be4e71fc8d4668aa5f4df6cd1ebc4be912184a8c09bb5704ff7edf96bfbbd11"
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Guild/GuildWindow.cs",
+    "sha256": "659571bdd4915f7e14b41c3ee90466c8119845a3a2719a1b2b00522dd37b0be0"
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Guild/GuildUiRoot.cs",
+    "sha256": "545d1b8e7e10ec5d34b6368676361bdaeffe812a7a4b443f51b35987a6f54962"
+  },
+  {
+    "path": "Assets/Scripts/Game/Guild/GuildClient.cs",
+    "sha256": "d32a83189605a38119c1a9fdd45e0cf9c24627f7d7e58c8c3f610fd1efe376c2"
+  },
+  {
+    "path": "Assets/Tests/EditMode/Guild/GuildUiTests.cs",
+    "sha256": "5e805088d860df411958f899e64e852e42b097365451e9ea1569e8862f8c21d8"
+  }
+]

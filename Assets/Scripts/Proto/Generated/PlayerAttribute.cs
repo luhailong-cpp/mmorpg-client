@@ -130,7 +130,7 @@ public static partial class PlayerAttributeReflection {
 }
 #region Messages
 /// <summary>
-/// 维度(体质/灵力/... 金木水火土 ... 仙攻/仙护/魔攻/魔体)
+/// 维度(角色属性点池:体质 / 灵力 / 力量 / 敏捷;2026-09-14 删相性 / 仙魔两池)
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class AttributeDimensionInfo : pb::IMessage<AttributeDimensionInfo>
@@ -254,7 +254,7 @@ public sealed partial class AttributeDimensionInfo : pb::IMessage<AttributeDimen
   public const int ValueFieldNumber = 6;
   private ulong value_;
   /// <summary>
-  /// 面板显示值 = 自然成长 + 已分配 + 外部加成
+  /// 面板显示值 = 自然成长 + 已分配 + 外部加成。只是**点数**,不能反推收益:
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -269,7 +269,7 @@ public sealed partial class AttributeDimensionInfo : pb::IMessage<AttributeDimen
   public const int CapFieldNumber = 7;
   private uint cap_;
   /// <summary>
-  /// 可分配上限(0 = 不限;相性 = 50)
+  /// 可分配上限(0 = 不限)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -602,7 +602,7 @@ public sealed partial class AttributeDimensionInfo : pb::IMessage<AttributeDimen
 }
 
 /// <summary>
-/// 点数池(属性点 / 相性点 / 仙魔点)
+/// 点数池(角色目前只有属性点池;2026-09-14 删相性点 / 仙魔点池)
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class AttributePoolInfo : pb::IMessage<AttributePoolInfo>

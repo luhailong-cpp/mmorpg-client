@@ -857,7 +857,7 @@ namespace MmorpgClient.UI.Ugui
                 return;
 
             foreach (var text in GetComponentsInChildren<TMP_Text>(true))
-                text.font = font;
+                QdaoUguiTypography.RefreshFont(text);
         }
 
         private void SetStatus(string value)

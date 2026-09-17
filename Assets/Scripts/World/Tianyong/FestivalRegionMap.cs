@@ -94,19 +94,37 @@ namespace MmorpgClient.World.Tianyong
                 renderer.sharedMaterial = material;
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
+                instance.ConfigureCityTiles(region.Key, festival ? "festival" : "day");
                 return instance;
             }
             catch { instance.Dispose(); throw; }
         }
 
         /// <summary>原生纹理保持完整方形；切换景色只换材质贴图，保持当前导航和角色状态。</summary>
-        public static void SetAppearance(TianyongMapInstance map, FestivalRegionDefinition region, bool festival)
+        public static void SetAppearance(TianyongMapInstance map, FestivalRegionDefinition region, bool festival, Action onApplied = null)
         {
             var texture = Resources.Load<Texture2D>(region.TexturePath(festival));
             var ground = map?.Root?.transform.Find(GroundName);
             if (texture == null || ground == null) throw new InvalidOperationException($"地区外观无法载入：{region.Name}");
-            ground.GetComponent<MeshRenderer>().sharedMaterial.mainTexture = texture;
-            map.Root.name = $"[FestivalRegion:{region.Key}:{(festival ? "festival" : "day")} ]";
+            map.ConfigureCityTiles(region.Key, festival ? "festival" : "day", () =>
+            {
+                if (map.Root == null || ground == null) return;
+                var material = ground.GetComponent<MeshRenderer>().sharedMaterial;
+                var oldTexture = material.mainTexture;
+                var oldName = map.Root.name;
+                try
+                {
+                    material.mainTexture = texture;
+                    map.Root.name = $"[FestivalRegion:{region.Key}:{(festival ? "festival" : "day")}]";
+                    onApplied?.Invoke();
+                }
+                catch
+                {
+                    material.mainTexture = oldTexture;
+                    map.Root.name = oldName;
+                    throw;
+                }
+            });
         }
     }
 }

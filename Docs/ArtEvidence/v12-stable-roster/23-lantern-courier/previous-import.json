@@ -1,0 +1,504 @@
+{
+  "status": "passed",
+  "characters_this_import": [
+    "25_lion_drum_guard"
+  ],
+  "source_root": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-stable-body",
+  "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
+  "png_count_this_import": 81,
+  "source_approvals": {
+    "25_lion_drum_guard": {
+      "manifest_sha256": "5d90d5b04eea74bf5f780e221fc5cfb8e1de313faac344e9258a4e9b45a7b840",
+      "qc_sha256": "0cfcfe437ece9b143064b195bdb68f8ce5250a5a4a6f1fdc21fe90797399bb87",
+      "validation_sha256": "f8b0f821f07b57e01a27f0528dc782fcc4d651d4259b64015df8f640a9326a17"
+    }
+  },
+  "files": [
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/E.png",
+      "sha256": "8af2d568c572ae455acbe9bf40c63e3e0390f17cd2e8bae8023362ad004db3d4"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/N.png",
+      "sha256": "ba3ec7f1d387f60f64c869425e0f22106011fdcf789392c7d104753f387674b6"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/NE.png",
+      "sha256": "e1a4255b81c66a911f6a6e134790c8bf190e262917382ae81e272fe6de50b0d8"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/NW.png",
+      "sha256": "a72f5e0c8625252cc49ca4cbffa7308d58cdb723172f3a3fc177d56c2875ef1a"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/S.png",
+      "sha256": "8b9d7cdf1ab67d68e33fdbbe384d22be3cfb34d07e09dae3bb2482eeb2464f8f"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/SE.png",
+      "sha256": "152c782b2dcce2d2c5616b47efabbbb165e9af16144e4b5673852d539f1fa4f6"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/SW.png",
+      "sha256": "f5bdbf15139d8446bb04c62da269361dcca1f812b052ae50c3b429c2b0f7cbc1"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/idle/W.png",
+      "sha256": "16df1653c93a52e9e03d2850e9a075b150b12f95a548f72ed7c29a625d46d3c5"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/portrait.png",
+      "sha256": "68efb1be8a25eef554f0fbfed74db136693cd53419402343fbc7711f322b5c53"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/01.png",
+      "sha256": "0617f8d0db0d2895a5022cc36a67d7d9a42c973f0b41f4ae49ec8c4083a4b1b6"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/02.png",
+      "sha256": "6f5062ef5b0e66ffc76e0cac39154e651e04df2553ee251d8a7dbd7a2f18773f"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/03.png",
+      "sha256": "b732abe3950e10ff0a375251fa2753317e8cecd348d3495f0bb2321bce9222be"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/04.png",
+      "sha256": "b076b0150679eb8d576945b0bc57306621cfcdfa85c3d08fe079a6812ec6eea0"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/05.png",
+      "sha256": "f72ab94a65ccff481735720f9c07622603f450044ca02dcdfe592341c9e2b1fd"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/06.png",
+      "sha256": "6e00b972b43d1aa88d243b3c9d618a7864eac617ec9cde91bc8dc6d925557cc1"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/07.png",
+      "sha256": "03e474f70dbf823e37ca7ec3615aac3a0bf9cb6a0a2dc03df8d23edb87f7c33b"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/08.png",
+      "sha256": "9ce42707d5e2f0ddb8848ca7352289a726e793ae02e816dfa494b413e543b067"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/E/strip.png",
+      "sha256": "73d6d2dda65508f85ebbe16143e429c8c362279b088e3486c9f858ac86f4693a"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/01.png",
+      "sha256": "98f760121bafa22c631c8fd99974ace56ad6e8d2f29eb6d2e11e8fa49315363e"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/02.png",
+      "sha256": "3c5751583da8feb39cff5ac94134adefbfda6c97f18c7309c769e4386c82b560"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/03.png",
+      "sha256": "8262d9f5c6638ad7248b3a09fe7dc481a0053964f0f8a1ee76b7af2f40a513ae"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/04.png",
+      "sha256": "b4eede9f32ae71d89b6d903877b3616c82418e4238dc04f8f1b63b04d515be38"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/05.png",
+      "sha256": "4022a888b5d939989cf85575f556d3758443842c74e17487a9244dd1de14ab91"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/06.png",
+      "sha256": "9768997e6292700d00dda835066b051479279775076d68d985261428eea429d1"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/07.png",
+      "sha256": "3505f3c9aa63a303279d605cbcc80036c382f38c60697e44f6437528bee0a10f"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/08.png",
+      "sha256": "bfb221dc701826e22f544f3d0721271f531babb9cb8711ea9416abfdafc228da"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/N/strip.png",
+      "sha256": "90763e230cce2f4d5a0d157884dd5517b80965b54ced11409b8651658b85ce7d"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/01.png",
+      "sha256": "0c87ecbe24f3794ca95effd01e36b7e97ff1ab4ae63af17dec89ec4631a3610b"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/02.png",
+      "sha256": "21f9449e28951b6c8c7be614073761792f5c22db0dfda81af083744e604fc39d"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/03.png",
+      "sha256": "ab21389600b352e52b1b88289a264e34a4444386ea719ff87cd2354541626af6"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/04.png",
+      "sha256": "9b787572e8431a891d1c27886413c46e8f0288d65e17650a27d4cb14a214b2dc"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/05.png",
+      "sha256": "5f4e8f41bafe1680132c6207e1f103d40ba021b21314016e55118006b85e0bf7"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/06.png",
+      "sha256": "83d87ebcc178bfe6ab8df5068c0360cff11a3ce2c74edc7f3de8648950db176a"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/07.png",
+      "sha256": "03d79fd0ed83ba090a8833efc406b36623632228632ee55af063facafbbf964d"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/08.png",
+      "sha256": "5476a081be9fe8847df91ed21abe468ff2d0da4496f3c8754394e4e21724f649"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NE/strip.png",
+      "sha256": "6dc27f8766a085084b545c9f953da0f376e94595eeab28818bbd679778baebd4"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/01.png",
+      "sha256": "d47dbedc5a087eb98e6610a4f23d7bd7c216714c8bcbb97da39b0ee9bcea97ff"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/02.png",
+      "sha256": "6c7feede835211222c97572b2198f3b46943d87a6583e655a6b3ff9f2c0f2d59"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/03.png",
+      "sha256": "485a13a7344eb3db394164dfc1ca081d641c686418f8be8b92a7ce6df130c004"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/04.png",
+      "sha256": "dc8ad66de9b959d18c7a49ae793eaa875ed17293c756a7576067775527239251"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/05.png",
+      "sha256": "63e96602f694bfd18f541ec9ab1bab835f906dd9d129a78da52bc4d9709edf91"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/06.png",
+      "sha256": "4f7a736ec8f1fb7998d328133218eabbfc483b3ac3f0215ae2c3f2301d4f25b5"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/07.png",
+      "sha256": "e100ef853593d344c84bb01dc6b50e73f09c4554d9e90da48582d2a6455f7279"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/08.png",
+      "sha256": "5bd14a07f50e42cada36eaea130281c15c51badfb63ac5b823aee0a7608dcde6"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/NW/strip.png",
+      "sha256": "a3b7e140bee888d87a3e2aa9076cb30a84a2a7d06231e2e9abf96af2d7068330"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/01.png",
+      "sha256": "c8349f829dee348969257f20d7c97c55d09117bd0fc6dce731d2077a0d903d9b"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/02.png",
+      "sha256": "56e1c57047b1a041aaaa34c0926b0783c51ac7b2dff985543145306ff8152475"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/03.png",
+      "sha256": "e076168d0d0371bf54d7cdc7aef72719f94a3ba6321b04904bb9e618c7ab7708"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/04.png",
+      "sha256": "bfd26843a4a26fd78ce52bc69d32843d1fc9f6932f6c00740f23ee2f9bee3245"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/05.png",
+      "sha256": "10619564d4edb3ba3227f624aec290bde62e53650593887b047c1d0bf5ef467f"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/06.png",
+      "sha256": "e7614ae29ef0745ad37581c2b03f4616275f3bc217c175d24bce813efdead1dc"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/07.png",
+      "sha256": "c3b972240e362401fb857af3e7c40e2af7bc01dcf4484876e50f8c0f13922fdd"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/08.png",
+      "sha256": "92793f294f8310a635fa33b9d90acf79d2cfd125af3fbec71cd6ae3e073ab60f"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/S/strip.png",
+      "sha256": "d09d37f81062512a1221e202051139c6db870d5e31c62f50e1bbbe52740e761d"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/01.png",
+      "sha256": "876833d646582f26ee264b9ca72d22fad2e927b765c583a60a422637372992bf"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/02.png",
+      "sha256": "8c46214fd6f6131d244b30ad89f439fa6815e44bf335f4096c687b3e47a8943a"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/03.png",
+      "sha256": "eeea38eec39c5a2e35b7c84da88fad95b715fdfcd7b2f34b3a3444c3ebeeb62e"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/04.png",
+      "sha256": "95ec868281c20832715dba8d2e83a460b5c7eb1cad9ed133267b60ae79ecee05"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/05.png",
+      "sha256": "8dfd066757207a94d49f29fa07d7152eb75489bec9ff86f83cb46690722a5545"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/06.png",
+      "sha256": "00096927f5b6d2e0a4bbe6e0981ac0aae6b81904006d8a76454e80d537f658b3"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/07.png",
+      "sha256": "7506e6d373391652573ff7ce243026fd155b23442accf42c276fd36a68346ad4"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/08.png",
+      "sha256": "5fc8eec0b14b7c1a45dde7e2b463199fd37dc697cc17bf4dae3fad41036bf42c"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SE/strip.png",
+      "sha256": "2a92b625277f4d6ddee6c280fe11b11cf3b1186c32ab76ea325efe390a8636e0"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/01.png",
+      "sha256": "5a197b8599c744df38c8cd55902f6fcd3d9652aa48bf4fa6593a4b5b2bd10db1"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/02.png",
+      "sha256": "0ddca653ba69fea9b044c16e236836a29e3d642de5faebb108a12c24d55a2325"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/03.png",
+      "sha256": "061d1939584b906bca83d37c9ca25b82d0ca86152d671520d9b469f32b828bac"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/04.png",
+      "sha256": "62583fbdaf9100891aab3afc3b79804ea75645703d1d2d1dd1a7ed85a3a6c056"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/05.png",
+      "sha256": "4187679f42bfb4c40c831455eec6879649964573bca824274c36091383ebc4ba"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/06.png",
+      "sha256": "664d3647d2f2e3d007d7374af0a84bf0eeb544adeea7eefeaf46e6fd37d22be6"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/07.png",
+      "sha256": "23f3c5991216c585eb8b007d148b54d11ded19fc1e4c55e222f03901e5f5a919"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/08.png",
+      "sha256": "561eb5ea36903b05c510be95b3ec8d2b19391638f1147bec841b081da3e6bcd1"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/SW/strip.png",
+      "sha256": "90de370c69440f0b1dbf9f9919c164b6da5ea559b1b8b56df7a728540e906403"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/01.png",
+      "sha256": "fc43d66e331eeea23e76873b917a8aa0b4b3144777e6394ed4f14e00cc0be21a"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/02.png",
+      "sha256": "0ed9bb7df4832d23c11f2d1a47eb73467d811b3586081b5a0e10e7f5caf84895"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/03.png",
+      "sha256": "0677f62c38654313ac5ed6a7bbe8d9e166aee3792f8e1a3b38cbd52747ba950f"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/04.png",
+      "sha256": "501c7dcec00e76aaff0ea45a38a066729a69fa18ef77ece1394b340daa207acb"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/05.png",
+      "sha256": "b7365a17a226a659deac6ad5b97a01a713ea1ad2550ea1495a5dfca41a853b1f"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/06.png",
+      "sha256": "2f8d02ef964728e28b80e8bec52732e72cb55bdb889ff85f67f70a9340d05117"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/07.png",
+      "sha256": "5ff901d7925d9bfd9e3c76e7dcc8ebfda2ee9fd72c7b7e163b6f4e36b62024b0"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/08.png",
+      "sha256": "825ad7fcc97b8919694c2f766ea72b29e186b40274dce17afb7ecfe20340be07"
+    },
+    {
+      "character": "25_lion_drum_guard",
+      "source": "25_lion_drum_guard/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/25_lion_drum_guard/walk/W/strip.png",
+      "sha256": "a796663b1524a3ff3a9f41946f65466560b4c70e65c9e2d6a99763a90bea4ab9"
+    }
+  ]
+}

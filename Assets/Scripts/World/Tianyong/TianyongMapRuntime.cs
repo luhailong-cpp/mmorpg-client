@@ -38,12 +38,17 @@ namespace MmorpgClient.World.Tianyong
         public void SetFestivalAppearance(bool festival)
         {
             if (_region == null || _map == null) { _festivalAppearance = false; return; }
-            FestivalRegionMap.SetAppearance(_map, _region, festival);
-            _festivalAppearance = festival;
-            // 原画已经包含昼夜光照，角色与地面保持同一俯视投影。
-            var theme = festival && _region.SceneConfigId != 4 ? TianyongTheme.Lantern : TianyongTheme.City;
-            TianyongLighting.Apply(theme, directionalSun);
-            _cameraController?.SetTheme(theme, true);
+            var map = _map;
+            var region = _region;
+            FestivalRegionMap.SetAppearance(map, region, festival, () =>
+            {
+                if (_map != map || _region != region) return;
+                // Painting, actor lighting and reported appearance commit in the same frame.
+                var theme = festival && region.SceneConfigId != 4 ? TianyongTheme.Lantern : TianyongTheme.City;
+                TianyongLighting.Apply(theme, directionalSun);
+                _cameraController?.SetTheme(theme, true);
+                _festivalAppearance = festival;
+            });
         }
 
         public void Initialize(GameClient client)
@@ -239,6 +244,7 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_map == null) return;
             _cameraController?.Tick(Time.deltaTime, !GameplayInputGate.IsPointerBlocked);
+            _map.UpdateCityTiles(worldCamera);
         }
 
         private Vector3 GetFocusPosition()

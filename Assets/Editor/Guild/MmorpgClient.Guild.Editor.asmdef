@@ -1,0 +1,22 @@
+{
+  "references": [
+    "MmorpgClient",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "overrideReferences": true,
+  "excludePlatforms": [],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "name": "MmorpgClient.Guild.Editor",
+  "allowUnsafeCode": false,
+  "noEngineReferences": false,
+  "versionDefines": [],
+  "rootNamespace": "MmorpgClient.Guild.Editor",
+  "precompiledReferences": [
+    "Google.Protobuf.dll"
+  ],
+  "defineConstraints": [],
+  "autoReferenced": false
+}

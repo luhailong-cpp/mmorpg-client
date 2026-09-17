@@ -1,0 +1,11 @@
+{
+  "step": "capture",
+  "exitCode": 0,
+  "startedUtc": "2026-09-14T09:28:13.9914970Z",
+  "completedUtc": "2026-09-14T09:29:07.6185177Z",
+  "logPath": "E:\\work\\output\\guild-mcp-20260914\\verification\\guild-capture.log",
+  "processExited": true,
+  "captureDirectory": "E:\\work\\tmp\\guild-mcp-verify-20260914\\.codex-artifacts\\guild-ui-v2",
+  "pngCount": 20,
+  "captureManifestExists": true
+}

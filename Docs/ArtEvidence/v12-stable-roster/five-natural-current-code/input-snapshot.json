@@ -1,0 +1,3110 @@
+{
+  "sourceProject": "E:\\work\\mmorpg-client",
+  "validationProject": "E:\\work\\output\\qdao-natural-lu-validation\\mmorpg-client",
+  "verifiedUtc": "2026-09-14T14:05:46.8709555Z",
+  "mode": "current saved project inputs copied into isolated clone",
+  "characters": [
+    "23_lantern_courier",
+    "24_lu_dongbin",
+    "25_lion_drum_guard",
+    "29_he_xiangu",
+    "30_han_xiangzi"
+  ],
+  "matchingCSharpFiles": [
+    {
+      "path": "Assets\\Editor\\AttributePanelV10Verification.cs",
+      "sha256": "197B5953C13ABF662A143A25141E0B7BD89A15089F9EF716B12BD3D11AFDB552"
+    },
+    {
+      "path": "Assets\\Editor\\AutoEnterGameDev.cs",
+      "sha256": "90BC51F3E061DDC2199728F19881BAA8500B7BBFF481F079AA81CB081D38938B"
+    },
+    {
+      "path": "Assets\\Editor\\CityTravelUiVerification.cs",
+      "sha256": "78127F38E848848896C9CB09FD761AE8B4FF6BFB2EB36AC557EA7ED350F19B13"
+    },
+    {
+      "path": "Assets\\Editor\\ClientBattleUiQaCapture.cs",
+      "sha256": "276C588D63E268CB053CD30C014D96C9A615328274DB389B5807E8CD6D53F3A1"
+    },
+    {
+      "path": "Assets\\Editor\\ClientUiQaCapture.cs",
+      "sha256": "9B361F6E08D52493830EED96EF748DB863FD89CC0D01C589388CE4F339FF4E38"
+    },
+    {
+      "path": "Assets\\Editor\\ClientUiRefreshVerification.cs",
+      "sha256": "FF0413C24035F27B4BEF94D70F58F546886E80A4A764F6B223B8972FB6C345B6"
+    },
+    {
+      "path": "Assets\\Editor\\CrossZoneVerifyBuild.cs",
+      "sha256": "5C800570BB011FBC3DF287A6272B9C2FDAC4E1E6F95A0D9658E2310458DEE21F"
+    },
+    {
+      "path": "Assets\\Editor\\FestivalIntegrationBuild.cs",
+      "sha256": "89611962A25BDA0B9077D7E870855BB15AAF43567B666C17F452DEC35428A8E7"
+    },
+    {
+      "path": "Assets\\Editor\\FestivalRegionMapVerification.cs",
+      "sha256": "026729B97A2F70BE60C44DDED2FE6C7147492524270B772327FBE5C67F07032D"
+    },
+    {
+      "path": "Assets\\Editor\\GameplayUiTestRunner.cs",
+      "sha256": "FEFFED5F3AA78C9CD40A4D49B70C2F9E05D750C4A7B858BA6F9644FA8AA723AD"
+    },
+    {
+      "path": "Assets\\Editor\\GameplayUiVerification.cs",
+      "sha256": "F5FAF245C157CD5989907E1CD8E497114FB6BA1FD0562461960326A194187D74"
+    },
+    {
+      "path": "Assets\\Editor\\PresentationVerifyBuild.cs",
+      "sha256": "C1E0E4CAAE31109FF66CE24A004EF4D978D2D4BCF2355A686EAA0926C755FA7A"
+    },
+    {
+      "path": "Assets\\Editor\\QdaoCharacterSpriteImporter.cs",
+      "sha256": "D1CE9FD8E6D589961E150E43B410036AE70F29D94E2FF7928C49AB0A7E58E2E6"
+    },
+    {
+      "path": "Assets\\Editor\\QdaoFrameAlphaProcessor.cs",
+      "sha256": "68F3AA376165D161134C2792C185BCFB2BCE7D64A15DCA17FB469894BF5ECC1C"
+    },
+    {
+      "path": "Assets\\Editor\\QdaoMcpBridgeBootstrap.cs",
+      "sha256": "2A019487D6EAD281FE61E5195FCE714DE5D8DFF9831071DAF680829A062F37E3"
+    },
+    {
+      "path": "Assets\\Editor\\QdaoNaturalLuVerification.cs",
+      "sha256": "D482E3A269669ABB4CEB9AAB50A04A0E477AD14DCB3F39DA38CD670168B19A79"
+    },
+    {
+      "path": "Assets\\Editor\\QdaoUguiBuilder.cs",
+      "sha256": "832828D93AC348CEBA7F1C55200104F75DDDEF41C62AD28FEC6AC29D67F11495"
+    },
+    {
+      "path": "Assets\\Editor\\ShowcaseBuild.cs",
+      "sha256": "204FF903C24D3AE33C79A72056B4EA9DF3BBB6626FD9054444B002F077AD187E"
+    },
+    {
+      "path": "Assets\\Editor\\TeamUiVerification.cs",
+      "sha256": "1B167B924925FF47767297C513A61262A0C976BB2EBE57994923128896BA8A2B"
+    },
+    {
+      "path": "Assets\\Editor\\Guild\\GuildUiAssetImport.cs",
+      "sha256": "BA196B50AD0A5B547454E2F6008B18D1F19BEAD74235F61AFE8BAB23355BD03F"
+    },
+    {
+      "path": "Assets\\Editor\\Guild\\GuildUiVerification.cs",
+      "sha256": "42F10CDF910BB52721CD846F6B727A18805AAF4E63DD349696B376D598D8CFEC"
+    },
+    {
+      "path": "Assets\\Editor\\Jubaozhai\\JubaozhaiAssetBuilder.cs",
+      "sha256": "50E8D2FCD2F3A7F5AB616BAB3215FB89A34BBD8251F7560BF094D683690BCCBF"
+    },
+    {
+      "path": "Assets\\Editor\\Jubaozhai\\JubaozhaiUiVerification.cs",
+      "sha256": "FD805325A3E25F4FF31CC177DBD7DD77AA3B7C20E1ECC5E7D5DBF227E8D7356A"
+    },
+    {
+      "path": "Assets\\Editor\\Tianyong\\TianyongProjectSetup.cs",
+      "sha256": "6A822375C2E5B45F28396DDFE44797E1999223D043A27D74A3E6594C14BFC3B4"
+    },
+    {
+      "path": "Assets\\Editor\\Tianyong\\TianyongSandboxVerifyBuild.cs",
+      "sha256": "A6AB69B41C92147B96060DFF49585CCE62EF2550A425BA81D169C838222AAEDC"
+    },
+    {
+      "path": "Assets\\Editor\\Tianyong\\TianyongTextureImporter.cs",
+      "sha256": "95056DFBFE6633A63E94F674E9A5557DE71D1709DC6120BD514AEA910106E50F"
+    },
+    {
+      "path": "Assets\\Scripts\\App\\DevAutoPilot.cs",
+      "sha256": "FD5AF6BAB177FAAE421C4332A655B9A6FBE62DEAE4A8464C3ACDCD07C2B3A3ED"
+    },
+    {
+      "path": "Assets\\Scripts\\App\\FestivalRegionAutoVerify.cs",
+      "sha256": "4C467FAFFEB0B47534E6C001000052618E5AA202926A5F72EFB5D6987F309638"
+    },
+    {
+      "path": "Assets\\Scripts\\App\\PresentationShowcase.cs",
+      "sha256": "D531A343E7803312E4063249F0EFAD0DC2ADFDB6D6CE3FE1C6AE3CBBFE54BFC6"
+    },
+    {
+      "path": "Assets\\Scripts\\Core\\Bootstrap.cs",
+      "sha256": "5F77E2C0FFEC38201B6FE5F4B9D969D18315F14B255D004C366A8522E820830E"
+    },
+    {
+      "path": "Assets\\Scripts\\Core\\ClientSettings.cs",
+      "sha256": "447C5118C973CA3FDCF2AE62785987F975649B1196228647D17E38E70A6AE456"
+    },
+    {
+      "path": "Assets\\Scripts\\Core\\MmorpgLogger.cs",
+      "sha256": "884250D60B37FD1EC290A7853988DB29FBC1F0FC20CD5B01AF84045C44DC2C85"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\GameClient.cs",
+      "sha256": "03BA79450C7B290DF61CC6CB9C05F4F1EA9930E3B926F89FAF121EB1C440196E"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Attribute\\AttributeClient.cs",
+      "sha256": "A56FD9718DD608F386D1BB01CDEED8A00466AE1731754CDE8AAC15F504102A83"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\BattleClient.cs",
+      "sha256": "FA38226E63F3720AC429BDB2214A00B6472A2FD4976C58A0B0EB8618629728E5"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\DirectRoutingBattleTransport.cs",
+      "sha256": "D86C8C4516A664A80906D1F4523FAFBA28459857A1B324C1BCE8DC1B2DC16812"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\GameClientBattleTransport.cs",
+      "sha256": "43193259B57C3D9EDFC2A026D55DDEFB240C6E5968BA0F68D14F352B54C2E94E"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\IBattleTransport.cs",
+      "sha256": "A642E2B9E551D4C9D47F9EC47D68C2FFA84BF4067536A6FC6E65BC8996751861"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\SpectateClient.cs",
+      "sha256": "36F454015000FDB2F31C021BAE343C25E37D415C62B17D9BF3894C29006672D1"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\Presentation\\BattleSequencer.cs",
+      "sha256": "4F0D4C3E9D62FC9D5042794282AE416A8C347A0760214800C4619F290ABE7718"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\Presentation\\BattleTempo.cs",
+      "sha256": "5C74D5916D373EC937D4C81670EEA7892020B2B4961126B5ADC23E6E39735F04"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\Presentation\\PlaybackBudget.cs",
+      "sha256": "A70D844B2E322FD1542204DEBD36588301FA4340B9DE34875E90EC4A584B4AEC"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Battle\\Presentation\\TurnPlan.cs",
+      "sha256": "52D6BA2C4E81B8C7AB9FA6EA80649B9BE3A0BABAC07C2CD2F3798806869B7008"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Guild\\GuildClient.cs",
+      "sha256": "EC1E9955F719E5E918E748074F715127A207C0439DE6DD78FA36D43FE646F691"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Jubaozhai\\JubaozhaiClient.cs",
+      "sha256": "9459AB6613D167774FA7D65A61EE2ED630115B6C09EB6AA7A1B7466C3CC719CC"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Jubaozhai\\JubaozhaiModels.cs",
+      "sha256": "9527F40858E629A81F2D426670DD1FBB8E15653609AC0B390EF9D5EDEE7D983C"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Pet\\PetClient.cs",
+      "sha256": "91557C610E4ACA3BBA80A7F1696E912CFDC0A2D091F3D8864F59F76CD9D38CD9"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\PlayerFeatures\\PlayerFeaturesClient.cs",
+      "sha256": "E64638514B62A4BCB25C3516D4A9F133497EF3175267E599684EEDDDC01FD657"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\Team\\TeamUiState.cs",
+      "sha256": "5E7982197EE41137676D0320C8D56EC85860C1C2DE133787EFAC57E8D548D337"
+    },
+    {
+      "path": "Assets\\Scripts\\Game\\WorldTravel\\CityTravelRequest.cs",
+      "sha256": "29EDC7FA1BB794CD1AB7975D55819CA1DE6956B6236EEFA5F051456A4418E5B3"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Adler32.cs",
+      "sha256": "6C7D960BCD4936987EF4617086B165E8E9E85D38CB4453651BB855417AE10A7A"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\BattleDirectLink.cs",
+      "sha256": "FAEC1AF3FFC24636F99F69D10DDEE330E7CAECC05878202606D0297B97ADBD61"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\GateTcpClient.cs",
+      "sha256": "9A9F4DCBED43E788FD96E774F5FD0E4B55121D4A7BB12B344CD67915A0D8C607"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\GatewayHttpClient.cs",
+      "sha256": "69A8FC0BE7B2CE80039B9374933ED48E6343B31A8E9FDD1061BAD981ED84E0F6"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\IFramedConnection.cs",
+      "sha256": "490D32C70993E60D0BA747E1DC2C54FF18E728330218529B8AC7DB754C36D940"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\MessageIds.cs",
+      "sha256": "6E9214B475E77F61813398B67B1F93373B58ABD73522D683F8131ED67014B6AE"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\MuduoCodec.cs",
+      "sha256": "3F7F1099C3944D837D4EF5B748305D544F5A6FCDEB14C90FFE02865E595FEB37"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\HandlerRegistry.cs",
+      "sha256": "D746BFC51F8523F2A0900B64A3B2F74437ADB525C44FDF1292E281670E62E886"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerGetBattleStateHandler.cs",
+      "sha256": "14F31472DAABA30DBAEE8E8416B60C21F1DFDF8F19B1C63A2A0A2D8E9D5BD26E"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifyBattleAssignedHandler.cs",
+      "sha256": "A5129E8D295A9DA5559D0FB1E407BDA47F039537B8C26A04DB33FA37CA087AC1"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifyBattleEndHandler.cs",
+      "sha256": "6208654FC11C8A6D519CA931DD00DE884E83978FB157A608CAA4407AF8400C5E"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifyBattleReconnectHandler.cs",
+      "sha256": "55937AA04A32533E6442254404DA649C617350E19669FED77CC14D60F6402735"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifyBattleStartHandler.cs",
+      "sha256": "AA1E36FE4331106BC192AB2373B31AF82DFE1E0567A7C9B47B4EBFCB646189C7"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifySpectateEndHandler.cs",
+      "sha256": "00D29203E0AB7D40B9FAD998FE1A2E7F96A00FCF3937D42896FBA276A72E9C7C"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifySpectateStateHandler.cs",
+      "sha256": "DA68E29BD4CAE0E30ABDE612DC1F4D08869C141AD0C852CF3D92F52EA430E1F7"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifySpectateTurnResultHandler.cs",
+      "sha256": "49031846CC9EF310540EEEC3CA24967BF0174A99EA860D2549482E7ECF4EC078"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerNotifyTurnResultHandler.cs",
+      "sha256": "24620E095BEB3295493E81C8BECDCE5AD6BE49195B793FD2876F1F92CA3E57AD"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerSetAutoBattleHandler.cs",
+      "sha256": "9C4ACADCD47EB3752BAB923F697CC94F2A64E6302023D11720A4D19904AF5F1C"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerStopWatchBattleHandler.cs",
+      "sha256": "D7FAFCAF970D9319DA84C299165648955CBE3348942906D8F1578886AA9A51C4"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\BattleClientPlayerSubmitBattleActionHandler.cs",
+      "sha256": "BBFB5D1D7489EAC167B7458ACB9F8FC702FF766A8A1BFF0642AF26B5ED0ED957"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerChatPullChatHistoryHandler.cs",
+      "sha256": "BA515833F214E74BDB1AE5F03C170B63C565F468C1EAD97E699C5791DD58C4BE"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerChatSendChatHandler.cs",
+      "sha256": "2B0B5EF0FBD306D777B1CCB9961D6C96F8370EFE528AC77660D2402AE51CDF26"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerLoginCreatePlayerHandler.cs",
+      "sha256": "166893686A1D7ACFF72C41B55856195986D1A520022478425E2EC33BD2DE7723"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerLoginDisconnectHandler.cs",
+      "sha256": "29C7E33EA944145413A50D0C2CC7F113796DCAA17D73C9C78F6CADDF62291218"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerLoginEnterGameHandler.cs",
+      "sha256": "5EBFE83DB2737082AD4C0F69105391EA4365E517D30D04402F1DA5827BA916E1"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerLoginLeaveGameHandler.cs",
+      "sha256": "FA3562A232C3AE562A00F0505237D10C8E12BF559AA930F9170A1F254F5B08F1"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerLoginLoginHandler.cs",
+      "sha256": "89FB4821851AA57746B83F76090FDB41AED5AF18EA0E1B6F3D4B9F7351FA1CAA"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ClientPlayerLoginRefreshTokenHandler.cs",
+      "sha256": "E591207026B7C4F715766F177D97469C015103FA6F68C2F79C4FD2EE2EDA76B0"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneActivityClientPlayerGetActivityListHandler.cs",
+      "sha256": "26795DCD1432FF9D3F4D8868B4080BE3CB42687BD5F3171D5EE3B6E34454F42E"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerAllocateAttributePointsHandler.cs",
+      "sha256": "57D99EF88D7D29F7B97A36C05D33F3D58042E040BB7516C92CED8FD2DF24CB2F"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerAutoAllocateAttributePointsHandler.cs",
+      "sha256": "FAD7A0A30B951140467C8C4C248B3D0577420E063B9CFD0A9DB4F98CD14FD392"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerCreateAttributeSchemeHandler.cs",
+      "sha256": "56702E9C8E9B9C285F99D84EA8F95428A673EF21E39DF4BA672DC44F5348902B"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerGetAttributePanelHandler.cs",
+      "sha256": "3F4FBC50D105590D42577A5AF68CC2C272A55EE4A44D7A2ED4FFF25FE43BAE58"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerGmSetPlayerLevelHandler.cs",
+      "sha256": "C7C5884F3F43823F3F286863BA2A5DBDF34E060DDF7BEE6D676EC836E9942C90"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerNotifyAttributePanelChangedHandler.cs",
+      "sha256": "BD76A0BC5D33C82075D06DA1163DF825081B04446174A9CF996297FED906126A"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerRenameAttributeSchemeHandler.cs",
+      "sha256": "B5F6693876C6933E79AF5FC3287E1DF5BBA6E2C367DE4539BE1B0B053478D2D2"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerResetAttributePointsHandler.cs",
+      "sha256": "438220BC6AE826E15B12133837721CF7A0B8E296D31F99CDC4ED7B2AD1E17411"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneAttributeClientPlayerSwitchAttributeSchemeHandler.cs",
+      "sha256": "130294E6455B311664DEDC38A988F5E87B602413BAC22A5D58CB787F766C6A0B"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneBagClientPlayerGetBagHandler.cs",
+      "sha256": "FEC4CC3511F124AAA1A3E5E15A2109C242EE325DA9131A20E6174A19AE27B068"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneBagClientPlayerSortBagHandler.cs",
+      "sha256": "BBAB0198A1DE72AAC335781A210FFFB715E7F9DED8970A9AF94B920C8501126C"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneClientPlayerCommonKickPlayerHandler.cs",
+      "sha256": "2FC3E8096FE220F7DF1458206C602A59FDED2977E6A40570978C9B364F838149"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneClientPlayerCommonRedirectToGateHandler.cs",
+      "sha256": "4291FD15D2E984B1ACB1E888B0A7B3B9AA9D07BCE70260BD1F115149CEE16042"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneClientPlayerCommonSendTipToClientHandler.cs",
+      "sha256": "136B427D39F8939BFEC8B5BD3072D07BA5333C0C1451589CA5C60660F583766A"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneCurrencyClientPlayerGetCurrencyListHandler.cs",
+      "sha256": "F7AD148418D38922DAE675272F427A9EA30A56CC0AAD8BB1F723AC4C64B8013C"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneCurrencyClientPlayerGmAddCurrencyHandler.cs",
+      "sha256": "3B3E147342830EA286025A6009CAD58A59A16D91F212651F62BDD3F8F876CD8C"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneCurrencyClientPlayerGmBlockCurrencyHandler.cs",
+      "sha256": "C1FE15B190ABACFC03AB078FF82203C4E0718F5E89AB72E2FB07D85A94835D98"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneCurrencyClientPlayerGmDeductCurrencyHandler.cs",
+      "sha256": "9C2C876CFD92F382943DD223CE77D664FCAE6E1A2AC254452C97FE590BA12B09"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneCurrencyClientPlayerGmUnblockCurrencyHandler.cs",
+      "sha256": "74486151D67D27BBEA913AF4BE17951BA766DEF09CEB32BF1CC6EA18482A1EE0"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMissionClientPlayerAcceptMissionHandler.cs",
+      "sha256": "6E9794A4FD41CDE3104629149E002325169B5FCD862C5880C44AB8D2EBB5D5C2"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMissionClientPlayerClaimMissionRewardHandler.cs",
+      "sha256": "C1637AE8EBECC16BA87AF720A0E8765622489F3D26CAB222F1321D9119163FDF"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMissionClientPlayerGetMissionListHandler.cs",
+      "sha256": "6078C1A8E9223C19D1DD69F85913B6CD69B3FA8BFC6CE019542F6988575A6003"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerMoveStartHandler.cs",
+      "sha256": "ACCF89165F9B493FBC30425F6CA454CCBD949BEF1E17D21F3AD2849AAC336E02"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerMoveStopHandler.cs",
+      "sha256": "0711BF6E919FA93ED2E4B8287A31CF1EFA63AED47C8511A440597CBD7A717EF2"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerMoveSyncHandler.cs",
+      "sha256": "D3949EB967DFE8D36F30449500F72B94839E725FEDB4585F3BA58ACFF6FDC2AE"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerNotifyActorMoveHandler.cs",
+      "sha256": "FDE19C01E70D0F4FED215C10A036C96AB48658D31D7FE4AD1AB5F38E0F56F5E8"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerNotifyActorMoveListHandler.cs",
+      "sha256": "428F4CD3DA4A7E4E248EF070744B465C28B1404B0C9101722BCE35A846F3B061"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerNotifyMoveAckHandler.cs",
+      "sha256": "748DB17D68C9FEC124DCB276F41D210C32B9DDC8563CEED8469A7880682613B1"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerNotifyTeleportHandler.cs",
+      "sha256": "D842EB70EC18B31446126173C581307079B651ECF2794A173A97E0AF277F84EC"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneMovementClientPlayerTeleportRequestHandler.cs",
+      "sha256": "14A53E900444EC4707932EF985C228677CEFB0572EE0EC5663CED1F9E81E6363"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerAllocatePetPointsHandler.cs",
+      "sha256": "FC3F0C39B2CC84A5558AB4B59A8F47C9C5F92B7B0019475DA482A9CE96155FE8"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerAutoAllocatePetPointsHandler.cs",
+      "sha256": "82600D8CFE718181BDD758B25A0062373B2B762F371BD17505AC0262E8545577"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerGetPetListHandler.cs",
+      "sha256": "8B158A9992F26AFB9060685DA7FFBE35F9D86EF27025D7EBF56FBB7717B2E19B"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerGmGrantPetHandler.cs",
+      "sha256": "18F9B61BC9155D9B9F60C801CC5D96A92CC1389108F6F260B1B364CCE10343DE"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerNotifyPetListChangedHandler.cs",
+      "sha256": "91A07F009AA4468CFE46DD153F77471F85E6B0517110DCF4200DC4927BE4F937"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerRecallPetHandler.cs",
+      "sha256": "AD3818D391548667E34A6C3461B811EB137D2723582091E3D560CD8942A74F52"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerRenamePetHandler.cs",
+      "sha256": "2D9A7E60BAB8BB74ED65C11C3E7EF9E9C6BB2001398E800F0B2551A26415074A"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerResetPetPointsHandler.cs",
+      "sha256": "1125233C51FEA9B8FF16516FDBE6241F70DDCC1891D5030CBC048D60A1BAEFDE"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\ScenePetClientPlayerSummonPetHandler.cs",
+      "sha256": "0F0083347CD72B18AF6638DCE245CB6859844621863DC29668C0B59D32D10EF9"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerEnterSceneHandler.cs",
+      "sha256": "16AF7F691C2BCD460BE13B587BAD6FF70EDEF896E7061E3FBAAB3F7D0B68894C"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerNotifyActorCreateHandler.cs",
+      "sha256": "686E270AC9AF45D7122076C27162F28A27B5525F1AA398ED7CA2F78E065DD0CC"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerNotifyActorDestroyHandler.cs",
+      "sha256": "828D3C310747D710F9428ECB126C6DB2B74B82276E5BB2972CEA88EBCC8E169B"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerNotifyActorListCreateHandler.cs",
+      "sha256": "AC85A9953969BB03ECAAF5BD4A94067B0CEF28418830306AA35129ECA5E94FC3"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerNotifyActorListDestroyHandler.cs",
+      "sha256": "276E837E6947EF6557CF901CA6D762CE6DC19C7A41FBFEAC16211FF39026C7F0"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerNotifyEnterSceneHandler.cs",
+      "sha256": "3CA3582DFFCBBCB37AB64B7D05240802D2ABDDE4295F957D8880D197A92D8533"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerNotifySceneInfoHandler.cs",
+      "sha256": "D3B5C62CB99B05FE02B13E88E2E5A7DCEB8A2C79E12E920C97F570DB44549191"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSceneClientPlayerSceneInfoC2SHandler.cs",
+      "sha256": "8C85B2AE115456C7A8018A75064E3881651F9D6CA03042173930F44F787ED79F"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSkillClientPlayerListSkillsHandler.cs",
+      "sha256": "D2F32B1D340CBB9BBB501D041893DB3FC0E7057E97843F546995E3DB1D3EEDA5"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSkillClientPlayerNotifySkillInterruptedHandler.cs",
+      "sha256": "ACD9046D8664AECBFC1EA67140137299CE1E8F9CDB2F858A6A2C63F930C7422F"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSkillClientPlayerNotifySkillUsedHandler.cs",
+      "sha256": "EC3925AAFDFA8992C968E003605066CB1C1A6F98A2B05A61332DADE54C929CCE"
+    },
+    {
+      "path": "Assets\\Scripts\\Net\\Generated\\Handlers\\SceneSkillClientPlayerReleaseSkillHandler.cs",
+      "sha256": "F5AA07AD80A6F1470817490D0CEC43E3179BF023716CA9F628354E0F94AB7461"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\ActorAttributeStateComp.cs",
+      "sha256": "F5F14338C203D5DB7BDB4F9C8384AB7B971FE860B96676D0BFAEB2B1EB27F7C3"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\ActorComp.cs",
+      "sha256": "CFDFFFBCF34EAE7F2A38C060C395D9E48DF6361F2850DA655BB8AC9A9BD53674"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\BaseComp.cs",
+      "sha256": "312F7EE67DBE3C19DB49CB69CA73557F004196ABF64F66C16E0DCDC5BEF87701"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\BattleData.cs",
+      "sha256": "D933C222AD867C3080F80BDA42F69761E8A60014DCBC356731301CAC1B5D5E14"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Chat.cs",
+      "sha256": "77B6FFA46B3E891A6A7A928A6970181730082AF4D4FD19839AFC9BB2524F712B"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\ClientPlayerCommon.cs",
+      "sha256": "ADE9FAA6B582AC72A4A6DCE056C540086778B76A10AFBB6DC44EBE4A49F74BA7"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Common.cs",
+      "sha256": "7ED32D16F664C7E1432E650226D2BB831103B7886467F69BE2A1F76823D8EE52"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\CurrencyComp.cs",
+      "sha256": "93A6185FEC468A7995A809C0B37E436E6A1A8F4F80FC67FEBDF812E431A6C86A"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Empty.cs",
+      "sha256": "4A7CF0C44BAC9EDF6945279BEEEAE225C533F55910A4E51BFE37BA63330728FD"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Guild.cs",
+      "sha256": "18D3D3EDA9039DBD6EDF43779B50229457349BE325D3401C21AF0AD3EDBB9CA9"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\GuildErrorTip.cs",
+      "sha256": "37537B9CC17E0FB047B2935387C3D9BA86D9E220FE0121405396631F1CA06CA7"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Login.cs",
+      "sha256": "1B611A3770C3DCF2FB4FC0FB960DC99896FD5D77CE9A48BCD1F2C59056476533"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\MatchService.cs",
+      "sha256": "15ED578E335B033F28396498AB18DD1147A724EC82B15343B1E1C9E0CB91DA4B"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Message.cs",
+      "sha256": "2B5EEE9E1F92E8106CB1FE282FF9A0B5B472636DA241C430E87882B10D75219A"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerActivity.cs",
+      "sha256": "A753FB2D74AD501D47F7C21F09A76384B647D7E53ECFAB607929E692DAB0103C"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerAttribute.cs",
+      "sha256": "AB5F16C8C8A4CF7A6679A4D52AECEC06671C1C9E592AAC1EF2A6D65CD07BAD6F"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerAttributeComp.cs",
+      "sha256": "33D9B08D7C4E0712A938419B5AD8EC8A87D90BEC5199D0EF63C2FDFB8F3255CC"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerBag.cs",
+      "sha256": "38574B5285E9F25E7DBA826085576342404A06BB6C563EC6FDF7993DB10A77DD"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerBattle.cs",
+      "sha256": "6506CC70359B9D09E255C849CDF0C4C70CB9EB62F42D9D3F8981FB47AA29F893"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerCurrency.cs",
+      "sha256": "831E5C68B2AB7F1F0B3C3825CD6AB65943DF938C88BCE284E10B271736179BD2"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerLifecycle.cs",
+      "sha256": "B5898E7B35D3CBD1BF455500403692B994AC417256B0F3DB0E4865F71285D04A"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerMission.cs",
+      "sha256": "30B822E0DEB683EDC15B62646D4B4C086F5EF0E3D12E4D14EC24D053FDD6778F"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerMovement.cs",
+      "sha256": "82D4BA3B1470D94A8A431FC151B32FF2984D5DB5F9877D0F8E09DE9BCB1023DA"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerPet.cs",
+      "sha256": "B9FB65F6DA0F13DD84552D5B67049BC7178F67F032956397F9FCEBBF2D2D2816"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerPetComp.cs",
+      "sha256": "A5A9FF1968017B0E882435ECA522C888838E822F02731483B4B4DD3764165515"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerScene.cs",
+      "sha256": "2025C344739EBDC08DEF6142896362EA7DFE7B35FD4079568514314CCA4A8905"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerSkill.cs",
+      "sha256": "16254DA66A5C1809464D2A235A2A504105CFBEA25BAC8A6365E6D28034E4030A"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\PlayerSkillComp.cs",
+      "sha256": "01FEF68FF8EE68BBC827C21686C93B97648F4F8BDEF0F9B3803CB8F9A2B74959"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\ProtoOption.cs",
+      "sha256": "B247B1A060679CC741C71C190B783F29C19508B87255F0AB4D8F0F8B01CAFA95"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\RpcMessage.cs",
+      "sha256": "8E87BDDE2CCA81F658B5338F8B66CFF250148F953F698F5D6FD55DFCE1407D88"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\SceneInfo.cs",
+      "sha256": "C6F21EE55A03E99584BFC8EE30E7B92229D18A01061D2E3A5E09F4E6919426B4"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Session.cs",
+      "sha256": "66A4A1071A5E5B6BF24F1323E4F2B8A882ECC27AEFAEFC9F9D77E75E9809AF26"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\Tip.cs",
+      "sha256": "5E24E92FD6EDBD6AE1A61C2234C0B9931C70A8AB56E6D720E630501DE2DF506E"
+    },
+    {
+      "path": "Assets\\Scripts\\Proto\\Generated\\UserAccounts.cs",
+      "sha256": "5045B1DDD297D0A54DF0157DFAA6EED95210AF7C073744E493DCC8BEC8DDB8AB"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ActivityscheduleTable.cs",
+      "sha256": "AE1534CD67981233EDF4D75DF48E7FCEB2F972284EAD0C21AEE61F400F42BA41"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ActivityScheduleTableForeignKeys.cs",
+      "sha256": "5E7285B8AF3CD00360BB22D5B197FC7FA8504340449E6886EA4E381499A99230"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ActivityScheduleTableManager.cs",
+      "sha256": "A656D722E9D759646F27E278FFCE460F726843548B13AE26ADE7B992368FA219"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ActoractioncombatstateTable.cs",
+      "sha256": "8449B434825D78A36EAF8F139110F374D5797C0439F4B282FD34BBF89F89F6F9"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ActorActionCombatStateTableManager.cs",
+      "sha256": "08E620AB5784073E441B43DCF10B90E7ACD65E36A0970579FA7A288A2D794DFC"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ActoractionstateTable.cs",
+      "sha256": "8F7E6217EDF2B89C6AAC18A5C91BE9E5F903E7B66AE705550C487E92DCACD7E3"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ActorActionStateTableManager.cs",
+      "sha256": "F4E7A97298E4BD04A8B7C3B5B1A4D77566515DA8AF2DF61D542838F5EDE7949D"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AllTable.cs",
+      "sha256": "EB1E31F32C27558B7018D2472EA3DFFBAE32380F86F7911498B033C12721AEA6"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeallocratioTable.cs",
+      "sha256": "532A6508E07F3D3AD05D2ABFB813DB381E5B6F39A9E267551BB17F59C4865280"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeAllocRatioTableForeignKeys.cs",
+      "sha256": "14DE7FE285547166CCC7E6485DCD714517E0A65DD20E6BB0F9D1357AEEDF2DF7"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeAllocRatioTableManager.cs",
+      "sha256": "E4D402F63F55E4D55FB321F649D1B0DC11C0B4C142424988E925B2918B7362A8"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeautoplanTable.cs",
+      "sha256": "AAF9BE00E236C9C74E2B38C00AB82E4B9BE31BEC9CEE4965157229699782AF2F"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeAutoPlanTableForeignKeys.cs",
+      "sha256": "0C9E082F25CDA4A8B30EEECA03DA5FAF7B3ED5A99D437000D8A90A728F597491"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeAutoPlanTableManager.cs",
+      "sha256": "0D03384F54FC9CC43A5F2E7B299C67FD3C767E87B0219F0BFB276A95806C59B1"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributedimensionTable.cs",
+      "sha256": "1E2DEC84FFB1B690E86186946B75B1EB498A9004AB190CDA8B1F112EFD856F28"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeDimensionTableForeignKeys.cs",
+      "sha256": "99402F95F68949EEBA4F663240232B31342C3703E9F321351C05754679486644"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeDimensionTableManager.cs",
+      "sha256": "D4BE1EF88603D7AB687BEE59F5E1103B1E450358B1B3D5FA44964EA531A3385B"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributepoolTable.cs",
+      "sha256": "0ACA98A28ACA9FE2C9824623A3720D0BBEF3EEB3D3FBC1809D443DB5655E9F42"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributePoolTableManager.cs",
+      "sha256": "3A086CDD4F56598C9421B99AF2273EE886FE75B4EB1E62CE6776A9B2681E0355"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeruleTable.cs",
+      "sha256": "84C86B609B8D20F5971C155312CCA32590CF4AF3279A57DE85478CCEB7AEDABE"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\AttributeRuleTableManager.cs",
+      "sha256": "E90603089E6264525B8BD2EA294F270A26A4748CCABDC0BCA85DCE167ED706D4"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\BasesceneTable.cs",
+      "sha256": "C07598252D9EC28D9A89EF11FA6ECEADBEC93EB470804AD8ADF78D3E3BC51734"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\BaseSceneTableManager.cs",
+      "sha256": "AFBB8A07BCB69D4AB89669A61B7A221DF3C2666D9529F988469554B81BECBD14"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\BuffTable.cs",
+      "sha256": "F2382340DB235899E781A0BBC9700CE6ED3C55DCC3C68E16B0F81D1EA081B552"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\BuffTableManager.cs",
+      "sha256": "25B983E294DE3B051824236645FC717591EA2AD254F00225D3F566DBCE6556B7"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ClassTable.cs",
+      "sha256": "07C7FC3559E1250539E5A53D6EB9B8290A82539B1177ECA7A777E1F2E015FE30"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ClassTableManager.cs",
+      "sha256": "9D65C5D806C82F13C754E550AA394E694D9A805E1419B685AF46922A5DEA4669"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ConditionTable.cs",
+      "sha256": "0AF3EDDE2FB87E2C27204EDF9581BDF67C17E88F37863B5DF047831092984917"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ConditionTableManager.cs",
+      "sha256": "8CAC51CF76D4F6BF6524756F04B262430D2AFA33852174C90DD75C5815A13B5D"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\CooldownTable.cs",
+      "sha256": "CF7937AC339EC888CD74A854F530529E915F6E203C25D3BAC2A0EA0C7E3476A8"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\CooldownTableManager.cs",
+      "sha256": "D3A4B75348553C5D1505E3ABFCF202FA465A899CE68944D68BDBBF96ABEDCB02"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\DungeonTable.cs",
+      "sha256": "2D8F5B0B1767B318083999D967B09CFC1D140D541239EA22728746410E749D9C"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\DungeonTableForeignKeys.cs",
+      "sha256": "0C3A2F4B6942AA9DD4FB9B78F0431DFD717C0AF094CF497258278F57A2BA290B"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\DungeonTableManager.cs",
+      "sha256": "0B07941092B7A1FBB299EA8135BB5B19326F57BE48437F9F12BD0AC61DA5FA04"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\EquipslotTable.cs",
+      "sha256": "E0B040B124047CC34E3C12EFDD52192460A9657BCA0AB837230067FDDA7C3021"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\EquipSlotTableManager.cs",
+      "sha256": "E221D43729F706D291F3B9CA87B684044FE17E91C8847C4A532DE514F7C0FEBF"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\GlobalvariableTable.cs",
+      "sha256": "5D2D4B4507CA7D1E2D00648FAC8FE2F6297C7D0D933BC153145F590653365EE9"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\GlobalVariableTableManager.cs",
+      "sha256": "37403FEBBA901A13781C92408ADBCA0F1FABF64EA63BFBF274B0941BCDCA5AA1"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ItemTable.cs",
+      "sha256": "30CED759119EAFF3141B889931BB75699C515ED4581039F586132B73FCBC5FD1"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\ItemTableManager.cs",
+      "sha256": "83E75FCB87EF3EA109CF9FBB8FED05DE42494ECE319DF9ADC6B693A45C95B6DC"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MessagelimiterTable.cs",
+      "sha256": "78FB6D8E6FA993C27EEDE970DB914E861C72CAE5FB4AAE3E61B738D05D094BCA"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MessageLimiterTableManager.cs",
+      "sha256": "C91F4714CA4DF4112B9EBFBC88A6D1B914844F4F51E5B5808704033E76BD7CB4"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MirrorTable.cs",
+      "sha256": "3E899E808A6168562192A9286FE509452B512C72BF587FD73CEE154521C0DDB7"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MirrorTableForeignKeys.cs",
+      "sha256": "84C51FD0362BB2D406E3389582E8B7C7EC9C60F1112F6B304DF6DD511F647F41"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MirrorTableManager.cs",
+      "sha256": "FABA7115649F2BBDE350202FC073A93DE3485FDE77012DA540B548AD06B028E3"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MissionTable.cs",
+      "sha256": "5AF1D569D8A946EE1D4134CEF4B7AAFF4BB11B7A0765E156BA85D6D938CBA907"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MissionTableForeignKeys.cs",
+      "sha256": "F0B3FE0F895CE09FDAB042C7A46AA1DDFFBC9E7360D12E7C2328010164AF5AE7"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MissionTableManager.cs",
+      "sha256": "287538B05E5DC61A78ED5D0698069C9F3DCD10C1A717C1172D3ADAE21EC96223"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MonsterTable.cs",
+      "sha256": "74FFD458CE408B92EC51B39EC0078A54A5FFB30AC348C5A5FEE2B127ED63BD45"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\MonsterTableManager.cs",
+      "sha256": "0BFB5487AF89C78EF2F497CACE4E104937B6184F97E623A6DF6FA4BF4F8E55A2"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\PetruleTable.cs",
+      "sha256": "2B605F23D77414A1E1E7F2409257B79DB00EE886B92BBF875BE3A5974BAE3301"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\PetRuleTableManager.cs",
+      "sha256": "31A3727C653665F6F71F53B1642903D5DA5C89E6E085A36BFE0ADAC84B2B6C8B"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\PetTable.cs",
+      "sha256": "5AD2B8FF982627A0597A68B413E513EBDADDED9071456D3828F8327B0DB95FB8"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\PetTableManager.cs",
+      "sha256": "1DE2C3AD0C422EB93BB4CD0BDF153AB17C502B8CBCB62A1DE49C6DE3D295444F"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\RewardTable.cs",
+      "sha256": "B0693C529F835C9004E412AB0726B03591568AEDFCFF1753C035848ECE235B8B"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\RewardTableManager.cs",
+      "sha256": "E870FCE4812AA0B5807236890D216C9A3181230BF1788DD12EF78E907B11742A"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\SkillpermissionTable.cs",
+      "sha256": "863479887D22004C8E13F53AA8AD47609A47AE0A7B5855DEB7686F10FBE2E742"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\SkillPermissionTableManager.cs",
+      "sha256": "0713E8E2B65FD3622BA801A6EC7DAF8748D254FDA6A28C189DE4AF16EC824B2C"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\SkillTable.cs",
+      "sha256": "F5B07C97D581CD108B90C89FDF2634F25762BEEA9C5374351BFD7C76A9423552"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\SkillTableManager.cs",
+      "sha256": "8D88345047A5C9A2AD343BDB7ECE23C639FD3DEB075DC5F18901DBAADF86E525"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\TestmultikeyTable.cs",
+      "sha256": "56CFEA197FDB86E363E39AE69C8C0535F92EEBD662E6E55096EA6ECC46395EEB"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\TestMultiKeyTableForeignKeys.cs",
+      "sha256": "F715F1F8DFC217F4B79D83A2A2C7E653E1CD12482802C02853E5D2707E149677"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\TestMultiKeyTableManager.cs",
+      "sha256": "749AAEB76C039BB5591F2A06DBF87D342E5FC6419153C908910EF9779598EAE1"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\TestTable.cs",
+      "sha256": "03E2057334EADB37F56D00F2329A9DD7C97E28D0C1DABA37E360F4C3A63426D6"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\TestTableManager.cs",
+      "sha256": "AC9104D54E7EB81CFF6CDB056BF15ECB55952FCBF59BAA091B086E46E86FAEC6"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\WorldTable.cs",
+      "sha256": "4047AAB046939A1AF25B0EEA87E0A10BF5163D9C3A52FD65C29D3D409D7F220A"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\WorldTableForeignKeys.cs",
+      "sha256": "6F43F0494D76ABB3F8E428ACF0A93CA149A3BFE798E60858B67332A0F563A448"
+    },
+    {
+      "path": "Assets\\Scripts\\Table\\Generated\\WorldTableManager.cs",
+      "sha256": "0786CBFE5CB2D5BA3270D8F8995CA7A6449370443BA65EC1108C7B556B60979B"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\AppBootstrap.cs",
+      "sha256": "A94D74BFCCBA85A610D49119BF7F508C1676B2F68954A74AF9FF6329A361D93B"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\SessionModel.cs",
+      "sha256": "4B36DA0F6B1B5D42C666FA918E71DB941581094E3547DC1A909B7452A8065353"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\QdaoRefreshArt.cs",
+      "sha256": "F0883011602415A34228B8D15EF51FF7343785713D623B195E7FF57AEF7B706B"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\QdaoServerSelectView.cs",
+      "sha256": "C90D36D211A0554AEA238E3ED4593C319026D498FF474D7B1E95013B1423AA6E"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\QdaoServerSelectView.Visuals.cs",
+      "sha256": "7A8DB38EFB8E8FCBB96D9AADB057F7F81EFC92CF8E774DCA61483D2F5AE3E43D"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\QdaoUguiFactory.cs",
+      "sha256": "441130CB119BA344B8B4A95E3E25D57B14DE311FB0D3CE5EBCE12B7AE0B23EDF"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\QdaoUguiRuntime.cs",
+      "sha256": "B2C738A26D33513831D06B9CE7AAD34D48656DC81A9942DA425703165C36EB14"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\QdaoUguiTheme.cs",
+      "sha256": "CECCD9211345CE353404E0B0DB98C7A9F706E9B549AA4D75A9D561C9C5F88944"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Attribute\\AttributePanel.cs",
+      "sha256": "691DADDE4D8BEB4862A73A692E4BDE55B82089A8F34F5F6A2EE888D015D6C8CE"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Attribute\\AttributeUiRoot.cs",
+      "sha256": "8A0648F72E28CA887F8B3E19C05011F907314BE733DB4819869D62538D7F04CB"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Attribute\\AttributeUiStyle.cs",
+      "sha256": "6609954376435820899C831C0231D707B7E94EFD269102AE682A7372933484D7"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Attribute\\AttributeUiWidgets.cs",
+      "sha256": "54F8157BED83BCE073C0B9167BAAD8E229FD143258AE9BA946312D68943BFB56"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Attribute\\CharacterAttributeScrollFocus.cs",
+      "sha256": "5F6FE3BF916B423686E4E69740AB485B7D8C1C32007BFE177915A5AD3F5565BC"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Attribute\\CharacterAttributeVisuals.cs",
+      "sha256": "FFBFC2C9BB728D4592F07393DF70B3E16D95CE3B25DBEE8DEFFBAB3305B0A629"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleArtCatalog.cs",
+      "sha256": "C5E76C70312902936DFE6524E30C0DA9880FA9FE851B18BC0A8F9F6AB6086A34"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleChallengePopup.cs",
+      "sha256": "E22F8BDF7C0A0A698845E6DF814F1E60D071FEC12DD6B0698DB62B32D66431D9"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleCommandRing.cs",
+      "sha256": "1204B9CCC3298D51E5554377371F1A8B33CA2ADB7B7C3A63D1FF25F977B967B4"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleFx.cs",
+      "sha256": "BBAE1B88C8E15FCA751315448105060686C636B2519D636B6E93298CF29700B2"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleHud.cs",
+      "sha256": "726DFEA0FD7BFEA7C4C219C0DE6C1810EC000A62547D240D2B2923ADDAFB9A33"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleHudLogic.cs",
+      "sha256": "EF14FBECF7D7D836678432F31CD19121BBEAA96E4BFC3B11D7C334D38FE52073"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattlePlateFollower.cs",
+      "sha256": "6FA514780BE72EF8CDB5714F5CD54945533FA1F7CAC07A83B4517A986F9343D6"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattlePresenter.cs",
+      "sha256": "8941A87384174838FFAA263A5A709AC8B04EBD4DD0A22290E1631D9798296800"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleQueuePanel.cs",
+      "sha256": "137461E034B75797987E08504A678155620BF1D070054E31F862BFD59E674FA3"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleResultPanel.cs",
+      "sha256": "65444AFCB13FC6C0B3C3C57D3BAD8613E517679B6B2E3C388AE63551C19EA310"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleScreen.cs",
+      "sha256": "3FC0909739FA103F378F13291E527B23FD7CF4D4FA9CEE9BB08E60FCC8131450"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleScreenFx.cs",
+      "sha256": "FA890A2CF721DD5BFDE8596503C511264A6B9382AB29EEBBD7EE23200935EEC5"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleStage.cs",
+      "sha256": "AF378069DB981B473A7037E8175D3ECC4DE2FCE20F75B076AABAEC5770CDCB04"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleUiRoot.cs",
+      "sha256": "BD2398CB81C7AD4C38793456949C1DA3FFBF2B7EC9B37B8FF182ECE534476566"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleUiStyle.cs",
+      "sha256": "CC9D8AF69A971A1141A8DE77DD9B65E73FE583593F10DA20FADC0E8E04E8CF29"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleUiWidgets.cs",
+      "sha256": "91DAB79269C36F2EA71523CCBD07F8D639CD14115BF6A4AAA7E765C8A77ABF46"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleUnitSlot.cs",
+      "sha256": "BB45DA0BA49D0E1C42B0317F811BF60C5ED7FB628FFFB7EDE110F28A4B1FC5BB"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\BattleUnitView.cs",
+      "sha256": "199579038CA004C16DF042A3C2A6A0380FF6867932B9A9AF4BBD3F1F69C6F2E2"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\DamageNumber.cs",
+      "sha256": "1EC0DB254C26C0AFDE4B1D7BBC873CE6238BD7A77CC5C9C40EF0649B25B473A4"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Battle\\SpectatePanel.cs",
+      "sha256": "C54AA57EFF711E9F516A56767A9C7C8CFA5C01A60D56213637E2BC2EDD7B756E"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Gameplay\\CityTravelUiRoot.cs",
+      "sha256": "B142058454602F864E32697C668ED473D21BB85A168F5E145611887C43C07BE1"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Gameplay\\CityTravelWindow.cs",
+      "sha256": "35CFC8C245FC12AA1DBEF464B6BD58FD5593982D223D491595CEE6655F161413"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Gameplay\\GameplayUiArt.cs",
+      "sha256": "E237CEC151422E15E84F5483CE9D2C70BFF26B2D2EA0FB6BB433501753D192A7"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Gameplay\\GameplayUiRoot.cs",
+      "sha256": "198A5460C581495C2CBC34C33C51CFB60D000D1B70904D7BC982615DCAB51E15"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Gameplay\\GameplayWindow.cs",
+      "sha256": "66BC9DDC2E53A759CECFBFA47A2C93CA5349931DD13D673614208B4865B22493"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Guild\\GuildUiArt.cs",
+      "sha256": "3BE4E71FC8D4668AA5F4DF6CD1EBC4BE912184A8C09BB5704FF7EDF96BFBBD11"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Guild\\GuildUiRoot.cs",
+      "sha256": "545D1B8E7E10EC5D34B6368676361BDAEFFE812A7A4B443F51B35987A6F54962"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Guild\\GuildWindow.cs",
+      "sha256": "C00DB7C7529DE1F52F5951293CF1A0E215FACD044EB200EF37AD0BE8586803C6"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Jubaozhai\\JubaozhaiArt.cs",
+      "sha256": "CF6DAC3709F9420204DEAAE4D52CD2C60589514E02A4925623CA32299BE47D7E"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Jubaozhai\\JubaozhaiPreviewHost.cs",
+      "sha256": "A1B55682DFAC1E164EF55A2EDA59DE7084EB72D3435CF830CA5570AC7052A53F"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Jubaozhai\\JubaozhaiUiRoot.cs",
+      "sha256": "70A14F14C9D2459F36403C295DD616024E39CDFC2BD64E57C94EF1DF14353B95"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Jubaozhai\\JubaozhaiWindow.cs",
+      "sha256": "8B75A0FDC7CD0F7963F25696D74CE4E64A91E7EA1C3E3A44CD11083261C54EF3"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Pet\\PetPanel.cs",
+      "sha256": "B494EB50E70D8F6F7E173C9AA28E21024DCFCCB5AEF60A763FA6828640911D61"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Pet\\PetUiRoot.cs",
+      "sha256": "DD221B67950640DD9298348F32ACEC5A7E37CC6E41BDDFE051F7DF6D269DB3D8"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Pet\\PetUiStyle.cs",
+      "sha256": "95867F0FCA5FD7A42DA4040FCDF49B73253CB1C489FEF925175814235F5CBC59"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Role\\RoleFlowUi.cs",
+      "sha256": "4947A0816B14F65C34C87FC499C43D1075E17787DD25827E1D878A089804C95C"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Team\\TeamUiArt.cs",
+      "sha256": "B1F43E54F507DB7B3FC0407C26DB68353E0A293FAFDB8A9DD7719832BF9DBA8D"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Team\\TeamUiRoot.cs",
+      "sha256": "3C979B1C2664C185F9EF04215206AEADFF96578784C40E2445BBD172F417181E"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Team\\TeamWindow.cs",
+      "sha256": "406E1130ED82CF41D041788B92E0AD9822B22D201AE6A547D739DE1BE28218D7"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Tween\\RealtimeTween.cs",
+      "sha256": "ADF0B9F9A94CE5F3A4E1814586DE25CA9D244F2752DAC6581BAFDC09037AF142"
+    },
+    {
+      "path": "Assets\\Scripts\\UI\\Ugui\\Tween\\RealtimeTween.EditorCapture.cs",
+      "sha256": "F28BE4AABFF974E9779288BF1D71B8E0A7592172955B65E3C4BE8CAEDD979A1B"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\ActorWorld.cs",
+      "sha256": "920822DEC89381A0707A3A0D15BEE26EF9E26738CAFCE3E09F46BDE72CD38371"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\QdaoBoySpriteAnimator.cs",
+      "sha256": "C6DB82D36C5A23DF3296E25C4A37900207032894E2AA9EB0F6137D33F131FC81"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\QdaoCharacterCatalog.cs",
+      "sha256": "35276933FB6C507FD59E56453FF7E8A9562EC9500F794CE0B6FC2EB7659125FA"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\SkillFx.cs",
+      "sha256": "4388AE2F792CF906CF66C861032EC50D40FED0A8BCCC34A969945A4ED360E829"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\WorldCoordinateConverter.cs",
+      "sha256": "BD180B5BFCF93D89900C7818A8C45C19AD4FF890A41AE8A56903C6A6F3D810B6"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\WorldLabelBillboard.cs",
+      "sha256": "2C75295200BEB857FC323220A425604D6E492F8FD4C92F1C794C2FBA737D0B20"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\WorldNameplate.cs",
+      "sha256": "CFE4C1354961C563260EEB2DECBF15A0BC83B7C9CCC6E11B04E4C838CE261505"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\FestivalRegionMap.cs",
+      "sha256": "8604191F81D5E9C2ADDF521AC90BD7437F243A5B820AA539F7BAA7F50EF819B0"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\GameplayInputGate.cs",
+      "sha256": "17DE6FFF06B9224F7BA4CF477E15F57B669D08DBF5F804756159D09DA0A98EFA"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongCameraController.cs",
+      "sha256": "D0C887165433CB8DB5DA889CDB0B1920F2F0A512B02A604B1F20EE17F92DEB1D"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongClickMarker.cs",
+      "sha256": "17159A15D389BE326234F87B2F3775362FC6C2C682BA04DEF9BC442EB5D43B80"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongLighting.cs",
+      "sha256": "B8F74253A728B3B7E98307426A50BACE771B099C305B4B26662EC7AFB2F4AA94"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongMapBuilder.cs",
+      "sha256": "E49F5330247492272D7BD543340501DA82155F535454CAA3DA0F98E6A4502360"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongMapConfig.cs",
+      "sha256": "6DBA3B4CDE8F0FEBF14097FF9E24DA018469FFF4F8D68EEA00CDDFE7AF68F4FC"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongMapDefinition.cs",
+      "sha256": "A8034B71C774FCB7B99538106B71CE6AA47FDBEAA2E4D699AD81E322EC92DD86"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongMapRuntime.cs",
+      "sha256": "7CF9145F4AF3773872D60CE023E825DBD22EBA600AF996E16016E0D2F20D6CC0"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongNavigationGrid.cs",
+      "sha256": "C5E5424F6E5AD2C34DD0BF6216E7FDF3F77FBD6D0C30220FBEEF3E1953810260"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongPaintedCity.cs",
+      "sha256": "44AE0A0D0913AE52AC4C0C633F13EEF0F46A08646F0240905B7404BEE3B57ADF"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongPaintedForeground.cs",
+      "sha256": "E5D8CC55C111759B222B333B0B0D6DBEEA014A357D750ED47E667D174A254DD3"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongPlayerController.cs",
+      "sha256": "5AAD4FAFEBE8F38640E613F63075B3C6B0EBF88A95267A95C65E4EF9C925CBA4"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongSandboxAutoDrive.cs",
+      "sha256": "132C5538FAED07B4CA4C534C3CDDBC745FB2311A4F772D5654CFC00CBA6E7EAC"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongSandboxBootstrap.cs",
+      "sha256": "F016FCF6555D854C23159A43E66A0A0F9EFD542DA5570BC4C8A067F17D5585C4"
+    },
+    {
+      "path": "Assets\\Scripts\\World\\Tianyong\\TianyongSandboxHudVerification.cs",
+      "sha256": "50BCAA192D18A7A37EE65954563A972DBFECCBF729B1FA705575B947B34F24F5"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\AttributeClientTests.cs",
+      "sha256": "96BF276CA515729DA1CE192E63848B8A8E19986584A7453DF4D8B2A34B4107BB"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleArtCatalogCacheTests.cs",
+      "sha256": "7524BCE333F7B08C98516D35182E2AD5349F85548C7C253EB724D63B0E0C6C01"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleClientAutoBattleTests.cs",
+      "sha256": "E4733FD145487027F34F2060AD5E077AB2E70CF220C789BA2E25198930EB7C90"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleClientStateMachineTests.cs",
+      "sha256": "A0C05CA598A3BAA15933D436E8E6E7793BECDDDDFAF8BA8F3FAE8386DF3CF95C"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleDirectLinkTests.cs",
+      "sha256": "00BAB579634D5BF46F2CE124746759932D6D7632DA9D33B0B57B714BEE0834ED"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleHudLogicTests.cs",
+      "sha256": "C652EB2F697EF18B9BF728E43A4589E801B71C129CA38DC2AFEAE2AAABC94516"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleRosterAppearanceTests.cs",
+      "sha256": "AC5AE30AF68289A517E812FE22EF9DF420D9A68E4A1D20256AF13A278675F6BE"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleStageTests.cs",
+      "sha256": "992330AC07005771CC2F33176E50FFA21E02470A8463B859C981FF8FDF2006AE"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\BattleUiLayoutTests.cs",
+      "sha256": "474BFCD0001A913CA4744D535242C1D08948886A97042CE68133F6AED691E5DC"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\DamageNumberLayoutTests.cs",
+      "sha256": "57A38DE5715771BADED57EA3FE4717A116A55D01BE2B1F5B357F02F1AF8B6CAF"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\DirectRoutingBattleTransportTests.cs",
+      "sha256": "194402B07B1B339A1C4DE5E0BB978C9E75E2731A9472946E3018583569B9D2AB"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\FakeBattleTransport.cs",
+      "sha256": "60A10F0DB9DF03E4A960A9BDADD702BE6E7A23E15508370B5B5A89A9E76B3551"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\FakeFramedConnection.cs",
+      "sha256": "337A20AD5321B1AF552D4DBE72DC8DB3661BA98DB0C46C52FE61BA3B4528D7F8"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\GameplayWindowTests.cs",
+      "sha256": "0F23D10EFB9B0141F285FF64290488569C24CC6339FBB41DC462E1AED6AC816C"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\HudCanvasLayeringTests.cs",
+      "sha256": "89248DFE36EE40AD1924C0E3E993280AF61D64DAF477BB6092243DE82422A960"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\PetClientTests.cs",
+      "sha256": "6774D0178B6B2D802F2E1734776E622E636482AE15E2112A9292CA823AB95E7D"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\PetPanelInteractionTests.cs",
+      "sha256": "ABF13E7FB683D53B08EB481A894FE20B7C7D102EF27505A8EC44E02E2BE9D8AC"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\PlaybackBudgetTests.cs",
+      "sha256": "8E612B4E1967C0734EE9B05FB553C564691CC244F3C1C2BA5404D0027A49E1C8"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\PlayerFeaturesClientTests.cs",
+      "sha256": "7664B6F9225F46387E2ED96F47E51E6F61BFCFCD1869A53D6DCD8300D62B96FD"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\SpectateClientStateMachineTests.cs",
+      "sha256": "ED60FA4E44EF03227A62AD865658F9645BA3719B0E3D9BAF2554A9814B59795F"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Battle\\TurnPlanTests.cs",
+      "sha256": "B476FAEA0FB8E456BA1D3A5177291150B7DB2EBEFBBA8D3C8ED2827E86928C46"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Guild\\GuildUiTests.cs",
+      "sha256": "07816881F879A487FEEC923D7992DBF88BDD49EDA25E88040A7538D2E98FBE99"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Jubaozhai\\JubaozhaiClientTests.cs",
+      "sha256": "EA98287AEDA254D1135590F7F5BADBF5F98C779A82E6B47E676A4B125E730BCE"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Jubaozhai\\JubaozhaiServerPagingTests.cs",
+      "sha256": "2753E6611CF302A8538BED3D1D1558EE131B6C0F2671E0CFFFE3009059D8D475"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\ActorWorldFoundationTests.cs",
+      "sha256": "CF13AEC65C1FD3B679D3D826066F4BE470DBFF5CEA552DE65099EB0E69A0BA09"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\CityTravelRequestTests.cs",
+      "sha256": "D7FA21D6C5C1EE51ED6F3373F1DEB11430D665548815128BAF3338FABCE25D69"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\CityTravelWindowTests.cs",
+      "sha256": "96BE085465F0CDE5249ED92348580D3C8D402CBF2598F571089C670E6BF5FF23"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\FestivalRegionMapTests.cs",
+      "sha256": "A88B320291362DD7E945517DBC879919DFF1E8DF842A60ACC06303DE10B66DE6"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\FestivalRegionVerificationProbeTests.cs",
+      "sha256": "D91446FE8FC285472A8F1D9232049D4604D104F50204FA5FF2FE2CEE9E079D9C"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\JubaozhaiModelTests.cs",
+      "sha256": "9A73DF459BC37E0668272954F47F43D3E49DDD24FAE0B4C727E5B842E35A0668"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\QdaoAppearanceVersionTests.cs",
+      "sha256": "377D87CE0F1DB35A2DD75F472010DE2607EFA24E78DC04BEBE61C00EB8B334B1"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\QdaoBoySpriteAnimatorLogicTests.cs",
+      "sha256": "FB04BD32D63F248135B6AB4FA851F0DE4540B28B6D5C575A2E90AB443F733891"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\QdaoCharacterCatalogTests.cs",
+      "sha256": "755CD00484267811F2A8C1EE22110EA1E9E0759EB220FCFC624833F3B0904C53"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\QdaoRoleAppearanceBindingTests.cs",
+      "sha256": "FAEECA281FC6F02FD2FB0A9E46C89B2D4A78DE2FDDDCFEB309FEA160710DD543"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\QdaoRunAssetTests.cs",
+      "sha256": "081AD63D1424AE289BE91CEE2BC3C62781AFAEE9E250CE798427071DDFD9D598"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\QdaoServerSelectPrefabTests.cs",
+      "sha256": "B74687842A964CED1EC92017C5BEF6FD35CF72D3324B077B5BE4E61809D87F63"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TeamUiStateTests.cs",
+      "sha256": "7038E98CCB85ECAFC3909F527DBBDB5E9F07B9C2FC620386B432B8C0F9AD9676"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TeamWindowTests.cs",
+      "sha256": "00C0FFB8DEC6D5181EFC4D5E210771925648206941EAA49F1DDAB255C2AB9F18"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TianyongCameraControllerTests.cs",
+      "sha256": "D6D6F935772989469692ABE2AE6DECF8A9E9C898815897C7A29F85DDCF4B3D75"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TianyongClickMarkerTests.cs",
+      "sha256": "825289597378AF1A9359C26CFF74D1D1A208A9332D197F0C2D553FDA28A94C38"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TianyongNavigationGridTests.cs",
+      "sha256": "68034CC3B1C44FEFC1577AD83BE3067F745B7235B3CAC2E737BE52D8B2481ADF"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TianyongPaintedCityTests.cs",
+      "sha256": "840A85C50C8E41A7F9CE44F2987BF3A570689DAA3A1BACDFD521DE4022B38116"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TianyongPaintedForegroundTests.cs",
+      "sha256": "5697FD9FD15B1CCCC9DF730A180455F9C23EC47A0369060EB379A416F6E535A2"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\TianyongProjectAssetTests.cs",
+      "sha256": "A1ABEBE3DE146D5B8C426123A44AC3F54E455876848761417C11D2DDAA437377"
+    },
+    {
+      "path": "Assets\\Tests\\EditMode\\Tianyong\\WorldCoordinateConverterTests.cs",
+      "sha256": "F5E5F1BA0E7E18DD4B721E60ACD66C5C19994EE96A67072A5AA64ABC3AA111B5"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\CityTravelWindowPlayModeTests.cs",
+      "sha256": "D246A7DF2BDF10B77B26EDC2EE5EFF46EAB6A2C58EE976F89CA9AD172B292451"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\QdaoBootstrapPlayModeTests.cs",
+      "sha256": "BFED17BE2627A4E94C86C2ECEBD5392F0C91AE8BA031C8B610FB3BB29DB59894"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\QdaoBoySpriteAnimatorPlayModeTests.cs",
+      "sha256": "3E8840C3BD64F9A43E0837CE9D4BE2E459403B71AF8BF9457E5E67A640D02930"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\QdaoRosterAnimatorPlayModeTests.cs",
+      "sha256": "79BA9C4543057BA142016DB38E837ACA095243566C8FC26759EE8F8748FB3E4B"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\QdaoRosterSandboxPlayModeTests.cs",
+      "sha256": "FB662EAB79F56AC617403E43FC87C9BAD610C695A1A847E8B9F902583F3CA058"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\RealtimeTweenPlayModeTests.cs",
+      "sha256": "BA1E172886F2CCFBD736686A2984F25C78682260409EFDA15B2314A8A9D1F28A"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\TeamWindowPlayModeTests.cs",
+      "sha256": "C1283BC5902AC4065914FF583702FDABE33C84C761B4667F57DA1B6D2FE77F8A"
+    },
+    {
+      "path": "Assets\\Tests\\PlayMode\\TianyongMapPlayModeTests.cs",
+      "sha256": "97DD228D2AF378407CDB599407D6D06B6C4ABFD9CF161ED2CAD2D40982EF09C4"
+    }
+  ],
+  "resourceFiles": [
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\portrait.png",
+      "sha256": "355B33ACFF98A2D7652515E5D4266EEBE1BC0138FBB859A26F3F6101B7A84C84"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\E.png",
+      "sha256": "EDB00E6AF014EF190D937DA39B126DA9751A298DFC73A299EF1C0E891668FEBD"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\N.png",
+      "sha256": "02727F3BBAF33634C3B7D5B3606B626F9492A993288C348ED64F1C380C0B6AE9"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\NE.png",
+      "sha256": "C2D3150B4A9F2B37F918E7819BACB92EF889756EA8D834D4C627885EB5E90AC7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\NW.png",
+      "sha256": "EF5D21E2333C7A55D9BDE6F5A99E46AB3A12326776E0075D68C8164AABBD51CA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\S.png",
+      "sha256": "652172E52E53776B0F767917777EF09A6B538F7A96085AED5D22BD6B2A348E0C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\SE.png",
+      "sha256": "BFC93A69C7CB52C53CC70A518A506AEF9088B3C6892A4E12442A5981FD67B7D4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\SW.png",
+      "sha256": "C9F4E6D63300C1ED2D2E88024355989D66BED182112833F95D748669BB26DEDC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\idle\\W.png",
+      "sha256": "F8EE4645BA9BC771C6F470ADC9EDE0B2EE0BE7B8DBC1558CB38CDCCF82CE295C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\01.png",
+      "sha256": "E9C146D57A5F625838A87BDC3D9E7DEB716744575ED10AFB565AFE996008A824"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\02.png",
+      "sha256": "17DAD56B87CE9F1051CD9663E96F9224548CA7DC7426FD0B59476A4883792D13"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\03.png",
+      "sha256": "4B99449B672FF2C9FFAD0FCC9BC4BF02E2B99E931275D55D1D088654FA652B57"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\04.png",
+      "sha256": "34764B5CC31276CDA81F67181CBFF6EC3D74E1BCA06F1190E7C4B268E38AF7C7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\05.png",
+      "sha256": "53994097AD5B532C2141995481B3702A6209988C7E4AD44E93B334CA5C6D3C67"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\06.png",
+      "sha256": "A2647794605AD4A5F0616591C00FD5DB329A628181AD6EF8240B430E9001247E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\07.png",
+      "sha256": "4F172F80F998240DB7302F7AD4BBF02605B6C608FA84A6B02BE00D404E00555B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\08.png",
+      "sha256": "F6ABD4725673042991469CA3176E04F8A0CF28C98F9F07FB88BAC7F412DB6E96"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\E\\strip.png",
+      "sha256": "286D103EF776574DD3E7649EC4CCF12D6712DAE8B13A3380C71D1836BEA872B8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\01.png",
+      "sha256": "927F9517398D5AD7A471644BD689D2CAB0FBC097B7AE2DE7574C151A2914AD09"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\02.png",
+      "sha256": "AE4DA8D24E1AC98AE9FB8A90D56CA2CFCF80E8F8799A957EC507A541FC43A8B4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\03.png",
+      "sha256": "5E0BA81DA5B1A29FBDEB5AD0817631DAF40DF134C31C0998B622D255A9EA711C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\04.png",
+      "sha256": "D0F3E11F26DD83A9B3E27C766FCF4283CE4C7F023CD0842A17AD05FF83C43B0B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\05.png",
+      "sha256": "EFD50527F5E6FA6311905A195F3773303DB028AB35588150A926983F6F330FAE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\06.png",
+      "sha256": "2EE9BC3D218BA31D3876510E0780144465752A44AD6C63FDFF99789BAD4A475A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\07.png",
+      "sha256": "38E83CC97F27292568D38647875EB23BDD29007AF64DD5A59F78622BE723CB60"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\08.png",
+      "sha256": "EDBD81486E87EDE31408B49C53489BA94C51575C5B2CC29608491E9B8400678E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\N\\strip.png",
+      "sha256": "03896EFFF9B03B7F5106AE94EBE602178A3A9DAF3E97B78228D1B034A19685C2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\01.png",
+      "sha256": "31008A11981680512E1AB67DAF08940C3F17A50481D39E14E121E0BDFDCD9D01"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\02.png",
+      "sha256": "23474F22DAB8881D89B3C3B7ACDBA2DA1CF5CE6BC399662D28051F4DC4187613"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\03.png",
+      "sha256": "918AC7C2FC00ED59D8387C6DB88BF9E3B778F80A762A3B6D58A0C0619CCC1896"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\04.png",
+      "sha256": "AB0F7929EF60B359A84BFB4F45A0D56C8F4693A4E4627BEF1F9A2F0313EF54CE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\05.png",
+      "sha256": "56F0A2CB52993B88DA4AB9BA1AB05BF90E2AAA5793802F9BF77F77F7B15E84FB"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\06.png",
+      "sha256": "F8CFD43B2DC9C2AE084D8F4A962081182637CAC61FD8DFC0804631EFDBC07F88"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\07.png",
+      "sha256": "194D4024091D6D3A7B82A0C42DCFA592273C1A6CA331C85C0AAB83EFA6B0D410"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\08.png",
+      "sha256": "622264B1427D6A7D29E082560159647E87302419AA1B8CAEE98C7B7825704644"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NE\\strip.png",
+      "sha256": "D144F1B210C6BF8AB0AB4BF90647CFABAB832E991AD1A9F925B2DBF70F5EEFC4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\01.png",
+      "sha256": "D43C1701BDE5BD065E388CFA8A98F6A7535E23D93AAE03F725EA2884AF7DC955"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\02.png",
+      "sha256": "BBDB1C4B9B621EFD7227987F99222B0092EA3DD84F164A0E60FD7839FAEFE30D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\03.png",
+      "sha256": "B07B444FD907A5FBA0A26C6571A7D6C3E182262CD95AFCBC763FA172D0BEE031"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\04.png",
+      "sha256": "1AFA58FA5BE1F72595DC1152B9C07152ABD5E5EC27A4C9B172E33B36D4EA5E76"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\05.png",
+      "sha256": "27BC453DD03710B4C9E7B0F23FF4CA0A33EA3DA15F5BD4E97A57708F11AE2EFA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\06.png",
+      "sha256": "FBDA9323D12FBA591ADF5F1EC9371653AE445FE47A8595BAA0E03706209FE67E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\07.png",
+      "sha256": "22E604112F438BFD57B73C1BFE162F6819D4273BFBC17E40F8F41B6D8DAE011F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\08.png",
+      "sha256": "5679B327CA0B2F28AF7D844166F9B28F9F6CBC3B245129037E0AD599D25E9C70"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\NW\\strip.png",
+      "sha256": "E9011A980CB949901342B1501A67482F6F6D403596161D77A25C17D294AB4BCD"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\01.png",
+      "sha256": "58F39B01A372DF33512F93939D26FF93E85B43849E72B55DFE5E68ABB1BFFCA3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\02.png",
+      "sha256": "7EA75BAA098B554FB381A827084BD6AF89DAFD26DF70B70A9916299DD86D0678"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\03.png",
+      "sha256": "48820E9EA273BAE003355F00C17361975468527ED8207263A1D937376CB2933D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\04.png",
+      "sha256": "E1EB930D486BDAB9F01370A2955D387DE218D0DE12C1641CF82CE3F745FFA138"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\05.png",
+      "sha256": "67A494FB61699B3C29A2A70D9374F74EF7BCCE06B07CE8E48900BF8F3120C200"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\06.png",
+      "sha256": "CA10A3F9C38482FBEEB2EC9CAB96D6A9BD83469CBAF8E1E7620945F567F2D072"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\07.png",
+      "sha256": "F72707EF76B34EFB65338D2D38402F740A15D3A8727AAC7CD31DC91582FB7E25"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\08.png",
+      "sha256": "7E60F9B38B172E2DC968C994A23B708EA2D9BD6A3428EF9E7A905A0F6B11503D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\S\\strip.png",
+      "sha256": "93436609CD26B3CA2A5701565A9D06C3E9BBA7469159BFFB8C3E665A6E0308E5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\01.png",
+      "sha256": "88CFF9ADE0B262B47C132A140151B93606DC63E215B602C49139AF91CEEFA968"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\02.png",
+      "sha256": "45DCDCBD39E88F146B941810AAE09F1281DC66E0E74B6325E2030C504D53A91D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\03.png",
+      "sha256": "DE82CE4CDD263025476F75C4E97A2ADCDD644E56021F82CEC81CA1A7B16D91CE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\04.png",
+      "sha256": "F9EF4B90DCF14162000F399934531332D09B222645753FBE0971612129781440"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\05.png",
+      "sha256": "FA671293636D72133E317D517CAA58EEE3BF0EFFCDB5923449A1973D6FF2DAC3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\06.png",
+      "sha256": "32E1DF534C552B89368BCD244CCAE5266958D60BC9D406A5EF23C9AD1C1E63BC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\07.png",
+      "sha256": "25A57822AF2F4B67894BEE177E28E7706977804A327FADD5E4BA5066EF8CBF26"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\08.png",
+      "sha256": "2057295374BF790721A4C7F7682403DA49C0D7834688DD4A923391293967EB91"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SE\\strip.png",
+      "sha256": "BB96FEDA6E42B47D8D41C26BB3B8A8C4F271960ABF37C26288938E8F02E4CF1C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\01.png",
+      "sha256": "4B934FE42718391D30AC8E4B35DC1AA78E9D8F754D1057E19503CB132CF33356"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\02.png",
+      "sha256": "47D79966FDEE138F75956A82B43C1CE58FDB3566B49872B1DCF02530795C349D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\03.png",
+      "sha256": "6F886996EFA1E3C25BE743ED3CC59A0AA7C1A09333808A125AFA43F7A315520E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\04.png",
+      "sha256": "E1325A66EF44B39A99328AC005362F3C3D14A8AD221BF1CFC0D1F33A433B7042"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\05.png",
+      "sha256": "732DA99C229CEB09245F093AEA9282A8B581370AA64CEE223A9A66568255B92C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\06.png",
+      "sha256": "8702188C5CCD5D4691C88334EBF0B9BBEEFA4B9F44957A8FF6E2BB6CB5181FEF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\07.png",
+      "sha256": "BBC6860E0F667C6C46E46875B5E74B8ACABFA1ED8B910E50F6C2F1A8B2B416DF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\08.png",
+      "sha256": "8ECF539E38D62C6696C33366D50286F25E1E2DD292AC6CE3BADE349C2571D47C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\SW\\strip.png",
+      "sha256": "5AEB1AB651066254E7DAA0296D35605EF2FA0400F224455C07CB36F6A408F56B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\01.png",
+      "sha256": "4A9CE1922CEB9DF4B715AF7BC0D8FB3F3A077156165271C0A413C8A671202622"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\02.png",
+      "sha256": "C453D30F8614196D81BAFFC250C84FA888E90C67079D56A04F8FCEAC449C5CAE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\03.png",
+      "sha256": "166751A42598591017FBC0EEC8CAAD28FCD1B69288BA2C162AFFBFECF44141DD"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\04.png",
+      "sha256": "BA6A75832851BE4FA52C6BA6EB0729F331E7D592919DE2D6399966B096E7188C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\05.png",
+      "sha256": "6A56D435D6116DF3826009FAB8BA63CDFF2F3E6542EBD526D71FF6720FA4E499"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\06.png",
+      "sha256": "E6C08F8583C54B43D1734BB70602BF732E104BF2FFAF5AC6DA724873E54244C5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\07.png",
+      "sha256": "084E5953C9612B2063CF4DFDA0A6F26451B503C13BC136984A869224EF76177F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\08.png",
+      "sha256": "DA7E918CAA5947004775F93159E8E603A9BB3E1A3D62A9B50B8E81148199FB73"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\walk\\W\\strip.png",
+      "sha256": "D023011692EA9A32864D888AEAE577E1F6092499D446D2F025A5988A0392D969"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\23_lantern_courier\\appearance.json",
+      "sha256": "50A325C5BA189415714CCEB81EFA2E193D1F80B49622D737DB0F020077C3CA7C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\portrait.png",
+      "sha256": "E80160D554B0AEBC697AF0B335ACE06F4D03211B4823B447174D64AEFFB1931C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\E.png",
+      "sha256": "097C68CF31FA891F4C85EE14704AEAFBF8458B8E7961B96597D6F77D9D614225"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\N.png",
+      "sha256": "DB3FD541EE18AD1BAD7AFEADD7B1260E72816454D62B67B6F6414244896265BF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\NE.png",
+      "sha256": "F4A157E26E0D4B14081B3512B2FA631EA95B77157B9EB354432664350C88EF11"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\NW.png",
+      "sha256": "72F1C53C0FB992B9B2180C35A571F2A9DB44A8C7862F585045DFA28785CD36B2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\S.png",
+      "sha256": "6307B366583A14AC90EAFA220A3EA099BA46406341C95A943D3A2E016DDAC809"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\SE.png",
+      "sha256": "F053BE7072C7637040996ADC4FD50BF2B7309ABAE64B1D4503975063DC88F26D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\SW.png",
+      "sha256": "01E7E3A357BC529780B191975F068EB243838B9D22AD118634365DBBD825F718"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\idle\\W.png",
+      "sha256": "767A3ECE285207644A65354AAFD468CDE8409E77200C8F7D935D9BD35FD72668"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\01.png",
+      "sha256": "F19BF8E1B4B36715BE57B60A4E8075563E8B07626F70C4E2A8AC707B5867775A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\02.png",
+      "sha256": "94CDF75DD549F6331C0F095FDCB24A79EB139FF56595E7127F41344C15A2234F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\03.png",
+      "sha256": "A7814E495F42DFA241FBCB30A6E8114888113588427EE4D9D2AE0B26A1F9D3F6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\04.png",
+      "sha256": "F6F85A942A52CC8DC8486E6505176A42E0488699FC81388DECF58D61490FF509"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\05.png",
+      "sha256": "901E410792DF250C33F7CFEDA52A078AF34852A1EFA9B1992BEEE01C54266752"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\06.png",
+      "sha256": "337AEC17052F5771390DBDD142B1BC2EE7D57405F14CD5F8322D7CA18AF6DD63"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\07.png",
+      "sha256": "E4669E334376640304F0D116F2E26A447955F221697DF2215293C28F717ACA12"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\08.png",
+      "sha256": "A082707F2C518DE38419239B3E4DB87D5050A75FACD5C6C318222B7019357015"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\E\\strip.png",
+      "sha256": "59361D3BA1147222DC4F88732B0AB3CB8BE88CFBDDB535A5E16017EA1A12F509"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\01.png",
+      "sha256": "6F162EC78DB634F4342D46D0B6801B644AB7BF3D9EA740ADB052F7F6B8ADBF7A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\02.png",
+      "sha256": "FC36266394BC493761F186B59183E3CD9DB428C039CC38A284A9974087D38EAA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\03.png",
+      "sha256": "79692491B1145BD4FF22EFED9583EA84B59AA25DFCBBCEF19E6C414ED2FB9F34"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\04.png",
+      "sha256": "2A2C6E2033899B02EDC531E08C4B83D78153EE4BB835DCDB8D96DE769DD49459"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\05.png",
+      "sha256": "F340CA318AC7A59641565AB109C3F17FC737DB449C4D0D6F115DBCAE9FB51B6B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\06.png",
+      "sha256": "C382B15C86E66A40AF54B6D2E0384D813617FDDC5FC003490C74D931830D9199"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\07.png",
+      "sha256": "AC27B683B14F95A27A8BA2A5EA25D79F370E3F5E717CF0C0A70FDB4600E3E302"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\08.png",
+      "sha256": "0061AADCB2877A9BA20B17317D539D309349C8488C4F6F1F0596C7B740F6E1B6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\N\\strip.png",
+      "sha256": "99555F4EEEF7CB8CFA95025FAFFBD691C8648D43DC1D7E075F0B3CF9034E7916"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\01.png",
+      "sha256": "E1D748B68A9A42199507425250449D2054A29932AD46F4800C79F6A1E28E59AC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\02.png",
+      "sha256": "7A63B0F0A24B01F9D5A6CD06EE71929ADF6656AEC64E25E741F481F2320ACEEE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\03.png",
+      "sha256": "96BB16E59050AB276435A9F393797DF8C9FEEB9CBA1FB3358EBFD078A5FEA90E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\04.png",
+      "sha256": "0BA076D44779B7DB8FF2A69772FAF5DA03FF7FA12C172CB20D2EA3227DCB8326"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\05.png",
+      "sha256": "BAA20B0BFC1C98AD7F9E999C364CC0042FCE17BF69017ACD85F6ED223D70A388"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\06.png",
+      "sha256": "1EB172DF43C9DFB88960AF76E99CC1447679790D70199E62654099C4C06E5582"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\07.png",
+      "sha256": "2A174BA7D9D142377286E929D9FEA976C5FBEB88C69FE47C686484100F792759"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\08.png",
+      "sha256": "DE95A0E8000C8A8F4D76D499CFCB35F2BA855DB28BE96A3745DE99D343F408FF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NE\\strip.png",
+      "sha256": "17D482589A3575DAC04111B9C55F0AACC3BB918FEBBEBB8A72620D4C48FEF548"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\01.png",
+      "sha256": "A326E56BBFC16C93D05023ABFB8EF5C6910FF55A3EC9F96F359DEAB898FB89F1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\02.png",
+      "sha256": "19E6EAA7B6516AC233BF3290AB4D9C42DBBCBD7E51051E47EB00C3AF9CFD421B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\03.png",
+      "sha256": "6A8F727D00D5CA9372411F6F549B485883F6D03F4D65238A44D740ACA7012F52"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\04.png",
+      "sha256": "5E5ADDBED995A1EC9FA8311FFBAB47C1FB92FACDD50BC087776645B8B7635638"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\05.png",
+      "sha256": "2B435783F60791FF8288DDB9E888E134DA8A75D47E0A4043165E8A4B94C3DE56"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\06.png",
+      "sha256": "8B8407BAFF0BDBBBD1EDCAD8ED1B2BB71723B0D09B470B693BAC5D204A159592"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\07.png",
+      "sha256": "414CDBEC2FA7BBE30C18A5FEE9B942DFAD44E975E7DED98A0998CF0DAC5B7064"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\08.png",
+      "sha256": "B3D7876D762DFF843D56BD98E9ACEC58B117DB76EA8269F7F3B1ECAD7B2D8D17"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\NW\\strip.png",
+      "sha256": "B303C1A8FA748B16B13C133E7BEDFE7C63875E27F037E7C50AA75431EDF2D31D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\01.png",
+      "sha256": "90844387C36AD124F4D4653EC9BC0D44A366FB31AA270698FF41172C9C9A177E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\02.png",
+      "sha256": "F45D6495C7FE337F97A292EC60E117580EA5C339F5E4C03EA57EA13B0C677F9B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\03.png",
+      "sha256": "67375AED11484AB3D26B2A4F19D48C2316542067A6FC7FBE23EE90C0DEACAD08"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\04.png",
+      "sha256": "56A26C35AFDE925A07557B88EB8985BEE8A7F3871F63E74DB903C76C7B0B5620"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\05.png",
+      "sha256": "1EBE68A083CC5E65DABE25FB23D0969D584B7CF35E06B3267425960BCBF4988C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\06.png",
+      "sha256": "3DBD7586F48C131D95AB91EDEB487837E0367C0E0080F738C9B4EE877396E061"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\07.png",
+      "sha256": "43455FA222DBA18BC72CF290893489A0A8B98EECD9B0D44693353D79CC3B4EE7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\08.png",
+      "sha256": "8EB715AD509D4CB428B38C3FEF1F229F86F363F59A7941468B287951AE4050C2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\S\\strip.png",
+      "sha256": "015DEC436F3A84EA39C16764F0E33196AB5D19685F2375EB673F552F3BC99A61"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\01.png",
+      "sha256": "0CACE2AD042C77A5D00E980B31AE817274D4F8D9DACA977E12C89600479D4BE8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\02.png",
+      "sha256": "972BA0C431E7C40AD12B9D6D7B1F74AD3157037797E8143D77FA22F5CBDE87B5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\03.png",
+      "sha256": "2F998D66E538C427B41EE727C1A8DE880DFA5BAE3D5E9BCE8218259A22450451"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\04.png",
+      "sha256": "6F6848DA959002530AFFFFEC30D82871BB7486B4A2234F6F5DE670B7EE725F96"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\05.png",
+      "sha256": "CB6FECC0BE194F9FC541127B721C13964F7F4ADC25294F479BFAE910A9488C8F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\06.png",
+      "sha256": "A35797226D6D3F75DBBDB35BAEA90A2DD717887BCE512DC69A7EB1230248B012"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\07.png",
+      "sha256": "67DA293DC485814DB24A07ED8D081ACAA843AC6627905A75A7B44C08793D123A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\08.png",
+      "sha256": "478F42645B78475ED4E8CA698EF78CE6BF929394F39281F81B08A51A3AD4C245"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SE\\strip.png",
+      "sha256": "B5CE2734C71018B996E306672FBEAA6DCF47FD9C424B9E1195E626970CEF5329"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\01.png",
+      "sha256": "505AD105E4AEA636FFA65D1B2484733919715C2F4D7B69026E7141A3FA3BCE8A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\02.png",
+      "sha256": "F7D21FD28204C2269CE72599B2F22CFDD3B966D0AB20B665AA77625E237E25B4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\03.png",
+      "sha256": "8809BAA9E80B847599B1D8062638597E5A3C04331140135AAAE0B66C06D5B188"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\04.png",
+      "sha256": "65DE77E777D446D9F769CEA02ECDB42CC294F0D0D6CC38D35B256F6DB7C21AE4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\05.png",
+      "sha256": "08209C7C18DE9E8000987013D59A5D83621CD0F79CA16ED881A1C9826D8C5677"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\06.png",
+      "sha256": "BE915FA247EAEBB3A03F0EE744A72CE72CC75F5E0288203557D7D0F458DDDAD7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\07.png",
+      "sha256": "0E3E36A40AAC255E6418CA26E916637E517F5D419E25A254FCAA9558CC4A8C5F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\08.png",
+      "sha256": "828B0F4EFAC0FA1DAC3C59846DFF091F7008E4571B3EA7642408552638F07C80"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\SW\\strip.png",
+      "sha256": "9A7E6A7783D86FDDC2B58E32D44E650BF3672955053C6A6B47237116322958A7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\01.png",
+      "sha256": "FAFA35120AB58FB0127A91A4044917BB7DF04B0C00AD7AD09FDE8F3630E144F8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\02.png",
+      "sha256": "922B9CAC546BF73359FB58B7B91F128120EC28124AEB9F901F7A926ED70FFB89"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\03.png",
+      "sha256": "703282B8AC7F8BEB8189934DEF179806DE0668EF1311B90825EB00A3285F1A7B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\04.png",
+      "sha256": "1C00C24BC75643ECD900F145A455E79E0398172E885B7CFEE269D7BAE129A02D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\05.png",
+      "sha256": "0621BB288277B43EC69C437124A319B6FE25E33196734848AB9522381B52B6CD"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\06.png",
+      "sha256": "FEF979E3D9E112C79F4ADDFB20AC1E46BA9A3EB7DCBA5CE258D0ACFFC5DDADEC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\07.png",
+      "sha256": "B432B9F4CCC1123399EA85E086F613C01CB0FAD979627A729ED8A2731F762624"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\08.png",
+      "sha256": "7154E836D83AA87EC51168D4BAFB5448DE81A716FB64CEA2293966B4583AF893"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\walk\\W\\strip.png",
+      "sha256": "606F9E66CC79FBC1310EA8882AA8EC0AAD563CA1C7E2710054BE4013E5E88046"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\24_lu_dongbin\\appearance.json",
+      "sha256": "F2C130CAAF5223B2425A406DD1B87EFF2084B506B9719BA978FC8AA7104CFB94"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\portrait.png",
+      "sha256": "68EFB1BE8A25EEF554F0FBFED74DB136693CD53419402343FBC7711F322B5C53"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\E.png",
+      "sha256": "8AF2D568C572AE455ACBE9BF40C63E3E0390F17CD2E8BAE8023362AD004DB3D4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\N.png",
+      "sha256": "BA3EC7F1D387F60F64C869425E0F22106011FDCF789392C7D104753F387674B6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\NE.png",
+      "sha256": "E1A4255B81C66A911F6A6E134790C8BF190E262917382AE81E272FE6DE50B0D8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\NW.png",
+      "sha256": "A72F5E0C8625252CC49CA4CBFFA7308D58CDB723172F3A3FC177D56C2875EF1A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\S.png",
+      "sha256": "8B9D7CDF1AB67D68E33FDBBE384D22BE3CFB34D07E09DAE3BB2482EEB2464F8F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\SE.png",
+      "sha256": "152C782B2DCCE2D2C5616B47EFABBBB165E9AF16144E4B5673852D539F1FA4F6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\SW.png",
+      "sha256": "F5BDBF15139D8446BB04C62DA269361DCCA1F812B052AE50C3B429C2B0F7CBC1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\idle\\W.png",
+      "sha256": "16DF1653C93A52E9E03D2850E9A075B150B12F95A548F72ED7C29A625D46D3C5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\01.png",
+      "sha256": "0617F8D0DB0D2895A5022CC36A67D7D9A42C973F0B41F4AE49EC8C4083A4B1B6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\02.png",
+      "sha256": "6F5062EF5B0E66FFC76E0CAC39154E651E04DF2553EE251D8A7DBD7A2F18773F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\03.png",
+      "sha256": "B732ABE3950E10FF0A375251FA2753317E8CECD348D3495F0BB2321BCE9222BE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\04.png",
+      "sha256": "B076B0150679EB8D576945B0BC57306621CFCDFA85C3D08FE079A6812EC6EEA0"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\05.png",
+      "sha256": "F72AB94A65CCFF481735720F9C07622603F450044CA02DCDFE592341C9E2B1FD"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\06.png",
+      "sha256": "6E00B972B43D1AA88D243B3C9D618A7864EAC617EC9CDE91BC8DC6D925557CC1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\07.png",
+      "sha256": "03E474F70DBF823E37CA7EC3615AAC3A0BF9CB6A0A2DC03DF8D23EDB87F7C33B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\08.png",
+      "sha256": "9CE42707D5E2F0DDB8848CA7352289A726E793AE02E816DFA494B413E543B067"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\E\\strip.png",
+      "sha256": "73D6D2DDA65508F85EBBE16143E429C8C362279B088E3486C9F858AC86F4693A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\01.png",
+      "sha256": "98F760121BAFA22C631C8FD99974ACE56AD6E8D2F29EB6D2E11E8FA49315363E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\02.png",
+      "sha256": "3C5751583DA8FEB39CFF5AC94134ADEFBFDA6C97F18C7309C769E4386C82B560"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\03.png",
+      "sha256": "8262D9F5C6638AD7248B3A09FE7DC481A0053964F0F8A1EE76B7AF2F40A513AE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\04.png",
+      "sha256": "B4EEDE9F32AE71D89B6D903877B3616C82418E4238DC04F8F1B63B04D515BE38"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\05.png",
+      "sha256": "4022A888B5D939989CF85575F556D3758443842C74E17487A9244DD1DE14AB91"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\06.png",
+      "sha256": "9768997E6292700D00DDA835066B051479279775076D68D985261428EEA429D1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\07.png",
+      "sha256": "3505F3C9AA63A303279D605CBCC80036C382F38C60697E44F6437528BEE0A10F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\08.png",
+      "sha256": "BFB221DC701826E22F544F3D0721271F531BABB9CB8711EA9416ABFDAFC228DA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\N\\strip.png",
+      "sha256": "90763E230CCE2F4D5A0D157884DD5517B80965B54CED11409B8651658B85CE7D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\01.png",
+      "sha256": "0C87ECBE24F3794CA95EFFD01E36B7E97FF1AB4AE63AF17DEC89EC4631A3610B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\02.png",
+      "sha256": "21F9449E28951B6C8C7BE614073761792F5C22DB0DFDA81AF083744E604FC39D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\03.png",
+      "sha256": "AB21389600B352E52B1B88289A264E34A4444386EA719FF87CD2354541626AF6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\04.png",
+      "sha256": "9B787572E8431A891D1C27886413C46E8F0288D65E17650A27D4CB14A214B2DC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\05.png",
+      "sha256": "5F4E8F41BAFE1680132C6207E1F103D40BA021B21314016E55118006B85E0BF7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\06.png",
+      "sha256": "83D87EBCC178BFE6AB8DF5068C0360CFF11A3CE2C74EDC7F3DE8648950DB176A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\07.png",
+      "sha256": "03D79FD0ED83BA090A8833EFC406B36623632228632EE55AF063FACAFBBF964D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\08.png",
+      "sha256": "5476A081BE9FE8847DF91ED21ABE468FF2D0DA4496F3C8754394E4E21724F649"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NE\\strip.png",
+      "sha256": "6DC27F8766A085084B545C9F953DA0F376E94595EEAB28818BBD679778BAEBD4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\01.png",
+      "sha256": "D47DBEDC5A087EB98E6610A4F23D7BD7C216714C8BCBB97DA39B0EE9BCEA97FF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\02.png",
+      "sha256": "6C7FEEDE835211222C97572B2198F3B46943D87A6583E655A6B3FF9F2C0F2D59"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\03.png",
+      "sha256": "485A13A7344EB3DB394164DFC1CA081D641C686418F8BE8B92A7CE6DF130C004"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\04.png",
+      "sha256": "DC8AD66DE9B959D18C7A49AE793EAA875ED17293C756A7576067775527239251"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\05.png",
+      "sha256": "63E96602F694BFD18F541EC9AB1BAB835F906DD9D129A78DA52BC4D9709EDF91"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\06.png",
+      "sha256": "4F7A736EC8F1FB7998D328133218EABBFC483B3AC3F0215AE2C3F2301D4F25B5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\07.png",
+      "sha256": "E100EF853593D344C84BB01DC6B50E73F09C4554D9E90DA48582D2A6455F7279"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\08.png",
+      "sha256": "5BD14A07F50E42CADA36EAEA130281C15C51BADFB63AC5B823AEE0A7608DCDE6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\NW\\strip.png",
+      "sha256": "A3B7E140BEE888D87A3E2AA9076CB30A84A2A7D06231E2E9ABF96AF2D7068330"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\01.png",
+      "sha256": "C8349F829DEE348969257F20D7C97C55D09117BD0FC6DCE731D2077A0D903D9B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\02.png",
+      "sha256": "56E1C57047B1A041AAAA34C0926B0783C51AC7B2DFF985543145306FF8152475"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\03.png",
+      "sha256": "E076168D0D0371BF54D7CDC7AEF72719F94A3BA6321B04904BB9E618C7AB7708"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\04.png",
+      "sha256": "BFD26843A4A26FD78CE52BC69D32843D1FC9F6932F6C00740F23EE2F9BEE3245"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\05.png",
+      "sha256": "10619564D4EDB3BA3227F624AEC290BDE62E53650593887B047C1D0BF5EF467F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\06.png",
+      "sha256": "E7614AE29EF0745AD37581C2B03F4616275F3BC217C175D24BCE813EFDEAD1DC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\07.png",
+      "sha256": "C3B972240E362401FB857AF3E7C40E2AF7BC01DCF4484876E50F8C0F13922FDD"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\08.png",
+      "sha256": "92793F294F8310A635FA33B9D90ACF79D2CFD125AF3FBEC71CD6AE3E073AB60F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\S\\strip.png",
+      "sha256": "D09D37F81062512A1221E202051139C6DB870D5E31C62F50E1BBBE52740E761D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\01.png",
+      "sha256": "876833D646582F26EE264B9CA72D22FAD2E927B765C583A60A422637372992BF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\02.png",
+      "sha256": "8C46214FD6F6131D244B30AD89F439FA6815E44BF335F4096C687B3E47A8943A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\03.png",
+      "sha256": "EEEA38EEC39C5A2E35B7C84DA88FAD95B715FDFCD7B2F34B3A3444C3EBEEB62E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\04.png",
+      "sha256": "95EC868281C20832715DBA8D2E83A460B5C7EB1CAD9ED133267B60AE79ECEE05"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\05.png",
+      "sha256": "8DFD066757207A94D49F29FA07D7152EB75489BEC9FF86F83CB46690722A5545"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\06.png",
+      "sha256": "00096927F5B6D2E0A4BBE6E0981AC0AAE6B81904006D8A76454E80D537F658B3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\07.png",
+      "sha256": "7506E6D373391652573FF7CE243026FD155B23442ACCF42C276FD36A68346AD4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\08.png",
+      "sha256": "5FC8EEC0B14B7C1A45DDE7E2B463199FD37DC697CC17BF4DAE3FAD41036BF42C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SE\\strip.png",
+      "sha256": "2A92B625277F4D6DDEE6C280FE11B11CF3B1186C32AB76EA325EFE390A8636E0"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\01.png",
+      "sha256": "5A197B8599C744DF38C8CD55902F6FCD3D9652AA48BF4FA6593A4B5B2BD10DB1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\02.png",
+      "sha256": "0DDCA653BA69FEA9B044C16E236836A29E3D642DE5FAEBB108A12C24D55A2325"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\03.png",
+      "sha256": "061D1939584B906BCA83D37C9CA25B82D0CA86152D671520D9B469F32B828BAC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\04.png",
+      "sha256": "62583FBDAF9100891AAB3AFC3B79804EA75645703D1D2D1DD1A7ED85A3A6C056"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\05.png",
+      "sha256": "4187679F42BFB4C40C831455EEC6879649964573BCA824274C36091383EBC4BA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\06.png",
+      "sha256": "664D3647D2F2E3D007D7374AF0A84BF0EEB544ADEEA7EEFEAF46E6FD37D22BE6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\07.png",
+      "sha256": "23F3C5991216C585EB8B007D148B54D11DED19FC1E4C55E222F03901E5F5A919"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\08.png",
+      "sha256": "561EB5EA36903B05C510BE95B3EC8D2B19391638F1147BEC841B081DA3E6BCD1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\SW\\strip.png",
+      "sha256": "90DE370C69440F0B1DBF9F9919C164B6DA5EA559B1B8B56DF7A728540E906403"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\01.png",
+      "sha256": "FC43D66E331EEEA23E76873B917A8AA0B4B3144777E6394ED4F14E00CC0BE21A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\02.png",
+      "sha256": "0ED9BB7DF4832D23C11F2D1A47EB73467D811B3586081B5A0E10E7F5CAF84895"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\03.png",
+      "sha256": "0677F62C38654313AC5ED6A7BBE8D9E166AEE3792F8E1A3B38CBD52747BA950F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\04.png",
+      "sha256": "501C7DCEC00E76AAFF0EA45A38A066729A69FA18EF77ECE1394B340DAA207ACB"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\05.png",
+      "sha256": "B7365A17A226A659DEAC6AD5B97A01A713EA1AD2550EA1495A5DFCA41A853B1F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\06.png",
+      "sha256": "2F8D02EF964728E28B80E8BEC52732E72CB55BDB889FF85F67F70A9340D05117"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\07.png",
+      "sha256": "5FF901D7925D9BFD9E3C76E7DCC8EBFDA2EE9FD72C7B7E163B6F4E36B62024B0"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\08.png",
+      "sha256": "825AD7FCC97B8919694C2F766EA72B29E186B40274DCE17AFB7ECFE20340BE07"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\walk\\W\\strip.png",
+      "sha256": "A796663B1524A3FF3A9F41946F65466560B4C70E65C9E2D6A99763A90BEA4AB9"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\25_lion_drum_guard\\appearance.json",
+      "sha256": "DE6976BE5F44D917B0F432664D4FC26F267E607BACA60FF0A8D2E6DCE1A22164"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\portrait.png",
+      "sha256": "648E3459D2BFE79975795F595FE88550CE6BCAB34899315072731B3CB0611C6A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\E.png",
+      "sha256": "E000E1D4D60C6F9A9F23CC26DB031AEC81C9D1FFC4A1A4BE2C5D3865A99EF2D8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\N.png",
+      "sha256": "2677AFCE7B6A2C116665670B3C79C3B8B2A5B6CE442FC7EEFF0C7557D94E99F4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\NE.png",
+      "sha256": "5255818B1781FF7D74890C8E67E9BAD1B97799D647E92E6DEC19D747FEA645B0"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\NW.png",
+      "sha256": "29BEEA7FCEA1AD5E055762CFF8C55334C2CC70E339DA629E5903F87631990BE1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\S.png",
+      "sha256": "F30684F0A9366D2AE768C116A4AB219B7D03BD8FE2BFD07641EC708AFC5D45C4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\SE.png",
+      "sha256": "E39D41F0A2A6B4318885DEEE229A646342487CB010E39BA6C1BAA5057CD2FD86"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\SW.png",
+      "sha256": "9768E428CBFE35D3AE1E69D7FA847C199C3A82B956933C0855BE5B3D00A6C349"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\idle\\W.png",
+      "sha256": "F788A60432EC4AE7C8288949F6439C23A5EE46C31B0D00AE9C9B28465A85512C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\01.png",
+      "sha256": "19BEF0C2987588C1E31AF7EBBDFDEAE00ED2545405D62224014F39DF80E961D8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\02.png",
+      "sha256": "0DF5119C4FB1C666817B290FAF671FEF6FF42E25C4C5098ED11DC0132177FED0"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\03.png",
+      "sha256": "FC6DCE6BD2355BDA757DF8954AEE4D2B5DA82BF1EE55A48012A9C323C1CC27B8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\04.png",
+      "sha256": "5768B574FC04D5DA28BDBDDCA39137210DBF3EB49310B6B68D1C3ED1E2E9F7B2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\05.png",
+      "sha256": "A67793784B9580029505204CE6A14C914F0F4C170EF4F477CA3422B8A4E8F089"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\06.png",
+      "sha256": "C9A2B2CB6ADEBA4AB29BF219BDD935680405D9E753B1825C3F9821CE56054673"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\07.png",
+      "sha256": "08A157467F66EC1153E2B471518F0FC72BBFF2CB8F01AA093D75A937CA4AB71A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\08.png",
+      "sha256": "866BA88C4D1CB9AEF4B0BF0985DD57261D07676E99878A849B45D65928658C27"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\E\\strip.png",
+      "sha256": "B494D035CB016938218CA02AF217E1E2B77216E326EA8672FC9118750CE9ECA2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\01.png",
+      "sha256": "097B811F1D1449C785B7F8B459ABFA74D40AE8A6E7E3E335F7E3B838D241E646"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\02.png",
+      "sha256": "C92392FCE28B38A25EBEF97260C0C3F96AB7426E14026145E1BD8D143DCEDEBE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\03.png",
+      "sha256": "CBFAC31124722EB8B36E5F901F11EE15F5155512C1B8813E69F989E8A570D595"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\04.png",
+      "sha256": "DA97DBD3684A9057C40AFCCFA817EE85ED72D3FE271421D9A1B32A9EAEE10CD8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\05.png",
+      "sha256": "F8D119ED74D7D30CE4AB1AF04603615C72D34E6D209C6B24AE5188C53E1380D8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\06.png",
+      "sha256": "7E650B79B42D15E2DFF85F525FA15F6996DCBBA585C331EE1FCBEE60C4F5BBD5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\07.png",
+      "sha256": "E0DF33466C36EC5A742712956646C02E47FF2903ED7E39FC48A7D84CF80E8B56"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\08.png",
+      "sha256": "2940219E73C449DF91D3320809BA0A23C5245164255290E5E881B4A4E02609F3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\N\\strip.png",
+      "sha256": "97A13696136BE66A14A6A5EDE938F6A3BC18E74C243E6AD4D855E0C57CD164AC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\01.png",
+      "sha256": "DF21CAB6F075C58469875BD967582E29D2024B86D629E888EBB5006C73C90413"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\02.png",
+      "sha256": "2F6D744EFAE9344372A2F8DA411B0943920E27CAD25F646E8ADEC7B8BB275B57"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\03.png",
+      "sha256": "CB562CE28E906CD22C04742CBA4999EC32F8C35D0165EB11C0C220F529DDEF20"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\04.png",
+      "sha256": "21F468FD9706A47A6C79A012431E91E427904A8AA67EEEA1D358563C9118E4A1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\05.png",
+      "sha256": "1F254D5AD66F6D50AEE83B004E36B03D449BF38F98A3333E93F2D2467551A148"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\06.png",
+      "sha256": "EDC1C996E585C7E8743F0DF89CFF82008FB0EC14DCDAB35635AA16E56E147F91"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\07.png",
+      "sha256": "254E6DAF8E3008F125B3AA3367E336235DC4C1E1ECE584B8EDE939F97C632D5D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\08.png",
+      "sha256": "7B0E1CB4CFF8805464B71DF8E0E0D60DF312AF80EDD18D9B0588FE7D9CEE93CC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NE\\strip.png",
+      "sha256": "5AF5CFEC9E64EB2285759C530C6C67352BACF57C5135A0AC5D56502EF977DCA5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\01.png",
+      "sha256": "91A9AF6875DACDB68D409AF1BEE3686B38E29308E94F08246356BA6536EDFFAE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\02.png",
+      "sha256": "1FFE5D9C2BEC05B04E03C94FB25FF4A065393E7CC8E2CB62A733F5A3E8701ACA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\03.png",
+      "sha256": "6857089B0418F1C8B0ECAFAF5B7A2C22F77BC9FFE095E4C84CE2F859CEB7C323"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\04.png",
+      "sha256": "93B3FCE1BCFCBF45CE9707D12E25DF5685AF2582C54061FB92C0DF629794A49D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\05.png",
+      "sha256": "1D479905F50A23C69F5AEF685A33E005C1AA12F9755D786760A630F25172CBE4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\06.png",
+      "sha256": "9BAFDFFC117FA6EEF48E7D31FE4AA8CB9C61F960B65D99CFF68B98B7823174AA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\07.png",
+      "sha256": "52F35853227145A59C1E320599E2BA4A7178EA8173A402CBE9A927BDE3677DE6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\08.png",
+      "sha256": "639C1C58AF8471DDE9064A409CF0BE1815B5E0F4005FDF5E557BBB8280332805"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\NW\\strip.png",
+      "sha256": "86723704E82B4177B3EE9F806015D34646CB4BDCE61DA3B04707DB5D6CEA7ABF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\01.png",
+      "sha256": "E973F1049425A3F4BB4FB7BA55E56EFBCF4807836C23E0D9E698E4FA7918658B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\02.png",
+      "sha256": "E078410AA1616E86D4D659FE5082B5B21024284EAA586B2592DEF5A69A9C8CD9"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\03.png",
+      "sha256": "BCAD5F8E9516D5B0066FF1EB132806783F27CC2D5E17FACD1E9C7C309D2964C9"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\04.png",
+      "sha256": "F13809FDC1177B3948DB1719EC55DA3FEDD00479E3B9B30722705A524A81CF30"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\05.png",
+      "sha256": "CE3B25EC78151092C991FE776B80C689A43C27E59342C8E2F2E95ADC1EBA3661"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\06.png",
+      "sha256": "0834766FC42BCC83CB6FC4551ED2B0167E8AB01C71CEF10B72AC7CB7ACAC67AD"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\07.png",
+      "sha256": "3EF023C12E81EB847F741B266B671ABABBE42C5A6E4C5F6B6E38B677124E0C1B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\08.png",
+      "sha256": "A3B886DFD0E8EE489FBCFD4BC6BCE53BC6CE62051459A2DC112C65976B74D53C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\S\\strip.png",
+      "sha256": "5D11F75A9DA2194A51D3B265990F1112307B3CD65F6B2883A5498B458C936BEB"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\01.png",
+      "sha256": "1D058B8B384C1EAC6DA15EE1DCAB40A47BB53DE021CBF3CB8E87723E072ABDB1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\02.png",
+      "sha256": "BC586006B57EF9C5431D350541D63C0A4A66458E366567A75D600B5600F63A91"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\03.png",
+      "sha256": "3D1626D81AB53D273AEB8537067E23F906ED4F5145519346E647B93A98E57DF7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\04.png",
+      "sha256": "52A33A6CA9B2659A07DD900F60095FC2EBEFEE19D3B4F71A33A6E6A92FFAEF14"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\05.png",
+      "sha256": "965C2E396B7A7AB2A98469AE41CF7739F91EDAC65A4BB02A40057EBA231F1FDA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\06.png",
+      "sha256": "9087F06AEF19B42B34031D1829131794EF335565C9DB09A114D18691AFC62427"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\07.png",
+      "sha256": "9C85D41EE6534B032BEF3C1F0542B3345E828120261890B89B40FD6F73063A28"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\08.png",
+      "sha256": "8AE9606FBABE1ECD18BF8F8C3B0E36B7C07C0F8943195D6D21C47A0768384241"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SE\\strip.png",
+      "sha256": "5D38F9077B04B0A29D48F46B4223E61313DCD621F5AD89E0CB7021C73A396AD7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\01.png",
+      "sha256": "620712385D3400DCEF7DB7B5D63AD41C0969A15B5996CE86D59261EBBBACAF36"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\02.png",
+      "sha256": "17A2E69503A05BF05DF41D841FC847D5558B45B837EE57BCE2BB8C18FC8BC994"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\03.png",
+      "sha256": "07F784BE4472BD8AF455436B5F740AE68D1F02BF9B191800ED9C9646D83240D1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\04.png",
+      "sha256": "95F8FDE8E1AE6819BDF8E0168EEE3AEFE02AB311764869E1EEADCEEE0F428889"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\05.png",
+      "sha256": "08BB4C1AA2BD7F6A204E7F0515803118CF504DAA4B17FF52041522B9CD8BE364"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\06.png",
+      "sha256": "BE9DEE4D3913FB6062CF16AD340EA16718B483AD774DD58C4F615EF4459B1AA2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\07.png",
+      "sha256": "79BD6620181A7A2E05F65979736F208E53F43DE0A4888D0BA0AC71B9113BFE69"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\08.png",
+      "sha256": "D298694D06C60843FB2903C087A7722F2146BB11A866D1A18BAFB4360423F320"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\SW\\strip.png",
+      "sha256": "97A72D89618014E31BFE553832839EF433804D9B9DD3B581F724536FFE60BFC6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\01.png",
+      "sha256": "8F6C661F503A4A8C96DC48863E9FA00B3B7CF80BE0B8C18A08870EAD07710751"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\02.png",
+      "sha256": "531389D15FEC7FDE6E24BBB662BFCE3CAEFA06B6DC30C01652D511152EA567C2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\03.png",
+      "sha256": "E29EA85C22188126A981DD4747EFFB3F9BFC920F39E12B603F9EA52D875B9F79"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\04.png",
+      "sha256": "0F8CC447380F63FAAE47E5DB5E542DAB7A4DCA09BB79118D03531542753B7D5F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\05.png",
+      "sha256": "ECC5A997788EDF02470383015C6EAC70CFD97250CC6EA07205F80C06623485FF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\06.png",
+      "sha256": "54C7CC9B47BDD6850813BD2CD1C59AFAF4F4046EF484CCFD138958026A6F41A3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\07.png",
+      "sha256": "C9E9CFD938892E37338E747C6CF836ECC85B9D53348F175351A0955171CB927A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\08.png",
+      "sha256": "98859C3E7A3EEB11F7606511FECFE63EBFF27B17819F01B8DA217E8410873EA1"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\walk\\W\\strip.png",
+      "sha256": "46DBD0865B9DBC528B00F0F0AEA73F9895FA626A674E8EC3B6318FD56DF200E7"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu\\appearance.json",
+      "sha256": "F105D22336E152E78F19534A86E55C235D50A4DC013D149EF428DFE6BB9410FB"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\portrait.png",
+      "sha256": "50CA931B2B4AC6E1C4E5F5B087ED1C6CF03A27E19B8648FA0FE09B7B63B70A64"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\E.png",
+      "sha256": "C0B65F0CB7DF6AB1EDFE0E1EB936A2673DD69755B873EE86B19A6D90E76F5739"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\N.png",
+      "sha256": "EB4E47BD07C82B768955FDA1C5B83AAB8489811EBC65C2628A3DC6C1A1196D27"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\NE.png",
+      "sha256": "C832D268CF8AA5E319002A165CFBB164D0152818B4DA1489E032D97F9527D95C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\NW.png",
+      "sha256": "8E51D4B36094E47A3DCE05AE26919C7955E7D5D742EBAA533A2810612C556BEE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\S.png",
+      "sha256": "D5C3689F44C5D945A92020B9BA8D728B21461AF0E0A173D4CB377D21F523BD89"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\SE.png",
+      "sha256": "72A4669CEF100DD69AFEA96435C1A698306D1E36C605639DA55052BA2F36DA88"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\SW.png",
+      "sha256": "585E8D9DF0265B19E6BC3C98AC4601D2353898CF4116F8E496DB8AD5E132EB3C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\idle\\W.png",
+      "sha256": "FA8E6B62B32319D5469D223A1A32BB697E68571DB72BFB29C66FB35726A22890"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\01.png",
+      "sha256": "9ED1D24346715B8C5A839B65A9379A94B056F081DC7AE3ED281E0972D5A17532"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\02.png",
+      "sha256": "27A3C0B6F2999661A01B703A2AD928E68227AD9D35CF87E64C9D199F68DC2EE4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\03.png",
+      "sha256": "53133F5A57ECC3CE372D7068A29F859573ED5E923413C1DF5290E95798041847"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\04.png",
+      "sha256": "18D8F6F5C30DCCE46CB8DBF56F445387DB748EF66A6C280357D67A8F4B1B1416"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\05.png",
+      "sha256": "52735EF5805DC36DB204D423EDDEDBE82CABF7AC0D23B869E1B5210675B5693A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\06.png",
+      "sha256": "64234B063BEABC0B4FA51019E74EEB46C10D957EEBE62A46177322A72725C794"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\07.png",
+      "sha256": "EC6705F0655590EBBED28EBA14F7C6024353B72A2192BAA59F2FD5284FC231F8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\08.png",
+      "sha256": "D0DEA974D31DBFF6D24D2BD826A27B146DC64E84B60196060B719960FE2E4F60"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\E\\strip.png",
+      "sha256": "7CCA4F37D132974A2499C32E52181FD7EAB535C375C2F3988DC7BFF03B995B2E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\01.png",
+      "sha256": "3BC05E084AF974102B37C4A75FB9C820864A87DE4F151E789B4E152C07A89876"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\02.png",
+      "sha256": "7FCB201CF2AAC476D75727F180A71F16939E6F99C69BA1EB2CD3938B6C3A2E44"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\03.png",
+      "sha256": "A0E98C1C53B3A75631B9DC67E427016B28E123F06CDCB2AA9AAD5DC0E11A66B6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\04.png",
+      "sha256": "33B671A0654E6FB865C74488935BF4F93AA078FF63358326BBF9F490B0F97E9C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\05.png",
+      "sha256": "7272E63A062D20D39E8AFFF3124D21250A8D8BDAA190BCCAD0482B333145D7D8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\06.png",
+      "sha256": "AC56DA800BBBB6F2CAD588D387F64CBD0388D7CC60EF33DAB2941DED295D83AF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\07.png",
+      "sha256": "891DE0D2263F9EF29EF854AF409060DCB34C62105278B387D7DEF7755ACB0661"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\08.png",
+      "sha256": "8FA4CDD390BAB5B43A407F373E23E60A1FF35738E0406FF32BE02EE64CD599FF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\N\\strip.png",
+      "sha256": "DE9756C391E3C34B8135379AAEE9892370AFFA8A3294D036D18C6D0497C0ADD5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\01.png",
+      "sha256": "2F5BA3F4248F700C361557C6D982BCA0F73730A2D84936772F89D88CB55F3ECA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\02.png",
+      "sha256": "E088A9EA8B535C01589B3F81416F7E10AE340B56BCD8496FFCE9A5304D82851F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\03.png",
+      "sha256": "445071E149AC38E0A255CA29E412D0286BAFC3A212AA39B56C03ABA4D5F773A3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\04.png",
+      "sha256": "EB7BE78514B9D2EDCD52FDB4C99C908D1E9312AE377DFC94DCBFBC07DF0FC8FE"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\05.png",
+      "sha256": "969CCB07E26FBFE6A475B3C2A2625DFE92B08EFA5269E7708C5FC29FC1679A81"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\06.png",
+      "sha256": "1EC51FC1A1E316245DF0553FEF5F5401BEB91A6F6583849F8E0716BB60EDFDB8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\07.png",
+      "sha256": "291676B327444D020856A2B7DC1558CB40718B40262BBA1D90DBE2962AC5DC2D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\08.png",
+      "sha256": "D27AB8ED0BF4229C3BD7584FF1D211F7DD4D0EE09D4E494AC44B6A6EDB94EAF5"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NE\\strip.png",
+      "sha256": "4E34EC9CFBC551FC3D0AA44E0826664EA4CE6C3E5989EC821BDF217414942B79"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\01.png",
+      "sha256": "1B8FA85B633D3651CBD3E90CA60C319E063202A9B3E099CC4B153D2A3294D0F8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\02.png",
+      "sha256": "94FE9D5B8888B3516931E99A95EF54C2F4A54EDAF7207015F3C9AEDFE0D0254F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\03.png",
+      "sha256": "D77695081BEB80982C877C389DDA0EF984E411AE7C32731C36FA4880B678F2CF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\04.png",
+      "sha256": "7158FCE809908345097E6714E71C50E8D0CEA0C957D20E61F60DDB1B5DE21AFA"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\05.png",
+      "sha256": "DF7BC190EDA937128BE7CD0BA2FB092CBAD9E156E6D87E371B79F892B15BC46C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\06.png",
+      "sha256": "BCD9E9C5A78095CB63FC022511398C15B8A662EA973ECAEA1A100880AD1BA0B4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\07.png",
+      "sha256": "B5D5E86B648177CA23372A651320BEDAC0D7ACC12DB0FC216D07C82BF847C668"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\08.png",
+      "sha256": "1B9B560A943EC7BE4AED74D024E630752532CAA717522A7747CBA3E60DD0923E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\NW\\strip.png",
+      "sha256": "EC6D0D68BF33F062856F31A54DB402AE81A83E1452F89EFA0429D724A0F067C8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\01.png",
+      "sha256": "F0FCD423A18EBF8060C31A286D3BFC842B043BB4D8B4CB98D56B99C1082FD28B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\02.png",
+      "sha256": "9818908255B8BD23124E0EF55E290A6FFEE856BF8E36229E3CDC665C78190FB3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\03.png",
+      "sha256": "1CD2B1D30F3C4BCE611F9BE566D2C3410DA54599F0A95E6248199F79AF48D1B0"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\04.png",
+      "sha256": "6A791834961DFD98D75694C5DC12E85D8E5CECA6D2CD62B2BF6D0B732000A039"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\05.png",
+      "sha256": "3B3B9637A48383F4CCE5A7A23A23DD85EBD2DA2ADF7CA7572981A66C81BE9D7C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\06.png",
+      "sha256": "BB7C829A424DF1F7B888BE2430A091F19FA27EE6C240D20768DBBBB3F614796C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\07.png",
+      "sha256": "064E61D171977FBC899F273EF5D324F38013531BD4B09E30EDE056589E7D445C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\08.png",
+      "sha256": "698ACD60E3EA8CA4F1CE076A6FB1B6CBB2CE93D677DBB4AD121F66E36147F8E8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\S\\strip.png",
+      "sha256": "774E02E12D6EF08A6BE5A2D597AEF6F33323DC7D5856EDBC60ECF19595BE81FF"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\01.png",
+      "sha256": "167A6B3666CCAE0F77CEFA213D944D6125951897F0CFA17F0B4A183AA79F69F4"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\02.png",
+      "sha256": "8E4DD00CE5BD5DB3211B650EAF1FD9DEF9E8F625458258A149A1C766BC260A5D"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\03.png",
+      "sha256": "B4D8EF9F8F4F8E7DCE93FBB41B5D7136B1296472BD1267DD8F90061BCFB3F143"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\04.png",
+      "sha256": "B9121A2D8B96499A4EDC2D9CE06F8B215ABD80B9C85A3A645B9D025B4109E238"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\05.png",
+      "sha256": "C88EBAE1D0C34229220E820636C56B1E1E02683DC727D36A735B2E85CD3353E9"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\06.png",
+      "sha256": "7C6EB6900D2066A2B7BDDE537EF5B8DD0FC9D62F971F5C4B0A102794FF01CC3E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\07.png",
+      "sha256": "96C3C7BCEBEB9E9EC81EF10652D2CC8D1D7AA901A262C04D21DA3C199EC0CC09"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\08.png",
+      "sha256": "2523F7D9C4D74932C7759A8C5648404DED273D4C75F113611A9E011C21A9AE67"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SE\\strip.png",
+      "sha256": "736DDBD319BCEB28BBE4E0E95DE3F12A37EC8755FB4181F23C36A8E951CB698E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\01.png",
+      "sha256": "3C9A111A2A806B335CEA03DAFD38C859CF36D7706BDA7AF5B74214DFCAAE09F3"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\02.png",
+      "sha256": "67523D12719FC0B46A9CDBCA240A6B9E76551BD62F9CCF5CED97FBFECA1884C2"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\03.png",
+      "sha256": "57618684235FCF301A8CBF61FE2A6EF08BBC8F63E27C2D9D3545CF8ECC51EA59"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\04.png",
+      "sha256": "60E68DD03FCD6935C7A779599FD8CA74B2D03BBEE299295C9FF1A07B575DF181"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\05.png",
+      "sha256": "487C8C53C147EF4C3974B04B33A592CE72904B5152CB84770A823EF2420B1700"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\06.png",
+      "sha256": "0B631A81506BD8250622E0E52F2472183661BF1403F400432D5FF34F7EAE2C1C"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\07.png",
+      "sha256": "ACDDFA7D9D9AE6C3F34574654B51104329BECAD125E84243A8DD98E793B26B0E"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\08.png",
+      "sha256": "AE8B4C873ACACF84EE8E93C3CF32A413FD3FD9DB590538DBFECFFA941645F2D6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\SW\\strip.png",
+      "sha256": "9D6C0BA4B0797868E72081068F6CE953C6073651E925877121E744990840E41B"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\01.png",
+      "sha256": "7E5374CF9BA0FA83251BACCADE330CA47AA04D21708CA904E993D44B450B715F"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\02.png",
+      "sha256": "29CF32B746003578369E02278EE18865C7DF17C3E63C264CF1A9F9FECBEE5F23"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\03.png",
+      "sha256": "0B1492420C7B485267326CF989BCAEA052420A53475ECA29BD39BD8E342B6618"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\04.png",
+      "sha256": "DC3BE73BD5E60310909D77D87D20C00A93275969C8D2F9C41E481E7F44252C7A"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\05.png",
+      "sha256": "899246E48B4851B4D5373E46E65FC79D19348D6F83258E25F0481815AE23A8BC"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\06.png",
+      "sha256": "DDD3936AF4F4248057DB1F6002DBAB42A089829445BC522E47249E2E369A92B6"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\07.png",
+      "sha256": "71970EDE474401D069E32FC57BDA831F091EF093C1CB7E5086028F7A3623DCA8"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\08.png",
+      "sha256": "C466D8903D3F4B8A036C232F5E52CD2360CF5D4C4188199B0DDDB34C9913C289"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\walk\\W\\strip.png",
+      "sha256": "8E3BAB07B6CFFD00499A03598445452330683BA9A2DDFC1AF5B1039DFCE13290"
+    },
+    {
+      "path": "Assets\\Resources\\World\\Characters\\QdaoRosterV12\\30_han_xiangzi\\appearance.json",
+      "sha256": "037BE22090CED210895CB3C3695617A6432A5987BA2DA5FE3478A896D9B0FC02"
+    }
+  ],
+  "originalOpenUnityUntouched": true
+}

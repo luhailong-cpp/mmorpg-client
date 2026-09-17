@@ -1,0 +1,19 @@
+{
+  "step": "tests",
+  "exitCode": 0,
+  "startedUtc": "2026-09-14T09:21:50.3285740Z",
+  "completedUtc": "2026-09-14T09:27:59.8410184Z",
+  "logPath": "E:\\work\\output\\guild-mcp-20260914\\verification\\guild-editmode.log",
+  "processExited": true,
+  "resultsPath": "E:\\work\\output\\guild-mcp-20260914\\verification\\guild-editmode-results.xml",
+  "resultsExist": true,
+  "testSummary": {
+    "result": "Passed",
+    "testcasecount": "28",
+    "total": "28",
+    "passed": "28",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "1.6462715"
+  }
+}

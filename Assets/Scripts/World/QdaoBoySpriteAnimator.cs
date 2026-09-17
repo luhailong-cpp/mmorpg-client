@@ -16,7 +16,7 @@ namespace MmorpgClient.World
     [DisallowMultipleComponent]
     public sealed class QdaoBoySpriteAnimator : MonoBehaviour
     {
-        /// <summary>Readable locomotion state (Settling = stopped, finishing the run before the dedicated idle).</summary>
+        /// <summary>Readable locomotion state (Settling is the legacy stop handoff; V12 stops directly on its authored idle).</summary>
         public enum LocomotionState
         {
             Idle,
@@ -229,9 +229,25 @@ namespace MmorpgClient.World
         }
 
         private static FrameSet LoadFrames(string characterId)
-            => LoadFrameSet(QdaoCharacterCatalog.Find(characterId)?.ResolveAppearance());
+        {
+            var definition = QdaoCharacterCatalog.Find(characterId);
+            var appearance = definition?.ResolveAppearance();
+            // Known original identities cannot borrow another character's body
+            // while their authored set is incomplete or awaiting approval.
+            if (definition != null && definition.IsOriginalRoster && appearance == null) return null;
+            return LoadFrameSet(appearance);
+        }
 
         private static FrameSet LoadFrameSet(QdaoCharacterCatalog.Appearance appearance)
+            => LoadFrameSetWithResources(appearance, Resources.Load<Texture2D>,
+                QdaoCharacterCatalog.ResolveFallbackAppearance, true);
+
+        // The injected providers let tests simulate a resource disappearing after
+        // catalog validation without modifying any approved PNG or activation file.
+        private static FrameSet LoadFrameSetWithResources(QdaoCharacterCatalog.Appearance appearance,
+            System.Func<string, Texture2D> loadTexture,
+            System.Func<QdaoCharacterCatalog.Appearance, QdaoCharacterCatalog.Appearance> fallback,
+            bool useCache)
         {
             var id = appearance?.Id ?? QdaoCharacterCatalog.LegacyId;
             var dedicatedIdle = appearance?.HasDedicatedIdle ?? true;
@@ -240,14 +256,21 @@ namespace MmorpgClient.World
             // must not hand a walk-frame-01 "idle" to an appearance that now
             // has real standing poses.
             var key = (appearance?.CacheKey ?? QdaoCharacterCatalog.LegacyId) + (dedicatedIdle ? ":idle" : "");
-            if (SharedFrames.TryGetValue(key, out var cached)) return cached;
+
             var folder = appearance?.ResourceFolder ?? ResourceFolder;
             var count = appearance?.FrameCount ?? FramesPerDirection;
+            if (appearance != null)
+            {
+                var portraitPath = folder + "/portrait";
+                var portrait = loadTexture(portraitPath);
+                if (portrait == null || portrait.width != 1024 || portrait.height != 1024)
+                    return MissingAppearanceFrame(appearance, portraitPath, loadTexture, fallback, useCache);
+            }
             var strips = new Texture2D[DirectionNames.Length];
             var idles = new Texture2D[DirectionNames.Length];
             var separateFrames = new Texture2D[DirectionNames.Length][];
             // Resolve one complete immutable version before creating sprites. An
-            // incomplete V12 upgrade retains this identity's four-frame V11 set.
+            // incomplete upgrade retries this identity's next approved version.
             for (var d = 0; d < DirectionNames.Length; d++)
             {
                 if (appearance != null)
@@ -256,20 +279,20 @@ namespace MmorpgClient.World
                     for (var f = 0; f < count; f++)
                     {
                         var path = appearance.FrameResourcePath(DirectionNames[d], f);
-                        var texture = Resources.Load<Texture2D>(path);
-                        if (!IsFrame(texture)) return MissingAppearanceFrame(appearance, path);
+                        var texture = loadTexture(path);
+                        if (!IsFrame(texture)) return MissingAppearanceFrame(appearance, path, loadTexture, fallback, useCache);
                         separateFrames[d][f] = texture;
                     }
                     if (dedicatedIdle)
                     {
                         var path = appearance.IdleResourcePath(DirectionNames[d]);
-                        idles[d] = Resources.Load<Texture2D>(path);
-                        if (!IsFrame(idles[d])) return MissingAppearanceFrame(appearance, path);
+                        idles[d] = loadTexture(path);
+                        if (!IsFrame(idles[d])) return MissingAppearanceFrame(appearance, path, loadTexture, fallback, useCache);
                     }
                     continue;
                 }
-                var strip = Resources.Load<Texture2D>($"{folder}/walk_{DirectionNames[d]}");
-                var idle = Resources.Load<Texture2D>($"{folder}/idle_{DirectionNames[d]}");
+                var strip = loadTexture($"{folder}/walk_{DirectionNames[d]}");
+                var idle = loadTexture($"{folder}/idle_{DirectionNames[d]}");
                 if (strip == null || strip.width != count * FramePixelHeight ||
                     strip.height != FramePixelHeight || !IsFrame(idle))
                 {
@@ -280,6 +303,10 @@ namespace MmorpgClient.World
                 idles[d] = idle;
             }
 
+            // Recheck completeness before returning cached sprites: a texture can
+            // disappear during an editor import after catalog selection succeeded.
+            if (useCache && SharedFrames.TryGetValue(key, out var cached) &&
+                CachedFramesMatch(cached, separateFrames, strips, idles)) return cached;
             var result = new FrameSet
             {
                 Id = id, Count = count, DedicatedIdle = dedicatedIdle,
@@ -294,7 +321,7 @@ namespace MmorpgClient.World
                 result.Walk[d] = new Sprite[count];
                 for (var f = 0; f < count; f++)
                 {
-                    // Every V11/V12 pose owns a separate 512px texture. Only
+                    // Every V11/V12/V13 pose owns a separate 512px texture. Only
                     // the historical headband-boy strips are sliced at runtime.
                     var texture = appearance == null ? strips[d] : separateFrames[d][f];
                     var frameX = appearance == null ? f * FramePixelHeight : 0f;
@@ -317,19 +344,39 @@ namespace MmorpgClient.World
                     result.Idle[d] = result.Walk[d][result.Contact];
                 }
             }
-            SharedFrames[key] = result;
+            if (useCache) SharedFrames[key] = result;
             return result;
         }
 
         private static bool IsFrame(Texture2D texture)
             => texture != null && texture.width == FramePixelHeight && texture.height == FramePixelHeight;
 
-        private static FrameSet MissingAppearanceFrame(QdaoCharacterCatalog.Appearance appearance, string path)
+        private static bool CachedFramesMatch(FrameSet frames, Texture2D[][] separateFrames,
+            Texture2D[] strips, Texture2D[] idles)
         {
-            if (appearance.Version == 12)
+            for (var direction = 0; direction < DirectionNames.Length; direction++)
             {
-                Debug.LogWarning($"[QdaoBoySpriteAnimator] Incomplete V12 artwork: {path}. Retaining {appearance.Id} V11.");
-                return LoadFrameSet(new QdaoCharacterCatalog.Appearance(appearance.Id, 11));
+                var expectedIdle = frames.DedicatedIdle ? idles[direction] : separateFrames[direction][frames.Contact];
+                if (frames.Idle[direction] == null || frames.Idle[direction].texture != expectedIdle) return false;
+                for (var frame = 0; frame < frames.Count; frame++)
+                {
+                    var expected = frames.Legacy ? strips[direction] : separateFrames[direction][frame];
+                    if (frames.Walk[direction][frame] == null || frames.Walk[direction][frame].texture != expected) return false;
+                }
+            }
+            return true;
+        }
+
+        private static FrameSet MissingAppearanceFrame(QdaoCharacterCatalog.Appearance appearance, string path,
+            System.Func<string, Texture2D> loadTexture,
+            System.Func<QdaoCharacterCatalog.Appearance, QdaoCharacterCatalog.Appearance> fallback,
+            bool useCache)
+        {
+            var next = fallback(appearance);
+            if (next != null && next.Id == appearance.Id && next.Version < appearance.Version)
+            {
+                Debug.LogWarning($"[QdaoBoySpriteAnimator] Incomplete V{appearance.Version} artwork: {path}. Retaining {appearance.Id} V{next.Version}.");
+                return LoadFrameSetWithResources(next, loadTexture, fallback, useCache);
             }
             Debug.LogWarning($"[QdaoBoySpriteAnimator] Missing artwork for {appearance.Id}: {path}. Keeping the actor's current visual.");
             return null;
@@ -432,8 +479,10 @@ namespace MmorpgClient.World
                 // Use actual travel, not the controller's smoothed root yaw.
                 // The latter can lag a direction change by several frames and
                 // briefly select a strip whose feet disagree with the motion.
-                // A reversal switches the strip at once but keeps the cycle
-                // phase, so the feet carry on instead of restarting.
+                // A reversal switches the strip at once and keeps its frame phase.
+                // TODO: unify anatomical left/right phases across the artwork
+                // before mapping phases between directions; frame indices alone
+                // do not guarantee that the same leg remains planted.
                 var movementYaw = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
                 var relativeYaw = Mathf.Repeat(movementYaw - cameraYaw, 360f);
                 _lastDirection = SelectDirection(relativeYaw, _lastDirection);
@@ -445,7 +494,15 @@ namespace MmorpgClient.World
             }
             else
             {
-                if (State == LocomotionState.Run)
+                // V12 and V13 have an authored standing pose for every direction. Once
+                // travel stops, continuing the walk in place would slide the
+                // feet for up to a whole cycle before that pose appears.
+                if (_frames.Version >= 12 && _frames.DedicatedIdle && speed < WalkSpeedThreshold)
+                {
+                    State = LocomotionState.Idle;
+                    _settleBudget = 0f;
+                }
+                else if (State == LocomotionState.Run)
                 {
                     State = LocomotionState.Settling;
                     _settleBudget = _frames.Count; // at most one lap
@@ -488,7 +545,7 @@ namespace MmorpgClient.World
         /// <summary>
         /// Plays the cycle on at run cadence until the displayed frame is the
         /// direction's contact phase, then holds it (V11) or shows its authored
-        /// idle (V12/legacy). V11 and V12 both finish within 0.48 seconds at reference speed.
+        /// idle (legacy or V11 with standing textures). V12 uses its idle immediately when travel stops.
         /// </summary>
         private void Settle(float deltaTime)
         {

@@ -1,0 +1,1980 @@
+{
+  "status": "passed",
+  "characters_this_import": [
+    "24_lu_dongbin",
+    "26_osmanthus_healer",
+    "29_he_xiangu",
+    "30_han_xiangzi"
+  ],
+  "source_root": "E:\\work\\image\\qdao_chibi_roster_v12",
+  "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
+  "png_count_this_import": 324,
+  "source_approvals": {
+    "24_lu_dongbin": {
+      "manifest_sha256": "32d7909a697d6f0caeea0fb2a843945664ae609af114de30c03311408cad04e1",
+      "qc_sha256": "17a4efec020c449985e79395189823d2ce1b5c396aa6713848de12f4b08a1b52",
+      "validation_sha256": "e58afcf307852c13de96c447b148f87b21f113f0d14e2993d7e5ef26f9ba94a5"
+    },
+    "26_osmanthus_healer": {
+      "manifest_sha256": "985981e192e764f7ee22241891ac09a22d1401a5f3b14bf2cc012f5e151ef401",
+      "qc_sha256": "89797ae70eadfcf1826fd68aa3b33b42a459e947dbac2276e5f9b9afc55ef8a8",
+      "validation_sha256": "92c86fe984e0960fc7e6f4c67c6f2652b86e5c96e463b626d436c657c061214b"
+    },
+    "29_he_xiangu": {
+      "manifest_sha256": "91fa33a20c7223de4a40b1cf601c1e886ce4284aa62a5c694f5f6f4c0d71fd86",
+      "qc_sha256": "cf63505f425bac9bb64307057367a22ca66852a54709529a3eb6611950a843ea",
+      "validation_sha256": "9fb0343304745056845a36a687a9ff67057a1ee60c3a0002662845c080eb3bf8"
+    },
+    "30_han_xiangzi": {
+      "manifest_sha256": "f2ee659234423c737530b8666a4c0488570ff4bf0a3c3c7c6686abc7fdeabaa4",
+      "qc_sha256": "efd16f8a79054f5547ef8f610380e51201a8a29f577e6ca61260833cea8b15d1",
+      "validation_sha256": "e1fdc0e8c8f9804094cd9eb8eddb98d969afbe5283cd1266e58ff9fe0f31b694"
+    }
+  },
+  "files": [
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/E.png",
+      "sha256": "46a09c3b501d331a2fde6db56dc8e55610a4bacd72609b0f05ea5d58d0f36bcc"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/N.png",
+      "sha256": "2e3d0138d869d92dd901030dfbe0c2cd4f76bd9644ca22eea832a7698fe69eab"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/NE.png",
+      "sha256": "e4fec59986a230972f545ed59f335a1be3a387221d0db305a54b8456e3b36450"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/NW.png",
+      "sha256": "ad94f30d3792346513678ded03fc4c7f75c8377861be18fa3ab99cb8887b6e2c"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/S.png",
+      "sha256": "60c4e7298858142b8d07eee18910ea67c1632b3cb3b3e6f5d44bb1e178228acb"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/SE.png",
+      "sha256": "0adbd70d3c74742b97f5bdebbf55d24d6fd5560cea12cdb279a193b2c77243de"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/SW.png",
+      "sha256": "665efd2554658709807e7ff138970de6a73d199fa3310f4823f66653c8727d23"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/idle/W.png",
+      "sha256": "5a2c9cea4670126854168c02923c3f855ab0eb526b90fa0241fe4f994557909b"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/portrait.png",
+      "sha256": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/01.png",
+      "sha256": "e79c340f2d37a29a03d9064cd0ad0842df62a5da9338e166fa367e08b8c88946"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/02.png",
+      "sha256": "731150ba0d4cd950401508f7dbad8c8a90b207a7c646a6e6607010ffded71657"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/03.png",
+      "sha256": "9a10a35ccda0048aad9b809f50268753252b6bde97681e2fae55c2fc4ad776c0"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/04.png",
+      "sha256": "6dd62ce73e45aef6d0b8a78730212de303dcc656181b5f83e6e3ea7f0e27bf72"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/05.png",
+      "sha256": "2aceb0875324bfa13f2d94d16bfbe3fa8bdaaf664c5e64418a9e873b2ad8336a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/06.png",
+      "sha256": "b68a8ca9d4c5114827b515427941ec30adfec8d3f5cd8eb7a70f6ff84068cae9"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/07.png",
+      "sha256": "802c307a4d5919367688c176883a1dae38fb9f4b274faceef33fdadd62115dbd"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/08.png",
+      "sha256": "cabf93e9be600707bc803f3f07df47772d4d3526d7d1b790144eb4ac77586b93"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/E/strip.png",
+      "sha256": "86bbe4ce62aea146fb95ce0e0e11ff01c66822e776e00010c19d4392dbdc0c5b"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/01.png",
+      "sha256": "c06964af757845cf5d0c47203434c287082c82b7a90c9ec1a488875d64920606"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/02.png",
+      "sha256": "c5177d60ed46282a25f2382085c89f286d201dcd1d7000737e085e3897809663"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/03.png",
+      "sha256": "140c0a816676c95afc57c4525b852aaca5c98c96fc447bb96474042a3a2d93e3"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/04.png",
+      "sha256": "2db8318ca5a4aebc24b381bc6257f4044c7033837f224bd8000e9fff5112feb6"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/05.png",
+      "sha256": "cc68d338e778cbb8d53cffce051704bc5a8cbe56bb0554399951597097af4ca8"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/06.png",
+      "sha256": "6762a39cc72b2c5fd654de725ece31c486ea863e1690ffcad1735de40a8d9899"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/07.png",
+      "sha256": "bf97625e27bed59766d995ea9794ed30f3e88be6a181ad156177527b9f321a32"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/08.png",
+      "sha256": "82e0eb7b6d8286f150d82cc66359a832de21d4c11c785e9c72462bd75e2aec66"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/N/strip.png",
+      "sha256": "7155c36b575264641bb81d3f0af0ec4b97ba7485e52bb207f92458e07b1c144a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/01.png",
+      "sha256": "a11d548b8d92e9a6f883735802335afdd84e4d4d2be867ea6e19e6ba58fbd815"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/02.png",
+      "sha256": "23098b69114665e7dcf6d4764bb06a60dbf1270c4811d03174b8af648c18e874"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/03.png",
+      "sha256": "1b0992de78abfb55cd01b2e0ddee890ed2edb237e744a01b1a2af4cd159897c5"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/04.png",
+      "sha256": "f36d5ddb57d605796ec12fa53a7879ae8f99f67566f0ecdfabdb72a763725b4a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/05.png",
+      "sha256": "77403fce5cce1d4dea084354c4414c72f6c5717a988d782b5908e3713259fc4d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/06.png",
+      "sha256": "46616d1c5be95e457e08312600cfffd55e10d3866ecd8e13872851c14bf3c1c1"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/07.png",
+      "sha256": "d1cfc66dec75a6d8e606c4702a8b86a49338ca64b817d0c48784ff0a2944484a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/08.png",
+      "sha256": "f3472e9e64f2fceec0e4edf67366071f6a89f6ccb4823ad1616f095ed01b43f4"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NE/strip.png",
+      "sha256": "88f95ce7babebcc012428dd1fd291a6d1aa032c8322c49eea898fd840a65b5c8"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/01.png",
+      "sha256": "e12af5e0db4d871c118d3180d82a5c41de8e6ed3b4178ae8aca0182b5615736d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/02.png",
+      "sha256": "0fc6157b2bbb2e65373f3092ace0ea1b706ccb71df577d2fde3b7d623082a2b3"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/03.png",
+      "sha256": "fd48939b4c230d36485b7a3673ba9c587065df012eb9ad87c54a9df3d95dd334"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/04.png",
+      "sha256": "215ec0bf2362f43456041d9e08ca0a0d8ef9322a4928ea4ccc408f2ad1254f5d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/05.png",
+      "sha256": "6b381a2d881be24678f1b1ff317c3ec24ddf5c87097ab8e4ecc0621d54ef57f9"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/06.png",
+      "sha256": "ae18e650a202bd65743376f5bb27c77aef2fdbd753273c815ca2e67b9e732f1a"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/07.png",
+      "sha256": "a8e4153ef3da4ef0e110229492587a32cb5e58e9917cd65be404c7387a43c960"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/08.png",
+      "sha256": "1fa1501389abbffec4f465cb43fff779cdd119a1bd7b3ed55a9324d6a3615862"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/NW/strip.png",
+      "sha256": "53979f43ece17b4632890fc0178a7b02071e7e13eaa4f5efb407d9949872f7a6"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/01.png",
+      "sha256": "39bfcf99bb346b9a08c22e987a95d8c14f57e488d411b0db733eeed7b7e4148d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/02.png",
+      "sha256": "7ecbcae432732c3a3efdab943ef14fb8d717f19d25dd7a39cdad92dae687a779"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/03.png",
+      "sha256": "b15ffcbe479c22995851ff9602a724e99252bcded3bf51fd7dc11e7241a5c69c"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/04.png",
+      "sha256": "a35734a1f947425d0c55b47ef99920b5673a665e51527d6c6fce3b002a088f2d"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/05.png",
+      "sha256": "2b765729ee8c570c57c2cc0e4b4cd0a9bdbb40ac8fb4d74c9386203187cac36e"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/06.png",
+      "sha256": "2c891a8e4d9d6597d9cce0bfe38cd3e84ac360dd0414f02a183d321c2ffff6f1"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/07.png",
+      "sha256": "3369feaecdbf4c9322f45e2f533536ed991121b6ef837e4ca1625faafb4f0bfc"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/08.png",
+      "sha256": "bf1766d5055fe18a56b2fd455b09cb9adfc26c0a701205bf6b755ddf46cd6183"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/S/strip.png",
+      "sha256": "c677242c8ba1605fb01913ba196ec06f4d7d1661932632961c63a6d197db72e0"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/01.png",
+      "sha256": "b234cd4472515a08f7220a8ff2128ed8ce4e814c1de2ee977683d11d0c4aa636"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/02.png",
+      "sha256": "057c590472099c8d34a6149986e2f80532d55c4de4bd7b8d27fd8677b755fc85"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/03.png",
+      "sha256": "26021a0c25b1c8e3fb4a6766f84ecc471b4dc7959a31380dd4feb9f0fa216bf3"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/04.png",
+      "sha256": "af8e5dbe4e0ec30f9544c8f508f84412f1832351d950ffdd9fddc26484df4ffa"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/05.png",
+      "sha256": "9fb4e0895ea0039cec40e0c5b768e819ab2475e4b174d2fdd9db07ce8c247e66"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/06.png",
+      "sha256": "4bbeac22381df365d07be90b46d69e7b82ddb23e117f8863378a2628b77dd2bf"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/07.png",
+      "sha256": "92f3433c0a196f42cd657a6b30fd6358655c5d2d84d8df30c34445b7082ee137"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/08.png",
+      "sha256": "205010af5196b9fe728c8c7ff9b2be5168d21b513563fee32dbdd4029bcdce10"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SE/strip.png",
+      "sha256": "fd94118e2f5ebd07c1f14c8c15d210932d8276eca98863d9131dfe7eee198ee9"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/01.png",
+      "sha256": "8db0164a315d41b8609be43e22eb0c5b1aa4f005aa1e33536b3d909ba6be81ea"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/02.png",
+      "sha256": "a52bbaf1966a8e7266a3d8001f3f444b71ea7f88838149659904340fd7f7a7c6"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/03.png",
+      "sha256": "3a513f76a41a040b7622d7a404255efe7ee0122fb58f22fad4f775076206cc60"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/04.png",
+      "sha256": "e72c1b940a1d81c4b2813db51a64d5bc42bf8af1ed808460a93c2d167bde23fc"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/05.png",
+      "sha256": "1dde12e9d44880c4e13a6771853f42c8ac2132c853f4098186a470e70d99377f"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/06.png",
+      "sha256": "da2de32eb3cb4a655a4aac5bd20f8b8d2849c129f4cde31dea28205801016cdd"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/07.png",
+      "sha256": "1e147bbdf67c1bb7ffc03d6bc81b668810ceb9c598ac10c2fe434b7d2bbd7461"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/08.png",
+      "sha256": "c0746e4f56261b0f6a483a7fa673a32b63b51856e6161e9a576c6a474761d675"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/SW/strip.png",
+      "sha256": "965efb5d670fe02307e6ea6c301680f2d2471f5591640ed81a1812f72b3cf219"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/01.png",
+      "sha256": "8f45754c322d4ac931dd730755049bfca930772d4c580358418295022a5f3648"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/02.png",
+      "sha256": "2b0485b49c6ec86fe6211ffdf9c80155ba3384cbb3981c74b6bc15cc71580fb7"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/03.png",
+      "sha256": "05092af9d2bc79b3594049002c78e15ab32165a091c7efce7f1beb3acb52a0c5"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/04.png",
+      "sha256": "64b9510ecae92526b687f4b521cfc2d3462c28aa8ef28d0ef69facd32b466e25"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/05.png",
+      "sha256": "75520a76875fedbcfb4a03bc18809ce7cc8ab09fac24a39113107fb97d27db50"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/06.png",
+      "sha256": "4a52e55508c17ccc694f97a08f4d5bb5021dc7caf9633e51e6b9640caee69996"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/07.png",
+      "sha256": "41d7a7fd8417a417a06effd3247c5aa98870c5b2fa8a4133a6276944f7c263be"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/08.png",
+      "sha256": "5d6ff76cccce582a6c611fb90bb00d8408fdffcd8fccf1898efbea1009ba4eb2"
+    },
+    {
+      "character": "24_lu_dongbin",
+      "source": "24_lu_dongbin/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/24_lu_dongbin/walk/W/strip.png",
+      "sha256": "c1aeb7c9a7b057cfb83a4e6a17f9468be02344caf90aa395a6da4b3f10edfaf2"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/E.png",
+      "sha256": "c05fff54ab2b4915d4091b557b8c035f38cd94e528da29288eb406859e27eac2"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/N.png",
+      "sha256": "c4b18cc0093da5e0659bec4c755d98772ae6ece39242aba26fa61e62a7870751"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/NE.png",
+      "sha256": "4fde1cc5c2ab04df7b953accd6b32cbc0ae3cb7de62cf635a23f739c50aa3d7d"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/NW.png",
+      "sha256": "60a8983473cb88e9bea8960bbe291d7321665b03f5d2fff9450fd08c03aff7e1"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/S.png",
+      "sha256": "5bfa04f326b20b79ce651855f34ab4f51d744129e3b289337e19edbfc5faae7d"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/SE.png",
+      "sha256": "f725dcd43d3d2eb0121e07a9d60d6d082546409dcc719319d0e25b5acbee85eb"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/SW.png",
+      "sha256": "94ef81c5b196adfe95fc4b8028f02b30a35a4b704a7b63999ab070cb0ca3d901"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/W.png",
+      "sha256": "3532793d950e903e5302f386a4217f0f30dbd1e8681837dcd9faed1b67792134"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/portrait.png",
+      "sha256": "556e8acc3110ca693a5a6631ce35285c16883b334c32dfc066cc09bb7727b6a3"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/01.png",
+      "sha256": "ab6539cd5ca15b6832771824e99dabd2ed84ab0d6d79b92dbc41bbd598614790"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/02.png",
+      "sha256": "82bdb8623261ae739616c8b943f13892af0f07edf9827c75aa027414907a2c4c"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/03.png",
+      "sha256": "2d9307ad6c17286045b654e9a72a96b227e3b09defe3e43f3380734b3ca2c240"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/04.png",
+      "sha256": "45f776a043be097cee83c71b2e6e8f3896cbc85258882744bf7a7f4d25f2453d"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/05.png",
+      "sha256": "3fe1c8effe49c4582456716f62d8ac9276cefc6c15349f9dc052e6f720fc7ec2"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/06.png",
+      "sha256": "c9b341c546000a0cbd3316a90b86e1b4069f66bc135a11727c559dc08c2226ac"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/07.png",
+      "sha256": "15b2393866fed6b01f1306cff82f2fe92d9a8df1bc35d25aa9d52c84e87f3a96"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/08.png",
+      "sha256": "7ce33df6d630716ed38d947e4ec17d9092b6d3b5fe44821879720f0e09787173"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/strip.png",
+      "sha256": "28ad9b47a7c2df37b863a79a69cd51fd163455d3acea871803330b38d494b6c5"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/01.png",
+      "sha256": "fa6a8710b106166aa5efef9f1d97523dde73e08f12e24f84adaacdabca6619b0"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/02.png",
+      "sha256": "e5549bc529bf60371ac5ca62497a7e3004bd80bd71b53d4aad2b9ae247765176"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/03.png",
+      "sha256": "1f3e28a0cce0f6fb0cf38e881e503045529f41725e102df5f11049815d843f7f"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/04.png",
+      "sha256": "fb5908cd3f7e98dbe67d3e4b79444d958bd935f20ee59fa9015728bc13a641a5"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/05.png",
+      "sha256": "18a9017255b83e659aeb62b5a8ea1619e3eaaac8b5df693701dfed4e36667955"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/06.png",
+      "sha256": "96e533e0b58fb08ebe1d7ca8340a676e8aab6a7a03deb1aeb81562474d0af4cb"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/07.png",
+      "sha256": "1528bf55143a0d17af538c8b763bf2505a430c989cd377ffc00a966b8cf9c670"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/08.png",
+      "sha256": "1ba8c5750fd45825b485cb905ecc1f0659b864a46d7da8c8c28bb36e4c152e76"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/strip.png",
+      "sha256": "27760986ae1d8c8762517970209b6a02a8cdd1c2e360537c0d8b444924f30da1"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/01.png",
+      "sha256": "808862c6bc25e6d7fa6f489617903de04398b81b51097858396119ee4f80debf"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/02.png",
+      "sha256": "6efa88685f621c9c583e6c4d8699c21836f88b44e592d1e1fffa6f16f79f9350"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/03.png",
+      "sha256": "00f2f828a1f27e1f1a4f1d0d20c40aeb7156f6fe068b594966c72051dde3c3ae"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/04.png",
+      "sha256": "988e68224ac6c82d01b33a0aac73b5b1421ddfb93abbfb4e3c20f6c0a7d60466"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/05.png",
+      "sha256": "af3ebc92d89d0b3ede1b52ae63e0348293e2f442c10d8cab2c87a56b7d97dbab"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/06.png",
+      "sha256": "feeabc7342f481af9b8388827c8cbb51cda16169336e0eaa4422b1b24664b9f3"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/07.png",
+      "sha256": "e50bd3b536e709ab74fae9ecf99bb5944ecacbad677f96bcc5c0cfd6713bdd53"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/08.png",
+      "sha256": "52fd638e55331decec8b199b31e2d7ee56751f934ec1d1a265fa8b2c73b47bfc"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/strip.png",
+      "sha256": "6bd42e23a6b932be647573b9ffb851208e3a0014039994e6d10d65ac52158583"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/01.png",
+      "sha256": "f843cf12520adb8b35bec016937b732d4d1719c53cd1eb74964a07a534be5e1d"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/02.png",
+      "sha256": "e893899141d9028f4281527febb17c071366373a81e8436153afe5acb2f2520c"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/03.png",
+      "sha256": "83bf0922d33a4d09a72a368bbfb510b5e6d0ca8a6a794e3961fc4e36c4a842b8"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/04.png",
+      "sha256": "c2d9830f60bd08d168966c1e416d8d75bf5239c66ebf88159a2df4ce8df48769"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/05.png",
+      "sha256": "0c0f1b0bf98f10f36b144e3bf920914bb500d173458a7bf6d2de091fa8658e5a"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/06.png",
+      "sha256": "d48cf36b9f4cb521e8a7e26bd3e6a1a6902a01ad23322b826a7a0244030caa92"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/07.png",
+      "sha256": "9f7196d58e10d384eacc391b98e76f1e6a5df84de770e00af32cac255a944e1c"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/08.png",
+      "sha256": "ce0ffc20969dea14ee1e96d8bba8c40eb1d97befffed4ab36312e8126413f29c"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/strip.png",
+      "sha256": "18cb3b845d998848963d83e52f52a976a8fd3f6d751a151f64cd306f01c8fb52"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/01.png",
+      "sha256": "b25332069ce7b240b49e63e80f69c741d37692998c4285db5ace90fe0a600844"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/02.png",
+      "sha256": "8b8b1967ad9e98e2d6ca11f32267947b7159ddde5fac3d388ddd3b5655862c78"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/03.png",
+      "sha256": "24b3c8260c046e4b4f70da552256aeda3568c622f74f01d1e07c728d6c5b700f"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/04.png",
+      "sha256": "85514def1a5177f454c4e13007d125b700e38b7c35eba206dd082a0e7d6a96b2"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/05.png",
+      "sha256": "ebfb140e440bf294de8b272f80cbe734135cb7d6c6ae6ece4e5a1870dc208752"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/06.png",
+      "sha256": "6b3d4ef150f666a292bb4e6b2cb4545d488f23cdcecc45c6121c1e8eb7d54c7a"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/07.png",
+      "sha256": "5292284bad89ad0bd052a09d0526d493c5e93d269acedfcacbd99972fe00de95"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/08.png",
+      "sha256": "00c3aa3eaefa00b9c05180c28be29b1387928a6480728e8c4feb1bee008450e4"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/strip.png",
+      "sha256": "8672d35a32b85058620ee245e92aeb576b7f8fae20e44e5b8cf29eb8705b8962"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/01.png",
+      "sha256": "20be21d967d05befea880b1a5b13f0d78f37e5e31b51cb4999b54a7d3a0ce214"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/02.png",
+      "sha256": "dd86502100a58a9e28bbb956f7fe7b61cb0774ea5875f47f2b649b6e214fb109"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/03.png",
+      "sha256": "5120ded999c36cf6fbceeaacc156bb6f4e5ab490c462dc692bdabbff1ccc9c7f"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/04.png",
+      "sha256": "62955e894ad452cc7bbb1ed3e931aec760abdde4a6746bc866b734a64b918eb0"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/05.png",
+      "sha256": "5c48c00678a36a4b95e7a95a1b3056d21225d7906e77b1a30be5cc4c6a6d6ec4"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/06.png",
+      "sha256": "e99ecef1ce70988e69e1bc485215f91400a6c22e3357cd4a4cc5d8f6f3c33bb0"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/07.png",
+      "sha256": "9f2741af7cee704a06a25f9565403220fee43994ecd5f18cc3c600e87e9a525a"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/08.png",
+      "sha256": "01acccbe5ead0d4a5baecaf359973f4916d7c6b9bef24773da40d2b1ea37fad7"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/strip.png",
+      "sha256": "1b9c501dcbc48294d192017198c0fe77cab668c3e256845c47137b241de06317"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/01.png",
+      "sha256": "5d1235c5db8067479e7064f9747d1d7337bc12d5cd26f1c61f2b7f10d3fa4f39"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/02.png",
+      "sha256": "2decde91e30b2ef5ca887391c2e1e2c1da516f43918e17d478463b6e799773ab"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/03.png",
+      "sha256": "8ee97755a57c82f9d4cb6fd2c5749d6bac84908a04b7f0ad9398a1d9623d3285"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/04.png",
+      "sha256": "a073d2ec04a076b02be313ce5dde8f0dc63fc9833dd236613d1b908f4af0ca1c"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/05.png",
+      "sha256": "cbceadc9124ab475c15fbf81b2a01ab72e71fcbd01c877624ad883db70f35ff4"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/06.png",
+      "sha256": "a20576dc66a4e0dbed4b084e6e6dc348714163c3d51b1561c2c3976e6d4e83e7"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/07.png",
+      "sha256": "bf22986e3ea64d45033046d5a45e56b65d357aa66bed319c4f81d2b775686acd"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/08.png",
+      "sha256": "281169003de90bf7c29d279e6da3d941edfb634f3b2b589d874f2b5e55487eb2"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/strip.png",
+      "sha256": "7438c7abd5a73725b94e0ccbf00557bb9344f2f8c0a069a8c68a874bfc2332fd"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/01.png",
+      "sha256": "1fc82f20156fe5222bfec7657ec03583beaa2bf5421186f5b61faaf8cf3d9bb0"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/02.png",
+      "sha256": "55be1b164def0235c8903edbe7f80b986c8f176ef43aea2e7d88896670763e61"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/03.png",
+      "sha256": "c02021e1c477d940cde3679d1242c1402f21f5650d5ed35c553baeddc9c8cfab"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/04.png",
+      "sha256": "a180feab67b5de20d37bcd1abfc0327ba3c137275518314389395415a2ecaf58"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/05.png",
+      "sha256": "23a4e4173061bdb343cf13366f7a434611e69285c1c4bb01b724c957d35052cf"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/06.png",
+      "sha256": "f6c42fd6048039721c3c546783f4b199b405fdce03a0e057449180c34808f569"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/07.png",
+      "sha256": "46bbfb47294616e113cb8bbd1deaa7a447ce9664da0c7a6f24fc06a05dd3e1c0"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/08.png",
+      "sha256": "c873c9a9d1843b6531b8bb1eb98ff3516f156202513e352842ca81b5e1f999de"
+    },
+    {
+      "character": "26_osmanthus_healer",
+      "source": "26_osmanthus_healer/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/strip.png",
+      "sha256": "5181f8fa25c6dec20f85e4359d146ea3d9abac195e99be57af047d0560028ebc"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/E.png",
+      "sha256": "c52789ed600cd04d967552c52333018f6ef411e3eb2fe0833488ef2db94de4dc"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/N.png",
+      "sha256": "50a950fe74df740bed947fff4ad16c8c0479a0d533d0a199dbbe04b2a05bb499"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/NE.png",
+      "sha256": "6a3d095aa6c031fb79ef76b61bab63cd417f0d616d408e01a62f730449350067"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/NW.png",
+      "sha256": "75cba41a077175a95e7c33d1179a12c32bce09ba6c94c895aeed52905bf512d0"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/S.png",
+      "sha256": "8c13b3f425a0473f44ac26746ae1c5145e98245ecc68cfecb5ace480cf22f353"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/SE.png",
+      "sha256": "44045d88d16fd4f9dc8b5abf61821f8bf778b3b2c1b2609977974ff7599e2d64"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/SW.png",
+      "sha256": "d06bbf021a640841537678afd4670ac6627b48f64b00cfe1b08d2415bf3d63c7"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/idle/W.png",
+      "sha256": "04824620d97697b56cf71cdae218a0f78df554c76b62f57c667cefc1d543e118"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/portrait.png",
+      "sha256": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/01.png",
+      "sha256": "d963576e727774f52c9ddeef334869eafbbab1690b2eb3b93cb554da4f7f8de2"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/02.png",
+      "sha256": "cf2caa2bbbd2654244d1a7d74f403acb578cabc9bc2b3b15797dfae15c14f0f5"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/03.png",
+      "sha256": "f630a390248328440cf7e0c3a89cd2864711539623ce0854910b0f5275bfa810"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/04.png",
+      "sha256": "d819ee87526e5eb75902244102d8ab17e6525c5362484532bf260169e39d5eb8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/05.png",
+      "sha256": "72dfd0b1f1737c3902749ac5145a629084ffdf58ba6a12aacf16271ae98f47b9"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/06.png",
+      "sha256": "3b437e4b2649f3e95bf726629b9f6e4f2f269301e7026a54747a5a4855d52afa"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/07.png",
+      "sha256": "c2d46133e86765a1850f9924e12f604839cbbca9927ab7dbd869820b2a5a8023"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/08.png",
+      "sha256": "d3ad442d055e2715e6db8aa6b3e0af952ea89e7d26d6b869c11a9498d09748e9"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/E/strip.png",
+      "sha256": "6e677897c3704052df3ea0841e671e1798a0565bcef7918307a632284a52c993"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/01.png",
+      "sha256": "afbc5aee4dd31b973e8fb0888c1cf9968b388c4653d121612959076974f52c71"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/02.png",
+      "sha256": "0657bfb96c44bed2ce2baa80178cb0e5408805d5cc3cfafb2c85465461dc8559"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/03.png",
+      "sha256": "c700c9ccea868f9538b3a83ba986220702ad2ec3752ab2423dd352c4850dd56b"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/04.png",
+      "sha256": "f5db202e83fb8b7a1d08f4e82af14c09e6e61f4ac711ab408fa1a253a567bbac"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/05.png",
+      "sha256": "e2dfc2a5fa589900561e65b2ea7a6cb913e925d2fdd3d8f5e96ef998f86316cf"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/06.png",
+      "sha256": "3b83f5d96a0c85046e93bb15ba302779d705aba8f34764f3bbc9f63b2c2bd2ef"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/07.png",
+      "sha256": "8be70ceabcfbe8e1cd0fff2778fb9767fe654e71dde6ba5f813d0aefc552f613"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/08.png",
+      "sha256": "ae60ce7f5b616655bd4677d18710217e758c1a5a08a5d25046d13657d9ed7c1c"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/N/strip.png",
+      "sha256": "1e4169a5b0d0f1629d568b6a1bf47d2162b4ea6bf9dea869888e78463dc5f445"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/01.png",
+      "sha256": "9cf7fda53f820010924ddd6260b6d2577981bd9ca76dd1e7ee5f27095c729eed"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/02.png",
+      "sha256": "1dc92a6bd17568d861079b1e099f46c55228d8d22c22f41b7b1565da8418bc95"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/03.png",
+      "sha256": "d6fefd0681dd29fd3d4af93c67033ba1746f81c224503544a9672cde72079868"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/04.png",
+      "sha256": "9a3afeeff5d8455a28f854cec0afafb0500226187966125960d071cb44e3736e"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/05.png",
+      "sha256": "4162e986838ccb135c6318bbc19bcd775ed3d1a51d73d28cb90fa6b09a77ea21"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/06.png",
+      "sha256": "47fa4dc52c6ff51378724fc3584d5c6a4a3adfa0142b829ad0e58f505c135168"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/07.png",
+      "sha256": "c9db45db8a0b66ee23e6b411bc438d5c6cf94c15884c1496a0684f08a9ad9c38"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/08.png",
+      "sha256": "ab0cc78a2fdbc914e8d4ed08a6b6fd7612bba53735369e7e9dc38766e641e679"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NE/strip.png",
+      "sha256": "b7f1dd22d97fe6d791a4ece9c0e8aeaf5cc2bb9863787b2f919672beeb101435"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/01.png",
+      "sha256": "594f6134dc67f3737b98545aa3d11730ac8f70ce212376f049e212d0d7f5e658"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/02.png",
+      "sha256": "cdb07eebb2859b743aff84630b61399b89e6823cc5e3e6bb7cd5d7e953c00404"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/03.png",
+      "sha256": "50835712ef3e4d725853d8c4ed3c98b59ddc5218ae19399b202e14719634316d"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/04.png",
+      "sha256": "9dc80c5a9eb0295840a91c3112f73973c743075f4515164b485a3546e77e5c46"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/05.png",
+      "sha256": "0238efb59f19d50bfb095d8423fb9c3af7c6eee438b8c01622e3b160a5e477e8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/06.png",
+      "sha256": "79a175a60a68cecb197b572f9914838fe776dc37c277bf7c7cd70ab89d7b26cf"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/07.png",
+      "sha256": "b9c3eec029499bdf117fcd3c16ebe91e49d2ec511fc8d75b36d6bf5fcf8ff3b2"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/08.png",
+      "sha256": "91c42b5ac39b9f5dc649a2e3c97a6bec50e541e64ac57b90073b7f99eefe0eac"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/NW/strip.png",
+      "sha256": "615dbdc25142218a717209316b9206f70a4e40c26ddb7dfa526ea6a85af1ca74"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/01.png",
+      "sha256": "6e546313bc9aca6bed4bbf57dc382c471944074264ed161f507e1dd9b109ad64"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/02.png",
+      "sha256": "5360b40b85a514d928549e881f03f560bfc359fb5f0665d2d7843283abe7fe10"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/03.png",
+      "sha256": "e74f4e854aea7893b90f1adaf4bc8a91ad6ec7e50767199c8504e6e03585e805"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/04.png",
+      "sha256": "aae70faee5eed311136aa96c7d20810f38e6b2e4502798c55229848be2ba0d58"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/05.png",
+      "sha256": "c010380aa39bd4c0acfaa83875f1f64ff3cfa0fa3f4fcdc686f31a8c44ea05d9"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/06.png",
+      "sha256": "891f05c4dad4541366882f524c0a3462a22463c65d7bc41759bedcbf3dd531eb"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/07.png",
+      "sha256": "badfab681efccc695f583545bcc26fdf6a82e8e84929bcf95e3db1ede6512105"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/08.png",
+      "sha256": "f3ef40259207405cd1405f4491cef74561ed1daf35ce70d57bc01ce59b0af5c5"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/S/strip.png",
+      "sha256": "cd1c0d84ec35dbdae0a8830db012f4825205c347d2d022bd6421697c9556c77d"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/01.png",
+      "sha256": "50e880e6acee4a613f1a0482ad8b45cfd8b71e98a879f1fd22fa6978ebf5cacf"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/02.png",
+      "sha256": "72b9fe0332a62cd0c40bc9cc450bc38ca24edd0f80a91a685792a20955b05a3c"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/03.png",
+      "sha256": "765dae3e16e26588701b94e8212b9ec713c037e4f9353d1b924e58f4f507b91c"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/04.png",
+      "sha256": "915f3c6dd6ffb19ed9d680f72f69f327de880cac737871bda6c2bc621d05f2ec"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/05.png",
+      "sha256": "35b36a20405187fca18ecf719e40f48e6c656b8e47856f349d71397ac19c99ca"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/06.png",
+      "sha256": "6c8b40810a4229c677e07cfb8ebcc5120fa40091372434122fb84d31d361a209"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/07.png",
+      "sha256": "500a680cbeb07d186a172726641d38eb18d5e8d116c2c7da9f22fab82b676ca1"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/08.png",
+      "sha256": "6fd77bb9f455c8a77b86ebea03d125840c668ec89964c1a812c84fea87454a5d"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SE/strip.png",
+      "sha256": "b1adfdde9b1ae99ad33b886a5b53332550f4cf2e4877dcb7755697320da60482"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/01.png",
+      "sha256": "7bfa08120ce9e760d1c01a200b3137ea6dd8221dd19aa874fe636200e410f97a"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/02.png",
+      "sha256": "1d7bee3108744d46b32c898aacff4b21daa20c635e4846d9897d3f2e410e0a55"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/03.png",
+      "sha256": "5eb55e9dd514fcb820a62a03432775bf86ee222a6a0f63e67509f2f609a584b7"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/04.png",
+      "sha256": "b1d31273360838de17ddee9e4f9f7beb854e7164297173f05547494a1138250a"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/05.png",
+      "sha256": "107a79b44251c2b9e30a508e2575725779a45887eec2aaacc81d90f5394b5683"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/06.png",
+      "sha256": "690a02d25fffa514ce0f0f50a94043c7b5d84654c1bfdf984f295b00e1761fb8"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/07.png",
+      "sha256": "2586b2b85921c23fc36794c0fd0dde65d5ecc3944d67266b0769c5f059fffdbc"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/08.png",
+      "sha256": "d6fea044e7131411560b01fbd248fc49efcd1c655a8ed945f0e7cd91caf09fed"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/SW/strip.png",
+      "sha256": "368494d5c406f58f9e138f5c9913e6ef6e2f7d474116ce22d0b1ca10b9e82f8f"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/01.png",
+      "sha256": "67674107506aa427bf4dad5077fb41f61218006baaefa2ec68a7d2ac3cd7a405"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/02.png",
+      "sha256": "fd88d3e7554e01cc99bfd20e8a6844ab61b818e2a76630ab8882496f176059da"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/03.png",
+      "sha256": "e20ed04120be58ae2aa431709f03c28d2a01bf5fac7b0be5cd0a00d47997f0e4"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/04.png",
+      "sha256": "e7451a7a472ccfac82d39c1fd6b0ed959a39f7cf4b2badd256151b4650b5e34a"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/05.png",
+      "sha256": "46e6646fd97f67605e92ac041e066590aeda10a127c64591e6ab51b4b423b64c"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/06.png",
+      "sha256": "8f5cfbb8bb2717e0cb7a276763637662e5abff1d89d5d4778240f3014dfad406"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/07.png",
+      "sha256": "f0dde2eb95c11f6dd112f41d239c39b1ca89999a073396ecb8f6dc0c30b01ca0"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/08.png",
+      "sha256": "800b0375919f311af8fb9bfdc32a4444fee9998514dace7f4027d5737015aede"
+    },
+    {
+      "character": "29_he_xiangu",
+      "source": "29_he_xiangu/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/29_he_xiangu/walk/W/strip.png",
+      "sha256": "bb7a335701089bfb791dc11d97797788e8192a5e25ad2b0d8351c510e5d84d92"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/E.png",
+      "sha256": "11b134934c10ed8b3d4543f496d4d2db5034358584a3bcaa0afb68c841ab3b28"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/N.png",
+      "sha256": "966162d728fd84755d1ec8a1ef150be81a94d94cb9e0ddcbe3ee5c17e65060f6"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/NE.png",
+      "sha256": "7271bc7759200e302b22d1eb67d1da2b54b67d956280e6d7ab2cb2a695d6cded"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/NW.png",
+      "sha256": "f0fb9f646b650c3c0e0713e153c8e691a45bcb1e8d829b9fc0d8a54dc48e982a"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/S.png",
+      "sha256": "70704caf7ac795ca5f081ee9ddfde060a74f66be04f7998d8dff436b6d05ca48"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/SE.png",
+      "sha256": "fd994c9fd1f3b82617aa837e37cd6d4cc898c9eabe3e4d045b3ae6f30b85d3ac"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/SW.png",
+      "sha256": "fd3efab7c14e3636df2aac4f71800806e86ca59d228c88c7ac538192f295b3f4"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/idle/W.png",
+      "sha256": "00eed083e1c283ec0708214f011092141a654de1655d5977f5d89349489135ec"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/portrait.png",
+      "sha256": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/01.png",
+      "sha256": "af64a3b36c9e6879c41bc4e10b82be8a31177890583cec721fbe5fc5ddf98c6f"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/02.png",
+      "sha256": "1e57dc9055a3d3a58696776576909fbf2dfa8a28ebc4b8d8ac0158cb0cb99170"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/03.png",
+      "sha256": "8c64ea59f7b07d833eca770ea366f8734ae25c00492c8cea60eeb9b912700c31"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/04.png",
+      "sha256": "f4cc28467c0349711d5b3ae6557725c27754102b948c3c06e3eaf05c9b4a1d45"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/05.png",
+      "sha256": "a4ad3caa124b76f318f5233ebcc859fbecb4aaf368a5663100d2ec028e584c23"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/06.png",
+      "sha256": "41918568bf69afdf901ba08b1a8f22d425ab3dd8d7f53607f8c9bed8d45d02bf"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/07.png",
+      "sha256": "a86fc8e247fbb55381e53d6b2f891c348a98164c319f5f91219dda76493d2ade"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/08.png",
+      "sha256": "e63ecd80d95333c7a5f52bc23a04529d39be292ddcc07f29b634b88e060784ee"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/E/strip.png",
+      "sha256": "5d2dca936eb954bb5e56275fcd52afe16456cf552b172c41faa1596b11d85718"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/01.png",
+      "sha256": "2a1b56085368700c2c8c344bf19df27d3268a476276d2495f96bc747310fddef"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/02.png",
+      "sha256": "c33908b9d6359da4cb2d671ff3ecfa0af98b89a8ad12c9dc4243629cd2f7596a"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/03.png",
+      "sha256": "0b3b8b467b60872cf56ed513007c642858231febb619b27e1767ecaf351287a5"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/04.png",
+      "sha256": "a49069882ab291a459b28d1a54102420175fef63ed9644a6d1eff8c7fe97a6a6"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/05.png",
+      "sha256": "2bf15049b5b0602351f026d8fa2eef6e21ba0345a4c3d33150dcadb5572832b6"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/06.png",
+      "sha256": "7242ce7589fdbe469539b16572a1eeda09d254845d847705e0d398c38d494cae"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/07.png",
+      "sha256": "ad65e5be5e7d320e7ae7bfd133808f31dc5a93867faf627f6febf266233273f5"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/08.png",
+      "sha256": "c89fa91da702c77aed075ca1a3ea684c7a38da6ce35377b10644214f84b7dd1e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/N/strip.png",
+      "sha256": "32d70ae9961ffb1230862c39017a479b5707659117ddc4fc22c612a91e6ce53a"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/01.png",
+      "sha256": "72ed5e13c3e870270defe8ca71be505491f0e4544cc82c9e93b714be4072e940"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/02.png",
+      "sha256": "8b0392f7e7ee0ece3dd4d5e43955eef50b270a0afade9c7daaab60b990b00b4d"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/03.png",
+      "sha256": "a3ea095fe144fffa374744213230f6e3b2850d3f29bcbfe5f0570da7c3ccccab"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/04.png",
+      "sha256": "ae43856bbd825b7ace587f25fb2509d28a17794083a2d0e8c4d34f23d6f996e1"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/05.png",
+      "sha256": "b06e0fe5abbaf6707468de4bc1946b6528c65349e10b07d785497f7d00dd79c7"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/06.png",
+      "sha256": "4539d3a89cea17fff8899cb7bddea32dc5542eeb1ebdcab4771ac26fc0c36303"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/07.png",
+      "sha256": "1f89040b26bfc350ea1157130e6700122b97e7b8a9b05732ff311040d0c2a9d2"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/08.png",
+      "sha256": "8935f61e99a8dbb389085a088e084fe87e6c09d7c88e16371e840aa798013ae9"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NE/strip.png",
+      "sha256": "f13c1dbc620e7bfeaadd5a7a414378555d93b1ee034778ae217ef48d552d7637"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/01.png",
+      "sha256": "a1a246b2e654ccdd1b1364491f9ad74a222efa029a0caed4cb3725ded079b4bf"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/02.png",
+      "sha256": "5fe3aae0a594cc624ae953d5ea65b76fa4d6b6a08253677910613f3c82c35b4b"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/03.png",
+      "sha256": "e60d796116b87fa22dc3aaff8a13ca2898c8ae1c36ce8e63731a3c8b5585953f"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/04.png",
+      "sha256": "0cfc93503b3017dcc14f13d6c253eea612f19836476486905bcbed0395025620"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/05.png",
+      "sha256": "9efe4615d1013e8596ab417994d617f973610a443506be8cd94031af4b275df4"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/06.png",
+      "sha256": "7f99f25d38076f673f53b1e692b20837cddef30673454decc515560d826bf090"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/07.png",
+      "sha256": "ba6c8763be4a9c7439608badaa45b13441bd09a88a4eb26da71735e64e8f1458"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/08.png",
+      "sha256": "ac63e6f269d35c3e232ebf48d3d0035fd420c08ea8f3d75a61bf1a0d5c78feee"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/NW/strip.png",
+      "sha256": "b568b98dad414e7bda69e1e772b302946852e4a76a2e2a1f3a5ab26329a82147"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/01.png",
+      "sha256": "06c305b5bb354e6e16b09e98ed85dae06cfd4ee17ca6f265b9221eb75de58e62"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/02.png",
+      "sha256": "187941a171e4adec3845baa590007c0cd3334ca6290113a7569a370f2e7058e5"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/03.png",
+      "sha256": "2af6063dcdb34d111937cc8a06c4b9307bced8ee9ad1f75eeb7fa5dd99855098"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/04.png",
+      "sha256": "c464321e857bb2c3640d774fb1bd252d924fac7f1ec9b66b5eee12bac8d9b3c6"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/05.png",
+      "sha256": "6ae5a9319a098be7116c907854f4f3f864591cf4d0c71c9767bcfa61d25a467a"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/06.png",
+      "sha256": "00547248e9d625438ada4f553d4bc16d66bef4a8f962a1e8697947e1ce641a17"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/07.png",
+      "sha256": "b122a77ac9945c5a0ad3bab0f5541dab93810c31238581a2f6ab6f6f10be8cb2"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/08.png",
+      "sha256": "bfef113fb43b2785130dae9e184ac7390557c30b313b09512ebcebcba8ed83e3"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/S/strip.png",
+      "sha256": "0991adf8e38220772b2518b08e7e17786f0313bbcf83efd89ae481b217f5c670"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/01.png",
+      "sha256": "b0280365dd77a74cebeb60549c2707fa19f1b2c4538d8761cc8b517d5e34fa49"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/02.png",
+      "sha256": "c5ce43780824a4529d5a7d07b9a76c5f116bc2d3993d6d8b7f48a286d503af4f"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/03.png",
+      "sha256": "d8fe66d15ff072c9d9d211bf35dfc7fa8c96ed4d14a5f275bf87200c4744b154"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/04.png",
+      "sha256": "fd1ec8616453efc3bbd700d0f058a46345a0edd3761c788f8a75d77b6d7ad288"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/05.png",
+      "sha256": "6bf0ec42512c52c95ca38a713f21e1e4136f7d082b26e32a90828569446002e2"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/06.png",
+      "sha256": "2f2d6fe78054bf6bb385f527914b4b27918781a66e930d8345c235b30ed80a9c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/07.png",
+      "sha256": "d04ea5899e33a413c035fb39ddb2a3d1bac88279a377e5633bb26a484ce3c9cc"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/08.png",
+      "sha256": "35bcc3e246cf382e352ff7697eb9aa326191f3a7c4918643857f38221d7a1705"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SE/strip.png",
+      "sha256": "49912b16b5ddad3dbb7a9d6ab1f30539a2422fd649095f7faae2ef6f94c2e246"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/01.png",
+      "sha256": "b2bba0626bc324b6b0059c7f4a00627e176ad673165c8083581c480b31900de2"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/02.png",
+      "sha256": "aec1d32c411f4b91c75f544e016e1eeed723061d2d0de028d5ade02c56f8a628"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/03.png",
+      "sha256": "d1c487677d02f1338090953d3606325f385bb5fb4a94e6087e8344c2d7385b70"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/04.png",
+      "sha256": "28299ba314755797a5b381b60f0c118b5c87fcec3b6e48ee8627b6e4109e30bf"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/05.png",
+      "sha256": "03d1c71a8f090526e6d5e39f63b33efe95572e1403085edaf3ad8f3f1678f4de"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/06.png",
+      "sha256": "16f02ed867ecd680217221502457bb9fb93beedb8dfc2e0f4e1608190aa49032"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/07.png",
+      "sha256": "bc4573c171cff8a0a249916804e07a18aabdf25130ef42d74ebfc1d9be72ee1b"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/08.png",
+      "sha256": "fd987d8df741d949c015819236f9aaa6fbcea9a26ac7692a2ecc078868d2e771"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/SW/strip.png",
+      "sha256": "a0a98a762a431a6b58042ac7e8b3364997e7aec9f7dedc197ff1063c90e0811e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/01.png",
+      "sha256": "a300eb1025acfcab07753d1f029a93b6feb30815750dc975149d3130fc914ba9"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/02.png",
+      "sha256": "c68891ce361ee2a157a4ba6a7cdd463b9aa600a06d8318c1b098782167739fe7"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/03.png",
+      "sha256": "e64ca513e7f4b32c683ed94c40986b56c431dc4d8b66dce4f1de7badc9e4a737"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/04.png",
+      "sha256": "b820a627a49a18f2989aaada278d0d4fef83580ea8c2cace75e293fe99f4d08c"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/05.png",
+      "sha256": "ba78f59408fdc68d4f86cf4626086f3b74a78fb16b6494b1f7045c6e1aea747a"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/06.png",
+      "sha256": "96978b4419169bc9f1a66c295750e4c298219dca4b118556529bff64a198efd4"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/07.png",
+      "sha256": "7482099b5e6da2c71b7a4418ad400417f5486b46d324ee5aed2e6071df6dfccc"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/08.png",
+      "sha256": "75fcafd71d388bdfc76a6ecdb9433748973daf76530720de52d842ad5c6d654e"
+    },
+    {
+      "character": "30_han_xiangzi",
+      "source": "30_han_xiangzi/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/30_han_xiangzi/walk/W/strip.png",
+      "sha256": "1fb8364a0690c50b4e50ac7437fcab5a5190db125ba596c21c3a9ca1faddac62"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "finishedUtc": "2026-09-14T13:13:07.2826221Z",
+  "characterIds": [
+    "23_lantern_courier",
+    "24_lu_dongbin",
+    "25_lion_drum_guard"
+  ],
+  "mode": "independent Unity project copy",
+  "results": [
+    {
+      "platform": "EditMode",
+      "result": "Passed",
+      "total": 127,
+      "passed": 127,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0
+    },
+    {
+      "platform": "PlayMode",
+      "result": "Passed",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0
+    }
+  ],
+  "resourceVerification": "input-snapshot.json",
+  "inputSnapshot": "input-snapshot.json",
+  "validation_scope": {
+    "code": "current saved main project, all360 C# files matched at test start",
+    "art": "23/24/25,81 PNGs and appearance.json each,246 files matched at test start",
+    "earlier_guild_compile_failure": "resolved in current saved inputs; historical attempt retained"
+  },
+  "visual_runtime_review": {
+    "status": "passed",
+    "newly_viewed_image": "tianyong-23_lantern_courier.png",
+    "reviewed_utc": "2026-09-14T13:15:56.130847+00:00"
+  }
+}

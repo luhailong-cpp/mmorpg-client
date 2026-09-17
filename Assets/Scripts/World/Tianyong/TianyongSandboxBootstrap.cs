@@ -27,6 +27,8 @@ namespace MmorpgClient.World.Tianyong
         public TianyongMapInstance Map => _map;
         public GameObject Player => _playerController != null ? _playerController.gameObject : null;
         public Camera WorldCamera => worldCamera;
+        public System.Collections.Generic.IReadOnlyList<QdaoCharacterCatalog.Definition> AvailableCharacters
+            => QdaoCharacterCatalog.AvailableAll;
 
         /// <summary>
         /// The camera rig, so an acceptance drive can exercise zoom (the edge
@@ -127,7 +129,7 @@ namespace MmorpgClient.World.Tianyong
                 else if (Input.GetKeyDown(KeyCode.F4)) SetTheme(TianyongTheme.Lantern);
                 else if (Input.GetKeyDown(KeyCode.F5))
                 {
-                    var roster = QdaoCharacterCatalog.All;
+                    var roster = AvailableCharacters;
                     var index = 0;
                     for (var i = 0; i < roster.Count; i++)
                         if (roster[i].Id == characterId) { index = (i + 1) % roster.Count; break; }
@@ -143,6 +145,7 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_map == null) return;
             _cameraController?.Tick(Time.deltaTime, !GameplayInputGate.IsPointerBlocked);
+            _map.UpdateCityTiles(worldCamera);
         }
 
         private void ResolveSceneRig()
@@ -179,7 +182,7 @@ namespace MmorpgClient.World.Tianyong
         {
             if (!showHelp) return;
             GUI.Box(new Rect(16f, 16f, 400f, 102f),
-                "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换八位新人物");
+                "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换已完成角色");
         }
 
         private void OnDestroy()

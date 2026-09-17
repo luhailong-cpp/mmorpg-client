@@ -1,0 +1,7 @@
+{
+  "date_utc": "2026-09-14T14:03:01.870417+00:00",
+  "target": "E:\\work\\mmorpg-client\\Assets\\Resources\\World\\Characters\\QdaoRosterV12\\29_he_xiangu",
+  "previous_v12_directory_existed": true,
+  "fallback_before_import": "QdaoRosterV11/29_he_xiangu if no V12 appearance.json",
+  "v11_files_untouched": true
+}

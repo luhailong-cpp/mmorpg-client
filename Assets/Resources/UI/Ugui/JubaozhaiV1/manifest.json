@@ -1,0 +1,2356 @@
+{
+    "version": "jubaozhai-v1-approved-art-slices",
+    "execution": "Unity Editor Texture2D pixel operations and TextureImporter; invoke with official Unity MCP",
+    "coordinateSystem": "Source/destination rectangles: native pixels, top-left x,y,width,height. Authoring coordinates: 1440x607; converted independently using each original width/height.",
+    "alphaPolicy": "Manual source-space masks preserve approved art; no generative edits. Occluded portrait badges are cut transparent and replaced by runtime labels.",
+    "limitations": "Original screenshots are flattened. The shared v10 transparent window_frame is reused for main_frame because the Jubaozhai window outline is occluded by scenery, tabs and close button. Avatar pixels originally occluded by badges cannot be recovered; badge regions are transparent. The static Chinese title is retained intentionally.",
+    "importer": "Sprite Single, 100 PPU, FullRect, explicit border, Clamp, Bilinear, no mipmap, no compression, RGBA32, sRGB",
+    "contactSheet": "contact-sheet.png",
+    "buildScriptSha256": "50e8d2fcd2f3a7f5ab616bab3215fb89a34bbd8251f7560bf094d683690bccbf",
+    "sources": [
+        {
+            "path": "E:/work/image/designs/jubaozhai-ui/01-empty.png",
+            "sha256": "7177c3b6913f853cf31bc8e98b41954c10da5a6bf5faa752b1e37db02e96df32",
+            "width": 1932,
+            "height": 814
+        },
+        {
+            "path": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "width": 1932,
+            "height": 814
+        },
+        {
+            "path": "E:/work/image/designs/jubaozhai-ui/03-pets.png",
+            "sha256": "5b84d1141efdfb41b9176f2e13ce709e8cb548d51577d3b4d3e22d17b64e0b9a",
+            "width": 1932,
+            "height": 814
+        },
+        {
+            "path": "E:/work/image/designs/jubaozhai-ui/04-weapons.png",
+            "sha256": "1b15a1e5318e91418afa1497de182772cf7ca2b20808a87ead8546885770faca",
+            "width": 1932,
+            "height": 814
+        },
+        {
+            "path": "E:/work/image/designs/jubaozhai-ui/05-armor.png",
+            "sha256": "f69970ff431504ab8784cd45e72c1165e4d4d1466d294e5852cb23f28eb95968",
+            "width": 1932,
+            "height": 814
+        },
+        {
+            "path": "E:/work/image/designs/jubaozhai-ui/06-summoning.png",
+            "sha256": "771976125b53dc3cd63b84844fdeeb5a1b07894c7638fdd28ca154c89c7a6600",
+            "width": 1933,
+            "height": 814
+        },
+        {
+            "path": "E:/work/image/designs/jubaozhai-ui/07-sets.png",
+            "sha256": "0f487c36ab05452f53713eefe1ae14384e3644e6415d55c4a7d5e5eea3cf96b4",
+            "width": 1932,
+            "height": 814
+        },
+        {
+            "path": "E:/work/mmorpg-client/Assets/Resources/UI/Ugui/AttributesPaintedV2/window_frame.png",
+            "sha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+            "width": 1546,
+            "height": 743
+        }
+    ],
+    "sprites": [
+        {
+            "name": "main_frame",
+            "source": "E:/work/mmorpg-client/Assets/Resources/UI/Ugui/AttributesPaintedV2/window_frame.png",
+            "sourceSha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/main_frame.png",
+            "outputSha256": "e87e2f5587f4503f6b97b9e0c3752671f7435ccc6b558a3002774329653e0253",
+            "processing": "Exact reuse of certified text-free v10 window_frame; original source qdao_ui_style_recut_v10/source/02-main-window.png. Existing transparent ornament alpha and four slice borders retained.",
+            "width": 1546,
+            "height": 743,
+            "borderLeftBottomRightTop": [
+                97,
+                74,
+                97,
+                99
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        0,
+                        0,
+                        1546,
+                        743
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        1546,
+                        743
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "panel",
+            "source": "E:/work/image/designs/jubaozhai-ui/01-empty.png",
+            "sourceSha256": "7177c3b6913f853cf31bc8e98b41954c10da5a6bf5faa752b1e37db02e96df32",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/panel.png",
+            "outputSha256": "14f3cb592f2a8e4d74a4e13091c52bab75863a3d8d431200f6752851bc868154",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 256,
+            "height": 64,
+            "borderLeftBottomRightTop": [
+                12,
+                9,
+                12,
+                9
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        200,
+                        12,
+                        9
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        12,
+                        9
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1073,
+                        200,
+                        108,
+                        9
+                    ],
+                    "destinationRectTopLeft": [
+                        12,
+                        0,
+                        232,
+                        9
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1711,
+                        200,
+                        12,
+                        9
+                    ],
+                    "destinationRectTopLeft": [
+                        244,
+                        0,
+                        12,
+                        9
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        212,
+                        12,
+                        16
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        9,
+                        12,
+                        46
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        577,
+                        212,
+                        107,
+                        16
+                    ],
+                    "destinationRectTopLeft": [
+                        12,
+                        9,
+                        232,
+                        46
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1711,
+                        212,
+                        12,
+                        16
+                    ],
+                    "destinationRectTopLeft": [
+                        244,
+                        9,
+                        12,
+                        46
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        237,
+                        12,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        55,
+                        12,
+                        9
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1073,
+                        237,
+                        108,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        12,
+                        55,
+                        232,
+                        9
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1711,
+                        237,
+                        12,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        244,
+                        55,
+                        12,
+                        9
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "row_normal",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/row_normal.png",
+            "outputSha256": "b82c94afe9bb9fa974de7393ca0845d2b0326e2f7abae51851213fe93e251b19",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 320,
+            "height": 110,
+            "borderLeftBottomRightTop": [
+                19,
+                13,
+                19,
+                13
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        361,
+                        19,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        19,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        939,
+                        361,
+                        148,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        19,
+                        0,
+                        282,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1703,
+                        361,
+                        18,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        301,
+                        0,
+                        19,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        385,
+                        19,
+                        54
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        13,
+                        19,
+                        84
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        891,
+                        386,
+                        147,
+                        54
+                    ],
+                    "destinationRectTopLeft": [
+                        19,
+                        13,
+                        282,
+                        84
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1703,
+                        385,
+                        18,
+                        54
+                    ],
+                    "destinationRectTopLeft": [
+                        301,
+                        13,
+                        19,
+                        84
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        455,
+                        19,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        97,
+                        19,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        939,
+                        455,
+                        148,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        19,
+                        97,
+                        282,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1703,
+                        455,
+                        18,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        301,
+                        97,
+                        19,
+                        13
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "row_selected",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/row_selected.png",
+            "outputSha256": "f652d1bd2e32889b5a0179b387a294dff5ab10f78b1d2fab25755dc637e7b851",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 320,
+            "height": 110,
+            "borderLeftBottomRightTop": [
+                20,
+                13,
+                20,
+                13
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        245,
+                        20,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        20,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        939,
+                        245,
+                        148,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        20,
+                        0,
+                        280,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1701,
+                        245,
+                        20,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        300,
+                        0,
+                        20,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        270,
+                        20,
+                        51
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        13,
+                        20,
+                        84
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        890,
+                        271,
+                        147,
+                        51
+                    ],
+                    "destinationRectTopLeft": [
+                        20,
+                        13,
+                        280,
+                        84
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1701,
+                        270,
+                        20,
+                        51
+                    ],
+                    "destinationRectTopLeft": [
+                        300,
+                        13,
+                        20,
+                        84
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        503,
+                        342,
+                        20,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        97,
+                        20,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        939,
+                        342,
+                        148,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        20,
+                        97,
+                        280,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1701,
+                        342,
+                        20,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        300,
+                        97,
+                        20,
+                        13
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "button_primary",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/button_primary.png",
+            "outputSha256": "50aa99ddd31bb939b5a63592a15db8f1954bd7d0a1651efe2fbdde5aaf0de2b2",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 240,
+            "height": 70,
+            "borderLeftBottomRightTop": [
+                36,
+                13,
+                36,
+                13
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        1476,
+                        701,
+                        36,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        36,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1521,
+                        701,
+                        34,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        36,
+                        0,
+                        168,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1688,
+                        701,
+                        36,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        204,
+                        0,
+                        36,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1476,
+                        724,
+                        36,
+                        28
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        13,
+                        36,
+                        44
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1516,
+                        723,
+                        34,
+                        28
+                    ],
+                    "destinationRectTopLeft": [
+                        36,
+                        13,
+                        168,
+                        44
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1688,
+                        724,
+                        36,
+                        28
+                    ],
+                    "destinationRectTopLeft": [
+                        204,
+                        13,
+                        36,
+                        44
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1476,
+                        758,
+                        36,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        57,
+                        36,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1521,
+                        758,
+                        34,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        36,
+                        57,
+                        168,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1688,
+                        758,
+                        36,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        204,
+                        57,
+                        36,
+                        13
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "button_secondary",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/button_secondary.png",
+            "outputSha256": "a6abf095aa208eb16690423f45b1a47b40df5a896cddc6421db5d13cf062209f",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 200,
+            "height": 68,
+            "borderLeftBottomRightTop": [
+                23,
+                13,
+                23,
+                13
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        1296,
+                        704,
+                        23,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        23,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1315,
+                        704,
+                        20,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        23,
+                        0,
+                        154,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1444,
+                        704,
+                        22,
+                        13
+                    ],
+                    "destinationRectTopLeft": [
+                        177,
+                        0,
+                        23,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1296,
+                        725,
+                        23,
+                        29
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        13,
+                        23,
+                        42
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1305,
+                        723,
+                        21,
+                        28
+                    ],
+                    "destinationRectTopLeft": [
+                        23,
+                        13,
+                        154,
+                        42
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1444,
+                        725,
+                        22,
+                        29
+                    ],
+                    "destinationRectTopLeft": [
+                        177,
+                        13,
+                        23,
+                        42
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1296,
+                        756,
+                        23,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        55,
+                        23,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1315,
+                        756,
+                        20,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        23,
+                        55,
+                        154,
+                        13
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        1444,
+                        756,
+                        22,
+                        14
+                    ],
+                    "destinationRectTopLeft": [
+                        177,
+                        55,
+                        23,
+                        13
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "tab_normal",
+            "source": "E:/work/image/designs/jubaozhai-ui/01-empty.png",
+            "sourceSha256": "7177c3b6913f853cf31bc8e98b41954c10da5a6bf5faa752b1e37db02e96df32",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/tab_normal.png",
+            "outputSha256": "8b43ef01426683e087c6d497858f0c043006a14ab1e8b692310b0064c3c05339",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 240,
+            "height": 58,
+            "borderLeftBottomRightTop": [
+                17,
+                11,
+                17,
+                11
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        200,
+                        302,
+                        17,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        17,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        345,
+                        302,
+                        74,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        17,
+                        0,
+                        206,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        445,
+                        302,
+                        18,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        223,
+                        0,
+                        17,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        200,
+                        316,
+                        17,
+                        21
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        11,
+                        17,
+                        36
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        329,
+                        316,
+                        73,
+                        21
+                    ],
+                    "destinationRectTopLeft": [
+                        17,
+                        11,
+                        206,
+                        36
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        445,
+                        316,
+                        18,
+                        21
+                    ],
+                    "destinationRectTopLeft": [
+                        223,
+                        11,
+                        17,
+                        36
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        200,
+                        343,
+                        17,
+                        11
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        47,
+                        17,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        345,
+                        343,
+                        74,
+                        11
+                    ],
+                    "destinationRectTopLeft": [
+                        17,
+                        47,
+                        206,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        445,
+                        343,
+                        18,
+                        11
+                    ],
+                    "destinationRectTopLeft": [
+                        223,
+                        47,
+                        17,
+                        11
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "tab_selected",
+            "source": "E:/work/image/designs/jubaozhai-ui/01-empty.png",
+            "sourceSha256": "7177c3b6913f853cf31bc8e98b41954c10da5a6bf5faa752b1e37db02e96df32",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/tab_selected.png",
+            "outputSha256": "db5b4d468fe534e0102325f4b2b07ee5aa210378229cab7c2df301db08a023f5",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 240,
+            "height": 58,
+            "borderLeftBottomRightTop": [
+                17,
+                11,
+                17,
+                11
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        199,
+                        247,
+                        17,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        17,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        345,
+                        247,
+                        72,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        17,
+                        0,
+                        206,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        445,
+                        247,
+                        18,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        223,
+                        0,
+                        17,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        199,
+                        261,
+                        17,
+                        21
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        11,
+                        17,
+                        36
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        327,
+                        261,
+                        73,
+                        21
+                    ],
+                    "destinationRectTopLeft": [
+                        17,
+                        11,
+                        206,
+                        36
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        445,
+                        261,
+                        18,
+                        21
+                    ],
+                    "destinationRectTopLeft": [
+                        223,
+                        11,
+                        17,
+                        36
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        199,
+                        290,
+                        17,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        47,
+                        17,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        345,
+                        290,
+                        72,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        17,
+                        47,
+                        206,
+                        11
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        445,
+                        290,
+                        18,
+                        10
+                    ],
+                    "destinationRectTopLeft": [
+                        223,
+                        47,
+                        17,
+                        11
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "input",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/input.png",
+            "outputSha256": "9a8be01892405f3ca019c01a436f0280a8e4e19bcd2451f796192a213f6ed126",
+            "processing": "Nine-part deterministic reassembly from approved screenshot corners, text-free edge strips and a blank paper/jade sample. Exact native source/destination patches follow. Central screenshot labels/icons are excluded.",
+            "width": 320,
+            "height": 66,
+            "borderLeftBottomRightTop": [
+                16,
+                12,
+                16,
+                12
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        504,
+                        712,
+                        17,
+                        12
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        16,
+                        12
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        745,
+                        712,
+                        55,
+                        12
+                    ],
+                    "destinationRectTopLeft": [
+                        16,
+                        0,
+                        288,
+                        12
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        809,
+                        712,
+                        16,
+                        12
+                    ],
+                    "destinationRectTopLeft": [
+                        304,
+                        0,
+                        16,
+                        12
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        504,
+                        728,
+                        17,
+                        23
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        12,
+                        16,
+                        42
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        726,
+                        728,
+                        55,
+                        23
+                    ],
+                    "destinationRectTopLeft": [
+                        16,
+                        12,
+                        288,
+                        42
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        809,
+                        728,
+                        16,
+                        23
+                    ],
+                    "destinationRectTopLeft": [
+                        304,
+                        12,
+                        16,
+                        42
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        504,
+                        758,
+                        17,
+                        12
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        54,
+                        16,
+                        12
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        745,
+                        758,
+                        55,
+                        12
+                    ],
+                    "destinationRectTopLeft": [
+                        16,
+                        54,
+                        288,
+                        12
+                    ]
+                },
+                {
+                    "sourceRectTopLeft": [
+                        809,
+                        758,
+                        16,
+                        12
+                    ],
+                    "destinationRectTopLeft": [
+                        304,
+                        54,
+                        16,
+                        12
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "title_plate",
+            "source": "E:/work/image/designs/jubaozhai-ui/01-empty.png",
+            "sourceSha256": "7177c3b6913f853cf31bc8e98b41954c10da5a6bf5faa752b1e37db02e96df32",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/title_plate.png",
+            "outputSha256": "b62ef1784582d6c915a4987e804b3cb4e0fefa560ddada917f2433d81fdc152a",
+            "processing": "Exact static-title crop; polygon alpha outline in authoring coordinates excludes scenery. Contains only approved static 聚宝斋 title, jade/gold plaque, taiji and tassels.",
+            "width": 519,
+            "height": 142,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [
+                537.0,
+                52.0,
+                549.0,
+                47.0,
+                550.0,
+                35.0,
+                563.0,
+                28.0,
+                579.0,
+                31.0,
+                586.0,
+                29.0,
+                595.0,
+                33.0,
+                650.0,
+                31.0,
+                659.0,
+                22.0,
+                678.0,
+                24.0,
+                681.0,
+                9.0,
+                695.0,
+                3.0,
+                705.0,
+                0.0,
+                727.0,
+                0.0,
+                739.0,
+                9.0,
+                743.0,
+                20.0,
+                756.0,
+                22.0,
+                764.0,
+                30.0,
+                829.0,
+                31.0,
+                840.0,
+                29.0,
+                851.0,
+                34.0,
+                863.0,
+                29.0,
+                875.0,
+                32.0,
+                883.0,
+                42.0,
+                885.0,
+                52.0,
+                899.0,
+                54.0,
+                905.0,
+                63.0,
+                911.0,
+                72.0,
+                907.0,
+                82.0,
+                908.0,
+                102.0,
+                895.0,
+                104.0,
+                898.0,
+                82.0,
+                885.0,
+                83.0,
+                876.0,
+                92.0,
+                862.0,
+                97.0,
+                581.0,
+                97.0,
+                568.0,
+                92.0,
+                557.0,
+                83.0,
+                544.0,
+                82.0,
+                545.0,
+                103.0,
+                530.0,
+                104.0,
+                533.0,
+                84.0,
+                527.0,
+                77.0,
+                529.0,
+                65.0
+            ],
+            "containsDynamicText": false,
+            "containsStaticTitle": true,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        706,
+                        0,
+                        519,
+                        142
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        519,
+                        142
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "close",
+            "source": "E:/work/image/designs/jubaozhai-ui/01-empty.png",
+            "sourceSha256": "7177c3b6913f853cf31bc8e98b41954c10da5a6bf5faa752b1e37db02e96df32",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/close.png",
+            "outputSha256": "b0663479c9b4eff28a620edb85e95575479c8f45ae24362752b6e33539df190b",
+            "processing": "Circular alpha mask isolates gold/jade close button including its static cross glyph.",
+            "width": 66,
+            "height": 65,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        1737,
+                        60,
+                        66,
+                        65
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        66,
+                        65
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "empty_guide",
+            "source": "E:/work/image/designs/jubaozhai-ui/01-empty.png",
+            "sourceSha256": "7177c3b6913f853cf31bc8e98b41954c10da5a6bf5faa752b1e37db02e96df32",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/empty_guide.png",
+            "outputSha256": "529fab3a61a2dfa073067370460f5db7306e7f5b6123415da9f63f9dc8764059",
+            "processing": "Girl-only source crop. Polygon excludes the speech bubble and its text; edge-connected warm-paper pixels (RGB distance <= 43 to local blank paper) removed, preserving enclosed highlights.",
+            "width": 409,
+            "height": 341,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [
+                513.0,
+                395.0,
+                536.0,
+                368.0,
+                525.0,
+                320.0,
+                535.0,
+                265.0,
+                563.0,
+                246.0,
+                598.0,
+                249.0,
+                633.0,
+                236.0,
+                655.0,
+                225.0,
+                689.0,
+                225.0,
+                712.0,
+                246.0,
+                723.0,
+                278.0,
+                716.0,
+                311.0,
+                722.0,
+                351.0,
+                744.0,
+                361.0,
+                768.0,
+                370.0,
+                770.0,
+                396.0,
+                790.0,
+                408.0,
+                790.0,
+                435.0,
+                817.0,
+                445.0,
+                816.0,
+                466.0,
+                723.0,
+                475.0,
+                582.0,
+                478.0,
+                566.0,
+                463.0,
+                524.0,
+                455.0
+            ],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        688,
+                        300,
+                        409,
+                        341
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        409,
+                        341
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "character_01",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/character_01.png",
+            "outputSha256": "a30f9bf6e6c86e59b22005f658e469d11f60868622cae2675fb76611f8a08adf",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=183; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        241,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "pet_01",
+            "source": "E:/work/image/designs/jubaozhai-ui/03-pets.png",
+            "sourceSha256": "5b84d1141efdfb41b9176f2e13ce709e8cb548d51577d3b4d3e22d17b64e0b9a",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/pet_01.png",
+            "outputSha256": "86bc7763f5b7ca26271fead010c15b4e13145b0c990c5291827487494f0162d1",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=183; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        241,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "weapon_01",
+            "source": "E:/work/image/designs/jubaozhai-ui/04-weapons.png",
+            "sourceSha256": "1b15a1e5318e91418afa1497de182772cf7ca2b20808a87ead8546885770faca",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/weapon_01.png",
+            "outputSha256": "542b77160af0185bff9b5d251ffba8a26f22dd7d4997113bb04218378c368a4a",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=183; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        241,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "armor_01",
+            "source": "E:/work/image/designs/jubaozhai-ui/05-armor.png",
+            "sourceSha256": "f69970ff431504ab8784cd45e72c1165e4d4d1466d294e5852cb23f28eb95968",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/armor_01.png",
+            "outputSha256": "c3b45e881b7a22d02098bd8c5f79eee54c1a0306cd6f16eab0e728243153375f",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=183; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        241,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "summoning_01",
+            "source": "E:/work/image/designs/jubaozhai-ui/06-summoning.png",
+            "sourceSha256": "771976125b53dc3cd63b84844fdeeb5a1b07894c7638fdd28ca154c89c7a6600",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/summoning_01.png",
+            "outputSha256": "782606ef85462c91d0172a0001c37c719e9831ef76a163bd385eb4954629d946",
+            "processing": "Independent source row icon; rounded alpha rectangle preserves the approved summoning token. No label text in crop. Mask coordinates at 1440x607 reference: rowTop=183; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 139,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        540,
+                        241,
+                        139,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        139,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "set_01",
+            "source": "E:/work/image/designs/jubaozhai-ui/07-sets.png",
+            "sourceSha256": "0f487c36ab05452f53713eefe1ae14384e3644e6415d55c4a7d5e5eea3cf96b4",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/set_01.png",
+            "outputSha256": "1f78e6d58c9e3c2c75941ec58eff55f993c94b4b9e3538847df2cffe42c02391",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=183; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        241,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "character_02",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/character_02.png",
+            "outputSha256": "bae0ae1ea01ba427704136219e7763ec06ad174e2395441f53d7da7d24732d5b",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=268; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        355,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "pet_02",
+            "source": "E:/work/image/designs/jubaozhai-ui/03-pets.png",
+            "sourceSha256": "5b84d1141efdfb41b9176f2e13ce709e8cb548d51577d3b4d3e22d17b64e0b9a",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/pet_02.png",
+            "outputSha256": "be879b62347185b7a56681125e2310fa603043719516e34e577d2726b23ede39",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=268; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        355,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "weapon_02",
+            "source": "E:/work/image/designs/jubaozhai-ui/04-weapons.png",
+            "sourceSha256": "1b15a1e5318e91418afa1497de182772cf7ca2b20808a87ead8546885770faca",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/weapon_02.png",
+            "outputSha256": "f85ac25e1f0c561f8d8ccd74dd4f142f63934210a50262a82ab288cb9316c49e",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=268; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        355,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "armor_02",
+            "source": "E:/work/image/designs/jubaozhai-ui/05-armor.png",
+            "sourceSha256": "f69970ff431504ab8784cd45e72c1165e4d4d1466d294e5852cb23f28eb95968",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/armor_02.png",
+            "outputSha256": "6869cf39a036b7069688453ad4c41f5163b1540b9d3aee35a6aa37200c57a701",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=268; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        355,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "summoning_02",
+            "source": "E:/work/image/designs/jubaozhai-ui/06-summoning.png",
+            "sourceSha256": "771976125b53dc3cd63b84844fdeeb5a1b07894c7638fdd28ca154c89c7a6600",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/summoning_02.png",
+            "outputSha256": "bf91e98ecc877c94204a784f1ada14fe6bb8e034eaa3f953046b90a51a67b31e",
+            "processing": "Independent source row icon; rounded alpha rectangle preserves the approved summoning token. No label text in crop. Mask coordinates at 1440x607 reference: rowTop=268; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 139,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        540,
+                        355,
+                        139,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        139,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "set_02",
+            "source": "E:/work/image/designs/jubaozhai-ui/07-sets.png",
+            "sourceSha256": "0f487c36ab05452f53713eefe1ae14384e3644e6415d55c4a7d5e5eea3cf96b4",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/set_02.png",
+            "outputSha256": "95b5985b3a91f87dca8666cd0292a0e600cf395ed58cab08bca97714b993e32e",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=268; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        355,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "character_03",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/character_03.png",
+            "outputSha256": "425fd185f5b114b9a2d8ef2aaa65bed7b5f709b8257b4561d795ecf588862532",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=353; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        469,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "pet_03",
+            "source": "E:/work/image/designs/jubaozhai-ui/03-pets.png",
+            "sourceSha256": "5b84d1141efdfb41b9176f2e13ce709e8cb548d51577d3b4d3e22d17b64e0b9a",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/pet_03.png",
+            "outputSha256": "e28c54ce01773cef33e85f3fbd7c820288d27522927963a1451647ca5eb9fe74",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=353; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        469,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "weapon_03",
+            "source": "E:/work/image/designs/jubaozhai-ui/04-weapons.png",
+            "sourceSha256": "1b15a1e5318e91418afa1497de182772cf7ca2b20808a87ead8546885770faca",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/weapon_03.png",
+            "outputSha256": "bc7a47ec33839caf8c5fd2f1ea080d1e03a20455b4b91367d3cdca80cc222f20",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=353; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        469,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "armor_03",
+            "source": "E:/work/image/designs/jubaozhai-ui/05-armor.png",
+            "sourceSha256": "f69970ff431504ab8784cd45e72c1165e4d4d1466d294e5852cb23f28eb95968",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/armor_03.png",
+            "outputSha256": "8af3d633c01451ae323b799e3b33b0f2ba357d853679be4334deab11afabadc4",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=353; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        469,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "summoning_03",
+            "source": "E:/work/image/designs/jubaozhai-ui/06-summoning.png",
+            "sourceSha256": "771976125b53dc3cd63b84844fdeeb5a1b07894c7638fdd28ca154c89c7a6600",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/summoning_03.png",
+            "outputSha256": "79c260be8d954417ddb0e89bb50fc636edcd7df6d3d82ca7629e0a1995b753f8",
+            "processing": "Independent source row icon; rounded alpha rectangle preserves the approved summoning token. No label text in crop. Mask coordinates at 1440x607 reference: rowTop=353; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 139,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        540,
+                        469,
+                        139,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        139,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "set_03",
+            "source": "E:/work/image/designs/jubaozhai-ui/07-sets.png",
+            "sourceSha256": "0f487c36ab05452f53713eefe1ae14384e3644e6415d55c4a7d5e5eea3cf96b4",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/set_03.png",
+            "outputSha256": "b467803a899c6e921b40d7bd7b8bc053696797da5c34020332026058bb34fdf2",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=353; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 140,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        469,
+                        140,
+                        140
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        140
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "character_04",
+            "source": "E:/work/image/designs/jubaozhai-ui/02-characters.png",
+            "sourceSha256": "7a95140fc3c7a0ae6562ec6dff51d5296edd15116375152a8b22502c7107e879",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/character_04.png",
+            "outputSha256": "c9488a9af3f12b16b91782824e7bb5b42a0ced29f2aef326da7914b7f9830709",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=439; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 139,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        585,
+                        140,
+                        139
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        139
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "pet_04",
+            "source": "E:/work/image/designs/jubaozhai-ui/03-pets.png",
+            "sourceSha256": "5b84d1141efdfb41b9176f2e13ce709e8cb548d51577d3b4d3e22d17b64e0b9a",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/pet_04.png",
+            "outputSha256": "0d482d0585322aa1da975f2773b7ac5705fb93fc71156530784d2d249a0ccc3a",
+            "processing": "Portrait source crop and circular alpha silhouette; original numeric badge removed with an explicit circular alpha cutout. Pet element badge also excluded. Runtime renders fresh level text over the badge cutout. Mask coordinates at 1440x607 reference: rowTop=439; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 139,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        585,
+                        140,
+                        139
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        139
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "weapon_04",
+            "source": "E:/work/image/designs/jubaozhai-ui/04-weapons.png",
+            "sourceSha256": "1b15a1e5318e91418afa1497de182772cf7ca2b20808a87ead8546885770faca",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/weapon_04.png",
+            "outputSha256": "170a40017d9206f90329a5c9a5e334b02186784b9310445a3a36628e61edde40",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=439; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 139,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        585,
+                        140,
+                        139
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        139
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "armor_04",
+            "source": "E:/work/image/designs/jubaozhai-ui/05-armor.png",
+            "sourceSha256": "f69970ff431504ab8784cd45e72c1165e4d4d1466d294e5852cb23f28eb95968",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/armor_04.png",
+            "outputSha256": "59b80fb12d08695d4587da56f284f7fead2696983baab762d3558a3d3a4ed179",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=439; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 139,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        585,
+                        140,
+                        139
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        139
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "summoning_04",
+            "source": "E:/work/image/designs/jubaozhai-ui/06-summoning.png",
+            "sourceSha256": "771976125b53dc3cd63b84844fdeeb5a1b07894c7638fdd28ca154c89c7a6600",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/summoning_04.png",
+            "outputSha256": "d0bb20f76dfe0c0c314e98bcb8bcdb776357c3d5cb54fbdc81186461f93ab467",
+            "processing": "Independent source row icon; rounded alpha rectangle preserves the approved summoning token. No label text in crop. Mask coordinates at 1440x607 reference: rowTop=439; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 139,
+            "height": 139,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        540,
+                        585,
+                        139,
+                        139
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        139,
+                        139
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "set_04",
+            "source": "E:/work/image/designs/jubaozhai-ui/07-sets.png",
+            "sourceSha256": "0f487c36ab05452f53713eefe1ae14384e3644e6415d55c4a7d5e5eea3cf96b4",
+            "output": "Assets/Resources/UI/Ugui/JubaozhaiV1/set_04.png",
+            "outputSha256": "2b360c4b1413a08764ed05de70dcbcf4d2125f7aebcf82cda72f8312411993b9",
+            "processing": "Independent source row icon; rounded alpha rectangle and two lower badge circle cutouts remove all baked level/element text. Runtime renders fresh badge text; occluded art is not invented. Mask coordinates at 1440x607 reference: rowTop=439; circle center=(450,rowTop+40), radius=43; portrait level=(490,rowTop+64), radius=19.5; pet element=(414,rowTop+64), radius=16.5; item rect=(412,rowTop+4,92,77), radius=5; item badges=(417,rowTop+64,r18.5),(500,rowTop+64,r19.5).",
+            "width": 140,
+            "height": 139,
+            "borderLeftBottomRightTop": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "alphaMaskPolygonReference": [],
+            "containsDynamicText": false,
+            "containsStaticTitle": false,
+            "patches": [
+                {
+                    "sourceRectTopLeft": [
+                        539,
+                        585,
+                        140,
+                        139
+                    ],
+                    "destinationRectTopLeft": [
+                        0,
+                        0,
+                        140,
+                        139
+                    ]
+                }
+            ]
+        }
+    ]
+}

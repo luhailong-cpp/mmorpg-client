@@ -24,8 +24,12 @@ namespace MmorpgClient.UI.Ugui
         private TMP_Text Label(string name, UnityEngine.Transform parent, float x, float y,
             float w, float h, string value, float size = 30f, bool light = false,
             TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
-            => QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value, size,
+        {
+            var label = QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value, size,
                 light ? QdaoRefreshArt.Ivory : QdaoRefreshArt.Ink, alignment);
+            QdaoUguiTypography.ApplyDefault(label);
+            return label;
+        }
 
         private Button ArtButton(string name, UnityEngine.Transform parent, float x, float y,
             float w, float h, string label, string asset, out TMP_Text text)
@@ -34,7 +38,8 @@ namespace MmorpgClient.UI.Ugui
             float sourceHeight = QdaoRefreshArt.Load(asset).rect.height;
             float padding = Mathf.Min(78f * h / sourceHeight, w * 0.18f);
             text = Label(name + "Text", button.transform, padding, 0f, w - padding * 2f, h, label,
-                30f, asset.StartsWith("primary"), TextAlignmentOptions.Center);
+                32f, asset.StartsWith("primary"), TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyButton(text);
             return button;
         }
 
@@ -68,7 +73,8 @@ namespace MmorpgClient.UI.Ugui
             else
             {
                 QdaoRefreshArt.Panel("GameTitlePlaque", _landingRoot, 160f, 240f, 880f, 210f, "primary_button_normal");
-                Label("GameTitle", _landingRoot, 200f, 255f, 800f, 170f, "五行奇谈", 140f, true, TextAlignmentOptions.Center);
+                var titleText = Label("GameTitle", _landingRoot, 200f, 255f, 800f, 170f, "五行奇谈", 140f, true, TextAlignmentOptions.Center);
+                QdaoUguiTypography.ApplyHeading(titleText);
             }
             QdaoUguiFactory.CreateImage("Hero", _landingRoot, 1250f, 90f, 860f, 910f,
                 QdaoRefreshArt.Load("hero")).preserveAspect = true;
@@ -84,8 +90,9 @@ namespace MmorpgClient.UI.Ugui
                 403f, 0f, 150f, 100f, string.Empty, 30f);
             var changePlate = QdaoRefreshArt.Panel("ChooseServerAction", _landingServers.transform,
                 573f, 13f, 211f, 74f, "primary_button_normal");
-            Label("ChooseServerActionText", changePlate.transform, 20f, 0f, 171f, 74f,
-                "选择服务器", 25f, true, TextAlignmentOptions.Center);
+            var chooseServerText = Label("ChooseServerActionText", changePlate.transform, 17f, 0f, 177f, 74f,
+                "选择服务器", 28f, true, TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyButton(chooseServerText);
             _landingEnter = ArtButton("EnterGame", _landingRoot, 270f, 668f, 740f, 166f,
                 "进入游戏", "primary_button_normal", out var enterLabel);
             enterLabel.fontSize = 76f;
@@ -93,7 +100,7 @@ namespace MmorpgClient.UI.Ugui
                 "切换账号", "tab_normal", out var accountLabel);
             accountLabel.fontSize = 35f;
             _landingStatusText = Label("LoginStatus", _landingRoot, 185f, 965f, 860f, 48f,
-                string.Empty, 27f, false, TextAlignmentOptions.Center);
+                string.Empty, 30f, false, TextAlignmentOptions.Center);
         }
 
         private void BuildServerPage()
@@ -102,13 +109,16 @@ namespace MmorpgClient.UI.Ugui
             QdaoRefreshArt.Panel("ServerTitlePlate", _serverRoot, 958f, 82f, 702f, 142f, "primary_button_normal");
             QdaoUguiFactory.CreateImage("ServerTitleEmblem", _serverRoot, 1252f, 8f, 108f, 108f,
                 QdaoRefreshArt.Load("round_badge_taiji")).preserveAspect = true;
-            Label("ServerTitle", _serverRoot, 1030f, 105f, 555f, 94f, "选择服务器", 65f, true, TextAlignmentOptions.Center);
+            var serverTitle = Label("ServerTitle", _serverRoot, 1030f, 105f, 555f, 94f, "选择服务器", 65f, true, TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyHeading(serverTitle);
 
             _searchInput = QdaoUguiFactory.CreateInputField("SearchInput", _serverRoot,
                 1762f, 149f, 384f, 74f, "搜索服务器", 64, QdaoRefreshArt.Load("search_normal"));
             QdaoRefreshArt.Skin(_searchInput.GetComponent<Image>(), "search_normal");
             _searchInput.textComponent.fontSize = 25f;
             ((TMP_Text)_searchInput.placeholder).fontSize = 25f;
+            QdaoUguiTypography.ApplyBody(_searchInput.textComponent);
+            QdaoUguiTypography.ApplyBody((TMP_Text)_searchInput.placeholder);
             SetInputInsets(_searchInput, 70f);
 
             _topButtons = new Button[3]; _topImages = new Image[3];
@@ -120,6 +130,7 @@ namespace MmorpgClient.UI.Ugui
                     292f, 82f, "tab_normal", out _topImages[i]);
                 _topLabels[i] = Label("TopTabText_" + i, _topButtons[i].transform, 18f, 0f,
                     256f, 82f, TopTabLabels[i], 29f, false, TextAlignmentOptions.Center);
+                QdaoUguiTypography.ApplyButton(_topLabels[i]);
                 _topSelectionMarks[i] = QdaoUguiFactory.CreateImage("TopTabSelection_" + i,
                     _topButtons[i].transform, 29f, 35f, 15f, 15f, QdaoRefreshArt.Load("check"));
                 _topSelectionMarks[i].enabled = false;
@@ -144,6 +155,7 @@ namespace MmorpgClient.UI.Ugui
                 _categoryTexts[i] = Label("CategoryText_" + i, _categoryButtons[i].transform,
                     28f, 0f, width - 56f, height, labels[i], auxiliary ? 25f : 34f,
                     false, TextAlignmentOptions.Center);
+                QdaoUguiTypography.ApplyButton(_categoryTexts[i]);
                 _categorySelectionMarks[i] = QdaoUguiFactory.CreateImage("CategorySelection_" + i,
                     _categoryButtons[i].transform, 12f, height * .5f - 8f, 16f, 16f, QdaoRefreshArt.Load("check"));
                 _categorySelectionMarks[i].enabled = false;
@@ -204,8 +216,9 @@ namespace MmorpgClient.UI.Ugui
             _credentialImage.raycastTarget = true;
             _credentialTitleText = Label("CredentialTitle", _credentialPanel, 950f, 283f, 660f, 78f,
                 "账号登录", 50f, false, TextAlignmentOptions.Center);
-            Label("AccountLabel", _credentialPanel, 835f, 405f, 150f, 78f, "账号", 32f);
-            Label("PasswordLabel", _credentialPanel, 835f, 518f, 150f, 78f, "密码", 32f);
+            QdaoUguiTypography.ApplyHeading(_credentialTitleText);
+            Label("AccountLabel", _credentialPanel, 835f, 405f, 150f, 78f, "账号", 34f);
+            Label("PasswordLabel", _credentialPanel, 835f, 518f, 150f, 78f, "密码", 34f);
             _accountInput = QdaoUguiFactory.CreateInputField("AccountInput", _credentialPanel, 990f, 405f,
                 700f, 78f, "请输入账号", 191, QdaoRefreshArt.Load("search_normal"));
             _passwordInput = QdaoUguiFactory.CreateInputField("PasswordInput", _credentialPanel, 990f, 518f,
@@ -213,8 +226,10 @@ namespace MmorpgClient.UI.Ugui
             foreach (var input in new[] { _accountInput, _passwordInput })
             {
                 QdaoRefreshArt.Skin(input.GetComponent<Image>(), "search_normal");
-                input.textComponent.fontSize = 30f;
-                ((TMP_Text)input.placeholder).fontSize = 28f;
+                input.textComponent.fontSize = 32f;
+                ((TMP_Text)input.placeholder).fontSize = 32f;
+                QdaoUguiTypography.ApplyBody(input.textComponent);
+                QdaoUguiTypography.ApplyBody((TMP_Text)input.placeholder);
                 SetInputInsets(input, 78f);
             }
             _passwordInput.contentType = TMP_InputField.ContentType.Password;
@@ -222,8 +237,10 @@ namespace MmorpgClient.UI.Ugui
                 310f, 96f, "取消", "tab_normal", out _credentialCancelText);
             _credentialSubmitButton = ArtButton("CredentialSubmitButton", _credentialPanel, 1320f, 660f,
                 310f, 96f, "登录", "primary_button_normal", out _credentialSubmitText);
+            _credentialCancelText.fontSize = 34f;
+            _credentialSubmitText.fontSize = 34f;
             _credentialStatusText = Label("CredentialStatus", _credentialPanel, 790f, 778f, 980f, 56f,
-                "", 27f, false, TextAlignmentOptions.Center);
+                "", 30f, false, TextAlignmentOptions.Center);
             _credentialPanel.gameObject.SetActive(false);
         }
 

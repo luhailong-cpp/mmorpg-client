@@ -1,0 +1,13 @@
+{
+  "version": 12,
+  "characterId": "26_osmanthus_healer",
+  "frameCount": 8,
+  "frameDurationMs": 60,
+  "dedicatedIdle": true,
+  "contactFrame": 0,
+  "status": "passed",
+  "visualReview": "passed",
+  "manifest_sha256": "985981e192e764f7ee22241891ac09a22d1401a5f3b14bf2cc012f5e151ef401",
+  "qc_sha256": "89797ae70eadfcf1826fd68aa3b33b42a459e947dbac2276e5f9b9afc55ef8a8",
+  "validation_sha256": "92c86fe984e0960fc7e6f4c67c6f2652b86e5c96e463b626d436c657c061214b"
+}

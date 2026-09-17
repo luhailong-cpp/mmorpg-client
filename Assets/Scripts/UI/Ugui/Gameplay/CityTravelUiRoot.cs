@@ -104,6 +104,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_window.IsVisible) { HidePanel(); return; }
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow()) return;
+            Guild.GuildUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();

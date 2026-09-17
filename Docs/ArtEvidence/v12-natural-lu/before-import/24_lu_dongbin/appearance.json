@@ -1,0 +1,13 @@
+{
+  "version": 12,
+  "characterId": "24_lu_dongbin",
+  "frameCount": 8,
+  "frameDurationMs": 60,
+  "dedicatedIdle": true,
+  "contactFrame": 0,
+  "status": "passed",
+  "visualReview": "passed",
+  "manifest_sha256": "32d7909a697d6f0caeea0fb2a843945664ae609af114de30c03311408cad04e1",
+  "qc_sha256": "17a4efec020c449985e79395189823d2ce1b5c396aa6713848de12f4b08a1b52",
+  "validation_sha256": "e58afcf307852c13de96c447b148f87b21f113f0d14e2993d7e5ef26f9ba94a5"
+}

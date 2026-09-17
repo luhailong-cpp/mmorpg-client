@@ -1,0 +1,311 @@
+{
+    "package": "mail-ui-v1",
+    "unityVersion": "6000.6.0f1",
+    "sourcePixelsUnchanged": true,
+    "assets": [
+        {
+            "source": "assets/button_primary.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/button_primary.png",
+            "resourceKey": "UI/Ugui/MailV1/button_primary",
+            "sha256": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+            "guid": "7ab4db119765dff458f50db57526edb4",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/GameplayV1/button_primary.png",
+            "width": 376,
+            "height": 97,
+            "borderLeftBottomRightTop": [
+                66.0,
+                30.0,
+                66.0,
+                30.0
+            ]
+        },
+        {
+            "source": "assets/button_secondary.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/button_secondary.png",
+            "resourceKey": "UI/Ugui/MailV1/button_secondary",
+            "sha256": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+            "guid": "2c4f027eba77b2d43a45a2db48514426",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/GameplayV1/button_secondary.png",
+            "width": 271,
+            "height": 82,
+            "borderLeftBottomRightTop": [
+                30.0,
+                27.0,
+                30.0,
+                27.0
+            ]
+        },
+        {
+            "source": "assets/close_button.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/close_button.png",
+            "resourceKey": "UI/Ugui/MailV1/close_button",
+            "sha256": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+            "guid": "49ce51e435d29064685587b8ad960c83",
+            "borderVerifiedAgainst": "",
+            "width": 81,
+            "height": 80,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/close_tassel.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/close_tassel.png",
+            "resourceKey": "UI/Ugui/MailV1/close_tassel",
+            "sha256": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+            "guid": "4aa1ee013f5b71f4985679691dd6e840",
+            "borderVerifiedAgainst": "",
+            "width": 30,
+            "height": 81,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/event-midautumn.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/event-midautumn.png",
+            "resourceKey": "UI/Ugui/MailV1/event-midautumn",
+            "sha256": "939a785a221050f356ba4849c27d2e7b21a647fa3fdeebffc40e07a664a53484",
+            "guid": "976233d5602548a408835ae466bef355",
+            "borderVerifiedAgainst": "",
+            "width": 2098,
+            "height": 749,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-chest.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/icon-chest.png",
+            "resourceKey": "UI/Ugui/MailV1/icon-chest",
+            "sha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+            "guid": "0f7ab3501176862498c1d0f023622698",
+            "borderVerifiedAgainst": "",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-pill.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/icon-pill.png",
+            "resourceKey": "UI/Ugui/MailV1/icon-pill",
+            "sha256": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+            "guid": "cf66eceb5cf772a45b2e9ead835d3211",
+            "borderVerifiedAgainst": "",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-scroll.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/icon-scroll.png",
+            "resourceKey": "UI/Ugui/MailV1/icon-scroll",
+            "sha256": "dac54bf8263f566c4f35d837fd02b5d08eb3deb7db7aecb87df31ad337da6232",
+            "guid": "2a3df40c17e8b744299f6df3f97d799b",
+            "borderVerifiedAgainst": "",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-talisman.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/icon-talisman.png",
+            "resourceKey": "UI/Ugui/MailV1/icon-talisman",
+            "sha256": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+            "guid": "b117ca1cfd258ca48833fc1272721faa",
+            "borderVerifiedAgainst": "",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/lantern.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/lantern.png",
+            "resourceKey": "UI/Ugui/MailV1/lantern",
+            "sha256": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+            "guid": "8055aba34f825014089503784b23c1de",
+            "borderVerifiedAgainst": "",
+            "width": 220,
+            "height": 393,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/main-city.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/main-city.png",
+            "resourceKey": "UI/Ugui/MailV1/main-city",
+            "sha256": "55b777f5b463f9f53fb72d5b9006708fa6f9870a629edc874a6fc6b28536f495",
+            "guid": "88291d780aff1c74cafde6a7f2b6497d",
+            "borderVerifiedAgainst": "",
+            "width": 2560,
+            "height": 1080,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/notice_icon.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/notice_icon.png",
+            "resourceKey": "UI/Ugui/MailV1/notice_icon",
+            "sha256": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+            "guid": "591ade7df45b7c6408440349c82def28",
+            "borderVerifiedAgainst": "",
+            "width": 47,
+            "height": 47,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_compass.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/round_badge_compass.png",
+            "resourceKey": "UI/Ugui/MailV1/round_badge_compass",
+            "sha256": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+            "guid": "ad3549df480d6cc45ae92b47e6808f7d",
+            "borderVerifiedAgainst": "",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_lotus.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/round_badge_lotus.png",
+            "resourceKey": "UI/Ugui/MailV1/round_badge_lotus",
+            "sha256": "15f4ad1ea7ac089d4fefe25f2fae3d46cc459996639afb8192aee3bd84ca0429",
+            "guid": "8f31c5fe026a25041b9fab93e7f54f30",
+            "borderVerifiedAgainst": "",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_taiji.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/round_badge_taiji.png",
+            "resourceKey": "UI/Ugui/MailV1/round_badge_taiji",
+            "sha256": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+            "guid": "79971b50f15767e45bd75dc87f2f5434",
+            "borderVerifiedAgainst": "",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/stat_field.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/stat_field.png",
+            "resourceKey": "UI/Ugui/MailV1/stat_field",
+            "sha256": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+            "guid": "233c57e205cde39479d95a275bd0482a",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/AttributesPaintedV2/stat_field.png",
+            "width": 273,
+            "height": 62,
+            "borderLeftBottomRightTop": [
+                12.0,
+                12.0,
+                12.0,
+                12.0
+            ]
+        },
+        {
+            "source": "assets/tab_horizontal.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/tab_horizontal.png",
+            "resourceKey": "UI/Ugui/MailV1/tab_horizontal",
+            "sha256": "c5dda5483942a74e0a831f853b9ee5c10ffe46c778960b188fb909617a6aaa65",
+            "guid": "9a09220ce2dfd6d4aa757a8c4708e877",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/AttributesPaintedV2/tab_horizontal.png",
+            "width": 279,
+            "height": 71,
+            "borderLeftBottomRightTop": [
+                27.0,
+                24.0,
+                27.0,
+                24.0
+            ]
+        },
+        {
+            "source": "assets/title_plate.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/title_plate.png",
+            "resourceKey": "UI/Ugui/MailV1/title_plate",
+            "sha256": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+            "guid": "585258255573b494e82447baf8df8bba",
+            "borderVerifiedAgainst": "",
+            "width": 655,
+            "height": 110,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/window_frame.png",
+            "assetPath": "Assets/Resources/UI/Ugui/MailV1/window_frame.png",
+            "resourceKey": "UI/Ugui/MailV1/window_frame",
+            "sha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+            "guid": "d22f330f4e137a045804b757eaa89eef",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/AttributesPaintedV2/window_frame.png",
+            "width": 1546,
+            "height": 743,
+            "borderLeftBottomRightTop": [
+                97.0,
+                74.0,
+                97.0,
+                99.0
+            ]
+        }
+    ]
+}

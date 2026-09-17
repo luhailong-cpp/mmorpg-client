@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "verifiedUtc": "2026-09-17T03:29:37.0924768Z",
+  "testedCSharpCount": 394,
+  "testedResourceCount": 656,
+  "cloneChangedInputs": [],
+  "mainProjectChangedCharacterResources": [],
+  "mainProjectChangesDuringTest": [
+    "Assets\\Editor\\Social\\SocialUiVerification.cs",
+    "Assets\\Editor\\Tianyong\\CityTile4KImporter.cs",
+    "Assets\\Scripts\\UI\\Ugui\\Social\\SocialWindow.cs",
+    "Assets\\Scripts\\World\\Tianyong\\CityTileManifest.cs",
+    "Assets\\Scripts\\World\\Tianyong\\CityTileStreaming.cs",
+    "Assets\\Tests\\EditMode\\Tianyong\\CityTileStreamingTests.cs"
+  ],
+  "mainProjectChangesScope": "Concurrent Social and CityTile changes; no character resource or character animation code changes reported by final source verification.",
+  "cityCaptures": [
+    {
+      "file": "tianyong-23_lantern_courier.png",
+      "bytes": 3232331,
+      "sha256": "4C4701558B759938FBAE6CDA5E459D142B247AA81B22D19AE8CD3F031D14AC5A"
+    },
+    {
+      "file": "tianyong-24_lu_dongbin.png",
+      "bytes": 3224546,
+      "sha256": "0C33A406C1D6BF6D7226E3C3C4FD071AD87072BC9459B943B936FAE56BA7E6B8"
+    },
+    {
+      "file": "tianyong-25_lion_drum_guard.png",
+      "bytes": 3233584,
+      "sha256": "56BED008DE7B5CC4FF1F9382E727F0B5C86AEBFBF44C732702B71A66D7508301"
+    },
+    {
+      "file": "tianyong-26_osmanthus_healer.png",
+      "bytes": 3231368,
+      "sha256": "727CA17C62C6E0D89B1E273324550F2D763B5A23CF1FAFEC0B896DC80E3DBACE"
+    },
+    {
+      "file": "tianyong-27_ink_kite_ranger.png",
+      "bytes": 3231327,
+      "sha256": "D16C5D6ABBFF15FAEEA992390B280397F747327DA365345BE6A23A7A61354C60"
+    },
+    {
+      "file": "tianyong-28_moon_rabbit_artificer.png",
+      "bytes": 3228414,
+      "sha256": "D1DA80E07257AA833176AEDB7E0751B890836B444711662BC7851CE4DE9F4D53"
+    },
+    {
+      "file": "tianyong-29_he_xiangu.png",
+      "bytes": 3223291,
+      "sha256": "F044F0A38F50C7CFA3E75E38B29E9302E82B6B0D257496C14F14B08CDD539AFA"
+    },
+    {
+      "file": "tianyong-30_han_xiangzi.png",
+      "bytes": 3227893,
+      "sha256": "105F6EDAFB7418DC164DF82A5EFA9F417B5B4C2D0F0E112829C1182168C64F4D"
+    }
+  ],
+  "originalOpenUnityUntouched": true
+}

@@ -1,0 +1,13 @@
+{
+  "version": 12,
+  "characterId": "30_han_xiangzi",
+  "frameCount": 8,
+  "frameDurationMs": 60,
+  "dedicatedIdle": true,
+  "contactFrame": 0,
+  "status": "passed",
+  "visualReview": "passed",
+  "manifest_sha256": "f2ee659234423c737530b8666a4c0488570ff4bf0a3c3c7c6686abc7fdeabaa4",
+  "qc_sha256": "efd16f8a79054f5547ef8f610380e51201a8a29f577e6ca61260833cea8b15d1",
+  "validation_sha256": "e1fdc0e8c8f9804094cd9eb8eddb98d969afbe5283cd1266e58ff9fe0f31b694"
+}
