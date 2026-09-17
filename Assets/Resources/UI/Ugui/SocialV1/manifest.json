@@ -1,0 +1,359 @@
+{
+    "package": "social-ui-v1",
+    "unityVersion": "6000.6.0f1",
+    "sourcePixelsUnchanged": true,
+    "assets": [
+        {
+            "source": "assets/24_lu_dongbin.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/24_lu_dongbin.png",
+            "resourceKey": "UI/Ugui/SocialV1/24_lu_dongbin",
+            "sha256": "ea2228db505fbc057da4b4056d08e9bd00ddc0832921e1b37b148ac703b43989",
+            "guid": "b0806991f1b7f4046aaec336d3539ae2",
+            "borderVerifiedAgainst": "",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/25_lion_drum_guard.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/25_lion_drum_guard.png",
+            "resourceKey": "UI/Ugui/SocialV1/25_lion_drum_guard",
+            "sha256": "5cc8cb7f1b537a44573e9d8ea5e4aff5a0c2ebed0ac871db1001cf5d009384f7",
+            "guid": "3edc12a6a5bf08e42830c53d72bd1ddb",
+            "borderVerifiedAgainst": "",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/27_ink_kite_ranger.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/27_ink_kite_ranger.png",
+            "resourceKey": "UI/Ugui/SocialV1/27_ink_kite_ranger",
+            "sha256": "fedec64bcf625aa7b9bdc4c1a56fb0b95238fd86824375c03d24a30d7013d104",
+            "guid": "df8566be4a2591149a54ad2c19e5df5f",
+            "borderVerifiedAgainst": "",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/29_he_xiangu.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/29_he_xiangu.png",
+            "resourceKey": "UI/Ugui/SocialV1/29_he_xiangu",
+            "sha256": "ad13960429287eaba81d33a8af49845150cd7619bb9a02bf00894af63b3c032e",
+            "guid": "f7dd6684937dabb4ebd50eafb9273a62",
+            "borderVerifiedAgainst": "",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/30_han_xiangzi.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/30_han_xiangzi.png",
+            "resourceKey": "UI/Ugui/SocialV1/30_han_xiangzi",
+            "sha256": "50ca931b2b4ac6e1c4e5f5b087ed1c6cf03a27e19b8648fa0fe09b7b63b70a64",
+            "guid": "b03a6918e5c49324a871e3f9821e81f4",
+            "borderVerifiedAgainst": "",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/button_primary.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/button_primary.png",
+            "resourceKey": "UI/Ugui/SocialV1/button_primary",
+            "sha256": "e9e5ada2210d1f57741a3955b7166002c0a41142a92a40f089125678c1c5a24e",
+            "guid": "3a4a5158caed5b4448f43fe24ad4e942",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/GameplayV1/button_primary.png",
+            "width": 376,
+            "height": 97,
+            "borderLeftBottomRightTop": [
+                66.0,
+                30.0,
+                66.0,
+                30.0
+            ]
+        },
+        {
+            "source": "assets/button_secondary.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/button_secondary.png",
+            "resourceKey": "UI/Ugui/SocialV1/button_secondary",
+            "sha256": "96fe5fe53fb30def6e5ee8931179911cfd6a21be1d092359f69d5941cb2999f5",
+            "guid": "122fb1648d7f7b642bd3bfed341ca6e5",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/GameplayV1/button_secondary.png",
+            "width": 271,
+            "height": 82,
+            "borderLeftBottomRightTop": [
+                30.0,
+                27.0,
+                30.0,
+                27.0
+            ]
+        },
+        {
+            "source": "assets/close_button.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/close_button.png",
+            "resourceKey": "UI/Ugui/SocialV1/close_button",
+            "sha256": "7194b5d71bf37d999e16f28b5ed7da55ecd9d674b438254ea134a9283b498339",
+            "guid": "b36f8e044b9b6704bb93c45f50e1e92f",
+            "borderVerifiedAgainst": "",
+            "width": 81,
+            "height": 80,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/close_tassel.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/close_tassel.png",
+            "resourceKey": "UI/Ugui/SocialV1/close_tassel",
+            "sha256": "20abbf34762758034e2c87749111a3c06dedf74d013cadc7aa997502517776a5",
+            "guid": "b4a2b317cf623394bafb7ba36123376e",
+            "borderVerifiedAgainst": "",
+            "width": 30,
+            "height": 81,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/hero-headband.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/hero-headband.png",
+            "resourceKey": "UI/Ugui/SocialV1/hero-headband",
+            "sha256": "de0c3e6d71d7c3dbbfed313e7971b2b8220e27d3e79aafa617b225d3e322706d",
+            "guid": "0d233c2caf42e7c428bcaeac5083d1c7",
+            "borderVerifiedAgainst": "",
+            "width": 1024,
+            "height": 1024,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-chest.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/icon-chest.png",
+            "resourceKey": "UI/Ugui/SocialV1/icon-chest",
+            "sha256": "e85ad587ac4a3a68a3afe0b704f2f20a0c871e6088e0967be129f26bd0205a15",
+            "guid": "893d15df7d793934184b069da6c977c8",
+            "borderVerifiedAgainst": "",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-pill.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/icon-pill.png",
+            "resourceKey": "UI/Ugui/SocialV1/icon-pill",
+            "sha256": "20eeab348181ca6dc8c24440f6ed8abddb6bf477e5055f74e79a72550088bb99",
+            "guid": "b404029ad609369418a60edab553b135",
+            "borderVerifiedAgainst": "",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/icon-talisman.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/icon-talisman.png",
+            "resourceKey": "UI/Ugui/SocialV1/icon-talisman",
+            "sha256": "d37bacddf236139086ef718493ad9ea974c56a72957fc590dc37aa7fa7ee8107",
+            "guid": "3af1c3ba236d9fb48af80e0edada8eb4",
+            "borderVerifiedAgainst": "",
+            "width": 600,
+            "height": 600,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/lantern.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/lantern.png",
+            "resourceKey": "UI/Ugui/SocialV1/lantern",
+            "sha256": "0ed0f5b0e7c18a683f44d3598f665cc6b00daea5f4368269f1ec464650af2224",
+            "guid": "14075864de698ae4bb481bf73a086356",
+            "borderVerifiedAgainst": "",
+            "width": 220,
+            "height": 393,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/lotus-healer.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/lotus-healer.png",
+            "resourceKey": "UI/Ugui/SocialV1/lotus-healer",
+            "sha256": "9ba47160381dbe005c51e09ae14963745841f76f214b26446aaa1fabf0c96254",
+            "guid": "51f9627fa136b024a88792b18fb0fa99",
+            "borderVerifiedAgainst": "",
+            "width": 4096,
+            "height": 4096,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/main-city.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/main-city.png",
+            "resourceKey": "UI/Ugui/SocialV1/main-city",
+            "sha256": "55b777f5b463f9f53fb72d5b9006708fa6f9870a629edc874a6fc6b28536f495",
+            "guid": "5c9af737d0f205942baf9ec6a26f9768",
+            "borderVerifiedAgainst": "",
+            "width": 2560,
+            "height": 1080,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/notice_icon.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/notice_icon.png",
+            "resourceKey": "UI/Ugui/SocialV1/notice_icon",
+            "sha256": "cbf6754ffe44bbbbf2c6fc31e27153e22b07debcd9072ac55188ed388aff510b",
+            "guid": "eabe3f70060f4c9428097b577eaffaa4",
+            "borderVerifiedAgainst": "",
+            "width": 47,
+            "height": 47,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/portrait_frame.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/portrait_frame.png",
+            "resourceKey": "UI/Ugui/SocialV1/portrait_frame",
+            "sha256": "fab13d1b2dd5bef7260209fc22fcbd15c9e5a835b83d359ed0d3b5b9d5a0e4a0",
+            "guid": "9ff9b569ce34d3e4fa70aa7d35664d0a",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/GameplayV1/portrait_frame.png",
+            "width": 134,
+            "height": 115,
+            "borderLeftBottomRightTop": [
+                11.0,
+                11.0,
+                11.0,
+                11.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_compass.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/round_badge_compass.png",
+            "resourceKey": "UI/Ugui/SocialV1/round_badge_compass",
+            "sha256": "1b415e8aaf92a22801e2413d6312648445140d3d399e73de60b89f17a0ad1b5c",
+            "guid": "c63867e12a78fe84f80ae7ce00a8f75c",
+            "borderVerifiedAgainst": "",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/round_badge_taiji.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/round_badge_taiji.png",
+            "resourceKey": "UI/Ugui/SocialV1/round_badge_taiji",
+            "sha256": "c652c5f8377541bed5c8d6c3d23ef32fe1677b9a406f80f6805e44f70846feac",
+            "guid": "a4d85db86a08a2947930175dac29b91a",
+            "borderVerifiedAgainst": "",
+            "width": 120,
+            "height": 120,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/title_plate.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/title_plate.png",
+            "resourceKey": "UI/Ugui/SocialV1/title_plate",
+            "sha256": "b9a01536ef28813328ea538341925106c0b7fe84fe910af49e9b93abef8c96a8",
+            "guid": "3f92a1bf48d165a4b9305b5c4e7c687e",
+            "borderVerifiedAgainst": "",
+            "width": 655,
+            "height": 110,
+            "borderLeftBottomRightTop": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "source": "assets/window_frame.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/window_frame.png",
+            "resourceKey": "UI/Ugui/SocialV1/window_frame",
+            "sha256": "7aba0f0d6834a5f70eeb29c4308d57f171594e3e9894921569fdd6a602720663",
+            "guid": "38971bf06856e6b41a5384d299748a6d",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/AttributesPaintedV2/window_frame.png",
+            "width": 1546,
+            "height": 743,
+            "borderLeftBottomRightTop": [
+                97.0,
+                74.0,
+                97.0,
+                99.0
+            ]
+        }
+    ]
+}

@@ -1,504 +1,504 @@
 {
   "status": "passed",
   "characters_this_import": [
-    "26_osmanthus_healer"
+    "28_moon_rabbit_artificer"
   ],
   "source_root": "E:\\work\\image\\qdao_chibi_roster_v12\\candidate-stable-body",
   "resource_root": "Assets/Resources/World/Characters/QdaoRosterV12",
   "png_count_this_import": 81,
   "source_approvals": {
-    "26_osmanthus_healer": {
-      "manifest_sha256": "7533eebc4aa49229611f3a4d61b467dcef6744fc31c16ba6c18bcabce75576e2",
-      "qc_sha256": "ed76843902a567bfc859e1bffe6fc13ea93f085807e69a78ed5d0d7f4fa1595d",
-      "validation_sha256": "17f1b4e72ac29b69aa0bfdef9dfaee4392bc7ef7aab1668c97befea8b0fcb8a2"
+    "28_moon_rabbit_artificer": {
+      "manifest_sha256": "16bd72b1ebe9f070704dcaae361b34fd90d8db3e71b9c91b38043b6f9ccb0387",
+      "qc_sha256": "bbeae50a2de4833bc6ebfbb363949c2a78451824352090917e2948d78b1edf16",
+      "validation_sha256": "f36a63726b9237f49bbd87f46c94ff4e75eb1b5bd8bee90aad1e15922b74172f"
     }
   },
   "files": [
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/E.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/E.png",
-      "sha256": "fe546c8a7f59b4eb2ab65f878741aa54e8aedd14b9f9d7c27bfc7ecb591d764a"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/E.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/E.png",
+      "sha256": "2515f5c3b568a746af5c211e35af977127bd38f5c239c6d720f4cb53b853fc6d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/N.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/N.png",
-      "sha256": "fd39c7ca13e802398b780b8c97ada2527fb32c20a3430dd16cdbf6ba00b6081f"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/N.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/N.png",
+      "sha256": "1ef4c1515d8cb166c35e2e0cd5e4ec2c2b14ff2236532be7f167e993965d09d4"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/NE.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/NE.png",
-      "sha256": "84765759e0e8003db60c74a0091a1b75c59c28aa665fb5460fabc60da61505b2"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/NE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/NE.png",
+      "sha256": "e3b9ed9f56234528b6a345b9ee03f3601d4c220a6c80dfba02e2958b547ec7a6"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/NW.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/NW.png",
-      "sha256": "af6b3bcd8adaaeaa743f71eb1979cc0f5da48380cb45c5137f47cbf805e46664"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/NW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/NW.png",
+      "sha256": "eb2c0cdeec5c00c9ea15d4753511c3cc84967455e44946154b23cd40375d8836"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/S.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/S.png",
-      "sha256": "efab4b22f2010d3356774d2148623de5cd3e7002014395cd9265b0b6ff52a331"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/S.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/S.png",
+      "sha256": "62b9cf1fcde9a50ddc0a25daf20ac3158a1d53b267faeffd3e3770831a44d5aa"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/SE.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/SE.png",
-      "sha256": "4d753d14a3acd1c7b44cd59cce1f7ae21e424be2a3d1ae8f39d2d3c419f15c5d"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/SE.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/SE.png",
+      "sha256": "36e327bbabe9c70a54d9f17851514e345533430f6f2137720448e2681a09a0a1"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/SW.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/SW.png",
-      "sha256": "11a46601eb2de5aacd5db09b1141e988f7f7e0584c4a77180dca6f5a920a8502"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/SW.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/SW.png",
+      "sha256": "b4ee6baef923310bda14d60c85bf28ca1e1b50f815870ef00b19f13ec03f2b6c"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/idle/W.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/idle/W.png",
-      "sha256": "ed78e0707b22efd554328d5313b1b7f89eec18dada28a483c55fb8a2fc141faf"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/idle/W.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/idle/W.png",
+      "sha256": "ac4933adf06c4311c3d8f5a3a6637e2b71aedc8a879e90ca5cab815a157a81fc"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/portrait.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/portrait.png",
-      "sha256": "556e8acc3110ca693a5a6631ce35285c16883b334c32dfc066cc09bb7727b6a3"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/portrait.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/portrait.png",
+      "sha256": "c169c244e43795c2b46551df9fc165c59cbb1323f6640dfa319d098a4ad89330"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/01.png",
-      "sha256": "b70335b0dfe4095cd8f1c186275f3776647fb3e92b8e81465e0db393ac5d37fb"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/01.png",
+      "sha256": "86fbe9b2c30a31097308c23d6c1266d8f413dc0a9720178acb44acfe6f5f99fe"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/02.png",
-      "sha256": "79ac67d12850bc4805563af34c0f1214a130df78fc4f206e48cba79dd7a3ad60"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/02.png",
+      "sha256": "43b628d818aa2bb5b75f87c15ce3f3872baed66c63a582cd7a2ed78b333fb69d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/03.png",
-      "sha256": "b1bc48cbd5138a311b08ad3d5a8f6d44d3f813b43cf01021d969aa3efae45546"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/03.png",
+      "sha256": "7cc4f8f347c4b6bf40332f85d387529b32615f486d00bd211d3d100d6a34c378"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/04.png",
-      "sha256": "6fa25b8d781c127bc953f32629a8b4d873e789c2aee6272de0900b129c2a7eea"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/04.png",
+      "sha256": "4b3959bbdd404b6b2cc76719e59f6cdaed66e6ab8d9c96eea11a57c5d8d30fb8"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/05.png",
-      "sha256": "f687e70308e17b110bf228f385e555c6f5f264c66845d76c2b20b6e4481bb049"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/05.png",
+      "sha256": "ae0cba3b0bf55208d5452d85211f323c21c7cf84f12a91c666af2b2f71954131"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/06.png",
-      "sha256": "5ceb9597416272610bd7f0491b4327503319357fa52b260d3e454dc4e4d6e832"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/06.png",
+      "sha256": "ab5b0e2dbf15ec85886f7d8d57003933e5373f022b867df0e15966a7c4dec3a0"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/07.png",
-      "sha256": "1fcc2f4ab6e02948aa87f56eb6f780cf761e655df141462ca350231c4f02499d"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/07.png",
+      "sha256": "978fa4cf609452d93e6ba4a109b50cd11b00ac47740425cd1fc53e0256c23064"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/08.png",
-      "sha256": "c59ec683122eb32d6623c6b12bad2ff1f9f7a6ab6c358d6cab51e7142bc81395"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/08.png",
+      "sha256": "146547ddffec86d1a4be94328bb2721182e07cb0def41ae77ccdbca5fe3e0407"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/E/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/E/strip.png",
-      "sha256": "4103517f4863e4c27676ab2c6e87e605a8d3e589c427c05aede671fbd38cce26"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/E/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/E/strip.png",
+      "sha256": "3544a98e8fa0608a56ed8a42067c5224735f1cf053a3eb0ad0218e901e65d2d4"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/01.png",
-      "sha256": "77d58f7fa0d82b3399ae3bd1418ae4a0fe750e9ae79eb75a614f83bead4ad999"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/01.png",
+      "sha256": "127eb664fd4573cbef76b111b4366d7a428ae021b5c5a0d52b08c9a012ede3ce"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/02.png",
-      "sha256": "c2b51e695c91d979b45b316290148bde7787f319369b7911274ab67d6e8630b2"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/02.png",
+      "sha256": "d668b89f76dca06a995d92c41e36cd95e50fde3fa2dd91d84b8846aa96bcbb44"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/03.png",
-      "sha256": "50141ee59841bb05795106ac3f396ef1db1b0b18c36345cc7769ce966c735d39"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/03.png",
+      "sha256": "addab6a374cf6a146de46eb3bfefbd06d1c0bb7156a777bb0bd76286a9d6143e"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/04.png",
-      "sha256": "bf24abd792172422385b0c38be178b13886ad4167f7468292341aadd232218ea"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/04.png",
+      "sha256": "33ef646f7cda3087175fbca7f2e88689f8fa95b034832a859496892709139f9e"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/05.png",
-      "sha256": "e2ccbf118aa0df73aa991f90e9e8f362bbd5e5b1b8a1d4a13b818d1b9864eadc"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/05.png",
+      "sha256": "3f80added58f1bf7e8c8c2779ab6249bc70a43ab38ecbbe6bee94575ecc5a85d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/06.png",
-      "sha256": "9e195ab8d9727ba78dbce65402a0504e2839cac39c8f77429e8fd59e0c29f5be"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/06.png",
+      "sha256": "a9079ed0e6b3c8d7153e017c61d8ac2a039df4c9747c490954d472eb6583d178"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/07.png",
-      "sha256": "2f1da01243d9ee308366446305bf3d3dc5c01f69d9d7b9ef0ce23a34edabd542"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/07.png",
+      "sha256": "3c2fbd3dcd0d4a6ed1e6ef2415128fbca585ea24660bd389ebb2333fae1c0e1e"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/08.png",
-      "sha256": "a8edf812689501a1146a60a9ce81b89a29a4f7414de2abbe97ada8fc2df22b32"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/08.png",
+      "sha256": "337b119c30e9591d0c0b661ab5e47587aa0be56e76aeafac3266af0e11c39b0d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/N/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/N/strip.png",
-      "sha256": "508bf8fe4308ebadc8b945e78dd45a07c0815d4ee7858ae0d49ac9903003a023"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/N/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/N/strip.png",
+      "sha256": "a2d40f3f3641c0cbac3d9e9062caa2c939a0f9e4846acb7a4ca6a92e188bfb27"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/01.png",
-      "sha256": "6d4075817ecfcb789648e9f9d40557c750f044b4188352e343bdca6b32130c83"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/01.png",
+      "sha256": "8f401cc2221c05e5846582532658efea6c2c0e515821d0215a9ea51076b61131"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/02.png",
-      "sha256": "3f3eff498595fd56c96d59103a72ea2f836f558533c43cb8cbe1f69984261604"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/02.png",
+      "sha256": "d7d4a4e4736d27d86435a598154a040142bca49163b05ad31063980fc63d8ed5"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/03.png",
-      "sha256": "de085efac0177d60bdaca493a28eace0c735e896da9be7ff8e200a87289a0cda"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/03.png",
+      "sha256": "58c9b03e5d2e9a34e08f0ad657e8ae68fb0f052602d9ef7bea4c8c6d4b9cf948"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/04.png",
-      "sha256": "539abe48cb9b95644ac24789b2fc98f3d27788d234cab007fd7d90d513d802a3"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/04.png",
+      "sha256": "b27bf83aede1a7f202e1d49c6e4fd19c113897fb28c868ca3e28ec5d290e7e27"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/05.png",
-      "sha256": "975268a519fc505790318ccf3ee03082a58f0087cfd2d7018b5c43f638ca14a5"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/05.png",
+      "sha256": "f7d91c8a278893c8f1c1ff4166ec25843c0b764785bbf74a5cdf304d48c886f0"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/06.png",
-      "sha256": "01d53d70032a095725c9306c4a688c6db3b282c1c14edac6536fbc15a4bfdec4"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/06.png",
+      "sha256": "99a683afed323591afdda7ef548a10bdaf0c277e491c51afef9f237d98cee49f"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/07.png",
-      "sha256": "25123a82183106ed2b8331fd4e67110081e9a500caddf2391a12a53142782dcd"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/07.png",
+      "sha256": "200e46c0d38b3d1381f73699274eea6af020224cbfb3a2d66475437aa894b791"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/08.png",
-      "sha256": "f6fc87a261bfe74b70c0f22d46dad850e4bb7972a3a469d51fbc044d99ae7c83"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/08.png",
+      "sha256": "2b6c2d812dfa0552c4aac19afec8d79d7e55553c53addd821e60935147b47757"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NE/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NE/strip.png",
-      "sha256": "ff3c127d8487f696492d0d1b5139bc1152fa4edb93dc4f7d8a9dd47cdada4015"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NE/strip.png",
+      "sha256": "b49d714ae3e6226fce5623166adce1d6f63924381490e18cc88d3d25f426fa3d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/01.png",
-      "sha256": "b6033b43c027cb81c940644638e1bd4705ccb879bffac4d5386e70a10fbafb99"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/01.png",
+      "sha256": "54800e7e5c40837ce526e3cfeefd98b33edbe41d1c0d032bfbae9477bd453fd8"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/02.png",
-      "sha256": "e4930cecb95c21bb214da077811fdfa17168bc8d143ed73da5ca86f585bea15e"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/02.png",
+      "sha256": "0fd3bf971e53eab4017e37b7c6c72529115d9e3b37bceef22e2e0014b7aae246"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/03.png",
-      "sha256": "9e677079155be144cb0bc6ecdd0bb00ba476e8ea814f69e2c7f970445583689a"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/03.png",
+      "sha256": "4b4b77b11f85269bf42cd36564a2c42fbcb0174d8d5f0c7033135058dfafb4c9"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/04.png",
-      "sha256": "c048e776a3776477c9dd79b06e680d6e2622c32d413a2617d68d5cf1bf612864"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/04.png",
+      "sha256": "d82b3d03658819b9425deff3d9557398e323841b60b6e71456b6d164f8bbb91c"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/05.png",
-      "sha256": "87cfa7a14f5c4b2200cce26e639c9e8b97521ffab6bb221c6b82063024895814"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/05.png",
+      "sha256": "c39714af67c1620571b4d928b1f935e8f7fb03cb4d19c081f007d779c3d818f2"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/06.png",
-      "sha256": "4bd82575a39e2a753d68299606887ad646d61233b3372b16ede3ac0715ee8c13"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/06.png",
+      "sha256": "951ccbac30b47aa71e68b95ff1318799403b17f2b6bf8f075097433b3b91fa08"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/07.png",
-      "sha256": "6c7cd32b4da6a971533ff9834cc10cf78aa9fd41185b29b09ed214bff0212fc1"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/07.png",
+      "sha256": "c506179ba1bb9608b5775df3a3d9278eda9219da31c7fd64f72385bd73e4a6d1"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/08.png",
-      "sha256": "958a773352a394f50d138587d69afd1491b3e559ed3e07fc8c3bb0c4df708bc0"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/08.png",
+      "sha256": "507b6b223abffe2ea7b31528f753ca2b59a8f7cb69f53f31331f08a77a8fddb4"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/NW/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/NW/strip.png",
-      "sha256": "c4707d470f10604fc52d09e496838250b51c1594975597675c61e36f21d7f961"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/NW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/NW/strip.png",
+      "sha256": "bcec4604ed4f0e17d7f96886875ef466340260583b42c293f4f4c9e69cd475c6"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/01.png",
-      "sha256": "daa009e6aec56afabf5ab2f76d5edd4aabaaaa2f3e615b0cfb33af7d3282c0d6"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/01.png",
+      "sha256": "a52d97b765bfc5fd96d23eba4ac1cbf2a01e930e73fe3ed57effa79f30bcab5f"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/02.png",
-      "sha256": "e6dbdf43009d49b17d04a780f6ab5e40dcafa5a9f776d8d8b16700bc5869d1d4"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/02.png",
+      "sha256": "052ce1b7d9ff2e6f8ad18ca22e7a28d3bd4e6cd68de919253a20d4f34195cc0e"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/03.png",
-      "sha256": "259cc9ef256c732e4cbfb774817faa8ec4929c30f9809b4a755cc17d12188946"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/03.png",
+      "sha256": "e11645c26a7efe370a7341b5e8f301f6dec3c14ec5dd821dbf3c8cc81197fe2b"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/04.png",
-      "sha256": "033582fb6ce813c2f230cd21797820c74e643f280223ebc3d1a99ce150ea0155"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/04.png",
+      "sha256": "d4bbce8441ca85c872dd21404ae19cea68bd3976860c9bbe3b08017b73604f64"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/05.png",
-      "sha256": "68d26be9e9075ae715764b530f36291408cece3cde0bb113f5c2e5821bbebe67"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/05.png",
+      "sha256": "b5a0f14db61cbe63d0c4cfe9624a056cc0882b0a7e2214dea90860e109e61663"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/06.png",
-      "sha256": "2c5041487380e31686019d10c87c3ccb28afc06efb77209ec99613428d720569"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/06.png",
+      "sha256": "ef2fd10e7b276f0efaf10e572e03a9e8bf1c32c8c0a4b7125d74163ad7d6dc38"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/07.png",
-      "sha256": "279b7b6faaa4f2c1921f927c65e407d9d14fcc10a20fa8995a94333609b1e6f1"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/07.png",
+      "sha256": "3fbda241614b3065d532000709d9a197ada73400f13c3bdec893f18eb471361b"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/08.png",
-      "sha256": "d43070f728bd018fb5d59c6778166728023524ad3a929bf14c6b7b19ff25bd52"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/08.png",
+      "sha256": "818d0d0644c59fb2e8791ef1b8e199c14548d5e633be24ce4a4f1b212eff140d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/S/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/S/strip.png",
-      "sha256": "6801254389a846aae1cb9ec805e8d79e8edd71859da117103178fdd198f3f775"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/S/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/S/strip.png",
+      "sha256": "08124a669932e2e1ab6c094fc448528e3753ed17f04a47372eea7a58d747b12b"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/01.png",
-      "sha256": "5ecb8e10b6806a35e8e621780d2a771fa1fee966982835141a22efcd4e88a26f"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/01.png",
+      "sha256": "a1350b98ab04b5f9542cc1a0dce62aedc14bc0d96de55478d79e1143b7e9eb29"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/02.png",
-      "sha256": "a3e62b849cb72bb0b3f30e09b5e9a34462fbf779f8d26e282c6826f473d0c6ff"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/02.png",
+      "sha256": "e9f4ed541c40e9a6564e96b181f65366eed1eb0d1f60d2ba69b9dd193980d8ea"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/03.png",
-      "sha256": "05406cb1e03fd233ea99e59293b75fcd5b5d911a5bb3ac7199a6dd56581b8fd6"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/03.png",
+      "sha256": "24f0885b5b0229dbd1a190ad87f3575c893656e37197167c602da577adcb193b"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/04.png",
-      "sha256": "ab8a413efdba0ff344869dbb3261408eb4cf16d579e7dd1d948d0a5d71e6ff78"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/04.png",
+      "sha256": "0a411d42cc0dbb1c73d250b25346b54ccb3c41927b3b23762abc3fca9a6cd48f"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/05.png",
-      "sha256": "4f31080fe0952c4df5e7dc13c4b24aba71f9c404e2160dce5c9cc201028baca4"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/05.png",
+      "sha256": "8207c85286cbee6a5bd67702e1437a0b95bc06c46c821c9fb3beaedbac37a2b2"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/06.png",
-      "sha256": "094d9463433b1449c88fedd8f9dc29dddd3245842c1c7d613cbbb0791f8934d5"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/06.png",
+      "sha256": "18ef895760da743acf2b61ee87f662b8d42993a3bd1b4af2ca52a2cf2c302b0f"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/07.png",
-      "sha256": "c311904a2e1953d08a8f66ba8d28d0a7475268d779ca5e12b1c11e814c558108"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/07.png",
+      "sha256": "ef8f6db3058cfa8c03677eb2c22218adf525be91caa8c190b6a752c0fe96967d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/08.png",
-      "sha256": "24bb62f9e1eb510050d8d0c13457ef42314706ed4ab8514b0762bb477bf321cf"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/08.png",
+      "sha256": "c3f30ec84e04a47536e0009a72981e0b4f868613b4daefcce1145c7f3592264b"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SE/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SE/strip.png",
-      "sha256": "327b67d07febc73d1a36e1a238f845abddc6f8bc2cc8d97edd0cc928672d8a34"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SE/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SE/strip.png",
+      "sha256": "f7be69e4fc905e7371592f8ebfb29fe81e8b9cf30a60d013bb08a57a771a0a18"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/01.png",
-      "sha256": "a13b82b35c05c19a12dbc36941cb842d767d87b8a9b8163dc9969636caddf9f6"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/01.png",
+      "sha256": "ba555d84376f82a3c2df0b9c99290fa2608c8964f9a7cabb278c30cdbb5ca35d"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/02.png",
-      "sha256": "5fe5d3b7592f4f76e08a6aaea1748c9f3ad51c8ed9c7e156963bef3e70565a70"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/02.png",
+      "sha256": "971a6ce28d975d72fbba8e24648cb42434b667395ecb67135aa53d3c54d59bab"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/03.png",
-      "sha256": "2fcd8c1a29d21c9a29b55342d6e4e015b5ae544abc9c9bbb6514402d9be1ebb1"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/03.png",
+      "sha256": "8e44a2a3870b4d530bdc5793e89249af4228379f8bf2808b445b8e6c615780bd"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/04.png",
-      "sha256": "4e58702c8d3b3d7f2dfd0dc719a0261734374ecc123ee8aa9faf9b7a70fd5927"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/04.png",
+      "sha256": "b61a638cd15d820b01db96c19f6f4c662cdc550be3a593d8353354f10e91739c"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/05.png",
-      "sha256": "9db38844d94a71a34d048800971128ad444b6cd0f01acb295a9ba93edb68637f"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/05.png",
+      "sha256": "65e41b2c5cbaa5003c75055d7f115f860b3f9edc42addc81bdb51089dba06310"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/06.png",
-      "sha256": "702361b4cec528fecb8ef69a6e3747006e3f0573c5477cfc7b9f55e2d11489f4"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/06.png",
+      "sha256": "51a5d6bce6b317f0f4ccbea500f62aee0e321d9345f2a982ef596ea15ab810f7"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/07.png",
-      "sha256": "fb7ab6be5363997c037da00690d8ada110af6729924cad2d4bce7482b423f4e8"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/07.png",
+      "sha256": "c80f5ef820db718f5b54b0cb8373f58ac924039a26084c1dc16a5e72c21a2dd1"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/08.png",
-      "sha256": "c03d9ad68e8bb0aa68b7417adb595d2cb964d9f75ab969af224d725231ffcb6d"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/08.png",
+      "sha256": "f9b49bec3ab4e7473d191b9bc94e15411067bcb89c6baca526b22bd9ef39651f"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/SW/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/SW/strip.png",
-      "sha256": "34bd5b0d73d1cc7b52f2516e7914b6789cf848f45696473d85cd027282de33c9"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/SW/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/SW/strip.png",
+      "sha256": "4b2a9aba3ccd2107ab3c66bbb8cbf148ba545724273ebb1479474d8d28dcefdb"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/01.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/01.png",
-      "sha256": "bd71d0bf660bbc8c238352e12966c90e8c6439223e49f89030af9fbed3652e49"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/01.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/01.png",
+      "sha256": "cf64c3702a2050d5bbf9c5dd216e6a237973bca46192ec3659a10d46160cd13e"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/02.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/02.png",
-      "sha256": "7be2d3fab3fdb7c47444fc0d41764c3bff50de60c89d33dedcf0a17e6d98e235"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/02.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/02.png",
+      "sha256": "dd0aebe9bcda59701cb33b8ad3634b348d507b873bae9ab675a59f978bd823ca"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/03.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/03.png",
-      "sha256": "7e828faefe21be7b9238191a75bfb9082a39dd1d9ad6f098bbc9a9a40e34e07e"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/03.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/03.png",
+      "sha256": "5652df63b1d2887f8ee76c642f274fc2da08533dbca96ed5dd654bd6647864c2"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/04.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/04.png",
-      "sha256": "17acd099e4b3032be12abd2535e6d832d522ae9efa836112ae520c934ccca211"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/04.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/04.png",
+      "sha256": "d8ec29a461eea411cde9ed53386eb57cd1b5e3f9ddae6c81ff00ffa9fb2e38b2"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/05.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/05.png",
-      "sha256": "e802cfbf69c95608fc1c286b19108a0da6d5c8780f6a677636d2f3e2758bd19b"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/05.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/05.png",
+      "sha256": "a8adcdd4c04fc87c78640b9cf90ca95e6183adcc92f035d514507c141d58b347"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/06.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/06.png",
-      "sha256": "0efdd5e5b6beafe8d4c53e38ee985e5f3080b4e366fda8268f2f8aeaf4605085"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/06.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/06.png",
+      "sha256": "493f36a87f20fda4bac945972c2bc38a569b9d07efb588ca947afd5787f6186f"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/07.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/07.png",
-      "sha256": "fc88a37e67ebfaedef7387a1e19e102525ddb2a84c520581c7878b78349816f8"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/07.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/07.png",
+      "sha256": "34548e2c66991a2c0782b16ddbb961007b287165547f264a426253111a39d1eb"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/08.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/08.png",
-      "sha256": "c8f89671253aeb67ae154fe0c504b00e80226b6e4784638c4a58f807363c4d69"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/08.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/08.png",
+      "sha256": "11a9de473d1d7a2262d61390c9449ef7758038a8b87e1e0690c254e09eccf5c1"
     },
     {
-      "character": "26_osmanthus_healer",
-      "source": "26_osmanthus_healer/walk/W/strip.png",
-      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/26_osmanthus_healer/walk/W/strip.png",
-      "sha256": "af2094d1acd74d03bbdea3788aad9ea1d50a2c79ca235adf45dc65c619a3a6ed"
+      "character": "28_moon_rabbit_artificer",
+      "source": "28_moon_rabbit_artificer/walk/W/strip.png",
+      "destination": "Assets/Resources/World/Characters/QdaoRosterV12/28_moon_rabbit_artificer/walk/W/strip.png",
+      "sha256": "79b9347bef4455ca05db5a59899f6527c1f3f820290dddd5a671cc09a12f9df5"
     }
   ]
 }
