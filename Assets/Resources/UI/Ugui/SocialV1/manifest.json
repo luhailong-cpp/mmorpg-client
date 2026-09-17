@@ -354,6 +354,22 @@
                 97.0,
                 99.0
             ]
+        },
+        {
+            "source": "assets/stat_field.png",
+            "assetPath": "Assets/Resources/UI/Ugui/SocialV1/stat_field.png",
+            "resourceKey": "UI/Ugui/SocialV1/stat_field",
+            "sha256": "c175e6e627776393cb7371df797ebe88bdfa0916769829269089ee22ac9b8c46",
+            "guid": "53e786220ad2e0f4d8f98b4031ab4466",
+            "borderVerifiedAgainst": "Assets/Resources/UI/Ugui/AttributesPaintedV2/stat_field.png",
+            "width": 273,
+            "height": 62,
+            "borderLeftBottomRightTop": [
+                12.0,
+                12.0,
+                12.0,
+                12.0
+            ]
         }
     ]
 }

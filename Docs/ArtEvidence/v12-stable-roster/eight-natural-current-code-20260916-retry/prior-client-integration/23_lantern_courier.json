@@ -1,0 +1,16 @@
+{
+  "status": "published_and_verified",
+  "verified_utc": "2026-09-14T13:15:56.130847+00:00",
+  "target_project": "E:\\work\\mmorpg-client",
+  "source_manifest_sha256": "385c3158106d5e5a9b439d2015a714a0e13c6c24c90dd9d801699f08c7bd72b6",
+  "png_count": 81,
+  "alignment_version": 3,
+  "runtime_evidence": "E:\\work\\mmorpg-client\\Docs\\ArtEvidence\\v12-stable-roster\\23-25-current-code\\summary.json",
+  "editmode_passed": 127,
+  "playmode_passed": 8,
+  "validation_scope": {
+    "code": "current saved main project, all360 C# files matched at test start",
+    "art": "23/24/25,81 PNGs and appearance.json each,246 files matched at test start",
+    "earlier_guild_compile_failure": "resolved in current saved inputs; historical attempt retained"
+  }
+}
