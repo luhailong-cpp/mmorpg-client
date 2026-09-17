@@ -1,0 +1,72 @@
+{
+  "version": 13,
+  "character_id": "01_ice_sword_girl",
+  "status": "passed",
+  "scope": "all8",
+  "verified_at_utc": "2026-09-17T14:33:34.008814+00:00",
+  "manifest_sha256": "1250c568a803c55e95cc6374ff983cdcf0ccc78cb5d0395807f0357c33f2d729",
+  "qc_sha256": "64636dbb5e8baf746274b4adc34180897c3c93859a6a8256051303122733780a",
+  "visual_review": "passed",
+  "visual_review_sha256": "779995f0d53ddad2c094620e0740fc47a8cfa0f73b8aa020f1764846325e569d",
+  "missing_generation_receipts": [],
+  "direction_results": {
+    "N": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.01789675291943163,
+      "idle_walk_height_drift": 0.01664884680006118
+    },
+    "NE": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.01515790313370562,
+      "idle_walk_height_drift": 0.017956656346749256
+    },
+    "E": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.012214811976918514,
+      "idle_walk_height_drift": 0.02876480541455151
+    },
+    "SE": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.013143044373200258,
+      "idle_walk_height_drift": 0.00909357582868875
+    },
+    "S": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.004192682592874083,
+      "idle_walk_height_drift": 0.005881465842256017
+    },
+    "SW": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.02018674584678469,
+      "idle_walk_height_drift": 0.007696862048549469
+    },
+    "W": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.01706918724120872,
+      "idle_walk_height_drift": 0.003145125056162934
+    },
+    "NW": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.02000849443801929,
+      "idle_walk_height_drift": 0.008658666261582848
+    }
+  },
+  "reconstructed_frames": 136,
+  "synthetic_frames_created": 0
+}
