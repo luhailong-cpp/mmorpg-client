@@ -1,0 +1,29 @@
+{
+  "limitations": [
+    "No new 4K source assets or production manifests published",
+    "Device peak memory and full new-art PlayMode visual acceptance not run"
+  ],
+  "productionManifestPublished": false,
+  "runtimeCompile": {
+    "files": 307,
+    "tool": "tools/client_compile_check.ps1",
+    "verifiedAt": "2026-09-17T03:07:43-04:00",
+    "errors": 0
+  },
+  "scope": "Exact loader/importer/test copies in existing isolated Unity EditMode project; candidate readiness fixtures and unchanged legacy texture",
+  "verifiedAt": "2026-09-17T03:10:42.4684486-04:00",
+  "tests": {
+    "failed": 0,
+    "newAtomicCases": 8,
+    "total": 21,
+    "passed": 21
+  },
+  "implemented": [
+    "Hidden candidate until current visible tiles ready",
+    "Retain old background and HD while preparing or failing",
+    "Same-frame appearance and lighting commit",
+    "Cancellation and disposal discard stale activation",
+    "Legacy maps without any HD manifest still change immediately"
+  ],
+  "unity": "6000.6.0f1"
+}

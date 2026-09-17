@@ -32,5 +32,14 @@
 - 编辑器结果：`.codex-artifacts/jubaozhai-ui/`。
 - 官方 MCP 执行记录：`E:/work/output/jubaozhai/qa/`。
 
-2026-09-14 最终官方MCP验收通过：36张Sprite，6项模型断言全部通过，20张两种分辨率的原生UI截图与交互检查通过。编译280个运行时文件无错误。当前未进行线上交易或PlayMode全链路验证。当前未命名场景已保留于 Assets/Scenes/Recovery/JubaozhaiOriginalUntitled_20260914.unity。
+2026-09-14 官方 MCP 离线验收通过：36 张 Sprite、6 项模型断言、20 张两种分辨率的原生 UI 截图与交互检查，280 个运行时文件编译无错误。该轮未覆盖 PlayMode 联网全链路；当时的未命名场景保留于 `Assets/Scenes/Recovery/JubaozhaiOriginalUntitled_20260914.unity`。
+
+2026-09-17 聚宝斋 P1 客户端真实联网验收通过（本地测试栈、`Market.Scope=zone`）：
+
+- 离线最终回归 **102/102**：聚宝斋客户端及分页 50 例、模型 6 例、TCP 生命周期 8 例、`BattleDirectLink` 会话 38 例。主仓运行时 **307 个源码文件编译通过，0 错误**。真实重登曾暴露 `GateTcpClient` 主动关闭异常逃逸、关闭后 `Connected` 空引用及线程退出唤醒问题；已修复并同步主仓。本地回环 TCP 回归保留修复前 3 通过/5 失败及修复后 8/8 通过的证据，没有忽略异常或放宽断言。
+- 真实 PlayMode **1/1**、退出码 **0**，日志标记 `TRADE_CLIENT_LIVE_OK`。专用账号 `robot_9411`、角色 `1014` 经 `127.0.0.1:8081` 登录一区 Gate `127.0.0.1:10000`，实际浏览和查看商品 `301`、等待服务端确认收藏、主动断线清空窗口状态，再经新的真实 TCP 连接登录同一角色；“仅看收藏”仍返回该商品。拍卖页实际返回未开放提示。商品由正式 `TradeAdmin` 在本地造种，夹具不注入商品、不模拟业务回包，不执行下单、支付或上架。
+- 保存了浏览、详情、收藏、重登后收藏、拍卖未开放 **5 张 1920×1080 真实窗口截图**。截图将当前联网生产 Canvas 临时交给 RenderTexture 相机同步渲染并还原，没有重建窗口或装载演示数据。336 项生产输入文件在运行前后哈希无漂移；另存截图 SHA256 和真实响应写回客户端状态的 JSON 哈希，后者不是原始 TCP 抓包。
+- 验收运行于独立快照 `E:/work/tmp/trade-client-verify-20260916`，未控制主 Unity。生产 `JubaozhaiWindow` 和网络代码与主仓一致；其他任务正在修改的 `QdaoUguiFactory`/`QdaoUguiTheme` 字体样式未同步，因此不宣称与当前主 Unity 逐像素同版。快照使用 Legacy 输入，夹具点击生产 HUD 按钮，走与 U 键相同的 `JubaozhaiUiRoot.Toggle`；**尚未人工按 U 或注入虚拟 U，实际快捷键仍需手动确认**。
+
+证据根目录：`E:/work/xuanming-server-mmo/run/verify-trade-p1-20260917/client-live/`。总览为 `final-summary.json`，本地修复与 102 例结果在 `tcp-dispose/`，完整联网 XML、日志、阶段 JSON 与截图在 `live-04/`；`live-01` 至 `live-03` 失败证据原样保留。客户端仅修改 `GateTcpClient.cs`、新增 `Assets/Tests/EditMode/Net/` 回归及本验证段；未提交代码。
 

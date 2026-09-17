@@ -226,9 +226,11 @@ namespace MmorpgClient.UI.Ugui.Role
                 float textWidth = 540f - textX - 60f;
                 card.Name = Label("Name", card.Plate.transform, textX, _roleCardHeight * .24f, textWidth, 60f,
                     CharacterName(player.ClassId, player.Gender), _roleCardHeight > 170f ? 44f : 33f, Ink);
+                QdaoUguiTypography.ApplyHeading(card.Name);
                 card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 40f,
                     $"{GenderName(player.Gender)} · {ShortId(player.PlayerId)}" + (player.PlayerId == lastPlayed ? " · 上次" : string.Empty),
-                    _roleCardHeight > 170f ? 27f : 23f, Wood);
+                    _roleCardHeight > 170f ? 28f : 26f, Wood);
+                QdaoUguiTypography.ApplyBody(card.Detail);
                 card.Check = QdaoUguiFactory.CreateImage("SelectedCheck", card.Plate.transform,
                     482f, _roleCardHeight * .5f - 23f, 46f, 46f, QdaoRefreshArt.Load("check"));
                 card.Check.gameObject.SetActive(false);
@@ -330,10 +332,11 @@ namespace MmorpgClient.UI.Ugui.Role
                 106f, 72f, 640f, 124f, "primary_button_normal");
             _title = Label("Title", titlePlate.transform, 65f, 20f, 510f, 84f, "选择角色", 59f,
                 Ivory, TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyHeading(_title);
             QdaoUguiFactory.CreateImage("RoleTitleEmblem", _designRoot, 367f, 7f, 112f, 100f,
                 QdaoRefreshArt.Load("round_badge_taiji")).preserveAspect = true;
-            _listHint = Label("ListHint", _designRoot, 150f, 178f, 540f, 30f,
-                string.Empty, 22f, Wood, TextAlignmentOptions.Center);
+            _listHint = Label("ListHint", _designRoot, 150f, 178f, 540f, 38f,
+                string.Empty, 26f, Wood, TextAlignmentOptions.Center);
             BuildDetails();
             BuildSelectRoot();
             BuildCreateRoot();
@@ -348,13 +351,14 @@ namespace MmorpgClient.UI.Ugui.Role
             _classBadge.preserveAspect = true;
             _previewTitle = Label("PreviewTitle", _designRoot, 1980f, 250f, 390f, 88f,
                 string.Empty, 58f, Ink, TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyHeading(_previewTitle);
             _classValue = DetailRow("Class", "所属职业", 376f);
             _genderValue = DetailRow("Gender", "性别", 448f);
             _zoneValue = DetailRow("Zone", "所属区服", 520f);
             _identityValue = DetailRow("Identity", "角色编号", 592f, out _identityLabel);
             _directionValue = DetailRow("Direction", "修行方向", 664f);
-            _previewHint = Label("PreviewHint", _designRoot, 1960f, 840f, 450f, 40f,
-                string.Empty, 22f, Wood, TextAlignmentOptions.Center);
+            _previewHint = Label("PreviewHint", _designRoot, 1950f, 838f, 474f, 44f,
+                string.Empty, 26f, Wood, TextAlignmentOptions.Center);
         }
 
         private TMP_Text DetailRow(string name, string caption, float y)
@@ -362,9 +366,11 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private TMP_Text DetailRow(string name, string caption, float y, out TMP_Text captionText)
         {
-            captionText = Label(name + "Label", _designRoot, 1982f, y, 155f, 44f, caption, 29f, Wood);
-            var value = Label(name + "Value", _designRoot, 2137f, y, 232f, 44f,
-                string.Empty, 28f, Ink, TextAlignmentOptions.MidlineRight);
+            captionText = Label(name + "Label", _designRoot, 1982f, y, 155f, 48f, caption, 30f, Wood);
+            var value = Label(name + "Value", _designRoot, 2137f, y, 232f, 48f,
+                string.Empty, 32f, Ink, TextAlignmentOptions.MidlineRight);
+            QdaoUguiTypography.ApplyBody(captionText);
+            QdaoUguiTypography.ApplyBody(value);
             var line = QdaoUguiFactory.CreateImage(name + "Rule", _designRoot,
                 1982f, y + 54f, 387f, 1f, null);
             line.color = new Color(Gold.r, Gold.g, Gold.b, 0.32f);
@@ -411,7 +417,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 });
                 _classButtons.Add(choice);
             }
-            Label("GenderLabel", _createRoot, 164f, 708f, 500f, 40f, "选择性别", 28f,
+            Label("GenderLabel", _createRoot, 164f, 708f, 500f, 44f, "选择性别", 30f,
                 Wood, TextAlignmentOptions.Center);
             _maleButton = ChoiceButton("GenderMale", _createRoot, 152f, 760f, 250f, "男");
             _femaleButton = ChoiceButton("GenderFemale", _createRoot, 422f, 760f, 250f, "女");
@@ -453,6 +459,7 @@ namespace MmorpgClient.UI.Ugui.Role
             button.Rect = button.Plate.rectTransform;
             button.Label = Label("Label", button.Rect, 44f, 15f, width - 88f, 80f,
                 text, fontSize, primary ? Ivory : Ink, TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyButton(button.Label);
             ConfigureNavigation(button.Button);
             return button;
         }
@@ -465,7 +472,8 @@ namespace MmorpgClient.UI.Ugui.Role
                 "list_row_normal", out button.Plate);
             button.Rect = button.Plate.rectTransform;
             button.Label = Label("Label", button.Rect, 30f, 17f, width - 60f, 60f,
-                text, 29f, Ink, TextAlignmentOptions.Center);
+                text, 32f, Ink, TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyButton(button.Label);
             ConfigureNavigation(button.Button);
             return button;
         }

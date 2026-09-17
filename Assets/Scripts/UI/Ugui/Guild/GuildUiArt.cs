@@ -10,7 +10,7 @@ namespace MmorpgClient.UI.Ugui.Guild
     {
         public const string Root = "UI/Ugui/GuildV2/";
         public static readonly Color Ink = QdaoUguiTheme.Html("#294F41");
-        public static readonly Color Muted = QdaoUguiTheme.Html("#77664D");
+        public static readonly Color Muted = QdaoUguiTheme.Html("#625640");
         public static readonly Color Cream = QdaoUguiTheme.Html("#FFF3D6");
         public static readonly Color Gold = QdaoUguiTheme.Html("#AA803E");
         public static readonly Color Rule = new Color(.66f, .56f, .36f, .42f);
@@ -35,10 +35,21 @@ namespace MmorpgClient.UI.Ugui.Guild
         public static TextMeshProUGUI Text(UnityEngine.Transform parent, string value, float x, float y, float w, float h,
             float size = 30, Color? color = null, bool wrap = false, TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
         {
+            // Keep supporting copy readable when the 2560-wide canvas scales to 1280.
+            size = Mathf.Max(30, size);
             var label = QdaoUguiFactory.CreateText("Label", parent, x, y, w, h, value, size, color ?? Ink, alignment);
+            QdaoUguiTypography.ApplyBody(label);
             label.richText = false;
             label.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
             if (wrap) label.alignment = TextAlignmentOptions.TopLeft;
+            return label;
+        }
+
+        public static TextMeshProUGUI Heading(UnityEngine.Transform parent, string value, float x, float y, float w, float h,
+            float size = 42, Color? color = null, bool wrap = false, TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
+        {
+            var label = Text(parent, value, x, y, w, h, size, color, wrap, alignment);
+            QdaoUguiTypography.ApplyHeading(label);
             return label;
         }
 
@@ -56,8 +67,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             button.colors = colors;
             button.interactable = enabled;
             if (click != null) button.onClick.AddListener(() => click());
-            Text(button.transform, label, 18, 0, w - 36, h, fontSize,
+            var caption = Text(button.transform, label, 18, 0, w - 36, h, Mathf.Max(32, fontSize),
                 primary ? Cream : Ink, alignment: TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyButton(caption);
             return button;
         }
 

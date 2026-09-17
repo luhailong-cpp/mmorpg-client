@@ -25,10 +25,10 @@ namespace MmorpgClient.World.Tianyong
         internal readonly List<Material> _materials = new();
         private CityTileStreaming _cityTiles;
 
-        internal void ConfigureCityTiles(string city, string variant)
+        internal void ConfigureCityTiles(string city, string variant, Action activate = null)
         {
             if (_cityTiles == null) _cityTiles = Root.AddComponent<CityTileStreaming>();
-            _cityTiles.Configure(CityTileStreaming.ManifestPath(city, variant));
+            _cityTiles.Configure(CityTileStreaming.ManifestPath(city, variant), activate);
         }
 
         public void UpdateCityTiles(Camera camera) => _cityTiles?.Tick(camera);

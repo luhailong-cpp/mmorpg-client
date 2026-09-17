@@ -89,6 +89,7 @@ namespace MmorpgClient.UI.Ugui
         {
             Sprites.Clear();
             _font = null;
+            QdaoUguiTypography.ResetRuntimeCache();
         }
 
         public static Color Html(string value)

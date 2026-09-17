@@ -1,0 +1,10 @@
+{
+  "name": "MmorpgClient.Tests.EditMode.Net",
+  "rootNamespace": "MmorpgClient.Tests.EditMode.Net",
+  "references": ["MmorpgClient"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": false,
+  "overrideReferences": true,
+  "precompiledReferences": ["Google.Protobuf.dll"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

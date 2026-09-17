@@ -43,9 +43,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 }
                 Assert.That(definition.BaselineAppearance.HasDedicatedIdle, Is.EqualTo(v11IdleComplete), definition.Id);
                 Assert.That(definition.BaselineAppearance.FrameCount, Is.EqualTo(4));
-                Assert.That(definition.Version, Is.EqualTo(11).Or.EqualTo(12));
-                Assert.That(definition.FrameCount, Is.EqualTo(definition.Version == 12 ? 8 : 4));
-                Assert.That(definition.HasDedicatedIdle, Is.EqualTo(definition.Version == 12 || v11IdleComplete), definition.Id);
+                Assert.That(definition.Version, Is.EqualTo(11).Or.EqualTo(12).Or.EqualTo(13));
+                Assert.That(definition.FrameCount, Is.EqualTo(definition.Version == 13 ? 16 : definition.Version == 12 ? 8 : 4));
+                Assert.That(definition.HasDedicatedIdle, Is.EqualTo(definition.Version >= 12 || v11IdleComplete), definition.Id);
             }
             Assert.That(actual, Is.EquivalentTo(ExpectedIds));
             Assert.That(QdaoCharacterCatalog.Find("24_crane_hermit"), Is.Null);
@@ -112,6 +112,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Assert.That(File.Exists(path), Is.True, path);
                     var importer = AssetImporter.GetAtPath(path) as TextureImporter;
                     Assert.That(importer, Is.Not.Null, path);
+                    Assert.That(importer.maxTextureSize, Is.EqualTo(appearance.Version == 13 ? 8192 : 4096), path);
+                    if (appearance.Version == 13)
+                        Debug.Log($"[QdaoV13] Device max texture size={SystemInfo.maxTextureSize}; runtime uses 512px frames, 8192px strips are review-only.");
                     Assert.That(importer.mipmapEnabled, Is.False, path);
                     Assert.That(importer.textureCompression, Is.EqualTo(TextureImporterCompression.Uncompressed), path);
                     Assert.That(importer.wrapMode, Is.EqualTo(TextureWrapMode.Clamp), path);

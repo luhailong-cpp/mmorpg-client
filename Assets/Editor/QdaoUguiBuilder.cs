@@ -50,6 +50,7 @@ namespace MmorpgClient.UI.EditorTools
             ConfigureArtTextures();
             EnsureTmpEssentialResources();
             EnsureFontAsset();
+            QdaoTypographyFontImport.EnsureBodyFontAsset();
             QdaoUguiTheme.ResetRuntimeCaches();
             EnsureFolder(PrefabFolder);
             BuildPrefab();
