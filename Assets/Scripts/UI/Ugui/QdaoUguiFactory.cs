@@ -128,9 +128,8 @@ namespace MmorpgClient.UI.Ugui
         {
             var rect = CreateRect(name, parent, x, y, width, height);
             var text = rect.gameObject.AddComponent<TextMeshProUGUI>();
-            text.font = QdaoUguiTypography.ResolveBodyFont();
+            text.font = QdaoUguiTheme.ResolveFont();
             text.fontSize = fontSize;
-            QdaoUguiTypography.ApplyDefault(text);
             text.color = color;
             text.alignment = alignment;
             text.textWrappingMode = TextWrappingModes.NoWrap;
@@ -231,7 +230,7 @@ namespace MmorpgClient.UI.Ugui
 
             var textRect = CreateStretch("Text", viewport, Vector4.zero);
             var text = textRect.gameObject.AddComponent<TextMeshProUGUI>();
-            text.font = QdaoUguiTypography.ResolveBodyFont();
+            text.font = QdaoUguiTheme.ResolveFont();
             text.fontSize = 20f;
             text.color = QdaoUguiTheme.Brown;
             text.alignment = TextAlignmentOptions.MidlineLeft;
@@ -240,7 +239,7 @@ namespace MmorpgClient.UI.Ugui
 
             var placeholderRect = CreateStretch("Placeholder", viewport, Vector4.zero);
             var placeholder = placeholderRect.gameObject.AddComponent<TextMeshProUGUI>();
-            placeholder.font = QdaoUguiTypography.ResolveBodyFont();
+            placeholder.font = QdaoUguiTheme.ResolveFont();
             placeholder.fontSize = 20f;
             placeholder.color = new Color(
                 QdaoUguiTheme.MutedBrown.r,

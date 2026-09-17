@@ -154,16 +154,16 @@ namespace MmorpgClient.UI.Ugui.Guild
                 return;
             }
             Text(_rail, "帮会等级", 0, 144, 236, 46, 27, Muted);
-            Text(_rail, "Lv." + info.Level, 248, 144, 146, 46, 34, Gold, alignment: TextAlignmentOptions.MidlineRight);
+            Text(_rail, "Lv." + info.Level, 248, 144, 146, 52, 34, Gold, alignment: TextAlignmentOptions.MidlineRight);
             Line(_rail, "LevelRule", 0, 202, 394);
-            Text(_rail, "帮会编号", 0, 214, 394, 40, 30, Muted);
-            Text(_rail, info.GuildId.ToString(), 0, 258, 394, 42, 28);
-            Text(_rail, "帮主编号", 0, 310, 394, 40, 30, Muted);
-            Text(_rail, info.LeaderId.ToString(), 0, 354, 394, 42, 28);
-            Line(_rail, "LeaderRule", 0, 412, 394);
-            Text(_rail, "我的身份", 0, 430, 228, 48, 27, Muted);
-            Text(_rail, RoleName(_client.Role), 242, 430, 152, 48, 30, alignment: TextAlignmentOptions.MidlineRight);
-            Text(_rail, "山海有归处，同道共此时。", 0, 486, 394, 44, 30, Muted);
+            Text(_rail, "帮会编号", 0, 214, 394, 46, 30, Muted);
+            Text(_rail, info.GuildId.ToString(), 0, 264, 394, 46, 28);
+            Text(_rail, "帮主编号", 0, 314, 394, 46, 30, Muted);
+            Text(_rail, info.LeaderId.ToString(), 0, 364, 394, 46, 28);
+            Line(_rail, "LeaderRule", 0, 424, 394);
+            Text(_rail, "我的身份", 0, 436, 228, 48, 27, Muted);
+            Text(_rail, RoleName(_client.Role), 242, 436, 152, 48, 30, alignment: TextAlignmentOptions.MidlineRight);
+            Text(_rail, "山海有归处，同道共此时。", 0, 490, 394, 46, 30, Muted);
             NamedButton(_rail, "GuildMembersEntry", "查看同道", 0, 546, 190, 64, () => Show(GuildPage.Members), fontSize: 26);
             NamedButton(_rail, "LeaveOrDisbandGuild", _client.IsLeader ? "解散帮会" : "退出帮会", 204, 546, 190, 64,
                 () => Confirm(_client.IsLeader ? "确认解散帮会" : "确认退出帮会",
@@ -186,8 +186,8 @@ namespace MmorpgClient.UI.Ugui.Guild
                 Text(_body, "成员信息、公告和排行将随帮会更新。", 24, 532, 1460, 55, 28, Muted);
                 return;
             }
-            Heading(_body, "同道相聚", 0, 0, 950, 58, 43);
-            Text(_body, "一同修行，一同守护这方灯火。", 0, 60, 1440, 42, 27, Muted);
+            Heading(_body, "同道相聚", 0, 0, 950, 64, 43);
+            Text(_body, "一同修行，一同守护这方灯火。", 0, 68, 1440, 46, 27, Muted);
             int online = 0;
             ulong contribution = 0;
             foreach (var member in info.Members)
@@ -198,16 +198,16 @@ namespace MmorpgClient.UI.Ugui.Guild
             OverviewMetric("GuildMemberCount", "帮会成员", info.Members.Count + " / " + info.MaxMembers, 0);
             OverviewMetric("GuildOnlineCount", "当前在线", online + " 位", 512);
             OverviewMetric("GuildMyContribution", "我的贡献", contribution.ToString(), 1024);
-            Line(_body, "MetricsRule", 0, 224, 1508);
-            GuildIcon(_body, "notice", 0, 249, 47);
-            Heading(_body, "帮会公告", 66, 240, 620, 63, 36);
-            NamedButton(_body, "ReadGuildAnnouncement", "查看全文", 958, 240, 252, 64, ShowReadAnnouncement, fontSize: 27);
+            Line(_body, "MetricsRule", 0, 238, 1508);
+            GuildIcon(_body, "notice", 0, 259, 47);
+            Heading(_body, "帮会公告", 66, 250, 620, 63, 36);
+            NamedButton(_body, "ReadGuildAnnouncement", "查看全文", 958, 250, 252, 64, ShowReadAnnouncement, fontSize: 27);
             if (_client.CanEditAnnouncement)
-                NamedButton(_body, "EditGuildAnnouncement", "编辑公告", 1230, 240, 278, 64, ShowAnnouncement, enabled: !Busy, fontSize: 27);
-            GuildField(_body, "GuildAnnouncementPanel", 0, 320, 1508, 138);
+                NamedButton(_body, "EditGuildAnnouncement", "编辑公告", 1230, 250, 278, 64, ShowAnnouncement, enabled: !Busy, fontSize: 27);
+            GuildField(_body, "GuildAnnouncementPanel", 0, 326, 1508, 132);
             Text(_body, string.IsNullOrWhiteSpace(info.Announcement) ? "帮会尚未发布公告。愿同道相伴，诸事顺遂。" : info.Announcement,
-                28, 337, 1452, 104, 30, wrap: true);
-            Heading(_body, "同道携手 · 帮会事务", 0, 476, 1508, 44, 32, Muted);
+                28, 340, 1452, 104, 30, wrap: true);
+            Heading(_body, "同道携手 · 帮会事务", 0, 476, 1508, 48, 32, Muted);
             OverviewEntry("GuildOverviewMembers", "帮会成员", "crest", GuildPage.Members, 0);
             OverviewEntry("GuildOverviewRanking", "帮会排行", "round_badge_compass", GuildPage.Ranking, 304);
             OverviewEntry("GuildOverviewDonate", "帮会捐献", "furnace", GuildPage.Donate, 608);
@@ -216,9 +216,9 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         private void OverviewMetric(string name, string label, string value, float x)
         {
-            if (x > 0) Line(_body, name + "Divider", x - 24, 127, 1.5f, 73);
-            Text(_body, label, x, 116, 460, 44, 30, Muted);
-            var text = Text(_body, value, x, 164, 460, 54, 43);
+            if (x > 0) Line(_body, name + "Divider", x - 24, 127, 1.5f, 95);
+            Text(_body, label, x, 118, 460, 46, 30, Muted);
+            var text = Text(_body, value, x, 164, 460, 64, 43);
             text.name = name;
         }
         private void OverviewEntry(string name, string label, string icon, GuildPage page, float x)
@@ -302,7 +302,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 NamedButton(_body, "GuildUnavailable_" + Page + "_" + i, "暂未开放", x + 66, 484, 352, 64, null,
                     enabled: false, fontSize: 28);
             }
-            Text(_body, "开放后可在此查看规则与参与条件。", 14, 568, 1480, 42, 30, Muted);
+            Text(_body, "开放后可在此查看规则与参与条件。", 14, 564, 1480, 46, 30, Muted);
         }
         private void Pager(UnityEngine.Transform parent, string prefix, int page, int pages, Action<int> changed, bool enabled)
         {

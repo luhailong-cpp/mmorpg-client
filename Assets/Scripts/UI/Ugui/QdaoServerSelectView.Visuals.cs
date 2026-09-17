@@ -24,8 +24,12 @@ namespace MmorpgClient.UI.Ugui
         private TMP_Text Label(string name, UnityEngine.Transform parent, float x, float y,
             float w, float h, string value, float size = 30f, bool light = false,
             TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
-            => QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value, size,
+        {
+            var label = QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value, size,
                 light ? QdaoRefreshArt.Ivory : QdaoRefreshArt.Ink, alignment);
+            QdaoUguiTypography.ApplyDefault(label);
+            return label;
+        }
 
         private Button ArtButton(string name, UnityEngine.Transform parent, float x, float y,
             float w, float h, string label, string asset, out TMP_Text text)
@@ -113,6 +117,8 @@ namespace MmorpgClient.UI.Ugui
             QdaoRefreshArt.Skin(_searchInput.GetComponent<Image>(), "search_normal");
             _searchInput.textComponent.fontSize = 25f;
             ((TMP_Text)_searchInput.placeholder).fontSize = 25f;
+            QdaoUguiTypography.ApplyBody(_searchInput.textComponent);
+            QdaoUguiTypography.ApplyBody((TMP_Text)_searchInput.placeholder);
             SetInputInsets(_searchInput, 70f);
 
             _topButtons = new Button[3]; _topImages = new Image[3];

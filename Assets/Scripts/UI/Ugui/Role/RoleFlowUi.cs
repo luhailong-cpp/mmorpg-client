@@ -200,10 +200,10 @@ namespace MmorpgClient.UI.Ugui.Role
             int count = Mathf.Min(_players.Count, MaxRows);
             int selectedIndex = 0;
             int slots = count + (count < MaxRows ? 1 : 0);
-            _roleCardHeight = Mathf.Min(224f, (688f - Mathf.Max(0, slots - 1) * 16f) / Mathf.Max(1, slots));
+            _roleCardHeight = Mathf.Min(224f, (662f - Mathf.Max(0, slots - 1) * 16f) / Mathf.Max(1, slots));
             if (_gotoCreateButton != null)
             {
-                _gotoCreateButton.Rect.anchoredPosition = new Vector2(166f, -(220f + count * (_roleCardHeight + 16f)));
+                _gotoCreateButton.Rect.anchoredPosition = new Vector2(166f, -(246f + count * (_roleCardHeight + 16f)));
                 _gotoCreateButton.Rect.sizeDelta = new Vector2(540f, _roleCardHeight);
                 _gotoCreateButton.Label.rectTransform.anchoredPosition = new Vector2(42f, 0f);
                 _gotoCreateButton.Label.rectTransform.sizeDelta = new Vector2(456f, _roleCardHeight);
@@ -227,7 +227,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 card.Name = Label("Name", card.Plate.transform, textX, _roleCardHeight * .24f, textWidth, 60f,
                     CharacterName(player.ClassId, player.Gender), _roleCardHeight > 170f ? 44f : 33f, Ink);
                 QdaoUguiTypography.ApplyHeading(card.Name);
-                card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 40f,
+                card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 44f,
                     $"{GenderName(player.Gender)} · {ShortId(player.PlayerId)}" + (player.PlayerId == lastPlayed ? " · 上次" : string.Empty),
                     _roleCardHeight > 170f ? 28f : 26f, Wood);
                 QdaoUguiTypography.ApplyBody(card.Detail);
@@ -335,7 +335,7 @@ namespace MmorpgClient.UI.Ugui.Role
             QdaoUguiTypography.ApplyHeading(_title);
             QdaoUguiFactory.CreateImage("RoleTitleEmblem", _designRoot, 367f, 7f, 112f, 100f,
                 QdaoRefreshArt.Load("round_badge_taiji")).preserveAspect = true;
-            _listHint = Label("ListHint", _designRoot, 150f, 178f, 540f, 38f,
+            _listHint = Label("ListHint", _designRoot, 150f, 200f, 540f, 38f,
                 string.Empty, 26f, Wood, TextAlignmentOptions.Center);
             BuildDetails();
             BuildSelectRoot();
@@ -380,7 +380,7 @@ namespace MmorpgClient.UI.Ugui.Role
         private void BuildSelectRoot()
         {
             _selectRoot = QdaoUguiFactory.CreateRect("SelectRoot", _designRoot, 0f, 0f, 2560f, 1080f);
-            _rowContainer = QdaoUguiFactory.CreateRect("RoleCards", _selectRoot, 166f, 220f, 540f, 688f);
+            _rowContainer = QdaoUguiFactory.CreateRect("RoleCards", _selectRoot, 166f, 246f, 540f, 662f);
             var back = TextButton("BackToServers", _selectRoot, 245f, 963f, 360f,
                 "返回选服", false);
             back.Button.onClick.AddListener(ResolveCancel);
@@ -499,7 +499,11 @@ namespace MmorpgClient.UI.Ugui.Role
         private static TMP_Text Label(string name, UnityEngine.Transform parent, float x, float y, float width,
             float height, string text, float size, Color color,
             TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
-            => QdaoUguiFactory.CreateText(name, parent, x, y, width, height, text, size, color, alignment);
+        {
+            var label = QdaoUguiFactory.CreateText(name, parent, x, y, width, height, text, size, color, alignment);
+            QdaoUguiTypography.ApplyDefault(label);
+            return label;
+        }
 
         private static void SelectForKeyboard(Button button)
         {

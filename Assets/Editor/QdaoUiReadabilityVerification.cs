@@ -63,7 +63,7 @@ namespace MmorpgClient.UI.EditorTools
             File.WriteAllText(Path.Combine(output, "verification.txt"),
                 "PASS: persistent Chinese font and glyph coverage; input and nested button styling survives prefab refresh.\n" +
                 "Rendered production UI offline at 1280x720, 1920x1080, 2560x1080 and 3840x2160.\n" +
-                "PNG files: " + Directory.GetFiles(output, "*.png", SearchOption.AllDirectories).Length + "\n");
+                "PNG files: " + (Directory.GetFiles(Path.Combine(output, "role-login"), "*.png").Length + Directory.GetFiles(Path.Combine(output, "guild"), "*.png").Length) + "\n");
             Debug.Log("UI_READABILITY_VERIFIED|" + output);
         }
     }

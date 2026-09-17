@@ -64,7 +64,7 @@ public static class MailSocialAssetImport
             importer.wrapMode = TextureWrapMode.Clamp;
             importer.filterMode = FilterMode.Bilinear;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.maxTextureSize = Math.Max(asset.size[0], asset.size[1]) > 4096 ? 8192 : 4096;
+            importer.maxTextureSize = 16384;
             var settings = new TextureImporterSettings();
             importer.ReadTextureSettings(settings);
             settings.spriteMeshType = SpriteMeshType.FullRect;

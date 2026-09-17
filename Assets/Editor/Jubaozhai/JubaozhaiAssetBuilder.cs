@@ -299,10 +299,10 @@ public static class JubaozhaiAssetBuilder
             importer.mipmapEnabled=false;importer.alphaIsTransparency=true;importer.sRGBTexture=true;
             importer.wrapMode=TextureWrapMode.Clamp;importer.filterMode=FilterMode.Bilinear;
             importer.textureCompression=TextureImporterCompression.Uncompressed;importer.crunchedCompression=false;
-            importer.npotScale=TextureImporterNPOTScale.None;importer.maxTextureSize=4096;importer.isReadable=false;
+            importer.npotScale=TextureImporterNPOTScale.None;importer.maxTextureSize=16384;importer.isReadable=false;
             var settings=new TextureImporterSettings();importer.ReadTextureSettings(settings);
             settings.spriteMeshType=SpriteMeshType.FullRect;settings.spriteGenerateFallbackPhysicsShape=false;importer.SetTextureSettings(settings);
-            var platform=importer.GetDefaultPlatformTextureSettings();platform.format=TextureImporterFormat.RGBA32;platform.textureCompression=TextureImporterCompression.Uncompressed;platform.maxTextureSize=4096;importer.SetPlatformTextureSettings(platform);
+            var platform=importer.GetDefaultPlatformTextureSettings();platform.format=TextureImporterFormat.RGBA32;platform.textureCompression=TextureImporterCompression.Uncompressed;platform.maxTextureSize=16384;importer.SetPlatformTextureSettings(platform);
             importer.SaveAndReimport();
             Sprite sprite=AssetDatabase.LoadAssetAtPath<Sprite>(s.output);
             if(sprite==null||sprite.border!=new Vector4(b[0],b[1],b[2],b[3]))throw new InvalidOperationException("Sprite import validation failed: "+s.output);

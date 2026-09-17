@@ -104,7 +104,7 @@ namespace MmorpgClient.UI.EditorTools
                 importer.filterMode = FilterMode.Bilinear;
                 importer.alphaIsTransparency = assetPath != ScreenArtAssetPath;
                 importer.textureCompression = TextureImporterCompression.Uncompressed;
-                importer.maxTextureSize = 4096;
+                importer.maxTextureSize = 16384;
                 var settings = new TextureImporterSettings();
                 importer.ReadTextureSettings(settings);
                 settings.spriteMeshType = SpriteMeshType.FullRect;
