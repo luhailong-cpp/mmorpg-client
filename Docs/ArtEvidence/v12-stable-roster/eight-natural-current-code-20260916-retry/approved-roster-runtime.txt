@@ -1,0 +1,9 @@
+Controlled Unity PlayMode scene. Top row then bottom row, left to right:
+23_lantern_courier 灯穗小使 V12 frames=8
+24_lu_dongbin 吕洞宾 V12 frames=8
+25_lion_drum_guard 狮鼓护卫 V12 frames=8
+26_osmanthus_healer 桂香药婆 V12 frames=8
+27_ink_kite_ranger 墨鸢游侠 V12 frames=8
+28_moon_rabbit_artificer 月兔机关师 V12 frames=8
+29_he_xiangu 何仙姑 V12 frames=8
+30_han_xiangzi 韩湘子 V12 frames=8
