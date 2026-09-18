@@ -45,3 +45,19 @@
 
 2026-09-17 最终验证：Unity 6000.6.0f1 隔离 EditMode **13 通过 / 0 失败**；项目现有 Roslyn 检查 **306 个运行时源文件 / 0 编译错误**。手写 JSON 用例验证了公开的 `x/y/width/height` 合同；代码使用显式字段结构，避免直接序列化 Unity Rect 的内部字段。隔离副本与实际四份源文件的 SHA-256 一致。结果与来源记录见 `Docs/VerificationEvidence/city-tiles4k-20260917/`。本轮没有创建生产 `CityTiles4K` 资源目录或 manifest。以上13项为原子切换补齐前的验证基线；最新补充验证记录见文末。
 2026-09-17 原子切换补齐验证：Unity 6000.6.0f1 隔离 EditMode **21 通过 / 0 失败**，包含原13项以及8项切换回归：全部可见块齐备后提交、加载中扩大视野、目标manifest缺失、快速切回当前景色、销毁取消、激活异常、旧图无manifest兼容、目标必需块失败。异步资源测试按真实10秒时限等待，避免headless编辑器用极短时间跑完120帧导致假超时。最新项目运行时代码 **307文件 / 0编译错误**（其他并行任务新增了1个UI源文件）。四份实际受测源文件与隔离副本SHA-256一致。证据：`Docs/VerificationEvidence/city-tiles4k-atomic-20260917/`。这些测试验证原子状态、可见性与资源清理；真实新图的运行画面和设备峰值显存仍须验收。
+## 2026-09-18：局部候选的 Unity Editor 检查接入
+
+`tools/stage_city_tile_candidates.py` 从美术总账读取当前选定候选，核验 PNG 字节哈希、4096尺寸、16×16全图坐标、300×300世界范围以及 QA/拼接记录哈希，复制到 `Assets/Editor/CityTiles4KReview/Tiles/`。文件名带来源哈希，后续版本另存；这一路径仅用于编辑器检查，不进入正式 Resources。
+
+在工作目录运行：
+
+```powershell
+python tools/stage_city_tile_candidates.py
+python tools/stage_city_tile_candidates.py --check
+```
+
+Unity 菜单 `Tools > 主城高清候选检查` 提供7套外观入口。每次按当前 catalog 重建独立检查场景，场景存于 `Assets/Editor/CityTiles4KReview/Scenes/`；图块使用正式加载器的世界坐标和贴图朝向。切换时使用编辑器标准未保存场景保护，避免重叠显示不同外观。可在 Scene 视图移动、放大和观察真实4096贴图；缺块区域保持空缺。检查场景不加入构建列表，不替换生产地图。
+
+新增的批量验证入口为 `MmorpgClient.Editor.Tianyong.CityTileCandidateReview.VerifyBatch`。它逐项检查实际 Unity 导入尺寸、RGB24格式、无mipmap、Clamp/Bilinear、不可读及平台覆盖，并用独立预览场景渲染各外观总览、1:1纹素局部和邻接边界局部。实际运行结果保存在 `Docs/VerificationEvidence/city-candidate-review-20260918/`；只有存在成功 summary 才表示本轮引擎检查已执行。
+
+这一检查入口接入的是已登记局部候选。完整7套64K地图、所有横纵接缝、独立前景、导航、最近镜头、跨块移动、节庆换肤和设备性能仍须完成，才可生成并启用正式 manifest。现有运行时完整性和原子换肤门槛保持不变。

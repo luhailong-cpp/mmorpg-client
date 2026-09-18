@@ -11,7 +11,8 @@ namespace MmorpgClient.Editor.Tianyong
 
         private void OnPreprocessTexture()
         {
-            if (!assetPath.StartsWith(TileRoot, StringComparison.OrdinalIgnoreCase)) return;
+            if (!assetPath.StartsWith(TileRoot, StringComparison.OrdinalIgnoreCase) &&
+                !assetPath.StartsWith("Assets/Editor/CityTiles4KReview/Tiles/", StringComparison.OrdinalIgnoreCase)) return;
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Default;
             importer.textureShape = TextureImporterShape.Texture2D;
@@ -42,3 +43,4 @@ namespace MmorpgClient.Editor.Tianyong
         }
     }
 }
+
