@@ -88,9 +88,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _status = "暂未收到抵达消息，请稍后重试。";
                 Refresh();
             }
-            // 跨区请求已被受理，但底层已经不再等待（一分钟内既没等到换服通知，也没等到失败提示），
+            // 跨区请求已被受理，但底层已经不再等待（在它的等待预算内既没等到换服通知，也没等到失败提示），
             // 连接也还是原来那条：这趟行程不会再有下文。底层只把“传送超时”写进登录流程的状态栏，
-            // 游戏内没有任何界面显示它；不在这里收场，窗口会顶着“正在传送”再空等一分钟。
+            // 游戏内没有任何界面显示它；不在这里收场，窗口会顶着“正在传送”一直空等到跨区的等待上限。
             // 不会误伤正常流程：失败提示到达时请求已在同一调用栈里被重置；换服通知到达后“正在换连接”
             // 立刻为真，且入场通知先于换连接结束到达，那时在途的区服编号已经清零。
             if (_pendingZoneId != 0 && _request.IsPending && _request.IsAccepted && _game != null &&
@@ -110,7 +110,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 // 跨区在途或正在换连接时保持原样（也不动 _wasAvailable，收场后仍不可用时下一帧照常收起），
                 // 收场交给入场通知、服务端提示、断线和超时。
                 // 判据只看底层的这两个状态，不看“有请求在途”：同区换图不换连接，它在途时变得不可用
-                // 只可能是战斗或观战开始了，那时必须照旧收起，否则遮罩会盖在战斗界面上最长三十秒。
+                // 只可能是战斗或观战开始了，那时必须照旧收起，否则遮罩会盖在战斗界面上直到请求超时（受理后可长达一分多钟）。
                 // 跨区的整段路程（发出请求、等换服通知、换连接、重新进场）都被这两个状态盖住，中间没有空窗。
                 bool travelling = _game != null && (_game.IsRedirecting || _game.IsTravelPending);
                 if (travelling) return;
@@ -168,7 +168,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             StartCoroutine(_game.EnterScene(sceneConfigId, 0,
                 () =>
                 {
-                    if (!_request.Accept(generation)) return;
+                    // 受理不等于马上换图：目的地落在别的节点时，服务端要先冻结玩家、存盘、再重发进场请求，
+                    // 最坏一分钟左右才有结论（换图成功，或补推一条失败提示）。客户端分不清这次走没走这条路，
+                    // 所以受理后一律按服务端的交接预算顺延截止时间；仍用三十秒的话会先报“未收到抵达消息”，
+                    // 玩家却还被冻结着，随后又真的换了图，或失败提示到达时请求已不在途、原因看不到。
+                    if (!_request.Accept(generation, Time.realtimeSinceStartup,
+                            CityTravelRequest.AcceptedHandoffBudgetSeconds)) return;
                     _status = "行程已安排，正在进入目的地…";
                     Refresh();
                 },

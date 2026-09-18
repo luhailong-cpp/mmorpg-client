@@ -16,6 +16,7 @@ namespace MmorpgClient.World
             public Sprite[] Walk;
             public Sprite Idle;
             public readonly List<Texture2D> Textures = new();
+            public readonly List<QdaoMixedResolutionContract.Geometry> Geometry = new();
         }
         private sealed class TextureOwner { public int Users; public Action<Texture2D> Release; }
         private static readonly Dictionary<string, Entry> Shared = new();
@@ -34,11 +35,17 @@ namespace MmorpgClient.World
             public QdaoCharacterCatalog.Appearance Appearance => _entry?.Appearance;
             public Sprite[] Walk => _entry?.Walk;
             public Sprite Idle => _entry?.Idle;
-            public bool IsValid => _entry != null && Matches(_entry.Idle) && Array.TrueForAll(_entry.Walk, Matches);
-            private bool Matches(Sprite sprite) => sprite != null && sprite.texture != null &&
-                sprite.texture.width == _entry.Appearance.FrameWidth && sprite.texture.height == _entry.Appearance.FrameHeight &&
-                sprite.rect.width == _entry.Appearance.FrameWidth && sprite.rect.height == _entry.Appearance.FrameHeight &&
-                sprite.pixelsPerUnit == _entry.Appearance.PixelsPerUnit;
+            public bool IsValid
+            {
+                get
+                {
+                    if (_entry == null || _entry.Geometry.Count != _entry.Walk.Length + 1 ||
+                        !_entry.Geometry[_entry.Walk.Length].Matches(_entry.Idle)) return false;
+                    for (var frame = 0; frame < _entry.Walk.Length; frame++)
+                        if (!_entry.Geometry[frame].Matches(_entry.Walk[frame])) return false;
+                    return true;
+                }
+            }
             public void Dispose()
             {
                 var entry = _entry; _entry = null;
@@ -73,14 +80,16 @@ namespace MmorpgClient.World
                 if (texture == null) return false;
                 RetainTexture(texture, unload);
                 entry.Textures.Add(texture);
-                return texture.width == appearance.FrameWidth && texture.height == appearance.FrameHeight && textures.Add(texture);
+                var geometry = appearance.GeometryForResource(path);
+                entry.Geometry.Add(geometry);
+                return texture.width == geometry.Width && texture.height == geometry.Height && textures.Add(texture);
             }
             for (var frame = 0; frame < appearance.FrameCount; frame++)
                 if (!Take(appearance.FrameResourcePath(Directions[direction], frame))) { Release(entry); return null; }
             if (!Take(appearance.IdleResourcePath(Directions[direction]))) { Release(entry); return null; }
             for (var frame = 0; frame < appearance.FrameCount; frame++)
-                entry.Walk[frame] = Create(entry.Textures[frame], appearance, appearance.Id + "_run_" + Directions[direction] + "_" + frame.ToString("00"));
-            entry.Idle = Create(entry.Textures[appearance.FrameCount], appearance, appearance.Id + "_idle_" + Directions[direction] + "_00");
+                entry.Walk[frame] = Create(entry.Textures[frame], entry.Geometry[frame], appearance.Id + "_run_" + Directions[direction] + "_" + frame.ToString("00"));
+            entry.Idle = Create(entry.Textures[appearance.FrameCount], entry.Geometry[appearance.FrameCount], appearance.Id + "_idle_" + Directions[direction] + "_00");
             foreach (var sprite in entry.Walk) SpriteOwners.Add(sprite, entry);
             SpriteOwners.Add(entry.Idle, entry);
             Entries.Add(entry);
@@ -91,10 +100,10 @@ namespace MmorpgClient.World
         public static Lease RetainSprite(Sprite sprite)
             => sprite != null && SpriteOwners.TryGetValue(sprite, out var entry) ? new Lease(entry) : null;
 
-        private static Sprite Create(Texture2D texture, QdaoCharacterCatalog.Appearance appearance, string name)
+        private static Sprite Create(Texture2D texture, QdaoMixedResolutionContract.Geometry geometry, string name)
         {
-            var sprite = Sprite.Create(texture, new Rect(0, 0, appearance.FrameWidth, appearance.FrameHeight),
-                appearance.Pivot, appearance.PixelsPerUnit, 0, SpriteMeshType.FullRect);
+            var sprite = Sprite.Create(texture, new Rect(0, 0, geometry.Width, geometry.Height),
+                geometry.Pivot, geometry.PixelsPerUnit, 0, SpriteMeshType.FullRect);
             sprite.name = name;
             return sprite;
         }

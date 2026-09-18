@@ -30,11 +30,14 @@ namespace MmorpgClient.Game.WorldTravel
     public sealed class ZoneTravelClient
     {
         /// <summary>
-        /// 受理之后等 msg 124 / 失败 tip 的客户端预算(秒)。必须大于服务端源 scene 等 scene_manager
-        /// 应答的预算 kTravelReplyBudgetSec(30s,cpp/libs/services/scene/player/system/player_lifecycle.cpp),
-        /// 否则客户端先报超时、服务端随后又把人搬走。
+        /// 等 msg 124 / 失败 tip 的客户端预算(秒)。必须大于服务端源 scene 交接的最坏时长,
+        /// 否则客户端先报超时、服务端随后又把人搬走,或失败 tip 到达时已不在途、原因被吞掉。
+        /// 服务端那一段是**两道**看门狗串行(存盘 + 等 scene_manager 应答,各 kTravelReplyBudgetSec=30s,
+        /// cpp/libs/services/scene/player/system/player_lifecycle.cpp),最坏约 60s 才有结论 ——
+        /// 只按一道看门狗取 60 的话,两段都踩满时客户端必然先到期(预算从发请求之前就开始计)。
+        /// 与同区换图受理后的等待共用同一个数,只在 <see cref="CityTravelRequest"/> 维护一处。
         /// </summary>
-        public const float TravelBudgetSec = 60f;
+        public const float TravelBudgetSec = (float)CityTravelRequest.AcceptedHandoffBudgetSeconds;
 
         private readonly GameClient _game;
 

@@ -17,6 +17,7 @@ namespace MmorpgClient.World
             public string sha256;
             public int width;
             public int height;
+            public float pixelsPerUnit;
             public long sourceBytes;
             public long sourceWriteUtcTicks;
         }
@@ -25,6 +26,7 @@ namespace MmorpgClient.World
         public string manifestSha256;
         public string activationSha256;
         public string validationSha256;
+        public string resolutionMode;
         public Entry[] entries = Array.Empty<Entry>();
         private static readonly Dictionary<string, QdaoOriginalHdResourceIndex> Cache = new();
         private static readonly Dictionary<string, string> Validated = new();
@@ -74,10 +76,18 @@ namespace MmorpgClient.World
                 return false;
             var required = new HashSet<string>(RequiredRelativePaths(), StringComparer.Ordinal);
             var guids = new HashSet<string>(StringComparer.Ordinal);
+            var mixed = resolutionMode == QdaoMixedResolutionContract.Mode;
+            if (!string.IsNullOrEmpty(resolutionMode) && !mixed) return false;
+            if (mixed && (!folder.StartsWith(QdaoCharacterCatalog.OriginalV14Root + "/", StringComparison.Ordinal) ||
+                !QdaoMixedResolutionContract.AllowedIdentity(folder.Substring(QdaoCharacterCatalog.OriginalV14Root.Length + 1)))) return false;
+            var oldCount = 0; var newCount = 0;
             foreach (var entry in entries)
             {
-                if (entry == null || !required.Remove(entry.path) || entry.width != 1024 || entry.height != 1024 ||
+                if (entry == null || !required.Remove(entry.path) || entry.height != entry.width ||
+                    (mixed && entry.path != "portrait.png" ?
+                        (entry.width != 512 && entry.width != 1024) || entry.pixelsPerUnit != (entry.width == 512 ? 52f : 104f) : entry.width != 1024) ||
                     !Hex(entry.assetGuid, 32) || !guids.Add(entry.assetGuid) || !Hex(entry.sha256, 64) || entry.sourceBytes <= 24) return false;
+                if (entry.path != "portrait.png") { if (entry.width == 512) oldCount++; else newCount++; }
                 if (fileMatches != null)
                 {
                     if (!fileMatches(entry)) return false;
@@ -95,7 +105,7 @@ namespace MmorpgClient.World
                 }
 #endif
             }
-            return required.Count == 0;
+            return required.Count == 0 && (!mixed || (oldCount > 0 && newCount > 0));
         }
 
         public static bool TextureMatches(string resourcePath, int width, int height)

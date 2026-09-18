@@ -28,6 +28,9 @@ namespace MmorpgClient.World
             public string ResourceFolder { get; }
             public bool IsOriginalRoster { get; }
             public bool IsHd => IsOriginalRoster && Version == 14;
+            public bool IsMixedResolution => _frameGeometry != null;
+            // These are maximum/reference values; mixed sprites must use GeometryForResource.
+            private readonly Dictionary<string, QdaoMixedResolutionContract.Geometry> _frameGeometry;
             public int FrameWidth => IsHd ? 1024 : 512;
             public int FrameHeight => FrameWidth;
             public int PortraitWidth => 1024;
@@ -61,18 +64,29 @@ namespace MmorpgClient.World
             public int ContactFrame { get; }
             public string CacheKey { get; }
             internal Appearance(string id, int version, int contactFrame = 0, string revision = "", int alignmentVersion = 2,
-                string resourceRoot = null)
+                string resourceRoot = null, Dictionary<string, QdaoMixedResolutionContract.Geometry> frameGeometry = null)
             {
                 Id = id;
                 Version = version;
                 AlignmentVersion = alignmentVersion;
                 ContactFrame = contactFrame;
+                _frameGeometry = frameGeometry == null ? null : new Dictionary<string, QdaoMixedResolutionContract.Geometry>(frameGeometry, StringComparer.Ordinal);
                 IsOriginalRoster = resourceRoot == OriginalV13Root || resourceRoot == OriginalV14Root;
                 ResourceFolder = (resourceRoot ?? (version == 13 ? V13Root : version == 12 ? V12Root : V11Root)) + "/" + id;
                 CacheKey = id + "@v" + version + ":" + revision + ":contact" + contactFrame +
                            (alignmentVersion == 2 ? "" : ":alignment" + alignmentVersion) +
                            ":frames" + FrameCount + ":ms" + FrameDurationMs + ":resources" + _resourceRevision +
-                           (IsOriginalRoster ? ":original-roster" : "") + ":size" + FrameWidth + "x" + FrameHeight;
+                           (IsOriginalRoster ? ":original-roster" : "") + ":size" + FrameWidth + "x" + FrameHeight +
+                           (IsMixedResolution ? ":" + QdaoMixedResolutionContract.Mode : "");
+            }
+            public QdaoMixedResolutionContract.Geometry GeometryForResource(string resourcePath)
+            {
+                if (_frameGeometry == null) return new QdaoMixedResolutionContract.Geometry(FrameWidth, PixelsPerUnit);
+                var prefix = ResourceFolder + "/";
+                if (resourcePath == null || !resourcePath.StartsWith(prefix, StringComparison.Ordinal) ||
+                    !_frameGeometry.TryGetValue(resourcePath.Substring(prefix.Length) + ".png", out var geometry))
+                    throw new ArgumentException("Resource is absent from the complete mixed-frame contract.", nameof(resourcePath));
+                return geometry;
             }
             public string FrameResourcePath(string direction, int frameIndex)
                 => $"{ResourceFolder}/walk/{direction}/{frameIndex + 1:00}";
@@ -229,6 +243,7 @@ namespace MmorpgClient.World
             public float pivotY;
             public string sourceCommit;
             public string sourceFamily;
+            public string resolutionMode;
         }
 
         [Serializable]
@@ -342,6 +357,7 @@ namespace MmorpgClient.World
             // The original 00-22 pack uses feet-aligned v2. Lu's separate V13
             // family keeps its strict fixed-head v3 contract; neither relaxes the other.
             var alignmentVersion = record.alignmentVersion == 0 ? 2 : record.alignmentVersion;
+            Dictionary<string, QdaoMixedResolutionContract.Geometry> frameGeometry = null;
             if (definition.IsOriginalRoster)
             {
                 if ((version != 13 && version != 14) || record.alignmentVersion != 2 ||
@@ -350,18 +366,27 @@ namespace MmorpgClient.World
                     record.portraitWidth != 1024 || record.portraitHeight != 1024 ||
                     record.pixelsPerUnit != 104f || record.pivotX != .5f || record.pivotY != .08f || record.sourceCommit != "9adcf9291e4a867601868889a5965f3cd48630ba" ||
                     record.sourceFamily != "original-00-22")) return null;
+                if (version == 14 && !QdaoMixedResolutionContract.TryRead(definition.Id, originalManifest,
+                    record.resolutionMode, out frameGeometry)) return null;
+                if (version != 14 && !string.IsNullOrEmpty(record.resolutionMode)) return null;
             }
             else if (version == 13 ? alignmentVersion != 3 : alignmentVersion != 2 && alignmentVersion != 3)
                 return null;
             var revision = record.manifest_sha256 + ":qc" + record.qc_sha256 + ":validation" + record.validation_sha256;
             var candidate = new Appearance(definition.Id, version, record.contactFrame, revision, alignmentVersion,
-                definition.IsOriginalRoster ? (version == 14 ? OriginalV14Root : OriginalV13Root) : null);
+                definition.IsOriginalRoster ? (version == 14 ? OriginalV14Root : OriginalV13Root) : null, frameGeometry);
             if (!validTexture(candidate.ResourceFolder + "/portrait", candidate.PortraitWidth, candidate.PortraitHeight)) return null;
             foreach (var direction in Directions)
             {
-                if (!validTexture(candidate.IdleResourcePath(direction), candidate.FrameWidth, candidate.FrameHeight)) return null;
+                var idlePath = candidate.IdleResourcePath(direction);
+                var idleGeometry = candidate.GeometryForResource(idlePath);
+                if (!validTexture(idlePath, idleGeometry.Width, idleGeometry.Height)) return null;
                 for (var frame = 0; frame < candidate.FrameCount; frame++)
-                    if (!validTexture(candidate.FrameResourcePath(direction, frame), candidate.FrameWidth, candidate.FrameHeight)) return null;
+                {
+                    var framePath = candidate.FrameResourcePath(direction, frame);
+                    var geometry = candidate.GeometryForResource(framePath);
+                    if (!validTexture(framePath, geometry.Width, geometry.Height)) return null;
+                }
             }
             return candidate;
         }

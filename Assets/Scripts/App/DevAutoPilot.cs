@@ -81,8 +81,12 @@ namespace MmorpgClient.App
             public uint TravelZone;             // 目标 zone id;0 = 不做传送验收
             public uint TravelScene;            // 目标地图配置 id;0 = 交给目标 zone 挑默认大世界
             public bool QuitOnTravelEnd;        // 传送验收结束后退出进程(退出码同 -quitOnBattleEnd 语义)
-            // 整段兜底超时(秒)。要盖住:服务端冻结+存盘+等 scene_manager(≤30)+ 探测 5 + 验票 10
-            // + Login 15 + EnterGame 15 + 等 NotifyEnterScene 60,所以默认比其它阶段都长。
+            // 整段兜底超时(秒)。各段预算:服务端冻结+存盘+等 scene_manager(存盘与等应答两道看门狗串行,
+            // ≤60;客户端按 ZoneTravelClient.TravelBudgetSec=75 等)+ 探测 5 + 验票 10 + Login 15
+            // + EnterGame 15 + 等 NotifyEnterScene 60,所以默认比其它阶段都长。
+            // 硬约束只有一条:必须大于 ZoneTravelClient.TravelBudgetSec,否则验收会抢在服务端给结论之前判超时,
+            // FAIL 行里看不到真正的失败 tip。各段同时踩满最坏值(约 165s)不在默认值的覆盖范围内 ——
+            // 那样的环境本身就该判不通过;确要排查时用 -travelTimeout 放宽。
             public float TravelTimeout = 120f;
 
             public bool Active => Zone != 0;

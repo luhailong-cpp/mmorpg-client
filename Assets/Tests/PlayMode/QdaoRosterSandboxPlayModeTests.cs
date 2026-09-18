@@ -78,7 +78,11 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(13).Or.EqualTo(14));
                     yield return WalkWithRealMotor(sandbox, definition.Id, routeOrigin, observations);
                     observations.testedOriginalCount++;
-                    if (animator.ArtworkVersion == 14) observations.testedHdOriginalCount++;
+                    if (animator.ArtworkVersion == 14)
+                    {
+                        if (definition.ResolveAppearance()?.IsMixedResolution == true) observations.testedMixedOriginalCount++;
+                        else observations.testedHdOriginalCount++;
+                    }
                     WriteObservationsIfRequested(observations);
                 }
                 foreach (var original in QdaoCharacterCatalog.OriginalAll)
@@ -203,6 +207,7 @@ namespace MmorpgClient.Tests.PlayMode
             public int selectedAppearanceCount;
             public int testedOriginalCount;
             public int testedHdOriginalCount;
+            public int testedMixedOriginalCount;
             public List<ObservedAppearance> appearances = new();
         }
 
@@ -215,6 +220,9 @@ namespace MmorpgClient.Tests.PlayMode
             public int actualFrameCount;
             public bool actualIsOriginalRoster;
             public bool actualIsHd;
+            public bool actualIsMixedResolution;
+            public bool v14MixedContractObserved;
+            public List<ObservedFrameGeometry> actualFrameGeometry = new();
             public int actualFrameWidth;
             public int actualFrameHeight;
             public float actualPixelsPerUnit;
@@ -321,6 +329,14 @@ namespace MmorpgClient.Tests.PlayMode
             public string validation_sha256;
         }
 
+        [System.Serializable]
+        private sealed class ObservedFrameGeometry
+        {
+            public string resourcePath;
+            public int width, height;
+            public float pixelsPerUnit, worldHeight;
+            public Vector2 pivot;
+        }
         private static readonly string[] ObservationDirections = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
 
         private static object ActualFrameSet(QdaoBoySpriteAnimator animator)
@@ -346,6 +362,14 @@ namespace MmorpgClient.Tests.PlayMode
             var activeDirection = animator.Direction;
             observed.actualFramesMatchResources = appearance != null;
             observed.actualIdleMatchResources = observed.actualHasDedicatedIdle;
+            observed.actualFrameGeometry.Clear();
+            void ObserveGeometry(string path, Sprite sprite)
+            {
+                observed.actualFrameGeometry.Add(new ObservedFrameGeometry { resourcePath = path,
+                    width = sprite.texture.width, height = sprite.texture.height, pixelsPerUnit = sprite.pixelsPerUnit,
+                    worldHeight = sprite.rect.height / sprite.pixelsPerUnit,
+                    pivot = new Vector2(sprite.pivot.x / sprite.rect.width, sprite.pivot.y / sprite.rect.height) });
+            }
             try
             {
                 for (var direction = 0; direction < ObservationDirections.Length; direction++)
@@ -372,23 +396,27 @@ namespace MmorpgClient.Tests.PlayMode
                     {
                         var sprite = poses[frame];
                         var texture = sprite != null ? sprite.texture : null;
-                        if (texture == null || appearance == null || texture.width != appearance.FrameWidth || texture.height != appearance.FrameHeight ||
-                            sprite.rect.width != appearance.FrameWidth || sprite.rect.height != appearance.FrameHeight || sprite.pixelsPerUnit != appearance.PixelsPerUnit)
+                        var path = appearance?.FrameResourcePath(ObservationDirections[direction], frame);
+                        if (texture == null || appearance == null || !appearance.GeometryForResource(path).Matches(sprite))
                         {
                             observed.actualFramesMatchResources = false;
                             continue;
                         }
-                        width = texture.width; height = texture.height;
+                        // A zero summary means multiple dimensions; every measured frame is listed below.
+                        width = validCount == 0 ? texture.width : width == texture.width ? width : 0;
+                        height = validCount == 0 ? texture.height : height == texture.height ? height : 0;
                         validCount++;
                         sprites.Add(sprite);
                         textures.Add(texture);
-                        if (texture != Resources.Load<Texture2D>(appearance.FrameResourcePath(ObservationDirections[direction], frame)))
+                        ObserveGeometry(path, sprite);
+                        if (texture != Resources.Load<Texture2D>(path))
                             observed.actualFramesMatchResources = false;
                     }
                     var standing = idle[direction];
                     var idleMatches = standing != null && appearance != null && standing.texture != null &&
-                        standing.texture.width == appearance.FrameWidth && standing.texture.height == appearance.FrameHeight &&
+                        appearance.GeometryForResource(appearance.IdleResourcePath(ObservationDirections[direction])).Matches(standing) &&
                         standing.texture == Resources.Load<Texture2D>(appearance.IdleResourcePath(ObservationDirections[direction]));
+                    if (idleMatches) ObserveGeometry(appearance.IdleResourcePath(ObservationDirections[direction]), standing);
                     observed.actualIdleMatchResources &= idleMatches;
                     observed.actualDedicatedIdleDirections.Set(ObservationDirections[direction], idleMatches && observed.actualHasDedicatedIdle ? 1 : 0);
                     observed.actualTextureWidthsPerDirection.Set(ObservationDirections[direction], width);
@@ -475,7 +503,8 @@ namespace MmorpgClient.Tests.PlayMode
                 ? new Vector2(sprite.pivot.x / sprite.rect.width, sprite.pivot.y / sprite.rect.height) : Vector2.zero;
             observed.actualBillboardScale = player.transform.Find("sprite").lossyScale;
             observed.actualFrameWorldHeight = sprite != null ? sprite.rect.height / sprite.pixelsPerUnit * observed.actualBillboardScale.y : 0f;
-            observed.actualIsHd = animator.ArtworkVersion == 14 && appearance?.IsHd == true;
+            observed.actualIsMixedResolution = animator.ArtworkVersion == 14 && appearance?.IsMixedResolution == true;
+            observed.actualIsHd = animator.ArtworkVersion == 14 && appearance?.IsHd == true && !observed.actualIsMixedResolution;
             observed.expectedIdleResourcePath = appearance?.IdleResourcePath(ObservationDirections[animator.Direction]);
             observed.spriteMatchesDedicatedIdle = appearance != null && appearance.HasDedicatedIdle &&
                 texture != null && texture == Resources.Load<Texture2D>(observed.expectedIdleResourcePath);
@@ -488,6 +517,11 @@ namespace MmorpgClient.Tests.PlayMode
                 observed.actualPixelsPerUnit == 104f && activationFields.frameWidth == 1024 && activationFields.frameHeight == 1024 &&
                 activationFields.pixelsPerUnit == 104f && Mathf.Abs(observed.actualNormalizedPivot.x - .5f) < .0001f &&
                 Mathf.Abs(observed.actualNormalizedPivot.y - .08f) < .0001f &&
+                Mathf.Abs(observed.actualFrameWorldHeight - 512f / 52f) < .0001f;
+            observed.v14MixedContractObserved = observed.actualIsMixedResolution && animator.FrameCount == 16 &&
+                appearance.FrameDurationMs == 30 && observed.activationPresent && observed.actualFrameGeometry.Count == 136 &&
+                observed.actualFramesMatchResources && observed.actualIdleMatchResources &&
+                Mathf.Abs(observed.actualNormalizedPivot.x - .5f) < .0001f && Mathf.Abs(observed.actualNormalizedPivot.y - .08f) < .0001f &&
                 Mathf.Abs(observed.actualFrameWorldHeight - 512f / 52f) < .0001f;
             observed.realMotorEnabled = player.GetComponent<TianyongPlayerController>().Motor.enabled;
             return observed;
@@ -615,7 +649,7 @@ namespace MmorpgClient.Tests.PlayMode
                     return view;
                 }
                 observed.normalView = SaveView("");
-                if (observed.actualIsHd)
+                if (observed.actualIsHd || observed.actualIsMixedResolution)
                 {
                     sandbox.CameraRig.SetZoom(TianyongMapConfig.LoadDefault().CameraZoomMin);
                     sandbox.CameraRig.Snap();

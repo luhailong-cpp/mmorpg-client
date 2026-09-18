@@ -922,7 +922,8 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 进入"传送在途"。返回 null = 放行,否则是给人看的拒绝原因。只给 <see cref="ZoneTravelClient"/> 用。
-        /// <paramref name="budgetSec"/> 必须大于服务端 kTravelReplyBudgetSec(30s),否则客户端会抢在
+        /// <paramref name="budgetSec"/> 必须大于服务端交接的最坏时长(存盘与等应答两道看门狗串行,
+        /// 各 kTravelReplyBudgetSec=30s,合计约 60s;取值见 ZoneTravelClient.TravelBudgetSec),否则客户端会抢在
         /// 服务端之前宣布超时,随后到达的 msg 124 又把人搬走,UI 上就是"先报失败、后传送成功"。
         /// </summary>
         public string BeginZoneTravel(float budgetSec)

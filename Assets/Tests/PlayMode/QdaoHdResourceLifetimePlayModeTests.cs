@@ -38,6 +38,7 @@ namespace MmorpgClient.Tests.PlayMode
             private readonly List<Texture2D> _created = new();
             public readonly List<string> Requested = new();
             public int Released, MaximumLive;
+            public QdaoCharacterCatalog.Appearance GeometryAppearance;
             public int Live => _live.Count;
             public Texture2D Load(string path)
             {
@@ -46,7 +47,8 @@ namespace MmorpgClient.Tests.PlayMode
                 Requested.Add(path);
                 if (Missing.Contains(path)) return null;
                 if (_live.TryGetValue(path, out var existing)) return existing;
-                var size = WrongSize.Contains(path) ? 512 : 1024;
+                var expected = GeometryAppearance != null ? GeometryAppearance.GeometryForResource(path).Width : 1024;
+                var size = WrongSize.Contains(path) ? (expected == 512 ? 1024 : 512) : expected;
                 var texture = new Texture2D(size, size, TextureFormat.RGBA32, false) { name = path };
                 texture.Apply(false, true);
                 _live[path] = texture; _created.Add(texture);
@@ -83,12 +85,27 @@ namespace MmorpgClient.Tests.PlayMode
             }
         }
 
-        private static QdaoCharacterCatalog.Appearance Hd(string id = "03_lotus_healer_girl")
+        private static QdaoCharacterCatalog.Appearance Hd(string id = "03_lotus_healer_girl", bool mixed = false)
         {
             var manifest = "{\"version\":14,\"character_id\":\"" + id + "\",\"status\":\"passed\",\"visual_review\":\"passed\"," +
                 "\"frame_count\":16,\"frame_duration_ms\":30,\"cycle_duration_ms\":480,\"dedicated_idle\":true,\"contact_frame\":0," +
                 "\"alignment\":{\"alignment_version\":2,\"root_px\":[512,942]},\"frame_size\":[1024,1024],\"portrait_size\":[1024,1024]," +
                 "\"runtime_geometry\":{\"reference_frame_size\":512,\"pixels_per_unit\":104,\"pivot\":[0.5,0.08]},\"test_nonce\":\"" + Guid.NewGuid().ToString("N") + "\"}";
+            if (mixed)
+            {
+                var digest = new string('a', 64);
+                var rows = QdaoOriginalHdResourceIndex.RequiredRelativePaths().Select((path, index) =>
+                {
+                    if (path == "portrait.png") return "{\"path\":\"portrait.png\",\"width\":1024,\"height\":1024,\"source_kind\":\"original-portrait\",\"sha256\":\"" + digest + "\",\"source_sha256\":\"" + digest + "\"}";
+                    var old = path.StartsWith("idle/") || int.Parse(path.Substring(path.Length - 6, 2)) % 2 == 1;
+                    var size = old ? 512 : 1024;
+                    return "{\"path\":\"" + path + "\",\"width\":" + size + ",\"height\":" + size + ",\"pixels_per_unit\":" + (old ? 52 : 104) +
+                        ",\"pivot\":[0.5,0.08],\"root_px\":" + (old ? "[256,471]" : "[512,942]") + ",\"native_cell_size\":[1254,1254],\"source_kind\":\"" +
+                        (old ? "preserved-v13" : "native-hd") + "\",\"sha256\":\"" + digest + "\",\"source_sha256\":\"" + digest + "\",\"preserved_sha256\":\"" + digest + "\"}";
+                });
+                manifest = manifest.Substring(0, manifest.Length - 1) + ",\"resolution_mode\":\"mixed-preserved-v1\",\"preserved_snapshot_sha256\":\"" + digest +
+                    "\",\"files\":[" + string.Join(",", rows) + "]}";
+            }
             var bytes = Encoding.UTF8.GetBytes(manifest);
             using var sha = SHA256.Create();
             var hash = BitConverter.ToString(sha.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant();
@@ -97,6 +114,7 @@ namespace MmorpgClient.Tests.PlayMode
                 "\"frameWidth\":1024,\"frameHeight\":1024,\"portraitWidth\":1024,\"portraitHeight\":1024,\"pixelsPerUnit\":104,\"pivotX\":0.5,\"pivotY\":0.08," +
                 "\"manifest_sha256\":\"" + hash + "\",\"qc_sha256\":\"" + new string('a', 64) + "\",\"validation_sha256\":\"" + new string('b', 64) + "\"," +
                 "\"sourceCommit\":\"9adcf9291e4a867601868889a5965f3cd48630ba\",\"sourceFamily\":\"original-00-22\"}";
+            if (mixed) activation = activation.Substring(0, activation.Length - 1) + ",\"resolutionMode\":\"mixed-preserved-v1\"}";
             var appearance = QdaoCharacterCatalog.SelectOriginalHdAppearance(QdaoCharacterCatalog.Find(id), activation, bytes, (_, _, _) => true);
             Assert.That(appearance, Is.Not.Null);
             return appearance;
@@ -404,6 +422,127 @@ namespace MmorpgClient.Tests.PlayMode
             }
             Assert.That(resources.Battle(appearance, true, false), Is.Null);
             Assert.That(resources.Live, Is.Zero);
+        }
+
+        [UnityTest]
+        public IEnumerator MixedAllDirectionsAnimateBothSizesWithEqualBoundsThirtyMsAndIndependentIdle()
+        {
+            var appearance = Hd("04_mountain_guardian_boy", true);
+            using var resources = new ResourcesFixture { GeometryAppearance = appearance };
+            var camera = CameraObject(); var actor = new GameObject("MixedCadenceActor");
+            var oldCapture = Time.captureFramerate; Time.captureFramerate = 60;
+            try
+            {
+                var animator = resources.Attach(actor, appearance);
+                yield return null;
+                var renderer = actor.transform.Find("sprite").GetComponent<SpriteRenderer>();
+                Assert.That(renderer.sprite.texture.width, Is.EqualTo(512));
+                for (var direction = 0; direction < 8; direction++)
+                {
+                    var radians = direction * 45f * Mathf.Deg2Rad;
+                    var step = new UnityVector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)) * (9f / 60f);
+                    var poses = new HashSet<string>(); var sizes = new HashSet<int>();
+                    for (var tick = 0; tick < 32; tick++)
+                    {
+                        var before = (float)Clock.GetValue(animator) / 16f;
+                        actor.transform.position += step;
+                        yield return null;
+                        Assert.That(animator.Direction, Is.EqualTo(direction));
+                        Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Run));
+                        Assert.That((float)Clock.GetValue(animator) / 16f,
+                            Is.EqualTo(Mathf.Repeat(before + .15f / 4.32f, 1f)).Within(.0001f));
+                        var sprite = renderer.sprite; var size = sprite.texture.width;
+                        Assert.That(sprite.pixelsPerUnit, Is.EqualTo(size == 512 ? 52 : 104));
+                        Assert.That(sprite.bounds.size.y, Is.EqualTo(512f / 52f).Within(.0001f));
+                        Assert.That(sprite.bounds.min.y, Is.EqualTo(-.08f * 512f / 52f).Within(.0001f));
+                        Assert.That(sprite.pivot.x / size, Is.EqualTo(.5f));
+                        Assert.That(sprite.pivot.y / size, Is.EqualTo(.08f).Within(.00001f));
+                        Assert.That(animator.ResidentHdDirections, Is.EqualTo(1));
+                        poses.Add(sprite.name); sizes.Add(size);
+                    }
+                    Assert.That(poses.Count, Is.EqualTo(16), Directions[direction]);
+                    Assert.That(sizes.OrderBy(x => x), Is.EqualTo(new[] { 512, 1024 }));
+                }
+                yield return null;
+                Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
+                Assert.That(renderer.sprite.name, Does.Contain("_idle_NW_"));
+                Assert.That(renderer.sprite.texture.width, Is.EqualTo(512));
+                var idle = renderer.sprite;
+                for (var direction = 0; direction < 8; direction++)
+                {
+                    Assert.That(animator.EnsureDirectionFrames(direction), Is.True);
+                    Assert.That(renderer.sprite, Is.SameAs(idle));
+                    Assert.That(animator.ResidentHdDirections, Is.LessThanOrEqualTo(2));
+                    Assert.That(resources.Live, Is.LessThanOrEqualTo(34));
+                }
+                animator.ReleaseObservedDirection();
+                Assert.That(resources.Live, Is.EqualTo(17));
+            }
+            finally { Time.captureFramerate = oldCapture; Object.DestroyImmediate(actor); Object.DestroyImmediate(camera); }
+            Assert.That(resources.Live, Is.Zero);
+            yield return null;
+        }
+
+        [TestCase("walk/E/01", false)]
+        [TestCase("walk/E/02", false)]
+        [TestCase("walk/E/01", true)]
+        [TestCase("walk/E/02", true)]
+        [TestCase("idle/E", true)]
+        public void MixedMissingOrSwappedResolutionReleasesWholeDirectionAndCannotBorrowFrames(string relative, bool wrongSize)
+        {
+            var appearance = Hd("04_mountain_guardian_boy", true);
+            using var resources = new ResourcesFixture { GeometryAppearance = appearance };
+            var baseline = QdaoHdResources.ResidentDirectionCount;
+            (wrongSize ? resources.WrongSize : resources.Missing).Add(appearance.ResourceFolder + "/" + relative);
+            Assert.That(resources.Lease(appearance, 2), Is.Null);
+            Assert.That(resources.Battle(appearance, true, false), Is.Null);
+            Assert.That(resources.Live, Is.Zero);
+            Assert.That(QdaoHdResources.ResidentDirectionCount, Is.EqualTo(baseline));
+        }
+
+        [Test]
+        public void MixedRevisionsShareBothTextureSizesUntilLastLeaseEnds()
+        {
+            var appearance = Hd("04_mountain_guardian_boy", true);
+            using var resources = new ResourcesFixture { GeometryAppearance = appearance };
+            using var prior = resources.Lease(appearance, 2);
+            using var next = resources.Lease(Hd("04_mountain_guardian_boy", true), 2);
+            Assert.That(prior.IsValid && next.IsValid, Is.True);
+            Assert.That(resources.Live, Is.EqualTo(17));
+            prior.Dispose();
+            Assert.That(next.IsValid, Is.True); Assert.That(resources.Released, Is.Zero);
+            next.Dispose();
+            Assert.That(resources.Live, Is.Zero); Assert.That(resources.Released, Is.EqualTo(17));
+        }
+
+        [UnityTest]
+        public IEnumerator MixedBattleAndGhostRetainDisplayedLegacyAndHdSpritesAcrossReplacement()
+        {
+            var appearance = Hd("04_mountain_guardian_boy", true);
+            using var resources = new ResourcesFixture { GeometryAppearance = appearance };
+            var layerObject = new GameObject("MixedBattleCanvas", typeof(RectTransform), typeof(Canvas));
+            var layer = layerObject.GetComponent<RectTransform>();
+            var view = new BattleUnitView(null, layer, 7UL, true, true, 0, null);
+            var ghosts = new BattleAfterimagePool(layer);
+            try
+            {
+                using var animation = resources.Battle(appearance, true, false);
+                Assert.That(animation.Count, Is.EqualTo(16)); Assert.That(animation.RequiresLease, Is.True);
+                var oldFrame = animation.Frames[0]; var newFrame = animation.Frames[1];
+                Assert.That(oldFrame.texture.width, Is.EqualTo(512)); Assert.That(newFrame.texture.width, Is.EqualTo(1024));
+                typeof(BattleUnitView).GetMethod("ApplyBodySprite", HiddenInstance).Invoke(view, new object[] { oldFrame, false });
+                ghosts.Spawn(oldFrame, Vector2.zero, new Vector2(230, 230), false, 0, 30f);
+                var ghost = layer.GetComponentsInChildren<Image>().First(image => image.name == "Afterimage");
+                typeof(BattleUnitView).GetMethod("ApplyBodySprite", HiddenInstance).Invoke(view, new object[] { newFrame, false });
+                animation.Dispose(); BattleArtCatalog.ResetCaches();
+                Assert.That(ghost.sprite.texture.width, Is.EqualTo(512));
+                Assert.That(view.Root.Find("Body").GetComponent<Image>().sprite.texture.width, Is.EqualTo(1024));
+                view.Destroy(); yield return null;
+                Assert.That(ghost.sprite, Is.SameAs(oldFrame)); Assert.That(resources.Live, Is.EqualTo(17));
+                ghosts.Clear(); Assert.That(resources.Live, Is.Zero);
+            }
+            finally { ghosts.Dispose(); view.Destroy(); Object.DestroyImmediate(layerObject); }
+            yield return null;
         }
     }
 }

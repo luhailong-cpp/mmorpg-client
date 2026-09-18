@@ -22,7 +22,7 @@ namespace MmorpgClient.Editor.Tianyong
         public int callbackOrder => 0;
 
         [Serializable] private sealed class FileRow { public string path; public string sha256; }
-        [Serializable] private sealed class ManifestFiles { public FileRow[] files; }
+        [Serializable] private sealed class ManifestFiles { public FileRow[] files; public string resolution_mode; }
         [Serializable] private sealed class ActivationHashes { public string manifest_sha256; public string validation_sha256; }
 
         static QdaoOriginalHdResourceIndexBuilder() => EditorApplication.delayCall += RebuildAll;
@@ -80,7 +80,7 @@ namespace MmorpgClient.Editor.Tianyong
             var definition = QdaoCharacterCatalog.Find(id);
             if (definition == null || !definition.IsOriginalRoster) return false;
             var indexPath = folder + "/runtime-index.asset";
-            if (!TryDescribe(folder, definition, out var manifestHash, out var activationHash, out var validationHash, out var entries))
+            if (!TryDescribe(folder, definition, out var manifestHash, out var activationHash, out var validationHash, out var mode, out var entries))
             {
                 if (AssetDatabase.LoadAssetAtPath<QdaoOriginalHdResourceIndex>(indexPath) != null)
                     AssetDatabase.DeleteAsset(indexPath);
@@ -88,13 +88,14 @@ namespace MmorpgClient.Editor.Tianyong
             }
             var resourceFolder = QdaoCharacterCatalog.OriginalV14Root + "/" + id;
             var index = AssetDatabase.LoadAssetAtPath<QdaoOriginalHdResourceIndex>(indexPath);
-            if (index != null && Equivalent(index, resourceFolder, manifestHash, activationHash, validationHash, entries)) return true;
+            if (index != null && index.resolutionMode == mode && Equivalent(index, resourceFolder, manifestHash, activationHash, validationHash, entries)) return true;
             var created = index == null;
             if (created) index = ScriptableObject.CreateInstance<QdaoOriginalHdResourceIndex>();
             index.resourceFolder = resourceFolder;
             index.manifestSha256 = manifestHash;
             index.activationSha256 = activationHash;
             index.validationSha256 = validationHash;
+            index.resolutionMode = mode;
             index.entries = entries;
             if (created) AssetDatabase.CreateAsset(index, indexPath);
             else EditorUtility.SetDirty(index);
@@ -112,15 +113,15 @@ namespace MmorpgClient.Editor.Tianyong
             {
                 var a = index.entries[i]; var b = rows[i];
                 if (a == null || a.path != b.path || a.assetGuid != b.assetGuid || a.sha256 != b.sha256 || a.width != b.width ||
-                    a.height != b.height || a.sourceBytes != b.sourceBytes || a.sourceWriteUtcTicks != b.sourceWriteUtcTicks) return false;
+                    a.height != b.height || a.pixelsPerUnit != b.pixelsPerUnit || a.sourceBytes != b.sourceBytes || a.sourceWriteUtcTicks != b.sourceWriteUtcTicks) return false;
             }
             return true;
         }
 
         private static bool TryDescribe(string folder, QdaoCharacterCatalog.Definition definition,
-            out string manifestHash, out string activationHash, out string validationHash, out QdaoOriginalHdResourceIndex.Entry[] entries)
+            out string manifestHash, out string activationHash, out string validationHash, out string mode, out QdaoOriginalHdResourceIndex.Entry[] entries)
         {
-            manifestHash = activationHash = validationHash = null; entries = null;
+            manifestHash = activationHash = validationHash = mode = null; entries = null;
             try
             {
                 var manifestPath = folder + "/manifest.json";
@@ -140,26 +141,28 @@ namespace MmorpgClient.Editor.Tianyong
                     if (file == null || string.IsNullOrEmpty(file.path) || string.IsNullOrEmpty(file.sha256) || !hashes.TryAdd(file.path, file.sha256)) return false;
                 var expected = QdaoOriginalHdResourceIndex.RequiredRelativePaths().ToArray();
                 if (!new HashSet<string>(expected, StringComparer.Ordinal).SetEquals(hashes.Keys)) return false;
+                mode = files.resolution_mode;
+                var selected = QdaoCharacterCatalog.SelectOriginalHdAppearance(definition, Encoding.UTF8.GetString(activation), manifest,
+                    (_, _, _) => true);
+                if (selected == null) return false;
                 var rows = new List<QdaoOriginalHdResourceIndex.Entry>();
                 foreach (var relative in expected)
                 {
                     var path = folder + "/" + relative;
                     var file = new FileInfo(path);
-                    if (!file.Exists || !QdaoOriginalHdResourceIndex.PngSize(path, out var width, out var height) || width != 1024 || height != 1024) return false;
+                    var geometry = relative == "portrait.png" ? new QdaoMixedResolutionContract.Geometry(1024, 100f) :
+                        selected.GeometryForResource(selected.ResourceFolder + "/" + relative.Substring(0, relative.Length - 4));
+                    if (!file.Exists || !QdaoOriginalHdResourceIndex.PngSize(path, out var width, out var height) || width != geometry.Width || height != geometry.Height) return false;
                     var guid = AssetDatabase.AssetPathToGUID(path);
                     if (string.IsNullOrEmpty(guid) || AssetDatabase.GUIDToAssetPath(guid) != path) return false;
                     if (Hash(File.ReadAllBytes(path)) != hashes[relative]) return false;
                     var importer = AssetImporter.GetAtPath(path) as TextureImporter;
-                    if (importer == null || importer.maxTextureSize < 1024 || importer.npotScale != TextureImporterNPOTScale.None) return false;
+                    if (importer == null || importer.maxTextureSize < width || importer.npotScale != TextureImporterNPOTScale.None) return false;
                     importer.GetSourceTextureWidthAndHeight(out var importedWidth, out var importedHeight);
                     if (importedWidth != width || importedHeight != height) return false;
                     rows.Add(new QdaoOriginalHdResourceIndex.Entry { path = relative, assetGuid = guid, sha256 = hashes[relative],
-                        width = width, height = height, sourceBytes = file.Length, sourceWriteUtcTicks = file.LastWriteTimeUtc.Ticks });
+                        width = width, height = height, pixelsPerUnit = geometry.PixelsPerUnit, sourceBytes = file.Length, sourceWriteUtcTicks = file.LastWriteTimeUtc.Ticks });
                 }
-                var prefix = QdaoCharacterCatalog.OriginalV14Root + "/" + definition.Id + "/";
-                var selected = QdaoCharacterCatalog.SelectOriginalHdAppearance(definition, Encoding.UTF8.GetString(activation), manifest,
-                    (path, width, height) => path.StartsWith(prefix, StringComparison.Ordinal) && width == 1024 && height == 1024 && hashes.ContainsKey(path.Substring(prefix.Length) + ".png"));
-                if (selected == null) return false;
                 entries = rows.ToArray();
                 return true;
             }
