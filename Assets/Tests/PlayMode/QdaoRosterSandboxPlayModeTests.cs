@@ -287,9 +287,11 @@ namespace MmorpgClient.Tests.PlayMode
         private sealed class CameraCaptureObservation
         {
             public string imagePath;
+            public string imageSha256;
             public string scope = "Actual unchanged gameplay camera framing; projected full sprite rectangle, not opaque-alpha height.";
             public int renderWidth, renderHeight;
             public float requestedZoom, actualOrthographicSize;
+            public float configuredZoomMin, configuredZoomDefault;
             public Vector3 actorFeetScreenPixels;
             public float frameLeftPixels, frameRightPixels, frameBottomPixels, frameTopPixels;
             public float projectedFrameHeightPixels;
@@ -567,6 +569,8 @@ namespace MmorpgClient.Tests.PlayMode
             {
                 renderWidth = width, renderHeight = height,
                 requestedZoom = sandbox.CameraRig.RequestedZoom, actualOrthographicSize = camera.orthographicSize,
+                configuredZoomMin = TianyongMapConfig.LoadDefault().CameraZoomMin,
+                configuredZoomDefault = TianyongMapConfig.LoadDefault().CameraZoomDefault,
                 actorFeetScreenPixels = camera.WorldToScreenPoint(sandbox.Player.GetComponent<TianyongPlayerController>().FeetPosition),
                 frameLeftPixels = min.x, frameRightPixels = max.x, frameBottomPixels = min.y, frameTopPixels = max.y,
                 projectedFrameHeightPixels = max.y - min.y,
@@ -605,6 +609,8 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(new FileInfo(path).Length, Is.GreaterThan(100000), "The real map capture should contain visible city artwork.");
                     var view = ObserveCameraProjection(sandbox, target.width, target.height);
                     view.imagePath = path;
+                    using (var sha = SHA256.Create())
+                        view.imageSha256 = System.BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
                     Debug.Log("[QdaoRosterCityCapture] " + path + " (offline Tianyong sandbox, actual zoom " + camera.orthographicSize + ")");
                     return view;
                 }

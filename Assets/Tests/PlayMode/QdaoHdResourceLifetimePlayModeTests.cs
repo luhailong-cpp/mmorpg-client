@@ -13,7 +13,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
-using Vector3 = UnityEngine.Vector3;
+using UnityVector3 = UnityEngine.Vector3;
 
 namespace MmorpgClient.Tests.PlayMode
 {
@@ -115,7 +115,7 @@ namespace MmorpgClient.Tests.PlayMode
         {
             var go = new GameObject("HdLifetimeCamera"); go.tag = "MainCamera";
             var camera = go.AddComponent<Camera>(); camera.orthographic = true;
-            go.transform.position = new Vector3(0, 50, 0); go.transform.rotation = Quaternion.Euler(90, 0, 0);
+            go.transform.position = new UnityVector3(0, 50, 0); go.transform.rotation = Quaternion.Euler(90, 0, 0);
             return go;
         }
 
@@ -180,7 +180,7 @@ namespace MmorpgClient.Tests.PlayMode
                 for (var direction = 0; direction < 8; direction++)
                 {
                     var radians = direction * 45f * Mathf.Deg2Rad;
-                    var step = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)) * (9f / 60f);
+                    var step = new UnityVector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)) * (9f / 60f);
                     var poses = new HashSet<string>();
                     for (var frame = 0; frame < 32; frame++)
                     {
@@ -353,6 +353,37 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(QdaoHdResources.ResidentDirectionCount, Is.EqualTo(baseline));
             }
             finally { ghosts.Dispose(); view.Destroy(); Object.DestroyImmediate(layerObject); }
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator PreparingAnIdleSpriteKeepsTheDisplayedImageAliveUntilTheSwapIsBound()
+        {
+            using var resources = new ResourcesFixture();
+            var baseline = QdaoHdResources.ResidentDirectionCount;
+            var go = new GameObject("HdPendingImage", typeof(RectTransform), typeof(Image));
+            var image = go.GetComponent<Image>();
+            var owner = go.AddComponent<QdaoHdSpriteLeaseOwner>();
+            try
+            {
+                using var first = resources.Battle(Hd("03_lotus_healer_girl"), false);
+                var oldSprite = first.Frames[0];
+                image.sprite = oldSprite; owner.BindSprite(oldSprite); first.Dispose();
+                using var next = resources.Battle(Hd("02_fire_talisman_boy"), false);
+                var newSprite = next.Frames[0];
+                owner.PrepareSprite(newSprite); next.Dispose();
+                yield return null;
+                Assert.That(image.sprite, Is.SameAs(oldSprite));
+                Assert.That(oldSprite.texture, Is.Not.Null);
+                Assert.That(resources.Live, Is.EqualTo(34));
+                image.sprite = newSprite; owner.BindSprite(newSprite);
+                Assert.That(newSprite.texture, Is.Not.Null);
+                Assert.That(resources.Live, Is.EqualTo(17));
+                image.sprite = null; owner.Clear();
+                Assert.That(resources.Live, Is.Zero);
+                Assert.That(QdaoHdResources.ResidentDirectionCount, Is.EqualTo(baseline));
+            }
+            finally { Object.DestroyImmediate(go); }
             yield return null;
         }
 

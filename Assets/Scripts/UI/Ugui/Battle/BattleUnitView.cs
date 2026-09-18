@@ -186,7 +186,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _root = QdaoUguiFactory.CreateRect($"Unit_{actorId}", parent, 0f, 0f, RootWidth, RootHeight);
             _artLeaseOwner = _root.gameObject.AddComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>();
-            _artLeaseOwner.OnAppearanceRejected = () => { if (!_destroyed) { KillActionTweens(); RealtimeTween.Kill(_idleToken); ResolveAppearance(); } };
+            _artLeaseOwner.OnAppearanceRejected = () => { if (!_destroyed) ResolveAppearance(); };
             _root.pivot = new Vector2(0.5f, 1f - GroundY / RootHeight); // pivot 落在脚底
             _group = _root.gameObject.AddComponent<CanvasGroup>();
 

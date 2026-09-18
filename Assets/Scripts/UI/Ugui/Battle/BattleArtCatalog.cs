@@ -313,7 +313,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             mirrored = idle?.Mirrored ?? false;
             var sprite = idle?.Count > 0 ? idle.Frames[0] : null;
             if (idle?.RequiresLease == true && owner == null) return null;
-            owner?.BindSprite(sprite);
+            if (idle?.RequiresLease == true) owner.PrepareSprite(sprite);
             return sprite;
         }
 
