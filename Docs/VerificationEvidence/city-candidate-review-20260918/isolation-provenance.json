@@ -1,0 +1,201 @@
+{
+  "createdAtUtc": "2026-09-18T10:35:47.689039+00:00",
+  "kind": "isolated_Unity_editor_import_render_verification",
+  "sourceProject": "E:\\work\\mmorpg-client",
+  "isolationProject": "E:\\work\\tmp\\city4k-review-20260918",
+  "unityVersion": "6000.6.0f1",
+  "copiedSources": [
+    {
+      "relativePath": "Assets/Scripts/World/Tianyong/CityTileManifest.cs",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Scripts\\World\\Tianyong\\CityTileManifest.cs",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Scripts\\World\\Tianyong\\CityTileManifest.cs",
+      "sha256": "ab99e292c553389afe2c542991b3382118ee4ec4d920d563f72acf543aa39d39",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/Tianyong/CityTile4KImporter.cs",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\Tianyong\\CityTile4KImporter.cs",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\Tianyong\\CityTile4KImporter.cs",
+      "sha256": "8a7ef5d5048ab631dded33b0edc828528d5472280336ae8febd4d47e756c060e",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/Tianyong/CityTileCandidateReview.cs",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\Tianyong\\CityTileCandidateReview.cs",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\Tianyong\\CityTileCandidateReview.cs",
+      "sha256": "4760f5ed770e7a3362cc9e352f15bf9ef5b0b2adc4c30399409f694b6eb2502a",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/catalog.json",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\catalog.json",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\catalog.json",
+      "sha256": "0e19a8a1162cc53222d0cb744ed8032e6d06eae45444702e2b68f64739456451",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "ProjectSettings/ProjectVersion.txt",
+      "sourcePath": "E:\\work\\mmorpg-client\\ProjectSettings\\ProjectVersion.txt",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\ProjectSettings\\ProjectVersion.txt",
+      "sha256": "39584c3e6c1e571d53a79ef2dd6ea91c0568ac086792cc435e86401a0ba824ed",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "ProjectSettings/ProjectSettings.asset",
+      "sourcePath": "E:\\work\\mmorpg-client\\ProjectSettings\\ProjectSettings.asset",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\ProjectSettings\\ProjectSettings.asset",
+      "sha256": "fa5c9fd5ed38b7813fbb96c170d2b433573a20694858ef7fd125ae2c9b940a75",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "ProjectSettings/GraphicsSettings.asset",
+      "sourcePath": "E:\\work\\mmorpg-client\\ProjectSettings\\GraphicsSettings.asset",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\ProjectSettings\\GraphicsSettings.asset",
+      "sha256": "029efee64990283c136bdcc34e01fda896b155a401fd1ed2757f12e6f2bad7c3",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/tianyong_festival/r10_c07_1183ba1406b6a123.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c07_1183ba1406b6a123.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c07_1183ba1406b6a123.png",
+      "sha256": "1183ba1406b6a123a715b05bbc41a47264475d2cc7a97f298a1911a9bc661de3",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/tianyong_festival/r10_c08_87d4434b85e7e58e.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c08_87d4434b85e7e58e.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c08_87d4434b85e7e58e.png",
+      "sha256": "87d4434b85e7e58e45039b6f8bf8566947a2bf5712725c033c66bffb16568ae6",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/tianyong_festival/r10_c09_e622d445fbbd52b5.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c09_e622d445fbbd52b5.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c09_e622d445fbbd52b5.png",
+      "sha256": "e622d445fbbd52b56f03927436075eb22c797b393e957ade0465fd4d3533e9dd",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/tianyong_festival/r10_c10_5124647e07b2fb8d.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c10_5124647e07b2fb8d.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r10_c10_5124647e07b2fb8d.png",
+      "sha256": "5124647e07b2fb8d9716615c673dcb5fcc35f0059cb353063302faeb5362f09d",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/penglai_day/r09_c10_14ba18433c348ded.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_day\\r09_c10_14ba18433c348ded.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_day\\r09_c10_14ba18433c348ded.png",
+      "sha256": "14ba18433c348ded06ff0372d56113699614621b67e1418f59ee87a89dffcc40",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/penglai_mid_autumn/r09_c10_aa1148a1da005126.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_mid_autumn\\r09_c10_aa1148a1da005126.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_mid_autumn\\r09_c10_aa1148a1da005126.png",
+      "sha256": "aa1148a1da005126d29d8227c86a43ebb66f37c302cbdf6699410c64f6b729e5",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/donghai_day/r08_c08_cc2369d3bfd61a71.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_day\\r08_c08_cc2369d3bfd61a71.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_day\\r08_c08_cc2369d3bfd61a71.png",
+      "sha256": "cc2369d3bfd61a71104cc53cc330e37034367761094d54de8d437da3eaed9ff2",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/donghai_lantern/r08_c08_112f21b56951ab4b.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_lantern\\r08_c08_112f21b56951ab4b.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_lantern\\r08_c08_112f21b56951ab4b.png",
+      "sha256": "112f21b56951ab4b0564fafc9adb3e3e2725f58679425e73251c1371e384d577",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/lanxian_day/r08_c06_18c2a46f25290490.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_day\\r08_c06_18c2a46f25290490.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_day\\r08_c06_18c2a46f25290490.png",
+      "sha256": "18c2a46f252904902a1b1135da85059ff0bfb85a7977eae128c4742918cff42d",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/lanxian_spring/r08_c06_c184c89676c21072.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_spring\\r08_c06_c184c89676c21072.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_spring\\r08_c06_c184c89676c21072.png",
+      "sha256": "c184c89676c21072443c6942dfd59cb4f566fce36f02dc0615bc7230f7f9302d",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/penglai_day/r09_c11_98ce90e6cf621741.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_day\\r09_c11_98ce90e6cf621741.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_day\\r09_c11_98ce90e6cf621741.png",
+      "sha256": "98ce90e6cf6217413274b7a7af1231da2f54c8ece0ee1232f8a553d259bf9974",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/penglai_mid_autumn/r09_c11_9395758b7449595e.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_mid_autumn\\r09_c11_9395758b7449595e.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\penglai_mid_autumn\\r09_c11_9395758b7449595e.png",
+      "sha256": "9395758b7449595ee21611ff78935d356d8f2af16f1bda544e50c6670c5ed41d",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/lanxian_day/r08_c07_7db042509bd69b3e.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_day\\r08_c07_7db042509bd69b3e.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_day\\r08_c07_7db042509bd69b3e.png",
+      "sha256": "7db042509bd69b3e4663e00392dbad8d6f8cd255a17a4d3bc64cd1fe3549ed3f",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/lanxian_spring/r08_c07_20a38402631e1455.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_spring\\r08_c07_20a38402631e1455.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_spring\\r08_c07_20a38402631e1455.png",
+      "sha256": "20a38402631e14551307333eba34e1aaf0531941f0f22091bcbce17e97b78464",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/tianyong_festival/r09_c07_ecd02cae56991c44.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r09_c07_ecd02cae56991c44.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\tianyong_festival\\r09_c07_ecd02cae56991c44.png",
+      "sha256": "ecd02cae56991c4450732986c87e554805ca08416b9abf74fd868fd4f311cda5",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/donghai_day/r08_c09_2595df0fb75328de.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_day\\r08_c09_2595df0fb75328de.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_day\\r08_c09_2595df0fb75328de.png",
+      "sha256": "2595df0fb75328de5fc748da03a08d6ebf8c64ef10f331bdc408a1a6c2921caa",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/donghai_lantern/r08_c09_0e9a72d6a1ec6e93.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_lantern\\r08_c09_0e9a72d6a1ec6e93.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_lantern\\r08_c09_0e9a72d6a1ec6e93.png",
+      "sha256": "0e9a72d6a1ec6e93168a0d36b4f3c5e7224785a83c18ffc7485d87ebeaa8952d",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/donghai_day/r08_c10_8c17085bfa7695af.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_day\\r08_c10_8c17085bfa7695af.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\donghai_day\\r08_c10_8c17085bfa7695af.png",
+      "sha256": "8c17085bfa7695afb60715f015e9f9b8ad8848d5e9edb283b83a8f97c27688cb",
+      "byteIdentical": true
+    },
+    {
+      "relativePath": "Assets/Editor/CityTiles4KReview/Tiles/lanxian_day/r08_c08_7e1f9c16f740cf19.png",
+      "sourcePath": "E:\\work\\mmorpg-client\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_day\\r08_c08_7e1f9c16f740cf19.png",
+      "copyPath": "E:\\work\\tmp\\city4k-review-20260918\\Assets\\Editor\\CityTiles4KReview\\Tiles\\lanxian_day\\r08_c08_7e1f9c16f740cf19.png",
+      "sha256": "7e1f9c16f740cf19a9566d6a1efdedf36d1809c0841a2588a49b61f029bb1fa2",
+      "byteIdentical": true
+    }
+  ],
+  "candidateCount": 19,
+  "sourceLedgerSha256": "bdf83b4a306e88a43a0f71f1ad42cb352faaf923e02d4289778ac2f43ec7eb41",
+  "mainProjectBlocked": true,
+  "mainProjectErrorLog": "E:/work/tmp/city-q64-reference-recovery/unity-review.log",
+  "mainProjectErrorLogSha256": "23d46a4962649c0ffb720cbea33e0ef5924e33376b5b9d6a81080d260e7e427f",
+  "reason": "Main project has ungenerated TravelToZone protocol. Server proto has message/rpc definitions but authoritative message_id.txt has no TravelToZone assignment. Client code and protocol files intentionally unchanged.",
+  "limits": [
+    "Same source code, candidate PNG bytes, catalog and rendering settings; minimal built-in packages only.",
+    "This evidence does not establish a passing main project compile or runtime navigation/device acceptance."
+  ]
+}

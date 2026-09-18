@@ -1,0 +1,17 @@
+{
+  "status": "isolated_unity_import_render_passed",
+  "unity": "6000.6.0f1",
+  "graphics": "D3D11 RTX5070Ti",
+  "candidateCount": 19,
+  "screenshotsReviewed": 21,
+  "visualReview": "All 7 overviews, all 7 native1024 center crops and all 7 native1024 boundary crops examined. Orientation, candidate occupancy, native crispness and sampled joins faithful to sources; no rendering-induced artifacts observed.",
+  "sourceParity": "26 inputs SHA256 identical to main project at execution. Numerical native crop RGB MAE below 0.006; orientation identity.",
+  "limitations": [
+    "Main project compilation blocked by missing TravelToZone MessageId and generated protocol definitions; authoritative server message_id.txt has no TravelToZone assignment. Protocol files were not changed.",
+    "Isolated project uses minimal built-in packages and exact candidate review code/images; does not validate main game runtime, navigation or production manifests.",
+    "19 partial candidates only. Seasonal geometry parity and whole-city acceptance remain pending.",
+    "Tianyong top-right gap is expected because r09_c08 is not among these registered candidates."
+  ],
+  "mainProjectBlockedLog": "main-project-blocked.log",
+  "isolatedSuccessLog": "isolated-unity-success.log"
+}
