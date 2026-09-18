@@ -85,7 +85,14 @@ $files = @(
     # 刻意不进客户端包。trade_error / common_error 两份 tip 由服务端导表器生成,客户端按枚举映射文案。
     "proto/trade/jubaozhai.proto",
     "generated/code/proto/tip/trade_error_tip.proto",
-    "generated/code/proto/tip/common_error_tip.proto"
+    "generated/code/proto/tip/common_error_tip.proto",
+
+    # 组队(docs/design/team-system.md §H.1,service ClientPlayerTeam,package teampb → namespace Teampb)。
+    # 这两行是「客户端合并门禁」:服务端默认 proto_gen.yaml 里已有 team 块且 enable_unity_client=true,
+    # 任何人用默认配置跑 dev.bat proto / dev.bat gen 都会往 Assets/Scripts/Net/Generated/Handlers 写
+    # 15 个 ClientPlayerTeam*Handler.cs;少了这两行,那些 handler 引用的 Teampb.* 不存在 → CS0246。
+    "proto/team/team.proto",
+    "generated/code/proto/tip/team_error_tip.proto"
 )
 
 Push-Location $ProtoRoot

@@ -15,6 +15,7 @@ namespace MmorpgClient.World
         private const string V12Root = "World/Characters/QdaoRosterV12";
         private const string V13Root = "World/Characters/QdaoRosterV13";
         public const string OriginalV13Root = "World/Characters/QdaoOriginalRosterV13";
+        public const string OriginalV14Root = "World/Characters/QdaoOriginalRosterV14";
         private static int _resourceRevision;
         private static readonly string[] Directions = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
 
@@ -26,8 +27,15 @@ namespace MmorpgClient.World
             public int AlignmentVersion { get; }
             public string ResourceFolder { get; }
             public bool IsOriginalRoster { get; }
-            public int FrameCount => Version == 13 ? 16 : Version == 12 ? 8 : 4;
-            public int FrameDurationMs => Version == 13 ? 30 : Version == 12 ? 60 : 120;
+            public bool IsHd => IsOriginalRoster && Version == 14;
+            public int FrameWidth => IsHd ? 1024 : 512;
+            public int FrameHeight => FrameWidth;
+            public int PortraitWidth => 1024;
+            public int PortraitHeight => 1024;
+            public float PixelsPerUnit => IsHd ? 104f : 52f;
+            public Vector2 Pivot => new Vector2(0.5f, 0.08f);
+            public int FrameCount => Version == 13 || Version == 14 ? 16 : Version == 12 ? 8 : 4;
+            public int FrameDurationMs => Version == 13 || Version == 14 ? 30 : Version == 12 ? 60 : 120;
             public float FramesPerSecond => 1000f / FrameDurationMs;
             /// <summary>
             /// V12 and V13 always ship eight standing textures. A V11 character has them
@@ -59,19 +67,19 @@ namespace MmorpgClient.World
                 Version = version;
                 AlignmentVersion = alignmentVersion;
                 ContactFrame = contactFrame;
-                IsOriginalRoster = resourceRoot == OriginalV13Root;
+                IsOriginalRoster = resourceRoot == OriginalV13Root || resourceRoot == OriginalV14Root;
                 ResourceFolder = (resourceRoot ?? (version == 13 ? V13Root : version == 12 ? V12Root : V11Root)) + "/" + id;
                 CacheKey = id + "@v" + version + ":" + revision + ":contact" + contactFrame +
                            (alignmentVersion == 2 ? "" : ":alignment" + alignmentVersion) +
                            ":frames" + FrameCount + ":ms" + FrameDurationMs + ":resources" + _resourceRevision +
-                           (IsOriginalRoster ? ":original-roster" : "");
+                           (IsOriginalRoster ? ":original-roster" : "") + ":size" + FrameWidth + "x" + FrameHeight;
             }
             public string FrameResourcePath(string direction, int frameIndex)
                 => $"{ResourceFolder}/walk/{direction}/{frameIndex + 1:00}";
             public string IdleResourcePath(string direction)
                 => HasDedicatedIdle ? $"{ResourceFolder}/idle/{direction}" : FrameResourcePath(direction, ContactFrame);
             public string StripResourcePath(string direction)
-                => Version >= 12 ? $"{ResourceFolder}/walk/{direction}/strip" : $"{ResourceFolder}/walk_{direction}";
+                => IsHd ? null : Version >= 12 ? $"{ResourceFolder}/walk/{direction}/strip" : $"{ResourceFolder}/walk_{direction}";
         }
 
         public sealed class Definition
@@ -84,6 +92,10 @@ namespace MmorpgClient.World
             private string _v13ActivationText;
             private string _v12ActivationText;
             private string _originalManifestHash;
+            private string _v14ActivationText;
+            private string _originalHdManifestHash;
+            private string _rejectedHdActivationText;
+            private string _rejectedHdManifestHash;
             public string ResourceFolder => ResolveAppearance()?.ResourceFolder;
             public int FrameCount => ResolveAppearance()?.FrameCount ?? 0;
             public float FramesPerSecond => ResolveAppearance()?.FramesPerSecond ?? 0f;
@@ -101,27 +113,48 @@ namespace MmorpgClient.World
                 BaselineAppearance = originalRoster ? null : new Appearance(id, 11);
             }
             public Appearance ResolveAppearance()
-                => ResolveAppearance(LoadActivationText, TextureMatches, LoadResourceBytes);
+                => ResolveAppearance(LoadActivationText, TextureMatches, LoadResourceBytes, QdaoOriginalHdResourceIndex.IsComplete);
 
             /// <summary>Resource providers also support deterministic import/reload verification.</summary>
             public Appearance ResolveAppearance(Func<string, string> metadata,
-                Func<string, int, int, bool> validTexture, Func<string, byte[]> resourceBytes = null)
+                Func<string, int, int, bool> validTexture, Func<string, byte[]> resourceBytes = null,
+                Func<string, string, string, bool> validHdIndex = null)
             {
                 if (IsOriginalRoster)
                 {
                     var folder = OriginalV13Root + "/" + Id;
+                    var hdFolder = OriginalV14Root + "/" + Id;
                     var activation = metadata(folder + "/appearance");
-                    var manifestText = resourceBytes == null ? metadata(folder + "/manifest") : null;
-                    var manifest = resourceBytes != null ? resourceBytes(folder + "/manifest") :
-                        manifestText == null ? null : Encoding.UTF8.GetBytes(manifestText);
+                    var hdActivation = metadata(hdFolder + "/appearance");
+                    byte[] Manifest(string path)
+                    {
+                        if (resourceBytes != null) return resourceBytes(path);
+                        var value = metadata(path);
+                        return value == null ? null : Encoding.UTF8.GetBytes(value);
+                    }
+                    var manifest = Manifest(folder + "/manifest");
+                    var hdManifest = Manifest(hdFolder + "/manifest");
                     var manifestHash = HashBytes(manifest);
-                    if (_appearance != null && _v13ActivationText == activation && _originalManifestHash == manifestHash)
-                        return _appearance;
+                    var hdManifestHash = HashBytes(hdManifest);
+                    var hdActivationBytes = resourceBytes?.Invoke(hdFolder + "/appearance");
+                    var hdActivationHash = hdActivationBytes != null ? HashBytes(hdActivationBytes) :
+                        hdActivation == null ? null : HashBytes(Encoding.UTF8.GetBytes(hdActivation));
+                    var rejectedHdRevision = !string.IsNullOrEmpty(hdActivation) && _rejectedHdActivationText == hdActivation &&
+                        _rejectedHdManifestHash == hdManifestHash;
+                    var hdInventoryValid = !rejectedHdRevision && (validHdIndex == null || validHdIndex(hdFolder,
+                        hdManifestHash, hdActivationHash));
+                    if (_appearance != null && _v13ActivationText == activation && _v14ActivationText == hdActivation &&
+                        _originalManifestHash == manifestHash && _originalHdManifestHash == hdManifestHash &&
+                        (!_appearance.IsHd || hdInventoryValid)) return _appearance;
                     _v13ActivationText = activation;
+                    _v14ActivationText = hdActivation;
                     _originalManifestHash = manifestHash;
-                    // Missing/unapproved originals have no alternate identity or
-                    // invented V11 baseline. Recheck on the next import/use.
-                    return _appearance = SelectOriginalAppearance(this, activation, manifest, validTexture);
+                    _originalHdManifestHash = hdManifestHash;
+                    var originalSelection = (hdInventoryValid ? SelectOriginalHdAppearance(this, hdActivation, hdManifest, validTexture) : null) ??
+                        SelectOriginalAppearance(this, activation, manifest, validTexture);
+                    // An incomplete higher-priority HD import must be retried even while V13 is usable.
+                    _appearance = originalSelection != null && (originalSelection.IsHd || string.IsNullOrEmpty(hdActivation) || rejectedHdRevision) ? originalSelection : null;
+                    return originalSelection;
                 }
                 var v13 = metadata($"{V13Root}/{Id}/appearance");
                 var v12 = metadata($"{V12Root}/{Id}/appearance");
@@ -140,8 +173,19 @@ namespace MmorpgClient.World
             internal void Invalidate()
             {
                 _appearance = null;
-                _v13ActivationText = _v12ActivationText = _originalManifestHash = null;
+                _v13ActivationText = _v12ActivationText = _originalManifestHash = _v14ActivationText = _originalHdManifestHash = null;
+                _rejectedHdActivationText = _rejectedHdManifestHash = null;
                 BaselineAppearance = IsOriginalRoster ? null : new Appearance(Id, 11);
+            }
+
+            internal void RejectCurrentHdRevision()
+            {
+                var folder = OriginalV14Root + "/" + Id;
+                var activation = _v14ActivationText ?? LoadActivationText(folder + "/appearance");
+                var manifestHash = _originalHdManifestHash ?? HashBytes(LoadResourceBytes(folder + "/manifest"));
+                Invalidate();
+                _rejectedHdActivationText = activation;
+                _rejectedHdManifestHash = manifestHash;
             }
 
         }
@@ -161,6 +205,16 @@ namespace MmorpgClient.World
             public string manifest_sha256;
             public string qc_sha256;
             public string validation_sha256;
+            public int cycleDurationMs;
+            public int frameWidth;
+            public int frameHeight;
+            public int portraitWidth;
+            public int portraitHeight;
+            public float pixelsPerUnit;
+            public float pivotX;
+            public float pivotY;
+            public string sourceCommit;
+            public string sourceFamily;
         }
 
         [Serializable]
@@ -176,6 +230,17 @@ namespace MmorpgClient.World
             public bool dedicated_idle;
             public int contact_frame;
             public OriginalAlignment alignment;
+            public int[] frame_size;
+            public int[] portrait_size;
+            public OriginalRuntimeGeometry runtime_geometry;
+        }
+
+        [Serializable]
+        private sealed class OriginalRuntimeGeometry
+        {
+            public int reference_frame_size;
+            public float pixels_per_unit;
+            public float[] pivot;
         }
 
         [Serializable]
@@ -193,19 +258,36 @@ namespace MmorpgClient.World
             return SelectApprovedVersion(definition, 13, metadataJson, validTexture, manifestBytes);
         }
 
-        private static bool OriginalManifestMatches(string id, byte[] bytes, string expectedSha)
+        public static Appearance SelectOriginalHdAppearance(Definition definition, string metadataJson,
+            byte[] manifestBytes, Func<string, int, int, bool> validTexture)
+        {
+            if (definition == null || !definition.IsOriginalRoster) return null;
+            return SelectApprovedVersion(definition, 14, metadataJson, validTexture, manifestBytes);
+        }
+
+        private static bool OriginalManifestMatches(string id, int version, byte[] bytes, string expectedSha)
         {
             if (bytes == null || !string.Equals(HashBytes(bytes), expectedSha, StringComparison.OrdinalIgnoreCase)) return false;
             OriginalManifest manifest;
             try { manifest = JsonUtility.FromJson<OriginalManifest>(Encoding.UTF8.GetString(bytes).TrimStart('\uFEFF')); }
             catch (ArgumentException) { return false; }
-            return manifest != null && manifest.version == 13 && manifest.character_id == id &&
+            return manifest != null && manifest.version == version && manifest.character_id == id &&
                    manifest.status == "passed" && manifest.visual_review == "passed" &&
                    manifest.frame_count == 16 && manifest.frame_duration_ms == 30 && manifest.cycle_duration_ms == 480 &&
                    manifest.dedicated_idle && manifest.contact_frame == 0 &&
                    manifest.alignment != null && manifest.alignment.alignment_version == 2 &&
                    manifest.alignment.root_px != null && manifest.alignment.root_px.Length == 2 &&
-                   manifest.alignment.root_px[0] == 256 && manifest.alignment.root_px[1] == 471;
+                   manifest.alignment.root_px[0] == (version == 14 ? 512 : 256) &&
+                   manifest.alignment.root_px[1] == (version == 14 ? 942 : 471) &&
+                   (version != 14 || (manifest.frame_size != null && manifest.frame_size.Length == 2 &&
+                    manifest.frame_size[0] == 1024 && manifest.frame_size[1] == 1024 &&
+                    manifest.portrait_size != null && manifest.portrait_size.Length == 2 &&
+                    manifest.portrait_size[0] == 1024 && manifest.portrait_size[1] == 1024 &&
+                    manifest.runtime_geometry != null && manifest.runtime_geometry.reference_frame_size == 512 &&
+                    Mathf.Abs(manifest.runtime_geometry.pixels_per_unit - 104f) < .0001f &&
+                    manifest.runtime_geometry.pivot != null && manifest.runtime_geometry.pivot.Length == 2 &&
+                    Mathf.Abs(manifest.runtime_geometry.pivot[0] - .5f) < .0001f &&
+                    Mathf.Abs(manifest.runtime_geometry.pivot[1] - .08f) < .0001f));
         }
 
         private static string HashBytes(byte[] bytes)
@@ -237,9 +319,9 @@ namespace MmorpgClient.World
             try { record = JsonUtility.FromJson<Activation>(json); }
             catch (ArgumentException) { return null; }
             if (record == null || record.version != version || record.characterId != definition.Id ||
-                record.frameCount != (version == 13 ? 16 : 8) ||
-                record.frameDurationMs != (version == 13 ? 30 : 60) || !record.dedicatedIdle ||
-                (version == 13 ? record.contactFrame != 0 : record.contactFrame != 0 && record.contactFrame != 4) ||
+                record.frameCount != (version >= 13 ? 16 : 8) ||
+                record.frameDurationMs != (version >= 13 ? 30 : 60) || !record.dedicatedIdle ||
+                (version >= 13 ? record.contactFrame != 0 : record.contactFrame != 0 && record.contactFrame != 4) ||
                 record.status != "passed" || record.visualReview != "passed" ||
                 !IsSha256(record.manifest_sha256) || !IsSha256(record.qc_sha256) || !IsSha256(record.validation_sha256))
                 return null;
@@ -248,20 +330,24 @@ namespace MmorpgClient.World
             var alignmentVersion = record.alignmentVersion == 0 ? 2 : record.alignmentVersion;
             if (definition.IsOriginalRoster)
             {
-                if (version != 13 || record.alignmentVersion != 2 ||
-                    !OriginalManifestMatches(definition.Id, originalManifest, record.manifest_sha256)) return null;
+                if ((version != 13 && version != 14) || record.alignmentVersion != 2 ||
+                    !OriginalManifestMatches(definition.Id, version, originalManifest, record.manifest_sha256)) return null;
+                if (version == 14 && (record.cycleDurationMs != 480 || record.frameWidth != 1024 || record.frameHeight != 1024 ||
+                    record.portraitWidth != 1024 || record.portraitHeight != 1024 ||
+                    record.pixelsPerUnit != 104f || record.pivotX != .5f || record.pivotY != .08f || record.sourceCommit != "9adcf9291e4a867601868889a5965f3cd48630ba" ||
+                    record.sourceFamily != "original-00-22")) return null;
             }
             else if (version == 13 ? alignmentVersion != 3 : alignmentVersion != 2 && alignmentVersion != 3)
                 return null;
             var revision = record.manifest_sha256 + ":qc" + record.qc_sha256 + ":validation" + record.validation_sha256;
             var candidate = new Appearance(definition.Id, version, record.contactFrame, revision, alignmentVersion,
-                definition.IsOriginalRoster ? OriginalV13Root : null);
-            if (!validTexture(candidate.ResourceFolder + "/portrait", 1024, 1024)) return null;
+                definition.IsOriginalRoster ? (version == 14 ? OriginalV14Root : OriginalV13Root) : null);
+            if (!validTexture(candidate.ResourceFolder + "/portrait", candidate.PortraitWidth, candidate.PortraitHeight)) return null;
             foreach (var direction in Directions)
             {
-                if (!validTexture(candidate.IdleResourcePath(direction), 512, 512)) return null;
+                if (!validTexture(candidate.IdleResourcePath(direction), candidate.FrameWidth, candidate.FrameHeight)) return null;
                 for (var frame = 0; frame < candidate.FrameCount; frame++)
-                    if (!validTexture(candidate.FrameResourcePath(direction, frame), 512, 512)) return null;
+                    if (!validTexture(candidate.FrameResourcePath(direction, frame), candidate.FrameWidth, candidate.FrameHeight)) return null;
             }
             return candidate;
         }
@@ -281,8 +367,15 @@ namespace MmorpgClient.World
         {
             // A resource vanished after selection. Other users (including the
             // portrait and battle loader) must reselect instead of keeping V13 cached.
-            Find(rejected.Id)?.Invalidate();
-            if (rejected.IsOriginalRoster) return null;
+            if (rejected.IsHd) Find(rejected.Id)?.RejectCurrentHdRevision();
+            else Find(rejected.Id)?.Invalidate();
+            if (rejected.IsOriginalRoster)
+            {
+                if (!rejected.IsHd) return null;
+                return SelectOriginalAppearance(Find(rejected.Id),
+                    LoadActivationText($"{OriginalV13Root}/{rejected.Id}/appearance"),
+                    LoadResourceBytes($"{OriginalV13Root}/{rejected.Id}/manifest"), TextureMatches);
+            }
             return SelectFallbackAppearance(rejected, LoadActivationText($"{V12Root}/{rejected.Id}/appearance"), TextureMatches);
         }
 
@@ -299,6 +392,8 @@ namespace MmorpgClient.World
 
         private static bool TextureMatches(string path, int width, int height)
         {
+            if (path.StartsWith(OriginalV14Root + "/", StringComparison.Ordinal))
+                return QdaoOriginalHdResourceIndex.TextureMatches(path, width, height);
             var texture = Resources.Load<Texture2D>(path);
             return texture != null && texture.width == width && texture.height == height;
         }
@@ -307,6 +402,7 @@ namespace MmorpgClient.World
         public static void RefreshAppearances()
         {
             _resourceRevision++;
+            QdaoOriginalHdResourceIndex.ClearCache();
             foreach (var entry in Entries) entry.Invalidate();
             foreach (var entry in OriginalEntries) entry.Invalidate();
         }

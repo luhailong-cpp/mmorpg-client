@@ -1,0 +1,17 @@
+{
+  "alignmentVersion": 2,
+  "characterId": "03_lotus_healer_girl",
+  "contactFrame": 0,
+  "cycleDurationMs": 480,
+  "dedicatedIdle": true,
+  "frameCount": 16,
+  "frameDurationMs": 30,
+  "manifest_sha256": "a22f6256ecb15cc4d39dd9dc5272895aca4e875b354f7ac5aa88390a18ceb5e4",
+  "qc_sha256": "2b0486e01b42c2412653167f19dcd137b8f9902f55f6a5151dc3fd7f24aac7cc",
+  "sourceCommit": "9adcf9291e4a867601868889a5965f3cd48630ba",
+  "sourceFamily": "original-00-22",
+  "status": "passed",
+  "validation_sha256": "738934da3334a240d86667a99b0223ad105a05cace58eef86b1138234b0ef8a2",
+  "version": 13,
+  "visualReview": "passed"
+}

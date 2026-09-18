@@ -141,6 +141,25 @@ $whitelist = @{
     # 客户端直连 battle 节点(turn-based-battle-server.md §18):落点分配推送 + 丢票补签
     "BattleClientPlayerNotifyBattleAssigned"       = "NotifyBattleAssigned"
     "MatchServiceRequestBattleTicket"              = "RequestBattleTicket"
+
+    # 组队(proto/team/team.proto, service ClientPlayerTeam;docs/design/team-system.md §H.1)。
+    # 后三条是 S→C 推送:服务端写成返回 Empty 的 rpc 只为拿消息号,客户端用 GameClient.OnNotify 注册。
+    # 数值不写死在这里,由 proto/message_id.txt 现场读取(当前 201..215)。
+    "ClientPlayerTeamCreateTeam"                   = "CreateTeam"
+    "ClientPlayerTeamGetMyTeam"                    = "GetMyTeam"
+    "ClientPlayerTeamApplyJoinTeam"                = "ApplyJoinTeam"
+    "ClientPlayerTeamHandleApplication"            = "HandleApplication"
+    "ClientPlayerTeamInviteToTeam"                 = "InviteToTeam"
+    "ClientPlayerTeamRespondInvite"                = "RespondInvite"
+    "ClientPlayerTeamListMyInvites"                = "ListMyInvites"
+    "ClientPlayerTeamLeaveTeam"                    = "LeaveTeam"
+    "ClientPlayerTeamKickMember"                   = "KickMember"
+    "ClientPlayerTeamTransferLeader"               = "TransferLeader"
+    "ClientPlayerTeamDisbandTeam"                  = "DisbandTeam"
+    "ClientPlayerTeamStartTeamMatch"               = "StartTeamMatch"
+    "ClientPlayerTeamNotifyTeamSnapshot"           = "NotifyTeamSnapshot"
+    "ClientPlayerTeamNotifyTeamInvite"             = "NotifyTeamInvite"
+    "ClientPlayerTeamNotifyTeamEvent"              = "NotifyTeamEvent"
 }
 
 $idByMethod = @{}

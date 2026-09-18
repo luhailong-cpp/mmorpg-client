@@ -151,7 +151,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var manifest = Manifest();
             var activation = Approval(manifest);
             var complete = false;
-            string Metadata(string path) => path.EndsWith("/manifest") ? manifest : activation;
+            string Metadata(string path) => path.StartsWith(QdaoCharacterCatalog.OriginalV14Root + "/") ? null :
+                path.EndsWith("/manifest") ? manifest : activation;
             bool Inventory(string path, int _, int __) => complete || !path.EndsWith("walk/NW/16");
             Assert.That(definition.ResolveAppearance(Metadata, Inventory), Is.Null);
             complete = true;

@@ -81,13 +81,14 @@ public static partial class MessageReflection {
           "dBIPCgd2ZXJzaW9uGAEgASgJEg0KBXRva2VuGAIgASgJEhwKCXNlbGZfbm9k",
           "ZRgDIAEoCzIJLk5vZGVJbmZvIl0KFU5vZGVIYW5kc2hha2VSZXNwb25zZRIm",
           "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USHAoJcGVl",
-          "cl9ub2RlGAIgASgLMgkuTm9kZUluZm8ibQoQR2F0ZVRva2VuUGF5bG9hZBIU",
-          "CgxnYXRlX25vZGVfaWQYASABKA0SDwoHem9uZV9pZBgCIAEoDRIYChBleHBp",
-          "cmVfdGltZXN0YW1wGAMgASgDEhgKEGhtYWNfc2Vzc2lvbl9rZXkYBCABKAwi",
-          "PgoYQ2xpZW50VG9rZW5WZXJpZnlSZXF1ZXN0Eg8KB3BheWxvYWQYASABKAwS",
-          "EQoJc2lnbmF0dXJlGAIgASgMIjsKGUNsaWVudFRva2VuVmVyaWZ5UmVzcG9u",
-          "c2USDwoHc3VjY2VzcxgBIAEoCBINCgVlcnJvchgCIAEoCUINWgtjb21tb24v",
-          "YmFzZWIGcHJvdG8z"));
+          "cl9ub2RlGAIgASgLMgkuTm9kZUluZm8imAEKEEdhdGVUb2tlblBheWxvYWQS",
+          "FAoMZ2F0ZV9ub2RlX2lkGAEgASgNEg8KB3pvbmVfaWQYAiABKA0SGAoQZXhw",
+          "aXJlX3RpbWVzdGFtcBgDIAEoAxIYChBobWFjX3Nlc3Npb25fa2V5GAQgASgM",
+          "EhEKCXBsYXllcl9pZBgFIAEoBBIWCg50YXJnZXRfem9uZV9pZBgGIAEoDSI+",
+          "ChhDbGllbnRUb2tlblZlcmlmeVJlcXVlc3QSDwoHcGF5bG9hZBgBIAEoDBIR",
+          "CglzaWduYXR1cmUYAiABKAwiOwoZQ2xpZW50VG9rZW5WZXJpZnlSZXNwb25z",
+          "ZRIPCgdzdWNjZXNzGAEgASgIEg0KBWVycm9yGAIgASgJQg1aC2NvbW1vbi9i",
+          "YXNlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, global::SessionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -118,7 +119,7 @@ public static partial class MessageReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientRequest), global::ClientRequest.Parser, new[]{ "Id", "Service", "Method", "Body", "MessageId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeHandshakeRequest), global::NodeHandshakeRequest.Parser, new[]{ "Version", "Token", "SelfNode" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeHandshakeResponse), global::NodeHandshakeResponse.Parser, new[]{ "ErrorMessage", "PeerNode" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::GateTokenPayload), global::GateTokenPayload.Parser, new[]{ "GateNodeId", "ZoneId", "ExpireTimestamp", "HmacSessionKey" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::GateTokenPayload), global::GateTokenPayload.Parser, new[]{ "GateNodeId", "ZoneId", "ExpireTimestamp", "HmacSessionKey", "PlayerId", "TargetZoneId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientTokenVerifyRequest), global::ClientTokenVerifyRequest.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientTokenVerifyResponse), global::ClientTokenVerifyResponse.Parser, new[]{ "Success", "Error" }, null, null, null, null)
         }));
@@ -7394,6 +7395,8 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     zoneId_ = other.zoneId_;
     expireTimestamp_ = other.expireTimestamp_;
     hmacSessionKey_ = other.hmacSessionKey_;
+    playerId_ = other.playerId_;
+    targetZoneId_ = other.targetZoneId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -7473,6 +7476,37 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     }
   }
 
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 5;
+  private ulong playerId_;
+  /// <summary>
+  /// 持票者绑定:重定向票据只对该玩家有效,目标 gate/login 拒绝他人持票。0=旧版签发者未填。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_zone_id" field.</summary>
+  public const int TargetZoneIdFieldNumber = 6;
+  private uint targetZoneId_;
+  /// <summary>
+  /// 跨 zone 传送的目标 zone:目标 zone 的 login 看到 target_zone_id == 本 zone 时不按 home_zone 弹回。
+  /// 0=普通登录票据(按 home_zone 规则)。见 cross-zone-scene-travel.md CZ-8。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TargetZoneId {
+    get { return targetZoneId_; }
+    set {
+      targetZoneId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -7492,6 +7526,8 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     if (ZoneId != other.ZoneId) return false;
     if (ExpireTimestamp != other.ExpireTimestamp) return false;
     if (HmacSessionKey != other.HmacSessionKey) return false;
+    if (PlayerId != other.PlayerId) return false;
+    if (TargetZoneId != other.TargetZoneId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -7503,6 +7539,8 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     if (ZoneId != 0) hash ^= ZoneId.GetHashCode();
     if (ExpireTimestamp != 0L) hash ^= ExpireTimestamp.GetHashCode();
     if (HmacSessionKey.Length != 0) hash ^= HmacSessionKey.GetHashCode();
+    if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
+    if (TargetZoneId != 0) hash ^= TargetZoneId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -7537,6 +7575,14 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
       output.WriteRawTag(34);
       output.WriteBytes(HmacSessionKey);
     }
+    if (PlayerId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(PlayerId);
+    }
+    if (TargetZoneId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(TargetZoneId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -7563,6 +7609,14 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
       output.WriteRawTag(34);
       output.WriteBytes(HmacSessionKey);
     }
+    if (PlayerId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(PlayerId);
+    }
+    if (TargetZoneId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(TargetZoneId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -7584,6 +7638,12 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     }
     if (HmacSessionKey.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeBytesSize(HmacSessionKey);
+    }
+    if (PlayerId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PlayerId);
+    }
+    if (TargetZoneId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetZoneId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -7608,6 +7668,12 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
     }
     if (other.HmacSessionKey.Length != 0) {
       HmacSessionKey = other.HmacSessionKey;
+    }
+    if (other.PlayerId != 0UL) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.TargetZoneId != 0) {
+      TargetZoneId = other.TargetZoneId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -7644,6 +7710,14 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
           HmacSessionKey = input.ReadBytes();
           break;
         }
+        case 40: {
+          PlayerId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          TargetZoneId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -7677,6 +7751,14 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
         }
         case 34: {
           HmacSessionKey = input.ReadBytes();
+          break;
+        }
+        case 40: {
+          PlayerId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          TargetZoneId = input.ReadUInt32();
           break;
         }
       }

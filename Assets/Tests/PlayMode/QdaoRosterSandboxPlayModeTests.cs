@@ -74,9 +74,11 @@ namespace MmorpgClient.Tests.PlayMode
                     CaptureIfRequested(sandbox, definition.Id, observations);
                     if (!definition.IsOriginalRoster) continue;
                     Assert.That(animator.FrameCount, Is.EqualTo(16));
-                    Assert.That(animator.ArtworkVersion, Is.EqualTo(13));
+                    Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
+                    Assert.That(animator.ArtworkVersion, Is.AnyOf(13, 14));
                     yield return WalkWithRealMotor(sandbox, definition.Id, routeOrigin, observations);
                     observations.testedOriginalCount++;
+                    if (animator.ArtworkVersion == 14) observations.testedHdOriginalCount++;
                     WriteObservationsIfRequested(observations);
                 }
                 foreach (var original in QdaoCharacterCatalog.OriginalAll)
@@ -200,6 +202,7 @@ namespace MmorpgClient.Tests.PlayMode
             public bool behaviorAssertionsCompleted;
             public int selectedAppearanceCount;
             public int testedOriginalCount;
+            public int testedHdOriginalCount;
             public List<ObservedAppearance> appearances = new();
         }
 
@@ -211,6 +214,16 @@ namespace MmorpgClient.Tests.PlayMode
             public int actualArtworkVersion;
             public int actualFrameCount;
             public bool actualIsOriginalRoster;
+            public bool actualIsHd;
+            public int actualFrameWidth;
+            public int actualFrameHeight;
+            public float actualPixelsPerUnit;
+            public Vector2 actualNormalizedPivot;
+            public float actualFrameWorldHeight;
+            public Vector3 actualBillboardScale;
+            public DirectionFrameCounts actualTextureWidthsPerDirection = new();
+            public DirectionFrameCounts actualTextureHeightsPerDirection = new();
+            public int maxResidentHdDirectionsObserved;
             public bool actualHasDedicatedIdle;
             public float actualAnimationFramesPerSecond;
             public float actualFramesPerUnit;
@@ -250,6 +263,7 @@ namespace MmorpgClient.Tests.PlayMode
             public string expectedIdleResourcePath;
             public bool spriteMatchesDedicatedIdle;
             public bool v13SixteenFrameContractObserved;
+            public bool v14HdContractObserved;
             public bool movementObserved;
             public float actualTravelDistance;
             public float actualPathDistance;
@@ -277,6 +291,11 @@ namespace MmorpgClient.Tests.PlayMode
         {
             public int alignmentVersion;
             public int contactFrame;
+            public int frameWidth;
+            public int frameHeight;
+            public float pixelsPerUnit;
+            public float pivotX;
+            public float pivotY;
             public string manifest_sha256;
             public string qc_sha256;
             public string validation_sha256;
@@ -389,12 +408,27 @@ namespace MmorpgClient.Tests.PlayMode
             observed.textureHeight = texture != null ? texture.height : 0;
             observed.spriteRectWidth = sprite != null ? sprite.rect.width : 0f;
             observed.spriteRectHeight = sprite != null ? sprite.rect.height : 0f;
+            observed.actualFrameWidth = sprite != null ? Mathf.RoundToInt(sprite.rect.width) : 0;
+            observed.actualFrameHeight = sprite != null ? Mathf.RoundToInt(sprite.rect.height) : 0;
+            observed.actualPixelsPerUnit = sprite != null ? sprite.pixelsPerUnit : 0f;
+            observed.actualNormalizedPivot = sprite != null && sprite.rect.width > 0 && sprite.rect.height > 0
+                ? new Vector2(sprite.pivot.x / sprite.rect.width, sprite.pivot.y / sprite.rect.height) : Vector2.zero;
+            observed.actualBillboardScale = player.transform.Find("sprite").lossyScale;
+            observed.actualFrameWorldHeight = sprite != null ? sprite.rect.height / sprite.pixelsPerUnit * observed.actualBillboardScale.y : 0f;
+            observed.actualIsHd = animator.ArtworkVersion == 14 && appearance?.IsHd == true;
             observed.expectedIdleResourcePath = appearance?.IdleResourcePath(ObservationDirections[animator.Direction]);
             observed.spriteMatchesDedicatedIdle = appearance != null && appearance.HasDedicatedIdle &&
                 texture != null && texture == Resources.Load<Texture2D>(observed.expectedIdleResourcePath);
             observed.v13SixteenFrameContractObserved = animator.ArtworkVersion == 13 && animator.FrameCount == 16 &&
                 appearance != null && appearance.Version == 13 && appearance.FrameCount == 16 &&
                 appearance.FrameDurationMs == 30 && observed.activationPresent;
+            observed.v14HdContractObserved = observed.actualIsHd && animator.FrameCount == 16 &&
+                appearance.FrameDurationMs == 30 && observed.activationPresent && observed.textureWidth == 1024 &&
+                observed.textureHeight == 1024 && observed.actualFrameWidth == 1024 && observed.actualFrameHeight == 1024 &&
+                observed.actualPixelsPerUnit == 104f && activationFields.frameWidth == 1024 && activationFields.frameHeight == 1024 &&
+                activationFields.pixelsPerUnit == 104f && Mathf.Abs(observed.actualNormalizedPivot.x - .5f) < .0001f &&
+                Mathf.Abs(observed.actualNormalizedPivot.y - .08f) < .0001f &&
+                Mathf.Abs(observed.actualFrameWorldHeight - 512f / 52f) < .0001f;
             observed.realMotorEnabled = player.GetComponent<TianyongPlayerController>().Motor.enabled;
             return observed;
         }
