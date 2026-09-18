@@ -75,7 +75,7 @@ namespace MmorpgClient.Tests.PlayMode
                     if (!definition.IsOriginalRoster) continue;
                     Assert.That(animator.FrameCount, Is.EqualTo(16));
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
-                    Assert.That(animator.ArtworkVersion, Is.AnyOf(13, 14));
+                    Assert.That(animator.ArtworkVersion, Is.EqualTo(13).Or.EqualTo(14));
                     yield return WalkWithRealMotor(sandbox, definition.Id, routeOrigin, observations);
                     observations.testedOriginalCount++;
                     if (animator.ArtworkVersion == 14) observations.testedHdOriginalCount++;
@@ -235,6 +235,8 @@ namespace MmorpgClient.Tests.PlayMode
             public DirectionFrameCounts actualUniqueFrameSpritesPerDirection = new();
             public DirectionFrameCounts actualUniqueFrameTexturesPerDirection = new();
             public bool actualFramesMatchResources;
+            public bool actualIdleMatchResources;
+            public DirectionFrameCounts actualDedicatedIdleDirections = new();
             public int catalogVersion;
             public float catalogFramesPerSecond;
             public int catalogFrameDurationMs;
@@ -264,6 +266,8 @@ namespace MmorpgClient.Tests.PlayMode
             public bool spriteMatchesDedicatedIdle;
             public bool v13SixteenFrameContractObserved;
             public bool v14HdContractObserved;
+            public CameraCaptureObservation normalView;
+            public CameraCaptureObservation nearestView;
             public bool movementObserved;
             public float actualTravelDistance;
             public float actualPathDistance;
@@ -277,6 +281,20 @@ namespace MmorpgClient.Tests.PlayMode
             public int stationaryFramesUntilObservation;
             public bool stoppedIdle;
             public bool realMotorEnabled;
+        }
+
+        [System.Serializable]
+        private sealed class CameraCaptureObservation
+        {
+            public string imagePath;
+            public string scope = "Actual unchanged gameplay camera framing; projected full sprite rectangle, not opaque-alpha height.";
+            public int renderWidth, renderHeight;
+            public float requestedZoom, actualOrthographicSize;
+            public Vector3 actorFeetScreenPixels;
+            public float frameLeftPixels, frameRightPixels, frameBottomPixels, frameTopPixels;
+            public float projectedFrameHeightPixels;
+            public float screenPixelsPerTexturePixel;
+            public bool fullFrameInsideCapture;
         }
 
         [System.Serializable]
@@ -312,41 +330,81 @@ namespace MmorpgClient.Tests.PlayMode
             var frameSet = ActualFrameSet(animator);
             Assert.That(frameSet, Is.Not.Null, "Runtime evidence must inspect an actually loaded animator FrameSet.");
             var type = frameSet.GetType();
+            var hd = appearance?.IsHd == true;
             observed.actualHasDedicatedIdle = (bool)type.GetField("DedicatedIdle").GetValue(frameSet);
             observed.actualAnimationFramesPerSecond = (float)type.GetField("Fps").GetValue(frameSet);
             observed.actualFramesPerUnit = (float)type.GetProperty("FramesPerUnit").GetValue(frameSet);
             observed.actualCycleDurationMs = observed.actualFrameCount / observed.actualAnimationFramesPerSecond * 1000f;
             observed.actualCycleWorldDistance = observed.actualFrameCount / observed.actualFramesPerUnit;
-            var walk = (Sprite[][])type.GetField("Walk").GetValue(frameSet);
-            observed.actualFramesMatchResources = appearance != null && walk.Length == ObservationDirections.Length;
-            for (var direction = 0; direction < ObservationDirections.Length; direction++)
+            observed.frameInventoryScope = hd
+                ? "Eight HD directions loaded and inspected sequentially; only current rendered direction plus one observation direction are leased. Not simultaneous eight-direction residency."
+                : "Loaded FrameSet.Walk arrays, distinct from direction poses sampled during actual movement.";
+            var rendered = animator.transform.Find("sprite").GetComponent<SpriteRenderer>();
+            var activeSprite = rendered.sprite;
+            var activeDirection = animator.Direction;
+            observed.actualFramesMatchResources = appearance != null;
+            observed.actualIdleMatchResources = observed.actualHasDedicatedIdle;
+            try
             {
-                var poses = direction < walk.Length ? walk[direction] : null;
-                var sprites = new HashSet<Sprite>();
-                var textures = new HashSet<Texture2D>();
-                var validCount = 0;
-                if (poses != null)
-                for (var frame = 0; frame < poses.Length; frame++)
+                for (var direction = 0; direction < ObservationDirections.Length; direction++)
                 {
-                    var sprite = poses[frame];
-                    var texture = sprite != null ? sprite.texture : null;
-                    if (texture == null || texture.width != 512 || texture.height != 512 ||
-                        sprite.rect.width != 512 || sprite.rect.height != 512)
+                    if (hd)
                     {
-                        observed.actualFramesMatchResources = false;
-                        continue;
+                        Assert.That(animator.EnsureDirectionFrames(direction), Is.True, "A complete approved HD direction must load without fallback.");
+                        Assert.That(ActualFrameSet(animator), Is.SameAs(frameSet));
+                        Assert.That(animator.Direction, Is.EqualTo(activeDirection));
+                        Assert.That(rendered.sprite, Is.SameAs(activeSprite), "Inspection must never evict the displayed sprite.");
+                        Assert.That(activeSprite.texture, Is.Not.Null);
+                        observed.maxResidentHdDirectionsObserved = Mathf.Max(observed.maxResidentHdDirectionsObserved, animator.ResidentHdDirections);
+                        Assert.That(animator.ResidentHdDirections, Is.LessThanOrEqualTo(2));
                     }
-                    validCount++;
-                    sprites.Add(sprite);
-                    textures.Add(texture);
-                    if (appearance == null || texture != Resources.Load<Texture2D>(
-                            appearance.FrameResourcePath(ObservationDirections[direction], frame)))
-                        observed.actualFramesMatchResources = false;
+                    var walk = (Sprite[][])type.GetField("Walk").GetValue(frameSet);
+                    var idle = (Sprite[])type.GetField("Idle").GetValue(frameSet);
+                    var poses = direction < walk.Length ? walk[direction] : null;
+                    var sprites = new HashSet<Sprite>();
+                    var textures = new HashSet<Texture2D>();
+                    var validCount = 0;
+                    var width = 0; var height = 0;
+                    if (poses != null)
+                    for (var frame = 0; frame < poses.Length; frame++)
+                    {
+                        var sprite = poses[frame];
+                        var texture = sprite != null ? sprite.texture : null;
+                        if (texture == null || appearance == null || texture.width != appearance.FrameWidth || texture.height != appearance.FrameHeight ||
+                            sprite.rect.width != appearance.FrameWidth || sprite.rect.height != appearance.FrameHeight || sprite.pixelsPerUnit != appearance.PixelsPerUnit)
+                        {
+                            observed.actualFramesMatchResources = false;
+                            continue;
+                        }
+                        width = texture.width; height = texture.height;
+                        validCount++;
+                        sprites.Add(sprite);
+                        textures.Add(texture);
+                        if (texture != Resources.Load<Texture2D>(appearance.FrameResourcePath(ObservationDirections[direction], frame)))
+                            observed.actualFramesMatchResources = false;
+                    }
+                    var standing = idle[direction];
+                    var idleMatches = standing != null && appearance != null && standing.texture != null &&
+                        standing.texture.width == appearance.FrameWidth && standing.texture.height == appearance.FrameHeight &&
+                        standing.texture == Resources.Load<Texture2D>(appearance.IdleResourcePath(ObservationDirections[direction]));
+                    observed.actualIdleMatchResources &= idleMatches;
+                    observed.actualDedicatedIdleDirections.Set(ObservationDirections[direction], idleMatches && observed.actualHasDedicatedIdle ? 1 : 0);
+                    observed.actualTextureWidthsPerDirection.Set(ObservationDirections[direction], width);
+                    observed.actualTextureHeightsPerDirection.Set(ObservationDirections[direction], height);
+                    observed.actualFramesPerDirection.Set(ObservationDirections[direction], validCount);
+                    observed.actualUniqueFrameSpritesPerDirection.Set(ObservationDirections[direction], sprites.Count);
+                    observed.actualUniqueFrameTexturesPerDirection.Set(ObservationDirections[direction], textures.Count);
+                    if (hd)
+                    {
+                        Assert.That(validCount, Is.EqualTo(16));
+                        Assert.That(sprites.Count, Is.EqualTo(16));
+                        Assert.That(textures.Count, Is.EqualTo(16));
+                        Assert.That(idleMatches, Is.True);
+                    }
                 }
-                observed.actualFramesPerDirection.Set(ObservationDirections[direction], validCount);
-                observed.actualUniqueFrameSpritesPerDirection.Set(ObservationDirections[direction], sprites.Count);
-                observed.actualUniqueFrameTexturesPerDirection.Set(ObservationDirections[direction], textures.Count);
+                if (hd) Assert.That(observed.actualFramesMatchResources && observed.actualIdleMatchResources, Is.True);
             }
+            finally { if (hd) animator.ReleaseObservedDirection(); }
         }
 
         private static ObservedAppearance ObserveAppearance(TianyongSandboxBootstrap sandbox, string requestedId,
@@ -439,6 +497,20 @@ namespace MmorpgClient.Tests.PlayMode
         {
             if (string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("QDAO_ROSTER_CAPTURE_DIR"))) return;
             var animator = sandbox.Player.GetComponent<QdaoBoySpriteAnimator>();
+            // Save measured route evidence before sequential HD inventory checks can evict inactive directions.
+            var poseNames = new List<string>();
+            foreach (var pose in poses) poseNames.Add(pose != null ? pose.name : "<missing>");
+            poseNames.Sort(System.StringComparer.Ordinal);
+            var sampledCounts = new DirectionFrameCounts();
+            var frameSet = ActualFrameSet(animator);
+            var walk = (Sprite[][])frameSet.GetType().GetField("Walk").GetValue(frameSet);
+            for (var direction = 0; direction < ObservationDirections.Length; direction++)
+            {
+                var sampled = 0;
+                if (walk[direction] != null)
+                    foreach (var pose in walk[direction]) if (poses.Contains(pose)) sampled++;
+                sampledCounts.Set(ObservationDirections[direction], sampled);
+            }
             var observed = ObserveAppearance(sandbox, animator.CharacterId, observations);
             observed.movementObserved = true;
             observed.actualTravelDistance = travel;
@@ -448,17 +520,8 @@ namespace MmorpgClient.Tests.PlayMode
             observed.measuredRouteEnd = routeEnd;
             observed.routePreparation = "WarpTo common open route before measurement; only subsequent real CharacterController travel is included.";
             observed.observedWalkPoseCount = poses.Count;
-            observed.observedWalkSpriteNames.Clear();
-            foreach (var pose in poses) observed.observedWalkSpriteNames.Add(pose != null ? pose.name : "<missing>");
-            observed.observedWalkSpriteNames.Sort(System.StringComparer.Ordinal);
-            var frameSet = ActualFrameSet(animator);
-            var walk = (Sprite[][])frameSet.GetType().GetField("Walk").GetValue(frameSet);
-            for (var direction = 0; direction < ObservationDirections.Length; direction++)
-            {
-                var sampled = 0;
-                foreach (var pose in walk[direction]) if (poses.Contains(pose)) sampled++;
-                observed.sampledPosesPerDirection.Set(ObservationDirections[direction], sampled);
-            }
+            observed.observedWalkSpriteNames = poseNames;
+            observed.sampledPosesPerDirection = sampledCounts;
             observed.stationaryFramesUntilObservation = stationaryFrames;
             observed.stoppedIdle = animator.State == QdaoBoySpriteAnimator.LocomotionState.Idle;
             WriteObservationsIfRequested(observations);
@@ -485,35 +548,79 @@ namespace MmorpgClient.Tests.PlayMode
             File.WriteAllText(Path.Combine(outputDirectory, "runtime-observed-appearances.json"), JsonUtility.ToJson(observations, true));
         }
 
+        private static CameraCaptureObservation ObserveCameraProjection(TianyongSandboxBootstrap sandbox, int width, int height)
+        {
+            var camera = sandbox.WorldCamera;
+            var renderer = sandbox.Player.transform.Find("sprite").GetComponent<SpriteRenderer>();
+            Assert.That(renderer.sprite, Is.Not.Null);
+            var bounds = renderer.sprite.bounds;
+            var min = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+            var max = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+            foreach (var x in new[] { bounds.min.x, bounds.max.x })
+            foreach (var y in new[] { bounds.min.y, bounds.max.y })
+            {
+                var screen = camera.WorldToScreenPoint(renderer.transform.TransformPoint(new Vector3(x, y, 0f)));
+                min = Vector2.Min(min, new Vector2(screen.x, screen.y));
+                max = Vector2.Max(max, new Vector2(screen.x, screen.y));
+            }
+            return new CameraCaptureObservation
+            {
+                renderWidth = width, renderHeight = height,
+                requestedZoom = sandbox.CameraRig.RequestedZoom, actualOrthographicSize = camera.orthographicSize,
+                actorFeetScreenPixels = camera.WorldToScreenPoint(sandbox.Player.GetComponent<TianyongPlayerController>().FeetPosition),
+                frameLeftPixels = min.x, frameRightPixels = max.x, frameBottomPixels = min.y, frameTopPixels = max.y,
+                projectedFrameHeightPixels = max.y - min.y,
+                screenPixelsPerTexturePixel = (max.y - min.y) / renderer.sprite.texture.height,
+                fullFrameInsideCapture = min.x >= 0f && min.y >= 0f && max.x <= width && max.y <= height
+            };
+        }
+
         private static void CaptureIfRequested(TianyongSandboxBootstrap sandbox, string characterId,
             RuntimeObservedAppearances observations)
         {
             var outputDirectory = System.Environment.GetEnvironmentVariable("QDAO_ROSTER_CAPTURE_DIR");
             if (string.IsNullOrEmpty(outputDirectory)) return;
-            ObserveAppearance(sandbox, characterId, observations);
+            var observed = ObserveAppearance(sandbox, characterId, observations);
             WriteObservationsIfRequested(observations);
             if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null) return;
             Directory.CreateDirectory(outputDirectory);
             var camera = sandbox.WorldCamera;
             var previousTarget = camera.targetTexture;
             var previousActive = RenderTexture.active;
+            var previousZoom = sandbox.CameraRig.RequestedZoom;
             var target = new RenderTexture(1920, 1080, 24);
             var capture = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
             try
             {
                 camera.targetTexture = target;
                 sandbox.CameraRig.Snap();
-                camera.Render();
-                RenderTexture.active = target;
-                capture.ReadPixels(new Rect(0, 0, 1920, 1080), 0, 0);
-                capture.Apply();
-                var path = Path.Combine(outputDirectory, "tianyong-" + characterId + ".png");
-                File.WriteAllBytes(path, capture.EncodeToPNG());
-                Assert.That(new FileInfo(path).Length, Is.GreaterThan(100000), "The real map capture should contain visible city artwork.");
-                Debug.Log("[QdaoRosterCityCapture] " + path + " (offline Tianyong sandbox)");
+                CameraCaptureObservation SaveView(string suffix)
+                {
+                    camera.Render();
+                    RenderTexture.active = target;
+                    capture.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0);
+                    capture.Apply();
+                    var path = Path.Combine(outputDirectory, "tianyong-" + characterId + suffix + ".png");
+                    File.WriteAllBytes(path, capture.EncodeToPNG());
+                    Assert.That(new FileInfo(path).Length, Is.GreaterThan(100000), "The real map capture should contain visible city artwork.");
+                    var view = ObserveCameraProjection(sandbox, target.width, target.height);
+                    view.imagePath = path;
+                    Debug.Log("[QdaoRosterCityCapture] " + path + " (offline Tianyong sandbox, actual zoom " + camera.orthographicSize + ")");
+                    return view;
+                }
+                observed.normalView = SaveView("");
+                if (observed.actualIsHd)
+                {
+                    sandbox.CameraRig.SetZoom(TianyongMapConfig.LoadDefault().CameraZoomMin);
+                    sandbox.CameraRig.Snap();
+                    observed.nearestView = SaveView("-nearest-zoom");
+                }
+                WriteObservationsIfRequested(observations);
             }
             finally
             {
+                sandbox.CameraRig.SetZoom(previousZoom);
+                sandbox.CameraRig.Snap();
                 camera.targetTexture = previousTarget;
                 RenderTexture.active = previousActive;
                 target.Release();

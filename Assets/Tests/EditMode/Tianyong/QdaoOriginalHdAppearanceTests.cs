@@ -127,13 +127,37 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var hd = Manifest(); var old = Manifest(13);
             string Metadata(string path) => path.EndsWith("/manifest") ? (path.Contains("V14/") ? hd : old) :
                 path.Contains("V14/") ? Approval(hd) : Approval(old, 13);
-            Assert.That(definition.ResolveAppearance(Metadata, (_, _, _) => true).Version, Is.EqualTo(14));
-            typeof(QdaoCharacterCatalog.Definition).GetMethod("RejectCurrentHdRevision",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(definition, null);
+            var selected = definition.ResolveAppearance(Metadata, (_, _, _) => true);
+            Assert.That(selected.Version, Is.EqualTo(14));
+            typeof(QdaoCharacterCatalog.Definition).GetMethod("RejectHdRevision",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(definition, new object[] { selected });
             Assert.That(definition.ResolveAppearance(Metadata, (_, _, _) => true).Version, Is.EqualTo(13));
             Assert.That(definition.ResolveAppearance(Metadata, (_, _, _) => true).Id, Is.EqualTo(Id));
+            var attemptedLoads = 0;
+            var lease = typeof(QdaoHdResources).GetMethod("AcquireWithResources", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                .Invoke(null, new object[] { selected, 2, (Func<string, Texture2D>)(_ => { attemptedLoads++; return null; }),
+                    (Action<Texture2D>)(_ => { }), true });
+            Assert.That(lease, Is.Null);
+            Assert.That(attemptedLoads, Is.Zero, "Other consumers cannot reacquire an already rejected HD revision.");
             QdaoCharacterCatalog.RefreshAppearances();
             Assert.That(definition.ResolveAppearance(Metadata, (_, _, _) => true).Version, Is.EqualTo(14));
+        }
+
+        [Test]
+        public void OldActorLoadFailureCannotRejectANewerAcceptedHdRevision()
+        {
+            var definition = QdaoCharacterCatalog.Find(Id);
+            var hd = Manifest(); var old = Manifest(13);
+            string Metadata(string path) => path.EndsWith("/manifest") ? (path.Contains("V14/") ? hd : old) :
+                path.Contains("V14/") ? Approval(hd) : Approval(old, 13);
+            var prior = definition.ResolveAppearance(Metadata, (_, _, _) => true);
+            hd += " ";
+            var current = definition.ResolveAppearance(Metadata, (_, _, _) => true);
+            Assert.That(current.CacheKey, Is.Not.EqualTo(prior.CacheKey));
+            typeof(QdaoCharacterCatalog.Definition).GetMethod("RejectHdRevision",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(definition, new object[] { prior });
+            Assert.That(definition.ResolveAppearance(Metadata, (_, _, _) => true), Is.SameAs(current));
+            Assert.That(current.Version, Is.EqualTo(14));
         }
 
         [Test]
@@ -154,6 +178,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 index.entries[1].width = 512;
                 Assert.That(index.Validate(folder, Sha, Sha, _ => true), Is.False);
                 index.entries[1].width = 1024;
+                var secondGuid = index.entries[1].assetGuid;
+                index.entries[1].assetGuid = index.entries[0].assetGuid;
+                Assert.That(index.Validate(folder, Sha, Sha, _ => true), Is.False);
+                index.entries[1].assetGuid = secondGuid;
                 index.entries[1].path = index.entries[0].path;
                 Assert.That(index.Validate(folder, Sha, Sha, _ => true), Is.False);
             }

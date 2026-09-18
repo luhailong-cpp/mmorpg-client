@@ -21,6 +21,9 @@ namespace MmorpgClient.App
     ///   -gateway http://127.0.0.1:8081 -zone 1 -account robot_9101 -password 123456
     ///   -autoQueue 1v1 -battleConfig 1 -autoBattle -quitOnBattleEnd -logTag A
     ///   可选超时覆盖:-loginTimeout 30 -queueTimeout 60 -battleTimeout 180(秒)
+    ///   跨 zone 传送验收(与 -moveTest / -autoQueue 互斥,优先级 moveTest > travelZone > autoQueue):
+    ///   -travelZone 2 [-travelScene 1] [-quitOnTravelEnd] [-travelTimeout 120]
+    ///   进场后发 TravelToZone,等 msg 124 重定向 + 目标 zone 重新进场;-travelScene 0/不给 = 目标区默认大世界。
     /// 编辑器调试:命令行没带 -zone 时,依次从环境变量 MMORPG_AUTOPILOT_ARGS、
     ///   PlayerPrefs "mmorpg.devautopilot.args" 读同格式的一整行参数。
     ///
@@ -32,6 +35,8 @@ namespace MmorpgClient.App
     /// 日志前缀 [AutoPilot][tag],关键行(run_crosszone_pair.ps1 按此解析):
     ///   stage=in_game … gate=ip:port(落区证据:两实例 gate 相同即不是跨区)/
     ///   BattleStart battle_id=N / BattleEnd battle_id=N outcome=X turns=N /
+    ///   stage=travel_begin target_zone=N scene_config=N gate_before=ip:port /
+    ///   RESULT=PASS stage=travel gate_before=… gate_after=…(**gate 地址变了才算 PASS**,理由同 stage=in_game)/
     ///   RESULT=PASS … 或 RESULT=FAIL stage=… reason=…
     /// 失败判定对齐服务端 robot:进场时残留战斗/排队相位、JoinQueue 被拒、开局即终局
     /// (turns=0,既有缺陷"上一局阵亡带 0 血入队开局判负")都直接 FAIL,不空等超时。
@@ -72,10 +77,18 @@ namespace MmorpgClient.App
             public bool QuitOnMoveTestEnd;      // 移动验收结束后退出进程(退出码同 -quitOnBattleEnd 语义)
             public float MoveTestTimeout = 90f; // 整段移动验收的兜底超时(秒)
 
+            // ── 跨 zone 传送验收(-travelZone):进场后发 TravelToZone,断言真的换到了别的 gate ──
+            public uint TravelZone;             // 目标 zone id;0 = 不做传送验收
+            public uint TravelScene;            // 目标地图配置 id;0 = 交给目标 zone 挑默认大世界
+            public bool QuitOnTravelEnd;        // 传送验收结束后退出进程(退出码同 -quitOnBattleEnd 语义)
+            // 整段兜底超时(秒)。要盖住:服务端冻结+存盘+等 scene_manager(≤30)+ 探测 5 + 验票 10
+            // + Login 15 + EnterGame 15 + 等 NotifyEnterScene 60,所以默认比其它阶段都长。
+            public float TravelTimeout = 120f;
+
             public bool Active => Zone != 0;
         }
 
-        private enum Stage { Login, Queue, Battle, MoveTest, Done }
+        private enum Stage { Login, Queue, Battle, MoveTest, Travel, Done }
 
         private static Options _current;
         private static bool _parsed;
@@ -121,6 +134,12 @@ namespace MmorpgClient.App
 
         // 移动验收当前小阶段(超时 FAIL 行里带上,方便定位卡在哪一步)
         private string _movePhase = "-";
+
+        // 传送验收:发起前的落区证据与角色 id(抵达后逐项比对),以及当前小阶段
+        private string _travelGateBefore;
+        private ulong _travelPlayerBefore;
+        private string _travelPhase = "-";
+        private bool _travelHooked;
 
         // ── 参数解析 ──────────────────────────────────────
 
@@ -191,6 +210,10 @@ namespace MmorpgClient.App
                     case "movetest":        opt.MoveTest = true; break;
                     case "quitonmovetestend": opt.QuitOnMoveTestEnd = true; break;
                     case "movetesttimeout": opt.MoveTestTimeout = ParseFloat(NextValue(), opt.MoveTestTimeout); break;
+                    case "travelzone":      opt.TravelZone = ParseUInt(NextValue()); break;
+                    case "travelscene":     opt.TravelScene = ParseUInt(NextValue()); break;
+                    case "quitontravelend": opt.QuitOnTravelEnd = true; break;
+                    case "traveltimeout":   opt.TravelTimeout = ParseFloat(NextValue(), opt.TravelTimeout); break;
                 }
             }
             if (string.IsNullOrEmpty(opt.LogTag))
@@ -319,6 +342,9 @@ namespace MmorpgClient.App
                 case Stage.Queue:  Fail("queue", $"排队等 BattleStart 超时({_opt.QueueTimeout}s) phase={_battle?.Phase}"); break;
                 case Stage.Battle: Fail("battle", $"战斗超时({_opt.BattleTimeout}s) battle_id={_battleId} turns={_turns} phase={_battle?.Phase}"); break;
                 case Stage.MoveTest: Fail("move_test", $"移动验收超时({_opt.MoveTestTimeout}s) phase={_movePhase}"); break;
+                case Stage.Travel: Fail("travel", $"传送超时({_opt.TravelTimeout}s) phase={_travelPhase} " +
+                                        $"gate_before={_travelGateBefore ?? "-"} gate_now={_client?.AssignedGate ?? "-"} " +
+                                        $"redirecting={_client?.IsRedirecting} pending={_client?.IsTravelPending}"); break;
                 default: _deadline = 0f; break;
             }
         }
@@ -326,6 +352,7 @@ namespace MmorpgClient.App
         private void OnDestroy()
         {
             if (_client != null) _client.OnDisconnected -= HandleDisconnected;
+            UnhookTravel();
             if (_battle != null)
             {
                 _battle.OnPhaseChanged -= HandlePhaseChanged;
@@ -358,6 +385,14 @@ namespace MmorpgClient.App
                 _stage = Stage.MoveTest;
                 _deadline = Time.realtimeSinceStartup + _opt.MoveTestTimeout;
                 StartCoroutine(MoveTestRoutine());
+                return;
+            }
+
+            if (_opt.TravelZone != 0)
+            {
+                if (!string.IsNullOrEmpty(_opt.AutoQueue))
+                    Debug.LogWarning($"{_prefix} -travelZone 与 -autoQueue 同时给出,忽略 -autoQueue");
+                BeginTravelStage();
                 return;
             }
 
@@ -484,6 +519,94 @@ namespace MmorpgClient.App
         {
             if (_finished) return;
             Fail(_stage.ToString().ToLowerInvariant(), "与服务器断开连接");
+        }
+
+        // ── 跨 zone 传送验收(-travelZone)────────────────────
+        // 目的:把"场景内发 TravelToZone → msg 124 → 连到目标 zone 的 gate → 重跑 Login+EnterGame → 进场"
+        // 变成一条可离线判定的流水线(服务端 docs/design/cross-zone-scene-travel.md 阶段 2)。
+        // 判据:
+        //   * **gate 地址必须变**:本地部署各 zone 的 gate 端口不同,地址没变 = 其实没换区
+        //     (与 stage=in_game 的落区证据同一口径)。服务端若把"目标区 = 当前区"当普通换图处理,
+        //     这里会按 FAIL 报出来,而不是假装传送成功;
+        //   * 角色 id 不能变:重定向沿用当前角色(票据也绑了 player_id),变了就是串号;
+        //   * 目标地图只打印不判死(scene_match=):目标 zone 的 login 可以自己指定落点,
+        //     scene_manager 那边是"请求指定了就以请求为准",客户端没法断言必须相等。
+        // 失败来源三条,谁先到算谁:同步拒绝(onError)、在老 gate 上收到的失败 tip、断线(HandleDisconnected)。
+
+        private void BeginTravelStage()
+        {
+            _stage = Stage.Travel;
+            _travelPhase = "request";
+            _deadline = Time.realtimeSinceStartup + _opt.TravelTimeout;
+            _travelGateBefore = _client.AssignedGate;
+            _travelPlayerBefore = _client.PlayerId;
+            Log($"stage=travel_begin target_zone={_opt.TravelZone} scene_config={_opt.TravelScene} " +
+                $"gate_before={_travelGateBefore ?? "-"} player_id={_travelPlayerBefore}");
+
+            if (_client.ZoneTravel == null)
+            {
+                Fail("travel", "GameClient.ZoneTravel 未初始化");
+                return;
+            }
+            _client.OnSceneEntered += HandleTravelSceneEntered;
+            _client.OnServerTip += HandleTravelTip;
+            _travelHooked = true;
+            _app.Run(_client.ZoneTravel.TravelToZone(_opt.TravelZone, _opt.TravelScene,
+                () =>
+                {
+                    if (_finished) return;
+                    _travelPhase = "accepted";
+                    Log("stage=travel_accepted (等 msg 124 重定向)");
+                },
+                err => Fail("travel", err)));
+        }
+
+        private void UnhookTravel()
+        {
+            if (!_travelHooked || _client == null) return;
+            _travelHooked = false;
+            _client.OnSceneEntered -= HandleTravelSceneEntered;
+            _client.OnServerTip -= HandleTravelTip;
+        }
+
+        private void HandleTravelTip(TipInfoMessage tip)
+        {
+            if (_finished || _stage != Stage.Travel) return;
+            // 只认"还在老 gate 上"收到的 tip:那是源 scene 在说传送没成(此时它已解冻,玩家留在原地)。
+            // 重定向一旦接管,老连接的消息派发就被摘掉了,之后的 tip 全来自目标 zone 的登录/进场流程,
+            // 与传送成败无关,不能拿来判失败。
+            if (_client.IsRedirecting || _client.AssignedGate != _travelGateBefore) return;
+            Fail("travel", $"server tip={tip?.Id} phase={_travelPhase}");
+        }
+
+        private void HandleTravelSceneEntered(SceneInfoComp scene)
+        {
+            if (_finished || _stage != Stage.Travel) return;
+            _travelPhase = "scene_entered";
+            StartCoroutine(TravelSettleRoutine(scene?.SceneConfigId ?? 0));
+        }
+
+        /// <summary>
+        /// NotifyEnterScene 到达的那一帧,RedirectFlow 还差最后一步(下一帧才置 InGame、跑完 finally)。
+        /// 等整条重登录管线真正收尾再下结论,PASS 才意味着"目标 zone 上是一个完整可用的会话"。
+        /// 等不到由 Update 的阶段超时兜底(Fail 置 _finished,这里的循环随之退出)。
+        /// </summary>
+        private System.Collections.IEnumerator TravelSettleRoutine(uint arrivedSceneConfig)
+        {
+            while (!_finished && (_client.IsRedirecting || !_client.InGame)) yield return null;
+            if (_finished) yield break;
+
+            string gateAfter = _client.AssignedGate;
+            ulong playerAfter = _client.PlayerId;
+            bool moved = gateAfter != _travelGateBefore;
+            bool samePlayer = playerAfter == _travelPlayerBefore;
+            string sceneMatch = _opt.TravelScene == 0 ? "n/a" : (arrivedSceneConfig == _opt.TravelScene ? "true" : "false");
+            string detail = $"stage=travel target_zone={_opt.TravelZone} gate_before={_travelGateBefore ?? "-"} " +
+                            $"gate_after={gateAfter ?? "-"} player_before={_travelPlayerBefore} player_after={playerAfter} " +
+                            $"scene_config={arrivedSceneConfig} scene_match={sceneMatch}";
+            if (!moved) { Finish(false, $"RESULT=FAIL {detail} reason=gate 地址没变(没有真的换区)"); yield break; }
+            if (!samePlayer) { Finish(false, $"RESULT=FAIL {detail} reason=重定向后角色 id 变了"); yield break; }
+            Finish(true, $"RESULT=PASS {detail}");
         }
 
         // ── 移动验收(-moveTest)──────────────────────────
@@ -801,9 +924,11 @@ namespace MmorpgClient.App
             _stage = Stage.Done;
             _deadline = 0f;
             ResetMoveDrive();
+            UnhookTravel();
             if (ok) Log(line); else Debug.LogError($"{_prefix} {line}");
 
-            var quit = _opt.QuitOnBattleEnd || (_opt.MoveTest && _opt.QuitOnMoveTestEnd);
+            var quit = _opt.QuitOnBattleEnd || (_opt.MoveTest && _opt.QuitOnMoveTestEnd) ||
+                       (_opt.TravelZone != 0 && _opt.QuitOnTravelEnd);
             if (!quit)
             {
                 _shotRunning = false;   // 不退出也停截图,避免一直写盘

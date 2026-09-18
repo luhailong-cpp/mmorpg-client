@@ -110,12 +110,21 @@ namespace MmorpgClient.World
             public bool Legacy;
             public int Contact;
             public int Version;
+            public QdaoCharacterCatalog.Appearance Appearance;
+            public System.Func<string, Texture2D> LoadTexture;
+            public System.Action<Texture2D> ReleaseTexture;
+            public System.Func<QdaoCharacterCatalog.Appearance, QdaoCharacterCatalog.Appearance> Fallback;
+            public bool ShareHd;
+            public readonly HashSet<int> MissingHdDirections = new();
             public float FramesPerUnit => Fps / ReferenceRunSpeed;
             public int ContactFrame(int direction) => Legacy ? IdleFrame(direction) : Contact;
         }
 
         private static readonly Dictionary<string, FrameSet> SharedFrames = new();
         private FrameSet _frames;
+        private QdaoHdResources.Lease _hdActive;
+        private QdaoHdResources.Lease _hdObservation;
+        public int ResidentHdDirections => (_hdActive != null ? 1 : 0) + (_hdObservation != null ? 1 : 0);
         private static Sprite _shadowSprite;
 
         private SpriteRenderer _renderer;
@@ -129,6 +138,7 @@ namespace MmorpgClient.World
         private float _animationClock;
         private float _settleBudget;
         private int _lastDirection = FacingCameraIndex;
+        private bool _explicitOriginalRequest;
 
         /// <summary>Current locomotion state (readable for tests and debugging).</summary>
         public LocomotionState State { get; private set; } = LocomotionState.Idle;
@@ -151,7 +161,8 @@ namespace MmorpgClient.World
             if (frames == null) return false;
             var animator = actor.GetComponent<QdaoBoySpriteAnimator>();
             if (animator == null) animator = actor.AddComponent<QdaoBoySpriteAnimator>();
-            animator.ApplyFrames(frames);
+            animator._explicitOriginalRequest = QdaoCharacterCatalog.Find(characterId)?.IsOriginalRoster == true;
+            if (!animator.ApplyFrames(frames)) return false;
             // Hide the placeholder mesh (root primitive or a prefab's child
             // visual) but keep name labels (TextMesh / 3D TextMeshPro), which
             // also render through a MeshRenderer. The sprite and shadow are
@@ -209,23 +220,146 @@ namespace MmorpgClient.World
         /// <summary>Change artwork in place without moving the actor or adding another shadow.</summary>
         public bool SetAppearance(string characterId)
         {
+            _explicitOriginalRequest = QdaoCharacterCatalog.Find(characterId)?.IsOriginalRoster == true;
             var frames = LoadFrames(characterId);
             if (frames == null) return false;
-            ApplyFrames(frames);
-            return true;
+            return ApplyFrames(frames);
         }
 
-        private void ApplyFrames(FrameSet frames)
+        private bool ApplyFrames(FrameSet frames)
         {
             InitializeVisuals();
-            if (_frames == frames) return;
+            if (_frames == frames) return true;
+            ReleaseObservedDirection();
+            QdaoHdResources.Lease next = null;
+            if (frames.Appearance?.IsHd == true)
+            {
+                next = AcquireHd(frames, _lastDirection);
+                if (next == null)
+                {
+                    var fallback = MissingAppearanceFrame(frames.Appearance, "direction " + DirectionNames[_lastDirection],
+                        frames.LoadTexture, frames.Fallback, frames.ShareHd);
+                    return fallback != null && ApplyFrames(fallback);
+                }
+                SetHdRow(frames, next);
+            }
+            var previous = _frames;
+            var oldActive = _hdActive;
+            var oldObservation = _hdObservation;
             _frames = frames;
+            _hdActive = next;
+            _hdObservation = null;
             _lastPosition = transform.position;
             _animationClock = frames.ContactFrame(_lastDirection);
             _settleBudget = 0f;
             State = LocomotionState.Idle;
             _renderer.sprite = frames.Idle[_lastDirection];
+            ClearHdRows(previous);
+            oldObservation?.Dispose();
+            oldActive?.Dispose();
             enabled = true;
+            return true;
+        }
+
+        private static FrameSet CreateHdFrameSet(QdaoCharacterCatalog.Appearance appearance,
+            System.Func<string, Texture2D> load, System.Action<Texture2D> release,
+            System.Func<QdaoCharacterCatalog.Appearance, QdaoCharacterCatalog.Appearance> fallback, bool shared)
+            => new FrameSet { Id = appearance.Id, Version = appearance.Version, Count = appearance.FrameCount,
+                Fps = appearance.FramesPerSecond, Contact = appearance.ContactFrame, DedicatedIdle = true,
+                Appearance = appearance, LoadTexture = load, ReleaseTexture = release, Fallback = fallback,
+                ShareHd = shared, Walk = new Sprite[DirectionNames.Length][], Idle = new Sprite[DirectionNames.Length] };
+
+        private static QdaoHdResources.Lease AcquireHd(FrameSet frames, int direction)
+            => QdaoHdResources.AcquireWithResources(frames.Appearance, direction,
+                frames.LoadTexture, frames.ReleaseTexture, frames.ShareHd);
+
+        private static void SetHdRow(FrameSet frames, QdaoHdResources.Lease lease)
+        {
+            frames.Walk[lease.Direction] = lease.Walk;
+            frames.Idle[lease.Direction] = lease.Idle;
+        }
+        private static void ClearHdRows(FrameSet frames)
+        {
+            if (frames?.Appearance?.IsHd != true) return;
+            System.Array.Clear(frames.Walk, 0, frames.Walk.Length);
+            System.Array.Clear(frames.Idle, 0, frames.Idle.Length);
+        }
+
+        /// <summary>Inspect one extra HD direction without changing the renderer, facing or current lease.</summary>
+        public bool EnsureDirectionFrames(int direction)
+        {
+            if (_frames == null || direction < 0 || direction >= DirectionNames.Length) return false;
+            if (_frames.Appearance?.IsHd != true) return _frames.Walk[direction] != null;
+            if (_hdActive?.Direction == direction) return _hdActive.IsValid;
+            if (_hdObservation?.Direction == direction && _hdObservation.IsValid) return true;
+            ReleaseObservedDirection();
+            var next = AcquireHd(_frames, direction);
+            if (next == null) { FallbackFromHd(direction); return false; }
+            _hdObservation = next;
+            SetHdRow(_frames, next);
+            return true;
+        }
+
+        public void ReleaseObservedDirection()
+        {
+            if (_hdObservation == null) return;
+            var previous = _hdObservation; _hdObservation = null;
+            if (_frames?.Appearance?.IsHd == true)
+            {
+                _frames.Walk[previous.Direction] = null;
+                _frames.Idle[previous.Direction] = null;
+            }
+            previous.Dispose();
+        }
+
+        private bool FallbackFromHd(int direction)
+        {
+            var frames = _frames;
+            if (frames?.Appearance?.IsHd != true) return true;
+            if (!frames.MissingHdDirections.Add(direction)) return false;
+            var fallback = MissingAppearanceFrame(frames.Appearance, "direction " + DirectionNames[direction],
+                frames.LoadTexture, frames.Fallback, frames.ShareHd);
+            return fallback != null && ApplyFrames(fallback);
+        }
+
+        private bool SelectRenderedDirection(int direction)
+        {
+            if (_frames.Appearance?.IsHd != true) return true;
+            if (_hdActive?.Direction == direction && _hdActive.IsValid) return true;
+            // The visible old direction stays leased until its replacement is attached to the renderer.
+            QdaoHdResources.Lease next;
+            if (_hdObservation?.Direction == direction && _hdObservation.IsValid)
+            { next = _hdObservation; _hdObservation = null; }
+            else
+            {
+                ReleaseObservedDirection();
+                if (_frames.MissingHdDirections.Contains(direction)) return false;
+                next = AcquireHd(_frames, direction);
+            }
+            if (next == null) return FallbackFromHd(direction);
+            var previous = _hdActive;
+            SetHdRow(_frames, next);
+            _hdActive = next;
+            _renderer.sprite = State == LocomotionState.Idle ? next.Idle : next.Walk[Mathf.Clamp((int)_animationClock, 0, next.Walk.Length - 1)];
+            if (previous != null)
+            {
+                if (previous.Direction != next.Direction)
+                {
+                    _frames.Walk[previous.Direction] = null;
+                    _frames.Idle[previous.Direction] = null;
+                }
+                previous.Dispose();
+            }
+            return true;
+        }
+
+        private void OnDestroy()
+        {
+            if (_renderer != null) _renderer.sprite = null;
+            ReleaseObservedDirection();
+            ClearHdRows(_frames);
+            _hdActive?.Dispose();
+            _hdActive = null;
         }
 
         private static FrameSet LoadFrames(string characterId)
@@ -239,8 +373,11 @@ namespace MmorpgClient.World
         }
 
         private static FrameSet LoadFrameSet(QdaoCharacterCatalog.Appearance appearance)
-            => LoadFrameSetWithResources(appearance, Resources.Load<Texture2D>,
-                QdaoCharacterCatalog.ResolveFallbackAppearance, true);
+            => appearance?.IsHd == true
+                ? CreateHdFrameSet(appearance, Resources.Load<Texture2D>, texture => Resources.UnloadAsset(texture),
+                    QdaoCharacterCatalog.ResolveFallbackAppearance, true)
+                : LoadFrameSetWithResources(appearance, Resources.Load<Texture2D>,
+                    QdaoCharacterCatalog.ResolveFallbackAppearance, true);
 
         // The injected providers let tests simulate a resource disappearing after
         // catalog validation without modifying any approved PNG or activation file.
@@ -249,6 +386,7 @@ namespace MmorpgClient.World
             System.Func<QdaoCharacterCatalog.Appearance, QdaoCharacterCatalog.Appearance> fallback,
             bool useCache)
         {
+            if (appearance?.IsHd == true) return CreateHdFrameSet(appearance, loadTexture, null, fallback, false);
             var id = appearance?.Id ?? QdaoCharacterCatalog.LegacyId;
             var dedicatedIdle = appearance?.HasDedicatedIdle ?? true;
             // A V11 character gains dedicated idle textures without a version
@@ -428,7 +566,7 @@ namespace MmorpgClient.World
 
         private void Start()
         {
-            if (_frames == null && !SetAppearance(null)) enabled = false;
+            if (_frames == null && (_explicitOriginalRequest || !SetAppearance(null))) enabled = false;
         }
 
         private void InitializeVisuals()
@@ -460,6 +598,7 @@ namespace MmorpgClient.World
         private void LateUpdate()
         {
             if (_frames == null || _renderer == null) return;
+            if (QdaoCharacterCatalog.IsRejectedHdAppearance(_frames.Appearance)) FallbackFromHd(_lastDirection);
 
             var worldCamera = Camera.main;
             var cameraRotation = worldCamera != null ? worldCamera.transform.rotation : Quaternion.Euler(0f, 45f, 0f);
@@ -485,7 +624,8 @@ namespace MmorpgClient.World
                 // do not guarantee that the same leg remains planted.
                 var movementYaw = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
                 var relativeYaw = Mathf.Repeat(movementYaw - cameraYaw, 360f);
-                _lastDirection = SelectDirection(relativeYaw, _lastDirection);
+                var nextDirection = SelectDirection(relativeYaw, _lastDirection);
+                if (SelectRenderedDirection(nextDirection)) _lastDirection = nextDirection;
 
                 if (State == LocomotionState.Idle)
                     _animationClock = _frames != null ? _frames.ContactFrame(_lastDirection) : IdleFrame(_lastDirection); // first step leaves the standing pose
@@ -513,6 +653,7 @@ namespace MmorpgClient.World
                     _animationClock = _frames != null ? _frames.ContactFrame(_lastDirection) : IdleFrame(_lastDirection);
             }
 
+            SelectRenderedDirection(_lastDirection);
             var frame = Mathf.Clamp((int)_animationClock, 0, _frames.Count - 1);
             _renderer.sprite = State == LocomotionState.Idle
                 ? _frames.Idle[_lastDirection]

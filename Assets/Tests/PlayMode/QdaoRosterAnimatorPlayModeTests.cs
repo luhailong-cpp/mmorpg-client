@@ -33,6 +33,7 @@ namespace MmorpgClient.Tests.PlayMode
                     yield return null;
                     var animator = actor.GetComponent<QdaoBoySpriteAnimator>();
                     var renderer = actor.transform.Find("sprite").GetComponent<SpriteRenderer>();
+                    var appearance = definition.ResolveAppearance();
                     Assert.That(animator.CharacterId, Is.EqualTo(definition.Id));
                     Assert.That(animator.FrameCount, Is.EqualTo(definition.FrameCount));
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
@@ -46,12 +47,13 @@ namespace MmorpgClient.Tests.PlayMode
                         var heldFrames = 0;
                         var longestHold = 0;
                         var directionFrames = new HashSet<Texture2D>();
+                        if (appearance.IsHd) Assert.That(animator.EnsureDirectionFrames(direction), Is.True);
                         for (var frameIndex = 1; frameIndex <= definition.FrameCount; frameIndex++)
                         {
                             var texture = Resources.Load<Texture2D>($"{definition.ResourceFolder}/walk/{Directions[direction]}/{frameIndex:00}");
                             Assert.That(texture, Is.Not.Null);
-                            Assert.That(texture.width, Is.EqualTo(512));
-                            Assert.That(texture.height, Is.EqualTo(512));
+                            Assert.That(texture.width, Is.EqualTo(appearance.FrameWidth));
+                            Assert.That(texture.height, Is.EqualTo(appearance.FrameWidth));
                             directionFrames.Add(texture);
                         }
                         Assert.That(directionFrames.Count, Is.EqualTo(definition.FrameCount));
@@ -63,8 +65,13 @@ namespace MmorpgClient.Tests.PlayMode
                             Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Run));
                             Assert.That(directionFrames.Contains(renderer.sprite.texture), Is.True, "Walk animation must use an individually imported direction frame.");
                             Assert.That(renderer.sprite.rect.x, Is.Zero);
-                            Assert.That(renderer.sprite.rect.width, Is.EqualTo(512));
-                            Assert.That(renderer.sprite.pivot.y, Is.EqualTo(512f * 0.08f).Within(0.01f));
+                            Assert.That(renderer.sprite.rect.width, Is.EqualTo(appearance.FrameWidth));
+                            Assert.That(renderer.sprite.pivot.y, Is.EqualTo(appearance.FrameHeight * appearance.Pivot.y).Within(0.01f));
+                            if (appearance.IsHd)
+                            {
+                                Assert.That(animator.ResidentHdDirections, Is.LessThanOrEqualTo(2));
+                                Assert.That(renderer.sprite.pixelsPerUnit, Is.EqualTo(104f));
+                            }
                             poses.Add(renderer.sprite);
                             if (previousPose != null && previousPose != renderer.sprite) transitions++;
                             heldFrames = previousPose == renderer.sprite ? heldFrames + 1 : 1;

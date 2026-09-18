@@ -20,20 +20,36 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public bool HasFestival => !string.IsNullOrEmpty(FestivalResourcePath);
     }
 
+    /// <summary>可前往的其他区服；只是展示数据，能不能去由服务端在传送请求里裁决。</summary>
+    public sealed class CityTravelZone
+    {
+        public uint ZoneId;
+        public string Name;
+    }
+
     /// <summary>沿用游戏现有纸面窗口，展示整张地图并发出传送或换景意图。</summary>
     public sealed class CityTravelWindow
     {
         public event Action<uint, bool> TravelRequested;
+        /// <summary>
+        /// 选了其他区服时，“前往”发出的是这个事件（区服编号、场景配置编号、节庆景色），不再发
+        /// <see cref="TravelRequested"/>：跨区要换连接并重新登录，走的是另一条请求，两者不能混用。
+        /// </summary>
+        public event Action<uint, uint, bool> ZoneTravelRequested;
         public bool IsVisible => _root.gameObject.activeSelf;
         public uint SelectedSceneConfigId => _selected?.SceneConfigId ?? 0;
         public bool SelectedFestival => _festival;
         public bool TravelEnabled => _travel.interactable;
+        /// <summary>零表示留在本区（默认）。</summary>
+        public uint SelectedZoneId => SelectedZone?.ZoneId ?? 0;
 
         private readonly RectTransform _root, _destinationList;
         private readonly RawImage _preview;
         private readonly TMP_Text _name, _description, _current, _status, _appearanceHint, _travelLabel;
-        private readonly Button _day, _festivalButton, _travel;
-        private readonly TMP_Text _festivalLabel;
+        private readonly Button _day, _festivalButton, _travel, _zoneButton;
+        private readonly TMP_Text _festivalLabel, _zoneLabel;
+        private IReadOnlyList<CityTravelZone> _zones;
+        private int _zoneIndex = -1; // 负一表示本区；其余是 _zones 的下标
         private readonly List<Button> _destinationButtons = new();
         private IReadOnlyList<CityTravelDestination> _destinations;
         private CityTravelDestination _selected;
@@ -76,8 +92,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _festivalLabel = _festivalButton.GetComponentInChildren<TMP_Text>();
             _appearanceHint = Text(frame, "", 1194, 598, 806, 70, 28, Muted, true);
             _status = Text(frame, "", 1194, 680, 806, 70, 28, Muted, true);
+            // 区服切换放在“前往”左侧的空位。默认隐藏：没有可去的区服（单区部署、测试、截图验收）时
+            // 窗口与原来完全一致，现有用例按名字找按钮也不受影响。
+            _zoneButton = Button(frame, "本区", 1190, 770, 220, 82, CycleZone, key: "tab_normal", fontSize: 28);
+            _zoneButton.name = "TravelZoneCycle";
+            _zoneLabel = _zoneButton.GetComponentInChildren<TMP_Text>();
+            _zoneLabel.overflowMode = TextOverflowModes.Ellipsis; // 区服名由运营配置，长名字不能撑破按钮
+            _zoneButton.gameObject.SetActive(false);
             _travel = Button(frame, "前往", 1422, 770, 588, 82,
-                () => { if (_selected != null) TravelRequested?.Invoke(_selected.SceneConfigId, _festival); },
+                () =>
+                {
+                    if (_selected == null) return;
+                    var zone = SelectedZone;
+                    if (zone != null) ZoneTravelRequested?.Invoke(zone.ZoneId, _selected.SceneConfigId, _festival);
+                    else TravelRequested?.Invoke(_selected.SceneConfigId, _festival);
+                },
                 true, fontSize: 35);
             _travel.name = "TravelToSelectedCity";
             _travelLabel = _travel.GetComponentInChildren<TMP_Text>();
@@ -99,6 +128,31 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _destinationButtons.Add(button);
             }
             Select(destinations[0]);
+        }
+
+        /// <summary>
+        /// 设置可前往的其他区服（不含当前所在区）。每次设置都回到“本区”：
+        /// 跨区要重新连接，不能让上一次的选择留到下一次打开，一次随手的“前往”就把人送去别的区。
+        /// 传送途中忽略调用，避免按钮文案在“正在传送”时变来变去。
+        /// </summary>
+        public void SetZones(IReadOnlyList<CityTravelZone> zones)
+        {
+            if (_busy) return;
+            _zones = zones;
+            _zoneIndex = -1;
+            _zoneButton.gameObject.SetActive(zones != null && zones.Count > 0);
+            Refresh();
+        }
+
+        private CityTravelZone SelectedZone
+            => _zones != null && _zoneIndex >= 0 && _zoneIndex < _zones.Count ? _zones[_zoneIndex] : null;
+
+        private void CycleZone()
+        {
+            if (_busy || _zones == null || _zones.Count == 0) return;
+            // 本区 → 各区服依次 → 回到本区
+            _zoneIndex = _zoneIndex + 1 >= _zones.Count ? -1 : _zoneIndex + 1;
+            Refresh();
         }
 
         public void Show(uint currentScene, bool currentFestival)
@@ -162,11 +216,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             SetTab(_day, !_festival);
             SetTab(_festivalButton, _festival);
             bool sameScene = _selected.SceneConfigId == _currentScene;
-            _appearanceHint.text = _selected.HasFestival
-                ? sameScene ? "更换此地景色，继续在原处游历。" : "选好景色，启程前往这片山海。"
-                : "灯火映长街，云游自此启程。";
-            _travelLabel.text = _busy ? "正在传送…" : sameScene ? "应用景色" : "前往" + _selected.Name;
-            _travel.interactable = !_busy && (!sameScene || _selected.HasFestival && _festival != _currentFestival);
+            // 跨区时“同一张地图”不再等于“原地换景”：别的区服的同名地图是另一处地方，必须能前往。
+            var zone = SelectedZone;
+            bool crossZone = zone != null;
+            _zoneLabel.text = crossZone ? zone.Name : "本区";
+            SetTab(_zoneButton, crossZone);
+            _zoneButton.interactable = !_busy;
+            _appearanceHint.text = crossZone
+                ? "将前往其他区服，途中会重新连接，请稍候片刻。"
+                : _selected.HasFestival
+                    ? sameScene ? "更换此地景色，继续在原处游历。" : "选好景色，启程前往这片山海。"
+                    : "灯火映长街，云游自此启程。";
+            _travelLabel.text = _busy ? "正在传送…"
+                : crossZone ? "前往" + zone.Name + " · " + _selected.Name
+                : sameScene ? "应用景色" : "前往" + _selected.Name;
+            _travel.interactable = !_busy &&
+                (crossZone || !sameScene || _selected.HasFestival && _festival != _currentFestival);
         }
 
         private static void SetTab(Button button, bool selected)

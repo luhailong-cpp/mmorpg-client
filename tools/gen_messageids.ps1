@@ -57,6 +57,9 @@ $whitelist = @{
     "ClientPlayerLoginDisconnect"                  = "Disconnect"
 
     "SceneSceneClientPlayerEnterScene"             = "EnterScene"
+    # 跨 zone 场景传送(服务端 docs/design/cross-zone-scene-travel.md CZ-7)。漏配只会出一条
+    # Warning、常量静默不生成,Assets/Scripts/Game/WorldTravel/ZoneTravelClient.cs 就编不过。
+    "SceneSceneClientPlayerTravelToZone"           = "TravelToZone"
     "SceneSceneClientPlayerSceneInfoC2S"           = "SceneInfoC2S"
     "SceneSkillClientPlayerReleaseSkill"           = "ReleaseSkill"
     "SceneSkillClientPlayerListSkills"             = "ListSkills"

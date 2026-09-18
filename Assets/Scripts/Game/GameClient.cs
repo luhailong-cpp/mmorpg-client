@@ -7,6 +7,7 @@ using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
 using MmorpgClient.World;
 using UnityEngine;
@@ -61,7 +62,12 @@ namespace MmorpgClient.Game
         private bool _enteredScene;            // set by NotifyEnterScene
         private bool _redirecting;             // RedirectToGateNotify flow active
         private ulong _redirectPlayerId;       // 重定向前的角色 id(重连后沿用,不重新选角)
-        private int _redirectHops;             // 本会话已跟随的重定向次数(环路熔断,EnterZone 归零)
+        private int _redirectHops;             // 本会话已跟随的重定向次数(环路熔断;EnterZone 与玩家主动传送时归零)
+        // 跨 zone 传送在途:TravelToZone 已发出,正在等 msg 124(成了)或失败 tip(没成)。
+        // 只覆盖"还连着老 gate"的那一段 —— msg 124 一到就交棒给 _redirecting。
+        // 收口点一共四个,缺一个就会把"传送中"卡死:msg 124、msg 23、断线、Tick 超时。
+        private bool _travelPending;
+        private float _travelDeadline;         // realtimeSinceStartup;_travelPending 的兜底期限
         private bool _disconnectNotificationSent = true;
         private bool _disconnectInProgress;
 
@@ -126,6 +132,23 @@ namespace MmorpgClient.Game
 
         public PlayerFeaturesClient Features { get; }
 
+        /// <summary>
+        /// 跨 zone 场景传送的调用点(服务端 docs/design/cross-zone-scene-travel.md CZ-7)。
+        /// 所有引用"跑过 gen 才存在"的符号(MessageIds.TravelToZone、TravelToZoneRequest/Response)
+        /// 的代码都关在 <see cref="ZoneTravelClient"/> 那一个文件里;本文件只提供在途状态与收口。
+        /// </summary>
+        public ZoneTravelClient ZoneTravel { get; }
+
+        /// <summary>
+        /// RedirectFlow 正在搬连接(msg 124 之后、目标 gate 上重跑完 Login + EnterGame 之前)。
+        /// 这段时间 InGame / IsGateReady 会被 ResetConnectionState 清成 false,但玩家并没有掉线;
+        /// UI 要靠它区分"正在换服"与"真的断线了",否则传送遮罩会在半路被收掉。
+        /// </summary>
+        public bool IsRedirecting => _redirecting;
+
+        /// <summary>TravelToZone 在途(已发出,还没等到 msg 124 / 失败 tip / 断线 / 超时)。</summary>
+        public bool IsTravelPending => _travelPending;
+
         /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
         public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
 
@@ -143,6 +166,12 @@ namespace MmorpgClient.Game
         public event Action<string> OnFlowStatus;
         /// <summary>Raised after the authoritative scene switch cleared the old actor world.</summary>
         public event Action<SceneInfoComp> OnSceneEntered;
+        /// <summary>
+        /// 服务端 tip 推送(msg 23)。**异步失败只会从这里来**:请求已经回过"受理"之后才发生的失败
+        /// (传送冻结 / 存盘之后被 scene_manager 拒、换图被换手门拒),响应体里拿不到,服务端只能补推一条 tip。
+        /// 要监听 tip 一律订阅本事件 —— OnNotify 是覆盖语义,子模块再对 msg 23 注册一次会把这里静默盖掉。
+        /// </summary>
+        public event Action<TipInfoMessage> OnServerTip;
 
         /// <summary>
         /// Coroutine starter wired by AppBootstrap. GameClient is not a
@@ -208,6 +237,7 @@ namespace MmorpgClient.Game
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
             Pets = PetClient.Attach(new GameClientBattleTransport(this));
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));
+            ZoneTravel = new ZoneTravelClient(this);
         }
 
         public GatewayHttpClient Http => _http;
@@ -246,6 +276,13 @@ namespace MmorpgClient.Game
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动
             Spectate?.Tick(Time.realtimeSinceStartup); // 观战首帧超时由主循环驱动
+            // 传送在途的兜底:受理之后 msg 124 与失败 tip 都没等到(服务端消息丢了 / 源 scene 挂了)。
+            // 只清本地状态、**不断线**:老连接大概率还是好的,玩家可以再点一次;真断了自有 OnDisconnected。
+            if (_travelPending && Time.realtimeSinceStartup > _travelDeadline)
+            {
+                _travelPending = false;
+                Status("传送超时,请稍后重试");
+            }
         }
 
         /// <summary>
@@ -870,6 +907,50 @@ namespace MmorpgClient.Game
             onSuccess();
         }
 
+        // ── 跨 zone 传送的在途状态(RPC 本体在 WorldTravel/ZoneTravelClient.cs)──────────
+        //
+        // 为什么状态放这里、RPC 放那边:RPC 要用的消息号与 proto 类要等服务端 regen + 客户端两个 gen
+        // 脚本跑过才存在,Assets/Scripts 只有一个 asmdef、一红全红,所以把"会红的代码"收进一个文件。
+        // 而在途状态必须由本类收口(msg 124 / msg 23 / 断线 / Tick 都在这里),且不依赖任何新符号。
+
+        /// <summary>
+        /// 传送失败的兜底文案。服务端的 kZoneTravel* 码要等导表发号、且客户端把 scene_error_tip 收进
+        /// tools/gen_proto.ps1 之后才有枚举可映射;在那之前一律只报裸编号。
+        /// **不许在客户端写 tip 数字常量**(号由导表器发,手抄的数字下次导表就可能对不上)。
+        /// </summary>
+        public static string DescribeTravelTip(uint tipId) => $"传送失败(tip={tipId})";
+
+        /// <summary>
+        /// 进入"传送在途"。返回 null = 放行,否则是给人看的拒绝原因。只给 <see cref="ZoneTravelClient"/> 用。
+        /// <paramref name="budgetSec"/> 必须大于服务端 kTravelReplyBudgetSec(30s),否则客户端会抢在
+        /// 服务端之前宣布超时,随后到达的 msg 124 又把人搬走,UI 上就是"先报失败、后传送成功"。
+        /// </summary>
+        public string BeginZoneTravel(float budgetSec)
+        {
+            if (!InGame || !IsGateReady) return "尚未进入游戏";
+            if (_redirecting || _travelPending) return "正在传送中";
+            _travelPending = true;
+            _travelDeadline = Time.realtimeSinceStartup + budgetSec;
+            // 玩家主动传送是一次新的意图起点,不是"被服务端踢皮球"。MaxRedirectHops 防的是配置环路
+            // (A→B→A→B 无人参与的连跳);不在这里归零的话,同一登录会话里第 4 次正常传送会被熔断
+            // 并强制断线 —— 而那一刻服务端已经 INCR 了 owner_epoch、销毁了源端实体。
+            // robot/pkg/redirect.go 是同款计数,两边要保持同一语义。
+            _redirectHops = 0;
+            Status("正在传送…");
+            return null;
+        }
+
+        /// <summary>
+        /// 同步失败的收口(RPC 发不出 / 超时 / 响应体带拒绝码)。只给 <see cref="ZoneTravelClient"/> 用。
+        /// 异步失败不走这里:msg 23 处理器、断线与 Tick 超时各自收口。已经不在途时是空操作。
+        /// </summary>
+        public void EndZoneTravel(string status)
+        {
+            if (!_travelPending) return;
+            _travelPending = false;
+            if (!string.IsNullOrEmpty(status)) Status(status);
+        }
+
         /// <summary>
         /// Send a fire-and-forget skill release. Server-pushed
         /// NotifySkillUsed/NotifySkillInterrupted messages drive the
@@ -1216,6 +1297,9 @@ namespace MmorpgClient.Game
                     DisconnectInternal(notify: true, forceNotification: true);
                     return;
                 }
+                // 传送等的就是这条推送:在途状态到此结束,后半程由 _redirecting 接力
+                // (RedirectFlow 在第一个 yield 之前就会置位,两个标志之间没有空窗)。
+                _travelPending = false;
                 CoroutineRunner(RedirectFlow(ev));
             });
 
@@ -1344,6 +1428,16 @@ namespace MmorpgClient.Game
             {
                 var tip = TipInfoMessage.Parser.ParseFrom(mc.SerializedMessage);
                 Log($"[tip] id={tip.Id}");
+                // 传送在途时收到的 tip 一律当作"这次传送没成"(服务端此时已解冻,玩家留在原地)。
+                // 判得宽是刻意的:在途期间玩家被冻结、地图窗又挡着输入,几乎不会有别的 tip;
+                // 而专用码的枚举客户端现在还没有(见 DescribeTravelTip),没法按码收窄。
+                // 等 scene_error_tip 收进 gen_proto.ps1 之后,这里应改成只认 kZoneTravel* 与 kEnterSceneFailed。
+                if (_travelPending)
+                {
+                    _travelPending = false;
+                    Status(DescribeTravelTip(tip.Id));
+                }
+                OnServerTip?.Invoke(tip);
             });
 
             OnNotify(MessageIds.KickPlayer, _ =>
@@ -1503,6 +1597,7 @@ namespace MmorpgClient.Game
                 PlayerId = 0;
                 _knownRoles.Clear();
                 _enteredScene = false;
+                _travelPending = false; // 连接没了,等不到 msg 124 / tip 了;不清的话重连后第一次传送会被"正在传送中"挡住
                 _isMoving = false;
                 _moveInputSeq = 0;
                 _pending.Clear();

@@ -96,6 +96,7 @@ namespace MmorpgClient.World
             private string _originalHdManifestHash;
             private string _rejectedHdActivationText;
             private string _rejectedHdManifestHash;
+            private string _rejectedHdCacheKey;
             public string ResourceFolder => ResolveAppearance()?.ResourceFolder;
             public int FrameCount => ResolveAppearance()?.FrameCount ?? 0;
             public float FramesPerSecond => ResolveAppearance()?.FramesPerSecond ?? 0f;
@@ -174,18 +175,31 @@ namespace MmorpgClient.World
             {
                 _appearance = null;
                 _v13ActivationText = _v12ActivationText = _originalManifestHash = _v14ActivationText = _originalHdManifestHash = null;
-                _rejectedHdActivationText = _rejectedHdManifestHash = null;
+                _rejectedHdActivationText = _rejectedHdManifestHash = _rejectedHdCacheKey = null;
                 BaselineAppearance = IsOriginalRoster ? null : new Appearance(Id, 11);
             }
 
+            internal void RejectHdRevision(Appearance rejected)
+            {
+                // An actor may still hold an older lease while a new import is already selected elsewhere.
+                // Its failed old load must never reject the newer approved revision for every consumer.
+                if (_appearance != null && _appearance.IsHd && rejected != null &&
+                    _appearance.CacheKey == rejected.CacheKey) RejectCurrentHdRevision();
+            }
+
+            internal bool HasRejectedHd(Appearance appearance) => appearance?.IsHd == true &&
+                _rejectedHdCacheKey != null && _rejectedHdCacheKey == appearance.CacheKey;
+
             internal void RejectCurrentHdRevision()
             {
+                var rejectedKey = _appearance?.CacheKey;
                 var folder = OriginalV14Root + "/" + Id;
                 var activation = _v14ActivationText ?? LoadActivationText(folder + "/appearance");
                 var manifestHash = _originalHdManifestHash ?? HashBytes(LoadResourceBytes(folder + "/manifest"));
                 Invalidate();
                 _rejectedHdActivationText = activation;
                 _rejectedHdManifestHash = manifestHash;
+                _rejectedHdCacheKey = rejectedKey;
             }
 
         }
@@ -363,11 +377,14 @@ namespace MmorpgClient.World
                 : definition.BaselineAppearance;
         }
 
+        internal static bool IsRejectedHdAppearance(Appearance appearance)
+            => appearance != null && Find(appearance.Id)?.HasRejectedHd(appearance) == true;
+
         internal static Appearance ResolveFallbackAppearance(Appearance rejected)
         {
             // A resource vanished after selection. Other users (including the
             // portrait and battle loader) must reselect instead of keeping V13 cached.
-            if (rejected.IsHd) Find(rejected.Id)?.RejectCurrentHdRevision();
+            if (rejected.IsHd) Find(rejected.Id)?.RejectHdRevision(rejected);
             else Find(rejected.Id)?.Invalidate();
             if (rejected.IsOriginalRoster)
             {

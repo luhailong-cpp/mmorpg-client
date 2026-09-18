@@ -6,6 +6,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
 {
     public sealed class BattleRosterAppearanceTests
     {
+        private sealed class IdleLeaseOwner : System.IDisposable
+        {
+            private readonly UnityEngine.GameObject _object = new("BattleIdleLeaseTest");
+            public QdaoHdSpriteLeaseOwner Component { get; }
+            public IdleLeaseOwner() => Component = _object.AddComponent<QdaoHdSpriteLeaseOwner>();
+            public void Dispose() => UnityEngine.Object.DestroyImmediate(_object);
+        }
+
         [SetUp]
         public void SetUp() => BattleArtCatalog.ResetCaches();
 
@@ -52,14 +60,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [Test]
         public void EveryCharacterUsesItsOwnUnmirroredDirectionalIdleAndDeclaredWalkFrames()
         {
+            using var owner = new IdleLeaseOwner();
             foreach (var entry in QdaoCharacterCatalog.AvailableAll)
             foreach (bool east in new[] { false, true })
             {
-                var walk = BattleArtCatalog.LoadPlayerWalk(entry.Id, east);
+                using var walk = BattleArtCatalog.LoadPlayerWalk(entry.Id, east);
                 Assert.That(walk, Is.Not.Null, entry.Id);
                 Assert.That(walk.Count, Is.EqualTo(entry.FrameCount), entry.Id);
                 Assert.That(walk.Fps, Is.EqualTo(entry.FramesPerSecond).Within(.001f), entry.Id);
-                var idle = BattleArtCatalog.LoadCharacterAction(entry.Id, "idle", east);
+                using var idle = BattleArtCatalog.LoadCharacterAction(entry.Id, "idle", east);
                 Assert.That(idle, Is.Not.Null, entry.Id);
                 Assert.That(idle.Count, Is.EqualTo(1), entry.Id);
                 Assert.That(idle.Mirrored, Is.False, entry.Id);
@@ -67,14 +76,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
                     Assert.That(idle.Frames[0].texture, Is.Not.SameAs(walk.Frames[0].texture), entry.Id);
                 else
                     Assert.That(idle.Frames[0], Is.SameAs(walk.Frames[0]), entry.Id);
-                var directIdle = BattleArtCatalog.LoadPlayerIdle(entry.Id, east, out var mirrored);
+                var directIdle = BattleArtCatalog.LoadPlayerIdle(entry.Id, east, out var mirrored, owner.Component);
                 Assert.That(directIdle, Is.SameAs(idle.Frames[0]));
                 Assert.That(mirrored, Is.False);
                 var contactTexture = UnityEngine.Resources.Load<UnityEngine.Texture2D>(entry.IdleResourcePath(east ? "E" : "W"));
                 Assert.That(idle.Frames[0].texture, Is.SameAs(contactTexture), entry.Id);
-                Assert.That(idle.Frames[0].texture.width, Is.EqualTo(512), entry.Id);
-                Assert.That(idle.Frames[0].texture.height, Is.EqualTo(512), entry.Id);
-                Assert.That(idle.Frames[0].rect.width, Is.EqualTo(512f), entry.Id);
+                var appearance = entry.ResolveAppearance();
+                Assert.That(idle.Frames[0].texture.width, Is.EqualTo(appearance.FrameWidth), entry.Id);
+                Assert.That(idle.Frames[0].texture.height, Is.EqualTo(appearance.FrameHeight), entry.Id);
+                Assert.That(idle.Frames[0].rect.width, Is.EqualTo((float)appearance.FrameWidth), entry.Id);
+                if (appearance.IsHd) Assert.That(idle.Frames[0].pixelsPerUnit, Is.EqualTo(104f));
             }
             var first = BattleArtCatalog.LoadCharacterAction(QdaoCharacterCatalog.All[0].Id, "idle", true);
             var second = BattleArtCatalog.LoadCharacterAction(QdaoCharacterCatalog.All[1].Id, "idle", true);

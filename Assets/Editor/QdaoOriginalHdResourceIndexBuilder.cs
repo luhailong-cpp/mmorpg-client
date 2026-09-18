@@ -38,10 +38,19 @@ namespace MmorpgClient.Editor.Tianyong
 
         private static void OnPostprocessAllAssets(string[] imported, string[] deleted, string[] moved, string[] movedFrom)
         {
-            foreach (var group in new[] { imported, deleted, moved, movedFrom })
-            foreach (var path in group)
+            var groups = new[] { imported, deleted, moved, movedFrom };
+            for (var groupIndex = 0; groupIndex < groups.Length; groupIndex++)
+            foreach (var path in groups[groupIndex])
             {
-                if (!path.StartsWith(AssetRoot + "/", StringComparison.Ordinal) || path.EndsWith("/runtime-index.asset", StringComparison.Ordinal)) continue;
+                if (path == AssetRoot) { QdaoCharacterCatalog.RefreshAppearances(); continue; }
+                if (!path.StartsWith(AssetRoot + "/", StringComparison.Ordinal)) continue;
+                if (path.EndsWith("/runtime-index.asset", StringComparison.Ordinal))
+                {
+                    // Index imports invalidate selections too, but must not recursively rebuild themselves.
+                    QdaoCharacterCatalog.RefreshAppearances();
+                    if (groupIndex != 1 && groupIndex != 3) continue;
+                    // A deleted/moved-away derived index can safely be recreated from approved source files.
+                }
                 var rest = path.Substring(AssetRoot.Length + 1);
                 var separator = rest.IndexOf('/');
                 var id = separator < 0 ? rest : rest.Substring(0, separator);

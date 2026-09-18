@@ -168,6 +168,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private bool _facingEast;
         private SlotHighlight _highlight = SlotHighlight.None;
         private Sprite _idleSprite;
+        private readonly MmorpgClient.World.QdaoHdSpriteLeaseOwner _artLeaseOwner;
         private StripAnim _idleStrip;
         private bool _destroyed;
         private BattleActorState _lastState;
@@ -184,6 +185,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _facingEast = BattleArtCatalog.FacingEast(teamIsMine);
 
             _root = QdaoUguiFactory.CreateRect($"Unit_{actorId}", parent, 0f, 0f, RootWidth, RootHeight);
+            _artLeaseOwner = _root.gameObject.AddComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>();
+            _artLeaseOwner.OnAppearanceRejected = () => { if (!_destroyed) { KillActionTweens(); RealtimeTween.Kill(_idleToken); ResolveAppearance(); } };
             _root.pivot = new Vector2(0.5f, 1f - GroundY / RootHeight); // pivot 落在脚底
             _group = _root.gameObject.AddComponent<CanvasGroup>();
 
@@ -974,6 +977,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             RealtimeTween.Kill(_hpGhostRect);
             RealtimeTween.Kill(_mpFillRect);
             if (_flash != null) RealtimeTween.Kill(_flash);
+            if (_body != null) _body.sprite = null;
+            if (_flash != null) _flash.sprite = null;
+            _idleSprite = null;
+            _idleStrip = null;
+            if (_artLeaseOwner != null) _artLeaseOwner.Clear();
             if (_plateGroup != null && _plate != null) UnityEngine.Object.Destroy(_plate.gameObject);
             if (_root != null) UnityEngine.Object.Destroy(_root.gameObject);
         }
@@ -984,6 +992,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             _idleStrip = null;
             Sprite sprite = null;
+            StripAnim acquired = null;
             bool mirrored = false;
             float height;
             if (IsMonster)
@@ -1006,6 +1015,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             else
             {
                 var strip = BattleArtCatalog.LoadCharacterAction(CharacterId, "idle", _facingEast);
+                acquired = strip;
                 if (strip != null && strip.Count > 0)
                 {
                     sprite = strip.Frames[0];
@@ -1014,12 +1024,14 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
                 else
                 {
-                    sprite = BattleArtCatalog.LoadPlayerIdle(CharacterId, _facingEast, out mirrored);
+                    sprite = BattleArtCatalog.LoadPlayerIdle(CharacterId, _facingEast, out mirrored, _artLeaseOwner);
                 }
                 height = PlayerHeight;
             }
+            if (sprite == null && _idleSprite != null) { acquired?.Dispose(); return; }
             _bodyHeight = height;
-            ApplyBodySprite(sprite, mirrored);
+            try { ApplyBodySprite(sprite, mirrored); }
+            finally { acquired?.Dispose(); }
         }
 
         private void ApplyBodySprite(Sprite sprite, bool mirrored)
@@ -1046,6 +1058,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _bodyRect.sizeDelta = new Vector2(_bodyHeight * aspect, _bodyHeight);
             }
             _flash.sprite = sprite;
+            // Replace both Images before retiring their previous HD direction.
+            _artLeaseOwner.BindSprite(sprite);
             _hitArea.rectTransform.sizeDelta = new Vector2(Mathf.Max(120f, _bodyRect.sizeDelta.x * 0.8f), _bodyHeight);
             _hitArea.rectTransform.anchoredPosition = new Vector2(RootWidth * 0.5f - _hitArea.rectTransform.sizeDelta.x * 0.5f, -(GroundY - _bodyHeight));
             // 头顶块按立绘实际可见顶点排(贴图透明边距各不相同,固定偏移会让条悬空在头顶 90px 处)
@@ -1164,6 +1178,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 return;
             }
             var ghost = QdaoUguiFactory.CreateImage("Afterimage", _parent, pos.x - w * 0.5f, -pos.y - h, w, h, _body.sprite);
+            ghost.gameObject.AddComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>().BindSprite(_body.sprite);
             ghost.preserveAspect = true;
             ghost.color = new Color(0.8f, 0.9f, 1f, 0.45f);
             if (_mirrored) ghost.rectTransform.localScale = new UnityEngine.Vector3(-1f, 1f, 1f);

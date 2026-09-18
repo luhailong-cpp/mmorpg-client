@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.WorldTravel;
@@ -28,6 +29,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private CityTravelWindow _window;
         private string _status = "";
         private bool _wasAvailable;
+        // 跨区传送：在途的目标区服、发起时的连接标识（抵达时据此判断是否真的换了连接），
+        // 以及“此刻人在哪个区”。服务端的重定向通知不带区服编号，客户端只能自己记：
+        // 零表示没跨过区，按选区时的区服算。登录时被服务端送回归属区的情况这里无从得知，
+        // 记错的后果只是列表里多列或少列一个区，能不能去始终由服务端裁决。
+        private uint _pendingZoneId;
+        private object _gateAtRequest;
+        private uint _visitingZoneId;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -61,6 +69,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window = new CityTravelWindow(design);
             _window.SetDestinations(CreateDestinations());
             _window.TravelRequested += RequestTravel;
+            _window.ZoneTravelRequested += RequestZoneTravel;
             _hud.gameObject.SetActive(false);
         }
 
@@ -74,11 +83,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _entry.interactable = available && !_request.IsPending;
             if (_request.Tick(Time.realtimeSinceStartup))
             {
+                _pendingZoneId = 0;
+                _gateAtRequest = null;
                 _status = "暂未收到抵达消息，请稍后重试。";
                 Refresh();
             }
             if (!available)
             {
+                // 换区途中客户端会先清掉“已进入游戏”的状态再去连新服务器，此时 available 必然为假；
+                // 照旧收起窗口，就等于把“正在传送”的遮罩连同输入拦截一起撤掉，玩家会看到空场景还能乱点。
+                // 有请求在途或正在换连接时保持原样（也不动 _wasAvailable，收场后仍不可用时下一帧照常收起），
+                // 收场交给入场通知、服务端提示、断线和超时。
+                bool travelling = _request.IsPending ||
+                                  (_game != null && (_game.IsRedirecting || _game.IsTravelPending));
+                if (travelling) return;
                 if (_wasAvailable) HidePanel();
                 _wasAvailable = false;
                 return;
@@ -109,6 +127,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             GameplayUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
+            _window.SetZones(BuildZones());
             _window.Show(CurrentScene, _app.WorldMap != null && _app.WorldMap.FestivalAppearance);
             Refresh();
         }
@@ -145,6 +164,67 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }));
         }
 
+        /// <summary>
+        /// 跨区传送。与同区换图共用同一个请求状态机和“正在传送”遮罩，区别只有三点：
+        /// 走另一条请求；等待上限放宽；目的地与当前地图相同也照常前往（那是别的区服的同名地图）。
+        /// 请求被受理不算抵达，抵达仍然只认入场通知。
+        /// </summary>
+        public void RequestZoneTravel(uint zoneId, uint sceneConfigId, bool festival)
+        {
+            if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
+            if (zoneId == 0 || sceneConfigId < 1 || sceneConfigId > 4 || _app.WorldMap == null) return;
+            int generation = _request.Begin(sceneConfigId, festival, Time.realtimeSinceStartup,
+                CityTravelRequest.CrossZoneTimeoutSeconds);
+            if (generation == 0) return;
+            _pendingZoneId = zoneId;
+            _gateAtRequest = _game.GateConnectionIdentity;
+            _status = "正在启程，请稍候…";
+            Refresh();
+            StartCoroutine(_game.ZoneTravel.TravelToZone(zoneId, sceneConfigId,
+                () =>
+                {
+                    if (!_request.Accept(generation)) return;
+                    _status = "行程已安排，正在前往目标区服…";
+                    Refresh();
+                },
+                error =>
+                {
+                    if (!_request.Fail(generation)) return;
+                    _pendingZoneId = 0;
+                    _gateAtRequest = null;
+                    Debug.LogWarning("[CityTravel] 跨区传送请求失败：" + error);
+                    // 错误文本此刻只有编号兜底（提示码的文案表客户端还没有），直接给玩家看，方便反馈问题。
+                    _status = "暂时无法前往，请稍后重试。（" + error + "）";
+                    Refresh();
+                }));
+        }
+
+        private uint CurrentZoneId => _visitingZoneId != 0 ? _visitingZoneId : (_app?.Session?.SelectedZoneId ?? 0u);
+
+        /// <summary>
+        /// 可前往的其他区服：取选区时网关下发的列表，去掉当前所在区和不可进入的区
+        /// （口径与选区界面一致：维护、关闭、未开放不可进）。列表只在选区时刷新，可能过时，
+        /// 所以这里只管展示，目标区是否存在、是否繁忙由服务端在传送请求里裁决并回提示。
+        /// </summary>
+        private List<CityTravelZone> BuildZones()
+        {
+            var result = new List<CityTravelZone>();
+            var zones = _app?.Session?.Zones;
+            if (zones == null) return result;
+            uint here = CurrentZoneId;
+            foreach (var zone in zones)
+            {
+                if (zone == null || zone.zone_id == 0 || zone.zone_id == here) continue;
+                if (zone.status == "MAINTENANCE" || zone.status == "CLOSED" || zone.status == "PREVIEW") continue;
+                result.Add(new CityTravelZone
+                {
+                    ZoneId = zone.zone_id,
+                    Name = string.IsNullOrWhiteSpace(zone.name) ? zone.zone_id + "区" : zone.name
+                });
+            }
+            return result;
+        }
+
         private uint CurrentScene => _game?.CurrentSceneConfigId is > 0 ? _game.CurrentSceneConfigId : 1;
 
         private bool CanTravelNow()
@@ -159,8 +239,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 _game.OnSceneEntered -= HandleSceneEntered;
                 _game.OnDisconnected -= HandleDisconnected;
+                _game.OnServerTip -= HandleServerTip;
             }
             _request.Reset();
+            _pendingZoneId = 0;
+            _gateAtRequest = null;
+            _visitingZoneId = 0;
             _status = "";
             HidePanel();
             _game = game;
@@ -168,11 +252,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 _game.OnSceneEntered += HandleSceneEntered;
                 _game.OnDisconnected += HandleDisconnected;
+                _game.OnServerTip += HandleServerTip;
             }
         }
 
         private void HandleSceneEntered(SceneInfoComp scene)
         {
+            // 跨区请求在途、且入场通知来自另一条连接，说明人已经在目标区了（哪怕落到的不是所选地图）。
+            // 连接没换就收到入场通知，只是一次普通换图，不能据此改“所在区”。
+            if (_pendingZoneId != 0 && _game != null && !ReferenceEquals(_game.GateConnectionIdentity, _gateAtRequest))
+                _visitingZoneId = _pendingZoneId;
+            _pendingZoneId = 0;
+            _gateAtRequest = null;
             if (_request.ReceiveScene(scene?.SceneConfigId ?? 0, out bool festival))
             {
                 _app.WorldMap.SetFestivalAppearance(festival);
@@ -183,9 +274,31 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Refresh();
         }
 
+        /// <summary>
+        /// 服务端提示到达时，如果有传送请求在途，就当作这次行程没成、立刻收场。
+        /// 受理之后才发生的失败（同区换图被换手门拒绝、跨区在冻结存盘之后被拒）不会出现在请求的应答里，
+        /// 服务端只能补推一条提示；不接它，窗口就只能干等到超时。
+        /// 判得宽是刻意的：请求在途时窗口挡着输入，几乎不会有别的提示；提示码的枚举客户端还没有，无法按码收窄。
+        /// 即使误判，后果也只是遮罩提前收起，随后到达的入场通知照常生效。
+        /// </summary>
+        private void HandleServerTip(TipInfoMessage tip)
+        {
+            if (!_request.IsPending) return;
+            // 连接已经在换了，说明服务端早已放行；这时的提示来自目标区的登录流程，与行程成败无关。
+            if (_game != null && _game.IsRedirecting) return;
+            _request.Reset();
+            _pendingZoneId = 0;
+            _gateAtRequest = null;
+            _status = "暂时无法前往，请稍后重试。（" + (tip?.Id ?? 0) + "）";
+            Refresh();
+        }
+
         private void HandleDisconnected()
         {
             _request.Reset();
+            _pendingZoneId = 0;
+            _gateAtRequest = null;
+            _visitingZoneId = 0;
             _status = "";
             HidePanel();
             Refresh();

@@ -6,9 +6,13 @@ using MmorpgClient.World;
 namespace MmorpgClient.UI.Ugui.Battle
 {
     /// <summary>切好格的序列帧条(角色动作 / 特效 / 跑步条)。</summary>
-    public sealed class StripAnim
+    public sealed class StripAnim : IDisposable
     {
         public Sprite[] Frames;
+        internal QdaoHdResources.Lease HdLease;
+        public bool RequiresLease => HdLease != null;
+        /// <summary>Release an HD result after its images retain it through QdaoHdSpriteLeaseOwner.</summary>
+        public void Dispose() { var lease = HdLease; HdLease = null; lease?.Dispose(); }
         public float Fps = 10f;
         /// <summary>true = 资源只有 E 向、需要水平镜像显示。</summary>
         public bool Mirrored;
@@ -144,6 +148,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             s_circle = null;
         }
 
+        static BattleArtCatalog() => QdaoHdResources.SpriteReleased += sprite => s_visibleBounds.Remove(sprite);
+
         // ── 朝向 / 身份 ──────────────────────────────────────
 
         /// <summary>阵营朝向:敌方在左上朝右下(E),我方在右下朝左上(W)。</summary>
@@ -219,14 +225,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             // Neither pack supplies authored attack/cast/hit body animations.
             if (action != "idle") return null;
             if (appearance == null) return null;
-            string key = $"{appearance.CacheKey}/idle_{(facingEast ? "E" : "W")}";
-            if (s_strips.TryGetValue(key, out var cached)) return cached;
-            string direction = facingEast ? "E" : "W";
-            var stance = LoadAppearanceFrame(appearance, appearance.IdleResourcePath(direction));
-            if (stance == null) return null;
-            var idle = new StripAnim { Frames = new[] { stance }, Fps = ActionFps("idle"), Pivot = FeetPivot };
-            s_strips[key] = idle;
-            return idle;
+            return LoadRosterDirection(appearance, facingEast ? "E" : "W", false);
         }
 
         /// <summary>怪物动作帧条;缺图返回 null(调用方用剪影)。</summary>
@@ -257,18 +256,40 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (entry == null) return LoadPlayerWalk(facingEast);
             var appearance = entry.ResolveAppearance();
             if (appearance == null) return null;
-            string direction = facingEast ? "E" : "W";
-            string key = $"{appearance.CacheKey}/walk/{direction}#individual-frames";
-            if (s_strips.TryGetValue(key, out var cached)) return cached;
-            var frames = new Sprite[appearance.FrameCount];
-            for (int frame = 0; frame < frames.Length; frame++)
+            return LoadRosterDirection(appearance, facingEast ? "E" : "W", true);
+        }
+
+        private static StripAnim LoadRosterDirection(QdaoCharacterCatalog.Appearance appearance, string direction, bool walk)
+            => LoadRosterDirectionWithResources(appearance, direction, walk, Resources.Load<Texture2D>,
+                texture => Resources.UnloadAsset(texture), QdaoCharacterCatalog.ResolveFallbackAppearance, true);
+
+        // The HD branch uses the same actual loader in tests and production, with explicit texture ownership.
+        private static StripAnim LoadRosterDirectionWithResources(QdaoCharacterCatalog.Appearance appearance, string direction, bool walk,
+            Func<string, Texture2D> load, Action<Texture2D> release,
+            Func<QdaoCharacterCatalog.Appearance, QdaoCharacterCatalog.Appearance> fallback, bool shared)
+        {
+            if (appearance == null) return null;
+            if (appearance.IsHd)
             {
-                frames[frame] = LoadAppearanceFrame(appearance, appearance.FrameResourcePath(direction, frame));
+                var directionIndex = direction == "E" ? 2 : direction == "W" ? 6 : -1;
+                var lease = QdaoHdResources.AcquireWithResources(appearance, directionIndex, load, release, shared);
+                if (lease != null) return new StripAnim { Frames = walk ? lease.Walk : new[] { lease.Idle },
+                    Fps = walk ? appearance.FramesPerSecond : ActionFps("idle"), Pivot = appearance.Pivot, HdLease = lease };
+                var next = fallback(appearance);
+                return next != null && next.Id == appearance.Id && next.Version < appearance.Version
+                    ? LoadRosterDirectionWithResources(next, direction, walk, load, release, fallback, shared) : null;
+            }
+            string key = walk ? $"{appearance.CacheKey}/walk/{direction}#individual-frames" : $"{appearance.CacheKey}/idle_{direction}";
+            if (s_strips.TryGetValue(key, out var cached)) return cached;
+            var frames = new Sprite[walk ? appearance.FrameCount : 1];
+            for (var frame = 0; frame < frames.Length; frame++)
+            {
+                frames[frame] = LoadAppearanceFrame(appearance, walk ? appearance.FrameResourcePath(direction, frame) : appearance.IdleResourcePath(direction));
                 if (frames[frame] == null) return null;
             }
-            var walk = new StripAnim { Frames = frames, Fps = appearance.FramesPerSecond, Pivot = FeetPivot };
-            s_strips[key] = walk;
-            return walk;
+            var result = new StripAnim { Frames = frames, Fps = walk ? appearance.FramesPerSecond : ActionFps("idle"), Pivot = FeetPivot };
+            s_strips[key] = result;
+            return result;
         }
 
         private static Sprite LoadAppearanceFrame(QdaoCharacterCatalog.Appearance appearance, string path)
@@ -284,12 +305,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             return sprite;
         }
 
-        public static Sprite LoadPlayerIdle(string characterId, bool facingEast, out bool mirrored)
+        /// <summary>HD sprite callers supply the Image's lifetime owner; lease-returning APIs support other explicit owners.</summary>
+        public static Sprite LoadPlayerIdle(string characterId, bool facingEast, out bool mirrored, QdaoHdSpriteLeaseOwner owner = null)
         {
             if (QdaoCharacterCatalog.Find(characterId) == null) return LoadPlayerIdle(facingEast, out mirrored);
-            var idle = LoadCharacterAction(characterId, "idle", facingEast);
+            using var idle = LoadCharacterAction(characterId, "idle", facingEast);
             mirrored = idle?.Mirrored ?? false;
-            return idle?.Count > 0 ? idle.Frames[0] : null;
+            var sprite = idle?.Count > 0 ? idle.Frames[0] : null;
+            if (idle?.RequiresLease == true && owner == null) return null;
+            owner?.BindSprite(sprite);
+            return sprite;
         }
 
         /// <summary>玩家 idle 单帧(跑步条首帧);缺则 null。</summary>
