@@ -46,9 +46,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test] public void DuplicateJoinIsBlockedAndDoesNotOptimisticallySetMembership()
         {
             Empty(); _client.Join(555); _client.Join(556);
-            Assert.That(_net.Calls.Count(x => x == MessageIds.JoinGuild), Is.EqualTo(1));
+            Assert.That(_net.Calls.Count(x => x == MessageIds.ApplyJoinGuild), Is.EqualTo(1));
             Assert.That(_client.Info, Is.Null);
-            _net.Reply(new JoinGuildResponse());
+            _net.Reply(new ApplyJoinGuildResponse());
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
             Assert.That(_client.Info, Is.Null);
             _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });

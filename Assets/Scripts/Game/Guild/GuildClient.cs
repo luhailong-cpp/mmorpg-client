@@ -115,8 +115,12 @@ namespace MmorpgClient.Game.Guild
         public void Join(ulong guildId)
         {
             if (!CanJoin() || guildId == 0) { Reject("请先读取帮会状态，已入帮时不能再加入。"); return; }
-            Request(MessageIds.JoinGuild, new JoinGuildRequest { PlayerId = PlayerId, GuildId = guildId },
-                JoinGuildResponse.Parser, response =>
+            // 服务端(帮会二期)已把「直接加入」rpc JoinGuild 删掉,换成申请制 ApplyJoinGuild:请求只带
+            // guild_id,身份取自会话。旧的 JoinGuild 消息号(19)已被服务端改判给别的 RPC,继续用它会打到
+            // 错的接口。这里只做最小适配(成功后照旧 Refresh,入帮要等对方审批);「申请已提交」的文案、
+            // 我的申请列表 / 撤回等 UI 属于帮会二期的客户端工作。
+            Request(MessageIds.ApplyJoinGuild, new ApplyJoinGuildRequest { GuildId = guildId },
+                ApplyJoinGuildResponse.Parser, response =>
                 { if (Accept(response.ErrorMessage)) Refresh(); });
         }
 

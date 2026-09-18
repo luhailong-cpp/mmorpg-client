@@ -97,6 +97,7 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(SceneSceneClientPlayerNotifyEnterSceneHandler.MessageId, mc => SceneSceneClientPlayerNotifyEnterSceneHandler.Dispatch(client, mc));
             client.OnNotify(SceneSceneClientPlayerNotifySceneInfoHandler.MessageId, mc => SceneSceneClientPlayerNotifySceneInfoHandler.Dispatch(client, mc));
             client.OnNotify(SceneSceneClientPlayerSceneInfoC2SHandler.MessageId, mc => SceneSceneClientPlayerSceneInfoC2SHandler.Dispatch(client, mc));
+            client.OnNotify(SceneSceneClientPlayerTravelToZoneHandler.MessageId, mc => SceneSceneClientPlayerTravelToZoneHandler.Dispatch(client, mc));
             client.OnNotify(SceneSkillClientPlayerListSkillsHandler.MessageId, mc => SceneSkillClientPlayerListSkillsHandler.Dispatch(client, mc));
             client.OnNotify(SceneSkillClientPlayerNotifySkillInterruptedHandler.MessageId, mc => SceneSkillClientPlayerNotifySkillInterruptedHandler.Dispatch(client, mc));
             client.OnNotify(SceneSkillClientPlayerNotifySkillUsedHandler.MessageId, mc => SceneSkillClientPlayerNotifySkillUsedHandler.Dispatch(client, mc));

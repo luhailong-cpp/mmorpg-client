@@ -22,14 +22,15 @@ public static partial class SessionReflection {
   static SessionReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvImcKDlNlc3Npb25E",
-          "ZXRhaWxzEhIKCnNlc3Npb25faWQYASABKA0SEQoJcGxheWVyX2lkGAIgASgE",
-          "EhQKDGdhdGVfbm9kZV9pZBgDIAEoDRIYChBnYXRlX2luc3RhbmNlX2lkGAQg",
-          "ASgJQg1aC2NvbW1vbi9iYXNlYgZwcm90bzM="));
+          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvIqABCg5TZXNzaW9u",
+          "RGV0YWlscxISCgpzZXNzaW9uX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEo",
+          "BBIUCgxnYXRlX25vZGVfaWQYAyABKA0SGAoQZ2F0ZV9pbnN0YW5jZV9pZBgE",
+          "IAEoCRIYChB0aWNrZXRfcGxheWVyX2lkGAUgASgEEh0KFXRpY2tldF90YXJn",
+          "ZXRfem9uZV9pZBgGIAEoDUINWgtjb21tb24vYmFzZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId", "TicketPlayerId", "TicketTargetZoneId" }, null, null, null, null)
         }));
   }
   #endregion
@@ -75,6 +76,8 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     playerId_ = other.playerId_;
     gateNodeId_ = other.gateNodeId_;
     gateInstanceId_ = other.gateInstanceId_;
+    ticketPlayerId_ = other.ticketPlayerId_;
+    ticketTargetZoneId_ = other.ticketTargetZoneId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -138,6 +141,36 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
   }
 
+  /// <summary>Field number for the "ticket_player_id" field.</summary>
+  public const int TicketPlayerIdFieldNumber = 5;
+  private ulong ticketPlayerId_;
+  /// <summary>
+  /// 重定向票据绑定(cross-zone-scene-travel.md CZ-8)。gate 验签通过后从 GateTokenPayload 的
+  /// player_id / target_zone_id 原样拷入;0 = 普通 AssignGate 票据(签票时还没登录)/ dev 旁路 /
+  /// 旧版 gate。主判定在 login EnterGame:持票者不符即拒;target_zone_id == 本 zone 时不按
+  /// home_zone 弹回。gate 只透传,不据此做业务决定。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TicketPlayerId {
+    get { return ticketPlayerId_; }
+    set {
+      ticketPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "ticket_target_zone_id" field.</summary>
+  public const int TicketTargetZoneIdFieldNumber = 6;
+  private uint ticketTargetZoneId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TicketTargetZoneId {
+    get { return ticketTargetZoneId_; }
+    set {
+      ticketTargetZoneId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -157,6 +190,8 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (PlayerId != other.PlayerId) return false;
     if (GateNodeId != other.GateNodeId) return false;
     if (GateInstanceId != other.GateInstanceId) return false;
+    if (TicketPlayerId != other.TicketPlayerId) return false;
+    if (TicketTargetZoneId != other.TicketTargetZoneId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -168,6 +203,8 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
     if (GateNodeId != 0) hash ^= GateNodeId.GetHashCode();
     if (GateInstanceId.Length != 0) hash ^= GateInstanceId.GetHashCode();
+    if (TicketPlayerId != 0UL) hash ^= TicketPlayerId.GetHashCode();
+    if (TicketTargetZoneId != 0) hash ^= TicketTargetZoneId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -202,6 +239,14 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(34);
       output.WriteString(GateInstanceId);
     }
+    if (TicketPlayerId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(TicketPlayerId);
+    }
+    if (TicketTargetZoneId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(TicketTargetZoneId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -228,6 +273,14 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(34);
       output.WriteString(GateInstanceId);
     }
+    if (TicketPlayerId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(TicketPlayerId);
+    }
+    if (TicketTargetZoneId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(TicketTargetZoneId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -249,6 +302,12 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (GateInstanceId.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(GateInstanceId);
+    }
+    if (TicketPlayerId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TicketPlayerId);
+    }
+    if (TicketTargetZoneId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TicketTargetZoneId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -273,6 +332,12 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (other.GateInstanceId.Length != 0) {
       GateInstanceId = other.GateInstanceId;
+    }
+    if (other.TicketPlayerId != 0UL) {
+      TicketPlayerId = other.TicketPlayerId;
+    }
+    if (other.TicketTargetZoneId != 0) {
+      TicketTargetZoneId = other.TicketTargetZoneId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -309,6 +374,14 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
           GateInstanceId = input.ReadString();
           break;
         }
+        case 40: {
+          TicketPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          TicketTargetZoneId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -342,6 +415,14 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
         }
         case 34: {
           GateInstanceId = input.ReadString();
+          break;
+        }
+        case 40: {
+          TicketPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          TicketTargetZoneId = input.ReadUInt32();
           break;
         }
       }

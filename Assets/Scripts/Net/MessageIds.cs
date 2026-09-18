@@ -8,6 +8,7 @@ namespace MmorpgClient.Net
     {
         public const uint AllocateAttributePoints =  168; // SceneAttributeClientPlayerAllocateAttributePoints
         public const uint AllocatePetPoints      =  186; // ScenePetClientPlayerAllocatePetPoints
+        public const uint ApplyJoinGuild         =  218; // GuildServiceApplyJoinGuild
         public const uint ApplyJoinTeam          =  206; // ClientPlayerTeamApplyJoinTeam
         public const uint AutoAllocateAttributePoints =  173; // SceneAttributeClientPlayerAutoAllocateAttributePoints
         public const uint AutoAllocatePetPoints  =  188; // ScenePetClientPlayerAutoAllocatePetPoints
@@ -38,7 +39,6 @@ namespace MmorpgClient.Net
         public const uint GmSetPlayerLevel       =  175; // SceneAttributeClientPlayerGmSetPlayerLevel
         public const uint HandleApplication      =  208; // ClientPlayerTeamHandleApplication
         public const uint InviteToTeam           =  201; // ClientPlayerTeamInviteToTeam
-        public const uint JoinGuild              =   19; // GuildServiceJoinGuild
         public const uint JoinQueue              =  157; // MatchServiceJoinQueue
         public const uint JubaozhaiBrowseListings =  196; // ClientPlayerJubaozhaiBrowseListings
         public const uint JubaozhaiGetListingDetail =  197; // ClientPlayerJubaozhaiGetListingDetail
@@ -106,6 +106,7 @@ namespace MmorpgClient.Net
         public const uint TeleportRequest        =  136; // SceneMovementClientPlayerTeleportRequest
         public const uint TipToClient            =   23; // SceneClientPlayerCommonSendTipToClient
         public const uint TransferLeader         =  212; // ClientPlayerTeamTransferLeader
+        public const uint TravelToZone           =  226; // SceneSceneClientPlayerTravelToZone
         public const uint WatchBattle            =  163; // MatchServiceWatchBattle
     }
 }

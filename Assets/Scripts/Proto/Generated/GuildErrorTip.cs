@@ -23,15 +23,21 @@ public static partial class GuildErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZ3VpbGRfZXJyb3JfdGlwLnBy",
-          "b3RvKuECCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
+          "b3RvKtYECgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
           "dWlsZEFscmVhZHlJbkd1aWxkELBtEhMKDmtHdWlsZE5vdEZvdW5kELFtEhUK",
           "EGtHdWlsZE5vdEluR3VpbGQQsm0SDwoKa0d1aWxkRnVsbBCzbRIaChVrR3Vp",
           "bGRMZWFkZXJDYW50TGVhdmUQtG0SFAoPa0d1aWxkTm90TGVhZGVyELVtEhcK",
           "EmtHdWlsZE5vUGVybWlzc2lvbhC2bRIUCg9rR3VpbGROb3RSYW5rZWQQt20S",
           "GwoWa0d1aWxkSWRHZW5VbmF2YWlsYWJsZRC4bRIWChFrR3VpbGROYW1lSW52",
           "YWxpZBC5bRIUCg9rR3VpbGROYW1lVGFrZW4Qum0SHgoZa0d1aWxkQW5ub3Vu",
-          "Y2VtZW50VG9vTG9uZxC7bRIaChVrR3VpbGRIb21lWm9uZVVua25vd24QvG1C",
-          "JAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "Y2VtZW50VG9vTG9uZxC7bRIaChVrR3VpbGRIb21lWm9uZVVua25vd24QvG0S",
+          "FgoRa0d1aWxkWm9uZU1lcmdpbmcQvW0SGgoVa0d1aWxkVGFyZ2V0Tm90TWVt",
+          "YmVyEL5tEhsKFmtHdWlsZENhbm5vdFRhcmdldFNlbGYQv20SFQoQa0d1aWxk",
+          "UmFua1Rvb0xvdxDAbRIXChJrR3VpbGRPZmZpY2VyTGltaXQQwW0SHgoZa0d1",
+          "aWxkQXBwbGljYXRpb25Ob3RGb3VuZBDCbRIbChZrR3VpbGRBcHBsaWNhdGlv",
+          "bkxpbWl0EMNtEh8KGmtHdWlsZEFwcGxpY2F0aW9uUXVldWVGdWxsEMRtEhQK",
+          "D2tHdWlsZEJ1c3lSZXRyeRDFbUIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJh",
+          "dGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::guild_error), }, null, null));
@@ -55,6 +61,15 @@ public enum guild_error {
   [pbr::OriginalName("kGuildNameTaken")] KGuildNameTaken = 14010,
   [pbr::OriginalName("kGuildAnnouncementTooLong")] KGuildAnnouncementTooLong = 14011,
   [pbr::OriginalName("kGuildHomeZoneUnknown")] KGuildHomeZoneUnknown = 14012,
+  [pbr::OriginalName("kGuildZoneMerging")] KGuildZoneMerging = 14013,
+  [pbr::OriginalName("kGuildTargetNotMember")] KGuildTargetNotMember = 14014,
+  [pbr::OriginalName("kGuildCannotTargetSelf")] KGuildCannotTargetSelf = 14015,
+  [pbr::OriginalName("kGuildRankTooLow")] KGuildRankTooLow = 14016,
+  [pbr::OriginalName("kGuildOfficerLimit")] KGuildOfficerLimit = 14017,
+  [pbr::OriginalName("kGuildApplicationNotFound")] KGuildApplicationNotFound = 14018,
+  [pbr::OriginalName("kGuildApplicationLimit")] KGuildApplicationLimit = 14019,
+  [pbr::OriginalName("kGuildApplicationQueueFull")] KGuildApplicationQueueFull = 14020,
+  [pbr::OriginalName("kGuildBusyRetry")] KGuildBusyRetry = 14021,
 }
 
 #endregion
