@@ -19,10 +19,16 @@ namespace MmorpgClient.UI.Ugui.Guild
         public event Action RefreshRequested;
         public event Action<uint> RankRequested;
         public event Action<string> CreateRequested, AnnouncementRequested;
-        public event Action<ulong> JoinRequested;
+        // 申请制取代“加入”:排行页只发申请 / 撤回,入帮与否由帮主或长老审批。
+        public event Action<ulong> ApplyRequested, CancelApplicationRequested, KickRequested, TransferRequested;
+        public event Action<ulong, uint> RoleRequested;
+        public event Action<ulong, bool> ReviewRequested;
+        public event Action ApplicationsRequested;
         public event Action LeaveRequested, DisbandRequested;
         public bool IsVisible => _root.gameObject.activeSelf;
         public bool ModalVisible => _modal != null && _modal.gameObject.activeSelf;
+        /// <summary>申请视图是否正在显示；GuildClient.DrainQueued 据此决定重拉列表还是只刷角标。</summary>
+        public bool ShowingApplications => IsVisible && Page == GuildPage.Members && _showApplications;
         public GuildPage Page { get; private set; }
         public const int MembersPerPage = 5;
         private readonly RectTransform _root, _body, _frame, _rail;
@@ -37,6 +43,9 @@ namespace MmorpgClient.UI.Ugui.Guild
         private int _memberPage;
         private bool _onlineOnly;
         private string _memberSearch = "";
+        // 成员页的第二个视图(入帮申请审批)。换帮、换角都要清零,否则会带着上一个帮会的翻页进来。
+        private bool _showApplications;
+        private int _applicationPage;
         private ulong _guildId;
 
         public GuildWindow(UnityEngine.Transform parent)
@@ -79,7 +88,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         public void SetClient(GuildClient client)
         {
             ulong guildId = client?.Info?.GuildId ?? 0;
-            if (_guildId != guildId) { CloseModal(); _memberPage = 0; }
+            if (_guildId != guildId) { CloseModal(); _memberPage = 0; _showApplications = false; _applicationPage = 0; }
             _guildId = guildId; _client = client;
             if (IsVisible) Render();
         }
@@ -104,6 +113,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         {
             Hide(); _client = null; _guildId = 0;
             Page = GuildPage.Overview; _memberPage = 0; _onlineOnly = false; _memberSearch = "";
+            _showApplications = false; _applicationPage = 0;
             Clear(_body); Clear(_rail);
         }
         private void Render()
@@ -183,7 +193,11 @@ namespace MmorpgClient.UI.Ugui.Guild
                 NamedButton(_body, "OpenCreateGuild", "创建帮会", 412, 354, 350, 88, ShowCreate,
                     enabled: _client?.HasLoaded == true && !Busy);
                 Line(_body, "EmptyStateRule", 24, 504, 1460);
-                Text(_body, "成员信息、公告和排行将随帮会更新。", 24, 532, 1460, 55, 28, Muted);
+                // MyApplications 为 null 只表示“还没拉过”,不能当成“没有申请”:此时仍显示原文案。
+                var pending = _client?.MyApplications;
+                Text(_body, pending != null && pending.Count > 0
+                    ? "已提交 " + pending.Count + " 份入帮申请，等待审批中。"
+                    : "成员信息、公告和排行将随帮会更新。", 24, 532, 1460, 55, 28, Muted);
                 return;
             }
             Heading(_body, "同道相聚", 0, 0, 950, 64, 43);
@@ -193,7 +207,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             foreach (var member in info.Members)
             {
                 if (member.Online) online++;
-                if (member.PlayerId == _client.PlayerId) contribution = member.Contribution;
+                if (member.PlayerId == _client.PlayerId) contribution = member.ContributionTotal;
             }
             OverviewMetric("GuildMemberCount", "帮会成员", info.Members.Count + " / " + info.MaxMembers, 0);
             OverviewMetric("GuildOnlineCount", "当前在线", online + " 位", 512);
@@ -232,6 +246,37 @@ namespace MmorpgClient.UI.Ugui.Guild
         {
             var info = _client?.Info;
             if (info == null) { RenderOverview(); return; }
+            // 身份被降为帮众后申请视图立刻失效(服务端也会拒),自动落回成员列表。
+            bool applications = _showApplications && _client.IsOfficerOrLeader;
+            RenderMemberToolbar(info, applications);
+            if (applications) RenderApplications();
+            else RenderMemberList(info);
+        }
+        private void RenderMemberToolbar(GuildInfo info, bool applications)
+        {
+            NamedButton(_body, "OnlineGuildMembers", _onlineOnly ? "已选：仅在线" : "显示全部成员", 0, 0, 295, 66,
+                () => { _onlineOnly = !_onlineOnly; _memberPage = 0; Render(); }, _onlineOnly, fontSize: 27);
+            Text(_body, "按编号查找", 316, 3, 230, 58, 27, Muted);
+            var search = Input(_body, "GuildMemberSearch", 556, 0, 470, 66, "输入完整编号或部分数字", 20);
+            search.SetTextWithoutNotify(_memberSearch);
+            NamedButton(_body, "SearchGuildMembers", "查找", 1040, 0, 196, 66,
+                () => { _memberSearch = search.text.Trim(); _memberPage = 0; Render(); }, fontSize: 27);
+            if (!_client.IsOfficerOrLeader) return;
+            // 角标数字来自 GetPlayerGuild / 写响应带回的快照;收到 ApplicationReceived 推送且列表不可见时,
+            // GuildClient.DrainQueued 会改发一次 Refresh 让这个数字自己更新(§17.3)。
+            NamedButton(_body, "GuildApplicationsToggle",
+                applications ? "返回成员" : "入帮申请 " + info.PendingApplicationCount, 1252, 0, 256, 66,
+                () =>
+                {
+                    _showApplications = !_showApplications;
+                    if (_showApplications) _applicationPage = 0;
+                    Render();
+                    // 切进申请视图才拉列表:关着窗口或只看成员时不该占用唯一的在途请求位。
+                    if (_showApplications) ApplicationsRequested?.Invoke();
+                }, enabled: !Busy, fontSize: 27);
+        }
+        private void RenderMemberList(GuildInfo info)
+        {
             var members = new List<GuildMember>();
             foreach (var member in info.Members)
                 if ((!_onlineOnly || member.Online) && (string.IsNullOrEmpty(_memberSearch) || member.PlayerId.ToString().Contains(_memberSearch)))
@@ -239,26 +284,82 @@ namespace MmorpgClient.UI.Ugui.Guild
             members.Sort((a, b) => { int role = b.Role.CompareTo(a.Role); return role != 0 ? role : a.PlayerId.CompareTo(b.PlayerId); });
             int pages = Math.Max(1, (members.Count + MembersPerPage - 1) / MembersPerPage);
             _memberPage = Math.Max(0, Math.Min(_memberPage, pages - 1));
-            NamedButton(_body, "OnlineGuildMembers", _onlineOnly ? "已选：仅在线" : "显示全部成员", 0, 0, 295, 66,
-                () => { _onlineOnly = !_onlineOnly; _memberPage = 0; Render(); }, _onlineOnly, fontSize: 27);
-            Text(_body, "按角色编号查找", 344, 3, 300, 58, 27, Muted);
-            var search = Input(_body, "GuildMemberSearch", 640, 0, 575, 66, "输入完整编号或部分数字", 20);
-            search.SetTextWithoutNotify(_memberSearch);
-            NamedButton(_body, "SearchGuildMembers", "查找", 1236, 0, 272, 66,
-                () => { _memberSearch = search.text.Trim(); _memberPage = 0; Render(); }, fontSize: 27);
             if (members.Count == 0)
                 Text(_body, "没有符合条件的同道。", 30, 210, 1400, 100, 38, Muted, alignment: TextAlignmentOptions.Center);
             for (int i = 0; i < MembersPerPage && _memberPage * MembersPerPage + i < members.Count; i++)
             {
                 var member = members[_memberPage * MembersPerPage + i];
                 float y = 86 + i * 86;
+                ulong id = member.PlayerId;
+                // B2 的 name 恒空(B3b 起由 data_service 填),空名一律回落到编号,确认框与列表用同一份文案。
+                string display = string.IsNullOrEmpty(member.Name) ? "道友 · " + id : member.Name;
                 GuildField(_body, "GuildListRow", 0, y, 1508, 78);
-                Text(_body, "道友 · " + member.PlayerId + (member.PlayerId == _client.PlayerId ? "（我）" : ""), 90, y + 12, 600, 56, 29);
-                Text(_body, RoleName(member.Role), 724, y + 12, 205, 56, 29, Gold);
-                Text(_body, "贡献  " + member.Contribution, 950, y + 12, 300, 56, 28, Muted);
-                Text(_body, member.Online ? "在线" : "离线", 1330, y + 10, 162, 56, 28, member.Online ? Ink : Muted);
+                Text(_body, display + (id == _client.PlayerId ? "（我）" : ""), 90, y + 12, 420, 56, 29);
+                Text(_body, RoleName(member.Role), 524, y + 12, 150, 56, 29, Gold);
+                Text(_body, "贡献  " + member.ContributionTotal, 686, y + 12, 260, 56, 28, Muted);
+                Text(_body, member.Online ? "在线" : "离线", 958, y + 10, 120, 56, 28, member.Online ? Ink : Muted);
+                if (_client.CanAssignRoles && id != _client.PlayerId)
+                {
+                    if (member.Role == GuildRoles.Member)
+                        NamedButton(_body, "GuildMemberPromote_" + id, "任长老", 1096, y + 9, 128, 60,
+                            () => Confirm("确认任命长老", "任命 " + display + " 为长老。当前长老 " + info.OfficerCount + "/" + info.MaxOfficers + "。",
+                                () => RoleRequested?.Invoke(id, GuildRoles.Officer)),
+                            enabled: !Busy && info.OfficerCount < info.MaxOfficers, fontSize: 26);
+                    else if (member.Role == GuildRoles.Officer)
+                        NamedButton(_body, "GuildMemberDemote_" + id, "免长老", 1096, y + 9, 128, 60,
+                            () => Confirm("确认免去长老", display + " 将恢复为帮众。",
+                                () => RoleRequested?.Invoke(id, GuildRoles.Member)),
+                            enabled: !Busy, fontSize: 26);
+                    NamedButton(_body, "GuildMemberTransfer_" + id, "转让", 1232, y + 9, 128, 60,
+                        () => Confirm("确认转让帮主", "转让后 " + display + " 成为帮主，你将成为长老（长老已满则为帮众）。此操作无法撤回。",
+                            () => TransferRequested?.Invoke(id)), enabled: !Busy, fontSize: 26);
+                }
+                // 服务端仍按 MySQL 里的职位复核;这里只是提前收起点不动的按钮。
+                if (_client.CanKick(member))
+                    NamedButton(_body, "GuildMemberKick_" + id, "请离", 1368, y + 9, 128, 60,
+                        () => Confirm("确认请离成员", display + " 将被请离帮会。", () => KickRequested?.Invoke(id)),
+                        enabled: !Busy, fontSize: 26);
             }
+            // 按钮不出现或点不动时要说清原因,别让玩家以为界面坏了。三种情形互斥,只会出现一条。
+            string hint = _client.CanAssignRoles && info.OfficerCount >= info.MaxOfficers
+                ? "长老已满（" + info.OfficerCount + "/" + info.MaxOfficers + "），需先免去现有长老才能任命。"
+                : _client.IsOfficerOrLeader && !_client.CanAssignRoles
+                    ? "长老可请离帮众；任免长老与转让帮主仅帮主可用。"
+                    : !_client.IsOfficerOrLeader ? "帮众可查看同道名册；管理操作仅帮主或长老可用。" : null;
+            if (hint != null) Text(_body, hint, 0, 545, 800, 64, 28, Muted).name = "GuildMemberActionHint";
             Pager(_body, "Members", _memberPage + 1, pages, delta => { _memberPage += delta; Render(); }, true);
+        }
+        /// <summary>成员页的第二个视图：本帮待审入帮申请，仅长老 / 帮主可见。</summary>
+        private void RenderApplications()
+        {
+            var applicants = _client.Applicants;
+            int count = applicants?.Count ?? 0;
+            if (applicants == null)
+                Text(_body, "正在读取入帮申请…", 30, 210, 1400, 100, 38, Muted, alignment: TextAlignmentOptions.Center);
+            else if (count == 0)
+                Text(_body, "暂无待审申请。", 30, 210, 1400, 100, 38, Muted, alignment: TextAlignmentOptions.Center);
+            int pages = Math.Max(1, (count + MembersPerPage - 1) / MembersPerPage);
+            _applicationPage = Math.Max(0, Math.Min(_applicationPage, pages - 1));
+            long nowMs = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            for (int i = 0; i < MembersPerPage && _applicationPage * MembersPerPage + i < count; i++)
+            {
+                var applicant = applicants[_applicationPage * MembersPerPage + i];
+                float y = 86 + i * 86;
+                ulong id = applicant.PlayerId;
+                GuildField(_body, "GuildListRow", 0, y, 1508, 78);
+                Text(_body, string.IsNullOrEmpty(applicant.Name) ? "道友 · " + id : applicant.Name, 90, y + 12, 520, 56, 29);
+                Text(_body, applicant.Online ? "在线" : "离线", 630, y + 12, 140, 56, 28, applicant.Online ? Ink : Muted);
+                // expire_ms 是服务端时钟,本地时钟有偏差也只影响这一行的展示;服务端过期判定与它无关。
+                // 不足一小时按 1 小时显示,避免出现“剩余 0 小时”。
+                Text(_body, "剩余 " + Math.Max(1, (int)Math.Ceiling(((long)applicant.ExpireMs - nowMs) / 3600000.0)) + " 小时",
+                    790, y + 12, 280, 56, 28, Muted);
+                // 审批可反复进行(拒绝后对方还能再申请),不加确认框。
+                NamedButton(_body, "GuildApplicationReject_" + id, "拒绝", 1100, y + 7, 190, 64,
+                    () => ReviewRequested?.Invoke(id, false), enabled: !Busy, fontSize: 27);
+                NamedButton(_body, "GuildApplicationApprove_" + id, "同意", 1306, y + 7, 190, 64,
+                    () => ReviewRequested?.Invoke(id, true), true, !Busy, fontSize: 27);
+            }
+            Pager(_body, "Applications", _applicationPage + 1, pages, delta => { _applicationPage += delta; Render(); }, true);
         }
         private void RenderRanking()
         {
@@ -278,8 +379,19 @@ namespace MmorpgClient.UI.Ugui.Guild
                     Text(_body, "Lv." + entry.Level + " · " + entry.MemberCount + " 人", 690, y + 12, 320, 56, 28, Muted);
                     Text(_body, "积分 " + entry.Score, 1020, y + 12, 260, 56, 26, Muted);
                     ulong id = entry.GuildId; string name = entry.Name;
-                    NamedButton(_body, "JoinGuild_" + id, _client?.Info?.GuildId == id ? "我的帮会" : "加入",
-                        1280, y + 7, 210, 64, () => Confirm("确认加入帮会", "帮会名称：" + name + "\n确认加入此帮会，与同道共赴山海？", () => JoinRequested?.Invoke(id)),
+                    // MyApplications 未加载时 HasApplied 恒为 false,按钮先显示“申请”;Browse 的回调已经
+                    // 排队拉本人申请(§17.4),下一帧 DrainQueued 拉回来后这里会自己换成“撤回申请”。
+                    bool applied = _client?.HasApplied(id) == true;
+                    Action click;
+                    if (applied)
+                        click = () => Confirm("确认撤回申请", "帮会名称：" + name + "\n撤回后可重新申请。",
+                            () => CancelApplicationRequested?.Invoke(id));
+                    else
+                        click = () => Confirm("确认申请加入", "帮会名称：" + name + "\n申请需帮主或长老审批，逾期未处理将自动失效。",
+                            () => ApplyRequested?.Invoke(id));
+                    NamedButton(_body, "ApplyGuild_" + id,
+                        _client?.Info?.GuildId == id ? "我的帮会" : applied ? "撤回申请" : "申请",
+                        1280, y + 7, 210, 64, click,
                         true, enabled: _client?.HasLoaded == true && _client.Info == null && !Busy, fontSize: 27);
                 }
             int page = (int)(rank?.Page ?? 1), pageSize = (int)Math.Max(1, rank?.PageSize ?? 5);
@@ -421,6 +533,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             var button = Button(parent, label, x, y, w, h, action, primary, enabled, key, fontSize);
             button.name = name; return button;
         }
-        public static string RoleName(uint role) => role switch { 1 => "长老", 2 => "副帮主", 3 => "帮主", _ => "帮众" };
+        // 2(副帮主)不启用,与 GuildRoles.Rank 一致落到默认的“帮众”。
+        public static string RoleName(uint role) => role switch { 1 => "长老", 3 => "帮主", _ => "帮众" };
     }
 }

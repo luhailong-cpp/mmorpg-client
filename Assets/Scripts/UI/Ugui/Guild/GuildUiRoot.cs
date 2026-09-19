@@ -60,7 +60,14 @@ namespace MmorpgClient.UI.Ugui.Guild
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
             _window.RankRequested += page => { if (_available) _client?.Browse(page, ZoneId); };
             _window.CreateRequested += name => { if (_available) _client?.Create(name, ZoneId); };
-            _window.JoinRequested += id => { if (_available) _client?.Join(id); };
+            // 申请制:排行页不再直接入帮,改为提交 / 撤回申请,由帮主或长老审批。
+            _window.ApplyRequested += id => { if (_available) _client?.ApplyToJoin(id); };
+            _window.CancelApplicationRequested += id => { if (_available) _client?.CancelApplication(id); };
+            _window.RoleRequested += (id, role) => { if (_available) _client?.SetMemberRole(id, role); };
+            _window.KickRequested += id => { if (_available) _client?.Kick(id); };
+            _window.TransferRequested += id => { if (_available) _client?.TransferLeader(id); };
+            _window.ReviewRequested += (id, approve) => { if (_available) _client?.Review(id, approve); };
+            _window.ApplicationsRequested += () => { if (_available) _client?.LoadApplications(); };
             _window.AnnouncementRequested += text => { if (_available) _client?.SaveAnnouncement(text); };
             _window.LeaveRequested += () => { if (_available) _client?.Leave(); };
             _window.DisbandRequested += () => { if (_available) _client?.Disband(); };
@@ -86,6 +93,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             if (!_available) { HidePanel(); return; }
+            // NotifyGuildChanged 只置排队标志;真正的拉取在这里按帧消费,一帧最多发一个请求,
+            // 不让每条推送都触发一次全量 Refresh。窗口关着不拉,Toggle() 打开时已有 Refresh()。
+            if (_window.IsVisible) _client?.DrainQueued(_window.ShowingApplications);
             var selected = EventSystem.current?.currentSelectedGameObject;
             bool typing = selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true;
             if (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
