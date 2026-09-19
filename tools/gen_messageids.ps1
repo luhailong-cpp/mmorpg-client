@@ -42,6 +42,23 @@ $whitelist = @{
     "GuildServiceGetGuildRank" = "GetGuildRank"
     "GuildServiceGetGuildRankByGuild" = "GetGuildRankByGuild"
 
+    # 帮会二期:管理与审批(proto/guild/guild.proto,设计 docs/design/guild-phase2/02-management.md §16)。
+    # 申请制入口 GuildServiceApplyJoinGuild 已在上面那段(它是 JoinGuild 被删后原地替换的那一行),
+    # **不要在这里再写一遍** —— PowerShell 的 @{} 字面量遇到重复键会直接抛
+    # "Duplicate keys are not allowed in hash literals",整个脚本跑不起来。
+    # 注意 19 号消息 id 由 JoinGuild 易主给了 SetGuildMemberRole:这里只写方法名,
+    # 号从 proto/message_id.txt 现场读,不写死(当前 19 / 216..223)。
+    "GuildServiceSetGuildMemberRole"       = "SetGuildMemberRole"
+    "GuildServiceKickGuildMember"          = "KickGuildMember"
+    "GuildServiceTransferGuildLeader"      = "TransferGuildLeader"
+    "GuildServiceCancelGuildApplication"   = "CancelGuildApplication"
+    "GuildServiceListMyGuildApplications"  = "ListMyGuildApplications"
+    "GuildServiceListGuildApplications"    = "ListGuildApplications"
+    "GuildServiceReviewGuildApplication"   = "ReviewGuildApplication"
+    # 推送占位:S→C 只收不发(服务端白名单拒绝客户端调用),客户端用 GameClient.OnNotify 注册。
+    # 漏配这一条不会报错,只会少生成一个常量、订阅代码编不过(TravelToZone 就踩过)。
+    "GuildServiceNotifyGuildChanged"       = "NotifyGuildChanged"
+
     # 聚宝斋(proto/trade/jubaozhai.proto, service ClientPlayerJubaozhai)。
     # 内部 TradeAdmin(SeedListing)刻意不列:gate 不转发,客户端也不应持有其消息号。
     "ClientPlayerJubaozhaiBrowseListings"          = "JubaozhaiBrowseListings"
