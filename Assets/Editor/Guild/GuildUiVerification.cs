@@ -43,6 +43,9 @@ public static class GuildUiVerification
         _previewClient.Changed += () => window.SetClient(_previewClient);
         window.RankRequested += page => _previewClient.Browse(page);
         window.RefreshRequested += () => _previewClient.Refresh();
+        // 只接申请列表这一条写外的读请求：FixtureTransport 有对应分支，点开“入帮申请”能看到样例。
+        // 任免 / 请离 / 审批等写操作故意不接——替身会以 error 回包，反而把预览锁进“需重新登录”。
+        window.ApplicationsRequested += () => _previewClient.LoadApplications();
         _previewClient.Refresh(); window.SetClient(_previewClient); window.Show();
         Badge(design);
         foreach (var child in _preview.GetComponentsInChildren<UnityEngine.Transform>(true)) child.gameObject.hideFlags = HideFlags.DontSave;
@@ -61,8 +64,9 @@ public static class GuildUiVerification
     public static void CaptureAll()
     {
         Capture(2560, 1080); Capture(1920, 1080);
+        // 11 屏 × 2 分辨率：六个页签 + 公告编辑 + 未入帮 + 长帮名确认 + 需重连 + 入帮申请审批。
         File.WriteAllText(Path.Combine(OutputDirectory, "capture.json"),
-            "{\"status\":\"passed\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":20,\"liveServerVerification\":false}");
+            "{\"status\":\"passed\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":22,\"liveServerVerification\":false}");
         Debug.Log("Guild UI capture completed: " + OutputDirectory);
     }
 
@@ -103,6 +107,8 @@ public static class GuildUiVerification
             var net = new FixtureTransport(); client = new GuildClient(net);
             client.Changed += () => window.SetClient(client);
             window.RankRequested += page => client.Browse(page);
+            // 申请视图的数据要真走一次 ListGuildApplications，否则那一屏只会停在“正在读取入帮申请…”。
+            window.ApplicationsRequested += () => client.LoadApplications();
             client.Refresh(); window.SetClient(client); Badge(design);
             void Shoot(string name)
             {
@@ -121,11 +127,18 @@ public static class GuildUiVerification
             foreach (var button in canvasObject.GetComponentsInChildren<Button>())
                 if (button.name == "EditGuildAnnouncement") { button.onClick.Invoke(); break; }
             Shoot("07-announcement");
+            // 入帮申请审批屏：先关掉公告弹窗，再进成员页切到申请视图。
+            // 点击 GuildApplicationsToggle 会同步触发 ApplicationsRequested → LoadApplications（替身是
+            // 同步回包），所以这里不需要等帧，Shoot 时列表已经在了。
+            window.Back(); window.Show(GuildPage.Members);
+            foreach (var button in canvasObject.GetComponentsInChildren<Button>())
+                if (button.name == "GuildApplicationsToggle") { button.onClick.Invoke(); break; }
+            Shoot("11-applications");
             window.Back(); net.HasGuild = false; client.Reset(); client.Refresh(); window.Show();
             Shoot("08-empty");
             net.LongName = true; window.Show(GuildPage.Ranking);
             foreach (var button in canvasObject.GetComponentsInChildren<Button>())
-                if (button.name == "JoinGuild_88001") { button.onClick.Invoke(); break; }
+                if (button.name == "ApplyGuild_88001") { button.onClick.Invoke(); break; }
             Shoot("09-long-name-confirmation"); window.Back();
             net.HasGuild = true; client.Refresh(); net.FailNext = true; client.Refresh(); window.Show();
             Shoot("10-reconnect-required");
@@ -173,15 +186,34 @@ public static class GuildUiVerification
                     Score = 88600 - i * 4200, Rank = (uint)(i + 1) });
                 response = ranks;
             }
+            else if (id == MessageIds.ListGuildApplications)
+            {
+                // 样例申请人：1 小时前提交、48 小时后过期，申请视图那一列固定显示“剩余 48 小时”；
+                // 只有第 1 位在线，好让在线 / 离线两种样式同屏出现。
+                long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                var applications = new ListGuildApplicationsResponse();
+                for (ulong i = 0; i < 3; i++)
+                    applications.Applicants.Add(new GuildApplicantView
+                    {
+                        PlayerId = 20001 + i, Online = i == 0,
+                        ApplyMs = (ulong)(now - 3600000L), ExpireMs = (ulong)(now + 48L * 3600000L)
+                    });
+                response = applications;
+            }
+            // 样例账号自己没有在申请别的帮会：排行页按钮保持“申请”，不会翻成“撤回申请”。
+            else if (id == MessageIds.ListMyGuildApplications) response = new ListMyGuildApplicationsResponse();
             else { error("离线验收不执行服务端操作"); return; }
             success((T)response);
         }
         private static GuildInfo Fixture()
         {
+            // 样例账号(10001)是帮主：成员页才会出现任免 / 转让 / 请离三槽。
+            // 长老 1 人、上限 6 人 → “任长老”按钮可点(未到上限)；待审 3 份 → 角标显示“入帮申请 3”。
             var info = new GuildInfo { GuildId = 88001, Name = "清风明月", LeaderId = 10001, Level = 5, MaxMembers = 50,
-                Announcement = "同道相逢，皆是有缘。\n\n愿每一盏灯，都照亮归家的路；愿每一次同行，都不负山海与明月。\n\n帮会事务请与帮主、长老联系。", ZoneId = 1 };
+                Announcement = "同道相逢，皆是有缘。\n\n愿每一盏灯，都照亮归家的路；愿每一次同行，都不负山海与明月。\n\n帮会事务请与帮主、长老联系。", ZoneId = 1,
+                OfficerCount = 1, MaxOfficers = 6, PendingApplicationCount = 3 };
             for (ulong i = 0; i < 12; i++) info.Members.Add(new GuildMember { PlayerId = 10001 + i,
-                Role = i == 0 ? 3u : i == 1 ? 1u : 0u, Contribution = 3560 - i * 130, Online = i < 7 });
+                Role = i == 0 ? 3u : i == 1 ? 1u : 0u, ContributionTotal = 3560 - i * 130, Online = i < 7 });
             return info;
         }
     }

@@ -228,6 +228,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _net.Reply(new ReviewGuildApplicationResponse { Guild = Fixture() });
             // 审批改的是别人的在册状态，本帮快照回带了，但待审列表只能重拉。
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListGuildApplications));
+            // 审批结果必须活过列表刷新:Request 发出时会同步写“正在读取帮会…”,
+            // 只断言“最后发的是哪条消息”看不出文案被盖掉(这正是它曾经被盖掉的原因)。
+            Assert.That(_client.Status, Does.Contain("已同意"));
         }
 
         // ── 推送（NotifyGuildChanged）与排队重拉 ────────────────────────
