@@ -914,11 +914,36 @@ namespace MmorpgClient.Game
         // 而在途状态必须由本类收口(msg 124 / msg 23 / 断线 / Tick 都在这里),且不依赖任何新符号。
 
         /// <summary>
-        /// 传送失败的兜底文案。服务端的 kZoneTravel* 码要等导表发号、且客户端把 scene_error_tip 收进
-        /// tools/gen_proto.ps1 之后才有枚举可映射;在那之前一律只报裸编号。
-        /// **不许在客户端写 tip 数字常量**(号由导表器发,手抄的数字下次导表就可能对不上)。
+        /// 传送失败码 → 给人看的文案。码只写枚举名、不写数字:号由服务端导表器(data/tip/Tip.xlsx)发,
+        /// 手抄的数字下次导表就可能对不上(AGENTS.md §7.5)。枚举来自
+        /// generated/code/proto/tip/scene_error_tip.proto,已收进 tools/gen_proto.ps1。
+        /// 认不出的码退回裸编号 —— 宁可显示得难看,也不要编一个可能是错的原因。
         /// </summary>
-        public static string DescribeTravelTip(uint tipId) => $"传送失败(tip={tipId})";
+        public static string DescribeTravelTip(uint tipId) => tipId switch
+        {
+            (uint)scene_error.KZoneTravelTargetZoneNotFound => "目标区不存在或未开放。",
+            (uint)scene_error.KZoneTravelInBattle => "战斗中无法传送,请先结束战斗。",
+            (uint)scene_error.KZoneTravelInTeam => "队伍中无法跨区传送,请先退出队伍。",
+            (uint)scene_error.KZoneTravelTargetBusy => "目标区暂时繁忙,请稍后再试。",
+            (uint)scene_error.KEnterSceneFailed => "进入场景失败,请稍后再试。",
+            _ => $"传送失败(tip={tipId})",
+        };
+
+        /// <summary>
+        /// 这条 tip 是不是"这次传送没成"。受理之后服务端只会用这几个码报失败:跨区走
+        /// kZoneTravelTargetBusy、同区换图走 kEnterSceneFailed,同步拒绝的那几个码则走响应体
+        /// (见 ZoneTravelClient),为省心一并认下。
+        ///
+        /// 为什么不是"在途期间收到任何 tip 都算失败":那样一条**无关**的 tip(别的系统推的、限流的)
+        /// 会把一次其实成功的传送先报成失败,紧接着玩家又被搬过去 —— 正是别处费力避免的
+        /// "先报失败、后传送成功"。认不出的码不在这里下结论,交给调用方自己的超时预算兜底。
+        /// </summary>
+        public static bool IsTravelFailureTip(uint tipId) =>
+            tipId == (uint)scene_error.KZoneTravelTargetZoneNotFound ||
+            tipId == (uint)scene_error.KZoneTravelInBattle ||
+            tipId == (uint)scene_error.KZoneTravelInTeam ||
+            tipId == (uint)scene_error.KZoneTravelTargetBusy ||
+            tipId == (uint)scene_error.KEnterSceneFailed;
 
         /// <summary>
         /// 进入"传送在途"。返回 null = 放行,否则是给人看的拒绝原因。只给 <see cref="ZoneTravelClient"/> 用。
@@ -1429,15 +1454,9 @@ namespace MmorpgClient.Game
             {
                 var tip = TipInfoMessage.Parser.ParseFrom(mc.SerializedMessage);
                 Log($"[tip] id={tip.Id}");
-                // 传送在途时收到的 tip 一律当作"这次传送没成"(服务端此时已解冻,玩家留在原地)。
-                // 判得宽是刻意的:在途期间玩家被冻结、地图窗又挡着输入,几乎不会有别的 tip;
-                // 而专用码的枚举客户端现在还没有(见 DescribeTravelTip),没法按码收窄。
-                // 等 scene_error_tip 收进 gen_proto.ps1 之后,这里应改成只认 kZoneTravel* 与 kEnterSceneFailed。
-                if (_travelPending)
-                {
-                    _travelPending = false;
-                    Status(DescribeTravelTip(tip.Id));
-                }
+                // 传送在途时收到**传送失败码**才算"这次传送没成"(服务端此时已解冻,玩家留在原地);
+                // 别的 tip 放过去,由调用方的预算超时兜底。判据见 IsTravelFailureTip。
+                if (IsTravelFailureTip(tip.Id)) EndZoneTravel(DescribeTravelTip(tip.Id));
                 OnServerTip?.Invoke(tip);
             });
 

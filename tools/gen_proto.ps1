@@ -58,6 +58,10 @@ $files = @(
     "proto/scene/player_movement.proto",
     "proto/scene/player_lifecycle.proto",
     "proto/scene/client_player_common.proto",
+    # 场景域的 tip 码(含跨 zone 传送的 kZoneTravel* 与 kEnterSceneFailed)。
+    # 客户端要按码分辨「传送被拒」和别的 tip,就必须有这份枚举 —— 缺了它只能显示裸编号,
+    # 而 AGENTS §7.5 禁止在客户端手抄 tip 数字(号由导表器发,下次导表就可能对不上)。
+    "generated/code/proto/tip/scene_error_tip.proto",
 
     # 角色属性加点(docs/design/player-attribute-allocation.md)
     "proto/scene/player_attribute.proto",

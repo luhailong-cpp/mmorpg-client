@@ -32,12 +32,17 @@ namespace MmorpgClient.App
     /// 且 GameClient.PlayerChooser 置 null:EnterZone 管线在该区无角色时按
     /// 服务端默认职业静默建号,有角色则进第一个(GameClient.EnterZone 既有分支)。
     ///
-    /// 日志前缀 [AutoPilot][tag],关键行(run_crosszone_pair.ps1 按此解析):
+    /// 日志前缀 [AutoPilot][tag]。run_crosszone_pair.ps1 只解析这四种行(见该脚本的 Get-FirstMatch 段):
     ///   stage=in_game … gate=ip:port(落区证据:两实例 gate 相同即不是跨区)/
     ///   BattleStart battle_id=N / BattleEnd battle_id=N outcome=X turns=N /
+    ///   RESULT=PASS … 或 RESULT=FAIL stage=… reason=…(整行原样带走,不再拆里面的字段)
+    ///
+    /// 传送验收(-travelZone)另外打这两种行,**没有**脚本解析它们 —— 该脚本只会发 -autoQueue,
+    /// 连 -travelZone 开关都没有,传送验收目前是手工起播放器、人看日志:
     ///   stage=travel_begin target_zone=N scene_config=N gate_before=ip:port /
-    ///   RESULT=PASS stage=travel gate_before=… gate_after=…(**gate 地址变了才算 PASS**,理由同 stage=in_game)/
-    ///   RESULT=PASS … 或 RESULT=FAIL stage=… reason=…
+    ///   RESULT=PASS stage=travel gate_before=… gate_after=…(**gate 地址变了才算 PASS**,理由同 stage=in_game)
+    ///   —— 末尾这条会被脚本当成普通 RESULT 行原样收走,所以在 pair 模式下它只是"有个结论",
+    ///   gate_before/after 变没变不会被机械校验。要机械校验请用服务端的 travel-smoke(robot)。
     /// 失败判定对齐服务端 robot:进场时残留战斗/排队相位、JoinQueue 被拒、开局即终局
     /// (turns=0,既有缺陷"上一局阵亡带 0 血入队开局判负")都直接 FAIL,不空等超时。
     /// 退出码:0 = 打完;1 = 任一阶段超时/失败(仅 -quitOnBattleEnd 时退出进程)。
