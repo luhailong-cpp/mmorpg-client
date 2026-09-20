@@ -196,7 +196,19 @@ namespace MmorpgClient.Editor.Tianyong
             {
                 AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
                 var catalog = LoadCatalog();
-                string evidence = "Docs/VerificationEvidence/city-candidate-review-20260918";
+                string evidence = "Docs/VerificationEvidence/city-candidate-review-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff");
+                var args = Environment.GetCommandLineArgs();
+                int evidenceArg = Array.IndexOf(args, "-cityCandidateEvidence");
+                if (evidenceArg >= 0)
+                {
+                    if (evidenceArg + 1 >= args.Length) throw new ArgumentException("Missing -cityCandidateEvidence value.");
+                    evidence = args[evidenceArg + 1].Replace('\\', '/');
+                }
+                string evidenceRoot = Path.GetFullPath("Docs/VerificationEvidence") + Path.DirectorySeparatorChar;
+                if (!Path.GetFullPath(evidence).StartsWith(evidenceRoot, StringComparison.OrdinalIgnoreCase))
+                    throw new ArgumentException("Candidate evidence must be inside Docs/VerificationEvidence.");
+                if (Directory.Exists(evidence) && Directory.EnumerateFileSystemEntries(evidence).Any())
+                    throw new IOException("Refusing to overwrite previous candidate verification evidence: " + evidence);
                 Directory.CreateDirectory(evidence);
                 var proof = new Proof { unityVersion = Application.unityVersion, catalogSha256 = Hash(Root + "/catalog.json"), sourceLedgerSha256 = catalog.sourceLedgerSha256,
                     verifiedAtUtc = DateTime.UtcNow.ToString("O"), candidateCount = catalog.candidates.Length, appearanceCount = catalog.appearances.Length,
@@ -210,16 +222,28 @@ namespace MmorpgClient.Editor.Tianyong
                         var overview = evidence + "/" + appearance + "_overview.png";
                         Capture(camera, overview, 1536, 864, bounds.center, Mathf.Max(bounds.height, bounds.width * 864f / 1536) * 1.04f);
                         proof.renderedFiles.Add(overview);
-                        var last = items[items.Length - 1];
-                        var detail = evidence + "/" + appearance + "_native1024.png";
-                        Capture(camera, detail, 1024, 1024, new Vector2(last.x + last.size / 2, last.z + last.size / 2), 1024 * last.size / 4096);
-                        proof.renderedFiles.Add(detail);
-                        var adjacent = items.FirstOrDefault(c => c.row == last.row && c.column == last.column - 1);
-                        if (adjacent != null)
+                        foreach (var item in items)
                         {
-                            var seam = evidence + "/" + appearance + "_boundary_native1024.png";
-                            Capture(camera, seam, 1024, 1024, new Vector2(last.x, last.z + last.size / 2), 1024 * last.size / 4096);
-                            proof.renderedFiles.Add(seam);
+                            float nativeWorldHeight = 1024 * item.size / 4096;
+                            var detail = evidence + "/" + appearance + "_" + item.tile + "_native1024.png";
+                            Capture(camera, detail, 1024, 1024, new Vector2(item.x + item.size / 2, item.z + item.size / 2), nativeWorldHeight);
+                            proof.renderedFiles.Add(detail);
+                            var left = items.FirstOrDefault(c => c.row == item.row && c.column == item.column - 1);
+                            var above = items.FirstOrDefault(c => c.column == item.column && c.row == item.row - 1);
+                            foreach (var neighbor in new[] { left, above }.Where(c => c != null))
+                            {
+                                bool vertical = neighbor == left;
+                                // Four adjacent 1024-pixel captures cover the complete shared edge at native scale.
+                                for (int segment = 0; segment < 4; segment++)
+                                {
+                                    float offset = (segment + .5f) * item.size / 4;
+                                    var center = vertical ? new Vector2(item.x, item.z + item.size - offset)
+                                        : new Vector2(item.x + offset, item.z + item.size);
+                                    var seam = evidence + "/" + appearance + "_" + neighbor.tile + "_" + item.tile + "_boundary" + segment + ".png";
+                                    Capture(camera, seam, 1024, 1024, center, nativeWorldHeight);
+                                    proof.renderedFiles.Add(seam);
+                                }
+                            }
                         }
                         proof.importedAssets.AddRange(items.Select(c => c.assetPath));
                     }
