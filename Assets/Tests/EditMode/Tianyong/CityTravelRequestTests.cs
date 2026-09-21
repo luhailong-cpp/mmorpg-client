@@ -1,3 +1,5 @@
+using Google.Protobuf;
+using MmorpgClient.Game;
 using MmorpgClient.Game.WorldTravel;
 using NUnit.Framework;
 
@@ -119,6 +121,60 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(request.ReceiveScene(4, out _), Is.False);
             Assert.That(request.Accept(token), Is.False);
             Assert.That(request.IsPending, Is.False);
+        }
+
+        // ── 以下是 GameClient 上与行程相关的纯静态判据（不需要网络）。本任务不新增测试文件，就近放在这里。──
+
+        [Test]
+        public void EnterFailureTip_OnlyRecognisesContractCode()
+        {
+            // 契约：EnterGame 受理之后进场没成，服务端统一推 kEnterSceneFailed；别的码一律不下结论，交给超时兜底。
+            Assert.That(GameClient.IsEnterFailureTip((uint)scene_error.KEnterSceneFailed), Is.True);
+            Assert.That(GameClient.IsEnterFailureTip((uint)scene_error.KZoneTravelTargetBusy), Is.False);
+            Assert.That(GameClient.IsEnterFailureTip((uint)scene_error.KEnterSceneSceneNotFound), Is.False);
+            Assert.That(GameClient.IsEnterFailureTip(0), Is.False);
+        }
+
+        [Test]
+        public void EnterFailureTip_IsAlsoATravelFailureTipWithText()
+        {
+            // 同一个码在游戏内换图失败时也会出现，两个判据都认它；文案必须是人话而不是裸编号。
+            uint id = (uint)scene_error.KEnterSceneFailed;
+            Assert.That(GameClient.IsTravelFailureTip(id), Is.True);
+            Assert.That(GameClient.DescribeTravelTip(id), Does.Not.Contain("tip="));
+        }
+
+        [Test]
+        public void DescribeTravelTip_SyncRejectCodesHaveText_UnknownFallsBackToNumber()
+        {
+            Assert.That(GameClient.DescribeTravelTip((uint)scene_error.KEnterSceneSceneNotFound),
+                Does.Not.Contain("tip="));
+            Assert.That(GameClient.DescribeTravelTip((uint)scene_error.KEnterSceneChangingScene),
+                Does.Not.Contain("tip="));
+            // 同步拒绝码有文案，但不属于“受理后失败”，不能让在途的行程因此收场。
+            Assert.That(GameClient.IsTravelFailureTip((uint)scene_error.KEnterSceneSceneNotFound), Is.False);
+            Assert.That(GameClient.IsTravelFailureTip((uint)scene_error.KEnterSceneChangingScene), Is.False);
+            Assert.That(GameClient.DescribeTravelTip(uint.MaxValue), Does.Contain("tip=" + uint.MaxValue));
+        }
+
+        [Test]
+        public void ParseTicketZoneId_PrefersTargetZoneThenZone()
+        {
+            var travel = new GateTokenPayload { ZoneId = 1, TargetZoneId = 2 }.ToByteString();
+            var plain = new GateTokenPayload { ZoneId = 3 }.ToByteString();
+            Assert.That(GameClient.ParseTicketZoneId(travel), Is.EqualTo(2u));
+            Assert.That(GameClient.ParseTicketZoneId(plain), Is.EqualTo(3u));
+        }
+
+        [Test]
+        public void ParseTicketZoneId_UnusableTicketYieldsZeroAndNeverThrows()
+        {
+            // 解析只为展示：解不出来返回零，由调用方保留旧值，不得让换服因此失败。
+            Assert.That(GameClient.ParseTicketZoneId(null), Is.Zero);
+            Assert.That(GameClient.ParseTicketZoneId(ByteString.Empty), Is.Zero);
+            Assert.That(GameClient.ParseTicketZoneId(new GateTokenPayload().ToByteString()), Is.Zero);
+            // 单字节 0xFF 是一个没写完的变长整数（续位为 1 却没有后续字节），解析器必抛格式异常。
+            Assert.That(GameClient.ParseTicketZoneId(ByteString.CopyFrom(0xFF)), Is.Zero);
         }
     }
 }

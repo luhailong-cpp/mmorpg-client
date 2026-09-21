@@ -7,12 +7,13 @@ namespace MmorpgClient.Game.WorldTravel
     /// <summary>
     /// 跨 zone 场景传送的客户端调用点(服务端设计:docs/design/cross-zone-scene-travel.md CZ-7)。
     ///
-    /// ⚠️ 本文件在跑 gen 之前**编不过是预期**,不要为了"先变绿"去删它或改它:
-    /// 它引用的三个符号要等服务端 regen 把 TravelToZone 的消息号追加进 proto/message_id.txt 之后,
-    /// 再在本仓库依次跑这两条才会出现(两个脚本的默认 ProtoRoot 会解析到 E:\,必须显式传):
-    ///   pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:\work\xuanming-server-mmo   → MessageIds.TravelToZone
-    ///   pwsh -File tools/gen_proto.ps1      -ProtoRoot E:\work\xuanming-server-mmo   → TravelToZoneRequest / TravelToZoneResponse
-    /// Assets/Scripts 只有一个 asmdef(一红全红),所以**凡是引用这三个符号的代码都只许写在本文件**;
+    /// 本文件引用的三个生成符号**已生成入库**:MessageIds.TravelToZone(Net/MessageIds.cs)、
+    /// TravelToZoneRequest / TravelToZoneResponse(Proto/Generated/PlayerScene.cs)。
+    /// 服务端协议再变时按下面两条重新生成,备查(&lt;服务端仓&gt; 换成本机的服务端仓库根目录;
+    /// 脚本的默认 ProtoRoot 未必指向它,显式传最稳):
+    ///   pwsh -File tools/gen_messageids.ps1 -ProtoRoot &lt;服务端仓&gt;   → MessageIds.TravelToZone
+    ///   pwsh -File tools/gen_proto.ps1      -ProtoRoot &lt;服务端仓&gt;   → TravelToZoneRequest / TravelToZoneResponse
+    /// 引用这三个符号的代码仍然只写在本文件(Assets/Scripts 只有一个 asmdef,一红全红):
     /// GameClient / DevAutoPilot / 地图窗只经 <see cref="TravelToZone"/> 这一个入口间接用到它们。
     ///
     /// 契约(proto/scene/player_scene.proto 的 TravelToZone 注释):
