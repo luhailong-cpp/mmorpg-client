@@ -176,5 +176,34 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             // 单字节 0xFF 是一个没写完的变长整数（续位为 1 却没有后续字节），解析器必抛格式异常。
             Assert.That(GameClient.ParseTicketZoneId(ByteString.CopyFrom(0xFF)), Is.Zero);
         }
+
+        [Test]
+        public void ValidateRedirectTarget_LocalClockPastDeadlineStillPasses()
+        {
+            // 本机时钟比服务端快时，重定向票据在本机看来已过期；有效期由目标 gate 按服务端时钟判，客户端不得据此拒绝。
+            var ev = new RedirectToGateNotify { TargetIp = "127.0.0.1", TargetPort = 7000, TokenDeadline = 1000 };
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 2000, out long past), Is.Null);
+            Assert.That(past, Is.EqualTo(1000));
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 1000, out past), Is.Null);
+            Assert.That(past, Is.Zero);
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 999, out past), Is.Null);
+            Assert.That(past, Is.EqualTo(-1));
+            // 未下发 deadline（0）不参与判断。
+            ev.TokenDeadline = 0;
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 2000, out past), Is.Null);
+            Assert.That(past, Is.EqualTo(-1));
+        }
+
+        [Test]
+        public void ValidateRedirectTarget_AddressChecksStillReject()
+        {
+            Assert.That(GameClient.ValidateRedirectTarget(null, 0, out _), Is.Not.Null);
+            Assert.That(GameClient.ValidateRedirectTarget(
+                new RedirectToGateNotify { TargetIp = " ", TargetPort = 7000 }, 0, out _), Is.Not.Null);
+            Assert.That(GameClient.ValidateRedirectTarget(
+                new RedirectToGateNotify { TargetIp = "127.0.0.1", TargetPort = 0 }, 0, out _), Is.Not.Null);
+            Assert.That(GameClient.ValidateRedirectTarget(
+                new RedirectToGateNotify { TargetIp = "127.0.0.1", TargetPort = 65536 }, 0, out _), Is.Not.Null);
+        }
     }
 }

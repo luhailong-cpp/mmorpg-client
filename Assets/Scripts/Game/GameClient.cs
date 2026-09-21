@@ -734,7 +734,8 @@ namespace MmorpgClient.Game
         // 干的事,**不能跳**;跳掉的客户端会连上一个哑连接,表现为"重定向后卡死"。
         //
         // 参考实现逐条对齐 robot/pkg/redirect.go 的 FollowRedirect:
-        //   ① 本地校验目标(地址 + token_deadline)  ② 环路熔断  ③ 可达性探测
+        //   ① 本地校验目标(地址;token_deadline 只记日志不拦截,见 ValidateRedirectTarget)
+        //   ② 环路熔断  ③ 可达性探测
         //   ④ 换连接(先连新、后关旧)              ⑤ 票据原样转发  ⑥ 重跑 Login+EnterGame
         //
         // robot 的第 ⑦ 步"补投握手期间攒下的推送"(ReplayDeferred)在这里**不需要对应代码**:
@@ -755,23 +756,40 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 只做本地可判的检查,不碰网络;返回 null 表示通过,否则是给人看的失败原因。
-        /// 对齐 robot/pkg/redirect.go 的 RedirectTarget.Validate。
+        /// 对齐 robot/pkg/redirect.go 的 RedirectTarget.Validate,**唯一的刻意差异是 token_deadline**:
+        /// 这里只打日志、不拦截(理由见方法体内注释)。
+        /// 纯函数:本机时间由调用方传入(<paramref name="nowUnixSec"/>,unix 秒),便于 EditMode 回归测试;
+        /// <paramref name="pastDeadlineSec"/> 为本机时间越过 token_deadline 的秒数,未越过或未下发 deadline 时为 -1,
+        /// 只供调用方打排障日志,**不得**据此拒绝。
         /// </summary>
-        private static string ValidateRedirectTarget(RedirectToGateNotify ev)
+        public static string ValidateRedirectTarget(RedirectToGateNotify ev, long nowUnixSec, out long pastDeadlineSec)
         {
+            pastDeadlineSec = -1;
             if (ev == null) return "empty notify";
             if (string.IsNullOrWhiteSpace(ev.TargetIp)) return "empty target_ip";
             if (ev.TargetPort == 0 || ev.TargetPort > 65535) return $"invalid target_port {ev.TargetPort}";
             // token_deadline 是 gate 侧 GateTokenPayload.expire_timestamp 的副本,单位是
-            // **unix 秒**(不是本仓库常见的毫秒)。已经过期就不用白跑一趟:换完连接目标 gate
-            // 必然回 token_expired 并把连接关掉,那时老连接已经没了,会话就此报废 ——
-            // 不如趁还连着老 gate 的时候失败出去。
-            if (ev.TokenDeadline > 0)
-            {
-                long now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                if (now >= ev.TokenDeadline)
-                    return $"gate token already expired (deadline={ev.TokenDeadline}, now={now})";
-            }
+            // **unix 秒**(不是本仓库常见的毫秒),由 scene_manager 按**服务端时钟**签出(TTL 300s)。
+            //
+            // 为什么不拿本机时钟判过期并拦截:
+            //   ① 本机时钟不可信。玩家机器比服务端快 ≥300s 时,msg 124 一到就会被本地判"已过期",
+            //      每次跨区传送(含回家)必现;robot 同款校验跑在服务端时钟下,压测永远测不出来。
+            //   ② msg 124 到达时服务端已经放行:源实体即将销毁、归属已交给目标 zone。客户端在这里
+            //      自行作废,等于把一次服务端认可的传送单方面变成断线,没有任何收益。
+            //   ③ 有效期的权威是目标 gate:DispatchTokenVerify 用服务端时钟校验
+            //      expire_timestamp > now,过期即回 token_expired 并关连接
+            //      (cpp/nodes/gate/handler/rpc/client_message_processor.cpp "Check expiry" 段)。
+            //
+            // 票据真过期时怎么收场:目标 gate 回 ClientTokenVerifyResponse(success=false) 后关连接,
+            // 客户端记一条 "[gate] token rejected: token expired",随后新连接的断线经
+            // HandleTransportDisconnected 通知 UI(此时 DisconnectReason 为 null,显示的是通用断线文案);
+            // ConnectAndEnter 的验票等待(10s)超时后再走 FailPipeline → RedirectFlow 的 onError,补一条
+            // LogError 与状态栏文案,断线通知已发过、不会重复。会话同样报废,但判定出自服务端。
+            //
+            // 调用方仍据 pastDeadlineSec 打一条日志,专门用来排查玩家时钟偏差:它是本机时间越过 deadline
+            // 的秒数;服务端签发即下发,所以它加上 300 近似就是"本机比服务端快了多少"(还含网络延迟)。
+            if (ev.TokenDeadline > 0 && nowUnixSec >= ev.TokenDeadline)
+                pastDeadlineSec = nowUnixSec - ev.TokenDeadline;
             return null;
         }
 
@@ -842,8 +860,14 @@ namespace MmorpgClient.Game
             string target = $"{ev?.TargetIp}:{ev?.TargetPort}";
 
             // ① 本地判据先行。这一段全部在**老连接还活着**的时候做完,失败即就地作废。
-            string invalid = ValidateRedirectTarget(ev);
+            long localNow = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            long pastDeadlineSec;
+            string invalid = ValidateRedirectTarget(ev, localNow, out pastDeadlineSec);
             if (invalid != null) { FailRedirect(target, invalid); yield break; }
+            if (pastDeadlineSec >= 0)
+                Log($"[gate] redirect token looks expired by local clock, proceeding anyway " +
+                    $"(gate decides): local_now={localNow} deadline={ev.TokenDeadline} " +
+                    $"past_deadline_sec={pastDeadlineSec}");
 
             // ② 环路熔断(robot MaxRedirectHops 同值同语义)。
             if (_redirectHops >= MaxRedirectHops)

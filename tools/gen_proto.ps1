@@ -96,7 +96,15 @@ $files = @(
     # 任何人用默认配置跑 dev.bat proto / dev.bat gen 都会往 Assets/Scripts/Net/Generated/Handlers 写
     # 15 个 ClientPlayerTeam*Handler.cs;少了这两行,那些 handler 引用的 Teampb.* 不存在 → CS0246。
     "proto/team/team.proto",
-    "generated/code/proto/tip/team_error_tip.proto"
+    "generated/code/proto/tip/team_error_tip.proto",
+
+    # 好友客户端 handler 引用 Friendpb.*，生成清单必须包含对应协议。
+    # friend_table.proto 刻意不收:它是纯服务端存储结构,客户端只看 friend.proto。
+    # friend_error 与上面 trade / team 同形:由服务端导表器生成,客户端按枚举映射文案、不手抄数字。
+    # 本行生成的枚举要含 15007–15009(FriendBlocked / FriendBlockListFull / FriendTargetInboxFull),
+    # 所以只能在服务端导表器跑完之后再跑本脚本。
+    "proto/friend/friend.proto",
+    "generated/code/proto/tip/friend_error_tip.proto"
 )
 
 Push-Location $ProtoRoot
