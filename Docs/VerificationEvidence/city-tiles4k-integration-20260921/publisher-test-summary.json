@@ -1,0 +1,14 @@
+{
+  "startedAtUtc": "2026-09-21T11:57:04.812222+00:00",
+  "finishedAtUtc": "2026-09-21T11:58:43.812660+00:00",
+  "testsRun": 27,
+  "failures": 0,
+  "errors": 0,
+  "passed": true,
+  "sourceSha256": {
+    "tools\\publish_city_tiles.py": "aaf0ef85e69ed53bafe7408b1b19b566a78c2dd2823bf5daeddcd59375b7c902",
+    "tools\\tests\\test_publish_city_tiles.py": "cc1d87aef96504242fcf81b3ad47db71388e0060ea60727f6a8116a0369188bf"
+  },
+  "sourcesUnchangedDuringRun": true,
+  "validationScope": "Real 4096 PNG decode/corruption, SHA/provenance/coordinates and Windows publisher byte lock; transaction tests use 4x4 fixtures with decoder replaced by SHA validation and Unity guard mocked. Native full editor guard did not proceed because unrelated Unity command line was ambiguous. No production resources published."
+}

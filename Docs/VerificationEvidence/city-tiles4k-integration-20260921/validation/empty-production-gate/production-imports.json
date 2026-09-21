@@ -1,0 +1,66 @@
+{
+    "verifiedAtUtc": "2026-09-21T11:54:18.5895309Z",
+    "unityVersion": "6000.6.0f1",
+    "buildTarget": "StandaloneWindows64",
+    "projectPath": "D:\\luyuan\\wuxingqitan\\mmorpg-client\\.codex-artifacts\\city-tiles4k-validation\\20260921-075206-524e6a",
+    "publishedAppearanceCount": 0,
+    "passedAppearanceCount": 0,
+    "allPublishedImportsPassed": false,
+    "gameplayAcceptancePassed": false,
+    "appearances": [
+        {
+            "appearance": "tianyong/festival",
+            "manifestSha256": "",
+            "status": "not_delivered",
+            "error": "",
+            "tiles": []
+        },
+        {
+            "appearance": "penglai/day",
+            "manifestSha256": "",
+            "status": "not_delivered",
+            "error": "",
+            "tiles": []
+        },
+        {
+            "appearance": "penglai/festival",
+            "manifestSha256": "",
+            "status": "not_delivered",
+            "error": "",
+            "tiles": []
+        },
+        {
+            "appearance": "donghai/day",
+            "manifestSha256": "",
+            "status": "not_delivered",
+            "error": "",
+            "tiles": []
+        },
+        {
+            "appearance": "donghai/festival",
+            "manifestSha256": "",
+            "status": "not_delivered",
+            "error": "",
+            "tiles": []
+        },
+        {
+            "appearance": "lanxian/day",
+            "manifestSha256": "",
+            "status": "not_delivered",
+            "error": "",
+            "tiles": []
+        },
+        {
+            "appearance": "lanxian/festival",
+            "manifestSha256": "",
+            "status": "not_delivered",
+            "error": "",
+            "tiles": []
+        }
+    ],
+    "limitations": [
+        "Import verification only. Source acceptance is checked by publish_city_tiles.py.",
+        "No gameplay screenshots, navigation/foreground acceptance or device performance measurement.",
+        "Missing appearances remain unpublished; candidate review resources are excluded."
+    ]
+}

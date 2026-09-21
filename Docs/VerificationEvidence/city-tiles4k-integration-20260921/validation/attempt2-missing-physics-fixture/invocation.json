@@ -1,0 +1,28 @@
+{
+  "startedAt": "2026-09-21T07:49:07.9268845-04:00",
+  "unityExe": "E:\\Unity\\6000.6.0f1\\Editor\\Unity.exe",
+  "isolatedProject": "D:\\luyuan\\wuxingqitan\\mmorpg-client\\.codex-artifacts\\city-tiles4k-validation\\20260921-074907-b889bb",
+  "arguments": [
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "\"D:\\luyuan\\wuxingqitan\\mmorpg-client\\.codex-artifacts\\city-tiles4k-validation\\20260921-074907-b889bb\"",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testResults",
+    "\"D:\\luyuan\\wuxingqitan\\mmorpg-client\\Docs\\VerificationEvidence\\city-tiles4k-integration-20260921\\validation/editmode-results.xml\"",
+    "-logFile",
+    "\"D:\\luyuan\\wuxingqitan\\mmorpg-client\\Docs\\VerificationEvidence\\city-tiles4k-integration-20260921\\validation/unity-editmode.log\"",
+    "-cityTileValidationEvidence",
+    "\"D:\\luyuan\\wuxingqitan\\mmorpg-client\\Docs\\VerificationEvidence\\city-tiles4k-integration-20260921\\validation\""
+  ],
+  "mainProjectOpened": false,
+  "completeArtworkValidated": false,
+  "fixtureDifferences": [
+    "TianyongPaintedCity replaced by its exact fixed (50,0,300,300) world rectangle.",
+    "Only Manifest, Streaming, Importer, optional production verifier and tests copied; no game scenes/bootstrap/network are run.",
+    "One unchanged legacy PNG exercises Resources lifecycle; one generated 4096 texture exercises importer settings only.",
+    "Minimal assemblies and cached test packages replace full project configuration; headless EditMode has no GPU performance evidence."
+  ]
+}

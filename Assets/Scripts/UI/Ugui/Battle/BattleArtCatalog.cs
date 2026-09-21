@@ -179,6 +179,10 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public static string CharacterIdFor(BattleActorState actor)
         {
+            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer &&
+                !string.IsNullOrEmpty(actor.AppearanceId)) return actor.AppearanceId;
+            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && actor.ClassId != 0)
+                return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender);
             if (actor == null || CharacterIds.Length == 0) return DefaultCharacterId;
             int index = BattleHudLogic.PortraitIndexFor(actor.ActorId, CharacterIds.Length);
             return CharacterIds[index];
@@ -187,6 +191,10 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>Only real player actor IDs identify account roles; OwnerPlayerId belongs to pets.</summary>
         public static string CharacterIdFor(BattleActorState actor, Func<ulong, string> resolveCharacterId)
         {
+            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer &&
+                !string.IsNullOrEmpty(actor.AppearanceId)) return actor.AppearanceId;
+            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && actor.ClassId != 0)
+                return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender);
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && resolveCharacterId != null)
             {
                 var known = resolveCharacterId(actor.ActorId);
@@ -297,9 +305,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             string key = $"{appearance.CacheKey}/{path}#pose";
             if (s_strips.TryGetValue(key, out var cached)) return cached?.Frames[0];
             var texture = Resources.Load<Texture2D>(path);
-            if (texture == null || texture.width != 512 || texture.height != 512) return null;
-            var sprite = Sprite.Create(texture, new Rect(0f, 0f, 512f, 512f), FeetPivot,
-                SpritePixelsPerUnit, 0, SpriteMeshType.FullRect);
+            var geometry = appearance.GeometryForResource(path);
+            if (texture == null || texture.width != geometry.Width || texture.height != geometry.Height) return null;
+            var sprite = Sprite.Create(texture, new Rect(0f, 0f, geometry.Width, geometry.Height), geometry.Pivot,
+                geometry.PixelsPerUnit, 0, SpriteMeshType.FullRect);
             sprite.name = path;
             s_strips[key] = new StripAnim { Frames = new[] { sprite }, Fps = appearance.FramesPerSecond, Pivot = FeetPivot };
             return sprite;
@@ -308,7 +317,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>HD sprite callers supply the Image's lifetime owner; lease-returning APIs support other explicit owners.</summary>
         public static Sprite LoadPlayerIdle(string characterId, bool facingEast, out bool mirrored, QdaoHdSpriteLeaseOwner owner = null)
         {
-            if (QdaoCharacterCatalog.Find(characterId) == null) return LoadPlayerIdle(facingEast, out mirrored);
+            if (QdaoCharacterCatalog.Find(characterId) == null)
+            {
+                mirrored = false;
+                return string.IsNullOrEmpty(characterId) || characterId == DefaultCharacterId
+                    ? LoadPlayerIdle(facingEast, out mirrored) : null;
+            }
             using var idle = LoadCharacterAction(characterId, "idle", facingEast);
             mirrored = idle?.Mirrored ?? false;
             var sprite = idle?.Count > 0 ? idle.Frames[0] : null;
@@ -491,7 +505,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (actor == null) return null;
             string characterId = CharacterIdFor(actor, resolveCharacterId);
             var entry = QdaoCharacterCatalog.Find(characterId);
-            if (entry == null) return LoadPlayerPortrait(actor.ActorId);
+            if (entry == null) return !string.IsNullOrEmpty(actor.AppearanceId) ? null : LoadPlayerPortrait(actor.ActorId);
             if (entry.IsOriginalRoster && entry.ResolveAppearance() == null)
                 return LoadLegacyPlayerPortrait(Array.IndexOf(CharacterIds, characterId));
             // The V11 portrait framing differs from old v3 head crops: retain its full composition.

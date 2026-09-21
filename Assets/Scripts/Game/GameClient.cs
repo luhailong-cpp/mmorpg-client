@@ -52,10 +52,10 @@ namespace MmorpgClient.Game
         private readonly Dictionary<uint, List<ulong>> _pendingIdsByMsg = new();
 
         private readonly Dictionary<uint, Action<MessageContent>> _notifyHandlers = new();
-        // Appearance derives from the server-owned role class/gender, never
-        // from transient scene entity handles. Login/create replies are the
-        // authoritative source until ActorCreateS2C carries remote role data.
+        // Persisted appearance_id owns identity. Empty IDs from legacy saves
+        // retain class/gender mapping; scene entity handles never select a body.
         private readonly Dictionary<ulong, AccountSimplePlayer> _knownRoles = new();
+        private readonly Dictionary<ulong, string> _sceneAppearances = new();
 
         private long _accessTokenExpire;       // unix seconds
         private float _lastRefreshAttempt;     // realtimeSinceStartup
@@ -201,6 +201,7 @@ namespace MmorpgClient.Game
         /// 要监听 tip 一律订阅本事件 —— OnNotify 是覆盖语义,子模块再对 msg 23 注册一次会把这里静默盖掉。
         /// </summary>
         public event Action<TipInfoMessage> OnServerTip;
+        public event Action<Teampb.TeamSnapshotS2C> OnTeamSnapshot;
 
         /// <summary>
         /// Coroutine starter wired by AppBootstrap. GameClient is not a
@@ -218,6 +219,7 @@ namespace MmorpgClient.Game
             public bool CreateNew;
             public uint ClassId;   // Class 配表 id
             public uint Gender;    // 1=男 2=女
+            public string AppearanceId; // Stable catalog ID, independent of class/gender.
             /// <summary>true = 放弃进入,回到选服界面。</summary>
             public bool Cancelled;
         }
@@ -271,11 +273,18 @@ namespace MmorpgClient.Game
 
         public GatewayHttpClient Http => _http;
 
-        /// <summary>Known account role appearance; null means the server has not supplied its class/gender.</summary>
+        /// <summary>Server-owned identity from the account role list or a remote AOI spawn.</summary>
         public string ResolveCharacterId(ulong playerId)
-            => playerId != 0 && _knownRoles.TryGetValue(playerId, out var role)
-                ? QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender)
-                : null;
+        {
+            if (playerId == 0) return null;
+            _knownRoles.TryGetValue(playerId, out var role);
+            if (role != null && !string.IsNullOrEmpty(role.AppearanceId))
+                return QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender, role.AppearanceId);
+            // EnterGame can restore a damaged account list from the persisted profile after Login
+            // already returned. Its AOI identity wins over that earlier empty account appearance.
+            if (_sceneAppearances.TryGetValue(playerId, out var appearanceId)) return appearanceId;
+            return role != null ? QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender) : null;
+        }
 
         private string ResolveActorCharacterId(ActorView view)
         {
@@ -580,7 +589,7 @@ namespace MmorpgClient.Game
                     {
                         ulong newId = 0;
                         yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender,
-                            loginResp.Players, id => newId = id, onError);
+                            loginResp.Players, id => newId = id, onError, choice.AppearanceId);
                         if (gen != _pipelineGen) yield break;
                         if (newId == 0) yield break; // CreatePlayerCo 已 FailPipeline
                         playerId = newId;
@@ -619,7 +628,7 @@ namespace MmorpgClient.Game
         /// </summary>
         private IEnumerator CreatePlayerCo(int gen, uint classId, uint gender,
             Google.Protobuf.Collections.RepeatedField<AccountSimplePlayerWrapper> known,
-            Action<ulong> onCreated, Action<string> onError)
+            Action<ulong> onCreated, Action<string> onError, string appearanceId = null)
         {
             Status("正在创建角色…");
             var knownIds = new HashSet<ulong>();
@@ -628,7 +637,7 @@ namespace MmorpgClient.Game
 
             CreatePlayerResponse cpResp = null;
             yield return Call(MessageIds.CreatePlayer,
-                new CreatePlayerRequest { ClassId = classId, Gender = gender },
+                new CreatePlayerRequest { ClassId = classId, Gender = gender, AppearanceId = appearanceId ?? "" },
                 CreatePlayerResponse.Parser, r => cpResp = r,
                 e => FailPipeline(gen, onError, $"create player: {e}"));
             if (gen != _pipelineGen) yield break;
@@ -647,7 +656,12 @@ namespace MmorpgClient.Game
             if (newId == 0)
             { FailPipeline(gen, onError, "create player returned empty list"); yield break; }
 
-            Log($"created new player {newId} class={classId} gender={gender}");
+            if (!string.IsNullOrEmpty(appearanceId) && ResolveCharacterId(newId) != appearanceId)
+            {
+                FailPipeline(gen, onError, "服务器未保存所选外观，请更新服务端后重新登录确认角色");
+                yield break;
+            }
+            Log($"created new player {newId} class={classId} gender={gender} appearance={ResolveCharacterId(newId)}");
             onCreated(newId);
         }
 
@@ -1423,6 +1437,8 @@ namespace MmorpgClient.Game
 
         private void WireSceneNotifyHandlers()
         {
+            OnNotify(MessageIds.NotifyTeamSnapshot, mc =>
+                OnTeamSnapshot?.Invoke(Teampb.TeamSnapshotS2C.Parser.ParseFrom(mc.SerializedMessage)));
             RegisterMovementReply(MessageIds.MoveStart, "MoveStart");
             RegisterMovementReply(MessageIds.MoveSync, "MoveSync");
             RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
@@ -1435,6 +1451,7 @@ namespace MmorpgClient.Game
                 _enteredScene = true;
                 Log($"[scene] entered scene_id={CurrentSceneId}, config={CurrentSceneConfigId}");
                 World.Clear();
+                _sceneAppearances.Clear();
                 OnSceneEntered?.Invoke(ev.SceneInfo);
             });
 
@@ -1646,6 +1663,9 @@ namespace MmorpgClient.Game
 
         private void SpawnActorView(ActorCreateS2C ev)
         {
+            if (ev.ActorType == ActorType.Player && ev.Guid != 0 &&
+                (!string.IsNullOrEmpty(ev.AppearanceId) || ev.ClassId != 0))
+                _sceneAppearances[ev.Guid] = QdaoCharacterCatalog.ResolveRole(ev.ClassId, ev.Gender, ev.AppearanceId);
             var loc = ev.Transform?.Location;
             var rot = ev.Transform?.Rotation;
             // UE-style world (X forward, Y right, Z up) -> Unity (X right, Y up, Z forward).
@@ -1785,6 +1805,7 @@ namespace MmorpgClient.Game
                 PlayerId = 0;
                 CurrentZoneId = 0;      // 所在区 = 当前连着的 gate 所属的区;连接没了就没有"所在区"
                 _knownRoles.Clear();
+                _sceneAppearances.Clear();
                 _enteredScene = false;
                 _awaitingSceneEntry = false;
                 _enterFailedTipId = 0;

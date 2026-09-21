@@ -26,7 +26,7 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$ExePath = "E:/work/tmp/crosszone_player/mmorpg.exe",
+    [string]$ExePath = (Join-Path $PSScriptRoot '../../tmp/qdao-formal-player/mmorpg.exe'),
     [string]$Gateway = "http://127.0.0.1:8081",
     [uint32]$ZoneA = 1,
     [uint32]$ZoneB = 2,
@@ -36,7 +36,13 @@ param(
     [string]$Mode = "1v1",
     [uint32]$BattleConfig = 1,
     [int]$TimeoutSec = 300,
-    [string]$LogDir = "E:/work/tmp",
+    [string]$LogDir = (Join-Path $PSScriptRoot ('../../tmp/battle_pair_' + (Get-Date -Format yyyyMMdd_HHmmss))),
+    [string]$AppearanceA = "",
+    [string]$AppearanceB = "",
+    [switch]$RequireAppearanceRole,
+    [switch]$AppearanceUi,
+    # Explicitly limits acceptance to a battle pair; the default retains the cross-zone gate.
+    [switch]$SameZoneAppearanceCheck,
     # 演出截图(视觉验收):给出目录则两实例各自截帧到 <ShotDir>/A、<ShotDir>/B
     [string]$ShotDir = "",
     [double]$ShotInterval = 0.4,
@@ -45,6 +51,10 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+if ($SameZoneAppearanceCheck -and (-not $AppearanceA -or -not $AppearanceB)) {
+    throw 'SameZoneAppearanceCheck requires both AppearanceA and AppearanceB.'
+}
+if ($AppearanceUi -and (-not $AppearanceA -or -not $AppearanceB)) { throw 'AppearanceUi requires both appearance IDs.' }
 
 if (-not (Test-Path $ExePath)) {
     Write-Host "[pair] FAIL 播放器不存在: $ExePath(先跑 tools/build_crosszone_player.ps1)"
@@ -53,12 +63,12 @@ if (-not (Test-Path $ExePath)) {
 New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
 
 $sides = @(
-    @{ Tag = "A"; Zone = $ZoneA; Account = $AccountA; Log = (Join-Path $LogDir "crosszone_player_A.log") },
-    @{ Tag = "B"; Zone = $ZoneB; Account = $AccountB; Log = (Join-Path $LogDir "crosszone_player_B.log") }
+    @{ Tag = "A"; Zone = $ZoneA; Account = $AccountA; Appearance = $AppearanceA; Log = (Join-Path $LogDir "crosszone_player_A.log") },
+    @{ Tag = "B"; Zone = $ZoneB; Account = $AccountB; Appearance = $AppearanceB; Log = (Join-Path $LogDir "crosszone_player_B.log") }
 )
 
 foreach ($s in $sides) {
-    if (Test-Path $s.Log) { Remove-Item $s.Log -Force }
+    if (Test-Path $s.Log) { throw "Choose a new LogDir; retain existing evidence: $($s.Log)" }
     # -screen-* 保证两窗口不全屏互抢焦点;runInBackground=1 已在 ProjectSettings 打开,
     # 失焦实例照常 Update 收网络消息。
     $s.Args = @(
@@ -76,6 +86,11 @@ foreach ($s in $sides) {
         "-quitOnBattleEnd",
         "-logTag", $s.Tag
     )
+    if ($s.Appearance) {
+        $s.Args += @('-appearanceId', $s.Appearance, '-roleClass', '1', '-roleGender', '1', '-shotAll')
+        if ($RequireAppearanceRole) { $s.Args += '-requireAppearanceRole' }
+        if ($AppearanceUi) { $s.Args += '-appearanceUi' }
+    }
     if ($ShotDir) {
         $sideShots = Join-Path $ShotDir $s.Tag
         New-Item -ItemType Directory -Force -Path $sideShots | Out-Null
@@ -87,7 +102,7 @@ foreach ($s in $sides) {
 $procs = @{}
 foreach ($s in $sides) {
     Write-Host "[pair] start $($s.Tag): zone=$($s.Zone) account=$($s.Account) log=$($s.Log)"
-    $procs[$s.Tag] = Start-Process -FilePath $ExePath -ArgumentList $s.Args -PassThru
+    $procs[$s.Tag] = Start-Process -FilePath $ExePath -ArgumentList $s.Args -WindowStyle Hidden -PassThru
     Start-Sleep -Milliseconds 500
 }
 
@@ -133,6 +148,9 @@ foreach ($s in $sides) {
     $start = Get-FirstMatch $s.Log "$esc BattleStart battle_id=(\d+)"
     $end   = Get-FirstMatch $s.Log "$esc BattleEnd battle_id=(\d+) outcome=(\S+) turns=(\d+)"
     $res   = Get-FirstMatch $s.Log "$esc RESULT=(PASS|FAIL)(.*)$"
+    $city  = Get-FirstMatch $s.Log "$esc appearance_city player_id=(\d+) appearance_id=(\S+)"
+    $battle = Get-FirstMatch $s.Log "$esc appearance_battle player_id=(\d+) appearance_id=(\S+)"
+    $view = Get-FirstMatch $s.Log "$esc appearance_battle_view player_id=(\d+) appearance_id=(\S+)"
 
     $r = [ordered]@{
         Tag = $tag; Exit = $exit
@@ -142,6 +160,10 @@ foreach ($s in $sides) {
         Outcome       = if ($end)   { $end.Groups[2].Value }   else { $null }
         Turns         = if ($end)   { $end.Groups[3].Value }   else { $null }
         Result        = if ($res)   { $res.Groups[1].Value + $res.Groups[2].Value } else { "(no RESULT line)" }
+        PlayerId = if ($city) { $city.Groups[1].Value } else { $null }
+        CityAppearance = if ($city) { $city.Groups[2].Value } else { $null }
+        BattleAppearance = if ($battle) { $battle.Groups[2].Value } else { $null }
+        ViewAppearance = if ($view) { $view.Groups[2].Value } else { $null }
     }
     $results[$tag] = $r
     Write-Host ("[pair] {0}: exit={1} gate={2} BattleStart={3} BattleEnd={4} outcome={5} turns={6} {7}" -f
@@ -153,12 +175,18 @@ foreach ($s in $sides) {
     if ($null -eq $r.EndBattleId)   { $failures.Add("$tag 没有 BattleEnd") }
     if ($end -and [int]$r.Turns -lt 1) { $failures.Add("$tag turns=$($r.Turns)(期望 ≥ 1:开局即终局不算打完)") }
     if ($exit -ne 0)                { $failures.Add("$tag 退出码=$exit(期望 0)") }
+    if (-not $res -or $res.Groups[1].Value -ne 'PASS') { $failures.Add("$tag 缺少明确 RESULT=PASS") }
+    if ($s.Appearance -and ($r.CityAppearance -ne $s.Appearance -or $r.BattleAppearance -ne $s.Appearance -or
+        $r.ViewAppearance -ne $s.Appearance -or -not $city -or -not $battle -or -not $view -or
+        $city.Groups[1].Value -ne $battle.Groups[1].Value -or $city.Groups[1].Value -ne $view.Groups[1].Value)) {
+        $failures.Add("$tag 主城、战斗快照及真实视图未证实同一player_id及appearance_id")
+    }
 }
 
 if ($timedOut) { $failures.Add("等待 ${TimeoutSec}s 超时,已强杀未退出的实例") }
 $a = $results["A"]; $b = $results["B"]
 # zone-placement:与 robot 参考脚本一致,两人分到同一 gate 即不是跨区,匹配成功也判失败
-if ($a.Gate -and $b.Gate -and $a.Gate -eq $b.Gate) {
+if (-not $SameZoneAppearanceCheck -and $a.Gate -and $b.Gate -and $a.Gate -eq $b.Gate) {
     $failures.Add("两实例分到同一 gate $($a.Gate)(zone_a=$ZoneA zone_b=$ZoneB),不是跨区对局(zone 2 的 gate/login 没起或 assign-gate 回落?)")
 }
 if ($a.StartBattleId -and $b.StartBattleId -and $a.StartBattleId -ne $b.StartBattleId) {
@@ -171,13 +199,16 @@ if ($b.StartBattleId -and $b.EndBattleId -and $b.StartBattleId -ne $b.EndBattleI
     $failures.Add("B 的 BattleEnd battle_id 与 BattleStart 不一致")
 }
 
+$scope = if ($SameZoneAppearanceCheck) { 'BATTLE_APPEARANCE_PAIR' } else { 'CROSS_ZONE_PAIR' }
+@{passed=($failures.Count -eq 0);scope=$scope;results=$results;failures=@($failures.ToArray());cross_zone_asserted=(-not $SameZoneAppearanceCheck)} |
+    ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $LogDir 'battle-pair-result.json') -Encoding utf8
 if ($failures.Count -eq 0) {
-    Write-Host ("[pair] CROSS_ZONE_PAIR_PASS battle_id={0} zone_a={1} gate_a={2} zone_b={3} gate_b={4} a_outcome={5} b_outcome={6} a_turns={7} b_turns={8}" -f
+    Write-Host ("[pair] ${scope}_PASS battle_id={0} zone_a={1} gate_a={2} zone_b={3} gate_b={4} a_outcome={5} b_outcome={6} a_turns={7} b_turns={8}" -f
         $a.StartBattleId, $ZoneA, $a.Gate, $ZoneB, $b.Gate, $a.Outcome, $b.Outcome, $a.Turns, $b.Turns)
     exit 0
 }
 
-Write-Host "[pair] CROSS_ZONE_PAIR_FAIL"
+Write-Host "[pair] ${scope}_FAIL"
 foreach ($f in $failures) { Write-Host "  - $f" }
 foreach ($s in $sides) {
     if (Test-Path $s.Log) {

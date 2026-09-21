@@ -1,0 +1,9 @@
+{
+  "verifiedAtUtc": "2026-09-21T11:57:37.3939893Z",
+  "currentRuntimeSourceCount": 356,
+  "compiledRuntimeSourceCount": 356,
+  "changedSinceCompile": [
+    "Assets/Scripts/UI/Ugui/Battle/BattleUnitView.cs",
+    "Assets/Scripts/World/QdaoBoySpriteAnimator.cs"
+  ]
+}

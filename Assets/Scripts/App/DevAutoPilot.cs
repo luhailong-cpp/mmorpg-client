@@ -4,6 +4,8 @@ using System.Globalization;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.UI;
+using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using UnityEngine;
 
@@ -61,6 +63,12 @@ namespace MmorpgClient.App
             public uint Zone;               // 0 = 未激活
             public string Account;
             public string Password;
+            // Optional formal appearance acceptance: select the exact persisted identity,
+            // or create it through the same PlayerChooser/CreatePlayer pipeline as the UI.
+            public string AppearanceId;
+            public bool RequireAppearanceRole;
+            public uint RoleClass = 1;
+            public uint RoleGender = 1;
             public string AutoQueue;        // "1v1" / null
             public uint? BattleConfig;      // null = 用 BattleUiStyle 默认
             public bool AutoBattle;
@@ -135,6 +143,7 @@ namespace MmorpgClient.App
         private ulong _battleId;
         private int _turns;
         private uint _lastRound;
+        private bool _appearanceBattleViewVerified;
 
         // 截图状态:_shotMarker 是"下一张截图的标签",由战斗事件打点,截完即清
         private bool _shotRunning;
@@ -203,6 +212,10 @@ namespace MmorpgClient.App
                     case "zone":            opt.Zone = ParseUInt(NextValue()); break;
                     case "account":         opt.Account = NextValue(); break;
                     case "password":        opt.Password = NextValue(); break;
+                    case "appearanceid":    opt.AppearanceId = NextValue(); break;
+                    case "requireappearancerole": opt.RequireAppearanceRole = true; break;
+                    case "roleclass":       opt.RoleClass = ParseUInt(NextValue()); break;
+                    case "rolegender":      opt.RoleGender = ParseUInt(NextValue()); break;
                     case "autoqueue":       opt.AutoQueue = NextValue()?.ToLowerInvariant(); break;
                     case "battleconfig":    opt.BattleConfig = ParseUInt(NextValue()); break;
                     case "autobattle":      opt.AutoBattle = true; break;
@@ -309,7 +322,7 @@ namespace MmorpgClient.App
             _battle = _client.Battle;
 
             // 静默选角:无角色按默认职业建号,有角色进第一个(见 GameClient.PlayerChooser 注释)
-            _client.PlayerChooser = null;
+            _client.PlayerChooser = string.IsNullOrEmpty(_opt.AppearanceId) ? null : ChooseAppearance;
 
             _client.OnDisconnected += HandleDisconnected;
             if (_battle != null)
@@ -374,7 +387,72 @@ namespace MmorpgClient.App
 
         // ── 阶段推进 ──────────────────────────────────────
 
+        private System.Collections.IEnumerator ChooseAppearance(uint zone,
+            IReadOnlyList<AccountSimplePlayer> roles, GameClient.PlayerChoice choice)
+        {
+            var definition = QdaoCharacterCatalog.Find(_opt.AppearanceId);
+            if (definition == null || !QdaoCharacterCatalog.IsRetainedOriginal(_opt.AppearanceId) ||
+                definition.ResolveAppearance() == null)
+            {
+                choice.Cancelled = true;
+                Fail("appearance_select", "指定外观不是当前保留且完整验收的人物: " + _opt.AppearanceId);
+                yield break;
+            }
+            foreach (var role in roles)
+                if (role.AppearanceId == _opt.AppearanceId)
+                {
+                    choice.SelectedPlayerId = role.PlayerId;
+                    Log($"appearance_select existing player_id={role.PlayerId} appearance_id={role.AppearanceId}");
+                    yield break;
+                }
+            if (_opt.RequireAppearanceRole)
+            {
+                choice.Cancelled = true;
+                Fail("appearance_select", "重登角色列表未恢复指定外观，禁止自动创建替代角色: " + _opt.AppearanceId);
+                yield break;
+            }
+            choice.CreateNew = true;
+            choice.ClassId = _opt.RoleClass;
+            choice.Gender = _opt.RoleGender;
+            choice.AppearanceId = _opt.AppearanceId;
+            Log($"appearance_select create appearance_id={choice.AppearanceId} class_id={choice.ClassId} gender={choice.Gender}");
+        }
+
         private void HandleEnterSuccess()
+        {
+            if (string.IsNullOrEmpty(_opt.AppearanceId)) HandleVerifiedEnterSuccess();
+            else StartCoroutine(VerifyEnteredAppearance());
+        }
+
+        private System.Collections.IEnumerator VerifyEnteredAppearance()
+        {
+            var until = Time.realtimeSinceStartup + 15f;
+            while (!_finished && Time.realtimeSinceStartup < until)
+            {
+                var world = _client.World;
+                if (world.HasLocalPlayer && world.TryGetActor(world.LocalEntity, out var actor) && actor.Go != null)
+                {
+                    var animator = actor.Go.GetComponent<QdaoBoySpriteAnimator>();
+                    if (animator != null)
+                    {
+                        var persisted = _client.ResolveCharacterId(_client.PlayerId);
+                        if (persisted != _opt.AppearanceId || actor.CharacterId != persisted || animator.CharacterId != persisted)
+                        {
+                            Fail("appearance_city", $"expected={_opt.AppearanceId} persisted={persisted} actor={actor.CharacterId} renderer={animator.CharacterId}");
+                            yield break;
+                        }
+                        Log($"appearance_city player_id={_client.PlayerId} appearance_id={persisted} version={animator.ArtworkVersion} actor_id={actor.Entity}");
+                        MarkShot("appearance_city");
+                        HandleVerifiedEnterSuccess();
+                        yield break;
+                    }
+                }
+                yield return null;
+            }
+            if (!_finished) Fail("appearance_city", "等待正式ActorWorld外观超时");
+        }
+
+        private void HandleVerifiedEnterSuccess()
         {
             if (_finished) return;
             if (_client == null || _client.World == null)
@@ -462,6 +540,19 @@ namespace MmorpgClient.App
         private void HandleBattleStart(BattleStartS2C ev)
         {
             if (_finished || ev == null) return;
+            if (!string.IsNullOrEmpty(_opt.AppearanceId))
+            {
+                BattleActorState self = null;
+                if (ev.State != null)
+                    foreach (var actor in ev.State.Actors)
+                        if (actor.ActorId == _client.PlayerId) { self = actor; break; }
+                if (self == null || self.AppearanceId != _opt.AppearanceId)
+                {
+                    Fail("appearance_battle", $"expected={_opt.AppearanceId} snapshot={self?.AppearanceId ?? "missing"}");
+                    return;
+                }
+                Log($"appearance_battle player_id={_client.PlayerId} appearance_id={self.AppearanceId}");
+            }
             _battleId = ev.BattleId != 0 ? ev.BattleId : ev.State?.BattleId ?? 0;
             _turns = 0;
             _directTurns = 0;
@@ -472,6 +563,105 @@ namespace MmorpgClient.App
             MarkShot("start");
             BeginShots();   // 默认从开局开始截(已在跑则幂等)
             Log($"BattleStart battle_id={_battleId} round={_lastRound} actors={ev.State?.Actors.Count ?? 0} autoBattle={_opt.AutoBattle}");
+            if (!string.IsNullOrEmpty(_opt.AppearanceId))
+            {
+                _appearanceBattleViewVerified = false;
+                StartCoroutine(VerifyBattleAppearance(_battleId));
+            }
+        }
+
+        private System.Collections.IEnumerator VerifyBattleAppearance(ulong battleId)
+        {
+            var appearance = QdaoCharacterCatalog.Find(_opt.AppearanceId)?.ResolveAppearance();
+            if (appearance == null) { Fail("appearance_battle_view", "完整同身份资源不存在"); yield break; }
+            var untilView = Time.realtimeSinceStartup + 15f;
+            bool sawIdle = false;
+            var movingFrames = new HashSet<string>();
+            Vector2 previous = default;
+            bool positioned = false;
+            while (!_finished && _battleId == battleId && !_appearanceBattleViewVerified)
+            {
+                yield return new WaitForEndOfFrame();
+                var screen = BattleUiRoot.Instance?.ActiveBattleScreen;
+                if (screen == null || !screen.TryGetAppearanceView(_client.PlayerId, out var view, out var portrait) ||
+                    view.BodyImage == null || !view.BodyImage.isActiveAndEnabled ||
+                    view.Root.GetComponent<CanvasGroup>()?.alpha <= .01f)
+                {
+                    if (Time.realtimeSinceStartup > untilView) Fail("appearance_battle_view", "等待真实 BattleScreen/Body/Portrait 超时");
+                    continue;
+                }
+                var body = view.BodyImage.sprite;
+                var expectedPortrait = QdaoCharacterCatalog.LoadPortrait(_opt.AppearanceId);
+                if (view.CharacterId != _opt.AppearanceId || view.LastState?.AppearanceId != _opt.AppearanceId ||
+                    expectedPortrait == null || portrait.sprite != expectedPortrait ||
+                    !TryBattleFrameResource(appearance, body, out var path, out var walking))
+                { Fail("appearance_battle_view", "正式战斗角色/头像/实际本体帧与保存身份不一致"); yield break; }
+                var geometry = appearance.GeometryForResource(path);
+                if (!geometry.Matches(body) || Resources.Load<Texture2D>(path) != body.texture)
+                { Fail("appearance_battle_view", "实际本体贴图、逐帧尺寸、PPU 或 pivot 与合同不一致: " + path); yield break; }
+                var position = view.Root.anchoredPosition;
+                float distance = positioned ? Vector2.Distance(previous, position) : 0f;
+                previous = position;
+                positioned = true;
+                string capture = null;
+                if (!walking && !sawIdle)
+                {
+                    sawIdle = true;
+                    capture = CaptureAppearanceFrame("appearance_battle_idle");
+                    Log($"appearance_battle_idle player_id={_client.PlayerId} appearance_id={view.CharacterId} resource={path} width={geometry.Width} ppu={N(geometry.PixelsPerUnit)} pivot=0.5,0.08 screenshot={capture ?? "disabled"}");
+                }
+                if (walking && distance > .001f && movingFrames.Add(path))
+                {
+                    if (movingFrames.Count == 1) capture = CaptureAppearanceFrame("appearance_battle_walk");
+                    Log($"appearance_battle_walk player_id={_client.PlayerId} appearance_id={view.CharacterId} resource={path} width={geometry.Width} ppu={N(geometry.PixelsPerUnit)} delta_pixels={N(distance)} screenshot={capture ?? "none"}");
+                }
+                if (sawIdle && movingFrames.Count >= 2)
+                {
+                    _appearanceBattleViewVerified = true;
+                    Log($"appearance_battle_view player_id={_client.PlayerId} appearance_id={view.CharacterId} battle_id={battleId} version={appearance.Version} idle=true walk_frames={movingFrames.Count} portrait={portrait.sprite.name} source=actual_BattleScreen");
+                }
+            }
+        }
+
+        private static bool TryBattleFrameResource(QdaoCharacterCatalog.Appearance appearance, Sprite sprite,
+            out string path, out bool walking)
+        {
+            path = null;
+            walking = false;
+            if (sprite == null) return false;
+            // Match only the already displayed sprite, then load that single path for identity proof.
+            // This does not preload either direction or manufacture a frame for the presenter.
+            foreach (var direction in new[] { "E", "W" })
+            {
+                string idle = appearance.IdleResourcePath(direction);
+                if (sprite.name == idle || appearance.IsHd && sprite.name == appearance.Id + "_idle_" + direction + "_00")
+                { path = idle; return true; }
+                for (int frame = 0; frame < appearance.FrameCount; frame++)
+                {
+                    string candidate = appearance.FrameResourcePath(direction, frame);
+                    if (sprite.name != candidate && !(appearance.IsHd && sprite.name == appearance.Id + "_run_" + direction + "_" + frame.ToString("00"))) continue;
+                    path = candidate;
+                    walking = true;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private string CaptureAppearanceFrame(string marker)
+        {
+            if (!ShotsEnabled) return null;
+            Texture2D capture = null;
+            try
+            {
+                System.IO.Directory.CreateDirectory(_opt.ShotDir);
+                string file = System.IO.Path.Combine(_opt.ShotDir, $"{_opt.LogTag}_{_shotSeq++:0000}_{marker}.png");
+                capture = ScreenCapture.CaptureScreenshotAsTexture();
+                System.IO.File.WriteAllBytes(file, capture.EncodeToPNG());
+                return System.IO.Path.GetFullPath(file);
+            }
+            catch (Exception e) { Fail("appearance_battle_capture", e.Message); return null; }
+            finally { if (capture != null) Destroy(capture); }
         }
 
         private void HandleTurnResult(TurnResultS2C ev)
@@ -506,6 +696,18 @@ namespace MmorpgClient.App
                 Fail("battle", $"zero_turns battle_id={_battleId} outcome={ev.Outcome}(开局即终局,期望 turns ≥ 1)");
                 return;
             }
+            if (!string.IsNullOrEmpty(_opt.AppearanceId)) StartCoroutine(FinishAfterBattleAppearance(ev));
+            else Finish(true, $"RESULT=PASS battle_id={_battleId} outcome={ev.Outcome} turns={_turns} gate={_client?.AssignedGate ?? "-"}");
+        }
+
+        private System.Collections.IEnumerator FinishAfterBattleAppearance(BattleEndS2C ev)
+        {
+            // The network can deliver BattleEnd before the existing presenter finishes the last turn.
+            float until = Time.realtimeSinceStartup + 15f;
+            while (!_finished && !_appearanceBattleViewVerified && Time.realtimeSinceStartup < until) yield return null;
+            if (_finished) yield break;
+            if (!_appearanceBattleViewVerified)
+            { Fail("appearance_battle_view", "真实战斗未观测到同身份头像、待机及至少两个移动中的行走帧"); yield break; }
             Finish(true, $"RESULT=PASS battle_id={_battleId} outcome={ev.Outcome} turns={_turns} gate={_client?.AssignedGate ?? "-"}");
         }
 

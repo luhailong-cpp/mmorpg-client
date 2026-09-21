@@ -489,6 +489,20 @@ namespace MmorpgClient.World
         /// <summary>Original identities from restored commit 9adcf929; the second hero PNG is an alias, not a 24th identity.</summary>
         public static IReadOnlyList<Definition> OriginalAll { get; } = Array.AsReadOnly(OriginalEntries);
 
+        /// <summary>The retained delivery scope. Historical IDs remain resolvable but cannot re-enter selection.</summary>
+        public static IReadOnlyList<Definition> RetainedOriginalAll { get; } = Array.AsReadOnly(
+            Array.FindAll(OriginalEntries, entry => IsRetainedOriginal(entry.Id)));
+
+        public static bool IsRetainedOriginal(string id)
+            => id == "00_reference_topright_boy" || id == "01_ice_sword_girl" ||
+               id == "02_fire_talisman_boy" || id == "03_lotus_healer_girl" ||
+               id == "04_mountain_guardian_boy" || id == "05_celestial_musician_girl" ||
+               id == "06_thunder_caster_boy" || id == "07_moon_shadow_assassin_girl" ||
+               id == "08_alchemy_prodigy_boy" || id == "09_bamboo_archer_girl" ||
+               id == "10_crimson_spear_girl" || id == "14_short_hair_snow_summoner_girl" ||
+               id == "15_water_dragon_scholar_boy" || id == "17_ghost_script_calligrapher_boy" ||
+               id == "20_star_formation_master_girl";
+
         /// <summary>Existing eight characters plus only fully approved/loaded originals; used by playable selection.</summary>
         public static IReadOnlyList<Definition> AvailableAll => SelectAvailableAppearances(entry => entry.ResolveAppearance());
 
@@ -496,7 +510,7 @@ namespace MmorpgClient.World
         {
             if (resolve == null) throw new ArgumentNullException(nameof(resolve));
             var result = new List<Definition>(Entries);
-            foreach (var entry in OriginalEntries)
+            foreach (var entry in RetainedOriginalAll)
             {
                 var appearance = resolve(entry);
                 if (appearance != null && appearance.IsOriginalRoster && appearance.Id == entry.Id) result.Add(entry);
@@ -529,6 +543,10 @@ namespace MmorpgClient.World
                 default: return DefaultId;
             }
         }
+
+        /// <summary>Persisted identity is independent of profession/gender and resource-version availability.</summary>
+        public static string ResolveRole(uint classId, uint gender, string appearanceId)
+            => string.IsNullOrEmpty(appearanceId) ? ResolveRole(classId, gender) : appearanceId;
 
         public static Sprite LoadPortrait(string id)
         {

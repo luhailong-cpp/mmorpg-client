@@ -36,6 +36,9 @@ namespace MmorpgClient.UI.Ugui.Battle
     /// </summary>
     public sealed class BattleUnitView
     {
+        private StripAnim _movementStrip;
+        private Vector2 _movementPosition;
+        private float _movementFrame;
         public const float RootWidth = 260f;
         public const float RootHeight = 340f;
         /// <summary>根节点内的脚底线(从顶部算)。</summary>
@@ -100,6 +103,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public Vector2 FootPosition { get; private set; }
         public float Scale { get; private set; } = 1f;
         public RectTransform Root => _root;
+        internal Image BodyImage => _body;
         /// <summary>立绘可见顶点到脚底的高度(设计像素,缩放 1;由贴图实际不透明像素测得)。</summary>
         public float VisibleTop => _visibleTop;
         /// <summary>头顶点(设计坐标)= HP 条上沿:伤害数字从条上方弹出。</summary>
@@ -168,6 +172,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private bool _facingEast;
         private SlotHighlight _highlight = SlotHighlight.None;
         private Sprite _idleSprite;
+        private string _renderedCharacterId;
         private readonly MmorpgClient.World.QdaoHdSpriteLeaseOwner _artLeaseOwner;
         private StripAnim _idleStrip;
         private bool _destroyed;
@@ -472,6 +477,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var dest = dist > 1f ? targetFoot - dir / dist * LungeStopDistance : from;
             var strip = BattleArtCatalog.LoadCharacterAction(CharacterId, "attack", _facingEast);
             if (IsMonster) strip = BattleArtCatalog.LoadMonsterAction(MonsterTableId, "attack", _facingEast);
+            BeginMovementWalk(from, dest.x >= from.x);
 
             // 1) 冲刺 0.22s + 残影
             Tween(0f, 1f, 0.22f, RealtimeEase.QuadOut, t =>
@@ -479,6 +485,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (_root == null) return;
                 var p = Vector2.LerpUnclamped(from, dest, t.Value.x);
                 _root.anchoredPosition = new Vector2(p.x, -p.y);
+                AdvanceMovementWalk(p);
             });
             Delay(0.07f, () => SpawnAfterimage());
             Delay(0.14f, () => SpawnAfterimage());
@@ -486,6 +493,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 2) 挥击(0.22s 起,命中 0.32s)
             Delay(0.22f, () =>
             {
+                StopMovementWalk();
                 if (_root == null) return;
                 if (strip != null && strip.Count > 0)
                 {
@@ -524,11 +532,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 if (_root == null) return;
                 ResetBodyTransform();
+                BeginMovementWalk(dest, from.x >= dest.x);
                 Tween(0f, 1f, AttackReturnSeconds, RealtimeEase.QuadIn, t =>
                 {
                     if (_root == null) return;
                     var p = Vector2.LerpUnclamped(dest, from, t.Value.x);
                     _root.anchoredPosition = new Vector2(p.x, -p.y);
+                    AdvanceMovementWalk(p);
                 }, () => EndAction());
             });
         }
@@ -971,7 +981,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_destroyed) return;
             _destroyed = true;
-            RealtimeTween.Kill(this);
+            KillActionTweens();
             RealtimeTween.Kill(_idleToken);
             RealtimeTween.Kill(_hpFillRect);
             RealtimeTween.Kill(_hpGhostRect);
@@ -990,6 +1000,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void ResolveAppearance()
         {
+            KillActionTweens();
             _idleStrip = null;
             Sprite sprite = null;
             StripAnim acquired = null;
@@ -1028,7 +1039,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
                 height = PlayerHeight;
             }
-            if (sprite == null && _idleSprite != null) { acquired?.Dispose(); return; }
+            if (sprite == null && _idleSprite != null && _renderedCharacterId == CharacterId)
+            { acquired?.Dispose(); return; }
             _bodyHeight = height;
             try { ApplyBodySprite(sprite, mirrored); }
             finally { acquired?.Dispose(); }
@@ -1036,6 +1048,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void ApplyBodySprite(Sprite sprite, bool mirrored)
         {
+            _renderedCharacterId = CharacterId;
             _idleSprite = sprite;
             _mirrored = mirrored;
             if (_body == null) return;
@@ -1126,11 +1139,54 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void EndAction()
         {
+            StopMovementWalk();
             ResetBodyTransform();
             if (!IsDead && !Fled) PlayIdle();
         }
 
-        private void KillActionTweens() => RealtimeTween.Kill(this);
+        private void KillActionTweens()
+        {
+            RealtimeTween.Kill(this);
+            StopMovementWalk();
+        }
+
+        private void BeginMovementWalk(Vector2 position, bool facingEast)
+        {
+            StopMovementWalk();
+            if (_lastState?.ActorType != eBattleActorType.BattleActorTypePlayer ||
+                MmorpgClient.World.QdaoCharacterCatalog.Find(CharacterId) == null) return;
+            _movementStrip = BattleArtCatalog.LoadPlayerWalk(CharacterId, facingEast);
+            _movementPosition = position;
+            _movementFrame = 0f;
+        }
+
+        /// <summary>Same distance/FPS/9 calibration as the world animator, converted from scaled UI pixels.</summary>
+        public static float WalkFrameAdvance(float screenDistance, float renderScale, float fps)
+            => Mathf.Max(0f, screenDistance) / Mathf.Max(0.001f, PlayerHeight * renderScale) *
+               MmorpgClient.World.QdaoBoySpriteAnimator.FrameWorldHeight * fps /
+               MmorpgClient.World.QdaoBoySpriteAnimator.ReferenceRunSpeed;
+
+        private void AdvanceMovementWalk(Vector2 position)
+        {
+            if (_movementStrip == null || _movementStrip.Count == 0 || _body == null) return;
+            _movementFrame = Mathf.Repeat(_movementFrame + WalkFrameAdvance(
+                Vector2.Distance(_movementPosition, position), Scale, _movementStrip.Fps), _movementStrip.Count);
+            _movementPosition = position;
+            SetFrame(_movementStrip, _movementFrame);
+            _bodyRect.localScale = new UnityEngine.Vector3(_movementStrip.Mirrored ? -1f : 1f, 1f, 1f);
+        }
+
+        private void StopMovementWalk()
+        {
+            if (_movementStrip == null) return;
+            // The idle owner keeps its direction alive. Replace body/flash before releasing the
+            // movement direction; afterimages retain their own leases through existing owners.
+            if (_body != null) _body.sprite = _idleSprite;
+            if (_flash != null) _flash.sprite = _idleSprite;
+            var previous = _movementStrip;
+            _movementStrip = null;
+            previous.Dispose();
+        }
 
         private void ReviveVisual()
         {

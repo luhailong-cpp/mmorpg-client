@@ -1,0 +1,76 @@
+{
+  "verifiedAtUtc": "2026-09-21T11:45:08.7863776Z",
+  "project": "D:\\luyuan\\wuxingqitan\\mmorpg-client",
+  "gitHead": "fc0a8dcc14d1c63cb4bde5f8f644211dbbf49dbe",
+  "layer": "static_call_path_not_gameplay_acceptance",
+  "productionManifestCount": 0,
+  "sourceHashes": [
+    {
+      "path": "Assets/Scripts/UI/AppBootstrap.cs",
+      "sha256": "580425b59e264a01424e27e8b007a98ac413a366dea8f1da9a546ca721e9c0b7"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongPaintedCity.cs",
+      "sha256": "cceeb57d50d412ae54acb245dab12bd3b565344be0d24d973bb2fbbfb818dfc0"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/FestivalRegionMap.cs",
+      "sha256": "e6c6c188e5d4c855f5627d2a8d4415769f33d6486ba8427c11feb3956af6796a"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongMapBuilder.cs",
+      "sha256": "4edab96e10f19630bed6e7f5c1c3ebb3b6ca923aba12e01739e6e40726ea7d52"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/CityTileManifest.cs",
+      "sha256": "bd735567534554e07698e1f6e118c3872bca58c9a6dffb9b9d1bf2aadc9efac3"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/CityTileStreaming.cs",
+      "sha256": "1d48350a4e1d751d6e77f1f72a1514f131579c6cad40026469b39a85fd24b33e"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs",
+      "sha256": "2a9362d8be0f1cbb3bfa49067ed1021a2dfa8c9167fcc0b3d4f02adf5167b5cc"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs",
+      "sha256": "bf5ecbdce6b751c32054c1db74abcf5c36e0628b482efa79de3a92d3e061a795"
+    },
+    {
+      "path": "Assets/Scripts/World/Tianyong/TianyongPaintedForeground.cs",
+      "sha256": "33f153015fd3929069da5d431452baa34981b5f5eccf52b16aaa6eeda8b4159a"
+    },
+    {
+      "path": "Assets/Editor/Tianyong/CityTile4KImporter.cs",
+      "sha256": "e5f178da2ea30f7c1e416dcf0babf37ee86f54439e5827437403b342315e2dbd"
+    }
+  ],
+  "callPath": [
+    "AppBootstrap.Awake -> WorldMap.Initialize(GameClient, worldCamera, directionalSun, mapConfig)",
+    "GameClient.OnSceneEntered -> TianyongMapRuntime.HandleSceneEntered -> EnterScene",
+    "TianyongMapBuilder.Build -> TianyongPaintedCity.Apply -> ConfigureCityTiles(tianyong, festival)",
+    "FestivalRegionMap.Build/SetAppearance -> ConfigureCityTiles(region.Key, day/festival)",
+    "TianyongMapRuntime.LateUpdate -> cameraController.Tick -> map.UpdateCityTiles -> CityTileStreaming.Tick"
+  ],
+  "invariants": {
+    "worldRect": {
+      "height": 300,
+      "y": 0,
+      "width": 300,
+      "x": 50
+    },
+    "yMeans": "world Z",
+    "prefetchRing": 1,
+    "maxConcurrentLoads": 2,
+    "releaseDelaySeconds": 2,
+    "atomicAppearanceActivation": "current-view required tiles validated and quads created before commit",
+    "tianyongForegroundGate": "requires legacyForegroundCompatible=true; no new approval given"
+  },
+  "gameplayAcceptancePassed": false,
+  "blockers": [
+    "No complete accepted 256-tile appearance was delivered.",
+    "No production CityTiles4K manifest exists.",
+    "New-art actual-entry screenshots, navigation/foreground acceptance and memory/GPU/frame-time measurements cannot be claimed."
+  ]
+}

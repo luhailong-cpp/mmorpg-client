@@ -114,6 +114,18 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>演出层(BattleUiRoot 结算/测试可用)。</summary>
         public BattlePresenter Presenter => _presenter;
 
+        // Read the existing rendered objects; acceptance must never manufacture a second view.
+        internal bool TryGetAppearanceView(ulong actorId, out BattleUnitView view, out Image portrait)
+        {
+            portrait = null;
+            view = null;
+            if (!IsOpen || !_viewById.TryGetValue(actorId, out view)) return false;
+            var card = _hudRoot.Find("PartyCards/Card_" + actorId + "/Portrait");
+            if (card != null) portrait = card.GetComponent<Image>();
+            return view.Root != null && view.Root.gameObject.activeInHierarchy && portrait != null &&
+                portrait.isActiveAndEnabled;
+        }
+
         public BattleScreen(BattleUiRoot owner, UnityEngine.Transform parent)
         {
             _owner = owner;

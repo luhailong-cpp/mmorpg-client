@@ -77,6 +77,8 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(13).Or.EqualTo(14));
                     yield return WalkWithRealMotor(sandbox, definition.Id, routeOrigin, observations);
+                    if (definition.ResolveAppearance()?.IsHd == true)
+                        yield return CaptureNativeWalkFramesIfRequested(sandbox, routeOrigin, observations);
                     observations.testedOriginalCount++;
                     if (animator.ArtworkVersion == 14)
                     {
@@ -276,6 +278,7 @@ namespace MmorpgClient.Tests.PlayMode
             public bool v14HdContractObserved;
             public CameraCaptureObservation normalView;
             public CameraCaptureObservation nearestView;
+            public List<WalkFrameCaptureObservation> walkFrameCaptures = new();
             public bool movementObserved;
             public float actualTravelDistance;
             public float actualPathDistance;
@@ -305,6 +308,20 @@ namespace MmorpgClient.Tests.PlayMode
             public float projectedFrameHeightPixels;
             public float screenPixelsPerTexturePixel;
             public bool fullFrameInsideCapture;
+        }
+
+        [System.Serializable]
+        private sealed class WalkFrameCaptureObservation
+        {
+            public string characterId, direction, resourcePath, resourcePngSha256;
+            public string inputSnapshotSha256, generatedUtc, locomotionState, spriteName;
+            public int frameNumber, simulationFrame, textureWidth, textureHeight;
+            public float pixelsPerUnit, frameWorldHeight, pathDistance, movementSeconds;
+            public Vector2 normalizedPivot;
+            public Vector3 routeStart, captureFeet, billboardScale;
+            public bool realMotorEnabled, matchesExpectedResource;
+            public string routePreparation = "Warp before measurement; capture during subsequent real CharacterController travel. No sprite or phase assignment.";
+            public CameraCaptureObservation normalView, nearestView;
         }
 
         [System.Serializable]
@@ -613,6 +630,179 @@ namespace MmorpgClient.Tests.PlayMode
             };
         }
 
+        private static bool TryFindNativeCaptureRoute(TianyongNavigationGrid navigation, Vector3 origin,
+            Vector3 heading, out Vector3 routeStart)
+        {
+            var side = new Vector3(heading.z, 0f, -heading.x) * .5f;
+            // Deterministic nearby setup only; the measured interval never includes a warp.
+            for (var radius = 0; radius <= 20; radius += 2)
+            for (var sector = 0; sector < (radius == 0 ? 1 : 8); sector++)
+            {
+                var angle = sector * 45f * Mathf.Deg2Rad;
+                var start = origin + new Vector3(Mathf.Sin(angle), 0f, Mathf.Cos(angle)) * radius;
+                var clear = true;
+                for (var step = 0; step <= 40; step++)
+                {
+                    var sample = start + heading * (step * .25f);
+                    if (navigation.IsWalkable(sample) && navigation.IsWalkable(sample + side) && navigation.IsWalkable(sample - side)) continue;
+                    clear = false;
+                    break;
+                }
+                if (clear) { routeStart = start; return true; }
+            }
+            routeStart = origin;
+            return false;
+        }
+
+        private static IEnumerator CaptureNativeWalkFramesIfRequested(TianyongSandboxBootstrap sandbox,
+            Vector3 routeOrigin, RuntimeObservedAppearances observations)
+        {
+            var outputDirectory = System.Environment.GetEnvironmentVariable("QDAO_ROSTER_CAPTURE_DIR");
+            if (string.IsNullOrEmpty(outputDirectory)) yield break;
+            Assert.That(SystemInfo.graphicsDeviceType, Is.Not.EqualTo(UnityEngine.Rendering.GraphicsDeviceType.Null),
+                "Native walk evidence requires real graphics-enabled captures.");
+            var controller = sandbox.Player.GetComponent<TianyongPlayerController>();
+            var animator = sandbox.Player.GetComponent<QdaoBoySpriteAnimator>();
+            var renderer = sandbox.Player.transform.Find("sprite").GetComponent<SpriteRenderer>();
+            var appearance = QdaoCharacterCatalog.Find(animator.CharacterId).ResolveAppearance();
+            var observed = observations.appearances.Find(entry => entry.actualCharacterId == animator.CharacterId);
+            Assert.That(observed, Is.Not.Null);
+            Assert.That(observed.walkFrameCaptures, Is.Empty, "Do not silently replace earlier walk evidence.");
+            var nativeDirections = 0;
+            foreach (var direction in ObservationDirections)
+            {
+                var directionIndex = System.Array.IndexOf(ObservationDirections, direction);
+                // Each native direction must be observed during actual movement. The approved
+                // manifest drives per-resource geometry; preserved 512 frames cannot qualify.
+                var frameIndex = -1;
+                for (var candidate = 0; candidate < appearance.FrameCount; candidate++)
+                    if (appearance.GeometryForResource(appearance.FrameResourcePath(direction, candidate)).Width == 1024)
+                    { frameIndex = candidate; break; }
+                if (frameIndex < 0) continue;
+                nativeDirections++;
+                var resourcePath = appearance.FrameResourcePath(direction, frameIndex);
+                var geometry = appearance.GeometryForResource(resourcePath);
+                Assert.That(geometry.Width, Is.EqualTo(1024), "The target must be a real native 1024 walk frame.");
+                Assert.That(geometry.PixelsPerUnit, Is.EqualTo(104f));
+                var radians = (QdaoBoySpriteAnimator.CameraYaw(sandbox.WorldCamera) + directionIndex * 45f) * Mathf.Deg2Rad;
+                var heading = new Vector3(Mathf.Sin(radians), 0f, Mathf.Cos(radians));
+                Assert.That(TryFindNativeCaptureRoute(sandbox.Map.Navigation, routeOrigin, heading, out var start),
+                    Is.True, "No open real-motor capture route for " + direction);
+                controller.SetDebugDirection(Vector3.zero);
+                controller.WarpTo(start);
+                // Let the existing gameplay follow camera settle naturally after setup.
+                for (var frame = 0; frame < 30; frame++) yield return null;
+                Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
+                Assert.That(animator.EnsureDirectionFrames(directionIndex), Is.True);
+                var expectedTexture = Resources.Load<Texture2D>(resourcePath);
+                Assert.That(expectedTexture, Is.Not.Null);
+                var measuredStart = controller.FeetPosition;
+                var previousFeet = measuredStart;
+                var distance = 0f;
+                var started = Time.time;
+                var captured = false;
+                controller.SetDebugDirection(heading);
+                try
+                {
+                    for (var frame = 0; frame < 48; frame++)
+                    {
+                        yield return null;
+                        var step = controller.FeetPosition - previousFeet;
+                        step.y = 0f;
+                        distance += step.magnitude;
+                        previousFeet = controller.FeetPosition;
+                        if (animator.State != QdaoBoySpriteAnimator.LocomotionState.Run ||
+                            animator.Direction != directionIndex || renderer.sprite.texture != expectedTexture) continue;
+                        Assert.That(controller.Motor.enabled, Is.True);
+                        Assert.That(distance, Is.GreaterThan(.05f), "Setup warp cannot count as walking.");
+                        Assert.That(geometry.Matches(renderer.sprite), Is.True);
+                        var capture = new WalkFrameCaptureObservation
+                        {
+                            characterId = animator.CharacterId, direction = direction, frameNumber = frameIndex + 1,
+                            resourcePath = resourcePath, inputSnapshotSha256 = observations.inputSnapshotSha256,
+                            generatedUtc = System.DateTime.UtcNow.ToString("O"), simulationFrame = Time.frameCount,
+                            locomotionState = animator.State.ToString(), spriteName = renderer.sprite.name,
+                            textureWidth = expectedTexture.width, textureHeight = expectedTexture.height,
+                            pixelsPerUnit = renderer.sprite.pixelsPerUnit,
+                            normalizedPivot = new Vector2(renderer.sprite.pivot.x / renderer.sprite.rect.width,
+                                renderer.sprite.pivot.y / renderer.sprite.rect.height),
+                            billboardScale = renderer.transform.lossyScale,
+                            frameWorldHeight = renderer.sprite.rect.height / renderer.sprite.pixelsPerUnit * renderer.transform.lossyScale.y,
+                            pathDistance = distance, movementSeconds = Time.time - started,
+                            routeStart = measuredStart, captureFeet = controller.FeetPosition,
+                            realMotorEnabled = controller.Motor.enabled, matchesExpectedResource = true
+                        };
+                        var sourcePath = Path.Combine(Application.dataPath, "Resources", resourcePath + ".png");
+                        Assert.That(File.Exists(sourcePath), Is.True);
+                        using (var sha = SHA256.Create())
+                            capture.resourcePngSha256 = System.BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(sourcePath))).Replace("-", "").ToLowerInvariant();
+                        CaptureNativeWalkPair(sandbox, outputDirectory, capture);
+                        Assert.That(renderer.sprite.texture, Is.SameAs(expectedTexture));
+                        Assert.That(Time.frameCount, Is.EqualTo(capture.simulationFrame), "Both views must show the same real simulation frame.");
+                        observed.walkFrameCaptures.Add(capture);
+                        WriteObservationsIfRequested(observations);
+                        captured = true;
+                        break;
+                    }
+                }
+                finally { controller.SetDebugDirection(Vector3.zero); animator.ReleaseObservedDirection(); }
+                Assert.That(captured, Is.True, "The actual renderer never reached required native walk frame " + resourcePath);
+                yield return null;
+                yield return null;
+                Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Idle));
+            }
+            Assert.That(nativeDirections, Is.GreaterThanOrEqualTo(2),
+                "HD walk acceptance requires native frames in at least two distinct directions.");
+        }
+
+        private static void CaptureNativeWalkPair(TianyongSandboxBootstrap sandbox, string outputDirectory,
+            WalkFrameCaptureObservation observed)
+        {
+            var camera = sandbox.WorldCamera;
+            var previousTarget = camera.targetTexture;
+            var previousActive = RenderTexture.active;
+            var previousZoom = sandbox.CameraRig.RequestedZoom;
+            var previousRotation = camera.transform.rotation;
+            var target = new RenderTexture(1920, 1080, 24);
+            var capture = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
+            try
+            {
+                camera.targetTexture = target;
+                CameraCaptureObservation SaveView(float zoom, string suffix)
+                {
+                    sandbox.CameraRig.SetZoom(zoom);
+                    sandbox.CameraRig.Snap();
+                    Assert.That(camera.transform.rotation, Is.EqualTo(previousRotation));
+                    camera.Render();
+                    RenderTexture.active = target;
+                    capture.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0);
+                    capture.Apply();
+                    var path = Path.Combine(outputDirectory, $"tianyong-{observed.characterId}-walk-{observed.direction}-{observed.frameNumber:00}{suffix}.png");
+                    Assert.That(File.Exists(path), Is.False, "Walk capture evidence must not be overwritten.");
+                    File.WriteAllBytes(path, capture.EncodeToPNG());
+                    Assert.That(new FileInfo(path).Length, Is.GreaterThan(100000));
+                    var view = ObserveCameraProjection(sandbox, target.width, target.height);
+                    view.imagePath = path;
+                    using (var sha = SHA256.Create())
+                        view.imageSha256 = System.BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
+                    Debug.Log("[QdaoNativeWalkCapture] " + path + " | " + observed.resourcePath + " | frame " + observed.simulationFrame);
+                    return view;
+                }
+                observed.normalView = SaveView(TianyongMapConfig.LoadDefault().CameraZoomDefault, "");
+                observed.nearestView = SaveView(TianyongMapConfig.LoadDefault().CameraZoomMin, "-nearest-zoom");
+            }
+            finally
+            {
+                sandbox.CameraRig.SetZoom(previousZoom);
+                sandbox.CameraRig.Snap();
+                camera.targetTexture = previousTarget;
+                RenderTexture.active = previousActive;
+                target.Release();
+                Object.Destroy(target);
+                Object.Destroy(capture);
+            }
+        }
+
         private static void CaptureIfRequested(TianyongSandboxBootstrap sandbox, string characterId,
             RuntimeObservedAppearances observations)
         {
@@ -649,7 +839,7 @@ namespace MmorpgClient.Tests.PlayMode
                     return view;
                 }
                 observed.normalView = SaveView("");
-                if (observed.actualIsHd || observed.actualIsMixedResolution)
+                if (observed.actualIsOriginalRoster)
                 {
                     sandbox.CameraRig.SetZoom(TianyongMapConfig.LoadDefault().CameraZoomMin);
                     sandbox.CameraRig.Snap();

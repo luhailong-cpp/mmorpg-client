@@ -1,0 +1,1 @@
+{"error": "Candidates, layout references and previews are not production deliveries", "productionAccepted": false}

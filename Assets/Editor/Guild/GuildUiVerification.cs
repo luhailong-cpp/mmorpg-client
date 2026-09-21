@@ -181,7 +181,7 @@ public static class GuildUiVerification
             var info = new GuildInfo { GuildId = 88001, Name = "清风明月", LeaderId = 10001, Level = 5, MaxMembers = 50,
                 Announcement = "同道相逢，皆是有缘。\n\n愿每一盏灯，都照亮归家的路；愿每一次同行，都不负山海与明月。\n\n帮会事务请与帮主、长老联系。", ZoneId = 1 };
             for (ulong i = 0; i < 12; i++) info.Members.Add(new GuildMember { PlayerId = 10001 + i,
-                Role = i == 0 ? 3u : i == 1 ? 1u : 0u, Contribution = 3560 - i * 130, Online = i < 7 });
+                Role = i == 0 ? 3u : i == 1 ? 1u : 0u, ContributionTotal = 3560 - i * 130, Online = i < 7 });
             return info;
         }
     }

@@ -16,7 +16,7 @@ using UnityEngine.InputSystem;
 
 namespace MmorpgClient.UI.Ugui.Team
 {
-    /// <summary>City team entry and session lifetime. A future team transport supplies snapshots.</summary>
+    /// <summary>City team entry and session lifetime over the existing team service.</summary>
     public sealed class TeamUiRoot : MonoBehaviour
     {
         public static TeamUiRoot Instance { get; private set; }
@@ -35,6 +35,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private TeamWindow _window;
         private ulong _playerId;
         private bool _available;
+        private TeamAppearanceTransport _transport;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -87,12 +88,16 @@ namespace MmorpgClient.UI.Ugui.Team
             }
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             ulong playerId = inGame ? _game.PlayerId : 0;
-            if (_playerId != playerId)
+            if (_playerId != playerId || _transport != null && !_transport.IsCurrent)
             {
                 ResetSession();
                 _playerId = playerId;
                 State.Reset(playerId);
-                State.SetUnavailable("组队暂未开放，敬请期待。");
+                if (playerId != 0)
+                {
+                    _transport = new TeamAppearanceTransport(_game, State);
+                    _transport.Connect();
+                }
             }
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
@@ -129,17 +134,19 @@ namespace MmorpgClient.UI.Ugui.Team
         private void RequestRefresh()
         {
             if (!_available) return;
-            if (RefreshRequested == null) { State.SetUnavailable("组队暂未开放，敬请期待。"); return; }
             int generation = State.BeginRefresh();
-            if (generation != 0) RefreshRequested(generation);
+            if (generation == 0) return;
+            if (RefreshRequested != null) RefreshRequested(generation);
+            else _transport?.Refresh(generation);
         }
 
         private void RequestDecision(ulong playerId, bool approve)
         {
             if (!_available) return;
-            if (DecisionRequested == null) { State.SetUnavailable("组队暂未开放，敬请期待。"); return; }
             int generation = State.BeginDecision(playerId, approve);
-            if (generation != 0) DecisionRequested(generation, playerId, approve);
+            if (generation == 0) return;
+            if (DecisionRequested != null) DecisionRequested(generation, playerId, approve);
+            else _transport?.Decide(generation, playerId, approve);
         }
 
         private void Changed()
@@ -152,6 +159,8 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void ResetSession()
         {
+            _transport?.Dispose();
+            _transport = null;
             _playerId = 0;
             _window?.ResetSession();
             State.Reset();
@@ -169,6 +178,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void OnDestroy()
         {
+            _transport?.Dispose();
             State.Changed -= Changed;
             if (_game != null) _game.OnDisconnected -= ResetSession;
             HidePanel();

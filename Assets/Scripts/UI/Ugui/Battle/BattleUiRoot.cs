@@ -70,6 +70,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>战斗层(参战屏或观战屏)正占着屏幕。属性 UI 据此隐藏入口:
         /// 战斗中服务端本来就拒绝改属性(InBattleComp),入口先行隐藏免得点了必失败。</summary>
         public bool IsBattleLayerVisible => _battleOpen || _spectateOpen;
+        internal BattleScreen ActiveBattleScreen => _battleOpen ? _battleScreen : null;
 
         // ── 生命周期 ────────────────────────────────────────
 
