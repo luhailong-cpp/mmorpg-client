@@ -158,6 +158,29 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void DescribeKickReason_TravelFailureCodeYieldsRelogText()
+        {
+            // 服务端 S3L1-1 第二层出口：跨区传送受理后没成且回不到原地，先推失败 tip 再踢线（原因码同一个）。
+            // 断线文案必须是人话、并提示重登，否则选服界面只会显示笼统的“连接已断开”。
+            uint busy = (uint)scene_error.KZoneTravelTargetBusy;
+            string text = GameClient.DescribeKickReason(busy);
+            Assert.That(text, Is.Not.Null);
+            Assert.That(text, Does.StartWith(GameClient.DescribeTravelTip(busy)));
+            Assert.That(text, Does.Contain("请重新登录"));
+            Assert.That(text, Does.Not.Contain("tip="));
+        }
+
+        [Test]
+        public void DescribeKickReason_UnsetOrUnrelatedCodeYieldsNull()
+        {
+            // 未填原因、顶号等其它踢线原因、同步拒绝码、认不出的码：一律不下结论，维持通用断线文案。
+            Assert.That(GameClient.DescribeKickReason(0), Is.Null);
+            Assert.That(GameClient.DescribeKickReason((uint)scene_error.KEnterSceneSceneNotFound), Is.Null);
+            Assert.That(GameClient.DescribeKickReason((uint)scene_error.KEnterSceneChangingScene), Is.Null);
+            Assert.That(GameClient.DescribeKickReason(uint.MaxValue), Is.Null);
+        }
+
+        [Test]
         public void ParseTicketZoneId_PrefersTargetZoneThenZone()
         {
             var travel = new GateTokenPayload { ZoneId = 1, TargetZoneId = 2 }.ToByteString();

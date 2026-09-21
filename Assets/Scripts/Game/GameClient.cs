@@ -116,7 +116,8 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 最近一次 <see cref="OnDisconnected"/> 通知所带的原因:某个失败流程主动断线时是给人看的失败文案,
-        /// 普通断线(对端关闭 / 被踢 / 主动 Disconnect)为 null。每次通知前都会重写,所以订阅者在回调里
+        /// 普通断线(对端关闭 / 未带传送失败码的踢线 / 主动 Disconnect)为 null;带传送失败码的踢线
+        /// 见 <see cref="DescribeKickReason"/>。每次通知前都会重写,所以订阅者在回调里
         /// 读到的一定是"这一次"的原因;有值时 UI 应显示它,而不是用笼统的"连接已断开"盖掉。
         /// </summary>
         public string DisconnectReason { get; private set; }
@@ -1059,6 +1060,16 @@ namespace MmorpgClient.Game
             tipId == (uint)scene_error.KEnterSceneFailed;
 
         /// <summary>
+        /// 踢线(msg 34,GameKickPlayerRequest.reason.id)的原因 → 断线文案;返回 null 表示用通用断线文案。
+        /// 契约(服务端 docs/design/cross-zone-scene-travel.md §12,S3L1-1 第二层出口):跨区传送受理后没成、
+        /// 而源 scene 已无法让玩家留在原地时,服务端先推传送失败 tip,紧跟一条带同一码的踢线,玩家须重登。
+        /// 只认传送失败码(与 <see cref="IsTravelFailureTip"/> 同一口径);顶号等其它踢线原因、以及
+        /// 未填原因(0)一律不下结论,维持原来的通用文案 —— 宁可笼统,也不要把别的原因说成传送失败。
+        /// </summary>
+        public static string DescribeKickReason(uint reasonId) =>
+            IsTravelFailureTip(reasonId) ? DescribeTravelTip(reasonId) + "请重新登录。" : null;
+
+        /// <summary>
         /// 从服务端签发的 gate 票据里**只读**解出目标 gate 所属的 zone:优先 target_zone_id(跨区传送票),
         /// 为 0 时取 zone_id。解析失败或两者皆 0 返回 0,由调用方决定怎么办。
         /// 只为展示(<see cref="CurrentZoneId"/>),不是安全校验;入参不被改动,
@@ -1597,10 +1608,29 @@ namespace MmorpgClient.Game
                 OnServerTip?.Invoke(tip);
             });
 
-            OnNotify(MessageIds.KickPlayer, _ =>
+            OnNotify(MessageIds.KickPlayer, mc =>
             {
-                Log("[gate] kicked by server");
-                Disconnect();
+                // 踢线必须断:原因解不出来也照断,只是退回通用断线文案(fail-closed)。
+                uint reasonId = 0;
+                try
+                {
+                    reasonId = GameKickPlayerRequest.Parser.ParseFrom(mc.SerializedMessage).Reason?.Id ?? 0;
+                }
+                catch (InvalidProtocolBufferException e)
+                {
+                    LogError($"[gate] kick reason unparsable: {e.Message}");
+                }
+                var text = DescribeKickReason(reasonId);
+                Log($"[gate] kicked by server reason={reasonId}");
+                if (text == null)
+                {
+                    Disconnect();
+                    return;
+                }
+                // 跨区传送受理后没成、源 scene 又回不到原地(服务端 D-B:先推失败 tip,紧跟本条踢线)。
+                // 文案随断线通知带出去,否则前一条 tip 的文案会被选服界面的"连接已断开"盖掉(见 DisconnectReason)。
+                Status(text);
+                DisconnectInternal(notify: true, forceNotification: true, reason: text);
             });
         }
 
