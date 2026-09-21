@@ -201,6 +201,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void ResolveRedirectPlayerId_FallsBackToInFlightEnterRequest()
+        {
+            // 已进游戏：沿用当前角色。
+            Assert.That(GameClient.ResolveRedirectPlayerId(11, 22), Is.EqualTo(11ul));
+            // 重定向推送先于 EnterGame 应答到达：PlayerId 仍是零，沿用本次请求的角色，不得回到选角。
+            Assert.That(GameClient.ResolveRedirectPlayerId(0, 22), Is.EqualTo(22ul));
+            // 两者皆零才交给调用方重新选角。
+            Assert.That(GameClient.ResolveRedirectPlayerId(0, 0), Is.Zero);
+        }
+
+        [Test]
         public void ValidateRedirectTarget_LocalClockPastDeadlineStillPasses()
         {
             // 本机时钟比服务端快时，重定向票据在本机看来已过期；有效期由目标 gate 按服务端时钟判，客户端不得据此拒绝。

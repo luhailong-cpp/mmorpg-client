@@ -71,6 +71,9 @@ namespace MmorpgClient.Game
         private bool _enterRejectedByServer;
         private bool _redirecting;             // RedirectToGateNotify flow active
         private ulong _redirectPlayerId;       // 重定向前的角色 id(重连后沿用,不重新选角)
+        // 本次 EnterGame 请求的角色 id。应答回来之前 PlayerId 仍是 0,而重定向推送(Kafka → gate)
+        // 可能先于应答到达、并作废那条等应答的管线 —— 那时只能靠它沿用角色,见 ResolveRedirectPlayerId。
+        private ulong _enterRequestPlayerId;
         private uint _redirectZoneId;          // 重定向目标 gate 所属的 zone(票据只读解析;解析不出时是重定向前的旧值)
         private int _redirectHops;             // 本会话已跟随的重定向次数(环路熔断;EnterZone 与玩家主动传送时归零)
         // 跨 zone 传送在途:TravelToZone 已发出,正在等 msg 124(成了)或失败 tip(没成)。
@@ -681,6 +684,7 @@ namespace MmorpgClient.Game
             _enterRejectedByServer = false;
             _enterFailedTipId = 0;
             _awaitingSceneEntry = true;
+            _enterRequestPlayerId = playerId;
             EnterGameResponse egResp = null;
             yield return Call(MessageIds.EnterGame,
                 new EnterGameRequest { PlayerId = playerId, RequestId = Guid.NewGuid().ToString("N") },
@@ -894,7 +898,10 @@ namespace MmorpgClient.Game
 
             int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
             _redirecting = true;
-            _redirectPlayerId = PlayerId; // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色
+            // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色。EnterGame 应答还没回来时
+            // PlayerId 是 0,退回本次请求里的角色 —— 否则第二条腿会重新弹选角,而目标区的角色列表
+            // 按区过滤,玩家的角色(归属别的区)不在里面,只能选错或新建(GO-5 让登录时重定向更常见)。
+            _redirectPlayerId = ResolveRedirectPlayerId(PlayerId, _enterRequestPlayerId);
             // 目标 gate 属于哪个区:从票据里**只读**解出来,只为展示(CurrentZoneId)。票据本身仍然原样转发。
             // 解不出来不算重定向失败 —— 这不是安全校验,验票是目标 gate 的事;保留旧值并留一条日志即可。
             // 同样要赶在 ResetConnectionState 之前捕获旧值(它会把 CurrentZoneId 清零)。
@@ -1082,6 +1089,13 @@ namespace MmorpgClient.Game
         /// </summary>
         public static string DescribeKickReason(uint reasonId) =>
             IsTravelFailureTip(reasonId) ? DescribeTravelTip(reasonId) + "请重新登录。" : null;
+
+        /// <summary>
+        /// 重定向后第二条腿要沿用的角色:已进游戏(PlayerId 非 0)取当前角色;EnterGame 应答还没回来时
+        /// 取本次 EnterGame 请求里的角色。两者都是 0 才返回 0(调用方据此重新选角)。
+        /// </summary>
+        public static ulong ResolveRedirectPlayerId(ulong currentPlayerId, ulong enterRequestPlayerId) =>
+            currentPlayerId != 0 ? currentPlayerId : enterRequestPlayerId;
 
         /// <summary>
         /// 从服务端签发的 gate 票据里**只读**解出目标 gate 所属的 zone:优先 target_zone_id(跨区传送票),
@@ -1803,6 +1817,7 @@ namespace MmorpgClient.Game
                 CurrentSceneId = 0;
                 CurrentSceneConfigId = 0;
                 PlayerId = 0;
+                _enterRequestPlayerId = 0; // RedirectFlow 在 ResetConnectionState 之前已捕获
                 CurrentZoneId = 0;      // 所在区 = 当前连着的 gate 所属的区;连接没了就没有"所在区"
                 _knownRoles.Clear();
                 _sceneAppearances.Clear();
