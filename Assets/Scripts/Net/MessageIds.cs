@@ -12,6 +12,7 @@ namespace MmorpgClient.Net
         public const uint ApplyJoinTeam          =  206; // ClientPlayerTeamApplyJoinTeam
         public const uint AutoAllocateAttributePoints =  173; // SceneAttributeClientPlayerAutoAllocateAttributePoints
         public const uint AutoAllocatePetPoints  =  188; // ScenePetClientPlayerAutoAllocatePetPoints
+        public const uint CancelGuildApplication =  219; // GuildServiceCancelGuildApplication
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
         public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
         public const uint CreateAttributeScheme  =  174; // SceneAttributeClientPlayerCreateAttributeScheme
@@ -44,11 +45,14 @@ namespace MmorpgClient.Net
         public const uint JubaozhaiGetListingDetail =  197; // ClientPlayerJubaozhaiGetListingDetail
         public const uint JubaozhaiGetMyShelf    =  200; // ClientPlayerJubaozhaiGetMyShelf
         public const uint JubaozhaiSetFavorite   =  198; // ClientPlayerJubaozhaiSetFavorite
+        public const uint KickGuildMember        =  217; // GuildServiceKickGuildMember
         public const uint KickMember             =  202; // ClientPlayerTeamKickMember
         public const uint KickPlayer             =   34; // SceneClientPlayerCommonKickPlayer
         public const uint LeaveGame              =   17; // ClientPlayerLoginLeaveGame
         public const uint LeaveGuild             =   29; // GuildServiceLeaveGuild
         public const uint LeaveTeam              =  210; // ClientPlayerTeamLeaveTeam
+        public const uint ListGuildApplications  =  221; // GuildServiceListGuildApplications
+        public const uint ListMyGuildApplications =  222; // GuildServiceListMyGuildApplications
         public const uint ListMyInvites          =  205; // ClientPlayerTeamListMyInvites
         public const uint ListSkills             =   77; // SceneSkillClientPlayerListSkills
         public const uint ListWatchableBattles   =  164; // MatchServiceListWatchableBattles
@@ -70,6 +74,7 @@ namespace MmorpgClient.Net
         public const uint NotifyChallengeInvite  =  156; // MatchServiceNotifyChallengeInvite
         public const uint NotifyChallengeResult  =  154; // MatchServiceNotifyChallengeResult
         public const uint NotifyEnterScene       =   79; // SceneSceneClientPlayerNotifyEnterScene
+        public const uint NotifyGuildChanged     =  220; // GuildServiceNotifyGuildChanged
         public const uint NotifyMoveAck          =  137; // SceneMovementClientPlayerNotifyMoveAck
         public const uint NotifyPetListChanged   =  184; // ScenePetClientPlayerNotifyPetListChanged
         public const uint NotifySceneInfo        =   31; // SceneSceneClientPlayerNotifySceneInfo
@@ -94,9 +99,11 @@ namespace MmorpgClient.Net
         public const uint ResetPetPoints         =  182; // ScenePetClientPlayerResetPetPoints
         public const uint RespondChallenge       =  151; // MatchServiceRespondChallenge
         public const uint RespondInvite          =  204; // ClientPlayerTeamRespondInvite
+        public const uint ReviewGuildApplication =  223; // GuildServiceReviewGuildApplication
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
         public const uint SetAutoBattle          =  162; // BattleClientPlayerSetAutoBattle
         public const uint SetGuildAnnouncement   =   39; // GuildServiceSetAnnouncement
+        public const uint SetGuildMemberRole     =   19; // GuildServiceSetGuildMemberRole
         public const uint SortBag                =  192; // SceneBagClientPlayerSortBag
         public const uint StartTeamMatch         =  211; // ClientPlayerTeamStartTeamMatch
         public const uint StopWatchBattle        =  165; // BattleClientPlayerStopWatchBattle
@@ -105,6 +112,7 @@ namespace MmorpgClient.Net
         public const uint SwitchAttributeScheme  =  171; // SceneAttributeClientPlayerSwitchAttributeScheme
         public const uint TeleportRequest        =  136; // SceneMovementClientPlayerTeleportRequest
         public const uint TipToClient            =   23; // SceneClientPlayerCommonSendTipToClient
+        public const uint TransferGuildLeader    =  216; // GuildServiceTransferGuildLeader
         public const uint TransferLeader         =  212; // ClientPlayerTeamTransferLeader
         public const uint TravelToZone           =  226; // SceneSceneClientPlayerTravelToZone
         public const uint WatchBattle            =  163; // MatchServiceWatchBattle
