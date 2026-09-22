@@ -56,19 +56,47 @@ if ($SameZoneAppearanceCheck -and (-not $AppearanceA -or -not $AppearanceB)) {
 }
 if ($AppearanceUi -and (-not $AppearanceA -or -not $AppearanceB)) { throw 'AppearanceUi requires both appearance IDs.' }
 
-if (-not (Test-Path $ExePath)) {
+function ConvertTo-WindowsArgument([AllowEmptyString()][string]$Value) {
+    # Start-Process joins string[] with spaces; quote each value using the Windows argv rules.
+    $escaped = [regex]::Replace($Value, '(\\*)"', '$1$1\"')
+    '"' + [regex]::Replace($escaped, '(\\+)$', '$1$1') + '"'
+}
+
+function Assert-FreshEvidenceFile([string]$Path) {
+    if (Test-Path -LiteralPath $Path) { throw "Choose fresh evidence paths; existing evidence must be retained: $Path" }
+}
+
+function Assert-EmptyEvidenceDirectory([string]$Path) {
+    if (-not (Test-Path -LiteralPath $Path)) { return }
+    if (-not (Test-Path -LiteralPath $Path -PathType Container) -or
+        @(Get-ChildItem -LiteralPath $Path -Force | Select-Object -First 1).Count -ne 0) {
+        throw "Choose an empty screenshot directory; existing evidence must be retained: $Path"
+    }
+}
+
+if (-not (Test-Path -LiteralPath $ExePath -PathType Leaf)) {
     Write-Host "[pair] FAIL 播放器不存在: $ExePath(先跑 tools/build_crosszone_player.ps1)"
     exit 1
 }
-New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
+$LogDir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($LogDir)
+if (($AppearanceA -or $AppearanceB) -and -not $ShotDir) { $ShotDir = Join-Path $LogDir 'shots' }
+if ($ShotDir) { $ShotDir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ShotDir) }
+$resultPath = Join-Path $LogDir 'battle-pair-result.json'
 
 $sides = @(
     @{ Tag = "A"; Zone = $ZoneA; Account = $AccountA; Appearance = $AppearanceA; Log = (Join-Path $LogDir "crosszone_player_A.log") },
     @{ Tag = "B"; Zone = $ZoneB; Account = $AccountB; Appearance = $AppearanceB; Log = (Join-Path $LogDir "crosszone_player_B.log") }
 )
 
+# Validate every target before creating files or starting either player.
+Assert-FreshEvidenceFile $resultPath
 foreach ($s in $sides) {
-    if (Test-Path $s.Log) { throw "Choose a new LogDir; retain existing evidence: $($s.Log)" }
+    Assert-FreshEvidenceFile $s.Log
+    if ($ShotDir) { Assert-EmptyEvidenceDirectory (Join-Path $ShotDir $s.Tag) }
+}
+New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
+
+foreach ($s in $sides) {
     # -screen-* 保证两窗口不全屏互抢焦点;runInBackground=1 已在 ProjectSettings 打开,
     # 失焦实例照常 Update 收网络消息。
     $s.Args = @(
@@ -100,36 +128,73 @@ foreach ($s in $sides) {
 
 # 两实例几乎同时起:各自登录 ~几秒,排队 60s 窗口足够互相等到
 $procs = @{}
-foreach ($s in $sides) {
-    Write-Host "[pair] start $($s.Tag): zone=$($s.Zone) account=$($s.Account) log=$($s.Log)"
-    $procs[$s.Tag] = Start-Process -FilePath $ExePath -ArgumentList $s.Args -WindowStyle Hidden -PassThru
-    Start-Sleep -Milliseconds 500
-}
-
-$deadline = (Get-Date).AddSeconds($TimeoutSec)
 $timedOut = $false
-while ($true) {
-    $alive = @($procs.Values | Where-Object { -not $_.HasExited })
-    if ($alive.Count -eq 0) { break }
-    if ((Get-Date) -gt $deadline) {
-        $timedOut = $true
-        foreach ($p in $alive) {
-            Write-Host "[pair] timeout ${TimeoutSec}s: killing pid=$($p.Id)"
-            try { Stop-Process -Id $p.Id -Force -ErrorAction Stop } catch {}
-        }
-        break
+try {
+    foreach ($s in $sides) {
+        Write-Host "[pair] start $($s.Tag): zone=$($s.Zone) account=$($s.Account) log=$($s.Log)"
+        $commandLine = ($s.Args | ForEach-Object { ConvertTo-WindowsArgument $_ }) -join ' '
+        $procs[$s.Tag] = Start-Process -FilePath $ExePath -ArgumentList $commandLine -WindowStyle Hidden -PassThru
+        Start-Sleep -Milliseconds 500
     }
-    Start-Sleep -Seconds 2
+    $deadline = (Get-Date).AddSeconds($TimeoutSec)
+    while ($true) {
+        $alive = @($procs.Values | Where-Object { -not $_.HasExited })
+        if ($alive.Count -eq 0) { break }
+        if ((Get-Date) -gt $deadline) {
+            $timedOut = $true
+            break
+        }
+        Start-Sleep -Seconds 2
+    }
+}
+finally {
+    # Only processes started by this invocation are owned here, including A if B failed to start.
+    foreach ($p in $procs.Values) {
+        try {
+            if (-not $p.HasExited) {
+                Write-Host "[pair] stopping owned player pid=$($p.Id)"
+                $p.Kill()
+                $null = $p.WaitForExit(5000)
+            }
+        }
+        catch {
+            # One process exiting between HasExited and Kill must not skip the other owned process.
+            if (-not $p.HasExited) { Write-Warning "Could not stop owned player pid=$($p.Id): $($_.Exception.Message)" }
+        }
+    }
 }
 # 进程退出后播放器日志可能还在落盘
 Start-Sleep -Seconds 1
 
 function Get-FirstMatch {
     param([string]$Path, [string]$Pattern)
-    if (-not (Test-Path $Path)) { return $null }
-    $m = Select-String -Path $Path -Pattern $Pattern | Select-Object -First 1
+    if (-not (Test-Path -LiteralPath $Path)) { return $null }
+    $m = Select-String -LiteralPath $Path -Pattern $Pattern | Select-Object -First 1
     if ($null -eq $m) { return $null }
     return $m.Matches[0]
+}
+
+function Get-BattleAppearanceCapture([string]$Log, [string]$Tag, [string]$Kind,
+    [string]$PlayerId, [string]$Appearance, [string]$Directory) {
+    if (-not $PlayerId -or -not $Directory) { return $null }
+    $prefix = [regex]::Escape("[AutoPilot][$Tag] appearance_battle_$Kind player_id=$PlayerId appearance_id=$Appearance ")
+    $match = Get-FirstMatch $Log ($prefix + '[^\r\n]* screenshot=(.+?)\s*$')
+    if (-not $match) { return $null }
+    $capture = $match.Groups[1].Value
+    if (-not [System.IO.Path]::IsPathRooted($capture)) { return $null }
+    $capture = [System.IO.Path]::GetFullPath($capture)
+    if ([System.IO.Path]::GetDirectoryName($capture) -ne [System.IO.Path]::GetFullPath($Directory) -or
+        [System.IO.Path]::GetFileName($capture) -notmatch ('^' + [regex]::Escape($Tag) + '_\d{4,}_appearance_battle_' + $Kind + '\.png$') -or
+        -not (Test-Path -LiteralPath $capture -PathType Leaf)) { return $null }
+    # Require a nonempty PNG with the expected signature; old evidence was rejected before launch.
+    $stream = [System.IO.File]::OpenRead($capture)
+    try {
+        $header = New-Object byte[] 8
+        if ($stream.Length -le 8 -or $stream.Read($header, 0, 8) -ne 8 -or
+            [BitConverter]::ToString($header) -ne '89-50-4E-47-0D-0A-1A-0A') { return $null }
+    }
+    finally { $stream.Dispose() }
+    return $capture
 }
 
 $results = @{}
@@ -151,6 +216,14 @@ foreach ($s in $sides) {
     $city  = Get-FirstMatch $s.Log "$esc appearance_city player_id=(\d+) appearance_id=(\S+)"
     $battle = Get-FirstMatch $s.Log "$esc appearance_battle player_id=(\d+) appearance_id=(\S+)"
     $view = Get-FirstMatch $s.Log "$esc appearance_battle_view player_id=(\d+) appearance_id=(\S+)"
+    $roleUi = Get-FirstMatch $s.Log "$esc appearance_ui action=(create|select) appearance_id=(\S+) player_id=(\d+)"
+    $idleCapture = $null
+    $walkCapture = $null
+    if ($s.Appearance -and $city) {
+        $sideShots = Join-Path $ShotDir $tag
+        $idleCapture = Get-BattleAppearanceCapture $s.Log $tag 'idle' $city.Groups[1].Value $s.Appearance $sideShots
+        $walkCapture = Get-BattleAppearanceCapture $s.Log $tag 'walk' $city.Groups[1].Value $s.Appearance $sideShots
+    }
 
     $r = [ordered]@{
         Tag = $tag; Exit = $exit
@@ -164,12 +237,15 @@ foreach ($s in $sides) {
         CityAppearance = if ($city) { $city.Groups[2].Value } else { $null }
         BattleAppearance = if ($battle) { $battle.Groups[2].Value } else { $null }
         ViewAppearance = if ($view) { $view.Groups[2].Value } else { $null }
+        RoleUiAppearance = if ($roleUi) { $roleUi.Groups[2].Value } else { $null }
+        IdleCapture = $idleCapture
+        WalkCapture = $walkCapture
     }
     $results[$tag] = $r
     Write-Host ("[pair] {0}: exit={1} gate={2} BattleStart={3} BattleEnd={4} outcome={5} turns={6} {7}" -f
         $tag, $exit, $r.Gate, $r.StartBattleId, $r.EndBattleId, $r.Outcome, $r.Turns, $r.Result)
 
-    if (-not (Test-Path $s.Log)) { $failures.Add("$tag 没有日志文件 $($s.Log)") }
+    if (-not (Test-Path -LiteralPath $s.Log)) { $failures.Add("$tag 没有日志文件 $($s.Log)") }
     if ($null -eq $r.Gate)          { $failures.Add("$tag 没有 gate 落区记录(in_game 行 gate= / [GameClient] assigned gate)") }
     if ($null -eq $r.StartBattleId) { $failures.Add("$tag 没有 BattleStart") }
     if ($null -eq $r.EndBattleId)   { $failures.Add("$tag 没有 BattleEnd") }
@@ -180,6 +256,14 @@ foreach ($s in $sides) {
         $r.ViewAppearance -ne $s.Appearance -or -not $city -or -not $battle -or -not $view -or
         $city.Groups[1].Value -ne $battle.Groups[1].Value -or $city.Groups[1].Value -ne $view.Groups[1].Value)) {
         $failures.Add("$tag 主城、战斗快照及真实视图未证实同一player_id及appearance_id")
+    }
+    if ($s.Appearance -and (-not $idleCapture -or -not $walkCapture)) {
+        $failures.Add("$tag 缺少本轮真实 battle idle/walk 日志绑定的有效PNG截图")
+    }
+    if ($AppearanceUi -and ($r.RoleUiAppearance -ne $s.Appearance -or -not $roleUi -or
+        ($roleUi.Groups[1].Value -eq 'select' -and $roleUi.Groups[3].Value -ne $r.PlayerId) -or
+        ($RequireAppearanceRole -and $roleUi.Groups[1].Value -ne 'select'))) {
+        $failures.Add("$tag 真实角色UI确认缺失或与进场角色不一致")
     }
 }
 
@@ -201,7 +285,7 @@ if ($b.StartBattleId -and $b.EndBattleId -and $b.StartBattleId -ne $b.EndBattleI
 
 $scope = if ($SameZoneAppearanceCheck) { 'BATTLE_APPEARANCE_PAIR' } else { 'CROSS_ZONE_PAIR' }
 @{passed=($failures.Count -eq 0);scope=$scope;results=$results;failures=@($failures.ToArray());cross_zone_asserted=(-not $SameZoneAppearanceCheck)} |
-    ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $LogDir 'battle-pair-result.json') -Encoding utf8
+    ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $resultPath -Encoding utf8
 if ($failures.Count -eq 0) {
     Write-Host ("[pair] ${scope}_PASS battle_id={0} zone_a={1} gate_a={2} zone_b={3} gate_b={4} a_outcome={5} b_outcome={6} a_turns={7} b_turns={8}" -f
         $a.StartBattleId, $ZoneA, $a.Gate, $ZoneB, $b.Gate, $a.Outcome, $b.Outcome, $a.Turns, $b.Turns)
@@ -211,9 +295,9 @@ if ($failures.Count -eq 0) {
 Write-Host "[pair] ${scope}_FAIL"
 foreach ($f in $failures) { Write-Host "  - $f" }
 foreach ($s in $sides) {
-    if (Test-Path $s.Log) {
+    if (Test-Path -LiteralPath $s.Log) {
         Write-Host "---- $($s.Tag) AutoPilot 日志行 ($($s.Log)) ----"
-        Select-String -Path $s.Log -Pattern "\[AutoPilot\]" | Select-Object -Last 30 | ForEach-Object { Write-Host $_.Line }
+        Select-String -LiteralPath $s.Log -Pattern "\[AutoPilot\]" | Select-Object -Last 30 | ForEach-Object { Write-Host $_.Line }
     }
 }
 exit 1

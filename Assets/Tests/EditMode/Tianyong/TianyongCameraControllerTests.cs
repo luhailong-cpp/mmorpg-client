@@ -1,3 +1,4 @@
+using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
 using UnityEngine;
@@ -21,6 +22,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         private GameObject _cameraObject;
         private GameObject _target;
         private Camera _camera;
+        private Texture2D _geometryTexture;
+        private Sprite _bodySprite, _labelSprite;
+        private RenderTexture _viewport;
 
         [SetUp]
         public void SetUp()
@@ -35,7 +39,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void TearDown()
         {
             Object.DestroyImmediate(_target);
+            _camera.targetTexture = null;
             Object.DestroyImmediate(_cameraObject);
+            if (_bodySprite != null) Object.DestroyImmediate(_bodySprite);
+            if (_labelSprite != null) Object.DestroyImmediate(_labelSprite);
+            if (_geometryTexture != null) Object.DestroyImmediate(_geometryTexture);
+            if (_viewport != null) Object.DestroyImmediate(_viewport);
         }
 
         private TianyongCameraController CreateTopDown(float zoomDefault, Vector3 feet)
@@ -192,6 +201,132 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Is.LessThanOrEqualTo(_target.transform.position.x + 0.001f), $"overshoot at frame {frame}");
             }
             Assert.That(Mathf.Abs(_target.transform.position.x - _camera.transform.position.x), Is.LessThan(0.05f));
+        }
+
+        // Geometry fixtures exercise gameplay framing only. Actual authored art and TMP nameplates
+        // are checked separately by the graphics-enabled RosterSandbox capture assertions.
+        private TianyongCameraController CreateCharacter(bool topDown, float zoom,
+            out SpriteRenderer body, out SpriteRenderer nameplate)
+        {
+            _viewport = new RenderTexture(1920, 1080, 0);
+            _camera.targetTexture = _viewport;
+            var controller = new TianyongCameraController(_camera, 5f, 30f, zoom);
+            controller.SetTheme(TianyongTheme.City, topDown);
+            _target.transform.position = new Vector3(180f, 0f, 140f);
+            _geometryTexture = new Texture2D(512, 512);
+            _bodySprite = Sprite.Create(_geometryTexture, new Rect(0f, 0f, 512f, 512f),
+                new Vector2(.5f, .08f), 52f, 0, SpriteMeshType.FullRect);
+            body = new GameObject("sprite", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            body.transform.SetParent(_target.transform, false);
+            body.sprite = _bodySprite;
+            body.transform.position = _target.transform.position + Vector3.up * .1f;
+            body.transform.rotation = _camera.transform.rotation;
+
+            var label = new GameObject(WorldNameplate.ObjectName);
+            label.transform.SetParent(_target.transform, false);
+            nameplate = new GameObject("NameplateBackdrop", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            nameplate.transform.SetParent(label.transform, false);
+            _labelSprite = Sprite.Create(_geometryTexture, new Rect(0f, 0f, 64f, 64f),
+                new Vector2(.5f, .5f), 64f, 0, SpriteMeshType.FullRect);
+            nameplate.sprite = _labelSprite;
+            nameplate.transform.localScale = new Vector3(6f,
+                WorldNameplate.WorldEmHeight + 2f * WorldNameplate.BackdropPaddingY, 1f);
+            WorldLabelBillboard.Attach(label);
+            controller.SetTarget(_target.transform);
+            return controller;
+        }
+
+        private Vector2 ProjectedLimits(SpriteRenderer renderer, bool vertical)
+        {
+            var bounds = renderer.sprite.bounds;
+            float min = float.PositiveInfinity, max = float.NegativeInfinity;
+            foreach (var x in new[] { bounds.min.x, bounds.max.x })
+            foreach (var y in new[] { bounds.min.y, bounds.max.y })
+            {
+                var point = _camera.WorldToViewportPoint(renderer.transform.TransformPoint(new Vector3(x, y, 0f)));
+                float value = vertical ? point.y : point.x;
+                min = Mathf.Min(min, value);
+                max = Mathf.Max(max, value);
+                Assert.That(point.z, Is.GreaterThan(0f));
+            }
+            return new Vector2(min, max);
+        }
+
+        private void AssertVisible(SpriteRenderer renderer, string when)
+        {
+            foreach (bool vertical in new[] { false, true })
+            {
+                var limits = ProjectedLimits(renderer, vertical);
+                Assert.That(limits.x, Is.GreaterThanOrEqualTo(0f), when + " lower edge");
+                Assert.That(limits.y, Is.LessThanOrEqualTo(1f), when + " upper edge");
+            }
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void ClosestZoom_FramesWholeCharacterAndReadableNameplate_WithoutChangingGeometry(bool topDown)
+        {
+            var controller = CreateCharacter(topDown, 5f, out var body, out var nameplate);
+            AssertVisible(body, "full authored frame at zoom 5");
+            AssertVisible(nameplate, "nameplate at zoom 5");
+            var feet = _camera.WorldToViewportPoint(_target.transform.position);
+            Assert.That(feet.y, Is.InRange(0f, 1f));
+            var nameHeight = ProjectedLimits(nameplate, true);
+            Assert.That((nameHeight.y - nameHeight.x) * 1080f, Is.InRange(40f, 52f), "readable label and backdrop");
+            Assert.That(_camera.orthographicSize, Is.EqualTo(5f));
+            Assert.That(controller.RequestedZoom, Is.EqualTo(5f));
+            Assert.That(body.sprite.pixelsPerUnit, Is.EqualTo(52f));
+            Assert.That(body.transform.localScale, Is.EqualTo(Vector3.one));
+            Assert.That(body.sprite.pivot, Is.EqualTo(new Vector2(256f, 40.96f)));
+            Assert.That(_target.transform.position, Is.EqualTo(new Vector3(180f, 0f, 140f)));
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void NormalZoom_PreservesFootCenteredCameraAndOriginalNameplateLayout(bool topDown)
+        {
+            CreateCharacter(topDown, 27f, out var body, out var nameplate);
+            var feet = _camera.WorldToViewportPoint(_target.transform.position);
+            Assert.That(feet.x, Is.EqualTo(.5f).Within(.0001f));
+            Assert.That(feet.y, Is.EqualTo(.5f).Within(.0001f));
+            var label = nameplate.transform.parent;
+            Assert.That(label.localScale, Is.EqualTo(Vector3.one));
+            Assert.That(Vector3.Dot(_target.transform.position - label.position, _camera.transform.up),
+                Is.EqualTo(WorldLabelBillboard.DefaultOffsetBelowFeet).Within(.0001f));
+            AssertVisible(body, "normal body");
+            AssertVisible(nameplate, "normal nameplate");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void ZoomTransitionAndRunSpeed_KeepFullCharacterAndNameplateVisible(bool topDown)
+        {
+            var controller = CreateCharacter(topDown, 27f, out var body, out var nameplate);
+            var up = _camera.transform.up;
+            var heading = new Vector3(up.x, 0f, up.z).normalized;
+            controller.SetZoom(5f);
+            bool sawIntermediate = false;
+            for (var frame = 0; frame < 240; frame++)
+            {
+                _target.transform.position += heading * (RunSpeed * FrameTime * (frame < 120 ? 1f : -1f));
+                body.transform.position = _target.transform.position + Vector3.up * .1f;
+                controller.Tick(FrameTime, allowScrollZoom: false);
+                AssertVisible(body, "running body at frame " + frame);
+                AssertVisible(nameplate, "running nameplate at frame " + frame);
+                float scale = nameplate.transform.parent.localScale.x;
+                if (scale > .31f && scale < .99f) sawIntermediate = true;
+                Assert.That(body.transform.localScale, Is.EqualTo(Vector3.one));
+            }
+            Assert.That(sawIntermediate, Is.True, "near label layout must transition during actual zoom easing");
+            Assert.That(_camera.orthographicSize, Is.EqualTo(5f).Within(.001f));
+            controller.SetZoom(27f);
+            for (var frame = 0; frame < 120; frame++)
+            {
+                controller.Tick(FrameTime, allowScrollZoom: false);
+                AssertVisible(body, "zoom-out body at frame " + frame);
+                AssertVisible(nameplate, "zoom-out nameplate at frame " + frame);
+            }
+            Assert.That(nameplate.transform.parent.localScale, Is.EqualTo(Vector3.one));
         }
     }
 }

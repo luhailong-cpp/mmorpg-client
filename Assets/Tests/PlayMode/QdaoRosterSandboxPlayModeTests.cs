@@ -299,7 +299,7 @@ namespace MmorpgClient.Tests.PlayMode
         {
             public string imagePath;
             public string imageSha256;
-            public string scope = "Actual unchanged gameplay camera framing; projected full sprite rectangle, not opaque-alpha height.";
+            public string scope = "Actual gameplay camera and nameplate layout; projected full sprite rectangle and rendered nameplate backdrop, not opaque-alpha height.";
             public int renderWidth, renderHeight;
             public float requestedZoom, actualOrthographicSize;
             public float configuredZoomMin, configuredZoomDefault;
@@ -308,6 +308,8 @@ namespace MmorpgClient.Tests.PlayMode
             public float projectedFrameHeightPixels;
             public float screenPixelsPerTexturePixel;
             public bool fullFrameInsideCapture;
+            public float nameplateLeftPixels, nameplateRightPixels, nameplateBottomPixels, nameplateTopPixels;
+            public bool fullNameplateInsideCapture, actorFeetInsideCapture;
         }
 
         [System.Serializable]
@@ -616,18 +618,46 @@ namespace MmorpgClient.Tests.PlayMode
                 min = Vector2.Min(min, new Vector2(screen.x, screen.y));
                 max = Vector2.Max(max, new Vector2(screen.x, screen.y));
             }
+            var nameplate = sandbox.Player.transform.Find("label/NameplateBackdrop")?.GetComponent<SpriteRenderer>();
+            Assert.That(nameplate, Is.Not.Null, "The real rendered nameplate is required for framing evidence.");
+            Assert.That(nameplate.sprite, Is.Not.Null);
+            Assert.That(nameplate.enabled && nameplate.gameObject.activeInHierarchy, Is.True);
+            var nameBounds = nameplate.sprite.bounds;
+            var nameMin = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+            var nameMax = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+            foreach (var x in new[] { nameBounds.min.x, nameBounds.max.x })
+            foreach (var y in new[] { nameBounds.min.y, nameBounds.max.y })
+            {
+                var screen = camera.WorldToScreenPoint(nameplate.transform.TransformPoint(new Vector3(x, y, 0f)));
+                nameMin = Vector2.Min(nameMin, new Vector2(screen.x, screen.y));
+                nameMax = Vector2.Max(nameMax, new Vector2(screen.x, screen.y));
+            }
+            var feet = camera.WorldToScreenPoint(sandbox.Player.GetComponent<TianyongPlayerController>().FeetPosition);
             return new CameraCaptureObservation
             {
                 renderWidth = width, renderHeight = height,
                 requestedZoom = sandbox.CameraRig.RequestedZoom, actualOrthographicSize = camera.orthographicSize,
                 configuredZoomMin = TianyongMapConfig.LoadDefault().CameraZoomMin,
                 configuredZoomDefault = TianyongMapConfig.LoadDefault().CameraZoomDefault,
-                actorFeetScreenPixels = camera.WorldToScreenPoint(sandbox.Player.GetComponent<TianyongPlayerController>().FeetPosition),
+                actorFeetScreenPixels = feet,
                 frameLeftPixels = min.x, frameRightPixels = max.x, frameBottomPixels = min.y, frameTopPixels = max.y,
                 projectedFrameHeightPixels = max.y - min.y,
                 screenPixelsPerTexturePixel = (max.y - min.y) / renderer.sprite.texture.height,
-                fullFrameInsideCapture = min.x >= 0f && min.y >= 0f && max.x <= width && max.y <= height
+                fullFrameInsideCapture = min.x >= 0f && min.y >= 0f && max.x <= width && max.y <= height,
+                nameplateLeftPixels = nameMin.x, nameplateRightPixels = nameMax.x,
+                nameplateBottomPixels = nameMin.y, nameplateTopPixels = nameMax.y,
+                fullNameplateInsideCapture = nameMin.x >= 0f && nameMin.y >= 0f && nameMax.x <= width && nameMax.y <= height,
+                actorFeetInsideCapture = feet.z > 0f && feet.x >= 0f && feet.x <= width && feet.y >= 0f && feet.y <= height
             };
+        }
+
+        private static void AssertCameraCaptureVisible(CameraCaptureObservation view)
+        {
+            Assert.That(view.fullFrameInsideCapture, Is.True,
+                $"{view.imagePath}: full sprite frame clipped: ({view.frameLeftPixels}, {view.frameBottomPixels}) to ({view.frameRightPixels}, {view.frameTopPixels})");
+            Assert.That(view.actorFeetInsideCapture, Is.True, view.imagePath + ": actor feet clipped");
+            Assert.That(view.fullNameplateInsideCapture, Is.True,
+                $"{view.imagePath}: nameplate clipped: ({view.nameplateLeftPixels}, {view.nameplateBottomPixels}) to ({view.nameplateRightPixels}, {view.nameplateTopPixels})");
         }
 
         private static bool TryFindNativeCaptureRoute(TianyongNavigationGrid navigation, Vector3 origin,
@@ -741,6 +771,8 @@ namespace MmorpgClient.Tests.PlayMode
                         Assert.That(Time.frameCount, Is.EqualTo(capture.simulationFrame), "Both views must show the same real simulation frame.");
                         observed.walkFrameCaptures.Add(capture);
                         WriteObservationsIfRequested(observations);
+                        AssertCameraCaptureVisible(capture.normalView);
+                        AssertCameraCaptureVisible(capture.nearestView);
                         captured = true;
                         break;
                     }
@@ -846,6 +878,8 @@ namespace MmorpgClient.Tests.PlayMode
                     observed.nearestView = SaveView("-nearest-zoom");
                 }
                 WriteObservationsIfRequested(observations);
+                AssertCameraCaptureVisible(observed.normalView);
+                if (observed.nearestView != null) AssertCameraCaptureVisible(observed.nearestView);
             }
             finally
             {

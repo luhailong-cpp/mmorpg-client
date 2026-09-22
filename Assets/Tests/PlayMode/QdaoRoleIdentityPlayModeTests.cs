@@ -17,7 +17,7 @@ using UnityEngine.UI;
 namespace MmorpgClient.Tests.PlayMode
 {
     /// <summary>Actual UI and resource rendering with disconnected role fixtures; not a network acceptance test.</summary>
-    public sealed class QdaoRoleIdentityPlayModeTests
+    public sealed partial class QdaoRoleIdentityPlayModeTests
     {
         private const BindingFlags Hidden = BindingFlags.Instance | BindingFlags.NonPublic;
         private const string First = "00_reference_topright_boy";
@@ -37,7 +37,12 @@ namespace MmorpgClient.Tests.PlayMode
                 var actor = world.Actors[10];
                 var animator = actor.Go.GetComponent<QdaoBoySpriteAnimator>();
                 var renderer = actor.Go.transform.Find("sprite").GetComponent<SpriteRenderer>();
-                foreach (var missing in new[] { "04_mountain_guardian_boy", "future_unavailable_identity" })
+                var missingIdentities = new List<string> { "future_unavailable_identity" };
+                // Future legal 04 publication must not turn this missing-resource regression into
+                // a permanent release blocker. Its currently incomplete branch is checked when applicable.
+                if (QdaoCharacterCatalog.Find("04_mountain_guardian_boy").ResolveAppearance() == null)
+                    missingIdentities.Insert(0, "04_mountain_guardian_boy");
+                foreach (var missing in missingIdentities)
                 {
                     selected = First;
                     world.RefreshAppearances();

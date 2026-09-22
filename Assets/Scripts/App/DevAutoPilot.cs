@@ -66,6 +66,7 @@ namespace MmorpgClient.App
             // Optional formal appearance acceptance: select the exact persisted identity,
             // or create it through the same PlayerChooser/CreatePlayer pipeline as the UI.
             public string AppearanceId;
+            public bool AppearanceUi; // Real role buttons and original chooser; login remains network-driven.
             public bool RequireAppearanceRole;
             public uint RoleClass = 1;
             public uint RoleGender = 1;
@@ -213,6 +214,7 @@ namespace MmorpgClient.App
                     case "account":         opt.Account = NextValue(); break;
                     case "password":        opt.Password = NextValue(); break;
                     case "appearanceid":    opt.AppearanceId = NextValue(); break;
+                    case "appearanceui":    opt.AppearanceUi = true; break;
                     case "requireappearancerole": opt.RequireAppearanceRole = true; break;
                     case "roleclass":       opt.RoleClass = ParseUInt(NextValue()); break;
                     case "rolegender":      opt.RoleGender = ParseUInt(NextValue()); break;
@@ -322,7 +324,19 @@ namespace MmorpgClient.App
             _battle = _client.Battle;
 
             // 静默选角:无角色按默认职业建号,有角色进第一个(见 GameClient.PlayerChooser 注释)
-            _client.PlayerChooser = string.IsNullOrEmpty(_opt.AppearanceId) ? null : ChooseAppearance;
+            if (_opt.AppearanceUi)
+            {
+                var ui = MmorpgClient.UI.Ugui.Role.RoleFlowUi.Instance;
+                var originalChooser = _client.PlayerChooser;
+                if (ui == null || originalChooser?.Target != ui || string.IsNullOrEmpty(_opt.AppearanceId) ||
+                    string.IsNullOrWhiteSpace(_opt.ShotDir))
+                { Fail("appearance_ui", "-appearanceUi需要原角色UI、明确外观及-shotDir"); return; }
+                var driver = new DevRoleUiDriver(this, ui, originalChooser, _opt, Log,
+                    error => { Fail("appearance_ui", error); _client.Disconnect(); }, () => _finished);
+                _client.PlayerChooser = driver.Choose;
+                Log("appearance_ui_mode login=network_autopilot roles=original_RoleFlowUi input=programmatic_unity_buttons");
+            }
+            else _client.PlayerChooser = string.IsNullOrEmpty(_opt.AppearanceId) ? null : ChooseAppearance;
 
             _client.OnDisconnected += HandleDisconnected;
             if (_battle != null)
@@ -582,10 +596,11 @@ namespace MmorpgClient.App
             while (!_finished && _battleId == battleId && !_appearanceBattleViewVerified)
             {
                 yield return new WaitForEndOfFrame();
+                if (_finished || _battleId != battleId) yield break;
                 var screen = BattleUiRoot.Instance?.ActiveBattleScreen;
                 if (screen == null || !screen.TryGetAppearanceView(_client.PlayerId, out var view, out var portrait) ||
                     view.BodyImage == null || !view.BodyImage.isActiveAndEnabled ||
-                    view.Root.GetComponent<CanvasGroup>()?.alpha <= .01f)
+                    view.Root.GetComponent<CanvasGroup>()?.alpha < .95f)
                 {
                     if (Time.realtimeSinceStartup > untilView) Fail("appearance_battle_view", "等待真实 BattleScreen/Body/Portrait 超时");
                     continue;
@@ -608,11 +623,13 @@ namespace MmorpgClient.App
                 {
                     sawIdle = true;
                     capture = CaptureAppearanceFrame("appearance_battle_idle");
+                    if (_finished) yield break;
                     Log($"appearance_battle_idle player_id={_client.PlayerId} appearance_id={view.CharacterId} resource={path} width={geometry.Width} ppu={N(geometry.PixelsPerUnit)} pivot=0.5,0.08 screenshot={capture ?? "disabled"}");
                 }
                 if (walking && distance > .001f && movingFrames.Add(path))
                 {
                     if (movingFrames.Count == 1) capture = CaptureAppearanceFrame("appearance_battle_walk");
+                    if (_finished) yield break;
                     Log($"appearance_battle_walk player_id={_client.PlayerId} appearance_id={view.CharacterId} resource={path} width={geometry.Width} ppu={N(geometry.PixelsPerUnit)} delta_pixels={N(distance)} screenshot={capture ?? "none"}");
                 }
                 if (sawIdle && movingFrames.Count >= 2)

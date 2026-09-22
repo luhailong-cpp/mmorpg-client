@@ -48,15 +48,43 @@ param(
 $ErrorActionPreference = "Stop"
 if ($AppearanceUi -and -not $AppearanceId) { throw 'AppearanceUi requires AppearanceId.' }
 
-if (-not (Test-Path $ExePath)) {
+function ConvertTo-WindowsArgument([AllowEmptyString()][string]$Value) {
+    # Start-Process joins string[] with spaces; quote each value using the Windows argv rules.
+    $escaped = [regex]::Replace($Value, '(\\*)"', '$1$1\"')
+    '"' + [regex]::Replace($escaped, '(\\+)$', '$1$1') + '"'
+}
+
+function Assert-FreshEvidenceFile([string]$Path) {
+    if (Test-Path -LiteralPath $Path) { throw "Choose fresh evidence paths; existing evidence must be retained: $Path" }
+}
+
+function Assert-EmptyEvidenceDirectory([string]$Path) {
+    if (-not (Test-Path -LiteralPath $Path)) { return }
+    if (-not (Test-Path -LiteralPath $Path -PathType Container) -or
+        @(Get-ChildItem -LiteralPath $Path -Force | Select-Object -First 1).Count -ne 0) {
+        throw "Choose an empty screenshot directory; existing evidence must be retained: $Path"
+    }
+}
+
+if (-not (Test-Path -LiteralPath $ExePath -PathType Leaf)) {
     Write-Host "[move] FAIL 播放器不存在: $ExePath(先按 nav-spawn-fix 文档出包)"
     exit 1
+}
+$LogDir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($LogDir)
+$resultPath = Join-Path $LogDir 'move-result.json'
+$roundTags = @('R1', 'R2')
+if ($FreshAccount) { $roundTags += 'NEW' }
+# Check all rounds before launching R1; an old R2 result must not leave a half-run account.
+Assert-FreshEvidenceFile $resultPath
+foreach ($roundTag in $roundTags) {
+    Assert-FreshEvidenceFile (Join-Path $LogDir "move_$roundTag.log")
+    if ($AppearanceId) { Assert-EmptyEvidenceDirectory (Join-Path $LogDir "shots_$roundTag") }
 }
 New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
 
 function Invoke-Round([string]$tag, [string]$account) {
     $log = Join-Path $LogDir "move_$tag.log"
-    if (Test-Path $log) { throw "Choose a new LogDir; existing evidence must be retained: $log" }
+    Assert-FreshEvidenceFile $log
     $playerArgs = @(
         "-logFile", $log,
         "-screen-fullscreen", "0",
@@ -79,16 +107,23 @@ function Invoke-Round([string]$tag, [string]$account) {
         if ($AppearanceUi) { $playerArgs += '-appearanceUi' }
     }
     Write-Host "[move] round=$tag account=$account"
-    $p = Start-Process -FilePath $ExePath -ArgumentList $playerArgs -WindowStyle Hidden -PassThru
-    if (-not $p.WaitForExit($TimeoutSec * 1000)) {
-        Write-Host "[move] round=$tag 超时 ${TimeoutSec}s,强杀"
-        try { $p.Kill() } catch {}
-        Start-Sleep -Seconds 2
+    $commandLine = ($playerArgs | ForEach-Object { ConvertTo-WindowsArgument $_ }) -join ' '
+    $p = Start-Process -FilePath $ExePath -ArgumentList $commandLine -WindowStyle Hidden -PassThru
+    $timedOut = $false
+    try {
+        if (-not $p.WaitForExit($TimeoutSec * 1000)) {
+            $timedOut = $true
+            Write-Host "[move] round=$tag 超时 ${TimeoutSec}s,强杀"
+        }
+    }
+    finally {
+        try { if (-not $p.HasExited) { $p.Kill(); $null = $p.WaitForExit(5000) } }
+        catch { if (-not $p.HasExited) { throw } }
     }
     # 退出后再等 1s 让 Unity 把日志尾部刷出来
     Start-Sleep -Seconds 1
     $p.Refresh()
-    $text = if (Test-Path $log) { Get-Content $log -Raw } else { "" }
+    $text = if (Test-Path -LiteralPath $log) { Get-Content -LiteralPath $log -Raw } else { "" }
     $result = [regex]::Match($text, "\[AutoPilot\]\[$tag\] (RESULT=(PASS|FAIL)[^\r\n]*)")
     $spawn = [regex]::Match($text, "\[AutoPilot\]\[$tag\] move: spawn feet=\(([-0-9.]+),([-0-9.]+),([-0-9.]+)\) walkable=(True|False)")
     $final = [regex]::Match($text, "RESULT=PASS stage=move_test spawn=\([^)]*\) final=\(([-0-9.]+),([-0-9.]+),([-0-9.]+)\)")
@@ -97,6 +132,7 @@ function Invoke-Round([string]$tag, [string]$account) {
     $wall = [regex]::Match($text, "\[AutoPilot\]\[$tag\] move: server_wall [^\r\n]*snaps=(\d+)")
     $selfLine = [regex]::Match($text, "\[GameClient\] \[actor\] self [^\r\n]*")
     $appearance = [regex]::Match($text, "\[AutoPilot\]\[$tag\] appearance_city player_id=(\d+) appearance_id=(\S+) version=(\d+)")
+    $roleUi = [regex]::Match($text, "\[AutoPilot\]\[$tag\] appearance_ui action=(create|select) appearance_id=(\S+) player_id=(\d+)")
     [pscustomobject]@{
         WallSnaps  = if ($wall.Success) { [int]$wall.Groups[1].Value } else { 0 }
         Tag        = $tag
@@ -104,7 +140,8 @@ function Invoke-Round([string]$tag, [string]$account) {
         ExitCode   = $p.ExitCode
         Log        = $log
         Result     = if ($result.Success) { $result.Groups[1].Value } else { "(no RESULT line)" }
-        Pass       = $result.Success -and $result.Groups[2].Value -eq "PASS" -and $p.ExitCode -eq 0
+        Pass       = -not $timedOut -and $result.Success -and $result.Groups[2].Value -eq "PASS" -and $p.ExitCode -eq 0
+        TimedOut   = $timedOut
         SpawnOk    = $spawn.Success -and $spawn.Groups[4].Value -eq "True"
         Spawn      = if ($spawn.Success) { @([double]$spawn.Groups[1].Value, [double]$spawn.Groups[2].Value, [double]$spawn.Groups[3].Value) } else { $null }
         Final      = if ($final.Success) { @([double]$final.Groups[1].Value, [double]$final.Groups[2].Value, [double]$final.Groups[3].Value) } else { $null }
@@ -114,6 +151,9 @@ function Invoke-Round([string]$tag, [string]$account) {
         Appearance = if ($appearance.Success) { $appearance.Groups[2].Value } else { $null }
         PlayerId = if ($appearance.Success) { $appearance.Groups[1].Value } else { $null }
         Version = if ($appearance.Success) { [int]$appearance.Groups[3].Value } else { $null }
+        RoleUiAction = if ($roleUi.Success) { $roleUi.Groups[1].Value } else { $null }
+        RoleUiAppearance = if ($roleUi.Success) { $roleUi.Groups[2].Value } else { $null }
+        RoleUiPlayerId = if ($roleUi.Success) { $roleUi.Groups[3].Value } else { $null }
     }
 }
 
@@ -133,6 +173,13 @@ foreach ($r in $rounds) {
     Write-Host "[move]   $($r.SelfActor)"
     Write-Host "[move]   $($r.Result)"
     if (-not $r.Pass) { $ok = $false }
+    if ($AppearanceId -and $r.Appearance -ne $AppearanceId) { $ok = $false; Write-Host '[move] FAIL: city appearance differs from requested identity.' }
+    if ($AppearanceUi -and ($r.RoleUiAppearance -ne $AppearanceId -or
+        ($r.RoleUiAction -eq 'select' -and $r.RoleUiPlayerId -ne $r.PlayerId) -or
+        ($r.Tag -eq 'R2' -and $r.RoleUiAction -ne 'select'))) {
+        $ok = $false
+        Write-Host '[move] FAIL: actual role UI did not confirm the expected selection and identity.'
+    }
     if (-not $r.SpawnOk) { $ok = $false; Write-Host "[move]   FAIL: 出生点不可走或未打印" }
     $stray = $r.Snaps - $r.WallSnaps
     if ($stray -ne 0) { $ok = $false; Write-Host "[move]   FAIL: server_wall 之外出现 $stray 次服务器回拉(合法道路被回拉,查 scene 日志 'move corrected')" }
@@ -163,5 +210,5 @@ if ($FreshAccount) {
 
 Write-Host ("[move] {0}  logs: {1}" -f ($(if ($ok) { "PASS" } else { "FAIL" })), (($rounds | ForEach-Object { $_.Log }) -join ", "))
 @{passed=$ok;appearance_id=$AppearanceId;appearance_ui_requested=[bool]$AppearanceUi;rounds=$rounds;scope='Actual network login/city movement/relogin only. Role UI requires appearance_ui logs and screenshots; login UI and battle are not asserted.'} |
-    ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $LogDir 'move-result.json') -Encoding utf8
+    ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $resultPath -Encoding utf8
 exit $(if ($ok) { 0 } else { 1 })

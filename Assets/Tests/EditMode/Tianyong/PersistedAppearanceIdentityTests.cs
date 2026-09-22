@@ -170,11 +170,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void AutoPilotOptions_ParseAppearanceAndStrictRelogWithoutChangingDefaults()
         {
             var parsed = DevAutoPilot.Parse(new[] { "-appearanceId=" + First, "-roleClass", "4",
-                "-roleGender=2", "-requireAppearanceRole" }, false);
+                "-roleGender=2", "-requireAppearanceRole", "-appearanceUi" }, false);
             Assert.That(parsed.AppearanceId, Is.EqualTo(First));
             Assert.That(parsed.RoleClass, Is.EqualTo(4u));
             Assert.That(parsed.RoleGender, Is.EqualTo(2u));
             Assert.That(parsed.RequireAppearanceRole, Is.True);
+            Assert.That(parsed.AppearanceUi, Is.True);
+            Assert.That(DevAutoPilot.Parse(Array.Empty<string>(), false).AppearanceUi, Is.False);
             Assert.That(DevAutoPilot.Parse(Array.Empty<string>(), false).AppearanceId, Is.Null);
         }
 
