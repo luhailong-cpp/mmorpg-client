@@ -214,7 +214,18 @@ namespace MmorpgClient.Game.Guild
         }
 
         /// <summary>本帮待审申请人列表;仅长老 / 帮主可拉。</summary>
-        public void LoadApplications()
+        public void LoadApplications() => LoadApplications(keepStatus: false);
+
+        /// <summary>
+        /// keepStatus = true 时本次回包**只换数据不换文案**,用于"审批成功 / 失败的提示要在列表刷新之后
+        /// 仍留在屏幕上"的场景。
+        ///
+        /// 为什么不能靠调用顺序解决:Request 在发出时同步写一次 Status("正在读取帮会…"),回包到达时
+        /// 再写一次,后者发生在**异步之后** —— 调用方无论把自己的 Status 赋值放在哪一行,都追不上它。
+        /// 标志随闭包捕获,不做成实例字段:请求没发出去(权限不足被 Reject)时它跟着闭包一起消失,
+        /// 不会泄漏到下一次加载。
+        /// </summary>
+        private void LoadApplications(bool keepStatus)
         {
             if (!IsOfficerOrLeader) { Reject("仅帮主或长老可查看入帮申请。"); return; }
             Request(MessageIds.ListGuildApplications, new ListGuildApplicationsRequest(),
@@ -222,6 +233,7 @@ namespace MmorpgClient.Game.Guild
                 {
                     if (!AcceptWrite(response.ErrorMessage)) return;
                     Applicants = new List<GuildApplicantView>(response.Applicants);
+                    if (keepStatus) return;
                     Status = Applicants.Count == 0 ? "暂无待审入帮申请。" : "待审入帮申请 " + Applicants.Count + " 份";
                 });
         }
@@ -315,12 +327,17 @@ namespace MmorpgClient.Game.Guild
                     {
                         // 申请已失效 / 帮会已满:列表过时,重拉后让界面自己收敛。
                         if (IsTip(response.ErrorMessage, guild_error.KGuildApplicationNotFound)
-                            || IsTip(response.ErrorMessage, guild_error.KGuildFull)) ReloadKeepingTip(LoadApplications);
+                            || IsTip(response.ErrorMessage, guild_error.KGuildFull))
+                            ReloadKeepingTip(() => LoadApplications(keepStatus: true));
                         return;
                     }
                     Apply(response.Guild);
+                    // 先发列表请求再写文案,且让本次回包不改文案 —— 两者缺一不可:
+                    // 少了前者,Request 同步写的"正在读取帮会…"会盖掉结果;少了后者,列表回包到达时
+                    // 又会写成"待审入帮申请 N 份"。同文件 ApplyToJoin / CancelApplication 只需要前者,
+                    // 因为 LoadMyApplications 的回包本来就不写 Status。
+                    LoadApplications(keepStatus: true);
                     Status = approve ? "已同意入帮申请。" : "已拒绝入帮申请。";
-                    LoadApplications();
                 });
         }
 
@@ -363,8 +380,9 @@ namespace MmorpgClient.Game.Guild
         }
         private static bool IsTip(TipInfoMessage tip, guild_error code) => tip != null && tip.Id == (uint)code;
         /// <summary>
-        /// tip 文案里已经写明“列表已刷新”;重拉会把 Status 改成“正在读取帮会…”而回包不再改回,
-        /// 玩家就看不到失败原因了。这里把 tip 文案保回去,列表回包只换数据不换文案。
+        /// tip 文案里已经写明“列表已刷新”;重拉会把 Status 改成“正在读取帮会…”,玩家就看不到失败原因了。
+        /// 这里把 tip 文案同步保回去。**调用方必须传一个 keepStatus = true 的重拉**,否则回包到达时
+        /// 还会再盖一次 —— 这个助手只能挡住同步那一次。
         /// </summary>
         private void ReloadKeepingTip(Action reload) { string tip = Status; reload(); Status = tip; }
         private void Apply(GuildInfo info)
