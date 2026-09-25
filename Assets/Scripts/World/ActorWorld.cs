@@ -228,8 +228,20 @@ namespace MmorpgClient.World
                 Debug.LogException(ex);
             }
             view.CharacterId = characterId;
-            if (Application.isPlaying)
-                QdaoBoySpriteAnimator.TryAttach(view.Go, characterId);
+            if (Application.isPlaying && !QdaoBoySpriteAnimator.TryAttach(view.Go, characterId) &&
+                !string.IsNullOrEmpty(characterId))
+            {
+                var animator = view.Go.GetComponent<QdaoBoySpriteAnimator>();
+                if (animator != null && animator.CharacterId != characterId)
+                {
+                    animator.ClearUnavailableIdentity(characterId);
+                    foreach (var placeholder in view.Go.GetComponentsInChildren<MeshRenderer>(true))
+                    {
+                        if (placeholder.GetComponent<TextMesh>() != null || placeholder.GetComponent<TMPro.TMP_Text>() != null) continue;
+                        placeholder.enabled = true;
+                    }
+                }
+            }
         }
 
         private string ResolveDisplayName(ActorView v)

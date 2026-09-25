@@ -24,6 +24,17 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(BattleClientPlayerSubmitBattleActionHandler.MessageId, mc => BattleClientPlayerSubmitBattleActionHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerChatPullChatHistoryHandler.MessageId, mc => ClientPlayerChatPullChatHistoryHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerChatSendChatHandler.MessageId, mc => ClientPlayerChatSendChatHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendAcceptFriendHandler.MessageId, mc => ClientPlayerFriendAcceptFriendHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendAddFriendHandler.MessageId, mc => ClientPlayerFriendAddFriendHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendBlockHandler.MessageId, mc => ClientPlayerFriendBlockHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendGetFriendListHandler.MessageId, mc => ClientPlayerFriendGetFriendListHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendGetPendingRequestsHandler.MessageId, mc => ClientPlayerFriendGetPendingRequestsHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendListBlocksHandler.MessageId, mc => ClientPlayerFriendListBlocksHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendNotifyFriendEventHandler.MessageId, mc => ClientPlayerFriendNotifyFriendEventHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendRecommendFriendsHandler.MessageId, mc => ClientPlayerFriendRecommendFriendsHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendRejectFriendHandler.MessageId, mc => ClientPlayerFriendRejectFriendHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendRemoveFriendHandler.MessageId, mc => ClientPlayerFriendRemoveFriendHandler.Dispatch(client, mc));
+            client.OnNotify(ClientPlayerFriendUnblockHandler.MessageId, mc => ClientPlayerFriendUnblockHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerJubaozhaiBrowseListingsHandler.MessageId, mc => ClientPlayerJubaozhaiBrowseListingsHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerJubaozhaiGetListingDetailHandler.MessageId, mc => ClientPlayerJubaozhaiGetListingDetailHandler.Dispatch(client, mc));
             client.OnNotify(ClientPlayerJubaozhaiGetMyShelfHandler.MessageId, mc => ClientPlayerJubaozhaiGetMyShelfHandler.Dispatch(client, mc));

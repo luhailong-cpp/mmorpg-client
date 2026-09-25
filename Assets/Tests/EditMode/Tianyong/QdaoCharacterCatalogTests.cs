@@ -108,6 +108,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 var appearance = definition.ResolveAppearance();
                 foreach (var direction in Directions)
                 {
+                    if (appearance.IsHd)
+                    {
+                        Assert.That(appearance.StripResourcePath(direction), Is.Null,
+                            "V14 runtime contracts contain individual frames, never review strips.");
+                        ValidateHdDirection(appearance, direction);
+                        continue;
+                    }
                     var path = $"Assets/Resources/{appearance.StripResourcePath(direction)}.png";
                     Assert.That(File.Exists(path), Is.True, path);
                     var importer = AssetImporter.GetAtPath(path) as TextureImporter;
@@ -216,6 +223,56 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     }
                 }
             }
+        }
+
+        private static void ValidateHdDirection(QdaoCharacterCatalog.Appearance appearance, string direction)
+        {
+            var hashes = new HashSet<string>();
+            for (var frame = 0; frame <= appearance.FrameCount; frame++)
+            {
+                var resource = frame == appearance.FrameCount
+                    ? appearance.IdleResourcePath(direction) : appearance.FrameResourcePath(direction, frame);
+                var geometry = appearance.GeometryForResource(resource);
+                var path = "Assets/Resources/" + resource + ".png";
+                Assert.That(File.Exists(path), Is.True, path);
+                var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                Assert.That(importer, Is.Not.Null, path);
+                Assert.That(importer.maxTextureSize, Is.GreaterThanOrEqualTo(geometry.Width), path);
+                // The existing loader creates leased Sprites from default Texture2D assets.
+                // Sprite PPU/pivot are verified on the rendered sprite in PlayMode.
+                Assert.That(importer.textureType, Is.EqualTo(TextureImporterType.Default), path);
+                Assert.That(importer.mipmapEnabled, Is.False, path);
+                Assert.That(importer.textureCompression, Is.EqualTo(TextureImporterCompression.Uncompressed), path);
+                Assert.That(importer.wrapMode, Is.EqualTo(TextureWrapMode.Clamp), path);
+                Assert.That(importer.alphaIsTransparency, Is.True, path);
+                Assert.That(geometry.Height / geometry.PixelsPerUnit, Is.EqualTo(512f / 52f).Within(.0001f));
+                var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                try
+                {
+                    Assert.That(ImageConversion.LoadImage(texture, File.ReadAllBytes(path), false), Is.True, path);
+                    Assert.That(texture.width, Is.EqualTo(geometry.Width), path);
+                    Assert.That(texture.height, Is.EqualTo(geometry.Height), path);
+                    var pixels = texture.GetPixels32();
+                    for (var x = 0; x < texture.width; x++)
+                    {
+                        Assert.That(pixels[x].a, Is.Zero, path + " bottom edge");
+                        Assert.That(pixels[(texture.height - 1) * texture.width + x].a, Is.Zero, path + " top edge");
+                    }
+                    for (var y = 0; y < texture.height; y++)
+                    {
+                        Assert.That(pixels[y * texture.width].a, Is.Zero, path + " left edge");
+                        Assert.That(pixels[y * texture.width + texture.width - 1].a, Is.Zero, path + " right edge");
+                    }
+                    if (frame < appearance.FrameCount)
+                    {
+                        using var sha = SHA256.Create();
+                        Assert.That(hashes.Add(BitConverter.ToString(sha.ComputeHash(texture.GetRawTextureData()))),
+                            Is.True, path + " duplicates another decoded walk pose");
+                    }
+                }
+                finally { UnityEngine.Object.DestroyImmediate(texture); }
+            }
+            Assert.That(hashes.Count, Is.EqualTo(appearance.FrameCount));
         }
     }
 }

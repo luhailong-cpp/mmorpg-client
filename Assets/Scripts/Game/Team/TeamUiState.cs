@@ -96,6 +96,14 @@ namespace MmorpgClient.Game.Team
             Changed?.Invoke();
         }
 
+        /// <summary>The transport is ready; this does not manufacture an authoritative team snapshot.</summary>
+        public void SetConnected()
+        {
+            ServiceAvailable = true;
+            Status = "正在同步队伍…";
+            Changed?.Invoke();
+        }
+
         public void SetSnapshot(TeamSnapshot snapshot)
         {
             if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));

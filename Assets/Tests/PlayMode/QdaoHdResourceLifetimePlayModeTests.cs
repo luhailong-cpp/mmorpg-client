@@ -30,7 +30,7 @@ namespace MmorpgClient.Tests.PlayMode
         private static readonly FieldInfo Frames = typeof(QdaoBoySpriteAnimator).GetField("_frames", HiddenInstance);
         private static readonly FieldInfo Clock = typeof(QdaoBoySpriteAnimator).GetField("_animationClock", HiddenInstance);
 
-        private sealed class ResourcesFixture : IDisposable
+        internal sealed class ResourcesFixture : IDisposable
         {
             public readonly HashSet<string> Missing = new();
             public readonly HashSet<string> WrongSize = new();
@@ -85,7 +85,7 @@ namespace MmorpgClient.Tests.PlayMode
             }
         }
 
-        private static QdaoCharacterCatalog.Appearance Hd(string id = "03_lotus_healer_girl", bool mixed = false)
+        internal static QdaoCharacterCatalog.Appearance Hd(string id = "03_lotus_healer_girl", bool mixed = false)
         {
             var manifest = "{\"version\":14,\"character_id\":\"" + id + "\",\"status\":\"passed\",\"visual_review\":\"passed\"," +
                 "\"frame_count\":16,\"frame_duration_ms\":30,\"cycle_duration_ms\":480,\"dedicated_idle\":true,\"contact_frame\":0," +

@@ -497,7 +497,10 @@ namespace MmorpgClient.UI.Ugui
                 if (!gameObject.activeSelf)
                     gameObject.SetActive(true);
                 RefreshVisualState();
-                SetStatus("与服务器的连接已断开");
+                // 失败流程主动断线时带着明确的原因(例如"切换服务器失败…(进入场景失败…)"),原样显示;
+                // 以前这里一律写"连接已断开",会把刚显示出来的失败文案盖掉,玩家看不到为什么被打回选服。
+                var reason = _boundGameClient?.DisconnectReason;
+                SetStatus(string.IsNullOrEmpty(reason) ? "与服务器的连接已断开" : reason);
             };
 
             _clientEventsBound = true;

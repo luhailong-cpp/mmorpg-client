@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="29" result="Passed" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.3830467">
+  <test-suite type="TestSuite" id="1000" name="20260921-075005-32fa98" fullname="20260921-075005-32fa98" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.383047" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1034" name="CityTileValidation.Tests.dll" fullname="D:/luyuan/wuxingqitan/mmorpg-client/.codex-artifacts/city-tiles4k-validation/20260921-075005-32fa98/Library/ScriptAssemblies/CityTileValidation.Tests.dll" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.372511" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="59140" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1035" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.371936" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1036" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.371844" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1037" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.371774" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1038" name="Tianyong" fullname="MmorpgClient.Tests.EditMode.Tianyong" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.371672" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1001" name="CityTileImportVerificationTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.329260" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1010" name="Actual4KImportPreservesTexelsAndClearsAll2048Overrides" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.Actual4KImportPreservesTexelsAndClearsAll2048Overrides" methodname="Actual4KImportPreservesTexelsAndClearsAll2048Overrides" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="589135682" result="Passed" start-time="2026-09-21 11:50:45Z" end-time="2026-09-21 11:50:47Z" duration="1.305854" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1009" name="Complete64KContractHas256NorthWestRowMajorTiles" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.Complete64KContractHas256NorthWestRowMajorTiles" methodname="Complete64KContractHas256NorthWestRowMajorTiles" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="814580948" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.004074" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1008" name="EmptyProductionReportDoesNotClaimImportOrGameplayAcceptance" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.EmptyProductionReportDoesNotClaimImportOrGameplayAcceptance" methodname="EmptyProductionReportDoesNotClaimImportOrGameplayAcceptance" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="493366465" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.001607" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1002" name="ProductionVerifierAcceptsExactCompletedContract" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.ProductionVerifierAcceptsExactCompletedContract" methodname="ProductionVerifierAcceptsExactCompletedContract" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="287950746" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.001136" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1007" name="ProductionVerifierRejectsIncorrectDelivery" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.ProductionVerifierRejectsIncorrectDelivery" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.004899" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1003" name="ProductionVerifierRejectsIncorrectDelivery(&quot;wrong-order&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.ProductionVerifierRejectsIncorrectDelivery(&quot;wrong-order&quot;)" methodname="ProductionVerifierRejectsIncorrectDelivery" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="645371657" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.002164" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1004" name="ProductionVerifierRejectsIncorrectDelivery(&quot;wrong-city&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.ProductionVerifierRejectsIncorrectDelivery(&quot;wrong-city&quot;)" methodname="ProductionVerifierRejectsIncorrectDelivery" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="329192846" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000328" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1005" name="ProductionVerifierRejectsIncorrectDelivery(&quot;wrong-grid&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.ProductionVerifierRejectsIncorrectDelivery(&quot;wrong-grid&quot;)" methodname="ProductionVerifierRejectsIncorrectDelivery" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="1912766326" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000221" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1006" name="ProductionVerifierRejectsIncorrectDelivery(&quot;unapproved-foreground&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests.ProductionVerifierRejectsIncorrectDelivery(&quot;unapproved-foreground&quot;)" methodname="ProductionVerifierRejectsIncorrectDelivery" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileImportVerificationTests" runstate="Runnable" seed="1539845860" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000303" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+              <test-suite type="TestFixture" id="1011" name="CityTileStreamingTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.041245" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1029" name="ActivationExceptionRetainsOldRootAndDiscardsCandidate" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.ActivationExceptionRetainsOldRootAndDiscardsCandidate" methodname="ActivationExceptionRetainsOldRootAndDiscardsCandidate" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="889721994" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.009530" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CityTileStreaming] Appearance activation failed: fixture failure
+]]></output>
+                </test-case>
+                <test-case id="1028" name="DisposedTransitionNeverRunsItsDeferredAppearanceCallback" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.DisposedTransitionNeverRunsItsDeferredAppearanceCallback" methodname="DisposedTransitionNeverRunsItsDeferredAppearanceCallback" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1559678161" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000551" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1031" name="FailedRequiredTileAbortsCandidateBeforeChangingLegacyAppearance" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.FailedRequiredTileAbortsCandidateBeforeChangingLegacyAppearance" methodname="FailedRequiredTileAbortsCandidateBeforeChangingLegacyAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="2140138503" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.009715" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CityTileStreaming] Missing or non-4K tile World/CityTiles4K/test/day/tiles/r01_c01; current appearance retained.
+]]></output>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1015" name="FinalResolutionComesFromActualGrid" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.FinalResolutionComesFromActualGrid" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.001257" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1012" name="FinalResolutionComesFromActualGrid(3,3,12288,12288)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.FinalResolutionComesFromActualGrid(3,3,12288,12288)" methodname="FinalResolutionComesFromActualGrid" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1593464453" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000355" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1013" name="FinalResolutionComesFromActualGrid(5,4,20480,16384)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.FinalResolutionComesFromActualGrid(5,4,20480,16384)" methodname="FinalResolutionComesFromActualGrid" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1602543601" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000102" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1014" name="FinalResolutionComesFromActualGrid(6,6,24576,24576)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.FinalResolutionComesFromActualGrid(6,6,24576,24576)" methodname="FinalResolutionComesFromActualGrid" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1580474569" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000085" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1021" name="HandWrittenJsonUsesPublishedRectFieldNames" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.HandWrittenJsonUsesPublishedRectFieldNames" methodname="HandWrittenJsonUsesPublishedRectFieldNames" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1280674395" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000752" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1016" name="IncompleteDuplicateAndNon4KDeliveriesCannotActivate" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.IncompleteDuplicateAndNon4KDeliveriesCannotActivate" methodname="IncompleteDuplicateAndNon4KDeliveriesCannotActivate" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1142597678" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000346" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1017" name="InvalidWorldBoundsAndResourcePathsCannotActivate" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.InvalidWorldBoundsAndResourcePathsCannotActivate" methodname="InvalidWorldBoundsAndResourcePathsCannotActivate" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="738262708" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000327" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1023" name="JsonContractRoundTripsWithoutChangingWorldCoordinates" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.JsonContractRoundTripsWithoutChangingWorldCoordinates" methodname="JsonContractRoundTripsWithoutChangingWorldCoordinates" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="725217999" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000892" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1030" name="LegacyBackgroundWithoutAnyHdManifestStillSwitchesImmediately" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.LegacyBackgroundWithoutAnyHdManifestStillSwitchesImmediately" methodname="LegacyBackgroundWithoutAnyHdManifestStillSwitchesImmediately" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="316177456" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.001772" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1026" name="MissingTargetManifestRetainsCurrentHdAppearance" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.MissingTargetManifestRetainsCurrentHdAppearance" methodname="MissingTargetManifestRetainsCurrentHdAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="2070548940" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000883" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CityTileStreaming] Missing manifest World/CityTiles4K/__missing_target_manifest; current appearance retained.
+]]></output>
+                </test-case>
+                <test-case id="1032" name="ResidentTextureSurvivesOneOwnerReleaseAndCacheEvictsAfterTheLast" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.ResidentTextureSurvivesOneOwnerReleaseAndCacheEvictsAfterTheLast" methodname="ResidentTextureSurvivesOneOwnerReleaseAndCacheEvictsAfterTheLast" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="801983024" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.007373" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1033" name="SharedPendingRequestIsReleasedOnlyAfterLastOwnerAndCompletion" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.SharedPendingRequestIsReleasedOnlyAfterLastOwnerAndCompletion" methodname="SharedPendingRequestIsReleasedOnlyAfterLastOwnerAndCompletion" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1725604312" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.001243" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1018" name="SourceRowsRunNorthToSouthAndAdjacentTilesShareWorldEdges" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.SourceRowsRunNorthToSouthAndAdjacentTilesShareWorldEdges" methodname="SourceRowsRunNorthToSouthAndAdjacentTilesShareWorldEdges" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="75675603" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000891" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1022" name="SquareTilesCannotBeStretchedIntoANonMatchingWorldGrid" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.SquareTilesCannotBeStretchedIntoANonMatchingWorldGrid" methodname="SquareTilesCannotBeStretchedIntoANonMatchingWorldGrid" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1701361314" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000197" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1027" name="SwitchingBackToActiveAppearanceCancelsUnfinishedTarget" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.SwitchingBackToActiveAppearanceCancelsUnfinishedTarget" methodname="SwitchingBackToActiveAppearanceCancelsUnfinishedTarget" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="580145682" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000692" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1024" name="TransitionKeepsOldLayerUntilEveryCurrentVisibleTileIsReady" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.TransitionKeepsOldLayerUntilEveryCurrentVisibleTileIsReady" methodname="TransitionKeepsOldLayerUntilEveryCurrentVisibleTileIsReady" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1285305617" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000697" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1025" name="TransitionRechecksExpandedCameraFootprintBeforeCommitting" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.TransitionRechecksExpandedCameraFootprintBeforeCommitting" methodname="TransitionRechecksExpandedCameraFootprintBeforeCommitting" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="434337783" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000509" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1020" name="ViewAtMapBoundaryClampsPrefetchAndOutsideViewLoadsNothing" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.ViewAtMapBoundaryClampsPrefetchAndOutsideViewLoadsNothing" methodname="ViewAtMapBoundaryClampsPrefetchAndOutsideViewLoadsNothing" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="318808943" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000552" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1019" name="WideViewportPlusNeighbourRingIsNotTruncatedToNineTiles" fullname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests.WideViewportPlusNeighbourRingIsNotTruncatedToNineTiles" methodname="WideViewportPlusNeighbourRingIsNotTruncatedToNineTiles" classname="MmorpgClient.Tests.EditMode.Tianyong.CityTileStreamingTests" runstate="Runnable" seed="1742597033" result="Passed" start-time="2026-09-21 11:50:47Z" end-time="2026-09-21 11:50:47Z" duration="0.000229" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: D:\luyuan\wuxingqitan\mmorpg-client\Docs\VerificationEvidence\city-tiles4k-integration-20260921\validation/editmode-results.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

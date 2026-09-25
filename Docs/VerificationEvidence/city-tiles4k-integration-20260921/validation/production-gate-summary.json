@@ -1,0 +1,8 @@
+{
+  "verifiedAt": "2026-09-21T07:54:25.6859386-04:00",
+  "exitCode": 2,
+  "expectedExitCode": 2,
+  "gatePassed": true,
+  "scope": "Isolated empty-production project; verifies unpublished gate only, not real city import acceptance",
+  "isolatedProject": "D:\\luyuan\\wuxingqitan\\mmorpg-client\\.codex-artifacts\\city-tiles4k-validation\\20260921-075206-524e6a"
+}

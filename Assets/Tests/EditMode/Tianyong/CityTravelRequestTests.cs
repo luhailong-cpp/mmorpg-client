@@ -1,3 +1,5 @@
+using Google.Protobuf;
+using MmorpgClient.Game;
 using MmorpgClient.Game.WorldTravel;
 using NUnit.Framework;
 
@@ -119,6 +121,123 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(request.ReceiveScene(4, out _), Is.False);
             Assert.That(request.Accept(token), Is.False);
             Assert.That(request.IsPending, Is.False);
+        }
+
+        // ── 以下是 GameClient 上与行程相关的纯静态判据（不需要网络）。本任务不新增测试文件，就近放在这里。──
+
+        [Test]
+        public void EnterFailureTip_OnlyRecognisesContractCode()
+        {
+            // 契约：EnterGame 受理之后进场没成，服务端统一推 kEnterSceneFailed；别的码一律不下结论，交给超时兜底。
+            Assert.That(GameClient.IsEnterFailureTip((uint)scene_error.KEnterSceneFailed), Is.True);
+            Assert.That(GameClient.IsEnterFailureTip((uint)scene_error.KZoneTravelTargetBusy), Is.False);
+            Assert.That(GameClient.IsEnterFailureTip((uint)scene_error.KEnterSceneSceneNotFound), Is.False);
+            Assert.That(GameClient.IsEnterFailureTip(0), Is.False);
+        }
+
+        [Test]
+        public void EnterFailureTip_IsAlsoATravelFailureTipWithText()
+        {
+            // 同一个码在游戏内换图失败时也会出现，两个判据都认它；文案必须是人话而不是裸编号。
+            uint id = (uint)scene_error.KEnterSceneFailed;
+            Assert.That(GameClient.IsTravelFailureTip(id), Is.True);
+            Assert.That(GameClient.DescribeTravelTip(id), Does.Not.Contain("tip="));
+        }
+
+        [Test]
+        public void DescribeTravelTip_SyncRejectCodesHaveText_UnknownFallsBackToNumber()
+        {
+            Assert.That(GameClient.DescribeTravelTip((uint)scene_error.KEnterSceneSceneNotFound),
+                Does.Not.Contain("tip="));
+            Assert.That(GameClient.DescribeTravelTip((uint)scene_error.KEnterSceneChangingScene),
+                Does.Not.Contain("tip="));
+            // 同步拒绝码有文案，但不属于“受理后失败”，不能让在途的行程因此收场。
+            Assert.That(GameClient.IsTravelFailureTip((uint)scene_error.KEnterSceneSceneNotFound), Is.False);
+            Assert.That(GameClient.IsTravelFailureTip((uint)scene_error.KEnterSceneChangingScene), Is.False);
+            Assert.That(GameClient.DescribeTravelTip(uint.MaxValue), Does.Contain("tip=" + uint.MaxValue));
+        }
+
+        [Test]
+        public void DescribeKickReason_TravelFailureCodeYieldsRelogText()
+        {
+            // 服务端 S3L1-1 第二层出口：跨区传送受理后没成且回不到原地，先推失败 tip 再踢线（原因码同一个）。
+            // 断线文案必须是人话、并提示重登，否则选服界面只会显示笼统的“连接已断开”。
+            uint busy = (uint)scene_error.KZoneTravelTargetBusy;
+            string text = GameClient.DescribeKickReason(busy);
+            Assert.That(text, Is.Not.Null);
+            Assert.That(text, Does.StartWith(GameClient.DescribeTravelTip(busy)));
+            Assert.That(text, Does.Contain("请重新登录"));
+            Assert.That(text, Does.Not.Contain("tip="));
+        }
+
+        [Test]
+        public void DescribeKickReason_UnsetOrUnrelatedCodeYieldsNull()
+        {
+            // 未填原因、顶号等其它踢线原因、同步拒绝码、认不出的码：一律不下结论，维持通用断线文案。
+            Assert.That(GameClient.DescribeKickReason(0), Is.Null);
+            Assert.That(GameClient.DescribeKickReason((uint)scene_error.KEnterSceneSceneNotFound), Is.Null);
+            Assert.That(GameClient.DescribeKickReason((uint)scene_error.KEnterSceneChangingScene), Is.Null);
+            Assert.That(GameClient.DescribeKickReason(uint.MaxValue), Is.Null);
+        }
+
+        [Test]
+        public void ParseTicketZoneId_PrefersTargetZoneThenZone()
+        {
+            var travel = new GateTokenPayload { ZoneId = 1, TargetZoneId = 2 }.ToByteString();
+            var plain = new GateTokenPayload { ZoneId = 3 }.ToByteString();
+            Assert.That(GameClient.ParseTicketZoneId(travel), Is.EqualTo(2u));
+            Assert.That(GameClient.ParseTicketZoneId(plain), Is.EqualTo(3u));
+        }
+
+        [Test]
+        public void ParseTicketZoneId_UnusableTicketYieldsZeroAndNeverThrows()
+        {
+            // 解析只为展示：解不出来返回零，由调用方保留旧值，不得让换服因此失败。
+            Assert.That(GameClient.ParseTicketZoneId(null), Is.Zero);
+            Assert.That(GameClient.ParseTicketZoneId(ByteString.Empty), Is.Zero);
+            Assert.That(GameClient.ParseTicketZoneId(new GateTokenPayload().ToByteString()), Is.Zero);
+            // 单字节 0xFF 是一个没写完的变长整数（续位为 1 却没有后续字节），解析器必抛格式异常。
+            Assert.That(GameClient.ParseTicketZoneId(ByteString.CopyFrom(0xFF)), Is.Zero);
+        }
+
+        [Test]
+        public void ResolveRedirectPlayerId_FallsBackToInFlightEnterRequest()
+        {
+            // 已进游戏：沿用当前角色。
+            Assert.That(GameClient.ResolveRedirectPlayerId(11, 22), Is.EqualTo(11ul));
+            // 重定向推送先于 EnterGame 应答到达：PlayerId 仍是零，沿用本次请求的角色，不得回到选角。
+            Assert.That(GameClient.ResolveRedirectPlayerId(0, 22), Is.EqualTo(22ul));
+            // 两者皆零才交给调用方重新选角。
+            Assert.That(GameClient.ResolveRedirectPlayerId(0, 0), Is.Zero);
+        }
+
+        [Test]
+        public void ValidateRedirectTarget_LocalClockPastDeadlineStillPasses()
+        {
+            // 本机时钟比服务端快时，重定向票据在本机看来已过期；有效期由目标 gate 按服务端时钟判，客户端不得据此拒绝。
+            var ev = new RedirectToGateNotify { TargetIp = "127.0.0.1", TargetPort = 7000, TokenDeadline = 1000 };
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 2000, out long past), Is.Null);
+            Assert.That(past, Is.EqualTo(1000));
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 1000, out past), Is.Null);
+            Assert.That(past, Is.Zero);
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 999, out past), Is.Null);
+            Assert.That(past, Is.EqualTo(-1));
+            // 未下发 deadline（0）不参与判断。
+            ev.TokenDeadline = 0;
+            Assert.That(GameClient.ValidateRedirectTarget(ev, 2000, out past), Is.Null);
+            Assert.That(past, Is.EqualTo(-1));
+        }
+
+        [Test]
+        public void ValidateRedirectTarget_AddressChecksStillReject()
+        {
+            Assert.That(GameClient.ValidateRedirectTarget(null, 0, out _), Is.Not.Null);
+            Assert.That(GameClient.ValidateRedirectTarget(
+                new RedirectToGateNotify { TargetIp = " ", TargetPort = 7000 }, 0, out _), Is.Not.Null);
+            Assert.That(GameClient.ValidateRedirectTarget(
+                new RedirectToGateNotify { TargetIp = "127.0.0.1", TargetPort = 0 }, 0, out _), Is.Not.Null);
+            Assert.That(GameClient.ValidateRedirectTarget(
+                new RedirectToGateNotify { TargetIp = "127.0.0.1", TargetPort = 65536 }, 0, out _), Is.Not.Null);
         }
     }
 }

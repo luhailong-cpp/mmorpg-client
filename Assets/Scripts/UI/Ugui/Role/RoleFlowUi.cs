@@ -77,6 +77,9 @@ namespace MmorpgClient.UI.Ugui.Role
         private UiTextButton _femaleButton;
         private UiTextButton _createBackButton;
         private UiTextButton _confirmCreateButton;
+        private readonly List<QdaoCharacterCatalog.Definition> _appearanceChoices = new();
+        private int _appearanceChoice; // Zero keeps the existing profession/gender default.
+        private TMP_Text _appearanceLabel;
 
         private uint _zoneId;
         private IReadOnlyList<AccountSimplePlayer> _players;
@@ -110,6 +113,7 @@ namespace MmorpgClient.UI.Ugui.Role
             _result = choice;
             _pickedClassId = Classes[0].id;
             _pickedGender = 1;
+            _appearanceChoice = 0;
             _selectedPlayerId = 0;
             _canvasGo.SetActive(true);
             if (_players.Count > 0) ShowSelectMode();
@@ -133,6 +137,14 @@ namespace MmorpgClient.UI.Ugui.Role
             _result.CreateNew = true;
             _result.ClassId = _pickedClassId;
             _result.Gender = _pickedGender;
+            _result.AppearanceId = PickedAppearanceId;
+            // Imports can change while this screen is open; never submit a vanished candidate.
+            if (!string.IsNullOrEmpty(_result.AppearanceId) &&
+                QdaoCharacterCatalog.Find(_result.AppearanceId)?.ResolveAppearance() == null)
+            {
+                _previewHint.text = "所选外观资源尚未齐套，请重新选择";
+                return;
+            }
             _result.Cancelled = false;
             _resolved = true;
         }
@@ -178,11 +190,12 @@ namespace MmorpgClient.UI.Ugui.Role
             if (_players != null && _players.Count >= MaxRows) return;
             _creating = true;
             _title.text = "创建角色";
-            _listHint.text = "选择职业与性别，开启修行";
+            _listHint.text = "选择职业、性别与人物外观";
             _selectRoot.gameObject.SetActive(false);
             _createRoot.gameObject.SetActive(true);
             _createBackButton.SetText(_players != null && _players.Count > 0 ? "返回选角" : "返回选服");
             _previewHint.text = "创建后将直接进入所选区服";
+            RefreshAppearanceChoices();
             RefreshCreateHighlights();
             SelectForKeyboard(_classButtons[ClassIndex(_pickedClassId)].Button);
         }
@@ -221,11 +234,11 @@ namespace MmorpgClient.UI.Ugui.Role
                 ConfigureNavigation(card.Button);
                 float portraitSize = Mathf.Min(176f, _roleCardHeight - 36f);
                 CreateCardPortrait(card.Plate.transform, 30f, (_roleCardHeight - portraitSize) * .5f,
-                    portraitSize, ResolvePortrait(player.ClassId, player.Gender));
+                    portraitSize, ResolvePortrait(player.ClassId, player.Gender, player.AppearanceId));
                 float textX = portraitSize + 54f;
                 float textWidth = 540f - textX - 60f;
                 card.Name = Label("Name", card.Plate.transform, textX, _roleCardHeight * .24f, textWidth, 60f,
-                    CharacterName(player.ClassId, player.Gender), _roleCardHeight > 170f ? 44f : 33f, Ink);
+                    CharacterName(player.ClassId, player.Gender, player.AppearanceId), _roleCardHeight > 170f ? 44f : 33f, Ink);
                 QdaoUguiTypography.ApplyHeading(card.Name);
                 card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 44f,
                     $"{GenderName(player.Gender)} · {ShortId(player.PlayerId)}" + (player.PlayerId == lastPlayed ? " · 上次" : string.Empty),
@@ -265,7 +278,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 card.Detail.color = selected ? Ivory : Wood;
                 card.Check.gameObject.SetActive(selected);
             }
-            RefreshPreview(player.ClassId, player.Gender, player.PlayerId);
+            RefreshPreview(player.ClassId, player.Gender, player.PlayerId, player.AppearanceId);
         }
 
         private void RefreshCreateHighlights()
@@ -274,15 +287,38 @@ namespace MmorpgClient.UI.Ugui.Role
                 SetChoiceState(_classButtons[i], Classes[i].id == _pickedClassId);
             SetChoiceState(_maleButton, _pickedGender == 1);
             SetChoiceState(_femaleButton, _pickedGender == 2);
-            RefreshPreview(_pickedClassId, _pickedGender, 0);
+            _appearanceLabel.text = _appearanceChoice == 0 ? "外观：职业默认" :
+                "外观：" + _appearanceChoices[_appearanceChoice - 1].Name;
+            RefreshPreview(_pickedClassId, _pickedGender, 0, PickedAppearanceId);
         }
 
-        private void RefreshPreview(uint classId, uint gender, ulong playerId)
+        private string PickedAppearanceId => _appearanceChoice > 0 && _appearanceChoice <= _appearanceChoices.Count
+            ? _appearanceChoices[_appearanceChoice - 1].Id : string.Empty;
+
+        private void RefreshAppearanceChoices()
+        {
+            string selected = PickedAppearanceId;
+            _appearanceChoices.Clear();
+            foreach (var entry in QdaoCharacterCatalog.RetainedOriginalAll)
+                if (entry.ResolveAppearance() != null) _appearanceChoices.Add(entry);
+            _appearanceChoice = 0;
+            for (int i = 0; i < _appearanceChoices.Count; i++)
+                if (_appearanceChoices[i].Id == selected) _appearanceChoice = i + 1;
+        }
+
+        private void CycleAppearance(int delta)
+        {
+            int count = _appearanceChoices.Count + 1;
+            _appearanceChoice = (_appearanceChoice + delta + count) % count;
+            RefreshCreateHighlights();
+        }
+
+        private void RefreshPreview(uint classId, uint gender, ulong playerId, string appearanceId = null)
         {
             int index = ClassIndex(classId);
-            _hero.sprite = ResolvePortrait(classId, gender);
+            _hero.sprite = ResolvePortrait(classId, gender, appearanceId);
             _hero.enabled = _hero.sprite != null;
-            _previewTitle.text = CharacterName(classId, gender);
+            _previewTitle.text = CharacterName(classId, gender, appearanceId);
             _classBadge.sprite = QdaoRefreshArt.Load(ClassBadges[index]);
             _classValue.text = ClassName(classId);
             _genderValue.text = GenderName(gender);
@@ -423,6 +459,13 @@ namespace MmorpgClient.UI.Ugui.Role
             _femaleButton = ChoiceButton("GenderFemale", _createRoot, 422f, 760f, 250f, "女");
             _maleButton.Button.onClick.AddListener(() => { _pickedGender = 1; RefreshCreateHighlights(); });
             _femaleButton.Button.onClick.AddListener(() => { _pickedGender = 2; RefreshCreateHighlights(); });
+            // Only complete approved same-ID V14/V13 packages become selectable.
+            var previousAppearance = TextButton("PreviousAppearance", _createRoot, 926f, 128f, 132f, "‹", false, 52f);
+            var nextAppearance = TextButton("NextAppearance", _createRoot, 1628f, 128f, 132f, "›", false, 52f);
+            previousAppearance.Button.onClick.AddListener(() => CycleAppearance(-1));
+            nextAppearance.Button.onClick.AddListener(() => CycleAppearance(1));
+            _appearanceLabel = Label("AppearanceName", _createRoot, 1064f, 156f, 552f, 64f,
+                "外观：职业默认", 34f, Ink, TextAlignmentOptions.Center);
             _createBackButton = TextButton("BackFromCreate", _createRoot, 208f, 944f, 416f, "返回", false);
             _createBackButton.Button.onClick.AddListener(() =>
             {
@@ -533,12 +576,12 @@ namespace MmorpgClient.UI.Ugui.Role
             return value.Length > 8 ? "…" + value.Substring(value.Length - 8) : value;
         }
 
-        private static string CharacterName(uint classId, uint gender)
-            => QdaoCharacterCatalog.Find(QdaoCharacterCatalog.ResolveRole(classId, gender))?.Name
+        private static string CharacterName(uint classId, uint gender, string appearanceId = null)
+            => QdaoCharacterCatalog.Find(QdaoCharacterCatalog.ResolveRole(classId, gender, appearanceId))?.Name
                ?? ClassName(classId);
 
-        private static Sprite ResolvePortrait(uint classId, uint gender)
-            => QdaoCharacterCatalog.LoadPortrait(QdaoCharacterCatalog.ResolveRole(classId, gender));
+        private static Sprite ResolvePortrait(uint classId, uint gender, string appearanceId = null)
+            => QdaoCharacterCatalog.LoadPortrait(QdaoCharacterCatalog.ResolveRole(classId, gender, appearanceId));
 
 #if UNITY_EDITOR
         private static GameObject _editorPreviewObject;

@@ -47,14 +47,18 @@ namespace MmorpgClient.Tests.PlayMode
                         var heldFrames = 0;
                         var longestHold = 0;
                         var directionFrames = new HashSet<Texture2D>();
+                        var directionGeometry = new Dictionary<Texture2D, QdaoMixedResolutionContract.Geometry>();
                         if (appearance.IsHd) Assert.That(animator.EnsureDirectionFrames(direction), Is.True);
                         for (var frameIndex = 1; frameIndex <= definition.FrameCount; frameIndex++)
                         {
-                            var texture = Resources.Load<Texture2D>($"{definition.ResourceFolder}/walk/{Directions[direction]}/{frameIndex:00}");
+                            var resourcePath = appearance.FrameResourcePath(Directions[direction], frameIndex - 1);
+                            var geometry = appearance.GeometryForResource(resourcePath);
+                            var texture = Resources.Load<Texture2D>(resourcePath);
                             Assert.That(texture, Is.Not.Null);
-                            Assert.That(texture.width, Is.EqualTo(appearance.FrameWidth));
-                            Assert.That(texture.height, Is.EqualTo(appearance.FrameWidth));
+                            Assert.That(texture.width, Is.EqualTo(geometry.Width), resourcePath);
+                            Assert.That(texture.height, Is.EqualTo(geometry.Height), resourcePath);
                             directionFrames.Add(texture);
+                            directionGeometry.Add(texture, geometry);
                         }
                         Assert.That(directionFrames.Count, Is.EqualTo(definition.FrameCount));
                         for (var frame = 0; frame < 48; frame++)
@@ -65,12 +69,13 @@ namespace MmorpgClient.Tests.PlayMode
                             Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Run));
                             Assert.That(directionFrames.Contains(renderer.sprite.texture), Is.True, "Walk animation must use an individually imported direction frame.");
                             Assert.That(renderer.sprite.rect.x, Is.Zero);
-                            Assert.That(renderer.sprite.rect.width, Is.EqualTo(appearance.FrameWidth));
-                            Assert.That(renderer.sprite.pivot.y, Is.EqualTo(appearance.FrameHeight * appearance.Pivot.y).Within(0.01f));
+                            var renderedGeometry = directionGeometry[renderer.sprite.texture];
+                            Assert.That(renderedGeometry.Matches(renderer.sprite), Is.True,
+                                "Each rendered frame must use its own declared dimensions, PPU and pivot.");
                             if (appearance.IsHd)
                             {
                                 Assert.That(animator.ResidentHdDirections, Is.LessThanOrEqualTo(2));
-                                Assert.That(renderer.sprite.pixelsPerUnit, Is.EqualTo(104f));
+                                Assert.That(renderer.sprite.pixelsPerUnit, Is.EqualTo(renderedGeometry.PixelsPerUnit));
                             }
                             poses.Add(renderer.sprite);
                             if (previousPose != null && previousPose != renderer.sprite) transitions++;
@@ -97,6 +102,8 @@ namespace MmorpgClient.Tests.PlayMode
                             definition.IdleResourcePath(Directions[direction]))), "Standing uses the selected version's authored idle or V11 contact fallback.");
                         Assert.That(renderer.sprite.rect.x, Is.Zero);
                         var standing = renderer.sprite;
+                        Assert.That(appearance.GeometryForResource(appearance.IdleResourcePath(Directions[direction])).Matches(standing),
+                            Is.True, "Standing keeps its own resource geometry, including a preserved mixed 512 idle.");
                         for (var frame = 0; frame < 3; frame++)
                         {
                             yield return null;
@@ -223,13 +230,15 @@ namespace MmorpgClient.Tests.PlayMode
                         definition.IdleResourcePath(Directions[direction]))));
                     Assert.That(otherRenderer.sprite, Is.SameAs(otherSprite), "One actor's appearance must not overwrite the shared legacy singleton cache.");
                 }
-                Assert.That(animator.SetAppearance("not-an-approved-character"), Is.True);
+                var approvedIdentity = animator.CharacterId;
+                var approvedFrameCount = animator.FrameCount;
+                var approvedSprite = renderer.sprite;
+                Assert.That(animator.SetAppearance("not-an-approved-character"), Is.False);
                 yield return null;
-                Assert.That(animator.CharacterId, Is.EqualTo("QdaoHeadbandBoy"));
-                Assert.That(animator.FrameCount, Is.EqualTo(8));
+                Assert.That(animator.CharacterId, Is.EqualTo(approvedIdentity));
+                Assert.That(animator.FrameCount, Is.EqualTo(approvedFrameCount));
                 Assert.That(first.transform.childCount, Is.EqualTo(children));
-                Assert.That(renderer.sprite.texture, Is.SameAs(Resources.Load<Texture2D>(
-                    $"World/Characters/QdaoHeadbandBoy/idle_{Directions[direction]}")));
+                Assert.That(renderer.sprite, Is.SameAs(approvedSprite));
             }
             finally
             {

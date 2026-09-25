@@ -1,0 +1,51 @@
+[
+  {
+    "source": "Assets/Scripts/World/Tianyong/CityTileManifest.cs",
+    "sha256": "BD735567534554E07698E1F6E118C3872BCA58C9A6DFFB9B9D1BF2AADC9EFAC3",
+    "testedCopy": "Assets/Runtime/CityTileManifest.cs",
+    "testedCopySha256": "BD735567534554E07698E1F6E118C3872BCA58C9A6DFFB9B9D1BF2AADC9EFAC3",
+    "matches": true
+  },
+  {
+    "source": "Assets/Scripts/World/Tianyong/CityTileStreaming.cs",
+    "sha256": "1D48350A4E1D751D6E77F1F72A1514F131579C6CAD40026469B39A85FD24B33E",
+    "testedCopy": "Assets/Runtime/CityTileStreaming.cs",
+    "testedCopySha256": "1D48350A4E1D751D6E77F1F72A1514F131579C6CAD40026469B39A85FD24B33E",
+    "matches": true
+  },
+  {
+    "source": "Assets/Editor/Tianyong/CityTile4KImporter.cs",
+    "sha256": "E5F178DA2EA30F7C1E416DCF0BABF37EE86F54439E5827437403B342315E2DBD",
+    "testedCopy": "Assets/Editor/CityTile4KImporter.cs",
+    "testedCopySha256": "E5F178DA2EA30F7C1E416DCF0BABF37EE86F54439E5827437403B342315E2DBD",
+    "matches": true
+  },
+  {
+    "source": "Assets/Tests/EditMode/Tianyong/CityTileStreamingTests.cs",
+    "sha256": "50E3511545E9067D6EF1EBD9D986E61BE1DEDB114B9C949A8083E92EA65F3B1C",
+    "testedCopy": "Assets/Tests/CityTileStreamingTests.cs",
+    "testedCopySha256": "50E3511545E9067D6EF1EBD9D986E61BE1DEDB114B9C949A8083E92EA65F3B1C",
+    "matches": true
+  },
+  {
+    "source": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c01.png",
+    "sha256": "ACEF6B280E096FB99C12091BA895AF743227F147CCB43F5FF439BB8A0A1180FF",
+    "testedCopy": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c01.png",
+    "testedCopySha256": "ACEF6B280E096FB99C12091BA895AF743227F147CCB43F5FF439BB8A0A1180FF",
+    "matches": true
+  },
+  {
+    "source": "Assets/Editor/Tianyong/CityTileProductionVerification.cs",
+    "sha256": "1A6D0E5D1EFD90DCA08E53A9779B549FF5831E11BB2932F561FC5BBDEEA20959",
+    "testedCopy": "Assets/Editor/CityTileProductionVerification.cs",
+    "testedCopySha256": "1A6D0E5D1EFD90DCA08E53A9779B549FF5831E11BB2932F561FC5BBDEEA20959",
+    "matches": true
+  },
+  {
+    "source": "Docs/VerificationEvidence/city-tiles4k-integration-20260921/validation/CityTileImportVerificationTests.cs",
+    "sha256": "5AD517C06711CEA850BE68CD79022337AE92C652F0EADA6DAB8845297DACE8AA",
+    "testedCopy": "Assets/Tests/CityTileImportVerificationTests.cs",
+    "testedCopySha256": "5AD517C06711CEA850BE68CD79022337AE92C652F0EADA6DAB8845297DACE8AA",
+    "matches": true
+  }
+]

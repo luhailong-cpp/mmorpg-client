@@ -1,0 +1,9 @@
+{
+  "verifiedAt": "2026-09-21T07:52:56.7747930-04:00",
+  "command": "pwsh -NoProfile -File tools/client_compile_check.ps1 -ShowErrors 30",
+  "exitCode": 0,
+  "runtimeSourceCount": 356,
+  "sourceChangesDuringCompile": [],
+  "compilerScriptSha256": "820A6B45AF9F42327C30F4F635206CAC870C0589E8CE397ED52D33B4C9A9B770",
+  "scope": "Roslyn compilation of current real Assets/Scripts runtime sources; no Unity scene or gameplay execution"
+}

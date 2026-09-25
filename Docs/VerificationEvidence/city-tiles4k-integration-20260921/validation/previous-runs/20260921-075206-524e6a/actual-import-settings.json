@@ -1,0 +1,19 @@
+{
+    "source": "Synthetic texture in isolated validation project; not delivered artwork",
+    "width": 4096,
+    "height": 4096,
+    "mipmapCount": 1,
+    "maxTextureSize": 4096,
+    "format": "RGB24",
+    "wrap": "Clamp",
+    "filter": "Bilinear",
+    "isReadable": false,
+    "sRGB": true,
+    "allChecksPassed": true,
+    "cleared2048Overrides": [
+        "Standalone",
+        "Android",
+        "iPhone",
+        "WebGL"
+    ]
+}

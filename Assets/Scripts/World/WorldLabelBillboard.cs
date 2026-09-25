@@ -69,6 +69,7 @@ namespace MmorpgClient.World
         // copies the parent's order when they are created, so writing the
         // MeshRenderer directly would leave those pieces at a stale depth.
         private TMPro.TextMeshPro _tmp;
+        private Vector3 _normalScale = Vector3.one;
 
         public static WorldLabelBillboard Attach(GameObject label, float offsetBelowFeet = DefaultOffsetBelowFeet)
         {
@@ -83,17 +84,45 @@ namespace MmorpgClient.World
         {
             _renderer = GetComponent<Renderer>();
             _tmp = GetComponent<TMPro.TextMeshPro>();
+            _normalScale = transform.localScale;
         }
 
         private void LateUpdate()
+            => RefreshForCamera(Camera.main);
+
+        internal void RefreshForCamera(Camera worldCamera)
         {
-            var worldCamera = Camera.main;
             if (worldCamera == null || transform.parent == null) return;
 
             var cameraTransform = worldCamera.transform;
+            float weight = 0f;
+            float closeScale = 1f;
+            float closeOffset = OffsetBelowFeet;
+            var body = transform.parent.Find("sprite")?.GetComponent<SpriteRenderer>();
+            if (body?.sprite != null && worldCamera.orthographic)
+            {
+                float frameHeight = body.sprite.bounds.size.y * Mathf.Abs(body.transform.lossyScale.y);
+                weight = Tianyong.TianyongCameraController.CloseUpFramingWeight(worldCamera.orthographicSize, frameHeight);
+                // At nearest zoom keep a readable ~40 px name instead of a 150 px world-space label.
+                // Its small backdrop fits the authored transparent space below the unchanged feet pivot.
+                closeScale = Mathf.Min(.3f, 40f * 2f * worldCamera.orthographicSize /
+                    (Mathf.Max(1, worldCamera.pixelHeight) * WorldNameplate.WorldEmHeight));
+                float halfBox = (WorldNameplate.WorldEmHeight * .5f + WorldNameplate.BackdropPaddingY) * closeScale;
+                float labelBottom = -halfBox, labelTop = halfBox;
+                var backdrop = transform.Find("NameplateBackdrop")?.GetComponent<SpriteRenderer>();
+                if (backdrop?.sprite != null)
+                {
+                    var bounds = backdrop.sprite.bounds;
+                    labelBottom = (backdrop.transform.localPosition.y + bounds.min.y * backdrop.transform.localScale.y) * closeScale;
+                    labelTop = (backdrop.transform.localPosition.y + bounds.max.y * backdrop.transform.localScale.y) * closeScale;
+                }
+                closeOffset = Mathf.Max(labelTop + .08f,
+                    -body.sprite.bounds.min.y * Mathf.Abs(body.transform.lossyScale.y) + labelBottom - .12f);
+            }
+            transform.localScale = _normalScale * Mathf.Lerp(1f, closeScale, weight);
             transform.rotation = cameraTransform.rotation;
             transform.position = transform.parent.position
-                                 - cameraTransform.up * OffsetBelowFeet
+                                 - cameraTransform.up * Mathf.Lerp(OffsetBelowFeet, closeOffset, weight)
                                  - cameraTransform.forward * 0.2f; // keep clear of the ground/sprite
 
             var order = QdaoBoySpriteAnimator.WorldSortingOrder(transform.parent.position, worldCamera)

@@ -1,0 +1,67 @@
+{
+  "completedAtUtc": "2026-09-21T12:00:16.7893920Z",
+  "completeDeliveredAppearances": 0,
+  "productionPublishedAppearances": 0,
+  "acceptedProductionTiles": 0,
+  "selectedCandidateTiles": 24,
+  "formalManifestExists": false,
+  "artCatalogSha256": "ab81387e5874f98e8e48f1eeb2596fce5af0e8c5fdadad5c068ec4e06e8b6d3a",
+  "artStatusSha256": "ed43932aa8cdab5f9c74bf1de7f5eaf6ce3aa4ca7986db80a38c2d6bdce539ce",
+  "artGeneration": {
+    "sourceRecordRoute": "builtin_image_gen",
+    "backendModelVerified": false,
+    "imageGeneratedByThisWindow": false
+  },
+  "runtimeCompile": {
+    "sourceCount": 356,
+    "errors": 0,
+    "evidence": "validation/runtime-final-compile/summary.json"
+  },
+  "unityEditMode": {
+    "scope": "isolated loader/importer/manifest tests, not complete artwork",
+    "passed": 29,
+    "failed": 0
+  },
+  "publisherTests": {
+    "scope": "real PNG and native lock branch; transaction fixtures with mocked decode/process inspection",
+    "passed": 27,
+    "failed": 0
+  },
+  "runtimeGameAcceptance": false,
+  "devicePerformanceMeasured": false,
+  "commitOrPushPerformed": false,
+  "ownedFiles": [
+    {
+      "path": "Assets/Editor/Tianyong/CityTileProductionVerification.cs",
+      "sha256": "091ab6f22b321f3e6824ed5bad79532c921133449f4e999241376f0bb4854947"
+    },
+    {
+      "path": "Assets/Editor/Tianyong/CityTileProductionVerification.cs.meta",
+      "sha256": "5454bd5eaa1770de997b97aaf93ec02bf380028501ea47b6983ee4083fc61025"
+    },
+    {
+      "path": "tools/publish_city_tiles.py",
+      "sha256": "aaf0ef85e69ed53bafe7408b1b19b566a78c2dd2823bf5daeddcd59375b7c902"
+    },
+    {
+      "path": "tools/run_city_tiles_tests.ps1",
+      "sha256": "5e84a92e10a51b81ae8e43f2a4439ead7124e0bba79eda21e9533fbcbe29b8c6"
+    },
+    {
+      "path": "tools/tests/test_publish_city_tiles.py",
+      "sha256": "cc1d87aef96504242fcf81b3ad47db71388e0060ea60727f6a8116a0369188bf"
+    },
+    {
+      "path": "tools/tests/CityTileImportVerificationTests.cs",
+      "sha256": "5ad517c06711cea850be68cd79022337ae92c652f0eada6dab8845297dace8aa"
+    },
+    {
+      "path": "Docs/CityTiles4K.md",
+      "sha256": "72544dfbb925c334b5879f3b42fe1df1d855913314c9caaa564bb65fa81e6ce4"
+    },
+    {
+      "path": "Docs/CityTilePublishing.md",
+      "sha256": "29dc5be29011bd070162275a5e70464f2bd72e3791dc2129d858c3c5ef072b80"
+    }
+  ]
+}

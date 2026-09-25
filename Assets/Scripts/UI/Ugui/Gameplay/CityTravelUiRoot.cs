@@ -29,13 +29,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private CityTravelWindow _window;
         private string _status = "";
         private bool _wasAvailable;
-        // 跨区传送：在途的目标区服、发起时的连接标识（抵达时据此判断是否真的换了连接），
-        // 以及“此刻人在哪个区”。服务端的重定向通知不带区服编号，客户端只能自己记：
-        // 零表示没跨过区，按选区时的区服算。登录时被服务端送回归属区的情况这里无从得知，
-        // 记错的后果只是列表里多列或少列一个区，能不能去始终由服务端裁决。
+        // 跨区传送：在途的目标区服，以及发起时的连接标识（底层不再等待时据此判断连接是否还是原来那条）。
+        // “此刻人在哪个区”不在这里记：那是连接层的事实，读 GameClient.CurrentZoneId（见下面的 CurrentZoneId）。
+        // 以前这里自记过一份，只在“请求在途且入场通知来自新连接”时更新；窗口先收场、换服通知后到的时序下
+        // 会记脏，可去列表随之滤掉真正的归属区，玩家在界面上回不了家。
         private uint _pendingZoneId;
         private object _gateAtRequest;
-        private uint _visitingZoneId;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -215,13 +214,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     _pendingZoneId = 0;
                     _gateAtRequest = null;
                     Debug.LogWarning("[CityTravel] 跨区传送请求失败：" + error);
-                    // 错误文本此刻只有编号兜底（提示码的文案表客户端还没有），直接给玩家看，方便反馈问题。
+                    // 错误文本由底层按提示码给出（认不出的码退回带编号的兜底文本），直接给玩家看，方便反馈问题。
                     _status = "暂时无法前往，请稍后重试。（" + error + "）";
                     Refresh();
                 }));
         }
 
-        private uint CurrentZoneId => _visitingZoneId != 0 ? _visitingZoneId : (_app?.Session?.SelectedZoneId ?? 0u);
+        /// <summary>
+        /// 此刻所在的区：以连接层为准（当前连着的那个网关属于哪个区，换服后由服务端签发的票据给出）。
+        /// 还没绑定客户端、或连接层给不出（零）时，退回选区时的区服。
+        /// </summary>
+        private uint CurrentZoneId
+        {
+            get
+            {
+                uint connected = _game?.CurrentZoneId ?? 0u;
+                return connected != 0 ? connected : (_app?.Session?.SelectedZoneId ?? 0u);
+            }
+        }
 
         /// <summary>
         /// 可前往的其他区服：取选区时网关下发的列表，去掉当前所在区和不可进入的区
@@ -266,7 +276,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _request.Reset();
             _pendingZoneId = 0;
             _gateAtRequest = null;
-            _visitingZoneId = 0;
             _status = "";
             HidePanel();
             _game = game;
@@ -280,10 +289,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleSceneEntered(SceneInfoComp scene)
         {
-            // 跨区请求在途、且入场通知来自另一条连接，说明人已经在目标区了（哪怕落到的不是所选地图）。
-            // 连接没换就收到入场通知，只是一次普通换图，不能据此改“所在区”。
-            if (_pendingZoneId != 0 && _game != null && !ReferenceEquals(_game.GateConnectionIdentity, _gateAtRequest))
-                _visitingZoneId = _pendingZoneId;
+            // 入场通知到了，这趟行程（不论同区还是跨区）到此有了结论；人在哪个区由连接层给出，这里不记。
             _pendingZoneId = 0;
             _gateAtRequest = null;
             if (_request.ReceiveScene(scene?.SceneConfigId ?? 0, out bool festival))
@@ -297,10 +303,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         /// <summary>
-        /// 服务端提示到达时，如果有传送请求在途，就当作这次行程没成、立刻收场。
+        /// 服务端提示到达时，如果有传送请求在途，判断这次行程是不是没成，没成就立刻收场。
         /// 受理之后才发生的失败（同区换图被换手门拒绝、跨区在冻结存盘之后被拒）不会出现在请求的应答里，
         /// 服务端只能补推一条提示；不接它，窗口就只能干等到超时。
-        /// 判得宽是刻意的：请求在途时窗口挡着输入，几乎不会有别的提示；提示码的枚举客户端还没有，无法按码收窄。
+        /// 跨区在途时按码收窄，判据与底层同一份（GameClient.IsTravelFailureTip）：两边脱节的话，一条无关提示
+        /// 会让窗口先报失败，而底层仍在途，随后玩家又被换服通知搬走，或在等待预算内再点被“正在传送中”挡回。
+        /// 同区换图维持宽判：请求在途时窗口挡着输入，几乎不会有别的提示；它不换连接，
         /// 即使误判，后果也只是遮罩提前收起，随后到达的入场通知照常生效。
         /// </summary>
         private void HandleServerTip(TipInfoMessage tip)
@@ -308,10 +316,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!_request.IsPending) return;
             // 连接已经在换了，说明服务端早已放行；这时的提示来自目标区的登录流程，与行程成败无关。
             if (_game != null && _game.IsRedirecting) return;
+            uint tipId = tip?.Id ?? 0;
+            // 跨区在途：不是传送失败码就放过去，由底层与本窗口各自的等待预算兜底。
+            if (_pendingZoneId != 0 && !GameClient.IsTravelFailureTip(tipId)) return;
             _request.Reset();
             _pendingZoneId = 0;
             _gateAtRequest = null;
-            _status = "暂时无法前往，请稍后重试。（" + (tip?.Id ?? 0) + "）";
+            // 文案按码取；认不出的码会退回带编号的兜底文本，方便玩家反馈。
+            _status = GameClient.DescribeTravelTip(tipId);
             Refresh();
         }
 
@@ -320,7 +332,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _request.Reset();
             _pendingZoneId = 0;
             _gateAtRequest = null;
-            _visitingZoneId = 0;
             _status = "";
             HidePanel();
             Refresh();

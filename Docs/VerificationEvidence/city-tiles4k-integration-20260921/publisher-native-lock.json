@@ -1,0 +1,10 @@
+{
+  "mockedProcessEnumeration": true,
+  "productionResourcesTouched": false,
+  "nativeWindowsLockAcquired": true,
+  "lockExistsWhileHeld": true,
+  "secondOsHandleRejected": true,
+  "secondGuardRejected": true,
+  "lockDeletedAfterRelease": true,
+  "reacquiredAfterRelease": true
+}

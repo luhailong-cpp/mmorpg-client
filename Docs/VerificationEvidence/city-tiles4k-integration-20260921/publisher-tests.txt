@@ -1,0 +1,32 @@
+test_2048_png_rejected (test_publish_city_tiles.PublisherTests.test_2048_png_rejected) ... ok
+test_acceptance_bound_to_full_tile_digest (test_publish_city_tiles.PublisherTests.test_acceptance_bound_to_full_tile_digest) ... ok
+test_candidates_and_drafts_cannot_be_promoted (test_publish_city_tiles.PublisherTests.test_candidates_and_drafts_cannot_be_promoted) ... ok
+test_changed_evidence_during_decoding_is_rejected (test_publish_city_tiles.PublisherTests.test_changed_evidence_during_decoding_is_rejected) ... ok
+test_changed_native_record_during_decoding_is_rejected (test_publish_city_tiles.PublisherTests.test_changed_native_record_during_decoding_is_rejected) ... ok
+test_concurrent_publisher_lock_rejected (test_publish_city_tiles.PublisherTests.test_concurrent_publisher_lock_rejected) ... ok
+test_duplicate_content_rejected (test_publish_city_tiles.PublisherTests.test_duplicate_content_rejected) ... ok
+test_editor_lock_blocks_publication_without_touching_resources (test_publish_city_tiles.PublisherTests.test_editor_lock_blocks_publication_without_touching_resources) ... ok
+test_failed_manifest_swap_restores_previous_bytes (test_publish_city_tiles.PublisherTests.test_failed_manifest_swap_restores_previous_bytes) ... ok
+test_first_publish_failure_removes_incomplete_resources (test_publish_city_tiles.PublisherTests.test_first_publish_failure_removes_incomplete_resources) ... ok
+test_foreground_review_requires_all_client_assets (test_publish_city_tiles.PublisherTests.test_foreground_review_requires_all_client_assets) ... ok
+test_interrupted_swap_recovers_from_durable_journal (test_publish_city_tiles.PublisherTests.test_interrupted_swap_recovers_from_durable_journal) ... ok
+test_manifest_is_installed_after_complete_directory (test_publish_city_tiles.PublisherTests.test_manifest_is_installed_after_complete_directory) ... ok
+test_mapping_has_exact_seven_appearances (test_publish_city_tiles.PublisherTests.test_mapping_has_exact_seven_appearances) ... ok
+test_missing_tile_fails_before_any_decode (test_publish_city_tiles.PublisherTests.test_missing_tile_fails_before_any_decode) ... ok
+test_old_resources_changed_during_preparation_are_preserved (test_publish_city_tiles.PublisherTests.test_old_resources_changed_during_preparation_are_preserved) ... ok
+test_real_4096_png_complete_decode_and_corruption (test_publish_city_tiles.PublisherTests.test_real_4096_png_complete_decode_and_corruption) ... ok
+test_recover_refuses_missing_previous_snapshot (test_publish_city_tiles.PublisherTests.test_recover_refuses_missing_previous_snapshot) ... ok
+test_rollback_refuses_edited_tile (test_publish_city_tiles.PublisherTests.test_rollback_refuses_edited_tile) ... ok
+test_rollback_refuses_unregistered_resource (test_publish_city_tiles.PublisherTests.test_rollback_refuses_unregistered_resource) ... ok
+test_rollback_restores_previous_including_meta (test_publish_city_tiles.PublisherTests.test_rollback_restores_previous_including_meta) ... ok
+test_sha_mismatch_rejected (test_publish_city_tiles.PublisherTests.test_sha_mismatch_rejected) ... ok
+test_source_traversal_rejected (test_publish_city_tiles.PublisherTests.test_source_traversal_rejected) ... ok
+test_stage_is_outside_assets_and_copies_no_meta (test_publish_city_tiles.PublisherTests.test_stage_is_outside_assets_and_copies_no_meta) ... ok
+test_staged_corruption_cannot_publish (test_publish_city_tiles.PublisherTests.test_staged_corruption_cannot_publish) ... ok
+test_tianyong_requires_foreground_review (test_publish_city_tiles.PublisherTests.test_tianyong_requires_foreground_review) ... ok
+test_wrong_order_and_coordinates_fail (test_publish_city_tiles.PublisherTests.test_wrong_order_and_coordinates_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 98.616s
+
+OK

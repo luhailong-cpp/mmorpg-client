@@ -1,17 +1,19 @@
 # 主城 4K 分块加载接入
 
-本轮新增加载能力；当前没有发布任何 `CityTiles4K` 正式 manifest，现有主城画面仍使用旧素材。高清重绘、切片和接缝验收完成后才可发布 manifest。
+当前没有发布任何 `CityTiles4K` 正式 manifest，现有主城画面仍使用旧素材。2026-09-21 重新读取美术最新账本后，完整主城仍为 **0/7 套**、正式验收 **0/1792 块**；现有 **24 个局部候选**，已超过历史19块，但仍不构成完整交付。本次资源缺口、来源SHA和客户端验证见 [接入验收记录](VerificationEvidence/city-tiles4k-integration-20260921/README.md)。高清重绘、完整切片和美术验收完成后，按单套外观发布，无需等待七套全部完成。
+
+完整交付的合同、暂存/发布/回退命令及实际导入校验入口见 [生产发布与校验](CityTilePublishing.md)。
 
 ## 资源合同
 
 - 每个交付块必须为 `4096 × 4096`，运行时也检查实际导入尺寸。
-- 最终宽度为 `columns × 4096`，高度为 `rows × 4096`；总尺寸和行列均不固定。
+- 加载器支持不同方形网格；**当前生产交付固定为16×16、256块、65536×65536像素**。生产发布工具不接受其他尺寸。
 - 入口为 `Assets/Resources/World/CityTiles4K/{city}/{variant}/manifest.json`。
 - `city` 为 `tianyong`、`penglai`、`donghai`、`lanxian`；后三者支持 `day` 和 `festival`。目前天墉正式底图为节庆版，对应 `tianyong/festival`。
 - `tiles` 是完整行优先字符串数组，起点为西北角，行向南增长。资源路径不含 `Assets/Resources/` 与扩展名，例如 `World/CityTiles4K/tianyong/festival/tiles/r01_c01`。
 - JSON 字段为 `schemaVersion: 1`、`tilePixels: 4096`、`columns`、`rows`、`worldRect`、`tiles`、`legacyForegroundCompatible`。
 - 当前 `worldRect` 必须为 `{ "x": 50, "y": 0, "width": 300, "height": 300 }`。这里 `y` 表示 Unity 世界 Z 的最小值，保持现有导航、出生点和场景协议坐标。
-- 方块在世界中保持等比；`columns / rows` 必须等于世界宽高比。当前300 × 300世界地图只能使用方形网格，行列数并不固定。
+- 方块在世界中保持等比；`columns / rows` 必须等于世界宽高比。当前300 × 300世界地图使用16×16方形网格，`worldRect.y` 仍表示世界Z。
 - 天墉额外要求 `legacyForegroundCompatible: true`，表示新稿已经通过现有前景剪影逐一验收；未声明时不启用。
 - 不完整数组、重复路径、无效尺寸、错误世界范围不会启用。图片缺失或不满足 4096 尺寸时保留旧底图并报告错误。
 

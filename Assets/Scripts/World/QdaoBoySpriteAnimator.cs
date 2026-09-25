@@ -26,7 +26,7 @@ namespace MmorpgClient.World
 
         private const string ResourceFolder = "World/Characters/QdaoHeadbandBoy";
         public const int FramesPerDirection = 8;
-        private const float ReferenceRunSpeed = 9f;
+        public const float ReferenceRunSpeed = 9f;
 
         // 512 px HD frames (the drawn figure stands roughly 418 px of the 512).
         // Scale calibration against the reference video: there the character
@@ -139,13 +139,14 @@ namespace MmorpgClient.World
         private float _settleBudget;
         private int _lastDirection = FacingCameraIndex;
         private bool _explicitOriginalRequest;
+        private string _unavailableCharacterId;
 
         /// <summary>Current locomotion state (readable for tests and debugging).</summary>
         public LocomotionState State { get; private set; } = LocomotionState.Idle;
 
         /// <summary>Current strip index (0 = N ... 7 = NW), kept while standing.</summary>
         public int Direction => _lastDirection;
-        public string CharacterId => _frames?.Id ?? QdaoCharacterCatalog.LegacyId;
+        public string CharacterId => _frames?.Id ?? _unavailableCharacterId ?? QdaoCharacterCatalog.LegacyId;
         public int FrameCount => _frames?.Count ?? FramesPerDirection;
         public int ArtworkVersion => _frames?.Version ?? 0;
 
@@ -226,6 +227,22 @@ namespace MmorpgClient.World
             return ApplyFrames(frames);
         }
 
+        // ActorWorld owns authoritative identity changes. A failed standalone SetAppearance still
+        // keeps its last good artwork; a different persisted identity must never wear that body.
+        internal void ClearUnavailableIdentity(string characterId)
+        {
+            if (_renderer != null) _renderer.sprite = null;
+            if (_shadowRenderer != null) _shadowRenderer.enabled = false;
+            ReleaseObservedDirection();
+            ClearHdRows(_frames);
+            _hdActive?.Dispose();
+            _hdActive = null;
+            _frames = null;
+            _unavailableCharacterId = characterId;
+            _explicitOriginalRequest = true;
+            enabled = false;
+        }
+
         private bool ApplyFrames(FrameSet frames)
         {
             InitializeVisuals();
@@ -247,6 +264,8 @@ namespace MmorpgClient.World
             var oldActive = _hdActive;
             var oldObservation = _hdObservation;
             _frames = frames;
+            _unavailableCharacterId = null;
+            _shadowRenderer.enabled = true;
             _hdActive = next;
             _hdObservation = null;
             _lastPosition = transform.position;
@@ -365,6 +384,8 @@ namespace MmorpgClient.World
         private static FrameSet LoadFrames(string characterId)
         {
             var definition = QdaoCharacterCatalog.Find(characterId);
+            if (!string.IsNullOrEmpty(characterId) && definition == null && characterId != QdaoCharacterCatalog.LegacyId)
+                return null;
             var appearance = definition?.ResolveAppearance();
             // Known original identities cannot borrow another character's body
             // while their authored set is incomplete or awaiting approval.

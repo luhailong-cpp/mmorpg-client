@@ -33,29 +33,30 @@ public static partial class PlayerSceneReflection {
           "bmVJbmZvQ29tcCIyCgxTY2VuZUluZm9TMkMSIgoKc2NlbmVfaW5mbxgBIAMo",
           "CzIOLlNjZW5lSW5mb0NvbXAiEgoQU2NlbmVJbmZvUmVxdWVzdCI3ChFTY2Vu",
           "ZUluZm9SZXNwb25zZRIiCgpzY2VuZV9pbmZvGAEgAygLMg4uU2NlbmVJbmZv",
-          "Q29tcCKAAQoOQWN0b3JDcmVhdGVTMkMSDgoGZW50aXR5GAEgASgEEh0KCXRy",
+          "Q29tcCK5AQoOQWN0b3JDcmVhdGVTMkMSDgoGZW50aXR5GAEgASgEEh0KCXRy",
           "YW5zZm9ybRgCIAEoCzIKLlRyYW5zZm9ybRIeCgphY3Rvcl90eXBlGAMgASgO",
           "MgouQWN0b3JUeXBlEgwKBGd1aWQYBCABKAQSEQoJY29uZmlnX2lkGAUgASgE",
-          "IiEKD0FjdG9yRGVzdHJveVMyQxIOCgZlbnRpdHkYASABKAQiOQoSQWN0b3JM",
-          "aXN0Q3JlYXRlUzJDEiMKCmFjdG9yX2xpc3QYASADKAsyDy5BY3RvckNyZWF0",
-          "ZVMyQyIlChNBY3Rvckxpc3REZXN0cm95UzJDEg4KBmVudGl0eRgBIAMoBCJG",
-          "ChNUcmF2ZWxUb1pvbmVSZXF1ZXN0EhYKDnRhcmdldF96b25lX2lkGAEgASgN",
-          "EhcKD3NjZW5lX2NvbmZpZ19pZBgCIAEoDSI+ChRUcmF2ZWxUb1pvbmVSZXNw",
-          "b25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2Uq",
-          "SwoJQWN0b3JUeXBlEhMKD0FDVE9SX1RZUEVfTk9ORRAAEhUKEUFDVE9SX1RZ",
-          "UEVfUExBWUVSEAESEgoOQUNUT1JfVFlQRV9OUEMQAjLrAwoWU2NlbmVTY2Vu",
-          "ZUNsaWVudFBsYXllchI7CgpFbnRlclNjZW5lEhUuRW50ZXJTY2VuZUMyU1Jl",
-          "cXVlc3QaFi5FbnRlclNjZW5lQzJTUmVzcG9uc2USKgoQTm90aWZ5RW50ZXJT",
-          "Y2VuZRIOLkVudGVyU2NlbmVTMkMaBi5FbXB0eRIpCgxTY2VuZUluZm9DMlMS",
-          "ES5TY2VuZUluZm9SZXF1ZXN0GgYuRW1wdHkSKAoPTm90aWZ5U2NlbmVJbmZv",
-          "Eg0uU2NlbmVJbmZvUzJDGgYuRW1wdHkSLAoRTm90aWZ5QWN0b3JDcmVhdGUS",
-          "Dy5BY3RvckNyZWF0ZVMyQxoGLkVtcHR5Ei4KEk5vdGlmeUFjdG9yRGVzdHJv",
-          "eRIQLkFjdG9yRGVzdHJveVMyQxoGLkVtcHR5EjQKFU5vdGlmeUFjdG9yTGlz",
-          "dENyZWF0ZRITLkFjdG9yTGlzdENyZWF0ZVMyQxoGLkVtcHR5EjYKFk5vdGlm",
-          "eUFjdG9yTGlzdERlc3Ryb3kSFC5BY3Rvckxpc3REZXN0cm95UzJDGgYuRW1w",
-          "dHkSOwoMVHJhdmVsVG9ab25lEhQuVHJhdmVsVG9ab25lUmVxdWVzdBoVLlRy",
-          "YXZlbFRvWm9uZVJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRh",
-          "A2IGcHJvdG8z"));
+          "EhUKDWFwcGVhcmFuY2VfaWQYBiABKAkSEAoIY2xhc3NfaWQYByABKA0SDgoG",
+          "Z2VuZGVyGAggASgNIiEKD0FjdG9yRGVzdHJveVMyQxIOCgZlbnRpdHkYASAB",
+          "KAQiOQoSQWN0b3JMaXN0Q3JlYXRlUzJDEiMKCmFjdG9yX2xpc3QYASADKAsy",
+          "Dy5BY3RvckNyZWF0ZVMyQyIlChNBY3Rvckxpc3REZXN0cm95UzJDEg4KBmVu",
+          "dGl0eRgBIAMoBCJGChNUcmF2ZWxUb1pvbmVSZXF1ZXN0EhYKDnRhcmdldF96",
+          "b25lX2lkGAEgASgNEhcKD3NjZW5lX2NvbmZpZ19pZBgCIAEoDSI+ChRUcmF2",
+          "ZWxUb1pvbmVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
+          "SW5mb01lc3NhZ2UqSwoJQWN0b3JUeXBlEhMKD0FDVE9SX1RZUEVfTk9ORRAA",
+          "EhUKEUFDVE9SX1RZUEVfUExBWUVSEAESEgoOQUNUT1JfVFlQRV9OUEMQAjLr",
+          "AwoWU2NlbmVTY2VuZUNsaWVudFBsYXllchI7CgpFbnRlclNjZW5lEhUuRW50",
+          "ZXJTY2VuZUMyU1JlcXVlc3QaFi5FbnRlclNjZW5lQzJTUmVzcG9uc2USKgoQ",
+          "Tm90aWZ5RW50ZXJTY2VuZRIOLkVudGVyU2NlbmVTMkMaBi5FbXB0eRIpCgxT",
+          "Y2VuZUluZm9DMlMSES5TY2VuZUluZm9SZXF1ZXN0GgYuRW1wdHkSKAoPTm90",
+          "aWZ5U2NlbmVJbmZvEg0uU2NlbmVJbmZvUzJDGgYuRW1wdHkSLAoRTm90aWZ5",
+          "QWN0b3JDcmVhdGUSDy5BY3RvckNyZWF0ZVMyQxoGLkVtcHR5Ei4KEk5vdGlm",
+          "eUFjdG9yRGVzdHJveRIQLkFjdG9yRGVzdHJveVMyQxoGLkVtcHR5EjQKFU5v",
+          "dGlmeUFjdG9yTGlzdENyZWF0ZRITLkFjdG9yTGlzdENyZWF0ZVMyQxoGLkVt",
+          "cHR5EjYKFk5vdGlmeUFjdG9yTGlzdERlc3Ryb3kSFC5BY3Rvckxpc3REZXN0",
+          "cm95UzJDGgYuRW1wdHkSOwoMVHJhdmVsVG9ab25lEhQuVHJhdmVsVG9ab25l",
+          "UmVxdWVzdBoVLlRyYXZlbFRvWm9uZVJlc3BvbnNlGgqAqMMBAYiowwEBQg5a",
+          "BXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::ActorCompReflection.Descriptor, global::SceneInfoReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ActorType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -65,7 +66,7 @@ public static partial class PlayerSceneReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoS2C), global::SceneInfoS2C.Parser, new[]{ "SceneInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoRequest), global::SceneInfoRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoResponse), global::SceneInfoResponse.Parser, new[]{ "SceneInfo" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ActorCreateS2C), global::ActorCreateS2C.Parser, new[]{ "Entity", "Transform", "ActorType", "Guid", "ConfigId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ActorCreateS2C), global::ActorCreateS2C.Parser, new[]{ "Entity", "Transform", "ActorType", "Guid", "ConfigId", "AppearanceId", "ClassId", "Gender" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorDestroyS2C), global::ActorDestroyS2C.Parser, new[]{ "Entity" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorListCreateS2C), global::ActorListCreateS2C.Parser, new[]{ "ActorList" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorListDestroyS2C), global::ActorListDestroyS2C.Parser, new[]{ "Entity" }, null, null, null, null),
@@ -1282,6 +1283,9 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
     actorType_ = other.actorType_;
     guid_ = other.guid_;
     configId_ = other.configId_;
+    appearanceId_ = other.appearanceId_;
+    classId_ = other.classId_;
+    gender_ = other.gender_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1351,6 +1355,48 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
     }
   }
 
+  /// <summary>Field number for the "appearance_id" field.</summary>
+  public const int AppearanceIdFieldNumber = 6;
+  private string appearanceId_ = "";
+  /// <summary>
+  /// 玩家稳定外观 ID；NPC 留空。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string AppearanceId {
+    get { return appearanceId_; }
+    set {
+      appearanceId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "class_id" field.</summary>
+  public const int ClassIdFieldNumber = 7;
+  private uint classId_;
+  /// <summary>
+  /// 旧玩家 appearance_id 为空时供客户端兼容。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ClassId {
+    get { return classId_; }
+    set {
+      classId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "gender" field.</summary>
+  public const int GenderFieldNumber = 8;
+  private uint gender_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Gender {
+    get { return gender_; }
+    set {
+      gender_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1371,6 +1417,9 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
     if (ActorType != other.ActorType) return false;
     if (Guid != other.Guid) return false;
     if (ConfigId != other.ConfigId) return false;
+    if (AppearanceId != other.AppearanceId) return false;
+    if (ClassId != other.ClassId) return false;
+    if (Gender != other.Gender) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1383,6 +1432,9 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
     if (ActorType != global::ActorType.None) hash ^= ActorType.GetHashCode();
     if (Guid != 0UL) hash ^= Guid.GetHashCode();
     if (ConfigId != 0UL) hash ^= ConfigId.GetHashCode();
+    if (AppearanceId.Length != 0) hash ^= AppearanceId.GetHashCode();
+    if (ClassId != 0) hash ^= ClassId.GetHashCode();
+    if (Gender != 0) hash ^= Gender.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1421,6 +1473,18 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
       output.WriteRawTag(40);
       output.WriteUInt64(ConfigId);
     }
+    if (AppearanceId.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(AppearanceId);
+    }
+    if (ClassId != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(ClassId);
+    }
+    if (Gender != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(Gender);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1451,6 +1515,18 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
       output.WriteRawTag(40);
       output.WriteUInt64(ConfigId);
     }
+    if (AppearanceId.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(AppearanceId);
+    }
+    if (ClassId != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(ClassId);
+    }
+    if (Gender != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(Gender);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1475,6 +1551,15 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
     }
     if (ConfigId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ConfigId);
+    }
+    if (AppearanceId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AppearanceId);
+    }
+    if (ClassId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClassId);
+    }
+    if (Gender != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gender);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1505,6 +1590,15 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
     }
     if (other.ConfigId != 0UL) {
       ConfigId = other.ConfigId;
+    }
+    if (other.AppearanceId.Length != 0) {
+      AppearanceId = other.AppearanceId;
+    }
+    if (other.ClassId != 0) {
+      ClassId = other.ClassId;
+    }
+    if (other.Gender != 0) {
+      Gender = other.Gender;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1548,6 +1642,18 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
           ConfigId = input.ReadUInt64();
           break;
         }
+        case 50: {
+          AppearanceId = input.ReadString();
+          break;
+        }
+        case 56: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          Gender = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1588,6 +1694,18 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
         }
         case 40: {
           ConfigId = input.ReadUInt64();
+          break;
+        }
+        case 50: {
+          AppearanceId = input.ReadString();
+          break;
+        }
+        case 56: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          Gender = input.ReadUInt32();
           break;
         }
       }

@@ -52,16 +52,29 @@ namespace MmorpgClient.Game
         private readonly Dictionary<uint, List<ulong>> _pendingIdsByMsg = new();
 
         private readonly Dictionary<uint, Action<MessageContent>> _notifyHandlers = new();
-        // Appearance derives from the server-owned role class/gender, never
-        // from transient scene entity handles. Login/create replies are the
-        // authoritative source until ActorCreateS2C carries remote role data.
+        // Persisted appearance_id owns identity. Empty IDs from legacy saves
+        // retain class/gender mapping; scene entity handles never select a body.
         private readonly Dictionary<ulong, AccountSimplePlayer> _knownRoles = new();
+        private readonly Dictionary<ulong, string> _sceneAppearances = new();
 
         private long _accessTokenExpire;       // unix seconds
         private float _lastRefreshAttempt;     // realtimeSinceStartup
         private bool _enteredScene;            // set by NotifyEnterScene
+        // EnterGame 已被受理、正在等 NotifyEnterScene 的那一段(EnterGameAndWaitScene 的等待循环)。
+        // 单独一个布尔而不是拿 !InGame 反推:游戏内换图失败也会收到同一个码(kEnterSceneFailed),
+        // 那条路不在等进场,不能被这里的快速收口误伤。
+        private bool _awaitingSceneEntry;
+        private uint _enterFailedTipId;        // 等进场期间收到的进场失败 tip(0 = 没收到);判据见 IsEnterFailureTip
+        // 本次管线是不是被"服务端明说进场失败"收掉的。与上面两个不同,它**不**随 DisconnectInternal 清零:
+        // FailPipeline 先拆连接、后回调 onError,回调里还要靠它区分"这段失败文案能不能给玩家看"。
+        // 每次 EnterGameAndWaitScene / RedirectFlow 换连接前复位。
+        private bool _enterRejectedByServer;
         private bool _redirecting;             // RedirectToGateNotify flow active
         private ulong _redirectPlayerId;       // 重定向前的角色 id(重连后沿用,不重新选角)
+        // 本次 EnterGame 请求的角色 id。应答回来之前 PlayerId 仍是 0,而重定向推送(Kafka → gate)
+        // 可能先于应答到达、并作废那条等应答的管线 —— 那时只能靠它沿用角色,见 ResolveRedirectPlayerId。
+        private ulong _enterRequestPlayerId;
+        private uint _redirectZoneId;          // 重定向目标 gate 所属的 zone(票据只读解析;解析不出时是重定向前的旧值)
         private int _redirectHops;             // 本会话已跟随的重定向次数(环路熔断;EnterZone 与玩家主动传送时归零)
         // 跨 zone 传送在途:TravelToZone 已发出,正在等 msg 124(成了)或失败 tip(没成)。
         // 只覆盖"还连着老 gate"的那一段 —— msg 124 一到就交棒给 _redirecting。
@@ -92,6 +105,25 @@ namespace MmorpgClient.Game
         /// 两实例地址相同即说明其实进了同一个 zone(对齐服务端 robot 的 zone-placement 断言)。
         /// </summary>
         public string AssignedGate { get; private set; }
+
+        /// <summary>
+        /// "此刻人在哪个区"的单一真源:= 当前连着的那个 gate 所属的 zone;0 = 没连着(或还没过验票)。
+        /// 置位点只有验票通过那一处(ConnectAndEnter):普通进入取 EnterZone 的 zoneId;重定向取服务端签发的
+        /// 票据里的 target_zone_id(见 <see cref="ParseTicketZoneId"/>)。断线清零。
+        /// UI 一律读它,不要自己旁路记账 —— 地图窗以前自记的"所在区"只在特定时序下更新,
+        /// 记脏之后可去列表会滤掉真正的归属区,玩家在界面上回不了家
+        /// (服务端 docs/design/cross-zone-scene-travel.md §12.5.4 CL-3)。
+        /// 只用于展示与过滤,能不能去始终由服务端裁决。
+        /// </summary>
+        public uint CurrentZoneId { get; private set; }
+
+        /// <summary>
+        /// 最近一次 <see cref="OnDisconnected"/> 通知所带的原因:某个失败流程主动断线时是给人看的失败文案,
+        /// 普通断线(对端关闭 / 未带传送失败码的踢线 / 主动 Disconnect)为 null;带传送失败码的踢线
+        /// 见 <see cref="DescribeKickReason"/>。每次通知前都会重写,所以订阅者在回调里
+        /// 读到的一定是"这一次"的原因;有值时 UI 应显示它,而不是用笼统的"连接已断开"盖掉。
+        /// </summary>
+        public string DisconnectReason { get; private set; }
 
         /// <summary>
         /// 回合制战斗网络层(状态机 + battle/match 消息收发)。构造时经
@@ -172,6 +204,7 @@ namespace MmorpgClient.Game
         /// 要监听 tip 一律订阅本事件 —— OnNotify 是覆盖语义,子模块再对 msg 23 注册一次会把这里静默盖掉。
         /// </summary>
         public event Action<TipInfoMessage> OnServerTip;
+        public event Action<Teampb.TeamSnapshotS2C> OnTeamSnapshot;
 
         /// <summary>
         /// Coroutine starter wired by AppBootstrap. GameClient is not a
@@ -189,6 +222,7 @@ namespace MmorpgClient.Game
             public bool CreateNew;
             public uint ClassId;   // Class 配表 id
             public uint Gender;    // 1=男 2=女
+            public string AppearanceId; // Stable catalog ID, independent of class/gender.
             /// <summary>true = 放弃进入,回到选服界面。</summary>
             public bool Cancelled;
         }
@@ -242,11 +276,18 @@ namespace MmorpgClient.Game
 
         public GatewayHttpClient Http => _http;
 
-        /// <summary>Known account role appearance; null means the server has not supplied its class/gender.</summary>
+        /// <summary>Server-owned identity from the account role list or a remote AOI spawn.</summary>
         public string ResolveCharacterId(ulong playerId)
-            => playerId != 0 && _knownRoles.TryGetValue(playerId, out var role)
-                ? QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender)
-                : null;
+        {
+            if (playerId == 0) return null;
+            _knownRoles.TryGetValue(playerId, out var role);
+            if (role != null && !string.IsNullOrEmpty(role.AppearanceId))
+                return QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender, role.AppearanceId);
+            // EnterGame can restore a damaged account list from the persisted profile after Login
+            // already returned. Its AOI identity wins over that earlier empty account appearance.
+            if (_sceneAppearances.TryGetValue(playerId, out var appearanceId)) return appearanceId;
+            return role != null ? QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender) : null;
+        }
 
         private string ResolveActorCharacterId(ActorView view)
         {
@@ -493,7 +534,10 @@ namespace MmorpgClient.Game
             }
             if (gen != _pipelineGen) yield break;
             if (!TokenVerified) { FailPipeline(gen, onError, "token verify timeout"); yield break; }
-            Log("gate token verified");
+            // 验票通过 = 这条连接确实挂在目标 gate 上了,"所在区"从这一刻起才算数。
+            // 重定向时 zoneId 形参恒为 0(它只管选角过滤),所在区由 RedirectFlow 从票据里解出来。
+            CurrentZoneId = _redirecting ? _redirectZoneId : zoneId;
+            Log($"gate token verified, zone={CurrentZoneId}");
 
             // ── TCP Login: binds this TCP session to the account on the
             // zone's login service (writes login_session:{sid} -> account).
@@ -548,7 +592,7 @@ namespace MmorpgClient.Game
                     {
                         ulong newId = 0;
                         yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender,
-                            loginResp.Players, id => newId = id, onError);
+                            loginResp.Players, id => newId = id, onError, choice.AppearanceId);
                         if (gen != _pipelineGen) yield break;
                         if (newId == 0) yield break; // CreatePlayerCo 已 FailPipeline
                         playerId = newId;
@@ -587,7 +631,7 @@ namespace MmorpgClient.Game
         /// </summary>
         private IEnumerator CreatePlayerCo(int gen, uint classId, uint gender,
             Google.Protobuf.Collections.RepeatedField<AccountSimplePlayerWrapper> known,
-            Action<ulong> onCreated, Action<string> onError)
+            Action<ulong> onCreated, Action<string> onError, string appearanceId = null)
         {
             Status("正在创建角色…");
             var knownIds = new HashSet<ulong>();
@@ -596,7 +640,7 @@ namespace MmorpgClient.Game
 
             CreatePlayerResponse cpResp = null;
             yield return Call(MessageIds.CreatePlayer,
-                new CreatePlayerRequest { ClassId = classId, Gender = gender },
+                new CreatePlayerRequest { ClassId = classId, Gender = gender, AppearanceId = appearanceId ?? "" },
                 CreatePlayerResponse.Parser, r => cpResp = r,
                 e => FailPipeline(gen, onError, $"create player: {e}"));
             if (gen != _pipelineGen) yield break;
@@ -615,7 +659,12 @@ namespace MmorpgClient.Game
             if (newId == 0)
             { FailPipeline(gen, onError, "create player returned empty list"); yield break; }
 
-            Log($"created new player {newId} class={classId} gender={gender}");
+            if (!string.IsNullOrEmpty(appearanceId) && ResolveCharacterId(newId) != appearanceId)
+            {
+                FailPipeline(gen, onError, "服务器未保存所选外观，请更新服务端后重新登录确认角色");
+                yield break;
+            }
+            Log($"created new player {newId} class={classId} gender={gender} appearance={ResolveCharacterId(newId)}");
             onCreated(newId);
         }
 
@@ -628,6 +677,14 @@ namespace MmorpgClient.Game
         {
             Status("正在进入游戏…");
             _enteredScene = false;
+            // 在**发出** EnterGame 之前就开始听失败 tip:login 的异步链与 gRPC 应答走的是两条通道
+            // (tip 经 Kafka → gate 推送),快速失败时 tip 可能先于应答到达,晚置位就漏掉了。
+            // 代价:tip 早到只是先记下,收口要等下面的 Call 返回(最迟是它 15s 的 RPC 超时)才走到
+            // 等待循环 —— 不中途打断在途 RPC 是刻意取舍(打断要另起一套取消语义,而应答通常是毫秒级)。
+            _enterRejectedByServer = false;
+            _enterFailedTipId = 0;
+            _awaitingSceneEntry = true;
+            _enterRequestPlayerId = playerId;
             EnterGameResponse egResp = null;
             yield return Call(MessageIds.EnterGame,
                 new EnterGameRequest { PlayerId = playerId, RequestId = Guid.NewGuid().ToString("N") },
@@ -643,21 +700,35 @@ namespace MmorpgClient.Game
             // Match the production robot's authoritative scene-ready budget:
             // a saturated scene loop can legitimately delay the first push.
             float deadline = Time.realtimeSinceStartup + 60f;
-            while (!_enteredScene && Time.realtimeSinceStartup < deadline)
+            while (!_enteredScene && _enterFailedTipId == 0 && Time.realtimeSinceStartup < deadline)
             {
                 if (gen != _pipelineGen) yield break;
                 Tick();
                 yield return null;
             }
             if (gen != _pipelineGen) yield break;
+            // 进场通知与失败 tip 同帧到达时以进场为准:人已经进去了,不能再把连接拆掉。
+            if (!_enteredScene && _enterFailedTipId != 0)
+            {
+                // 服务端明说"这次进场没成"(契约见 IsEnterFailureTip),不必再等满 60s。
+                // 具体原因只在服务端日志里,这里只有这一个码可说。与超时同一条收口:拆连接、回选服。
+                // (FailPipeline → DisconnectInternal 会清掉 _awaitingSceneEntry / _enterFailedTipId。)
+                uint failedTip = _enterFailedTipId;
+                Log($"[enter] server reported enter failure tip={failedTip}");
+                _enterRejectedByServer = true;
+                FailPipeline(gen, onError, DescribeTravelTip(failedTip));
+                yield break;
+            }
             if (!_enteredScene)
             {
+                // 兜底:服务端的失败通知是 best-effort(推不到就只有这条超时)。
                 // Stop polling this gate before surfacing the timeout so a
                 // late NotifyEnterScene cannot split InGame from the UI state.
                 FailPipeline(gen, onError, "等待进入场景超时");
                 yield break;
             }
 
+            _awaitingSceneEntry = false;
             InGame = true;
             Status("进入游戏成功");
             onSuccess();
@@ -682,7 +753,8 @@ namespace MmorpgClient.Game
         // 干的事,**不能跳**;跳掉的客户端会连上一个哑连接,表现为"重定向后卡死"。
         //
         // 参考实现逐条对齐 robot/pkg/redirect.go 的 FollowRedirect:
-        //   ① 本地校验目标(地址 + token_deadline)  ② 环路熔断  ③ 可达性探测
+        //   ① 本地校验目标(地址;token_deadline 只记日志不拦截,见 ValidateRedirectTarget)
+        //   ② 环路熔断  ③ 可达性探测
         //   ④ 换连接(先连新、后关旧)              ⑤ 票据原样转发  ⑥ 重跑 Login+EnterGame
         //
         // robot 的第 ⑦ 步"补投握手期间攒下的推送"(ReplayDeferred)在这里**不需要对应代码**:
@@ -703,23 +775,40 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 只做本地可判的检查,不碰网络;返回 null 表示通过,否则是给人看的失败原因。
-        /// 对齐 robot/pkg/redirect.go 的 RedirectTarget.Validate。
+        /// 对齐 robot/pkg/redirect.go 的 RedirectTarget.Validate,**唯一的刻意差异是 token_deadline**:
+        /// 这里只打日志、不拦截(理由见方法体内注释)。
+        /// 纯函数:本机时间由调用方传入(<paramref name="nowUnixSec"/>,unix 秒),便于 EditMode 回归测试;
+        /// <paramref name="pastDeadlineSec"/> 为本机时间越过 token_deadline 的秒数,未越过或未下发 deadline 时为 -1,
+        /// 只供调用方打排障日志,**不得**据此拒绝。
         /// </summary>
-        private static string ValidateRedirectTarget(RedirectToGateNotify ev)
+        public static string ValidateRedirectTarget(RedirectToGateNotify ev, long nowUnixSec, out long pastDeadlineSec)
         {
+            pastDeadlineSec = -1;
             if (ev == null) return "empty notify";
             if (string.IsNullOrWhiteSpace(ev.TargetIp)) return "empty target_ip";
             if (ev.TargetPort == 0 || ev.TargetPort > 65535) return $"invalid target_port {ev.TargetPort}";
             // token_deadline 是 gate 侧 GateTokenPayload.expire_timestamp 的副本,单位是
-            // **unix 秒**(不是本仓库常见的毫秒)。已经过期就不用白跑一趟:换完连接目标 gate
-            // 必然回 token_expired 并把连接关掉,那时老连接已经没了,会话就此报废 ——
-            // 不如趁还连着老 gate 的时候失败出去。
-            if (ev.TokenDeadline > 0)
-            {
-                long now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                if (now >= ev.TokenDeadline)
-                    return $"gate token already expired (deadline={ev.TokenDeadline}, now={now})";
-            }
+            // **unix 秒**(不是本仓库常见的毫秒),由 scene_manager 按**服务端时钟**签出(TTL 300s)。
+            //
+            // 为什么不拿本机时钟判过期并拦截:
+            //   ① 本机时钟不可信。玩家机器比服务端快 ≥300s 时,msg 124 一到就会被本地判"已过期",
+            //      每次跨区传送(含回家)必现;robot 同款校验跑在服务端时钟下,压测永远测不出来。
+            //   ② msg 124 到达时服务端已经放行:源实体即将销毁、归属已交给目标 zone。客户端在这里
+            //      自行作废,等于把一次服务端认可的传送单方面变成断线,没有任何收益。
+            //   ③ 有效期的权威是目标 gate:DispatchTokenVerify 用服务端时钟校验
+            //      expire_timestamp > now,过期即回 token_expired 并关连接
+            //      (cpp/nodes/gate/handler/rpc/client_message_processor.cpp "Check expiry" 段)。
+            //
+            // 票据真过期时怎么收场:目标 gate 回 ClientTokenVerifyResponse(success=false) 后关连接,
+            // 客户端记一条 "[gate] token rejected: token expired",随后新连接的断线经
+            // HandleTransportDisconnected 通知 UI(此时 DisconnectReason 为 null,显示的是通用断线文案);
+            // ConnectAndEnter 的验票等待(10s)超时后再走 FailPipeline → RedirectFlow 的 onError,补一条
+            // LogError 与状态栏文案,断线通知已发过、不会重复。会话同样报废,但判定出自服务端。
+            //
+            // 调用方仍据 pastDeadlineSec 打一条日志,专门用来排查玩家时钟偏差:它是本机时间越过 deadline
+            // 的秒数;服务端签发即下发,所以它加上 300 近似就是"本机比服务端快了多少"(还含网络延迟)。
+            if (ev.TokenDeadline > 0 && nowUnixSec >= ev.TokenDeadline)
+                pastDeadlineSec = nowUnixSec - ev.TokenDeadline;
             return null;
         }
 
@@ -778,8 +867,11 @@ namespace MmorpgClient.Game
         private void FailRedirect(string target, string reason)
         {
             LogError($"[gate] redirect to {target} failed: {reason}");
-            Status("切换服务器失败,请重新登录");
-            DisconnectInternal(notify: true, forceNotification: true);
+            const string text = "切换服务器失败,请重新登录";
+            Status(text);
+            // 文案随断线通知带出去:选服界面的断线处理器排在 Status 之后执行,不带的话会被
+            // "与服务器的连接已断开"盖掉(见 DisconnectReason)。
+            DisconnectInternal(notify: true, forceNotification: true, reason: text);
         }
 
         private IEnumerator RedirectFlow(RedirectToGateNotify ev)
@@ -787,8 +879,14 @@ namespace MmorpgClient.Game
             string target = $"{ev?.TargetIp}:{ev?.TargetPort}";
 
             // ① 本地判据先行。这一段全部在**老连接还活着**的时候做完,失败即就地作废。
-            string invalid = ValidateRedirectTarget(ev);
+            long localNow = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            long pastDeadlineSec;
+            string invalid = ValidateRedirectTarget(ev, localNow, out pastDeadlineSec);
             if (invalid != null) { FailRedirect(target, invalid); yield break; }
+            if (pastDeadlineSec >= 0)
+                Log($"[gate] redirect token looks expired by local clock, proceeding anyway " +
+                    $"(gate decides): local_now={localNow} deadline={ev.TokenDeadline} " +
+                    $"past_deadline_sec={pastDeadlineSec}");
 
             // ② 环路熔断(robot MaxRedirectHops 同值同语义)。
             if (_redirectHops >= MaxRedirectHops)
@@ -800,7 +898,17 @@ namespace MmorpgClient.Game
 
             int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
             _redirecting = true;
-            _redirectPlayerId = PlayerId; // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色
+            // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色。EnterGame 应答还没回来时
+            // PlayerId 是 0,退回本次请求里的角色 —— 否则第二条腿会重新弹选角,而目标区的角色列表
+            // 按区过滤,玩家的角色(归属别的区)不在里面,只能选错或新建(GO-5 让登录时重定向更常见)。
+            _redirectPlayerId = ResolveRedirectPlayerId(PlayerId, _enterRequestPlayerId);
+            // 目标 gate 属于哪个区:从票据里**只读**解出来,只为展示(CurrentZoneId)。票据本身仍然原样转发。
+            // 解不出来不算重定向失败 —— 这不是安全校验,验票是目标 gate 的事;保留旧值并留一条日志即可。
+            // 同样要赶在 ResetConnectionState 之前捕获旧值(它会把 CurrentZoneId 清零)。
+            uint ticketZoneId = ParseTicketZoneId(ev.TokenPayload);
+            if (ticketZoneId == 0)
+                Log($"[gate] redirect ticket carries no zone id, keep current zone={CurrentZoneId}");
+            _redirectZoneId = ticketZoneId != 0 ? ticketZoneId : CurrentZoneId;
             // 战斗直连要在重定向后自愈,而 ResetConnectionState 会 Close 链路并清掉 battle_id,
             // 先捕获。**不能只指望服务端推 NotifyBattleReconnect**:那条推送只在
             // enter_gs_type==LOGIN_RECONNECT(旧会话已 StateDisconnecting)或实体被重建走
@@ -852,6 +960,7 @@ namespace MmorpgClient.Game
                 if (connErr != null) { FailRedirect(target, $"connect gate: {connErr}"); yield break; }
 
                 ResetConnectionState();   // 旧连接与旧 zone 的会话状态到这一刻才清掉
+                _enterRejectedByServer = false;   // 管线可能在走到 EnterGame 之前就失败,不能读到上一次的值
                 // ⑤⑥ 票据 payload / signature **原样**转发(签名是 64 个 ASCII 十六进制字符
                 //     装在 bytes 里,绝不能解码),随后在新连接上完整重跑 Login + EnterGame。
                 yield return ConnectAndEnter(gen, 0,
@@ -874,8 +983,14 @@ namespace MmorpgClient.Game
                         // 已经换过连接了:老连接关了、老 zone 的登录会话也早没了,这条会话就是死的。
                         // FailPipeline 已经 ResetConnectionState,这里补一次带通知的断线让 UI 收场。
                         LogError($"[gate] redirect to {target} failed after swap: {e}");
-                        Status("切换服务器失败,请重新登录");
-                        DisconnectInternal(notify: true, forceNotification: true);
+                        // 只有"服务端明说进场失败"时才把原因拼给玩家看(那段是 DescribeTravelTip 的玩家文案);
+                        // 其余失败的 e 是面向开发者的内部诊断串(token verify: … 等),只进上面的 LogError。
+                        // 文案随断线通知带出去,免得被选服界面的"连接已断开"盖掉(见 DisconnectReason)。
+                        string text = _enterRejectedByServer
+                            ? $"切换服务器失败,请重新登录({e})"
+                            : "切换服务器失败,请重新登录";
+                        Status(text);
+                        DisconnectInternal(notify: true, forceNotification: true, reason: text);
                     },
                     preConnected: fresh);
             }
@@ -926,6 +1041,11 @@ namespace MmorpgClient.Game
             (uint)scene_error.KZoneTravelInTeam => "队伍中无法跨区传送,请先退出队伍。",
             (uint)scene_error.KZoneTravelTargetBusy => "目标区暂时繁忙,请稍后再试。",
             (uint)scene_error.KEnterSceneFailed => "进入场景失败,请稍后再试。",
+            // 下面两条是同步拒绝(走响应体),不属于 IsTravelFailureTip 认的"受理后失败"。
+            // 还缺一条 kSceneTransferInProgress:它在 cross_server_error_tip.proto 里,客户端还没有
+            // 那个枚举的生成物,**不手写数字**,等 gen_proto.ps1 收进该文件后再补。
+            (uint)scene_error.KEnterSceneSceneNotFound => "目标地图不存在或未开放。",
+            (uint)scene_error.KEnterSceneChangingScene => "正在切换场景,请稍候再试。",
             _ => $"传送失败(tip={tipId})",
         };
 
@@ -944,6 +1064,58 @@ namespace MmorpgClient.Game
             tipId == (uint)scene_error.KZoneTravelInTeam ||
             tipId == (uint)scene_error.KZoneTravelTargetBusy ||
             tipId == (uint)scene_error.KEnterSceneFailed;
+
+        /// <summary>
+        /// 这条 tip 是不是"EnterGame 受理之后,进场没成"。契约(服务端 docs/design/cross-zone-scene-travel.md
+        /// §12.5.2):EnterGame 应答无错只表示**已受理**;之后 login 的异步链没成(预加载失败、
+        /// SceneManager.EnterScene 被拒……),服务端经 gate 推一条 msg 23,码**统一**是 kEnterSceneFailed,
+        /// 具体原因只进服务端日志。普通登录与重定向后的第二条腿是同一条路、同一个码。
+        ///
+        /// 为什么不是"等进场期间收到任何 tip 都算失败":与 <see cref="IsTravelFailureTip"/> 同一口径 ——
+        /// 一条无关的 tip 会把一次其实成功的进场先拆掉连接。认不出的码不下结论,交给 60s 超时兜底。
+        ///
+        /// 注意同一个码也属于 IsTravelFailureTip(游戏内同区换图失败)。两者靠**所处阶段**区分:
+        /// 本判据只在等进场时生效(_awaitingSceneEntry),那时 InGame 为假,不可能有换图在途。
+        /// </summary>
+        public static bool IsEnterFailureTip(uint tipId) =>
+            tipId == (uint)scene_error.KEnterSceneFailed;
+
+        /// <summary>
+        /// 踢线(msg 34,GameKickPlayerRequest.reason.id)的原因 → 断线文案;返回 null 表示用通用断线文案。
+        /// 契约(服务端 docs/design/cross-zone-scene-travel.md §12,S3L1-1 第二层出口):跨区传送受理后没成、
+        /// 而源 scene 已无法让玩家留在原地时,服务端先推传送失败 tip,紧跟一条带同一码的踢线,玩家须重登。
+        /// 只认传送失败码(与 <see cref="IsTravelFailureTip"/> 同一口径);顶号等其它踢线原因、以及
+        /// 未填原因(0)一律不下结论,维持原来的通用文案 —— 宁可笼统,也不要把别的原因说成传送失败。
+        /// </summary>
+        public static string DescribeKickReason(uint reasonId) =>
+            IsTravelFailureTip(reasonId) ? DescribeTravelTip(reasonId) + "请重新登录。" : null;
+
+        /// <summary>
+        /// 重定向后第二条腿要沿用的角色:已进游戏(PlayerId 非 0)取当前角色;EnterGame 应答还没回来时
+        /// 取本次 EnterGame 请求里的角色。两者都是 0 才返回 0(调用方据此重新选角)。
+        /// </summary>
+        public static ulong ResolveRedirectPlayerId(ulong currentPlayerId, ulong enterRequestPlayerId) =>
+            currentPlayerId != 0 ? currentPlayerId : enterRequestPlayerId;
+
+        /// <summary>
+        /// 从服务端签发的 gate 票据里**只读**解出目标 gate 所属的 zone:优先 target_zone_id(跨区传送票),
+        /// 为 0 时取 zone_id。解析失败或两者皆 0 返回 0,由调用方决定怎么办。
+        /// 只为展示(<see cref="CurrentZoneId"/>),不是安全校验;入参不被改动,
+        /// 不影响 payload / signature 原样转发给目标 gate。
+        /// </summary>
+        public static uint ParseTicketZoneId(ByteString tokenPayload)
+        {
+            if (tokenPayload == null || tokenPayload.IsEmpty) return 0;
+            try
+            {
+                var ticket = GateTokenPayload.Parser.ParseFrom(tokenPayload);
+                return ticket.TargetZoneId != 0 ? ticket.TargetZoneId : ticket.ZoneId;
+            }
+            catch (InvalidProtocolBufferException)
+            {
+                return 0;
+            }
+        }
 
         /// <summary>
         /// 进入"传送在途"。返回 null = 放行,否则是给人看的拒绝原因。只给 <see cref="ZoneTravelClient"/> 用。
@@ -1279,6 +1451,8 @@ namespace MmorpgClient.Game
 
         private void WireSceneNotifyHandlers()
         {
+            OnNotify(MessageIds.NotifyTeamSnapshot, mc =>
+                OnTeamSnapshot?.Invoke(Teampb.TeamSnapshotS2C.Parser.ParseFrom(mc.SerializedMessage)));
             RegisterMovementReply(MessageIds.MoveStart, "MoveStart");
             RegisterMovementReply(MessageIds.MoveSync, "MoveSync");
             RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
@@ -1291,6 +1465,7 @@ namespace MmorpgClient.Game
                 _enteredScene = true;
                 Log($"[scene] entered scene_id={CurrentSceneId}, config={CurrentSceneConfigId}");
                 World.Clear();
+                _sceneAppearances.Clear();
                 OnSceneEntered?.Invoke(ev.SceneInfo);
             });
 
@@ -1457,13 +1632,36 @@ namespace MmorpgClient.Game
                 // 传送在途时收到**传送失败码**才算"这次传送没成"(服务端此时已解冻,玩家留在原地);
                 // 别的 tip 放过去,由调用方的预算超时兜底。判据见 IsTravelFailureTip。
                 if (IsTravelFailureTip(tip.Id)) EndZoneTravel(DescribeTravelTip(tip.Id));
+                // 等进场期间收到进场失败码:只记下来,由 EnterGameAndWaitScene 的等待循环在自己的
+                // 协程里收口(这里是 _gate.Poll() 的调用栈,不在这里拆连接)。不在等进场时
+                // (游戏内换图失败也是这个码)不记。广播照旧,不吞。
+                if (_awaitingSceneEntry && IsEnterFailureTip(tip.Id)) _enterFailedTipId = tip.Id;
                 OnServerTip?.Invoke(tip);
             });
 
-            OnNotify(MessageIds.KickPlayer, _ =>
+            OnNotify(MessageIds.KickPlayer, mc =>
             {
-                Log("[gate] kicked by server");
-                Disconnect();
+                // 踢线必须断:原因解不出来也照断,只是退回通用断线文案(fail-closed)。
+                uint reasonId = 0;
+                try
+                {
+                    reasonId = GameKickPlayerRequest.Parser.ParseFrom(mc.SerializedMessage).Reason?.Id ?? 0;
+                }
+                catch (InvalidProtocolBufferException e)
+                {
+                    LogError($"[gate] kick reason unparsable: {e.Message}");
+                }
+                var text = DescribeKickReason(reasonId);
+                Log($"[gate] kicked by server reason={reasonId}");
+                if (text == null)
+                {
+                    Disconnect();
+                    return;
+                }
+                // 跨区传送受理后没成、源 scene 又回不到原地(服务端 D-B:先推失败 tip,紧跟本条踢线)。
+                // 文案随断线通知带出去,否则前一条 tip 的文案会被选服界面的"连接已断开"盖掉(见 DisconnectReason)。
+                Status(text);
+                DisconnectInternal(notify: true, forceNotification: true, reason: text);
             });
         }
 
@@ -1479,6 +1677,9 @@ namespace MmorpgClient.Game
 
         private void SpawnActorView(ActorCreateS2C ev)
         {
+            if (ev.ActorType == ActorType.Player && ev.Guid != 0 &&
+                (!string.IsNullOrEmpty(ev.AppearanceId) || ev.ClassId != 0))
+                _sceneAppearances[ev.Guid] = QdaoCharacterCatalog.ResolveRole(ev.ClassId, ev.Gender, ev.AppearanceId);
             var loc = ev.Transform?.Location;
             var rot = ev.Transform?.Rotation;
             // UE-style world (X forward, Y right, Z up) -> Unity (X right, Y up, Z forward).
@@ -1591,7 +1792,8 @@ namespace MmorpgClient.Game
         public void Disconnect()
             => DisconnectInternal(notify: true, forceNotification: false);
 
-        private void DisconnectInternal(bool notify, bool forceNotification)
+        /// <param name="reason">给人看的断线原因;只有失败流程主动断线时才传,见 <see cref="DisconnectReason"/>。</param>
+        private void DisconnectInternal(bool notify, bool forceNotification, string reason = null)
         {
             if (_disconnectInProgress) return;
 
@@ -1615,8 +1817,13 @@ namespace MmorpgClient.Game
                 CurrentSceneId = 0;
                 CurrentSceneConfigId = 0;
                 PlayerId = 0;
+                _enterRequestPlayerId = 0; // RedirectFlow 在 ResetConnectionState 之前已捕获
+                CurrentZoneId = 0;      // 所在区 = 当前连着的 gate 所属的区;连接没了就没有"所在区"
                 _knownRoles.Clear();
+                _sceneAppearances.Clear();
                 _enteredScene = false;
+                _awaitingSceneEntry = false;
+                _enterFailedTipId = 0;
                 _travelPending = false; // 连接没了,等不到 msg 124 / tip 了;不清的话重连后第一次传送会被"正在传送中"挡住
                 _isMoving = false;
                 _moveInputSeq = 0;
@@ -1633,7 +1840,12 @@ namespace MmorpgClient.Game
                 _disconnectInProgress = false;
             }
 
-            if (shouldNotify) OnDisconnected?.Invoke();
+            if (shouldNotify)
+            {
+                // 每次通知前重写(普通断线写成 null),订阅者读到的不会是上一次失败留下的旧文案。
+                DisconnectReason = reason;
+                OnDisconnected?.Invoke();
+            }
         }
     }
 }
