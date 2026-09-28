@@ -35,6 +35,7 @@ namespace MmorpgClient.UI.Ugui.Social
             var design=QdaoUguiFactory.CreateCenteredRect("DesignRoot",go.transform,2560,1080);_hud=QdaoUguiFactory.CreateStretch("HudRoot",design,Vector4.zero);QdaoUguiFactory.ConfigureHudCanvas(_hud);
             var entry=GameplayUiArt.Button(_hud,"仙友会 [C]",EntryX,EntryY,BattleUiStyle.HudEntryWidth,BattleUiStyle.HudEntryHeight,Toggle,true,fontSize:32);entry.name="SocialEntry";
             Window=new SocialWindow(design,State);Window.RefreshRequested+=channel=>{if(_available)Client?.Refresh(channel);};Window.SendRequested+=(channel,text)=>{if(_available)Client?.Send(channel,text);};_hud.gameObject.SetActive(false);
+            Window.TeamInviteRequested += id => { if (_available) Team.TeamUiRoot.Instance?.OpenInviteForPlayer(id); };
         }
         private void Update()
         {

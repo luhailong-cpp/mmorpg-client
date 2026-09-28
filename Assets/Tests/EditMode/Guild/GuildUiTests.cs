@@ -353,8 +353,225 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.Status, Is.EqualTo("尚未加入帮会，和同道相聚于此。"));
         }
 
+        // ── 经济：捐献 / 升级 / 商店（B5c）──────────────────────────────
+
+        [Test] public void DonateSendsOptionIdAndAppliesReturnedGuild()
+        {
+            Load(); int assets = 0; _client.AssetsChanged += () => assets++;
+            _client.Donate(2);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.DonateToGuild));
+            Assert.That(((DonateToGuildRequest)_net.Requests.Last()).DonateId, Is.EqualTo(2u));
+            var funded = Fixture(); funded.Funds = 12000;
+            _net.Reply(new DonateToGuildResponse { Guild = funded, Donation = new GuildDonationView
+                { OpId = 11, DonateId = 2, Status = GuildAssetOrderStatus.Applied, ContributionGain = 120, FundsGain = 12000 } });
+            Assert.That(_client.Info.Funds, Is.EqualTo(12000ul));
+            Assert.That(assets, Is.EqualTo(1));
+            // 次数与待结算列表都在捐献页快照里:成功后紧跟一发重拉,结果文案要活过这次重拉。
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildDonateOptions));
+            _net.Reply(DonateFixture());
+            Assert.That(_client.Status, Is.EqualTo("捐献成功：帮贡 +120，帮会资金 +12,000"));
+            Assert.That(_client.Donations, Is.Not.Null);
+        }
+        [Test] public void PendingDonationIsNotAnError()
+        {
+            Load(); int assets = 0; _client.AssetsChanged += () => assets++;
+            _client.Donate(1);
+            _net.Reply(new DonateToGuildResponse { Guild = Fixture(), Donation = new GuildDonationView
+                { OpId = 12, DonateId = 1, Status = GuildAssetOrderStatus.Pending, ReasonTipId = GuildAssetReasons.InBattle } });
+            var options = DonateFixture();
+            options.PendingDonations.Add(new GuildDonationView { OpId = 12, DonateId = 1, Status = GuildAssetOrderStatus.Pending,
+                ReasonTipId = GuildAssetReasons.InBattle });
+            _net.Reply(options);
+            Assert.That(_client.Status, Does.Contain("战斗中"));
+            // 结算中不是失败:帮会快照不清、不隔离、不让背包重拉(钱还没真扣)。
+            Assert.That(_client.Info, Is.Not.Null);
+            Assert.That(_client.RequiresReconnect, Is.False);
+            Assert.That(assets, Is.Zero);
+        }
+        [Test] public void RejectedDonationShowsCurrencyText()
+        {
+            Load(); _client.Donate(3); int before = _net.Calls.Count;
+            _net.Reply(new DonateToGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildCurrencyInsufficient },
+                Guild = Fixture(), Donation = new GuildDonationView { OpId = 13, DonateId = 3, Status = GuildAssetOrderStatus.Rejected,
+                    ReasonTipId = GuildAssetReasons.CurrencyInsufficient } });
+            Assert.That(_client.Status, Is.EqualTo("银两或灵石不足，无法捐献。"));
+            // 次数已由服务端退回,本地快照不需要跟一发重拉。
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Info, Is.Not.Null);
+            Assert.That(_client.RequiresReconnect, Is.False);
+        }
+        [Test] public void UpgradeIsSentByOfficerEvenWhenCachedFundsLookLow()
+        {
+            var member = Fixture(); member.LeaderId = 2; member.Members[0].Role = GuildRoles.Member; member.Members[1].Role = GuildRoles.Leader;
+            member.UpgradeCostFunds = 20000;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = member });
+            Assert.That(_client.CanUpgrade, Is.False);
+            _client.Upgrade();
+            Assert.That(_net.Calls.Contains(MessageIds.UpgradeGuild), Is.False);
+
+            var officer = Fixture(); officer.LeaderId = 2; officer.Members[0].Role = GuildRoles.Officer; officer.Members[1].Role = GuildRoles.Leader;
+            officer.OfficerCount = 1; officer.UpgradeCostFunds = 20000; officer.Funds = 100;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = officer });
+            // 本地资金看着不够也照发:别的长老可能刚捐过,够不够以服务端事务为准。
+            _client.Upgrade();
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.UpgradeGuild));
+            Assert.That(((UpgradeGuildRequest)_net.Requests.Last()).ExpectedLevel, Is.EqualTo(5u));
+            var fresher = officer.Clone(); fresher.Funds = 30000;
+            _net.Reply(new UpgradeGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildFundsInsufficient }, Guild = fresher });
+            Assert.That(_client.Info.Funds, Is.EqualTo(30000ul));
+            Assert.That(_client.Status, Is.EqualTo("帮会资金不足，暂时无法升级。"));
+
+            _client.Upgrade();
+            var upgraded = officer.Clone(); upgraded.Level = 6; upgraded.Funds = 10000;
+            _net.Reply(new UpgradeGuildResponse { Guild = upgraded });
+            Assert.That(_client.Info.Level, Is.EqualTo(6u));
+            Assert.That(_client.Status, Is.EqualTo("帮会已升至 Lv.6"));
+        }
+        [Test] public void FundsChangedPushQueuesDonationRefreshAndRaisesAssetsChanged()
+        {
+            Load(); _client.RefreshDonations(); _net.Reply(DonateFixture());
+            int assets = 0; _client.AssetsChanged += () => assets++;
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.FundsChanged, TargetPlayerId = 1 });
+            Assert.That(assets, Is.EqualTo(1));
+            Assert.That(_client.DonationsQueued, Is.True);
+            Assert.That(_client.RefreshQueued, Is.True);
+            // 先落帮会快照(资金 / 帮贡),再重拉捐献页:后到的"已入账"文案才不会被"帮会信息已更新"盖掉。
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildDonateOptions));
+            Assert.That(_client.DonationsQueued, Is.False);
+        }
+        [Test] public void DeliveryDonePushWhileNotInGuildRaisesAssetsChanged()
+        {
+            Empty(); int assets = 0; _client.AssetsChanged += () => assets++;
+            // 已离帮后才发放 / 结算的那一笔:背包要重拉,但没有帮会页可刷。
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.DeliveryDone, TargetPlayerId = 1 });
+            Assert.That(assets, Is.EqualTo(1));
+            Assert.That(_client.RefreshQueued, Is.False);
+            Assert.That(_client.ShopQueued, Is.False);
+            Assert.That(_client.DonationsQueued, Is.False);
+        }
+        [Test] public void SettledDonationShowsRecentResult()
+        {
+            Load();
+            _client.RefreshDonations();
+            var first = DonateFixture();
+            first.PendingDonations.Add(new GuildDonationView { OpId = 11, DonateId = 3, Status = GuildAssetOrderStatus.Pending });
+            _net.Reply(first);
+            Assert.That(_client.Status, Does.Contain("1 笔捐献结算中"));
+            int assets = 0; _client.AssetsChanged += () => assets++;
+            _client.RefreshDonations();
+            var second = DonateFixture();
+            second.RecentResults.Add(new GuildDonationView { OpId = 11, DonateId = 3, Status = GuildAssetOrderStatus.Rejected,
+                ReasonTipId = GuildAssetReasons.CurrencyInsufficient });
+            _net.Reply(second);
+            Assert.That(_client.Status, Does.Contain("捐献未成功"));
+            Assert.That(_client.Status, Does.Contain("不足"));
+            Assert.That(assets, Is.EqualTo(1));
+        }
+        [Test] public void SettledShopOrderRaisesAssetsChanged()
+        {
+            Load();
+            _client.RefreshShop();
+            var first = ShopFixture(440);
+            first.PendingOrders.Add(new GuildShopOrderView { OpId = 21, GoodsId = 101, Count = 1, Status = GuildAssetOrderStatus.Pending,
+                ReasonTipId = GuildAssetReasons.BagFull });
+            _net.Reply(first);
+            Assert.That(_client.Status, Does.Contain("待发放"));
+            int assets = 0; _client.AssetsChanged += () => assets++;
+            _client.RefreshShop();
+            var second = ShopFixture(440);
+            second.RecentOrders.Add(new GuildShopOrderView { OpId = 21, GoodsId = 101, Count = 1, Status = GuildAssetOrderStatus.Applied });
+            _net.Reply(second);
+            Assert.That(_client.Status, Is.EqualTo("兑换的物品已发放，请查看背包。"));
+            Assert.That(assets, Is.EqualTo(1));
+        }
+        [Test] public void BuyAppliedUpdatesMyBalanceAndReloadsTheShop()
+        {
+            var info = Fixture(); info.Members[0].ContributionBalance = 440;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = info });
+            int assets = 0; _client.AssetsChanged += () => assets++;
+            _client.Buy(101);
+            var request = (BuyGuildShopGoodsRequest)_net.Requests.Last();
+            Assert.That(request.GoodsId, Is.EqualTo(101u)); Assert.That(request.Count, Is.EqualTo(1u));
+            _net.Reply(new BuyGuildShopGoodsResponse { ContributionBalance = 410, Order = new GuildShopOrderView
+                { OpId = 31, GoodsId = 101, Count = 1, Status = GuildAssetOrderStatus.Applied, CostContribution = 30 } });
+            // 兑换回包不带帮会快照:总览里的可用帮贡按回包的权威余额就地更新。
+            Assert.That(_client.Info.Members[0].ContributionBalance, Is.EqualTo(410ul));
+            Assert.That(assets, Is.EqualTo(1));
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildShop));
+            _net.Reply(ShopFixture(410));
+            Assert.That(_client.Status, Is.EqualTo("兑换成功，物品已放入背包"));
+        }
+        [Test] public void GuildChangeClearsDonationAndShopSnapshots()
+        {
+            Load();
+            _client.RefreshDonations(); _net.Reply(DonateFixture());
+            _client.RefreshShop(); _net.Reply(ShopFixture(0));
+            Assert.That(_client.Donations, Is.Not.Null); Assert.That(_client.Shop, Is.Not.Null);
+            // 换帮:上一个帮会的次数、帮贡、待结算都不能带进新帮会。
+            var other = Fixture(); other.GuildId = 556;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = other });
+            Assert.That(_client.Donations, Is.Null); Assert.That(_client.Shop, Is.Null);
+            // 离帮同理。
+            _client.RefreshShop(); _net.Reply(ShopFixture(0));
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
+            Assert.That(_client.Shop, Is.Null);
+        }
+        /// <summary>经济的 10 个码与发号失败都要有人话;落到默认分支就会显示“暂未完成请求（码号）”。</summary>
+        [TestCase((uint)guild_error.KGuildFundsInsufficient)]
+        [TestCase((uint)guild_error.KGuildMaxLevel)]
+        [TestCase((uint)guild_error.KGuildDonateLimit)]
+        [TestCase((uint)guild_error.KGuildCurrencyInsufficient)]
+        [TestCase((uint)guild_error.KGuildAssetPending)]
+        [TestCase((uint)guild_error.KGuildAssetRejected)]
+        [TestCase((uint)guild_error.KGuildShopGoodsNotFound)]
+        [TestCase((uint)guild_error.KGuildShopLevelTooLow)]
+        [TestCase((uint)guild_error.KGuildShopLimit)]
+        [TestCase((uint)guild_error.KGuildContributionInsufficient)]
+        [TestCase((uint)guild_error.KGuildIdGenUnavailable)]
+        public void EconomyTipsHaveReadableText(uint tip)
+        {
+            Load();
+            _client.Buy(101);
+            _net.Reply(new BuyGuildShopGoodsResponse { ErrorMessage = new TipInfoMessage { Id = tip } });
+            Assert.That(_client.Status, Does.Not.Contain("暂未完成请求"));
+            Assert.That(_client.RequiresReconnect, Is.False);
+        }
+
         private void Empty() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } }); }
         private void Load() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() }); }
+        /// <summary>与 GuildDonate 默认三行同形;大捐今日已用满,供“次数用尽不可点”断言。</summary>
+        public static GetGuildDonateOptionsResponse DonateFixture()
+        {
+            var response = new GetGuildDonateOptionsResponse { ContributionTotal = 440, ContributionBalance = 440 };
+            response.Options.Add(new GuildDonateOptionView { DonateId = 1, Name = "银两小捐", CurrencyType = 0, CostAmount = 10000,
+                ContributionGain = 10, FundsGain = 1000, DailyLimit = 5, UsedToday = 0, MinGuildLevel = 1, Unlocked = true });
+            response.Options.Add(new GuildDonateOptionView { DonateId = 2, Name = "银两大捐", CurrencyType = 0, CostAmount = 100000,
+                ContributionGain = 120, FundsGain = 12000, DailyLimit = 2, UsedToday = 2, MinGuildLevel = 1, Unlocked = true });
+            response.Options.Add(new GuildDonateOptionView { DonateId = 3, Name = "灵石捐献", CurrencyType = 1, CostAmount = 100,
+                ContributionGain = 200, FundsGain = 20000, DailyLimit = 1, UsedToday = 0, MinGuildLevel = 1, Unlocked = true });
+            return response;
+        }
+        /// <summary>与 GuildShop 默认 11 行同形(帮会 Lv.2:103 已解锁,104 未解锁);301 今日已兑满。</summary>
+        public static GetGuildShopResponse ShopFixture(ulong balance)
+        {
+            var response = new GetGuildShopResponse { ContributionBalance = balance };
+            void Add(uint id, string name, uint category, ulong cost, uint level, uint period, uint limit, uint used = 0) =>
+                response.Goods.Add(new GuildShopGoodsView { GoodsId = id, Name = name, Category = category, ItemId = id, ItemCount = 1,
+                    CostContribution = cost, RequiredGuildLevel = level, Unlocked = level <= 2, LimitPeriod = period, LimitCount = limit,
+                    UsedCount = used, MaxBuyCount = 1 });
+            Add(101, "培元丹", 1, 30, 1, 1, 10); Add(102, "回灵散", 1, 30, 1, 1, 10);
+            Add(103, "精炼石", 1, 80, 2, 1, 5); Add(104, "修行秘录残页", 1, 150, 3, 2, 5);
+            Add(201, "帮会令牌", 2, 300, 3, 2, 3); Add(202, "玄铁护符", 2, 800, 4, 2, 1);
+            Add(203, "灵兽口粮", 2, 120, 2, 1, 3); Add(204, "藏经阁手札", 2, 1500, 6, 2, 1);
+            Add(301, "花灯", 3, 50, 1, 1, 5, 5); Add(302, "月饼礼盒", 3, 100, 1, 2, 7); Add(303, "同心结", 3, 200, 5, 0, 0);
+            return response;
+        }
         public static GuildInfo Fixture()
         {
             var info = new GuildInfo { GuildId = 555, Name = "清风明月", LeaderId = 1, Level = 5, MaxMembers = 50,
@@ -380,7 +597,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _window.SetClient(_client);
         }
         [TearDown] public void TearDown() { _window.Hide(); _client.Dispose(); UnityEngine.Object.DestroyImmediate(_root); }
-        [TestCase(GuildPage.Donate)] [TestCase(GuildPage.Activities)] [TestCase(GuildPage.Shop)]
+        // B5c 起捐献 / 商店已开放,只剩活动;B6a-cli 删最后一例时要删整个方法(NUnit 不许带参方法没有用例,90 清单 X-11)。
+        [TestCase(GuildPage.Activities)]
         public void UnsupportedActionsAreClearlyDisabled(GuildPage page)
         {
             _window.Show(page);
@@ -394,18 +612,19 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             string Value(string name) => _root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == name).text;
             Assert.That(Value("GuildMemberCount"), Is.EqualTo("7 / 50"));
             Assert.That(Value("GuildOnlineCount"), Is.EqualTo("4 位"));
-            Assert.That(Value("GuildMyContribution"), Is.EqualTo("101"));
+            // B5 起这一格是“可用 / 累计帮贡”(90 清单 X-12);fixture 的可用帮贡为 0。
+            Assert.That(Value("GuildMyContribution"), Is.EqualTo("0 / 101"));
             var updated = GuildClientTests.Fixture();
             updated.Members.RemoveAt(6);
             updated.Members[0].ContributionTotal = 987;
             updated.Members[1].Online = true;
             _client.Refresh();
-            Assert.That(Value("GuildMyContribution"), Is.EqualTo("101"));
+            Assert.That(Value("GuildMyContribution"), Is.EqualTo("0 / 101"));
             _net.Reply(new GetPlayerGuildResponse { Guild = updated });
             _window.SetClient(_client);
             Assert.That(Value("GuildMemberCount"), Is.EqualTo("6 / 50"));
             Assert.That(Value("GuildOnlineCount"), Is.EqualTo("4 位"));
-            Assert.That(Value("GuildMyContribution"), Is.EqualTo("987"));
+            Assert.That(Value("GuildMyContribution"), Is.EqualTo("0 / 987"));
         }
         [Test] public void MemberPaginationAndOnlineFilterConsumeTheRealSnapshot()
         {
@@ -690,6 +909,104 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(ActiveText(), Does.Not.Contain("Alice"));
         }
 
+        // ── 经济页（B5c）──────────────────────────────────────────────
+
+        [Test] public void DonatePageRendersOptionsAndKeepsMaterialsDisabled()
+        {
+            uint donated = 0; _window.DonateRequested += id => donated = id;
+            _client.RefreshDonations(); _net.Reply(GuildClientTests.DonateFixture());
+            _window.SetClient(_client); _window.Show(GuildPage.Donate);
+            var buttons = Buttons();
+            Assert.That(buttons.Any(b => b.name == "GuildDonate_1"), Is.True);
+            Assert.That(buttons.Any(b => b.name == "GuildDonate_3"), Is.True);
+            Assert.That(buttons.Single(b => b.name == "GuildUnavailable_Donate_2").interactable, Is.False);
+            // 大捐今日 2/2:次数用尽的那一档点不动。
+            Assert.That(buttons.Single(b => b.name == "GuildDonate_2").interactable, Is.False);
+            Assert.That(Label("GuildDonate_1"), Is.EqualTo("小捐"));
+            Assert.That(Label("GuildDonate_3"), Is.EqualTo("捐献"));
+            Assert.That(ActiveText(), Does.Contain("今日 2/2"));
+            Click("GuildDonate_3");
+            Assert.That(ActiveText(), Does.Contain("消耗 100 灵石"));
+            Assert.That(donated, Is.Zero);
+            Click("ConfirmGuildAction");
+            Assert.That(donated, Is.EqualTo(3u));
+        }
+        [Test] public void DonatePageAutoRequestsAgainAfterReconnect()
+        {
+            int requests = 0; _window.DonationsRequested += () => requests++;
+            _client.Refresh(); _net.Error("rpc timeout");
+            _window.SetClient(_client); _window.Show(GuildPage.Donate);
+            // 隔离期间请求发不出去,自动拉取也不该算“拉过了”。
+            Assert.That(requests, Is.Zero);
+            _net.Disconnect(); _net.IsReady = true;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = GuildClientTests.Fixture() });
+            _window.SetClient(_client);
+            Assert.That(requests, Is.EqualTo(1));
+            // 没拉到快照(本用例没接事件到客户端)也只自动拉一次,之后交给玩家点刷新。
+            _window.SetClient(_client);
+            Assert.That(requests, Is.EqualTo(1));
+        }
+        [Test] public void ShopPageFiltersByCategoryAndPages()
+        {
+            _client.RefreshShop(); _net.Reply(GuildClientTests.ShopFixture(440));
+            _window.SetClient(_client); _window.Show(GuildPage.Shop);
+            Assert.That(Buttons().Count(b => b.name.StartsWith("GuildShopBuy_")), Is.EqualTo(4));
+            Assert.That(Buttons().Single(b => b.name == "ShopNext").interactable, Is.False);
+            Assert.That(ActiveText(), Does.Contain("可用帮贡 440"));
+            Click("GuildShopCategory_2");
+            Assert.That(Buttons().Any(b => b.name == "GuildShopBuy_201"), Is.True);
+            Assert.That(Buttons().Any(b => b.name == "GuildShopBuy_101"), Is.False);
+        }
+        [Test] public void LockedOrUnaffordableGoodsCannotBeBought()
+        {
+            uint bought = 0; _window.ShopBuyRequested += id => bought = id;
+            _client.RefreshShop(); _net.Reply(GuildClientTests.ShopFixture(100));
+            _window.SetClient(_client); _window.Show(GuildPage.Shop);
+            Assert.That(Buttons().Single(b => b.name == "GuildShopBuy_101").interactable, Is.True);
+            Assert.That(Buttons().Single(b => b.name == "GuildShopBuy_104").interactable, Is.False);  // 帮会等级不够
+            Assert.That(ActiveText(), Does.Contain("帮会 Lv.3 解锁"));
+            Click("GuildShopCategory_2");
+            Assert.That(Buttons().Single(b => b.name == "GuildShopBuy_203").interactable, Is.False); // 帮贡不够(120 > 100)
+            Click("GuildShopCategory_3");
+            Assert.That(Buttons().Single(b => b.name == "GuildShopBuy_301").interactable, Is.False); // 今日已兑满
+            Assert.That(ActiveText(), Does.Contain("今日 5/5"));
+            Click("GuildShopCategory_1");
+            Click("GuildShopBuy_101");
+            Assert.That(bought, Is.Zero);
+            Click("ConfirmGuildAction");
+            Assert.That(bought, Is.EqualTo(101u));
+        }
+        [Test] public void OverviewShowsFundsAndUpgradeOnlyForOfficers()
+        {
+            int upgrades = 0; _window.UpgradeRequested += () => upgrades++;
+            string Value(string name) => _root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == name).text;
+            var member = GuildClientTests.Fixture();
+            member.LeaderId = 2; member.Members[0].Role = GuildRoles.Member; member.Members[1].Role = GuildRoles.Leader;
+            member.Funds = 12000; member.UpgradeCostFunds = 20000;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = member });
+            _window.SetClient(_client); _window.Show();
+            Assert.That(Buttons().Any(b => b.name == "UpgradeGuild"), Is.False);
+            Assert.That(Value("GuildFunds"), Is.EqualTo("12,000"));
+
+            var officer = member.Clone(); officer.Members[0].Role = GuildRoles.Officer; officer.OfficerCount = 1;
+            officer.Members[0].ContributionBalance = 440; officer.Members[0].ContributionTotal = 440;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = officer });
+            _window.SetClient(_client);
+            // 资金 12,000 < 20,000 也可点:够不够交给服务端判。
+            Assert.That(Buttons().Single(b => b.name == "UpgradeGuild").interactable, Is.True);
+            Assert.That(Value("GuildMyContribution"), Is.EqualTo("440 / 440"));
+            Click("UpgradeGuild");
+            Assert.That(ActiveText(), Does.Contain("需要帮会资金 20,000"));
+            Click("ConfirmGuildAction");
+            Assert.That(upgrades, Is.EqualTo(1));
+
+            var max = officer.Clone(); max.UpgradeCostFunds = 0;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = max });
+            _window.SetClient(_client);
+            Assert.That(Label("UpgradeGuild"), Is.EqualTo("已满级"));
+            Assert.That(Buttons().Single(b => b.name == "UpgradeGuild").interactable, Is.False);
+        }
+
         private TMP_InputField SearchInput() => _root.GetComponentsInChildren<TMP_InputField>().Single(i => i.name == "GuildMemberSearch");
         private void Search(string text) { SearchInput().text = text; Click("SearchGuildMembers"); }
         private Button[] Buttons() => _root.GetComponentsInChildren<Button>().Where(b => b.gameObject.activeInHierarchy).ToArray();
@@ -705,6 +1022,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public bool IsReady { get; set; } = true;
         public event Action Disconnected;
         public List<uint> Calls { get; } = new();
+        /// <summary>与 Calls 一一对应的请求体,断言“发出去的参数”用。</summary>
+        public List<IMessage> Requests { get; } = new();
         public Action<IMessage> Pending;
         public Action<string> Error;
         /// <summary>已注册的 S2C 推送处理器；与 GameClient.OnNotify 一样，一个 id 只留最后一次注册。</summary>
@@ -717,6 +1036,6 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void RegisterNotify(uint id, Action<MessageContent> action) => Notifies[id] = action;
         public void SendOneWay(uint id, IMessage request) { }
         public void Call<T>(uint id, IMessage request, MessageParser<T> parser, Action<T> success, Action<string> error)
-            where T : IMessage<T> { Calls.Add(id); Pending = message => success((T)message); Error = error; }
+            where T : IMessage<T> { Calls.Add(id); Requests.Add(request); Pending = message => success((T)message); Error = error; }
     }
 }

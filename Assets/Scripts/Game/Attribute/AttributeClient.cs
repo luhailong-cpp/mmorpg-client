@@ -100,12 +100,14 @@ namespace MmorpgClient.Game.Attribute
                 25009 => "方案名称不合法",
                 25010 => "已经是当前方案",
                 25011 => "战斗中不能修改属性",
-                25012 => "金币不足",
+                // 契约 §0-1 把 kCurrencyGold 叫"银两"。Tip.xlsx 这一行仍写"金币不足",客户端先改叫法,
+                // 表的文案随下一个改 Tip.xlsx 的批次同步(服务端 docs/design/guild-phase2/92-handoff.md §13)。
+                25012 => "银两不足",
                 25013 => "没有可用的自动加点方案",
                 25014 => "属性没有变化",
                 // ── 资产通道(//asset_error base=27000,帮会二期 B4a 起)────────────────
                 // 冻结(27003)、封禁(27005)与 GM 路径会把这一段透传给客户端;宠物 / 加点自己的
-                // 扣币路径在扣之前先 CanAfford,回的是各自的"金币不足",走不到 27000。
+                // 扣币路径在扣之前先 CanAfford,回的是各自的"银两不足",走不到 27000。
                 // 文案逐字镜像 data/tip/Tip.xlsx,表改了要同步这里(与上面各段同一约定)。
                 27000 => "货币不足",
                 27001 => "背包已满,请腾出空间,之后会重试发放;超过时限可能取消",
@@ -163,7 +165,7 @@ namespace MmorpgClient.Game.Attribute
                 err => FailWrite(err));
         }
 
-        /// <summary>重置(洗点):清空当前方案里该池的全部分配,按表扣金币。</summary>
+        /// <summary>重置(洗点):清空当前方案里该池的全部分配,按表扣银两。</summary>
         public void ResetPool(uint poolId)
         {
             if (!BeginWrite(null))
@@ -208,7 +210,7 @@ namespace MmorpgClient.Game.Attribute
                 err => OnError?.Invoke(err));
         }
 
-        /// <summary>开启新方案(超出免费数后按表扣金币)。</summary>
+        /// <summary>开启新方案(超出免费数后按表扣银两)。</summary>
         public void CreateScheme(string name)
         {
             if (!BeginWrite(null))

@@ -20,6 +20,7 @@ namespace MmorpgClient.UI.Ugui.Social
         public bool HasModal => _modal != null;
         public event Action<SocialChannel> RefreshRequested;
         public event Action<SocialChannel,string> SendRequested;
+        public event Action<ulong> TeamInviteRequested;
         public event Action Closed;
         private readonly RectTransform _root,_frame,_body;
         private readonly CanvasGroup _frameControls;
@@ -241,8 +242,17 @@ namespace MmorpgClient.UI.Ugui.Social
         {
             var person=State.Person(id);var panel=Modal("仙友小传",850,555);Portrait(panel,"SocialProfilePortrait",person.Portrait,92,151,149);
             Text(panel,person.Name,283,141,473,73,37,Jade);Text(panel,person.Level>0?person.Level+"级 · "+person.Title:"角色资料尚未同步",283,223,473,76,27,Muted,wrap:true);
-            Text(panel,State.IsPreview?"结缘青云观，游历山川间。愿与四海仙友，共赴一程好风光。":"当前聊天协议仅提供玩家编号，更多资料开放后显示。",84,338,682,113,27,Muted,wrap:true);
-            Button(panel,"SocialModalDone","知道了",301,459,248,61,()=>CloseModal(),true,size:27);
+            Text(panel,State.IsPreview?"结缘青云观，游历山川间。愿与四海仙友，共赴一程好风光。"
+                : "玩家编号 " + id + (id == State.PlayerId ? " · 这是你的角色。" : "。邀请这位道友，一起结伴游历。"),84,338,682,113,27,Muted,wrap:true);
+            bool canInvite = !State.IsPreview && id != 0 && id != State.PlayerId && TeamInviteRequested != null;
+            if (id != 0 && id != State.PlayerId)
+                Button(panel,"SocialInviteToTeam","邀请组队",84,459,325,61,()=>
+                {
+                    if (State.IsPreview || id == State.PlayerId || TeamInviteRequested == null) return;
+                    CloseModal();
+                    TeamInviteRequested.Invoke(id);
+                },true,enabled:canInvite,size:27);
+            Button(panel,"SocialModalDone","返回",id != State.PlayerId ? 441 : 301,459,325,61,()=>CloseModal(),size:27);
         }
         private void ShowCard(string card)
         {

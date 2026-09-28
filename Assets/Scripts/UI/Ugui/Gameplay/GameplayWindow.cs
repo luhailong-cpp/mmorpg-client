@@ -152,7 +152,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     primary: _bagFilter == i, key: _bagFilter == i ? "tab_selected" : "tab_normal");
             }
             Text(_body, "随身资产", 38, 356, 260, 40, 28, Gold);
-            string[] currencies = { "金币", "钻石", "绑定钻石" };
+            // 契约 §0-1:银两 = kCurrencyGold(0),灵石 = kCurrencyDiamond(1),下标即货币类型。
+            string[] currencies = { "银两", "灵石", "绑定灵石" };
             for (int i = 0; i < 3; ++i)
             {
                 Text(_body, currencies[i], 38, 406 + i * 40, 150, 38, 26, Muted);

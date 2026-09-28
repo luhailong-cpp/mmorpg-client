@@ -25,6 +25,8 @@ namespace MmorpgClient.UI.Ugui.Team
         public static TeamUiRoot Instance { get; private set; }
         public TeamWindow Window => _window;
         public TeamClient Client => _client;
+        public TeamInvitationWindow InvitationWindow => _invitations;
+        public TeamInvitationDirectory InvitationDirectory => _directory;
         public TeamUiState State { get; } = new(() => Time.realtimeSinceStartup);
         public const float EntryX = 68;
         public const float EntryY = 496;
@@ -35,6 +37,8 @@ namespace MmorpgClient.UI.Ugui.Team
         private Button _entry;
         private TMP_Text _entryLabel;
         private TeamWindow _window;
+        private TeamInvitationWindow _invitations;
+        private TeamInvitationDirectory _directory;
         private ulong _playerId;
         private bool _available;
 
@@ -70,11 +74,19 @@ namespace MmorpgClient.UI.Ugui.Team
             _entry.name = "TeamEntry";
             _entryLabel = _entry.GetComponentInChildren<TMP_Text>();
             _window = new TeamWindow(design);
+            _invitations = new TeamInvitationWindow(design);
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
             _window.DecisionRequested += (id, ok) => { if (_available) _client?.HandleApplication(id, ok); };
             _window.CreateRequested += () => { if (_available) _client?.Create(); };
             _window.ApplyRequested += id => { if (_available) _client?.ApplyJoin(id); };
             _window.InviteRequested += id => { if (_available) _client?.Invite(id); };
+            _window.InviteBrowseRequested += () => OpenInvitations(TeamInvitationSource.Friends);
+            _window.Closed += () => _invitations.Hide();
+            _invitations.RefreshRequested += (source, query) => { if (_available) _directory?.Refresh(source, query); };
+            _invitations.LoadMoreRequested += () => { if (_available) _directory?.LoadMore(); };
+            _invitations.InviteRequested += id => { if (_available) _client?.Invite(id); };
+            _invitations.CreateRequested += () => { if (_available) _client?.Create(); };
+            _invitations.Closed += () => _window.SetCovered(false);
             _window.InviteResponseRequested += (teamId, ok) => { if (_available) _client?.RespondInvite(teamId, ok); };
             _window.LeaveRequested += () => { if (_available) _client?.Leave(); };
             _window.KickRequested += id => { if (_available) _client?.Kick(id); };
@@ -100,18 +112,24 @@ namespace MmorpgClient.UI.Ugui.Team
                         handler => game.OnTeamSnapshot += handler, handler => game.OnTeamSnapshot -= handler,
                         () => Time.realtimeSinceStartup);
                     _client.Changed += SyncState;
+                    _directory = new TeamInvitationDirectory(game, () => Social.SocialUiRoot.Instance?.State);
+                    _directory.Changed += SyncDirectory;
                 }
                 _playerId = 0;
                 _window.ResetSession();
+                _invitations.ResetSession();
                 SyncState();
             }
             _client?.ObserveConnection();
+            _directory?.ObserveConnection();
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             ulong playerId = inGame ? _game.PlayerId : 0;
             if (_playerId != playerId)
             {
                 _playerId = playerId;
                 _window.ResetSession();
+                _invitations.ResetSession();
+                _directory?.Reset();
                 if (_client != null) _client.Reset();
                 else State.Reset(playerId);
             }
@@ -121,16 +139,17 @@ namespace MmorpgClient.UI.Ugui.Team
             State.Tick(Time.realtimeSinceStartup);
             if (!_available) { HidePanel(); return; }
             // Probe, invites, conflict re-pulls and the 30s panel refresh all go out here, one per frame.
-            _client?.DrainQueued(_window.IsVisible);
-            if (IsTyping() || (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked)) return;
+            _client?.DrainQueued(_window.IsVisible || _invitations.IsVisible);
+            bool typing = IsTyping();
+            if (!_window.IsVisible && !_invitations.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
             if (keys == null) return;
-            if (keys.escapeKey.wasPressedThisFrame) _window.Back();
-            else if (keys.tKey.wasPressedThisFrame) Toggle();
+            if (keys.escapeKey.wasPressedThisFrame) { if (_invitations.IsVisible) _invitations.Hide(); else _window.Back(); }
+            else if (!typing && keys.tKey.wasPressedThisFrame) Toggle();
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            if (Input.GetKeyDown(KeyCode.Escape)) _window.Back();
-            else if (Input.GetKeyDown(KeyCode.T)) Toggle();
+            if (Input.GetKeyDown(KeyCode.Escape)) { if (_invitations.IsVisible) _invitations.Hide(); else _window.Back(); }
+            else if (!typing && Input.GetKeyDown(KeyCode.T)) Toggle();
 #endif
         }
 
@@ -152,7 +171,35 @@ namespace MmorpgClient.UI.Ugui.Team
             _client?.Refresh();
         }
 
-        public void HidePanel() => _window?.Hide();
+        public void HidePanel()
+        {
+            _invitations?.Hide();
+            _window?.Hide();
+        }
+
+        public void OpenInviteForPlayer(ulong playerId)
+        {
+            if (!_available || playerId == 0 || playerId == _playerId) return;
+            _directory?.RememberChatPlayer(playerId);
+            OpenInvitations(TeamInvitationSource.Chat, playerId.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        public void OpenInvitations(TeamInvitationSource source, string query = "")
+        {
+            if (!_available) return;
+            if (!_window.IsVisible) Toggle();
+            Social.SocialUiRoot.Instance?.HidePanel();
+            _invitations.SetState(State);
+            _window.SetCovered(true);
+            _invitations.Show(source, query);
+        }
+
+        private void SyncDirectory()
+        {
+            if (_directory == null) return;
+            _invitations?.SetCandidates(_directory.Source, _directory.Candidates, _directory.IsLoading,
+                _directory.Status, _directory.HasMore);
+        }
 
         private void SyncState()
         {
@@ -166,6 +213,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private void RenderState()
         {
             _window?.SetState(State);
+            _invitations?.SetState(State);
             if (_entryLabel == null) return;
             int applications = State.Snapshot.Applications.Count;
             int invites = State.Invites.Count;
@@ -176,6 +224,12 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void DisposeClient()
         {
+            if (_directory != null)
+            {
+                _directory.Changed -= SyncDirectory;
+                _directory.Dispose();
+                _directory = null;
+            }
             if (_client == null) return;
             _client.Changed -= SyncState;
             _client.Dispose();

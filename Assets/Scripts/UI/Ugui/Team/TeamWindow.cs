@@ -24,6 +24,7 @@ namespace MmorpgClient.UI.Ugui.Team
         public event Action CreateRequested;
         public event Action<ulong> ApplyRequested;
         public event Action<ulong> InviteRequested;
+        public event Action InviteBrowseRequested;
         public event Action<ulong, bool> InviteResponseRequested;
         public event Action LeaveRequested;
         public event Action<ulong> KickRequested;
@@ -47,6 +48,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private const string BusyHint = "上一个组队请求仍在处理中，请稍候。";
         private static TMP_FontAsset _bodyFont;
         private readonly RectTransform _root, _members, _applications;
+        private readonly CanvasGroup _frameControls;
         private readonly TMP_Text _summary, _status, _memberCount, _applicationCount, _applicationTitle;
         private readonly TMP_Text _memberPageLabel, _applicationPageLabel, _refreshLabel, _startMatchLabel;
         private readonly Button _refresh, _close, _memberPrevious, _memberNext, _applicationPrevious, _applicationNext;
@@ -73,6 +75,7 @@ namespace MmorpgClient.UI.Ugui.Team
             shade.raycastTarget = true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("TeamFrame", _root, 2200, 916);
+            _frameControls = frame.gameObject.AddComponent<CanvasGroup>();
             Art(frame, "main_frame", 0, 0, 2200, 916);
             Art(frame, "title_plate", 680, -46, 840, 148);
             Text(frame, "结伴同游", 778, -24, 644, 94, 60, Cream, alignment: TextAlignmentOptions.Center);
@@ -132,6 +135,13 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             _state = state;
             if (IsVisible) Render();
+        }
+
+        /// <summary>The invitation overlay owns both pointer and keyboard focus while it is visible.</summary>
+        public void SetCovered(bool covered)
+        {
+            _frameControls.interactable = !covered;
+            _frameControls.blocksRaycasts = !covered;
         }
 
         public void Show(TeamPage page = TeamPage.Members)
@@ -290,7 +300,8 @@ namespace MmorpgClient.UI.Ugui.Team
         private void UpdateFooter(bool hasTeam, bool leader, bool noTeam)
         {
             Footer(_startMatch, leader, CanManage);
-            Footer(_invite, leader, CanInvite);
+            Footer(_invite, leader || (noTeam && InviteBrowseRequested != null),
+                InviteBrowseRequested != null ? CanAct && _state.HasLoaded : CanInvite);
             Footer(_disband, leader, CanManage);
             Footer(_leave, hasTeam, CanLeave);
             Footer(_create, noTeam, CanJoin);
@@ -482,6 +493,11 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void PromptInvite()
         {
+            if (InviteBrowseRequested != null)
+            {
+                if (CanAct && _state.HasLoaded) InviteBrowseRequested.Invoke();
+                return;
+            }
             if (!CanInvite) return;
             TargetPrompt("邀请道友", "输入道友的玩家编号，对方同意后即可入队；邀请 60 秒内有效。", "发出邀请",
                 () => CanInvite, id => InviteRequested?.Invoke(id));

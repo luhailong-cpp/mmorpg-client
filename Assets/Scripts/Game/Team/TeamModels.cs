@@ -19,6 +19,8 @@ namespace MmorpgClient.Game.Team
         public string CharacterId;
         public bool IsLeader;
         public bool IsOnline = true;
+        // Chat history identifies a sender but does not prove current presence.
+        public bool OnlineStatusKnown = true;
         public bool InBattle;
         public uint ZoneId;
         public uint JoinSeq;
