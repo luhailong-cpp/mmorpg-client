@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.IO;
 using MmorpgClient.Game.Team;
 using MmorpgClient.UI.Ugui;
@@ -58,6 +59,15 @@ public static class TeamUiVerification
             _previewState.Changed += RefreshPreview;
             _previewWindow.DecisionRequested += PreviewDecision;
             _previewWindow.RefreshRequested += PreviewRefresh;
+            _previewWindow.CreateRequested += PreviewCreate;
+            _previewWindow.ApplyRequested += PreviewApply;
+            _previewWindow.InviteRequested += PreviewInvite;
+            _previewWindow.InviteResponseRequested += PreviewInviteResponse;
+            _previewWindow.LeaveRequested += PreviewLeave;
+            _previewWindow.KickRequested += PreviewKick;
+            _previewWindow.TransferRequested += PreviewTransfer;
+            _previewWindow.DisbandRequested += PreviewDisband;
+            _previewWindow.StartMatchRequested += PreviewStartMatch;
             _previewWindow.Closed += ClosePreview;
             RefreshPreview();
             _previewWindow.Show();
@@ -96,6 +106,8 @@ public static class TeamUiVerification
             }
             _previewSnapshot.Applications.Remove(role);
             if (approve) _previewSnapshot.Members.Add(role);
+            // Simulates the server's commit bump so the ordering rules accept the reply.
+            _previewSnapshot.Version++;
             _previewState.Complete(token, _previewSnapshot,
                 approve ? "离线预览：示例道友已加入队伍。" : "离线预览：已拒绝示例申请。");
         };
@@ -106,8 +118,24 @@ public static class TeamUiVerification
         int token = _previewState.BeginRefresh();
         if (token == 0) return;
         _previewCompleteAt = EditorApplication.timeSinceStartup + .3;
-        _previewCompletion = () => _previewState.Complete(token, _previewSnapshot, "离线预览：示例列表已刷新。");
+        _previewCompletion = () =>
+        {
+            _previewSnapshot.Version++;
+            _previewState.Complete(token, _previewSnapshot, "离线预览：示例列表已刷新。");
+        };
     }
+
+    // The remaining intents only log: the offline preview never opens a network connection.
+    private static void PreviewCreate() => Debug.Log("离线预览：创建队伍（未发送请求）。");
+    private static void PreviewApply(ulong playerId) => Debug.Log("离线预览：申请加入玩家 " + playerId + " 的队伍（未发送请求）。");
+    private static void PreviewInvite(ulong playerId) => Debug.Log("离线预览：邀请玩家 " + playerId + "（未发送请求）。");
+    private static void PreviewInviteResponse(ulong teamId, bool accept) =>
+        Debug.Log("离线预览：" + (accept ? "加入" : "谢绝") + "队伍 " + teamId + " 的邀请（未发送请求）。");
+    private static void PreviewLeave() => Debug.Log("离线预览：离开队伍（未发送请求）。");
+    private static void PreviewKick(ulong playerId) => Debug.Log("离线预览：请离玩家 " + playerId + "（未发送请求）。");
+    private static void PreviewTransfer(ulong playerId) => Debug.Log("离线预览：转让队长给玩家 " + playerId + "（未发送请求）。");
+    private static void PreviewDisband() => Debug.Log("离线预览：解散队伍（未发送请求）。");
+    private static void PreviewStartMatch() => Debug.Log("离线预览：发起队伍战斗（未发送请求）。");
 
     private static void RefreshPreview() => _previewWindow?.SetState(_previewState);
 
@@ -142,6 +170,15 @@ public static class TeamUiVerification
             _previewWindow.Closed -= ClosePreview;
             _previewWindow.DecisionRequested -= PreviewDecision;
             _previewWindow.RefreshRequested -= PreviewRefresh;
+            _previewWindow.CreateRequested -= PreviewCreate;
+            _previewWindow.ApplyRequested -= PreviewApply;
+            _previewWindow.InviteRequested -= PreviewInvite;
+            _previewWindow.InviteResponseRequested -= PreviewInviteResponse;
+            _previewWindow.LeaveRequested -= PreviewLeave;
+            _previewWindow.KickRequested -= PreviewKick;
+            _previewWindow.TransferRequested -= PreviewTransfer;
+            _previewWindow.DisbandRequested -= PreviewDisband;
+            _previewWindow.StartMatchRequested -= PreviewStartMatch;
             if (_previewCanvas != null) _previewWindow.ResetSession();
         }
         _previewWindow = null;
@@ -160,8 +197,9 @@ public static class TeamUiVerification
         Capture(2560, 1080);
         Capture(1920, 1080);
         File.WriteAllText(Path.Combine(OutputDirectory, "capture-status.txt"),
-            "组队窗口离线截图完成：成员与申请双栏、独立分页、满员、无申请、服务不可用、处理中。\n" +
-            "所有角色和审批结果仅用于 Editor 截图；未创建网络连接、未发送组队请求。\n");
+            "组队窗口离线截图完成：成员与申请双栏、独立分页、满员、无申请、服务不可用、处理中；" +
+            "无队伍（有邀请 / 无邀请）、队员视角、队长行内操作、开战集合中、队员高亮、邀请输入框、请离确认框。\n" +
+            "所有角色、邀请和审批结果仅用于 Editor 截图；未创建网络连接、未发送组队请求。\n");
     }
 
     public static void Capture(int width, int height)
@@ -220,7 +258,9 @@ public static class TeamUiVerification
                     foreach (var label in go.GetComponentsInChildren<TMP_Text>(true))
                     {
                         label.ForceMeshUpdate(true, true);
-                        if (!label.gameObject.activeInHierarchy || string.IsNullOrWhiteSpace(label.text)) continue;
+                        // An empty input field keeps a zero-width space in its text component.
+                        if (!label.gameObject.activeInHierarchy || !label.enabled ||
+                            string.IsNullOrWhiteSpace(label.text?.Replace("\u200B", string.Empty))) continue;
                         bool visibleGlyph = false;
                         for (int character = 0; character < label.textInfo.characterCount; character++)
                             visibleGlyph |= label.textInfo.characterInfo[character].isVisible;
@@ -238,13 +278,26 @@ public static class TeamUiVerification
             void Display(TeamSnapshot snapshot, string name)
             {
                 window.ResetSession();
+                // Each shot is an independent session, so ordering never rejects an unrelated example team.
+                state.Reset(snapshot.LocalPlayerId);
                 state.SetSnapshot(snapshot);
                 window.SetState(state);
                 window.Show();
                 Shoot(name);
             }
 
-            void ClickPage(string buttonName)
+            // Mirrors a TeamClient state the same way TeamUiRoot does on the live path; a null name skips the shot.
+            void Mirror(TeamSnapshot snapshot, List<TeamInvite> invites, string name,
+                TeamAction pending = TeamAction.None, ulong pendingTarget = 0, ulong highlight = 0, string status = "")
+            {
+                window.ResetSession();
+                state.Sync(snapshot, invites, true, true, pending, pendingTarget, highlight, status);
+                window.SetState(state);
+                window.Show();
+                if (name != null) Shoot(name);
+            }
+
+            void Click(string buttonName)
             {
                 foreach (var button in canvasObject.GetComponentsInChildren<Button>())
                     if (button.name == buttonName && button.interactable)
@@ -252,7 +305,7 @@ public static class TeamUiVerification
                         button.onClick.Invoke();
                         return;
                     }
-                throw new InvalidOperationException("截图分页按钮不可用：" + buttonName);
+                throw new InvalidOperationException("截图按钮不可用：" + buttonName);
             }
 
             var few = CreateSnapshot();
@@ -261,7 +314,7 @@ public static class TeamUiVerification
 
             var populated = CreateSnapshot();
             Display(populated, "dual-lists");
-            ClickPage("ApplicationNextPage");
+            Click("ApplicationNextPage");
             Shoot("application-page-2");
 
             var full = CreateSnapshot();
@@ -279,12 +332,15 @@ public static class TeamUiVerification
             multipage.Applications.Add(Role(28, "青山", 61, 1, 1));
             multipage.Applications.Add(Role(29, "望月", 60, 3, 1));
             Display(multipage, "dual-lists-multipage");
-            ClickPage("MemberNextPage");
+            Click("MemberNextPage");
             Shoot("member-page-2");
-            ClickPage("ApplicationNextPage");
+            Click("ApplicationNextPage");
             Shoot("independent-pages-2");
 
-            var empty = new TeamSnapshot { TeamId = 1001, LeaderId = 11, LocalPlayerId = 11, Capacity = 5 };
+            var empty = new TeamSnapshot
+            {
+                TeamId = 1001, LeaderId = 11, LocalPlayerId = 11, Capacity = 5, MembershipEpoch = 1, Version = 1,
+            };
             empty.Members.Add(Role(11, "清风", 72, 1, 1));
             Display(empty, "empty-applications");
 
@@ -299,6 +355,40 @@ public static class TeamUiVerification
             window.SetState(state);
             window.Show(TeamPage.Applications);
             Shoot("decision-pending");
+
+            var receivedInvites = new List<TeamInvite>
+            {
+                Invite(301, Role(31, "灯火阑珊", 68, 1, 2), 3),
+                Invite(302, Role(32, "月白", 67, 2, 1), 2),
+                Invite(303, Role(33, "山海故人", 66, 3, 2), 4),
+            };
+            Mirror(NoTeam(11), receivedInvites, "no-team-invites");
+            Mirror(NoTeam(11), new List<TeamInvite>(), "no-team-empty");
+
+            var member = CreateSnapshot();
+            member.LocalPlayerId = 12;
+            member.Applications.Clear();
+            member.ApplicationCount = 2;
+            Mirror(member, null, "member-view");
+
+            var leader = CreateSnapshot();
+            leader.Applications.RemoveRange(2, leader.Applications.Count - 2);
+            Mirror(leader, null, "leader-actions");
+
+            var starting = CreateSnapshot();
+            starting.Applications.RemoveRange(2, starting.Applications.Count - 2);
+            starting.MatchStarting = true;
+            Mirror(starting, null, "match-starting");
+
+            Mirror(leader, null, "highlight-member", highlight: 13, status: "有队员不在线。");
+
+            Mirror(leader, null, null);
+            Click("InviteToTeam");
+            Shoot("invite-modal");
+
+            Mirror(leader, null, null);
+            Click("Kick_12");
+            Shoot("confirm-kick");
             Debug.Log("TEAM_UI_CAPTURE_OK|" + width + "x" + height + "|" + OutputDirectory);
         }
         finally
@@ -315,7 +405,10 @@ public static class TeamUiVerification
 
     private static TeamSnapshot CreateSnapshot()
     {
-        var snapshot = new TeamSnapshot { TeamId = 1001, LeaderId = 11, LocalPlayerId = 11, Capacity = 5 };
+        var snapshot = new TeamSnapshot
+        {
+            TeamId = 1001, LeaderId = 11, LocalPlayerId = 11, Capacity = 5, MembershipEpoch = 1, Version = 1,
+        };
         snapshot.Members.Add(Role(11, "清风", 72, 1, 1));
         snapshot.Members.Add(Role(12, "桂月", 70, 4, 2));
         snapshot.Members.Add(Role(13, "长街听笛", 69, 2, 1));
@@ -328,6 +421,14 @@ public static class TeamUiVerification
 
         return snapshot;
     }
+
+    private static TeamSnapshot NoTeam(ulong localPlayerId) =>
+        new TeamSnapshot { LocalPlayerId = localPlayerId, MembershipEpoch = 2, Version = 0 };
+
+    private static TeamInvite Invite(ulong teamId, TeamRole inviter, uint memberCount) => new TeamInvite
+    {
+        TeamId = teamId, LeaderId = inviter.PlayerId, MemberCount = memberCount, Inviter = inviter, ExpiresAt = 60f,
+    };
 
     private static TeamRole Role(ulong id, string name, uint level, uint profession, uint gender)
     {

@@ -286,7 +286,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             _snapshot.Applications.Add(Role(22, "第二位道友", 60, 2, 2));
             Apply();
-            Assert.That(_state.BeginDecision(21, true), Is.Not.Zero);
+            int token = _state.BeginDecision(21, true);
+            Assert.That(token, Is.Not.Zero);
             _window.SetState(_state);
             _window.Show();
             AssertDecisionsDisabledAndGuarded();
@@ -297,7 +298,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(FindPortrait(21, Members), Is.Null);
             AssertRoleVisible(_snapshot.Applications[0], Applications);
 
-            Apply();
+            // Pushes no longer end an in-flight request; only its own reply does.
+            _state.Complete(token, _snapshot, null);
+            _window.SetState(_state);
             Assert.That(FindButton("Approve_21").interactable, Is.True);
             Assert.That(FindButton("Reject_21").interactable, Is.True);
             Assert.That(FindButton("RefreshTeam").interactable, Is.True);
@@ -372,11 +375,318 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(FindButton("RefreshTeam").interactable, Is.False);
         }
 
+        [Test]
+        public void NoTeam_ShowsCreateApplyAndInvitesColumn()
+        {
+            Mirror(NoTeamSnapshot(), new List<TeamInvite>());
+            _window.Show();
+            int creates = 0;
+            _window.CreateRequested += () => creates++;
+
+            Assert.That(FindContainer("NoTeamCard").gameObject.activeInHierarchy, Is.True);
+            Assert.That(ActiveText(), Does.Contain("收到的邀请"));
+            Assert.That(ActiveText(), Does.Not.Contain("申请列表"));
+            Assert.That(ActiveText(), Does.Contain("我的玩家编号  11"));
+            foreach (string name in new[] { "CreateTeam", "ApplyJoinTeam", "RefreshTeam" })
+                Assert.That(FindButton(name).gameObject.activeInHierarchy, Is.True, name);
+            foreach (string name in new[] { "LeaveTeam", "DisbandTeam", "StartTeamMatch", "InviteToTeam" })
+                Assert.That(FindButton(name).gameObject.activeInHierarchy, Is.False, name);
+            Assert.That(FindButton("CreateTeam").interactable, Is.True);
+            Assert.That(FindButton("ApplyJoinTeam").interactable, Is.True);
+            Assert.That(ActivePortraits(Members), Is.Empty);
+
+            Click("CreateTeam");
+            Assert.That(creates, Is.EqualTo(1));
+            Assert.That(_window.IsModalOpen, Is.False, "Creating a team needs no confirmation.");
+        }
+
+        [Test]
+        public void NoTeam_InviteRowsEmitTeamIdAndChoice()
+        {
+            Mirror(NoTeamSnapshot(), Invites(300));
+            _window.Show();
+            var received = new List<(ulong teamId, bool accept)>();
+            _window.InviteResponseRequested += (teamId, accept) => received.Add((teamId, accept));
+
+            Assert.That(ActiveText(Applications), Does.Contain("邀请你入队"));
+            Assert.That(ActiveText(Applications), Does.Contain("队伍编号 300"));
+            Assert.That(FindPortrait(3000, Applications), Is.Not.Null);
+            Click("AcceptInvite_300");
+            Click("RejectInvite_300");
+            Assert.That(received.Count, Is.EqualTo(2));
+            Assert.That(received[0], Is.EqualTo((300ul, true)));
+            Assert.That(received[1], Is.EqualTo((300ul, false)));
+            Assert.That(_window.IsModalOpen, Is.False, "Answering an invite needs no confirmation.");
+
+            Mirror(NoTeamSnapshot(), Invites(300, 301, 302, 303, 304));
+            Assert.That(ActiveText(), Does.Contain("5 条"));
+            Assert.That(FindButton("ApplicationNextPage").interactable, Is.True);
+            Click("ApplicationNextPage");
+            Assert.That(_window.ApplicationPageIndex, Is.EqualTo(1));
+            Assert.That(ActiveButtons().Any(button => button.name == "AcceptInvite_304"), Is.True);
+            Assert.That(ActiveButtons().Any(button => button.name == "AcceptInvite_300"), Is.False);
+        }
+
+        [Test]
+        public void NoTeam_EmptyInvitesShowsHint()
+        {
+            Mirror(NoTeamSnapshot(), new List<TeamInvite>());
+            _window.Show();
+
+            Assert.That(FindContainer("EmptyInvites").gameObject.activeInHierarchy, Is.True);
+            Assert.That(ActiveText(Applications), Does.Contain("暂无组队邀请"));
+            Assert.That(ActiveText(), Does.Contain("0 条"));
+            Assert.That(FindButton("ApplicationNextPage").gameObject.activeInHierarchy, Is.False);
+        }
+
+        [Test]
+        public void Member_ShowsLeaveOnlyAndApplicationCount()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            _snapshot.LocalPlayerId = 12;
+            _snapshot.Applications.Clear();
+            _snapshot.ApplicationCount = 2;
+            Mirror(_snapshot, null);
+            _window.Show();
+            int leaves = 0;
+            _window.LeaveRequested += () => leaves++;
+
+            Assert.That(ActiveButtons().Any(button => button.name.StartsWith("Kick_")
+                || button.name.StartsWith("Transfer_")), Is.False);
+            foreach (string name in new[] { "DisbandTeam", "StartTeamMatch", "InviteToTeam", "CreateTeam", "ApplyJoinTeam" })
+                Assert.That(FindButton(name).gameObject.activeInHierarchy, Is.False, name);
+            Assert.That(ActiveText(Applications), Does.Contain("入队申请由队长处理"));
+            Assert.That(ActiveText(Applications), Does.Contain("队伍当前有 2 条待处理申请。"));
+            Assert.That(ActiveText(), Does.Contain("你是队员"));
+
+            var leave = FindButton("LeaveTeam");
+            Assert.That(leave.gameObject.activeInHierarchy, Is.True);
+            Assert.That(leave.interactable, Is.True);
+            Click("LeaveTeam");
+            Assert.That(_window.IsModalOpen, Is.True);
+            Assert.That(ActiveText(), Does.Contain("确定离开当前队伍吗？"));
+            Assert.That(leaves, Is.Zero);
+            Click("TeamModalConfirm");
+            Assert.That(leaves, Is.EqualTo(1));
+            Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void Leader_RowActionsOnlyOnOthers()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            TeamRole offline = Role(13, "离线道友", 65, 3, 1);
+            offline.IsOnline = false;
+            _snapshot.Members.Add(offline);
+            Mirror(_snapshot, null);
+            _window.Show();
+            var kicks = new List<ulong>();
+            int transfers = 0;
+            _window.KickRequested += kicks.Add;
+            _window.TransferRequested += _ => transfers++;
+
+            Assert.That(ActiveButtons().Any(button => button.name == "Kick_11" || button.name == "Transfer_11"), Is.False);
+            Assert.That(FindButton("Transfer_12").interactable, Is.True);
+            Assert.That(FindButton("Transfer_13").interactable, Is.False);
+            Assert.That(FindButton("Kick_13").interactable, Is.True);
+            Click("Transfer_13");
+            Assert.That(_window.IsModalOpen, Is.False, "A disabled offline transfer must not open a dialog.");
+
+            Click("Kick_12");
+            Assert.That(_window.IsModalOpen, Is.True);
+            Assert.That(ActiveText(), Does.Contain("确定将 同行道友 请离队伍吗？"));
+            Assert.That(kicks, Is.Empty);
+            Click("TeamModalConfirm");
+            Assert.That(kicks, Is.EqualTo(new List<ulong> { 12 }));
+            Assert.That(_window.IsModalOpen, Is.False);
+
+            Click("Transfer_12");
+            Assert.That(_window.IsModalOpen, Is.True);
+            Assert.That(ActiveText(), Does.Contain("确定将队长转让给 同行道友 吗？"));
+            Click("TeamModalCancel");
+            Assert.That(transfers, Is.Zero);
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(_root.GetComponentsInChildren<UnityEngine.Transform>(true).Any(child => child.name == "TeamModal"), Is.False);
+        }
+
+        [Test]
+        public void MatchStarting_DisablesRosterChangesButKeepsRejectAndInvite()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            _snapshot.MatchStarting = true;
+            Mirror(_snapshot, null);
+            _window.Show();
+            int events = 0;
+            _window.DecisionRequested += (_, approve) => { if (approve) events++; };
+            _window.KickRequested += _ => events++;
+            _window.TransferRequested += _ => events++;
+            _window.LeaveRequested += () => events++;
+            _window.DisbandRequested += () => events++;
+            _window.StartMatchRequested += () => events++;
+            string[] locked = { "Approve_21", "Kick_12", "Transfer_12", "LeaveTeam", "DisbandTeam", "StartTeamMatch" };
+
+            foreach (string name in locked)
+                Assert.That(FindButton(name).interactable, Is.False, name);
+            Assert.That(ButtonText("StartTeamMatch"), Is.EqualTo("集合中…"));
+            Assert.That(FindButton("Reject_21").interactable, Is.True);
+            Assert.That(FindButton("InviteToTeam").interactable, Is.True);
+            Assert.That(ActiveText(), Does.Contain("队伍正在集合进入战斗，名单暂时锁定。"));
+
+            foreach (string name in locked)
+            {
+                Click(name);
+                Assert.That(_window.IsModalOpen, Is.False, name);
+            }
+            Assert.That(events, Is.Zero, "Callbacks must guard against direct invocation of disabled buttons.");
+        }
+
+        [Test]
+        public void InvitePrompt_ValidatesDigitsAndSelf()
+        {
+            Mirror(_snapshot, null);
+            _window.Show();
+            var invites = new List<ulong>();
+            _window.InviteRequested += invites.Add;
+
+            Click("InviteToTeam");
+            Assert.That(_window.IsModalOpen, Is.True);
+            TMP_InputField input = FindInput("TeamTargetInput");
+            Assert.That(input.contentType, Is.EqualTo(TMP_InputField.ContentType.IntegerNumber));
+
+            input.text = "";
+            Click("TeamModalConfirm");
+            Assert.That(FindLabel("TeamModalError").text, Is.Not.Empty);
+            Assert.That(invites, Is.Empty);
+            Assert.That(_window.IsModalOpen, Is.True);
+
+            input.text = "11";
+            Click("TeamModalConfirm");
+            Assert.That(FindLabel("TeamModalError").text, Is.EqualTo("不能填写自己的编号。"));
+            Assert.That(invites, Is.Empty);
+            Assert.That(_window.IsModalOpen, Is.True);
+
+            input.text = "12345";
+            Click("TeamModalConfirm");
+            Assert.That(invites, Is.EqualTo(new List<ulong> { 12345 }));
+            Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void ApplyPrompt_EmitsTargetPlayerId()
+        {
+            Mirror(NoTeamSnapshot(), new List<TeamInvite>());
+            _window.Show();
+            var applications = new List<ulong>();
+            _window.ApplyRequested += applications.Add;
+
+            Click("ApplyJoinTeam");
+            Assert.That(_window.IsModalOpen, Is.True);
+            TMP_InputField input = FindInput("TeamTargetInput");
+            input.text = "";
+            Click("TeamModalConfirm");
+            Assert.That(FindLabel("TeamModalError").text, Is.Not.Empty);
+            Assert.That(applications, Is.Empty);
+
+            input.text = "11";
+            Click("TeamModalConfirm");
+            Assert.That(applications, Is.Empty);
+            Assert.That(_window.IsModalOpen, Is.True);
+
+            input.text = "12345";
+            Click("TeamModalConfirm");
+            Assert.That(applications, Is.EqualTo(new List<ulong> { 12345 }));
+            Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void Busy_DisablesEveryFooterAction()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            Mirror(_snapshot, null, TeamAction.Kick, 12);
+            _window.Show();
+
+            foreach (string name in new[] { "StartTeamMatch", "InviteToTeam", "DisbandTeam", "LeaveTeam",
+                         "CreateTeam", "ApplyJoinTeam", "RefreshTeam" })
+                Assert.That(FindButton(name).interactable, Is.False, name);
+            Assert.That(ButtonText("Kick_12"), Is.EqualTo("处理中"));
+            Assert.That(ButtonText("Transfer_12"), Is.EqualTo("转让"));
+            Assert.That(FindButton("Kick_12").interactable, Is.False);
+        }
+
+        [Test]
+        public void HighlightedMember_RowIsTinted()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            Mirror(_snapshot, null, highlight: 12, status: "有队员不在线。");
+            _window.Show();
+
+            Assert.That(RowPaper("TeamMemberSlot_1").color, Is.Not.EqualTo(Color.white));
+            Assert.That(RowPaper("TeamMemberSlot_0").color, Is.EqualTo(Color.white));
+            Assert.That(ActiveText(), Does.Contain("有队员不在线。"));
+        }
+
+        [Test]
+        public void Back_ClosesModalBeforeWindow()
+        {
+            _window.Show();
+            Click("LeaveTeam");
+            Assert.That(_window.IsModalOpen, Is.True);
+            Assert.That(ActiveText(), Does.Contain("你是队长，离队后队长将自动转给在线队员。确定离开吗？"));
+
+            _window.Back();
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(_window.IsVisible, Is.True);
+
+            _window.Back();
+            Assert.That(_window.IsVisible, Is.False);
+        }
+
+        [Test]
+        public void ResetSession_ClosesModal()
+        {
+            _window.Show();
+            Click("InviteToTeam");
+            Assert.That(_window.IsModalOpen, Is.True);
+
+            _window.ResetSession();
+
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(_window.IsVisible, Is.False);
+            Assert.That(_root.GetComponentsInChildren<UnityEngine.Transform>(true).Any(child => child.name == "TeamModal"), Is.False);
+        }
+
+        [Test]
+        public void EmptyName_ShowsPlayerIdFallback()
+        {
+            _snapshot.Members.Add(Role(12, "", 66, 2, 2));
+            Mirror(_snapshot, null);
+            _window.Show();
+
+            Assert.That(ActiveText(Members), Does.Contain("道友 12"));
+            Assert.That(ActiveText(Members), Does.Not.Contain("无名道友"));
+        }
+
         private void Apply()
         {
             _state.SetSnapshot(_snapshot);
             _window.SetState(_state);
         }
+
+        // Mirrors a client state wholesale; unlike SetSnapshot it never drops a different team.
+        private void Mirror(TeamSnapshot snapshot, List<TeamInvite> invites, TeamAction pending = TeamAction.None,
+            ulong target = 0, ulong highlight = 0, string status = "")
+        {
+            _state.Sync(snapshot, invites, true, true, pending, target, highlight, status);
+            _window.SetState(_state);
+        }
+
+        private static TeamSnapshot NoTeamSnapshot() => new TeamSnapshot { LocalPlayerId = 11, MembershipEpoch = 1 };
+
+        private static List<TeamInvite> Invites(params ulong[] teamIds) => teamIds.Select(teamId => new TeamInvite
+        {
+            TeamId = teamId, LeaderId = teamId * 10, MemberCount = 2, ExpiresAt = 60f,
+            Inviter = Role(teamId * 10, "邀请道友" + teamId, 60, (uint)(teamId % 4 + 1), (uint)(teamId % 2 + 1)),
+        }).ToList();
 
         private static TeamSnapshot Snapshot()
         {
@@ -465,6 +775,30 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Button button = _root.GetComponentsInChildren<Button>(true).FirstOrDefault(candidate => candidate.name == name);
             Assert.That(button, Is.Not.Null, "未找到按钮：" + name);
             return button;
+        }
+
+        private string ButtonText(string name) => FindButton(name).GetComponentInChildren<TMP_Text>(true).text;
+
+        private TMP_InputField FindInput(string name)
+        {
+            TMP_InputField input = _root.GetComponentsInChildren<TMP_InputField>().FirstOrDefault(candidate => candidate.name == name);
+            Assert.That(input, Is.Not.Null, "未找到输入框：" + name);
+            return input;
+        }
+
+        private TMP_Text FindLabel(string name)
+        {
+            TMP_Text label = _root.GetComponentsInChildren<TMP_Text>().FirstOrDefault(candidate => candidate.name == name);
+            Assert.That(label, Is.Not.Null, "未找到文字：" + name);
+            return label;
+        }
+
+        private Image RowPaper(string rowName)
+        {
+            Image paper = FindContainer(rowName).GetComponentsInChildren<Image>()
+                .FirstOrDefault(image => image.name == "member_row");
+            Assert.That(paper, Is.Not.Null, "未找到行底图：" + rowName);
+            return paper;
         }
     }
 }

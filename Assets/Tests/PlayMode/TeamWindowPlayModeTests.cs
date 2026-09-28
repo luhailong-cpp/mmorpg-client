@@ -219,6 +219,38 @@ namespace MmorpgClient.Tests.PlayMode
             });
         }
 
+        [UnityTest]
+        public IEnumerator ConfirmModal_KeepsInputBlockedAndRestoresOpenerFocus()
+        {
+            return WithEventSystem(events =>
+            {
+                bool keyboardBefore = GameplayInputGate.IsKeyboardBlocked;
+                bool pointerBefore = GameplayInputGate.IsPointerBlocked;
+                _window.Show();
+                var leave = FindButton("LeaveTeam");
+                Assert.That(leave.IsInteractable(), Is.True);
+                events.SetSelectedGameObject(leave.gameObject);
+
+                Click("LeaveTeam");
+
+                Assert.That(_window.IsModalOpen, Is.True);
+                Assert.That(GameplayInputGate.IsKeyboardBlocked, Is.True);
+                Assert.That(GameplayInputGate.IsPointerBlocked, Is.True);
+                Assert.That(events.currentSelectedGameObject, Is.SameAs(FindButton("TeamModalCancel").gameObject));
+
+                Click("TeamModalCancel");
+
+                Assert.That(_window.IsModalOpen, Is.False);
+                Assert.That(_window.IsVisible, Is.True);
+                Assert.That(events.currentSelectedGameObject, Is.SameAs(leave.gameObject));
+                Assert.That(GameplayInputGate.IsKeyboardBlocked, Is.True);
+
+                _window.Hide();
+                Assert.That(GameplayInputGate.IsKeyboardBlocked, Is.EqualTo(keyboardBefore));
+                Assert.That(GameplayInputGate.IsPointerBlocked, Is.EqualTo(pointerBefore));
+            });
+        }
+
         private IEnumerator WithEventSystem(System.Action<EventSystem> verify)
         {
             _previousEventSystem = EventSystem.current;
