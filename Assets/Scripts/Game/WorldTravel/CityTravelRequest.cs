@@ -11,24 +11,50 @@ namespace MmorpgClient.Game.WorldTravel
         /// <summary>
         /// 请求被受理之后，客户端至少要再等这么久才能宣布“没等到结果”。同区换图与跨区传送共用这一个数。
         /// 依据是服务端的交接预算：受理后源场景可能转入“冻结、存盘、重发进场请求”的归属交接
-        /// （同区换图落到别的节点时、以及每一次跨区传送都走它），存盘与等应答各有一道 30 秒的看门狗，
-        /// 前后串行（服务端 player_lifecycle.cpp 的 kTravelReplyBudgetSec 同时用于这两段），
-        /// 最坏约 60 秒才有结论：要么入场通知到达，要么补推一条失败提示。
-        /// 余下 15 秒留给网络往返和服务端核实归属的那次查询。
+        /// （同区换图落到别的节点时、以及每一次跨区传送都走它）。正常路径是存盘与等应答两道 30 秒的看门狗
+        /// 前后串行，最坏约 60 秒有结论：要么入场通知到达，要么补推一条失败提示。
+        /// 核实不了归属的情形（冻结期间服务端存储不可用）由服务端的冻结硬上限兜底：
+        /// travel_freeze_cap::kFreezeCap = 70 秒（单调时钟、1 秒扫描，最迟约 71 秒出结论；
+        /// 服务端 docs/design/cross-zone-scene-travel.md §12.3“冻结上限”，另案落码）。到期时要么解冻并推失败提示，
+        /// 要么推失败提示后紧跟踢线 34（原因就是同一个提示码，客户端显示原因后回选服）。
+        /// 所以本常量必须 ≥ 该上限 + 扫描 + 请求与提示的单程投递余量：按 71 秒算只余 4 秒。
+        /// 两条路的起算点不同，这 4 秒要盖的东西也不同：
+        /// 跨区时本预算从发请求之前就开始计（<see cref="GameClient.BeginZoneTravel"/>），服务端在请求到达源场景的
+        /// 那次处理里就冻结，余量盖的是请求与提示各一次单程；
+        /// 同区换图从受理应答到达才起算（CityTravelUiRoot 在 EnterScene 的应答回调里 Accept），而受理应答在源场景
+        /// 把请求转给 scene_manager 之后就回了，服务端冻结要等 scene_manager 回复“需要交接”之后才开始，
+        /// 所以这 4 秒还要盖住那一次往返。超出余量的后果：解冻提示晚于本预算到达时文案被吞（人仍在原地）；
+        /// 踢线与在途状态无关，照样断线并带原因。
+        /// 上限落地之前，存储不可用时服务端冻结没有上界，本常量到期后由地图窗“底层已不再等待”分支收场。
         /// 比它短的后果：客户端先收起遮罩报“未收到抵达消息”，玩家却还被服务端冻结着（走不动、再点被拒），
         /// 随后要么突然换图成功，要么失败提示到达时请求已不在途、原因被吞掉。
         /// 客户端分不清某次同区换图走没走交接（服务端不通知），只能一律按交接的预算等；
         /// 代价是普通换图的应答丢失时，遮罩也要等满这个数才收起。
-        /// 盖不住的情形：服务端存储不可用时会反复重挂看门狗、一直冻结到恢复，任何有限上限都会先到期。
-        /// 服务端改那个常量或再加一段看门狗时，必须同步改这里。
+        /// 服务端 travel_freeze_cap.h 的 kClientAcceptedHandoffBudget 镜像本常量，并用 static_assert 守住
+        /// “上限 + 扫描 &lt; 本常量”；服务端改看门狗、改冻结上限，或这里改值时，两边必须同一批同步改。
+        /// 跨区总上限 <see cref="CrossZoneTimeoutSeconds"/> 由本常量推出，会自动跟随。
         /// </summary>
         public const double AcceptedHandoffBudgetSeconds = 75.0;
         /// <summary>
-        /// 跨区传送的等待上限。跨区在源场景交接（最坏约 60 秒，见 <see cref="AcceptedHandoffBudgetSeconds"/>）
-        /// 之后，还要换连接、验票、重新登录、进游戏、等入场通知，几段相加远超同区。
-        /// 用同区的上限会在传送途中提前报“未收到抵达消息”，随后玩家却真的到了。
+        /// 跨区总上限在两段有界最坏值之上再留的余量（秒）。盖的是：换连接时 OpenGate 的同步建连
+        /// （阻塞主线程，但计时照走）、各等待循环按帧检查的粒度、msg 124 进入 Poll 到换连接流程启动之间的派发延迟。
+        /// 盖不住的残余：探测通过之后目标 gate 才变黑洞时，同步建连约阻塞 21 秒。
         /// </summary>
-        public const double CrossZoneTimeoutSeconds = 120.0;
+        public const double CrossZoneSlackSeconds = 15.0;
+        /// <summary>
+        /// 跨区传送的等待上限，由两段客户端自己的上界推出（服务端 docs/design/cross-zone-scene-travel.md §12.5.4 CL-8）：
+        /// ① 还连着老 gate、等 msg 124 或失败提示：≤ <see cref="AcceptedHandoffBudgetSeconds"/>（75 秒）。
+        ///    超过它底层就不再等待，地图窗走“底层已不再等待”分支收场，不靠本上限；
+        ///    所以地图窗在途时收到 msg 124，一定是在这 75 秒之内。
+        /// ② 收到 msg 124 之后换连接：≤ <see cref="GameClient.RedirectFlowWorstCaseSec"/>
+        ///    （探测 5 + 验票 10 + Login 15 + EnterGame 15 + 等入场 60 = 105 秒）。
+        /// 二者相加 180 秒，再加 <see cref="CrossZoneSlackSeconds"/> 15 秒，共 195 秒。
+        /// 比它短，会在换连接途中先报“未收到抵达消息”、随后玩家又真的到了。
+        /// 这个值只是换连接阶段的兜底：常见失败（失败提示、踢线、断线、底层 75 秒到期）都会更早收场。
+        /// 常量表达式在编译期内联，任何一段改值都会跟着变；不要改回字面量。
+        /// </summary>
+        public const double CrossZoneTimeoutSeconds =
+            AcceptedHandoffBudgetSeconds + GameClient.RedirectFlowWorstCaseSec + CrossZoneSlackSeconds;
         public uint Destination { get; private set; }
         public bool Festival { get; private set; }
         public bool IsPending { get; private set; }

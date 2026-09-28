@@ -64,8 +64,13 @@ namespace MmorpgClient.Game
         // 单独一个布尔而不是拿 !InGame 反推:游戏内换图失败也会收到同一个码(kEnterSceneFailed),
         // 那条路不在等进场,不能被这里的快速收口误伤。
         private bool _awaitingSceneEntry;
-        private uint _enterFailedTipId;        // 等进场期间收到的进场失败 tip(0 = 没收到);判据见 IsEnterFailureTip
-        // 本次管线是不是被"服务端明说进场失败"收掉的。与上面两个不同,它**不**随 DisconnectInternal 清零:
+        // 等进场期间收到的进场失败 tip(0 = 没收到);判据见 IsEnterFailureTip。
+        // 刻意**不**随 DisconnectInternal 清零:服务端推完进场失败 tip 常紧跟断线或踢线,tip 与断线哨兵
+        // 会在同一次 Poll 里先后派发;断线若抹掉它,等入场循环只能判成"连接已断开",丢掉真正的原因。
+        // 复位点只有一个:唯一读者 EnterGameAndWaitScene 在发出 EnterGame 之前自行复位;写入方(msg 23 处理器)
+        // 只在 _awaitingSceneEntry 为真时写,而那个标志照常随断线清。以后新增读者必须自己复位。
+        private uint _enterFailedTipId;
+        // 本次管线是不是被"服务端明说进场失败"收掉的。与 _awaitingSceneEntry 不同,它**不**随 DisconnectInternal 清零:
         // FailPipeline 先拆连接、后回调 onError,回调里还要靠它区分"这段失败文案能不能给玩家看"。
         // 每次 EnterGameAndWaitScene / RedirectFlow 换连接前复位。
         private bool _enterRejectedByServer;
@@ -81,6 +86,11 @@ namespace MmorpgClient.Game
         // 收口点一共四个,缺一个就会把"传送中"卡死:msg 124、msg 23、断线、Tick 超时。
         private bool _travelPending;
         private float _travelDeadline;         // realtimeSinceStartup;_travelPending 的兜底期限
+        // 当前连接被 gate 明确拒票(ClientTokenVerifyResponse.success=false),供验票等待当帧收口。
+        // 它是每条连接的握手状态,只在 AdoptGate 复位;刻意**不**随 DisconnectInternal 清:gate 拒票后紧跟
+        // shutdown,拒绝应答与断线哨兵常在同一次 Poll 里先后派发,断线若清掉它,验票等待只能判成
+        // "连接已断开",丢掉真正的原因。具体拒绝原因只进 "[gate] token rejected" 日志。
+        private bool _tokenRejectedByGate;
         private bool _disconnectNotificationSent = true;
         private bool _disconnectInProgress;
 
@@ -525,15 +535,37 @@ namespace MmorpgClient.Game
                 FailPipeline(gen, onError, $"token verify: {ex.Message}");
                 yield break;
             }
-            float deadline = Time.realtimeSinceStartup + 10f;
-            while (!TokenVerified && Time.realtimeSinceStartup < deadline)
+            // 验票等待(服务端 docs/design/cross-zone-scene-travel.md §12.5.4 CL-8):gate 明确拒票、或这条连接
+            // 已经没了,都当帧收口,不再干等满 TokenVerifyTimeoutSec —— 重定向路径上干等只会让 _redirecting 多挂。
+            // 循环形状与 Call 同序:先 Tick(派发本帧收到的帧与断线哨兵)、再判;Tick 里若启动了新管线
+            // (登录期重定向),Tick 之后的世代检查先退出,不会被误判成断线。
+            // 具体拒绝原因只进 "[gate] token rejected" 日志;首登路径的 onError 会直接显示在选服界面,
+            // 所以给人看的只有固定句子。
+            var verifyingGate = _gate;
+            float deadline = Time.realtimeSinceStartup + TokenVerifyTimeoutSec;
+            var verify = PipelineWaitOutcome.Waiting;
+            while (true)
             {
                 if (gen != _pipelineGen) yield break;
                 Tick();
+                if (gen != _pipelineGen) yield break;
+                verify = ClassifyPipelineWait(TokenVerified, _tokenRejectedByGate,
+                    IsStillCurrentGate(verifyingGate), Time.realtimeSinceStartup, deadline);
+                if (verify != PipelineWaitOutcome.Waiting) break;
                 yield return null;
             }
-            if (gen != _pipelineGen) yield break;
-            if (!TokenVerified) { FailPipeline(gen, onError, "token verify timeout"); yield break; }
+            if (verify == PipelineWaitOutcome.RejectedByServer)
+            {
+                FailPipeline(gen, onError, "登录凭证校验未通过,请重新登录");
+                yield break;
+            }
+            if (verify == PipelineWaitOutcome.ConnectionLost)
+            {
+                Log("[gate] connection lost while waiting for token verify");
+                FailPipeline(gen, onError, "验证登录凭证时连接已断开");
+                yield break;
+            }
+            if (verify == PipelineWaitOutcome.TimedOut) { FailPipeline(gen, onError, "token verify timeout"); yield break; }
             // 验票通过 = 这条连接确实挂在目标 gate 上了,"所在区"从这一刻起才算数。
             // 重定向时 zoneId 形参恒为 0(它只管选角过滤),所在区由 RedirectFlow 从票据里解出来。
             CurrentZoneId = _redirecting ? _redirectZoneId : zoneId;
@@ -699,27 +731,43 @@ namespace MmorpgClient.Game
 
             // Match the production robot's authoritative scene-ready budget:
             // a saturated scene loop can legitimately delay the first push.
-            float deadline = Time.realtimeSinceStartup + 60f;
-            while (!_enteredScene && _enterFailedTipId == 0 && Time.realtimeSinceStartup < deadline)
+            //
+            // 连接已失(断线,或被踢线 34)时当帧收口(服务端 docs/design/cross-zone-scene-travel.md §12.5.4 CL-8):
+            // 那之后还干等满 SceneEntryTimeoutSec,只会让 RedirectFlow 的 _redirecting 多挂;断线通知已由
+            // HandleTransportDisconnected / 踢线处理器发过,这里只补管线自己的收口。
+            // 循环形状与验票等待相同(先 Tick、再判,见 ConnectAndEnter);判定优先级见 ClassifyPipelineWait。
+            var enterGate = _gate;
+            float deadline = Time.realtimeSinceStartup + SceneEntryTimeoutSec;
+            var entry = PipelineWaitOutcome.Waiting;
+            while (true)
             {
                 if (gen != _pipelineGen) yield break;
                 Tick();
+                if (gen != _pipelineGen) yield break;
+                entry = ClassifyPipelineWait(_enteredScene, _enterFailedTipId != 0,
+                    IsStillCurrentGate(enterGate), Time.realtimeSinceStartup, deadline);
+                if (entry != PipelineWaitOutcome.Waiting) break;
                 yield return null;
             }
-            if (gen != _pipelineGen) yield break;
             // 进场通知与失败 tip 同帧到达时以进场为准:人已经进去了,不能再把连接拆掉。
-            if (!_enteredScene && _enterFailedTipId != 0)
+            if (entry == PipelineWaitOutcome.RejectedByServer)
             {
-                // 服务端明说"这次进场没成"(契约见 IsEnterFailureTip),不必再等满 60s。
+                // 服务端明说"这次进场没成"(契约见 IsEnterFailureTip),不必再等满期限。
                 // 具体原因只在服务端日志里,这里只有这一个码可说。与超时同一条收口:拆连接、回选服。
-                // (FailPipeline → DisconnectInternal 会清掉 _awaitingSceneEntry / _enterFailedTipId。)
+                // (_enterFailedTipId 不随断线清零,见字段注释;所以它与断线同一次 Poll 派发时仍判成这一支。)
                 uint failedTip = _enterFailedTipId;
                 Log($"[enter] server reported enter failure tip={failedTip}");
                 _enterRejectedByServer = true;
                 FailPipeline(gen, onError, DescribeTravelTip(failedTip));
                 yield break;
             }
-            if (!_enteredScene)
+            if (entry == PipelineWaitOutcome.ConnectionLost)
+            {
+                Log("[enter] connection lost while waiting for scene entry");
+                FailPipeline(gen, onError, "等待进入场景时连接已断开");
+                yield break;
+            }
+            if (entry == PipelineWaitOutcome.TimedOut)
             {
                 // 兜底:服务端的失败通知是 best-effort(推不到就只有这条超时)。
                 // Stop polling this gate before surfacing the timeout so a
@@ -762,6 +810,20 @@ namespace MmorpgClient.Game
         // 一条都没丢;ConnectAndEnter 的等待循环每帧调 Tick() → _gate.Poll(),队列自然被排空。
         // 换句话说 inbox 本身就是 robot 那个 deferred 队列,而且不需要显式 replay。
         // (对应地,GateTcpClient.Poll 里的 _disposed 判据保证旧连接残留的帧不会漏到新会话上。)
+        //
+        // 各等待点怎么收口(服务端 docs/design/cross-zone-scene-travel.md §12.5.4 CL-8;
+        // 有界各段之和见 RedirectFlowWorstCaseSec):
+        //   探测(ProbeGate)                 ≤ RedirectProbeTimeoutSec,之后查世代;
+        //   验票(ConnectAndEnter)           ≤ TokenVerifyTimeoutSec,gate 明确拒票或连接已失当帧收口;
+        //   Login / EnterGame                走 Call,各 ≤ RpcTimeoutSec,断线当帧收口;
+        //   等入场(EnterGameAndWaitScene)   ≤ SceneEntryTimeoutSec,进场失败 tip 或连接已失当帧收口。
+        // 验票与等入场的判定共用 ClassifyPipelineWait,"连接已失"只看主线程的 _gate(IsStillCurrentGate)。
+        // 三个例外,不在任何上界内:
+        //   · 选角:只在 _redirectPlayerId==0 时出现,等的是玩家操作,本来就没有上界;
+        //   · OpenGate 同步建连:阻塞主线程,时长由操作系统决定(探测通过后目标才变黑洞时约 21s);
+        //   · 第二条腿上再来一条 msg 124:因 _redirecting 被忽略,等入场仍要等满期限。按 §12.7
+        //     第二条腿走票据分支、不会再重定向,正常路径不可达。
+        // finally 里清 _redirecting 的时机不变:上面各点收口越早,它清得越早。
 
         /// <summary>
         /// 一条登录会话允许连续跟随的重定向次数上限,与 robot 的 MaxRedirectHops 同值。
@@ -772,6 +834,26 @@ namespace MmorpgClient.Game
 
         /// <summary>目标 gate 可达性探测预算(秒),与 robot redirectDialTimeout 同值。</summary>
         private const float RedirectProbeTimeoutSec = 5f;
+
+        /// <summary>验票等待预算(秒):发出 ClientTokenVerifyRequest 后等应答(ConnectAndEnter)。</summary>
+        private const float TokenVerifyTimeoutSec = 10f;
+
+        /// <summary>单次请求-响应的超时(秒),见 <see cref="Call{TResp}"/>。</summary>
+        private const float RpcTimeoutSec = 15f;
+
+        /// <summary>EnterGame 受理之后等 NotifyEnterScene 的预算(秒),见 EnterGameAndWaitScene。</summary>
+        private const float SceneEntryTimeoutSec = 60f;
+
+        /// <summary>
+        /// 收到 msg 124 之后,RedirectFlow 换连接这一段有界各段的最坏耗时(秒)
+        /// = 探测 + 验票 + 2 个 RPC + 等入场。2 个 RPC 指新连接上的 Login 与 EnterGame。
+        /// 不含选角(只在 _redirectPlayerId==0 时出现,等玩家操作,没有上界)与 OpenGate 的同步建连
+        /// (时长由操作系统决定)—— 后者连同按帧检查的粒度,由 CityTravelRequest.CrossZoneSlackSeconds 的余量去盖。
+        /// <see cref="CityTravelRequest.CrossZoneTimeoutSeconds"/> 由它推出;别处不许手抄这个和,
+        /// 任何一段改值,总上限都在编译期跟着变。
+        /// </summary>
+        public const float RedirectFlowWorstCaseSec =
+            RedirectProbeTimeoutSec + TokenVerifyTimeoutSec + 2f * RpcTimeoutSec + SceneEntryTimeoutSec;
 
         /// <summary>
         /// 只做本地可判的检查,不碰网络;返回 null 表示通过,否则是给人看的失败原因。
@@ -799,11 +881,14 @@ namespace MmorpgClient.Game
             //      expire_timestamp > now,过期即回 token_expired 并关连接
             //      (cpp/nodes/gate/handler/rpc/client_message_processor.cpp "Check expiry" 段)。
             //
-            // 票据真过期时怎么收场:目标 gate 回 ClientTokenVerifyResponse(success=false) 后关连接,
-            // 客户端记一条 "[gate] token rejected: token expired",随后新连接的断线经
-            // HandleTransportDisconnected 通知 UI(此时 DisconnectReason 为 null,显示的是通用断线文案);
-            // ConnectAndEnter 的验票等待(10s)超时后再走 FailPipeline → RedirectFlow 的 onError,补一条
-            // LogError 与状态栏文案,断线通知已发过、不会重复。会话同样报废,但判定出自服务端。
+            // 票据真过期时怎么收场:目标 gate 回 ClientTokenVerifyResponse(success=false) 后立刻 shutdown
+            // (延迟强关只是兜底),拒绝应答与 FIN 背靠背到达,通常和断线哨兵在同一次 Poll 里先后派发:
+            // 客户端先记一条 "[gate] token rejected: token expired",随后哨兵经 HandleTransportDisconnected
+            // 发出通用断线通知(此时 DisconnectReason 为 null,显示的是通用断线文案);ConnectAndEnter 的
+            // 验票等待在同一帧判成"被拒",走 FailPipeline → RedirectFlow 的 onError,补一条 LogError 与
+            // 状态栏文案,断线通知已发过、不会重复。
+            // 拒绝应答单独先到(FIN 晚一个 Poll)时,FailPipeline 当帧就 Dispose 了连接,哨兵不再派发,
+            // 由 onError 发出唯一一次带原因的通知。两种时序的最终状态栏相同。会话同样报废,但判定出自服务端。
             //
             // 调用方仍据 pastDeadlineSec 打一条日志,专门用来排查玩家时钟偏差:它是本机时间越过 deadline
             // 的秒数;服务端签发即下发,所以它加上 300 近似就是"本机比服务端快了多少"(还含网络延迟)。
@@ -1030,8 +1115,10 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 传送失败码 → 给人看的文案。码只写枚举名、不写数字:号由服务端导表器(data/tip/Tip.xlsx)发,
-        /// 手抄的数字下次导表就可能对不上(AGENTS.md §7.5)。枚举来自
-        /// generated/code/proto/tip/scene_error_tip.proto,已收进 tools/gen_proto.ps1。
+        /// 手抄的数字下次导表就可能对不上(AGENTS.md §7.5)。枚举来自 generated/code/proto/tip/ 下的
+        /// scene_error_tip / cross_server_error_tip / common_error_tip 三份 proto,都已收进 tools/gen_proto.ps1。
+        /// 覆盖传送链会回到客户端的全部码(服务端 docs/design/cross-zone-scene-travel.md §12.5.4 CL-6):
+        /// 同步拒绝走 TravelToZone 应答体,受理后的失败走 msg 23,未成且回不到原地时再带同码踢线 34。
         /// 认不出的码退回裸编号 —— 宁可显示得难看,也不要编一个可能是错的原因。
         /// </summary>
         public static string DescribeTravelTip(uint tipId) => tipId switch
@@ -1041,11 +1128,17 @@ namespace MmorpgClient.Game
             (uint)scene_error.KZoneTravelInTeam => "队伍中无法跨区传送,请先退出队伍。",
             (uint)scene_error.KZoneTravelTargetBusy => "目标区暂时繁忙,请稍后再试。",
             (uint)scene_error.KEnterSceneFailed => "进入场景失败,请稍后再试。",
-            // 下面两条是同步拒绝(走响应体),不属于 IsTravelFailureTip 认的"受理后失败"。
-            // 还缺一条 kSceneTransferInProgress:它在 cross_server_error_tip.proto 里,客户端还没有
-            // 那个枚举的生成物,**不手写数字**,等 gen_proto.ps1 收进该文件后再补。
+            // 以下都是同步拒绝(走响应体),不属于 IsTravelFailureTip 认的"受理后失败",所以不进那个判据:
+            // 在途期间一条同码的推送若被当成失败,会把一次还没结束的传送判死。
             (uint)scene_error.KEnterSceneSceneNotFound => "目标地图不存在或未开放。",
             (uint)scene_error.KEnterSceneChangingScene => "正在切换场景,请稍候再试。",
+            // 服务端还挂着一次归属交接(跨区传送,或同 zone 跨节点换图的冻结)时又收到 TravelToZone。
+            // 客户端自己的在途闸在 TravelToZone 的 RPC 超时(RpcTimeoutSec)后就放开了,服务端交接可能
+            // 仍在进行,这时再点一次就会收到它。
+            (uint)cross_server_error.KSceneTransferInProgress => "上一次传送仍在处理中,请稍后再试。",
+            // TravelToZone 不是 GM 消息,这条 RPC 上的 kFeatureUnavailable 只来自服务端的"实体退出中"闸
+            // (停机 / 排空 / 身份冲突时,连接还在但实体正在退出),说成"暂时无法传送"不算编造原因。
+            (uint)common_error.KFeatureUnavailable => "当前无法传送,请稍后再试。",
             _ => $"传送失败(tip={tipId})",
         };
 
@@ -1097,6 +1190,41 @@ namespace MmorpgClient.Game
         public static ulong ResolveRedirectPlayerId(ulong currentPlayerId, ulong enterRequestPlayerId) =>
             currentPlayerId != 0 ? currentPlayerId : enterRequestPlayerId;
 
+        /// <summary>管线等待点(验票、等入场)每一帧的判定结果,见 <see cref="ClassifyPipelineWait"/>。</summary>
+        public enum PipelineWaitOutcome
+        {
+            Waiting,
+            Succeeded,
+            RejectedByServer,
+            ConnectionLost,
+            TimedOut,
+        }
+
+        /// <summary>
+        /// 管线等待点的纯判定(ConnectAndEnter 的验票等待、EnterGameAndWaitScene 的等入场共用)。
+        /// 优先级:成功 &gt; 服务端明确拒绝 &gt; 连接已失 &gt; 到期,理由:
+        ///  - 成功优先:沿用"进场通知与失败 tip 同帧时以进场为准"的约定(人已经进去了,不能再拆连接)。
+        ///    断线会经 DisconnectInternal 清掉 _enteredScene / TokenVerified,所以断线一旦派发,
+        ///    "成功"就不可能再压过它 —— 连接没了,进去了也没用。
+        ///  - 拒绝优先于断线:gate 拒票后紧跟 shutdown,服务端推进场失败 tip 后也常紧跟踢线;拒绝与断线哨兵
+        ///    常在同一次 Poll 里先后派发,判成断线会丢掉真正的原因。
+        ///  - 到期放在最后:<paramref name="now"/> &gt;= <paramref name="deadline"/> 才算到期,
+        ///    与原来 while (now &lt; deadline) 的语义一致。
+        /// <paramref name="connectionAlive"/> 必须是主线程判据(<see cref="IsStillCurrentGate"/>),
+        /// **不得**读 GateTcpClient.Connected:读线程在 EOF 时先翻 _running、后排断线哨兵,排在哨兵前面的
+        /// 拒绝应答 / 进场失败 tip / NotifyEnterScene(乃至 msg 124)这时还在 inbox 里没派发,拿它判断线
+        /// 会随机丢掉原因。
+        /// </summary>
+        public static PipelineWaitOutcome ClassifyPipelineWait(bool succeeded, bool rejectedByServer,
+                                                               bool connectionAlive, float now, float deadline)
+        {
+            if (succeeded) return PipelineWaitOutcome.Succeeded;
+            if (rejectedByServer) return PipelineWaitOutcome.RejectedByServer;
+            if (!connectionAlive) return PipelineWaitOutcome.ConnectionLost;
+            if (now >= deadline) return PipelineWaitOutcome.TimedOut;
+            return PipelineWaitOutcome.Waiting;
+        }
+
         /// <summary>
         /// 从服务端签发的 gate 票据里**只读**解出目标 gate 所属的 zone:优先 target_zone_id(跨区传送票),
         /// 为 0 时取 zone_id。解析失败或两者皆 0 返回 0,由调用方决定怎么办。
@@ -1119,8 +1247,9 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 进入"传送在途"。返回 null = 放行,否则是给人看的拒绝原因。只给 <see cref="ZoneTravelClient"/> 用。
-        /// <paramref name="budgetSec"/> 必须大于服务端交接的最坏时长(存盘与等应答两道看门狗串行,
-        /// 各 kTravelReplyBudgetSec=30s,合计约 60s;取值见 ZoneTravelClient.TravelBudgetSec),否则客户端会抢在
+        /// <paramref name="budgetSec"/> 必须大于服务端交接出结论的最坏时长:冻结硬上限 70s
+        /// (travel_freeze_cap::kFreezeCap,单调时钟)+ 1s 扫描,最迟约 71s(取值与余量见
+        /// ZoneTravelClient.TravelBudgetSec / CityTravelRequest.AcceptedHandoffBudgetSeconds),否则客户端会抢在
         /// 服务端之前宣布超时,随后到达的 msg 124 又把人搬走,UI 上就是"先报失败、后传送成功"。
         /// </summary>
         public string BeginZoneTravel(float budgetSec)
@@ -1261,6 +1390,7 @@ namespace MmorpgClient.Game
             _pending.Clear();
             _pendingIdsByMsg.Clear();
             TokenVerified = false;
+            _tokenRejectedByGate = false; // 每条连接的握手状态,只在这里复位(见字段注释)
             _gate = fresh;
             _disconnectNotificationSent = false;
         }
@@ -1312,7 +1442,18 @@ namespace MmorpgClient.Game
         }
 
         /// <summary>
-        /// 请求-响应调用(协程,15s 超时)。public 供 BattleClient 等子系统经
+        /// 管线等待点的"连接还在"判据:等待开始时捕获的那条连接仍是当前连接。只读主线程状态:
+        ///  - _gate 只在主线程上变:该连接的断线哨兵被派发(HandleTransportDisconnected → DisconnectInternal)、
+        ///    显式断线或踢线、新管线接管(那时世代已变,等待循环会先按世代退出);
+        ///  - 读线程把断线哨兵排在该连接全部数据帧之后,所以这里翻成 false 时,之前到达的帧都已派发过;
+        ///  - null 视为已失:等待开始时连接可能已被同一次 Poll 里的哨兵摘掉。
+        /// 不读 GateTcpClient.Connected 的理由见 <see cref="ClassifyPipelineWait"/>。半开 TCP 不会产生哨兵,
+        /// 只能靠各段期限兜底。
+        /// </summary>
+        private bool IsStillCurrentGate(GateTcpClient gate) => gate != null && ReferenceEquals(_gate, gate);
+
+        /// <summary>
+        /// 请求-响应调用(协程,<see cref="RpcTimeoutSec"/> 超时)。public 供 BattleClient 等子系统经
         /// 传输接口复用同一条管线;回调全部落在主线程(Tick 驱动)。
         /// </summary>
         public IEnumerator Call<TResp>(uint messageId, IMessage request,
@@ -1364,7 +1505,7 @@ namespace MmorpgClient.Game
                     HandleTransportDisconnected();
                 yield break;
             }
-            float deadline = Time.realtimeSinceStartup + 15f;
+            float deadline = Time.realtimeSinceStartup + RpcTimeoutSec;
             while (!done && Time.realtimeSinceStartup < deadline)
             {
                 Tick();
@@ -1420,7 +1561,12 @@ namespace MmorpgClient.Game
             if (msg is ClientTokenVerifyResponse tvr)
             {
                 if (tvr.Success) TokenVerified = true;
-                else Log($"[gate] token rejected: {tvr.Error}");
+                else
+                {
+                    // 锁存给验票等待当帧收口用;原因只进日志(见 _tokenRejectedByGate)。
+                    _tokenRejectedByGate = true;
+                    Log($"[gate] token rejected: {tvr.Error}");
+                }
                 return;
             }
             if (msg is GateTcpClient.DisconnectedSentinel) return;
@@ -1823,7 +1969,8 @@ namespace MmorpgClient.Game
                 _sceneAppearances.Clear();
                 _enteredScene = false;
                 _awaitingSceneEntry = false;
-                _enterFailedTipId = 0;
+                // _enterFailedTipId 刻意不清:唯一读者 EnterGameAndWaitScene 在开头复位;断线不能抹掉同一次 Poll 里
+                // 先派发的进场失败 tip,否则等入场循环只能判成"连接已断开"。见字段注释。
                 _travelPending = false; // 连接没了,等不到 msg 124 / tip 了;不清的话重连后第一次传送会被"正在传送中"挡住
                 _isMoving = false;
                 _moveInputSeq = 0;

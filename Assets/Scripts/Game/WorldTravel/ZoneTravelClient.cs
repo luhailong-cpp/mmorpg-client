@@ -31,12 +31,14 @@ namespace MmorpgClient.Game.WorldTravel
     public sealed class ZoneTravelClient
     {
         /// <summary>
-        /// 等 msg 124 / 失败 tip 的客户端预算(秒)。必须大于服务端源 scene 交接的最坏时长,
+        /// 等 msg 124 / 失败 tip 的客户端预算(秒)。必须大于服务端源 scene 交接出结论的最坏时长,
         /// 否则客户端先报超时、服务端随后又把人搬走,或失败 tip 到达时已不在途、原因被吞掉。
-        /// 服务端那一段是**两道**看门狗串行(存盘 + 等 scene_manager 应答,各 kTravelReplyBudgetSec=30s,
-        /// cpp/libs/services/scene/player/system/player_lifecycle.cpp),最坏约 60s 才有结论 ——
-        /// 只按一道看门狗取 60 的话,两段都踩满时客户端必然先到期(预算从发请求之前就开始计)。
-        /// 与同区换图受理后的等待共用同一个数,只在 <see cref="CityTravelRequest"/> 维护一处。
+        /// 服务端那一段由冻结硬上限封顶:travel_freeze_cap::kFreezeCap=70s + 1s 扫描,最迟约 71s 出结论
+        /// (解冻 + tip,或 tip + 踢线 34;正常路径是存盘与等应答两道 30s 看门狗串行,最坏约 60s)。
+        /// 预算从发请求之前就开始计,所以要比 71s 再多出请求与提示的投递余量(按 75 算余 4s)。
+        /// 与同区换图受理后的等待共用同一个数,只在 <see cref="CityTravelRequest"/> 维护一处
+        /// (余量推导、与服务端 kClientAcceptedHandoffBudget 的镜像约束见
+        /// <see cref="CityTravelRequest.AcceptedHandoffBudgetSeconds"/>)。
         /// </summary>
         public const float TravelBudgetSec = (float)CityTravelRequest.AcceptedHandoffBudgetSeconds;
 

@@ -62,6 +62,11 @@ $files = @(
     # 客户端要按码分辨「传送被拒」和别的 tip,就必须有这份枚举 —— 缺了它只能显示裸编号,
     # 而 AGENTS §7.5 禁止在客户端手抄 tip 数字(号由导表器发,下次导表就可能对不上)。
     "generated/code/proto/tip/scene_error_tip.proto",
+    # 跨服域 tip,目前只用 kSceneTransferInProgress —— 服务端已挂归属交接(PlayerFrozenComp /
+    # PlayerTravelHandoffComp,跨区传送与同 zone 跨节点换图都会挂)时,TravelToZone 的同步拒绝码
+    # (PlayerLifecycleSystem::RequestZoneTravel)。收进来是为了让 DescribeTravelTip 按枚举名给文案,
+    # 不手写 13000(AGENTS §7.5)。
+    "generated/code/proto/tip/cross_server_error_tip.proto",
 
     # 角色属性加点(docs/design/player-attribute-allocation.md)
     "proto/scene/player_attribute.proto",

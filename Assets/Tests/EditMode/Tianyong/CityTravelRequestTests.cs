@@ -72,11 +72,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void AcceptWithBudget_NeverShortensLongerDeadline()
         {
+            // 跨区上限由各段常量推出，这里不写死数值；原意不变：受理时的顺延不会缩短更长的跨区上限。
+            double cross = CityTravelRequest.CrossZoneTimeoutSeconds;
             var request = new CityTravelRequest();
-            int token = request.Begin(2, false, 0, CityTravelRequest.CrossZoneTimeoutSeconds);
+            int token = request.Begin(2, false, 0, cross);
             Assert.That(request.Accept(token, 1, CityTravelRequest.AcceptedHandoffBudgetSeconds), Is.True);
-            Assert.That(request.Tick(119), Is.False);
-            Assert.That(request.Tick(120), Is.True);
+            Assert.That(request.Tick(cross - 1), Is.False);
+            Assert.That(request.Tick(cross), Is.True);
         }
 
         [Test]
@@ -100,6 +102,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(CityTravelRequest.AcceptedHandoffBudgetSeconds, Is.GreaterThan(60.0));
             Assert.That(CityTravelRequest.CrossZoneTimeoutSeconds,
                 Is.GreaterThan(CityTravelRequest.AcceptedHandoffBudgetSeconds));
+        }
+
+        [Test]
+        public void CrossZoneTimeout_OutlastsTravelWaitPlusRedirectFlow()
+        {
+            // 跨区总上限 = 老连接上等结论 + 换连接最坏值 + 余量。防止有人把总上限改回字面量，
+            // 或把某一段改大后总上限没跟上（那样会在换连接途中先报“未收到抵达消息”、随后玩家又真的到了）。
+            Assert.That(CityTravelRequest.CrossZoneTimeoutSeconds,
+                Is.GreaterThanOrEqualTo(CityTravelRequest.AcceptedHandoffBudgetSeconds
+                                        + GameClient.RedirectFlowWorstCaseSec + 10.0));
+            Assert.That(CityTravelRequest.CrossZoneSlackSeconds, Is.GreaterThanOrEqualTo(10.0));
+            // 换连接那一段至少要盖住等入场。
+            Assert.That(GameClient.RedirectFlowWorstCaseSec, Is.GreaterThan(60f));
+            // 老连接那一段与底层等 msg 124 的预算是同一个数。
+            Assert.That((double)ZoneTravelClient.TravelBudgetSec,
+                Is.EqualTo(CityTravelRequest.AcceptedHandoffBudgetSeconds));
         }
 
         [Test]
@@ -154,7 +172,76 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             // 同步拒绝码有文案，但不属于“受理后失败”，不能让在途的行程因此收场。
             Assert.That(GameClient.IsTravelFailureTip((uint)scene_error.KEnterSceneSceneNotFound), Is.False);
             Assert.That(GameClient.IsTravelFailureTip((uint)scene_error.KEnterSceneChangingScene), Is.False);
+            // 交接仍在进行、实体退出中：同样只作同步拒绝。在途期间出现同码推送时不得把一次还没结束的传送判死。
+            Assert.That(GameClient.DescribeTravelTip((uint)cross_server_error.KSceneTransferInProgress),
+                Does.Not.Contain("tip="));
+            Assert.That(GameClient.DescribeTravelTip((uint)common_error.KFeatureUnavailable),
+                Does.Not.Contain("tip="));
+            Assert.That(GameClient.IsTravelFailureTip((uint)cross_server_error.KSceneTransferInProgress), Is.False);
+            Assert.That(GameClient.IsTravelFailureTip((uint)common_error.KFeatureUnavailable), Is.False);
             Assert.That(GameClient.DescribeTravelTip(uint.MaxValue), Does.Contain("tip=" + uint.MaxValue));
+        }
+
+        [Test]
+        public void DescribeTravelTip_EveryCodeTheTravelChainReturnsHasText()
+        {
+            // 传送链会回到客户端的全部码（同步拒绝、受理后失败推送、踢线原因），都必须是人话而不是裸编号。
+            uint[] codes =
+            {
+                (uint)scene_error.KEnterSceneFailed,
+                (uint)scene_error.KZoneTravelTargetZoneNotFound,
+                (uint)scene_error.KZoneTravelInBattle,
+                (uint)scene_error.KZoneTravelInTeam,
+                (uint)scene_error.KZoneTravelTargetBusy,
+                (uint)scene_error.KEnterSceneSceneNotFound,
+                (uint)scene_error.KEnterSceneChangingScene,
+                (uint)cross_server_error.KSceneTransferInProgress,
+                (uint)common_error.KFeatureUnavailable,
+            };
+            foreach (uint code in codes)
+            {
+                string text = GameClient.DescribeTravelTip(code);
+                Assert.That(text, Is.Not.Null.And.Not.Empty, $"code={code}");
+                Assert.That(text, Does.Not.Contain("tip="), $"code={code}");
+            }
+        }
+
+        [Test]
+        public void ClassifyPipelineWait_SuccessTakesPrecedence()
+        {
+            // 即使拒绝、断线、到期同时成立，成功也优先：进场通知与失败提示同帧时以进场为准。
+            Assert.That(GameClient.ClassifyPipelineWait(true, true, false, 100f, 10f),
+                Is.EqualTo(GameClient.PipelineWaitOutcome.Succeeded));
+        }
+
+        [Test]
+        public void ClassifyPipelineWait_ServerRejectionEndsWaitBeforeDeadline()
+        {
+            Assert.That(GameClient.ClassifyPipelineWait(false, true, true, 0f, 10f),
+                Is.EqualTo(GameClient.PipelineWaitOutcome.RejectedByServer));
+            // 拒绝优先于断线：gate 拒票后紧跟 shutdown，拒绝应答与断线哨兵常在同一次 Poll 里派发，原因必须保住。
+            Assert.That(GameClient.ClassifyPipelineWait(false, true, false, 0f, 10f),
+                Is.EqualTo(GameClient.PipelineWaitOutcome.RejectedByServer));
+        }
+
+        [Test]
+        public void ClassifyPipelineWait_LostConnectionEndsWaitBeforeDeadline()
+        {
+            // 回归：断线或被踢之后不再干等到期限。
+            Assert.That(GameClient.ClassifyPipelineWait(false, false, false, 0f, 60f),
+                Is.EqualTo(GameClient.PipelineWaitOutcome.ConnectionLost));
+        }
+
+        [Test]
+        public void ClassifyPipelineWait_TimesOutOnlyAtDeadline()
+        {
+            // 连接正常且没有结论时，到了期限才算超时，与原循环“now < deadline 才继续”的语义一致。
+            Assert.That(GameClient.ClassifyPipelineWait(false, false, true, 9.9f, 10f),
+                Is.EqualTo(GameClient.PipelineWaitOutcome.Waiting));
+            Assert.That(GameClient.ClassifyPipelineWait(false, false, true, 10f, 10f),
+                Is.EqualTo(GameClient.PipelineWaitOutcome.TimedOut));
+            Assert.That(GameClient.ClassifyPipelineWait(false, false, true, 10.1f, 10f),
+                Is.EqualTo(GameClient.PipelineWaitOutcome.TimedOut));
         }
 
         [Test]

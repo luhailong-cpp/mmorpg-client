@@ -151,13 +151,45 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(client.Connected, Is.False);
         }
 
+        [Test]
+        public void PeerRejectThenEof_ConnectedTurnsFalseBeforeQueuedFramesAreDispatched()
+        {
+            // 特征测试（生产代码不改）：钉住“不能在排空 inbox 之前用 Connected 判断线”。
+            // GameClient 的验票 / 等入场循环只读主线程的 _gate 判断线，依据就是这里的时序；
+            // 若有人把 Connected 改成排空后才翻，本用例会变红，那时应复核那套判据，而不是直接改测试。
+            using var pair = new LoopbackPair();
+            var codec = new MuduoCodec();
+            codec.Register<ClientTokenVerifyResponse>();
+            var client = CreateClient(pair, pair.Local.GetStream(), codec);
+            var events = new List<string>();
+            client.OnMessage += m =>
+            {
+                if (m is ClientTokenVerifyResponse r) events.Add($"verify:{r.Success}");
+            };
+            client.OnDisconnected += () => events.Add("disconnected");
+            // 模拟 gate 的 rejectAndClose：拒绝应答之后立刻 shutdown，两者背靠背到达。
+            var frame = codec.Encode(new ClientTokenVerifyResponse { Success = false, Error = "invalid token signature" });
+            pair.Remote.GetStream().Write(frame, 0, frame.Length);
+            pair.Remote.Client.Shutdown(SocketShutdown.Send);
+            using var worker = new LoopWorker(client, true);
+            Assert.That(worker.Join(), Is.True);
+            Assert.That(worker.Escaped, Is.Null);
+            // 读线程已读到 EOF：Connected 先翻成 false，而拒绝应答仍排在 inbox 里没派发。
+            Assert.That(client.Connected, Is.False, "读线程在 EOF 时先清运行标志");
+            Assert.That(events, Is.Empty, "Poll 之前不应派发任何事件");
+            client.Poll();
+            Assert.That(events, Is.EqualTo(new[] { "verify:False", "disconnected" }),
+                "拒绝应答必须先于断线哨兵派发");
+            client.Dispose();
+        }
+
         // 仅用反射接入已有线程循环，捕获红版本逃逸异常以免杀死测试宿主；不增加生产测试接口。
         private static readonly BindingFlags PrivateInstance = BindingFlags.NonPublic | BindingFlags.Instance;
         private static void Set(GateTcpClient client, string field, object value) => typeof(GateTcpClient).GetField(field, PrivateInstance).SetValue(client, value);
         private static BlockingCollection<byte[]> Outbox(GateTcpClient client) => (BlockingCollection<byte[]>)typeof(GateTcpClient).GetField("_outbox", PrivateInstance).GetValue(client);
-        private static GateTcpClient CreateClient(LoopbackPair pair, NetworkStream stream)
+        private static GateTcpClient CreateClient(LoopbackPair pair, NetworkStream stream, MuduoCodec codec = null)
         {
-            var client = new GateTcpClient(new MuduoCodec());
+            var client = new GateTcpClient(codec ?? new MuduoCodec());
             Set(client, "_tcp", pair.Local);
             Set(client, "_stream", stream);
             Set(client, "_running", true);
