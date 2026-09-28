@@ -153,6 +153,209 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void RateLimited_IsADefiniteRejectionNotASuspension()
+        {
+            Loaded();
+            Assert.That(_client.Kick(11), Is.True);
+            // gate 限流回包带原请求 id,是对这一包的明确拒绝。
+            _net.Fail("server tip=1008");
+
+            Assert.That(_client.Suspended, Is.False);
+            Assert.That(_client.RequiresReconnect, Is.False);
+            Assert.That(_client.ServiceAvailable, Is.True);
+            Assert.That(_client.Busy, Is.False);
+            Assert.That(_client.Status, Is.EqualTo("操作太快了，请稍候再试。"));
+
+            // 推送照常应用,下一个动作照常发出。
+            _push(new TeamSnapshotS2C { Team = LeaderView(2), Reason = TeamChangeReason.MemberOnline });
+            Assert.That(_client.Snapshot.Version, Is.EqualTo(2UL));
+            _now += 0.5f;
+            Assert.That(_client.Leave(), Is.True);
+            Assert.That(LastId, Is.EqualTo(MessageIds.LeaveTeam));
+            _net.Reply(new TeamResponse { Team = LeaderView(3) });
+
+            // 被限流的读:重新排队,退避期内不补发。
+            _now += 0.5f;
+            Assert.That(_client.Refresh(), Is.True);
+            _net.Fail("server tip=1008");
+            Assert.That(_client.Suspended || _client.RequiresReconnect, Is.False);
+            Assert.That(_client.RefreshQueued, Is.True);
+            int calls = _net.Calls.Count;
+            _now += 0.5f;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls), "退避期内不补发");
+            _now += TeamClient.ReadRetryDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+        }
+
+        [Test]
+        public void RateLimitedProbe_RetriesAfterBackoffWithNotifyOnline()
+        {
+            _client.DrainQueued(false);
+            _net.Fail("server tip=1008");
+
+            Assert.That(_client.Suspended || _client.RequiresReconnect, Is.False);
+            Assert.That(_client.HasLoaded, Is.False);
+            Assert.That(_client.Status, Is.EqualTo(TeamClient.ConnectingMessage), "静默探针不写限流提示");
+
+            _now = 1f;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(1), "退避期内不重发探针");
+
+            _now = TeamClient.ReadRetryDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            Assert.That(LastRequest<GetMyTeamRequest>().NotifyOnline, Is.True, "请求没到组队服务,上线通知要再带一次");
+        }
+
+        [Test]
+        public void SameWriteId_FourthWithinWindowIsRejectedLocally()
+        {
+            Loaded();   // 结束时 _now == 1.5
+            for (int i = 0; i < 3; i++)
+            {
+                Assert.That(_client.HandleApplication(20, false), Is.True, "第 " + (i + 1) + " 次");
+                _net.Reply(new TeamResponse { Team = LeaderView((ulong)(2 + i)) });
+                _now += 0.5f;
+            }
+
+            // _now == 3.0:距第一次只有 1.5 秒,gate 按整秒计时会把它算进同一窗口,回 1008 并计一次非法包。
+            int calls = _net.Calls.Count;
+            Assert.That(_client.HandleApplication(21, false), Is.False);
+            Assert.That(_client.Status, Is.EqualTo("操作太快了，请稍候再试。"));
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls));
+
+            // 配额按 message_id 各自计:别的写操作不受影响。
+            Assert.That(_client.Invite(13), Is.True);
+            Assert.That(LastId, Is.EqualTo(MessageIds.InviteToTeam));
+            _net.Reply(new TeamResponse { Team = LeaderView(5) });
+
+            _now = 1.5f + TeamClient.MessageWindowSeconds - 0.1f;
+            Assert.That(_client.HandleApplication(21, false), Is.False);
+            _now = 1.5f + TeamClient.MessageWindowSeconds;
+            Assert.That(_client.HandleApplication(21, false), Is.True);
+            Assert.That(LastId, Is.EqualTo(MessageIds.HandleApplication));
+        }
+
+        [Test]
+        public void GetMyTeamWithoutView_IsNotNoTeamAndRetriesWithBackoff()
+        {
+            // 探针:服务端自由读失败(4029 / 4030)时只回 tip、不带视图。
+            _client.DrainQueued(false);
+            _net.Reply(Response(null, team_error.KTeamStateChanged));
+            Assert.That(_client.HasLoaded, Is.True, "探针已回:组队服务在线");
+            Assert.That(_client.HasView, Is.False, "占位的无队快照不作数");
+            Assert.That(_client.RefreshQueued, Is.True);
+            Assert.That(_client.Status, Is.EqualTo("队伍状态已变化，请重试。"));
+
+            _now = 1f;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(1), "退避期内不重拉,也不补拉邀请");
+
+            _now = TeamClient.ReadRetryDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            Assert.That(LastRequest<GetMyTeamRequest>().NotifyOnline, Is.True, "上次没走到上线广播,重拉再带一次");
+            _net.Reply(new TeamResponse { Team = LeaderView(1) });
+            Assert.That(_client.HasView, Is.True);
+            Assert.That(_client.HasTeam, Is.True);
+
+            // 无队玩家:不带视图的成功回包不据此补拉邀请,也不动已有视图。
+            _client.Reset();
+            LoadedNoTeam();
+            Assert.That(_client.InvitesQueued, Is.False);
+            Assert.That(_client.Refresh(), Is.True);
+            Assert.That(LastRequest<GetMyTeamRequest>().NotifyOnline, Is.False);
+            _net.Reply(new TeamResponse());
+            Assert.That(_client.HasView, Is.True);
+            Assert.That(_client.Snapshot.MembershipEpoch, Is.EqualTo(5UL));
+            Assert.That(_client.InvitesQueued, Is.False);
+            Assert.That(_client.RefreshQueued, Is.True);
+        }
+
+        [Test]
+        public void ListInvitesFailure_KeepsListAndRetriesWithBackoff()
+        {
+            LoadedNoTeam();
+            _net.Push(MessageIds.NotifyTeamInvite, InvitePush(300, 30));
+            Assert.That(_client.LoadInvites(), Is.True);
+            _net.Reply(new ListMyInvitesResponse { ErrorMessage = Tip(team_error.KTeamInternal) });
+
+            Assert.That(_client.Invites.Count, Is.EqualTo(1), "失败保留旧列表");
+            Assert.That(_client.InvitesQueued, Is.True);
+            Assert.That(_client.Status, Is.EqualTo("服务器繁忙，请稍后再试。"));
+
+            int calls = _net.Calls.Count;
+            _now += 0.5f;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls), "退避期内不补发");
+            _now += TeamClient.ReadRetryDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+            Assert.That(LastId, Is.EqualTo(MessageIds.ListMyInvites));
+        }
+
+        [Test]
+        public void InvitesReply_KeepsPushesAndRevocationsThatArrivedInFlight()
+        {
+            LoadedNoTeam();
+            // 发出前就到的推送:服务端读在它之后,回包里没有就是已失效。
+            _net.Push(MessageIds.NotifyTeamInvite, InvitePush(299, 29));
+            Assert.That(_client.LoadInvites(), Is.True);
+            // 在途期间:新邀请推送先到,另一条邀请被撤回。
+            _net.Push(MessageIds.NotifyTeamInvite, InvitePush(300, 30));
+            _net.Push(MessageIds.NotifyTeamEvent, new TeamEventS2C { Type = TeamEventType.InviteRevoked, TeamId = 301 });
+
+            // 回包是更早读的:没有 300,还带着已撤回的 301。
+            var reply = new ListMyInvitesResponse { ServerTimeMs = 1000 };
+            reply.Invites.Add(IncomingInvite(301, 31, expireAtMs: 61000));
+            reply.Invites.Add(IncomingInvite(302, 32, expireAtMs: 61000));
+            _net.Reply(reply);
+
+            var teams = new List<ulong>();
+            foreach (var invite in _client.Invites) teams.Add(invite.TeamId);
+            Assert.That(teams, Is.EquivalentTo(new ulong[] { 300, 302 }));
+
+            // 下一次读从头算:这次回包里没有 300,就不再保留。
+            _now += 0.5f;
+            Assert.That(_client.LoadInvites(), Is.True);
+            var next = new ListMyInvitesResponse { ServerTimeMs = 2000 };
+            next.Invites.Add(IncomingInvite(302, 32, expireAtMs: 61000));
+            _net.Reply(next);
+            Assert.That(_client.Invites.Count, Is.EqualTo(1));
+            Assert.That(_client.Invites[0].TeamId, Is.EqualTo(302UL));
+        }
+
+        [Test]
+        public void ErrorAfterAppliedReply_IsIgnored()
+        {
+            Loaded();
+            _net.WrapLikeGameClient = true;
+            bool thrown = false;
+            // 界面订阅者在应用回包后抛异常:GameClient.Call 会接着调 onError。
+            _client.Changed += () =>
+            {
+                if (thrown || _client.Snapshot.Version != 2) return;
+                thrown = true;
+                throw new InvalidOperationException("界面渲染失败");
+            };
+
+            Assert.That(_client.Refresh(), Is.True);
+            _net.Reply(new TeamResponse { Team = LeaderView(2) });
+
+            Assert.That(thrown, Is.True);
+            Assert.That(_client.RequiresReconnect, Is.False, "一个请求只结算一次");
+            Assert.That(_client.Suspended, Is.False);
+            Assert.That(_client.Status, Is.Not.EqualTo(TeamClient.RecoveryMessage));
+            _now += 0.5f;
+            Assert.That(_client.Leave(), Is.True);
+        }
+
+        [Test]
         public void TransportError_RequiresReconnectUntilConnectionChanges()
         {
             Loaded();
@@ -767,6 +970,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public Action<string> Error;
         /// <summary>非 null 时 Call 内同步调用 error(模拟协程宿主未就绪)。</summary>
         public string SyncError;
+        /// <summary>为 true 时照 GameClient.Call:回包处理抛异常就转成 onError("parse response: …")。</summary>
+        public bool WrapLikeGameClient;
         /// <summary>已注册的 S2C 推送处理器；与 GameClient.OnNotify 一样，一个 id 只留最后一次注册。</summary>
         public readonly Dictionary<uint, Action<MessageContent>> Notifies = new Dictionary<uint, Action<MessageContent>>();
         /// <summary>连接身份;换成新对象即模拟 GameClient 静默换 Gate。</summary>
@@ -786,7 +991,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             where T : IMessage<T>
         {
             Calls.Add((id, request));
-            Pending = message => onResponse(parser.ParseFrom(((T)message).ToByteString()));
+            Pending = message =>
+            {
+                T parsed = parser.ParseFrom(((T)message).ToByteString());
+                if (!WrapLikeGameClient) { onResponse(parsed); return; }
+                try { onResponse(parsed); }
+                catch (Exception ex) { onError($"parse response: {ex.Message}"); }
+            };
             Error = onError;
             if (SyncError != null) onError(SyncError);
         }

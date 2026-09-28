@@ -642,6 +642,86 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void ConfirmWhileBusy_KeepsDialogWithHintAndEmitsOnceIdle()
+        {
+            Mirror(_snapshot, null);
+            _window.Show();
+            int disbands = 0;
+            _window.DisbandRequested += () => disbands++;
+
+            Click("DisbandTeam");
+            Assert.That(_window.IsModalOpen, Is.True);
+            // A silent background refresh is mirrored as busy while the dialog is open.
+            Mirror(_snapshot, null, TeamAction.Refresh);
+            Assert.That(_window.IsModalOpen, Is.True, "A request in flight must not close the dialog.");
+
+            Click("TeamModalConfirm");
+            Assert.That(disbands, Is.Zero);
+            Assert.That(_window.IsModalOpen, Is.True, "The action must not be dropped silently.");
+            Assert.That(FindLabel("TeamModalError").text, Is.EqualTo("上一个组队请求仍在处理中，请稍候。"));
+
+            Mirror(_snapshot, null);
+            Assert.That(FindLabel("TeamModalError").text, Is.Empty);
+            Click("TeamModalConfirm");
+            Assert.That(disbands, Is.EqualTo(1));
+            Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void TargetPromptWhileBusy_KeepsTypedTargetUntilIdle()
+        {
+            Mirror(_snapshot, null);
+            _window.Show();
+            var invites = new List<ulong>();
+            _window.InviteRequested += invites.Add;
+
+            Click("InviteToTeam");
+            FindInput("TeamTargetInput").text = "12345";
+            Mirror(_snapshot, null, TeamAction.ListInvites);
+            Click("TeamModalConfirm");
+            Assert.That(invites, Is.Empty);
+            Assert.That(_window.IsModalOpen, Is.True);
+            Assert.That(FindLabel("TeamModalError").text, Is.EqualTo("上一个组队请求仍在处理中，请稍候。"));
+            Assert.That(FindInput("TeamTargetInput").text, Is.EqualTo("12345"));
+
+            Mirror(_snapshot, null);
+            Click("TeamModalConfirm");
+            Assert.That(invites, Is.EqualTo(new List<ulong> { 12345 }));
+            Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void OpenDialog_ClosesWhenLeadershipChangesOrPermissionIsLost()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            _snapshot.LocalPlayerId = 12;
+            Mirror(_snapshot, null);
+            _window.Show();
+            int leaves = 0, kicks = 0;
+            _window.LeaveRequested += () => leaves++;
+            _window.KickRequested += _ => kicks++;
+
+            Click("LeaveTeam");
+            Assert.That(ActiveText(), Does.Contain("确定离开当前队伍吗？"));
+            // The old leader went offline and leadership moved to the local player.
+            _snapshot.LeaderId = 12;
+            Mirror(_snapshot, null);
+            Assert.That(_window.IsModalOpen, Is.False, "A member's leave text must not be confirmed as the new leader.");
+            Assert.That(leaves, Is.Zero);
+            Click("LeaveTeam");
+            Assert.That(ActiveText(), Does.Contain("你是队长，离队后队长将自动转给在线队员。确定离开吗？"));
+            Click("TeamModalCancel");
+
+            Click("Kick_11");
+            Assert.That(_window.IsModalOpen, Is.True);
+            // Kicked or disbanded while the dialog is open: the no-team view must not keep it.
+            Mirror(NoTeamSnapshot(), new List<TeamInvite>());
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(_root.GetComponentsInChildren<UnityEngine.Transform>(true).Any(child => child.name == "TeamModal"), Is.False);
+            Assert.That(kicks, Is.Zero);
+        }
+
+        [Test]
         public void ResetSession_ClosesModal()
         {
             _window.Show();

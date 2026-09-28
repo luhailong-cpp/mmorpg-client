@@ -251,6 +251,43 @@ namespace MmorpgClient.Tests.PlayMode
             });
         }
 
+        [UnityTest]
+        public IEnumerator RowDialog_RestoresFocusAfterItsOpenerRowWasRebuilt()
+        {
+            return WithEventSystem(events =>
+            {
+                _window.Show();
+                var kick = FindButton("Kick_12");
+                Assert.That(kick.IsInteractable(), Is.True);
+                events.SetSelectedGameObject(kick.gameObject);
+                Click("Kick_12");
+                Assert.That(_window.IsModalOpen, Is.True);
+
+                // Any Render while the dialog is open rebuilds the rows and destroys the opener.
+                _snapshot.Members[1].Level++;
+                Apply();
+                Assert.That(_window.IsModalOpen, Is.True);
+                var rebuilt = FindButton("Kick_12");
+                Assert.That(rebuilt.gameObject, Is.Not.SameAs(kick.gameObject),
+                    "The snapshot should exercise focus restoration after the row is rebuilt.");
+
+                Click("TeamModalCancel");
+                Assert.That(_window.IsModalOpen, Is.False);
+                Assert.That(events.currentSelectedGameObject, Is.SameAs(rebuilt.gameObject));
+                AssertSelectedButtonIsUsable(events);
+
+                // A dialog whose target left closes on the next Render and still lands on a usable control.
+                events.SetSelectedGameObject(FindButton("Kick_13").gameObject);
+                Click("Kick_13");
+                Assert.That(_window.IsModalOpen, Is.True);
+                _snapshot.Members.RemoveAll(role => role.PlayerId == 13);
+                Apply();
+                Assert.That(_window.IsModalOpen, Is.False);
+                AssertSelectedButtonIsUsable(events);
+                Assert.That(events.currentSelectedGameObject.name, Is.Not.EqualTo("Kick_13"));
+            });
+        }
+
         private IEnumerator WithEventSystem(System.Action<EventSystem> verify)
         {
             _previousEventSystem = EventSystem.current;
