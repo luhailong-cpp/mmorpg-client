@@ -52,6 +52,10 @@ $files = @(
     "proto/common/component/currency_comp.proto",
     "proto/db/proto_option.proto",
     "proto/login/login.proto",
+    # 登录域的 tip 码(含角色名 kRoleNameInvalid / kRoleNameTaken / kRoleNameSensitive 与建角可重试失败)。
+    # Assets/Scripts/Game/Role/RoleNameRules.cs 按 login_error.K* 枚举映射文案,缺了这一行它就引用不存在的类型(CS0246);
+    # 与 guild / trade 同形:由服务端导表器生成,客户端不手抄数字(服务端 docs/design/guild-phase2/03-names.md §3.22)。
+    "generated/code/proto/tip/login_error_tip.proto",
     "proto/scene/scene_info.proto",
     "proto/scene/player_scene.proto",
     "proto/scene/player_skill.proto",
