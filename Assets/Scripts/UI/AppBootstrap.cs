@@ -74,7 +74,7 @@ namespace MmorpgClient.UI
             Gateway    = new GatewayHttpClient(Session.GatewayBaseUrl);
             GameClient = new GameClient(Session.GatewayBaseUrl);
             GameClient.World.SetRootParent(_actorWorldRoot);
-            // 名牌显示名:本地玩家取会话里的角色名;远端玩家/NPC 的名字协议
+            // 名牌显示名:本地玩家取账号角色列表里的角色名(再退到会话里的旧字段);远端玩家/NPC 的名字协议
             // (ActorCreateS2C)尚未下发,交给 ActorWorld 的种类回退("玩家"/"NPC")。
             GameClient.World.DisplayNameProvider = ResolveActorDisplayName;
             GameClient.CoroutineRunner = Run; // RedirectToGateNotify 重连流程需要宿主协程
@@ -123,6 +123,8 @@ namespace MmorpgClient.UI
         /// list entry matching <see cref="Game.GameClient.PlayerId"/>, else the
         /// nickname chosen in the role flow. Remote actors return null so the
         /// world falls back to its kind label until the protocol carries names.
+        /// 角色名(服务端名字注册表,03-names §3.22)优先:取 TCP Login / CreatePlayer 应答里的
+        /// AccountSimplePlayer.name,没有才走下面两个旧兜底。
         /// </summary>
         private string ResolveActorDisplayName(ActorView view)
         {
@@ -136,6 +138,8 @@ namespace MmorpgClient.UI
             var playerId = client.PlayerId;
             if (playerId != 0)
             {
+                var roleName = client.ResolveRoleName(playerId);
+                if (!string.IsNullOrWhiteSpace(roleName)) return roleName;
                 foreach (var p in session.Players)
                 {
                     if (p == null || p.player_id != playerId) continue;

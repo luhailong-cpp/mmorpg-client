@@ -404,6 +404,17 @@ namespace MmorpgClient.App
         private System.Collections.IEnumerator ChooseAppearance(uint zone,
             IReadOnlyList<AccountSimplePlayer> roles, GameClient.PlayerChoice choice)
         {
+            // 为什么先看 RejectHint:GameClient 建角被服务端以可修正原因退回后,会带着同一个 choice 再调一次本选角器,
+            // 且不设轮数上限——那个设计的前提是"真人随时能点取消"。本选角器是无人值守的,下面的逻辑每轮都会
+            // 原样再置 CreateNew;服务端持续回可重试的原因(登录进行中、存储写失败等)时就会无延迟地无限重发建角请求。
+            // 约束:自动化路径被退回一次即失败收场(fail-closed),不重试、不换名,退回原因原样带进失败行供排查;
+            // 置 Cancelled 让管线走"放弃进入"分支结束,而不是依赖别的字段恰好为零。
+            if (!string.IsNullOrEmpty(choice.RejectHint))
+            {
+                choice.Cancelled = true;
+                Fail("appearance_select", "建角被服务端退回: " + choice.RejectHint);
+                yield break;
+            }
             var definition = QdaoCharacterCatalog.Find(_opt.AppearanceId);
             if (definition == null || !QdaoCharacterCatalog.IsRetainedOriginal(_opt.AppearanceId) ||
                 definition.ResolveAppearance() == null)

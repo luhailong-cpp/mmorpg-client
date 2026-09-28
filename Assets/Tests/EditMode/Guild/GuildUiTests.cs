@@ -614,6 +614,84 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(cancelled, Is.EqualTo(88002ul));
         }
 
+        // ── 成员显示名与按名字查找（B3b）──────────────────────────────
+
+        /// <summary>服务端填了名字就显示名字：成员行、确认框、申请行共用 MemberDisplayName。</summary>
+        [Test] public void MemberDisplayNameUsesServerName()
+        {
+            Assert.That(GuildWindow.MemberDisplayName(new GuildMember { PlayerId = 2, Name = "云中君" }), Is.EqualTo("云中君"));
+            Assert.That(GuildWindow.MemberDisplayName(20001, "青衫客"), Is.EqualTo("青衫客"));
+
+            _window.ApplicationsRequested += () => _client.LoadApplications();
+            var info = GuildClientTests.Fixture(); info.Members[1].Name = "云中君"; info.PendingApplicationCount = 1;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = info });
+            _window.SetClient(_client); _window.Show(GuildPage.Members);
+            Assert.That(ActiveText(), Does.Contain("云中君"));
+            Assert.That(ActiveText(), Does.Not.Contain("道友 · 2"));
+            Click("GuildMemberKick_2");
+            Assert.That(ActiveText(), Does.Contain("云中君 将被请离帮会。"));
+            _window.Back();
+
+            Click("GuildApplicationsToggle");
+            var listed = new ListGuildApplicationsResponse();
+            listed.Applicants.Add(new GuildApplicantView { PlayerId = 20001, Name = "青衫客", Online = true,
+                ApplyMs = (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                ExpireMs = (ulong)DateTimeOffset.UtcNow.AddHours(48).ToUnixTimeMilliseconds() });
+            _net.Reply(listed);
+            _window.SetClient(_client);
+            Assert.That(ActiveText(), Does.Contain("青衫客"));
+            Assert.That(ActiveText(), Does.Not.Contain("道友 · 20001"));
+        }
+        /// <summary>B3b 之前建的老角色、或服务端取名 fail-open 时 name 为空：回落“道友 · 编号”。</summary>
+        [Test] public void MemberDisplayNameFallsBackToIdWhenNameMissing()
+        {
+            Assert.That(GuildWindow.MemberDisplayName(new GuildMember { PlayerId = 7 }), Is.EqualTo("道友 · 7"));
+            Assert.That(GuildWindow.MemberDisplayName(20001, ""), Is.EqualTo("道友 · 20001"));
+            Assert.That(GuildWindow.MemberDisplayName(20001, null), Is.EqualTo("道友 · 20001"));
+        }
+        /// <summary>纯空白（含全角空格）不是名字，不能显示成一行空白。</summary>
+        [TestCase(" ")] [TestCase("\u3000")] [TestCase(" \t ")]
+        public void MemberDisplayNameFallsBackToIdWhenNameIsBlank(string blank)
+        {
+            Assert.That(GuildWindow.MemberDisplayName(new GuildMember { PlayerId = 3, Name = blank }), Is.EqualTo("道友 · 3"));
+            Assert.That(GuildWindow.MemberDisplayName(3, blank), Is.EqualTo("道友 · 3"));
+        }
+        /// <summary>
+        /// 查找同时匹配名字与编号；名字按服务端 norm 口径（NFKC + 转小写）比较，
+        /// 输入框里保留玩家原样输入的文字。
+        /// </summary>
+        [Test] public void MemberSearchMatchesNameOrId()
+        {
+            var info = GuildClientTests.Fixture();
+            info.Members[1].Name = "云中君"; info.Members[2].Name = "Alice"; info.Members[3].Name = "云游子";
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = info });
+            _window.SetClient(_client); _window.Show(GuildPage.Members);
+            Assert.That(ActiveText(), Does.Contain("按名字或编号查找"));
+
+            Search("云中");
+            Assert.That(ActiveText(), Does.Contain("云中君"));
+            Assert.That(ActiveText(), Does.Not.Contain("云游子"));
+            Assert.That(ActiveText(), Does.Not.Contain("道友 · 1"));
+
+            Search("云");
+            Assert.That(ActiveText(), Does.Contain("云中君"));
+            Assert.That(ActiveText(), Does.Contain("云游子"));
+            Assert.That(ActiveText(), Does.Not.Contain("Alice"));
+
+            Search("ＡＬＩＣＥ");
+            Assert.That(ActiveText(), Does.Contain("Alice"));
+            Assert.That(ActiveText(), Does.Not.Contain("云中君"));
+            Assert.That(SearchInput().text, Is.EqualTo("ＡＬＩＣＥ"));
+
+            // 编号查找不因为加了名字而失效：5 号没有名字，只能靠编号找到。
+            Search("5");
+            Assert.That(ActiveText(), Does.Contain("道友 · 5"));
+            Assert.That(ActiveText(), Does.Not.Contain("云中君"));
+            Assert.That(ActiveText(), Does.Not.Contain("Alice"));
+        }
+
+        private TMP_InputField SearchInput() => _root.GetComponentsInChildren<TMP_InputField>().Single(i => i.name == "GuildMemberSearch");
+        private void Search(string text) { SearchInput().text = text; Click("SearchGuildMembers"); }
         private Button[] Buttons() => _root.GetComponentsInChildren<Button>().Where(b => b.gameObject.activeInHierarchy).ToArray();
         private void Click(string name) => Buttons().Single(b => b.name == name).onClick.Invoke();
         private string Label(string name) => Buttons().Single(b => b.name == name).GetComponentInChildren<TMP_Text>().text;

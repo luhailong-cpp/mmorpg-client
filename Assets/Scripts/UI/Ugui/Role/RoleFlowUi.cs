@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MmorpgClient.Core;
 using MmorpgClient.Game;
+using MmorpgClient.Game.Role;
 using MmorpgClient.World;
 using MmorpgClient.UI.Ugui.Battle;
 using TMPro;
@@ -81,6 +82,15 @@ namespace MmorpgClient.UI.Ugui.Role
         private int _appearanceChoice; // Zero keeps the existing profession/gender default.
         private TMP_Text _appearanceLabel;
 
+        // 角色名(服务端 docs/design/guild-phase2/03-names.md §3.22)。输入框与"随机"挂在 _createRoot 下,
+        // 选角模式下同一位置是只读的"角色名"行(挂在 _selectRoot 下),两者随模式自动显隐。
+        private const string DefaultCreateHint = "创建后将直接进入所选区服";
+        private TMP_InputField _nameInput;
+        private TMP_Text _roleNameValue;
+        private bool _nameWasFocused;
+        // 随机名只是帮玩家想个名字,不需要不可预测;唯一性由服务端名字注册表保证(撞名回 kRoleNameTaken)。
+        private readonly System.Random _rng = new System.Random();
+
         private uint _zoneId;
         private IReadOnlyList<AccountSimplePlayer> _players;
         private bool _resolved;
@@ -111,15 +121,44 @@ namespace MmorpgClient.UI.Ugui.Role
             _players = players ?? new List<AccountSimplePlayer>();
             _resolved = false;
             _result = choice;
-            _pickedClassId = Classes[0].id;
-            _pickedGender = 1;
-            _appearanceChoice = 0;
             _selectedPlayerId = 0;
+            _nameWasFocused = false;
             _canvasGo.SetActive(true);
-            if (_players.Count > 0) ShowSelectMode();
-            else ShowCreateMode();
+            if (choice != null && !string.IsNullOrEmpty(choice.RejectHint) && _players.Count < MaxRows)
+            {
+                // 上一次建角被服务端退回(名字不合规 / 重名 / 敏感词 / 服务端繁忙):直接回到建角页,
+                // 职业、性别、外观、名字原样保留,提示行显示退回原因(ShowCreateMode 读 RejectHint)。
+                RestoreRejectedCreation(choice);
+                ShowCreateMode();
+            }
+            else
+            {
+                _pickedClassId = Classes[0].id;
+                _pickedGender = 1;
+                _appearanceChoice = 0;
+                // 建角必填名字:先填一个随机建议,玩家可改可清空;清空后点创建会被本地预检拦下("请输入角色名")。
+                SetNameWithoutNotify(RoleNameRules.RandomName(_rng));
+                if (_players.Count > 0) ShowSelectMode();
+                else ShowCreateMode();
+            }
             while (!_resolved) yield return null;
             _canvasGo.SetActive(false);
+        }
+
+        private void RestoreRejectedCreation(GameClient.PlayerChoice choice)
+        {
+            if (choice.ClassId != 0) _pickedClassId = choice.ClassId;
+            if (choice.Gender != 0) _pickedGender = choice.Gender;
+            // 外观按 id 找回它在候选列表里的位置(先按当前资源重建一次候选列表);ShowCreateMode 重建时
+            // 按同一个 id 再对一次,资源被撤掉就回落"职业默认"(与 RefreshAppearanceChoices 同一口径)。
+            RefreshAppearanceChoices();
+            _appearanceChoice = 0;
+            if (!string.IsNullOrEmpty(choice.AppearanceId))
+            {
+                for (int i = 0; i < _appearanceChoices.Count; i++)
+                    if (_appearanceChoices[i].Id == choice.AppearanceId) _appearanceChoice = i + 1;
+            }
+            SetNameWithoutNotify(choice.Name);
         }
 
         private void ResolveSelect(ulong playerId)
@@ -134,6 +173,22 @@ namespace MmorpgClient.UI.Ugui.Role
         private void ResolveCreate()
         {
             if (_resolved || _result == null || (_players != null && _players.Count >= MaxRows)) return;
+            // 名字先在本地预检(归一化、结构上限、字符集,与服务端 playername 同一套规则);
+            // 字数上下限、重名、敏感词只有服务端能判,以它回的 tip 为准(GameClient 会带着 RejectHint 退回本页)。
+            if (!RoleNameRules.TryNormalize(_nameInput != null ? _nameInput.text : string.Empty,
+                    out var roleName, out var nameError))
+            {
+                SetPreviewHint(nameError, true);
+                return;
+            }
+            // 缺字只能在客户端查:同一套字体下别的玩家也显示不了这个名字。动态字体会顺带从源字体补字进图集,
+            // 并查后备字体,只有真画不出来才拦。
+            var font = _nameInput != null && _nameInput.textComponent != null ? _nameInput.textComponent.font : null;
+            if (font != null && !font.HasCharacters(roleName, out uint[] _, true, true))
+            {
+                SetPreviewHint("角色名包含无法显示的字", true);
+                return;
+            }
             _result.CreateNew = true;
             _result.ClassId = _pickedClassId;
             _result.Gender = _pickedGender;
@@ -142,9 +197,11 @@ namespace MmorpgClient.UI.Ugui.Role
             if (!string.IsNullOrEmpty(_result.AppearanceId) &&
                 QdaoCharacterCatalog.Find(_result.AppearanceId)?.ResolveAppearance() == null)
             {
-                _previewHint.text = "所选外观资源尚未齐套，请重新选择";
+                SetPreviewHint("所选外观资源尚未齐套，请重新选择", true);
                 return;
             }
+            _result.Name = roleName;
+            _result.RejectHint = null;
             _result.Cancelled = false;
             _resolved = true;
         }
@@ -159,6 +216,12 @@ namespace MmorpgClient.UI.Ugui.Role
         private void Update()
         {
             if (_canvasGo == null || !_canvasGo.activeSelf || _resolved) return;
+            // 正在输入角色名时 Esc 归输入框(取消编辑),不能顺带把整页退回选服。输入框可能在本帧先处理了 Esc
+            // 并失焦(EventSystem 与本组件的 Update 先后不定),所以上一帧还在输入也算。
+            bool typing = _nameInput != null && _nameInput.isFocused;
+            bool wasTyping = _nameWasFocused;
+            _nameWasFocused = typing;
+            if (typing || wasTyping) return;
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (_creating && _players != null && _players.Count > 0) ShowSelectMode();
@@ -182,7 +245,9 @@ namespace MmorpgClient.UI.Ugui.Role
             bool canCreate = _players.Count < MaxRows;
             _gotoCreateButton.SetVisible(canCreate);
             if (!canCreate) _listHint.text = "角色位已满，可选择已有角色";
-            _previewHint.text = string.Empty;
+            SetPreviewHint(string.Empty, false);
+            // 离开建角页即清掉上次的退回原因,免得玩家改选已有角色后再进建角页还看到旧提示
+            if (_result != null) _result.RejectHint = null;
         }
 
         private void ShowCreateMode()
@@ -194,7 +259,9 @@ namespace MmorpgClient.UI.Ugui.Role
             _selectRoot.gameObject.SetActive(false);
             _createRoot.gameObject.SetActive(true);
             _createBackButton.SetText(_players != null && _players.Count > 0 ? "返回选角" : "返回选服");
-            _previewHint.text = "创建后将直接进入所选区服";
+            string rejectHint = _result?.RejectHint;
+            if (!string.IsNullOrEmpty(rejectHint)) SetPreviewHint(rejectHint, true);
+            else RefreshNameHint();
             RefreshAppearanceChoices();
             RefreshCreateHighlights();
             SelectForKeyboard(_classButtons[ClassIndex(_pickedClassId)].Button);
@@ -238,8 +305,12 @@ namespace MmorpgClient.UI.Ugui.Role
                 float textX = portraitSize + 54f;
                 float textWidth = 540f - textX - 60f;
                 card.Name = Label("Name", card.Plate.transform, textX, _roleCardHeight * .24f, textWidth, 60f,
-                    CharacterName(player.ClassId, player.Gender, player.AppearanceId), _roleCardHeight > 170f ? 44f : 33f, Ink);
+                    DisplayName(player), _roleCardHeight > 170f ? 44f : 33f, Ink);
                 QdaoUguiTypography.ApplyHeading(card.Name);
+                // 角色名最长 12 字(服务端 RoleNameRule),文字区最窄约 250:放不下先缩字号,缩到底再省略
+                card.Name.enableAutoSizing = true;
+                card.Name.fontSizeMax = card.Name.fontSize;
+                card.Name.fontSizeMin = 20f;
                 card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 44f,
                     $"{GenderName(player.Gender)} · {ShortId(player.PlayerId)}" + (player.PlayerId == lastPlayed ? " · 上次" : string.Empty),
                     _roleCardHeight > 170f ? 28f : 26f, Wood);
@@ -278,7 +349,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 card.Detail.color = selected ? Ivory : Wood;
                 card.Check.gameObject.SetActive(selected);
             }
-            RefreshPreview(player.ClassId, player.Gender, player.PlayerId, player.AppearanceId);
+            RefreshPreview(player.ClassId, player.Gender, player.PlayerId, player.AppearanceId, player.Name);
         }
 
         private void RefreshCreateHighlights()
@@ -313,12 +384,17 @@ namespace MmorpgClient.UI.Ugui.Role
             RefreshCreateHighlights();
         }
 
-        private void RefreshPreview(uint classId, uint gender, ulong playerId, string appearanceId = null)
+        private void RefreshPreview(uint classId, uint gender, ulong playerId, string appearanceId = null,
+            string roleName = null)
         {
             int index = ClassIndex(classId);
             _hero.sprite = ResolvePortrait(classId, gender, appearanceId);
             _hero.enabled = _hero.sprite != null;
+            // 标题保持"人物(外观)名",角色名单独一行:外观验收(DevRoleUiDriver.PreviewMatches)按标题比对外观名。
             _previewTitle.text = CharacterName(classId, gender, appearanceId);
+            // 只在选角模式可见(挂在 _selectRoot 下);服务端没带名字的旧角色显示"未命名"
+            if (_roleNameValue != null)
+                _roleNameValue.text = string.IsNullOrWhiteSpace(roleName) ? "未命名" : roleName;
             _classBadge.sprite = QdaoRefreshArt.Load(ClassBadges[index]);
             _classValue.text = ClassName(classId);
             _genderValue.text = GenderName(gender);
@@ -400,14 +476,17 @@ namespace MmorpgClient.UI.Ugui.Role
         private TMP_Text DetailRow(string name, string caption, float y)
             => DetailRow(name, caption, y, out _);
 
-        private TMP_Text DetailRow(string name, string caption, float y, out TMP_Text captionText)
+        /// <param name="parent">null = 常驻的 _designRoot;传 _selectRoot / _createRoot 则随模式显隐(坐标系相同)。</param>
+        private TMP_Text DetailRow(string name, string caption, float y, out TMP_Text captionText,
+            UnityEngine.Transform parent = null)
         {
-            captionText = Label(name + "Label", _designRoot, 1982f, y, 155f, 48f, caption, 30f, Wood);
-            var value = Label(name + "Value", _designRoot, 2137f, y, 232f, 48f,
+            if (parent == null) parent = _designRoot;
+            captionText = Label(name + "Label", parent, 1982f, y, 155f, 48f, caption, 30f, Wood);
+            var value = Label(name + "Value", parent, 2137f, y, 232f, 48f,
                 string.Empty, 32f, Ink, TextAlignmentOptions.MidlineRight);
             QdaoUguiTypography.ApplyBody(captionText);
             QdaoUguiTypography.ApplyBody(value);
-            var line = QdaoUguiFactory.CreateImage(name + "Rule", _designRoot,
+            var line = QdaoUguiFactory.CreateImage(name + "Rule", parent,
                 1982f, y + 54f, 387f, 1f, null);
             line.color = new Color(Gold.r, Gold.g, Gold.b, 0.32f);
             return value;
@@ -429,6 +508,11 @@ namespace MmorpgClient.UI.Ugui.Role
             _enterButton.Label.rectTransform.sizeDelta = new Vector2(482f, 116f);
             QdaoRefreshArt.Skin(_enterButton.Plate, "primary_button_normal");
             _enterButton.Button.onClick.AddListener(() => ResolveSelect(_selectedPlayerId));
+            // 详情窗第六行(修行方向之下):选中角色的角色名。建角模式下同一位置换成名字输入框。
+            _roleNameValue = DetailRow("RoleName", "角色名", 736f, out _, _selectRoot);
+            _roleNameValue.enableAutoSizing = true; // 12 字放不进 232 宽的 32 号字,先缩字号
+            _roleNameValue.fontSizeMax = _roleNameValue.fontSize;
+            _roleNameValue.fontSizeMin = 18f;
         }
 
         private void BuildCreateRoot()
@@ -475,6 +559,52 @@ namespace MmorpgClient.UI.Ugui.Role
             _confirmCreateButton = TextButton("ConfirmCreate", _createRoot, 1940f, 892f, 532f,
                 "创建并进入", true, 40f);
             _confirmCreateButton.Button.onClick.AddListener(ResolveCreate);
+            BuildNameEntry();
+        }
+
+        /// <summary>
+        /// 名字输入框 + "随机",放在详情窗(x1920–2430、y174–830)修行方向那一行之下、窗内底部。
+        /// 不占 PreviewTitle 的位置:标题要一直显示外观名(外观验收按它比对)。
+        /// </summary>
+        private void BuildNameEntry()
+        {
+            // characterLimit 64 是结构上限:TMP 按 UTF-16 单元计数,32 个码点(RoleNameRules.StructuralMaxChars)
+            // 最多 64 个单元;真正的字数(2–12)由服务端 kRoleNameInvalid 回显把关,客户端不写死。
+            _nameInput = QdaoUguiFactory.CreateInputField("RoleNameInput", _createRoot, 1940f, 724f, 330f, 84f,
+                "请输入角色名", RoleNameRules.StructuralMaxChars * 2, QdaoRefreshArt.Load("list_row_normal"));
+            QdaoRefreshArt.Skin(_nameInput.GetComponent<Image>(), "list_row_normal");
+            _nameInput.textComponent.fontSize = 28f;
+            ((TMP_Text)_nameInput.placeholder).fontSize = 26f;
+            _nameInput.richText = false; // 名字不走富文本,输入 <b> 之类不该被当成标签渲染
+            _nameInput.onValueChanged.AddListener(_ => RefreshNameHint());
+
+            // 竖直中心与输入框对齐(724 + 84/2 = 710 + 112/2 = 766);文字区宽 150 − 88 = 62,放得下两个 26 号字
+            var randomName = TextButton("RandomRoleName", _createRoot, 2276f, 710f, 150f, "随机", false, 26f);
+            randomName.Button.onClick.AddListener(() => _nameInput.text = RoleNameRules.RandomName(_rng));
+        }
+
+        /// <summary>
+        /// 输入即预检:能在本地判的问题(无效字符、超长、字符集)当场提示;空着不提示(还没开始填),
+        /// 点"创建"时再拦。字数与重名等只有服务端能判,不在这里猜。
+        /// </summary>
+        private void RefreshNameHint()
+        {
+            string raw = _nameInput != null ? _nameInput.text : string.Empty;
+            if (!string.IsNullOrEmpty(raw) && !RoleNameRules.TryNormalize(raw, out _, out var error))
+                SetPreviewHint(error, true);
+            else
+                SetPreviewHint(DefaultCreateHint, false);
+        }
+
+        private void SetNameWithoutNotify(string value)
+        {
+            if (_nameInput != null) _nameInput.SetTextWithoutNotify(value ?? string.Empty);
+        }
+
+        private void SetPreviewHint(string text, bool warning)
+        {
+            _previewHint.text = text ?? string.Empty;
+            _previewHint.color = warning ? Gold : Wood;
         }
 
         private static void CreateCardPortrait(UnityEngine.Transform parent, float x, float y, float size, Sprite sprite)
@@ -574,6 +704,16 @@ namespace MmorpgClient.UI.Ugui.Role
             if (id == 0) return "待创建";
             string value = id.ToString();
             return value.Length > 8 ? "…" + value.Substring(value.Length - 8) : value;
+        }
+
+        /// <summary>
+        /// 角色卡上显示的名字:服务端带回的角色名(AccountSimplePlayer.name);早于名字功能的旧角色、
+        /// 或服务端回源失败而没带名字时,回落到人物(职业 / 外观)名,不显示空白。
+        /// </summary>
+        public static string DisplayName(AccountSimplePlayer p)
+        {
+            if (p == null) return string.Empty;
+            return string.IsNullOrWhiteSpace(p.Name) ? CharacterName(p.ClassId, p.Gender, p.AppearanceId) : p.Name;
         }
 
         private static string CharacterName(uint classId, uint gender, string appearanceId = null)
