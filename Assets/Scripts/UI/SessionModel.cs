@@ -57,7 +57,9 @@ namespace MmorpgClient.UI
         public readonly List<GatewayPlayerInfo> Players = new();
 
         public int    RoleArchetypeIndex = 0;
-        public string RoleNickname = "云行客";
+        // 旧建角流程的本地昵称,只剩头顶名最后一级兜底。角色名以服务端为准(GameClient.ResolveRoleName),
+        // 默认空:写死"云行客"会让没带名字的角色头顶显示一个并不存在的名字(03-names §3.22)。
+        public string RoleNickname = "";
 
         // V3 character pack selection. -1 = none chosen yet (RoleCreateScreen
         // falls back to RoleArchetypeIndex). SelectedWeaponV3Index defaults to
