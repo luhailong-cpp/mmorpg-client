@@ -134,8 +134,8 @@ public static class GuildUiVerification
                 foreach (var label in canvasObject.GetComponentsInChildren<TMP_Text>(true)) label.ForceMeshUpdate(true, true);
                 foreach (var label in canvasObject.GetComponentsInChildren<TMP_Text>())
                 {
-                    // 空输入框的文字组件里留着一个零宽空格;禁用的占位文字不参与。
-                    if (!label.enabled || string.IsNullOrWhiteSpace(label.text?.Replace("​", string.Empty))) continue;
+                    // 空输入框的文字组件里留着一个零宽空格(U+200B,不算空白字符,先换成空格);禁用的占位文字不参与。
+                    if (!label.enabled || string.IsNullOrWhiteSpace(label.text?.Replace((char)0x200B, ' '))) continue;
                     var info = label.textInfo;
                     bool visible = false;
                     for (int i = 0; info != null && i < info.characterCount; i++) visible |= info.characterInfo[i].isVisible;
