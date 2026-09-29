@@ -52,10 +52,23 @@ namespace MmorpgClient.App
         }
 
         // Only the real RoleFlowUi callbacks write choice. This wrapper observes their result.
+        // 唯一例外是下面的"服务端退回即中止":只置 Cancelled 让管线放弃进入,不写任何选角结果,不会伪造 UI 证据。
         public IEnumerator Choose(uint zone, IReadOnlyList<AccountSimplePlayer> roles, GameClient.PlayerChoice choice)
         {
             _failed = false;
             _buttons.Clear();
+            // 为什么在入口就拦:建角被服务端以可修正原因退回后,GameClient 会带着同一个 choice 再调本驱动且不设轮数上限,
+            // 前提是"真人随时能取消";本驱动无人值守,继续往下走会出两种坏结果——
+            //   有角色时:RoleFlowUi 见 RejectHint 已直接进建角页、"CreateNewRole" 按钮被隐藏,只报"真实按钮不可用",退回原因被吞;
+            //   无角色时:用同一名字再点确认,撞名或服务端持续繁忙就无限重复点击和截图写盘。
+            // 约束:被退回一次即失败(fail-closed),不重试;必须在 _failed 复位之后调 Reject,否则会被 _failed 短路吞掉;
+            // 此时尚未启动原 Chooser、也没截图,无需收尾。
+            if (choice != null && !string.IsNullOrEmpty(choice.RejectHint))
+            {
+                choice.Cancelled = true;
+                Reject("建角被服务端退回: " + choice.RejectHint);
+                yield break;
+            }
             var definition = QdaoCharacterCatalog.Find(_options.AppearanceId);
             if (_host == null || _ui == null || _original?.Target != _ui ||
                 definition?.ResolveAppearance() == null || !QdaoCharacterCatalog.IsRetainedOriginal(_options.AppearanceId) ||

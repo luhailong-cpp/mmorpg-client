@@ -52,6 +52,10 @@ $files = @(
     "proto/common/component/currency_comp.proto",
     "proto/db/proto_option.proto",
     "proto/login/login.proto",
+    # 登录域的 tip 码(含角色名 kRoleNameInvalid / kRoleNameTaken / kRoleNameSensitive 与建角可重试失败)。
+    # Assets/Scripts/Game/Role/RoleNameRules.cs 按 login_error.K* 枚举映射文案,缺了这一行它就引用不存在的类型(CS0246);
+    # 与 guild / trade 同形:由服务端导表器生成,客户端不手抄数字(服务端 docs/design/guild-phase2/03-names.md §3.22)。
+    "generated/code/proto/tip/login_error_tip.proto",
     "proto/scene/scene_info.proto",
     "proto/scene/player_scene.proto",
     "proto/scene/player_skill.proto",
@@ -62,6 +66,11 @@ $files = @(
     # 客户端要按码分辨「传送被拒」和别的 tip,就必须有这份枚举 —— 缺了它只能显示裸编号,
     # 而 AGENTS §7.5 禁止在客户端手抄 tip 数字(号由导表器发,下次导表就可能对不上)。
     "generated/code/proto/tip/scene_error_tip.proto",
+    # 跨服域 tip,目前只用 kSceneTransferInProgress —— 服务端已挂归属交接(PlayerFrozenComp /
+    # PlayerTravelHandoffComp,跨区传送与同 zone 跨节点换图都会挂)时,TravelToZone 的同步拒绝码
+    # (PlayerLifecycleSystem::RequestZoneTravel)。收进来是为了让 DescribeTravelTip 按枚举名给文案,
+    # 不手写 13000(AGENTS §7.5)。
+    "generated/code/proto/tip/cross_server_error_tip.proto",
 
     # 角色属性加点(docs/design/player-attribute-allocation.md)
     "proto/scene/player_attribute.proto",

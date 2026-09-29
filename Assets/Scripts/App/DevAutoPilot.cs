@@ -95,11 +95,12 @@ namespace MmorpgClient.App
             public uint TravelZone;             // 目标 zone id;0 = 不做传送验收
             public uint TravelScene;            // 目标地图配置 id;0 = 交给目标 zone 挑默认大世界
             public bool QuitOnTravelEnd;        // 传送验收结束后退出进程(退出码同 -quitOnBattleEnd 语义)
-            // 整段兜底超时(秒)。各段预算:服务端冻结+存盘+等 scene_manager(存盘与等应答两道看门狗串行,
-            // ≤60;客户端按 ZoneTravelClient.TravelBudgetSec=75 等)+ 探测 5 + 验票 10 + Login 15
-            // + EnterGame 15 + 等 NotifyEnterScene 60,所以默认比其它阶段都长。
+            // 整段兜底超时(秒)。各段预算:还连着老 gate、等 msg 124 或失败 tip 的那一段按
+            // ZoneTravelClient.TravelBudgetSec 等;收到 msg 124 之后换连接的那一段(探测 + 验票 + Login
+            // + EnterGame + 等 NotifyEnterScene)见 GameClient.RedirectFlowWorstCaseSec,所以默认比其它阶段都长。
             // 硬约束只有一条:必须大于 ZoneTravelClient.TravelBudgetSec,否则验收会抢在服务端给结论之前判超时,
-            // FAIL 行里看不到真正的失败 tip。各段同时踩满最坏值(约 165s)不在默认值的覆盖范围内 ——
+            // FAIL 行里看不到真正的失败 tip。各段同时踩满最坏值(按客户端预算约 180s,推导见
+            // CityTravelRequest.CrossZoneTimeoutSeconds)不在默认值的覆盖范围内 —— 验收脚本有意设得更严,
             // 那样的环境本身就该判不通过;确要排查时用 -travelTimeout 放宽。
             public float TravelTimeout = 120f;
 
@@ -404,6 +405,17 @@ namespace MmorpgClient.App
         private System.Collections.IEnumerator ChooseAppearance(uint zone,
             IReadOnlyList<AccountSimplePlayer> roles, GameClient.PlayerChoice choice)
         {
+            // 为什么先看 RejectHint:GameClient 建角被服务端以可修正原因退回后,会带着同一个 choice 再调一次本选角器,
+            // 且不设轮数上限——那个设计的前提是"真人随时能点取消"。本选角器是无人值守的,下面的逻辑每轮都会
+            // 原样再置 CreateNew;服务端持续回可重试的原因(登录进行中、存储写失败等)时就会无延迟地无限重发建角请求。
+            // 约束:自动化路径被退回一次即失败收场(fail-closed),不重试、不换名,退回原因原样带进失败行供排查;
+            // 置 Cancelled 让管线走"放弃进入"分支结束,而不是依赖别的字段恰好为零。
+            if (!string.IsNullOrEmpty(choice.RejectHint))
+            {
+                choice.Cancelled = true;
+                Fail("appearance_select", "建角被服务端退回: " + choice.RejectHint);
+                yield break;
+            }
             var definition = QdaoCharacterCatalog.Find(_opt.AppearanceId);
             if (definition == null || !QdaoCharacterCatalog.IsRetainedOriginal(_opt.AppearanceId) ||
                 definition.ResolveAppearance() == null)
