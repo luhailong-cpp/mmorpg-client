@@ -185,8 +185,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (_client == null || _client.RequiresReconnect) { _autoDonations = _autoShop = false; return; }
             ulong now = (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             bool donationsDue = _client.DonationsNeedReload(now), shopDue = _client.ShopNeedsReload(now);
-            // 拿到新鲜快照才复位:它日后再过时(升级、跨日切),停在本页也能再自动拉一次。仍过时就不复位 ——
-            // 拉取失败、或本地时钟比服务端快时拉回来的照样"过时",复位会让每次 Render 都重发。
+            // 拿到新鲜快照才复位:它日后再过时,停在本页也能再自动拉一次 —— 升级、帮贡变化伴随回包 / 推送,
+            // 经 Changed → Render 走到这里;跨日 / 周切点没有任何事件,由 GuildUiRoot 每帧调的 Tick 走到这里。
+            // 仍过时就不复位 —— 拉取失败、或本地时钟比服务端快时拉回来的照样"过时",复位会让每次 Render / Tick 都重发。
             if (!donationsDue) _autoDonations = false;
             if (!shopDue) _autoShop = false;
             if (!IsVisible || _client.Busy || _client.Info == null) return;
@@ -194,6 +195,16 @@ namespace MmorpgClient.UI.Ugui.Guild
             { _autoDonations = true; DonationsRequested?.Invoke(); }
             else if (Page == GuildPage.Shop && shopDue && !_autoShop && !_client.ShopQueued)
             { _autoShop = true; ShopRequested?.Invoke(); }
+        }
+        /// <summary>
+        /// 由 GuildUiRoot 每帧调用(排在 DrainQueued 之后)。停在捐献 / 商店页跨过 05:00 或周切点时,
+        /// 服务端不推送、也没有回包,Render 不会发生,"今日 2/2" 与置灰的按钮会一直挂着;这里补判一次快照是否过时。
+        /// 只做两次时间比较、不重建界面;不连发的约束(一份过时的快照最多自动拉一次)仍由 _autoDonations / _autoShop 保证。
+        /// </summary>
+        public void Tick()
+        {
+            if (!IsVisible || Busy || (Page != GuildPage.Donate && Page != GuildPage.Shop)) return;
+            MaybeAutoRequest();
         }
         private void RenderIdentity()
         {
@@ -487,10 +498,15 @@ namespace MmorpgClient.UI.Ugui.Guild
                 if (donations != null) RenderDonateOptions(donations, (uint)i, x);
             }
             string footer;
+            // 隔离(请求超时,待重新登录)时没有请求在途,不能写"读取中";判断顺序同排行页、总览空态。
             if (donations == null)
-                footer = Busy ? "正在读取捐献信息…" : "点击右下角刷新读取捐献信息。";
+                footer = _client.RequiresReconnect ? GuildClient.RecoveryMessage
+                    : _client.Busy ? "正在读取捐献信息…" : "点击右下角刷新读取捐献信息。";
+            // 带上第一笔的暂时原因,不许诺"自动入账":结算中的单也可能以未成功 / 撤销收尾(余额不足未落盘时多半如此),
+            // 写法与状态栏同一口径(GuildClient.DonationPendingReasonText)。
             else if (donations.PendingDonations.Count > 0)
-                footer = donations.PendingDonations.Count + " 笔捐献结算中，完成后自动入账。";
+                footer = donations.PendingDonations.Count + " 笔捐献结算中："
+                    + GuildClient.DonationPendingReasonText(donations.PendingDonations[0].ReasonTipId);
             else if (donations.RecentResults.Count > 0)
                 footer = "最近一笔：" + GuildClient.DonationResultText(donations.RecentResults[0]);
             else
@@ -549,8 +565,10 @@ namespace MmorpgClient.UI.Ugui.Guild
                 alignment: TextAlignmentOptions.MidlineRight).name = "GuildShopBalance";
             if (shop == null)
             {
-                Text(_body, Busy ? "正在读取帮会商店…" : "点击右下角刷新读取帮会商店。", 30, 210, 1400, 100, 38, Muted,
-                    alignment: TextAlignmentOptions.Center);
+                // 同捐献页:隔离时没有请求在途,提示重新登录而不是"读取中"。
+                Text(_body, _client.RequiresReconnect ? GuildClient.RecoveryMessage
+                    : _client.Busy ? "正在读取帮会商店…" : "点击右下角刷新读取帮会商店。", 30, 210, 1400, 100, 38, Muted,
+                    alignment: TextAlignmentOptions.Center).name = "GuildShopPlaceholder";
                 return;
             }
             // 服务端已按 category、goods_id 排好序,这里只按分类筛。
@@ -585,8 +603,20 @@ namespace MmorpgClient.UI.Ugui.Guild
             Pager(_body, "Shop", _shopPage + 1, pages, delta => { _shopPage += delta; Render(); }, true);
             string footer = shop.PendingOrders.Count > 0
                 ? "待发放 " + shop.PendingOrders.Count + " 单：" + GuildClient.AssetReasonText(shop.PendingOrders[0].ReasonTipId)
-                : shop.RecentOrders.Count > 0 ? "最近一单：" + GuildClient.ShopResultText(shop.RecentOrders[0]) : "";
+                : shop.RecentOrders.Count > 0 ? "最近一单：" + ShopFooterResultText(shop.RecentOrders[0]) : "";
             FooterText(footer, 0, 545, 800, 64).name = "GuildShopFooter";
+        }
+        /// <summary>
+        /// 商店页脚的"最近一单"。页脚宽 800(右侧 820 起是翻页键),30 号字一行只放得下约 26 个汉字,
+        /// 而"兑换失败，帮贡与限购已退回：" + 原因、部分发放的整句加上前缀都超过 800,会被省略号截掉关键的尾巴。
+        /// 这两种只写结论;完整文案(含拒绝原因)由 GuildClient.RefreshShop 在没有待发放时写进底部状态栏。
+        /// 设计 §5.35.2 按 26 号字写的是 ShopResultText 全文,GuildUiArt.Text 把字号抬到 30 后放不下。
+        /// </summary>
+        public static string ShopFooterResultText(GuildShopOrderView order)
+        {
+            if (order?.Status == GuildAssetOrderStatus.Rejected) return "兑换失败，帮贡与限购已退回";
+            if (order?.Status == GuildAssetOrderStatus.AppliedPartial) return "只发放了一部分，客服将补偿";
+            return GuildClient.ShopResultText(order);
         }
         /// <summary>限购文案:未解锁先说等级,再按周期说用量。</summary>
         public static string ShopLimitText(GuildShopGoodsView item)
@@ -605,7 +635,10 @@ namespace MmorpgClient.UI.Ugui.Guild
             foreach (var member in info.Members) if (member.PlayerId == _client.PlayerId) return member.ContributionBalance;
             return 0;
         }
-        /// <summary>页脚一行:超宽时以省略号收尾,不压到右侧的翻页键(完整文案同时写在底部状态栏)。</summary>
+        /// <summary>
+        /// 页脚一行:超宽时以省略号收尾,不压到右侧的翻页键。省略号只是兜底 —— 两页页脚的文案都按 30 号字控制在框宽以内
+        /// (EconomyFootersFitWithoutEllipsis 逐个原因码核对);商店页脚只写结论的那几种,全文见状态栏(ShopFooterResultText)。
+        /// </summary>
         private TextMeshProUGUI FooterText(string value, float x, float y, float w, float h)
         {
             var text = Text(_body, value, x, y, w, h, 30, Muted);

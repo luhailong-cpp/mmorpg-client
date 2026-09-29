@@ -103,7 +103,8 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (!_available) { HidePanel(); return; }
             // NotifyGuildChanged 只置排队标志;真正的拉取在这里按帧消费,一帧最多发一个请求,
             // 不让每条推送都触发一次全量 Refresh。窗口关着不拉,Toggle() 打开时已有 Refresh()。
-            if (_window.IsVisible) _client?.DrainQueued(_window.ShowingApplications);
+            // Tick 排在后面:停在捐献 / 商店页跨过日 / 周切点没有任何事件,由它补判快照过时;DrainQueued 刚发了请求时它什么也不做。
+            if (_window.IsVisible) { _client?.DrainQueued(_window.ShowingApplications); _window.Tick(); }
             var selected = EventSystem.current?.currentSelectedGameObject;
             bool typing = selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true;
             if (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
