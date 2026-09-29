@@ -24,6 +24,53 @@ namespace MmorpgClient.Tests.PlayMode
         private const string Second = "01_ice_sword_girl";
 
         [UnityTest]
+        public IEnumerator NewRoleWithoutCyclingAppearance_CreatesAlchemyBoyAndUsesSameWorldIdentity()
+        {
+            const string latest = "08_alchemy_prodigy_boy";
+            var appearance = QdaoCharacterCatalog.Find(latest).ResolveAppearance();
+            Assert.That(appearance?.Version, Is.EqualTo(14), "Requires the delivered alchemy V14 resources.");
+            var host = new GameObject("DefaultNewRoleAppearanceRegression");
+            var ui = host.AddComponent<RoleFlowUi>();
+            var world = new ActorWorld("DefaultNewRoleAppearanceWorld");
+            try
+            {
+                typeof(RoleFlowUi).GetMethod("BuildCanvas", Hidden)?.Invoke(ui, null);
+                var choice = new GameClient.PlayerChoice();
+                var choose = Choose(ui, Array.Empty<AccountSimplePlayer>(), choice);
+                Assert.That(choose.MoveNext(), Is.True);
+                yield return null;
+                // Reproduce the user's ordinary create flow: no external appearance id and no arrow clicks.
+                Click(host, "Class_4");
+                Click(host, "GenderFemale");
+                Click(host, "ConfirmCreate");
+                Assert.That(choose.MoveNext(), Is.False);
+                Assert.That(choice.CreateNew, Is.True);
+                Assert.That(choice.AppearanceId, Is.EqualTo(latest),
+                    "Creating without discovering the appearance arrows must use the latest delivered character.");
+                Assert.That(choice.ClassId, Is.EqualTo(4u));
+                Assert.That(choice.Gender, Is.EqualTo(2u));
+                Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(QdaoCharacterCatalog.LoadPortrait(latest)));
+
+                world.AppearanceProvider = _ => QdaoCharacterCatalog.ResolveRole(choice.ClassId, choice.Gender, choice.AppearanceId);
+                world.SpawnActor(10, ActorKind.Player, 0, UnityEngine.Vector3.zero, UnityEngine.Vector3.zero, 101);
+                yield return null;
+                var actor = world.Actors[10];
+                var animator = actor.Go.GetComponent<QdaoBoySpriteAnimator>();
+                Assert.That(actor.CharacterId, Is.EqualTo(latest));
+                Assert.That(animator.CharacterId, Is.EqualTo(latest));
+                Assert.That(animator.ArtworkVersion, Is.EqualTo(14));
+                Assert.That(actor.Go.transform.Find("sprite").GetComponent<SpriteRenderer>().sprite, Is.Not.Null);
+            }
+            finally
+            {
+                world.Clear();
+                UnityEngine.Object.Destroy(world.Root.gameObject);
+                UnityEngine.Object.Destroy(host);
+            }
+            yield return null;
+        }
+
+        [UnityTest]
         public IEnumerator MissingChangedIdentity_ClearsPreviousWorldAndBattleBody_AndCanRecover()
         {
             string selected = First;

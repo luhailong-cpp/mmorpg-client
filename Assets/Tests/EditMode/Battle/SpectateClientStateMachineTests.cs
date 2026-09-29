@@ -452,6 +452,36 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void ChannelSuperseded_WhileWatching_ConvergesNone_CanWatchAgain()
+        {
+            // 观战时进了自己的 gather:参战分配包把直连换到别的局。RemoveObserver 丢了 / SpectateEnd 晚于
+            // 分配包随旧连接一起丢掉,观战帧再也不会来(收缩后只走直连)—— 不能永远停在 Watching
+            UseChannel();
+            EnterWatchingViaChannel();
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded);
+
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_client.State, Is.Null);
+            Assert.That(_client.WatchedBattleId, Is.EqualTo(0UL));
+            Assert.That(_errors, Has.Count.EqualTo(1));
+
+            _client.WatchBattle(TheBattleId + 1);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Requesting), "相位闸已放开,可以再次观战");
+        }
+
+        [Test]
+        public void ChannelSuperseded_WhileRequesting_ConvergesNone()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded);
+
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_errors, Has.Count.EqualTo(1));
+        }
+
+        [Test]
         public void ChannelLost_EndedHostClosedOrOtherBattle_Ignored()
         {
             UseChannel();
@@ -459,6 +489,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Ended);
             _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.HostClosed);
             _channel.RaiseLost(9999, BattleLinkCloseKind.Unreachable);
+            _channel.RaiseLost(9999, BattleLinkCloseKind.Superseded);
             Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
             Assert.That(_errors, Is.Empty);
         }

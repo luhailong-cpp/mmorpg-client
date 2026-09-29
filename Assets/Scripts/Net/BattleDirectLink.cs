@@ -633,10 +633,11 @@ namespace MmorpgClient.Net
 
         /// <summary>
         /// 宿主入口(重连提示 / 手动重连 / 开局自愈)共用:作废当前连接与一切在途恢复,
-        /// 重置两类预算,不等退避立即补签。
+        /// 重置两类预算,不等退避立即补签。指向另一局且旧局未终结时,补签发出后另抛 Superseded。
         /// </summary>
         private void RestartWithReissue(ulong battleId, string reason)
         {
+            ulong supersededBattleId = OpenBattleSupersededBy(battleId);
             _epoch++;
             TeardownConnection();
             _assignment = null;
@@ -644,6 +645,7 @@ namespace MmorpgClient.Net
             _ended = false;
             _sameTicketRetries = 0;
             _reissues = 0;
+            _expiredTicketReissueUsed = false;
             _reissueInFlight = false;
             _reconnectAt = 0;
             _reissueAt = 0;
@@ -651,6 +653,28 @@ namespace MmorpgClient.Net
             _connectDeadline = 0;
             State = LinkState.Idle;
             SendReissue(reason);
+            RaiseSuperseded(supersededBattleId);
+        }
+
+        /// <summary>
+        /// 本链路即将改服务 newBattleId 时,返回需要以 Superseded 通知的旧局 id:旧局存在、不是同一局、
+        /// 且尚未终结(已 Closed 的旧局早已抛过终结事件,不重复)。否则 0。必须在改 _targetBattleId 之前取。
+        /// </summary>
+        private ulong OpenBattleSupersededBy(ulong newBattleId)
+            => _targetBattleId != 0 && _targetBattleId != newBattleId && State != LinkState.Closed
+                ? _targetBattleId
+                : 0;
+
+        /// <summary>
+        /// 通知订阅方旧局不再由本链路服务(turn-based §22 D74 评审项:收缩后观战帧只走直连,
+        /// 不通知的话观战方会停在 Watching 永远等帧)。调用时链路已切到新局、旧连接已拆,
+        /// 订阅方在回调里重入本链路只会看到新局的自洽状态。battleId 为 0 时无事。
+        /// </summary>
+        private void RaiseSuperseded(ulong battleId)
+        {
+            if (battleId == 0) return;
+            _log($"链路改服务 battle_id={_targetBattleId},旧局 battle_id={battleId} 不再由本链路服务");
+            OnClosed?.Invoke(battleId, BattleLinkCloseKind.Superseded, "retargeted");
         }
 
         /// <summary>
@@ -677,6 +701,9 @@ namespace MmorpgClient.Net
             double delay = ReissueDelaySeconds(_reissues + 1);
             if (delay <= 0)
             {
+                // 只有「票据期限已过、本轮还没立即补签过」会走到这里(见 ReissueDelaySeconds);
+                // 先记下再发:补签通道同步失败会重入本函数,重入时必须回到正常退避
+                _expiredTicketReissueUsed = true;
                 SendReissue(reason);
                 return;
             }
@@ -687,21 +714,23 @@ namespace MmorpgClient.Net
 
         /// <summary>
         /// 第 attempt 次(从 1 起)补签前的退避:基数 × 2^(attempt-1) × (1 ± 抖动)。
-        /// 以票据期限(= 房间期限,expire_at_ms)封顶:不等到房间作废之后才去补签,
-        /// 期限已过则立即补签一次,由服务端给权威答复(kInvalidParameter → BattleGone)——
+        /// 期限未到时以票据期限(= 房间期限,expire_at_ms)封顶:不等到房间作废之后才去补签。
+        /// 期限已过时本轮只立即补签**一次**(<see cref="_expiredTicketReissueUsed"/>),由服务端给权威答复
+        /// (kInvalidParameter → BattleGone);之后照常 1s / 2s / 4s 退避 —— 房间期限到了不等于首次就能
+        /// 拿到 BattleGone(match 在 battle RPC 失败时回 kServiceUnavailable),客户端时钟偏快也会落到
+        /// 这里,若每次都立即补签,退避就没了,补签通道同步失败时还会同步递归当场烧完预算。
         /// 刻意不凭本地时钟判定「战斗已结束」,客户端时钟偏快会把进行中的战斗误判收场。
+        /// 只读不写:「已用过」由 <see cref="ScheduleReissue"/> 在真正立即发出时记下。
         /// </summary>
         private double ReissueDelaySeconds(int attempt)
         {
             double delay = ReissueBackoffBaseSeconds * Math.Pow(2, attempt - 1)
                            * (1.0 + (_random01() * 2.0 - 1.0) * ReissueBackoffJitter);
             var assignment = _assignment;
-            if (assignment != null && assignment.ExpireAtMs != 0)
-            {
-                double remaining = ((long)assignment.ExpireAtMs - (long)_unixNowMs()) / 1000.0;
-                if (remaining < delay) delay = Math.Max(0, remaining);
-            }
-            return delay;
+            if (assignment == null || assignment.ExpireAtMs == 0) return delay;
+            double remaining = ((long)assignment.ExpireAtMs - (long)_unixNowMs()) / 1000.0;
+            if (remaining > 0) return Math.Min(delay, remaining);
+            return _expiredTicketReissueUsed ? delay : 0;
         }
 
         private void SendReissue(string reason)
@@ -732,6 +761,14 @@ namespace MmorpgClient.Net
                     if (assigned == null || assigned.BattleId != battleId)
                     {
                         Finish(BattleLinkCloseKind.Unreachable, "reissue_mismatch");
+                        return;
+                    }
+                    if (!IsCompleteAssignment(assigned))
+                    {
+                        // 缺 host / port:交给 HandleAssigned 会被静默忽略,链路停在 Idle —— 没有在途补签、
+                        // 没有倒计时、也不终结,UI 永远「正在连接」(§11.3 不许吞错)。按一次失败的补签计,
+                        // 走退避,预算用完 → Unreachable。
+                        HandleReissueFailed(0, "incomplete assignment");
                         return;
                     }
                     HandleAssigned(assigned);
@@ -824,5 +861,10 @@ namespace MmorpgClient.Net
 
         private bool TicketExpired(BattleAssignedS2C assignment)
             => assignment.ExpireAtMs != 0 && assignment.ExpireAtMs <= _unixNowMs();
+
+        /// <summary>能据以建连的分配包:battle_id、host、port 齐全。</summary>
+        private static bool IsCompleteAssignment(BattleAssignedS2C assignment)
+            => assignment != null && assignment.BattleId != 0
+               && !string.IsNullOrEmpty(assignment.Host) && assignment.Port != 0;
     }
 }

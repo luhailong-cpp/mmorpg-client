@@ -33,6 +33,8 @@ namespace MmorpgClient.Game.Battle
         /// 直连终结(参数:终结时服务的 battle_id、结构化原因、诊断串)。
         /// <see cref="BattleLinkCloseKind.BattleGone"/> = 战斗已结束(终局包可能丢了),应收敛回空闲;
         /// <see cref="BattleLinkCloseKind.Unreachable"/> = 本局连不上 battle 节点,应提示并允许手动重连;
+        /// <see cref="BattleLinkCloseKind.Superseded"/> = 通道改服务另一局,该局从此收不到战斗帧
+        /// (观战方应退出该局观战;它不是战斗已结束的权威信号,参战方不据此收场);
         /// Ended / HostClosed 为正常收尾或宿主关闭,订阅方通常无需处理。
         /// </summary>
         event Action<ulong, BattleLinkCloseKind, string> Lost;

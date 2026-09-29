@@ -37,7 +37,8 @@ namespace MmorpgClient.Game.Battle
     ///    有直连通道时同时通知服务端退出(就绪发 StopWatchBattle,未就绪放弃直连);
     ///  - 退出观战时直连未就绪:StopWatchBattle 发不出去(gate 不中继战斗),本地收敛并放弃直连,
     ///    服务端观众名单等战斗结束时清理;若分配包晚到、直连随后就绪,再补发退出;
-    ///  - 直连终结为 BattleGone / Unreachable:观战无从继续,收敛回 None 并报错;
+    ///  - 直连终结为 BattleGone / Unreachable,或直连改服务另一局(Superseded):观战无从继续,
+    ///    收敛回 None 并报错;
     ///  - 断线:本地观战态整体作废回 None(观战无重连恢复,重进走 WatchBattle)。
     /// </summary>
     public sealed class SpectateClient
@@ -334,8 +335,11 @@ namespace MmorpgClient.Game.Battle
         }
 
         /// <summary>
-        /// 直连终结:BattleGone(战斗已结束,观战结束包多半丢了)/ Unreachable(连不上 battle 节点)
-        /// 时观战无从继续,收敛回 None 并报错。Ended(正常收尾 / 已退出)与 HostClosed
+        /// 直连终结:BattleGone(战斗已结束,观战结束包多半丢了)/ Unreachable(连不上 battle 节点)/
+        /// Superseded(直连改服务另一局,典型是观战中进了自己的 gather:match 的 RemoveObserver 尽力而为
+        /// 可能丢,SpectateEnd 也可能晚于参战分配包而随旧连接一起丢掉)时观战无从继续 —— 收缩后观战帧
+        /// 只走直连,Watching 没有超时,不收敛就永远停在观战里、WatchBattle 也被相位闸挡住。
+        /// 三者都收敛回 None 并报错。Ended(正常收尾 / 已退出)与 HostClosed
         /// (大厅断线,由 Disconnected 统一作废)不处理。随机观战且 battle_id 尚未回填时对不上号,
         /// 交给首帧超时收敛。
         /// </summary>
@@ -351,6 +355,9 @@ namespace MmorpgClient.Game.Battle
                     break;
                 case BattleLinkCloseKind.Unreachable:
                     text = "无法连接战斗服务器,已退出观战";
+                    break;
+                case BattleLinkCloseKind.Superseded:
+                    text = "已切换到其他战斗,观战结束";
                     break;
                 default:
                     return;

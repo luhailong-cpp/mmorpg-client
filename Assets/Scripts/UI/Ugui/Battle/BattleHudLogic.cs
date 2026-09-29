@@ -114,6 +114,40 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             return false;
         }
+
+        /// <summary>
+        /// 直连未就绪多久之后才亮「正在连接」横幅(秒)。开局时分配包与开局包几乎同时到,
+        /// 直连通常在一秒内握手完成;宽限期内只靠开局 toast 与底部提示,免得每局开场横幅闪一下。
+        /// </summary>
+        public const float ChannelConnectingBannerDelaySeconds = 1.5f;
+
+        /// <summary>
+        /// 战斗直连提示横幅的显示档位(turn-based §22 D74,直连是战斗唯一通路):
+        /// 不在回合内(未开局 / 已收尾 / 观战)→ 不显示;直连就绪 → 不显示;
+        /// 已判定连不上(恢复预算用完)→ 失败横幅 + 重新连接;其余未就绪超过宽限期 → 连接中横幅。
+        /// </summary>
+        /// <param name="inBattle">本人参战且相位为 WaitingAction / Resolving。</param>
+        /// <param name="ready">BattleClient.IsBattleChannelReady。</param>
+        /// <param name="failed">BattleClient.IsBattleChannelFailed。</param>
+        /// <param name="notReadySeconds">本次连续未就绪已持续的秒数(就绪时传 0)。</param>
+        public static BattleChannelBanner DecideChannelBanner(bool inBattle, bool ready, bool failed, float notReadySeconds)
+        {
+            if (!inBattle || ready) return BattleChannelBanner.Hidden;
+            if (failed) return BattleChannelBanner.Failed;
+            return notReadySeconds >= ChannelConnectingBannerDelaySeconds
+                ? BattleChannelBanner.Connecting
+                : BattleChannelBanner.Hidden;
+        }
+    }
+
+    /// <summary>战斗直连提示横幅的显示档位(见 <see cref="BattleHudLogic.DecideChannelBanner"/>)。</summary>
+    public enum BattleChannelBanner : byte
+    {
+        Hidden,
+        /// <summary>正在连接战斗服务器(握手中 / 断线自动恢复中)。</summary>
+        Connecting,
+        /// <summary>无法连接战斗服务器(恢复预算用完),附「重新连接」按钮。</summary>
+        Failed,
     }
 
     /// <summary>
@@ -167,6 +201,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             list.Add(("退出观战", BattleScreen.StopWatchRect));
             list.Add(("确认行动", BattleScreen.ConfirmRect));
             list.Add(("取消", BattleScreen.CancelRect));
+            list.Add(("重新连接", BattleScreen.ReconnectRect));
             list.Add(("行动预告条", new Rect((QdaoUguiTheme.DesignWidth - BattleActionOrderBar.FullWidth) * 0.5f,
                 BattleActionOrderBar.Top, BattleActionOrderBar.FullWidth, BattleActionOrderBar.TileHeight)));
             return list;

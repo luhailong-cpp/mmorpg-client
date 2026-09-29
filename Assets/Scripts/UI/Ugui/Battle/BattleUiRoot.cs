@@ -16,7 +16,9 @@ namespace MmorpgClient.UI.Ugui.Battle
     ///   - 重连:Phase 由 None 直接变 WaitingAction/Resolving 时自动打开战斗屏;
     ///   - OnTurnResult 事件流播完后调用 AckTurnPlayed();
     ///   - 观战(SpectateClient):入口面板 + 复用 BattleScreen 的只读模式;
-    ///     观战回合播放不 Ack(只读流无该契约),新回合直接抢占旧播放。
+    ///     观战回合播放不 Ack(只读流无该契约),新回合直接抢占旧播放;
+    ///   - 战斗直连(turn-based §22 D74):开局直连未就绪时 toast「正在连接战斗服务器…」,就绪再补「战斗开始!」;
+    ///     连不上(OnBattleChannelFailed)toast 一次,常驻横幅与「重新连接」由 BattleScreen 按 BattleClient 状态轮询显示。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class BattleUiRoot : MonoBehaviour
@@ -53,6 +55,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private BattleEndS2C _pendingEnd;
         private Coroutine _playCo;
         private Coroutine _toastCo;
+        // 直连就绪时要补的 toast(开局未就绪 →「战斗开始!」;判定连不上后恢复 →「已重新连接…」);null = 不补
+        private string _channelReadyToast;
 
         // 观战屏状态(与参战流程分离:两条播放链互不复用协程句柄)
         private bool _spectateOpen;
@@ -188,6 +192,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnQueueStatus += HandleQueueStatus;
             _client.OnAutoStateChanged += HandleAutoStateChanged;
             _client.OnError += HandleClientError;
+            _client.OnBattleChannelReady += HandleBattleChannelReady;
+            _client.OnBattleChannelFailed += HandleBattleChannelFailed;
         }
 
         private void UnbindClient()
@@ -202,6 +208,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnQueueStatus -= HandleQueueStatus;
             _client.OnAutoStateChanged -= HandleAutoStateChanged;
             _client.OnError -= HandleClientError;
+            _client.OnBattleChannelReady -= HandleBattleChannelReady;
+            _client.OnBattleChannelFailed -= HandleBattleChannelFailed;
             _clientBound = false;
         }
 
@@ -383,7 +391,10 @@ namespace MmorpgClient.UI.Ugui.Battle
                     break;
                 case BattlePhase.None:
                     _queuePanel?.SetQueueing(false);
-                    // 结算面板/回合播放还在时不收屏,等玩家确认
+                    _channelReadyToast = null; // 本局已收尾:不再补「战斗开始 / 已重新连接」
+                    // 结算面板/回合播放还在时不收屏,等玩家确认。
+                    // 直连判定战斗已结束(BattleGone)时也走到这里,scene 结算的 NotifyBattleEnd 可能随后才到:
+                    // 结算面板挂在模态层,不依赖战斗屏,屏收了照样能弹(ShowResult)
                     if (!_resultShowing && !_playing && _pendingEnd == null)
                         CloseBattle();
                     break;
@@ -397,7 +408,27 @@ namespace MmorpgClient.UI.Ugui.Battle
             _resultPanel?.Hide();
             RefreshModalDim();
             OpenBattle(start?.State ?? _client?.State);
-            ShowToast("战斗开始!");
+            // 开局包经大厅到,直连这时通常还在握手(turn-based §22 D74):先说在连,就绪时再补「战斗开始!」
+            bool channelReady = _client == null || _client.IsBattleChannelReady;
+            _channelReadyToast = channelReady ? null : "战斗开始!";
+            ShowToast(channelReady ? "战斗开始!" : BattleScreen.ChannelConnectingBannerText);
+        }
+
+        private void HandleBattleChannelReady()
+        {
+            // 横幅收起 / 出手按钮解灰由 BattleScreen 每帧轮询完成,这里只补一条提示
+            if (_channelReadyToast == null) return;
+            string message = _channelReadyToast;
+            _channelReadyToast = null;
+            ShowToast(message);
+        }
+
+        private void HandleBattleChannelFailed(string message)
+        {
+            // 常驻横幅 +「重新连接」由 BattleScreen 按 IsBattleChannelFailed 显示;这里 toast 一次引起注意。
+            // 之后若恢复(手动重连 / 重连提示补签成功),就绪时告诉玩家已经连上
+            _channelReadyToast = "已重新连接战斗服务器";
+            ShowToast(message, true);
         }
 
         private void HandleTurnResult(TurnResultS2C result)
@@ -472,7 +503,13 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void HandleClientError(string message)
         {
-            ShowToast($"错误:{message}", true);
+            // 直连未就绪时出手被本地拒绝的两条文案本身就是状态说明,不加「错误:」前缀;连接中不按错误着色
+            if (message == BattleClient.BattleChannelConnectingText)
+                ShowToast(message);
+            else if (message == BattleClient.BattleChannelFailedText)
+                ShowToast(message, true);
+            else
+                ShowToast($"错误:{message}", true);
             if (_queuePanel != null && _queuePanel.IsVisible)
                 _queuePanel.SetStatus(message);
         }
@@ -642,9 +679,10 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void HandleDisconnected()
         {
-            // 断线:战斗态整体作废(重连后由 NotifyBattleReconnect → RequestState 恢复)
+            // 断线:战斗态整体作废(重连后由 NotifyBattleReconnect → 直连补签就绪 → 补拉恢复)
             _pendingEnd = null;
             _resultShowing = false;
+            _channelReadyToast = null;
             if (_playCo != null) { StopCoroutine(_playCo); _playCo = null; }
             _playing = false;
             _battleScreen?.AbortPlayback();
@@ -668,7 +706,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             var state = _client?.State;
             if (state == null)
             {
-                _client?.RequestState(); // 重连兜底补拉
+                // 重连兜底补拉:直连未就绪时 BattleClient 不发请求,等直连就绪自己补拉(同局在途去重)
+                _client?.RequestState();
                 return;
             }
             OpenBattle(state);

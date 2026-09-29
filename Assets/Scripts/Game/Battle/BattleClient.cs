@@ -632,7 +632,8 @@ namespace MmorpgClient.Game.Battle
         /// <summary>
         /// 直连终结:BattleGone(补签被判战斗已结束,终局包多半在断线期间丢了)收敛回 None;
         /// Unreachable 保持相位(服务端回合超时替本人默认出手),抛 OnBattleChannelFailed 供 UI 常驻提示
-        /// 与手动重连;Ended(正常收尾)/ HostClosed(大厅断线,由 Disconnected 统一作废)不处理。
+        /// 与手动重连;Ended(正常收尾)/ HostClosed(大厅断线,由 Disconnected 统一作废)不处理;
+        /// Superseded(通道改服务另一局)不是本局结束的权威信号,换局自有新的开局包接管,不处理。
         /// </summary>
         private void HandleChannelLost(ulong battleId, BattleLinkCloseKind kind, string detail)
         {

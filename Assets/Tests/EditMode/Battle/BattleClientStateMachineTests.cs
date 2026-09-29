@@ -655,6 +655,25 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void SubmitAction_InvalidParameterTip_ReportsInvalidAction_NotBattleEnded()
+        {
+            // battle 节点把引擎 ValidateAction 的结果原样回给出手方:PVP 逃跑、用药超限、未拥有的技能等
+            // 普通非法行动也是 kInvalidParameter,此时战斗仍在进行,不能提示「战斗已结束」
+            PushBattleStart();
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionFlee }),
+                Is.True);
+            _net.CallsOf(MessageIds.SubmitBattleAction)[0].Respond(new SubmitBattleActionResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },
+            });
+
+            Assert.That(_errors, Has.Count.EqualTo(1));
+            Assert.That(_errors[0], Does.Not.Contain("已结束"));
+            Assert.That(_errors[0], Does.Contain("行动无效"));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "战斗仍在进行,相位不动");
+        }
+
+        [Test]
         public void SubmitAction_ReturnsFalse_WhenPhaseWrong()
         {
             Assert.That(_client.SubmitAction(new BattleAction()), Is.False);
@@ -699,9 +718,25 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_channelFailures, Is.EqualTo(new[] { BattleClient.BattleChannelFailedText }));
             Assert.That(_client.IsBattleChannelFailed, Is.True);
 
+            // 已判定连不上:出手本地拒绝,文案与横幅一致,不能叫玩家「请稍候」
+            _errors.Clear();
+            Assert.That(_client.SubmitAction(new BattleAction
+            {
+                ActionType = eBattleActionType.BattleActionAttack,
+                TargetId = EnemyId,
+            }), Is.False);
+            Assert.That(_errors, Is.EqualTo(new[] { BattleClient.BattleChannelFailedText }));
+            Assert.That(_net.CallsOf(MessageIds.SubmitBattleAction), Is.Empty);
+
             _client.RetryBattleChannel();
             Assert.That(_channel.Retries, Is.EqualTo(new[] { TheBattleId }));
             Assert.That(_client.IsBattleChannelFailed, Is.False);
+
+            // 手动重连进行中:回到「正在连接」口径
+            _errors.Clear();
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionAttack }),
+                Is.False);
+            Assert.That(_errors, Is.EqualTo(new[] { BattleClient.BattleChannelConnectingText }));
 
             _channel.RaiseReady(TheBattleId);
             Assert.That(_client.IsBattleChannelReady, Is.True);
@@ -715,6 +750,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             PushBattleStart();
             _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Ended);
             _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.HostClosed);
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded); // 换局不是本局结束的权威信号
             _channel.RaiseLost(9999, BattleLinkCloseKind.BattleGone);
             _channel.RaiseLost(9999, BattleLinkCloseKind.Unreachable);
 
