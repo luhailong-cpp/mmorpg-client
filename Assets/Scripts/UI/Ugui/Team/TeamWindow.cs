@@ -225,13 +225,15 @@ namespace MmorpgClient.UI.Ugui.Team
             int applications = data?.Applications.Count ?? 0;
             int invites = _state?.Invites.Count ?? 0;
             int rightItems = noTeam ? invites : applications;
+            // 队员看不到申请明细,标题计数取服务器给的总数,与正文"N 条待处理申请"一致
+            int applicationTotal = hasTeam && !leader ? (int)(_state.Snapshot?.ApplicationCount ?? 0) : applications;
             _summary.text = hasTeam
                 ? $"队伍人数  {members} / {capacity}        队伍编号  {data.TeamId}        " + (leader ? "你是队长" : "你是队员")
                 : noTeam ? $"尚未加入队伍        我的玩家编号  {data.LocalPlayerId}"
                 : "队伍信息尚未同步";
             _memberCount.text = $"{members} / {capacity}";
             _applicationTitle.text = noTeam ? "收到的邀请" : "申请列表";
-            _applicationCount.text = noTeam ? $"{invites} 条" : $"{applications} 人";
+            _applicationCount.text = noTeam ? $"{invites} 条" : $"{applicationTotal} 人";
             _status.text = StatusText();
             _refresh.interactable = CanAct;
             _refreshLabel.text = _state?.IsLoading == true ? "同步中…" : "刷新";
