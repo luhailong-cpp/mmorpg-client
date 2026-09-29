@@ -640,6 +640,29 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _client.RefreshShop(); _net.Reply(ShopFixture(0));
             Assert.That(_client.ShopNeedsReload(ulong.MaxValue), Is.False);
         }
+        /// <summary>
+        /// 断线重连后 _pendingShopIds 已清空,重拉算不出"刚结算完";商店页脚又只写得下结论。没有待发放时,
+        /// 状态栏要写最近一单的完整结果(含拒绝原因),进页自动拉取也看得到上一单(05 §5.32 W14)。
+        /// 余额不足而未落盘的结算中捐献,状态栏说"正在确认",不说成已失败、也不许诺入账。
+        /// </summary>
+        [Test] public void EconomyReloadStatusCarriesTheLatestResultAndPendingReason()
+        {
+            Load();
+            _client.RefreshShop(); _net.Reply(ShopFixture(440));
+            Assert.That(_client.Status, Is.EqualTo("帮会商店已更新"));
+            _net.Disconnect(); _net.IsReady = true; Load();
+            var shop = ShopFixture(440);
+            shop.RecentOrders.Add(new GuildShopOrderView { OpId = 21, GoodsId = 203, Count = 1, Status = GuildAssetOrderStatus.Rejected,
+                ReasonTipId = GuildAssetReasons.Blocked });
+            _client.RefreshShop(); _net.Reply(shop);
+            Assert.That(_client.Status, Is.EqualTo("最近一单：兑换失败，帮贡与限购已退回：该物品或货币暂被限制"));
+
+            var donations = DonateFixture();
+            donations.PendingDonations.Add(new GuildDonationView { OpId = 22, DonateId = 2, Status = GuildAssetOrderStatus.Pending,
+                ReasonTipId = GuildAssetReasons.CurrencyInsufficient });
+            _client.RefreshDonations(); _net.Reply(donations);
+            Assert.That(_client.Status, Is.EqualTo("1 笔捐献结算中：余额不足，正在确认结算结果"));
+        }
 
         private void Empty() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } }); }
         private void Load() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() }); }
@@ -1176,6 +1199,104 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(requests, Is.EqualTo(1));
         }
         /// <summary>
+        /// 停在捐献页跨过 05:00:服务端不推送、也没有回包,Render 不会发生。GuildUiRoot 每帧调的 Tick 发现快照
+        /// 过了日切点,自动拉一次;拉回来前 / 仍过时都不连发;离开经济页后 Tick 什么也不做。
+        /// </summary>
+        [Test] public void DonatePageReloadsWhileStayingPastDailyReset()
+        {
+            int requests = 0; _window.DonationsRequested += () => requests++;
+            var today = GuildClientTests.DonateFixture();
+            today.NextDailyResetMs = (ulong)DateTimeOffset.UtcNow.AddHours(12).ToUnixTimeMilliseconds();
+            _client.RefreshDonations(); _net.Reply(today);
+            _window.SetClient(_client); _window.Show(GuildPage.Donate);
+            _window.Tick();
+            Assert.That(requests, Is.Zero);
+            // 本用例没把 Changed 接到窗口:换上"已过日切点"的快照后窗口不重建,相当于停在本页、时钟走过了 05:00。
+            var yesterday = GuildClientTests.DonateFixture();
+            yesterday.NextDailyResetMs = (ulong)DateTimeOffset.UtcNow.AddHours(-1).ToUnixTimeMilliseconds();
+            _client.RefreshDonations(); _net.Reply(yesterday);
+            _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+            _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+            _window.Show(GuildPage.Overview); _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+        }
+        /// <summary>
+        /// 捐献拉取超时 → 隔离(待重新登录),Info 还在、快照仍为空:此时没有请求在途,
+        /// 两页不能挂着"正在读取…"与状态栏的"请重新登录"互相矛盾。
+        /// </summary>
+        [Test] public void EconomyPagesShowRecoveryInsteadOfLoadingWhileQuarantined()
+        {
+            _client.RefreshDonations(); _net.Error("rpc timeout");
+            Assert.That(_client.RequiresReconnect, Is.True);
+            _window.SetClient(_client); _window.Show(GuildPage.Donate);
+            Assert.That(NamedText("GuildDonateFooter"), Is.EqualTo(GuildClient.RecoveryMessage));
+            Assert.That(ActiveText(), Does.Not.Contain("正在读取"));
+            _window.Show(GuildPage.Shop);
+            Assert.That(NamedText("GuildShopPlaceholder"), Is.EqualTo(GuildClient.RecoveryMessage));
+            Assert.That(ActiveText(), Does.Not.Contain("正在读取"));
+        }
+        /// <summary>
+        /// 商店页脚只有 800 宽(右侧 820 起是翻页键),捐献页脚 1480 宽;30 号字下任何结局、任何原因码都不能被
+        /// 省略号截断(ActiveText 读的是源串,看不出截断)。按字体度量逐个核对 preferredWidth。
+        /// 商店的拒绝 / 部分发放在页脚只写结论,全文在状态栏;结算中的捐献不许诺"自动入账"。
+        /// </summary>
+        [Test] public void EconomyFootersFitWithoutEllipsis()
+        {
+            uint[] reasons = { 0, 27000, 27001, 27002, 27003, 27004, 27005, 27006, 27007, 27008, 99999 };
+            var outcomes = new[] { GuildAssetOrderStatus.Applied, GuildAssetOrderStatus.Rejected,
+                GuildAssetOrderStatus.Aborted, GuildAssetOrderStatus.AppliedPartial };
+            _window.Show(GuildPage.Shop);
+            foreach (uint reason in reasons)
+            {
+                foreach (var outcome in outcomes)
+                {
+                    var recent = GuildClientTests.ShopFixture(440);
+                    recent.RecentOrders.Add(new GuildShopOrderView { OpId = 8, GoodsId = 203, Count = 1, Status = outcome, ReasonTipId = reason });
+                    _client.RefreshShop(); _net.Reply(recent); _window.SetClient(_client);
+                    AssertFooterFits("GuildShopFooter");
+                }
+                var pending = GuildClientTests.ShopFixture(440);
+                pending.PendingOrders.Add(new GuildShopOrderView { OpId = 9, GoodsId = 203, Count = 1,
+                    Status = GuildAssetOrderStatus.Pending, ReasonTipId = reason });
+                _client.RefreshShop(); _net.Reply(pending); _window.SetClient(_client);
+                AssertFooterFits("GuildShopFooter");
+            }
+            // 先拉一份没有待发放的快照,清掉上面留下的 9 号待发放,下面走的才是"最近一单"的默认文案而不是"刚结算完"。
+            _client.RefreshShop(); _net.Reply(GuildClientTests.ShopFixture(440));
+            var rejected = GuildClientTests.ShopFixture(440);
+            rejected.RecentOrders.Add(new GuildShopOrderView { OpId = 10, GoodsId = 203, Count = 1,
+                Status = GuildAssetOrderStatus.Rejected, ReasonTipId = GuildAssetReasons.Blocked });
+            _client.RefreshShop(); _net.Reply(rejected); _window.SetClient(_client);
+            Assert.That(NamedText("GuildShopFooter"), Is.EqualTo("最近一单：兑换失败，帮贡与限购已退回"));
+            Assert.That(_client.Status, Is.EqualTo("最近一单：兑换失败，帮贡与限购已退回：该物品或货币暂被限制"));
+
+            _window.Show(GuildPage.Donate);
+            foreach (uint reason in reasons)
+            {
+                var pending = GuildClientTests.DonateFixture();
+                pending.PendingDonations.Add(new GuildDonationView { OpId = 11, DonateId = 2,
+                    Status = GuildAssetOrderStatus.Pending, ReasonTipId = reason });
+                _client.RefreshDonations(); _net.Reply(pending); _window.SetClient(_client);
+                AssertFooterFits("GuildDonateFooter");
+                Assert.That(NamedText("GuildDonateFooter"), Does.Not.Contain("入账"));
+                foreach (var outcome in outcomes)
+                {
+                    var recent = GuildClientTests.DonateFixture();
+                    recent.RecentResults.Add(new GuildDonationView { OpId = 12, DonateId = 2, Status = outcome, ReasonTipId = reason,
+                        ContributionGain = 120, FundsGain = 12000 });
+                    _client.RefreshDonations(); _net.Reply(recent); _window.SetClient(_client);
+                    AssertFooterFits("GuildDonateFooter");
+                }
+            }
+            var insufficient = GuildClientTests.DonateFixture();
+            insufficient.PendingDonations.Add(new GuildDonationView { OpId = 13, DonateId = 2,
+                Status = GuildAssetOrderStatus.Pending, ReasonTipId = GuildAssetReasons.CurrencyInsufficient });
+            _client.RefreshDonations(); _net.Reply(insufficient); _window.SetClient(_client);
+            Assert.That(NamedText("GuildDonateFooter"), Is.EqualTo("1 笔捐献结算中：余额不足，正在确认结算结果"));
+        }
+        /// <summary>
         /// 30 号正文一行要 (ascent − descent)×30/64 ≈ 43.4 高。框比它矮时 TMP 的 Ellipsis 在第一个字就判溢出,
         /// 连省略号都插不进去,整行一个字都不出;ActiveText 读的是源串,看不出来。这里按字体度量逐个核对
         /// 捐献页与商店页(含页脚)所有单行正文的框高。
@@ -1212,6 +1333,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             }
             return names;
         }
+        /// <summary>单行页脚的字形总宽不超框宽;超了 TMP 会以省略号截掉尾巴(页脚是 NoWrap + Ellipsis)。</summary>
+        private void AssertFooterFits(string name)
+        {
+            var footer = _root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == name);
+            Assert.That(footer.GetPreferredValues(footer.text).x, Is.LessThanOrEqualTo(footer.rectTransform.rect.width), footer.text);
+        }
+        private string NamedText(string name) => _root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == name).text;
 
         private TMP_InputField SearchInput() => _root.GetComponentsInChildren<TMP_InputField>().Single(i => i.name == "GuildMemberSearch");
         private void Search(string text) { SearchInput().text = text; Click("SearchGuildMembers"); }

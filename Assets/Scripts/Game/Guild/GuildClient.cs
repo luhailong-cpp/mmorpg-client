@@ -473,7 +473,7 @@ namespace MmorpgClient.Game.Guild
                     foreach (var pending in response.PendingDonations) _pendingDonationIds.Add(pending.OpId);
                     Donations = response; _donationsStale = false;
                     Status = keepStatus ?? settled ?? (response.PendingDonations.Count > 0
-                        ? response.PendingDonations.Count + " 笔捐献结算中：" + AssetReasonText(response.PendingDonations[0].ReasonTipId)
+                        ? response.PendingDonations.Count + " 笔捐献结算中：" + DonationPendingReasonText(response.PendingDonations[0].ReasonTipId)
                         : "捐献信息已更新");
                     if (settled != null) AssetsChanged?.Invoke();
                 });
@@ -563,8 +563,12 @@ namespace MmorpgClient.Game.Guild
                     _pendingShopIds.Clear();
                     foreach (var pending in response.PendingOrders) _pendingShopIds.Add(pending.OpId);
                     Shop = response; _shopStale = false;
+                    // 没有待发放时写最近一单的完整结果:商店页脚只有 800 宽,拒绝原因、部分发放只写得下结论
+                    // (GuildWindow.ShopFooterResultText),全文靠这里。断线重连后 _pendingShopIds 已清空、
+                    // settled 为空,进页自动拉取也要看得到上一单(05 §5.32 W14)。
                     Status = keepStatus ?? settled ?? (response.PendingOrders.Count > 0
                         ? response.PendingOrders.Count + " 单待发放：" + AssetReasonText(response.PendingOrders[0].ReasonTipId)
+                        : response.RecentOrders.Count > 0 ? "最近一单：" + ShopResultText(response.RecentOrders[0])
                         : "帮会商店已更新");
                     if (settled != null) AssetsChanged?.Invoke();
                 });
@@ -630,6 +634,13 @@ namespace MmorpgClient.Game.Guild
             GuildAssetReasons.AuthFailed => "资产指令校验失败",
             _ => "稍后自动继续",
         };
+
+        /// <summary>
+        /// 结算中捐献的原因(状态栏的"N 笔捐献结算中：…"与捐献页页脚共用)。余额不足(27000)而结果尚未落盘时,
+        /// 这笔多半以"未成功"收尾:写"正在确认结算结果"(同 §5.4 与 Donate 回调),不许诺入账。
+        /// </summary>
+        public static string DonationPendingReasonText(uint reasonTipId) =>
+            reasonTipId == GuildAssetReasons.CurrencyInsufficient ? "余额不足，正在确认结算结果" : AssetReasonText(reasonTipId);
 
         /// <summary>一笔捐献的结果文案;null = 已结算但已滑出"最近结果"窗口。</summary>
         public static string DonationResultText(GuildDonationView view)
