@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Google.Protobuf;
 using Guildpb;
@@ -23,6 +24,9 @@ public static class GuildUiVerification
     private static GameObject _preview;
     private static GuildClient _previewClient;
     private static Func<string, bool> _captureFilter;
+    // 可见却一个字形都没出的文字(截图名 + 文字名 + 源串)。框高不到一行时 TMP 的 Ellipsis 会把整行吞成空白,
+    // 只读 text 源串的 EditMode 断言看不出来,所以截图时按真实网格再核一遍。
+    private static readonly List<string> _missingGlyphs = new List<string>();
 
     [MenuItem("MMORPG/UI/Preview guild UI (offline)")]
     public static void PreviewOffline()
@@ -66,10 +70,15 @@ public static class GuildUiVerification
     [MenuItem("MMORPG/UI/Capture guild screens (offline)")]
     public static void CaptureAll()
     {
+        _missingGlyphs.Clear();
         Capture(2560, 1080); Capture(1920, 1080);
         // 11 屏 × 2 分辨率：六个页签 + 公告编辑 + 未入帮 + 长帮名确认 + 需重连 + 入帮申请审批。
+        // 有文字没出字形就记为 failed(不中断截图,好让所有问题一次看全)。
+        bool passed = _missingGlyphs.Count == 0;
         File.WriteAllText(Path.Combine(OutputDirectory, "capture.json"),
-            "{\"status\":\"passed\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":22,\"liveServerVerification\":false}");
+            "{\"status\":\"" + (passed ? "passed" : "failed") + "\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":22,"
+            + "\"missingGlyphLabels\":" + _missingGlyphs.Count + ",\"liveServerVerification\":false}");
+        if (!passed) Debug.LogError("帮会界面有文字未渲染(框高不足一行?):\n" + string.Join("\n", _missingGlyphs));
         Debug.Log("Guild UI capture completed: " + OutputDirectory);
     }
 
@@ -123,6 +132,15 @@ public static class GuildUiVerification
                     foreach (var child in go.GetComponentsInChildren<UnityEngine.Transform>(true)) child.gameObject.layer = 31;
                 Canvas.ForceUpdateCanvases();
                 foreach (var label in canvasObject.GetComponentsInChildren<TMP_Text>(true)) label.ForceMeshUpdate(true, true);
+                foreach (var label in canvasObject.GetComponentsInChildren<TMP_Text>())
+                {
+                    // 空输入框的文字组件里留着一个零宽空格;禁用的占位文字不参与。
+                    if (!label.enabled || string.IsNullOrWhiteSpace(label.text?.Replace("​", string.Empty))) continue;
+                    var info = label.textInfo;
+                    bool visible = false;
+                    for (int i = 0; info != null && i < info.characterCount; i++) visible |= info.characterInfo[i].isVisible;
+                    if (!visible) _missingGlyphs.Add(name + "_" + width + "x" + height + "：" + label.name + " / " + label.text);
+                }
                 Canvas.ForceUpdateCanvases(); camera.Render(); RenderTexture.active = target;
                 pixels.ReadPixels(new Rect(0, 0, width, height), 0, 0, false); pixels.Apply(false, false);
                 File.WriteAllBytes(Path.Combine(OutputDirectory, name + "_" + width + "x" + height + ".png"), pixels.EncodeToPNG());

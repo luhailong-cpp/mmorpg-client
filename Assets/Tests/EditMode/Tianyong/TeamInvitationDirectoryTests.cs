@@ -74,7 +74,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void ChatCandidate_UsesKnownFriendPresenceAndProfile_WhenAvailable()
+        public void ChatSelection_AfterFriendWasOffline_KeepsProfileButDoesNotTreatOldPresenceAsCurrent()
         {
             _directory.Refresh(TeamInvitationSource.Friends);
             var reply = new GetFriendListResponse();
@@ -82,10 +82,15 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _net.Reply(0, reply);
             Assert.That(_directory.Candidates[0].Name, Is.EqualTo("真名字"));
             Assert.That(_directory.Candidates[0].CharacterId, Is.EqualTo("30_han_xiangzi"));
-            _directory.RememberChatPlayer(2); _directory.Refresh(TeamInvitationSource.Chat);
             Assert.That(_directory.Candidates[0].OnlineStatusKnown, Is.True);
             Assert.That(_directory.Candidates[0].IsOnline, Is.False);
+            // A later real chat-avatar selection must not stay blocked by the earlier friend lookup.
+            _directory.RememberChatPlayer(2); _directory.Refresh(TeamInvitationSource.Chat);
+            Assert.That(_directory.Candidates[0].OnlineStatusKnown, Is.False,
+                "A chat identity must be invitable for server-side presence validation, even after an earlier offline friend lookup.");
+            Assert.That(_directory.Candidates[0].IsOnline, Is.False);
             Assert.That(_directory.Candidates[0].Level, Is.EqualTo(42));
+            Assert.That(_directory.Candidates[0].CharacterId, Is.EqualTo("30_han_xiangzi"));
         }
 
         [Test]

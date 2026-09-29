@@ -291,11 +291,8 @@ namespace MmorpgClient.Game.Team
                 if (role.ClassId == 0) role.ClassId = known.ClassId;
                 if (role.Gender == 0) role.Gender = known.Gender;
                 if (role.Level == 0) role.Level = known.Level;
-                if (!role.OnlineStatusKnown && known.OnlineStatusKnown)
-                {
-                    role.IsOnline = known.IsOnline;
-                    role.OnlineStatusKnown = true;
-                }
+                // Cached profiles enrich identity only. Earlier friend/online presence cannot
+                // establish whether a chat sender is still online when an invitation is sent.
             }
             return role;
         }

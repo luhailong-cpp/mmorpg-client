@@ -75,7 +75,8 @@ namespace MmorpgClient.UI.Ugui.Guild
             // 经济(B5):捐献页 / 商店页 / 总览升级。
             _window.DonationsRequested += () => { if (_available) _client?.RefreshDonations(); };
             _window.DonateRequested += id => { if (_available) _client?.Donate(id); };
-            _window.UpgradeRequested += () => { if (_available) _client?.Upgrade(); };
+            // 带确认框打开时的等级:确认前别的长老先升了,客户端就拒发,不连升两级。
+            _window.UpgradeRequested += level => { if (_available) _client?.Upgrade(level); };
             _window.ShopRequested += () => { if (_available) _client?.RefreshShop(); };
             _window.ShopBuyRequested += id => { if (_available) _client?.Buy(id); };
             _hud.gameObject.SetActive(false);

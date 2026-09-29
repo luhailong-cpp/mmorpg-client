@@ -94,6 +94,23 @@ namespace MmorpgClient.Game.Guild
         public bool CanUpgrade => Info != null && GuildRoles.Rank(Role) >= GuildRoles.RankOfficer && Info.UpgradeCostFunds > 0;
         // 本人结算中的指令。重拉后不在待结算列表里的那几笔 = 刚结算完,拿最近结果给文案。
         private HashSet<ulong> _pendingDonationIds = new HashSet<ulong>(), _pendingShopIds = new HashSet<ulong>();
+        // 快照还在、但已知过时:同一个帮会里等级变了(解锁状态)或本人帮贡变了(可用帮贡)。
+        // 只作标记、不排队重拉 —— DrainQueued 那一发不带文案,会把升级 / 捐献的结果盖成"…已更新";
+        // 由窗口在进页时据 DonationsNeedReload / ShopNeedsReload 自动拉一次。本页重拉成功即清,换帮随 ClearEconomy 清。
+        private bool _donationsStale, _shopStale;
+
+        /// <summary>
+        /// 捐献页快照该不该重拉:没有快照、已知过时(帮会等级 / 本人帮贡变了),或已过服务端给的下一个日切点
+        /// ("今日 x/y" 不再可信)。窗口进页时据此自动拉一次。nowMs 取本地时钟:偏差只让重拉早一点或晚一点,
+        /// 次数仍由服务端在事务里复核。
+        /// </summary>
+        public bool DonationsNeedReload(ulong nowMs) =>
+            Donations == null || _donationsStale || Passed(Donations.NextDailyResetMs, nowMs);
+        /// <summary>商店页同上,另看每周切点(周限购)。</summary>
+        public bool ShopNeedsReload(ulong nowMs) =>
+            Shop == null || _shopStale || Passed(Shop.NextDailyResetMs, nowMs) || Passed(Shop.NextWeeklyResetMs, nowMs);
+        // 0 = 回包里没有切点(样例 / 测试替身),不按时间判过期。
+        private static bool Passed(ulong resetMs, ulong nowMs) => resetMs != 0 && nowMs >= resetMs;
 
         public bool IsLeader => Info != null && Info.LeaderId == PlayerId;
         public uint Role => FindMember(PlayerId)?.Role ?? GuildRoles.Member;
@@ -140,6 +157,7 @@ namespace MmorpgClient.Game.Guild
         private void ClearEconomy()
         {
             Donations = null; Shop = null; DonationsQueued = ShopQueued = false;
+            _donationsStale = _shopStale = false;
             _pendingDonationIds.Clear(); _pendingShopIds.Clear();
         }
 
@@ -453,7 +471,7 @@ namespace MmorpgClient.Game.Guild
                             settled ??= DonationResultText(FindDonation(response.RecentResults, opId));
                     _pendingDonationIds.Clear();
                     foreach (var pending in response.PendingDonations) _pendingDonationIds.Add(pending.OpId);
-                    Donations = response;
+                    Donations = response; _donationsStale = false;
                     Status = keepStatus ?? settled ?? (response.PendingDonations.Count > 0
                         ? response.PendingDonations.Count + " 笔捐献结算中：" + AssetReasonText(response.PendingDonations[0].ReasonTipId)
                         : "捐献信息已更新");
@@ -472,8 +490,10 @@ namespace MmorpgClient.Game.Guild
                     if (IsValidGuild(response.Guild)) Apply(response.Guild);
                     if (!AcceptWrite(response.ErrorMessage))
                     {
-                        // 未结算指令过多 / 数据库忙:页面上的待结算列表多半已经过时,重拉一次让它收敛。
-                        if (IsTip(response.ErrorMessage, guild_error.KGuildAssetPending)) DonationsQueued = Donations != null;
+                        // 未决指令过多 / 资产通道关闭:页面上的待结算列表多半已经过时,重拉一次让它收敛。
+                        // 带着拒绝文案直接重拉(Busy 已复位),不走 DrainQueued —— 那一发不带文案,
+                        // 待结算为空时会把拒绝原因盖成"捐献信息已更新",看着像捐成功了。
+                        if (IsTip(response.ErrorMessage, guild_error.KGuildAssetPending) && Donations != null) RefreshDonations(Status);
                         return;
                     }
                     var donation = response.Donation;
@@ -501,12 +521,17 @@ namespace MmorpgClient.Game.Guild
                 });
         }
 
-        /// <summary>帮主 / 长老花帮会资金升一级。带上本地看到的等级,重复点击不会连升两级。</summary>
-        public void Upgrade()
+        /// <summary>
+        /// 帮主 / 长老花帮会资金升一级。expectedLevel 是玩家在确认框里看到的等级(proto:客户端看到的当前等级),
+        /// 不是点确认那一刻的 Info.Level:确认框开着时,别的长老升级的推送会把本地快照刷成新等级,
+        /// 按新等级发就会按下一级的花费再扣一次、连升两级。
+        /// </summary>
+        public void Upgrade(uint expectedLevel)
         {
             if (!CanUpgrade) { Reject("仅帮主或长老可升级；帮会已满级时不可升级。"); return; }
-            uint oldLevel = Info.Level;
-            Request(MessageIds.UpgradeGuild, new UpgradeGuildRequest { ExpectedLevel = oldLevel },
+            // 本地已知等级变了:确认框里的花费与目标等级都过时,不替玩家按新等级升级。
+            if (Info.Level != expectedLevel) { Reject("帮会等级已变化，请重新确认升级。"); return; }
+            Request(MessageIds.UpgradeGuild, new UpgradeGuildRequest { ExpectedLevel = expectedLevel },
                 UpgradeGuildResponse.Parser, response =>
                 {
                     // 资金不足等业务失败也带最新快照:先落快照,资金显示随之更新,再给拒绝文案。
@@ -518,7 +543,7 @@ namespace MmorpgClient.Game.Guild
                         return;
                     }
                     // 等级没变 = 别的长老刚升过(expected_level 对不上),服务端不再扣钱,只回最新快照。
-                    Status = Info.Level > oldLevel ? "帮会已升至 Lv." + Info.Level : "帮会等级已是最新";
+                    Status = Info.Level > expectedLevel ? "帮会已升至 Lv." + Info.Level : "帮会等级已是最新";
                 });
         }
 
@@ -537,7 +562,7 @@ namespace MmorpgClient.Game.Guild
                             settled ??= ShopResultText(FindOrder(response.RecentOrders, opId));
                     _pendingShopIds.Clear();
                     foreach (var pending in response.PendingOrders) _pendingShopIds.Add(pending.OpId);
-                    Shop = response;
+                    Shop = response; _shopStale = false;
                     Status = keepStatus ?? settled ?? (response.PendingOrders.Count > 0
                         ? response.PendingOrders.Count + " 单待发放：" + AssetReasonText(response.PendingOrders[0].ReasonTipId)
                         : "帮会商店已更新");
@@ -554,14 +579,17 @@ namespace MmorpgClient.Game.Guild
                 {
                     if (!AcceptWrite(response.ErrorMessage))
                     {
-                        if (IsTip(response.ErrorMessage, guild_error.KGuildAssetPending)) ShopQueued = Shop != null;
+                        // 同 Donate:带着拒绝文案直接重拉本页,不走 DrainQueued(会盖成"帮会商店已更新")。
+                        if (IsTip(response.ErrorMessage, guild_error.KGuildAssetPending) && Shop != null) RefreshShop(Status);
                         return;
                     }
                     var order = response.Order;
                     // 回包的余额是提交后的权威值;兑换回包不带帮会快照,总览里"可用帮贡"那一格就地跟上,
-                    // 否则要等下一次 GetPlayerGuild 才对得上商店页。
+                    // 否则要等下一次 GetPlayerGuild 才对得上商店页。捐献页页脚的"可用帮贡"来自捐献快照,
+                    // 同样过时了:下次进捐献页自动重拉。
                     var me = FindMember(PlayerId);
                     if (me != null) me.ContributionBalance = response.ContributionBalance;
+                    _donationsStale = true;
                     string text;
                     if (order == null)
                         text = "兑换已提交，结果以商店页为准。";
@@ -654,6 +682,11 @@ namespace MmorpgClient.Game.Guild
             foreach (var member in Info.Members) if (member.PlayerId == playerId) return member;
             return null;
         }
+        private ulong MyBalance(GuildInfo info)
+        {
+            foreach (var member in info.Members) if (member.PlayerId == PlayerId) return member.ContributionBalance;
+            return 0;
+        }
         private static bool IsTip(TipInfoMessage tip, guild_error code) => tip != null && tip.Id == (uint)code;
         /// <summary>
         /// tip 文案里已经写明“列表已刷新”;重拉会把 Status 改成“正在读取帮会…”,玩家就看不到失败原因了。
@@ -672,6 +705,9 @@ namespace MmorpgClient.Game.Guild
             if (!mine) { Status = "帮会成员身份尚未确认，请刷新重试。"; return false; }
             // 换了帮会(含第一次入帮):上一个帮会的捐献 / 商店快照与次数作废。
             if (Info == null || Info.GuildId != info.GuildId) ClearEconomy();
+            // 同一个帮会里等级或本人帮贡变了(本人 / 别的长老升级、捐献入账、活动奖励):两页快照里的
+            // 解锁状态与可用帮贡随之过时,标记后由窗口在进页时重拉(见 _donationsStale 注释)。
+            else if (Info.Level != info.Level || MyBalance(Info) != MyBalance(info)) _donationsStale = _shopStale = true;
             Info = info.Clone(); HasLoaded = true; Status = "帮会信息已更新";
             // 服务端在入帮时已删光本人全部申请,本地列表作废;日后退帮经 Refresh 的
             // NotInGuild 分支重新排队拉取。
