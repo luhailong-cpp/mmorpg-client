@@ -127,15 +127,16 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 回合制战斗网络层(状态机 + battle/match 消息收发)。构造时经
-        /// <see cref="GameClientBattleTransport"/> 挂到本管线(OnNotify/Call/SendOneWay),
+        /// <see cref="DirectRoutingBattleTransport"/> 挂接:战斗 RPC 走 <see cref="BattleLink"/> 直连,
+        /// 排队 / 切磋等走本管线(OnNotify/Call/SendOneWay);同一实例兼作直连就绪通道(IBattleChannel)。
         /// UI 路经 BattleClient.Instance 解析。
         /// </summary>
         public BattleClient Battle { get; }
 
         /// <summary>
         /// 观战网络层(与 Battle 平行的只读状态机,消息号不同互不干扰)。
-        /// 各持一个 GameClientBattleTransport 实例:该传输无状态(纯转发本管线),
-        /// 分持只为事件订阅/注册边界清晰,底层仍是同一条 gate 连接。
+        /// 与 Battle 共用同一个 DirectRoutingBattleTransport(消息号不相交,注册覆盖语义不冲突)
+        /// 与同一条战斗直连。
         /// </summary>
         public SpectateClient Spectate { get; }
 
@@ -149,9 +150,9 @@ namespace MmorpgClient.Game
         /// <summary>
         /// 战斗直连链路(turn-based-battle-server.md §18):客户端第二条 TCP 连接,直连 battle
         /// 节点、票据入场。落点分配经大厅 NotifyBattleAssigned 到达后由它建连;Battle / Spectate
-        /// 的四条战斗 RPC 在它验证通过后经 <see cref="DirectRoutingBattleTransport"/> 分流过去,
-        /// 未建立 / 已断开时自动回落 gate 中继。大厅断线即关闭(重连后由 NotifyBattleReconnect
-        /// 触发补签重建)。
+        /// 的四条战斗 RPC 经 <see cref="DirectRoutingBattleTransport"/> 只走这条直连 —— gate 不中继战斗
+        /// (turn-based §22 D66),直连未就绪时战斗 RPC 本地快速失败,由 BattleClient 推迟到就绪再发。
+        /// 大厅断线即关闭(重连后由 NotifyBattleReconnect 触发补签重建)。
         /// </summary>
         public BattleDirectLink BattleLink { get; }
 
@@ -257,17 +258,20 @@ namespace MmorpgClient.Game
             BattleLink.TicketReissuer = RequestBattleTicket;
             BattleLink.OnVerified += id =>
                 Log($"[battle-direct] verified battle_id={id} role={BattleLink.Role} endpoint={BattleLink.Assignment?.Host}:{BattleLink.Assignment?.Port}");
-            BattleLink.OnClosed += reason => Log($"[battle-direct] closed reason={reason}");
+            BattleLink.OnClosed += (battleId, kind, reason) =>
+                Log($"[battle-direct] closed battle_id={battleId} kind={kind} reason={reason}");
 
             WireSceneNotifyHandlers();
 
             // 回合制战斗:BattleClient 的 battle/match OnNotify 注册在其构造时
             // 经传输接口完成;单例挂接方式与 GameClient 一致(实例由宿主持有,
             // 静态 Instance 供 UI 层解析)。
-            // Battle / Spectate 经 DirectRoutingBattleTransport 分流:四条战斗 RPC 与本人的
-            // 战斗 S2C 在直连验证后走 BattleLink,其余照旧走本管线(gate 中继)。
-            Battle = BattleClient.Attach(new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink));
-            Spectate = SpectateClient.Attach(new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink));
+            // Battle / Spectate 共用一个 DirectRoutingBattleTransport:四条战斗 RPC 只走 BattleLink 直连
+            // (gate 不中继战斗,turn-based §22 D66/D74),其余走本管线;它同时是两者的直连就绪通道。
+            var battleRoute = new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink,
+                s => Log($"[battle-route] {s}"));
+            Battle = BattleClient.Attach(battleRoute, battleRoute);
+            Spectate = SpectateClient.Attach(battleRoute, battleRoute);
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
             Pets = PetClient.Attach(new GameClientBattleTransport(this));
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));
@@ -330,8 +334,10 @@ namespace MmorpgClient.Game
         /// 战斗票据补签(§18 D25):客户端丢票 / 大厅重连后,经大厅会话调 MatchService.RequestBattleTicket,
         /// match 定位房间所在 battle 节点由其自签。BattleLink 的 TicketReissuer 挂点。
         /// 返回 false = 此刻发不出(大厅未就绪 / 无协程宿主)。
+        /// 失败回调结构化为 (tipId, detail)(turn-based §22 D74):响应体的 tip 与 Call 层的 tip 都还原成码,
+        /// 链路据此区分「战斗已结束」(kInvalidParameter → BattleGone)与「暂时连不上」;传输失败 tipId=0。
         /// </summary>
-        private bool RequestBattleTicket(ulong battleId, Action<BattleAssignedS2C> onAssigned, Action<string> onError)
+        private bool RequestBattleTicket(ulong battleId, Action<BattleAssignedS2C> onAssigned, Action<uint, string> onError)
         {
             var runner = CoroutineRunner;
             if (runner == null || !IsGateReady) return false;
@@ -340,12 +346,25 @@ namespace MmorpgClient.Game
                 RequestBattleTicketResponse.Parser,
                 r =>
                 {
-                    if (r.ErrorMessage != null && r.ErrorMessage.Id != 0) { onError($"tip={r.ErrorMessage.Id}"); return; }
-                    if (r.Assignment == null || r.Assignment.BattleId == 0) { onError("empty assignment"); return; }
+                    if (r.ErrorMessage != null && r.ErrorMessage.Id != 0) { onError(r.ErrorMessage.Id, "response tip"); return; }
+                    if (r.Assignment == null || r.Assignment.BattleId == 0) { onError(0, "empty assignment"); return; }
                     onAssigned(r.Assignment);
                 },
-                onError));
+                err => onError(ParseCallLevelTip(err), err)));
             return true;
+        }
+
+        /// <summary>
+        /// <see cref="Call{TResp}"/> 把 MessageContent 层的 TipInfoMessage 折算成 "server tip=N" 交给 onError,
+        /// 这里还原成码;其它错误串(断线 / 超时 / 解析失败)是传输层失败,返回 0。
+        /// </summary>
+        private static uint ParseCallLevelTip(string err)
+        {
+            const string prefix = "server tip=";
+            return err != null && err.StartsWith(prefix, StringComparison.Ordinal)
+                   && uint.TryParse(err.Substring(prefix.Length), out var tip)
+                ? tip
+                : 0;
         }
 
         public void OnNotify(uint messageId, Action<MessageContent> handler)
@@ -914,8 +933,10 @@ namespace MmorpgClient.Game
             // enter_gs_type==LOGIN_RECONNECT(旧会话已 StateDisconnecting)或实体被重建走
             // RestoreBattleFreezeOnLogin 时发出;gate 迁移时旧会话通常仍是 StateOnline →
             // login 判 ReplaceLogin → 两条分支都不触发(scene 侧 player_battle.cpp
-            // OnPlayerEnterScene 的两步守卫)。那种情况下服务端连 BindBattleEvent 也不会重发,
-            // 新 gate 上没有战斗绑定,gate 中继同样断 —— 主动补签直连是唯一能自愈的一侧。
+            // OnPlayerEnterScene 的两步守卫)。gate 不中继战斗(turn-based §22 D66),
+            // 重定向后唯一的恢复路径就是客户端用这里捕获的 battle_id 走 RequestBattleTicket 重建直连
+            // (服务端若同时推 BattleReconnectS2C,链路按 battle_id + 在途补签去重)。
+            // 补签失败不会静默:链路以 BattleGone / Unreachable 终结,BattleClient 据此收敛或提示玩家。
             ulong battleIdBeforeRedirect = BattleLink?.BattleId ?? 0;
 
             // 从这一刻起,老连接不再驱动任何状态 —— 但**先不关**(还要留着兜底,见 ③)。

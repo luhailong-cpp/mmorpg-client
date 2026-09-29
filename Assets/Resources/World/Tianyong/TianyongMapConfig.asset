@@ -16,7 +16,7 @@ MonoBehaviour:
   initialTheme: 0
   visibleChunkRadius: 3
   paintedCityGround: 1
-  cameraZoomMin: 5
+  cameraZoomMin: 6
   cameraZoomMax: 30
   cameraZoomDefault: 27
   groundDiscAspect: 0.66

@@ -18,20 +18,27 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private const ulong TheBattleId = 7700;
 
         private FakeBattleTransport _net;
+        private FakeBattleChannel _channel;   // null = 无直连通道(永远就绪,既有用例)
         private BattleClient _client;
         private List<bool> _autoChanges;
         private List<string> _errors;
 
         [SetUp]
-        public void SetUp()
+        public void SetUp() => Build(channel: null);
+
+        /// <summary>重建被测对象;传入假直连通道即进入收缩后口径(turn-based §22 D74)。</summary>
+        private void Build(FakeBattleChannel channel)
         {
             _net = new FakeBattleTransport { PlayerId = MyId };
-            _client = new BattleClient(_net); // 直接 new,不经 Attach,避免污染单例
+            _channel = channel;
+            _client = new BattleClient(_net, channel); // 直接 new,不经 Attach,避免污染单例
             _autoChanges = new List<bool>();
             _errors = new List<string>();
             _client.OnAutoStateChanged += v => _autoChanges.Add(v);
             _client.OnError += e => _errors.Add(e);
         }
+
+        private void UseChannel() => Build(new FakeBattleChannel());
 
         // ── 工具 ────────────────────────────────────────────
 
@@ -186,6 +193,90 @@ namespace MmorpgClient.Tests.EditMode.Battle
             PushBattleEnd(); // 战斗收尾:权威 auto 归 false
             Assert.That(_autoChanges, Is.EqualTo(new[] { true, false }));
             Assert.That(_client.IsMyActorAuto, Is.False);
+        }
+
+        // ── 战斗直连未就绪时的自动战斗(turn-based §22 D74) ──
+
+        [Test]
+        public void BattleStart_ChannelNotReady_AutoResendDeferredUntilReady()
+        {
+            UseChannel();
+            _client.SetAutoBattle(true); // 跨场挂机记忆
+            PushBattleStart();
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Is.Empty,
+                "开局瞬间直连未握手:不发(大厅上会挂满 15s 超时)");
+            Assert.That(_errors, Is.Empty);
+
+            _channel.RaiseReady(TheBattleId);
+            var calls = _net.CallsOf(MessageIds.SetAutoBattle);
+            Assert.That(calls, Has.Count.EqualTo(1), "直连就绪后补发记忆");
+            Assert.That(((SetAutoBattleRequest)calls[0].Request).Enabled, Is.True);
+            Assert.That(((SetAutoBattleRequest)calls[0].Request).BattleId, Is.EqualTo(TheBattleId));
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Has.Count.EqualTo(1), "同时补拉状态");
+        }
+
+        [Test]
+        public void ManualToggle_NotReady_LatchOnly_ThenSentOnReady()
+        {
+            UseChannel();
+            PushBattleStart();
+
+            _client.SetAutoBattle(true);
+            Assert.That(_client.AutoBattleLatched, Is.True);
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Is.Empty, "未就绪只记意愿");
+            Assert.That(_errors, Is.Empty, "不报错:UI 自行提示「战斗连接建立后生效」");
+
+            _channel.RaiseReady(TheBattleId);
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void ManualToggleOff_NotReady_SendsFalseOnReady()
+        {
+            UseChannel();
+            _channel.ReadyBattleId = TheBattleId;
+            PushBattleStart();
+            _client.SetAutoBattle(true);                         // 就绪:立即发
+            PushTurnResult(myAuto: true);                        // 服务端已挂机
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Unreachable);
+
+            _client.SetAutoBattle(false);                        // 直连断着时关自动
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Has.Count.EqualTo(1));
+
+            _channel.RaiseReady(TheBattleId);
+            var calls = _net.CallsOf(MessageIds.SetAutoBattle);
+            Assert.That(calls, Has.Count.EqualTo(2));
+            Assert.That(((SetAutoBattleRequest)calls[1].Request).Enabled, Is.False, "按记忆补发关闭");
+        }
+
+        [Test]
+        public void SetAutoBattle_TransportError_WithChannel_KeepsLatch_ResendsOnReady()
+        {
+            UseChannel();
+            _channel.ReadyBattleId = TheBattleId;
+            PushBattleStart();
+            _client.SetAutoBattle(true);
+            _net.CallsOf(MessageIds.SetAutoBattle)[0].FailWith(BattleDirectLink.TransportErrorPrefix + "disconnected");
+
+            Assert.That(_client.AutoBattleLatched, Is.True, "直连抖动不回滚意愿");
+            Assert.That(_errors, Is.Empty, "不打扰玩家");
+
+            _channel.RaiseReady(TheBattleId); // 重连成功
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Has.Count.EqualTo(2), "就绪后补发");
+        }
+
+        [Test]
+        public void ChannelReady_AlreadyAuto_NoRedundantResend()
+        {
+            UseChannel();
+            _channel.ReadyBattleId = TheBattleId;
+            _client.SetAutoBattle(true);
+            PushBattleStart();                                   // 已就绪:开局即补发
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Has.Count.EqualTo(1));
+            PushTurnResult(myAuto: true);                        // 权威态已挂机
+
+            _channel.RaiseReady(TheBattleId);                    // 断线重连成功
+            Assert.That(_net.CallsOf(MessageIds.SetAutoBattle), Has.Count.EqualTo(1), "权威态已挂机,不重复补发");
         }
 
         // ── 连续战斗 ────────────────────────────────────────

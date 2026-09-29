@@ -8,8 +8,10 @@ namespace MmorpgClient.Game.Battle
     /// S2C 推送注册(OnNotify)」三件事从 GameClient 中抽出来,让状态机纯逻辑
     /// 可以在 EditMode 测试里用假实现驱动。
     ///
-    /// 生产环境唯一实现是 <see cref="GameClientBattleTransport"/>,它把这三件事
-    /// 原样接回 GameClient 现有的 gate TCP 管线 —— 本接口只是测试缝,不另起网络栈。
+    /// 生产实现有两个:<see cref="GameClientBattleTransport"/> 把这三件事原样接回
+    /// GameClient 现有的 gate TCP 管线(属性 / 宝宝 / 帮会等大厅模块直接用它);
+    /// <see cref="DirectRoutingBattleTransport"/> 在它之上按消息号把战斗 RPC 分流到战斗直连。
+    /// 直连就绪状态不在本接口里,见 <see cref="IBattleChannel"/>(接口隔离,免得牵动全部实现)。
     /// </summary>
     public interface IBattleTransport
     {

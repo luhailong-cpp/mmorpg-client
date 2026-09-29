@@ -30,7 +30,7 @@ namespace MmorpgClient.World.Tianyong
         [Header("Painted main city")]
         [Tooltip("City theme renders the painted city artwork as the ground instead of the generated 3D town (colliders and navigation stay active).")]
         [SerializeField] private bool paintedCityGround = true;
-        [SerializeField, Min(1f)] private float cameraZoomMin = 5f;
+        [SerializeField, Min(1f)] private float cameraZoomMin = 6f;
         [SerializeField, Min(1f)] private float cameraZoomMax = 30f;
         [Tooltip("27 keeps the 6144 px painted city at roughly one source texel per screen pixel at 1080p. Closer defaults magnify and blur the artwork.")]
         [SerializeField, Min(1f)] private float cameraZoomDefault = 27f;
@@ -61,7 +61,7 @@ namespace MmorpgClient.World.Tianyong
 
         // Zoom getters normalize because assets serialized before these fields
         // existed deserialize them as 0; OnValidate only runs in the editor.
-        public float CameraZoomMin => cameraZoomMin >= 1f ? cameraZoomMin : 5f;
+        public float CameraZoomMin => cameraZoomMin >= 1f ? cameraZoomMin : 6f;
         public float CameraZoomMax => Mathf.Max(CameraZoomMin, cameraZoomMax >= 1f ? cameraZoomMax : 30f);
         public float CameraZoomDefault => Mathf.Clamp(
             cameraZoomDefault >= 1f ? cameraZoomDefault : 27f, CameraZoomMin, CameraZoomMax);

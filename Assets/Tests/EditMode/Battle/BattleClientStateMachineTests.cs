@@ -19,27 +19,40 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private const ulong TheBattleId = 7700;
 
         private FakeBattleTransport _net;
+        private FakeBattleChannel _channel;   // null = 无直连通道(永远就绪,既有用例)
         private BattleClient _client;
         private List<BattlePhase> _phases;
         private List<string> _errors;
+        private List<string> _channelFailures;
+        private int _channelReadies;
         private int _starts;
         private int _turnResults;
         private int _ends;
 
         [SetUp]
-        public void SetUp()
+        public void SetUp() => Build(channel: null);
+
+        /// <summary>重建被测对象;传入假直连通道即进入收缩后口径(turn-based §22 D74)。</summary>
+        private void Build(FakeBattleChannel channel)
         {
             _net = new FakeBattleTransport { PlayerId = MyId };
-            _client = new BattleClient(_net); // 直接 new,不经 Attach,避免污染单例
+            _channel = channel;
+            _client = new BattleClient(_net, channel); // 直接 new,不经 Attach,避免污染单例
             _phases = new List<BattlePhase>();
             _errors = new List<string>();
+            _channelFailures = new List<string>();
+            _channelReadies = 0;
             _starts = _turnResults = _ends = 0;
             _client.OnPhaseChanged += p => _phases.Add(p);
             _client.OnError += e => _errors.Add(e);
             _client.OnBattleStart += _ => _starts++;
             _client.OnTurnResult += _ => _turnResults++;
             _client.OnBattleEnd += _ => _ends++;
+            _client.OnBattleChannelFailed += t => _channelFailures.Add(t);
+            _client.OnBattleChannelReady += () => _channelReadies++;
         }
+
+        private void UseChannel() => Build(new FakeBattleChannel());
 
         // ── 工具 ────────────────────────────────────────────
 
@@ -482,6 +495,253 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(got, Is.Not.Null);
             Assert.That(got.ChallengeId, Is.EqualTo(55UL));
             Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None), "弹窗不改相位,应战才改");
+        }
+
+        // ── 迟到结果与结算包幂等 ────────────────────────────
+
+        [Test]
+        public void LateStatePull_AfterDisconnect_IsDiscarded()
+        {
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            var pull = _net.CallsOf(MessageIds.GetBattleState)[0];
+            _net.RaiseDisconnected();
+
+            pull.Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None), "断线后迟到的补拉结果不得复活战斗态");
+        }
+
+        [Test]
+        public void StatePull_InFlight_IsDeduplicated()
+        {
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            _client.RequestState(); // UI 兜底补拉与重连补拉撞车
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Has.Count.EqualTo(1), "同局补拉在途时去重");
+
+            _net.CallsOf(MessageIds.GetBattleState)[0]
+                .Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            _client.RequestState();
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Has.Count.EqualTo(2), "在途结束后可再拉");
+        }
+
+        [Test]
+        public void StatePullSaysFinished_LateSettlementEnd_StillDelivered()
+        {
+            // 补拉到已出胜负 → 先收敛 None;scene 结算后经大厅推的终局包晚到,仍要交给 UI
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            _net.CallsOf(MessageIds.GetBattleState)[0].Respond(MakeState(eBattleOutcome.BattleOutcomeSideAWin));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None));
+            _phases.Clear();
+
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+            });
+            Assert.That(_ends, Is.EqualTo(1));
+            Assert.That(_phases, Is.EqualTo(new[] { BattlePhase.Ended, BattlePhase.None }));
+
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C { BattleId = TheBattleId });
+            Assert.That(_ends, Is.EqualTo(1), "直连与大厅各到一份:按 battle_id 幂等");
+        }
+
+        // ── 战斗直连通道(turn-based §22 D74) ─────────────
+
+        [Test]
+        public void NoChannel_IsAlwaysReady()
+        {
+            Assert.That(_client.IsBattleChannelReady, Is.True, "无通道(演出台 / 既有测试)视为永远就绪");
+            PushBattleStart();
+            Assert.That(_client.IsBattleChannelReady, Is.True);
+        }
+
+        [Test]
+        public void BattleStart_ChannelNotReady_EnsuresBattle_AndReportsNotReady()
+        {
+            UseChannel();
+            Assert.That(_client.IsBattleChannelReady, Is.False, "不在战斗中为 false");
+            PushBattleStart();
+
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction));
+            Assert.That(_channel.Ensures, Is.EqualTo(new[] { TheBattleId }), "开局自愈:分配包丢失时补签");
+            Assert.That(_client.IsBattleChannelReady, Is.False);
+            Assert.That(_net.Calls, Is.Empty, "开局时不发任何战斗请求");
+
+            _channel.RaiseReady(TheBattleId);
+            Assert.That(_client.IsBattleChannelReady, Is.True);
+            Assert.That(_channelReadies, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ChannelReady_TriggersResync_ThenDedupes()
+        {
+            UseChannel();
+            PushBattleStart();
+            _channel.RaiseReady(TheBattleId);
+
+            var pulls = _net.CallsOf(MessageIds.GetBattleState);
+            Assert.That(pulls, Has.Count.EqualTo(1), "就绪即补拉(开局到握手之间的帧不经大厅回落)");
+            Assert.That(((GetBattleStateRequest)pulls[0].Request).BattleId, Is.EqualTo(TheBattleId));
+
+            _client.RequestState();
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Has.Count.EqualTo(1), "在途去重");
+
+            pulls[0].Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, EnemyId));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Resolving), "按权威状态校正相位");
+        }
+
+        [Test]
+        public void ChannelReady_ForOtherBattle_Ignored()
+        {
+            UseChannel();
+            PushBattleStart();
+            _channel.RaiseReady(9999, eBattleTicketRole.BattleTicketRoleObserver);
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Is.Empty);
+            Assert.That(_channelReadies, Is.EqualTo(0));
+            Assert.That(_client.IsBattleChannelReady, Is.False);
+        }
+
+        [Test]
+        public void Reconnect_DefersStatePull_UntilChannelReady()
+        {
+            UseChannel();
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Is.Empty, "直连未就绪:不发(大厅上会挂满 15s)");
+            Assert.That(_errors, Is.Empty, "推迟不是错误");
+
+            _channel.RaiseReady(TheBattleId);
+            var pulls = _net.CallsOf(MessageIds.GetBattleState);
+            Assert.That(pulls, Has.Count.EqualTo(1));
+            pulls[0].Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction));
+        }
+
+        [Test]
+        public void StatePull_TransportError_WithChannel_IsSilent_RetriedOnNextReady()
+        {
+            UseChannel();
+            PushBattleStart();
+            _channel.RaiseReady(TheBattleId);
+            _net.CallsOf(MessageIds.GetBattleState)[0].FailWith(BattleDirectLink.TransportErrorPrefix + "disconnected");
+            Assert.That(_errors, Is.Empty, "直连抖动不打扰玩家");
+
+            _channel.RaiseReady(TheBattleId); // 重连成功
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Has.Count.EqualTo(2));
+        }
+
+        [Test]
+        public void SubmitAction_ChannelNotReady_ReturnsFalse_NoCall()
+        {
+            UseChannel();
+            PushBattleStart();
+
+            bool sent = _client.SubmitAction(new BattleAction
+            {
+                ActionType = eBattleActionType.BattleActionAttack,
+                TargetId = EnemyId,
+            });
+            Assert.That(sent, Is.False);
+            Assert.That(_net.CallsOf(MessageIds.SubmitBattleAction), Is.Empty, "未就绪不发任何网络请求");
+            Assert.That(_errors, Is.EqualTo(new[] { BattleClient.BattleChannelConnectingText }));
+
+            _channel.RaiseReady(TheBattleId);
+            sent = _client.SubmitAction(new BattleAction
+            {
+                ActionType = eBattleActionType.BattleActionAttack,
+                TargetId = EnemyId,
+            });
+            Assert.That(sent, Is.True);
+            Assert.That(_net.CallsOf(MessageIds.SubmitBattleAction), Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void SubmitAction_ReturnsFalse_WhenPhaseWrong()
+        {
+            Assert.That(_client.SubmitAction(new BattleAction()), Is.False);
+            PushBattleStart();
+            Assert.That(_client.SubmitAction(null), Is.False);
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionAttack }),
+                Is.True, "无通道视为就绪:照常发出");
+        }
+
+        [Test]
+        public void ChannelLost_BattleGone_ConvergesNone_LateSettlementStillDelivered()
+        {
+            UseChannel();
+            PushBattleStart();
+            _phases.Clear();
+
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.BattleGone);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None), "终局包丢了也不卡在 WaitingAction");
+            Assert.That(_errors, Has.Count.EqualTo(1));
+            Assert.That(_errors[0], Does.Contain("战斗已结束"));
+            Assert.That(_channelFailures, Is.Empty);
+
+            // scene 结算后经大厅推的终局包晚到:仍交给 UI 出结算面板
+            _phases.Clear();
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+            });
+            Assert.That(_ends, Is.EqualTo(1));
+            Assert.That(_phases, Is.EqualTo(new[] { BattlePhase.Ended, BattlePhase.None }));
+        }
+
+        [Test]
+        public void ChannelLost_Unreachable_KeepsPhase_RaisesFailed_RetryClears()
+        {
+            UseChannel();
+            PushBattleStart();
+
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Unreachable);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "保持相位:服务端回合超时替本人出手");
+            Assert.That(_channelFailures, Is.EqualTo(new[] { BattleClient.BattleChannelFailedText }));
+            Assert.That(_client.IsBattleChannelFailed, Is.True);
+
+            _client.RetryBattleChannel();
+            Assert.That(_channel.Retries, Is.EqualTo(new[] { TheBattleId }));
+            Assert.That(_client.IsBattleChannelFailed, Is.False);
+
+            _channel.RaiseReady(TheBattleId);
+            Assert.That(_client.IsBattleChannelReady, Is.True);
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Has.Count.EqualTo(1), "重连成功即补拉");
+        }
+
+        [Test]
+        public void ChannelLost_EndedHostClosedOrOtherBattle_Ignored()
+        {
+            UseChannel();
+            PushBattleStart();
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Ended);
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.HostClosed);
+            _channel.RaiseLost(9999, BattleLinkCloseKind.BattleGone);
+            _channel.RaiseLost(9999, BattleLinkCloseKind.Unreachable);
+
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction));
+            Assert.That(_errors, Is.Empty);
+            Assert.That(_channelFailures, Is.Empty);
+        }
+
+        [Test]
+        public void RetryBattleChannel_WithoutBattleOrChannel_NoOp()
+        {
+            _client.RetryBattleChannel(); // 无通道
+            UseChannel();
+            _client.RetryBattleChannel(); // 不在战斗
+            Assert.That(_channel.Retries, Is.Empty);
+        }
+
+        [Test]
+        public void BattleStart_ChannelAlreadyReady_IsReadyImmediately()
+        {
+            // 直连握手先于开局包完成(开局包经直连到达的情形)
+            UseChannel();
+            _channel.ReadyBattleId = TheBattleId;
+            PushBattleStart();
+            Assert.That(_client.IsBattleChannelReady, Is.True);
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionAttack }),
+                Is.True);
         }
 
         [Test]

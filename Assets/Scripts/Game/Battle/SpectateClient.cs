@@ -19,15 +19,25 @@ namespace MmorpgClient.Game.Battle
     /// <summary>
     /// 观战网络层状态机(只读:观众对战斗状态零写权,设计文档 §10 D8)。
     ///
-    /// 与 <see cref="BattleClient"/> 是两套互不干扰的状态机(消息号不同),
-    /// 结构与惯例照搬 BattleClient:网络依赖收敛在 <see cref="IBattleTransport"/>,
+    /// 与 <see cref="BattleClient"/> 是两套互不干扰的状态机(消息号不同;
+    /// 生产上两者共用同一个 DirectRoutingBattleTransport 与同一条直连),
+    /// 结构与惯例照搬 BattleClient:网络依赖收敛在 <see cref="IBattleTransport"/>
+    /// 与可选的 <see cref="IBattleChannel"/>(直连就绪状态;null = 永远就绪),
     /// 本类不引用 UnityEngine,时钟由宿主经 <see cref="Tick"/> 注入。
     ///
+    /// 首帧(turn-based §22 D69):WatchBattle 成功后服务端经大厅推 NotifyBattleAssigned(OBSERVER),
+    /// 客户端直连握手成功时 battle 随即经直连推一份 SpectateStateS2C 快照 —— 首帧就是它,
+    /// 客户端不必自己补拉;之后的观战帧也只从直连来。
+    ///
     /// 边界情况(均有 EditMode 测试覆盖):
-    ///  - 随机观战(battle_id=0):首帧可能先于 WatchBattle 响应到达(Kafka 与 gRPC
-    ///    两条链路无序),Requesting 期间未定 battle_id 时以先到者为准;
+    ///  - 随机观战(battle_id=0):首帧可能先于 WatchBattle 响应到达(直连快照与经 gate 的
+    ///    gRPC 响应两条链路无序),Requesting 期间未定 battle_id 时以先到者为准;
     ///  - 迟到/错发消息(battle_id 不匹配当前观战)丢弃;
-    ///  - 首帧 15s 未到:收敛回 None 并报错(照 BattleClient 的 Preparing 超时惯例);
+    ///  - 首帧 15s 未到:收敛回 None 并报错(照 BattleClient 的 Preparing 超时惯例),
+    ///    有直连通道时同时通知服务端退出(就绪发 StopWatchBattle,未就绪放弃直连);
+    ///  - 退出观战时直连未就绪:StopWatchBattle 发不出去(gate 不中继战斗),本地收敛并放弃直连,
+    ///    服务端观众名单等战斗结束时清理;若分配包晚到、直连随后就绪,再补发退出;
+    ///  - 直连终结为 BattleGone / Unreachable:观战无从继续,收敛回 None 并报错;
     ///  - 断线:本地观战态整体作废回 None(观战无重连恢复,重进走 WatchBattle)。
     /// </summary>
     public sealed class SpectateClient
@@ -39,6 +49,7 @@ namespace MmorpgClient.Game.Battle
         public const double FirstFrameTimeoutSeconds = 15.0;
 
         private readonly IBattleTransport _net;
+        private readonly IBattleChannel _channel;   // null = 永远就绪(既有测试)
 
         private double _now;                  // 宿主注入的时钟(秒)
         private double _firstFrameDeadline;   // 首帧超时时刻(0 = 未挂)
@@ -48,6 +59,10 @@ namespace MmorpgClient.Game.Battle
         // StopWatchBattle,置此标记等响应/首帧带回 battle_id 后补发退出。
         // 注意 ClearWatchContext 不得重置它:本地相位先收敛 None,标记要活到回填到达。
         private bool _stopPending;
+
+        // 退出时直连未就绪、只能本地放弃的那一局:分配包若晚到、直连随后为它就绪,
+        // 就在就绪时补发 StopWatchBattle(服务端摘观众并关直连)。0 = 无。同样不随 ClearWatchContext 重置。
+        private ulong _unsentStopBattleId;
 
         // ── 契约属性 ────────────────────────────────────────
 
@@ -75,17 +90,25 @@ namespace MmorpgClient.Game.Battle
 
         // ── 构造/挂接 ───────────────────────────────────────
 
-        public SpectateClient(IBattleTransport transport)
+        /// <param name="transport">观战网络传输(生产:DirectRoutingBattleTransport)。</param>
+        /// <param name="channel">战斗直连就绪状态(生产:同一个 DirectRoutingBattleTransport);null = 永远就绪。</param>
+        public SpectateClient(IBattleTransport transport, IBattleChannel channel = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
+            _channel = channel;
             RegisterNotifies();
             _net.Disconnected += HandleDisconnected;
+            if (_channel != null)
+            {
+                _channel.Ready += HandleChannelReady;
+                _channel.Lost += HandleChannelLost;
+            }
         }
 
-        /// <summary>生产入口:创建实例并登记为单例(GameClient 构造时调用)。</summary>
-        public static SpectateClient Attach(IBattleTransport transport)
+        /// <summary>生产入口:创建实例并登记为单例(GameClient 构造时调用)。channel 语义同构造函数。</summary>
+        public static SpectateClient Attach(IBattleTransport transport, IBattleChannel channel = null)
         {
-            var client = new SpectateClient(transport);
+            var client = new SpectateClient(transport, channel);
             Instance = client;
             return client;
         }
@@ -98,9 +121,18 @@ namespace MmorpgClient.Game.Battle
             if (Phase == SpectatePhase.Requesting && _firstFrameDeadline > 0 && _now >= _firstFrameDeadline)
             {
                 _firstFrameDeadline = 0;
+                ulong battleId = _battleId;
                 OnError?.Invoke("观战首帧超时,已退出观战");
                 ClearWatchContext();
                 SetPhase(SpectatePhase.None);
+                // 有直连通道时顺手通知服务端退出(就绪发 StopWatchBattle,未就绪放弃直连),
+                // 否则直连还在后台重连、握手成功后服务端继续对一个已离开的观众推帧;
+                // battle_id 未知(随机观战响应也没回)时挂待补退出,等回填。
+                if (_channel != null)
+                {
+                    if (battleId != 0) SendStopWatch(battleId);
+                    else _stopPending = true;
+                }
             }
         }
 
@@ -123,6 +155,7 @@ namespace MmorpgClient.Game.Battle
             }
 
             _stopPending = false; // 新观战作废旧的待补退出
+            _unsentStopBattleId = 0;
             _battleId = battleId;
             SetPhase(SpectatePhase.Requesting);
             _firstFrameDeadline = _now + FirstFrameTimeoutSeconds; // SetPhase 会清,故在其后挂
@@ -166,7 +199,9 @@ namespace MmorpgClient.Game.Battle
 
         /// <summary>
         /// 主动退出观战:本地立即收敛回 None(UI 响应优先),服务端移除是
-        /// 尽力而为(StopWatchBattle 经 gate 按绑定路由,失败只报错不改相位)。
+        /// 尽力而为:直连已就绪 → 经直连发 StopWatchBattle(失败只报错不改相位);
+        /// 直连未就绪 → 不发请求(gate 不中继战斗),放弃直连(turn-based §22 D74),
+        /// 服务端观众名单等战斗结束时清理,match 的观战标记在下次 WatchBattle 时懒清退。
         /// </summary>
         public void StopWatch()
         {
@@ -274,8 +309,53 @@ namespace MmorpgClient.Game.Battle
         private void HandleDisconnected()
         {
             // 断线:观战态整体作废(服务端绑定随 session 失效,重进走 WatchBattle);
-            // 待补退出一并作废(session 失效服务端自会清绑定,无需再补发)
+            // 待补退出一并作废(session 失效服务端自会清绑定,无需再补发;直连随大厅断线由宿主关闭)
             _stopPending = false;
+            _unsentStopBattleId = 0;
+            ClearWatchContext();
+            State = null;
+            ObserverCount = 0;
+            SetPhase(SpectatePhase.None);
+        }
+
+        // ── 战斗直连通道(turn-based §22 D74) ─────────────
+
+        /// <summary>
+        /// 直连就绪。首帧不在这里合成 —— 观众握手成功时服务端会经直连推 SpectateStateS2C 快照(D69)。
+        /// 这里只处理一种情形:退出观战时直连未就绪、只能本地放弃,而分配包晚到、直连随后
+        /// 为那一局建起来了 —— 补发 StopWatchBattle,让服务端摘掉观众并关直连。
+        /// </summary>
+        private void HandleChannelReady(ulong battleId, eBattleTicketRole role)
+        {
+            if (battleId == 0 || battleId != _unsentStopBattleId) return;
+            if (role != eBattleTicketRole.BattleTicketRoleObserver) return;
+            _unsentStopBattleId = 0;
+            SendStopWatch(battleId);
+        }
+
+        /// <summary>
+        /// 直连终结:BattleGone(战斗已结束,观战结束包多半丢了)/ Unreachable(连不上 battle 节点)
+        /// 时观战无从继续,收敛回 None 并报错。Ended(正常收尾 / 已退出)与 HostClosed
+        /// (大厅断线,由 Disconnected 统一作废)不处理。随机观战且 battle_id 尚未回填时对不上号,
+        /// 交给首帧超时收敛。
+        /// </summary>
+        private void HandleChannelLost(ulong battleId, BattleLinkCloseKind kind, string detail)
+        {
+            if (Phase != SpectatePhase.Requesting && Phase != SpectatePhase.Watching) return;
+            if (battleId == 0 || battleId != _battleId) return;
+            string text;
+            switch (kind)
+            {
+                case BattleLinkCloseKind.BattleGone:
+                    text = "该战斗已结束,已退出观战";
+                    break;
+                case BattleLinkCloseKind.Unreachable:
+                    text = "无法连接战斗服务器,已退出观战";
+                    break;
+                default:
+                    return;
+            }
+            OnError?.Invoke(text);
             ClearWatchContext();
             State = null;
             ObserverCount = 0;
@@ -284,9 +364,20 @@ namespace MmorpgClient.Game.Battle
 
         // ── 内部工具 ────────────────────────────────────────
 
-        /// <summary>发退出观战请求(尽力而为:失败只报错不改相位;主动退出与待补退出共用)。</summary>
+        /// <summary>
+        /// 通知服务端退出观战(尽力而为:失败只报错不改相位;主动退出、待补退出、首帧超时共用)。
+        /// 直连未就绪时发不出去(gate 不中继战斗):改为放弃该局直连,并记下这一局,
+        /// 万一分配包晚到、直连随后就绪,再在就绪时补发(见 <see cref="HandleChannelReady"/>)。
+        /// </summary>
         private void SendStopWatch(ulong battleId)
         {
+            if (_channel != null && !_channel.IsReadyFor(battleId))
+            {
+                _channel.Abandon(battleId);
+                _unsentStopBattleId = battleId;
+                return;
+            }
+            if (_unsentStopBattleId == battleId) _unsentStopBattleId = 0;
             var req = new StopWatchBattleRequest { BattleId = battleId };
             _net.Call(MessageIds.StopWatchBattle, req, StopWatchBattleResponse.Parser,
                 resp =>

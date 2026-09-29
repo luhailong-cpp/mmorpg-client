@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Game.Battle;
@@ -7,9 +8,10 @@ using NUnit.Framework;
 namespace MmorpgClient.Tests.EditMode.Battle
 {
     /// <summary>
-    /// <see cref="DirectRoutingBattleTransport"/> 分流规则测试:四条战斗 RPC 只在直连已验证时
-    /// 走直连,其余永远走大厅;S2C 两条路都能到达同一处理器;三条"本局结束"信号与重连提示
-    /// 正确转给 <see cref="BattleDirectLink"/>。
+    /// <see cref="DirectRoutingBattleTransport"/> 分流规则测试(turn-based §22 D74 收缩后口径):
+    /// 四条战斗 RPC 只走直连,未就绪时本地快速失败、绝不走大厅;其余永远走大厅;
+    /// S2C 两条路都能到达同一处理器(容错);三条"本局结束"信号与重连提示正确转给
+    /// <see cref="BattleDirectLink"/>;链路验证 / 终结转成 <see cref="IBattleChannel"/> 的 Ready / Lost。
     /// </summary>
     public sealed class DirectRoutingBattleTransportTests
     {
@@ -20,6 +22,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private BattleDirectLink _link;
         private DirectRoutingBattleTransport _transport;
         private List<ulong> _reissueRequests;
+        private Action<BattleAssignedS2C> _reissueOk;
+        private Action<uint, string> _reissueFail;
+        private List<string> _log;
         private double _now;
 
         [SetUp]
@@ -28,11 +33,20 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _lobby = new FakeBattleTransport();
             _conns = new List<FakeFramedConnection>();
             _reissueRequests = new List<ulong>();
+            _reissueOk = null;
+            _reissueFail = null;
+            _log = new List<string>();
             _now = 100;
             _link = new BattleDirectLink(() => { var c = new FakeFramedConnection(); _conns.Add(c); return c; },
-                unixNowMs: () => 1_000_000, connectRunner: a => a());
-            _link.TicketReissuer = (id, ok, fail) => { _reissueRequests.Add(id); return true; };
-            _transport = new DirectRoutingBattleTransport(_lobby, _link);
+                unixNowMs: () => 1_000_000, connectRunner: a => a(), random01: () => 0.5);
+            _link.TicketReissuer = (id, ok, fail) =>
+            {
+                _reissueRequests.Add(id);
+                _reissueOk = ok;
+                _reissueFail = fail;
+                return true;
+            };
+            _transport = new DirectRoutingBattleTransport(_lobby, _link, s => _log.Add(s));
         }
 
         private FakeFramedConnection Current => _conns[_conns.Count - 1];
@@ -78,12 +92,37 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void BeforeVerified_BattleRpcGoesToLobby()
+        public void BeforeVerified_BattleRpc_FailsFast_NeverLobby()
         {
-            _transport.Call(MessageIds.SubmitBattleAction, new SubmitBattleActionRequest(),
-                SubmitBattleActionResponse.Parser, _ => { }, _ => { });
-            Assert.AreEqual(1, _lobby.Calls.Count);
-            Assert.AreEqual(MessageIds.SubmitBattleAction, _lobby.Calls[0].MessageId);
+            // gate 不中继战斗:大厅上的战斗请求只会换来 id=0 的 TipToClient、挂满 15s 超时
+            foreach (var id in new[] { MessageIds.SubmitBattleAction, MessageIds.GetBattleState,
+                                       MessageIds.StopWatchBattle, MessageIds.SetAutoBattle })
+            {
+                string err = null;
+                _transport.Call(id, new GetBattleStateRequest(), BattleStateS2C.Parser,
+                    _ => Assert.Fail("不该成功"), e => err = e);
+                Assert.AreEqual(BattleDirectLink.NotReadyError, err, $"message_id={id} 同步本地失败");
+            }
+            Assert.AreEqual(0, _lobby.Calls.Count, "绝不走大厅");
+            Assert.IsEmpty(_conns, "也不建任何连接");
+        }
+
+        [Test]
+        public void Handshaking_BattleRpc_FailsFast_NeverLobby()
+        {
+            _link.HandleAssigned(new BattleAssignedS2C
+            {
+                BattleId = TheBattleId, Host = "10.0.0.5", Port = 20050,
+                TokenPayload = ByteString.CopyFromUtf8("p"), TokenSignature = ByteString.CopyFromUtf8("s"),
+                ExpireAtMs = 4_000_000_000_000UL, Role = eBattleTicketRole.BattleTicketRoleParticipant,
+            });
+            Tick(); // 握手包已发,未验证
+            string err = null;
+            _transport.Call(MessageIds.SetAutoBattle, new SetAutoBattleRequest(), SetAutoBattleResponse.Parser,
+                _ => Assert.Fail("不该成功"), e => err = e);
+            Assert.AreEqual(BattleDirectLink.NotReadyError, err);
+            Assert.AreEqual(0, _lobby.Calls.Count);
+            Assert.AreEqual(1, Current.Sent.Count, "直连上只有握手包");
         }
 
         [Test]
@@ -108,7 +147,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void AfterLinkClosed_BattleRpcFallsBackToLobby()
+        public void AfterLinkClosed_BattleRpc_FailsFast_NeverLobby()
         {
             var conn = ConnectAndVerify();
             _link.HandleBattleEnded(TheBattleId);
@@ -116,8 +155,23 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Tick();
             Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
 
-            _transport.Call(MessageIds.GetBattleState, new GetBattleStateRequest(), BattleStateS2C.Parser, _ => { }, _ => { });
-            Assert.AreEqual(1, _lobby.Calls.Count);
+            string err = null;
+            _transport.Call(MessageIds.GetBattleState, new GetBattleStateRequest(), BattleStateS2C.Parser,
+                _ => Assert.Fail("不该成功"), e => err = e);
+            Assert.AreEqual(BattleDirectLink.NotReadyError, err);
+            Assert.AreEqual(0, _lobby.Calls.Count);
+        }
+
+        [Test]
+        public void SendOneWay_BeforeVerified_DroppedNotLobby()
+        {
+            _transport.SendOneWay(MessageIds.SetAutoBattle, new SetAutoBattleRequest { BattleId = TheBattleId });
+            Assert.IsEmpty(_lobby.OneWays, "战斗单向消息未就绪即丢弃,不发大厅");
+            Assert.IsNotEmpty(_log, "丢弃要留日志");
+
+            // 非战斗消息照旧走大厅
+            _transport.SendOneWay(MessageIds.JoinQueue, new Match.JoinQueueRequest());
+            Assert.AreEqual(1, _lobby.OneWays.Count);
         }
 
         [Test]
@@ -132,7 +186,23 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(1, hits, "直连到达");
 
             _lobby.PushNotify(MessageIds.NotifyTurnResult, new TurnResultS2C { BattleId = TheBattleId });
-            Assert.AreEqual(2, hits, "gate 回落到达");
+            Assert.AreEqual(2, hits, "容错:大厅上到达的同号推送(旧模式服务端 / 滚动升级窗口)也能处理");
+        }
+
+        [Test]
+        public void NotifyBattleEnd_ViaLobby_SceneSettlement_ReachesHandler_AndMarksEnded()
+        {
+            // scene 结算后经大厅推的 NotifyBattleEnd(D68 保留的大厅下行)
+            var conn = ConnectAndVerify();
+            int ends = 0;
+            _transport.RegisterNotify(MessageIds.NotifyBattleEnd, _ => ends++);
+            _lobby.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C { BattleId = TheBattleId });
+            Assert.AreEqual(1, ends);
+
+            conn.PushDisconnect();
+            Tick();
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State, "之后的 FIN 是正常收尾");
+            Assert.IsEmpty(_reissueRequests);
         }
 
         [Test]
@@ -236,33 +306,86 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void IsRetriableOnLobby_ExcludesSubmitBattleAction()
-        {
-            Assert.IsTrue(DirectRoutingBattleTransport.IsRetriableOnLobby(MessageIds.GetBattleState));
-            Assert.IsTrue(DirectRoutingBattleTransport.IsRetriableOnLobby(MessageIds.StopWatchBattle));
-            Assert.IsTrue(DirectRoutingBattleTransport.IsRetriableOnLobby(MessageIds.SetAutoBattle));
-            Assert.IsFalse(DirectRoutingBattleTransport.IsRetriableOnLobby(MessageIds.SubmitBattleAction),
-                "没有回合号、服务端无重复守卫,重发会落进下一回合");
-        }
-
-        [Test]
-        public void IdempotentRpc_FallsBackToLobby_OnTransportFailure()
+        public void IdempotentRpc_TransportFailure_SurfacesError_NoLobby()
         {
             var conn = ConnectAndVerify();
-            BattleStateS2C got = null;
             string err = null;
             _transport.Call(MessageIds.GetBattleState, new GetBattleStateRequest { BattleId = TheBattleId },
-                BattleStateS2C.Parser, r => got = r, e => err = e);
+                BattleStateS2C.Parser, _ => Assert.Fail("不该成功"), e => err = e);
             Assert.AreEqual(0, _lobby.Calls.Count);
 
             conn.PushDisconnect();   // 在途请求随断开失败(带传输层前缀)
             Tick();
 
-            Assert.IsNull(err, "传输层失败不该直接冒给调用方");
-            Assert.AreEqual(1, _lobby.Calls.Count, "改走大厅重发一次");
-            Assert.AreEqual(MessageIds.GetBattleState, _lobby.Calls[0].MessageId);
-            _lobby.Calls[0].Respond(new BattleStateS2C { BattleId = TheBattleId });
-            Assert.IsNotNull(got);
+            StringAssert.StartsWith(BattleDirectLink.TransportErrorPrefix, err, "传输层失败原样交给调用方");
+            Assert.AreEqual(0, _lobby.Calls.Count, "不改走大厅重发(丢帧由直连就绪时补拉恢复)");
+        }
+
+        // ── IBattleChannel ─────────────────────────────────
+
+        [Test]
+        public void LinkVerified_RaisesChannelReady_WithRole()
+        {
+            var ready = new List<(ulong, eBattleTicketRole)>();
+            _transport.Ready += (id, role) => ready.Add((id, role));
+            Assert.IsFalse(_transport.IsReadyFor(TheBattleId));
+
+            ConnectAndVerify();
+
+            Assert.AreEqual(1, ready.Count);
+            Assert.AreEqual(TheBattleId, ready[0].Item1);
+            Assert.AreEqual(eBattleTicketRole.BattleTicketRoleParticipant, ready[0].Item2);
+            Assert.IsTrue(_transport.IsReadyFor(TheBattleId));
+            Assert.IsFalse(_transport.IsReadyFor(9999), "别的局不算就绪");
+            Assert.IsFalse(_transport.IsReadyFor(0));
+        }
+
+        [Test]
+        public void LinkClosed_ReissueInvalidParameter_RaisesLostBattleGone()
+        {
+            var lost = new List<(ulong, BattleLinkCloseKind)>();
+            _transport.Lost += (id, kind, _) => lost.Add((id, kind));
+            var conn = ConnectAndVerify();
+
+            // 断开 → 同票重连也失败 → 退避后补签 → match 回 kInvalidParameter(战斗已结束)
+            conn.PushDisconnect(); Tick();
+            Tick(BattleDirectLink.ReconnectDelaySeconds + 0.1);
+            Current.PushDisconnect(); Tick();
+            Tick(BattleDirectLink.ReissueBackoffBaseSeconds + 0.1);
+            Assert.AreEqual(new[] { TheBattleId }, _reissueRequests.ToArray());
+            _reissueFail((uint)common_error.KInvalidParameter, "response tip");
+
+            Assert.AreEqual(1, lost.Count);
+            Assert.AreEqual(TheBattleId, lost[0].Item1);
+            Assert.AreEqual(BattleLinkCloseKind.BattleGone, lost[0].Item2);
+            Assert.IsFalse(_transport.IsReadyFor(TheBattleId));
+        }
+
+        [Test]
+        public void ChannelEntryPoints_ForwardToLink()
+        {
+            // EnsureBattle:本链路不服务该局 → 立即补签
+            _transport.EnsureBattle(TheBattleId);
+            Assert.AreEqual(new[] { TheBattleId }, _reissueRequests.ToArray());
+            _reissueOk(new BattleAssignedS2C
+            {
+                BattleId = TheBattleId, Host = "10.0.0.5", Port = 20050,
+                TokenPayload = ByteString.CopyFromUtf8("p"), TokenSignature = ByteString.CopyFromUtf8("s"),
+                ExpireAtMs = 4_000_000_000_000UL, Role = eBattleTicketRole.BattleTicketRoleObserver,
+            });
+            Tick();
+            Assert.AreEqual(BattleDirectLink.LinkState.Handshaking, _link.State);
+
+            // Abandon:本地终结,以 Ended 收尾,不再重连
+            var lost = new List<BattleLinkCloseKind>();
+            _transport.Lost += (_, kind, __) => lost.Add(kind);
+            _transport.Abandon(TheBattleId);
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Ended }, lost.ToArray());
+
+            // Retry:终结后手动重连 → 重置预算立即补签
+            _transport.Retry(TheBattleId);
+            Assert.AreEqual(2, _reissueRequests.Count);
         }
 
         [Test]
