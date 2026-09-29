@@ -406,14 +406,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             member.UpgradeCostFunds = 20000;
             _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = member });
             Assert.That(_client.CanUpgrade, Is.False);
-            _client.Upgrade();
+            _client.Upgrade(5);
             Assert.That(_net.Calls.Contains(MessageIds.UpgradeGuild), Is.False);
 
             var officer = Fixture(); officer.LeaderId = 2; officer.Members[0].Role = GuildRoles.Officer; officer.Members[1].Role = GuildRoles.Leader;
             officer.OfficerCount = 1; officer.UpgradeCostFunds = 20000; officer.Funds = 100;
             _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = officer });
             // 本地资金看着不够也照发:别的长老可能刚捐过,够不够以服务端事务为准。
-            _client.Upgrade();
+            _client.Upgrade(5);
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.UpgradeGuild));
             Assert.That(((UpgradeGuildRequest)_net.Requests.Last()).ExpectedLevel, Is.EqualTo(5u));
             var fresher = officer.Clone(); fresher.Funds = 30000;
@@ -421,7 +421,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.Info.Funds, Is.EqualTo(30000ul));
             Assert.That(_client.Status, Is.EqualTo("帮会资金不足，暂时无法升级。"));
 
-            _client.Upgrade();
+            _client.Upgrade(5);
             var upgraded = officer.Clone(); upgraded.Level = 6; upgraded.Funds = 10000;
             _net.Reply(new UpgradeGuildResponse { Guild = upgraded });
             Assert.That(_client.Info.Level, Is.EqualTo(6u));
@@ -541,6 +541,104 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _net.Reply(new BuyGuildShopGoodsResponse { ErrorMessage = new TipInfoMessage { Id = tip } });
             Assert.That(_client.Status, Does.Not.Contain("暂未完成请求"));
             Assert.That(_client.RequiresReconnect, Is.False);
+        }
+        /// <summary>
+        /// 资产通道关闭 / 未决指令过多时回 kGuildAssetPending,且没有新的待结算单。本页要重拉让待结算列表收敛,
+        /// 但重拉的默认文案是"捐献信息已更新 / 帮会商店已更新",像是成功了 —— 拒绝原因必须活过这次重拉。
+        /// </summary>
+        [Test] public void AssetPendingRejectionSurvivesThePageReload()
+        {
+            Load();
+            _client.RefreshDonations(); _net.Reply(DonateFixture());
+            _client.Donate(1);
+            _net.Reply(new DonateToGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildAssetPending } });
+            // 回调里带着文案直接重拉,不经 DrainQueued(那一发不带文案)。
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildDonateOptions));
+            Assert.That(_client.DonationsQueued, Is.False);
+            _net.Reply(DonateFixture());
+            Assert.That(_client.Status, Is.EqualTo("还有未结算的帮会操作，请稍后再试。"));
+
+            _client.RefreshShop(); _net.Reply(ShopFixture(440));
+            _client.Buy(101);
+            _net.Reply(new BuyGuildShopGoodsResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildAssetPending } });
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildShop));
+            Assert.That(_client.ShopQueued, Is.False);
+            _net.Reply(ShopFixture(440));
+            Assert.That(_client.Status, Is.EqualTo("还有未结算的帮会操作，请稍后再试。"));
+        }
+        /// <summary>
+        /// 确认框在 Lv.5 打开,确认前别的长老已升到 Lv.6、推送把本地快照刷新了:按 Lv.5 确认的请求不能
+        /// 改按 Lv.6 发 —— 那会按 6→7 的花费再扣一次全帮资金、连升两级。
+        /// </summary>
+        [Test] public void UpgradeConfirmedAtAnOlderLevelIsNotSent()
+        {
+            var info = Fixture(); info.UpgradeCostFunds = 20000; info.Funds = 100000;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = info });
+            var upgraded = info.Clone(); upgraded.Level = 6; upgraded.UpgradeCostFunds = 50000;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = upgraded });
+            int before = _net.Calls.Count;
+            _client.Upgrade(5);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Status, Is.EqualTo("帮会等级已变化，请重新确认升级。"));
+            // 按新等级重新确认后照常发出。
+            _client.Upgrade(6);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.UpgradeGuild));
+            Assert.That(((UpgradeGuildRequest)_net.Requests.Last()).ExpectedLevel, Is.EqualTo(6u));
+        }
+        /// <summary>
+        /// 同一个帮会里等级或本人帮贡变了,两页快照不清空、只标过时(进页时由窗口重拉);
+        /// 本页重拉成功即不再过时。等级、帮贡都没变的帮会快照(比如有人入帮)不影响它们。
+        /// </summary>
+        [Test] public void LevelOrBalanceChangeMarksEconomySnapshotsStale()
+        {
+            Load();
+            _client.RefreshDonations(); _net.Reply(DonateFixture());
+            _client.RefreshShop(); _net.Reply(ShopFixture(0));
+            Assert.That(_client.DonationsNeedReload(0), Is.False); Assert.That(_client.ShopNeedsReload(0), Is.False);
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            Assert.That(_client.DonationsNeedReload(0), Is.False); Assert.That(_client.ShopNeedsReload(0), Is.False);
+
+            // 捐献入账:捐献页随即重拉,商店页的可用帮贡还是旧的。
+            _client.Donate(1);
+            var donated = Fixture(); donated.Members[0].ContributionBalance = 10;
+            _net.Reply(new DonateToGuildResponse { Guild = donated, Donation = new GuildDonationView
+                { OpId = 41, DonateId = 1, Status = GuildAssetOrderStatus.Applied, ContributionGain = 10, FundsGain = 1000 } });
+            _net.Reply(DonateFixture());
+            Assert.That(_client.DonationsNeedReload(0), Is.False);
+            Assert.That(_client.ShopNeedsReload(0), Is.True);
+            Assert.That(_client.Shop, Is.Not.Null);
+            _client.RefreshShop(); _net.Reply(ShopFixture(10));
+            Assert.That(_client.ShopNeedsReload(0), Is.False);
+
+            // 兑换成功:捐献页页脚的可用帮贡过时。
+            _client.Buy(101);
+            _net.Reply(new BuyGuildShopGoodsResponse { ContributionBalance = 0, Order = new GuildShopOrderView
+                { OpId = 42, GoodsId = 101, Count = 1, Status = GuildAssetOrderStatus.Applied, CostContribution = 10 } });
+            _net.Reply(ShopFixture(0));
+            Assert.That(_client.DonationsNeedReload(0), Is.True);
+            Assert.That(_client.ShopNeedsReload(0), Is.False);
+
+            // 升级(本人升级回包,或别人升级的推送 → Refresh):unlocked 是服务端按拉取那一刻的等级算的,两页都过时。
+            _client.RefreshDonations(); _net.Reply(DonateFixture());
+            var leveled = Fixture(); leveled.Level = 6;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = leveled });
+            Assert.That(_client.DonationsNeedReload(0), Is.True); Assert.That(_client.ShopNeedsReload(0), Is.True);
+        }
+        /// <summary>客户端开着跨过服务端给的日切点(商店另有周切点):"今日 2/2" 之类的用量已不可信。</summary>
+        [Test] public void EconomySnapshotsExpireAtServerResetTimes()
+        {
+            Load();
+            var donations = DonateFixture(); donations.NextDailyResetMs = 1000;
+            _client.RefreshDonations(); _net.Reply(donations);
+            Assert.That(_client.DonationsNeedReload(999), Is.False);
+            Assert.That(_client.DonationsNeedReload(1000), Is.True);
+            var shop = ShopFixture(0); shop.NextDailyResetMs = 2000; shop.NextWeeklyResetMs = 5000;
+            _client.RefreshShop(); _net.Reply(shop);
+            Assert.That(_client.ShopNeedsReload(1999), Is.False);
+            Assert.That(_client.ShopNeedsReload(2000), Is.True);
+            // 没给切点(0)的不按时间过期。
+            _client.RefreshShop(); _net.Reply(ShopFixture(0));
+            Assert.That(_client.ShopNeedsReload(ulong.MaxValue), Is.False);
         }
 
         private void Empty() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } }); }
@@ -978,7 +1076,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
         [Test] public void OverviewShowsFundsAndUpgradeOnlyForOfficers()
         {
-            int upgrades = 0; _window.UpgradeRequested += () => upgrades++;
+            int upgrades = 0; uint confirmedLevel = 0;
+            _window.UpgradeRequested += level => { upgrades++; confirmedLevel = level; };
             string Value(string name) => _root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == name).text;
             var member = GuildClientTests.Fixture();
             member.LeaderId = 2; member.Members[0].Role = GuildRoles.Member; member.Members[1].Role = GuildRoles.Leader;
@@ -999,12 +1098,119 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(ActiveText(), Does.Contain("需要帮会资金 20,000"));
             Click("ConfirmGuildAction");
             Assert.That(upgrades, Is.EqualTo(1));
+            // 事件带出的是确认框打开时的等级,作为 expected_level 发出。
+            Assert.That(confirmedLevel, Is.EqualTo(5u));
 
             var max = officer.Clone(); max.UpgradeCostFunds = 0;
             _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = max });
             _window.SetClient(_client);
             Assert.That(Label("UpgradeGuild"), Is.EqualTo("已满级"));
             Assert.That(Buttons().Single(b => b.name == "UpgradeGuild").interactable, Is.False);
+        }
+        /// <summary>
+        /// 确认框写的是"升至 Lv.6";开着时别的长老先升了,推送 → Refresh 把快照刷成 Lv.6,确认框不会因此关掉。
+        /// 此时点确认,带出的仍是 Lv.5,客户端拒发 —— 不能按 6→7 的花费替玩家再扣一次。
+        /// </summary>
+        [Test] public void UpgradeConfirmationKeepsTheLevelItWasOpenedAt()
+        {
+            uint confirmedLevel = 0;
+            _window.UpgradeRequested += level => { confirmedLevel = level; _client.Upgrade(level); };
+            var info = GuildClientTests.Fixture(); info.UpgradeCostFunds = 20000; info.Funds = 100000;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = info });
+            _window.SetClient(_client); _window.Show();
+            Click("UpgradeGuild");
+            Assert.That(ActiveText(), Does.Contain("升至 Lv.6"));
+            var upgraded = info.Clone(); upgraded.Level = 6; upgraded.UpgradeCostFunds = 50000;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = upgraded });
+            _window.SetClient(_client);
+            Assert.That(_window.ModalVisible, Is.True);
+            int before = _net.Calls.Count;
+            Click("ConfirmGuildAction");
+            Assert.That(confirmedLevel, Is.EqualTo(5u));
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Status, Does.Contain("等级已变化"));
+        }
+        /// <summary>
+        /// 升级后(本人升级回包,或别人升级的推送 → Refresh)同一个帮会的商店快照仍在,但 unlocked 是按旧等级算的:
+        /// 停在商店页时自动重拉一次,之后不连发;结算推送已排队重拉本页时让给 DrainQueued。
+        /// </summary>
+        [Test] public void ShopPageReloadsAfterGuildLevelChanges()
+        {
+            int requests = 0; _window.ShopRequested += () => requests++;
+            _client.RefreshShop(); _net.Reply(GuildClientTests.ShopFixture(440));
+            _window.SetClient(_client); _window.Show(GuildPage.Shop);
+            Assert.That(requests, Is.Zero);
+            var upgraded = GuildClientTests.Fixture(); upgraded.Level = 6;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = upgraded });
+            _window.SetClient(_client);
+            Assert.That(requests, Is.EqualTo(1));
+            _window.SetClient(_client);
+            Assert.That(requests, Is.EqualTo(1));
+            // DELIVERY_DONE 同时排了 Refresh 与本页重拉:再进商店页也不自己拉,免得盖掉"已发放"文案。
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.DeliveryDone, TargetPlayerId = 1 });
+            Assert.That(_client.ShopQueued, Is.True);
+            _window.Show(GuildPage.Shop);
+            Assert.That(requests, Is.EqualTo(1));
+            _client.DrainQueued(false);
+            _net.Reply(new GetPlayerGuildResponse { Guild = upgraded });
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildShop));
+        }
+        /// <summary>客户端一直开着跨过 05:00:快照非空,但"今日 2/2"已不可信,再进捐献页要重拉一次。</summary>
+        [Test] public void DonatePageReloadsSnapshotPastDailyReset()
+        {
+            int requests = 0; _window.DonationsRequested += () => requests++;
+            var today = GuildClientTests.DonateFixture();
+            today.NextDailyResetMs = (ulong)DateTimeOffset.UtcNow.AddHours(12).ToUnixTimeMilliseconds();
+            _client.RefreshDonations(); _net.Reply(today);
+            _window.SetClient(_client); _window.Show(GuildPage.Donate);
+            Assert.That(requests, Is.Zero);
+            var yesterday = GuildClientTests.DonateFixture();
+            yesterday.NextDailyResetMs = (ulong)DateTimeOffset.UtcNow.AddHours(-1).ToUnixTimeMilliseconds();
+            _client.RefreshDonations(); _net.Reply(yesterday);
+            _window.Show(GuildPage.Overview); _window.Show(GuildPage.Donate);
+            Assert.That(requests, Is.EqualTo(1));
+            // 每次进入最多一次:拉回来的仍"过时"(本地时钟比服务端快)也不连发,之后交给刷新键。
+            _window.SetClient(_client);
+            Assert.That(requests, Is.EqualTo(1));
+        }
+        /// <summary>
+        /// 30 号正文一行要 (ascent − descent)×30/64 ≈ 43.4 高。框比它矮时 TMP 的 Ellipsis 在第一个字就判溢出,
+        /// 连省略号都插不进去,整行一个字都不出;ActiveText 读的是源串,看不出来。这里按字体度量逐个核对
+        /// 捐献页与商店页(含页脚)所有单行正文的框高。
+        /// </summary>
+        [Test] public void EconomyPageBodyTextBoxesFitOneLine()
+        {
+            var donations = GuildClientTests.DonateFixture();
+            donations.PendingDonations.Add(new GuildDonationView { OpId = 7, DonateId = 3, Status = GuildAssetOrderStatus.Pending });
+            _client.RefreshDonations(); _net.Reply(donations);
+            var shop = GuildClientTests.ShopFixture(440);
+            shop.PendingOrders.Add(new GuildShopOrderView { OpId = 8, GoodsId = 203, Count = 1, Status = GuildAssetOrderStatus.Pending });
+            _client.RefreshShop(); _net.Reply(shop);
+            _window.SetClient(_client); _window.Show(GuildPage.Donate);
+            Assert.That(AssertBodyLinesFit(), Has.Member("GuildDonateFooter"));
+            _window.Show(GuildPage.Shop);
+            for (int category = 1; category <= 3; category++)
+            {
+                Click("GuildShopCategory_" + category);
+                Assert.That(AssertBodyLinesFit(), Has.Member("GuildShopFooter"));
+            }
+        }
+        private List<string> AssertBodyLinesFit()
+        {
+            var body = QdaoUguiTypography.ResolveBodyFont();
+            var names = new List<string>();
+            foreach (var text in _root.GetComponentsInChildren<TMP_Text>())
+            {
+                if (!text.gameObject.activeInHierarchy || string.IsNullOrEmpty(text.text) || text.font != body
+                    || text.textWrappingMode != TextWrappingModes.NoWrap) continue;
+                var face = text.font.faceInfo;
+                float line = (face.ascentLine - face.descentLine) * face.scale * text.fontSize / face.pointSize;
+                Assert.That(text.rectTransform.rect.height, Is.GreaterThanOrEqualTo(line), text.name + " / " + text.text);
+                names.Add(text.name);
+            }
+            return names;
         }
 
         private TMP_InputField SearchInput() => _root.GetComponentsInChildren<TMP_InputField>().Single(i => i.name == "GuildMemberSearch");
