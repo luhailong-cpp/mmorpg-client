@@ -1,6 +1,7 @@
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Guild;
+using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
@@ -71,6 +72,13 @@ namespace MmorpgClient.UI.Ugui.Guild
             _window.AnnouncementRequested += text => { if (_available) _client?.SaveAnnouncement(text); };
             _window.LeaveRequested += () => { if (_available) _client?.Leave(); };
             _window.DisbandRequested += () => { if (_available) _client?.Disband(); };
+            // 经济(B5):捐献页 / 商店页 / 总览升级。
+            _window.DonationsRequested += () => { if (_available) _client?.RefreshDonations(); };
+            _window.DonateRequested += id => { if (_available) _client?.Donate(id); };
+            // 带确认框打开时的等级:确认前别的长老先升了,客户端就拒发,不连升两级。
+            _window.UpgradeRequested += level => { if (_available) _client?.Upgrade(level); };
+            _window.ShopRequested += () => { if (_available) _client?.RefreshShop(); };
+            _window.ShopBuyRequested += id => { if (_available) _client?.Buy(id); };
             _hud.gameObject.SetActive(false);
         }
         private uint ZoneId => AppBootstrap.Instance?.Session?.SelectedZoneId ?? 0;
@@ -79,10 +87,10 @@ namespace MmorpgClient.UI.Ugui.Guild
             var game = AppBootstrap.Instance?.GameClient;
             if (_game != game)
             {
-                if (_client != null) { _client.Changed -= Changed; _client.Dispose(); }
+                if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.Dispose(); }
                 _game = game;
                 _client = game == null ? null : new GuildClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity);
-                if (_client != null) _client.Changed += Changed;
+                if (_client != null) { _client.Changed += Changed; _client.AssetsChanged += OnAssetsChanged; }
                 _window.ResetSession(); _window.SetClient(_client);
             }
             _client?.ObserveConnection();
@@ -123,9 +131,18 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         public void HidePanel() => _window?.Hide();
         private void Changed() => _window?.SetClient(_client);
+        /// <summary>
+        /// 捐献扣了货币 / 兑换发了物品:scene 没有余额推送,重拉一次背包(沿用玩家当前看的那个背包类型)。
+        /// 背包客户端不在(未进场)就什么也不做,下次打开背包自然会拉。
+        /// </summary>
+        private static void OnAssetsChanged()
+        {
+            var features = PlayerFeaturesClient.Instance;
+            features?.RequestBag(features.RequestedBagType);
+        }
         private void OnDestroy()
         {
-            if (_client != null) { _client.Changed -= Changed; _client.Dispose(); }
+            if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.Dispose(); }
             _window?.Hide();
             if (Instance == this) Instance = null;
         }

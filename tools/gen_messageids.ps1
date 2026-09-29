@@ -58,6 +58,13 @@ $whitelist = @{
     # 推送占位:S→C 只收不发(服务端白名单拒绝客户端调用),客户端用 GameClient.OnNotify 注册。
     # 漏配这一条不会报错,只会少生成一个常量、订阅代码编不过(TravelToZone 就踩过)。
     "GuildServiceNotifyGuildChanged"       = "NotifyGuildChanged"
+    # 帮会二期 B5 经济:捐献 / 升级 / 商店(设计 docs/design/guild-phase2/05-economy.md §5.33)。
+    # 注意 53 / 76 / 120 是从 FriendService 易主来的旧号(B5a),客户端必须随本批重生 MessageIds.cs。
+    "GuildServiceGetGuildDonateOptions"    = "GetGuildDonateOptions"
+    "GuildServiceDonateToGuild"            = "DonateToGuild"
+    "GuildServiceUpgradeGuild"             = "UpgradeGuild"
+    "GuildServiceGetGuildShop"             = "GetGuildShop"
+    "GuildServiceBuyGuildShopGoods"        = "BuyGuildShopGoods"
 
     # 聚宝斋(proto/trade/jubaozhai.proto, service ClientPlayerJubaozhai)。
     # 内部 TradeAdmin(SeedListing)刻意不列:gate 不转发,客户端也不应持有其消息号。

@@ -26,78 +26,85 @@ namespace Friendpb {
           string.Concat(
             "Chlwcm90by9mcmllbmQvZnJpZW5kLnByb3RvEghmcmllbmRwYhobcHJvdG8v",
             "ZGIvcHJvdG9fb3B0aW9uLnByb3RvGh1wcm90by9jb21tb24vYmFzZS9lbXB0",
-            "eS5wcm90bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnByb3RvImQKC0ZyaWVu",
-            "ZEVudHJ5EhgKEGZyaWVuZF9wbGF5ZXJfaWQYASABKAQSEAoIc2luY2VfbXMY",
-            "AiABKAMSFgoObGFzdF9hY3RpdmVfbXMYAyABKAMSEQoJaXNfb25saW5lGAQg",
-            "ASgIIoUBCg1GcmllbmRSZXF1ZXN0EhYKDmZyb21fcGxheWVyX2lkGAEgASgE",
-            "EhQKDHRvX3BsYXllcl9pZBgCIAEoBBIXCg9yZXF1ZXN0X3RpbWVfbXMYAyAB",
-            "KAMSLQoGc3RhdHVzGAQgASgOMh0uZnJpZW5kcGIuRnJpZW5kUmVxdWVzdFN0",
-            "YXR1cyI9ChBBZGRGcmllbmRSZXF1ZXN0EhgKEHRhcmdldF9wbGF5ZXJfaWQY",
-            "AiABKARKBAgBEAJSCXBsYXllcl9pZCI7ChFBZGRGcmllbmRSZXNwb25zZRIm",
-            "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiPgoTQWNj",
-            "ZXB0RnJpZW5kUmVxdWVzdBIWCg5mcm9tX3BsYXllcl9pZBgCIAEoBEoECAEQ",
-            "AlIJcGxheWVyX2lkIj4KFEFjY2VwdEZyaWVuZFJlc3BvbnNlEiYKDWVycm9y",
-            "X21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZSI+ChNSZWplY3RGcmll",
-            "bmRSZXF1ZXN0EhYKDmZyb21fcGxheWVyX2lkGAIgASgESgQIARACUglwbGF5",
-            "ZXJfaWQiPgoUUmVqZWN0RnJpZW5kUmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
-            "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlIkAKE1JlbW92ZUZyaWVuZFJlcXVl",
-            "c3QSGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoBEoECAEQAlIJcGxheWVyX2lk",
-            "Ij4KFFJlbW92ZUZyaWVuZFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
-            "KAsyDy5UaXBJbmZvTWVzc2FnZSInChRHZXRGcmllbmRMaXN0UmVxdWVzdEoE",
-            "CAEQAlIJcGxheWVyX2lkImcKFUdldEZyaWVuZExpc3RSZXNwb25zZRImCg1l",
-            "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJgoHZnJpZW5k",
-            "cxgCIAMoCzIVLmZyaWVuZHBiLkZyaWVuZEVudHJ5IiwKGUdldFBlbmRpbmdS",
-            "ZXF1ZXN0c1JlcXVlc3RKBAgBEAJSCXBsYXllcl9pZCJvChpHZXRQZW5kaW5n",
-            "UmVxdWVzdHNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-            "SW5mb01lc3NhZ2USKQoIcmVxdWVzdHMYAiADKAsyFy5mcmllbmRwYi5Gcmll",
-            "bmRSZXF1ZXN0IigKDEJsb2NrUmVxdWVzdBIYChB0YXJnZXRfcGxheWVyX2lk",
-            "GAEgASgEIjcKDUJsb2NrUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
-            "CzIPLlRpcEluZm9NZXNzYWdlIioKDlVuYmxvY2tSZXF1ZXN0EhgKEHRhcmdl",
-            "dF9wbGF5ZXJfaWQYASABKAQiOQoPVW5ibG9ja1Jlc3BvbnNlEiYKDWVycm9y",
-            "X21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZSITChFMaXN0QmxvY2tz",
-            "UmVxdWVzdCI5CgpCbG9ja0VudHJ5EhkKEWJsb2NrZWRfcGxheWVyX2lkGAEg",
-            "ASgEEhAKCHNpbmNlX21zGAIgASgDImIKEkxpc3RCbG9ja3NSZXNwb25zZRIm",
-            "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJAoGYmxv",
-            "Y2tzGAIgAygLMhQuZnJpZW5kcGIuQmxvY2tFbnRyeSJEChdSZWNvbW1lbmRG",
-            "cmllbmRzUmVxdWVzdBINCgVsaW1pdBgBIAEoDRIaChJleGNsdWRlX3BsYXll",
-            "cl9pZHMYAiADKAQicAoOUmVjb21tZW5kRW50cnkSGwoTY2FuZGlkYXRlX3Bs",
-            "YXllcl9pZBgBIAEoBBIWCg5tdXR1YWxfZnJpZW5kcxgCIAEoDRIRCglpc19v",
-            "bmxpbmUYAyABKAgSFgoObGFzdF9hY3RpdmVfbXMYBCABKAMicAoYUmVjb21t",
-            "ZW5kRnJpZW5kc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
-            "aXBJbmZvTWVzc2FnZRIsCgpjYW5kaWRhdGVzGAIgAygLMhguZnJpZW5kcGIu",
-            "UmVjb21tZW5kRW50cnkiYgoORnJpZW5kRXZlbnRTMkMSKwoGcmVhc29uGAEg",
-            "ASgOMhsuZnJpZW5kcGIuRnJpZW5kRXZlbnRSZWFzb24SFAoMYnlfcGxheWVy",
-            "X2lkGAIgASgEEg0KBXRzX21zGAMgASgDKocBChNGcmllbmRSZXF1ZXN0U3Rh",
-            "dHVzEhoKFkZSSUVORF9SRVFVRVNUX1VOS05PV04QABIaChZGUklFTkRfUkVR",
-            "VUVTVF9QRU5ESU5HEAESGwoXRlJJRU5EX1JFUVVFU1RfQUNDRVBURUQQAhIb",
-            "ChdGUklFTkRfUkVRVUVTVF9SRUpFQ1RFRBADKowBChFGcmllbmRFdmVudFJl",
-            "YXNvbhIjCh9GUklFTkRfRVZFTlRfUkVBU09OX1VOU1BFQ0lGSUVEEAASKAok",
-            "RlJJRU5EX0VWRU5UX1JFQVNPTl9SRVFVRVNUX1JFQ0VJVkVEEAESKAokRlJJ",
-            "RU5EX0VWRU5UX1JFQVNPTl9SRVFVRVNUX0FDQ0VQVEVEEAIy1gYKEkNsaWVu",
-            "dFBsYXllckZyaWVuZBJECglBZGRGcmllbmQSGi5mcmllbmRwYi5BZGRGcmll",
-            "bmRSZXF1ZXN0GhsuZnJpZW5kcGIuQWRkRnJpZW5kUmVzcG9uc2USTQoMQWNj",
-            "ZXB0RnJpZW5kEh0uZnJpZW5kcGIuQWNjZXB0RnJpZW5kUmVxdWVzdBoeLmZy",
-            "aWVuZHBiLkFjY2VwdEZyaWVuZFJlc3BvbnNlEk0KDFJlamVjdEZyaWVuZBId",
-            "LmZyaWVuZHBiLlJlamVjdEZyaWVuZFJlcXVlc3QaHi5mcmllbmRwYi5SZWpl",
-            "Y3RGcmllbmRSZXNwb25zZRJNCgxSZW1vdmVGcmllbmQSHS5mcmllbmRwYi5S",
-            "ZW1vdmVGcmllbmRSZXF1ZXN0Gh4uZnJpZW5kcGIuUmVtb3ZlRnJpZW5kUmVz",
-            "cG9uc2USUAoNR2V0RnJpZW5kTGlzdBIeLmZyaWVuZHBiLkdldEZyaWVuZExp",
-            "c3RSZXF1ZXN0Gh8uZnJpZW5kcGIuR2V0RnJpZW5kTGlzdFJlc3BvbnNlEl8K",
-            "EkdldFBlbmRpbmdSZXF1ZXN0cxIjLmZyaWVuZHBiLkdldFBlbmRpbmdSZXF1",
-            "ZXN0c1JlcXVlc3QaJC5mcmllbmRwYi5HZXRQZW5kaW5nUmVxdWVzdHNSZXNw",
-            "b25zZRI4CgVCbG9jaxIWLmZyaWVuZHBiLkJsb2NrUmVxdWVzdBoXLmZyaWVu",
-            "ZHBiLkJsb2NrUmVzcG9uc2USPgoHVW5ibG9jaxIYLmZyaWVuZHBiLlVuYmxv",
-            "Y2tSZXF1ZXN0GhkuZnJpZW5kcGIuVW5ibG9ja1Jlc3BvbnNlEkcKCkxpc3RC",
-            "bG9ja3MSGy5mcmllbmRwYi5MaXN0QmxvY2tzUmVxdWVzdBocLmZyaWVuZHBi",
-            "Lkxpc3RCbG9ja3NSZXNwb25zZRJZChBSZWNvbW1lbmRGcmllbmRzEiEuZnJp",
-            "ZW5kcGIuUmVjb21tZW5kRnJpZW5kc1JlcXVlc3QaIi5mcmllbmRwYi5SZWNv",
-            "bW1lbmRGcmllbmRzUmVzcG9uc2USNQoRTm90aWZ5RnJpZW5kRXZlbnQSGC5m",
-            "cmllbmRwYi5GcmllbmRFdmVudFMyQxoGLkVtcHR5GgWIqMMBAUIVWhNmcmll",
-            "bmQvcHJvdG8vZnJpZW5kYgZwcm90bzM="));
+            "eS5wcm90bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnByb3RvIssBCgtGcmll",
+            "bmRFbnRyeRIYChBmcmllbmRfcGxheWVyX2lkGAEgASgEEhAKCHNpbmNlX21z",
+            "GAIgASgDEhYKDmxhc3RfYWN0aXZlX21zGAMgASgDEhEKCWlzX29ubGluZRgE",
+            "IAEoCBIMCgRuYW1lGAUgASgJEg0KBWxldmVsGAYgASgNEhAKCGNsYXNzX2lk",
+            "GAcgASgNEg4KBmdlbmRlchgIIAEoDRIVCg1hcHBlYXJhbmNlX2lkGAkgASgJ",
+            "Eg8KB3pvbmVfaWQYCiABKA0ihQEKDUZyaWVuZFJlcXVlc3QSFgoOZnJvbV9w",
+            "bGF5ZXJfaWQYASABKAQSFAoMdG9fcGxheWVyX2lkGAIgASgEEhcKD3JlcXVl",
+            "c3RfdGltZV9tcxgDIAEoAxItCgZzdGF0dXMYBCABKA4yHS5mcmllbmRwYi5G",
+            "cmllbmRSZXF1ZXN0U3RhdHVzIj0KEEFkZEZyaWVuZFJlcXVlc3QSGAoQdGFy",
+            "Z2V0X3BsYXllcl9pZBgCIAEoBEoECAEQAlIJcGxheWVyX2lkIjsKEUFkZEZy",
+            "aWVuZFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+            "TWVzc2FnZSI+ChNBY2NlcHRGcmllbmRSZXF1ZXN0EhYKDmZyb21fcGxheWVy",
+            "X2lkGAIgASgESgQIARACUglwbGF5ZXJfaWQiPgoUQWNjZXB0RnJpZW5kUmVz",
+            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+            "Ij4KE1JlamVjdEZyaWVuZFJlcXVlc3QSFgoOZnJvbV9wbGF5ZXJfaWQYAiAB",
+            "KARKBAgBEAJSCXBsYXllcl9pZCI+ChRSZWplY3RGcmllbmRSZXNwb25zZRIm",
+            "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiQAoTUmVt",
+            "b3ZlRnJpZW5kUmVxdWVzdBIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgESgQI",
+            "ARACUglwbGF5ZXJfaWQiPgoUUmVtb3ZlRnJpZW5kUmVzcG9uc2USJgoNZXJy",
+            "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlIicKFEdldEZyaWVu",
+            "ZExpc3RSZXF1ZXN0SgQIARACUglwbGF5ZXJfaWQiZwoVR2V0RnJpZW5kTGlz",
+            "dFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVz",
+            "c2FnZRImCgdmcmllbmRzGAIgAygLMhUuZnJpZW5kcGIuRnJpZW5kRW50cnki",
+            "LAoZR2V0UGVuZGluZ1JlcXVlc3RzUmVxdWVzdEoECAEQAlIJcGxheWVyX2lk",
+            "Im8KGkdldFBlbmRpbmdSZXF1ZXN0c1Jlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
+            "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIpCghyZXF1ZXN0cxgCIAMoCzIX",
+            "LmZyaWVuZHBiLkZyaWVuZFJlcXVlc3QiKAoMQmxvY2tSZXF1ZXN0EhgKEHRh",
+            "cmdldF9wbGF5ZXJfaWQYASABKAQiNwoNQmxvY2tSZXNwb25zZRImCg1lcnJv",
+            "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiKgoOVW5ibG9ja1Jl",
+            "cXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoBCI5Cg9VbmJsb2NrUmVz",
+            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+            "IhMKEUxpc3RCbG9ja3NSZXF1ZXN0IjkKCkJsb2NrRW50cnkSGQoRYmxvY2tl",
+            "ZF9wbGF5ZXJfaWQYASABKAQSEAoIc2luY2VfbXMYAiABKAMiYgoSTGlzdEJs",
+            "b2Nrc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+            "TWVzc2FnZRIkCgZibG9ja3MYAiADKAsyFC5mcmllbmRwYi5CbG9ja0VudHJ5",
+            "IngKF1JlY29tbWVuZEZyaWVuZHNSZXF1ZXN0Eg0KBWxpbWl0GAEgASgNEhoK",
+            "EmV4Y2x1ZGVfcGxheWVyX2lkcxgCIAMoBBITCgtvbmxpbmVfb25seRgDIAEo",
+            "CBIOCgZjdXJzb3IYBCABKAkSDQoFcXVlcnkYBSABKAki1wEKDlJlY29tbWVu",
+            "ZEVudHJ5EhsKE2NhbmRpZGF0ZV9wbGF5ZXJfaWQYASABKAQSFgoObXV0dWFs",
+            "X2ZyaWVuZHMYAiABKA0SEQoJaXNfb25saW5lGAMgASgIEhYKDmxhc3RfYWN0",
+            "aXZlX21zGAQgASgDEgwKBG5hbWUYBSABKAkSDQoFbGV2ZWwYBiABKA0SEAoI",
+            "Y2xhc3NfaWQYByABKA0SDgoGZ2VuZGVyGAggASgNEhUKDWFwcGVhcmFuY2Vf",
+            "aWQYCSABKAkSDwoHem9uZV9pZBgKIAEoDSKfAQoYUmVjb21tZW5kRnJpZW5k",
+            "c1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVz",
+            "c2FnZRIsCgpjYW5kaWRhdGVzGAIgAygLMhguZnJpZW5kcGIuUmVjb21tZW5k",
+            "RW50cnkSEwoLbmV4dF9jdXJzb3IYAyABKAkSGAoQb25saW5lX2RpcmVjdG9y",
+            "eRgEIAEoCCJiCg5GcmllbmRFdmVudFMyQxIrCgZyZWFzb24YASABKA4yGy5m",
+            "cmllbmRwYi5GcmllbmRFdmVudFJlYXNvbhIUCgxieV9wbGF5ZXJfaWQYAiAB",
+            "KAQSDQoFdHNfbXMYAyABKAMqhwEKE0ZyaWVuZFJlcXVlc3RTdGF0dXMSGgoW",
+            "RlJJRU5EX1JFUVVFU1RfVU5LTk9XThAAEhoKFkZSSUVORF9SRVFVRVNUX1BF",
+            "TkRJTkcQARIbChdGUklFTkRfUkVRVUVTVF9BQ0NFUFRFRBACEhsKF0ZSSUVO",
+            "RF9SRVFVRVNUX1JFSkVDVEVEEAMqjAEKEUZyaWVuZEV2ZW50UmVhc29uEiMK",
+            "H0ZSSUVORF9FVkVOVF9SRUFTT05fVU5TUEVDSUZJRUQQABIoCiRGUklFTkRf",
+            "RVZFTlRfUkVBU09OX1JFUVVFU1RfUkVDRUlWRUQQARIoCiRGUklFTkRfRVZF",
+            "TlRfUkVBU09OX1JFUVVFU1RfQUNDRVBURUQQAjLWBgoSQ2xpZW50UGxheWVy",
+            "RnJpZW5kEkQKCUFkZEZyaWVuZBIaLmZyaWVuZHBiLkFkZEZyaWVuZFJlcXVl",
+            "c3QaGy5mcmllbmRwYi5BZGRGcmllbmRSZXNwb25zZRJNCgxBY2NlcHRGcmll",
+            "bmQSHS5mcmllbmRwYi5BY2NlcHRGcmllbmRSZXF1ZXN0Gh4uZnJpZW5kcGIu",
+            "QWNjZXB0RnJpZW5kUmVzcG9uc2USTQoMUmVqZWN0RnJpZW5kEh0uZnJpZW5k",
+            "cGIuUmVqZWN0RnJpZW5kUmVxdWVzdBoeLmZyaWVuZHBiLlJlamVjdEZyaWVu",
+            "ZFJlc3BvbnNlEk0KDFJlbW92ZUZyaWVuZBIdLmZyaWVuZHBiLlJlbW92ZUZy",
+            "aWVuZFJlcXVlc3QaHi5mcmllbmRwYi5SZW1vdmVGcmllbmRSZXNwb25zZRJQ",
+            "Cg1HZXRGcmllbmRMaXN0Eh4uZnJpZW5kcGIuR2V0RnJpZW5kTGlzdFJlcXVl",
+            "c3QaHy5mcmllbmRwYi5HZXRGcmllbmRMaXN0UmVzcG9uc2USXwoSR2V0UGVu",
+            "ZGluZ1JlcXVlc3RzEiMuZnJpZW5kcGIuR2V0UGVuZGluZ1JlcXVlc3RzUmVx",
+            "dWVzdBokLmZyaWVuZHBiLkdldFBlbmRpbmdSZXF1ZXN0c1Jlc3BvbnNlEjgK",
+            "BUJsb2NrEhYuZnJpZW5kcGIuQmxvY2tSZXF1ZXN0GhcuZnJpZW5kcGIuQmxv",
+            "Y2tSZXNwb25zZRI+CgdVbmJsb2NrEhguZnJpZW5kcGIuVW5ibG9ja1JlcXVl",
+            "c3QaGS5mcmllbmRwYi5VbmJsb2NrUmVzcG9uc2USRwoKTGlzdEJsb2NrcxIb",
+            "LmZyaWVuZHBiLkxpc3RCbG9ja3NSZXF1ZXN0GhwuZnJpZW5kcGIuTGlzdEJs",
+            "b2Nrc1Jlc3BvbnNlElkKEFJlY29tbWVuZEZyaWVuZHMSIS5mcmllbmRwYi5S",
+            "ZWNvbW1lbmRGcmllbmRzUmVxdWVzdBoiLmZyaWVuZHBiLlJlY29tbWVuZEZy",
+            "aWVuZHNSZXNwb25zZRI1ChFOb3RpZnlGcmllbmRFdmVudBIYLmZyaWVuZHBi",
+            "LkZyaWVuZEV2ZW50UzJDGgYuRW1wdHkaBYiowwEBQhVaE2ZyaWVuZC9wcm90",
+            "by9mcmllbmRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Friendpb.FriendRequestStatus), typeof(global::Friendpb.FriendEventReason), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendEntry), global::Friendpb.FriendEntry.Parser, new[]{ "FriendPlayerId", "SinceMs", "LastActiveMs", "IsOnline" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendEntry), global::Friendpb.FriendEntry.Parser, new[]{ "FriendPlayerId", "SinceMs", "LastActiveMs", "IsOnline", "Name", "Level", "ClassId", "Gender", "AppearanceId", "ZoneId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendRequest), global::Friendpb.FriendRequest.Parser, new[]{ "FromPlayerId", "ToPlayerId", "RequestTimeMs", "Status" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AddFriendRequest), global::Friendpb.AddFriendRequest.Parser, new[]{ "TargetPlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AddFriendResponse), global::Friendpb.AddFriendResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
@@ -118,9 +125,9 @@ namespace Friendpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.ListBlocksRequest), global::Friendpb.ListBlocksRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.BlockEntry), global::Friendpb.BlockEntry.Parser, new[]{ "BlockedPlayerId", "SinceMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.ListBlocksResponse), global::Friendpb.ListBlocksResponse.Parser, new[]{ "ErrorMessage", "Blocks" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendFriendsRequest), global::Friendpb.RecommendFriendsRequest.Parser, new[]{ "Limit", "ExcludePlayerIds" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendEntry), global::Friendpb.RecommendEntry.Parser, new[]{ "CandidatePlayerId", "MutualFriends", "IsOnline", "LastActiveMs" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendFriendsResponse), global::Friendpb.RecommendFriendsResponse.Parser, new[]{ "ErrorMessage", "Candidates" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendFriendsRequest), global::Friendpb.RecommendFriendsRequest.Parser, new[]{ "Limit", "ExcludePlayerIds", "OnlineOnly", "Cursor", "Query" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendEntry), global::Friendpb.RecommendEntry.Parser, new[]{ "CandidatePlayerId", "MutualFriends", "IsOnline", "LastActiveMs", "Name", "Level", "ClassId", "Gender", "AppearanceId", "ZoneId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RecommendFriendsResponse), global::Friendpb.RecommendFriendsResponse.Parser, new[]{ "ErrorMessage", "Candidates", "NextCursor", "OnlineDirectory" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendEventS2C), global::Friendpb.FriendEventS2C.Parser, new[]{ "Reason", "ByPlayerId", "TsMs" }, null, null, null, null)
           }));
     }
@@ -153,8 +160,7 @@ namespace Friendpb {
   /// <summary>
   /// FriendEntry / FriendRequest / FriendRequestStatus 的字段号一律不动:它们是
   /// 列表返回体,改号会让"客户端已适配"的部分白做。
-  /// 这里刻意不加 display_name(昵称):昵称的权威来源属帮会二期的玩家档案,
-  /// 那套落地后在这里 append 新字段即可,提前占号反而会占出一个永远填不满的字段。
+  /// 展示资料来自玩家档案缓存；缺失昵称经 data_service 批量回源。
   /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class FriendEntry : pb::IMessage<FriendEntry>
@@ -195,6 +201,12 @@ namespace Friendpb {
       sinceMs_ = other.sinceMs_;
       lastActiveMs_ = other.lastActiveMs_;
       isOnline_ = other.isOnline_;
+      name_ = other.name_;
+      level_ = other.level_;
+      classId_ = other.classId_;
+      gender_ = other.gender_;
+      appearanceId_ = other.appearanceId_;
+      zoneId_ = other.zoneId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -255,6 +267,78 @@ namespace Friendpb {
       }
     }
 
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 5;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "level" field.</summary>
+    public const int LevelFieldNumber = 6;
+    private uint level_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Level {
+      get { return level_; }
+      set {
+        level_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "class_id" field.</summary>
+    public const int ClassIdFieldNumber = 7;
+    private uint classId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint ClassId {
+      get { return classId_; }
+      set {
+        classId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gender" field.</summary>
+    public const int GenderFieldNumber = 8;
+    private uint gender_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Gender {
+      get { return gender_; }
+      set {
+        gender_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "appearance_id" field.</summary>
+    public const int AppearanceIdFieldNumber = 9;
+    private string appearanceId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string AppearanceId {
+      get { return appearanceId_; }
+      set {
+        appearanceId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "zone_id" field.</summary>
+    public const int ZoneIdFieldNumber = 10;
+    private uint zoneId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint ZoneId {
+      get { return zoneId_; }
+      set {
+        zoneId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -274,6 +358,12 @@ namespace Friendpb {
       if (SinceMs != other.SinceMs) return false;
       if (LastActiveMs != other.LastActiveMs) return false;
       if (IsOnline != other.IsOnline) return false;
+      if (Name != other.Name) return false;
+      if (Level != other.Level) return false;
+      if (ClassId != other.ClassId) return false;
+      if (Gender != other.Gender) return false;
+      if (AppearanceId != other.AppearanceId) return false;
+      if (ZoneId != other.ZoneId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -285,6 +375,12 @@ namespace Friendpb {
       if (SinceMs != 0L) hash ^= SinceMs.GetHashCode();
       if (LastActiveMs != 0L) hash ^= LastActiveMs.GetHashCode();
       if (IsOnline != false) hash ^= IsOnline.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
+      if (ClassId != 0) hash ^= ClassId.GetHashCode();
+      if (Gender != 0) hash ^= Gender.GetHashCode();
+      if (AppearanceId.Length != 0) hash ^= AppearanceId.GetHashCode();
+      if (ZoneId != 0) hash ^= ZoneId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -319,6 +415,30 @@ namespace Friendpb {
         output.WriteRawTag(32);
         output.WriteBool(IsOnline);
       }
+      if (Name.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Name);
+      }
+      if (Level != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(Level);
+      }
+      if (ClassId != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(ClassId);
+      }
+      if (Gender != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Gender);
+      }
+      if (AppearanceId.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(AppearanceId);
+      }
+      if (ZoneId != 0) {
+        output.WriteRawTag(80);
+        output.WriteUInt32(ZoneId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -345,6 +465,30 @@ namespace Friendpb {
         output.WriteRawTag(32);
         output.WriteBool(IsOnline);
       }
+      if (Name.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Name);
+      }
+      if (Level != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(Level);
+      }
+      if (ClassId != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(ClassId);
+      }
+      if (Gender != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Gender);
+      }
+      if (AppearanceId.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(AppearanceId);
+      }
+      if (ZoneId != 0) {
+        output.WriteRawTag(80);
+        output.WriteUInt32(ZoneId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -366,6 +510,24 @@ namespace Friendpb {
       }
       if (IsOnline != false) {
         size += 1 + 1;
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Level != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Level);
+      }
+      if (ClassId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClassId);
+      }
+      if (Gender != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gender);
+      }
+      if (AppearanceId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AppearanceId);
+      }
+      if (ZoneId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ZoneId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -390,6 +552,24 @@ namespace Friendpb {
       }
       if (other.IsOnline != false) {
         IsOnline = other.IsOnline;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.Level != 0) {
+        Level = other.Level;
+      }
+      if (other.ClassId != 0) {
+        ClassId = other.ClassId;
+      }
+      if (other.Gender != 0) {
+        Gender = other.Gender;
+      }
+      if (other.AppearanceId.Length != 0) {
+        AppearanceId = other.AppearanceId;
+      }
+      if (other.ZoneId != 0) {
+        ZoneId = other.ZoneId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -426,6 +606,30 @@ namespace Friendpb {
             IsOnline = input.ReadBool();
             break;
           }
+          case 42: {
+            Name = input.ReadString();
+            break;
+          }
+          case 48: {
+            Level = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            ClassId = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            Gender = input.ReadUInt32();
+            break;
+          }
+          case 74: {
+            AppearanceId = input.ReadString();
+            break;
+          }
+          case 80: {
+            ZoneId = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -459,6 +663,30 @@ namespace Friendpb {
           }
           case 32: {
             IsOnline = input.ReadBool();
+            break;
+          }
+          case 42: {
+            Name = input.ReadString();
+            break;
+          }
+          case 48: {
+            Level = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            ClassId = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            Gender = input.ReadUInt32();
+            break;
+          }
+          case 74: {
+            AppearanceId = input.ReadString();
+            break;
+          }
+          case 80: {
+            ZoneId = input.ReadUInt32();
             break;
           }
         }
@@ -4671,6 +4899,9 @@ namespace Friendpb {
     public RecommendFriendsRequest(RecommendFriendsRequest other) : this() {
       limit_ = other.limit_;
       excludePlayerIds_ = other.excludePlayerIds_.Clone();
+      onlineOnly_ = other.onlineOnly_;
+      cursor_ = other.cursor_;
+      query_ = other.query_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4703,6 +4934,51 @@ namespace Friendpb {
       get { return excludePlayerIds_; }
     }
 
+    /// <summary>Field number for the "online_only" field.</summary>
+    public const int OnlineOnlyFieldNumber = 3;
+    private bool onlineOnly_;
+    /// <summary>
+    /// 在线组队目录：直接读当前会话，不走好友关系/随机推荐；包含已是好友的玩家。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool OnlineOnly {
+      get { return onlineOnly_; }
+      set {
+        onlineOnly_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "cursor" field.</summary>
+    public const int CursorFieldNumber = 4;
+    private string cursor_ = "";
+    /// <summary>
+    /// 在线目录的不透明分页游标；首次/刷新/更换搜索词传空。列表不是跨页快照。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Cursor {
+      get { return cursor_; }
+      set {
+        cursor_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "query" field.</summary>
+    public const int QueryFieldNumber = 5;
+    private string query_ = "";
+    /// <summary>
+    /// 在线目录昵称或编号筛选，最多 64 个 Unicode 字符。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Query {
+      get { return query_; }
+      set {
+        query_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4720,6 +4996,9 @@ namespace Friendpb {
       }
       if (Limit != other.Limit) return false;
       if(!excludePlayerIds_.Equals(other.excludePlayerIds_)) return false;
+      if (OnlineOnly != other.OnlineOnly) return false;
+      if (Cursor != other.Cursor) return false;
+      if (Query != other.Query) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4729,6 +5008,9 @@ namespace Friendpb {
       int hash = 1;
       if (Limit != 0) hash ^= Limit.GetHashCode();
       hash ^= excludePlayerIds_.GetHashCode();
+      if (OnlineOnly != false) hash ^= OnlineOnly.GetHashCode();
+      if (Cursor.Length != 0) hash ^= Cursor.GetHashCode();
+      if (Query.Length != 0) hash ^= Query.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4752,6 +5034,18 @@ namespace Friendpb {
         output.WriteUInt32(Limit);
       }
       excludePlayerIds_.WriteTo(output, _repeated_excludePlayerIds_codec);
+      if (OnlineOnly != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(OnlineOnly);
+      }
+      if (Cursor.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Cursor);
+      }
+      if (Query.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Query);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4767,6 +5061,18 @@ namespace Friendpb {
         output.WriteUInt32(Limit);
       }
       excludePlayerIds_.WriteTo(ref output, _repeated_excludePlayerIds_codec);
+      if (OnlineOnly != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(OnlineOnly);
+      }
+      if (Cursor.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Cursor);
+      }
+      if (Query.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Query);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4781,6 +5087,15 @@ namespace Friendpb {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Limit);
       }
       size += excludePlayerIds_.CalculateSize(_repeated_excludePlayerIds_codec);
+      if (OnlineOnly != false) {
+        size += 1 + 1;
+      }
+      if (Cursor.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Cursor);
+      }
+      if (Query.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Query);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -4797,6 +5112,15 @@ namespace Friendpb {
         Limit = other.Limit;
       }
       excludePlayerIds_.Add(other.excludePlayerIds_);
+      if (other.OnlineOnly != false) {
+        OnlineOnly = other.OnlineOnly;
+      }
+      if (other.Cursor.Length != 0) {
+        Cursor = other.Cursor;
+      }
+      if (other.Query.Length != 0) {
+        Query = other.Query;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -4825,6 +5149,18 @@ namespace Friendpb {
             excludePlayerIds_.AddEntriesFrom(input, _repeated_excludePlayerIds_codec);
             break;
           }
+          case 24: {
+            OnlineOnly = input.ReadBool();
+            break;
+          }
+          case 34: {
+            Cursor = input.ReadString();
+            break;
+          }
+          case 42: {
+            Query = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -4851,6 +5187,18 @@ namespace Friendpb {
           case 18:
           case 16: {
             excludePlayerIds_.AddEntriesFrom(ref input, _repeated_excludePlayerIds_codec);
+            break;
+          }
+          case 24: {
+            OnlineOnly = input.ReadBool();
+            break;
+          }
+          case 34: {
+            Cursor = input.ReadString();
+            break;
+          }
+          case 42: {
+            Query = input.ReadString();
             break;
           }
         }
@@ -4899,6 +5247,12 @@ namespace Friendpb {
       mutualFriends_ = other.mutualFriends_;
       isOnline_ = other.isOnline_;
       lastActiveMs_ = other.lastActiveMs_;
+      name_ = other.name_;
+      level_ = other.level_;
+      classId_ = other.classId_;
+      gender_ = other.gender_;
+      appearanceId_ = other.appearanceId_;
+      zoneId_ = other.zoneId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4959,6 +5313,81 @@ namespace Friendpb {
       }
     }
 
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 5;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "level" field.</summary>
+    public const int LevelFieldNumber = 6;
+    private uint level_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Level {
+      get { return level_; }
+      set {
+        level_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "class_id" field.</summary>
+    public const int ClassIdFieldNumber = 7;
+    private uint classId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint ClassId {
+      get { return classId_; }
+      set {
+        classId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gender" field.</summary>
+    public const int GenderFieldNumber = 8;
+    private uint gender_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Gender {
+      get { return gender_; }
+      set {
+        gender_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "appearance_id" field.</summary>
+    public const int AppearanceIdFieldNumber = 9;
+    private string appearanceId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string AppearanceId {
+      get { return appearanceId_; }
+      set {
+        appearanceId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "zone_id" field.</summary>
+    public const int ZoneIdFieldNumber = 10;
+    private uint zoneId_;
+    /// <summary>
+    /// 在线目录仅返回与调用者相同 home zone 的玩家。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint ZoneId {
+      get { return zoneId_; }
+      set {
+        zoneId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4978,6 +5407,12 @@ namespace Friendpb {
       if (MutualFriends != other.MutualFriends) return false;
       if (IsOnline != other.IsOnline) return false;
       if (LastActiveMs != other.LastActiveMs) return false;
+      if (Name != other.Name) return false;
+      if (Level != other.Level) return false;
+      if (ClassId != other.ClassId) return false;
+      if (Gender != other.Gender) return false;
+      if (AppearanceId != other.AppearanceId) return false;
+      if (ZoneId != other.ZoneId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4989,6 +5424,12 @@ namespace Friendpb {
       if (MutualFriends != 0) hash ^= MutualFriends.GetHashCode();
       if (IsOnline != false) hash ^= IsOnline.GetHashCode();
       if (LastActiveMs != 0L) hash ^= LastActiveMs.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
+      if (ClassId != 0) hash ^= ClassId.GetHashCode();
+      if (Gender != 0) hash ^= Gender.GetHashCode();
+      if (AppearanceId.Length != 0) hash ^= AppearanceId.GetHashCode();
+      if (ZoneId != 0) hash ^= ZoneId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5023,6 +5464,30 @@ namespace Friendpb {
         output.WriteRawTag(32);
         output.WriteInt64(LastActiveMs);
       }
+      if (Name.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Name);
+      }
+      if (Level != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(Level);
+      }
+      if (ClassId != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(ClassId);
+      }
+      if (Gender != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Gender);
+      }
+      if (AppearanceId.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(AppearanceId);
+      }
+      if (ZoneId != 0) {
+        output.WriteRawTag(80);
+        output.WriteUInt32(ZoneId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5049,6 +5514,30 @@ namespace Friendpb {
         output.WriteRawTag(32);
         output.WriteInt64(LastActiveMs);
       }
+      if (Name.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Name);
+      }
+      if (Level != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(Level);
+      }
+      if (ClassId != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(ClassId);
+      }
+      if (Gender != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Gender);
+      }
+      if (AppearanceId.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(AppearanceId);
+      }
+      if (ZoneId != 0) {
+        output.WriteRawTag(80);
+        output.WriteUInt32(ZoneId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5070,6 +5559,24 @@ namespace Friendpb {
       }
       if (LastActiveMs != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(LastActiveMs);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Level != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Level);
+      }
+      if (ClassId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClassId);
+      }
+      if (Gender != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gender);
+      }
+      if (AppearanceId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AppearanceId);
+      }
+      if (ZoneId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ZoneId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5094,6 +5601,24 @@ namespace Friendpb {
       }
       if (other.LastActiveMs != 0L) {
         LastActiveMs = other.LastActiveMs;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.Level != 0) {
+        Level = other.Level;
+      }
+      if (other.ClassId != 0) {
+        ClassId = other.ClassId;
+      }
+      if (other.Gender != 0) {
+        Gender = other.Gender;
+      }
+      if (other.AppearanceId.Length != 0) {
+        AppearanceId = other.AppearanceId;
+      }
+      if (other.ZoneId != 0) {
+        ZoneId = other.ZoneId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5130,6 +5655,30 @@ namespace Friendpb {
             LastActiveMs = input.ReadInt64();
             break;
           }
+          case 42: {
+            Name = input.ReadString();
+            break;
+          }
+          case 48: {
+            Level = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            ClassId = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            Gender = input.ReadUInt32();
+            break;
+          }
+          case 74: {
+            AppearanceId = input.ReadString();
+            break;
+          }
+          case 80: {
+            ZoneId = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -5163,6 +5712,30 @@ namespace Friendpb {
           }
           case 32: {
             LastActiveMs = input.ReadInt64();
+            break;
+          }
+          case 42: {
+            Name = input.ReadString();
+            break;
+          }
+          case 48: {
+            Level = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            ClassId = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            Gender = input.ReadUInt32();
+            break;
+          }
+          case 74: {
+            AppearanceId = input.ReadString();
+            break;
+          }
+          case 80: {
+            ZoneId = input.ReadUInt32();
             break;
           }
         }
@@ -5209,6 +5782,8 @@ namespace Friendpb {
     public RecommendFriendsResponse(RecommendFriendsResponse other) : this() {
       errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
       candidates_ = other.candidates_.Clone();
+      nextCursor_ = other.nextCursor_;
+      onlineDirectory_ = other.onlineDirectory_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5241,6 +5816,36 @@ namespace Friendpb {
       get { return candidates_; }
     }
 
+    /// <summary>Field number for the "next_cursor" field.</summary>
+    public const int NextCursorFieldNumber = 3;
+    private string nextCursor_ = "";
+    /// <summary>
+    /// 非空表示还能继续，允许本页为空；空表示本次遍历结束。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string NextCursor {
+      get { return nextCursor_; }
+      set {
+        nextCursor_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "online_directory" field.</summary>
+    public const int OnlineDirectoryFieldNumber = 4;
+    private bool onlineDirectory_;
+    /// <summary>
+    /// 客户端必须见 true 才能当作在线目录，防止旧服静默忽略 online_only。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool OnlineDirectory {
+      get { return onlineDirectory_; }
+      set {
+        onlineDirectory_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -5258,6 +5863,8 @@ namespace Friendpb {
       }
       if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
       if(!candidates_.Equals(other.candidates_)) return false;
+      if (NextCursor != other.NextCursor) return false;
+      if (OnlineDirectory != other.OnlineDirectory) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5267,6 +5874,8 @@ namespace Friendpb {
       int hash = 1;
       if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
       hash ^= candidates_.GetHashCode();
+      if (NextCursor.Length != 0) hash ^= NextCursor.GetHashCode();
+      if (OnlineDirectory != false) hash ^= OnlineDirectory.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5290,6 +5899,14 @@ namespace Friendpb {
         output.WriteMessage(ErrorMessage);
       }
       candidates_.WriteTo(output, _repeated_candidates_codec);
+      if (NextCursor.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(NextCursor);
+      }
+      if (OnlineDirectory != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(OnlineDirectory);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5305,6 +5922,14 @@ namespace Friendpb {
         output.WriteMessage(ErrorMessage);
       }
       candidates_.WriteTo(ref output, _repeated_candidates_codec);
+      if (NextCursor.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(NextCursor);
+      }
+      if (OnlineDirectory != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(OnlineDirectory);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5319,6 +5944,12 @@ namespace Friendpb {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
       }
       size += candidates_.CalculateSize(_repeated_candidates_codec);
+      if (NextCursor.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(NextCursor);
+      }
+      if (OnlineDirectory != false) {
+        size += 1 + 1;
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -5338,6 +5969,12 @@ namespace Friendpb {
         ErrorMessage.MergeFrom(other.ErrorMessage);
       }
       candidates_.Add(other.candidates_);
+      if (other.NextCursor.Length != 0) {
+        NextCursor = other.NextCursor;
+      }
+      if (other.OnlineDirectory != false) {
+        OnlineDirectory = other.OnlineDirectory;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -5368,6 +6005,14 @@ namespace Friendpb {
             candidates_.AddEntriesFrom(input, _repeated_candidates_codec);
             break;
           }
+          case 26: {
+            NextCursor = input.ReadString();
+            break;
+          }
+          case 32: {
+            OnlineDirectory = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -5396,6 +6041,14 @@ namespace Friendpb {
           }
           case 18: {
             candidates_.AddEntriesFrom(ref input, _repeated_candidates_codec);
+            break;
+          }
+          case 26: {
+            NextCursor = input.ReadString();
+            break;
+          }
+          case 32: {
+            OnlineDirectory = input.ReadBool();
             break;
           }
         }

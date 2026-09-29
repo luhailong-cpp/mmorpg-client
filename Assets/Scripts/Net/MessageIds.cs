@@ -12,6 +12,7 @@ namespace MmorpgClient.Net
         public const uint ApplyJoinTeam          =  206; // ClientPlayerTeamApplyJoinTeam
         public const uint AutoAllocateAttributePoints =  173; // SceneAttributeClientPlayerAutoAllocateAttributePoints
         public const uint AutoAllocatePetPoints  =  188; // ScenePetClientPlayerAutoAllocatePetPoints
+        public const uint BuyGuildShopGoods      =  233; // GuildServiceBuyGuildShopGoods
         public const uint CancelGuildApplication =  219; // GuildServiceCancelGuildApplication
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
         public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
@@ -22,6 +23,7 @@ namespace MmorpgClient.Net
         public const uint DisbandGuild           =   38; // GuildServiceDisbandGuild
         public const uint DisbandTeam            =  209; // ClientPlayerTeamDisbandTeam
         public const uint Disconnect             =   58; // ClientPlayerLoginDisconnect
+        public const uint DonateToGuild          =   53; // GuildServiceDonateToGuild
         public const uint EnterGame              =   26; // ClientPlayerLoginEnterGame
         public const uint EnterScene             =   63; // SceneSceneClientPlayerEnterScene
         public const uint GetActivityList        =  190; // SceneActivityClientPlayerGetActivityList
@@ -29,8 +31,10 @@ namespace MmorpgClient.Net
         public const uint GetBag                 =  191; // SceneBagClientPlayerGetBag
         public const uint GetBattleState         =  140; // BattleClientPlayerGetBattleState
         public const uint GetGuild               =   60; // GuildServiceGetGuild
+        public const uint GetGuildDonateOptions  =  120; // GuildServiceGetGuildDonateOptions
         public const uint GetGuildRank           =   27; // GuildServiceGetGuildRank
         public const uint GetGuildRankByGuild    =   52; // GuildServiceGetGuildRankByGuild
+        public const uint GetGuildShop           =  228; // GuildServiceGetGuildShop
         public const uint GetMissionList         =  193; // SceneMissionClientPlayerGetMissionList
         public const uint GetMyTeam              =  207; // ClientPlayerTeamGetMyTeam
         public const uint GetPetList             =  181; // ScenePetClientPlayerGetPetList
@@ -115,6 +119,7 @@ namespace MmorpgClient.Net
         public const uint TransferGuildLeader    =  216; // GuildServiceTransferGuildLeader
         public const uint TransferLeader         =  212; // ClientPlayerTeamTransferLeader
         public const uint TravelToZone           =  226; // SceneSceneClientPlayerTravelToZone
+        public const uint UpgradeGuild           =   76; // GuildServiceUpgradeGuild
         public const uint WatchBattle            =  163; // MatchServiceWatchBattle
     }
 }
