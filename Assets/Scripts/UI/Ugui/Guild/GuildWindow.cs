@@ -26,12 +26,18 @@ namespace MmorpgClient.UI.Ugui.Guild
         public event Action<ulong, bool> ReviewRequested;
         public event Action ApplicationsRequested;
         public event Action LeaveRequested, DisbandRequested;
+        // 经济(B5):捐献页 / 商店页的读取与写操作,升级在总览。
+        public event Action DonationsRequested, ShopRequested;
+        public event Action<uint> DonateRequested, ShopBuyRequested;
+        /// <summary>参数是确认框打开时的帮会等级(即玩家确认的"升至 Lv.N+1" 的 N),作为 expected_level 发出。</summary>
+        public event Action<uint> UpgradeRequested;
         public bool IsVisible => _root.gameObject.activeSelf;
         public bool ModalVisible => _modal != null && _modal.gameObject.activeSelf;
         /// <summary>申请视图是否正在显示；GuildClient.DrainQueued 据此决定重拉列表还是只刷角标。</summary>
         public bool ShowingApplications => IsVisible && Page == GuildPage.Members && _showApplications;
         public GuildPage Page { get; private set; }
         public const int MembersPerPage = 5;
+        public const int GoodsPerPage = 6;
         private readonly RectTransform _root, _body, _frame, _rail;
         private readonly TMP_Text _status, _summary;
         private readonly CanvasGroup _frameInput;
@@ -48,6 +54,11 @@ namespace MmorpgClient.UI.Ugui.Guild
         private bool _showApplications;
         private int _applicationPage;
         private ulong _guildId;
+        // 商店页的分类(1 修行补给 / 2 帮会珍藏 / 3 节庆好礼)与翻页。换帮、换角都要复位。
+        private int _shopCategory = 1, _shopPage;
+        // 捐献页 / 商店页自动拉取的"已经拉过一次"标志:没有快照或快照过时时进页面只自动拉一次,
+        // 失败了由玩家点刷新,不在每帧 Render 里反复重发。隔离期间清零,重连后允许再拉一次。
+        private bool _autoDonations, _autoShop;
 
         public GuildWindow(UnityEngine.Transform parent)
         {
@@ -81,15 +92,27 @@ namespace MmorpgClient.UI.Ugui.Guild
             _rail = QdaoUguiFactory.CreateRect("GuildIdentity", _frame, 100, 214, 394, 610);
             _body = QdaoUguiFactory.CreateRect("GuildContent", _frame, 556, 214, 1508, 610);
             _status = Text(_frame, "", 104, 851, 1660, 51, 26, Muted, true);
-            _refresh = NamedButton(_frame, "RefreshGuild", "刷新", 1850, 844, 210, 64,
-                () => { if (!Busy) { if (Page == GuildPage.Ranking) RankRequested?.Invoke(_client?.Rank?.Page ?? 1); else RefreshRequested?.Invoke(); } },
-                true, fontSize: 28);
+            _refresh = NamedButton(_frame, "RefreshGuild", "刷新", 1850, 844, 210, 64, RefreshCurrentPage, true, fontSize: 28);
         }
         private bool Busy => _client == null || _client.Busy || _client.RequiresReconnect;
+        /// <summary>右下角"刷新"只刷当前页的数据源;未入帮时捐献 / 商店页显示的是总览,刷的也是帮会快照。</summary>
+        private void RefreshCurrentPage()
+        {
+            if (Busy) return;
+            bool inGuild = _client?.Info != null;
+            if (Page == GuildPage.Ranking) RankRequested?.Invoke(_client?.Rank?.Page ?? 1);
+            else if (Page == GuildPage.Donate && inGuild) DonationsRequested?.Invoke();
+            else if (Page == GuildPage.Shop && inGuild) ShopRequested?.Invoke();
+            else RefreshRequested?.Invoke();
+        }
         public void SetClient(GuildClient client)
         {
             ulong guildId = client?.Info?.GuildId ?? 0;
-            if (_guildId != guildId) { CloseModal(); _memberPage = 0; _showApplications = false; _applicationPage = 0; }
+            if (_guildId != guildId)
+            {
+                CloseModal(); _memberPage = 0; _showApplications = false; _applicationPage = 0;
+                _shopCategory = 1; _shopPage = 0; _autoDonations = _autoShop = false;
+            }
             _guildId = guildId; _client = client;
             if (IsVisible) Render();
         }
@@ -97,7 +120,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         {
             bool opening = !IsVisible;
             if (opening) _returnFocus = EventSystem.current?.currentSelectedGameObject;
-            CloseModal(); Page = page; _root.gameObject.SetActive(true); Render();
+            CloseModal(); Page = page; _autoDonations = _autoShop = false; _root.gameObject.SetActive(true); Render();
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(_tabs[(int)Page].gameObject);
             if (page == GuildPage.Ranking && _client?.Rank == null && !Busy) RankRequested?.Invoke(1);
         }
@@ -115,6 +138,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             Hide(); _client = null; _guildId = 0;
             Page = GuildPage.Overview; _memberPage = 0; _onlineOnly = false; _memberSearch = "";
             _showApplications = false; _applicationPage = 0;
+            _shopCategory = 1; _shopPage = 0; _autoDonations = _autoShop = false;
             Clear(_body); Clear(_rail);
         }
         private void Render()
@@ -139,16 +163,48 @@ namespace MmorpgClient.UI.Ugui.Guild
                 case GuildPage.Overview: RenderOverview(); break;
                 case GuildPage.Members: RenderMembers(); break;
                 case GuildPage.Ranking: RenderRanking(); break;
-                case GuildPage.Donate: RenderUnavailable("帮会捐献", "聚沙成塔，同心兴帮。", new[] { "银两捐献", "灵石捐献", "建设物资" },
-                    new[] { "帮会开放捐献后，可在此共建家园。", "捐献规则将由帮会公布。", "所需物资与贡献以开放后的规则为准。" }); break;
+                case GuildPage.Donate: RenderDonate(); break;
                 case GuildPage.Activities: RenderUnavailable("帮会活动", "灯下团圆，山海同行。", new[] { "元宵灯会", "中秋团圆", "同道历练" },
                     new[] { "花灯待点亮，与同道共赏佳节。", "月圆时相聚，共赴团圆之约。", "集结帮会成员，一起踏上旅程。" }); break;
-                case GuildPage.Shop: RenderUnavailable("帮会商店", "汇聚同道之力，换取修行所需。", new[] { "修行补给", "帮会珍藏", "节庆好礼" },
-                    new[] { "兑换品类、价格和库存将在开放后显示。", "帮会等级条件将在开放后显示。", "节庆限定兑换将在活动期间开放。" }); break;
+                case GuildPage.Shop: RenderShop(); break;
             }
             if (!string.IsNullOrEmpty(focusName) && EventSystem.current != null)
                 foreach (var control in _frame.GetComponentsInChildren<Selectable>())
                     if (control.name == focusName && control.IsInteractable()) { EventSystem.current.SetSelectedGameObject(control.gameObject); break; }
+            // 必须是最后一行:事件会同步走到 Request → Changed → SetClient → Render,
+            // 嵌套的那次重建要发生在本次构建(含焦点恢复)全部完成之后。
+            MaybeAutoRequest();
+        }
+        /// <summary>
+        /// 进捐献页 / 商店页时,没有快照或快照已过时(帮会等级 / 本人帮贡变了、过了日 / 周切点,
+        /// 见 GuildClient.DonationsNeedReload)就自动拉一次;每次进入最多一次(见 _autoDonations 注释)。
+        /// 推送已排队重拉本页时让给 DrainQueued:它排在帮会快照之后,自己再拉一次会把"已入账 / 已发放"文案盖掉。
+        /// </summary>
+        private void MaybeAutoRequest()
+        {
+            if (_client == null || _client.RequiresReconnect) { _autoDonations = _autoShop = false; return; }
+            ulong now = (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            bool donationsDue = _client.DonationsNeedReload(now), shopDue = _client.ShopNeedsReload(now);
+            // 拿到新鲜快照才复位:它日后再过时,停在本页也能再自动拉一次 —— 升级、帮贡变化伴随回包 / 推送,
+            // 经 Changed → Render 走到这里;跨日 / 周切点没有任何事件,由 GuildUiRoot 每帧调的 Tick 走到这里。
+            // 仍过时就不复位 —— 拉取失败、或本地时钟比服务端快时拉回来的照样"过时",复位会让每次 Render / Tick 都重发。
+            if (!donationsDue) _autoDonations = false;
+            if (!shopDue) _autoShop = false;
+            if (!IsVisible || _client.Busy || _client.Info == null) return;
+            if (Page == GuildPage.Donate && donationsDue && !_autoDonations && !_client.DonationsQueued)
+            { _autoDonations = true; DonationsRequested?.Invoke(); }
+            else if (Page == GuildPage.Shop && shopDue && !_autoShop && !_client.ShopQueued)
+            { _autoShop = true; ShopRequested?.Invoke(); }
+        }
+        /// <summary>
+        /// 由 GuildUiRoot 每帧调用(排在 DrainQueued 之后)。停在捐献 / 商店页跨过 05:00 或周切点时,
+        /// 服务端不推送、也没有回包,Render 不会发生,"今日 2/2" 与置灰的按钮会一直挂着;这里补判一次快照是否过时。
+        /// 只做两次时间比较、不重建界面;不连发的约束(一份过时的快照最多自动拉一次)仍由 _autoDonations / _autoShop 保证。
+        /// </summary>
+        public void Tick()
+        {
+            if (!IsVisible || Busy || (Page != GuildPage.Donate && Page != GuildPage.Shop)) return;
+            MaybeAutoRequest();
         }
         private void RenderIdentity()
         {
@@ -205,18 +261,25 @@ namespace MmorpgClient.UI.Ugui.Guild
             Heading(_body, "同道相聚", 0, 0, 950, 64, 43);
             Text(_body, "一同修行，一同守护这方灯火。", 0, 68, 1440, 46, 27, Muted);
             int online = 0;
-            ulong contribution = 0;
+            ulong total = 0, balance = 0;
             foreach (var member in info.Members)
             {
                 if (member.Online) online++;
-                if (member.PlayerId == _client.PlayerId) contribution = member.ContributionTotal;
+                if (member.PlayerId == _client.PlayerId) { total = member.ContributionTotal; balance = member.ContributionBalance; }
             }
+            // 四列:可用帮贡(能花的)与累计帮贡(只增,排名用)放在同一格,顺序与标签一致。
             OverviewMetric("GuildMemberCount", "帮会成员", info.Members.Count + " / " + info.MaxMembers, 0);
-            OverviewMetric("GuildOnlineCount", "当前在线", online + " 位", 512);
-            OverviewMetric("GuildMyContribution", "我的贡献", contribution.ToString(), 1024);
+            OverviewMetric("GuildOnlineCount", "当前在线", online + " 位", 377);
+            OverviewMetric("GuildFunds", "帮会资金", GuildClient.FormatAmount(info.Funds), 754);
+            OverviewMetric("GuildMyContribution", "可用 / 累计帮贡",
+                GuildClient.FormatAmount(balance) + " / " + GuildClient.FormatAmount(total), 1131, 34);
             Line(_body, "MetricsRule", 0, 238, 1508);
             GuildIcon(_body, "notice", 0, 259, 47);
-            Heading(_body, "帮会公告", 66, 250, 620, 63, 36);
+            Heading(_body, "帮会公告", 66, 250, 590, 63, 36);
+            // 资金够不够交给服务端判(见 GuildClient.CanUpgrade),这里只按职位与是否满级收起按钮;右端 938,不压"查看全文"。
+            if (_client.IsOfficerOrLeader)
+                NamedButton(_body, "UpgradeGuild", info.UpgradeCostFunds == 0 ? "已满级" : "升级帮会", 680, 250, 258, 64,
+                    ShowUpgrade, enabled: _client.CanUpgrade && !Busy, fontSize: 27);
             NamedButton(_body, "ReadGuildAnnouncement", "查看全文", 958, 250, 252, 64, ShowReadAnnouncement, fontSize: 27);
             if (_client.CanEditAnnouncement)
                 NamedButton(_body, "EditGuildAnnouncement", "编辑公告", 1230, 250, 278, 64, ShowAnnouncement, enabled: !Busy, fontSize: 27);
@@ -230,11 +293,13 @@ namespace MmorpgClient.UI.Ugui.Guild
             OverviewEntry("GuildOverviewActivities", "帮会活动", "round_badge_lotus", GuildPage.Activities, 912);
             OverviewEntry("GuildOverviewShop", "帮会商店", "round_badge_pagoda", GuildPage.Shop, 1216);
         }
-        private void OverviewMetric(string name, string label, string value, float x)
+        private void OverviewMetric(string name, string label, string value, float x, int valueFontSize = 43)
         {
             if (x > 0) Line(_body, name + "Divider", x - 24, 127, 1.5f, 95);
-            Text(_body, label, x, 118, 460, 46, 30, Muted);
-            var text = Text(_body, value, x, 164, 460, 64, 43);
+            Text(_body, label, x, 118, 350, 46, 30, Muted);
+            var text = Text(_body, value, x, 164, 350, 64, valueFontSize);
+            // 帮贡 / 资金涨到七八位数时一格放不下:只在超宽时往下缩,下限仍是 Text() 的 30 号。
+            text.enableAutoSizing = true; text.fontSizeMin = 30; text.fontSizeMax = valueFontSize;
             text.name = name;
         }
         private void OverviewEntry(string name, string label, string icon, GuildPage page, float x)
@@ -402,6 +467,193 @@ namespace MmorpgClient.UI.Ugui.Guild
             int page = (int)(rank?.Page ?? 1), pageSize = (int)Math.Max(1, rank?.PageSize ?? 5);
             int pages = Math.Max(1, (int)(((rank?.TotalCount ?? 0) + (uint)pageSize - 1) / (uint)pageSize));
             Pager(_body, "Ranking", page, pages, delta => RankRequested?.Invoke((uint)Math.Max(1, page + delta)), !Busy);
+        }
+        // ── 捐献(B5,服务端 05-economy.md §5.35.1)──────────────────────────
+        // 几何沿用"三面板":银两 / 灵石 / 建设物资。GuildUiArt.Text 把字号抬到至少 30,所以每个选项只排两行:
+        // 第一行 名称:花费 + 右侧今日次数,第二行 帮贡与资金;完整数字写在确认框里。
+        // 单行正文框高一律 ≥ 46:QdaoBody(Noto)30 号一行要 (74.24+18.432)×30/64 ≈ 43.4,框比它矮时
+        // CreateText 默认的 Ellipsis 在第一个字就判溢出,整行一个字都不出(同 TeamWindow.Label 的注释)。
+        private void RenderDonate()
+        {
+            var info = _client?.Info;
+            if (info == null) { RenderOverview(); return; }
+            Heading(_body, "帮会捐献", 12, 0, 1450, 64, 42);
+            Text(_body, "聚沙成塔，同心兴帮。每日 05:00 重置次数。", 12, 80, 1450, 58, 30, Muted);
+            var donations = _client.Donations;
+            string[] titles = { "银两捐献", "灵石捐献", "建设物资" };
+            string[] icons = { "furnace", "crest", "scroll" };
+            for (int i = 0; i < 3; i++)
+            {
+                float x = i * 512;
+                GuildField(_body, "GuildDonatePanel_" + i, x, 166, 484, 395);
+                GuildIcon(_body, icons[i], x + 24, 186, 72);
+                Heading(_body, titles[i], x + 110, 186, 350, 72, 34);
+                if (i == 2)
+                {
+                    // 道具捐献放 v1.1(契约 §0-1);按钮名沿用旧的 GuildUnavailable_Donate_2,离线截图与测试都认它。
+                    Text(_body, "物资捐献将在后续版本开放。", x + 34, 270, 416, 120, 28, Muted, true);
+                    NamedButton(_body, "GuildUnavailable_Donate_2", "暂未开放", x + 66, 484, 352, 64, null, enabled: false, fontSize: 28);
+                    continue;
+                }
+                if (donations != null) RenderDonateOptions(donations, (uint)i, x);
+            }
+            string footer;
+            // 隔离(请求超时,待重新登录)时没有请求在途,不能写"读取中";判断顺序同排行页、总览空态。
+            if (donations == null)
+                footer = _client.RequiresReconnect ? GuildClient.RecoveryMessage
+                    : _client.Busy ? "正在读取捐献信息…" : "点击右下角刷新读取捐献信息。";
+            // 带上第一笔的暂时原因,不许诺"自动入账":结算中的单也可能以未成功 / 撤销收尾(余额不足未落盘时多半如此),
+            // 写法与状态栏同一口径(GuildClient.DonationPendingReasonText)。
+            else if (donations.PendingDonations.Count > 0)
+                footer = donations.PendingDonations.Count + " 笔捐献结算中："
+                    + GuildClient.DonationPendingReasonText(donations.PendingDonations[0].ReasonTipId);
+            else if (donations.RecentResults.Count > 0)
+                footer = "最近一笔：" + GuildClient.DonationResultText(donations.RecentResults[0]);
+            else
+                footer = "可用帮贡 " + GuildClient.FormatAmount(donations.ContributionBalance)
+                    + "（累计 " + GuildClient.FormatAmount(donations.ContributionTotal) + "） · 帮会资金 " + GuildClient.FormatAmount(info.Funds);
+            // 与 RenderUnavailable 的页脚同几何:底边 610 正好贴到正文区底部。
+            FooterText(footer, 14, 564, 1480, 46).name = "GuildDonateFooter";
+        }
+        /// <summary>一个货币面板里的选项(服务端按 donate_id 升序下发,同货币 ≤ 2 行由配表启动校验保证)。</summary>
+        private void RenderDonateOptions(GetGuildDonateOptionsResponse donations, uint currencyType, float x)
+        {
+            var options = new List<GuildDonateOptionView>();
+            foreach (var option in donations.Options)
+                if (option.CurrencyType == currencyType && options.Count < 2) options.Add(option);
+            string currency = CurrencyName(currencyType);
+            for (int j = 0; j < options.Count; j++)
+            {
+                var option = options[j];
+                // 两行各 46 高、行距 48;第二个选项底边 262+106+48+46 = 462,不压 484 的按钮。
+                float y0 = 262 + j * 106;
+                Text(_body, option.Name + "：" + GuildClient.FormatAmount(option.CostAmount), x + 24, y0, 300, 46, 30);
+                Text(_body, option.Unlocked ? "今日 " + option.UsedToday + "/" + option.DailyLimit : "Lv." + option.MinGuildLevel + " 解锁",
+                    x + 310, y0, 150, 46, 30, option.Unlocked ? Muted : Gold, alignment: TextAlignmentOptions.MidlineRight);
+                Text(_body, "帮贡 +" + option.ContributionGain + " · 资金 +" + GuildClient.FormatAmount(option.FundsGain),
+                    x + 24, y0 + 48, 436, 46, 30, Muted);
+                uint id = option.DonateId;
+                string description = option.Name + "：消耗 " + GuildClient.FormatAmount(option.CostAmount) + " " + currency
+                    + "，获得帮贡 +" + option.ContributionGain + "，帮会资金 +" + GuildClient.FormatAmount(option.FundsGain) + "。";
+                // 一个选项独占宽按钮;两个并排,标签取名称去掉货币前缀("小捐" / "大捐")。
+                string label = options.Count == 1 ? "捐献" : option.Name.Length > 2 ? option.Name.Substring(2) : option.Name;
+                bool enabled = option.Unlocked && option.UsedToday < option.DailyLimit && !Busy;
+                float bx = options.Count == 1 ? x + 66 : x + 24 + j * 224, bw = options.Count == 1 ? 352 : 212;
+                NamedButton(_body, "GuildDonate_" + id, label, bx, 484, bw, 64,
+                    () => Confirm("确认捐献", description, () => DonateRequested?.Invoke(id)), true, enabled, fontSize: 28);
+            }
+        }
+        /// <summary>与服务端 kCurrencyGold(0) / kCurrencyDiamond(1) 同序,契约 §0-1 的叫法。</summary>
+        public static string CurrencyName(uint currencyType) => currencyType switch { 0 => "银两", 1 => "灵石", _ => "货币" };
+
+        // ── 商店(B5,§5.35.2)────────────────────────────────────────────────
+        private void RenderShop()
+        {
+            var info = _client?.Info;
+            if (info == null) { RenderOverview(); return; }
+            var shop = _client.Shop;
+            string[] categories = { "修行补给", "帮会珍藏", "节庆好礼" };
+            for (int c = 1; c <= categories.Length; c++)
+            {
+                int category = c;
+                NamedButton(_body, "GuildShopCategory_" + c, categories[c - 1], (c - 1) * 315, 0, 295, 66,
+                    () => { _shopCategory = category; _shopPage = 0; Render(); }, c == _shopCategory, fontSize: 27);
+            }
+            // 余额以商店快照(MySQL 直读)为准;还没拉到时先显示帮会快照里的,免得这一格空着。
+            ulong balance = shop?.ContributionBalance ?? MyContributionBalance(info);
+            Text(_body, "可用帮贡 " + GuildClient.FormatAmount(balance), 960, 3, 548, 58, 30, Gold,
+                alignment: TextAlignmentOptions.MidlineRight).name = "GuildShopBalance";
+            if (shop == null)
+            {
+                // 同捐献页:隔离时没有请求在途,提示重新登录而不是"读取中"。
+                Text(_body, _client.RequiresReconnect ? GuildClient.RecoveryMessage
+                    : _client.Busy ? "正在读取帮会商店…" : "点击右下角刷新读取帮会商店。", 30, 210, 1400, 100, 38, Muted,
+                    alignment: TextAlignmentOptions.Center).name = "GuildShopPlaceholder";
+                return;
+            }
+            // 服务端已按 category、goods_id 排好序,这里只按分类筛。
+            var goods = new List<GuildShopGoodsView>();
+            foreach (var item in shop.Goods) if (item.Category == _shopCategory) goods.Add(item);
+            int pages = Math.Max(1, (goods.Count + GoodsPerPage - 1) / GoodsPerPage);
+            _shopPage = Math.Max(0, Math.Min(_shopPage, pages - 1));
+            if (goods.Count == 0)
+                Text(_body, "本类暂无可兑换的物品。", 30, 210, 1400, 100, 38, Muted, alignment: TextAlignmentOptions.Center);
+            string icon = _shopCategory == 1 ? "pill" : _shopCategory == 2 ? "talisman" : "scroll";
+            for (int k = 0; k < GoodsPerPage && _shopPage * GoodsPerPage + k < goods.Count; k++)
+            {
+                var item = goods[_shopPage * GoodsPerPage + k];
+                float x = k % 3 * 512, y = 86 + k / 3 * 230;
+                uint id = item.GoodsId;
+                GuildField(_body, "GuildShopCard_" + id, x, y, 484, 218);
+                GuildIcon(_body, icon, x + 20, y + 20, 72);
+                // 单行正文框高 ≥ 46(见 RenderDonate 上方注释)。纵向 8..56 / 56..102 / 102..148 / 154..200,
+                // 底边 200 < 卡高 218;帮贡与限购两行右缘 x+290,不压 x+300 起的兑换键。
+                Text(_body, item.Name, x + 108, y + 8, 356, 48, 30);
+                Text(_body, "每份 ×" + item.ItemCount, x + 108, y + 56, 356, 46, 30, Muted);
+                Text(_body, "帮贡 " + GuildClient.FormatAmount(item.CostContribution), x + 20, y + 102, 270, 46, 30, Gold);
+                Text(_body, ShopLimitText(item), x + 20, y + 154, 270, 46, 30, Muted);
+                bool enabled = item.Unlocked && (item.LimitPeriod == 0 || item.UsedCount < item.LimitCount)
+                    && balance >= item.CostContribution && !Busy;
+                string name = item.Name; ulong cost = item.CostContribution; uint count = item.ItemCount;
+                // 本期每次 1 份;多份兑换(max_buy_count)留给后续的数量选择器。
+                NamedButton(_body, "GuildShopBuy_" + id, "兑换", x + 300, y + 146, 164, 58,
+                    () => Confirm("确认兑换", "消耗帮贡 " + GuildClient.FormatAmount(cost) + " 兑换 " + name + " ×" + count + "？",
+                        () => ShopBuyRequested?.Invoke(id)), true, enabled, fontSize: 27);
+            }
+            Pager(_body, "Shop", _shopPage + 1, pages, delta => { _shopPage += delta; Render(); }, true);
+            string footer = shop.PendingOrders.Count > 0
+                ? "待发放 " + shop.PendingOrders.Count + " 单：" + GuildClient.AssetReasonText(shop.PendingOrders[0].ReasonTipId)
+                : shop.RecentOrders.Count > 0 ? "最近一单：" + ShopFooterResultText(shop.RecentOrders[0]) : "";
+            FooterText(footer, 0, 545, 800, 64).name = "GuildShopFooter";
+        }
+        /// <summary>
+        /// 商店页脚的"最近一单"。页脚宽 800(右侧 820 起是翻页键),30 号字一行只放得下约 26 个汉字,
+        /// 而"兑换失败，帮贡与限购已退回：" + 原因、部分发放的整句加上前缀都超过 800,会被省略号截掉关键的尾巴。
+        /// 这两种只写结论;完整文案(含拒绝原因)由 GuildClient.RefreshShop 在没有待发放时写进底部状态栏。
+        /// 设计 §5.35.2 按 26 号字写的是 ShopResultText 全文,GuildUiArt.Text 把字号抬到 30 后放不下。
+        /// </summary>
+        public static string ShopFooterResultText(GuildShopOrderView order)
+        {
+            if (order?.Status == GuildAssetOrderStatus.Rejected) return "兑换失败，帮贡与限购已退回";
+            if (order?.Status == GuildAssetOrderStatus.AppliedPartial) return "只发放了一部分，客服将补偿";
+            return GuildClient.ShopResultText(order);
+        }
+        /// <summary>限购文案:未解锁先说等级,再按周期说用量。</summary>
+        public static string ShopLimitText(GuildShopGoodsView item)
+        {
+            if (!item.Unlocked) return "帮会 Lv." + item.RequiredGuildLevel + " 解锁";
+            return item.LimitPeriod switch
+            {
+                0 => "不限购",
+                1 => "今日 " + item.UsedCount + "/" + item.LimitCount,
+                2 => "本周 " + item.UsedCount + "/" + item.LimitCount,
+                _ => "限购 " + item.UsedCount + "/" + item.LimitCount,
+            };
+        }
+        private ulong MyContributionBalance(GuildInfo info)
+        {
+            foreach (var member in info.Members) if (member.PlayerId == _client.PlayerId) return member.ContributionBalance;
+            return 0;
+        }
+        /// <summary>
+        /// 页脚一行:超宽时以省略号收尾,不压到右侧的翻页键。省略号只是兜底 —— 两页页脚的文案都按 30 号字控制在框宽以内
+        /// (EconomyFootersFitWithoutEllipsis 逐个原因码核对);商店页脚只写结论的那几种,全文见状态栏(ShopFooterResultText)。
+        /// </summary>
+        private TextMeshProUGUI FooterText(string value, float x, float y, float w, float h)
+        {
+            var text = Text(_body, value, x, y, w, h, 30, Muted);
+            text.overflowMode = TextOverflowModes.Ellipsis;
+            return text;
+        }
+        private void ShowUpgrade()
+        {
+            var info = _client?.Info;
+            if (Busy || info == null || !_client.CanUpgrade) return;
+            // 文案按打开这一刻的等级写死,确认时也带这一刻的等级:确认框开着时推送可能把快照刷成新等级
+            // (别的长老先升了),按点确认那一刻的等级发会按下一级的花费再扣一次(GuildClient.Upgrade 注释)。
+            uint level = info.Level;
+            Confirm("升级帮会", "需要帮会资金 " + GuildClient.FormatAmount(info.UpgradeCostFunds) + "（当前 " + GuildClient.FormatAmount(info.Funds)
+                + "）。\n升级后帮会升至 Lv." + (level + 1) + "，成员上限提升。", () => UpgradeRequested?.Invoke(level));
         }
         private void RenderUnavailable(string title, string subtitle, string[] titles, string[] descriptions)
         {

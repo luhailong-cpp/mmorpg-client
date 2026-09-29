@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Google.Protobuf;
 using Guildpb;
@@ -23,6 +24,9 @@ public static class GuildUiVerification
     private static GameObject _preview;
     private static GuildClient _previewClient;
     private static Func<string, bool> _captureFilter;
+    // 可见却一个字形都没出的文字(截图名 + 文字名 + 源串)。框高不到一行时 TMP 的 Ellipsis 会把整行吞成空白,
+    // 只读 text 源串的 EditMode 断言看不出来,所以截图时按真实网格再核一遍。
+    private static readonly List<string> _missingGlyphs = new List<string>();
 
     [MenuItem("MMORPG/UI/Preview guild UI (offline)")]
     public static void PreviewOffline()
@@ -43,6 +47,12 @@ public static class GuildUiVerification
         _previewClient.Changed += () => window.SetClient(_previewClient);
         window.RankRequested += page => _previewClient.Browse(page);
         window.RefreshRequested += () => _previewClient.Refresh();
+        // 只接申请列表这一条写外的读请求：FixtureTransport 有对应分支，点开“入帮申请”能看到样例。
+        // 任免 / 请离 / 审批等写操作故意不接——替身会以 error 回包，反而把预览锁进“需重新登录”。
+        window.ApplicationsRequested += () => _previewClient.LoadApplications();
+        // 捐献页 / 商店页的读取(B5):替身有样例,进页面即自动拉取;捐献、兑换、升级是写操作,同上不接。
+        window.DonationsRequested += () => _previewClient.RefreshDonations();
+        window.ShopRequested += () => _previewClient.RefreshShop();
         _previewClient.Refresh(); window.SetClient(_previewClient); window.Show();
         Badge(design);
         foreach (var child in _preview.GetComponentsInChildren<UnityEngine.Transform>(true)) child.gameObject.hideFlags = HideFlags.DontSave;
@@ -60,9 +70,15 @@ public static class GuildUiVerification
     [MenuItem("MMORPG/UI/Capture guild screens (offline)")]
     public static void CaptureAll()
     {
+        _missingGlyphs.Clear();
         Capture(2560, 1080); Capture(1920, 1080);
+        // 11 屏 × 2 分辨率：六个页签 + 公告编辑 + 未入帮 + 长帮名确认 + 需重连 + 入帮申请审批。
+        // 有文字没出字形就记为 failed(不中断截图,好让所有问题一次看全)。
+        bool passed = _missingGlyphs.Count == 0;
         File.WriteAllText(Path.Combine(OutputDirectory, "capture.json"),
-            "{\"status\":\"passed\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":20,\"liveServerVerification\":false}");
+            "{\"status\":\"" + (passed ? "passed" : "failed") + "\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":22,"
+            + "\"missingGlyphLabels\":" + _missingGlyphs.Count + ",\"liveServerVerification\":false}");
+        if (!passed) Debug.LogError("帮会界面有文字未渲染(框高不足一行?):\n" + string.Join("\n", _missingGlyphs));
         Debug.Log("Guild UI capture completed: " + OutputDirectory);
     }
 
@@ -103,6 +119,11 @@ public static class GuildUiVerification
             var net = new FixtureTransport(); client = new GuildClient(net);
             client.Changed += () => window.SetClient(client);
             window.RankRequested += page => client.Browse(page);
+            // 申请视图的数据要真走一次 ListGuildApplications，否则那一屏只会停在“正在读取入帮申请…”。
+            window.ApplicationsRequested += () => client.LoadApplications();
+            // 捐献页 / 商店页进页面自动拉取(同步回包),04-donate / 06-shop 截到的是样例数据而不是"点击刷新"。
+            window.DonationsRequested += () => client.RefreshDonations();
+            window.ShopRequested += () => client.RefreshShop();
             client.Refresh(); window.SetClient(client); Badge(design);
             void Shoot(string name)
             {
@@ -111,6 +132,15 @@ public static class GuildUiVerification
                     foreach (var child in go.GetComponentsInChildren<UnityEngine.Transform>(true)) child.gameObject.layer = 31;
                 Canvas.ForceUpdateCanvases();
                 foreach (var label in canvasObject.GetComponentsInChildren<TMP_Text>(true)) label.ForceMeshUpdate(true, true);
+                foreach (var label in canvasObject.GetComponentsInChildren<TMP_Text>())
+                {
+                    // 空输入框的文字组件里留着一个零宽空格(U+200B,不算空白字符,先换成空格);禁用的占位文字不参与。
+                    if (!label.enabled || string.IsNullOrWhiteSpace(label.text?.Replace((char)0x200B, ' '))) continue;
+                    var info = label.textInfo;
+                    bool visible = false;
+                    for (int i = 0; info != null && i < info.characterCount; i++) visible |= info.characterInfo[i].isVisible;
+                    if (!visible) _missingGlyphs.Add(name + "_" + width + "x" + height + "：" + label.name + " / " + label.text);
+                }
                 Canvas.ForceUpdateCanvases(); camera.Render(); RenderTexture.active = target;
                 pixels.ReadPixels(new Rect(0, 0, width, height), 0, 0, false); pixels.Apply(false, false);
                 File.WriteAllBytes(Path.Combine(OutputDirectory, name + "_" + width + "x" + height + ".png"), pixels.EncodeToPNG());
@@ -121,11 +151,18 @@ public static class GuildUiVerification
             foreach (var button in canvasObject.GetComponentsInChildren<Button>())
                 if (button.name == "EditGuildAnnouncement") { button.onClick.Invoke(); break; }
             Shoot("07-announcement");
+            // 入帮申请审批屏：先关掉公告弹窗，再进成员页切到申请视图。
+            // 点击 GuildApplicationsToggle 会同步触发 ApplicationsRequested → LoadApplications（替身是
+            // 同步回包），所以这里不需要等帧，Shoot 时列表已经在了。
+            window.Back(); window.Show(GuildPage.Members);
+            foreach (var button in canvasObject.GetComponentsInChildren<Button>())
+                if (button.name == "GuildApplicationsToggle") { button.onClick.Invoke(); break; }
+            Shoot("11-applications");
             window.Back(); net.HasGuild = false; client.Reset(); client.Refresh(); window.Show();
             Shoot("08-empty");
             net.LongName = true; window.Show(GuildPage.Ranking);
             foreach (var button in canvasObject.GetComponentsInChildren<Button>())
-                if (button.name == "JoinGuild_88001") { button.onClick.Invoke(); break; }
+                if (button.name == "ApplyGuild_88001") { button.onClick.Invoke(); break; }
             Shoot("09-long-name-confirmation"); window.Back();
             net.HasGuild = true; client.Refresh(); net.FailNext = true; client.Refresh(); window.Show();
             Shoot("10-reconnect-required");
@@ -173,16 +210,68 @@ public static class GuildUiVerification
                     Score = 88600 - i * 4200, Rank = (uint)(i + 1) });
                 response = ranks;
             }
+            else if (id == MessageIds.ListGuildApplications)
+            {
+                // 样例申请人：1 小时前提交、48 小时后过期，申请视图那一列固定显示“剩余 48 小时”；
+                // 只有第 1 位在线，好让在线 / 离线两种样式同屏出现。
+                long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                var applications = new ListGuildApplicationsResponse();
+                for (ulong i = 0; i < 3; i++)
+                    applications.Applicants.Add(new GuildApplicantView
+                    {
+                        PlayerId = 20001 + i, Online = i == 0,
+                        ApplyMs = (ulong)(now - 3600000L), ExpireMs = (ulong)(now + 48L * 3600000L)
+                    });
+                response = applications;
+            }
+            // 样例账号自己没有在申请别的帮会：排行页按钮保持“申请”，不会翻成“撤回申请”。
+            else if (id == MessageIds.ListMyGuildApplications) response = new ListMyGuildApplicationsResponse();
+            else if (id == MessageIds.GetGuildDonateOptions) response = DonateFixture();
+            else if (id == MessageIds.GetGuildShop) response = ShopFixture();
             else { error("离线验收不执行服务端操作"); return; }
             success((T)response);
         }
         private static GuildInfo Fixture()
         {
+            // 样例账号(10001)是帮主：成员页才会出现任免 / 转让 / 请离三槽。
+            // 长老 1 人、上限 6 人 → “任长老”按钮可点(未到上限)；待审 3 份 → 角标显示“入帮申请 3”。
             var info = new GuildInfo { GuildId = 88001, Name = "清风明月", LeaderId = 10001, Level = 5, MaxMembers = 50,
-                Announcement = "同道相逢，皆是有缘。\n\n愿每一盏灯，都照亮归家的路；愿每一次同行，都不负山海与明月。\n\n帮会事务请与帮主、长老联系。", ZoneId = 1 };
+                Announcement = "同道相逢，皆是有缘。\n\n愿每一盏灯，都照亮归家的路；愿每一次同行，都不负山海与明月。\n\n帮会事务请与帮主、长老联系。", ZoneId = 1,
+                OfficerCount = 1, MaxOfficers = 6, PendingApplicationCount = 3, Funds = 186000, UpgradeCostFunds = 460000 };
             for (ulong i = 0; i < 12; i++) info.Members.Add(new GuildMember { PlayerId = 10001 + i,
-                Role = i == 0 ? 3u : i == 1 ? 1u : 0u, ContributionTotal = 3560 - i * 130, Online = i < 7 });
+                Role = i == 0 ? 3u : i == 1 ? 1u : 0u, ContributionTotal = 3560 - i * 130, ContributionBalance = 1240 - i * 60, Online = i < 7 });
             return info;
+        }
+        // 捐献样例:小捐用过 2 次、大捐用满(按钮置灰),一笔灵石捐献在战斗中结算中 —— 三种按钮态与页脚同屏。
+        private static GetGuildDonateOptionsResponse DonateFixture()
+        {
+            var response = new GetGuildDonateOptionsResponse { ContributionTotal = 3560, ContributionBalance = 1240 };
+            response.Options.Add(new GuildDonateOptionView { DonateId = 1, Name = "银两小捐", CurrencyType = 0, CostAmount = 10000,
+                ContributionGain = 10, FundsGain = 1000, DailyLimit = 5, UsedToday = 2, MinGuildLevel = 1, Unlocked = true });
+            response.Options.Add(new GuildDonateOptionView { DonateId = 2, Name = "银两大捐", CurrencyType = 0, CostAmount = 100000,
+                ContributionGain = 120, FundsGain = 12000, DailyLimit = 2, UsedToday = 2, MinGuildLevel = 1, Unlocked = true });
+            response.Options.Add(new GuildDonateOptionView { DonateId = 3, Name = "灵石捐献", CurrencyType = 1, CostAmount = 100,
+                ContributionGain = 200, FundsGain = 20000, DailyLimit = 1, UsedToday = 1, MinGuildLevel = 1, Unlocked = true });
+            response.PendingDonations.Add(new GuildDonationView { OpId = 7001, DonateId = 3, Status = GuildAssetOrderStatus.Pending,
+                CurrencyType = 1, CostAmount = 100, ContributionGain = 200, FundsGain = 20000, ReasonTipId = GuildAssetReasons.InBattle });
+            return response;
+        }
+        // 商店样例:与 GuildShop 默认 11 行同形,帮会 Lv.5 → 204(Lv.6)未解锁;花灯今日兑满;有一单背包满待发放。
+        private static GetGuildShopResponse ShopFixture()
+        {
+            var response = new GetGuildShopResponse { ContributionBalance = 1240 };
+            void Add(uint id, string name, uint category, uint count, ulong cost, uint level, uint period, uint limit, uint used = 0) =>
+                response.Goods.Add(new GuildShopGoodsView { GoodsId = id, Name = name, Category = category, ItemId = id, ItemCount = count,
+                    CostContribution = cost, RequiredGuildLevel = level, Unlocked = level <= 5, LimitPeriod = period, LimitCount = limit,
+                    UsedCount = used, MaxBuyCount = 1 });
+            Add(101, "培元丹", 1, 5, 30, 1, 1, 10, 3); Add(102, "回灵散", 1, 5, 30, 1, 1, 10);
+            Add(103, "精炼石", 1, 1, 80, 2, 1, 5); Add(104, "修行秘录残页", 1, 1, 150, 3, 2, 5);
+            Add(201, "帮会令牌", 2, 1, 300, 3, 2, 3); Add(202, "玄铁护符", 2, 1, 800, 4, 2, 1);
+            Add(203, "灵兽口粮", 2, 10, 120, 2, 1, 3); Add(204, "藏经阁手札", 2, 1, 1500, 6, 2, 1);
+            Add(301, "花灯", 3, 1, 50, 1, 1, 5, 5); Add(302, "月饼礼盒", 3, 1, 100, 1, 2, 7); Add(303, "同心结", 3, 1, 200, 5, 0, 0);
+            response.PendingOrders.Add(new GuildShopOrderView { OpId = 7101, GoodsId = 203, Count = 1, Status = GuildAssetOrderStatus.Pending,
+                CostContribution = 120, ReasonTipId = GuildAssetReasons.BagFull });
+            return response;
         }
     }
 }

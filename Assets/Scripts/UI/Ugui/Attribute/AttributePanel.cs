@@ -311,7 +311,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             bool canCreate = _panel.Schemes.Count < _panel.MaxSchemes;
             _createSchemeButton?.SetInteractable(canCreate && !(_owner.Client?.Busy ?? false));
             _createSchemeButton?.SetText(canCreate && _panel.CreateSchemeCostGold > 0
-                ? $"开启新方案({_panel.CreateSchemeCostGold} 金)"
+                ? $"开启新方案({_panel.CreateSchemeCostGold} 银两)"
                 : "开启新方案");
         }
 
@@ -451,7 +451,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _confirmButton?.SetInteractable(!busy && unlocked && delta > 0);
             _autoButton?.SetInteractable(!busy && unlocked && (pool?.Remaining ?? 0) > 0);
             _resetButton?.SetInteractable(!busy && unlocked);
-            _resetButton?.SetText(pool != null && pool.ResetCostGold > 0 ? $"重置({pool.ResetCostGold} 金)" : "重 置");
+            _resetButton?.SetText(pool != null && pool.ResetCostGold > 0 ? $"重置({pool.ResetCostGold} 银两)" : "重 置");
             RefreshSchemeButton();
         }
 
