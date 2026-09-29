@@ -103,28 +103,28 @@ namespace MmorpgClient.App
                 _peerId != 0 && _peerId != Game.PlayerId, "second authenticated player", 120);
             if (_done) yield break;
             Check("Distinct real authenticated player IDs: " + Game.PlayerId + " / " + _peerId);
-            if (_mode == "member")
+            if (_mode == "leader")
             {
                 TryPeer(out var leader);
                 if (!ulong.TryParse(leader.sceneId, out var destination) || destination == 0)
-                { Fail("Leader has no authoritative scene ID."); yield break; }
+                { Fail("Peer has no authoritative scene ID."); yield break; }
                 if (Game.CurrentSceneId != destination)
                 {
                     bool accepted = false;
                     yield return Game.EnterScene(leader.sceneConfigId, destination, () => accepted = true, Fail);
                     if (_done) yield break;
                     yield return Wait(() => accepted && Game.CurrentSceneId == destination && Game.World.HasLocalPlayer,
-                        "production EnterScene reaches leader line", 90);
+                        "production EnterScene reaches peer line", 90);
                     if (_done) yield break;
                 }
                 Publish("aligned");
             }
             else
             {
-                yield return Wait(() => PeerAt("aligned", -1), "member joins leader line", 100);
+                yield return Wait(() => PeerAt("aligned", -1), "leader joins peer line", 100);
                 if (_done) yield break;
             }
-            yield return Wait(() => Game.World.Actors.Values.Any(a => a.Kind == ActorKind.Player && a.PlayerId == _peerId),
+            if (_mode == "leader") yield return Wait(() => Game.World.Actors.Values.Any(a => a.Kind == ActorKind.Player && a.PlayerId == _peerId),
                 "peer becomes visible through real AOI", 90);
             if (_done) yield break;
             yield return _mode == "leader" ? Leader() : Member();
@@ -460,7 +460,7 @@ namespace MmorpgClient.App
             try
             {
                 string path = Path.Combine(_directory, _run + "-" + _mode + "-" + name + ".png");
-                texture = ScreenCapture.CaptureScreenshotAsTexture();
+                texture = RenderLiveFrame();
                 if (texture == null || texture.width < 100) throw new IOException("No real screen frame.");
                 File.WriteAllBytes(path, texture.EncodeToPNG());
                 var state = Team.Client.Snapshot;
@@ -498,7 +498,7 @@ namespace MmorpgClient.App
             {
                 if (!string.IsNullOrEmpty(_directory) && Directory.Exists(_directory))
                 {
-                    var frame = ScreenCapture.CaptureScreenshotAsTexture();
+                    var frame = RenderLiveFrame();
                     if (frame != null) { File.WriteAllBytes(Path.Combine(_directory, _run + "-" + _mode + "-failure.png"), frame.EncodeToPNG()); Destroy(frame); }
                 }
             }
@@ -506,7 +506,55 @@ namespace MmorpgClient.App
             Debug.LogError("[TeamVerify][" + _mode + "] RESULT=FAIL phase=" + _phase + " round=" + _round + " reason=" + error);
             try { if (!string.IsNullOrEmpty(_directory) && Directory.Exists(_directory)) { Publish("failed"); WriteReport("FAIL"); } }
             catch (Exception ex) { Debug.LogError("[TeamVerify] Cannot save failure report: " + ex.Message); }
+            StartCoroutine(FinishFailureFrame());
+        }
+        private IEnumerator FinishFailureFrame()
+        {
+            yield return new WaitForEndOfFrame();
+            Texture2D frame = null;
+            try
+            {
+                frame = RenderLiveFrame();
+                if (frame != null) File.WriteAllBytes(Path.Combine(_directory, _run + "-" + _mode + "-failure.png"), frame.EncodeToPNG());
+            }
+            catch (Exception ex) { Debug.LogWarning("[TeamVerify] Failure frame: " + ex.Message); }
+            finally { if (frame != null) Destroy(frame); }
             Application.Quit(1);
+        }
+        // 隐藏的 Windows 播放器没有可读的屏幕后缓冲；用真实摄像机和当前 UI 树离屏绘制。
+        private static Texture2D RenderLiveFrame()
+        {
+            var camera = Camera.main;
+            if (camera == null) throw new IOException("Live scene camera unavailable.");
+            int width = Math.Max(1920, Screen.width), height = Math.Max(1080, Screen.height);
+            var target = RenderTexture.GetTemporary(width, height, 24, RenderTextureFormat.ARGB32);
+            var previousTarget = camera.targetTexture;
+            var previousActive = RenderTexture.active;
+            var canvases = UnityEngine.Object.FindObjectsByType<Canvas>(FindObjectsInactive.Exclude)
+                .Select(c => (canvas: c, mode: c.renderMode, camera: c.worldCamera, distance: c.planeDistance)).ToArray();
+            try
+            {
+                camera.targetTexture = target;
+                foreach (var state in canvases)
+                    if (state.mode == RenderMode.ScreenSpaceOverlay)
+                    { state.canvas.renderMode = RenderMode.ScreenSpaceCamera; state.canvas.worldCamera = camera; state.canvas.planeDistance = 2; }
+                Canvas.ForceUpdateCanvases();
+                camera.Render();
+                RenderTexture.active = target;
+                var frame = new Texture2D(width, height, TextureFormat.RGBA32, false);
+                frame.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+                frame.Apply();
+                return frame;
+            }
+            finally
+            {
+                foreach (var state in canvases)
+                { state.canvas.renderMode = state.mode; state.canvas.worldCamera = state.camera; state.canvas.planeDistance = state.distance; }
+                camera.targetTexture = previousTarget;
+                RenderTexture.active = previousActive;
+                RenderTexture.ReleaseTemporary(target);
+                Canvas.ForceUpdateCanvases();
+            }
         }
         private void WriteReport(string result)
         {

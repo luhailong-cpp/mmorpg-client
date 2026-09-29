@@ -181,7 +181,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 return lines;
             }
             lines.Add($"经验  +{settlement.ExpGain}");
-            lines.Add($"金钱  +{settlement.GoldGain}");
+            // GoldGain 入的是 kCurrencyGold,契约 §0-1 叫"银两"。
+            lines.Add($"银两  +{settlement.GoldGain}");
             if (settlement.ItemsGained != null && settlement.ItemsGained.Count > 0)
             {
                 foreach (var item in settlement.ItemsGained)

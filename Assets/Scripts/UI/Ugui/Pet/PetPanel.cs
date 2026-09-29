@@ -318,7 +318,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             _detailText.text = $"{pet.Name}　等级 {pet.Level}　成长率 {pet.Growth / 100f:0.##}%\n" +
                 pet.Desc + "\n加点先预分配，确认后生效；重置撤回本次预分配，一键洗点重置已分配点数。";
             _renameInput.SetTextWithoutNotify(pet.Name);
-            _renameConfirm.SetText(_list.RenameCostGold > 0 ? $"改名 · {_list.RenameCostGold} 金" : "改 名");
+            _renameConfirm.SetText(_list.RenameCostGold > 0 ? $"改名 · {_list.RenameCostGold} 银两" : "改 名");
             _detailsRoot.gameObject.SetActive(true);
             _detailsRoot.SetAsLastSibling();
         }
@@ -660,7 +660,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             _confirmButton?.SetInteractable(!busy && hasPet && delta > 0);
             _autoButton?.SetInteractable(!busy && hasPet && (pet?.RemainingPoints ?? 0) > 0);
             _resetButton?.SetInteractable(!busy && hasPet);
-            _resetButton?.SetText(pet != null && pet.ResetCostGold > 0 ? $"洗点 · {pet.ResetCostGold} 金" : "一键洗点");
+            _resetButton?.SetText(pet != null && pet.ResetCostGold > 0 ? $"洗点 · {pet.ResetCostGold} 银两" : "一键洗点");
             _discardButton?.SetInteractable(!busy && delta > 0);
             _renameConfirm?.SetInteractable(!busy && hasPet);
             if (_renameInput != null) _renameInput.interactable = !busy && hasPet;

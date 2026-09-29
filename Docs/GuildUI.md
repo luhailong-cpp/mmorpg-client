@@ -100,7 +100,7 @@
 - **结算完成的推送**:服务端只给结算的那个人推 `FUNDS_CHANGED`(捐献)/ `DELIVERY_DONE`(兑换)。客户端收到后触发 `AssetsChanged` 让背包重拉(scene 没有余额推送),并在对应页拉过时排队重拉本页;同时按 B2 规则排一次 `GetPlayerGuild`。`DrainQueued` 的顺序是帮会快照在前、本页在后,让「已入账 / 已发放」的文案最后落到状态栏。已离帮后才结算的那一笔同样会让背包重拉。
 - **兑换成功后的帮贡**:兑换回包不带帮会快照,但带提交后的权威余额,客户端据此就地更新总览里那一格。
 - **换帮 / 离帮 / 换角**时捐献与商店快照一律作废,不会把上一个帮会的次数与帮贡带进来。
-- **货币改名**(契约 §0-1):背包面板的「金币 / 钻石 / 绑定钻石」改为「银两 / 灵石 / 绑定灵石」;加点与宠物的「金币不足」改为「银两不足」。服务端 `Tip.xlsx` 那两行的文案仍写「金币不足」,随下一个改 Tip.xlsx 的批次同步。**尚未改的**:加点面板「开启新方案(N 金)」「重置(N 金)」与宠物面板「改名 · N 金」「洗点 · N 金」四个按钮上的花费单位仍写「金」(`AttributePanel.cs` / `PetPanel.cs` 不在 B5c 文件范围),扣的就是改名后的「银两」,要在后续批次改成「银两」并核对按钮宽度;战斗结算面板 `Assets/Scripts/UI/Ugui/Battle/BattleResultPanel.cs:184` 的「金钱  +N」同理(`GoldGain` 由 scene 按 `kCurrencyGold` 入账,即「银两」),后续批次改成「银两  +N」;现有用例 `DamageNumberLayoutTests.cs:108` 只断言含「+30」,改文案不会弄挂它。
+- **货币改名**(契约 §0-1):背包面板的「金币 / 钻石 / 绑定钻石」改为「银两 / 灵石 / 绑定灵石」;加点与宠物的「金币不足」改为「银两不足」。服务端 `Tip.xlsx` 那两行的文案仍写「金币不足」,随下一个改 Tip.xlsx 的批次同步。加点面板「开启新方案(N 银两)」「重置(N 银两)」、宠物面板「改名 · N 银两」「洗点 · N 银两」四个按钮的花费单位,以及战斗结算面板的「银两  +N」(原「金钱  +N」;`GoldGain` 由 scene 按 `kCurrencyGold` 入账)也在 B5c 收尾时一并改了(按钮宽度已核:最长「开启新方案(1000 银两)」约 364px,按钮 516px);现有用例 `DamageNumberLayoutTests.cs:108` 只断言含「+30」,不受影响。
 - **前置生成**(未执行):`tools/gen_messageids.ps1 -ProtoRoot E:\work\xuanming-server-mmo` 生成 5 个新编号(GetGuildDonateOptions / DonateToGuild / UpgradeGuild / GetGuildShop / BuyGuildShopGoods)后才能编译;经济协议与 10 个错误码的 C# 已在 `Assets/Scripts/Proto/Generated/` 里。注意 53 / 76 / 120 三个编号是从好友服务易主来的,旧 `MessageIds.cs` 若残留好友常量会指错。
 - **期望的验收口径**:`GuildClientTests` 72 条 + `GuildWindowTests` 35 条 = **107 条**全部通过(本批新增 38 条、删去 `UnsupportedActionsAreClearlyDisabled` 的捐献 / 商店两例;B6a-cli 删最后一例时要删整个方法)。离线截图的 `04-donate` 与 `06-shop` 改为带样例数据的真实页面。
 
