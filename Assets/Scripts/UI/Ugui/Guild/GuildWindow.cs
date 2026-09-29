@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Guildpb;
 using MmorpgClient.Game.Guild;
 using MmorpgClient.World.Tianyong;
@@ -168,8 +169,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             Line(_rail, "LevelRule", 0, 202, 394);
             Text(_rail, "帮会编号", 0, 214, 394, 46, 30, Muted);
             Text(_rail, info.GuildId.ToString(), 0, 264, 394, 46, 28);
-            Text(_rail, "帮主编号", 0, 314, 394, 46, 30, Muted);
-            Text(_rail, info.LeaderId.ToString(), 0, 364, 394, 46, 28);
+            // B3b 起 GuildInfo.leader_name 由服务端填;取名失败(fail-open)时为空,侧栏这一格照旧显示编号(§3.22)。
+            Text(_rail, "帮主", 0, 314, 394, 46, 30, Muted);
+            Text(_rail, string.IsNullOrWhiteSpace(info.LeaderName) ? info.LeaderId.ToString() : info.LeaderName, 0, 364, 394, 46, 28);
             Line(_rail, "LeaderRule", 0, 424, 394);
             Text(_rail, "我的身份", 0, 436, 228, 48, 27, Muted);
             Text(_rail, RoleName(_client.Role), 242, 436, 152, 48, 30, alignment: TextAlignmentOptions.MidlineRight);
@@ -256,8 +258,10 @@ namespace MmorpgClient.UI.Ugui.Guild
         {
             NamedButton(_body, "OnlineGuildMembers", _onlineOnly ? "已选：仅在线" : "显示全部成员", 0, 0, 295, 66,
                 () => { _onlineOnly = !_onlineOnly; _memberPage = 0; Render(); }, _onlineOnly, fontSize: 27);
-            Text(_body, "按编号查找", 316, 3, 230, 58, 27, Muted);
-            var search = Input(_body, "GuildMemberSearch", 556, 0, 470, 66, "输入完整编号或部分数字", 20);
+            // Text() 会把字号抬到至少 30(保 1280 缩放下可读),传 26 也不会变小;8 个字约 240 宽,
+            // 所以标签从 230 放宽到 260,输入框右移 30、收窄 30,右缘 1026 不动。
+            Text(_body, "按名字或编号查找", 316, 3, 260, 58, 27, Muted);
+            var search = Input(_body, "GuildMemberSearch", 586, 0, 440, 66, "输入名字或编号", 20);
             search.SetTextWithoutNotify(_memberSearch);
             NamedButton(_body, "SearchGuildMembers", "查找", 1040, 0, 196, 66,
                 () => { _memberSearch = search.text.Trim(); _memberPage = 0; Render(); }, fontSize: 27);
@@ -278,8 +282,9 @@ namespace MmorpgClient.UI.Ugui.Guild
         private void RenderMemberList(GuildInfo info)
         {
             var members = new List<GuildMember>();
+            string query = SearchKey(_memberSearch);
             foreach (var member in info.Members)
-                if ((!_onlineOnly || member.Online) && (string.IsNullOrEmpty(_memberSearch) || member.PlayerId.ToString().Contains(_memberSearch)))
+                if ((!_onlineOnly || member.Online) && (query.Length == 0 || MatchesMemberSearch(member, query)))
                     members.Add(member);
             members.Sort((a, b) => { int role = b.Role.CompareTo(a.Role); return role != 0 ? role : a.PlayerId.CompareTo(b.PlayerId); });
             int pages = Math.Max(1, (members.Count + MembersPerPage - 1) / MembersPerPage);
@@ -291,8 +296,8 @@ namespace MmorpgClient.UI.Ugui.Guild
                 var member = members[_memberPage * MembersPerPage + i];
                 float y = 86 + i * 86;
                 ulong id = member.PlayerId;
-                // B2 的 name 恒空(B3b 起由 data_service 填),空名一律回落到编号,确认框与列表用同一份文案。
-                string display = string.IsNullOrEmpty(member.Name) ? "道友 · " + id : member.Name;
+                // 确认框与列表用同一份文案;空名兜底规则只在 MemberDisplayName 一处。
+                string display = MemberDisplayName(member);
                 GuildField(_body, "GuildListRow", 0, y, 1508, 78);
                 Text(_body, display + (id == _client.PlayerId ? "（我）" : ""), 90, y + 12, 420, 56, 29);
                 Text(_body, RoleName(member.Role), 524, y + 12, 150, 56, 29, Gold);
@@ -347,7 +352,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 float y = 86 + i * 86;
                 ulong id = applicant.PlayerId;
                 GuildField(_body, "GuildListRow", 0, y, 1508, 78);
-                Text(_body, string.IsNullOrEmpty(applicant.Name) ? "道友 · " + id : applicant.Name, 90, y + 12, 520, 56, 29);
+                Text(_body, MemberDisplayName(id, applicant.Name), 90, y + 12, 520, 56, 29);
                 Text(_body, applicant.Online ? "在线" : "离线", 630, y + 12, 140, 56, 28, applicant.Online ? Ink : Muted);
                 // expire_ms 是服务端时钟,本地时钟有偏差也只影响这一行的展示;服务端过期判定与它无关。
                 // 不足一小时按 1 小时显示,避免出现“剩余 0 小时”。
@@ -535,5 +540,31 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         // 2(副帮主)不启用,与 GuildRoles.Rank 一致落到默认的“帮众”。
         public static string RoleName(uint role) => role switch { 1 => "长老", 3 => "帮主", _ => "帮众" };
+
+        /// <summary>
+        /// 帮会里显示一个角色的唯一兜底规则:有名字显示名字,空名或纯空白回落“道友 · 编号”。
+        /// 成员行、申请行与确认框都走这里,别处不要再内联一份兜底。
+        /// 名字由服务端批量取名填入,取名失败时 fail-open 下发空名,所以兜底必须一直保留。
+        /// </summary>
+        public static string MemberDisplayName(ulong playerId, string name) =>
+            string.IsNullOrWhiteSpace(name) ? "道友 · " + playerId : name;
+        public static string MemberDisplayName(GuildMember member) => MemberDisplayName(member.PlayerId, member.Name);
+
+        /// <summary>
+        /// 成员查找同时匹配名字与编号。名字按服务端 playername 的 norm 口径比较(NFKC → 去首尾空白 → 转小写,
+        /// 名字全服唯一也是按这个口径),所以 “alice”“ＡＬＩＣＥ” 都能找到 “Alice”,全角数字也能查编号。
+        /// </summary>
+        private static bool MatchesMemberSearch(GuildMember member, string query) =>
+            member.PlayerId.ToString().Contains(query)
+            || (!string.IsNullOrWhiteSpace(member.Name) && SearchKey(member.Name).Contains(query));
+        private static string SearchKey(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return "";
+            string normalized;
+            // TMP 输入框截断可能切开代理对,孤立代理会让 Normalize 抛 ArgumentException;查找词退回原文,不让界面崩。
+            try { normalized = text.Normalize(NormalizationForm.FormKC); }
+            catch (ArgumentException) { normalized = text; }
+            return normalized.Trim().ToLowerInvariant();
+        }
     }
 }

@@ -7,6 +7,7 @@ using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.Game.Role;
 using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
 using MmorpgClient.World;
@@ -233,6 +234,17 @@ namespace MmorpgClient.Game
             public uint ClassId;   // Class 配表 id
             public uint Gender;    // 1=男 2=女
             public string AppearanceId; // Stable catalog ID, independent of class/gender.
+            /// <summary>
+            /// 建角时玩家填的角色名(已经 RoleNameRules.TryNormalize 归一化)。null / 空串 = 交给服务端生成,
+            /// 只有无界面路径与调试自动驾驶会这样做;正式建角页必填(服务端 docs/design/guild-phase2/03-names.md §3.22)。
+            /// </summary>
+            public string Name;
+            /// <summary>
+            /// 上一次建角被服务端以"可修正"的原因拒绝时给人看的文案(名字不合规 / 重名 / 敏感词 / 服务端繁忙);
+            /// null = 没有。管线据此把同一个 PlayerChoice 再交给选角 UI,UI 保留 Name / ClassId / Gender / AppearanceId
+            /// 回到建角页并显示它;离开建角页时由 UI 清掉。
+            /// </summary>
+            public string RejectHint;
             /// <summary>true = 放弃进入,回到选服界面。</summary>
             public bool Cancelled;
         }
@@ -298,6 +310,14 @@ namespace MmorpgClient.Game
             if (_sceneAppearances.TryGetValue(playerId, out var appearanceId)) return appearanceId;
             return role != null ? QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender) : null;
         }
+
+        /// <summary>
+        /// 账号角色列表里的角色名(服务端 AccountSimplePlayer.name,只读副本,全服唯一)。
+        /// 查不到或服务端没带名字(早于名字功能的旧角色、回源失败)时返回 null / 空串,调用方自己兜底。
+        /// 列表由 <see cref="CacheRoleMetadata"/> 在 Login / CreatePlayer 应答时刷新。
+        /// </summary>
+        public string ResolveRoleName(ulong playerId)
+            => playerId != 0 && _knownRoles.TryGetValue(playerId, out var role) ? role.Name : null;
 
         private string ResolveActorCharacterId(ActorView view)
         {
@@ -615,29 +635,40 @@ namespace MmorpgClient.Game
 
                 if (PlayerChooser != null)
                 {
+                    // 建角被服务端以"可修正"的原因拒绝(名字不合规 / 重名 / 敏感词 / 服务端繁忙)时,
+                    // 带着同一个 choice 回到建角页让玩家改名或再点一次。不设轮数上限:玩家随时可以取消回选服
+                    // (服务端 docs/design/guild-phase2/03-names.md §3.22)。传输错误仍由 CreatePlayerCo 收掉整条管线。
                     var choice = new PlayerChoice();
-                    yield return PlayerChooser(zoneId, zonePlayers, choice);
-                    if (gen != _pipelineGen) yield break;
-                    if (choice.Cancelled)
-                    { FailPipeline(gen, onError, "已返回选服"); yield break; }
-                    if (choice.CreateNew)
+                    while (true)
                     {
-                        ulong newId = 0;
-                        yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender,
-                            loginResp.Players, id => newId = id, onError, choice.AppearanceId);
+                        yield return PlayerChooser(zoneId, zonePlayers, choice);
                         if (gen != _pipelineGen) yield break;
+                        if (choice.Cancelled)
+                        { FailPipeline(gen, onError, "已返回选服"); yield break; }
+                        if (!choice.CreateNew) { playerId = choice.SelectedPlayerId; break; }
+
+                        ulong newId = 0;
+                        string reject = null;
+                        yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender, choice.Name, choice.AppearanceId,
+                            loginResp.Players, id => newId = id, hint => reject = hint, onError);
+                        if (gen != _pipelineGen) yield break;
+                        if (reject != null)
+                        {
+                            // Name / ClassId / Gender / AppearanceId 原样保留,建角页据此回填
+                            choice.RejectHint = reject;
+                            choice.CreateNew = false;
+                            continue;
+                        }
                         if (newId == 0) yield break; // CreatePlayerCo 已 FailPipeline
                         playerId = newId;
-                    }
-                    else
-                    {
-                        playerId = choice.SelectedPlayerId;
+                        break;
                     }
                 }
                 else if (zonePlayers.Count == 0)
                 {
+                    // 无界面路径:名字留空由服务端生成(RoleNameRule 配的前缀 + 随机后缀),拒绝即失败
                     ulong newId = 0;
-                    yield return CreatePlayerCo(gen, 0, 0, loginResp.Players, id => newId = id, onError);
+                    yield return CreatePlayerCo(gen, 0, 0, "", null, loginResp.Players, id => newId = id, null, onError);
                     if (gen != _pipelineGen) yield break;
                     if (newId == 0) yield break;
                     playerId = newId;
@@ -658,12 +689,16 @@ namespace MmorpgClient.Game
         }
 
         /// <summary>
-        /// CreatePlayer(带职业/性别)并从"全量列表响应"里 diff 出新角色 id。
-        /// classId/gender 传 0 表示交给服务端取默认(配表第一个职业 / 男)。
+        /// CreatePlayer(带职业/性别/名字/外观)并从"全量列表响应"里 diff 出新角色 id。
+        /// classId/gender 传 0 表示交给服务端取默认(配表第一个职业 / 男);name 传空串表示由服务端生成
+        /// (只给无界面路径,正式建角页必填)。
+        /// 服务端回名字 tip 或可重试的失败(见 <see cref="RoleNameRules.TipText"/> /
+        /// <see cref="RoleNameRules.RetryableCreateHint"/>)且 <paramref name="onRetryableReject"/> 非空时,
+        /// 只把文案交给它、**不拆管线**,由调用方回到建角页;其它 tip 与传输错误照旧 FailPipeline。
         /// </summary>
-        private IEnumerator CreatePlayerCo(int gen, uint classId, uint gender,
+        private IEnumerator CreatePlayerCo(int gen, uint classId, uint gender, string name, string appearanceId,
             Google.Protobuf.Collections.RepeatedField<AccountSimplePlayerWrapper> known,
-            Action<ulong> onCreated, Action<string> onError, string appearanceId = null)
+            Action<ulong> onCreated, Action<string> onRetryableReject, Action<string> onError)
         {
             Status("正在创建角色…");
             var knownIds = new HashSet<ulong>();
@@ -672,13 +707,34 @@ namespace MmorpgClient.Game
 
             CreatePlayerResponse cpResp = null;
             yield return Call(MessageIds.CreatePlayer,
-                new CreatePlayerRequest { ClassId = classId, Gender = gender, AppearanceId = appearanceId ?? "" },
+                new CreatePlayerRequest
+                {
+                    ClassId = classId,
+                    Gender = gender,
+                    Name = name ?? "",
+                    AppearanceId = appearanceId ?? "",
+                },
                 CreatePlayerResponse.Parser, r => cpResp = r,
                 e => FailPipeline(gen, onError, $"create player: {e}"));
             if (gen != _pipelineGen) yield break;
             if (cpResp == null) yield break;
             if (cpResp.ErrorMessage != null && cpResp.ErrorMessage.Id != 0)
-            { FailPipeline(gen, onError, $"创建角色失败(tip={cpResp.ErrorMessage.Id})"); yield break; }
+            {
+                uint tipId = cpResp.ErrorMessage.Id;
+                // 名字的最终裁定在服务端(字数按 RoleNameRule 配表、重名、敏感词),客户端预检只挡明显的格式问题,
+                // 所以这里以 tip 为准给文案。可重试的失败原样再点创建是安全的:同名同职业同性别的重试
+                // 会被服务端认作"上次应答丢失"并直接返回已建好的角色(03-names §3.11)。
+                string hint = RoleNameRules.TipText(tipId, cpResp.ErrorMessage.Parameters)
+                              ?? RoleNameRules.RetryableCreateHint(tipId);
+                if (hint != null && onRetryableReject != null)
+                {
+                    Log($"create player rejected tip={tipId}, back to role creation");
+                    onRetryableReject(hint);
+                    yield break;
+                }
+                FailPipeline(gen, onError, $"创建角色失败(tip={tipId})");
+                yield break;
+            }
 
             CacheRoleMetadata(cpResp.Players);
             // 响应是账号全量角色列表:新角色 = 不在请求前列表里的那一个
@@ -696,7 +752,7 @@ namespace MmorpgClient.Game
                 FailPipeline(gen, onError, "服务器未保存所选外观，请更新服务端后重新登录确认角色");
                 yield break;
             }
-            Log($"created new player {newId} class={classId} gender={gender} appearance={ResolveCharacterId(newId)}");
+            Log($"created new player {newId} class={classId} gender={gender} name={ResolveRoleName(newId)} appearance={ResolveCharacterId(newId)}");
             onCreated(newId);
         }
 
