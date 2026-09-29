@@ -1597,8 +1597,22 @@ namespace MmorpgClient.Game
 
         private void WireSceneNotifyHandlers()
         {
+            // 坏包只记日志丢弃:这条解析跑在收包分发里,异常抛出去会中断同一批里后面的消息。
+            // TeamClient 自己注册的 203 / 215 已有同样的兜底,这里是组队推送里唯一走 GameClient 内部解析的一条。
             OnNotify(MessageIds.NotifyTeamSnapshot, mc =>
-                OnTeamSnapshot?.Invoke(Teampb.TeamSnapshotS2C.Parser.ParseFrom(mc.SerializedMessage)));
+            {
+                Teampb.TeamSnapshotS2C snapshot;
+                try
+                {
+                    snapshot = Teampb.TeamSnapshotS2C.Parser.ParseFrom(mc.SerializedMessage);
+                }
+                catch (InvalidProtocolBufferException ex)
+                {
+                    LogError($"[team] drop malformed team snapshot: {ex.Message}");
+                    return;
+                }
+                OnTeamSnapshot?.Invoke(snapshot);
+            });
             RegisterMovementReply(MessageIds.MoveStart, "MoveStart");
             RegisterMovementReply(MessageIds.MoveSync, "MoveSync");
             RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
