@@ -1,0 +1,1116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a716ef6e779ac47b621f394f91bcb9, type: 3}
+  m_Name: runtime-index
+  m_EditorClassIdentifier: MmorpgClient::MmorpgClient.World.QdaoOriginalHdResourceIndex
+  resourceFolder: World/Characters/QdaoOriginalRosterV14/15_water_dragon_scholar_boy
+  manifestSha256: d4e604aa0d9f65e2b21415a315559d255b1eeef12e4b175a1a2f232f8760762b
+  activationSha256: 880c7b68549b18faa9b980d8de660ff4c10dfc9f8e0a9c8c33dea66911ebeb60
+  validationSha256: 602436fdd5f9ec6b4ea77e96cca11b56390dc23b54e69e5d159d4cd159921dda
+  resolutionMode: 
+  entries:
+  - path: portrait.png
+    assetGuid: 8fdbe8580198dcd448a08a5de6107d21
+    sha256: c3ccd49d401211d240c311262aecdca6c91a24cdf7118d20831a6f27753885db
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 100
+    sourceBytes: 1017836
+    sourceWriteUtcTicks: 639262938879780711
+  - path: idle/N.png
+    assetGuid: c3ab1fa812b85d744b255be629b8af72
+    sha256: b300177f30194834798b9578798d8630371485c0a89afae141c5baba7c7428e2
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 700659
+    sourceWriteUtcTicks: 639256420445608212
+  - path: walk/N/01.png
+    assetGuid: a581ed2232b373c4eba462fc7e388060
+    sha256: db9ff4178552a1727dd0c5ed9c2e045aaca06575a9ce3ec6e51379f183077009
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 716191
+    sourceWriteUtcTicks: 639256420446443189
+  - path: walk/N/02.png
+    assetGuid: 0d6879ecd70581c459a0145f5603547d
+    sha256: 0fbdecb055adf996c04dd304a38e96daa37f2a0079c1c02978f3e7cafc6f29df
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 744792
+    sourceWriteUtcTicks: 639257605133431248
+  - path: walk/N/03.png
+    assetGuid: beff718c4eec6ea4d995ba8ebe2a02d5
+    sha256: a6586cefcfd7cad996518056e2d965e11c5d376a5057f3492f38599cbe163141
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 715508
+    sourceWriteUtcTicks: 639256420446503680
+  - path: walk/N/04.png
+    assetGuid: d5185cf423019544b9dfd258b6d0c5e8
+    sha256: 802f53ef9ff6c4d0f36e7589be5aef6b7b4c1002f1da783530305f2d07a28a6f
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 700276
+    sourceWriteUtcTicks: 639256420446543732
+  - path: walk/N/05.png
+    assetGuid: fdbe3a14ef0af2f4eaf02296ca99a637
+    sha256: 0095ffa4c543b52d7b31e2938dcf9a485e64807580696188d7a9b64860ed94fd
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 710067
+    sourceWriteUtcTicks: 639256420446583742
+  - path: walk/N/06.png
+    assetGuid: 23cc60af3f2eb4b49aaaeba5cdf4ceb9
+    sha256: cadb7cc840a9e5471c48fc981cd3090d081d16afe814eeef3612ff91401a46c1
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 733013
+    sourceWriteUtcTicks: 639262825557143840
+  - path: walk/N/07.png
+    assetGuid: 25a0c4218e1810e4f821eea08b95fc64
+    sha256: 43036f27198fd1f2e565b3e2d14979f1256c66350a0f817e749fcafbe8955a74
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 667921
+    sourceWriteUtcTicks: 639257605220905450
+  - path: walk/N/08.png
+    assetGuid: 5a14c3d5c08aacb4a88d49fa8a1f956a
+    sha256: 44659d0bffbf372352ac082f7fa1916ba837ef962fa88606f0a79d6771954b01
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 795551
+    sourceWriteUtcTicks: 639262825557183836
+  - path: walk/N/09.png
+    assetGuid: 20bfe16055b45d34180cac1571e2c5c4
+    sha256: fae068249b41a442951f9ed4910e86b0888a62ab285c24fecc4a37a7bc307575
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 714122
+    sourceWriteUtcTicks: 639256420446722464
+  - path: walk/N/10.png
+    assetGuid: 6efa0f3bdb25dcf4fbbe2a09962cdd45
+    sha256: 3ee77eafa882d5fd49150025c901c381fb6fc68d13308ce99392049cd4c78acd
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 714296
+    sourceWriteUtcTicks: 639256420446767551
+  - path: walk/N/11.png
+    assetGuid: 52159820ff592b348b0bd6195d276c59
+    sha256: ed0572da1e0b8f0f9df7e31605b2eecbb70842c69a6f25c7ffe8480136708e43
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 734618
+    sourceWriteUtcTicks: 639256420446802590
+  - path: walk/N/12.png
+    assetGuid: 6b8ff4f7820ccfd46ae219c4b1bfce07
+    sha256: 66d3ed6ec813c75011d9f495379a50fbb407e9cb5d158270ee7b8b4205e96d96
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 713440
+    sourceWriteUtcTicks: 639256420446832592
+  - path: walk/N/13.png
+    assetGuid: d6772d49fe68b5748912d3db87fa5718
+    sha256: 2fb7240f4445a6a40bf7d5a025d88d893fcd6aa168aebe1036addee012386bdc
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 718049
+    sourceWriteUtcTicks: 639256420446871646
+  - path: walk/N/14.png
+    assetGuid: 30fe8187fca3be54790fbf94a95b8494
+    sha256: 5ca717cad3f1e728e48b29ee6f9fea856ea10e1619ce015917d65261cc6a58a0
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 707084
+    sourceWriteUtcTicks: 639256420446910471
+  - path: walk/N/15.png
+    assetGuid: 0571080adb2a21f4eb3bf848cfe8d72b
+    sha256: ec82b761f1d033cb228985acacc912662cae5e8cbc1165f96b15309938c41f23
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 691030
+    sourceWriteUtcTicks: 639256420446949637
+  - path: walk/N/16.png
+    assetGuid: 5dfa2f1a96d5a0b47a0282a3418ad39a
+    sha256: 5426c2c1931f3bae1b91583c788ff49a2c88186279debbb7a5791084d5925062
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 708771
+    sourceWriteUtcTicks: 639256420446979464
+  - path: idle/NE.png
+    assetGuid: 65ffbe8c85393d14881ec24fb88ee9a9
+    sha256: 8bc3e5097118ae91af63dbe86b4fa3fa2bf87683a8ea825083dcb2ba7c2e03dd
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 655996
+    sourceWriteUtcTicks: 639256420445649312
+  - path: walk/NE/01.png
+    assetGuid: 6f5071e99e680ad47b26fd87d3ec39eb
+    sha256: cd34009aedc80421ff5dd9eb24441bb17c5cba4cc0daf56ff206ae98c24769d9
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 672350
+    sourceWriteUtcTicks: 639256420447016898
+  - path: walk/NE/02.png
+    assetGuid: 01707c1b407200643b4d8b61edf6c55d
+    sha256: f3cec60328f42b24febd990fec9322f8da296d96900ec1f3089b9a2d9115ab3d
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 706833
+    sourceWriteUtcTicks: 639256420447053617
+  - path: walk/NE/03.png
+    assetGuid: ca8d5e07f0c7a294f8ac3a4ee96a1724
+    sha256: 8cd4347fd58a0936dec6a9b2873c5ade1c4ad88006e7d5cf106110e692cf73fd
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 671196
+    sourceWriteUtcTicks: 639256420447091355
+  - path: walk/NE/04.png
+    assetGuid: d7f96b2452495d14ea99c596c29e2ab8
+    sha256: 5259013586ffbcf818927ded5bc34978020ed333f53741788d3213738b9b5624
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 691201
+    sourceWriteUtcTicks: 639256420447128800
+  - path: walk/NE/05.png
+    assetGuid: b7963740254a868448d9f1092f330bc9
+    sha256: b3ea5618616058bfc8539372349e9b2c579de1444619470b45c2cf81e7284619
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 693645
+    sourceWriteUtcTicks: 639257433377979984
+  - path: walk/NE/06.png
+    assetGuid: 7f3502a3b4f75ff4e938b61617d3bd09
+    sha256: bb8945e9e09a94fcfe652ec89c580a7aba5a1ef82e0e15317f0b548ad308441c
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 682647
+    sourceWriteUtcTicks: 639262825557223860
+  - path: walk/NE/07.png
+    assetGuid: c51a9d0eca5a077469c989712685d918
+    sha256: bd9b0d8a4b4cc011ee2cc931e279d4e3c191b9fe854208ceacdaac4f5d94e95f
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 713548
+    sourceWriteUtcTicks: 639257459499752707
+  - path: walk/NE/08.png
+    assetGuid: d7440499792ec3b47975c38d00c3012a
+    sha256: ac18c834500bb92030792f8362bc2b5d2c021a7557b2fb49d9065471d6f3e7b9
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 693990
+    sourceWriteUtcTicks: 639262825557253877
+  - path: walk/NE/09.png
+    assetGuid: 1f7bd891ba17abb47bb5ad8e7e528f6b
+    sha256: 41d522e16686698c0cdbcbd7d36b078ab60c6123054334c87d9a0a2cbc2fc9e2
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 713753
+    sourceWriteUtcTicks: 639257487398556882
+  - path: walk/NE/10.png
+    assetGuid: c54963096592d0e458bdd1a9c9762483
+    sha256: 4a0f5b368493cf07be3d497b1e6ffb0fdc140223c4c8714bc57336285da5180b
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 710294
+    sourceWriteUtcTicks: 639257505195481321
+  - path: walk/NE/11.png
+    assetGuid: 53b10f824b6738a4fb6bd3dbbeae4aee
+    sha256: c7761b621759e2d46e1e063caad1d1bf20c8c59ddc59579f99a69d9622dab057
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 727767
+    sourceWriteUtcTicks: 639257507873398359
+  - path: walk/NE/12.png
+    assetGuid: 251ec7bf2aeeb0044a3431cf6f03d450
+    sha256: d5e313371aaba7f30c779266cfad5c1b9227460c3c7983b62f09a9ee25022bed
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 710159
+    sourceWriteUtcTicks: 639257516552833988
+  - path: walk/NE/13.png
+    assetGuid: 0aead2883351c8845894c94598692ae7
+    sha256: 6c5a407fdbc872b0145fdbb3f1c36a1a1b52df3ed199d10f5f67c3c4f0f92cdb
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 688667
+    sourceWriteUtcTicks: 639262825557303853
+  - path: walk/NE/14.png
+    assetGuid: 1bbf2bc6d11049442bbae4e34ef2d123
+    sha256: 0df16a30709657dd1002a814f8609bfe808daeaa1014937d78b0891047a2399a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 690486
+    sourceWriteUtcTicks: 639257535532607491
+  - path: walk/NE/15.png
+    assetGuid: 1d09008059fab194cb1d963716e821ef
+    sha256: c2822d60b4ef863ef3aa0c7528c482d7265f7ebfa796d551af4880a2b30d62bb
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 710044
+    sourceWriteUtcTicks: 639257538732492359
+  - path: walk/NE/16.png
+    assetGuid: 7eaf3e570a5be724488dfdad5d2109b8
+    sha256: d88b157fbf5ccc4368a6060308bc7ad5f3e2844b945dcec9b6c9f14cb370950e
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 690433
+    sourceWriteUtcTicks: 639257603968908836
+  - path: idle/E.png
+    assetGuid: 62963c5880708994b9295c0d180fa5ab
+    sha256: f141f400b3ebd39dc0c9a45edfd2fc99fc5eba8d955b70d34608b67fab99a7b6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 631056
+    sourceWriteUtcTicks: 639256420445570569
+  - path: walk/E/01.png
+    assetGuid: f6385daaf57d5e7479c2c98521cb3155
+    sha256: 512bd36e4be3e06b7bf0d1ca5b569fcf15f7168479d776d88f8bf32183493bde
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 767741
+    sourceWriteUtcTicks: 639262825556632586
+  - path: walk/E/02.png
+    assetGuid: 224cad0159a866040aa59fb412643d7c
+    sha256: 6f204e1134c310b40d838e47672763c48427055f59cd3d51d1a5401c09d70ba6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 773115
+    sourceWriteUtcTicks: 639262825556672593
+  - path: walk/E/03.png
+    assetGuid: 80cd56267cbe4d94a87e0ed8c9a4452c
+    sha256: 8ed7e13d629dbd03226fa855c4ed9218048d4e10f67f67fb3d9d74698e23185c
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 676373
+    sourceWriteUtcTicks: 639256420445921255
+  - path: walk/E/04.png
+    assetGuid: 1ce29ad04e8509d438054c61bebd36b7
+    sha256: 1de498529332d5178eb6c46361ec106800f3cb7f94e71a61eb8dd832838d1be2
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 679814
+    sourceWriteUtcTicks: 639262825556722665
+  - path: walk/E/05.png
+    assetGuid: 7200c45c0e5f6e64c92e3f5ef3205553
+    sha256: 0e2a753bcc1c5f8f10a3c5acc61b83d6e18f451739094fde2a39a1c04f56f4dc
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 622730
+    sourceWriteUtcTicks: 639262825556762629
+  - path: walk/E/06.png
+    assetGuid: e6b4adfdc3f18144ebcf86a88790f5c9
+    sha256: fb011880111cacc20ba1da0e83a784cb17ff68c5dd90e179d7e4057472399eaf
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 723406
+    sourceWriteUtcTicks: 639262825556802645
+  - path: walk/E/07.png
+    assetGuid: eaa508e19df7a93429b2816d85595e64
+    sha256: ca87cb0c464bdbab3658beb1719f45dbf7da17f2ef5d03a17571368b23df7a6b
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 710560
+    sourceWriteUtcTicks: 639262825556832653
+  - path: walk/E/08.png
+    assetGuid: c37a66dc5b2b6744a947a80c7c3629ae
+    sha256: 8d7fa21bc244e62b758903d09a0abf614d9a9a3564780550e99d21489c120379
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 695408
+    sourceWriteUtcTicks: 639262825556878666
+  - path: walk/E/09.png
+    assetGuid: 980d4bbc8dfadfe438083403b77b65b7
+    sha256: 6191fb755d5b72b778495405451aea2690a0501dc5837683ef018ff8233e3888
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 721600
+    sourceWriteUtcTicks: 639262825556908700
+  - path: walk/E/10.png
+    assetGuid: 0f956ea9377e5e048befaa8a6ffe951d
+    sha256: 98086764f7d80c9af73beb4f7b9e287d0dc88279f23d9d9dbc5e4946e9ad23a2
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 691443
+    sourceWriteUtcTicks: 639262825556948710
+  - path: walk/E/11.png
+    assetGuid: 4445b98efa7a73646a8c52627560380b
+    sha256: c67cdb7db15e33caa3a929a9f9c6ed01d300a27e2f3c22bd5602c43a7d477cf7
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 694459
+    sourceWriteUtcTicks: 639262825556988729
+  - path: walk/E/12.png
+    assetGuid: 73128faed82691846b1ad796301999d4
+    sha256: 08f854c1f470dda92c140c42efea50e41e2166ded23a1f39d173b99f49120efa
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 646883
+    sourceWriteUtcTicks: 639262825557028736
+  - path: walk/E/13.png
+    assetGuid: 5219d5f7dfafec544b3893e7642b9248
+    sha256: f4c100a6b95621eb14bfbb1358f146eff053765575353d128e3c6606c71dbd74
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 665677
+    sourceWriteUtcTicks: 639262825557068730
+  - path: walk/E/14.png
+    assetGuid: 0e89120f648bda546b343ac7e056b8b5
+    sha256: 0730da7249507dc93025d72c962d0d6763d5f6db4142d0b8f9db2ba57bccfefa
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 697670
+    sourceWriteUtcTicks: 639256420446324648
+  - path: walk/E/15.png
+    assetGuid: e0e2cec38d1c30e43a5426c12dfb9585
+    sha256: a84d82703eac9ecc30bf4fc765e319afb97b529fa3fa00d1fa403d081ffab785
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 715374
+    sourceWriteUtcTicks: 639256420446362247
+  - path: walk/E/16.png
+    assetGuid: cf411a74ab432b34ab30e11630c49676
+    sha256: eec45ffc3fd0a86406fa7282cbfb15be0bed0a11578ebe52db74b98a718fee5f
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 748883
+    sourceWriteUtcTicks: 639262825557113796
+  - path: idle/SE.png
+    assetGuid: 70b978569d62624499e5b15bb428883e
+    sha256: 0bcf43e517430e1301266524932e4c104997bfdea58d065666c3df786fa4dff0
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 830152
+    sourceWriteUtcTicks: 639256420445768696
+  - path: walk/SE/01.png
+    assetGuid: 316c52752bb7d7a40bd826c1b1f1095f
+    sha256: e969cca1a43aca7aa903ca0319c816b84ec0b40ffd95dbdff53a590696205720
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 820547
+    sourceWriteUtcTicks: 639256420447376336
+  - path: walk/SE/02.png
+    assetGuid: 18205a69c9b3f644aa2bf934195f22b8
+    sha256: 80d5f7aa282ae07e84463de1e1326be333f5558f29ad79709c0b60fdba5d5d27
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 815617
+    sourceWriteUtcTicks: 639256420447416377
+  - path: walk/SE/03.png
+    assetGuid: 11d3b06f367f5314aae377b7039c9b3a
+    sha256: 8218d1fe81fa120548eabbd5abe5356469a4e39220e01582330c6a50b79b5b5f
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 815059
+    sourceWriteUtcTicks: 639256420447456360
+  - path: walk/SE/04.png
+    assetGuid: fa7a3cd52fedafe4d9ab4ae02cdbbddf
+    sha256: 9606fb48b108e26d78827fe8179dba12c67e8f3f8553febc8c48869fa047f6f3
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 790285
+    sourceWriteUtcTicks: 639256420447489016
+  - path: walk/SE/05.png
+    assetGuid: 2abdb1dd5eff06b4da73d471478d7dbb
+    sha256: 732b18bd958fe1ac7fbc4324622e7a81799f5253f3158066fee10dbd71f4ee65
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 852488
+    sourceWriteUtcTicks: 639256420447520006
+  - path: walk/SE/06.png
+    assetGuid: 57400f6d9b365c14992046a2409411a3
+    sha256: 0bd7e83506c954a4895a4582d798b622710dd6d95b4fa3ec314233476515d2a6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 873569
+    sourceWriteUtcTicks: 639257608115030997
+  - path: walk/SE/07.png
+    assetGuid: aa60a9c82effe1743bfb54fc847cd3a7
+    sha256: 13b418e8553b770dcc14dc15c18b51006dcaacae69bc2993ecc0b6ce03ed496b
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 829019
+    sourceWriteUtcTicks: 639257464614204712
+  - path: walk/SE/08.png
+    assetGuid: ea29355bdad7a3a4ba991649e1af8703
+    sha256: 7c7b188bc1de629f3d89b465a2018f61480504355e2ea93ac9a6d871fae97a56
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 811999
+    sourceWriteUtcTicks: 639256420447582320
+  - path: walk/SE/09.png
+    assetGuid: b1c58064a926df244b529daff1fc04f3
+    sha256: f11e63b10f137b3610a87ecc5bd9f9bc2cbda5f77578fb8995169d7aefade30d
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 809121
+    sourceWriteUtcTicks: 639257487799864425
+  - path: walk/SE/10.png
+    assetGuid: 3d5f66391f53faa4094927f9d12d5cd3
+    sha256: e58156273b7c76faa1d753b51968eeda581c50acb3e1047fb63143b0da475e62
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 833664
+    sourceWriteUtcTicks: 639257464711298602
+  - path: walk/SE/11.png
+    assetGuid: b1d34a9577556434eb286483855edc7e
+    sha256: 9cd320e00efc18eb838cbebaddb3e9a51f738c91f3949d89db4b1c83c1d7d0a5
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 825325
+    sourceWriteUtcTicks: 639257488102801974
+  - path: walk/SE/12.png
+    assetGuid: 943a5f66694f6b04a928be2d5fb75114
+    sha256: d61c9cc5430420020afa213415502ec4514252615cd91b0f3aa094fd3ba14496
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 805491
+    sourceWriteUtcTicks: 639257488277843704
+  - path: walk/SE/13.png
+    assetGuid: 5ba7c22d074aac841bfec3bdcc547f83
+    sha256: ec2c8d7d4378028d6e5e8f114a0f5ceaa4a8b99a493b95016ee36b7a4d77217a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 810890
+    sourceWriteUtcTicks: 639257488524209505
+  - path: walk/SE/14.png
+    assetGuid: b3c2c7c0da631054aae2767e2a99e549
+    sha256: b3559607f57eb85390d89e443dfb43de4e66ce941758a621e54d07b364aadacd
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 820704
+    sourceWriteUtcTicks: 639257603724046738
+  - path: walk/SE/15.png
+    assetGuid: f24518f01a667af458ce299ebc97e68e
+    sha256: aa45a007db2d3406f9b7714c0eb99919c37303b3da9dac161af08db16967c0cf
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 824247
+    sourceWriteUtcTicks: 639256420447612307
+  - path: walk/SE/16.png
+    assetGuid: 0ce64856787a3154c91bf804cfefd491
+    sha256: 8fa05999f35b4ea8a81a220fa30b55cf70a984d9d0ce9a73dddaef8dfea56f6e
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 823027
+    sourceWriteUtcTicks: 639257603768358184
+  - path: idle/S.png
+    assetGuid: c683348cb70fc09469c63d612b0c1548
+    sha256: 7d24a3d5432324cacddfcefc1ed4cd54ebbeb3444c1258820009aec618c4a102
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 776152
+    sourceWriteUtcTicks: 639256420445720843
+  - path: walk/S/01.png
+    assetGuid: d5489c0995b1fbd48a80123b73a6c65d
+    sha256: f2613d188f378d2c815efcdfc6686a48f3d566b1a9140392636699c1fc7cbbef
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 835885
+    sourceWriteUtcTicks: 639257649053551574
+  - path: walk/S/02.png
+    assetGuid: ba15e06d793bf84449271fdd319787c0
+    sha256: 979f36cf48b31ae86888f28f01b8b5525c4239eb02f1ef3d72cfe6b16aa94202
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 830973
+    sourceWriteUtcTicks: 639257444286795381
+  - path: walk/S/03.png
+    assetGuid: ee2e57b32bfd81a4699a8397a391c99e
+    sha256: c8a5c5aa107b37d0ecc69fb0ce94f4479af46a9a15f6a431b5b0ef9e1e267f50
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 819307
+    sourceWriteUtcTicks: 639257649143390292
+  - path: walk/S/04.png
+    assetGuid: 05ebf8e31e66a7c458392aa2cff4c00e
+    sha256: 58a7b113947c0d8f97bae8da03309cd06ebe9b420867cd6a8c6f2024041726c6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 846547
+    sourceWriteUtcTicks: 639257444374898632
+  - path: walk/S/05.png
+    assetGuid: 00e944b6a066b994d86c4b71f177962e
+    sha256: fed17363418714ac185b8fbd3f8cbcb05cec9e409659a4e1c023ac7e2d3c2d1a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 857147
+    sourceWriteUtcTicks: 639257649212245967
+  - path: walk/S/06.png
+    assetGuid: eada6756dd9b59944b9c1301d29ddf25
+    sha256: 76f8c63809c162d4a27fa5c085cf62d84cba9d644e69b2a29e45f78ae4bba82a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 869927
+    sourceWriteUtcTicks: 639257444459795426
+  - path: walk/S/07.png
+    assetGuid: 6da1a861d29c039429ee942aef80d14d
+    sha256: c2f31364dba251a3bcf2be189566ef700efdd3768523f2b9113c74050ac1cc02
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 827072
+    sourceWriteUtcTicks: 639257649279097058
+  - path: walk/S/08.png
+    assetGuid: 77dacb387efe3c7459826e2bff6cb7f3
+    sha256: 58473bb6050ab40fc874ac5f7e7816ca19b34a11c0a1d856a81594899e4b3d4d
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 834992
+    sourceWriteUtcTicks: 639257444538611215
+  - path: walk/S/09.png
+    assetGuid: a96e899ee79084248b058aeb2af7f941
+    sha256: 78aea4471deb158de74a676f5b28b4aaf03ca51af948abc279e2b7fbc52723ff
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 851957
+    sourceWriteUtcTicks: 639257444583647751
+  - path: walk/S/10.png
+    assetGuid: 2dd4320b913f8544ab1f8b0432af434e
+    sha256: 986ddfed3ce25546fcc20ad3d86c54a0aebbb3df08ba8a93d63368910a72f0ef
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 897696
+    sourceWriteUtcTicks: 639257444623678298
+  - path: walk/S/11.png
+    assetGuid: 0c37f2b56c0277f42a86799f478983bc
+    sha256: acf4897e18f9f9207818dcf2a5d9cf1a7075b5f180cbb149eb9ce8c131a6af7b
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 818717
+    sourceWriteUtcTicks: 639257444663102446
+  - path: walk/S/12.png
+    assetGuid: 326077712904c9d499cb46da871effde
+    sha256: 6abf711cff43b49088e3bc0a8fbefb961099ca53ec1e80f523c90d5e31ca1b6a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 850789
+    sourceWriteUtcTicks: 639257444709831222
+  - path: walk/S/13.png
+    assetGuid: 2028d22b4224bc44a8c764733a6b1b36
+    sha256: 997fb0860fb33d58927b2e3fceaefb20f69e9484a1f7f461f8830c3666353e56
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 825975
+    sourceWriteUtcTicks: 639257444749358985
+  - path: walk/S/14.png
+    assetGuid: d8369f2e2e56d3c4d86d9fccf3c82c64
+    sha256: 53d0c78fa614ce280f7c73d1e7fd89355fab9c2e5a3013267b185a595d94d2f6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 843823
+    sourceWriteUtcTicks: 639257444788509728
+  - path: walk/S/15.png
+    assetGuid: 21fc91fc06239744b8a255484887ad1b
+    sha256: c1b86dc23b794919fa08bd43d536f0fdf437549afb6a2b3659e0d9b66152c39e
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 845144
+    sourceWriteUtcTicks: 639257444823706317
+  - path: walk/S/16.png
+    assetGuid: da8fcb2c0782d9744b5b0996966c6cde
+    sha256: 47c3e33e9daf69a16373008bdb1ab67621e0c327a6d94d0377375aeca71231cc
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 840568
+    sourceWriteUtcTicks: 639257444863606365
+  - path: idle/SW.png
+    assetGuid: 0c7177d930dcf3f41826f86a650b834a
+    sha256: 8451b66b523d18c37fa0ef255b1b7e383b67a7ab29cbb3f1baafbb5978ab01bc
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 747786
+    sourceWriteUtcTicks: 639257649335160643
+  - path: walk/SW/01.png
+    assetGuid: 88a00ef2e7c325b4f985823d3c5c1bb8
+    sha256: b545ae3780abf60630afd212305df2eea34a42e753a6d551c63b5028fcbf1a8a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 793319
+    sourceWriteUtcTicks: 639262826245635927
+  - path: walk/SW/02.png
+    assetGuid: 319e73e99fa8bac449c56a7ad9e0ba78
+    sha256: a32d22d0b98d15603a5fb776e697a183155d4e0cbdc7e749a3083cf3cad5baa6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 839484
+    sourceWriteUtcTicks: 639262826246244340
+  - path: walk/SW/03.png
+    assetGuid: df7716586f124da42a5f40dc23fee338
+    sha256: d025ca98ba1601487d66085a31e56f16e2af5135a9f13e1356ec2e00bb788ede
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 797091
+    sourceWriteUtcTicks: 639262826247105523
+  - path: walk/SW/04.png
+    assetGuid: 3f19cf291e99e4c4197c6ab205e9c218
+    sha256: fd8a9dd84892a52d182935961673cb6f61a4e9c6e3b94e68b5e907f987d1b4c6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 802615
+    sourceWriteUtcTicks: 639262826247990303
+  - path: walk/SW/05.png
+    assetGuid: 3187b4808b435fd4091d612327cf0c6b
+    sha256: 53b74373a32ef00890329ff65cbee89ad927cc723f79cc86d7d2a0ecde4f7875
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 812047
+    sourceWriteUtcTicks: 639262826250545468
+  - path: walk/SW/06.png
+    assetGuid: 1957212fabc93b5408a61e762c6a6ce0
+    sha256: 6ba9070afc77a31f1186eb82742f242c59604bbc4bd04a18152d8b7ddc424f60
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 803823
+    sourceWriteUtcTicks: 639262826252029858
+  - path: walk/SW/07.png
+    assetGuid: 621415b6a6efe4946b39c87043de1082
+    sha256: 61beff16b579625d4074c8e121bdda4ca4dba9fcc908855c935be05542a57ac8
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 868852
+    sourceWriteUtcTicks: 639262826254535199
+  - path: walk/SW/08.png
+    assetGuid: 9876582e58df7be42be54eb050113d41
+    sha256: 7bede0fce41208fa6abe4a12b392decc97a104740edd75c727b642d4ae90ee80
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 884290
+    sourceWriteUtcTicks: 639262826258770204
+  - path: walk/SW/09.png
+    assetGuid: 6e29d4a54732ffb4686bf6ef97e26fd7
+    sha256: 55c799458eebefc26c3783d138c1e95f981efcd839b9b39154d74cb17a8ad1ab
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 818497
+    sourceWriteUtcTicks: 639262826259660952
+  - path: walk/SW/10.png
+    assetGuid: 75bea99b33a9fbd4188307ea596668b3
+    sha256: 4762efa27877c8e9c525d7e19d16ee0f9f77a171e6a5f7791c964d7e2d61a4d6
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 912039
+    sourceWriteUtcTicks: 639262826261231692
+  - path: walk/SW/11.png
+    assetGuid: 0d9d52dc5407c5540b0626219a505d6d
+    sha256: 814df4d142dc0d2e9fd9e290022be2c5aa1bca4e8aeb734ffac1135cf488dd90
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 913379
+    sourceWriteUtcTicks: 639262826262397483
+  - path: walk/SW/12.png
+    assetGuid: 02e9a9f0660947d4ca9a6342fc748afd
+    sha256: 25daa3e050cabefd5e58b18f05daa9239f70f44ecc8bdcb4f136251c4362f89a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 929508
+    sourceWriteUtcTicks: 639262826264991400
+  - path: walk/SW/13.png
+    assetGuid: 6a13bfd1621a8d94488e4142cd85e9b5
+    sha256: 336e32fee851f6503e3944e77f8c8719247ea0f5a1898b596aea8ee4207b8edf
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 805595
+    sourceWriteUtcTicks: 639262826266835975
+  - path: walk/SW/14.png
+    assetGuid: d5c685f58b87a91489befd276416a909
+    sha256: a343bf4606063bc05c4c2feb842c05e0168275f49977c4a9dc7a308753a6ca39
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 820545
+    sourceWriteUtcTicks: 639262826268335860
+  - path: walk/SW/15.png
+    assetGuid: 783ab0d62cd997845a94a8458defa376
+    sha256: 4f2d3c2107b8d1ac84f3c3e43170e891fb034388c874725d43f68e39de946b1a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 822644
+    sourceWriteUtcTicks: 639262826274792479
+  - path: walk/SW/16.png
+    assetGuid: c6d664517c1b0494f8ab8d854fb3e63c
+    sha256: 3a27ac6d88d89cf08699fd98a39bb56ff0c9b16b9d3dc1a2dc1aa6871d11b37b
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 796887
+    sourceWriteUtcTicks: 639262826276815620
+  - path: idle/W.png
+    assetGuid: bd0764d7c952d5347aacab346bea186d
+    sha256: 4935cce63a358a4283af3efc2c31f3f8ea401fd9c5eb3846efeebd57b37526c7
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 697361
+    sourceWriteUtcTicks: 639256420445809767
+  - path: walk/W/01.png
+    assetGuid: 3bd9cacab8a88b744a2196b90e430c50
+    sha256: 593473ba3e47a66e1c6e18b96885b88c6f8b8b5d85de88bce5fc4596ff018558
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 756795
+    sourceWriteUtcTicks: 639256420447652305
+  - path: walk/W/02.png
+    assetGuid: 6af41c4225f91c44f8a99eb8f887ec02
+    sha256: 873424fad4fe6fc1d6c98dc8680d4796c46ec9c031dfcb8a3c6453ece910ed50
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 717585
+    sourceWriteUtcTicks: 639256420447692304
+  - path: walk/W/03.png
+    assetGuid: a6b2f9de8a519fc41a50cd350eac23eb
+    sha256: 8203e8a2fb09dd4ec0a62285146285ebd9082a6ab68c6b9b5b19ef6aac911898
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 665191
+    sourceWriteUtcTicks: 639257703732109827
+  - path: walk/W/04.png
+    assetGuid: 4eef8a57f3e981f4d8d8d4b968d6c571
+    sha256: 2d8511924e48b0328c233a69cff7c76cb81eb1eef973f416cca08199391f0904
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 731251
+    sourceWriteUtcTicks: 639257703745876439
+  - path: walk/W/05.png
+    assetGuid: c659509278eaa4749bd1d2f4168bb09f
+    sha256: 778328b47d8851c82ce8e3070601ede502287f58460134cc249562d502e5bbf2
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 691893
+    sourceWriteUtcTicks: 639257703755933531
+  - path: walk/W/06.png
+    assetGuid: 4a5f5e47b83b0ff4abc21e7ceed18db8
+    sha256: a3de0fe758f4402fed61711f4b5f347c365b5d999f7035924351f6571b85198a
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 646675
+    sourceWriteUtcTicks: 639257703768863381
+  - path: walk/W/07.png
+    assetGuid: c66c1f685b06ebf4c90fe6901600cb16
+    sha256: d3fd2a84cbe65708baf41d936bcb2fef70812989b026f8c4a17422802551ea0e
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 769038
+    sourceWriteUtcTicks: 639257703784184373
+  - path: walk/W/08.png
+    assetGuid: 589d228db051a7045a18257cb4270609
+    sha256: 0e2b0daa9d13400c0049a358f77113a2a3f74422308cc5c9c3e426fe0413cde8
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 804505
+    sourceWriteUtcTicks: 639257703797155531
+  - path: walk/W/09.png
+    assetGuid: 670e37995cdcf2048bd6edf88a72dee1
+    sha256: ecaa97388c49e7a4ee4b5b212a00b18bf7543c4fbce09ba66f4a0004a57138ae
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 773244
+    sourceWriteUtcTicks: 639257703810814389
+  - path: walk/W/10.png
+    assetGuid: 9e2b47a3519f10945ac8d9390e44caa0
+    sha256: ce8cdc414984df70375f49c23b9f1f2be1cd355f1277df756d7431077300cc07
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 782310
+    sourceWriteUtcTicks: 639257703663285199
+  - path: walk/W/11.png
+    assetGuid: 033ae84af0cecbb45bdfb277a491daba
+    sha256: c0fb34b12b6bb5f8ab7cd1d47790f2203d89b036600f872f92a15d729bde82a0
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 748097
+    sourceWriteUtcTicks: 639257703675834137
+  - path: walk/W/12.png
+    assetGuid: 71b8042a9acb7494c85d80d48b0fb667
+    sha256: e78ad78b5f9108b9a417a62aa066f46560890819fb69390b38fc0132cfcd93e3
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 744629
+    sourceWriteUtcTicks: 639257703692377427
+  - path: walk/W/13.png
+    assetGuid: a23d49c56ff27c94aad1442eb8c2d405
+    sha256: 3e249db0ca93a21b505bcaf885615ef45411c6ec90d5f04ac0f78882612c79e8
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 706887
+    sourceWriteUtcTicks: 639257492869445626
+  - path: walk/W/14.png
+    assetGuid: 672540619dcda5a4fa0a30103b73856e
+    sha256: 92e44f4ea835da6eb8139e29875c004dd3f5a102ce925c00041d315a8b1e4648
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 697345
+    sourceWriteUtcTicks: 639257703705970114
+  - path: walk/W/15.png
+    assetGuid: acc06092637aae842a6632e84ac64991
+    sha256: b914f5aa7fdb7dbd90692a33b97d064d8485fb99321745a7946e0d74e9dee575
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 716499
+    sourceWriteUtcTicks: 639257703718359895
+  - path: walk/W/16.png
+    assetGuid: 434aa0d1d4bce3142906001c762037ff
+    sha256: 88c56bba6a9136f89d061413aaeed2555f5ff43ec1db26826ba0b777ded39774
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 663265
+    sourceWriteUtcTicks: 639257604610743807
+  - path: idle/NW.png
+    assetGuid: e52f60841cfcbae4eb4d85c1b27c1850
+    sha256: 021c573389f6d98cbaab10a63af38179a5e721802701a44813254f29ce091544
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 681744
+    sourceWriteUtcTicks: 639256420445685149
+  - path: walk/NW/01.png
+    assetGuid: c52f8917a06c94540978e7c85f8721b4
+    sha256: 0b273e778b0fa4bca2ed347a5fc28235ee66a1d240259b5b9e54855e6d9f8cb4
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 649964
+    sourceWriteUtcTicks: 639256420447159166
+  - path: walk/NW/02.png
+    assetGuid: 3a174fb9e075f8f42bcf0d392ef4fd82
+    sha256: 9890bcfe68e1f573f4c302a144f49f6c0774215c50bf5bc8fd64e717b7b5daad
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 714594
+    sourceWriteUtcTicks: 639257703916602379
+  - path: walk/NW/03.png
+    assetGuid: cf798a7bb209ebf4a91bf6646d4f5686
+    sha256: 969fee7b2b12353eb2bf2b7c8b8170bb079848251f599ee37c82660c13baa4ab
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 685986
+    sourceWriteUtcTicks: 639257700508193484
+  - path: walk/NW/04.png
+    assetGuid: 73eacdefbf0b3aa4c974a632e1d69017
+    sha256: b6e18cfc124207a3c021f48d2a9639dcab8e667987c13572a3d2dff7ecce1818
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 727870
+    sourceWriteUtcTicks: 639257703937182088
+  - path: walk/NW/05.png
+    assetGuid: decceb24575d6dd47a2be70346a99716
+    sha256: 63e49f66f6de6a4450fa20503e42a60366ce2953fe5e97d6ff6b5e618b3b8f17
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 681633
+    sourceWriteUtcTicks: 639257703953078505
+  - path: walk/NW/06.png
+    assetGuid: f695a07b19c2d5744b03b3b02297f1f2
+    sha256: 335e44320480b61081a6c68d97c73ab0c97d6c9ee44817c1af856b47e4aacdb2
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 675382
+    sourceWriteUtcTicks: 639257703969476278
+  - path: walk/NW/07.png
+    assetGuid: 05f52e0b8cf728f4ca886d5c469cc507
+    sha256: f92d1f7060baa750600ecc05039063d5ccb0b54d030a70d7a7ec518f1d36ca45
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 684635
+    sourceWriteUtcTicks: 639257627569710848
+  - path: walk/NW/08.png
+    assetGuid: dbef23e1ac927de4fb7d673834b2140a
+    sha256: c5e37246ca3f84d67c8f28bedb2d45b2710e8169f793d45f6199b45a8a8e3019
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 697770
+    sourceWriteUtcTicks: 639257620947364715
+  - path: walk/NW/09.png
+    assetGuid: a4e8c2fd84a713a4d861c64444e040c0
+    sha256: a91efd7204f067619ad55895fb83d8127450d222230d774675c1c5f5fbc40e37
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 667729
+    sourceWriteUtcTicks: 639257703984213378
+  - path: walk/NW/10.png
+    assetGuid: a63ea15ae680b004b8e3fc3e8c9e42dc
+    sha256: ba8f78d7bb7e965902a327c42e418980791dbec8e42739e8f837e7347777cb09
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 695929
+    sourceWriteUtcTicks: 639257621032419861
+  - path: walk/NW/11.png
+    assetGuid: 80a4ee12a18fe5d4a926d7ac903fe5b4
+    sha256: e5eefc0e8e2fb3b2545127701dd2a5e40e41949d1c1818882e065a1df8b83b35
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 679054
+    sourceWriteUtcTicks: 639257703823030154
+  - path: walk/NW/12.png
+    assetGuid: f185b3755cdaa6242a33a32bdc850cbc
+    sha256: da1144946039e9970b9f0669b2aa809a13797c3b295311a043c955184d71f835
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 645607
+    sourceWriteUtcTicks: 639257703839411077
+  - path: walk/NW/13.png
+    assetGuid: d85688512eff49e4f96ff043216666ec
+    sha256: 86035b93a852572b04b69764031f151378c461f44da13d11b7cf700c3813532d
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 650644
+    sourceWriteUtcTicks: 639257703851577634
+  - path: walk/NW/14.png
+    assetGuid: 2540366f4fc367449bf1b967261a6691
+    sha256: 2f2e2e3cb8786b4e922537b27233b96bcf512e251cc7ed541f5a330a5c3df261
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 708109
+    sourceWriteUtcTicks: 639257703870365527
+  - path: walk/NW/15.png
+    assetGuid: befb99c7cf05aa847b8d0db80f3ee090
+    sha256: e96aa1f66a9539e06b1da0e9940f1cceeaa2160c614a605091f1b984e0bccafc
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 685176
+    sourceWriteUtcTicks: 639257703884795900
+  - path: walk/NW/16.png
+    assetGuid: 9d840b2dd917d1c4a83f3bafba8e26fc
+    sha256: 27387ed7dd130ed59cec01f9531e190b3668c11b25c48bd5c4bc2d5f87fd9b16
+    width: 1024
+    height: 1024
+    pixelsPerUnit: 104
+    sourceBytes: 635406
+    sourceWriteUtcTicks: 639257703898879644
