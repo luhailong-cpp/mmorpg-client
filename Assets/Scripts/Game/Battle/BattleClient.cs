@@ -43,6 +43,8 @@ namespace MmorpgClient.Game.Battle
     ///    (开局到握手之间、断线期间的战斗帧不经大厅回落)并补发自动战斗意愿;
     ///    直连终结为 BattleGone(战斗已结束)收敛回 None,Unreachable 保持相位并抛
     ///    OnBattleChannelFailed(服务端回合超时替本人默认出手,玩家可 RetryBattleChannel);
+    ///    补拉遇传输错误而同一局直连仍就绪(链路 Verified 时的 rpc 超时等,不会再有就绪事件)时,
+    ///    按 1s / 2s / 4s(±20%)有上限退避自动重拉,换局 / 收尾 / 断线 / 下一次就绪 / 显式补拉时作废计划;
     ///  - Ended/None 后收到迟到 TurnResultS2C:丢弃;NotifyBattleEnd 可能经直连与大厅
     ///    (scene 结算推送)各到一份,按 battle_id 幂等;
     ///  - 响应/推送里的 TipInfoMessage 错误统一走 OnError(照 GameClient 的 tip 处理,
@@ -69,8 +71,21 @@ namespace MmorpgClient.Game.Battle
         /// <summary>直连未就绪时 <see cref="SubmitAction"/> 经 OnError 给出的文案。</summary>
         public const string BattleChannelConnectingText = "正在连接战斗服务器,请稍候…";
 
+        /// <summary>
+        /// 补拉(GetBattleState)遇传输错误、而同一局直连仍就绪时的自动重拉次数上限(turn-based §22 D74)。
+        /// 链路没断就不会再有就绪事件替它补拉:不重拉的话相位停在 None,经直连到的回合结果又被相位闸丢弃。
+        /// 设上限是因为链路半死时每次都要等满直连调用超时,无限重拉只会持续占 battle 的按消息号限速;
+        /// 用完后由主城入口「返回战斗」(<see cref="RequestState"/>)或下一次就绪兜底。
+        /// </summary>
+        public const int MaxStatePullRetries = 3;
+        /// <summary>自动重拉的退避基数(秒):第 k 次重拉前等 基数 × 2^(k-1),即 1s / 2s / 4s(与直连补签同一节奏)。</summary>
+        public const double StatePullRetryBaseSeconds = 1.0;
+        /// <summary>自动重拉的退避抖动幅度(±20%):同一 battle 节点抖动时,别让一批客户端同一时刻重拉。</summary>
+        public const double StatePullRetryJitter = 0.2;
+
         private readonly IBattleTransport _net;
         private readonly IBattleChannel _channel;   // null = 永远就绪(演出台 / 既有测试)
+        private readonly Func<double> _random01;    // 自动重拉退避抖动用的 [0,1) 随机源
 
         private double _now;                 // 宿主注入的时钟(秒)
         private double _nextQueuePollAt;     // 下一次排队轮询时刻
@@ -89,6 +104,10 @@ namespace MmorpgClient.Game.Battle
         private bool _autoResendPending;     // 自动战斗意愿待直连就绪后补发(值取 AutoBattleLatched)
         private bool _channelFailed;         // 本局直连已判定连不上(Unreachable),等就绪 / 手动重连 / 收尾
         private ulong _statePullBattleId;    // 在途 GetBattleState 所属战斗;0 = 无在途(补拉去重)
+        // 补拉遇传输错误后的自动重拉计划(见 MaxStatePullRetries)。计划只对当前这一局有效:
+        // 换局 / 收尾 / 断线 / 下一次就绪 / 显式补拉 / 补拉成功都经 ResetStatePullRetry 作废计划并归零预算。
+        private double _statePullRetryAt;    // >0 = 到点重拉(退避中)
+        private int _statePullRetries;       // 本轮已排的自动重拉次数
         // 已按权威信号收场(直连 BattleGone / 补拉到已出胜负)、却还没收到 NotifyBattleEnd 的战斗:
         // 允许它的终局包(scene 结算后经大厅推)晚到,UI 仍能出结算面板。0 = 无。
         private ulong _endPendingBattleId;
@@ -137,6 +156,15 @@ namespace MmorpgClient.Game.Battle
         /// </summary>
         public bool IsBattleChannelFailed => _channelFailed;
 
+        /// <summary>
+        /// 有进行中的对局(含大厅重连后、直连补签 / 补拉尚未完成的恢复中对局),即持有非 0 的 battle_id。
+        /// 从开局包 / NotifyBattleReconnect 起为 true,到终局包 / 直连 BattleGone / 补拉到已出胜负 / 大厅断线收尾为止。
+        /// 与 <see cref="Phase"/> 的区别:大厅重连后权威状态要经直连补拉,补拉成功前(含直连已就绪而补拉以传输错误失败)相位停在 None,
+        /// 只有这里能说明「本人仍在战斗中」。UI 据此在战斗屏没开时借用主城入口(「连接战斗中…」/「重新连接战斗」/
+        /// 「返回战斗」,见 BattleUiRoot.DecideEntryMode;turn-based §22 D74),免得玩家点开排队面板、再被服务端以在战斗中拒绝。
+        /// </summary>
+        public bool HasActiveBattle => _battleId != 0;
+
         // ── 契约事件 ────────────────────────────────────────
 
         public event Action<BattlePhase> OnPhaseChanged;
@@ -167,10 +195,20 @@ namespace MmorpgClient.Game.Battle
 
         /// <param name="transport">战斗网络传输(生产:DirectRoutingBattleTransport)。</param>
         /// <param name="channel">战斗直连就绪状态(生产:同一个 DirectRoutingBattleTransport);null = 永远就绪。</param>
-        public BattleClient(IBattleTransport transport, IBattleChannel channel = null)
+        /// <param name="random01">
+        /// 自动重拉退避抖动用的 [0,1) 随机源;空 = System.Random。只在主线程调用(同 BattleDirectLink)。
+        /// 测试传常量(0.5 = 无抖动)让退避时序确定;时钟本就经 <see cref="Tick"/> 注入。
+        /// </param>
+        public BattleClient(IBattleTransport transport, IBattleChannel channel = null, Func<double> random01 = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
             _channel = channel;
+            if (random01 == null)
+            {
+                var rng = new Random();
+                random01 = rng.NextDouble;
+            }
+            _random01 = random01;
             RegisterNotifies();
             _net.Disconnected += HandleDisconnected;
             if (_channel != null)
@@ -190,11 +228,19 @@ namespace MmorpgClient.Game.Battle
 
         /// <summary>
         /// 宿主每帧驱动(GameClient.Tick 传 Time.realtimeSinceStartup)。
-        /// 负责排队轮询与 Preparing 超时,纯逻辑可注入假时钟测试。
+        /// 负责排队轮询、Preparing 超时与补拉的自动重拉,纯逻辑可注入假时钟测试。
         /// </summary>
         public void Tick(double nowSeconds)
         {
             _now = nowSeconds;
+
+            // 补拉遇传输错误后的自动重拉(见 MaxStatePullRetries)。到点时直连已不就绪(断开 / 改服务别的局):
+            // 放弃本次,下一次就绪事件自会补拉并重置预算;同局补拉在途时 PullState 自行去重
+            if (_statePullRetryAt > 0 && _now >= _statePullRetryAt)
+            {
+                _statePullRetryAt = 0;
+                if (IsBattleChannelReady) PullState();
+            }
 
             if (Phase == BattlePhase.Queued && _net.IsReady && _now >= _nextQueuePollAt)
             {
@@ -463,6 +509,8 @@ namespace MmorpgClient.Game.Battle
         /// WaitingAction / Resolving(战斗已结束则收敛回 None)。
         /// 直连未就绪时不发请求也不报错:直连就绪时会自动补拉(turn-based §22 D74);
         /// 同局补拉在途时去重(battle 直连按消息号限速,连续重连 + UI 兜底不能叠发)。
+        /// 显式补拉(大厅重连提示 / UI「返回战斗」/ 开屏兜底)是新的一轮:作废待执行的自动重拉并重置其预算,
+        /// 同 BattleDirectLink 的宿主入口重置补签预算。
         /// </summary>
         public void RequestState()
         {
@@ -471,6 +519,7 @@ namespace MmorpgClient.Game.Battle
                 OnError?.Invoke("没有进行中的战斗,无法补拉状态");
                 return;
             }
+            ResetStatePullRetry();
             if (!IsBattleChannelReady) return;
             PullState();
         }
@@ -525,6 +574,7 @@ namespace MmorpgClient.Game.Battle
             _autoResendPending = false;   // 新的一局:上一局挂起的直连相关标记作废
             _channelFailed = false;
             _endPendingBattleId = 0;
+            ResetStatePullRetry();        // 换局:上一局的自动重拉计划作废
 
             // 排队中收到开战:补发 Preparing 让 UI 收起排队面板(Queued→Preparing→WaitingAction)
             if (Phase == BattlePhase.Queued) SetPhase(BattlePhase.Preparing);
@@ -597,7 +647,7 @@ namespace MmorpgClient.Game.Battle
             _queueTicket = string.Empty;
             _preparingDeadline = 0;
             _channelFailed = false;   // 链路按提示重新补签,失败会再次通知
-            RequestState();
+            RequestState();           // 内含作废旧的自动重拉计划(换局 / 同局新一轮都是新的开始)
         }
 
         private void HandleChallengeResult(Match.ChallengeResultS2C ev)
@@ -613,12 +663,14 @@ namespace MmorpgClient.Game.Battle
 
         /// <summary>
         /// 直连就绪:D68 下开局到握手之间、断线期间的战斗帧不会经大厅回落,就绪即补拉一次
-        /// 权威状态;挂起的自动战斗意愿(或记忆开着而权威态未挂机)随后补发。只处理本局。
+        /// 权威状态(新的一轮:作废待执行的自动重拉并重置预算);挂起的自动战斗意愿
+        /// (或记忆开着而权威态未挂机)随后补发。只处理本局。
         /// </summary>
         private void HandleChannelReady(ulong battleId, eBattleTicketRole role)
         {
             if (battleId == 0 || battleId != _battleId) return;
             _channelFailed = false;
+            ResetStatePullRetry();
             PullState();
             if (_autoResendPending || (AutoBattleLatched && !IsMyActorAuto))
             {
@@ -687,7 +739,9 @@ namespace MmorpgClient.Game.Battle
 
         /// <summary>
         /// 发 GetBattleState(同局在途去重)。结果只作用于发出时的那一局:期间已收尾 / 换局 / 断线,
-        /// 迟到的结果作废。直连传输层失败(未就绪 / 断开 / 超时)不打扰玩家,等下一次就绪自动补拉。
+        /// 迟到的结果作废。直连传输层失败(未就绪 / 断开 / 超时)不打扰玩家:此刻同一局直连已不就绪的,
+        /// 等下一次就绪自动补拉;仍就绪的(链路 Verified 时的 rpc 超时等,不会再有就绪事件)按有上限退避自动重拉,
+        /// 见 <see cref="ScheduleStatePullRetry"/>。服务端拒绝 / 无直连通道时的失败照常经 OnError 抛出,不重拉。
         /// </summary>
         private void PullState()
         {
@@ -700,15 +754,42 @@ namespace MmorpgClient.Game.Battle
                 {
                     if (_statePullBattleId == battleId) _statePullBattleId = 0;
                     if (_battleId != battleId) return;
+                    ResetStatePullRetry(); // 拉到了:本轮结束,之后的失败另起一轮预算
                     ApplyAuthoritativeState(state);
                 },
                 err =>
                 {
                     if (_statePullBattleId == battleId) _statePullBattleId = 0;
                     if (_battleId != battleId) return;
-                    if (_channel != null && IsTransportError(err)) return;
+                    if (_channel != null && IsTransportError(err))
+                    {
+                        if (IsBattleChannelReady) ScheduleStatePullRetry();
+                        return;
+                    }
                     OnError?.Invoke($"拉取战斗状态失败:{err}");
                 });
+        }
+
+        /// <summary>
+        /// 排下一次自动重拉:本轮预算内第 k 次(从 1 起)等 基数 × 2^(k-1) × (1 ± 抖动),即 1s / 2s / 4s ±20%。
+        /// 已有计划不重复排;预算用完不再排,也不打扰玩家(传输错误本就静默)——主城入口此时是可点的
+        /// 「返回战斗」(BattleUiRoot.DecideEntryMode),下一次就绪也会再补拉。
+        /// 计划时刻以 <see cref="Tick"/> 注入的时钟为准;回调里拿到的是上一次 Tick 的时刻,最多差一帧,无碍。
+        /// </summary>
+        private void ScheduleStatePullRetry()
+        {
+            if (_statePullRetryAt > 0 || _statePullRetries >= MaxStatePullRetries) return;
+            _statePullRetries++;
+            double delay = StatePullRetryBaseSeconds * Math.Pow(2, _statePullRetries - 1)
+                           * (1.0 + (_random01() * 2.0 - 1.0) * StatePullRetryJitter);
+            _statePullRetryAt = _now + delay; // delay ≥ 0.8s,故 >0 可作「有计划」的哨兵
+        }
+
+        /// <summary>作废待执行的自动重拉并归零本轮预算(换局 / 收尾 / 断线 / 就绪 / 显式补拉 / 补拉成功)。</summary>
+        private void ResetStatePullRetry()
+        {
+            _statePullRetryAt = 0;
+            _statePullRetries = 0;
         }
 
         // ── 内部工具 ────────────────────────────────────────
@@ -797,6 +878,7 @@ namespace MmorpgClient.Game.Battle
             _autoResendPending = false;
             _channelFailed = false;
             _statePullBattleId = 0;
+            ResetStatePullRetry();      // 收尾 / 断线:自动重拉计划随本局作废
         }
 
         private void SetPhase(BattlePhase phase)

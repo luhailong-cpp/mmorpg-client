@@ -1,4 +1,4 @@
-"""Validate and stage the 05 mixed-resolution V14 delivery in an isolated Unity project.
+"""Validate and stage the 04 or 05 mixed V14 delivery in an isolated Unity project.
 
 This consumes the final offline delivery and its preserved V13 snapshot. It does
 not reconstruct deleted generation raws, run Unity, or grant formal release.
@@ -22,6 +22,15 @@ from PIL import Image
 SCHEMA = "qdao-original-v14-mixed/import-delivery-v1"
 MODE = "mixed-preserved-v1"
 CHARACTER_ID = "05_celestial_musician_girl"
+GUARDIAN_ID = "04_mountain_guardian_boy"
+GUARDIAN_PINS = {
+    "source_document": "77f6a60a37f2016a8643150a34921bd389f253c1a92e534a3adc303125182737",
+    "offline_review": "9ef56952f3bf6bdade3a2904d92ddd1a5d0bd5166c196b3dc99686570a783b77",
+    "source_audit": "b0bd03765b19fa8cb3e604fe7667f132a51af4435e7b3b7a1c562474389624bb",
+    "action_audit": "904dbae35b7b5440f7a2a713a1237a42e7509e3b58429fd2efc7e8e9cbdc50be",
+    "preserved_snapshot": "d7a406983abafd1f0256b84fcd592b211f848ec835dbca81ce8d74bdc6183cd7",
+    "portrait_inventory": "0a548c644fb64452291622318d5df922abec8af55ff82e5355e2675f49688826",
+}
 SOURCE_COMMIT = "9adcf9291e4a867601868889a5965f3cd48630ba"
 SOURCE_DOCUMENT_SHA256 = "885cadf1e891c780d2ce897631cee467f8feea4dc24961c7c0d4eedf453cdc06"
 APPROVAL_DOCUMENT_SHA256 = "e85949017ad3f2c496c35ad0171463db6fadd3a877297f2dae8a18d6ed65ba9a"
@@ -130,10 +139,11 @@ def check_project(project_argument: Path, checkout: Path) -> Path:
     return project
 
 
-def check_portrait_inventory(profile: dict, checkout: Path, portrait_hash: str) -> str:
+def check_portrait_inventory(profile: dict, checkout: Path, portrait_hash: str,
+                             character_id: str = CHARACTER_ID) -> str:
     _, inventory, digest = check_document(profile, "portrait_inventory", "portrait_inventory_sha256", checkout)
     matches = [row for row in inventory.get("characters", []) if isinstance(row, dict) and
-               row.get("character_id") == CHARACTER_ID]
+               row.get("character_id") == character_id]
     require(inventory.get("source_commit") == SOURCE_COMMIT and len(matches) == 1 and
             matches[0].get("source_commit") == SOURCE_COMMIT and
             matches[0].get("sha256") == portrait_hash and
@@ -307,7 +317,178 @@ def check_runtime(profile: dict, evidence: dict, checkout: Path) -> list[tuple[s
     return [("portrait.png", portrait_path, portrait), *selected]
 
 
+def build_guardian_plan(args: argparse.Namespace) -> dict:
+    """Bind 04's immutable preview and later review without rewriting either one."""
+    checkout = Path(__file__).resolve().parents[1]
+    project = check_project(args.project, checkout)
+    profile_path = args.manifest.resolve()
+    profile, profile_data = read_json(profile_path, "04 local integration profile")
+    require(profile.get("schema") == SCHEMA and profile.get("character_id") == GUARDIAN_ID and
+            profile.get("status") == "user_authorized_local_integration" and
+            profile.get("resolution_mode") == MODE and profile.get("formal_approval") is False and
+            profile.get("unity_validation") is False,
+            "04 requires its own local integration profile, not a new art approval")
+    documents = {profile_path: sha256(profile_data)}
+    evidence = {}
+    for field, pin in GUARDIAN_PINS.items():
+        path = input_path(profile, field, checkout)
+        require(profile.get(field + "_sha256") == pin and path.is_file() and not path.is_symlink() and
+                file_sha256(path) == pin, f"04 pinned evidence differs: {field}")
+        documents[path] = pin
+        if field != "offline_review":
+            evidence[field], _ = read_json(path, field)
+    source = evidence["source_document"]
+    require(source.get("schema") == "qdao-mixed-review-only-v1" and source.get("revision") == "review-set-v3" and
+            source.get("character_id") == GUARDIAN_ID and source.get("actual_walk") == 128 and
+            source.get("actual_idle") == 8 and source.get("missing") == [] and
+            source.get("frame_duration_ms") == 30 and source.get("cycle_duration_ms") == 480 and
+            source.get("formal_approval") is False,
+            "04 snapshot identity, inventory, or historical status differs")
+    audit = evidence["source_audit"]
+    action_audit = evidence["action_audit"]
+    require(audit.get("manifest_sha256") == GUARDIAN_PINS["source_document"] and
+            audit.get("selected_hd_frames") == audit.get("independent_reconstruction_passed") == 24 and
+            action_audit.get("manifest_sha256") == GUARDIAN_PINS["source_document"] and
+            action_audit.get("preserved_v13_actions") == 112 and action_audit.get("new_walk_count") == 24 and
+            action_audit.get("preserved_bytes_match") is True,
+            "04 source and action audits do not bind the selected snapshot")
+    audit_rows = audit.get("frames", [])
+    native_audit = {row["slot"]: row for row in audit_rows}
+    require(len(audit_rows) == len(native_audit) == 24, "04 needs 24 unique source audit rows")
+    snapshot = evidence["preserved_snapshot"]
+    require(snapshot.get("schema") == "qdao-original-v14/preserved-output-snapshot-v1" and
+            snapshot.get("resolution_mode") == MODE, "04 preserved snapshot schema differs")
+    preserved_rows = [row for row in snapshot.get("files", []) if row.get("character_id") == GUARDIAN_ID]
+    preserved = {row["path"]: row for row in preserved_rows}
+    require(len(preserved_rows) == len(preserved) == 113 and "portrait.png" in preserved,
+            "04 requires 112 preserved actions and its original portrait")
+    source_dir = input_path(profile, "source_dir", checkout)
+    require(source_dir == input_path(profile, "source_document", checkout).parent / "runtime" and
+            source_dir.is_dir() and not source_dir.is_symlink(), "04 runtime must belong to review-set-v3")
+    require({p.relative_to(source_dir).as_posix() for p in source_dir.rglob("*.png")} == set(ACTION_PATHS),
+            "04 snapshot must contain exactly 136 action PNGs")
+    slots = profile.get("slots", [])
+    source_rows = source.get("files", [])
+    require(len(slots) == len(source_rows) == 136, "04 needs exactly 136 slot and source rows")
+    selected = {row["path"]: row for row in slots}
+    source_by_path = {row["path"]: row for row in source_rows}
+    require(set(selected) == set(source_by_path) == set(ACTION_PATHS), "04 duplicate or missing action slot")
+    runtime = []
+    old_count = 0
+    for relative in ACTION_PATHS:
+        row = selected[relative]
+        final = source_by_path[relative]
+        old = final.get("selected_revision") == "preserved-v13"
+        size = 512 if old else 1024
+        record = final.get("source_record", {})
+        raw = record.get("source", {})
+        box = raw.get("cell_xyxy")
+        require(isinstance(box, list) and len(box) == 4 and all(type(v) is int for v in box),
+                f"04 invalid source cell: {relative}")
+        native = [box[2] - box[0], box[3] - box[1]]
+        expected = {"path": relative, "sha256": final["sha256"], "width": size, "height": size,
+                    "pixels_per_unit": 52 if old else 104, "pivot": [0.5, 0.08],
+                    "root_px": [256, 471] if old else [512, 942],
+                    "source_kind": "preserved-v13" if old else "native-hd",
+                    "source_sha256": raw.get("sha256"), "native_cell_size": native}
+        if old:
+            old_count += 1
+            expected["preserved_sha256"] = final["sha256"]
+            frozen = preserved.get(relative, {})
+            require(all(frozen.get(key) == value for key, value in expected.items()),
+                    f"04 preserved snapshot row differs: {relative}")
+        else:
+            audited = native_audit.get(relative, {})
+            require(all(value >= 1024 for value in native) and raw.get("grid") == [1, 1] and
+                    audited.get("output_sha256") == final["sha256"] and audited.get("status") == "passed" and
+                    audited.get("snapshot_sha_matches") is True,
+                    f"04 native resolution or source audit differs: {relative}")
+        require(row == expected and final.get("size") == [size, size] and
+                final.get("pixels_per_unit") == expected["pixels_per_unit"] and
+                record.get("output_sha256") == final["sha256"] and
+                record.get("anchor_after_px") == expected["root_px"],
+                f"04 slot geometry, SHA, or source binding differs: {relative}")
+        pinned_hash(expected["source_sha256"], f"{relative} original source")
+        lineage_path = Path(final["source_record_file"])
+        lineage_hash = pinned_hash(final["source_record_file_sha256"], f"{relative} lineage")
+        lineage, lineage_data = read_json(lineage_path, f"{relative} lineage")
+        require(sha256(lineage_data) == lineage_hash and lineage.get(relative) == record,
+                f"04 source record differs: {relative}")
+        documents[lineage_path] = lineage_hash
+        path = source_dir / relative
+        check_png(path, (size, size), relative)
+        require(file_sha256(path) == final["sha256"], f"04 runtime PNG SHA256 differs: {relative}")
+        runtime.append((relative, path, expected))
+    require(old_count == profile.get("preserved_actions") == 112 and profile.get("native_hd_actions") == 24,
+            "04 must preserve 112 actions and add 24 native HD actions")
+    portrait = profile.get("portrait")
+    frozen_portrait = {k: v for k, v in preserved["portrait.png"].items() if k != "character_id"}
+    require(portrait == frozen_portrait, "04 portrait identity differs from the preserved snapshot")
+    portrait_path = input_path(profile, "portrait_output", checkout)
+    check_png(portrait_path, (1024, 1024), "04 original portrait output")
+    require(file_sha256(portrait_path) == portrait["sha256"], "04 preserved portrait bytes differ")
+    original_portrait = input_path(profile, "portrait_source", checkout)
+    check_png(original_portrait, (4096, 4096), "04 original portrait source")
+    require(file_sha256(original_portrait) == profile.get("portrait_source_sha256") == portrait["source_sha256"],
+            "04 original portrait source differs")
+    check_portrait_inventory(profile, checkout, portrait["source_sha256"], GUARDIAN_ID)
+    documents[original_portrait] = portrait["source_sha256"]
+    runtime.insert(0, ("portrait.png", portrait_path, portrait))
+    files = [row for _, _, row in runtime]
+    review_scope = "existing_offline_observation_and_user_authorized_local_playtest"
+    manifest = {
+        "version": 14, "character_id": GUARDIAN_ID, "status": "passed", "visual_review": "passed",
+        "review_scope": review_scope, "formal_approval": False, "resolution_mode": MODE,
+        "preserved_snapshot_sha256": GUARDIAN_PINS["preserved_snapshot"],
+        "frame_size": [1024, 1024], "portrait_size": [1024, 1024], "frame_count": 16,
+        "frame_duration_ms": 30, "cycle_duration_ms": 480, "dedicated_idle": True, "contact_frame": 0,
+        "alignment": {"alignment_version": 2, "root_px": [512, 942]},
+        "runtime_geometry": {"reference_frame_size": 512, "pixels_per_unit": 104, "pivot": [0.5, 0.08]},
+        "source_commit": SOURCE_COMMIT, "source_family": "original-00-22",
+        "source_document_sha256": GUARDIAN_PINS["source_document"],
+        "source_manifest_sha256": sha256(profile_data), "evidence_sha256": GUARDIAN_PINS,
+        "source_snapshot_status": source["status"], "files": files,
+    }
+    manifest_data = json_bytes(manifest)
+    manifest_digest = sha256(manifest_data)
+    validation = {
+        "schema": "qdao-original-v14-mixed/import-validation-v1", "character_id": GUARDIAN_ID,
+        "version": 14, "status": "passed", "visual_review": "passed", "scope": review_scope,
+        "formal_release": False, "unity_validation": False, "source_history_unchanged": True,
+        "source_snapshot_status": source["status"], "source_manifest_sha256": sha256(profile_data),
+        "evidence_sha256": GUARDIAN_PINS, "manifest_sha256": manifest_digest,
+        "qc_sha256": GUARDIAN_PINS["source_audit"], "preserved_actions": 112, "native_hd_actions": 24,
+        "runtime_png_sha256": {row["path"]: row["sha256"] for row in files},
+        "limitations": ["Existing 512 artwork is retained, including historical edge defects.",
+                        "SW15 to SW16 retains the reviewed 22px subject-height change.",
+                        "This local integration is not formal artwork approval or Unity validation."],
+    }
+    validation_data = json_bytes(validation)
+    appearance = {
+        "version": 14, "characterId": GUARDIAN_ID, "status": "passed", "visualReview": "passed",
+        "reviewScope": review_scope, "formalApproval": False, "resolutionMode": MODE,
+        "frameCount": 16, "frameDurationMs": 30, "cycleDurationMs": 480, "alignmentVersion": 2,
+        "dedicatedIdle": True, "contactFrame": 0, "frameWidth": 1024, "frameHeight": 1024,
+        "portraitWidth": 1024, "portraitHeight": 1024, "pixelsPerUnit": 104, "pivotX": 0.5, "pivotY": 0.08,
+        "manifest_sha256": manifest_digest, "qc_sha256": GUARDIAN_PINS["source_audit"],
+        "validation_sha256": sha256(validation_data), "sourceCommit": SOURCE_COMMIT,
+        "sourceFamily": "original-00-22",
+    }
+    metadata = {"manifest.json": manifest_data, "validation.json": validation_data,
+                "appearance.json": json_bytes(appearance)}
+    target = project / RESOURCE_FAMILY / GUARDIAN_ID
+    require(not target.exists() and not target.with_suffix(".meta").exists(),
+            f"V14 character or Unity GUID already exists; refusing to overwrite: {target}")
+    outputs = {row["path"]: row["sha256"] for row in files}
+    outputs.update({name: sha256(data) for name, data in metadata.items()})
+    require(len(outputs) == 140, "04 requires 137 PNGs and three activation JSON files")
+    return {"project": project, "target": target, "profile_sha256": sha256(profile_data),
+            "runtime": runtime, "metadata": metadata, "documents": documents, "outputs": outputs}
+
+
 def build_plan(args: argparse.Namespace) -> dict:
+    if args.character_id == GUARDIAN_ID:
+        return build_guardian_plan(args)
     checkout = Path(__file__).resolve().parents[1]
     project = check_project(args.project, checkout)
     profile_path = args.manifest.resolve()
@@ -408,7 +589,7 @@ def execute(plan: dict) -> None:
     temp_root = project / "Temp"
     temp_root.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="qdao-v14-mixed-import-", dir=temp_root) as temporary:
-        staged = Path(temporary) / CHARACTER_ID
+        staged = Path(temporary) / target.name
         staged.mkdir()
         for relative, source, row in plan["runtime"]:
             destination = staged / relative
@@ -431,8 +612,8 @@ def execute(plan: dict) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", type=Path, required=True, help="Pinned 05 mixed profile JSON")
-    parser.add_argument("--character-id", required=True, help="Must be 05_celestial_musician_girl")
+    parser.add_argument("--manifest", type=Path, required=True, help="Pinned 04 or 05 mixed profile JSON")
+    parser.add_argument("--character-id", required=True, help="04_mountain_guardian_boy or 05_celestial_musician_girl")
     parser.add_argument("--project", type=Path, required=True,
                         help="Independent Unity candidate under this workspace's tmp directory")
     parser.add_argument("--execute", action="store_true", help="Atomically add one character to the candidate")
@@ -442,7 +623,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.execute:
             execute(plan)
         print(json.dumps({"status": "staged_pending_unity_validation" if args.execute else "ready_dry_run",
-                          "writes_performed": args.execute, "character_id": CHARACTER_ID,
+                          "writes_performed": args.execute, "character_id": plan["target"].name,
                           "target": str(plan["target"]), "profile_sha256": plan["profile_sha256"],
                           "runtime_png_count": len(plan["runtime"]), "output_count": len(plan["outputs"]),
                           "manifest_sha256": plan["outputs"]["manifest.json"],

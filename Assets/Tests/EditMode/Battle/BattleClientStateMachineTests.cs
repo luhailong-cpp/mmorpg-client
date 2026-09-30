@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
+using MmorpgClient.UI.Ugui.Battle;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -32,12 +33,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [SetUp]
         public void SetUp() => Build(channel: null);
 
-        /// <summary>重建被测对象;传入假直连通道即进入收缩后口径(turn-based §22 D74)。</summary>
-        private void Build(FakeBattleChannel channel)
+        /// <summary>
+        /// 重建被测对象;传入假直连通道即进入收缩后口径(turn-based §22 D74)。
+        /// random01 = 自动重拉退避抖动的随机源(空 = System.Random;0.5 = 无抖动,时序确定)。
+        /// </summary>
+        private void Build(FakeBattleChannel channel, System.Func<double> random01 = null)
         {
             _net = new FakeBattleTransport { PlayerId = MyId };
             _channel = channel;
-            _client = new BattleClient(_net, channel); // 直接 new,不经 Attach,避免污染单例
+            _client = new BattleClient(_net, channel, random01); // 直接 new,不经 Attach,避免污染单例
             _phases = new List<BattlePhase>();
             _errors = new List<string>();
             _channelFailures = new List<string>();
@@ -778,6 +782,315 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.IsBattleChannelReady, Is.True);
             Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionAttack }),
                 Is.True);
+        }
+
+        [Test]
+        public void Submitted_LinkRecovers_PullToNextRound_NoPhaseEvent_NeedsScreenResync()
+        {
+            // 评审回归:已提交 → 直连断开(自动恢复中,未终结)→ 服务端在断连期间结算、进入下一回合且本人又在 pending →
+            // 直连恢复补拉。相位前后都是 WaitingAction,不抛相位事件,也没有别的事件把新状态交给已开的战斗屏;
+            // UI 只能按引用发现(BattleHudLogic.NeedsScreenResync)并补刷,否则停在旧回合的「已提交」、按钮全灰。
+            // 覆盖范围:只守 BattleClient 这一侧(补拉换了新对象、相位不变)与补刷判定函数。
+            // 「已提交」闸在 UI 侧(BattleScreen._submitted,由 ApplyState 在回合号变化时复位),
+            // 接线 BattleUiRoot.ResyncOpenBattleScreen → BattleScreen.ApplyState 本用例不覆盖,目前只由人工验证
+            UseChannel();
+            PushBattleStart();
+            _channel.RaiseReady(TheBattleId);
+            _net.CallsOf(MessageIds.GetBattleState)[0]
+                .Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            var shown = _client.State; // 屏上此刻显示的状态(就绪补拉后 UI 已按它补刷过)
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionDefend }),
+                Is.True);
+
+            _channel.ReadyBattleId = 0;       // 直连断开,自动恢复中(不抛 Lost:尚未终结)
+            Assert.That(_client.IsBattleChannelReady, Is.False);
+            _channel.RaiseReady(TheBattleId); // 恢复
+            var pulls = _net.CallsOf(MessageIds.GetBattleState);
+            Assert.That(pulls, Has.Count.EqualTo(2), "恢复即补拉:未就绪期间的回合结果被服务端丢弃、不补发");
+
+            var next = MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId);
+            next.RoundIndex = 2;
+            int phaseEvents = _phases.Count;
+            pulls[1].Respond(next);
+
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "本人在新回合 pending 里");
+            Assert.That(_phases.Count, Is.EqualTo(phaseEvents), "相位不变:没有相位事件会把新状态交给屏");
+            // 假传输按字节 round-trip 回调(与真实链路同构),拿到的是新解析的对象,不是 next 本身
+            Assert.That(_client.State.RoundIndex, Is.EqualTo(2u));
+            Assert.That(_client.State, Is.Not.SameAs(shown));
+            Assert.That(BattleHudLogic.NeedsScreenResync(true, false, _client.Phase, _client.State, shown), Is.True,
+                "UI 须按引用发现补拉来的新状态并补刷战斗屏");
+            // 注意:这条不证明「新回合可再出手」—— BattleClient 本身没有按回合的提交闸,同一回合重复提交也返回 true。
+            // 它只钉住「BattleClient 层不拦再次提交」,提交闸在 BattleScreen(见用例开头的覆盖范围说明)
+            Assert.That(_client.SubmitAction(new BattleAction { ActionType = eBattleActionType.BattleActionDefend }),
+                Is.True, "BattleClient 层不拦再次提交(提交闸在 BattleScreen)");
+        }
+
+        [Test]
+        public void HasActiveBattle_TrueWhileReconnectRecovering_FalseAfterSettle()
+        {
+            // 大厅重连后权威状态要经直连补拉:补拉成功前相位停在 None,只有 HasActiveBattle 说明本人仍在战斗中
+            // (UI 主城入口据此显示不可点的「连接战斗中…」/ 可点的「重新连接战斗」/ 可点的「返回战斗」,
+            //  而不是能点开排队的「战斗」,见 BattleUiRoot.DecideEntryMode)
+            UseChannel();
+            Assert.That(_client.HasActiveBattle, Is.False, "空闲");
+
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None), "补拉推迟到直连就绪,相位未动");
+            Assert.That(_client.HasActiveBattle, Is.True);
+            Assert.That(_client.IsBattleChannelReady, Is.False);
+            Assert.That(_client.IsBattleChannelFailed, Is.False);
+
+            // 判定连不上:仍有对局(入口「重新连接战斗」);手动重连后回到连接中
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Unreachable);
+            Assert.That(_client.IsBattleChannelFailed, Is.True);
+            Assert.That(_client.HasActiveBattle, Is.True);
+            _client.RetryBattleChannel();
+            Assert.That(_client.IsBattleChannelFailed, Is.False);
+            Assert.That(_client.HasActiveBattle, Is.True);
+
+            // 补签判战斗已结束(BattleGone):收场
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.BattleGone);
+            Assert.That(_client.HasActiveBattle, Is.False);
+
+            // 开局 → 大厅断线:收场
+            PushBattleStart();
+            Assert.That(_client.HasActiveBattle, Is.True);
+            _net.RaiseDisconnected();
+            Assert.That(_client.HasActiveBattle, Is.False);
+
+            // 开局 → 终局包:收场
+            PushBattleStart();
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+            });
+            Assert.That(_client.HasActiveBattle, Is.False);
+        }
+
+        [Test]
+        public void ReconnectPull_TransportErrorWhileLinkReady_EntryOffersReturnToBattle()
+        {
+            // 评审回归:大厅重连后直连已就绪,就绪补拉却以传输错误失败(链路仍 Verified 时的 rpc 超时)。
+            // BattleClient 不打扰玩家,链路不断就不会再有就绪事件替它补拉;它只按有上限退避自动重拉
+            // (见 StatePull_TransportErrorWhileLinkReady_* 用例),退避等待期间与预算用完后相位都停在 None,
+            // 期间经直连到的回合结果又被相位闸丢弃。主城入口若退回「战斗」(或换成不可点的「连接战斗中…」),
+            // 玩家可能到本局结束都回不到战斗 —— 入口须给可点的「返回战斗」,点了 RequestState 补拉即恢复
+            UseChannel();
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            Assert.That(EntryMode(), Is.EqualTo(BattleUiRoot.BattleEntryMode.Connecting), "直连就绪前:不可点的「连接战斗中…」");
+
+            _channel.RaiseReady(TheBattleId);
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Has.Count.EqualTo(1), "就绪即补拉");
+            _net.CallsOf(MessageIds.GetBattleState)[0].FailWith(BattleDirectLink.TransportErrorPrefix + "rpc timeout");
+
+            Assert.That(_errors, Is.Empty, "传输错误不打扰玩家");
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None));
+            Assert.That(_client.HasActiveBattle, Is.True);
+            Assert.That(_client.IsBattleChannelReady, Is.True, "链路仍就绪:不会再有就绪事件替它补拉");
+            Assert.That(_client.IsBattleChannelFailed, Is.False);
+            PushTurnResult(TheBattleId, MyId);
+            Assert.That(_turnResults, Is.EqualTo(0), "相位 None:经直连到的回合结果被丢弃,不能指望它把玩家带回战斗");
+            Assert.That(EntryMode(), Is.EqualTo(BattleUiRoot.BattleEntryMode.ReturnToBattle));
+
+            // 点「返回战斗」= RequestState;连点由同局在途去重兜住
+            _client.RequestState();
+            _client.RequestState();
+            var pulls = _net.CallsOf(MessageIds.GetBattleState);
+            Assert.That(pulls, Has.Count.EqualTo(2), "再拉一次,且同局在途不叠发");
+            pulls[1].Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "回到战斗(UI 随相位事件开屏、入口隐藏)");
+            Assert.That(_errors, Is.Empty);
+        }
+
+        /// <summary>按当前 BattleClient 状态取主城入口用途(战斗屏未开,即入口可见时)。</summary>
+        private BattleUiRoot.BattleEntryMode EntryMode()
+            => BattleUiRoot.DecideEntryMode(false, _client.HasActiveBattle, _client.IsBattleChannelReady,
+                _client.IsBattleChannelFailed, _client.Phase);
+
+        // ── 就绪补拉遇传输错误的自动重拉(turn-based §22 D74) ─────
+
+        /// <summary>链路仍 Verified 时直连调用超时的错误串(带传输层前缀)。</summary>
+        private const string RpcTimeout = BattleDirectLink.TransportErrorPrefix + "rpc timeout";
+
+        private int PullCount => _net.CallsOf(MessageIds.GetBattleState).Count;
+
+        private FakeBattleTransport.RecordedCall LastPull()
+        {
+            var pulls = _net.CallsOf(MessageIds.GetBattleState);
+            return pulls[pulls.Count - 1];
+        }
+
+        /// <summary>大厅重连 → 直连就绪 → 就绪补拉以传输错误失败(链路仍就绪)。调用前先 Tick 定好时钟。</summary>
+        private void ReconnectReadyThenPullTimesOut()
+        {
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            _channel.RaiseReady(TheBattleId);
+            LastPull().FailWith(RpcTimeout);
+        }
+
+        [Test]
+        public void StatePull_TransportErrorWhileLinkReady_AutoRetriesWithBackoff_UntilSuccess()
+        {
+            // 链路不断就不会再有就绪事件替它补拉:不能只靠玩家点「返回战斗」,按 1s / 2s / 4s 自动重拉
+            Build(new FakeBattleChannel(), random01: () => 0.5); // 0.5 = 无抖动,时序确定
+            _client.Tick(0);
+            ReconnectReadyThenPullTimesOut();
+            Assert.That(_errors, Is.Empty, "传输错误不打扰玩家");
+            Assert.That(PullCount, Is.EqualTo(1));
+
+            _client.Tick(0.99);
+            Assert.That(PullCount, Is.EqualTo(1), "第 1 次重拉等 1s");
+            _client.Tick(1.0);
+            Assert.That(PullCount, Is.EqualTo(2), "到点自动重拉");
+            Assert.That(((GetBattleStateRequest)LastPull().Request).BattleId, Is.EqualTo(TheBattleId));
+
+            LastPull().FailWith(RpcTimeout);
+            _client.Tick(2.99);
+            Assert.That(PullCount, Is.EqualTo(2), "第 2 次重拉等 2s");
+            _client.Tick(3.0);
+            Assert.That(PullCount, Is.EqualTo(3));
+
+            LastPull().Respond(MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "重拉成功即回到战斗");
+            Assert.That(_errors, Is.Empty);
+
+            _client.Tick(100);
+            Assert.That(PullCount, Is.EqualTo(3), "成功后不再有重拉计划");
+        }
+
+        [Test]
+        public void StatePull_AutoRetry_StopsAtCap_NextReadyOrManualPullStartsNewRound()
+        {
+            Build(new FakeBattleChannel(), random01: () => 0.5);
+            _client.Tick(0);
+            ReconnectReadyThenPullTimesOut(); // 就绪补拉 @0 失败 → 第 1 次重拉排在 @1
+
+            foreach (double at in new[] { 1.0, 3.0, 7.0 }) // 1s / 2s / 4s 逐次累加,每次都再失败
+            {
+                _client.Tick(at);
+                LastPull().FailWith(RpcTimeout);
+            }
+            int capped = 1 + BattleClient.MaxStatePullRetries;
+            Assert.That(PullCount, Is.EqualTo(capped), "就绪补拉 1 次 + 自动重拉到上限");
+
+            _client.Tick(1000);
+            Assert.That(PullCount, Is.EqualTo(capped), "预算用完不再重拉");
+            Assert.That(_errors, Is.Empty, "用完也不打扰玩家");
+            Assert.That(EntryMode(), Is.EqualTo(BattleUiRoot.BattleEntryMode.ReturnToBattle),
+                "由可点的「返回战斗」兜底");
+
+            // 下一次就绪:立即补拉并重置预算
+            _channel.RaiseReady(TheBattleId);
+            Assert.That(PullCount, Is.EqualTo(capped + 1));
+            LastPull().FailWith(RpcTimeout);
+            _client.Tick(1001);
+            Assert.That(PullCount, Is.EqualTo(capped + 2), "新一轮预算:1s 后重拉");
+
+            // 玩家点「返回战斗」(RequestState):立即补拉,作废待执行的第 2 次计划(@1003)并重置预算
+            LastPull().FailWith(RpcTimeout);
+            _client.RequestState();
+            Assert.That(PullCount, Is.EqualTo(capped + 3));
+            LastPull().FailWith(RpcTimeout);
+            _client.Tick(1002);
+            Assert.That(PullCount, Is.EqualTo(capped + 4), "手动补拉后预算重置:1s 后重拉,而不是等旧计划的 2s");
+            Assert.That(_errors, Is.Empty);
+        }
+
+        [Test]
+        public void StatePull_AutoRetryPlan_ClearedOnBattleSwitchSettleDisconnectAndLinkLoss()
+        {
+            Build(new FakeBattleChannel(), random01: () => 0.5);
+            _client.Tick(0);
+
+            // 换局:旧计划作废 —— 即便新一局直连已就绪(开局包经直连到达),到点也不替旧计划补拉
+            ReconnectReadyThenPullTimesOut(); // 重拉排在 @1
+            const ulong nextBattleId = 8800;
+            var nextState = MakeState(eBattleOutcome.BattleOutcomeOngoing, MyId, EnemyId);
+            nextState.BattleId = nextBattleId;
+            _net.PushNotify(MessageIds.NotifyBattleStart, new BattleStartS2C { BattleId = nextBattleId, State = nextState });
+            _channel.ReadyBattleId = nextBattleId;
+            int pulls = PullCount;
+            _client.Tick(10);
+            Assert.That(PullCount, Is.EqualTo(pulls), "换局:旧局的重拉计划作废");
+
+            // 收尾(终局包):计划随本局作废
+            _channel.RaiseReady(nextBattleId);
+            LastPull().FailWith(RpcTimeout); // 重拉排在 @11
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = nextBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+            });
+            pulls = PullCount;
+            _client.Tick(20);
+            Assert.That(PullCount, Is.EqualTo(pulls), "收尾:不再重拉");
+            Assert.That(_client.HasActiveBattle, Is.False);
+
+            // 大厅断线:计划随本局作废(断线同时拆直连)
+            PushBattleStart();
+            _channel.RaiseReady(TheBattleId);
+            LastPull().FailWith(RpcTimeout); // 重拉排在 @21
+            _net.RaiseDisconnected();
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.HostClosed);
+            pulls = PullCount;
+            _client.Tick(30);
+            Assert.That(PullCount, Is.EqualTo(pulls), "断线:不再重拉");
+
+            // 到点时直连已不就绪(判定连不上):放弃本次,不打到一条不存在的链路上;下一次就绪再补拉
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            _channel.RaiseReady(TheBattleId);
+            LastPull().FailWith(RpcTimeout); // 重拉排在 @31
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Unreachable);
+            pulls = PullCount;
+            _client.Tick(40);
+            Assert.That(PullCount, Is.EqualTo(pulls), "直连已不就绪:到点放弃");
+            Assert.That(EntryMode(), Is.EqualTo(BattleUiRoot.BattleEntryMode.Reconnect));
+
+            _channel.RaiseReady(TheBattleId);
+            Assert.That(PullCount, Is.EqualTo(pulls + 1), "下一次就绪照常补拉");
+            Assert.That(_errors, Is.Empty);
+        }
+
+        [TestCase(0.0, 0.79, 0.81)]    // 下沿:1s × 0.8
+        [TestCase(0.999, 1.19, 1.2)]   // 上沿:1s × (1 + 0.998 × 0.2) ≈ 1.1996s
+        public void StatePull_AutoRetry_FirstDelayJitterWithinTwentyPercent(double randomSample, double before, double after)
+        {
+            Build(new FakeBattleChannel(), random01: () => randomSample);
+            _client.Tick(0);
+            ReconnectReadyThenPullTimesOut();
+
+            _client.Tick(before);
+            Assert.That(PullCount, Is.EqualTo(1));
+            _client.Tick(after);
+            Assert.That(PullCount, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void StatePull_NoAutoRetry_ForServerErrorOrWhenLinkAlreadyNotReady()
+        {
+            // 服务端拒绝(非传输错误):照常 OnError,重拉也拿不到别的答复
+            Build(new FakeBattleChannel(), random01: () => 0.5);
+            _client.Tick(0);
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            _channel.RaiseReady(TheBattleId);
+            LastPull().FailWith("server tip=5");
+            Assert.That(_errors, Has.Count.EqualTo(1));
+            _client.Tick(100);
+            Assert.That(PullCount, Is.EqualTo(1), "服务端拒绝不自动重拉");
+
+            // 失败时同一局直连已不就绪(链路断开、恢复中):不排计划,交给下一次就绪
+            Build(new FakeBattleChannel(), random01: () => 0.5);
+            _client.Tick(0);
+            _net.PushNotify(MessageIds.NotifyBattleReconnect, new BattleReconnectS2C { BattleId = TheBattleId });
+            _channel.RaiseReady(TheBattleId);
+            _channel.ReadyBattleId = 0; // 链路断开(自动恢复中,未终结,不抛 Lost)
+            LastPull().FailWith(BattleDirectLink.TransportErrorPrefix + "disconnected");
+            _channel.ReadyBattleId = TheBattleId; // 只为证明没有排计划:静默恢复就绪后到点也不补拉
+            _client.Tick(100);
+            Assert.That(PullCount, Is.EqualTo(1), "失败时已不就绪:不排自动重拉");
+            Assert.That(_errors, Is.Empty);
         }
 
         [Test]

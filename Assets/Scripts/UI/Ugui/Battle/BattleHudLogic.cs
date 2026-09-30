@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using MmorpgClient.Game.Battle;
 
 namespace MmorpgClient.UI.Ugui.Battle
 {
@@ -137,6 +138,26 @@ namespace MmorpgClient.UI.Ugui.Battle
             return notReadySeconds >= ChannelConnectingBannerDelaySeconds
                 ? BattleChannelBanner.Connecting
                 : BattleChannelBanner.Hidden;
+        }
+
+        /// <summary>
+        /// 已开的参战屏是否要用 BattleClient.State 补刷(turn-based §22 D74)。直连就绪补拉只把
+        /// BattleClient.State 换成新对象 —— 不经回合播放,相位也可能不变(断线前后都是 WaitingAction),
+        /// 没有事件会把它交给屏。开局 / 回合结果路径下屏上状态与 BattleClient.State 是同一个对象,
+        /// 所以按引用比较即可,不会重复刷新。回合播放中不插手(播完落终态后若仍分叉再补);
+        /// 只在回合内补刷,收场(None / Ended)由相位事件处理。
+        /// </summary>
+        /// <param name="battleOpen">参战屏已开(观战屏不算)。</param>
+        /// <param name="playing">回合表现正在播放。</param>
+        /// <param name="phase">BattleClient.Phase。</param>
+        /// <param name="clientState">BattleClient.State。</param>
+        /// <param name="screenState">BattleScreen 屏上正显示的状态对象。</param>
+        public static bool NeedsScreenResync(bool battleOpen, bool playing, BattlePhase phase,
+                                             BattleStateS2C clientState, BattleStateS2C screenState)
+        {
+            if (!battleOpen || playing || clientState == null) return false;
+            if (phase != BattlePhase.WaitingAction && phase != BattlePhase.Resolving) return false;
+            return !ReferenceEquals(clientState, screenState);
         }
     }
 

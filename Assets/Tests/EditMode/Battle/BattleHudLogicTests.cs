@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.UI.Ugui.Battle;
 using NUnit.Framework;
 using UnityEngine;
@@ -6,7 +7,8 @@ using UnityEngine;
 namespace MmorpgClient.Tests.EditMode.Battle
 {
     /// <summary>
-    /// HUD 纯逻辑测试:行动预告序(服务端序 / 速度回退)、命令环排布、头像分派、角色卡顺序、PVP 判定。
+    /// HUD 纯逻辑测试:行动预告序(服务端序 / 速度回退)、命令环排布、头像分派、角色卡顺序、PVP 判定、
+    /// 战斗直连横幅档位、补拉后的战斗屏补刷判定与主城入口借用档位(turn-based §22 D74)。
     /// </summary>
     public sealed class BattleHudLogicTests
     {
@@ -133,6 +135,85 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.IsFalse(BattleHudLogic.IsPvp(pve, 0));
             Assert.IsTrue(BattleHudLogic.IsPvp(pvp, 0));
             Assert.IsFalse(BattleHudLogic.IsPvp(null, 0));
+        }
+
+        // ── 战斗直连(turn-based §22 D74) ─────────────────
+
+        [Test]
+        public void DecideChannelBanner_HiddenOutsideBattleOrWhenReady()
+        {
+            // 不在回合内(未开局 / 已收尾 / 观战):连不上也不显示,横幅只服务本人参战的回合
+            Assert.AreEqual(BattleChannelBanner.Hidden, BattleHudLogic.DecideChannelBanner(false, false, false, 99f));
+            Assert.AreEqual(BattleChannelBanner.Hidden, BattleHudLogic.DecideChannelBanner(false, false, true, 99f));
+            // 直连就绪:不显示
+            Assert.AreEqual(BattleChannelBanner.Hidden, BattleHudLogic.DecideChannelBanner(true, true, false, 0f));
+        }
+
+        [Test]
+        public void DecideChannelBanner_ConnectingOnlyAfterGracePeriod()
+        {
+            const float delay = BattleHudLogic.ChannelConnectingBannerDelaySeconds;
+            // 宽限期内不亮(开局握手通常一秒内完成,免得每局开场横幅闪一下)
+            Assert.AreEqual(BattleChannelBanner.Hidden, BattleHudLogic.DecideChannelBanner(true, false, false, 0f));
+            Assert.AreEqual(BattleChannelBanner.Hidden, BattleHudLogic.DecideChannelBanner(true, false, false, delay - 0.01f));
+            // 到期(含恰好等于宽限期)起亮「正在连接」
+            Assert.AreEqual(BattleChannelBanner.Connecting, BattleHudLogic.DecideChannelBanner(true, false, false, delay));
+            Assert.AreEqual(BattleChannelBanner.Connecting, BattleHudLogic.DecideChannelBanner(true, false, false, delay + 10f));
+        }
+
+        [Test]
+        public void DecideChannelBanner_FailedIgnoresGracePeriod()
+        {
+            // 已判定连不上:不自动恢复,立即给失败横幅 +「重新连接」,不等宽限期
+            Assert.AreEqual(BattleChannelBanner.Failed, BattleHudLogic.DecideChannelBanner(true, false, true, 0f));
+            Assert.AreEqual(BattleChannelBanner.Failed, BattleHudLogic.DecideChannelBanner(true, false, true, 99f));
+        }
+
+        [Test]
+        public void NeedsScreenResync_OnlyForNewStateObjectInRound()
+        {
+            var shown = new BattleStateS2C { RoundIndex = 1 };
+            var pulled = new BattleStateS2C { RoundIndex = 2 };
+
+            // 屏上就是 BattleClient.State 这个对象(开局 / 回合结果路径):不重复刷
+            Assert.IsFalse(BattleHudLogic.NeedsScreenResync(true, false, BattlePhase.WaitingAction, shown, shown));
+            // 直连就绪补拉换了新对象:回合内都要补刷(相位可能不变,没有事件会把它交给屏)
+            Assert.IsTrue(BattleHudLogic.NeedsScreenResync(true, false, BattlePhase.WaitingAction, pulled, shown));
+            Assert.IsTrue(BattleHudLogic.NeedsScreenResync(true, false, BattlePhase.Resolving, pulled, shown));
+            // 按引用比较,不按内容:内容相同的新对象同样补刷一次(之后屏上即为该对象,不再重复)
+            var samePayload = new BattleStateS2C { RoundIndex = 1 };
+            Assert.IsTrue(BattleHudLogic.NeedsScreenResync(true, false, BattlePhase.WaitingAction, samePayload, shown));
+            // 回合播放中不插手;屏没开 / 不在回合内 / 无状态 都不刷
+            Assert.IsFalse(BattleHudLogic.NeedsScreenResync(true, true, BattlePhase.WaitingAction, pulled, shown));
+            Assert.IsFalse(BattleHudLogic.NeedsScreenResync(false, false, BattlePhase.WaitingAction, pulled, shown));
+            Assert.IsFalse(BattleHudLogic.NeedsScreenResync(true, false, BattlePhase.None, pulled, shown));
+            Assert.IsFalse(BattleHudLogic.NeedsScreenResync(true, false, BattlePhase.Ended, pulled, shown));
+            Assert.IsFalse(BattleHudLogic.NeedsScreenResync(true, false, BattlePhase.WaitingAction, null, shown));
+        }
+
+        [Test]
+        public void DecideEntryMode_BorrowsCityEntryOnlyWhileOwnBattleIsNotOnScreen()
+        {
+            // 参数序:battleOpen, hasActiveBattle, channelReady, channelFailed, phase
+            // 战斗屏已开(入口本就隐藏)/ 没有对局:「战斗」(排队)
+            Assert.AreEqual(BattleUiRoot.BattleEntryMode.Battle,
+                BattleUiRoot.DecideEntryMode(true, true, false, true, BattlePhase.None));
+            Assert.AreEqual(BattleUiRoot.BattleEntryMode.Battle,
+                BattleUiRoot.DecideEntryMode(false, false, false, false, BattlePhase.None));
+            Assert.AreEqual(BattleUiRoot.BattleEntryMode.Battle,
+                BattleUiRoot.DecideEntryMode(false, false, true, false, BattlePhase.Queued));
+            // 已判定连不上:可点的「重新连接战斗」
+            Assert.AreEqual(BattleUiRoot.BattleEntryMode.Reconnect,
+                BattleUiRoot.DecideEntryMode(false, true, false, true, BattlePhase.None));
+            // 有对局、直连未就绪(含大厅重连后首次建连、入口发起的重连):不可点的「连接战斗中…」
+            Assert.AreEqual(BattleUiRoot.BattleEntryMode.Connecting,
+                BattleUiRoot.DecideEntryMode(false, true, false, false, BattlePhase.None));
+            // 有对局、直连已就绪而相位仍 None(就绪补拉在途,或以传输错误失败后不会再自动补拉):可点的「返回战斗」
+            Assert.AreEqual(BattleUiRoot.BattleEntryMode.ReturnToBattle,
+                BattleUiRoot.DecideEntryMode(false, true, true, false, BattlePhase.None));
+            // 已在回合内:战斗屏由相位事件 / Update 兜底打开,入口不借用
+            Assert.AreEqual(BattleUiRoot.BattleEntryMode.Battle,
+                BattleUiRoot.DecideEntryMode(false, true, true, false, BattlePhase.WaitingAction));
         }
     }
 }

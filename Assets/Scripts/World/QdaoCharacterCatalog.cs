@@ -294,14 +294,15 @@ namespace MmorpgClient.World
             return SelectApprovedVersion(definition, 14, metadataJson, validTexture, manifestBytes);
         }
 
-        private static bool OriginalManifestMatches(string id, int version, byte[] bytes, string expectedSha)
+        private static bool OriginalManifestMatches(string id, int version, byte[] bytes, string expectedSha,
+            bool localPlaytest = false)
         {
             if (bytes == null || !string.Equals(HashBytes(bytes), expectedSha, StringComparison.OrdinalIgnoreCase)) return false;
             OriginalManifest manifest;
             try { manifest = JsonUtility.FromJson<OriginalManifest>(Encoding.UTF8.GetString(bytes).TrimStart('\uFEFF')); }
             catch (ArgumentException) { return false; }
             return manifest != null && manifest.version == version && manifest.character_id == id &&
-                   manifest.status == "passed" && manifest.visual_review == "passed" &&
+                   manifest.status == "passed" && (manifest.visual_review == "passed" || localPlaytest) &&
                    manifest.frame_count == 16 && manifest.frame_duration_ms == 30 && manifest.cycle_duration_ms == 480 &&
                    manifest.dedicated_idle && manifest.contact_frame == 0 &&
                    manifest.alignment != null && manifest.alignment.alignment_version == 2 &&
@@ -347,11 +348,13 @@ namespace MmorpgClient.World
             Activation record;
             try { record = JsonUtility.FromJson<Activation>(json); }
             catch (ArgumentException) { return null; }
+            var localPlaytest = definition.IsOriginalRoster &&
+                QdaoLocalPlaytestContract.Allows(definition.Id, version, json, originalManifest);
             if (record == null || record.version != version || record.characterId != definition.Id ||
                 record.frameCount != (version >= 13 ? 16 : 8) ||
                 record.frameDurationMs != (version >= 13 ? 30 : 60) || !record.dedicatedIdle ||
                 (version >= 13 ? record.contactFrame != 0 : record.contactFrame != 0 && record.contactFrame != 4) ||
-                record.status != "passed" || record.visualReview != "passed" ||
+                record.status != "passed" || (record.visualReview != "passed" && !localPlaytest) ||
                 !IsSha256(record.manifest_sha256) || !IsSha256(record.qc_sha256) || !IsSha256(record.validation_sha256))
                 return null;
             // The original 00-22 pack uses feet-aligned v2. Lu's separate V13
@@ -361,7 +364,7 @@ namespace MmorpgClient.World
             if (definition.IsOriginalRoster)
             {
                 if ((version != 13 && version != 14) || record.alignmentVersion != 2 ||
-                    !OriginalManifestMatches(definition.Id, version, originalManifest, record.manifest_sha256)) return null;
+                    !OriginalManifestMatches(definition.Id, version, originalManifest, record.manifest_sha256, localPlaytest)) return null;
                 if (version == 14 && (record.cycleDurationMs != 480 || record.frameWidth != 1024 || record.frameHeight != 1024 ||
                     record.portraitWidth != 1024 || record.portraitHeight != 1024 ||
                     record.pixelsPerUnit != 104f || record.pivotX != .5f || record.pivotY != .08f || record.sourceCommit != "9adcf9291e4a867601868889a5965f3cd48630ba" ||

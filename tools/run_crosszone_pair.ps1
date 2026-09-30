@@ -6,12 +6,16 @@
   两实例都由 DevAutoPilot 驱动(见 Assets/Scripts/App/DevAutoPilot.cs):
     选区 → 登录 → 进场景 → JoinQueue(1v1, battle_config) → 自动战斗 → 打完退出。
   脚本等待两进程退出(默认最多 5 分钟),解析两份播放器日志并断言
-  (对齐 robot/battle_smoke_cross_zone_scenario.go 的 zone-placement / battle-id / turn-count 三条):
+  (对齐 robot/battle_smoke_cross_zone_scenario.go 的 zone-placement / battle-id / turn-count / direct-turns;
+   第 4 条比 robot 的 direct_turns ≥ 1 更严,要求逐回合都经直连):
     1. 两边 "stage=in_game … gate=ip:port" 的 gate 地址不同(落区证据:本地各 zone 的 gate 端口
        不同,相同即两人其实进了同一 zone,匹配成功也不算跨区);
     2. 两边都有 "BattleStart battle_id=N" 且 battle_id 相同;
     3. 两边都有 "BattleEnd battle_id=N … turns=N" 且 turns ≥ 1(开局即终局不算打完);
-    4. 两进程退出码都是 0(DevAutoPilot:0=打完,1=任一阶段超时/失败)。
+    4. 同一行的 direct_turns=N 必须等于 turns(服务端 turn-based §22 D74 收缩后战斗直连是唯一通路,
+       gate 不再中继战斗;§19.3 第 4 步判据)。缺 direct_turns 字段 = 播放器早于该口径,先重出播放器;
+    5. 两进程退出码都是 0(DevAutoPilot:0=打完,1=任一阶段超时/失败;直连连不上时
+       DevAutoPilot 立即 RESULT=FAIL stage=battle_direct)。
   输出 PASS/FAIL 摘要(PASS 行的 gate 是运行时真实地址,不是入参回显),脚本退出码 0/1。
   注意:超时强杀不发 LeaveGame,scene 侧 battle:lock 要等解冻(默认 ≈5-6 分钟)才能复跑,
         否则登录即收 BattleReconnect,自动驾驶会立刻报 RESULT=FAIL stage=queue。
@@ -211,7 +215,8 @@ foreach ($s in $sides) {
         $gate = Get-FirstMatch $s.Log "\[GameClient\] assigned gate (\S+)"
     }
     $start = Get-FirstMatch $s.Log "$esc BattleStart battle_id=(\d+)"
-    $end   = Get-FirstMatch $s.Log "$esc BattleEnd battle_id=(\d+) outcome=(\S+) turns=(\d+)"
+    # direct_turns 在同一行靠后(… last_round=N direct_turns=N),可选组:老播放器没有该字段时组 4 不成功
+    $end   = Get-FirstMatch $s.Log "$esc BattleEnd battle_id=(\d+) outcome=(\S+) turns=(\d+)(?:.*? direct_turns=(\d+))?"
     $res   = Get-FirstMatch $s.Log "$esc RESULT=(PASS|FAIL)(.*)$"
     $city  = Get-FirstMatch $s.Log "$esc appearance_city player_id=(\d+) appearance_id=(\S+)"
     $battle = Get-FirstMatch $s.Log "$esc appearance_battle player_id=(\d+) appearance_id=(\S+)"
@@ -232,6 +237,7 @@ foreach ($s in $sides) {
         EndBattleId   = if ($end)   { $end.Groups[1].Value }   else { $null }
         Outcome       = if ($end)   { $end.Groups[2].Value }   else { $null }
         Turns         = if ($end)   { $end.Groups[3].Value }   else { $null }
+        DirectTurns   = if ($end -and $end.Groups[4].Success) { $end.Groups[4].Value } else { $null }
         Result        = if ($res)   { $res.Groups[1].Value + $res.Groups[2].Value } else { "(no RESULT line)" }
         PlayerId = if ($city) { $city.Groups[1].Value } else { $null }
         CityAppearance = if ($city) { $city.Groups[2].Value } else { $null }
@@ -242,14 +248,21 @@ foreach ($s in $sides) {
         WalkCapture = $walkCapture
     }
     $results[$tag] = $r
-    Write-Host ("[pair] {0}: exit={1} gate={2} BattleStart={3} BattleEnd={4} outcome={5} turns={6} {7}" -f
-        $tag, $exit, $r.Gate, $r.StartBattleId, $r.EndBattleId, $r.Outcome, $r.Turns, $r.Result)
+    Write-Host ("[pair] {0}: exit={1} gate={2} BattleStart={3} BattleEnd={4} outcome={5} turns={6} direct_turns={7} {8}" -f
+        $tag, $exit, $r.Gate, $r.StartBattleId, $r.EndBattleId, $r.Outcome, $r.Turns, $r.DirectTurns, $r.Result)
 
     if (-not (Test-Path -LiteralPath $s.Log)) { $failures.Add("$tag 没有日志文件 $($s.Log)") }
     if ($null -eq $r.Gate)          { $failures.Add("$tag 没有 gate 落区记录(in_game 行 gate= / [GameClient] assigned gate)") }
     if ($null -eq $r.StartBattleId) { $failures.Add("$tag 没有 BattleStart") }
     if ($null -eq $r.EndBattleId)   { $failures.Add("$tag 没有 BattleEnd") }
     if ($end -and [int]$r.Turns -lt 1) { $failures.Add("$tag turns=$($r.Turns)(期望 ≥ 1:开局即终局不算打完)") }
+    # 收缩后直连是战斗唯一通路(turn-based §22 D74):每个回合结果都必须经直连到达
+    if ($end -and $null -eq $r.DirectTurns) {
+        $failures.Add("$tag BattleEnd 行没有 direct_turns 字段(播放器早于直连收缩口径,先跑 tools/build_crosszone_player.ps1 重出)")
+    }
+    elseif ($end -and [int]$r.DirectTurns -ne [int]$r.Turns) {
+        $failures.Add("$tag direct_turns=$($r.DirectTurns) ≠ turns=$($r.Turns)(期望相等:有回合结果没经战斗直连到达)")
+    }
     if ($exit -ne 0)                { $failures.Add("$tag 退出码=$exit(期望 0)") }
     if (-not $res -or $res.Groups[1].Value -ne 'PASS') { $failures.Add("$tag 缺少明确 RESULT=PASS") }
     if ($s.Appearance -and ($r.CityAppearance -ne $s.Appearance -or $r.BattleAppearance -ne $s.Appearance -or
@@ -287,8 +300,8 @@ $scope = if ($SameZoneAppearanceCheck) { 'BATTLE_APPEARANCE_PAIR' } else { 'CROS
 @{passed=($failures.Count -eq 0);scope=$scope;results=$results;failures=@($failures.ToArray());cross_zone_asserted=(-not $SameZoneAppearanceCheck)} |
     ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $resultPath -Encoding utf8
 if ($failures.Count -eq 0) {
-    Write-Host ("[pair] ${scope}_PASS battle_id={0} zone_a={1} gate_a={2} zone_b={3} gate_b={4} a_outcome={5} b_outcome={6} a_turns={7} b_turns={8}" -f
-        $a.StartBattleId, $ZoneA, $a.Gate, $ZoneB, $b.Gate, $a.Outcome, $b.Outcome, $a.Turns, $b.Turns)
+    Write-Host ("[pair] ${scope}_PASS battle_id={0} zone_a={1} gate_a={2} zone_b={3} gate_b={4} a_outcome={5} b_outcome={6} a_turns={7} b_turns={8} a_direct_turns={9} b_direct_turns={10}" -f
+        $a.StartBattleId, $ZoneA, $a.Gate, $ZoneB, $b.Gate, $a.Outcome, $b.Outcome, $a.Turns, $b.Turns, $a.DirectTurns, $b.DirectTurns)
     exit 0
 }
 

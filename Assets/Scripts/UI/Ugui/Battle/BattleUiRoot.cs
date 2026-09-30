@@ -17,13 +17,22 @@ namespace MmorpgClient.UI.Ugui.Battle
     ///   - OnTurnResult 事件流播完后调用 AckTurnPlayed();
     ///   - 观战(SpectateClient):入口面板 + 复用 BattleScreen 的只读模式;
     ///     观战回合播放不 Ack(只读流无该契约),新回合直接抢占旧播放;
-    ///   - 战斗直连(turn-based §22 D74):开局直连未就绪时 toast「正在连接战斗服务器…」,就绪再补「战斗开始!」;
-    ///     连不上(OnBattleChannelFailed)toast 一次,常驻横幅与「重新连接」由 BattleScreen 按 BattleClient 状态轮询显示。
+    ///   - 战斗直连(turn-based §22 D74):开局直连未就绪时不弹 toast(底部提示 / 相位文字 / 超过宽限期的横幅已在说明),
+    ///     就绪再补「战斗开始!」;常驻横幅与「重新连接」由 BattleScreen 按 BattleClient 状态轮询显示,
+    ///     战斗屏开着时连不上不再 toast;屏没开时(大厅重连后直连起不来)toast 一次;
+    ///     屏没开而本人仍有对局时,主城入口借作「连接战斗中…」/「重新连接战斗」/「返回战斗」(见 DecideEntryMode);
+    ///     直连就绪补拉回来的权威状态由 Update 按引用比较交给已开的战斗屏(补拉不经回合播放,相位也可能不变)。
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class BattleUiRoot : MonoBehaviour
     {
         public static BattleUiRoot Instance { get; private set; }
+
+        /// <summary>
+        /// 全局 toast 文字矩形(设计坐标,y 向下;ToastRoot 在战斗层之上)。战斗屏内的居中常驻提示
+        /// (直连横幅 <see cref="BattleScreen.ChannelBannerRect"/>)必须让开这一带,否则 toast 期间叠字。
+        /// </summary>
+        public static readonly Rect ToastRect = new Rect(680f, 150f, 1200f, 56f);
 
         private AppBootstrap _app;
         private BattleClient _client;
@@ -42,6 +51,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private TMP_Text _toastText;
 
         private UiTextButton _entryButton;
+        private BattleEntryMode _entryMode = BattleEntryMode.Battle;   // 「战斗」入口当前的用途(见 DecideEntryMode)
         private UiTextButton _spectateEntryButton;
         private BattleQueuePanel _queuePanel;
         private SpectatePanel _spectatePanel;
@@ -115,11 +125,27 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 EnsureBattleOpen();
             }
+            ResyncOpenBattleScreen();
 
             _queuePanel?.Tick();
             _challengePopup?.Tick();
             _battleScreen?.Tick();
             RefreshEntryVisibility();
+        }
+
+        /// <summary>
+        /// 战斗屏已开时补刷权威状态。直连就绪时 BattleClient 用 GetBattleState 补拉(turn-based §22 D74:
+        /// 未就绪期间的回合结果被服务端丢弃、不补发),补拉结果只改 BattleClient.State,没有事件把它交给屏。
+        /// 不补刷的话,已提交后断线、恢复时已进下一回合的玩家会停在旧回合:「已提交」、按钮全灰,
+        /// 只能等服务端超时默认出手。判定见 <see cref="BattleHudLogic.NeedsScreenResync"/>。
+        /// </summary>
+        private void ResyncOpenBattleScreen()
+        {
+            if (!_clientBound || _battleScreen == null) return;
+            var state = _client.State;
+            if (!BattleHudLogic.NeedsScreenResync(_battleOpen, _playing, _client.Phase, state, _battleScreen.CurrentState))
+                return;
+            _battleScreen.ApplyState(state);
         }
 
         private void OnDestroy()
@@ -326,7 +352,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed);
             _challengePopup = new BattleChallengePopup(this, _modalPopupRoot);
 
-            _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot, 680f, 150f, 1200f, 56f,
+            _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot,
+                ToastRect.x, ToastRect.y, ToastRect.width, ToastRect.height,
                 string.Empty, 26f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
 
             _battleLayerGo.SetActive(false);
@@ -408,10 +435,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             _resultPanel?.Hide();
             RefreshModalDim();
             OpenBattle(start?.State ?? _client?.State);
-            // 开局包经大厅到,直连这时通常还在握手(turn-based §22 D74):先说在连,就绪时再补「战斗开始!」
+            // 开局包经大厅到,直连这时通常还在握手(turn-based §22 D74):「战斗开始!」推迟到就绪再弹。
+            // 未就绪期间不弹「正在连接」toast —— 底部提示与相位文字已在说明,超过宽限期还有横幅,同句两处只是噪音
             bool channelReady = _client == null || _client.IsBattleChannelReady;
             _channelReadyToast = channelReady ? null : "战斗开始!";
-            ShowToast(channelReady ? "战斗开始!" : BattleScreen.ChannelConnectingBannerText);
+            if (channelReady) ShowToast("战斗开始!");
         }
 
         private void HandleBattleChannelReady()
@@ -425,10 +453,11 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void HandleBattleChannelFailed(string message)
         {
-            // 常驻横幅 +「重新连接」由 BattleScreen 按 IsBattleChannelFailed 显示;这里 toast 一次引起注意。
             // 之后若恢复(手动重连 / 重连提示补签成功),就绪时告诉玩家已经连上
             _channelReadyToast = "已重新连接战斗服务器";
-            ShowToast(message, true);
+            // 战斗屏开着:常驻横幅 +「重新连接」已写明原因,不再 toast 同一件事。
+            // 屏没开(大厅重连后直连起不来,相位停在 None):toast 一次引起注意,主城入口随之变为「重新连接战斗」
+            if (!_battleOpen) ShowToast(message, true);
         }
 
         private void HandleTurnResult(TurnResultS2C result)
@@ -761,6 +790,24 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnEntryClicked()
         {
+            switch (CurrentEntryMode())
+            {
+                case BattleEntryMode.Connecting:
+                    return; // 按钮已不可点;防御性拦截,不开排队面板(排队会被服务端以在战斗中拒绝)
+                case BattleEntryMode.Reconnect:
+                    // 先弹提示再重连:补签结果可能同步回来,失败 toast 要盖在「正在重新连接」之上,而不是反过来。
+                    // 重连发出后 IsBattleChannelFailed 立即清零,入口随之转为不可点的「连接战斗中…」(DecideEntryMode)
+                    ShowToast("正在重新连接战斗服务器…");
+                    _client.RetryBattleChannel();
+                    return;
+                case BattleEntryMode.ReturnToBattle:
+                    // 同理先弹提示:补拉若以非传输错误失败,会经 OnError 弹「拉取战斗状态失败」,要盖在这条之上。
+                    // 同局补拉在途时 RequestState 去重、不叠发(在途的那次最迟到直连调用超时 15s 收尾,之后可再点);
+                    // 拉到进行中的权威态 → 相位变为 WaitingAction / Resolving → HandlePhaseChanged 开屏,入口随之隐藏
+                    ShowToast("正在恢复战斗…");
+                    _client.RequestState();
+                    return;
+            }
             if (_queuePanel == null) return;
             if (!_queuePanel.IsVisible && _client != null)
                 _queuePanel.SetQueueing(_client.Phase == BattlePhase.Queued);
@@ -781,15 +828,88 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool spectating = _spectateBound && _spectate.Phase != SpectatePhase.None;
             bool visible = _clientBound && inGame && !_battleOpen && !_spectateOpen && !spectating;
             _entryButton.SetVisible(visible);
+            var entryMode = CurrentEntryMode();
+            if (entryMode != _entryMode)
+            {
+                _entryMode = entryMode;
+                _entryButton.SetText(EntryLabel(entryMode));
+                _entryButton.SetInteractable(entryMode != BattleEntryMode.Connecting);
+            }
             // 观战入口在「战斗」条件之上再要求不在排队/战斗任何相位
-            // (D11 服务端互斥,入口先行隐藏避免必败请求)
-            bool spectateVisible = visible && _spectateBound && _client.Phase == BattlePhase.None;
+            // (D11 服务端互斥,入口先行隐藏避免必败请求;直连连不上 / 连接中(含大厅重连后恢复中)/ 待返回的那局也算在战斗中,
+            //  这几种情况下相位都停在 None,只能按入口用途判)
+            bool spectateVisible = visible && _spectateBound && _client.Phase == BattlePhase.None
+                                   && entryMode == BattleEntryMode.Battle;
             _spectateEntryButton?.SetVisible(spectateVisible);
             if (!visible && !inGame)
             {
                 _queuePanel?.Hide();
                 _spectatePanel?.Hide();
             }
+        }
+
+        /// <summary>按当前绑定的 BattleClient 实时状态取入口用途;未绑定时恒为「战斗」(入口本就隐藏)。</summary>
+        private BattleEntryMode CurrentEntryMode()
+        {
+            if (!_clientBound || _client == null) return BattleEntryMode.Battle;
+            return DecideEntryMode(_battleOpen, _client.HasActiveBattle, _client.IsBattleChannelReady,
+                _client.IsBattleChannelFailed, _client.Phase);
+        }
+
+        /// <summary>
+        /// 主城「战斗」入口的用途(turn-based §22 D74;纯函数,EditMode 直接测)。大厅重连后(NotifyBattleReconnect)
+        /// 权威状态要经直连补拉,补拉没成之前相位停在 None、战斗屏开不了,屏上的横幅与「重新连接」也就无处显示,所以借用入口:
+        ///   - 战斗屏已开(入口本就隐藏)→ 「战斗」;
+        ///   - 直连已判定连不上 → 可点的「重新连接战斗」;
+        ///   - 本人仍有对局(<see cref="BattleClient.HasActiveBattle"/>)而直连未就绪 → 不可点的「连接战斗中…」:
+        ///     覆盖大厅重连后到首次就绪 / 失败之间,以及从入口点了重连、结果未回(补签 + 建连可能 10s 以上)两段窗口,
+        ///     免得玩家点开排队面板后被服务端以在战斗中拒绝;
+        ///   - 本人仍有对局、直连已就绪而相位仍是 None → 可点的「返回战斗」(手动兜底,点了 RequestState 补拉并开新一轮重拉预算):
+        ///     就绪时那次补拉以传输错误失败(链路仍就绪时的 rpc 超时等)后,BattleClient 会按 1s / 2s / 4s(±20%)
+        ///     有上限地退避自动重拉(每轮 <see cref="BattleClient.MaxStatePullRetries"/> 次),期间经直连到的回合结果仍被相位闸(None)丢弃;
+        ///     入口覆盖退避等待期间,以及本轮预算用完而链路不断(不会再有就绪事件开新一轮)之后。
+        ///     这里不能用不可点的「连接战斗中…」:预算用完后那就是一条不可点的死路,玩家到本局结束都回不到战斗。
+        ///     正常情况下它只在就绪补拉在途的一个 RTT 内闪现(之后开屏、入口隐藏),连点由 RequestState 同局去重兜住;
+        ///   - 其余 → 「战斗」(排队)。
+        /// 全部读 BattleClient 的实时状态,UI 不另存标记:就绪 / 失败 / 收场 / 断线都由它收敛,入口不会卡在不可点。
+        /// </summary>
+        /// <param name="battleOpen">参战战斗屏已开。</param>
+        /// <param name="hasActiveBattle"><see cref="BattleClient.HasActiveBattle"/>。</param>
+        /// <param name="channelReady"><see cref="BattleClient.IsBattleChannelReady"/>。</param>
+        /// <param name="channelFailed"><see cref="BattleClient.IsBattleChannelFailed"/>。</param>
+        /// <param name="phase"><see cref="BattleClient.Phase"/>。</param>
+        public static BattleEntryMode DecideEntryMode(bool battleOpen, bool hasActiveBattle, bool channelReady,
+                                                      bool channelFailed, BattlePhase phase)
+        {
+            if (battleOpen) return BattleEntryMode.Battle;
+            if (channelFailed) return BattleEntryMode.Reconnect;
+            if (!hasActiveBattle) return BattleEntryMode.Battle;
+            if (!channelReady) return BattleEntryMode.Connecting;
+            return phase == BattlePhase.None ? BattleEntryMode.ReturnToBattle : BattleEntryMode.Battle;
+        }
+
+        private static string EntryLabel(BattleEntryMode mode)
+        {
+            switch (mode)
+            {
+                case BattleEntryMode.Reconnect: return "重新连接战斗";
+                case BattleEntryMode.Connecting: return "连接战斗中…";
+                case BattleEntryMode.ReturnToBattle: return "返回战斗";
+                default: return "战斗";
+            }
+        }
+
+        /// <summary>主城「战斗」入口的用途,见 <see cref="DecideEntryMode"/>。</summary>
+        public enum BattleEntryMode : byte
+        {
+            /// <summary>「战斗」:打开排队面板。</summary>
+            Battle,
+            /// <summary>「重新连接战斗」:本局直连已判定连不上,点了立即补签重建。</summary>
+            Reconnect,
+            /// <summary>「连接战斗中…」(不可点):本人仍有对局,直连正在补签 / 建连(含入口发起的重连)。</summary>
+            Connecting,
+            /// <summary>「返回战斗」:本人仍有对局、直连已就绪而权威状态还没拉到(相位 None),点了补拉。</summary>
+            ReturnToBattle,
         }
 
         private void HideTransientPanels()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -82,6 +83,36 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.LessOrEqual(orderLeft + BattleActionOrderBar.FullWidth, BattleScreen.TimerRect.xMin);
             Assert.LessOrEqual(BattleScreen.TimerRect.xMax, BattlePartyCards.CardRect(0).xMin);
         }
+
+        [Test]
+        public void ChannelBanner_ClearOfToastAndLeftColumn()
+        {
+            // 直连横幅 /「重新连接」常驻在战斗层;toast 层在其上,同位会叠字 —— 恰在最需要看清连接状态时两段都看不清。
+            // 左列(战斗记录面板 / 未行动)、计时环、右上角色卡、行动预告条同理不能压
+            var others = new List<(string name, Rect rect)>
+            {
+                ("toast", BattleUiRoot.ToastRect),
+                ("战斗记录面板", BattleLogPanel.PanelRect),
+                ("未行动", BattleScreen.PendingTextRect),
+                ("计时环", BattleScreen.TimerRect),
+                ("行动预告条", new Rect((QdaoUguiTheme.DesignWidth - BattleActionOrderBar.FullWidth) * 0.5f,
+                    BattleActionOrderBar.Top, BattleActionOrderBar.FullWidth, BattleActionOrderBar.TileHeight)),
+            };
+            for (int i = 0; i < BattlePartyCards.MaxCards; i++)
+                others.Add(($"角色卡[{i}]", BattlePartyCards.CardRect(i)));
+
+            foreach (var (name, rect) in others)
+            {
+                Assert.IsFalse(BattleScreen.ChannelBannerRect.Overlaps(rect),
+                    $"直连横幅 {BattleScreen.ChannelBannerRect} 压住了{name} {rect}");
+                Assert.IsFalse(BattleScreen.ReconnectRect.Overlaps(rect),
+                    $"「重新连接」{BattleScreen.ReconnectRect} 压住了{name} {rect}");
+            }
+            Assert.IsFalse(BattleScreen.ChannelBannerRect.Overlaps(BattleScreen.ReconnectRect), "横幅与「重新连接」互压");
+            Assert.IsTrue(BattleUiLayout.Contains(new Rect(0f, 0f, QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight),
+                BattleScreen.ChannelBannerRect), "直连横幅超出设计面");
+        }
+
         [Test]
         public void ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios()
         {

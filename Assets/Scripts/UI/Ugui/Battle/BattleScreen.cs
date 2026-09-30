@@ -44,18 +44,26 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static readonly Rect CancelRect = new Rect(1570f, BattleStage.HudBottomBand, 240f, 56f);
         /// <summary>底部提示文字(确认/取消条底边 1048 之下,贴屏底)。</summary>
         public static readonly Rect HintRect = new Rect(680f, 1048f, 1200f, 32f);
+        /// <summary>左列「未行动」文字(相位文字之下)。</summary>
+        public static readonly Rect PendingTextRect = new Rect(40f, 136f, 700f, 30f);
         /// <summary>
-        /// 战斗直连提示横幅:紧贴顶部行动预告条(HudTopBand)之下、居中;失败文案约 40 个汉字,22 号字放得下。
+        /// 战斗直连提示横幅:放在全局 toast 带(<see cref="BattleUiRoot.ToastRect"/>,y 150..206)之下,
+        /// 左端让开左列(战斗记录面板 / 未行动,x ≤ 760)——toast 层在战斗层之上,两者同位会叠字,
+        /// 恰在最需要看清连接状态时两段都看不清。失败文案约 40 个汉字,22 号字放得下。
         /// 会压住敌方后排头顶一小段,只在连不上 / 久连不上时出现,提示优先于舞台。
         /// </summary>
-        public static readonly Rect ChannelBannerRect = new Rect(600f, BattleStage.HudTopBand + 8f, 1300f, 60f);
-        /// <summary>「重新连接」:横幅右侧;在计时环(y ≤ 114)之下,在右上角色卡(x ≥ 2190)之左。</summary>
-        public static readonly Rect ReconnectRect = new Rect(1916f, BattleStage.HudTopBand + 6f, 200f, 64f);
+        public static readonly Rect ChannelBannerRect = new Rect(780f, 214f, 1120f, 56f);
+        /// <summary>
+        /// 「重新连接」:横幅右侧,同样在 toast 带之下;在计时环(y ≤ 114)之下,在右上角色卡(x ≥ 2190)之左。
+        /// </summary>
+        public static readonly Rect ReconnectRect = new Rect(1916f, 210f, 200f, 64f);
 
         /// <summary>直连判定连不上时横幅的文案(客户端本地字符串,服务端没有对应消息)。</summary>
         public const string ChannelFailedBannerText = "无法连接战斗服务器(可能是网络或防火墙拦截了战斗端口),本局将由系统自动出手";
         /// <summary>直连握手中 / 断线恢复中超过宽限期时横幅的文案。</summary>
         public const string ChannelConnectingBannerText = "正在连接战斗服务器…";
+        /// <summary>直连已判定连不上时左上相位文字(链路不会自己恢复,不能再说「等待」)。</summary>
+        public const string ChannelFailedPhaseText = "无法连接战斗服务器";
 
         private readonly BattleUiRoot _owner;
         private readonly RectTransform _root;
@@ -135,6 +143,11 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         public bool IsOpen => _root != null && _root.gameObject.activeSelf;
         public uint MyTeamIndex => _myTeam;
+        /// <summary>
+        /// 屏上正显示的权威状态(最近一次 <see cref="ApplyState"/> 的入参对象)。BattleUiRoot 按引用
+        /// 与 BattleClient.State 比较,发现直连就绪补拉带来的新状态(turn-based §22 D74)。
+        /// </summary>
+        internal BattleStateS2C CurrentState => _state;
         /// <summary>演出层(BattleUiRoot 结算/测试可用)。</summary>
         public BattlePresenter Presenter => _presenter;
 
@@ -180,7 +193,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             _logPanel = new BattleLogPanel(_hudRoot, LogButtonRect.x, LogButtonRect.y);
             _phaseText = QdaoUguiFactory.CreateText("Phase", _hudRoot, 40f, 98f, 620f, 36f,
                 string.Empty, 24f, BattleUiStyle.WarnText, TextAlignmentOptions.MidlineLeft);
-            _pendingText = QdaoUguiFactory.CreateText("Pending", _hudRoot, 40f, 136f, 700f, 30f,
+            _pendingText = QdaoUguiFactory.CreateText("Pending", _hudRoot,
+                PendingTextRect.x, PendingTextRect.y, PendingTextRect.width, PendingTextRect.height,
                 string.Empty, 18f, QdaoUguiTheme.MutedBrown, TextAlignmentOptions.MidlineLeft);
             _pendingText.overflowMode = TextOverflowModes.Ellipsis;
 
@@ -427,11 +441,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             _roundCounter.SetRound(state.RoundIndex, state.RoundIndex != _roundCounter.Round && _roundCounter.Round != 0);
             _partyCards.Refresh(BattleHudLogic.PartyCardOrder(state.Actors, _myId, _myTeam, BattlePartyCards.MaxCards), ResolveTile);
 
-            // 新回合开始:重置本地已提交标记
+            // 新回合开始:重置本地已提交标记。目标选择只对选的那一回合有效:直连断线期间服务端可能已替本人
+            // 默认出手并进入下一回合,补拉到新回合时收起旧的选择,免得「确认」落到玩家没看过的回合
             if (state.RoundIndex != _lastRound)
             {
                 _lastRound = state.RoundIndex;
                 _submitted = false;
+                ExitTargetMode();
             }
             // 服务器 pending 列表是权威:不含本人即已提交
             if (state.PendingActorIds.Count > 0)
@@ -532,16 +548,19 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case BattlePhase.WaitingAction:
                 {
                     long remainMs = (long)_deadlineMs - BattleUiWidgets.NowUnixMs();
+                    // 已判定连不上:链路不会自己恢复,回合结果也到不了,「等待…」类文案都与横幅矛盾,排最前;
                     // 窗口已过(服务端正按默认行动结算,回合结果在路上):不再提示「请选择行动」;
-                    // 直连未就绪时出手按钮是灰的,也不提示「请选择行动」
-                    _phaseText.text = remainMs < 0 && _deadlineMs != 0 ? "等待回合结算…"
-                        : _submitted ? "等待其他玩家…"
-                        : !IsChannelReady() ? "等待战斗连接…" : "请选择行动";
+                    // 直连未就绪时出手按钮是灰的,已提交的回合结果也要等直连就绪补拉才到,排在「已提交」之前
+                    _phaseText.text = IsChannelFailed() ? ChannelFailedPhaseText
+                        : remainMs < 0 && _deadlineMs != 0 ? "等待回合结算…"
+                        : !IsChannelReady() ? "等待战斗连接…"
+                        : _submitted ? "等待其他玩家…" : "请选择行动";
                     SetTimer(remainMs, TimerRatio(remainMs));
                     break;
                 }
                 case BattlePhase.Resolving:
-                    _phaseText.text = "回合结算中…";
+                    // 已提交 / 已阵亡、等回合结果:连不上时结果到不了,同样不说「结算中」
+                    _phaseText.text = IsChannelFailed() ? ChannelFailedPhaseText : "回合结算中…";
                     SetTimer(-1, 0f);
                     break;
                 case BattlePhase.Ended:
@@ -820,6 +839,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             return client == null || client.IsBattleChannelReady;
         }
 
+        /// <summary>本局直连已判定连不上(恢复预算用完,只有「重新连接」能再试)。没有 BattleClient 时恒为 false。</summary>
+        private bool IsChannelFailed()
+        {
+            var client = _owner?.Client;
+            return client != null && client.IsBattleChannelFailed;
+        }
+
         /// <summary>
         /// 每帧同步直连提示:横幅档位按 <see cref="BattleHudLogic.DecideChannelBanner"/>;
         /// 就绪值与命令环上次刷新时不同则重刷命令环(置灰 / 解灰 + 底部提示)。观战不显示
@@ -866,10 +892,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (client == null) return;
             client.RetryBattleChannel();
             // 手动重连是玩家刚点的:连接中横幅立即出现(不走开局宽限期),给出「点了有反应」的反馈;
-            // 结果由 BattleClient 回来 —— 就绪则横幅收起,再次失败则 IsBattleChannelFailed 置回、横幅回失败档
+            // 结果由 BattleClient 回来 —— 就绪则横幅收起,再次失败则 IsBattleChannelFailed 置回、横幅回失败档。
+            // 不另弹 toast:横幅已写「正在连接战斗服务器…」,同一句话出现两处只是噪音
             _notReadySince = Time.realtimeSinceStartup - BattleHudLogic.ChannelConnectingBannerDelaySeconds;
             RefreshChannelState();
-            _owner?.ShowToast("正在重新连接战斗服务器…");
         }
 
         // ── 回合播放 ────────────────────────────────────────
@@ -1041,7 +1067,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool alive = me != null && !me.IsDead && !me.Fled;
             // 直连未就绪时出手按钮置灰(turn-based §22 D74);记下这次看到的值,Tick 据此判断要不要重刷
             bool channelReady = IsChannelReady();
-            bool channelFailed = _owner?.Client != null && _owner.Client.IsBattleChannelFailed;
+            bool channelFailed = IsChannelFailed();
             _channelReadyShown = channelReady;
             _channelFailedShown = channelFailed;
             bool canAct = _phase == BattlePhase.WaitingAction && !_playing && !_submitted
