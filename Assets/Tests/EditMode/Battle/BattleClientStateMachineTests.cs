@@ -754,13 +754,105 @@ namespace MmorpgClient.Tests.EditMode.Battle
             PushBattleStart();
             _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Ended);
             _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.HostClosed);
-            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded); // 换局不是本局结束的权威信号
             _channel.RaiseLost(9999, BattleLinkCloseKind.BattleGone);
             _channel.RaiseLost(9999, BattleLinkCloseKind.Unreachable);
+            _channel.RaiseLost(9999, BattleLinkCloseKind.Superseded); // 别的局被顶掉与本局无关
 
             Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction));
             Assert.That(_errors, Is.Empty);
             Assert.That(_channelFailures, Is.Empty);
+            Assert.That(_channel.Ensures, Is.EqualTo(new[] { TheBattleId }), "只有开局那一次补签");
+        }
+
+        [Test]
+        public void ChannelSuperseded_ForActiveBattle_EnsuresBattle()
+        {
+            // 参战中晚到的观战分配包劫走唯一的直连(WatchBattle 的 double-check 自我清退竞态:
+            // AddObserver 先于清退推了 Assigned(OBSERVER)),链路对本局抛 Superseded
+            UseChannel();
+            PushBattleStart();
+            _channel.RaiseReady(TheBattleId);
+            _phases.Clear();
+
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded);
+
+            Assert.That(_channel.Ensures, Has.Count.EqualTo(2), "开局一次 + 被顶掉后一次");
+            Assert.That(_channel.Ensures[_channel.Ensures.Count - 1], Is.EqualTo(TheBattleId),
+                "参战优先:立即把直连要回本局");
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "Superseded 不是本局结束的权威信号");
+            Assert.That(_phases, Is.Empty, "相位不动");
+            Assert.That(_errors, Is.Empty, "不打扰玩家");
+            Assert.That(_channelFailures, Is.Empty, "不是连不上,不抛失败事件");
+            Assert.That(_client.IsBattleChannelFailed, Is.False);
+            Assert.That(_client.IsBattleChannelReady, Is.False, "补签进行中,尚未就绪");
+
+            // 劫走前在途的补拉(首次就绪发出的 GetBattleState)随旧连接作废,链路须以传输错误了结它;
+            // 否则要回链路后的补拉被「同局在途」去重吞掉,劫走期间丢的回合帧要等 CallTimeoutSeconds(15s)超时才补回。
+            // 此处用 FailWith 模拟链路了结在途调用:本段只守 BattleClient 这一半契约。截至 2026-09-30,
+            // 真 BattleDirectLink 的换局(HandleAssigned 换局分支)与 RestartWithReissue 只拆连接、不 FailPending,
+            // 链路那一半已移交纵深防御包,须在 BattleDirectLinkTests 另补用例。
+            var firstPulls = _net.CallsOf(MessageIds.GetBattleState);
+            Assert.That(firstPulls, Has.Count.EqualTo(1), "前置:首次就绪即补拉,且仍在途");
+            firstPulls[0].FailWith(BattleDirectLink.TransportErrorPrefix + "superseded");
+            Assert.That(_errors, Is.Empty, "直连传输错误不打扰玩家");
+
+            // 补签握手通过:链路回到本局,重新补拉劫走期间丢的回合帧
+            _channel.RaiseReady(TheBattleId);
+            Assert.That(_client.IsBattleChannelReady, Is.True);
+            Assert.That(_channelReadies, Is.EqualTo(2));
+            var pulls = _net.CallsOf(MessageIds.GetBattleState);
+            Assert.That(pulls, Has.Count.EqualTo(2), "要回链路即重新补拉");
+            Assert.That(((GetBattleStateRequest)pulls[1].Request).BattleId, Is.EqualTo(TheBattleId));
+        }
+
+        [Test]
+        public void ChannelSuperseded_AfterBattleEnd_DoesNotEnsureBattle()
+        {
+            UseChannel();
+            PushBattleStart();
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+            });
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None), "前置:已收场");
+            _phases.Clear();
+            _errors.Clear();
+
+            // 收场后链路被下一局 / 观战的分配包拿走:本局已结束,不得把链路抢回来
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded);
+
+            Assert.That(_channel.Ensures, Is.EqualTo(new[] { TheBattleId }), "只有开局那一次补签");
+            Assert.That(_phases, Is.Empty);
+            Assert.That(_errors, Is.Empty);
+            Assert.That(_channelFailures, Is.Empty);
+        }
+
+        [Test]
+        public void ChannelSuperseded_AfterBattleGone_DoesNotEnsureBattle_LateSettlementStillDelivered()
+        {
+            UseChannel();
+            PushBattleStart();
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.BattleGone);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None), "前置:已收场");
+            _phases.Clear();
+            _errors.Clear();
+
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded);
+
+            Assert.That(_channel.Ensures, Is.EqualTo(new[] { TheBattleId }), "只有开局那一次补签");
+            Assert.That(_phases, Is.Empty);
+            Assert.That(_errors, Is.Empty);
+            Assert.That(_channelFailures, Is.Empty);
+
+            // Superseded 不得冲掉「允许结算包晚到」的窗口
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+            });
+            Assert.That(_ends, Is.EqualTo(1));
+            Assert.That(_phases, Is.EqualTo(new[] { BattlePhase.Ended, BattlePhase.None }));
         }
 
         [Test]

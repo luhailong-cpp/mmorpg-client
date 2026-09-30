@@ -43,6 +43,7 @@ namespace MmorpgClient.Game.Battle
     ///    (开局到握手之间、断线期间的战斗帧不经大厅回落)并补发自动战斗意愿;
     ///    直连终结为 BattleGone(战斗已结束)收敛回 None,Unreachable 保持相位并抛
     ///    OnBattleChannelFailed(服务端回合超时替本人默认出手,玩家可 RetryBattleChannel);
+    ///    本局未收场时链路被另一局的分配包拿走(Superseded),参战优先,立即 EnsureBattle 要回来;
     ///    补拉遇传输错误而同一局直连仍就绪(链路 Verified 时的 rpc 超时等,不会再有就绪事件)时,
     ///    按 1s / 2s / 4s(±20%)有上限退避自动重拉,换局 / 收尾 / 断线 / 下一次就绪 / 显式补拉时作废计划;
     ///  - Ended/None 后收到迟到 TurnResultS2C:丢弃;NotifyBattleEnd 可能经直连与大厅
@@ -685,7 +686,12 @@ namespace MmorpgClient.Game.Battle
         /// 直连终结:BattleGone(补签被判战斗已结束,终局包多半在断线期间丢了)收敛回 None;
         /// Unreachable 保持相位(服务端回合超时替本人默认出手),抛 OnBattleChannelFailed 供 UI 常驻提示
         /// 与手动重连;Ended(正常收尾)/ HostClosed(大厅断线,由 Disconnected 统一作废)不处理;
-        /// Superseded(通道改服务另一局)不是本局结束的权威信号,换局自有新的开局包接管,不处理。
+        /// Superseded(通道被另一局的分配包拿走)不是本局结束的权威信号:本局未收终局 / BattleGone 时参战优先,
+        /// 立即 EnsureBattle 要回链路 —— 否则参战中晚到的观战分配包(WatchBattle 的 double-check 自我清退竞态:
+        /// AddObserver 先于清退推了 Assigned(OBSERVER))会劫走唯一的直连,本局既不重建也不进 Unreachable,
+        /// 战斗屏卡在「正在连接战斗服务器…」,服务端整局替本人默认出手。链路此时指向另一局,EnsureBattle 走补签
+        /// 并对那一局抛 Superseded(观战方据此收敛;服务端已清退该观众,不会乒乓)。真换局(新参战局的分配包先于
+        /// 本局终局包到达)时最多多一次补签,随后新局开局包的 EnsureBattle 把链路切回新局,自愈。
         /// </summary>
         private void HandleChannelLost(ulong battleId, BattleLinkCloseKind kind, string detail)
         {
@@ -702,6 +708,11 @@ namespace MmorpgClient.Game.Battle
                 case BattleLinkCloseKind.Unreachable:
                     _channelFailed = true;
                     OnBattleChannelFailed?.Invoke(BattleChannelFailedText);
+                    break;
+                case BattleLinkCloseKind.Superseded:
+                    // 本局仍在进行(入口守卫:终局包 / BattleGone / 断线收尾都会把 _battleId 清零),
+                    // 链路被另一局的分配包拿走:参战优先,立即要回来。相位、错误与失败事件都不动。
+                    _channel?.EnsureBattle(_battleId);
                     break;
             }
         }
