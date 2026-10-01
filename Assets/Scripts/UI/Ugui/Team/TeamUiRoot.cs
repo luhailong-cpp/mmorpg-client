@@ -141,8 +141,9 @@ namespace MmorpgClient.UI.Ugui.Team
             // Probe, invites, conflict re-pulls and the 30s panel refresh all go out here, one per frame.
             _client?.DrainQueued(_window.IsVisible || _invitations.IsVisible);
             // A completed background read can still occupy the shared send interval. Re-enable
-            // invitation controls when that interval (or their per-message quota) expires.
-            if (_client != null && State.InvitationCoolingDown != _client.InvitationCoolingDown) SyncState();
+            // controls when that interval (or their own per-message quota) expires.
+            if (_client != null && (State.InvitationCoolingDown != _client.InvitationCoolingDown ||
+                State.CreationCoolingDown != _client.CreationCoolingDown)) SyncState();
             bool typing = IsTyping();
             if (!_window.IsVisible && !_invitations.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
@@ -211,7 +212,7 @@ namespace MmorpgClient.UI.Ugui.Team
             // snapshot; the window must show "not synced" rather than offer Create / Apply to a member.
             State.Sync(_client.Snapshot, _client.Invites, _client.HasLoaded && _client.HasView, _client.ServiceAvailable,
                 _client.PendingAction, _client.PendingTarget, _client.HighlightPlayerId, _client.Status,
-                _client.InvitationCoolingDown);
+                _client.InvitationCoolingDown, _client.CreationCoolingDown);
         }
 
         private void RenderState()

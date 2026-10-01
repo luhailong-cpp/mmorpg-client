@@ -39,6 +39,7 @@ namespace MmorpgClient.Game.Team
         public ulong HighlightPlayerId { get; private set; }
         public string Status { get; private set; }
         public bool InvitationCoolingDown { get; private set; }
+        public bool CreationCoolingDown { get; private set; }
         public bool IsBusy => PendingAction != TeamAction.None || IsLoading || PendingPlayerId != 0;
         public bool HasTeam => Snapshot.TeamId != 0;
         public bool IsLeader => HasTeam && Snapshot.LocalPlayerId != 0 &&
@@ -73,6 +74,7 @@ namespace MmorpgClient.Game.Team
             _hasAuthoritative = false;
             HasLoaded = false;
             InvitationCoolingDown = false;
+            CreationCoolingDown = false;
             _invites.Clear();
             HighlightPlayerId = 0;
             ServiceAvailable = false;
@@ -120,7 +122,7 @@ namespace MmorpgClient.Game.Team
         /// </summary>
         public void Sync(TeamSnapshot snapshot, IReadOnlyList<TeamInvite> invites, bool loaded, bool available,
             TeamAction pendingAction, ulong pendingTarget, ulong highlightPlayerId, string status,
-            bool invitationCoolingDown = false)
+            bool invitationCoolingDown = false, bool creationCoolingDown = false)
         {
             NextGeneration();
             _pendingGeneration = 0;
@@ -136,6 +138,7 @@ namespace MmorpgClient.Game.Team
             ServiceAvailable = available;
             PendingAction = pendingAction;
             InvitationCoolingDown = invitationCoolingDown;
+            CreationCoolingDown = creationCoolingDown;
             PendingTarget = pendingTarget;
             IsLoading = pendingAction == TeamAction.Refresh || pendingAction == TeamAction.ListInvites;
             PendingPlayerId = pendingAction is TeamAction.Decide or TeamAction.Kick or TeamAction.Transfer

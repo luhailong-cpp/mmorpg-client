@@ -154,7 +154,8 @@ namespace MmorpgClient.UI.Ugui.Team
             if (IsVisible) Render();
         }
 
-        private bool CanCreate => _state != null && _state.ServiceAvailable && _state.HasLoaded && !_state.HasTeam && !_state.IsBusy;
+        private bool CanCreate => _state != null && _state.ServiceAvailable && _state.HasLoaded &&
+            !_state.HasTeam && !_state.IsBusy && !_state.CreationCoolingDown;
 
         /// <summary>Never infer success from a click: authoritative pending invitations alone show “已邀请”.</summary>
         public static string BlockReason(TeamUiState state, TeamRole role)

@@ -126,6 +126,64 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             }
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void BackgroundRefreshCooldownDisablesBothCreationEntries(bool fromInvitation)
+        {
+            float now = 1f;
+            var transport = new TeamFakeTransport { PlayerId = 11 };
+            var client = new TeamClient(transport, clock: () => now);
+            var liveObject = new GameObject("LiveTeamCreationCooldownTest");
+            var live = liveObject.AddComponent<TeamUiRoot>();
+            var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            if (live.InvitationWindow == null) typeof(TeamUiRoot).GetMethod("Awake", flags).Invoke(live, null);
+            typeof(TeamUiRoot).GetField("_client", flags).SetValue(live, client);
+            var sync = typeof(TeamUiRoot).GetMethod("SyncState", flags);
+            void SyncLive() => sync.Invoke(live, null);
+            string buttonName = fromInvitation ? "CreateTeamForInvitation" : "CreateTeam";
+            Button CreateButton() => live.GetComponentsInChildren<Button>()
+                .Last(button => button.name == buttonName && button.gameObject.activeInHierarchy);
+            var view = new Teampb.TeamView { MembershipEpoch = 1 };
+            try
+            {
+                client.Refresh();
+                transport.Reply(new Teampb.TeamResponse { Team = view });
+                now = 31f;
+                client.Refresh();
+                transport.Reply(new Teampb.TeamResponse { Team = view });
+                now += .1f;
+                Assert.That(client.Busy, Is.False, "The no-team background refresh already replied.");
+                Assert.That(client.Create(), Is.False, "The shared send interval still rejects CreateTeam.");
+                int calls = transport.Calls.Count, intents = 0;
+                SyncLive();
+                if (fromInvitation)
+                {
+                    live.InvitationWindow.Show();
+                    live.InvitationWindow.CreateRequested += () => intents++;
+                }
+                else
+                {
+                    live.Window.Show();
+                    live.Window.CreateRequested += () => intents++;
+                }
+                Assert.That(CreateButton().interactable, Is.False, "Both create entries must reflect the real send cooldown after Busy clears.");
+                CreateButton().onClick.Invoke();
+                Assert.That(intents, Is.Zero);
+                Assert.That(transport.Calls.Count, Is.EqualTo(calls));
+                now = 31f + TeamClient.MinSendIntervalSeconds + .001f;
+                SyncLive();
+                Assert.That(CreateButton().interactable, Is.True, "Create recovers independently when its production interval expires.");
+                CreateButton().onClick.Invoke();
+                Assert.That(intents, Is.EqualTo(1));
+                Assert.That(client.Create(), Is.True);
+            }
+            finally
+            {
+                Object.DestroyImmediate(liveObject);
+                client.Dispose();
+            }
+        }
+
         [Test]
         public void OfflineFullNonleaderAndBusyPreventDirectButtonInvocation()
         {
