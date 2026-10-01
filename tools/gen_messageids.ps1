@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Generate Assets/Scripts/Net/MessageIds.cs from the parent repo's
+    Generate Assets/Scripts/Net/MessageIds.cs from the server repo's
     proto/message_id.txt, so client RPC IDs never drift from the server.
 
 .DESCRIPTION
@@ -9,11 +9,15 @@
     is dropped to keep the file scoped to client-relevant traffic.
 
 .PARAMETER ProtoRoot
-    Parent mmorpg repo root. Defaults to ../../../ (this client repo lives
-    at client/unity/ inside that repo as a submodule).
+    Server mmorpg repo root. Defaults to ../../mmorpg relative to this script,
+    i.e. the sibling-repo layout (<workspace>/mmorpg-client next to
+    <workspace>/mmorpg). The old default ../../.. assumed the retired submodule
+    layout and now resolves to the workspace's parent directory; pass
+    -ProtoRoot explicitly for any other layout.
 #>
 param(
-    [string]$ProtoRoot = (Resolve-Path "$PSScriptRoot/../../..").Path
+    # 独立同级仓布局:本仓 <工作区>/mmorpg-client,服务端仓 <工作区>/mmorpg(不再是 submodule)
+    [string]$ProtoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../mmorpg'))
 )
 
 $ErrorActionPreference = "Stop"

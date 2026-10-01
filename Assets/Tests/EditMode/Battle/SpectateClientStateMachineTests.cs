@@ -18,6 +18,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private const ulong TheBattleId = 7700;
 
         private FakeBattleTransport _net;
+        private FakeBattleChannel _channel;   // null = 无直连通道(永远就绪,既有用例)
         private SpectateClient _client;
         private List<SpectatePhase> _phases;
         private List<string> _errors;
@@ -26,10 +27,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private int _ends;
 
         [SetUp]
-        public void SetUp()
+        public void SetUp() => Build(channel: null);
+
+        private void UseChannel() => Build(new FakeBattleChannel());
+
+        /// <summary>重建被测对象;传入假直连通道即进入收缩后口径(turn-based §22 D69 / D74)。</summary>
+        private void Build(FakeBattleChannel channel)
         {
             _net = new FakeBattleTransport { PlayerId = MyId };
-            _client = new SpectateClient(_net); // 直接 new,不经 Attach,避免污染单例
+            _channel = channel;
+            _client = new SpectateClient(_net, channel); // 直接 new,不经 Attach,避免污染单例
             _phases = new List<SpectatePhase>();
             _errors = new List<string>();
             _states = _turns = _ends = 0;
@@ -309,6 +316,198 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(stops, Has.Count.EqualTo(1), "回填后恰好补发一条退出请求");
             Assert.That(((StopWatchBattleRequest)stops[0].Request).BattleId, Is.EqualTo(TheBattleId));
             Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None), "补发不改相位");
+        }
+
+        // ── 战斗直连通道(turn-based §22 D69 / D74) ───────
+
+        /// <summary>带通道:请求成功 → 观众直连就绪 → 服务端握手快照(首帧)到达 → Watching。</summary>
+        private void EnterWatchingViaChannel()
+        {
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0]
+                .Respond(new Match.WatchBattleResponse { BattleId = TheBattleId });
+            _channel.RaiseReady(TheBattleId, eBattleTicketRole.BattleTicketRoleObserver);
+            PushSpectateState(TheBattleId);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
+        }
+
+        [Test]
+        public void ObserverChannelReady_FirstFrameFromServerSnapshot_NoClientPull()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0]
+                .Respond(new Match.WatchBattleResponse { BattleId = TheBattleId });
+
+            _channel.RaiseReady(TheBattleId, eBattleTicketRole.BattleTicketRoleObserver);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Requesting), "就绪本身不算首帧");
+            Assert.That(_net.CallsOf(MessageIds.GetBattleState), Is.Empty, "首帧由服务端握手快照驱动(D69),客户端不补拉");
+
+            PushSpectateState(TheBattleId, observers: 2); // 握手成功后经直连推来的快照
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
+            Assert.That(_client.ObserverCount, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void StopWatch_ChannelNotReady_AbandonsWithoutRequest()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0]
+                .Respond(new Match.WatchBattleResponse { BattleId = TheBattleId });
+
+            _client.StopWatch();
+            Assert.That(_net.CallsOf(MessageIds.StopWatchBattle), Is.Empty, "未就绪不发(gate 不中继战斗)");
+            Assert.That(_channel.Abandons, Is.EqualTo(new[] { TheBattleId }), "放弃该局直连");
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None), "本地立即收敛");
+            Assert.That(_errors, Is.Empty);
+        }
+
+        [Test]
+        public void StopWatch_NotReady_LateAssignmentThenReady_SendsDeferredStop()
+        {
+            // 退出时分配包还没到(Abandon 无事);分配包晚到、直连随后就绪 → 补发退出
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0]
+                .Respond(new Match.WatchBattleResponse { BattleId = TheBattleId });
+            _client.StopWatch();
+
+            _channel.RaiseReady(TheBattleId, eBattleTicketRole.BattleTicketRoleObserver);
+            var stops = _net.CallsOf(MessageIds.StopWatchBattle);
+            Assert.That(stops, Has.Count.EqualTo(1));
+            Assert.That(((StopWatchBattleRequest)stops[0].Request).BattleId, Is.EqualTo(TheBattleId));
+
+            _channel.RaiseReady(TheBattleId, eBattleTicketRole.BattleTicketRoleObserver);
+            Assert.That(_net.CallsOf(MessageIds.StopWatchBattle), Has.Count.EqualTo(1), "只补发一次");
+        }
+
+        [Test]
+        public void StopWatch_ThenRewatchSameBattle_NoDeferredStopOnReady()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0]
+                .Respond(new Match.WatchBattleResponse { BattleId = TheBattleId });
+            _client.StopWatch();
+
+            _client.WatchBattle(TheBattleId); // 反悔:再次观战同一场
+            _channel.RaiseReady(TheBattleId, eBattleTicketRole.BattleTicketRoleObserver);
+            Assert.That(_net.CallsOf(MessageIds.StopWatchBattle), Is.Empty, "新观战作废待补退出");
+        }
+
+        [Test]
+        public void StopWatch_ChannelReady_SendsRequestOverChannel()
+        {
+            UseChannel();
+            EnterWatchingViaChannel();
+            _client.StopWatch();
+            Assert.That(_net.CallsOf(MessageIds.StopWatchBattle), Has.Count.EqualTo(1));
+            Assert.That(_channel.Abandons, Is.Empty);
+        }
+
+        [Test]
+        public void RandomStopPending_ResponseArrives_NotReady_Abandons()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchRandom();
+            _client.StopWatch(); // battle_id 未知:挂待补
+            _net.CallsOf(MessageIds.WatchBattle)[0]
+                .Respond(new Match.WatchBattleResponse { BattleId = TheBattleId });
+
+            Assert.That(_net.CallsOf(MessageIds.StopWatchBattle), Is.Empty);
+            Assert.That(_channel.Abandons, Is.EqualTo(new[] { TheBattleId }));
+        }
+
+        [Test]
+        public void ChannelLost_WhileWatching_ConvergesNone()
+        {
+            UseChannel();
+            EnterWatchingViaChannel();
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Unreachable);
+
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_client.State, Is.Null);
+            Assert.That(_errors, Has.Count.EqualTo(1));
+            Assert.That(_errors[0], Does.Contain("无法连接战斗服务器"));
+        }
+
+        [Test]
+        public void ChannelLost_BattleGone_WhileRequesting_ConvergesNone()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.BattleGone);
+
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_errors, Has.Count.EqualTo(1));
+            Assert.That(_errors[0], Does.Contain("已结束"));
+        }
+
+        [Test]
+        public void ChannelSuperseded_WhileWatching_ConvergesNone_CanWatchAgain()
+        {
+            // 观战时进了自己的 gather:参战分配包把直连换到别的局。RemoveObserver 丢了 / SpectateEnd 晚于
+            // 分配包随旧连接一起丢掉,观战帧再也不会来(收缩后只走直连)—— 不能永远停在 Watching
+            UseChannel();
+            EnterWatchingViaChannel();
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded);
+
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_client.State, Is.Null);
+            Assert.That(_client.WatchedBattleId, Is.EqualTo(0UL));
+            Assert.That(_errors, Has.Count.EqualTo(1));
+
+            _client.WatchBattle(TheBattleId + 1);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Requesting), "相位闸已放开,可以再次观战");
+        }
+
+        [Test]
+        public void ChannelSuperseded_WhileRequesting_ConvergesNone()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Superseded);
+
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_errors, Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void ChannelLost_EndedHostClosedOrOtherBattle_Ignored()
+        {
+            UseChannel();
+            EnterWatchingViaChannel();
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Ended);
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.HostClosed);
+            _channel.RaiseLost(9999, BattleLinkCloseKind.Unreachable);
+            _channel.RaiseLost(9999, BattleLinkCloseKind.Superseded);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
+            Assert.That(_errors, Is.Empty);
+        }
+
+        [Test]
+        public void FirstFrameTimeout_WithChannelNotReady_AbandonsLink()
+        {
+            UseChannel();
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0]
+                .Respond(new Match.WatchBattleResponse { BattleId = TheBattleId });
+
+            _client.Tick(SpectateClient.FirstFrameTimeoutSeconds);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_channel.Abandons, Is.EqualTo(new[] { TheBattleId }),
+                "直连还在后台重连:放弃它,免得握手成功后服务端继续推帧");
+            Assert.That(_net.CallsOf(MessageIds.StopWatchBattle), Is.Empty);
         }
 
         [Test]

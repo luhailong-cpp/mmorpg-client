@@ -95,6 +95,8 @@ namespace MmorpgClient.UI.Ugui.Battle
     {
         public const int KeepLines = 80;
         public const int VisibleLines = 18;
+        /// <summary>记录面板(设计坐标,y 向下;左列,战斗直连横幅等居中提示须让开)。</summary>
+        public static readonly Rect PanelRect = new Rect(40f, 110f, 720f, 520f);
 
         private readonly UiTextButton _button;
         private readonly RectTransform _panel;
@@ -110,7 +112,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             BattleRoundCounter.ApplyNineSlice(_button.Plate, "button_9slice");
             _button.Button.onClick.AddListener(Toggle);
 
-            var bg = BattleUiWidgets.CreatePanel("BattleLogPanel", parent, 40f, 110f, 720f, 520f, BattleUiStyle.PanelBg);
+            var bg = BattleUiWidgets.CreatePanel("BattleLogPanel", parent,
+                PanelRect.x, PanelRect.y, PanelRect.width, PanelRect.height, BattleUiStyle.PanelBg);
             BattleRoundCounter.ApplyNineSlice(bg, "panel_9slice");
             _panel = bg.rectTransform;
             QdaoUguiFactory.CreateText("Title", _panel, 24f, 12f, 400f, 36f, "战斗记录", 24f, BattleUiStyle.WarnText);

@@ -20,7 +20,7 @@
 *.blend1.meta
 
 # Note: Generated/*.cs IS committed -- it's deterministic output of
-# tools/gen_proto.ps1 against the parent repo's pinned proto/ tree.
+# tools/gen_proto.ps1 against the sibling server repo's (../mmorpg) proto/ tree.
 # Re-run that script after .proto changes and commit the result.
 
 # .pdb/.xml from Google.Protobuf are noise

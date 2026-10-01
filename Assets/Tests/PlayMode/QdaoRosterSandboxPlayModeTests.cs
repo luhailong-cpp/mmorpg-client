@@ -299,8 +299,9 @@ namespace MmorpgClient.Tests.PlayMode
         {
             public string imagePath;
             public string imageSha256;
-            public string scope = "Actual gameplay camera and nameplate layout; projected full sprite rectangle and rendered nameplate backdrop, not opaque-alpha height.";
+            public string scope = "Actual gameplay camera and nameplate layout; V14 visibility from each source PNG alpha>0 pixel square, with full frame and alpha bounding box retained for diagnostics.";
             public int renderWidth, renderHeight;
+            public int artworkVersion;
             public float requestedZoom, actualOrthographicSize;
             public float configuredZoomMin, configuredZoomDefault;
             public Vector3 actorFeetScreenPixels;
@@ -308,6 +309,11 @@ namespace MmorpgClient.Tests.PlayMode
             public float projectedFrameHeightPixels;
             public float screenPixelsPerTexturePixel;
             public bool fullFrameInsideCapture;
+            public string visibleFrameSourceResourcePath, visibleFrameSourcePngPath, visibleFrameSourcePngSha256;
+            public int visibleAlphaMinX, visibleAlphaMinY, visibleAlphaMaxXExclusive, visibleAlphaMaxYExclusive;
+            public float alphaBoundingBoxLeftPixels, alphaBoundingBoxRightPixels, alphaBoundingBoxBottomPixels, alphaBoundingBoxTopPixels;
+            public float visibleFrameLeftPixels, visibleFrameRightPixels, visibleFrameBottomPixels, visibleFrameTopPixels;
+            public bool visibleFrameInsideCapture;
             public float nameplateLeftPixels, nameplateRightPixels, nameplateBottomPixels, nameplateTopPixels;
             public bool fullNameplateInsideCapture, actorFeetInsideCapture;
         }
@@ -603,10 +609,12 @@ namespace MmorpgClient.Tests.PlayMode
             File.WriteAllText(Path.Combine(outputDirectory, "runtime-observed-appearances.json"), JsonUtility.ToJson(observations, true));
         }
 
-        private static CameraCaptureObservation ObserveCameraProjection(TianyongSandboxBootstrap sandbox, int width, int height)
+        private static CameraCaptureObservation ObserveCameraProjection(TianyongSandboxBootstrap sandbox, int width, int height,
+            string v14ResourcePath = null)
         {
             var camera = sandbox.WorldCamera;
             var renderer = sandbox.Player.transform.Find("sprite").GetComponent<SpriteRenderer>();
+            var artworkVersion = sandbox.Player.GetComponent<QdaoBoySpriteAnimator>().ArtworkVersion;
             Assert.That(renderer.sprite, Is.Not.Null);
             var bounds = renderer.sprite.bounds;
             var min = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
@@ -633,9 +641,10 @@ namespace MmorpgClient.Tests.PlayMode
                 nameMax = Vector2.Max(nameMax, new Vector2(screen.x, screen.y));
             }
             var feet = camera.WorldToScreenPoint(sandbox.Player.GetComponent<TianyongPlayerController>().FeetPosition);
-            return new CameraCaptureObservation
+            var observation = new CameraCaptureObservation
             {
                 renderWidth = width, renderHeight = height,
+                artworkVersion = artworkVersion,
                 requestedZoom = sandbox.CameraRig.RequestedZoom, actualOrthographicSize = camera.orthographicSize,
                 configuredZoomMin = TianyongMapConfig.LoadDefault().CameraZoomMin,
                 configuredZoomDefault = TianyongMapConfig.LoadDefault().CameraZoomDefault,
@@ -649,12 +658,121 @@ namespace MmorpgClient.Tests.PlayMode
                 fullNameplateInsideCapture = nameMin.x >= 0f && nameMin.y >= 0f && nameMax.x <= width && nameMax.y <= height,
                 actorFeetInsideCapture = feet.z > 0f && feet.x >= 0f && feet.x <= width && feet.y >= 0f && feet.y <= height
             };
+            if (artworkVersion == 14)
+                ObserveVisibleFrameSource(camera, renderer, v14ResourcePath, observation);
+            return observation;
+        }
+
+        private static void ObserveVisibleFrameSource(Camera camera, SpriteRenderer renderer, string resourcePath,
+            CameraCaptureObservation observation)
+        {
+            Assert.That(resourcePath, Does.StartWith(QdaoCharacterCatalog.OriginalV14Root + "/"),
+                "V14 visibility must be bound to its selected Original resource.");
+            var sprite = renderer.sprite;
+            Assert.That(renderer.sprite.texture, Is.SameAs(Resources.Load<Texture2D>(resourcePath)),
+                "V14 visible bounds must come from the texture actually rendered.");
+            var sourcePath = Path.Combine(Application.dataPath, "Resources", resourcePath + ".png");
+            Assert.That(File.Exists(sourcePath), Is.True, "V14 rendered PNG is missing from the project.");
+            var sourceBytes = File.ReadAllBytes(sourcePath);
+            observation.visibleFrameSourceResourcePath = resourcePath;
+            observation.visibleFrameSourcePngPath = sourcePath;
+            using (var sha = SHA256.Create())
+                observation.visibleFrameSourcePngSha256 = System.BitConverter.ToString(sha.ComputeHash(sourceBytes)).Replace("-", "").ToLowerInvariant();
+
+            var readable = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+            try
+            {
+                Assert.That(ImageConversion.LoadImage(readable, sourceBytes, false), Is.True,
+                    "V14 source PNG must decode for the visibility check.");
+                Assert.That(readable.width, Is.EqualTo(sprite.texture.width));
+                Assert.That(readable.height, Is.EqualTo(sprite.texture.height));
+                Assert.That(sprite.rect, Is.EqualTo(new Rect(0f, 0f, readable.width, readable.height)),
+                    "V14 visible pixel bounds require the authored full-frame sprite rect.");
+                Assert.That(camera.orthographic, Is.True, "Per-pixel affine bounds require the real orthographic camera.");
+                var pixels = readable.GetPixels32();
+                var pixelOrigin = camera.WorldToScreenPoint(renderer.transform.TransformPoint(
+                    new Vector3(-sprite.pivot.x / sprite.pixelsPerUnit, -sprite.pivot.y / sprite.pixelsPerUnit, 0f)));
+                var pixelX = (camera.WorldToScreenPoint(renderer.transform.TransformPoint(
+                    new Vector3((readable.width - sprite.pivot.x) / sprite.pixelsPerUnit, -sprite.pivot.y / sprite.pixelsPerUnit, 0f)))
+                    - pixelOrigin) / readable.width;
+                var pixelY = (camera.WorldToScreenPoint(renderer.transform.TransformPoint(
+                    new Vector3(-sprite.pivot.x / sprite.pixelsPerUnit, (readable.height - sprite.pivot.y) / sprite.pixelsPerUnit, 0f)))
+                    - pixelOrigin) / readable.height;
+                // Orthographic projection is affine. These offsets cover all four corners of
+                // each opaque pixel square without calling the camera a million times.
+                var minOffsetX = Mathf.Min(0f, pixelX.x) + Mathf.Min(0f, pixelY.x);
+                var maxOffsetX = Mathf.Max(0f, pixelX.x) + Mathf.Max(0f, pixelY.x);
+                var minOffsetY = Mathf.Min(0f, pixelX.y) + Mathf.Min(0f, pixelY.y);
+                var maxOffsetY = Mathf.Max(0f, pixelX.y) + Mathf.Max(0f, pixelY.y);
+                var minOffsetZ = Mathf.Min(0f, pixelX.z) + Mathf.Min(0f, pixelY.z);
+                var minX = readable.width;
+                var minY = readable.height;
+                var maxX = -1;
+                var maxY = -1;
+                var visibleMin = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+                var visibleMax = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+                var nearestDepth = float.PositiveInfinity;
+                for (var y = 0; y < readable.height; y++)
+                for (var x = 0; x < readable.width; x++)
+                {
+                    if (pixels[y * readable.width + x].a == 0) continue;
+                    minX = Mathf.Min(minX, x);
+                    minY = Mathf.Min(minY, y);
+                    maxX = Mathf.Max(maxX, x);
+                    maxY = Mathf.Max(maxY, y);
+                    var screenX = pixelOrigin.x + x * pixelX.x + y * pixelY.x;
+                    var screenY = pixelOrigin.y + x * pixelX.y + y * pixelY.y;
+                    var screenZ = pixelOrigin.z + x * pixelX.z + y * pixelY.z;
+                    visibleMin.x = Mathf.Min(visibleMin.x, screenX + minOffsetX);
+                    visibleMin.y = Mathf.Min(visibleMin.y, screenY + minOffsetY);
+                    visibleMax.x = Mathf.Max(visibleMax.x, screenX + maxOffsetX);
+                    visibleMax.y = Mathf.Max(visibleMax.y, screenY + maxOffsetY);
+                    nearestDepth = Mathf.Min(nearestDepth, screenZ + minOffsetZ);
+                }
+                Assert.That(maxX, Is.GreaterThanOrEqualTo(minX), "V14 rendered PNG has no visible pixels.");
+                observation.visibleAlphaMinX = minX;
+                observation.visibleAlphaMinY = minY;
+                observation.visibleAlphaMaxXExclusive = maxX + 1;
+                observation.visibleAlphaMaxYExclusive = maxY + 1;
+
+                var left = (minX - sprite.pivot.x) / sprite.pixelsPerUnit;
+                var right = (maxX + 1 - sprite.pivot.x) / sprite.pixelsPerUnit;
+                var bottom = (minY - sprite.pivot.y) / sprite.pixelsPerUnit;
+                var top = (maxY + 1 - sprite.pivot.y) / sprite.pixelsPerUnit;
+                var boxMin = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+                var boxMax = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+                foreach (var x in new[] { left, right })
+                foreach (var y in new[] { bottom, top })
+                {
+                    var screen = camera.WorldToScreenPoint(renderer.transform.TransformPoint(new Vector3(x, y, 0f)));
+                    boxMin = Vector2.Min(boxMin, new Vector2(screen.x, screen.y));
+                    boxMax = Vector2.Max(boxMax, new Vector2(screen.x, screen.y));
+                }
+                observation.alphaBoundingBoxLeftPixels = boxMin.x;
+                observation.alphaBoundingBoxRightPixels = boxMax.x;
+                observation.alphaBoundingBoxBottomPixels = boxMin.y;
+                observation.alphaBoundingBoxTopPixels = boxMax.y;
+                observation.visibleFrameLeftPixels = visibleMin.x;
+                observation.visibleFrameRightPixels = visibleMax.x;
+                observation.visibleFrameBottomPixels = visibleMin.y;
+                observation.visibleFrameTopPixels = visibleMax.y;
+                observation.visibleFrameInsideCapture = nearestDepth > 0f && visibleMin.x >= 0f && visibleMin.y >= 0f &&
+                    visibleMax.x <= observation.renderWidth && visibleMax.y <= observation.renderHeight;
+            }
+            finally { Object.Destroy(readable); }
         }
 
         private static void AssertCameraCaptureVisible(CameraCaptureObservation view)
         {
-            Assert.That(view.fullFrameInsideCapture, Is.True,
-                $"{view.imagePath}: full sprite frame clipped: ({view.frameLeftPixels}, {view.frameBottomPixels}) to ({view.frameRightPixels}, {view.frameTopPixels})");
+            if (view.artworkVersion == 14)
+            {
+                Assert.That(view.visibleFrameSourcePngSha256, Does.Match("^[0-9a-f]{64}$"));
+                Assert.That(view.visibleFrameInsideCapture, Is.True,
+                    $"{view.imagePath}: visible V14 pixels clipped: ({view.visibleFrameLeftPixels}, {view.visibleFrameBottomPixels}) to ({view.visibleFrameRightPixels}, {view.visibleFrameTopPixels})");
+            }
+            else
+                Assert.That(view.fullFrameInsideCapture, Is.True,
+                    $"{view.imagePath}: full sprite frame clipped: ({view.frameLeftPixels}, {view.frameBottomPixels}) to ({view.frameRightPixels}, {view.frameTopPixels})");
             Assert.That(view.actorFeetInsideCapture, Is.True, view.imagePath + ": actor feet clipped");
             Assert.That(view.fullNameplateInsideCapture, Is.True,
                 $"{view.imagePath}: nameplate clipped: ({view.nameplateLeftPixels}, {view.nameplateBottomPixels}) to ({view.nameplateRightPixels}, {view.nameplateTopPixels})");
@@ -813,7 +931,7 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(File.Exists(path), Is.False, "Walk capture evidence must not be overwritten.");
                     File.WriteAllBytes(path, capture.EncodeToPNG());
                     Assert.That(new FileInfo(path).Length, Is.GreaterThan(100000));
-                    var view = ObserveCameraProjection(sandbox, target.width, target.height);
+                    var view = ObserveCameraProjection(sandbox, target.width, target.height, observed.resourcePath);
                     view.imagePath = path;
                     using (var sha = SHA256.Create())
                         view.imageSha256 = System.BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
@@ -822,6 +940,8 @@ namespace MmorpgClient.Tests.PlayMode
                 }
                 observed.normalView = SaveView(TianyongMapConfig.LoadDefault().CameraZoomDefault, "");
                 observed.nearestView = SaveView(TianyongMapConfig.LoadDefault().CameraZoomMin, "-nearest-zoom");
+                Assert.That(observed.normalView.visibleFrameSourcePngSha256, Is.EqualTo(observed.resourcePngSha256));
+                Assert.That(observed.nearestView.visibleFrameSourcePngSha256, Is.EqualTo(observed.resourcePngSha256));
             }
             finally
             {
@@ -863,7 +983,8 @@ namespace MmorpgClient.Tests.PlayMode
                     var path = Path.Combine(outputDirectory, "tianyong-" + characterId + suffix + ".png");
                     File.WriteAllBytes(path, capture.EncodeToPNG());
                     Assert.That(new FileInfo(path).Length, Is.GreaterThan(100000), "The real map capture should contain visible city artwork.");
-                    var view = ObserveCameraProjection(sandbox, target.width, target.height);
+                    var view = ObserveCameraProjection(sandbox, target.width, target.height,
+                        observed.actualArtworkVersion == 14 ? observed.expectedIdleResourcePath : null);
                     view.imagePath = path;
                     using (var sha = SHA256.Create())
                         view.imageSha256 = System.BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();

@@ -1,26 +1,29 @@
 <#
 .SYNOPSIS
-    Generate C# protobuf classes from the parent mmorpg repo's proto tree.
+    Generate C# protobuf classes from the server mmorpg repo's proto tree.
 
 .DESCRIPTION
-    Invokes protoc against the proto/ tree of the parent repository (resolved
-    relative to this client repo) and emits .cs files into
+    Invokes protoc against the proto/ tree of the server repository (a sibling
+    of this client repo by default, see -ProtoRoot) and emits .cs files into
     Assets/Scripts/Proto/Generated/. Run this whenever a .proto changes.
 
 .PARAMETER ProtoRoot
-    Path to the parent mmorpg repo root. Defaults to ../../ (the natural
-    layout when this client is consumed as a git submodule at
-    client/unity/ inside the mmorpg superproject).
+    Path to the server mmorpg repo root. Defaults to ../../mmorpg relative to
+    this script, i.e. the sibling-repo layout (<workspace>/mmorpg-client next to
+    <workspace>/mmorpg). The old default ../../.. assumed the retired submodule
+    layout (client/unity/ inside the server repo) and now resolves to the
+    workspace's parent directory; pass -ProtoRoot explicitly for any other layout.
 
 .PARAMETER Protoc
     Path to a protoc executable. Defaults to looking up protoc on PATH.
 
 .EXAMPLE
     pwsh -File tools/gen_proto.ps1
-    pwsh -File tools/gen_proto.ps1 -ProtoRoot F:/work/mmorpg
+    pwsh -File tools/gen_proto.ps1 -ProtoRoot D:/luyuan/wuxingqitan/mmorpg
 #>
 param(
-    [string]$ProtoRoot = (Resolve-Path "$PSScriptRoot/../../..").Path,
+    # 独立同级仓布局:本仓 <工作区>/mmorpg-client,服务端仓 <工作区>/mmorpg(不再是 submodule)
+    [string]$ProtoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../mmorpg')),
     [string]$Protoc = "protoc"
 )
 

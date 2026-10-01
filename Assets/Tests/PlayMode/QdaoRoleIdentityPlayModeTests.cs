@@ -23,6 +23,163 @@ namespace MmorpgClient.Tests.PlayMode
         private const string First = "00_reference_topright_boy";
         private const string Second = "01_ice_sword_girl";
 
+        [Test]
+        public void AllRetainedCharactersAreSelectableWithElevenV14AndFourV13Appearances()
+        {
+            QdaoCharacterCatalog.RefreshAppearances();
+            var roster = QdaoCharacterCatalog.RetainedOriginalAll.ToArray();
+            Assert.That(roster.Length, Is.EqualTo(15));
+            var appearances = roster.Select(entry => entry.ResolveAppearance()).ToArray();
+            Assert.That(appearances.All(appearance => appearance != null), Is.True,
+                "全部保留人物都必须具备可用资源，不能由 AvailableAll 过滤掉缺失角色而假通过。");
+            Assert.That(appearances.Count(appearance => appearance.Version == 14), Is.EqualTo(11));
+            Assert.That(appearances.Count(appearance => appearance.Version == 13), Is.EqualTo(4));
+            foreach (var appearance in appearances)
+            {
+                Assert.That(appearance.FrameCount, Is.EqualTo(16), appearance.Id);
+                Assert.That(appearance.HasDedicatedIdle, Is.True, appearance.Id);
+                Assert.That(QdaoCharacterCatalog.AvailableAll.Any(entry => entry.Id == appearance.Id), Is.True);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator NewRoleWithoutCyclingAppearance_CreatesAlchemyBoyAndUsesSameWorldIdentity()
+        {
+            const string latest = "08_alchemy_prodigy_boy";
+            var appearance = QdaoCharacterCatalog.Find(latest).ResolveAppearance();
+            Assert.That(appearance?.Version, Is.EqualTo(14), "Requires the delivered alchemy V14 resources.");
+            var host = new GameObject("DefaultNewRoleAppearanceRegression");
+            var ui = host.AddComponent<RoleFlowUi>();
+            var world = new ActorWorld("DefaultNewRoleAppearanceWorld");
+            try
+            {
+                typeof(RoleFlowUi).GetMethod("BuildCanvas", Hidden)?.Invoke(ui, null);
+                var choice = new GameClient.PlayerChoice();
+                var choose = Choose(ui, Array.Empty<AccountSimplePlayer>(), choice);
+                Assert.That(choose.MoveNext(), Is.True);
+                yield return null;
+                // Reproduce the user's ordinary create flow: no external appearance id and no arrow clicks.
+                Click(host, "Class_4");
+                Click(host, "GenderFemale");
+                Click(host, "ConfirmCreate");
+                Assert.That(choose.MoveNext(), Is.False);
+                Assert.That(choice.CreateNew, Is.True);
+                Assert.That(choice.AppearanceId, Is.EqualTo(latest),
+                    "Creating without discovering the appearance arrows must use the latest delivered character.");
+                Assert.That(choice.ClassId, Is.EqualTo(4u));
+                Assert.That(choice.Gender, Is.EqualTo(2u));
+                Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(QdaoCharacterCatalog.LoadPortrait(latest)));
+
+                world.AppearanceProvider = _ => QdaoCharacterCatalog.ResolveRole(choice.ClassId, choice.Gender, choice.AppearanceId);
+                world.SpawnActor(10, ActorKind.Player, 0, UnityEngine.Vector3.zero, UnityEngine.Vector3.zero, 101);
+                yield return null;
+                var actor = world.Actors[10];
+                var animator = actor.Go.GetComponent<QdaoBoySpriteAnimator>();
+                Assert.That(actor.CharacterId, Is.EqualTo(latest));
+                Assert.That(animator.CharacterId, Is.EqualTo(latest));
+                Assert.That(animator.ArtworkVersion, Is.EqualTo(14));
+                Assert.That(actor.Go.transform.Find("sprite").GetComponent<SpriteRenderer>().sprite, Is.Not.Null);
+            }
+            finally
+            {
+                world.Clear();
+                UnityEngine.Object.Destroy(world.Root.gameObject);
+                UnityEngine.Object.Destroy(host);
+            }
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator CreationChooser_OrdersHdFirstAndPreservesExplicitProfessionDefaultAcrossReopenAndReject()
+        {
+            var host = new GameObject("PreservedProfessionDefaultRegression");
+            var ui = host.AddComponent<RoleFlowUi>();
+            var roles = new[] { new AccountSimplePlayer { PlayerId = 101, ClassId = 4, Gender = 2 } };
+            try
+            {
+                typeof(RoleFlowUi).GetMethod("BuildCanvas", Hidden)?.Invoke(ui, null);
+                var choice = new GameClient.PlayerChoice();
+                var choose = Choose(ui, roles, choice);
+                Assert.That(choose.MoveNext(), Is.True);
+                yield return null;
+                Assert.That(FindImage(host, "CharacterArtwork").sprite,
+                    Is.SameAs(QdaoCharacterCatalog.LoadPortrait("26_osmanthus_healer")), "An existing role keeps its identity.");
+                Click(host, "CreateNewRole");
+                Assert.That(ReadText(host, "PreviewTitle"), Is.EqualTo("炼丹童子"));
+                Assert.That(ReadText(host, "AppearanceDetails"), Does.Contain("8 个方向").And.Contain("每方向 16 帧"));
+                Capture(host.GetComponentInChildren<Canvas>(), "create-default-alchemy-v14-disconnected-ui");
+
+                var available = QdaoCharacterCatalog.RetainedOriginalAll.Where(entry => entry.ResolveAppearance() != null).ToArray();
+                bool sawOlder = false;
+                for (int i = 0; i < available.Length; i++)
+                {
+                    var displayed = available.Single(entry => entry.Name == ReadText(host, "PreviewTitle"));
+                    bool hd = displayed.ResolveAppearance().IsHd;
+                    Assert.That(sawOlder && hd, Is.False, "All available HD characters precede older characters.");
+                    sawOlder |= !hd;
+                    Click(host, "NextAppearance");
+                }
+                Assert.That(ReadText(host, "AppearanceName"), Does.Contain("职业默认"));
+                Click(host, "BackFromCreate");
+                Click(host, "CreateNewRole");
+                Assert.That(ReadText(host, "AppearanceName"), Does.Contain("职业默认"),
+                    "Returning to creation must retain the player's deliberate default selection.");
+                Click(host, "Class_4");
+                Click(host, "GenderFemale");
+                Click(host, "ConfirmCreate");
+                Assert.That(choose.MoveNext(), Is.False);
+                Assert.That(choice.AppearanceId, Is.Empty);
+
+                string submittedName = choice.Name;
+                choice.CreateNew = false;
+                choice.RejectHint = "该角色名已被使用";
+                choose = Choose(ui, roles, choice);
+                Assert.That(choose.MoveNext(), Is.True);
+                yield return null;
+                Assert.That(ReadText(host, "AppearanceName"), Does.Contain("职业默认"));
+                Assert.That(ReadText(host, "PreviewHint"), Is.EqualTo(choice.RejectHint));
+                Assert.That(host.GetComponentsInChildren<TMPro.TMP_InputField>(true).Single().text, Is.EqualTo(submittedName));
+                Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(QdaoCharacterCatalog.LoadPortrait("26_osmanthus_healer")));
+                Click(host, "ConfirmCreate");
+                Assert.That(choose.MoveNext(), Is.False);
+                Assert.That(choice.AppearanceId, Is.Empty);
+                Assert.That(choice.ClassId, Is.EqualTo(4u));
+                Assert.That(choice.Gender, Is.EqualTo(2u));
+                Assert.That(roles[0].AppearanceId, Is.Empty);
+            }
+            finally { UnityEngine.Object.Destroy(host); }
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator RejectedCreation_RestoresSelectedOlderCharacterInsteadOfNewDefault()
+        {
+            var host = new GameObject("RejectedAppearanceRestoreRegression");
+            var ui = host.AddComponent<RoleFlowUi>();
+            try
+            {
+                typeof(RoleFlowUi).GetMethod("BuildCanvas", Hidden)?.Invoke(ui, null);
+                var choice = new GameClient.PlayerChoice
+                {
+                    ClassId = 4, Gender = 2, AppearanceId = Second, Name = "修行者",
+                    RejectHint = "该角色名已被使用"
+                };
+                var choose = Choose(ui, Array.Empty<AccountSimplePlayer>(), choice);
+                Assert.That(choose.MoveNext(), Is.True);
+                yield return null;
+                Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(QdaoCharacterCatalog.LoadPortrait(Second)));
+                Assert.That(ReadText(host, "PreviewHint"), Is.EqualTo(choice.RejectHint));
+                Click(host, "ConfirmCreate");
+                Assert.That(choose.MoveNext(), Is.False);
+                Assert.That(choice.AppearanceId, Is.EqualTo(Second));
+                Assert.That(choice.ClassId, Is.EqualTo(4u));
+                Assert.That(choice.Gender, Is.EqualTo(2u));
+                Assert.That(choice.Name, Is.EqualTo("修行者"));
+            }
+            finally { UnityEngine.Object.Destroy(host); }
+            yield return null;
+        }
+
         [UnityTest]
         public IEnumerator MissingChangedIdentity_ClearsPreviousWorldAndBattleBody_AndCanRecover()
         {
@@ -96,7 +253,7 @@ namespace MmorpgClient.Tests.PlayMode
                 var choose = Choose(ui, Array.Empty<AccountSimplePlayer>(), choice);
                 Assert.That(choose.MoveNext(), Is.True);
                 yield return null;
-                Click(host, "NextAppearance");
+                SelectAppearance(host, First);
                 Click(host, "Class_4");
                 Click(host, "GenderFemale");
                 yield return null;
@@ -241,6 +398,18 @@ namespace MmorpgClient.Tests.PlayMode
 
         private static Image FindImage(GameObject host, string name)
             => host.GetComponentsInChildren<Image>(true).First(image => image.name == name);
+
+        private static string ReadText(GameObject host, string name)
+            => host.GetComponentsInChildren<TMPro.TMP_Text>(true).Single(text => text.name == name).text;
+
+        private static void SelectAppearance(GameObject host, string id)
+        {
+            var portrait = QdaoCharacterCatalog.LoadPortrait(id);
+            int remaining = QdaoCharacterCatalog.RetainedOriginalAll.Count + 1;
+            while (FindImage(host, "CharacterArtwork").sprite != portrait && remaining-- > 0)
+                Click(host, "NextAppearance");
+            Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(portrait));
+        }
 
         private static void Click(GameObject host, string name)
         {

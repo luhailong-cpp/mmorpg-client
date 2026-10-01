@@ -7,15 +7,21 @@ using NUnit.Framework;
 namespace MmorpgClient.Tests.EditMode.Battle
 {
     /// <summary>
-    /// <see cref="BattleDirectLink"/> 状态机纯逻辑测试(turn-based-battle-server.md §18.2 契约):
-    /// 分配 → 建连 → 握手 → 分发;握手被拒 / 超时 / 意外断开 / 票据过期 / 正常收尾各走哪条恢复路径,
-    /// 以及恢复预算封顶。连接经 <see cref="FakeFramedConnection"/> 注入,连接动作同步完成。
+    /// <see cref="BattleDirectLink"/> 状态机纯逻辑测试(turn-based-battle-server.md §18.2 契约,
+    /// 收缩后口径 turn-based §22 D74):分配 → 建连 → 握手 → 分发;握手被拒 / 超时 / 意外断开 /
+    /// 票据过期 / 正常收尾各走哪条恢复路径;补签的退避、预算封顶与失败分类(BattleGone / Unreachable);
+    /// 换局时旧局的 Superseded 通知;Retry / EnsureBattle / Abandon 三个宿主入口。连接经 <see cref="FakeFramedConnection"/> 注入,
+    /// 连接动作同步完成;退避抖动源固定为 0.5(无抖动),退避时长即 1s / 2s / 4s。
     /// </summary>
     public sealed class BattleDirectLinkTests
     {
         private const ulong BattleA = 7700;
         private const ulong BattleB = 7701;
         private const ulong FarFuture = 4_000_000_000_000UL; // Unix 毫秒,远未过期
+
+        /// <summary>第 k 次自动补签前的退避(无抖动)再加一点余量。</summary>
+        private static double Backoff(int attempt)
+            => BattleDirectLink.ReissueBackoffBaseSeconds * Math.Pow(2, attempt - 1) + 0.1;
 
         private List<FakeFramedConnection> _conns;
         private BattleDirectLink _link;
@@ -24,9 +30,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private List<string> _log;
         private List<ulong> _verified;
         private List<string> _closed;
+        private List<BattleLinkCloseKind> _closedKinds;
+        private List<ulong> _closedBattleIds;
         private List<ulong> _reissueRequests;
         private Action<BattleAssignedS2C> _reissueOk;
-        private Action<string> _reissueFail;
+        private Action<uint, string> _reissueFail;
         private bool _reissueAvailable = true;
 
         [SetUp]
@@ -38,6 +46,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _log = new List<string>();
             _verified = new List<ulong>();
             _closed = new List<string>();
+            _closedKinds = new List<BattleLinkCloseKind>();
+            _closedBattleIds = new List<ulong>();
             _reissueRequests = new List<ulong>();
             _reissueOk = null;
             _reissueFail = null;
@@ -47,9 +57,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 factory: () => { var c = new FakeFramedConnection(); _conns.Add(c); return c; },
                 log: s => _log.Add(s),
                 unixNowMs: () => _unixNowMs,
-                connectRunner: a => a());
+                connectRunner: a => a(),
+                random01: () => 0.5);
             _link.OnVerified += id => _verified.Add(id);
-            _link.OnClosed += r => _closed.Add(r);
+            _link.OnClosed += (id, kind, r) =>
+            {
+                _closedBattleIds.Add(id);
+                _closedKinds.Add(kind);
+                _closed.Add(r);
+            };
             _link.TicketReissuer = (battleId, ok, fail) =>
             {
                 if (!_reissueAvailable) return false;
@@ -207,7 +223,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             AssignAndConnect(MakeAssignment(BattleA)); // 只到 Handshaking
             string err = null;
             _link.Call(MessageIds.GetBattleState, new GetBattleStateRequest(), BattleStateS2C.Parser, _ => { }, e => err = e);
-            Assert.AreEqual(BattleDirectLink.TransportErrorPrefix + "not verified", err);
+            Assert.AreEqual(BattleDirectLink.NotReadyError, err);
+            StringAssert.StartsWith(BattleDirectLink.TransportErrorPrefix, err);
         }
 
         [Test]
@@ -226,13 +243,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
         // ── 握手失败的恢复路径 ──────────────────────────────
 
         [Test]
-        public void HandshakeRejected_DoesNotRetrySameTicket_RequestsReissueOnce()
+        public void HandshakeRejected_DoesNotRetrySameTicket_ReissuesAfterBackoff()
         {
             var conn = AssignAndConnect(MakeAssignment(BattleA, ticket: "t1"));
             Verify(conn, 0, success: false, error: "invalid ticket signature");
 
             Assert.IsTrue(conn.Disposed, "被拒后本地也关连接");
-            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "同票不再重试,直接补签");
+            Assert.IsEmpty(_reissueRequests, "自动补签按退避排队(第 1 次等 1s)");
+            Assert.AreEqual(BattleDirectLink.LinkState.Idle, _link.State);
+            Tick(Backoff(1));
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "同票不再重试,直接进补签");
             Assert.AreEqual(1, _conns.Count, "补签回来之前不建新连接");
             Tick(BattleDirectLink.ReconnectDelaySeconds + 1);
             Assert.AreEqual(1, _conns.Count);
@@ -249,25 +269,128 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void HandshakeRejected_ReissueFails_LinkClosed()
+        public void ReissueFails_InvalidParameter_ClosesAsBattleGone()
         {
+            // match:该战斗不存在或已结束(典型:终局包在断线期间丢了)→ 不再重试
             var conn = AssignAndConnect(MakeAssignment(BattleA));
             Verify(conn, 0, success: false, error: "expired");
-            _reissueFail("tip=9");
+            Tick(Backoff(1));
+            _reissueFail((uint)common_error.KInvalidParameter, "response tip");
 
             Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
-            Assert.AreEqual(1, _closed.Count);
-            StringAssert.Contains("reissue_failed", _closed[0]);
+            Assert.AreEqual(new[] { BattleLinkCloseKind.BattleGone }, _closedKinds.ToArray());
+            Assert.AreEqual(new[] { BattleA }, _closedBattleIds.ToArray(), "终结事件带上服务的 battle_id");
+            Tick(Backoff(3) + 1);
+            Assert.AreEqual(1, _reissueRequests.Count, "BattleGone 不再补签");
         }
 
         [Test]
-        public void HandshakeRejected_ReissueUnavailable_LinkClosed()
+        public void ReissueFails_ServiceUnavailable_BacksOff_1s2s4s_ThenUnreachable()
         {
-            _reissueAvailable = false;
+            var conn = AssignAndConnect(MakeAssignment(BattleA));
+            Verify(conn, 0, success: false, error: "expired");
+
+            for (int attempt = 1; attempt <= BattleDirectLink.MaxReissuesPerBattle; attempt++)
+            {
+                double wait = BattleDirectLink.ReissueBackoffBaseSeconds * Math.Pow(2, attempt - 1);
+                Tick(wait - 0.05);
+                Assert.AreEqual(attempt - 1, _reissueRequests.Count, $"第 {attempt} 次补签未到退避时刻不发");
+                Tick(0.1);
+                Assert.AreEqual(attempt, _reissueRequests.Count, $"第 {attempt} 次补签在 {wait}s 退避后发出");
+                Assert.IsEmpty(_closed);
+                _reissueFail((uint)common_error.KServiceUnavailable, "response tip");
+            }
+
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State, "预算用完 → 终结");
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+            Assert.AreEqual(BattleDirectLink.MaxReissuesPerBattle, _reissueRequests.Count);
+        }
+
+        [Test]
+        public void ReissueFails_TransportError_TreatedAsUnreachableAfterBudget()
+        {
+            // 传输失败(tipId=0)与非 kInvalidParameter 的 tip 同样按退避继续,不能当成「战斗已结束」
             var conn = AssignAndConnect(MakeAssignment(BattleA));
             Verify(conn, 0, success: false);
+            for (int attempt = 1; attempt <= BattleDirectLink.MaxReissuesPerBattle; attempt++)
+            {
+                Tick(Backoff(attempt));
+                _reissueFail(0, "rpc timeout");
+            }
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+        }
+
+        [Test]
+        public void ReissueUnavailable_CountsAsFailedAttempt_ThenUnreachable()
+        {
+            _reissueAvailable = false;   // 大厅未就绪:补签通道此刻发不出
+            var conn = AssignAndConnect(MakeAssignment(BattleA));
+            Verify(conn, 0, success: false);
+            Tick(Backoff(1));
+            Assert.AreNotEqual(BattleDirectLink.LinkState.Closed, _link.State, "发不出按一次失败的补签计,继续退避");
+            Tick(Backoff(2));
+            Tick(Backoff(3));
             Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
-            Assert.AreEqual(new[] { "reissue_unavailable" }, _closed.ToArray());
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+        }
+
+        [Test]
+        public void ReissueReturnsIncompleteAssignment_BacksOff_ThenUnreachable_NotStuckIdle()
+        {
+            // 补签「成功」却回了缺 host / port 的落点:交给 HandleAssigned 会被静默忽略,
+            // 链路停在 Idle(无在途补签、无倒计时、不终结),UI 永远「正在连接」。必须按失败的补签计
+            _link.HandleReconnectHint(BattleA);                  // 立即补签(第 1 次)
+            Assert.AreEqual(1, _reissueRequests.Count);
+
+            _reissueOk(MakeAssignment(BattleA, port: 0));
+            Tick();
+            Assert.IsEmpty(_conns, "不完整的落点不建连");
+            Assert.AreEqual(BattleDirectLink.LinkState.Idle, _link.State);
+
+            Tick(Backoff(2));
+            Assert.AreEqual(2, _reissueRequests.Count, "按一次失败计,退避后继续补签");
+            _reissueOk(MakeAssignment(BattleA, host: ""));
+            Tick(Backoff(3));
+            Assert.AreEqual(3, _reissueRequests.Count);
+            _reissueOk(MakeAssignment(BattleA, port: 0));
+
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State, "预算用完 → 终结,不永久停在 Idle");
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+            Assert.IsEmpty(_conns);
+        }
+
+        [Test]
+        public void ReissueBackoff_CappedByTicketExpiry()
+        {
+            // 票据(= 房间)0.5s 后作废:退避不等到房间作废之后,到点即补签,由服务端给权威答复
+            var conn = AssignAndConnect(MakeAssignment(BattleA, expireAtMs: _unixNowMs + 500));
+            Verify(conn, 0, success: false);
+            Tick(0.4);
+            Assert.IsEmpty(_reissueRequests);
+            Tick(0.2);
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "退避被票据期限封顶到 0.5s");
+        }
+
+        [Test]
+        public void ReissueBackoff_JitterWithinTwentyPercent()
+        {
+            // 抖动源取下界 0:退避 = 基数 × 2^(k-1) × (1 - 20%)
+            var reissues = new List<ulong>();
+            Action<uint, string> fail = null;
+            var link = new BattleDirectLink(() => new FakeFramedConnection(),
+                unixNowMs: () => _unixNowMs, connectRunner: a => a(), random01: () => 0.0);
+            link.TicketReissuer = (id, ok, f) => { reissues.Add(id); fail = f; return true; };
+            double now = 10;
+            link.Tick(now);
+
+            link.HandleReconnectHint(BattleA);   // 宿主入口:立即补签(第 1 次,不退避)
+            Assert.AreEqual(1, reissues.Count);
+
+            fail(0, "rpc timeout");              // 失败 → 第 2 次自动补签:2s × 0.8 = 1.6s
+            link.Tick(now + 1.55);
+            Assert.AreEqual(1, reissues.Count, "1.6s 之前不补签");
+            link.Tick(now + 1.65);
+            Assert.AreEqual(2, reissues.Count, "抖动下界:2s × 0.8 = 1.6s");
         }
 
         [Test]
@@ -287,6 +410,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(a.TokenPayload, hs.Payload);
 
             Tick(BattleDirectLink.HandshakeTimeoutSeconds + 0.1);
+            Assert.IsEmpty(_reissueRequests, "第二次超时后进补签退避");
+            Tick(Backoff(1));
             Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "第二次超时才补签");
             Assert.AreEqual(2, _conns.Count);
         }
@@ -305,7 +430,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                     conns.Add(c);
                     return c;
                 },
-                unixNowMs: () => _unixNowMs, connectRunner: a => a());
+                unixNowMs: () => _unixNowMs, connectRunner: a => a(), random01: () => 0.5);
             link.TicketReissuer = (id, ok, fail) => { reissues.Add(id); return true; };
 
             double now = 10;
@@ -319,7 +444,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
             now += BattleDirectLink.ReconnectDelaySeconds + 0.1;
             link.Tick(now);
             Assert.AreEqual(2, conns.Count);
-            Assert.AreEqual(new[] { BattleA }, reissues.ToArray(), "第二次也失败 → 补签");
+            Assert.IsEmpty(reissues, "第二次也失败 → 进补签退避");
+            now += Backoff(1);
+            link.Tick(now);
+            Assert.AreEqual(new[] { BattleA }, reissues.ToArray(), "退避到点补签");
         }
 
         [Test]
@@ -386,38 +514,102 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             conn.PushDisconnect();
             Tick();
-            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "过期票不重试,直接补签");
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(),
+                "过期票不重试,直接补签(退避被票据期限封顶为 0)");
             Tick(BattleDirectLink.ReconnectDelaySeconds + 1);
             Assert.AreEqual(1, _conns.Count);
         }
 
         [Test]
+        public void ExpiredTicket_ConsecutiveReissueFailures_StillBackOff_2s_4s()
+        {
+            // 期限已过只换来第 1 次立即补签。房间期限到了不等于首次就能拿到 BattleGone
+            // (match 在 battle RPC 失败时回 kServiceUnavailable),客户端时钟偏快也会落到这里:
+            // 第 2、3 次必须照常退避,不能「延迟 0」连发三次当场烧完预算
+            var conn = AssignAndVerify(MakeAssignment(BattleA, expireAtMs: 2_000_000));
+            _unixNowMs = 2_000_001;
+
+            conn.PushDisconnect(); Tick();
+            Assert.AreEqual(1, _reissueRequests.Count, "期限已过:第 1 次立即补签,由服务端给权威答复");
+            _reissueFail((uint)common_error.KServiceUnavailable, "response tip");
+            Assert.AreEqual(1, _reissueRequests.Count, "第 2 次不得同步连发");
+
+            for (int attempt = 2; attempt <= BattleDirectLink.MaxReissuesPerBattle; attempt++)
+            {
+                double wait = BattleDirectLink.ReissueBackoffBaseSeconds * Math.Pow(2, attempt - 1);
+                Tick(wait - 0.05);
+                Assert.AreEqual(attempt - 1, _reissueRequests.Count, $"第 {attempt} 次补签未到 {wait}s 退避不发");
+                Tick(0.1);
+                Assert.AreEqual(attempt, _reissueRequests.Count, $"第 {attempt} 次补签在 {wait}s 退避后发出");
+                Assert.IsEmpty(_closed);
+                _reissueFail((uint)common_error.KServiceUnavailable, "response tip");
+            }
+
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+        }
+
+        [Test]
+        public void ExpiredTicket_ReissuerUnavailable_DoesNotExhaustBudgetSynchronously()
+        {
+            // 期限已过 + 大厅此刻发不出补签(TicketReissuer 返回 false):若每次都「延迟 0」,
+            // SendReissue → 失败 → 再排补签会同步递归,当场判 Unreachable。第 1 次之后必须回到正常退避
+            var conn = AssignAndVerify(MakeAssignment(BattleA, expireAtMs: 2_000_000));
+            _unixNowMs = 2_000_001;
+            _reissueAvailable = false;
+
+            conn.PushDisconnect(); Tick();
+            Assert.AreEqual(BattleDirectLink.LinkState.Idle, _link.State, "不得同步烧完预算");
+            Assert.IsEmpty(_closedKinds);
+
+            _reissueAvailable = true;                    // 大厅恢复
+            Tick(Backoff(2));
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "第 2 次按 2s 退避发出");
+            _reissueOk(MakeAssignment(BattleA, ticket: "fresh"));
+            Tick();
+            Verify(Current, BattleA);
+            Assert.IsTrue(_link.IsVerified);
+            Assert.IsEmpty(_closedKinds);
+        }
+
+        [Test]
         public void RecoveryBudget_IsCapped_PerTicketAndPerBattle()
         {
-            // 票 t1:验证 → 断 → 同票重连 → 验证 → 断 → 补签(t2)→ 验证 → 断 → 同票重连 → 验证 → 断 → 终结
-            var c1 = AssignAndVerify(MakeAssignment(BattleA, ticket: "t1"));
-            c1.PushDisconnect(); Tick();
+            // 每张票:验证 → 断 → 同票重连 → 验证 → 断 → 退避补签(新票)……
+            // 补签 MaxReissuesPerBattle 次之后再断两次 → 终结(Unreachable)。服务端接了又断的反复抖动
+            // 不会变成无限重连:连接总数 = (1 + 补签次数) × 2。
+            AssignAndVerify(MakeAssignment(BattleA, ticket: "t0"));
+            Assert.AreEqual(1, _conns.Count);
+
+            for (int reissue = 1; reissue <= BattleDirectLink.MaxReissuesPerBattle; reissue++)
+            {
+                Current.PushDisconnect(); Tick();
+                Tick(BattleDirectLink.ReconnectDelaySeconds + 0.1);
+                Assert.AreEqual(reissue * 2, _conns.Count, "新票据给 1 次同票重连");
+                Verify(Current, BattleA);
+
+                Current.PushDisconnect(); Tick();
+                Assert.AreEqual(reissue - 1, _reissueRequests.Count, "同票预算用完 → 进补签退避");
+                Tick(Backoff(reissue));
+                Assert.AreEqual(reissue, _reissueRequests.Count, $"第 {reissue} 次补签");
+                _reissueOk(MakeAssignment(BattleA, ticket: "t" + reissue));
+                Tick();
+                Assert.AreEqual(reissue * 2 + 1, _conns.Count);
+                Verify(Current, BattleA);
+                Assert.IsEmpty(_closed);
+            }
+
+            Current.PushDisconnect(); Tick();
             Tick(BattleDirectLink.ReconnectDelaySeconds + 0.1);
-            Assert.AreEqual(2, _conns.Count);
             Verify(Current, BattleA);
-
             Current.PushDisconnect(); Tick();
-            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "同票预算用完 → 补签");
-            _reissueOk(MakeAssignment(BattleA, ticket: "t2"));
-            Tick();
-            Assert.AreEqual(3, _conns.Count);
-            Verify(Current, BattleA);
 
-            Current.PushDisconnect(); Tick();
-            Tick(BattleDirectLink.ReconnectDelaySeconds + 0.1);
-            Assert.AreEqual(4, _conns.Count, "新票据再给 1 次同票重连");
-            Verify(Current, BattleA);
-
-            Current.PushDisconnect(); Tick();
-            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State, "补签也用完 → 终结,余下回合经 gate 回落");
-            Assert.AreEqual(1, _reissueRequests.Count, "每局只补签 1 次");
-            Assert.AreEqual(4, _conns.Count);
-            Assert.AreEqual(1, _closed.Count);
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State, "补签预算也用完 → 终结");
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray(),
+                "连不上:由 UI 提示并提供手动重连,不再有 gate 回落");
+            Assert.AreEqual(BattleDirectLink.MaxReissuesPerBattle, _reissueRequests.Count);
+            Assert.AreEqual((1 + BattleDirectLink.MaxReissuesPerBattle) * 2, _conns.Count);
+            Tick(Backoff(BattleDirectLink.MaxReissuesPerBattle + 1) + 1);
+            Assert.AreEqual((1 + BattleDirectLink.MaxReissuesPerBattle) * 2, _conns.Count, "终结后不再建连");
         }
 
         // ── 正常收尾 ────────────────────────────────────────
@@ -432,6 +624,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
             Assert.AreEqual(new[] { "battle_ended" }, _closed.ToArray());
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Ended }, _closedKinds.ToArray());
             Assert.IsEmpty(_reissueRequests);
             Tick(BattleDirectLink.ReconnectDelaySeconds + 1);
             Assert.AreEqual(1, _conns.Count, "不重连");
@@ -454,10 +647,24 @@ namespace MmorpgClient.Tests.EditMode.Battle
             conn.PushDisconnect();
             Tick();
             Assert.AreEqual(BattleDirectLink.LinkState.Idle, _link.State);
-            _link.HandleBattleEnded(0); // 0 = 当前这局(经 gate 回落收到终局包)
+            _link.HandleBattleEnded(0); // 0 = 当前这局(经大厅收到 scene 结算推的终局包)
             Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Ended }, _closedKinds.ToArray());
             Tick(BattleDirectLink.ReconnectDelaySeconds + 1);
             Assert.AreEqual(1, _conns.Count);
+        }
+
+        [Test]
+        public void Ended_WhileWaitingReissueBackoff_FinishesWithoutReissue()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA));
+            Verify(conn, 0, success: false);           // 握手被拒 → 补签退避中
+            Assert.AreEqual(BattleDirectLink.LinkState.Idle, _link.State);
+            _link.HandleBattleEnded(BattleA);
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Ended }, _closedKinds.ToArray());
+            Tick(Backoff(1) + 1);
+            Assert.IsEmpty(_reissueRequests, "战斗已结束,退避到点也不补签");
         }
 
         // ── 分配包的幂等与换局 ──────────────────────────────
@@ -515,6 +722,55 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(0, conns[0].Sent.Count);
         }
 
+        [Test]
+        public void NewBattleAssignment_WhileOldBattleOpen_RaisesSupersededForOld()
+        {
+            // 观战 B 时进了自己的战斗 A:参战分配包把链路换到 A。收缩后观战帧只走直连,
+            // 旧局 B 从此断流 —— 必须告诉订阅方,否则观战方永远停在 Watching
+            AssignAndVerify(MakeAssignment(BattleB, role: eBattleTicketRole.BattleTicketRoleObserver));
+            _link.HandleAssigned(MakeAssignment(BattleA));
+
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Superseded }, _closedKinds.ToArray());
+            Assert.AreEqual(new[] { BattleB }, _closedBattleIds.ToArray(), "通知带旧局 id");
+            Assert.AreEqual(BattleA, _link.BattleId, "通知发出时链路已切到新局");
+            Assert.AreEqual(BattleDirectLink.LinkState.Connecting, _link.State, "链路本身不终结,照常为新局建连");
+
+            Tick();
+            Verify(Current, BattleA);
+            Assert.IsTrue(_link.IsVerified);
+            Assert.AreEqual(1, _closedKinds.Count, "新局不受影响");
+        }
+
+        [Test]
+        public void HostEntryForOtherBattle_WhileOldBattleRecovering_RaisesSuperseded()
+        {
+            // EnsureBattle / Retry / 重连提示指向另一局:旧局哪怕正在恢复(未终结)也要通知
+            var conn = AssignAndVerify(MakeAssignment(BattleB, role: eBattleTicketRole.BattleTicketRoleObserver));
+            conn.PushDisconnect(); Tick();                       // B 同票重连倒计时中(Idle,未终结)
+            _link.EnsureBattle(BattleA);
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Superseded }, _closedKinds.ToArray());
+            Assert.AreEqual(new[] { BattleB }, _closedBattleIds.ToArray());
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray(), "新局照常补签");
+
+            _link.Retry(BattleB);                                // 再切回 B:A 的补签在途(未终结)→ A 被顶替
+            Assert.AreEqual(new[] { BattleB, BattleA }, _closedBattleIds.ToArray());
+            Assert.AreEqual(new[] { BattleA, BattleB }, _reissueRequests.ToArray());
+        }
+
+        [Test]
+        public void Switch_FromClosedOrWithinSameBattle_NoSupersededEvent()
+        {
+            ExhaustReissueBudget();                              // A 已 Closed(Unreachable)
+            _link.HandleAssigned(MakeAssignment(BattleB));       // 旧局已抛过终结事件,不重复
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+
+            Tick();
+            Verify(Current, BattleB);
+            Current.PushDisconnect(); Tick();                    // B 恢复中
+            _link.HandleReconnectHint(BattleB);                  // 同一局重建不是换局
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+        }
+
         // ── 宿主关闭 / 大厅重连提示 ─────────────────────────
 
         [Test]
@@ -530,6 +786,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.IsTrue(conn.Disposed);
             Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
             Assert.AreEqual(new[] { "lobby_disconnected" }, _closed.ToArray());
+            Assert.AreEqual(new[] { BattleLinkCloseKind.HostClosed }, _closedKinds.ToArray());
+            Assert.AreEqual(new[] { BattleA }, _closedBattleIds.ToArray());
             Assert.AreEqual(0UL, _link.BattleId);
             Assert.IsNull(_link.Assignment);
             Tick(BattleDirectLink.ReconnectDelaySeconds + 1);
@@ -538,10 +796,22 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void Close_DuringReissueBackoff_CancelsReissue()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA));
+            Verify(conn, 0, success: false);            // 补签退避中
+            _link.Close("lobby_disconnected");
+            Tick(Backoff(1) + 1);
+            Assert.IsEmpty(_reissueRequests, "宿主关闭后退避到点也不补签");
+            Assert.AreEqual(new[] { BattleLinkCloseKind.HostClosed }, _closedKinds.ToArray());
+        }
+
+        [Test]
         public void Close_ThenLateReissueCallback_IsIgnored()
         {
             var conn = AssignAndConnect(MakeAssignment(BattleA));
-            Verify(conn, 0, success: false); // 触发补签
+            Verify(conn, 0, success: false); // 触发补签(退避后发出)
+            Tick(Backoff(1));
             Assert.AreEqual(1, _reissueRequests.Count);
             _link.Close("lobby_disconnected");
             _reissueOk(MakeAssignment(BattleA, ticket: "late"));
@@ -619,14 +889,170 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [Test]
         public void ReconnectHint_ResetsBudget_AfterPreviousBattleExhausted()
         {
-            // 上一局把补签预算用完并终结;新的重连提示是新的一局语境,预算重新给
-            var conn = AssignAndConnect(MakeAssignment(BattleA));
-            Verify(conn, 0, success: false);
-            _reissueFail("x");
+            // 上一局把补签预算用完并终结;新的重连提示是新的语境,预算重新给、立即补签
+            ExhaustReissueBudget();
             Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
 
             _link.HandleReconnectHint(BattleA);
-            Assert.AreEqual(2, _reissueRequests.Count);
+            Assert.AreEqual(BattleDirectLink.MaxReissuesPerBattle + 1, _reissueRequests.Count);
+        }
+
+        [Test]
+        public void ReconnectHint_DuringBackoff_ReissuesImmediately_Once()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA));
+            Verify(conn, 0, success: false);            // 自动补签退避中
+            _link.HandleReconnectHint(BattleA);         // 服务端推了重连提示:不等退避
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray());
+            Tick(Backoff(1) + 1);
+            Assert.AreEqual(1, _reissueRequests.Count, "原先排着的退避补签已作废,不重复发");
+        }
+
+        // ── 宿主入口:Retry / EnsureBattle / Abandon(turn-based §22 D74) ──
+
+        /// <summary>握手被拒后连续补签失败(kServiceUnavailable)直到预算用完 → Closed(Unreachable)。</summary>
+        private void ExhaustReissueBudget()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA));
+            Verify(conn, 0, success: false);
+            for (int attempt = 1; attempt <= BattleDirectLink.MaxReissuesPerBattle; attempt++)
+            {
+                Tick(Backoff(attempt));
+                _reissueFail((uint)common_error.KServiceUnavailable, "response tip");
+            }
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Unreachable }, _closedKinds.ToArray());
+        }
+
+        [Test]
+        public void Retry_AfterClosed_ResetsBudgetAndReconnects()
+        {
+            ExhaustReissueBudget();
+            int before = _reissueRequests.Count;
+
+            _link.Retry(BattleA);
+            Assert.AreEqual(before + 1, _reissueRequests.Count, "手动重连立即补签(不等退避)");
+            _reissueOk(MakeAssignment(BattleA, ticket: "manual"));
+            Tick();
+            Verify(Current, BattleA);
+            Assert.IsTrue(_link.IsVerified);
+
+            // 预算已重置:之后再断,仍有同票重连与补签可用
+            Current.PushDisconnect(); Tick();
+            Tick(BattleDirectLink.ReconnectDelaySeconds + 0.1);
+            Verify(Current, BattleA);
+            Current.PushDisconnect(); Tick();
+            Tick(Backoff(2));
+            Assert.AreEqual(before + 2, _reissueRequests.Count, "重置后的第 2 次补签按 2s 退避");
+            Assert.AreEqual(1, _closedKinds.Count, "手动重连成功后没有新的终结");
+        }
+
+        [Test]
+        public void Retry_WhileVerified_OrReissueInFlight_NoOp()
+        {
+            AssignAndVerify(MakeAssignment(BattleA));
+            _link.Retry(BattleA);
+            Assert.IsEmpty(_reissueRequests);
+            Assert.IsTrue(_link.IsVerified);
+
+            _link.Close("lobby_disconnected");
+            _link.Retry(BattleA);
+            _link.Retry(BattleA);
+            Assert.AreEqual(1, _reissueRequests.Count, "补签在途时重复点击不重复打 match");
+            _link.Retry(0);
+            Assert.AreEqual(1, _reissueRequests.Count);
+        }
+
+        [Test]
+        public void EnsureBattle_WithoutAssignment_Reissues()
+        {
+            // 分配包丢了:开局包到达时链路不服务该局
+            _link.EnsureBattle(BattleA);
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray());
+            _reissueOk(MakeAssignment(BattleA));
+            Tick();
+            Verify(Current, BattleA);
+            Assert.IsTrue(_link.IsVerified);
+        }
+
+        [Test]
+        public void EnsureBattle_OtherBattleLink_SwitchesByReissue()
+        {
+            var old = AssignAndVerify(MakeAssignment(BattleB, role: eBattleTicketRole.BattleTicketRoleObserver));
+            _link.EnsureBattle(BattleA);
+            Assert.IsTrue(old.Disposed, "不服务本局的旧连接作废");
+            Assert.AreEqual(new[] { BattleA }, _reissueRequests.ToArray());
+            Assert.AreEqual(BattleA, _link.BattleId);
+        }
+
+        [Test]
+        public void EnsureBattle_SameBattleLiveOrRecovering_NoOp()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA));   // Handshaking
+            _link.EnsureBattle(BattleA);
+            Assert.IsEmpty(_reissueRequests, "在连:不打扰");
+
+            Verify(conn, BattleA);
+            _link.EnsureBattle(BattleA);
+            Assert.IsEmpty(_reissueRequests, "已验证:不打扰");
+
+            Current.PushDisconnect(); Tick();                   // 同票重连倒计时中
+            _link.EnsureBattle(BattleA);
+            Assert.IsEmpty(_reissueRequests, "恢复中:不打扰");
+            Assert.AreEqual(1, _conns.Count);
+            _link.EnsureBattle(0);
+            Assert.IsEmpty(_reissueRequests);
+        }
+
+        [Test]
+        public void EnsureBattle_SameBattleClosed_Reissues()
+        {
+            ExhaustReissueBudget();
+            int before = _reissueRequests.Count;
+            _link.EnsureBattle(BattleA);
+            Assert.AreEqual(before + 1, _reissueRequests.Count, "同局但已终结:重新补签");
+        }
+
+        [Test]
+        public void Abandon_BeforeVerified_ClosesWithoutRecovery()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA, role: eBattleTicketRole.BattleTicketRoleObserver));
+            string err = null;
+            _link.Call(MessageIds.GetBattleState, new GetBattleStateRequest(), BattleStateS2C.Parser, _ => { }, e => err = e);
+
+            _link.Abandon(BattleA);
+
+            Assert.IsTrue(conn.Disposed);
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
+            Assert.AreEqual(new[] { BattleLinkCloseKind.Ended }, _closedKinds.ToArray());
+            Assert.AreEqual(BattleDirectLink.NotReadyError, err, "未验证时的请求本就本地失败");
+            Tick(Backoff(3) + BattleDirectLink.HandshakeTimeoutSeconds + 1);
+            Assert.AreEqual(1, _conns.Count, "放弃后不再重连");
+            Assert.IsEmpty(_reissueRequests, "也不补签");
+        }
+
+        [Test]
+        public void Abandon_DuringReissueInFlight_IgnoresLateTicket()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA, role: eBattleTicketRole.BattleTicketRoleObserver));
+            Verify(conn, 0, success: false);
+            Tick(Backoff(1));
+            Assert.AreEqual(1, _reissueRequests.Count);
+
+            _link.Abandon(BattleA);
+            _reissueOk(MakeAssignment(BattleA, ticket: "late"));
+            Tick();
+            Assert.AreEqual(1, _conns.Count, "放弃后迟到的补签票不得重建连接");
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State);
+        }
+
+        [Test]
+        public void Abandon_OtherBattle_NoOp()
+        {
+            AssignAndVerify(MakeAssignment(BattleA));
+            _link.Abandon(BattleB);
+            _link.Abandon(0);
+            Assert.IsTrue(_link.IsVerified, "不是本链路服务的局:无事");
+            Assert.IsEmpty(_closed);
         }
 
         // ── 评审确认项的回归 ────────────────────────────────
@@ -635,13 +1061,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void Connecting_TimesOut_AndRecovers()
         {
             // 连接动作永不返回(endpoint 黑洞:SYN 无应答)。Connecting 必须自己封顶,
-            // 否则会卡到系统 SYN 超时(约 21s),期间既不重试也不回落。
+            // 否则会卡到系统 SYN 超时(约 21s),期间既不重试也不补签。
             var conns = new List<FakeFramedConnection>();
             var reissues = new List<ulong>();
             var link = new BattleDirectLink(
                 () => { var c = new FakeFramedConnection(); conns.Add(c); return c; },
                 unixNowMs: () => _unixNowMs,
-                connectRunner: _ => { /* 永远不完成,也不入队结果 */ });
+                connectRunner: _ => { /* 永远不完成,也不入队结果 */ },
+                random01: () => 0.5);
             link.TicketReissuer = (id, ok, fail) => { reissues.Add(id); return true; };
 
             double now = 10;
@@ -663,13 +1090,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(2, conns.Count, "同票重连 1 次");
             now += BattleDirectLink.ConnectTimeoutSeconds + 0.1;
             link.Tick(now);
-            Assert.AreEqual(new[] { BattleA }, reissues.ToArray(), "第二次也超时 → 补签");
+            Assert.IsEmpty(reissues, "第二次也超时 → 进补签退避");
+            now += Backoff(1);
+            link.Tick(now);
+            Assert.AreEqual(new[] { BattleA }, reissues.ToArray(), "退避到点补签");
         }
 
         [Test]
         public void PendingCall_FailsWithTransportPrefix_OnConnectTimeout()
         {
-            // 传输层失败必须带前缀,分流层据此决定是否改走大厅重发
+            // 传输层失败必须带前缀:上层据此区分「直连没送到(等就绪补拉 / 补发)」与「服务端拒绝」
             AssignAndVerify(MakeAssignment(BattleA));
             string err = null;
             _link.Call(MessageIds.GetBattleState, new GetBattleStateRequest(), BattleStateS2C.Parser, _ => { }, e => err = e);
@@ -679,18 +1109,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void ReissueInFlight_LeavesStateIdle_NotStaleVerified()
+        public void ReissueBackoffAndInFlight_LeaveStateIdle_NotStaleVerified()
         {
-            // 断开 → 同票重连 → 再断开 → 补签在途;此时又断一次(或再次进入恢复),
-            // TryReissue 的早退不得把 State 留在 Verified,否则 IsVerified 会对着
-            // 一条不存在的连接返回 true,战斗 RPC 全被路由进直连然后静默丢掉。
+            // 断开 → 同票重连 → 再断开 → 补签退避 → 补签在途:整个过程中 State 不得停在 Verified,
+            // 否则 IsVerified 会对着一条不存在的连接返回 true,战斗 RPC 全被路由进直连然后静默丢掉。
             var c1 = AssignAndVerify(MakeAssignment(BattleA));
             c1.PushDisconnect(); Tick();
             Tick(BattleDirectLink.ReconnectDelaySeconds + 0.1);
             Verify(Current, BattleA);
             Assert.IsTrue(_link.IsVerified);
 
-            Current.PushDisconnect(); Tick();          // 同票预算用完 → 补签在途
+            Current.PushDisconnect(); Tick();          // 同票预算用完 → 补签退避
+            Assert.IsFalse(_link.IsVerified, "退避中不得自称已验证");
+            Assert.AreEqual(BattleDirectLink.LinkState.Idle, _link.State);
+
+            Tick(Backoff(1));                           // 补签在途
             Assert.AreEqual(1, _reissueRequests.Count);
             Assert.IsFalse(_link.IsVerified, "补签在途时不得自称已验证");
             Assert.AreEqual(BattleDirectLink.LinkState.Idle, _link.State);
@@ -702,7 +1135,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             // 补签在途期间,服务端又推了一份分配包把链路重建好了;
             // 随后补签失败的回调不得把这条正在用的连接拆掉。
             var conn = AssignAndConnect(MakeAssignment(BattleA));
-            Verify(conn, 0, success: false);            // 握手被拒 → 直接补签
+            Verify(conn, 0, success: false);            // 握手被拒 → 退避后补签
+            Tick(Backoff(1));
             Assert.AreEqual(1, _reissueRequests.Count);
 
             _link.HandleAssigned(MakeAssignment(BattleA, ticket: "pushed"));
@@ -710,9 +1144,22 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Verify(Current, BattleA);
             Assert.IsTrue(_link.IsVerified);
 
-            _reissueFail("timeout");                    // 迟到的失败回调
+            _reissueFail(0, "timeout");                 // 迟到的失败回调
             Assert.IsTrue(_link.IsVerified, "已重建好的链路不能被迟到的补签失败拆掉");
             Assert.IsEmpty(_closed);
+        }
+
+        [Test]
+        public void PushedAssignment_CancelsPendingReissueBackoff()
+        {
+            var conn = AssignAndConnect(MakeAssignment(BattleA));
+            Verify(conn, 0, success: false);            // 补签退避中
+            _link.HandleAssigned(MakeAssignment(BattleA, ticket: "pushed"));
+            Tick();
+            Verify(Current, BattleA);
+            Tick(Backoff(1) + 1);
+            Assert.IsEmpty(_reissueRequests, "新分配包已把链路建好,排着的补签作废");
+            Assert.IsTrue(_link.IsVerified);
         }
 
         [Test]
@@ -720,6 +1167,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             var conn = AssignAndConnect(MakeAssignment(BattleA));
             Verify(conn, 0, success: false);
+            Tick(Backoff(1));
             Assert.AreEqual(1, _reissueRequests.Count);
 
             // 同一局重建(不是换局)也要 bump epoch:否则迟到的补签成功回调会再换一次连接

@@ -80,7 +80,9 @@ namespace MmorpgClient.UI.Ugui.Role
         private UiTextButton _confirmCreateButton;
         private readonly List<QdaoCharacterCatalog.Definition> _appearanceChoices = new();
         private int _appearanceChoice; // Zero keeps the existing profession/gender default.
+        private bool _hasAppearanceSelection; // An explicit zero must survive reopening and server rejection.
         private TMP_Text _appearanceLabel;
+        private TMP_Text _appearanceDetails;
 
         // 角色名(服务端 docs/design/guild-phase2/03-names.md §3.22)。输入框与"随机"挂在 _createRoot 下,
         // 选角模式下同一位置是只读的"角色名"行(挂在 _selectRoot 下),两者随模式自动显隐。
@@ -136,6 +138,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 _pickedClassId = Classes[0].id;
                 _pickedGender = 1;
                 _appearanceChoice = 0;
+                _hasAppearanceSelection = false;
                 // 建角必填名字:先填一个随机建议,玩家可改可清空;清空后点创建会被本地预检拦下("请输入角色名")。
                 SetNameWithoutNotify(RoleNameRules.RandomName(_rng));
                 if (_players.Count > 0) ShowSelectMode();
@@ -151,6 +154,7 @@ namespace MmorpgClient.UI.Ugui.Role
             if (choice.Gender != 0) _pickedGender = choice.Gender;
             // 外观按 id 找回它在候选列表里的位置(先按当前资源重建一次候选列表);ShowCreateMode 重建时
             // 按同一个 id 再对一次,资源被撤掉就回落"职业默认"(与 RefreshAppearanceChoices 同一口径)。
+            _hasAppearanceSelection = true;
             RefreshAppearanceChoices();
             _appearanceChoice = 0;
             if (!string.IsNullOrEmpty(choice.AppearanceId))
@@ -358,8 +362,12 @@ namespace MmorpgClient.UI.Ugui.Role
                 SetChoiceState(_classButtons[i], Classes[i].id == _pickedClassId);
             SetChoiceState(_maleButton, _pickedGender == 1);
             SetChoiceState(_femaleButton, _pickedGender == 2);
-            _appearanceLabel.text = _appearanceChoice == 0 ? "外观：职业默认" :
-                "外观：" + _appearanceChoices[_appearanceChoice - 1].Name;
+            _appearanceLabel.text = _appearanceChoice == 0 ? "人物：职业默认" :
+                "人物：" + _appearanceChoices[_appearanceChoice - 1].Name;
+            var appearance = QdaoCharacterCatalog.Find(
+                QdaoCharacterCatalog.ResolveRole(_pickedClassId, _pickedGender, PickedAppearanceId))?.ResolveAppearance();
+            _appearanceDetails.text = appearance == null ? string.Empty :
+                (appearance.IsHd ? "高清 · " : string.Empty) + $"8 个方向 · 每方向 {appearance.FrameCount} 帧";
             RefreshPreview(_pickedClassId, _pickedGender, 0, PickedAppearanceId);
         }
 
@@ -370,11 +378,26 @@ namespace MmorpgClient.UI.Ugui.Role
         {
             string selected = PickedAppearanceId;
             _appearanceChoices.Clear();
+            var older = new List<QdaoCharacterCatalog.Definition>();
             foreach (var entry in QdaoCharacterCatalog.RetainedOriginalAll)
-                if (entry.ResolveAppearance() != null) _appearanceChoices.Add(entry);
+            {
+                var appearance = entry.ResolveAppearance();
+                if (appearance == null) continue;
+                if (!appearance.IsHd) older.Add(entry);
+                else if (entry.Id == "08_alchemy_prodigy_boy") _appearanceChoices.Insert(0, entry);
+                else _appearanceChoices.Add(entry);
+            }
+            _appearanceChoices.AddRange(older);
             _appearanceChoice = 0;
             for (int i = 0; i < _appearanceChoices.Count; i++)
                 if (_appearanceChoices[i].Id == selected) _appearanceChoice = i + 1;
+            // Only a fresh creation flow receives the new default. Refreshes retain the chosen identity,
+            // including the explicit profession default; saved account roles never pass through this choice.
+            if (!_hasAppearanceSelection)
+            {
+                _appearanceChoice = _appearanceChoices.Count > 0 ? 1 : 0;
+                _hasAppearanceSelection = true;
+            }
         }
 
         private void CycleAppearance(int delta)
@@ -544,12 +567,15 @@ namespace MmorpgClient.UI.Ugui.Role
             _maleButton.Button.onClick.AddListener(() => { _pickedGender = 1; RefreshCreateHighlights(); });
             _femaleButton.Button.onClick.AddListener(() => { _pickedGender = 2; RefreshCreateHighlights(); });
             // Only complete approved same-ID V14/V13 packages become selectable.
-            var previousAppearance = TextButton("PreviousAppearance", _createRoot, 926f, 128f, 132f, "‹", false, 52f);
-            var nextAppearance = TextButton("NextAppearance", _createRoot, 1628f, 128f, 132f, "›", false, 52f);
+            var previousAppearance = TextButton("PreviousAppearance", _createRoot, 792f, 128f, 300f, "‹ 上一人物", false, 30f);
+            var nextAppearance = TextButton("NextAppearance", _createRoot, 1610f, 128f, 300f, "下一人物 ›", false, 30f);
             previousAppearance.Button.onClick.AddListener(() => CycleAppearance(-1));
             nextAppearance.Button.onClick.AddListener(() => CycleAppearance(1));
-            _appearanceLabel = Label("AppearanceName", _createRoot, 1064f, 156f, 552f, 64f,
-                "外观：职业默认", 34f, Ink, TextAlignmentOptions.Center);
+            QdaoRefreshArt.Panel("AppearanceCaption", _createRoot, 1096f, 128f, 510f, 126f, "content_panel");
+            _appearanceLabel = Label("AppearanceName", _createRoot, 1100f, 148f, 500f, 56f,
+                string.Empty, 34f, Ink, TextAlignmentOptions.Center);
+            _appearanceDetails = Label("AppearanceDetails", _createRoot, 1050f, 210f, 600f, 38f,
+                string.Empty, 26f, Wood, TextAlignmentOptions.Center);
             _createBackButton = TextButton("BackFromCreate", _createRoot, 208f, 944f, 416f, "返回", false);
             _createBackButton.Button.onClick.AddListener(() =>
             {

@@ -36,8 +36,11 @@ namespace MmorpgClient.App
     ///
     /// 日志前缀 [AutoPilot][tag]。run_crosszone_pair.ps1 只解析这四种行(见该脚本的 Get-FirstMatch 段):
     ///   stage=in_game … gate=ip:port(落区证据:两实例 gate 相同即不是跨区)/
-    ///   BattleStart battle_id=N / BattleEnd battle_id=N outcome=X turns=N /
+    ///   BattleStart battle_id=N / BattleEnd battle_id=N outcome=X turns=N … direct_turns=N /
     ///   RESULT=PASS … 或 RESULT=FAIL stage=… reason=…(整行原样带走,不再拆里面的字段)
+    /// 战斗直连(turn-based §22 D74,直连是战斗唯一通路,gate 不中继):每个回合结果都必须在直连已为本局
+    /// 验证时到达,BattleEnd 时断言 direct_turns == turns;直连判定连不上(OnBattleChannelFailed)立即 FAIL
+    /// stage=battle_direct,不空等战斗总超时。
     ///
     /// 传送验收(-travelZone)另外打这两种行,**没有**脚本解析它们 —— 该脚本只会发 -autoQueue,
     /// 连 -travelZone 开关都没有,传送验收目前是手工起播放器、人看日志:
@@ -46,7 +49,8 @@ namespace MmorpgClient.App
     ///   —— 末尾这条会被脚本当成普通 RESULT 行原样收走,所以在 pair 模式下它只是"有个结论",
     ///   gate_before/after 变没变不会被机械校验。要机械校验请用服务端的 travel-smoke(robot)。
     /// 失败判定对齐服务端 robot:进场时残留战斗/排队相位、JoinQueue 被拒、开局即终局
-    /// (turns=0,既有缺陷"上一局阵亡带 0 血入队开局判负")都直接 FAIL,不空等超时。
+    /// (turns=0,既有缺陷"上一局阵亡带 0 血入队开局判负")、有回合没经直连到达、
+    /// 直连连不上都直接 FAIL,不空等超时。
     /// 退出码:0 = 打完;1 = 任一阶段超时/失败(仅 -quitOnBattleEnd 时退出进程)。
     /// </summary>
     [DisallowMultipleComponent]
@@ -131,7 +135,9 @@ namespace MmorpgClient.App
         private AppBootstrap _app;
         private GameClient _client;
         // 战斗直连证据(§18 验收判据"战斗流量零字节经 gate"的客户端侧对照):
-        // 收到回合结果时直连已验证的次数;0 = 本局从未建立直连(全程 gate 中继)
+        // 收到回合结果时直连已为本局验证的次数。收缩后(turn-based §22 D74)直连是唯一通路,
+        // 回合结果只能从直连来,BattleEnd 时必须等于 _turns;不等 = 有回合结果在直连未就绪时到达
+        // (服务端仍经 gate 下发战斗帧,或客户端就绪判定有误),按失败处理
         private int _directTurns;
         private BattleClient _battle;
         private Options _opt;
@@ -347,7 +353,10 @@ namespace MmorpgClient.App
                 _battle.OnTurnResult += HandleTurnResult;
                 _battle.OnBattleEnd += HandleBattleEnd;
                 _battle.OnError += HandleBattleError;
-                // 自动战斗记忆:BattleStart 时 BattleClient 自动补发 SetAutoBattle(true)
+                _battle.OnBattleChannelReady += HandleBattleChannelReady;
+                _battle.OnBattleChannelFailed += HandleBattleChannelFailed;
+                // 自动战斗记忆:BattleClient 在本局直连就绪时按记忆补发 SetAutoBattle(true)
+                // (开局瞬间直连通常还没握手完,不能发大厅 —— gate 不中继战斗,turn-based §22 D74)
                 if (_opt.AutoBattle) _battle.AutoBattleLatched = true;
             }
 
@@ -397,6 +406,8 @@ namespace MmorpgClient.App
                 _battle.OnTurnResult -= HandleTurnResult;
                 _battle.OnBattleEnd -= HandleBattleEnd;
                 _battle.OnError -= HandleBattleError;
+                _battle.OnBattleChannelReady -= HandleBattleChannelReady;
+                _battle.OnBattleChannelFailed -= HandleBattleChannelFailed;
             }
         }
 
@@ -699,7 +710,9 @@ namespace MmorpgClient.App
             if (_battleId != 0 && ev.BattleId != 0 && ev.BattleId != _battleId) return;
             _turns++;
             _lastRound = ev.RoundIndex;
-            bool direct = _client?.BattleLink != null && _client.BattleLink.IsVerified;
+            // 直接看链路本身(不经 BattleClient 的就绪判定):直连已验证、且服务的正是本局
+            var link = _client?.BattleLink;
+            bool direct = link != null && link.IsVerified && (_battleId == 0 || link.BattleId == _battleId);
             if (direct) _directTurns++;
             MarkShot($"turn{_turns}");
             Log($"Turn battle_id={_battleId} round={ev.RoundIndex} events={ev.Events.Count} turns={_turns} direct={(direct ? 1 : 0)}");
@@ -723,6 +736,13 @@ namespace MmorpgClient.App
             if (_turns < 1)
             {
                 Fail("battle", $"zero_turns battle_id={_battleId} outcome={ev.Outcome}(开局即终局,期望 turns ≥ 1)");
+                return;
+            }
+            // 收缩后的不变量(turn-based §22 D74 / §19.3 第 4 步判据):回合结果全部经战斗直连到达
+            if (_directTurns != _turns)
+            {
+                Fail("battle_direct", $"direct_turns={_directTurns} turns={_turns} battle_id={_battleId}" +
+                                      "(期望相等:直连是战斗唯一通路,有回合结果在直连未就绪时到达)");
                 return;
             }
             if (!string.IsNullOrEmpty(_opt.AppearanceId)) StartCoroutine(FinishAfterBattleAppearance(ev));
@@ -759,6 +779,23 @@ namespace MmorpgClient.App
         {
             if (_finished) return;
             Fail(_stage.ToString().ToLowerInvariant(), "与服务器断开连接");
+        }
+
+        private void HandleBattleChannelReady()
+        {
+            if (_finished) return;
+            // 排障用:就绪时 BattleClient 已补拉权威状态并按记忆补发自动战斗
+            Log($"battle_direct ready battle_id={_battleId} turns={_turns} direct_turns={_directTurns}");
+        }
+
+        private void HandleBattleChannelFailed(string message)
+        {
+            if (_finished) return;
+            // 恢复预算已用完(同票重连 + 退避补签都失败):收缩后没有 gate 回落,本局只能靠服务端超时默认出手,
+            // 自动驾驶等不出可信结论 —— 立即失败,不空等战斗总超时
+            var link = _client?.BattleLink;
+            Fail("battle_direct", $"{message} battle_id={_battleId} turns={_turns} direct_turns={_directTurns} " +
+                                  $"link_state={link?.State} endpoint={link?.Assignment?.Host ?? "-"}:{link?.Assignment?.Port ?? 0}");
         }
 
         // ── 跨 zone 传送验收(-travelZone)────────────────────
