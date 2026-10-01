@@ -97,6 +97,15 @@ namespace MmorpgClient.Game.Team
         public bool HasTeam => Snapshot.TeamId != 0;
         public bool IsLeader => HasTeam && PlayerId != 0 && Snapshot.LeaderId == PlayerId;
         public bool MatchStarting => HasTeam && Snapshot.MatchStarting;
+        /// <summary>Read-only invitation pacing for the UI; uses the same interval and quota as Send.</summary>
+        public bool InvitationCoolingDown
+        {
+            get
+            {
+                float now = _clock();
+                return TooSoon(now) || !HasQuota(MessageIds.InviteToTeam, false, now);
+            }
+        }
 
         public event Action Changed;
 

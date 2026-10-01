@@ -170,6 +170,7 @@ namespace MmorpgClient.UI.Ugui.Team
             if (state.IsFull) return "队伍已满";
             if (state.MatchStarting) return "集合中";
             if (state.IsBusy) return state.PendingAction == TeamAction.Invite && state.PendingTarget == role.PlayerId ? "发送中…" : "请稍候";
+            if (state.InvitationCoolingDown) return "请稍候";
             return null;
         }
 

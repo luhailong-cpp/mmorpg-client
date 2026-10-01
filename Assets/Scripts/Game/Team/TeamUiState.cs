@@ -38,6 +38,7 @@ namespace MmorpgClient.Game.Team
         public ulong PendingTarget { get; private set; }
         public ulong HighlightPlayerId { get; private set; }
         public string Status { get; private set; }
+        public bool InvitationCoolingDown { get; private set; }
         public bool IsBusy => PendingAction != TeamAction.None || IsLoading || PendingPlayerId != 0;
         public bool HasTeam => Snapshot.TeamId != 0;
         public bool IsLeader => HasTeam && Snapshot.LocalPlayerId != 0 &&
@@ -71,6 +72,7 @@ namespace MmorpgClient.Game.Team
             Snapshot = new TeamSnapshot { LocalPlayerId = localPlayerId };
             _hasAuthoritative = false;
             HasLoaded = false;
+            InvitationCoolingDown = false;
             _invites.Clear();
             HighlightPlayerId = 0;
             ServiceAvailable = false;
@@ -117,7 +119,8 @@ namespace MmorpgClient.Game.Team
         /// session boundary, so this copies everything verbatim and drops any local token.
         /// </summary>
         public void Sync(TeamSnapshot snapshot, IReadOnlyList<TeamInvite> invites, bool loaded, bool available,
-            TeamAction pendingAction, ulong pendingTarget, ulong highlightPlayerId, string status)
+            TeamAction pendingAction, ulong pendingTarget, ulong highlightPlayerId, string status,
+            bool invitationCoolingDown = false)
         {
             NextGeneration();
             _pendingGeneration = 0;
@@ -132,6 +135,7 @@ namespace MmorpgClient.Game.Team
             HasLoaded = loaded;
             ServiceAvailable = available;
             PendingAction = pendingAction;
+            InvitationCoolingDown = invitationCoolingDown;
             PendingTarget = pendingTarget;
             IsLoading = pendingAction == TeamAction.Refresh || pendingAction == TeamAction.ListInvites;
             PendingPlayerId = pendingAction is TeamAction.Decide or TeamAction.Kick or TeamAction.Transfer

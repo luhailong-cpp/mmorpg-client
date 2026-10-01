@@ -76,6 +76,57 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void BackgroundRefreshCooldownDisablesInvitationUntilTheClientCanSend()
+        {
+            float now = 1f;
+            var transport = new TeamFakeTransport { PlayerId = 11 };
+            var client = new TeamClient(transport, clock: () => now);
+            var liveObject = new GameObject("LiveTeamInvitationCooldownTest");
+            var live = liveObject.AddComponent<TeamUiRoot>();
+            var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            if (live.InvitationWindow == null) typeof(TeamUiRoot).GetMethod("Awake", flags).Invoke(live, null);
+            typeof(TeamUiRoot).GetField("_client", flags).SetValue(live, client);
+            var sync = typeof(TeamUiRoot).GetMethod("SyncState", flags);
+            void SyncLive() => sync.Invoke(live, null);
+            Button InviteButton() => live.GetComponentsInChildren<Button>()
+                .Last(button => button.name == "InviteCandidate_21" && button.gameObject.activeInHierarchy);
+            var view = new Teampb.TeamView { TeamId = 100, LeaderId = 11, Version = 1, Capacity = 5 };
+            view.Members.Add(new Teampb.TeamMemberView { PlayerId = 11, IsOnline = true, IsLeader = true });
+            try
+            {
+                client.Refresh();
+                transport.Reply(new Teampb.TeamResponse { Team = view });
+                now = 31f;
+                client.Refresh();
+                transport.Reply(new Teampb.TeamResponse { Team = view });
+                now += .1f;
+                Assert.That(client.Busy, Is.False, "The background refresh already replied.");
+                Assert.That(client.Invite(21), Is.False, "The shared 400ms send interval still rejects an invite.");
+                int calls = transport.Calls.Count, intents = 0;
+                SyncLive();
+                live.InvitationWindow.Show();
+                live.InvitationWindow.SetCandidates(TeamInvitationSource.Friends, new[] { _friend }, false, "");
+                live.InvitationWindow.InviteRequested += _ => intents++;
+                Assert.That(InviteButton().interactable, Is.False, "The UI must reflect the real send cooldown after Busy clears.");
+                Assert.That(InviteButton().GetComponentInChildren<TMP_Text>().text, Is.EqualTo("请稍候"));
+                InviteButton().onClick.Invoke();
+                Assert.That(intents, Is.Zero);
+                Assert.That(transport.Calls.Count, Is.EqualTo(calls));
+                now = 31f + TeamClient.MinSendIntervalSeconds + .001f;
+                SyncLive();
+                Assert.That(InviteButton().interactable, Is.True, "The invitation recovers when the same production interval expires.");
+                InviteButton().onClick.Invoke();
+                Assert.That(intents, Is.EqualTo(1));
+                Assert.That(client.Invite(21), Is.True);
+            }
+            finally
+            {
+                Object.DestroyImmediate(liveObject);
+                client.Dispose();
+            }
+        }
+
+        [Test]
         public void OfflineFullNonleaderAndBusyPreventDirectButtonInvocation()
         {
             int requests = 0;

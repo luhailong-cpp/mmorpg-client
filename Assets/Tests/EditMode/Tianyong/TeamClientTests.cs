@@ -241,6 +241,26 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void InvitationCooldownTracksTheExistingPerMessageQuota()
+        {
+            Loaded();
+            float first = _now;
+            for (int i = 0; i < 3; i++)
+            {
+                Assert.That(_client.InvitationCoolingDown, Is.False);
+                Assert.That(_client.Invite(13), Is.True);
+                _net.Reply(new TeamResponse { Team = LeaderView((ulong)(2 + i)) });
+                Assert.That(_client.InvitationCoolingDown, Is.True);
+                _now += .5f;
+            }
+            Assert.That(_client.InvitationCoolingDown, Is.True, "Three invites consume the existing 2.5s window.");
+            Assert.That(_client.Invite(13), Is.False);
+            _now = first + TeamClient.MessageWindowSeconds;
+            Assert.That(_client.InvitationCoolingDown, Is.False);
+            Assert.That(_client.Invite(13), Is.True);
+        }
+
+        [Test]
         public void GetMyTeamWithoutView_IsNotNoTeamAndRetriesWithBackoff()
         {
             // 探针:服务端自由读失败(4029 / 4030)时只回 tip、不带视图。
