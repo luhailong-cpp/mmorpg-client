@@ -154,7 +154,8 @@ namespace MmorpgClient.UI.Ugui.Team
             if (IsVisible) Render();
         }
 
-        private bool CanCreate => _state != null && _state.ServiceAvailable && _state.HasLoaded && !_state.HasTeam && !_state.IsBusy;
+        private bool CanCreate => _state != null && _state.ServiceAvailable && _state.HasLoaded &&
+            !_state.HasTeam && !_state.IsBusy && !_state.CreationCoolingDown;
 
         /// <summary>Never infer success from a click: authoritative pending invitations alone show “已邀请”.</summary>
         public static string BlockReason(TeamUiState state, TeamRole role)
@@ -170,6 +171,7 @@ namespace MmorpgClient.UI.Ugui.Team
             if (state.IsFull) return "队伍已满";
             if (state.MatchStarting) return "集合中";
             if (state.IsBusy) return state.PendingAction == TeamAction.Invite && state.PendingTarget == role.PlayerId ? "发送中…" : "请稍候";
+            if (state.InvitationCoolingDown) return "请稍候";
             return null;
         }
 

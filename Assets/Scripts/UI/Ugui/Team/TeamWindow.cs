@@ -118,7 +118,7 @@ namespace MmorpgClient.UI.Ugui.Team
             _disband = Control(frame, "解散队伍", 1466, 851, 200, 60, ConfirmDisband, size: 30);
             _disband.name = "DisbandTeam";
             _create = Control(frame, "创建队伍", 1466, 851, 200, 60,
-                () => { if (CanJoin) CreateRequested?.Invoke(); }, primary: true, size: 30);
+                () => { if (CanCreate) CreateRequested?.Invoke(); }, primary: true, size: 30);
             _create.name = "CreateTeam";
             _leave = Control(frame, "离开队伍", 1680, 851, 200, 60, ConfirmLeave, size: 30);
             _leave.name = "LeaveTeam";
@@ -187,6 +187,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private bool CanAct => _state != null && _state.ServiceAvailable && (_ignoreBusy || !_state.IsBusy);
         private bool CanJoin => CanAct && _state.HasLoaded && !_state.HasTeam;
+        private bool CanCreate => CanJoin && !_state.CreationCoolingDown;
         private bool CanManage => CanAct && _state.IsLeader && !_state.MatchStarting;
         private bool CanLeave => CanAct && _state.HasTeam && !_state.MatchStarting;
         // Invitations and rejections stay open while the roster is locked for a match.
@@ -306,7 +307,7 @@ namespace MmorpgClient.UI.Ugui.Team
                 InviteBrowseRequested != null ? CanAct && _state.HasLoaded : CanInvite);
             Footer(_disband, leader, CanManage);
             Footer(_leave, hasTeam, CanLeave);
-            Footer(_create, noTeam, CanJoin);
+            Footer(_create, noTeam, CanCreate);
             Footer(_apply, noTeam, CanJoin);
             _startMatchLabel.text = _state?.MatchStarting == true ? "集合中…" : "开始战斗";
         }

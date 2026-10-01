@@ -103,7 +103,7 @@ namespace MmorpgClient.App
                 _peerId != 0 && _peerId != Game.PlayerId, "second authenticated player", 120);
             if (_done) yield break;
             Check("Distinct real authenticated player IDs: " + Game.PlayerId + " / " + _peerId);
-            if (_mode == "leader")
+            if (_mode == "member")
             {
                 TryPeer(out var leader);
                 if (!ulong.TryParse(leader.sceneId, out var destination) || destination == 0)
@@ -121,12 +121,13 @@ namespace MmorpgClient.App
             }
             else
             {
-                yield return Wait(() => PeerAt("aligned", -1), "leader joins peer line", 100);
+                yield return Wait(() => PeerAt("aligned", -1), "member joins leader line", 100);
                 if (_done) yield break;
             }
-            if (_mode == "leader") yield return Wait(() => Game.World.Actors.Values.Any(a => a.Kind == ActorKind.Player && a.PlayerId == _peerId),
+            yield return Wait(() => Game.World.Actors.Values.Any(a => a.Kind == ActorKind.Player && a.PlayerId == _peerId),
                 "peer becomes visible through real AOI", 90);
             if (_done) yield break;
+            Check("Peer visible through authoritative AOI after member joins the leader line.");
             yield return _mode == "leader" ? Leader() : Member();
         }
 
@@ -442,9 +443,8 @@ namespace MmorpgClient.App
             if (!hittable)
             { Fail("Real button not hittable: " + name + "; point=" + pointer?.position + "; hits=" +
                 string.Join(",", hits.Take(6).Select(h => h.gameObject.name + "@" + h.sortingOrder))); yield break; }
+            // Complete the native pointer gesture against the raycast validated in this frame.
             ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerDownHandler);
-            yield return null;
-            if (_done) yield break;
             if (button == null || !button.IsInteractable()) { Fail("Button changed before click: " + name); yield break; }
             ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerUpHandler);
             _clicks.Add(name);
@@ -530,14 +530,23 @@ namespace MmorpgClient.App
             var target = RenderTexture.GetTemporary(width, height, 24, RenderTextureFormat.ARGB32);
             var previousTarget = camera.targetTexture;
             var previousActive = RenderTexture.active;
+            var previousClear = camera.clearFlags;
+            var renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsInactive.Exclude)
+                .Where(renderer => renderer.enabled).ToArray();
             var canvases = UnityEngine.Object.FindObjectsByType<Canvas>(FindObjectsInactive.Exclude)
-                .Select(c => (canvas: c, mode: c.renderMode, camera: c.worldCamera, distance: c.planeDistance)).ToArray();
+                .Select(c => (canvas: c, mode: c.renderMode, camera: c.worldCamera, distance: c.planeDistance, enabled: c.enabled)).ToArray();
             try
             {
                 camera.targetTexture = target;
+                // Match normal presentation: the world is drawn before ScreenSpaceOverlay UI.
+                // A single mixed render would let high-order world nameplates cover the panels.
+                camera.Render();
+                foreach (var renderer in renderers) renderer.enabled = false;
                 foreach (var state in canvases)
                     if (state.mode == RenderMode.ScreenSpaceOverlay)
                     { state.canvas.renderMode = RenderMode.ScreenSpaceCamera; state.canvas.worldCamera = camera; state.canvas.planeDistance = 2; }
+                    else state.canvas.enabled = false;
+                camera.clearFlags = CameraClearFlags.Depth;
                 Canvas.ForceUpdateCanvases();
                 camera.Render();
                 RenderTexture.active = target;
@@ -549,7 +558,9 @@ namespace MmorpgClient.App
             finally
             {
                 foreach (var state in canvases)
-                { state.canvas.renderMode = state.mode; state.canvas.worldCamera = state.camera; state.canvas.planeDistance = state.distance; }
+                { state.canvas.renderMode = state.mode; state.canvas.worldCamera = state.camera; state.canvas.planeDistance = state.distance; state.canvas.enabled = state.enabled; }
+                foreach (var renderer in renderers) if (renderer != null) renderer.enabled = true;
+                camera.clearFlags = previousClear;
                 camera.targetTexture = previousTarget;
                 RenderTexture.active = previousActive;
                 RenderTexture.ReleaseTemporary(target);
