@@ -1102,6 +1102,11 @@ namespace MmorpgClient.Game
             // 那个枚举的生成物,**不手写数字**,等 gen_proto.ps1 收进该文件后再补。
             (uint)scene_error.KEnterSceneSceneNotFound => "目标地图不存在或未开放。",
             (uint)scene_error.KEnterSceneChangingScene => "正在切换场景,请稍候再试。",
+            // 换图 / 进镜像副本的请求在服务端内部没拿到结果(scene_manager 不可达或超时)。结果未知:
+            // 多数情况没换成、留在原地,少数情况稍后仍会被搬过去 —— 所以文案只说"繁忙、稍后再试",
+            // 不说"失败";也**不**进 IsTravelFailureTip(那是"确定没成"的判据,跨区传送的失败不发这个码)。
+            // 服务端:docs/design/grpc-client-deadline-failure-callback.md §5。
+            (uint)scene_error.KEnterSceneServerBusy => "服务器繁忙,请稍后再试。",
             _ => $"传送失败(tip={tipId})",
         };
 
