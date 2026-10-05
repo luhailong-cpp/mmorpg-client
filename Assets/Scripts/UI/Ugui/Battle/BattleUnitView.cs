@@ -99,6 +99,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public bool IsDead { get; private set; }
         public bool Fled { get; private set; }
         public bool IsMonster { get; private set; }
+        public bool IsPet { get; private set; }
+        public uint PetTableId { get; private set; }
         public uint MonsterTableId { get; private set; }
         public string CharacterId { get; private set; } = BattleArtCatalog.DefaultCharacterId;
         /// <summary>当前目标高亮态(目标选择模式下 BattleScreen 据此判可选/已选)。</summary>
@@ -178,6 +180,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private Sprite _idleSprite;
         private string _renderedCharacterId;
         private readonly MmorpgClient.World.QdaoHdSpriteLeaseOwner _artLeaseOwner;
+        private readonly BattleActionSpriteLeaseOwner _idleActionLeaseOwner;
         private StripAnim _idleStrip;
         private bool _destroyed;
         private BattleActorState _lastState;
@@ -195,6 +198,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _root = QdaoUguiFactory.CreateRect($"Unit_{actorId}", parent, 0f, 0f, RootWidth, RootHeight);
             _artLeaseOwner = _root.gameObject.AddComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>();
+            _idleActionLeaseOwner = _root.gameObject.AddComponent<BattleActionSpriteLeaseOwner>();
             _artLeaseOwner.OnAppearanceRejected = () => { if (!_destroyed) ResolveAppearance(); };
             _root.pivot = new Vector2(0.5f, 1f - GroundY / RootHeight); // pivot 落在脚底
             _group = _root.gameObject.AddComponent<CanvasGroup>();
@@ -339,18 +343,21 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             bool wasMonster = IsMonster;
             uint prevMonster = MonsterTableId;
+            uint prevPet = PetTableId;
             string previousCharacterId = CharacterId;
             IsMonster = state.ActorType == eBattleActorType.BattleActorTypeMonster;
+            IsPet = state.ActorType == eBattleActorType.BattleActorTypePet;
+            PetTableId = state.PetTableId;
             MonsterTableId = state.MonsterTableId;
             CharacterId = BattleArtCatalog.CharacterIdFor(state, playerId => AppBootstrap.Instance?.GameClient?.ResolveCharacterId(playerId));
-            if (_idleSprite == null || wasMonster != IsMonster || prevMonster != MonsterTableId || previousCharacterId != CharacterId)
+            if (_idleSprite == null || wasMonster != IsMonster || prevMonster != MonsterTableId || prevPet != PetTableId || previousCharacterId != CharacterId)
             {
                 RealtimeTween.Kill(_idleToken);
                 ResolveAppearance();
             }
 
             string name = string.IsNullOrEmpty(state.Name)
-                ? (IsMonster ? $"怪物{state.MonsterTableId}" : $"玩家{state.ActorId}")
+                ? (IsMonster ? $"怪物{state.MonsterTableId}" : IsPet ? $"宝宝{state.PetTableId}" : $"玩家{state.ActorId}")
                 : state.Name;
             _name.text = $"{(IsSelf ? "★" : string.Empty)}Lv{state.Level} {name}";
             _name.color = NameColor(IsMonster);
@@ -1060,6 +1067,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _idleSprite = null;
             _idleStrip = null;
             if (_artLeaseOwner != null) _artLeaseOwner.Clear();
+            if (_idleActionLeaseOwner != null) _idleActionLeaseOwner.Clear();
             if (_plateGroup != null && _plate != null) UnityEngine.Object.Destroy(_plate.gameObject);
             if (_root != null) UnityEngine.Object.Destroy(_root.gameObject);
         }
@@ -1103,7 +1111,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
                 else
                 {
-                    sprite = BattleArtCatalog.LoadPlayerIdle(CharacterId, _facingEast, out mirrored, _artLeaseOwner);
+                    sprite = IsPet ? BattleArtCatalog.GetMonsterSilhouette(_lastState.PetTableId)
+                        : BattleArtCatalog.LoadPlayerIdle(CharacterId, _facingEast, out mirrored, _artLeaseOwner);
                 }
                 height = PlayerHeight;
             }
@@ -1141,6 +1150,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _flash.sprite = sprite;
             // Replace both Images before retiring their previous HD direction.
             _artLeaseOwner.BindSprite(sprite);
+            _idleActionLeaseOwner.BindSprite(sprite);
             _hitArea.rectTransform.sizeDelta = new Vector2(Mathf.Max(120f, _bodyRect.sizeDelta.x * 0.8f), _bodyHeight);
             _hitArea.rectTransform.anchoredPosition = new Vector2(RootWidth * 0.5f - _hitArea.rectTransform.sizeDelta.x * 0.5f, -(GroundY - _bodyHeight));
             // 头顶块按立绘实际可见顶点排(贴图透明边距各不相同,固定偏移会让条悬空在头顶 90px 处)
@@ -1200,7 +1210,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public float ActionDurationSeconds(string action)
         {
             float authored = IsMonster ? 0f : MmorpgClient.World.QdaoActionResources.GetDurationSeconds(
-                CharacterId, action, _facingEast ? "E" : "W");
+                CharacterId, action, _facingEast ? "E" : "W", IsPet ? MmorpgClient.World.QdaoActionResources.PetResourceRoot : MmorpgClient.World.QdaoActionResources.ResourceRoot);
             if (action == "attack") return AttackReturnStart(authored > 0f ? authored : 0.3f) + AttackReturnSeconds;
             if (action == "cast") return Mathf.Max(CastActionSeconds, authored);
             if (action == "hit") return Mathf.Max(0.25f, authored);
@@ -1210,7 +1220,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public float ActionEventDelaySeconds(string action)
         {
             float authored = IsMonster ? -1f : MmorpgClient.World.QdaoActionResources.GetEventTimeSeconds(
-                CharacterId, action, _facingEast ? "E" : "W");
+                CharacterId, action, _facingEast ? "E" : "W", IsPet ? MmorpgClient.World.QdaoActionResources.PetResourceRoot : MmorpgClient.World.QdaoActionResources.ResourceRoot);
             return action == "attack"
                 ? authored >= 0f ? AttackApproachSeconds + authored : AttackHitDelaySeconds
                 : authored >= 0f ? authored : CastReleaseDelaySeconds;

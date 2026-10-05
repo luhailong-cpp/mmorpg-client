@@ -296,6 +296,8 @@ namespace MmorpgClient.Game
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
             Pets = PetClient.Attach(new GameClientBattleTransport(this));
+            var companion = World.Root.GetComponent<QdaoPetCompanion>() ?? World.Root.gameObject.AddComponent<QdaoPetCompanion>();
+            companion.Bind(World, Pets);
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));
             ZoneTravel = new ZoneTravelClient(this);
         }
@@ -344,9 +346,16 @@ namespace MmorpgClient.Game
             World.RefreshAppearances();
         }
 
+        private float _nextPetListRequestTime;
         public void Tick()
         {
             _gate?.Poll();
+            if (!InGame || !IsGateReady) _nextPetListRequestTime = 0f;
+            else if (!Pets.HasList && !Pets.ListRequestPending && Time.realtimeSinceStartup >= _nextPetListRequestTime)
+            {
+                _nextPetListRequestTime = Time.realtimeSinceStartup + 15f;
+                Pets.RequestList();
+            }
             MaybeRefreshToken();
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动

@@ -13,6 +13,7 @@ namespace MmorpgClient.World
     public static class QdaoActionResources
     {
         public const string ResourceRoot = "World/Characters/QdaoArchivedActions20261005";
+        public const string PetResourceRoot = "World/Pets/QdaoPets20261005";
 
         [Serializable]
         private sealed class Manifest
@@ -21,6 +22,7 @@ namespace MmorpgClient.World
             public string characterId;
             public float pixelsPerUnit;
             public float pivotX, pivotY;
+            public int frameWidth, frameHeight;
             public Clip[] clips;
         }
 
@@ -35,6 +37,7 @@ namespace MmorpgClient.World
             public bool overridePivot;
             public float pivotX, pivotY;
             public float pixelsPerUnit;
+            public int frameWidth, frameHeight;
         }
 
         internal sealed class Entry
@@ -92,23 +95,23 @@ namespace MmorpgClient.World
             }
         }
 
-        public static Lease Acquire(string characterId, string action, string direction)
+        public static Lease Acquire(string characterId, string action, string direction, string resourceRoot = ResourceRoot)
         {
-            var manifest = LoadManifest(characterId);
-            return AcquireClip(manifest, characterId, action, direction, Resources.Load<Texture2D>, Resources.UnloadAsset, true);
+            var manifest = LoadManifest(characterId, resourceRoot);
+            return AcquireClip(manifest, characterId, action, direction, Resources.Load<Texture2D>, Resources.UnloadAsset, true, resourceRoot);
         }
 
         /// <summary>Metadata only: scheduling must not preload every actor's action textures.</summary>
-        public static float GetDurationSeconds(string characterId, string action, string direction)
+        public static float GetDurationSeconds(string characterId, string action, string direction, string resourceRoot = ResourceRoot)
         {
-            var clip = FindClip(LoadManifest(characterId), action, direction);
+            var clip = FindClip(LoadManifest(characterId, resourceRoot), action, direction);
             if (!TryDurations(clip, out _, out var duration, out _)) return 0f;
             return duration;
         }
 
-        public static float GetEventTimeSeconds(string characterId, string action, string direction)
+        public static float GetEventTimeSeconds(string characterId, string action, string direction, string resourceRoot = ResourceRoot)
         {
-            var clip = FindClip(LoadManifest(characterId), action, direction);
+            var clip = FindClip(LoadManifest(characterId, resourceRoot), action, direction);
             return TryDurations(clip, out _, out _, out var eventTime) ? eventTime : -1f;
         }
 
@@ -120,16 +123,20 @@ namespace MmorpgClient.World
             string manifestJson, Func<string, Texture2D> load, bool shared)
             => AcquireClip(ParseManifest(characterId, manifestJson), characterId, action, direction, load, null, shared);
 
+        internal static Lease AcquirePetWithResources(string petId, string action, string direction,
+            string manifestJson, Func<string, Texture2D> load, bool shared)
+            => AcquireClip(ParseManifest(petId, manifestJson), petId, action, direction, load, null, shared, PetResourceRoot);
+
         internal static Lease AcquireWithOwnedResources(string characterId, string action, string direction,
             string manifestJson, Func<string, Texture2D> load, Action<Texture2D> unload, bool shared)
             => AcquireClip(ParseManifest(characterId, manifestJson), characterId, action, direction, load, unload, shared);
 
         private static Lease AcquireClip(Manifest manifest, string characterId, string action, string direction,
-            Func<string, Texture2D> load, Action<Texture2D> unload, bool shared)
+            Func<string, Texture2D> load, Action<Texture2D> unload, bool shared, string resourceRoot = ResourceRoot)
         {
             var clip = FindClip(manifest, action, direction);
-            if (load == null || !TryDurations(clip, out var durations, out var duration, out var eventTime)) return null;
-            var key = characterId + "/" + action + "/" + direction;
+            if (!ValidRoot(resourceRoot) || load == null || !TryDurations(clip, out var durations, out var duration, out var eventTime)) return null;
+            var key = resourceRoot + "/" + characterId + "/" + action + "/" + direction;
             if (shared && Shared.TryGetValue(key, out var cached))
             {
                 if (ValidFrames(cached)) return new Lease(cached);
@@ -138,12 +145,15 @@ namespace MmorpgClient.World
             var pivot = clip.overridePivot ? new Vector2(clip.pivotX, clip.pivotY) : new Vector2(manifest.pivotX, manifest.pivotY);
             var ppu = clip.pixelsPerUnit > 0 ? clip.pixelsPerUnit : manifest.pixelsPerUnit;
             if (!FinitePositive(ppu) || !ValidPivot(pivot)) return null;
+            var width = clip.frameWidth > 0 ? clip.frameWidth : manifest.frameWidth > 0 ? manifest.frameWidth : 1024;
+            var height = clip.frameHeight > 0 ? clip.frameHeight : manifest.frameHeight > 0 ? manifest.frameHeight : 1024;
+            if (width > 4096 || height > 4096) return null;
             var entry = new Entry { Key = shared ? key : null, Frames = new Sprite[clip.frameCount],
                 Durations = durations, Duration = duration, EventFrame = clip.eventFrame, EventTime = eventTime, Pivot = pivot };
             var unique = new HashSet<Texture2D>();
             for (var frame = 0; frame < clip.frameCount; frame++)
             {
-                var path = ResourceRoot + "/" + key + "/" + (frame + 1).ToString("00");
+                var path = key + "/" + (frame + 1).ToString("00");
                 var texture = load(path);
                 if (texture != null)
                 {
@@ -152,7 +162,7 @@ namespace MmorpgClient.World
                     owner.Users++;
                     entry.Textures.Add(texture);
                 }
-                if (texture == null || texture.width != 1024 || texture.height != 1024 || !unique.Add(texture))
+                if (texture == null || texture.width != width || texture.height != height || !unique.Add(texture))
                 {
                     Release(entry);
                     return null;
@@ -173,13 +183,14 @@ namespace MmorpgClient.World
             return true;
         }
 
-        private static Manifest LoadManifest(string characterId)
+        private static Manifest LoadManifest(string characterId, string resourceRoot = ResourceRoot)
         {
-            if (!ValidIdentity(characterId)) return null;
-            if (Manifests.TryGetValue(characterId, out var cached)) return cached;
-            var text = Resources.Load<TextAsset>(ResourceRoot + "/" + characterId + "/manifest");
+            if (!ValidIdentity(characterId) || !ValidRoot(resourceRoot)) return null;
+            var key = resourceRoot + "/" + characterId;
+            if (Manifests.TryGetValue(key, out var cached)) return cached;
+            var text = Resources.Load<TextAsset>(key + "/manifest");
             var manifest = ParseManifest(characterId, text != null ? text.text : null);
-            Manifests[characterId] = manifest;
+            Manifests[key] = manifest;
             return manifest;
         }
 
@@ -191,10 +202,12 @@ namespace MmorpgClient.World
             catch (ArgumentException) { return null; }
             if (manifest == null || manifest.schemaVersion != 1 || manifest.characterId != characterId ||
                 !FinitePositive(manifest.pixelsPerUnit) || !ValidPivot(new Vector2(manifest.pivotX, manifest.pivotY)) ||
+                !ValidDimension(manifest.frameWidth) || !ValidDimension(manifest.frameHeight) ||
                 manifest.clips == null) return null;
             var keys = new HashSet<string>();
             foreach (var clip in manifest.clips)
                 if (clip == null || !ValidActionDirection(clip.action, clip.direction) ||
+                    !ValidDimension(clip.frameWidth) || !ValidDimension(clip.frameHeight) ||
                     !keys.Add(clip.action + "/" + clip.direction) || !TryDurations(clip, out _, out _, out _)) return null;
             return manifest;
         }
@@ -230,15 +243,17 @@ namespace MmorpgClient.World
         {
             if (string.IsNullOrEmpty(value)) return false;
             foreach (var ch in value)
-                if (!(ch >= 'a' && ch <= 'z') && !(ch >= '0' && ch <= '9') && ch != '_') return false;
+                if (!(ch >= 'a' && ch <= 'z') && !(ch >= '0' && ch <= '9') && ch != '_' && ch != '-') return false;
             return true;
         }
         private static bool ValidActionDirection(string action, string direction)
         {
             if (action == "run") return direction == "N" || direction == "NE" || direction == "E" ||
                 direction == "SE" || direction == "S" || direction == "SW" || direction == "W" || direction == "NW";
-            return (action == "attack" || action == "hit" || action == "cast") && (direction == "E" || direction == "W");
+            return (action == "idle" || action == "attack" || action == "hit" || action == "cast") && (direction == "E" || direction == "W");
         }
+        private static bool ValidRoot(string root) => root == ResourceRoot || root == PetResourceRoot;
+        private static bool ValidDimension(int value) => value >= 0 && value <= 4096;
         private static bool FinitePositive(float value) => value > 0f && !float.IsNaN(value) && !float.IsInfinity(value);
         private static bool ValidPivot(Vector2 pivot) => pivot.x >= 0f && pivot.x <= 1f && pivot.y >= 0f && pivot.y <= 1f;
 

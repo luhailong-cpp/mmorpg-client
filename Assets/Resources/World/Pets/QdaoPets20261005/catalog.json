@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "pets": [
+    {
+      "id": "01-zhuling",
+      "displayName": "烛翎",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "02-jiangling",
+      "displayName": "绛铃",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "03-shuangtuan",
+      "displayName": "霜团貂",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "04-guideng",
+      "displayName": "桂灯童",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "05-yanyuling",
+      "displayName": "砚羽灵",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "15-landuoxian",
+      "displayName": "岚铎仙",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "06-xiluo",
+      "displayName": "汐螺",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "07-cangzhanglin",
+      "displayName": "苍嶂麟",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "08-zhufengli",
+      "displayName": "竹风狸",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "09-chishakui",
+      "displayName": "赤砂魁",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "10-xuanchaogui",
+      "displayName": "玄潮龟",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "12-yuexianshi",
+      "displayName": "月弦师",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "16-luhualing",
+      "displayName": "露华灵",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "14-feierling",
+      "displayName": "绯耳灵",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "11-xiajiaolu",
+      "displayName": "霞角鹿",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "13-yalingtong",
+      "displayName": "芽铃童",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "legacy-hu-tuan-tuan",
+      "displayName": "葫团团",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "legacy-fu-xiao-hu",
+      "displayName": "符小虎",
+      "petTableIds": [],
+      "modelIds": []
+    },
+    {
+      "id": "legacy-yun-jiu-jiu",
+      "displayName": "云啾啾",
+      "petTableIds": [
+        4
+      ],
+      "modelIds": [
+        1004
+      ]
+    },
+    {
+      "id": "legacy-ling-yue",
+      "displayName": "灵玥",
+      "petTableIds": [
+        1
+      ],
+      "modelIds": [
+        1001
+      ]
+    }
+  ]
+}

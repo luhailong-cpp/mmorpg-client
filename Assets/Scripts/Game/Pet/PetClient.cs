@@ -31,6 +31,8 @@ namespace MmorpgClient.Game.Pet
         public PetListInfo Pets { get; private set; }
 
         public bool HasList => Pets != null;
+        public bool ListRequestPending { get; private set; }
+        private int _listRequestVersion;
 
         /// <summary>有写请求在途(UI 据此禁用提交按钮)。</summary>
         public bool Busy { get; private set; }
@@ -127,18 +129,28 @@ namespace MmorpgClient.Game.Pet
         /// <summary>拉取列表(打开界面 / 重连后调用)。</summary>
         public void RequestList()
         {
+            if (ListRequestPending) return;
             if (!_net.IsReady)
             {
                 OnError?.Invoke("尚未进入游戏,无法查看宝宝");
                 return;
             }
+            int requestVersion = ++_listRequestVersion;
+            ListRequestPending = true;
             _net.Call(MessageIds.GetPetList, new GetPetListRequest(), GetPetListResponse.Parser,
                 resp =>
                 {
+                    if (requestVersion != _listRequestVersion) return;
+                    ListRequestPending = false;
                     if (HasTip(resp.ErrorMessage)) { OnError?.Invoke(DescribeTip("拉取宝宝列表失败", resp.ErrorMessage)); return; }
                     ApplyList(resp.Pets);
                 },
-                err => OnError?.Invoke(err));
+                err =>
+                {
+                    if (requestVersion != _listRequestVersion) return;
+                    ListRequestPending = false;
+                    OnError?.Invoke(err);
+                });
         }
 
         // ── 写 ──────────────────────────────────────────────
@@ -297,6 +309,8 @@ namespace MmorpgClient.Game.Pet
                 return;
             }
             Pets = list;
+            ++_listRequestVersion;
+            ListRequestPending = false;
             OnList?.Invoke(list);
         }
 
@@ -308,6 +322,8 @@ namespace MmorpgClient.Game.Pet
 
         private void HandleDisconnected()
         {
+            ++_listRequestVersion;
+            ListRequestPending = false;
             Pets = null;
             SetBusy(false);
         }

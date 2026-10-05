@@ -52,6 +52,34 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void ListReadsAreSingleFlightAndCanRetryAfterFailure()
+        {
+            _client.RequestList();
+            _client.RequestList();
+            Assert.That(_net.CallsOf(MessageIds.GetPetList).Count, Is.EqualTo(1));
+            Assert.That(_client.ListRequestPending, Is.True);
+            _net.CallsOf(MessageIds.GetPetList)[0].FailWith("timeout");
+            Assert.That(_client.ListRequestPending, Is.False);
+            _client.RequestList();
+            Assert.That(_net.CallsOf(MessageIds.GetPetList).Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void LateListCannotRestorePetAfterDisconnectOrReplaceNewerSummonState()
+        {
+            _client.RequestList();
+            var old = _net.CallsOf(MessageIds.GetPetList)[0];
+            _net.RaiseDisconnected();
+            old.Respond(new GetPetListResponse { Pets = MakeList(activePetId: PetA) });
+            Assert.That(_client.HasList, Is.False);
+            _client.RequestList();
+            var stale = _net.CallsOf(MessageIds.GetPetList)[1];
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = MakeList(activePetId: PetA) });
+            stale.Respond(new GetPetListResponse { Pets = MakeList() });
+            Assert.That(_client.Pets.ActivePetId, Is.EqualTo(PetA));
+        }
+
+        [Test]
         public void RequestListAppliesServerList()
         {
             PetListInfo received = null;

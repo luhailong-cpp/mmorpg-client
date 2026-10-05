@@ -40,6 +40,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private UiTextButton _confirmButton;
         private TMP_Text _statusText;
         private RectTransform _detailsRoot;
+        private PetArchivePreview _archivePreview;
         private TMP_Text _detailText;
         private TMP_InputField _renameInput;
         private UiTextButton _renameConfirm;
@@ -73,6 +74,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             BuildRightColumn();
             BuildTabs();
             BuildDetails();
+            var archiveRoot = QdaoUguiFactory.CreateRect("PetArchiveGallery", _root, 40f, 46f, 1920f, 840f);
+            _archivePreview = archiveRoot.gameObject.AddComponent<PetArchivePreview>();
+            _archivePreview.Build();
 
             _tooltip = QdaoUguiFactory.CreateRect("Tooltip", _root, 0f, 0f, 650f, 88f);
             var tooltipPlate = _tooltip.gameObject.AddComponent<Image>();
@@ -279,7 +283,12 @@ namespace MmorpgClient.UI.Ugui.Pet
                 tab.Label.fontSize = 39f;
                 SkinPainted(tab.Plate, selected ? "tab_vertical_selected" : "tab_vertical_normal");
                 if (i == 0) tab.Button.onClick.AddListener(ShowDetails);
-                else if (i == 1) tab.Button.onClick.AddListener(() => _detailsRoot.gameObject.SetActive(false));
+                else if (i == 1) tab.Button.onClick.AddListener(() =>
+                {
+                    _detailsRoot.gameObject.SetActive(false);
+                    _archivePreview.gameObject.SetActive(false);
+                });
+                else if (i == 4) tab.Button.onClick.AddListener(() => _archivePreview.gameObject.SetActive(true));
                 else
                 {
                     tab.SetInteractable(false);
@@ -313,6 +322,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void ShowDetails()
         {
+            if (_archivePreview != null) _archivePreview.gameObject.SetActive(false);
             var pet = FindPet(_selectedPetId);
             if (pet == null) { SetStatus("请先选择一只宝宝。", true); return; }
             _detailText.text = $"{pet.Name}　等级 {pet.Level}　成长率 {pet.Growth / 100f:0.##}%\n" +
@@ -419,6 +429,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         public void Hide()
         {
             HideTooltip();
+            if (_archivePreview != null) _archivePreview.gameObject.SetActive(false);
             if (_detailsRoot != null) _detailsRoot.gameObject.SetActive(false);
             if (_root != null) _root.gameObject.SetActive(false);
         }
@@ -507,7 +518,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 SkinPainted(_petItems[i].Plate, selected ? "pet_card_selected" : "pet_card_normal");
                 _petItems[i].Label.color = selected ? QdaoRefreshArt.Ivory : PetUiStyle.FieldLabel;
                 _petLevels[i].text = pet.Level.ToString();
-                _petPortraits[i].sprite = PortraitAsset(pet.ModelId);
+                _petPortraits[i].sprite = PortraitAsset(pet);
                 _petStates[i].text = pet.IsActive ? "参战" : "休息";
                 _petStates[i].color = selected ? QdaoRefreshArt.Ivory : PetUiStyle.HintText;
                 _petDescriptions[i].text = $"成长 {pet.Growth / 100f:0.##}%";
@@ -515,14 +526,17 @@ namespace MmorpgClient.UI.Ugui.Pet
             }
         }
 
-        private static Sprite PortraitAsset(uint modelId)
+        private static Sprite PortraitAsset(PetInfo pet)
         {
-            // data/Pet.xlsx：1001 灵狐、1004 云鹤。石灵/金猊无对应新素材，
-            // 不按可改名字段或列表序号误绑葫团团/符小虎。
-            return modelId switch
+            // data/Pet.xlsx: table 1/model 1001 灵狐 -> 灵玥; table 4/model 1004 云鹤 -> 云啾啾.
+            // Resolve rejects conflicting table/model pairs before the legacy same-identity portrait fallback.
+            var entry = MmorpgClient.World.QdaoPetCatalog.Resolve(pet.PetTableId, pet.ModelId);
+            var delivered = MmorpgClient.World.QdaoPetCatalog.LoadPortrait(entry?.id);
+            if (delivered != null) return delivered;
+            return entry?.id switch
             {
-                1001 => LoadPainted("portrait_lingyue"),
-                1004 => LoadPainted("portrait_yunjiujiu"),
+                "legacy-ling-yue" => LoadPainted("portrait_lingyue"),
+                "legacy-yun-jiu-jiu" => LoadPainted("portrait_yunjiujiu"),
                 _ => QdaoRefreshArt.Load("round_badge_taiji")
             };
         }

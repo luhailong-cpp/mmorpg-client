@@ -207,6 +207,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public static string CharacterIdFor(BattleActorState actor)
         {
+            if (actor?.ActorType == eBattleActorType.BattleActorTypePet)
+                return QdaoPetCatalog.Resolve(actor.PetTableId)?.id ?? QdaoPetCatalog.UnknownIdentity;
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer &&
                 !string.IsNullOrEmpty(actor.AppearanceId)) return actor.AppearanceId;
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && actor.ClassId != 0)
@@ -251,6 +253,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>角色动作帧条;缺 W 用 E 镜像;都缺返回 null(调用方走程序化动作)。</summary>
         public static StripAnim LoadCharacterAction(string characterId, string action, bool facingEast)
         {
+            if (characterId == QdaoPetCatalog.UnknownIdentity || QdaoPetCatalog.Find(characterId) != null)
+                return LoadArchivedAction(characterId, action, facingEast);
             if (action != "idle")
             {
                 var archived = LoadArchivedAction(characterId, action, facingEast);
@@ -295,6 +299,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             var archived = LoadArchivedAction(characterId, "run", facingEast);
             if (archived != null) return archived;
+            if (characterId == QdaoPetCatalog.UnknownIdentity || QdaoPetCatalog.Find(characterId) != null) return null;
             var entry = QdaoCharacterCatalog.Find(characterId);
             if (entry == null) return LoadPlayerWalk(facingEast);
             var appearance = entry.ResolveAppearance();
@@ -304,7 +309,9 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private static StripAnim LoadArchivedAction(string characterId, string action, bool facingEast)
         {
-            var lease = QdaoActionResources.Acquire(characterId, action, facingEast ? "E" : "W");
+            var lease = QdaoPetCatalog.Find(characterId) != null
+                ? QdaoPetCatalog.Acquire(characterId, action, facingEast ? "E" : "W")
+                : QdaoActionResources.Acquire(characterId, action, facingEast ? "E" : "W");
             if (lease == null) return null;
             return new StripAnim { Frames = lease.Frames, Fps = lease.Fps, Pivot = lease.Pivot,
                 EventFrame = lease.EventFrame, UseWorldGeometry = true, ActionLease = lease };
@@ -546,6 +553,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static Sprite LoadPlayerPortrait(BattleActorState actor, Func<ulong, string> resolveCharacterId)
         {
             if (actor == null) return null;
+            if (actor.ActorType == eBattleActorType.BattleActorTypePet)
+                return QdaoPetCatalog.LoadPortrait(QdaoPetCatalog.Resolve(actor.PetTableId)?.id) ?? GetMonsterSilhouette(actor.PetTableId);
             string characterId = CharacterIdFor(actor, resolveCharacterId);
             var entry = QdaoCharacterCatalog.Find(characterId);
             if (entry == null) return !string.IsNullOrEmpty(actor.AppearanceId) ? null : LoadPlayerPortrait(actor.ActorId);
