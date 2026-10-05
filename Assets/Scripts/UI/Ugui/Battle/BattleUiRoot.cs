@@ -152,6 +152,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             UnbindClient();
             UnbindSpectate();
+            _battleScreen?.Dispose();
             if (_boundGameClient != null)
             {
                 _boundGameClient.OnDisconnected -= HandleDisconnected;

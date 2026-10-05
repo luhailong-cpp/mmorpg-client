@@ -1,0 +1,43 @@
+# 归档角色动作接入（2026-10-05）
+
+七名归档角色的跑步、普攻、受击和施法已作为独立动作集接入。角色身份、原站立图与肖像仍由原外观目录负责；主城移动和战斗冲刺使用归档跑步，战斗普攻/施法/受击使用对应角色的东西方向帧。没有另造方向或用别人的身体补缺。
+
+## 资源合同
+
+正式目录：`Assets/Resources/World/Characters/QdaoArchivedActions20261005/`。
+每角色196张1024×1024透明PNG：跑步八方向各16张，受击E/W各6张、普攻各12张、施法各16张。总计1372张PNG、98段动作，图片字节与归档交付一致。
+
+| 角色 | 跑步单帧/周期 | Unity脚底pivot Y | 普攻/施法事件帧（一基） |
+| --- | --- | --- | --- |
+| 00 金发带道童 | 60ms / 960ms | 0.080078125 | 未指定，沿用原战斗命中时刻 |
+| 01 冰剑少女 | 60ms / 960ms | 0.047 | 未指定，沿用原战斗命中时刻 |
+| 07 月影少女 | 60ms / 960ms | 0.0546875 | 6 / 9 |
+| 08 炼丹童子 | 60ms / 960ms | 0.080078125 | 6 / E9、W10 |
+| 09 竹弓少女 | 75ms / 1200ms | 0.08（保留客户端原值） | 7 / 10 |
+| 15 水龙书生 | 60ms / 960ms | 0.080078125 | 5 / 9（释放开始） |
+| 20 星阵少女 | 60ms / 960ms | 0.099609375 | 6 / 10 |
+
+受击40ms/帧，共240ms；普攻30ms/帧，共360ms；施法45ms/帧，共720ms。事件帧写入运行清单时转为零基；未提供的事件使用`-1`，由原战斗时刻映射。事件标记是离线制作参考，尚未完成游戏内观感验收。09交付没有有效根点合同，预览的940像素诊断线不能当作正式脚底标定。
+
+世界跑步按实际位移推进，在原9单位/秒参考移动速度下使用上述原时长；停止后回原站立图。不会重排支撑相位。战斗倍率同步缩放整个动作，回合预算包含动作、命中与受击尾段；完成、中断、跳过及销毁时释放租约，残影单独持有资源，防止提前卸载。
+
+## 可重复导入与验证
+
+`tools/character_deliveries/archived_actions_20261005.json` 锁定来源相对路径、源清单SHA、逐帧SHA、时序与锚点。来源为同级美术仓库的 `qdao_original_roster_v14_hd/action-remake-20261001/characters`。源文件不参与运行加载，也不被导入器改写。
+
+```powershell
+python tools/import_archived_actions.py             # 只读核验来源
+python tools/import_archived_actions.py --execute   # 整批预检后复制，最后发布动作清单
+python tools/import_archived_actions.py --verify    # 无需美术源，验证客户端成品
+python -m unittest discover -s tools/tests -p test_import_archived_actions.py -v
+```
+
+本机已通过：1372张源/目标PNG的SHA、尺寸、RGBA通道与帧槽检查；7份运行清单的时序/锚点检查；导入器7项单元测试；修改C#的Roslyn语法检查。语法检查不等于Unity类型编译和运行测试。
+
+新增Unity测试入口：`QdaoActionResourcesTests`、`BattleArchivedActionPlaybackTests`、`QdaoArchivedActionsPlayModeTests`；原角色移动、冲刺、身份和截图测试已适配归档资源。恢复完整工程并安装项目要求的Unity 6000.6.0f1后，应先运行上述EditMode/PlayMode测试，再执行原本地试玩/构建流程。
+
+## 本机运行限制
+
+这次机器最初只有稀疏检出的客户端代码，缺Unity Editor与完整游戏资源。补取工程文件时GitHub多次中断；项目配置与导入工具已恢复，完整工程恢复和Unity测试仍待完成。不能把本提交当作已经生成可玩的新EXE。
+
+Docker/WSL的安装与服务端启动在本机另行准备。Windows虚拟机组件需要重启，检测显示CPU固件虚拟化未开启，需在BIOS开启AMD SVM。服务器尚未成功启动，尚无本次登录、战斗联机、游戏内接地与滑步验收结果。未改服务端协议或美术源，也未推送远程。

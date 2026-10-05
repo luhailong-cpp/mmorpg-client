@@ -39,6 +39,10 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
                     for (var direction = 0; direction < Directions.Length; direction++)
                     {
+                        using var archived = QdaoActionResources.Acquire(definition.Id, "run", Directions[direction]);
+                        var displayedCount = archived?.Frames.Length ?? definition.FrameCount;
+                        var displayedFps = archived?.Fps ?? definition.FramesPerSecond;
+                        var sampleFrames = archived != null ? Mathf.Max(48, Mathf.CeilToInt(archived.DurationSeconds * 60f) + 2) : 48;
                         var radians = direction * 45f * Mathf.Deg2Rad;
                         var step = new Vector3(Mathf.Sin(radians), 0f, Mathf.Cos(radians)) * StepPerFrame;
                         var poses = new HashSet<Sprite>();
@@ -61,7 +65,12 @@ namespace MmorpgClient.Tests.PlayMode
                             directionGeometry.Add(texture, geometry);
                         }
                         Assert.That(directionFrames.Count, Is.EqualTo(definition.FrameCount));
-                        for (var frame = 0; frame < 48; frame++)
+                        if (archived != null)
+                        {
+                            directionFrames.Clear();
+                            foreach (var sprite in archived.Frames) directionFrames.Add(sprite.texture);
+                        }
+                        for (var frame = 0; frame < sampleFrames; frame++)
                         {
                             actor.transform.position += step;
                             yield return null;
@@ -69,13 +78,20 @@ namespace MmorpgClient.Tests.PlayMode
                             Assert.That(animator.State, Is.EqualTo(QdaoBoySpriteAnimator.LocomotionState.Run));
                             Assert.That(directionFrames.Contains(renderer.sprite.texture), Is.True, "Walk animation must use an individually imported direction frame.");
                             Assert.That(renderer.sprite.rect.x, Is.Zero);
-                            var renderedGeometry = directionGeometry[renderer.sprite.texture];
-                            Assert.That(renderedGeometry.Matches(renderer.sprite), Is.True,
+                            if (archived != null)
+                            {
+                                Assert.That(renderer.sprite.rect.width, Is.EqualTo(1024f));
+                                Assert.That(renderer.sprite.rect.height, Is.EqualTo(1024f));
+                                Assert.That(renderer.sprite.pixelsPerUnit, Is.EqualTo(104f));
+                                Assert.That(renderer.sprite.pivot, Is.EqualTo(archived.Pivot * 1024f));
+                            }
+                            else Assert.That(directionGeometry[renderer.sprite.texture].Matches(renderer.sprite), Is.True,
                                 "Each rendered frame must use its own declared dimensions, PPU and pivot.");
                             if (appearance.IsHd)
                             {
                                 Assert.That(animator.ResidentHdDirections, Is.LessThanOrEqualTo(2));
-                                Assert.That(renderer.sprite.pixelsPerUnit, Is.EqualTo(renderedGeometry.PixelsPerUnit));
+                                if (archived == null) Assert.That(renderer.sprite.pixelsPerUnit,
+                                    Is.EqualTo(directionGeometry[renderer.sprite.texture].PixelsPerUnit));
                             }
                             poses.Add(renderer.sprite);
                             if (previousPose != null && previousPose != renderer.sprite) transitions++;
@@ -83,12 +99,12 @@ namespace MmorpgClient.Tests.PlayMode
                             longestHold = Mathf.Max(longestHold, heldFrames);
                             previousPose = renderer.sprite;
                         }
-                        Assert.That(poses.Count, Is.EqualTo(definition.FrameCount), $"{definition.Id}/{Directions[direction]} skips or invents a pose.");
-                        var expectedTransitions = .8f * definition.FramesPerSecond;
+                        Assert.That(poses.Count, Is.EqualTo(displayedCount), $"{definition.Id}/{Directions[direction]} skips or invents a pose.");
+                        var expectedTransitions = sampleFrames / 60f * displayedFps;
                         Assert.That(transitions, Is.InRange(Mathf.FloorToInt(expectedTransitions) - 1, Mathf.CeilToInt(expectedTransitions)),
                             "Animation cadence must follow actual distance while keeping the declared cycle duration.");
-                        Assert.That(longestHold, Is.LessThanOrEqualTo(Mathf.CeilToInt(60f / definition.FramesPerSecond)),
-                            "Each pose hold must respect the selected appearance's 30/60/120 ms frame duration.");
+                        Assert.That(longestHold, Is.LessThanOrEqualTo(Mathf.CeilToInt(60f / displayedFps)),
+                            "Each pose hold must respect the displayed delivery's authored frame duration.");
                         var stoppedPosition = actor.transform.position;
                         for (var frame = 0; frame < 48; frame++)
                         {

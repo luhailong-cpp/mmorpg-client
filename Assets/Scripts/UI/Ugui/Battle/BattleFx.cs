@@ -205,6 +205,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var image = Rent();
             image.sprite = sprite;
             image.GetComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>().BindSprite(sprite);
+            image.GetComponent<BattleActionSpriteLeaseOwner>().BindSprite(sprite);
             image.color = new Color(GhostTint.r, GhostTint.g, GhostTint.b, alpha);
             var rt = image.rectTransform;
             rt.anchoredPosition = footAnchored;
@@ -256,6 +257,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             var image = QdaoUguiFactory.CreateImage("Afterimage", _layer, 0f, 0f, 100f, 100f, null);
             image.gameObject.AddComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>();
+            image.gameObject.AddComponent<BattleActionSpriteLeaseOwner>();
             image.preserveAspect = true;
             image.raycastTarget = false;
             image.rectTransform.pivot = new Vector2(0.5f, 0f);
@@ -273,6 +275,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (image == null) return;
             image.sprite = null;
             image.GetComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>().Clear();
+            image.GetComponent<BattleActionSpriteLeaseOwner>().Clear();
             image.rectTransform.localScale = Vector3.one;
             image.gameObject.SetActive(false);
             _pool.Push(image);

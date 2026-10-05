@@ -77,7 +77,8 @@ namespace MmorpgClient.Tests.PlayMode
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(definition.Version));
                     Assert.That(animator.ArtworkVersion, Is.EqualTo(13).Or.EqualTo(14));
                     yield return WalkWithRealMotor(sandbox, definition.Id, routeOrigin, observations);
-                    if (definition.ResolveAppearance()?.IsHd == true)
+                    if (definition.ResolveAppearance()?.IsHd == true ||
+                        QdaoActionResources.GetDurationSeconds(definition.Id, "run", "N") > 0f)
                         yield return CaptureNativeWalkFramesIfRequested(sandbox, routeOrigin, observations);
                     observations.testedOriginalCount++;
                     if (animator.ArtworkVersion == 14)
@@ -137,6 +138,10 @@ namespace MmorpgClient.Tests.PlayMode
             var start = controller.FeetPosition;
             var direction = FindOpenDirection(sandbox.Map.Navigation, start);
             Assert.That(direction, Is.Not.EqualTo(Vector3.zero), "The city spawn must expose a short walkable test route.");
+            var cameraRelativeYaw = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg - QdaoBoySpriteAnimator.CameraYaw(sandbox.WorldCamera);
+            var sampledDirection = QdaoBoySpriteAnimator.SelectDirectionRaw(cameraRelativeYaw);
+            // Keep sampled sprites alive until the post-stop evidence has recorded their names.
+            using var sampledRun = QdaoActionResources.Acquire(characterId, "run", ObservationDirections[sampledDirection]);
             var renderer = player.transform.Find("sprite").GetComponent<SpriteRenderer>();
             var poses = new HashSet<Sprite>();
             var lastFeet = start;
@@ -158,7 +163,17 @@ namespace MmorpgClient.Tests.PlayMode
             var travel = end - start;
             travel.y = 0f;
             Assert.That(travel.magnitude, Is.GreaterThan(3f), "The real CharacterController must travel across the city pavement.");
-            Assert.That(poses.Count, Is.EqualTo(QdaoCharacterCatalog.Find(characterId).FrameCount),
+            var archivedDuration = QdaoActionResources.GetDurationSeconds(characterId, "run", ObservationDirections[animator.Direction]);
+            if (archivedDuration > 0f)
+            {
+                // A short city route need not complete the slower archived 960/1200 ms cycle.
+                // The eight-direction animator regression separately samples every authored pose.
+                var traversedFrames = pathDistance / QdaoBoySpriteAnimator.ReferenceRunSpeed * 16f / archivedDuration;
+                var expectedPoses = Mathf.Min(16, Mathf.FloorToInt(traversedFrames) + 1);
+                Assert.That(poses.Count, Is.InRange(Mathf.Max(2, expectedPoses - 1), expectedPoses + 1),
+                    characterId + ": real controller movement must follow the archived run cadence.");
+            }
+            else Assert.That(poses.Count, Is.EqualTo(QdaoCharacterCatalog.Find(characterId).FrameCount),
                 characterId + ": real controller movement must animate every separately imported pose.");
             var stationaryFrames = 0;
             for (var frame = 0; frame < 48; frame++)
@@ -223,6 +238,9 @@ namespace MmorpgClient.Tests.PlayMode
             public bool actualIsOriginalRoster;
             public bool actualIsHd;
             public bool actualIsMixedResolution;
+            public bool actualUsesArchivedRun;
+            public string archivedRunManifestResourcePath;
+            public string archivedRunManifestSha256;
             public bool v14MixedContractObserved;
             public List<ObservedFrameGeometry> actualFrameGeometry = new();
             public int actualFrameWidth;
@@ -364,6 +382,14 @@ namespace MmorpgClient.Tests.PlayMode
         }
         private static readonly string[] ObservationDirections = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
 
+        private static string ArchivedFramePath(string id, string direction, int frame)
+            => QdaoActionResources.ResourceRoot + "/" + id + "/run/" + direction + "/" + (frame + 1).ToString("00");
+
+        private static bool ArchivedGeometryMatches(Sprite sprite, QdaoActionResources.Lease lease)
+            => sprite != null && sprite.texture != null && sprite.texture.width == 1024 && sprite.texture.height == 1024 &&
+                sprite.rect == new Rect(0f, 0f, 1024f, 1024f) && sprite.pixelsPerUnit == 104f &&
+                Vector2.Distance(sprite.pivot / 1024f, lease.Pivot) < .0001f;
+
         private static object ActualFrameSet(QdaoBoySpriteAnimator animator)
             => typeof(QdaoBoySpriteAnimator).GetField("_frames", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(animator);
 
@@ -377,11 +403,25 @@ namespace MmorpgClient.Tests.PlayMode
             observed.actualHasDedicatedIdle = (bool)type.GetField("DedicatedIdle").GetValue(frameSet);
             observed.actualAnimationFramesPerSecond = (float)type.GetField("Fps").GetValue(frameSet);
             observed.actualFramesPerUnit = (float)type.GetProperty("FramesPerUnit").GetValue(frameSet);
+            var archivedCycle = QdaoActionResources.GetDurationSeconds(animator.CharacterId, "run", "N");
+            observed.actualUsesArchivedRun = archivedCycle > 0f;
+            if (observed.actualUsesArchivedRun)
+            {
+                observed.actualAnimationFramesPerSecond = 16f / archivedCycle;
+                observed.actualFramesPerUnit = observed.actualAnimationFramesPerSecond / QdaoBoySpriteAnimator.ReferenceRunSpeed;
+                observed.archivedRunManifestResourcePath = QdaoActionResources.ResourceRoot + "/" + animator.CharacterId + "/manifest";
+                var manifest = Resources.Load<TextAsset>(observed.archivedRunManifestResourcePath);
+                Assert.That(manifest, Is.Not.Null);
+                using var sha = SHA256.Create();
+                observed.archivedRunManifestSha256 = System.BitConverter.ToString(sha.ComputeHash(manifest.bytes)).Replace("-", "").ToLowerInvariant();
+            }
             observed.actualCycleDurationMs = observed.actualFrameCount / observed.actualAnimationFramesPerSecond * 1000f;
             observed.actualCycleWorldDistance = observed.actualFrameCount / observed.actualFramesPerUnit;
             observed.frameInventoryScope = hd
                 ? "Eight HD directions loaded and inspected sequentially; only current rendered direction plus one observation direction are leased. Not simultaneous eight-direction residency."
                 : "Loaded FrameSet.Walk arrays, distinct from direction poses sampled during actual movement.";
+            if (observed.actualUsesArchivedRun)
+                observed.frameInventoryScope = "Archived run clips inspected one direction at a time using leases; dedicated idle and identity approval remain from the original appearance. Actual cadence is from the archived run manifest; catalog cadence describes the base appearance.";
             var rendered = animator.transform.Find("sprite").GetComponent<SpriteRenderer>();
             var activeSprite = rendered.sprite;
             var activeDirection = animator.Direction;
@@ -399,6 +439,7 @@ namespace MmorpgClient.Tests.PlayMode
             {
                 for (var direction = 0; direction < ObservationDirections.Length; direction++)
                 {
+                    using var archived = QdaoActionResources.Acquire(animator.CharacterId, "run", ObservationDirections[direction]);
                     if (hd)
                     {
                         Assert.That(animator.EnsureDirectionFrames(direction), Is.True, "A complete approved HD direction must load without fallback.");
@@ -411,7 +452,7 @@ namespace MmorpgClient.Tests.PlayMode
                     }
                     var walk = (Sprite[][])type.GetField("Walk").GetValue(frameSet);
                     var idle = (Sprite[])type.GetField("Idle").GetValue(frameSet);
-                    var poses = direction < walk.Length ? walk[direction] : null;
+                    var poses = archived?.Frames ?? (direction < walk.Length ? walk[direction] : null);
                     var sprites = new HashSet<Sprite>();
                     var textures = new HashSet<Texture2D>();
                     var validCount = 0;
@@ -421,8 +462,11 @@ namespace MmorpgClient.Tests.PlayMode
                     {
                         var sprite = poses[frame];
                         var texture = sprite != null ? sprite.texture : null;
-                        var path = appearance?.FrameResourcePath(ObservationDirections[direction], frame);
-                        if (texture == null || appearance == null || !appearance.GeometryForResource(path).Matches(sprite))
+                        var path = archived != null ? ArchivedFramePath(animator.CharacterId, ObservationDirections[direction], frame) :
+                            appearance?.FrameResourcePath(ObservationDirections[direction], frame);
+                        var geometryMatches = archived != null ? ArchivedGeometryMatches(sprite, archived) :
+                            appearance != null && appearance.GeometryForResource(path).Matches(sprite);
+                        if (texture == null || appearance == null || !geometryMatches)
                         {
                             observed.actualFramesMatchResources = false;
                             continue;
@@ -449,7 +493,7 @@ namespace MmorpgClient.Tests.PlayMode
                     observed.actualFramesPerDirection.Set(ObservationDirections[direction], validCount);
                     observed.actualUniqueFrameSpritesPerDirection.Set(ObservationDirections[direction], sprites.Count);
                     observed.actualUniqueFrameTexturesPerDirection.Set(ObservationDirections[direction], textures.Count);
-                    if (hd)
+                    if (hd || archived != null)
                     {
                         Assert.That(validCount, Is.EqualTo(16));
                         Assert.That(sprites.Count, Is.EqualTo(16));
@@ -457,7 +501,8 @@ namespace MmorpgClient.Tests.PlayMode
                         Assert.That(idleMatches, Is.True);
                     }
                 }
-                if (hd) Assert.That(observed.actualFramesMatchResources && observed.actualIdleMatchResources, Is.True);
+                if (hd || observed.actualUsesArchivedRun)
+                    Assert.That(observed.actualFramesMatchResources && observed.actualIdleMatchResources, Is.True);
             }
             finally { if (hd) animator.ReleaseObservedDirection(); }
         }
@@ -568,7 +613,10 @@ namespace MmorpgClient.Tests.PlayMode
             for (var direction = 0; direction < ObservationDirections.Length; direction++)
             {
                 var sampled = 0;
-                if (walk[direction] != null)
+                using var archived = QdaoActionResources.Acquire(animator.CharacterId, "run", ObservationDirections[direction]);
+                if (archived != null)
+                    foreach (var pose in archived.Frames) { if (poses.Contains(pose)) sampled++; }
+                else if (walk[direction] != null)
                     foreach (var pose in walk[direction]) if (poses.Contains(pose)) sampled++;
                 sampledCounts.Set(ObservationDirections[direction], sampled);
             }
@@ -658,7 +706,7 @@ namespace MmorpgClient.Tests.PlayMode
                 fullNameplateInsideCapture = nameMin.x >= 0f && nameMin.y >= 0f && nameMax.x <= width && nameMax.y <= height,
                 actorFeetInsideCapture = feet.z > 0f && feet.x >= 0f && feet.x <= width && feet.y >= 0f && feet.y <= height
             };
-            if (artworkVersion == 14)
+            if (!string.IsNullOrEmpty(v14ResourcePath))
                 ObserveVisibleFrameSource(camera, renderer, v14ResourcePath, observation);
             return observation;
         }
@@ -666,8 +714,9 @@ namespace MmorpgClient.Tests.PlayMode
         private static void ObserveVisibleFrameSource(Camera camera, SpriteRenderer renderer, string resourcePath,
             CameraCaptureObservation observation)
         {
-            Assert.That(resourcePath, Does.StartWith(QdaoCharacterCatalog.OriginalV14Root + "/"),
-                "V14 visibility must be bound to its selected Original resource.");
+            Assert.That(resourcePath != null && (resourcePath.StartsWith(QdaoCharacterCatalog.OriginalV14Root + "/") ||
+                resourcePath.StartsWith(QdaoActionResources.ResourceRoot + "/")), Is.True,
+                "Visibility must be bound to the exact original or archived resource actually rendered.");
             var sprite = renderer.sprite;
             Assert.That(renderer.sprite.texture, Is.SameAs(Resources.Load<Texture2D>(resourcePath)),
                 "V14 visible bounds must come from the texture actually rendered.");
@@ -820,18 +869,23 @@ namespace MmorpgClient.Tests.PlayMode
             foreach (var direction in ObservationDirections)
             {
                 var directionIndex = System.Array.IndexOf(ObservationDirections, direction);
-                // Each native direction must be observed during actual movement. The approved
-                // manifest drives per-resource geometry; preserved 512 frames cannot qualify.
+                using var archived = QdaoActionResources.Acquire(animator.CharacterId, "run", direction);
+                // Each direction is captured from the delivery actually selected by locomotion.
                 var frameIndex = -1;
-                for (var candidate = 0; candidate < appearance.FrameCount; candidate++)
+                if (archived != null) frameIndex = 0;
+                else for (var candidate = 0; candidate < appearance.FrameCount; candidate++)
                     if (appearance.GeometryForResource(appearance.FrameResourcePath(direction, candidate)).Width == 1024)
                     { frameIndex = candidate; break; }
                 if (frameIndex < 0) continue;
                 nativeDirections++;
-                var resourcePath = appearance.FrameResourcePath(direction, frameIndex);
-                var geometry = appearance.GeometryForResource(resourcePath);
-                Assert.That(geometry.Width, Is.EqualTo(1024), "The target must be a real native 1024 walk frame.");
-                Assert.That(geometry.PixelsPerUnit, Is.EqualTo(104f));
+                var resourcePath = archived != null ? ArchivedFramePath(animator.CharacterId, direction, frameIndex) :
+                    appearance.FrameResourcePath(direction, frameIndex);
+                var geometry = archived == null ? appearance.GeometryForResource(resourcePath) : default;
+                if (archived == null)
+                {
+                    Assert.That(geometry.Width, Is.EqualTo(1024), "The target must be a real native 1024 walk frame.");
+                    Assert.That(geometry.PixelsPerUnit, Is.EqualTo(104f));
+                }
                 var radians = (QdaoBoySpriteAnimator.CameraYaw(sandbox.WorldCamera) + directionIndex * 45f) * Mathf.Deg2Rad;
                 var heading = new Vector3(Mathf.Sin(radians), 0f, Mathf.Cos(radians));
                 Assert.That(TryFindNativeCaptureRoute(sandbox.Map.Navigation, routeOrigin, heading, out var start),
@@ -863,7 +917,7 @@ namespace MmorpgClient.Tests.PlayMode
                             animator.Direction != directionIndex || renderer.sprite.texture != expectedTexture) continue;
                         Assert.That(controller.Motor.enabled, Is.True);
                         Assert.That(distance, Is.GreaterThan(.05f), "Setup warp cannot count as walking.");
-                        Assert.That(geometry.Matches(renderer.sprite), Is.True);
+                        Assert.That(archived != null ? ArchivedGeometryMatches(renderer.sprite, archived) : geometry.Matches(renderer.sprite), Is.True);
                         var capture = new WalkFrameCaptureObservation
                         {
                             characterId = animator.CharacterId, direction = direction, frameNumber = frameIndex + 1,

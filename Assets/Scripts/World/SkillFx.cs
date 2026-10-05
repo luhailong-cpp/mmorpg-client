@@ -15,6 +15,7 @@ namespace MmorpgClient.World
         public static void PlayCast(GameObject caster, float radius = 2f, float ttl = 0.6f)
         {
             if (caster == null) return;
+            caster.GetComponent<QdaoBoySpriteAnimator>()?.PlayAction("cast");
             var ring = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             Object.Destroy(ring.GetComponent<Collider>());
             ring.name = "CastRing";
@@ -30,6 +31,7 @@ namespace MmorpgClient.World
         public static void PlayHit(GameObject target, Color color, float ttl = 0.4f)
         {
             if (target == null) return;
+            target.GetComponent<QdaoBoySpriteAnimator>()?.PlayAction("hit");
             var rend = target.GetComponent<Renderer>();
             if (rend == null) return;
             target.AddComponent<Flasher>().Init(rend, color, ttl);

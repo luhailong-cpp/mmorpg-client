@@ -115,6 +115,7 @@ namespace MmorpgClient.World
             public System.Action<Texture2D> ReleaseTexture;
             public System.Func<QdaoCharacterCatalog.Appearance, QdaoCharacterCatalog.Appearance> Fallback;
             public bool ShareHd;
+            public bool UseArchivedActions;
             public readonly HashSet<int> MissingHdDirections = new();
             public float FramesPerUnit => Fps / ReferenceRunSpeed;
             public int ContactFrame(int direction) => Legacy ? IdleFrame(direction) : Contact;
@@ -140,6 +141,14 @@ namespace MmorpgClient.World
         private int _lastDirection = FacingCameraIndex;
         private bool _explicitOriginalRequest;
         private string _unavailableCharacterId;
+        private QdaoActionResources.Lease _archivedRun;
+        private QdaoActionResources.Lease _action;
+        private readonly HashSet<int> _missingArchivedRun = new();
+        private int _archivedRunDirection = -1;
+        private float _archivedRunSeconds;
+        private float _actionSeconds;
+        private bool _actionFacesEast = true;
+        public string ActiveAction { get; private set; }
 
         /// <summary>Current locomotion state (readable for tests and debugging).</summary>
         public LocomotionState State { get; private set; } = LocomotionState.Idle;
@@ -147,7 +156,7 @@ namespace MmorpgClient.World
         /// <summary>Current strip index (0 = N ... 7 = NW), kept while standing.</summary>
         public int Direction => _lastDirection;
         public string CharacterId => _frames?.Id ?? _unavailableCharacterId ?? QdaoCharacterCatalog.LegacyId;
-        public int FrameCount => _frames?.Count ?? FramesPerDirection;
+        public int FrameCount => _archivedRun?.Frames?.Length ?? _frames?.Count ?? FramesPerDirection;
         public int ArtworkVersion => _frames?.Version ?? 0;
 
         /// <summary>
@@ -227,11 +236,59 @@ namespace MmorpgClient.World
             return ApplyFrames(frames);
         }
 
+        /// <summary>Play an authored E/W action once, then return to locomotion and the existing idle.</summary>
+        public bool PlayAction(string action, string direction = null)
+        {
+            if (_frames == null || !_frames.UseArchivedActions || !isActiveAndEnabled ||
+                (action != "attack" && action != "hit" && action != "cast")) return false;
+            direction ??= _actionFacesEast ? "E" : "W";
+            var next = QdaoActionResources.Acquire(CharacterId, action, direction);
+            if (next == null) return false;
+            var previous = _action;
+            _action = next;
+            _actionSeconds = 0f;
+            _actionFacesEast = direction == "E";
+            ActiveAction = action;
+            _renderer.sprite = next.FrameAt(0f, false);
+            previous?.Dispose();
+            return true;
+        }
+
+        private void ReleaseArchivedActions()
+        {
+            _archivedRun?.Dispose();
+            _archivedRun = null;
+            _archivedRunDirection = -1;
+            _archivedRunSeconds = 0f;
+            _action?.Dispose();
+            _action = null;
+            _actionSeconds = 0f;
+            ActiveAction = null;
+        }
+
+        private void OnDisable()
+        {
+            if (_renderer != null) _renderer.sprite = _frames?.Idle?[_lastDirection];
+            ReleaseArchivedActions();
+        }
+
+        private void OnEnable()
+        {
+            // Movement while pooled/disabled is placement, not a first animated stride.
+            _lastPosition = transform.position;
+            if (_frames == null) return;
+            State = LocomotionState.Idle;
+            _settleBudget = 0f;
+            _animationClock = _frames.ContactFrame(_lastDirection);
+        }
+
         // ActorWorld owns authoritative identity changes. A failed standalone SetAppearance still
         // keeps its last good artwork; a different persisted identity must never wear that body.
         internal void ClearUnavailableIdentity(string characterId)
         {
             if (_renderer != null) _renderer.sprite = null;
+            ReleaseArchivedActions();
+            _missingArchivedRun.Clear();
             if (_shadowRenderer != null) _shadowRenderer.enabled = false;
             ReleaseObservedDirection();
             ClearHdRows(_frames);
@@ -273,6 +330,8 @@ namespace MmorpgClient.World
             _settleBudget = 0f;
             State = LocomotionState.Idle;
             _renderer.sprite = frames.Idle[_lastDirection];
+            ReleaseArchivedActions();
+            _missingArchivedRun.Clear();
             ClearHdRows(previous);
             oldObservation?.Dispose();
             oldActive?.Dispose();
@@ -286,7 +345,8 @@ namespace MmorpgClient.World
             => new FrameSet { Id = appearance.Id, Version = appearance.Version, Count = appearance.FrameCount,
                 Fps = appearance.FramesPerSecond, Contact = appearance.ContactFrame, DedicatedIdle = true,
                 Appearance = appearance, LoadTexture = load, ReleaseTexture = release, Fallback = fallback,
-                ShareHd = shared, Walk = new Sprite[DirectionNames.Length][], Idle = new Sprite[DirectionNames.Length] };
+                ShareHd = shared, UseArchivedActions = shared,
+                Walk = new Sprite[DirectionNames.Length][], Idle = new Sprite[DirectionNames.Length] };
 
         private static QdaoHdResources.Lease AcquireHd(FrameSet frames, int direction)
             => QdaoHdResources.AcquireWithResources(frames.Appearance, direction,
@@ -375,6 +435,7 @@ namespace MmorpgClient.World
         private void OnDestroy()
         {
             if (_renderer != null) _renderer.sprite = null;
+            ReleaseArchivedActions();
             ReleaseObservedDirection();
             ClearHdRows(_frames);
             _hdActive?.Dispose();
@@ -472,6 +533,7 @@ namespace MmorpgClient.World
                 Legacy = appearance == null, Contact = appearance?.ContactFrame ?? 0,
                 Version = appearance?.Version ?? 0,
                 Fps = appearance?.FramesPerSecond ?? RunFramesPerSecond,
+                UseArchivedActions = useCache,
                 Walk = new Sprite[DirectionNames.Length][], Idle = new Sprite[DirectionNames.Length],
             };
             var prefix = appearance == null ? "qdao" : id;
@@ -633,6 +695,7 @@ namespace MmorpgClient.World
             var dt = Mathf.Max(Time.deltaTime, 0.0001f);
             var speed = distance / dt;
             var running = speed >= WalkSpeedThreshold && speed < TeleportSpeedThreshold;
+            var wasRunning = State == LocomotionState.Run;
 
             if (running)
             {
@@ -647,6 +710,8 @@ namespace MmorpgClient.World
                 var relativeYaw = Mathf.Repeat(movementYaw - cameraYaw, 360f);
                 var nextDirection = SelectDirection(relativeYaw, _lastDirection);
                 if (SelectRenderedDirection(nextDirection)) _lastDirection = nextDirection;
+                if (_lastDirection >= 1 && _lastDirection <= 3) _actionFacesEast = true;
+                else if (_lastDirection >= 5 && _lastDirection <= 7) _actionFacesEast = false;
 
                 if (State == LocomotionState.Idle)
                     _animationClock = _frames != null ? _frames.ContactFrame(_lastDirection) : IdleFrame(_lastDirection); // first step leaves the standing pose
@@ -658,7 +723,8 @@ namespace MmorpgClient.World
                 // V12 and V13 have an authored standing pose for every direction. Once
                 // travel stops, continuing the walk in place would slide the
                 // feet for up to a whole cycle before that pose appears.
-                if (_frames.Version >= 12 && _frames.DedicatedIdle && speed < WalkSpeedThreshold)
+                if (_frames.Version >= 12 && _frames.DedicatedIdle &&
+                    (speed < WalkSpeedThreshold || _archivedRun != null))
                 {
                     State = LocomotionState.Idle;
                     _settleBudget = 0f;
@@ -679,6 +745,7 @@ namespace MmorpgClient.World
             _renderer.sprite = State == LocomotionState.Idle
                 ? _frames.Idle[_lastDirection]
                 : _frames.Walk[_lastDirection][frame];
+            RenderArchivedActions(running, wasRunning, distance, Time.deltaTime);
 
             // The root rotates with the actor facing, but the sprite must face
             // the camera: under the isometric camera it stands up, under the
@@ -702,6 +769,52 @@ namespace MmorpgClient.World
                 _shadow.position = position + screenDown * ShadowScreenDownOffset + new Vector3(0f, ShadowLift, 0f);
                 _shadowRenderer.sortingOrder = order + ShadowSortingOffset;
             }
+        }
+
+        private void RenderArchivedActions(bool running, bool wasRunning, float distance, float deltaTime)
+        {
+            if (running && _frames.UseArchivedActions)
+            {
+                if (!wasRunning) _archivedRunSeconds = 0f;
+                if (_archivedRunDirection != _lastDirection)
+                {
+                    var next = _missingArchivedRun.Contains(_lastDirection) ? null :
+                        QdaoActionResources.Acquire(CharacterId, "run", DirectionNames[_lastDirection]);
+                    if (next == null) _missingArchivedRun.Add(_lastDirection);
+                    var previous = _archivedRun;
+                    _archivedRun = next;
+                    _archivedRunDirection = _lastDirection;
+                    previous?.Dispose();
+                }
+                // Source milliseconds define the gait at ReferenceRunSpeed. Distance, never idle
+                // time or a teleport, advances it so slower movement cannot slide across the ground.
+                _archivedRunSeconds += distance / ReferenceRunSpeed;
+                if (_archivedRun != null)
+                {
+                    _archivedRunSeconds = Mathf.Repeat(_archivedRunSeconds, _archivedRun.DurationSeconds);
+                    _renderer.sprite = _archivedRun.FrameAt(_archivedRunSeconds, true);
+                }
+            }
+            else if (_archivedRun != null)
+            {
+                // The renderer already points to the dedicated idle before the lease is released.
+                _archivedRun.Dispose();
+                _archivedRun = null;
+                _archivedRunDirection = -1;
+                _archivedRunSeconds = 0f;
+            }
+
+            if (_action == null) return;
+            _actionSeconds += Mathf.Max(0f, deltaTime);
+            if (_actionSeconds < _action.DurationSeconds)
+            {
+                _renderer.sprite = _action.FrameAt(_actionSeconds, false);
+                return;
+            }
+            _action.Dispose();
+            _action = null;
+            ActiveAction = null;
+            _actionSeconds = 0f;
         }
 
         /// <summary>

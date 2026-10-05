@@ -294,14 +294,18 @@ namespace MmorpgClient.Tests.PlayMode
             var appearance = QdaoCharacterCatalog.Find(First).ResolveAppearance();
             Assert.That(appearance, Is.Not.Null, "Requires a real accepted same-ID V13/V14 package.");
             var sourceFrames = new Dictionary<Texture2D, QdaoMixedResolutionContract.Geometry>();
-            foreach (string direction in new[] { "E", "W" })
-                for (int frame = 0; frame < appearance.FrameCount; frame++)
+            using var eastWalk = BattleArtCatalog.LoadPlayerWalk(First, true);
+            using var westWalk = BattleArtCatalog.LoadPlayerWalk(First, false);
+            foreach (var published in new[] { eastWalk, westWalk })
+            {
+                Assert.That(published, Is.Not.Null, First + "/run");
+                foreach (var frame in published.Frames)
                 {
-                    string path = appearance.FrameResourcePath(direction, frame);
-                    var texture = Resources.Load<Texture2D>(path);
-                    Assert.That(texture, Is.Not.Null, path);
-                    sourceFrames.Add(texture, appearance.GeometryForResource(path));
+                    Assert.That(frame, Is.Not.Null);
+                    sourceFrames[frame.texture] = new QdaoMixedResolutionContract.Geometry(
+                        frame.texture.width, frame.pixelsPerUnit);
                 }
+            }
             int baseline = QdaoHdResources.ResidentDirectionCount;
             var host = new GameObject("IdentityBattleWalkAcceptance", typeof(RectTransform), typeof(Canvas));
             var canvas = host.GetComponent<Canvas>();

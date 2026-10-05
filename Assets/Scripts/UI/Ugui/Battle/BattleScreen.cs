@@ -381,6 +381,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             _root.gameObject.SetActive(false);
         }
 
+        /// <summary>Scene teardown may destroy the canvas without the normal CloseBattle path.</summary>
+        public void Dispose()
+        {
+            _presenter.Dispose();
+            foreach (var view in _views) view.Destroy();
+            _views.Clear();
+            _viewById.Clear();
+        }
+
         /// <summary>观战补帧(NotifySpectateState 可重发)刷新观众数。</summary>
         public void SetObserverCount(uint count)
         {
@@ -929,6 +938,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
 
             var plan = TurnPlan.Build(result, _myTeam);
+            _presenter.PreparePlan(plan);
             var order = BattleHudLogic.ResolveActionOrder(_state?.Actors, plan.ActionOrder);
             _orderBar.SetOrder(order, ResolveTile);
             _logPanel.Append($"—— 第 {result.RoundIndex} 回合 ——");

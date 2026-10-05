@@ -37,6 +37,9 @@ namespace MmorpgClient.UI.Ugui.Battle
     public sealed class BattleUnitView
     {
         private StripAnim _movementStrip;
+        private StripAnim _actionStrip;
+        private bool _actionActive;
+        private int _actionRevision;
         private Vector2 _movementPosition;
         private float _movementFrame;
         public const float RootWidth = 260f;
@@ -60,6 +63,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>冲刺攻击从开始到"挥击命中"的秒数(演出层据此触发目标受击)。</summary>
         public const float AttackHitDelaySeconds = 0.32f;
+        public const float AttackApproachSeconds = 0.22f;
         /// <summary>冲刺攻击回位起点 / 回位时长(1x 秒数)。</summary>
         public const float AttackReturnStartSeconds = 0.55f;
         public const float AttackReturnSeconds = 0.25f;
@@ -368,7 +372,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 死亡:尸体不保留(spec §1),立绘与名牌一并隐藏;逃离:半透明留位
             _group.alpha = dead ? 0f : fled ? 0.4f : 1f;
             SetHighlight(SlotHighlight.None);
-            if (!dead && !fled && !RealtimeTween.IsTweening(_idleToken)) PlayIdle();
+            if (!dead && !fled && !_actionActive && !RealtimeTween.IsTweening(_idleToken)) PlayIdle();
         }
 
         /// <summary>回合播放期间按 target_health_after 刷 HP(带缓动与掉血虚影)。</summary>
@@ -443,7 +447,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void PlayIdle()
         {
             if (_root == null || IsDead || Fled) return;
+            KillActionTweens();
             RealtimeTween.Kill(_idleToken);
+            RestoreIdleSprite();
             ResetBodyTransform();
             if (_idleStrip != null && _idleStrip.Count > 1)
             {
@@ -475,12 +481,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             var dir = targetFoot - from;
             float dist = dir.magnitude;
             var dest = dist > 1f ? targetFoot - dir / dist * LungeStopDistance : from;
-            var strip = BattleArtCatalog.LoadCharacterAction(CharacterId, "attack", _facingEast);
-            if (IsMonster) strip = BattleArtCatalog.LoadMonsterAction(MonsterTableId, "attack", _facingEast);
+            var strip = IsMonster
+                ? BattleArtCatalog.LoadMonsterAction(MonsterTableId, "attack", _facingEast)
+                : BattleArtCatalog.LoadCharacterAction(CharacterId, "attack", _facingEast);
+            _actionStrip = strip; // Retain while approaching; cancellation must release the pending swing too.
+            float swingSeconds = strip?.UseWorldGeometry == true ? strip.DurationSeconds : 0.3f;
+            float returnStart = AttackReturnStart(swingSeconds);
             BeginMovementWalk(from, dest.x >= from.x);
+            if (strip?.UseWorldGeometry == true)
+            {
+                PlayArchivedAttack(strip, from, dest, returnStart, onHit);
+                return;
+            }
 
             // 1) 冲刺 0.22s + 残影
-            Tween(0f, 1f, 0.22f, RealtimeEase.QuadOut, t =>
+            Tween(0f, 1f, AttackApproachSeconds, RealtimeEase.QuadOut, t =>
             {
                 if (_root == null) return;
                 var p = Vector2.LerpUnclamped(from, dest, t.Value.x);
@@ -491,15 +506,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             Delay(0.14f, () => SpawnAfterimage());
 
             // 2) 挥击(0.22s 起,命中 0.32s)
-            Delay(0.22f, () =>
+            Delay(AttackApproachSeconds, () =>
             {
                 StopMovementWalk();
                 if (_root == null) return;
                 if (strip != null && strip.Count > 0)
                 {
-                    int hitFrame = Mathf.Min(3, strip.Count - 1);
+                    int hitFrame = EventFrameFor(strip, 3, AttackHitDelaySeconds - AttackApproachSeconds);
                     bool fired = false;
-                    PlayStrip(strip, 0.3f, frame =>
+                    PlayStrip(strip, swingSeconds, frame =>
                     {
                         if (!fired && frame >= hitFrame) { fired = true; onHit?.Invoke(); }
                     }, () => { if (!fired) { fired = true; onHit?.Invoke(); } });
@@ -528,10 +543,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             });
 
             // 3) 回位 0.25s(0.55s 起),结束回 idle;整段 = AttackActionSeconds ≤ TurnPlan.AttackSeconds
-            Delay(AttackReturnStartSeconds, () =>
+            Delay(returnStart, () =>
             {
                 if (_root == null) return;
                 ResetBodyTransform();
+                _root.anchoredPosition = new Vector2(dest.x, -dest.y);
                 BeginMovementWalk(dest, from.x >= dest.x);
                 Tween(0f, 1f, AttackReturnSeconds, RealtimeEase.QuadIn, t =>
                 {
@@ -541,6 +557,60 @@ namespace MmorpgClient.UI.Ugui.Battle
                     AdvanceMovementWalk(p);
                 }, () => EndAction());
             });
+        }
+
+        // One clock prevents nested delay/tween creation from adding a frame of drift per phase
+        // at accelerated battle speeds. The sequencer's budget uses this exact total duration.
+        private void PlayArchivedAttack(StripAnim strip, Vector2 from, Vector2 dest, float returnStart, Action onHit)
+        {
+            float swingSeconds = strip.DurationSeconds;
+            float total = returnStart + AttackReturnSeconds;
+            int hitFrame = EventFrameFor(strip, 3, AttackHitDelaySeconds - AttackApproachSeconds);
+            int revision = _actionRevision;
+            bool approached = false, returned = false, hit = false, ghostA = false, ghostB = false;
+            Tween(0f, total, total, RealtimeEase.Linear, t =>
+            {
+                if (_root == null || revision != _actionRevision) return;
+                float elapsed = t.Value.x;
+                if (elapsed < AttackApproachSeconds)
+                {
+                    float progress = elapsed / AttackApproachSeconds;
+                    var position = Vector2.LerpUnclamped(from, dest, 1f - (1f - progress) * (1f - progress));
+                    _root.anchoredPosition = new Vector2(position.x, -position.y);
+                    AdvanceMovementWalk(position);
+                    if (!ghostA && elapsed >= .07f) { ghostA = true; SpawnAfterimage(); }
+                    if (!ghostB && elapsed >= .14f) { ghostB = true; SpawnAfterimage(); }
+                    return;
+                }
+                if (!approached)
+                {
+                    approached = true;
+                    StopMovementWalk();
+                    _root.anchoredPosition = new Vector2(dest.x, -dest.y);
+                }
+                if (_actionStrip == strip)
+                {
+                    int frame = strip.FrameIndexAt((elapsed - AttackApproachSeconds) / swingSeconds);
+                    DisplaySprite(strip.Frames[frame], strip.Mirrored, true);
+                    if (!hit && frame >= hitFrame)
+                    {
+                        hit = true;
+                        onHit?.Invoke();
+                        if (revision != _actionRevision) return;
+                    }
+                    if (elapsed >= AttackApproachSeconds + swingSeconds) StopActionStrip();
+                }
+                if (elapsed < returnStart) return;
+                if (!returned)
+                {
+                    returned = true;
+                    BeginMovementWalk(dest, from.x >= dest.x);
+                }
+                float back = Mathf.Clamp01((elapsed - returnStart) / AttackReturnSeconds);
+                var returning = Vector2.LerpUnclamped(dest, from, back * back);
+                _root.anchoredPosition = new Vector2(returning.x, -returning.y);
+                AdvanceMovementWalk(returning);
+            }, () => { if (revision == _actionRevision) EndAction(); });
         }
 
         /// <summary>施法:原地抬手聚气(缩放 1.06 + 金色脉冲 + buff_rise 光柱),释放时刻回调 onRelease。</summary>
@@ -556,9 +626,9 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             if (strip != null && strip.Count > 0)
             {
-                int hitFrame = Mathf.Min(3, strip.Count - 1);
+                int hitFrame = EventFrameFor(strip, 3, CastReleaseDelaySeconds);
                 bool fired = false;
-                PlayStrip(strip, 0.7f, frame =>
+                PlayStrip(strip, strip.UseWorldGeometry ? strip.DurationSeconds : 0.7f, frame =>
                 {
                     if (!fired && frame >= hitFrame) { fired = true; onRelease?.Invoke(); }
                 }, () =>
@@ -594,9 +664,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>受击:闪白一帧 + 后仰位移(普通 8px / 暴击 16px,0.15s 回弹)+ 命中星爆;暴击额外缩放顿一下。</summary>
         public void PlayHit(bool isCrit)
         {
-            if (_root == null) return;
-            KillActionTweens();
-            ResetBodyTransform();
+            if (_root == null || IsDead || Fled) return;
+            BeginAction();
 
             var strip = IsMonster
                 ? BattleArtCatalog.LoadMonsterAction(MonsterTableId, "hit", _facingEast)
@@ -620,13 +689,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }, () =>
                 {
                     if (_root != null) _root.anchoredPosition = basePos;
-                    if (!IsDead) PlayIdle();
+                    if (strip == null || strip.Count == 0) EndAction();
                 });
             });
 
             if (strip != null && strip.Count > 0)
             {
-                PlayStrip(strip, 0.25f, null, null);
+                PlayStrip(strip, strip.UseWorldGeometry ? strip.DurationSeconds : 0.25f, null, EndAction);
             }
             else if (isCrit)
             {
@@ -642,8 +711,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public void PlayDodge()
         {
             if (_root == null) return;
-            KillActionTweens();
-            ResetBodyTransform();
+            BeginAction();
             float side = TeamIsMine ? 24f : -24f;
             var basePos = new Vector2(FootPosition.x, -FootPosition.y);
             Tween(0f, 1f, 0.12f, RealtimeEase.QuadOut, t =>
@@ -1088,37 +1156,102 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_body == null || strip == null || strip.Count == 0) return;
             var sprite = strip.FrameAt(index / strip.Count);
             if (sprite == null) return;
-            _body.sprite = sprite;
-            _flash.sprite = sprite;
+            DisplaySprite(sprite, strip.Mirrored, strip.UseWorldGeometry);
         }
 
-        /// <summary>切帧播放一段动作(整段用 seconds 秒(1x),而非帧条自身 fps,以对齐拍时长;按倍率缩放)。</summary>
+        private void DisplaySprite(Sprite sprite, bool mirrored, bool worldGeometry)
+        {
+            if (_body == null || sprite == null) return;
+            _body.sprite = sprite;
+            _flash.sprite = sprite;
+            float height = _bodyHeight;
+            if (worldGeometry && _idleSprite != null && _idleSprite.rect.height > 0f && sprite.pixelsPerUnit > 0f)
+                height *= (sprite.rect.height / sprite.pixelsPerUnit) / (_idleSprite.rect.height / _idleSprite.pixelsPerUnit);
+            float width = height * sprite.rect.width / Mathf.Max(1f, sprite.rect.height);
+            _bodyRect.sizeDelta = new Vector2(width, height);
+            _bodyRect.anchoredPosition = new Vector2(
+                RootWidth * 0.5f + (0.5f - sprite.pivot.x / sprite.rect.width) * width * (mirrored ? -1f : 1f),
+                -GroundY - sprite.pivot.y / sprite.rect.height * height);
+            _bodyRect.localScale = new UnityEngine.Vector3(mirrored ? -1f : 1f, 1f, 1f);
+        }
+
+        private void RestoreIdleSprite()
+        {
+            if (_idleSprite != null) DisplaySprite(_idleSprite, _mirrored, false);
+            else
+            {
+                if (_body != null) _body.sprite = null;
+                if (_flash != null) _flash.sprite = null;
+            }
+        }
+
+        private static int EventFrameFor(StripAnim strip, int fallback, float fallbackSeconds)
+        {
+            if (strip.EventFrame >= 0) return Mathf.Clamp(strip.EventFrame, 0, strip.Count - 1);
+            if (strip.UseWorldGeometry && strip.DurationSeconds > 0f)
+                return strip.FrameIndexAt((fallbackSeconds + .0001f) / strip.DurationSeconds);
+            return Mathf.Clamp(fallback, 0, strip.Count - 1);
+        }
+
+        public static float AttackReturnStart(float swingSeconds)
+            => Mathf.Max(AttackReturnStartSeconds, AttackApproachSeconds + swingSeconds + 0.03f);
+
+        /// <summary>Metadata-only duration lookup, used before choosing the round's playback speed.</summary>
+        public float ActionDurationSeconds(string action)
+        {
+            float authored = IsMonster ? 0f : MmorpgClient.World.QdaoActionResources.GetDurationSeconds(
+                CharacterId, action, _facingEast ? "E" : "W");
+            if (action == "attack") return AttackReturnStart(authored > 0f ? authored : 0.3f) + AttackReturnSeconds;
+            if (action == "cast") return Mathf.Max(CastActionSeconds, authored);
+            if (action == "hit") return Mathf.Max(0.25f, authored);
+            return authored;
+        }
+
+        public float ActionEventDelaySeconds(string action)
+        {
+            float authored = IsMonster ? -1f : MmorpgClient.World.QdaoActionResources.GetEventTimeSeconds(
+                CharacterId, action, _facingEast ? "E" : "W");
+            return action == "attack"
+                ? authored >= 0f ? AttackApproachSeconds + authored : AttackHitDelaySeconds
+                : authored >= 0f ? authored : CastReleaseDelaySeconds;
+        }
+
+        /// <summary>Archive clips use their authored duration; BattleTempo scales the whole presentation uniformly.</summary>
         private void PlayStrip(StripAnim strip, float seconds, Action<int> onFrame, Action onDone)
         {
-            if (strip == null || strip.Count == 0) { onDone?.Invoke(); return; }
-            _mirrored = strip.Mirrored;
+            if (strip == null || strip.Count == 0) { strip?.Dispose(); onDone?.Invoke(); return; }
+            if (!ReferenceEquals(_actionStrip, strip)) StopActionStrip();
+            _actionStrip = strip;
             int lastFrame = -1;
+            Action<int> show = frame =>
+            {
+                if (_body == null || !ReferenceEquals(_actionStrip, strip) || frame == lastFrame) return;
+                lastFrame = frame;
+                DisplaySprite(strip.Frames[frame], strip.Mirrored, strip.UseWorldGeometry);
+                onFrame?.Invoke(frame);
+            };
             RealtimeTween.To(0f, strip.Count, BattleTempo.Scale(seconds)).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true).SetTarget(this)
                 .OnUpdate((RealtimeTweenCallback1)(t =>
                 {
-                    if (_body == null) return;
-                    int frame = Mathf.Clamp(Mathf.FloorToInt(t.Value.x), 0, strip.Count - 1);
-                    if (frame == lastFrame) return;
-                    lastFrame = frame;
-                    _body.sprite = strip.Frames[frame];
-                    _flash.sprite = strip.Frames[frame];
-                    _bodyRect.localScale = new UnityEngine.Vector3(_mirrored ? -1f : 1f, 1f, 1f);
-                    onFrame?.Invoke(frame);
+                    int frame = strip.FrameIndexAt(t.Value.x / strip.Count);
+                    show(frame);
                 }))
                 .OnComplete((RealtimeTweenCallback)(() =>
                 {
-                    if (_body != null && _idleSprite != null)
-                    {
-                        _body.sprite = _idleSprite;
-                        _flash.sprite = _idleSprite;
-                    }
+                    if (!ReferenceEquals(_actionStrip, strip)) return;
+                    StopActionStrip();
                     onDone?.Invoke();
                 }));
+            show(0);
+        }
+
+        private void StopActionStrip()
+        {
+            if (_actionStrip == null) return;
+            RestoreIdleSprite(); // Clear both Images before releasing their sprites.
+            var previous = _actionStrip;
+            _actionStrip = null;
+            previous.Dispose();
         }
 
         private void ResetBodyTransform()
@@ -1135,19 +1268,39 @@ namespace MmorpgClient.UI.Ugui.Battle
             KillActionTweens();
             RealtimeTween.Kill(_idleToken);
             ResetBodyTransform();
+            _actionActive = true;
         }
 
         private void EndAction()
         {
+            KillActionTweens();
             StopMovementWalk();
             ResetBodyTransform();
             if (!IsDead && !Fled) PlayIdle();
         }
 
+        /// <summary>Cancel presentation callbacks and release clip leases while keeping displayed HP/MP.</summary>
+        public void StopAction()
+        {
+            KillActionTweens();
+            RestoreIdleSprite();
+            ResetBodyTransform();
+            if (_flash != null)
+            {
+                RealtimeTween.Kill(_flash);
+                _flash.color = new Color(1f, 1f, 1f, 0f);
+            }
+            if (!IsDead && !Fled) PlayIdle();
+        }
+
         private void KillActionTweens()
         {
+            _actionRevision++;
             RealtimeTween.Kill(this);
+            RealtimeTween.Kill(_idleToken);
             StopMovementWalk();
+            StopActionStrip();
+            _actionActive = false;
         }
 
         private void BeginMovementWalk(Vector2 position, bool facingEast)
@@ -1181,8 +1334,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_movementStrip == null) return;
             // The idle owner keeps its direction alive. Replace body/flash before releasing the
             // movement direction; afterimages retain their own leases through existing owners.
-            if (_body != null) _body.sprite = _idleSprite;
-            if (_flash != null) _flash.sprite = _idleSprite;
+            RestoreIdleSprite();
             var previous = _movementStrip;
             _movementStrip = null;
             previous.Dispose();
@@ -1226,18 +1378,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_parent == null || _root == null || _body == null || _body.sprite == null) return;
             var pos = _root.anchoredPosition;
             float w = _bodyRect.sizeDelta.x * Scale, h = _bodyRect.sizeDelta.y * Scale;
+            bool mirrored = _bodyRect.localScale.x < 0f;
             if (Ghosts != null)
             {
                 // 池化残影:脚底点 = 根 anchoredPosition 再加本体底边偏移(_bodyBaseY 相对 GroundY)
-                var foot = new Vector2(pos.x, pos.y + (_bodyBaseY + GroundY) * Scale);
-                Ghosts.Spawn(_body.sprite, foot, new Vector2(w, h), _mirrored, Mathf.Max(0, _root.GetSiblingIndex()));
+                var foot = new Vector2(pos.x + (_bodyRect.anchoredPosition.x - RootWidth * 0.5f) * Scale,
+                    pos.y + (_bodyRect.anchoredPosition.y + GroundY) * Scale);
+                Ghosts.Spawn(_body.sprite, foot, new Vector2(w, h), mirrored, Mathf.Max(0, _root.GetSiblingIndex()));
                 return;
             }
             var ghost = QdaoUguiFactory.CreateImage("Afterimage", _parent, pos.x - w * 0.5f, -pos.y - h, w, h, _body.sprite);
             ghost.gameObject.AddComponent<MmorpgClient.World.QdaoHdSpriteLeaseOwner>().BindSprite(_body.sprite);
+            ghost.gameObject.AddComponent<BattleActionSpriteLeaseOwner>().BindSprite(_body.sprite);
             ghost.preserveAspect = true;
             ghost.color = new Color(0.8f, 0.9f, 1f, 0.45f);
-            if (_mirrored) ghost.rectTransform.localScale = new UnityEngine.Vector3(-1f, 1f, 1f);
+            if (mirrored) ghost.rectTransform.localScale = new UnityEngine.Vector3(-1f, 1f, 1f);
             ghost.transform.SetSiblingIndex(Mathf.Max(0, _root.GetSiblingIndex()));
             var go = ghost.gameObject;
             RealtimeTween.To(0.45f, 0f, 0.25f).SetEase(RealtimeEase.QuadOut).SetIgnoreEngineTimeScale(true).SetTarget(go)

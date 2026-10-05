@@ -10,23 +10,47 @@ namespace MmorpgClient.UI.Ugui.Battle
     {
         public Sprite[] Frames;
         internal QdaoHdResources.Lease HdLease;
-        public bool RequiresLease => HdLease != null;
-        /// <summary>Release an HD result after its images retain it through QdaoHdSpriteLeaseOwner.</summary>
-        public void Dispose() { var lease = HdLease; HdLease = null; lease?.Dispose(); }
+        internal QdaoActionResources.Lease ActionLease;
+        public bool RequiresLease => HdLease != null || ActionLease != null;
+        /// <summary>Authored impact/release frame (zero based), or -1 for the legacy timing.</summary>
+        public int EventFrame = -1;
+        /// <summary>Archive frames share the world's pixels-per-unit calibration across differently sized canvases.</summary>
+        public bool UseWorldGeometry;
+        public void Dispose()
+        {
+            var hd = HdLease; HdLease = null; hd?.Dispose();
+            var action = ActionLease; ActionLease = null; action?.Dispose();
+        }
         public float Fps = 10f;
         /// <summary>true = 资源只有 E 向、需要水平镜像显示。</summary>
         public bool Mirrored;
         public Vector2 Pivot = new Vector2(0.5f, 0.5f);
 
         public int Count => Frames?.Length ?? 0;
-        public float DurationSeconds => Count == 0 || Fps <= 0f ? 0f : Count / Fps;
+        public float DurationSeconds => ActionLease != null ? ActionLease.DurationSeconds : Count == 0 || Fps <= 0f ? 0f : Count / Fps;
+
+        public int FrameIndexAt(float t01)
+        {
+            if (Count == 0) return 0;
+            if (ActionLease?.FrameDurationsSeconds != null)
+            {
+                float at = Mathf.Clamp01(t01) * DurationSeconds;
+                var durations = ActionLease.FrameDurationsSeconds;
+                for (int i = 0; i < durations.Length; i++)
+                {
+                    if (at < durations[i]) return i;
+                    at -= durations[i];
+                }
+                return Count - 1;
+            }
+            return Mathf.Clamp(Mathf.FloorToInt(Mathf.Clamp01(t01) * Count), 0, Count - 1);
+        }
 
         /// <summary>按归一化进度取帧(末帧含)。</summary>
         public Sprite FrameAt(float t01)
         {
             if (Count == 0) return null;
-            int i = Mathf.Clamp(Mathf.FloorToInt(Mathf.Clamp01(t01) * Count), 0, Count - 1);
-            return Frames[i];
+            return Frames[FrameIndexAt(t01)];
         }
     }
 
@@ -148,7 +172,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             s_circle = null;
         }
 
-        static BattleArtCatalog() => QdaoHdResources.SpriteReleased += sprite => s_visibleBounds.Remove(sprite);
+        static BattleArtCatalog()
+        {
+            QdaoHdResources.SpriteReleased += sprite => s_visibleBounds.Remove(sprite);
+            QdaoActionResources.SpriteReleased += sprite => s_visibleBounds.Remove(sprite);
+        }
 
         // ── 朝向 / 身份 ──────────────────────────────────────
 
@@ -223,6 +251,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>角色动作帧条;缺 W 用 E 镜像;都缺返回 null(调用方走程序化动作)。</summary>
         public static StripAnim LoadCharacterAction(string characterId, string action, bool facingEast)
         {
+            if (action != "idle")
+            {
+                var archived = LoadArchivedAction(characterId, action, facingEast);
+                if (archived != null) return archived;
+            }
             var entry = QdaoCharacterCatalog.Find(characterId);
             var appearance = entry?.ResolveAppearance();
             // Registering the original identities must preserve their existing same-ID battle art
@@ -230,7 +263,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (entry == null || (entry.IsOriginalRoster && appearance == null))
                 return LoadDirectionalStrip($"{CharactersRoot}/{characterId}/{action}", action, facingEast);
             // V12 has an authored neutral stance; V11 retains its contact pose.
-            // Neither pack supplies authored attack/cast/hit body animations.
+            // Missing archived actions keep the previous procedural fallback for this identity.
             if (action != "idle") return null;
             if (appearance == null) return null;
             return LoadRosterDirection(appearance, facingEast ? "E" : "W", false);
@@ -260,11 +293,21 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>Uses the selected character's four/eight real poses and independently authored E/W facings.</summary>
         public static StripAnim LoadPlayerWalk(string characterId, bool facingEast)
         {
+            var archived = LoadArchivedAction(characterId, "run", facingEast);
+            if (archived != null) return archived;
             var entry = QdaoCharacterCatalog.Find(characterId);
             if (entry == null) return LoadPlayerWalk(facingEast);
             var appearance = entry.ResolveAppearance();
             if (appearance == null) return null;
             return LoadRosterDirection(appearance, facingEast ? "E" : "W", true);
+        }
+
+        private static StripAnim LoadArchivedAction(string characterId, string action, bool facingEast)
+        {
+            var lease = QdaoActionResources.Acquire(characterId, action, facingEast ? "E" : "W");
+            if (lease == null) return null;
+            return new StripAnim { Frames = lease.Frames, Fps = lease.Fps, Pivot = lease.Pivot,
+                EventFrame = lease.EventFrame, UseWorldGeometry = true, ActionLease = lease };
         }
 
         private static StripAnim LoadRosterDirection(QdaoCharacterCatalog.Appearance appearance, string direction, bool walk)

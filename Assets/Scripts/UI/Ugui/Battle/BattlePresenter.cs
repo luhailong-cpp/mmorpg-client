@@ -101,8 +101,49 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>开始播放一回合(空计划立即 OnFinished)。</summary>
         public void Play(TurnPlan plan)
         {
+            PreparePlan(plan);
             _fastForward = false;
             _sequencer.Run(plan);
+        }
+
+        /// <summary>Include authored clip lengths before the screen computes its deadline budget.</summary>
+        public void PreparePlan(TurnPlan plan)
+        {
+            if (plan == null) return;
+            foreach (var beat in plan.Beats)
+            {
+                var actor = _resolveView(beat.ActorId);
+                string action = beat.Kind == BeatKind.Attack ? "attack" :
+                    beat.Kind == BeatKind.Cast || beat.Kind == BeatKind.Item ? "cast" : null;
+                if (action != null && actor != null)
+                    beat.DurationSeconds = Mathf.Max(beat.DurationSeconds, actor.ActionDurationSeconds(action) + 0.03f);
+                float impact = action != null && actor != null ? actor.ActionEventDelaySeconds(action) : 0f;
+                if (action == "cast" && actor != null)
+                {
+                    bool hasDamage = beat.Targets.Exists(target => target.Effect == TargetEffect.Damage ||
+                        target.Effect == TargetEffect.Miss || target.Effect == TargetEffect.Block);
+                    if (hasDamage)
+                    {
+                        var presentation = BattleArtCatalog.ResolveSkillFx(beat.SkillId, false);
+                        var fx = BattleArtCatalog.LoadFx(presentation.FxId);
+                        if (fx?.Count > 0)
+                            impact += Mathf.Clamp(presentation.HitFrame, 0, fx.Count - 1) /
+                                (fx.Fps > 0f ? fx.Fps : BattleFxPlayer.DefaultFps);
+                    }
+                }
+                var segments = new Dictionary<ulong, int>();
+                foreach (var target in beat.Targets)
+                {
+                    segments.TryGetValue(target.ActorId, out int segment);
+                    segments[target.ActorId] = segment + 1;
+                    var view = _resolveView(target.ActorId);
+                    float reaction = target.Effect == TargetEffect.Miss ? .3f :
+                        view != null && (target.Effect == TargetEffect.Damage || target.Effect == TargetEffect.Block ||
+                            target.Effect == TargetEffect.Tick) ? view.ActionDurationSeconds("hit") : 0f;
+                    beat.DurationSeconds = Mathf.Max(beat.DurationSeconds,
+                        impact + segment * MultiHitStagger + reaction + .03f);
+                }
+            }
         }
 
         /// <summary>跳过剩余表现:剩余拍只落终态。</summary>
@@ -110,6 +151,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (!_sequencer.IsRunning) return;
             _fastForward = true;
+            var views = _allViews?.Invoke();
+            if (views != null) foreach (var view in views) view?.StopAction();
             ClearTransient();
             _sequencer.Skip();
         }

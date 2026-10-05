@@ -66,8 +66,17 @@ namespace MmorpgClient.Tests.EditMode.Battle
             {
                 using var walk = BattleArtCatalog.LoadPlayerWalk(entry.Id, east);
                 Assert.That(walk, Is.Not.Null, entry.Id);
-                Assert.That(walk.Count, Is.EqualTo(entry.FrameCount), entry.Id);
-                Assert.That(walk.Fps, Is.EqualTo(entry.FramesPerSecond).Within(.001f), entry.Id);
+                if (walk.UseWorldGeometry)
+                {
+                    Assert.That(walk.Count, Is.EqualTo(16), entry.Id);
+                    Assert.That(walk.DurationSeconds, Is.EqualTo(QdaoActionResources.GetDurationSeconds(
+                        entry.Id, "run", east ? "E" : "W")).Within(.001f), entry.Id);
+                }
+                else
+                {
+                    Assert.That(walk.Count, Is.EqualTo(entry.FrameCount), entry.Id);
+                    Assert.That(walk.Fps, Is.EqualTo(entry.FramesPerSecond).Within(.001f), entry.Id);
+                }
                 using var idle = BattleArtCatalog.LoadCharacterAction(entry.Id, "idle", east);
                 Assert.That(idle, Is.Not.Null, entry.Id);
                 Assert.That(idle.Count, Is.EqualTo(1), entry.Id);
@@ -128,7 +137,19 @@ namespace MmorpgClient.Tests.EditMode.Battle
             foreach (var entry in QdaoCharacterCatalog.AvailableAll)
             foreach (string action in new[] { "attack", "cast", "hit", "die", "win" })
             foreach (bool east in new[] { false, true })
-                Assert.That(BattleArtCatalog.LoadCharacterAction(entry.Id, action, east), Is.Null, entry.Id + "/" + action);
+            {
+                using var actual = BattleArtCatalog.LoadCharacterAction(entry.Id, action, east);
+                if (QdaoActionResources.GetDurationSeconds(entry.Id, action, east ? "E" : "W") <= 0f)
+                    Assert.That(actual, Is.Null, entry.Id + "/" + action);
+                else
+                {
+                    Assert.That(actual, Is.Not.Null, entry.Id + "/" + action);
+                    Assert.That(actual.UseWorldGeometry, Is.True);
+                    Assert.That(actual.Mirrored, Is.False);
+                    foreach (var frame in actual.Frames)
+                        Assert.That(frame.name, Does.StartWith(entry.Id + "_archived_" + action + "_" + (east ? "E" : "W") + "_"));
+                }
+            }
         }
 
         [Test]
