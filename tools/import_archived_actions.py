@@ -58,6 +58,10 @@ def runtime_manifest(character):
             require(-1 <= event < count, '非法事件帧')
             clips.append(dict(action=action, direction=direction, frameCount=count,
                               frameDurationMs=times[0], frameDurationsMs=times, eventFrame=event))
+            clip_pivot = character.get('clipPivots', {}).get(action, {}).get(direction)
+            if clip_pivot is not None:
+                require(len(clip_pivot) == 2 and all(0 <= v <= 1 for v in clip_pivot), '非法动作锚点')
+                clips[-1].update(overridePivot=True, pivotX=clip_pivot[0], pivotY=clip_pivot[1])
     require(len(character['frames']) == 196, '单角色必须完整196帧')
     pivot = character['unityPivot']
     require(len(pivot) == 2 and all(0 <= v <= 1 for v in pivot), '非法锚点')
@@ -102,7 +106,7 @@ def meta(path, project):
 def run(delivery, source_root, project, execute=False, verify=False):
     require(delivery.get('schemaVersion') == 1, '不支持的交付清单')
     characters = delivery['characters']
-    require(len(characters) == 7 and len({c['characterId'] for c in characters}) == 7, '须为七个不同角色')
+    require(characters and len({c['characterId'] for c in characters}) == len(characters), '角色清单须非空且无重复')
     manifests = {}
     # 在写入任何文件之前核验整个批次，避免中途输入错误造成半套启用。
     for c in characters:
@@ -111,6 +115,9 @@ def run(delivery, source_root, project, execute=False, verify=False):
         folder = safe_path(source_root, cid)
         if not verify:
             require(digest(safe_path(folder, c['manifest'])) == c['manifestSha256'], f'源清单已变动: {cid}')
+            for evidence in c.get('sourceEvidence', []):
+                require(digest(safe_path(folder, evidence['file'])) == evidence['sha256'],
+                        f"源时序/锚点/选帧依据已变动: {cid}/{evidence['file']}")
         for f in c['frames']:
             relative = f"{f['action']}/{f['direction']}/{f['frame']:02d}.png"
             path = safe_path(project / FAMILY / cid, relative) if verify else safe_path(folder, f['source'])
