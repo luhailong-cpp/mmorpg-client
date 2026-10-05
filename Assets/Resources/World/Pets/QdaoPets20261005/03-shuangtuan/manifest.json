@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "characterId": "03-shuangtuan",
+  "frameWidth": 1024,
+  "frameHeight": 1024,
+  "pixelsPerUnit": 160,
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "clips": [
+    {
+      "action": "idle",
+      "direction": "E",
+      "frameCount": 1,
+      "frameDurationMs": 1000,
+      "frameDurationsMs": [
+        1000
+      ],
+      "eventFrame": -1,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
+      "action": "idle",
+      "direction": "W",
+      "frameCount": 1,
+      "frameDurationMs": 1000,
+      "frameDurationsMs": [
+        1000
+      ],
+      "eventFrame": -1,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
+      "action": "hit",
+      "direction": "E",
+      "frameCount": 6,
+      "frameDurationMs": 40,
+      "frameDurationsMs": [
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "eventFrame": -1,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
+      "action": "hit",
+      "direction": "W",
+      "frameCount": 6,
+      "frameDurationMs": 40,
+      "frameDurationsMs": [
+        40,
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "eventFrame": -1,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
+      "action": "attack",
+      "direction": "E",
+      "frameCount": 12,
+      "frameDurationMs": 30,
+      "frameDurationsMs": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "eventFrame": 7,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
+      "action": "cast",
+      "direction": "E",
+      "frameCount": 16,
+      "frameDurationMs": 45,
+      "frameDurationsMs": [
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45,
+        45
+      ],
+      "eventFrame": 10,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    }
+  ],
+  "geometryStatus": "fixed_source_canvas; missing source anchors use provisional placement, client calibration pending",
+  "visualValidation": "client_runtime_pending"
+}
