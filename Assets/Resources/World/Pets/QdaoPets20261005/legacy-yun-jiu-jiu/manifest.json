@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "characterId": "legacy-yun-jiu-jiu",
+  "frameWidth": 1024,
+  "frameHeight": 1024,
+  "pixelsPerUnit": 160,
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "clips": [
+    {
+      "action": "idle",
+      "direction": "E",
+      "frameCount": 1,
+      "frameDurationMs": 1000,
+      "frameDurationsMs": [
+        1000
+      ],
+      "eventFrame": -1,
+      "frameWidth": 1254,
+      "frameHeight": 1254,
+      "pixelsPerUnit": 195.9375,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
+      "action": "idle",
+      "direction": "W",
+      "frameCount": 1,
+      "frameDurationMs": 1000,
+      "frameDurationsMs": [
+        1000
+      ],
+      "eventFrame": -1,
+      "frameWidth": 1254,
+      "frameHeight": 1254,
+      "pixelsPerUnit": 195.9375,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    }
+  ],
+  "geometryStatus": "fixed_source_canvas; missing source anchors use provisional placement, client calibration pending",
+  "visualValidation": "client_runtime_pending"
+}
