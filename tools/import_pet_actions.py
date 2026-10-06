@@ -103,9 +103,12 @@ def build_pet(pet):
             if active:
                 require(not missing and entry['completeFrameSet'] and all(f.get('technicalValid', False) for f in selected),
                         f'不完整或不合格片段不能启用: {pid}/{action}/{direction}')
+                require(all(f.get('sourceEvidenceResolved', True) for f in selected),
+                        f'来源证据未解决的片段不能启用: {pid}/{action}/{direction}')
+                # The audit resolves the authored contact/release event, rather than picking
+                # the first label (which may describe windup or recovery).
                 events = entry.get('events', [])
-                # Audit events are authored one-based frame labels, unlike runtime zero-based indices.
-                event = events[0]['frame'] - 1 if events else -1
+                event = entry.get('eventFrame', events[0]['frame'] - 1 if events else -1)
                 clips.append(clip(action, direction, selected, event))
             else:
                 pending.append(dict(action=action, direction=direction, presentFrames=len(selected),
@@ -158,6 +161,90 @@ def publish_json(path, value, project):
     meta(path, project)
 
 
+def pending_promotions(delivery, plans, family):
+    """Validate the exact old importer-owned files recorded by the previous snapshot."""
+    result, seen = [], set()
+    for entry in delivery.get('pendingPromotions', []):
+        pid, action, direction, number = (entry[k] for k in ('petId', 'action', 'direction', 'frame'))
+        require(pid in plans and action in COUNTS and direction in DIRECTIONS and
+                isinstance(number, int) and 1 <= number <= COUNTS[action], 'pending迁移身份无效')
+        key = (pid, action, direction, number)
+        require(key not in seen, 'pending迁移重复')
+        seen.add(key)
+        relative = f'{action}/{direction}/{number:02d}.png'
+        copies = dict(plans[pid][1])
+        require(relative in copies, 'pending只能迁移到已启用的完整片段')
+        require(re.fullmatch(r'[0-9a-f]{64}', entry['previousSha256']) is not None, '旧pending SHA无效')
+        previous_guid = entry.get('previousGuid')
+        require(previous_guid is None or re.fullmatch(r'[0-9a-f]{32}', previous_guid) is not None, '旧pending GUID无效')
+        root = safe_path(family, pid)
+        old = root / 'pending' / relative
+        target = safe_path(root, relative)
+        # Check both resolved targets and links before any deletion or metadata migration.
+        old_meta = Path(str(old) + '.meta')
+        for path in (old, old_meta):
+            require(path.resolve().is_relative_to(root.resolve()) and not path.is_symlink(),
+                    f'pending迁移路径越界或链接: {path}')
+        prior = None
+        if old.exists() or old_meta.exists():
+            require(old_meta.is_file(), f'pending没有导入器所有权记录: {old}')
+            prior = old_meta.read_text(encoding='utf-8')
+            require('userData: qdao-pets-20261005' in prior and
+                    re.search(r'^guid: [0-9a-f]{32}$', prior, re.MULTILINE),
+                    f'pending不属于此导入器: {old}')
+            require(previous_guid is None or f'guid: {previous_guid}' in prior, f'旧pending GUID已变动: {old}')
+            if old.exists():
+                require(old.is_file() and digest(old) == entry['previousSha256'], f'旧pending SHA已变动: {old}')
+            destination_meta = Path(str(target) + '.meta')
+            if destination_meta.exists():
+                target_guid = re.search(r'^guid: (.+)$', destination_meta.read_text(encoding='utf-8'), re.MULTILINE)
+                require(not destination_meta.is_symlink() and target_guid is not None and
+                        re.search(r'^guid: (.+)$', prior, re.MULTILINE).group(1) == target_guid.group(1),
+                        f'pending与正式资源GUID冲突: {target}')
+        # A clean re-import must reproduce the migrated GUID even without the old files.
+        if previous_guid is not None:
+            destination_meta = Path(str(target) + '.meta')
+            if destination_meta.exists():
+                require(not destination_meta.is_symlink() and
+                        f'guid: {previous_guid}' in destination_meta.read_text(encoding='utf-8'),
+                        f'已迁移资源GUID已变动: {target}')
+            if prior is None:
+                prior = f'fileFormatVersion: 2\nguid: {previous_guid}\nTextureImporter:\n  userData: qdao-pets-20261005\n'
+        result.append((old, old_meta, target, copies[relative], prior))
+    return result
+
+
+def cleanup_promoted_folders(delivery, family, project, execute=False):
+    """Remove only empty folders created by this importer's deterministic GUID rule."""
+    candidates = {}
+    for entry in delivery.get('pendingPromotions', []):
+        pet_root = safe_path(family, entry['petId'])
+        pending_root = pet_root / 'pending'
+        for folder in (pending_root / entry['action'] / entry['direction'],
+                       pending_root / entry['action'], pending_root):
+            require(not folder.is_symlink() and folder.resolve().is_relative_to(pet_root.resolve()),
+                    f'pending空目录清理路径越界或链接: {folder}')
+            candidates[folder] = pending_root
+    removable = []
+    for folder in sorted(candidates, key=lambda p: len(p.parts), reverse=True):
+        folder_meta = Path(str(folder) + '.meta')
+        require(not folder_meta.is_symlink() and folder_meta.resolve().is_relative_to(folder.parent.resolve()),
+                f'pending空目录metadata越界或链接: {folder_meta}')
+        if not folder_meta.is_file() or folder.exists() and (not folder.is_dir() or any(folder.iterdir())):
+            continue
+        prior = folder_meta.read_text(encoding='utf-8')
+        guid = uuid.uuid5(uuid.NAMESPACE_URL, 'mmorpg-client/' + folder.relative_to(project).as_posix()).hex
+        if f'guid: {guid}' not in prior or 'folderAsset: yes' not in prior or 'DefaultImporter:' not in prior:
+            continue
+        removable.append(folder)
+        if execute:
+            # rmdir is non-recursive; any new file prevents deletion.
+            if folder.exists():
+                folder.rmdir()
+            folder_meta.unlink()
+    return removable
+
+
 def run(delivery, source_root, project, execute=False, verify=False):
     require(delivery.get('schemaVersion') == 1, '不支持的宠物交付清单')
     pets = delivery['pets']
@@ -168,6 +255,7 @@ def run(delivery, source_root, project, execute=False, verify=False):
         bound = [v for p in pets for v in p[field]]
         require(len(set(bound)) == len(bound) and all(isinstance(v, int) and v > 0 for v in bound), '宠物数值身份绑定冲突')
     family = project / FAMILY
+    promotions = pending_promotions(delivery, plans, family)
     # Verify every locked source first; a changing production frame must not publish half a snapshot.
     for pid, (manifest, copies, _) in plans.items():
         for relative, frame in copies:
@@ -178,22 +266,33 @@ def run(delivery, source_root, project, execute=False, verify=False):
                 require('maxTextureSize: 2048' in texture_meta and 'nPOTScale: 0' in texture_meta,
                         f'宠物图片导入设置会缩图: {path}')
         if verify:
-            require((family / pid / 'manifest.json').read_bytes() == json_bytes(manifest), f'宠物运行合同不匹配: {pid}')
+            require((family / pid / 'manifest.json').read_text(encoding='utf-8') == json_bytes(manifest).decode('utf-8'),
+                    f'宠物运行合同不匹配: {pid}')
     complete_clips = sum(sum(c['action'] != 'idle' for c in m['clips']) for m, _, _ in plans.values())
     pending_frames = sum(sum(relative.startswith('pending/') for relative, _ in files) for _, files, _ in plans.values())
     combat_frames = sum(len(p['frames']) for p in pets)
     report = dict(schemaVersion=1, sourceAuditSha256=delivery['sourceAuditSha256'], snapshotFinishedUtc=delivery['snapshotFinishedUtc'],
                   petCount=len(pets), staticIdleFrames=len(pets) * 2, portraitCount=len(pets),
+                  completePetCount=sum(not parts for _, _, parts in plans.values()),
                   activeCombatClips=complete_clips, activeCombatFrames=combat_frames - pending_frames,
+                  activeClipsByAction={action: sum(c['action'] == action for m, _, _ in plans.values() for c in m['clips'])
+                                      for action in COUNTS},
+                  pendingCombatClips=sum(len(parts) for _, _, parts in plans.values()),
+                  pendingFramesPromoted=len(promotions),
                   pendingCombatFrames=pending_frames, totalCombatFrames=combat_frames,
                   missingCombatFrames=len(pets) * 68 - combat_frames, expectedCombatFrames=len(pets) * 68,
                   runAnimation='not_delivered; no idle duplicate or interpolation fabricated as run',
                   completion='partial_source_snapshot; complete clips only activated; client_runtime_pending',
                   pending=[dict(petId=pid, clips=parts) for pid, (_, _, parts) in plans.items()])
     if verify:
-        require((family / 'catalog.json').read_bytes() == json_bytes(catalog), '宠物catalog不匹配')
-        require((family / 'import-report.json').read_bytes() == json_bytes(report), '宠物导入报告不匹配')
+        # Git's Windows checkout may normalize JSON to CRLF; preserve every other character.
+        require((family / 'catalog.json').read_text(encoding='utf-8') == json_bytes(catalog).decode('utf-8'), '宠物catalog不匹配')
+        require((family / 'import-report.json').read_text(encoding='utf-8') == json_bytes(report).decode('utf-8'), '宠物导入报告不匹配')
+        require(all(not old.exists() and not old_meta.exists() for old, old_meta, _, _, _ in promotions),
+                '已启用片段仍有旧pending副本')
+        require(not cleanup_promoted_folders(delivery, family, project), '已晋升pending有孤立目录metadata')
     if execute:
+        migration_metadata = {target: prior for _, _, target, _, prior in promotions if prior is not None}
         for pid, (manifest, copies, _) in plans.items():
             destination = family / pid
             for relative, frame in copies:
@@ -207,6 +306,8 @@ def run(delivery, source_root, project, execute=False, verify=False):
                     check_png(staged, frame)
                     staged.replace(path)
                 check_png(path, frame)
+                if path in migration_metadata and not Path(str(path) + '.meta').exists():
+                    Path(str(path) + '.meta').write_text(migration_metadata[path], encoding='utf-8')
                 meta(path, project)
             publish_json(destination / 'manifest.json', manifest, project)
         publish_json(family / 'catalog.json', catalog, project)
@@ -215,6 +316,17 @@ def run(delivery, source_root, project, execute=False, verify=False):
             meta(folder, project)
         meta(family, project)
         meta(family.parent, project)
+        # All published replacements must validate before removing any prior pending copy.
+        # Recheck ownership/hash immediately before cleanup; only explicit single files are removed.
+        promotions = pending_promotions(delivery, plans, family)
+        for _, _, target, frame, _ in promotions:
+            check_png(target, frame)
+        for old, old_meta, _, _, _ in promotions:
+            if old.exists():
+                old.unlink()
+            if old_meta.exists():
+                old_meta.unlink()
+        cleanup_promoted_folders(delivery, family, project, execute=True)
         run(delivery, source_root, project, verify=True)
     return {k: report[k] for k in ('petCount', 'staticIdleFrames', 'portraitCount', 'activeCombatClips', 'activeCombatFrames',
                                   'pendingCombatFrames', 'totalCombatFrames', 'missingCombatFrames')} | {
