@@ -664,6 +664,876 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.Status, Is.EqualTo("1 笔捐献结算中：余额不足，正在确认结算结果"));
         }
 
+        // ── 活动：灯会 / 团圆（B6a-cli）────────────────────────────────
+
+        [Test] public void RefreshActivitiesStoresResponse()
+        {
+            Load(); _client.RefreshActivities();
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Reply(ActivitiesFixture());
+            Assert.That(_client.Activities.Activities.Count, Is.EqualTo(3));
+            Assert.That(_client.Status, Is.EqualTo("帮会活动已更新"));
+            Assert.That(_client.ActivitiesNeedReload(0), Is.False);
+        }
+        /// <summary>
+        /// 点灯成功只回本活动的视图:就地换掉那一条,帮贡 / 资金靠补拉 GetPlayerGuild。补拉不能在回调里连发
+        /// (排队交给 DrainQueued),提示要活过这次补拉,且只用一次。
+        /// </summary>
+        [Test] public void LanternWriteQueuesGuildRefreshKeepingNotice()
+        {
+            Load(); LoadActivities();
+            _client.LightLantern(1);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.LightGuildLantern));
+            Assert.That(((LightGuildLanternRequest)_net.Requests.Last()).ActivityId, Is.EqualTo(1u));
+            int sent = _net.Calls.Count;
+            _net.Reply(new LightGuildLanternResponse { Activity = LitLantern() });
+            Assert.That(_client.Activities.Activities[0].MyUsedCount, Is.EqualTo(1u));
+            Assert.That(_client.Activities.Activities.Count, Is.EqualTo(3));
+            Assert.That(_client.RefreshQueued, Is.True);
+            Assert.That(_net.Calls.Count, Is.EqualTo(sent));
+            Assert.That(_client.Busy, Is.False);
+            Assert.That(_client.Status, Is.EqualTo("花灯已点亮，帮贡已到账。"));
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            var funded = Fixture(); funded.Funds = 500; funded.Members[0].ContributionBalance = 20;
+            _net.Reply(new GetPlayerGuildResponse { Guild = funded });
+            Assert.That(_client.Info.Funds, Is.EqualTo(500ul));
+            Assert.That(_client.Status, Is.EqualTo("花灯已点亮，帮贡已到账。"));
+            // 没有别的排队项:这一帧不再发请求。
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            Assert.That(_client.Busy, Is.False);
+            // 提示只用一次:之后不相干的刷新回到普通文案。
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = funded });
+            Assert.That(_client.Status, Is.EqualTo("帮会信息已更新"));
+        }
+        [Test] public void ReunionClaimSendsActivityIdAndReloadsTheBag()
+        {
+            Load(); LoadActivities();
+            int assets = 0; _client.AssetsChanged += () => assets++;
+            _client.ClaimReunion(2);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ClaimGuildReunion));
+            Assert.That(((ClaimGuildReunionRequest)_net.Requests.Last()).ActivityId, Is.EqualTo(2u));
+            var claimed = ActivitiesFixture().Activities[1];
+            claimed.MyUsedCount = 1; claimed.ThresholdReached = true; claimed.Progress = 0;
+            claimed.BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            _net.Reply(new ClaimGuildReunionResponse { Activity = claimed });
+            Assert.That(_client.Activities.Activities[1].ThresholdReached, Is.True);
+            // 团圆礼带物品:可能已同步进包,背包要重拉(scene 没有背包推送)。
+            Assert.That(assets, Is.EqualTo(1));
+            Assert.That(_client.RefreshQueued, Is.True);
+            Assert.That(_client.Status, Is.EqualTo("团圆礼已领取，物品稍后到账。"));
+        }
+        [Test] public void ActivityPushWhileBusyDrainsNextFrame()
+        {
+            Load();
+            _client.Refresh(); // 占住唯一的在途请求位
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged });
+            Assert.That(_client.ActivitiesQueued, Is.True);
+            // 活动推送只重拉活动视图,不排 GetPlayerGuild。
+            Assert.That(_client.RefreshQueued, Is.False);
+            int before = _net.Calls.Count;
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            // 活动页不可见时不拉,标志留着等进页。
+            _client.DrainQueued(false, false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.ActivitiesQueued, Is.True);
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            Assert.That(_client.ActivitiesQueued, Is.False);
+        }
+        /// <summary>
+        /// 打开窗口那一发 GetPlayerGuild 还在路上时进活动页:请求只排队、不被 Busy 丢掉,
+        /// 回包后的下一帧自动发出(页面不会卡在"正在读取")。
+        /// </summary>
+        [Test] public void ActivitiesRequestedWhileToggleRefreshInFlight()
+        {
+            Load();
+            _client.Refresh();
+            int before = _net.Calls.Count;
+            _client.QueueActivities();
+            Assert.That(_client.ActivitiesQueued, Is.True);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Reply(ActivitiesFixture());
+            Assert.That(_client.Activities, Is.Not.Null);
+            // 发出后标志已清,每帧调用也不连发。
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before + 1));
+        }
+        [Test] public void QueueActivitiesOutsideGuildDoesNothing()
+        {
+            Empty();
+            _client.QueueActivities();
+            Assert.That(_client.ActivitiesQueued, Is.False);
+            int before = _net.Calls.Count;
+            _client.RefreshActivities();
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Status, Does.Contain("加入帮会后"));
+        }
+        [Test] public void InvitePushSetsPending()
+        {
+            Load();
+            // target = 0:全帮的进度变化(本档期首次达阈值),不是邀请。
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged });
+            Assert.That(_client.TrialInvitePending, Is.False);
+            Assert.That(_client.ActivitiesQueued, Is.True);
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, ActorPlayerId = 2, TargetPlayerId = 1 });
+            Assert.That(_client.TrialInvitePending, Is.True);
+            Assert.That(_client.Status, Does.Contain("历练邀请"));
+            _client.ConsumeTrialInvite();
+            Assert.That(_client.TrialInvitePending, Is.False);
+            // 别的帮会的活动推送与本人无关。
+            _client.RefreshActivities(); _net.Reply(ActivitiesFixture());
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 999, Kind = GuildChangeKind.ActivityChanged, TargetPlayerId = 1 });
+            Assert.That(_client.TrialInvitePending, Is.False);
+            Assert.That(_client.ActivitiesQueued, Is.False);
+        }
+        /// <summary>
+        /// 活动的 10 个码(连同会在领奖时出现的 kGuildAssetPending)都要有人话,带参数的把数字填进去;
+        /// 历练的两个码(名单不合法、被婉拒)把参数里的角色编号换成名字(样例成员没有名字,落到"道友 · 编号")。
+        /// 被拒后本页带着拒绝文案直接重拉一次:文案要活过这次重拉,不能被盖成"帮会活动已更新"。
+        /// parameters 用逗号分隔;不带参数的码,服务端会塞一段英文说明当唯一参数。
+        /// </summary>
+        [TestCase((uint)guild_error.KGuildActivityNotOpen, "guild activity not open", "该活动暂未开放。")]
+        [TestCase((uint)guild_error.KGuildActivityAlreadyClaimed, "guild activity daily limit reached", "今日已参与，明日 05:00 后再来。")]
+        [TestCase((uint)guild_error.KGuildActivityThresholdNotReached, "2,3", "同时在线的同道不足（2/3），再等等大家吧。")]
+        [TestCase((uint)guild_error.KGuildActivityLevelTooLow, "3", "帮会达到 3 级后才能参与。")]
+        [TestCase((uint)guild_error.KGuildActivityJoinTooRecent, "24", "入帮满 24 小时后才能参与帮会活动。")]
+        [TestCase((uint)guild_error.KGuildAssetPending, "too many pending asset ops", "还有未结算的帮会操作，请稍后再试。")]
+        [TestCase((uint)guild_error.KGuildTrialTeamInvalid, "offline,42", "道友 · 42 当前不在线。")]
+        [TestCase((uint)guild_error.KGuildTrialInviteExpired, "", "邀请已失效。")]
+        [TestCase((uint)guild_error.KGuildTrialInviteDeclined, "42", "道友 · 42 婉拒了同道历练邀请。")]
+        [TestCase((uint)guild_error.KGuildTrialInviteCooldown, "7", "发起太频繁，请 7 秒后再试。")]
+        [TestCase((uint)guild_error.KGuildTrialServiceBusy, "trial service busy", "历练服务繁忙，请稍后再试。")]
+        public void ActivityTipsMapToReadableStatus(uint tip, string parameters, string expected)
+        {
+            Load(); LoadActivities();
+            _client.LightLantern(1);
+            var message = new TipInfoMessage { Id = tip };
+            foreach (string parameter in parameters.Split(',')) if (parameter.Length > 0) message.Parameters.Add(parameter);
+            _net.Reply(new LightGuildLanternResponse { ErrorMessage = message });
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            Assert.That(_client.ActivitiesQueued, Is.False);
+            _net.Reply(ActivitiesFixture());
+            Assert.That(_client.Status, Is.EqualTo(expected));
+            // 业务拒绝走的是 success 回调:连接完好,不隔离,也不为它补拉 GetPlayerGuild ——
+            // 唯一的例外是"名单里有人已离线 / 已不在帮会":成员快照过时了,要补拉(见 TrialTeamInvalidShowsMemberName)。
+            Assert.That(_client.RequiresReconnect, Is.False);
+            Assert.That(_client.RefreshQueued, Is.EqualTo(tip == (uint)guild_error.KGuildTrialTeamInvalid));
+        }
+        /// <summary>
+        /// 带参数的码,参数缺失或不是数字(服务端别的分支塞了英文说明)时回落到不带数字的说法,
+        /// 不把英文拼进文案,也不抛异常。团圆人数要两个数都在才写比值。
+        /// </summary>
+        [TestCase((uint)guild_error.KGuildActivityThresholdNotReached, "同时在线的同道不足，再等等大家吧。")]
+        [TestCase((uint)guild_error.KGuildActivityLevelTooLow, "帮会等级不足，暂时不能参与。")]
+        [TestCase((uint)guild_error.KGuildActivityJoinTooRecent, "入帮时间不足，暂时不能参与帮会活动。")]
+        [TestCase((uint)guild_error.KGuildTrialInviteCooldown, "发起太频繁，请稍后再试。")]
+        public void ActivityTipWithoutNumericParametersFallsBackToGenericText(uint tip, string expected)
+        {
+            Assert.That(GuildClient.TipText(new TipInfoMessage { Id = tip }), Is.EqualTo(expected));
+            var english = new TipInfoMessage { Id = tip }; english.Parameters.Add("guild activity blocked");
+            Assert.That(GuildClient.TipText(english), Is.EqualTo(expected));
+            var signed = new TipInfoMessage { Id = tip }; signed.Parameters.Add("-1"); signed.Parameters.Add("x");
+            Assert.That(GuildClient.TipText(signed), Is.EqualTo(expected));
+            var half = new TipInfoMessage { Id = (uint)guild_error.KGuildActivityThresholdNotReached }; half.Parameters.Add("2");
+            Assert.That(GuildClient.TipText(half), Is.EqualTo("同时在线的同道不足，再等等大家吧。"));
+        }
+        /// <summary>写操作被拒且回"已不在帮会":不重拉活动页(必然再被拒),只排 GetPlayerGuild,活动快照随之清掉。</summary>
+        [Test] public void NotInGuildClearsActivitiesAndNotice()
+        {
+            Load(); LoadActivities();
+            _client.LightLantern(1);
+            _net.Reply(new LightGuildLanternResponse { Activity = LitLantern() });
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, TargetPlayerId = 1 });
+            Assert.That(_client.ActivitiesQueued, Is.True); Assert.That(_client.TrialInvitePending, Is.True);
+            // 点完灯随即被请离:补拉的 GetPlayerGuild 回"未入帮"。
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.MemberKicked, TargetPlayerId = 1 });
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
+            Assert.That(_client.Activities, Is.Null);
+            Assert.That(_client.ActivitiesQueued, Is.False);
+            Assert.That(_client.TrialInvitePending, Is.False);
+            // 未入帮分支优先说"被请离"(B2 的提示),"花灯已点亮"此时已无意义(90 清单 X-06)。
+            Assert.That(_client.Status, Does.Contain("请离"));
+            // 写操作的提示不留给以后:重新入帮后的刷新不会冒出"花灯已点亮"。
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            Assert.That(_client.Status, Is.EqualTo("帮会信息已更新"));
+
+            LoadActivities();
+            _client.LightLantern(1); int sent = _net.Calls.Count;
+            _net.Reply(new LightGuildLanternResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
+            Assert.That(_net.Calls.Count, Is.EqualTo(sent));
+            Assert.That(_client.RefreshQueued, Is.True);
+        }
+        [Test] public void ResetClearsActivities()
+        {
+            Load(); LoadActivities();
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, TargetPlayerId = 1 });
+            Assert.That(_client.ActivitiesQueued, Is.True); Assert.That(_client.TrialInvitePending, Is.True);
+            _client.Reset();
+            Assert.That(_client.Activities, Is.Null);
+            Assert.That(_client.ActivitiesQueued, Is.False);
+            Assert.That(_client.TrialInvitePending, Is.False);
+            Assert.That(_client.ActivitiesNeedReload(0), Is.True);
+            Assert.That(_client.ActivityServerNowMs, Is.Zero);
+        }
+        /// <summary>
+        /// 成功却没带回本活动的视图(服务端提交后重建视图失败,写已生效):本页带着提示重拉,
+        /// 否则按钮还停在"可点";帮贡 / 资金照常排队补拉。
+        /// </summary>
+        [Test] public void ActivityWriteWithoutReturnedViewReloadsThePage()
+        {
+            Load(); LoadActivities();
+            _client.LightLantern(1);
+            _net.Reply(new LightGuildLanternResponse());
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            Assert.That(_client.RefreshQueued, Is.True);
+            var reloaded = ActivitiesFixture(); reloaded.Activities[0] = LitLantern();
+            _net.Reply(reloaded);
+            Assert.That(_client.Activities.Activities[0].MyUsedCount, Is.EqualTo(1u));
+            Assert.That(_client.Status, Is.EqualTo("花灯已点亮，帮贡已到账。"));
+        }
+        /// <summary>
+        /// 同一个帮会里等级变了:视图里的"能不能参与"是按旧等级算的,快照不清、只标过时,本页重拉成功即不再过时。
+        /// 换帮则整份作废(进度与今日次数都是上一个帮会的)。
+        /// </summary>
+        [Test] public void GuildLevelChangeMarksActivitiesStaleAndGuildChangeClearsThem()
+        {
+            Load(); LoadActivities();
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            Assert.That(_client.ActivitiesNeedReload(0), Is.False);
+            var leveled = Fixture(); leveled.Level = 6;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = leveled });
+            Assert.That(_client.Activities, Is.Not.Null);
+            Assert.That(_client.ActivitiesNeedReload(0), Is.True);
+            LoadActivities();
+            Assert.That(_client.ActivitiesNeedReload(0), Is.False);
+            var other = Fixture(); other.GuildId = 556;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = other });
+            Assert.That(_client.Activities, Is.Null);
+        }
+        /// <summary>
+        /// 过没过游戏日切点按服务端时钟估算:视图的 server_time_ms + 收到后流逝的时间(单调时钟),不读本机墙钟。
+        /// 写回包换进来的视图带着更新的时刻,锚随之校准。
+        /// </summary>
+        [Test] public void ActivitiesExpireAtTheServerResetTime()
+        {
+            long clock = 1000;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            var response = ActivitiesFixture();
+            foreach (var view in response.Activities) { view.ServerTimeMs = 5_000_000; view.NextResetMs = 5_060_000; }
+            client.RefreshActivities(); net.Reply(response);
+            Assert.That(client.ActivityServerNowMs, Is.EqualTo(5_000_000ul));
+            Assert.That(client.ActivityNextResetMs, Is.EqualTo(5_060_000ul));
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 59_999;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 1;
+            Assert.That(client.ActivityServerNowMs, Is.EqualTo(5_060_000ul));
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.True);
+
+            // 过了切点后点灯:回包里的这一条已是新一天的视图,但另外两条仍是昨天的 —— 整页仍要重拉。
+            client.LightLantern(1);
+            var lit = LitLantern(); lit.ServerTimeMs = 5_061_000; lit.NextResetMs = 91_460_000;
+            net.Reply(new LightGuildLanternResponse { Activity = lit });
+            Assert.That(client.ActivityServerNowMs, Is.EqualTo(5_061_000ul));
+            Assert.That(client.ActivityNextResetMs, Is.EqualTo(5_060_000ul));
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.True);
+            // 没带时刻的快照(样例 / 替身)不按时间判过期。
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            client.RefreshActivities(); net.Reply(ActivitiesFixture());
+            Assert.That(client.ActivityServerNowMs, Is.Zero);
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+        }
+        /// <summary>
+        /// 活动的物品奖励与商店兑换发同一种推送(DELIVERY_DONE):活动页上挂着"待发放"时排队重拉本页,
+        /// 没有待发放时(那是商店的单)不白拉。
+        /// </summary>
+        [Test] public void DeliveryDonePushReloadsActivitiesOnlyWhenARewardIsPending()
+        {
+            Load(); LoadActivities();
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.DeliveryDone, TargetPlayerId = 1 });
+            Assert.That(_client.ActivitiesQueued, Is.False);
+            var pending = ActivitiesFixture();
+            pending.Activities[1].MyPendingRewardCount = 1; pending.Activities[1].MyPendingReasonTipId = GuildAssetReasons.BagFull;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            _client.RefreshActivities(); _net.Reply(pending);
+            int assets = 0; _client.AssetsChanged += () => assets++;
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.DeliveryDone, TargetPlayerId = 1 });
+            Assert.That(assets, Is.EqualTo(1));
+            Assert.That(_client.ActivitiesQueued, Is.True);
+            // 帮会快照在前,活动视图在后(90 清单 X-07)。
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+        }
+        /// <summary>
+        /// 写操作的结果文案不能被紧随其后的活动视图重拉盖成"帮会活动已更新":点灯成功的同时别人让本期达了阈值
+        /// (活动推送也排了队),或带着拒绝原因的那一发重拉还在路上时又来了推送。只沿用一次,之后回到普通文案。
+        /// </summary>
+        [Test] public void ActivityWriteResultSurvivesTheNextQueuedActivitiesReloadOnce()
+        {
+            Load(); LoadActivities();
+            _client.LightLantern(1);
+            _net.Reply(new LightGuildLanternResponse { Activity = LitLantern() });
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged });
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Reply(ActivitiesFixture());
+            Assert.That(_client.Status, Is.EqualTo("花灯已点亮，帮贡已到账。"));
+            _client.RefreshActivities(); _net.Reply(ActivitiesFixture());
+            Assert.That(_client.Status, Is.EqualTo("帮会活动已更新"));
+
+            _client.LightLantern(1);
+            _net.Reply(new LightGuildLanternResponse
+                { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildActivityAlreadyClaimed } });
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged });
+            _net.Reply(ActivitiesFixture());
+            int sent = _net.Calls.Count;
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Count, Is.EqualTo(sent + 1));
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Reply(ActivitiesFixture());
+            Assert.That(_client.Status, Is.EqualTo("今日已参与，明日 05:00 后再来。"));
+            // 状态栏被别的文案换掉之后,重拉不再把旧结果翻出来。
+            _client.LightLantern(1);
+            _net.Reply(new LightGuildLanternResponse { Activity = LitLantern() });
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            _client.Browse(); _net.Reply(new GetGuildRankResponse { Page = 1, PageSize = 5 });
+            _client.RefreshActivities(); _net.Reply(ActivitiesFixture());
+            Assert.That(_client.Status, Is.EqualTo("帮会活动已更新"));
+        }
+        /// <summary>
+        /// 档期切点没有任何推送:未开始的活动到了开始时刻、进行中的到了结束时刻,快照就过时(状态与按钮都要换)。
+        /// 已结束 / 未开放 / 常开(起止都为 0)的没有切点。时刻同样按服务端时钟估算。
+        /// </summary>
+        [Test] public void ActivitiesExpireWhenAScheduleBoundaryPasses()
+        {
+            long clock = 0;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            var response = ActivitiesFixture();
+            foreach (var view in response.Activities) { view.ServerTimeMs = 5_000_000; view.NextResetMs = 9_000_000; }
+            // 灯会 1 分钟后开始;团圆进行中,2 分钟后结束;历练未开放(起止时刻不参与)。
+            var lantern = response.Activities[0];
+            lantern.State = GuildActivityState.Upcoming; lantern.StartAtMs = 5_060_000; lantern.EndAtMs = 8_000_000;
+            lantern.BlockedTipId = (uint)guild_error.KGuildActivityNotOpen;
+            response.Activities[1].StartAtMs = 4_000_000; response.Activities[1].EndAtMs = 5_120_000;
+            response.Activities[2].StartAtMs = 4_000_000; response.Activities[2].EndAtMs = 5_000_001;
+            client.RefreshActivities(); net.Reply(response);
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 59_999;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 1;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.True);
+
+            // 重拉回来灯会已开:下一个切点是团圆的结束时刻。
+            var opened = response.Clone();
+            foreach (var view in opened.Activities) view.ServerTimeMs = 5_060_000;
+            opened.Activities[0].State = GuildActivityState.Open; opened.Activities[0].BlockedTipId = 0;
+            client.RefreshActivities(); net.Reply(opened);
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 59_999;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 1;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.True);
+
+            // 团圆已结束:它不再有切点;灯会要到 8_000_000 才结束。
+            var ended = opened.Clone();
+            foreach (var view in ended.Activities) view.ServerTimeMs = 5_120_000;
+            ended.Activities[1].State = GuildActivityState.Ended; ended.Activities[1].BlockedTipId = (uint)guild_error.KGuildActivityNotOpen;
+            client.RefreshActivities(); net.Reply(ended);
+            clock += 1_000_000;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+        }
+
+        // ── 活动：同道历练的建房与应答（B6b-cli）──────────────────────────
+
+        /// <summary>
+        /// 建房前只挡"明显发不出去"的名单:没有历练视图、活动 id 不是历练、自己不在首位、人数越界、重复、编号为 0。
+        /// 在不在线、是不是本帮由服务端核对。发出去的请求带活动 id 与整份名单(顺序不变)。
+        /// </summary>
+        [Test] public void StartTrialValidatesLocally()
+        {
+            Load();
+            _client.StartTrial(3, new ulong[] { 1, 3 });
+            Assert.That(_net.Calls.Contains(MessageIds.StartGuildTrial), Is.False);
+            Assert.That(_client.Status, Does.Contain("已过期"));
+            _client.RefreshActivities(); _net.Reply(TrialFixture(teamMax: 3));
+            int before = _net.Calls.Count;
+            _client.StartTrial(1, new ulong[] { 1, 3 });        // 灯会的 id
+            Assert.That(_client.Status, Does.Contain("已过期"));
+            _client.StartTrial(3, null);
+            _client.StartTrial(3, new ulong[0]);
+            _client.StartTrial(3, new ulong[] { 3, 1 });        // 自己不在首位
+            _client.StartTrial(3, new ulong[] { 1 });           // 少于 team_size_min(2)
+            _client.StartTrial(3, new ulong[] { 1, 3, 5, 7 });  // 多于 team_size_max(3)
+            _client.StartTrial(3, new ulong[] { 1, 3, 3 });     // 重复
+            _client.StartTrial(3, new ulong[] { 1, 0 });        // 无效编号
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Status, Does.Contain("符合人数要求"));
+            Assert.That(_client.Busy, Is.False);
+            _client.StartTrial(3, new ulong[] { 1, 5, 3 });
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.StartGuildTrial));
+            var request = (StartGuildTrialRequest)_net.Requests.Last();
+            Assert.That(request.ActivityId, Is.EqualTo(3u));
+            Assert.That(request.MemberPlayerIds.ToArray(), Is.EqualTo(new ulong[] { 1, 5, 3 }));
+        }
+        /// <summary>
+        /// 建房成功只动邀请房间:就地换掉历练视图,不补拉帮会快照、不重拉背包、回调里不连发请求。
+        /// 之后别人同意 / 婉拒经推送触发重拉,状态栏按房间的新状态写,不被"邀请已发出"占着(历练的成功提示不沿用)。
+        /// </summary>
+        [Test] public void StartTrialAppliesLobbyWithoutQueueingGuildRefresh()
+        {
+            Load(); _client.RefreshActivities(); _net.Reply(TrialFixture());
+            int assets = 0; _client.AssetsChanged += () => assets++;
+            _client.StartTrial(3, new ulong[] { 1, 3, 5 });
+            int sent = _net.Calls.Count;
+            _net.Reply(new StartGuildTrialResponse { Activity = TrialFixture(Lobby(1, 3, 5)).Activities[2] });
+            Assert.That(_client.Activities.Activities[2].TrialLobby.LobbyId, Is.EqualTo(77ul));
+            Assert.That(_client.Activities.Activities.Count, Is.EqualTo(3));
+            Assert.That(_client.Status, Is.EqualTo("邀请已发出，等待同道确认。"));
+            Assert.That(_client.RefreshQueued, Is.False);
+            Assert.That(assets, Is.Zero);
+            Assert.That(_net.Calls.Count, Is.EqualTo(sent));
+            Assert.That(_client.Busy, Is.False);
+
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, ActorPlayerId = 3 });
+            Assert.That(_client.TrialInvitePending, Is.False);
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            var two = Lobby(1, 3, 5); two.AcceptedPlayerIds.Add(3);
+            _net.Reply(TrialFixture(two));
+            Assert.That(_client.Status, Is.EqualTo("同道历练邀请确认中（2/3）。"));
+
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, ActorPlayerId = 5 });
+            _client.DrainQueued(false, true);
+            _net.Reply(TrialFixture(EndedLobby(Lobby(1, 3, 5), guild_error.KGuildTrialInviteDeclined, "5")));
+            Assert.That(_client.Status, Is.EqualTo("道友 · 5 婉拒了同道历练邀请。"));
+        }
+        /// <summary>
+        /// 名单被拒带 [reason, player_id]:状态栏指名道姓。"有人已离线 / 已不在帮会"说明成员快照过时(在线状态没有推送,
+        /// 活动页的刷新键也只刷活动视图),排队补拉一次帮会快照,拒绝原因要活过本页重拉与那一发补拉。
+        /// </summary>
+        [Test] public void TrialTeamInvalidShowsMemberName()
+        {
+            Load(); _client.RefreshActivities(); _net.Reply(TrialFixture());
+            _client.StartTrial(3, new ulong[] { 1, 3 });
+            var tip = new TipInfoMessage { Id = (uint)guild_error.KGuildTrialTeamInvalid };
+            tip.Parameters.Add("offline"); tip.Parameters.Add("42");
+            _net.Reply(new StartGuildTrialResponse { ErrorMessage = tip });
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Reply(TrialFixture());
+            Assert.That(_client.Status, Is.EqualTo("道友 · 42 当前不在线。"));
+            Assert.That(_client.RefreshQueued, Is.True);
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            var refreshed = Fixture(); refreshed.Members[2].Online = false;
+            _net.Reply(new GetPlayerGuildResponse { Guild = refreshed });
+            Assert.That(_client.Info.Members[2].Online, Is.False);
+            Assert.That(_client.Status, Is.EqualTo("道友 · 42 当前不在线。"));
+            Assert.That(_client.RequiresReconnect, Is.False);
+            // 提示只用一次。
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = refreshed });
+            Assert.That(_client.Status, Is.EqualTo("帮会信息已更新"));
+        }
+        /// <summary>
+        /// reason 全集逐个成句:有名字用名字、是自己说"你"、与具体某人无关的不带主语。
+        /// 参数异常(缺失、不是数字、带符号、溢出、被塞了英文说明、不认识的 reason)一律不抛异常,落到不指名或通用的说法。
+        /// </summary>
+        [TestCase("offline", "3", "阿青 当前不在线。")]
+        [TestCase("not_member", "3", "阿青 不是本帮成员。")]
+        [TestCase("join_recent", "3", "阿青 入帮时间不足。")]
+        [TestCase("busy", "3", "阿青 正在响应其他历练邀请。")]
+        [TestCase("in_battle", "1", "你正在战斗中。")]
+        [TestCase("not_ready", "3", "阿青 暂时无法入场（不在场景中或正在排队）。")]
+        [TestCase("size", "0", "队伍人数不符合要求。")]
+        [TestCase("duplicate", "3", "队伍名单有重复或无效成员。")]
+        [TestCase("initiator_missing", "0", "发起人必须在队伍中。")]
+        [TestCase("invalid", "0", "队伍信息无效，请刷新后重试。")]
+        [TestCase("offline", "", "有同道当前不在线。")]
+        [TestCase("offline", "abc", "有同道当前不在线。")]
+        [TestCase("offline", "-3", "有同道当前不在线。")]
+        [TestCase("offline", "99999999999999999999999", "有同道当前不在线。")]
+        [TestCase("guild trial team invalid", "", "队伍信息无效，请刷新后重试。")]
+        [TestCase("", "", "队伍信息无效，请刷新后重试。")]
+        public void TrialTeamInvalidReasonsReadNaturally(string reason, string playerId, string expected)
+        {
+            var info = Fixture(); info.Members[2].Name = "阿青";
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = info });
+            _client.RefreshActivities(); _net.Reply(TrialFixture());
+            _client.StartTrial(3, new ulong[] { 1, 3 });
+            var tip = new TipInfoMessage { Id = (uint)guild_error.KGuildTrialTeamInvalid };
+            if (reason.Length > 0) tip.Parameters.Add(reason);
+            if (playerId.Length > 0) tip.Parameters.Add(playerId);
+            _net.Reply(new StartGuildTrialResponse { ErrorMessage = tip });
+            _net.Reply(TrialFixture());
+            Assert.That(_client.Status, Is.EqualTo(expected));
+            Assert.That(_client.RequiresReconnect, Is.False);
+        }
+        /// <summary>
+        /// 应答带的是界面传入的房间 id。同意之后是"还在等别人"还是别的,看回包里的房间;应答只动邀请房间,
+        /// 不补拉帮会快照,回调里不连发请求。
+        /// </summary>
+        [Test] public void RespondTrialInviteSendsTheLobbyAndReportsWhatHappened()
+        {
+            Load(); _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(3, 1, 5)));
+            Assert.That(_client.Status, Is.EqualTo("道友 · 3 邀请你同往历练，请在活动页响应。"));
+            _client.RespondTrialInvite(0, true);
+            Assert.That(_net.Calls.Contains(MessageIds.RespondGuildTrialInvite), Is.False);
+            Assert.That(_client.Status, Is.EqualTo("邀请已失效。"));
+            _client.RespondTrialInvite(77, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.RespondGuildTrialInvite));
+            var request = (RespondGuildTrialInviteRequest)_net.Requests.Last();
+            Assert.That(request.LobbyId, Is.EqualTo(77ul));
+            Assert.That(request.Accept, Is.True);
+            int sent = _net.Calls.Count;
+            var waiting = Lobby(3, 1, 5); waiting.AcceptedPlayerIds.Add(1);
+            _net.Reply(new RespondGuildTrialInviteResponse { Activity = TrialFixture(waiting).Activities[2] });
+            Assert.That(_client.Activities.Activities[2].TrialLobby.AcceptedPlayerIds.Count, Is.EqualTo(2));
+            Assert.That(_client.Status, Is.EqualTo("已同意同道历练，等待其他同道确认（2/3）。"));
+            Assert.That(_client.RefreshQueued, Is.False);
+            Assert.That(_net.Calls.Count, Is.EqualTo(sent));
+            // 房间没了(已过期)且没带回视图:带着原因重拉本页。
+            _client.RespondTrialInvite(77, true);
+            _net.Reply(new RespondGuildTrialInviteResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildTrialInviteExpired } });
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Reply(TrialFixture());
+            Assert.That(_client.Status, Is.EqualTo("邀请已失效。"));
+            Assert.That(_client.RequiresReconnect, Is.False);
+        }
+        /// <summary>
+        /// 最后一个人同意的那次调用负责开战。成功:回包里房间已开战、本人有进行中的对局。失败:服务端回 tip 并**同时**带回
+        /// 已解散的房间 —— 先应用视图,状态栏写成与其他成员看到的同一句(带"未能开战"),本页不必再拉一次。
+        /// </summary>
+        [Test] public void LastAcceptLaunchesOrReportsWhyItCouldNot()
+        {
+            Load(); _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(3, 1)));
+            _client.RespondTrialInvite(77, true);
+            var launched = Lobby(3, 1); launched.AcceptedPlayerIds.Add(1);
+            launched.State = GuildTrialLobbyState.Launched; launched.BattleId = 9001;
+            var fighting = TrialFixture(launched).Activities[2]; fighting.MyTrialBattleId = 9001;
+            _net.Reply(new RespondGuildTrialInviteResponse { Activity = fighting });
+            Assert.That(_client.Status, Is.EqualTo("全员已同意，同道历练开战。"));
+            Assert.That(_client.Activities.Activities[2].MyTrialBattleId, Is.EqualTo(9001ul));
+            Assert.That(_client.RefreshQueued, Is.False);
+
+            _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(3, 1)));
+            _client.RespondTrialInvite(77, true);
+            int sent = _net.Calls.Count;
+            var tip = new TipInfoMessage { Id = (uint)guild_error.KGuildTrialTeamInvalid };
+            tip.Parameters.Add("in_battle"); tip.Parameters.Add("3");
+            _net.Reply(new RespondGuildTrialInviteResponse { ErrorMessage = tip,
+                Activity = TrialFixture(EndedLobby(Lobby(3, 1), guild_error.KGuildTrialTeamInvalid, "in_battle", "3")).Activities[2] });
+            Assert.That(_client.Activities.Activities[2].TrialLobby.State, Is.EqualTo(GuildTrialLobbyState.Ended));
+            Assert.That(_client.Status, Is.EqualTo("历练未能开战：道友 · 3 正在战斗中。"));
+            Assert.That(_net.Calls.Count, Is.EqualTo(sent));
+            Assert.That(_client.RefreshQueued, Is.False);
+            Assert.That(_client.RequiresReconnect, Is.False);
+        }
+        /// <summary>被邀请人说"不"是婉拒,发起人说"不"是取消;之后的重拉按房间里记的结束原因写(是"你"做的)。</summary>
+        [Test] public void DecliningOrCancellingATrialInviteSaysWhichOneItWas()
+        {
+            Load(); _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(3, 1, 5)));
+            _client.RespondTrialInvite(77, false);
+            Assert.That(((RespondGuildTrialInviteRequest)_net.Requests.Last()).Accept, Is.False);
+            var declined = TrialFixture(EndedLobby(Lobby(3, 1, 5), guild_error.KGuildTrialInviteDeclined, "1"));
+            _net.Reply(new RespondGuildTrialInviteResponse { Activity = declined.Activities[2] });
+            Assert.That(_client.Status, Is.EqualTo("已婉拒同道历练邀请。"));
+            _client.RefreshActivities(); _net.Reply(declined.Clone());
+            Assert.That(_client.Status, Is.EqualTo("你婉拒了同道历练邀请。"));
+
+            _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(1, 3, 5)));
+            _client.RespondTrialInvite(77, false);
+            var cancelled = TrialFixture(EndedLobby(Lobby(1, 3, 5), guild_error.KGuildTrialInviteDeclined, "1"));
+            _net.Reply(new RespondGuildTrialInviteResponse { Activity = cancelled.Activities[2] });
+            Assert.That(_client.Status, Is.EqualTo("已取消同道历练邀请。"));
+            _client.RefreshActivities(); _net.Reply(cancelled.Clone());
+            Assert.That(_client.Status, Is.EqualTo("你取消了同道历练。"));
+        }
+        /// <summary>
+        /// 发起人点"取消邀请"时房间可能已经不等人了:最后一票刚到(正在开战 / 已开战,开战完成后才给发起人推送,
+        /// 这段时间他的按钮还是"取消邀请"),或者别人先一步婉拒、邀请已过期。服务端对"本人早已同意"的应答不看 accept,
+        /// 按成功回视图 —— 房间并不是被这一下取消的。提示按回包里的房间写(与随后重拉的默认文案同一句),不说"已取消";
+        /// 回包带了视图,不再多拉一次。回包没带回这个房间时无从判断,才用固定提示。
+        /// </summary>
+        [Test] public void CancellingATrialThatAlreadyMovedOnReportsTheLobbyInstead()
+        {
+            const string cancelledText = "已取消同道历练邀请。";
+            Load();
+            void CancelAndGet(GuildTrialLobbyView answer, ulong myBattle, string expected)
+            {
+                _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(1, 3, 5)));
+                _client.RespondTrialInvite(77, false);
+                Assert.That(((RespondGuildTrialInviteRequest)_net.Requests.Last()).Accept, Is.False);
+                int sent = _net.Calls.Count;
+                var view = TrialFixture(answer).Activities[2]; view.MyTrialBattleId = myBattle;
+                _net.Reply(new RespondGuildTrialInviteResponse { Activity = view });
+                Assert.That(_client.Status, Is.EqualTo(expected));
+                Assert.That(_client.Status, Is.Not.EqualTo(cancelledText));
+                Assert.That(_net.Calls.Count, Is.EqualTo(sent));
+                Assert.That(_client.RefreshQueued, Is.False);
+                Assert.That(_client.RequiresReconnect, Is.False);
+            }
+            GuildTrialLobbyView Agreed(GuildTrialLobbyState state)
+            {
+                var lobby = Lobby(1, 3, 5); lobby.AcceptedPlayerIds.Add(3); lobby.AcceptedPlayerIds.Add(5);
+                lobby.State = state;
+                return lobby;
+            }
+            CancelAndGet(Agreed(GuildTrialLobbyState.Launching), 0, "全员已同意，正在开战…");
+            Assert.That(_client.Activities.Activities[2].TrialLobby.State, Is.EqualTo(GuildTrialLobbyState.Launching));
+            var launched = Agreed(GuildTrialLobbyState.Launched); launched.BattleId = 9001;
+            CancelAndGet(launched, 0, "同道历练已开启。");
+            CancelAndGet(launched.Clone(), 9001, "同道历练进行中。");
+            // 别人先一步婉拒 / 邀请已过期 / 全员同意后开战失败:写真正的解散原因。
+            CancelAndGet(EndedLobby(Lobby(1, 3, 5), guild_error.KGuildTrialInviteDeclined, "5"), 0, "道友 · 5 婉拒了同道历练邀请。");
+            CancelAndGet(EndedLobby(Lobby(1, 3, 5), guild_error.KGuildTrialInviteExpired), 0, "邀请已过期，有同道未及时响应。");
+            CancelAndGet(EndedLobby(Lobby(1, 3, 5), guild_error.KGuildTrialTeamInvalid, "offline", "5"), 0, "历练未能开战：道友 · 5 当前不在线。");
+            // 记了"被婉拒"却没记是谁(参数缺失):不能认定是本人这一下,用不指名的说法。
+            CancelAndGet(EndedLobby(Lobby(1, 3, 5), guild_error.KGuildTrialInviteDeclined), 0, "同道历练邀请已被婉拒或取消。");
+
+            // 回包里是另一个房间(没带回本人应答的那个):无从判断,回落到固定提示。
+            _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(1, 3, 5)));
+            _client.RespondTrialInvite(77, false);
+            var other = Lobby(5, 1); other.LobbyId = 78;
+            _net.Reply(new RespondGuildTrialInviteResponse { Activity = TrialFixture(other).Activities[2] });
+            Assert.That(_client.Status, Is.EqualTo(cancelledText));
+        }
+        /// <summary>
+        /// 房间解散的六种原因(proto 列出的 end_tip_id)在状态栏各有一句完整的话;别人的操作经推送触发的重拉,默认文案就是它。
+        /// 通用的 tip 文案是对"我这次操作"说的,这里说的往往是别人(次数用完的是发起人),所以有几个码换了说法。
+        /// </summary>
+        [TestCase((uint)guild_error.KGuildTrialInviteExpired, "", "邀请已过期，有同道未及时响应。")]
+        [TestCase((uint)guild_error.KGuildTrialInviteDeclined, "5", "道友 · 5 婉拒了同道历练邀请。")]
+        [TestCase((uint)guild_error.KGuildTrialInviteDeclined, "3", "道友 · 3 取消了同道历练。")]
+        [TestCase((uint)guild_error.KGuildTrialInviteDeclined, "", "同道历练邀请已被婉拒或取消。")]
+        [TestCase((uint)guild_error.KGuildTrialTeamInvalid, "offline,5", "历练未能开战：道友 · 5 当前不在线。")]
+        [TestCase((uint)guild_error.KGuildTrialTeamInvalid, "invalid,0", "历练未能开战：队伍信息无效，请刷新后重试。")]
+        [TestCase((uint)guild_error.KGuildTrialServiceBusy, "", "历练服务繁忙，未能开战，请稍后再试。")]
+        [TestCase((uint)guild_error.KGuildActivityAlreadyClaimed, "", "发起人今日次数已满，历练未能开战。")]
+        [TestCase((uint)guild_error.KGuildActivityNotOpen, "", "活动已关闭，历练未能开战。")]
+        [TestCase(0u, "", "同道历练邀请已结束。")]
+        public void EndedLobbyExplainsItselfInTheStatusBar(uint endTip, string parameters, string expected)
+        {
+            Load();
+            var lobby = Lobby(3, 1, 5); lobby.State = GuildTrialLobbyState.Ended; lobby.EndTipId = endTip;
+            foreach (string parameter in parameters.Split(',')) if (parameter.Length > 0) lobby.EndParameters.Add(parameter);
+            _client.RefreshActivities(); _net.Reply(TrialFixture(lobby));
+            Assert.That(_client.Status, Is.EqualTo(expected));
+            Assert.That(_client.LobbyEndText(lobby), Is.EqualTo(expected));
+        }
+        /// <summary>
+        /// 邀请房间到期没有推送(服务端在读取时按截止时刻折算):等待确认的房间过了 expire_at_ms、"正在开战"的过了
+        /// 开战窗口(视图生成时刻 + 5 秒),快照就算过时,由窗口排一次重拉。已开战 / 已解散的房间没有截止时刻。
+        /// </summary>
+        [Test] public void TrialLobbyDeadlinesExpireTheSnapshot()
+        {
+            long clock = 0;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            var pending = Lobby(1, 3); pending.ExpireAtMs = 5_030_000;
+            var first = TrialFixture(pending);
+            foreach (var view in first.Activities) { view.ServerTimeMs = 5_000_000; view.NextResetMs = 9_000_000; }
+            client.RefreshActivities(); net.Reply(first);
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 29_999;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 1;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.True);
+
+            var launching = Lobby(1, 3); launching.AcceptedPlayerIds.Add(3);
+            launching.State = GuildTrialLobbyState.Launching; launching.ExpireAtMs = 5_030_000;
+            var second = TrialFixture(launching);
+            foreach (var view in second.Activities) { view.ServerTimeMs = 5_030_000; view.NextResetMs = 9_000_000; }
+            client.RefreshActivities(); net.Reply(second);
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 4_999;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            clock += 1;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.True);
+
+            var ended = TrialFixture(EndedLobby(Lobby(1, 3), guild_error.KGuildTrialInviteExpired));
+            foreach (var view in ended.Activities) { view.ServerTimeMs = 5_035_000; view.NextResetMs = 9_000_000; }
+            client.RefreshActivities(); net.Reply(ended);
+            clock += 1_000_000;
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+            // 没带服务端时刻的样例不按时间判。
+            client.RefreshActivities(); net.Reply(TrialFixture(Lobby(1, 3)));
+            Assert.That(client.ActivitiesNeedReload(client.ActivityServerNowMs), Is.False);
+        }
+        /// <summary>
+        /// 帮会窗口这次登录还没开过时没有帮会快照(窗口关着不拉),这正是被邀请人的常态:邀请照样记下,并先补拉帮会。
+        /// 第一次读到帮会快照会按"换了帮会"清活动状态,属于这个帮会的邀请不能跟着丢;落定的是别的帮会才作废。
+        /// </summary>
+        [Test] public void InvitePushBeforeTheGuildIsLoadedStillOpensTheInvite()
+        {
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, ActorPlayerId = 3, TargetPlayerId = 1 });
+            Assert.That(_client.TrialInvitePending, Is.True);
+            Assert.That(_client.RefreshQueued, Is.True);
+            Assert.That(_client.Status, Does.Contain("历练邀请"));
+            // 没有帮会快照时活动视图排不上(也发不出去),等快照落定后由窗口进页的自动拉取补上。
+            _client.QueueActivities();
+            Assert.That(_client.ActivitiesQueued, Is.False);
+            _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            Assert.That(_client.TrialInvitePending, Is.True);
+            _client.ConsumeTrialInvite();
+            Assert.That(_client.TrialInvitePending, Is.False);
+
+            _client.Reset();
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 999, Kind = GuildChangeKind.ActivityChanged, TargetPlayerId = 1 });
+            Assert.That(_client.TrialInvitePending, Is.True);
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            Assert.That(_client.TrialInvitePending, Is.False);
+
+            // 不是定向给本人的活动推送:没有快照时与本人无关。
+            _client.Reset();
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, TargetPlayerId = 3 });
+            Assert.That(_client.TrialInvitePending, Is.False);
+            Assert.That(_client.RefreshQueued, Is.False);
+        }
+        /// <summary>
+        /// 界面会推迟打开活动页(战斗中、别的界面开着、正在打字)。推迟太久邀请早已过期、服务端连房间记录都不留了,
+        /// 标志自己失效,不在几分钟后凭空弹出一个空页面;活动视图的重拉照常排着。
+        /// </summary>
+        [Test] public void TrialInviteStopsAskingToOpenThePageOnceItIsLongExpired()
+        {
+            long clock = 0;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            var invite = new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged, ActorPlayerId = 3, TargetPlayerId = 1 };
+            net.Push(MessageIds.NotifyGuildChanged, invite);
+            Assert.That(client.TrialInvitePending, Is.True);
+            clock += GuildClient.TrialInviteNoticeMs;
+            Assert.That(client.TrialInvitePending, Is.True);
+            clock += 1;
+            Assert.That(client.TrialInvitePending, Is.False);
+            Assert.That(client.ActivitiesQueued, Is.True);
+            // 新的邀请重新计时。
+            net.Push(MessageIds.NotifyGuildChanged, invite);
+            Assert.That(client.TrialInvitePending, Is.True);
+        }
+        /// <summary>
+        /// 战斗结束时(界面层按战斗层的显隐通知):快照里有在途的历练 —— 进行中的对局,或还没解散的房间 —— 就标记过时,
+        /// 下次进活动页重拉(结算推送可能丢,也可能晚到)。没有在途历练的普通战斗不白拉。
+        /// </summary>
+        [Test] public void BattleEndMarksActivitiesStaleOnlyWhenATrialWasInFlight()
+        {
+            Load();
+            _client.NoteBattleEnded();
+            LoadActivities();
+            _client.NoteBattleEnded();
+            Assert.That(_client.ActivitiesNeedReload(0), Is.False);
+
+            var launched = Lobby(3, 1); launched.AcceptedPlayerIds.Add(1);
+            launched.State = GuildTrialLobbyState.Launched; launched.BattleId = 9001;
+            var fighting = TrialFixture(launched); fighting.Activities[2].MyTrialBattleId = 9001;
+            _client.RefreshActivities(); _net.Reply(fighting);
+            Assert.That(_client.Status, Is.EqualTo("同道历练进行中。"));
+            Assert.That(_client.ActivitiesNeedReload(0), Is.False);
+            _client.NoteBattleEnded();
+            Assert.That(_client.ActivitiesNeedReload(0), Is.True);
+
+            _client.RefreshActivities(); _net.Reply(TrialFixture(EndedLobby(Lobby(3, 1), guild_error.KGuildTrialInviteExpired)));
+            Assert.That(_client.ActivitiesNeedReload(0), Is.False);
+            _client.NoteBattleEnded();
+            Assert.That(_client.ActivitiesNeedReload(0), Is.False);
+            // 开战前没来得及重拉、快照还停在"等待确认":同样算在途。
+            _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(3, 1)));
+            _client.NoteBattleEnded();
+            Assert.That(_client.ActivitiesNeedReload(0), Is.True);
+        }
+
+        private void LoadActivities() { _client.RefreshActivities(); _net.Reply(ActivitiesFixture()); }
+        /// <summary>点过灯之后服务端回的灯会视图:本人今日 1 / 1,本期 3 / 3 达阈值、资金已发。</summary>
+        public static GuildActivityView LitLantern()
+        {
+            var view = ActivitiesFixture().Activities[0];
+            view.MyUsedCount = 1; view.Progress = 3; view.ThresholdReached = true; view.FundsGranted = true;
+            view.BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            return view;
+        }
+        /// <summary>
+        /// 与 GuildActivity 默认三行同形(开发期常开,服务端 data/GuildActivity.xlsx):灯会本期已点 2 / 3、本人未点;
+        /// 团圆合格在线 2 / 3 未齐;历练在 B6a 被服务端固定为"未开放"。不带服务端时刻(不按时间判过期)。
+        /// </summary>
+        public static GetGuildActivitiesResponse ActivitiesFixture()
+        {
+            var response = new GetGuildActivitiesResponse();
+            response.Activities.Add(new GuildActivityView { ActivityId = 1, Type = GuildActivityType.Lantern, Name = "元宵灯会",
+                State = GuildActivityState.Open, MinGuildLevel = 1, PersonalContribution = 20, GuildFunds = 500, GuildThreshold = 3,
+                DailyLimit = 1, Progress = 2 });
+            var reunion = new GuildActivityView { ActivityId = 2, Type = GuildActivityType.Reunion, Name = "中秋团圆",
+                State = GuildActivityState.Open, MinGuildLevel = 1, PersonalContribution = 30, GuildThreshold = 3,
+                DailyLimit = 1, Progress = 2, BlockedTipId = (uint)guild_error.KGuildActivityThresholdNotReached };
+            reunion.RewardItems.Add(new GuildRewardItem { ItemId = 1, Count = 4 });
+            response.Activities.Add(reunion);
+            var trial = new GuildActivityView { ActivityId = 3, Type = GuildActivityType.Trial, Name = "同道历练",
+                State = GuildActivityState.Disabled, MinGuildLevel = 1, PersonalContribution = 50, GuildFunds = 300, GuildThreshold = 3,
+                DailyLimit = 2, DungeonId = 1, TeamSizeMin = 2, TeamSizeMax = 5,
+                BlockedTipId = (uint)guild_error.KGuildActivityNotOpen };
+            trial.RewardItems.Add(new GuildRewardItem { ItemId = 2, Count = 1 });
+            response.Activities.Add(trial);
+            return response;
+        }
+        /// <summary>
+        /// 历练已开放的活动快照(服务端 B6b 落地后的样子):本人今日未参与、可发起,队伍 2..teamMax 人(含发起人)。
+        /// lobby 非空时把它挂成本人所在的邀请房间。
+        /// </summary>
+        public static GetGuildActivitiesResponse TrialFixture(GuildTrialLobbyView lobby = null, uint teamMax = 5)
+        {
+            var response = ActivitiesFixture();
+            var trial = response.Activities[2];
+            trial.State = GuildActivityState.Open; trial.BlockedTipId = 0; trial.TeamSizeMax = teamMax;
+            if (lobby != null) trial.TrialLobby = lobby;
+            return response;
+        }
+        /// <summary>等待确认的邀请房间(编号 77):发起人在名单首位、建房即同意,其余人尚未应答。不带截止时刻。</summary>
+        public static GuildTrialLobbyView Lobby(ulong initiator, params ulong[] invited)
+        {
+            var lobby = new GuildTrialLobbyView { LobbyId = 77, InitiatorPlayerId = initiator, State = GuildTrialLobbyState.Pending };
+            lobby.MemberPlayerIds.Add(initiator); lobby.AcceptedPlayerIds.Add(initiator);
+            foreach (ulong id in invited) lobby.MemberPlayerIds.Add(id);
+            return lobby;
+        }
+        /// <summary>把一个房间改成已解散,原因用 tip 码与它的参数表达(同服务端 end_tip_id / end_parameters)。</summary>
+        public static GuildTrialLobbyView EndedLobby(GuildTrialLobbyView lobby, guild_error reason, params string[] parameters)
+        {
+            lobby.State = GuildTrialLobbyState.Ended; lobby.EndTipId = (uint)reason;
+            foreach (string parameter in parameters) lobby.EndParameters.Add(parameter);
+            return lobby;
+        }
+
         private void Empty() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } }); }
         private void Load() { _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() }); }
         /// <summary>与 GuildDonate 默认三行同形;大捐今日已用满,供“次数用尽不可点”断言。</summary>
@@ -718,15 +1588,6 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _window.SetClient(_client);
         }
         [TearDown] public void TearDown() { _window.Hide(); _client.Dispose(); UnityEngine.Object.DestroyImmediate(_root); }
-        // B5c 起捐献 / 商店已开放,只剩活动;B6a-cli 删最后一例时要删整个方法(NUnit 不许带参方法没有用例,90 清单 X-11)。
-        [TestCase(GuildPage.Activities)]
-        public void UnsupportedActionsAreClearlyDisabled(GuildPage page)
-        {
-            _window.Show(page);
-            var locked = Buttons().Where(b => b.name.StartsWith("GuildUnavailable_")).ToArray();
-            Assert.That(locked.Length, Is.EqualTo(3)); Assert.That(locked.All(b => !b.interactable), Is.True);
-            Assert.That(ActiveText(), Does.Contain("暂未开放"));
-        }
         [Test] public void OverviewStatisticsUpdateOnlyFromTheGuildSnapshot()
         {
             _window.Show();
@@ -1317,6 +2178,752 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Click("GuildShopCategory_" + category);
                 Assert.That(AssertBodyLinesFit(), Has.Member("GuildShopFooter"));
             }
+        }
+
+        // ── 活动页（B6a-cli）──────────────────────────────────────────
+
+        /// <summary>
+        /// 打开窗口那一发 GetPlayerGuild 还在路上(Busy)时进活动页:读取只是排队,所以照样触发一次,
+        /// 页面写"正在读取";同一次进入不连发。
+        /// </summary>
+        [Test] public void ActivitiesPageQueuesLoadEvenWhenBusy()
+        {
+            int requests = 0; _window.ActivitiesRequested += () => requests++;
+            _client.Refresh();
+            Assert.That(_client.Busy, Is.True);
+            _window.SetClient(_client); _window.Show(GuildPage.Activities);
+            Assert.That(requests, Is.EqualTo(1));
+            Assert.That(_window.ShowingActivities, Is.True);
+            Assert.That(NamedText("GuildActivityPlaceholder"), Is.EqualTo("正在读取帮会活动…"));
+            _window.SetClient(_client); _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+            // 自动拉过却仍没有快照(本用例没把事件接到客户端):不再挂着"正在读取",请玩家点刷新。
+            _net.Reply(new GetPlayerGuildResponse { Guild = GuildClientTests.Fixture() });
+            _window.SetClient(_client);
+            Assert.That(requests, Is.EqualTo(1));
+            Assert.That(NamedText("GuildActivityPlaceholder"), Is.EqualTo("点击右下角刷新读取帮会活动。"));
+            // 离开再进算一次新的进入。
+            _window.Show(GuildPage.Overview);
+            Assert.That(_window.ShowingActivities, Is.False);
+            _window.Show(GuildPage.Activities);
+            Assert.That(requests, Is.EqualTo(2));
+        }
+        /// <summary>推送已经排过队(由 DrainQueued 发出)时,进页不再重复触发事件。</summary>
+        [Test] public void ActivitiesPageDoesNotRequestTwiceWhenAPushAlreadyQueuedIt()
+        {
+            int requests = 0; _window.ActivitiesRequested += () => requests++;
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C { GuildId = 555, Kind = GuildChangeKind.ActivityChanged });
+            Assert.That(_client.ActivitiesQueued, Is.True);
+            _window.SetClient(_client); _window.Show(GuildPage.Activities);
+            Assert.That(requests, Is.Zero);
+            Assert.That(NamedText("GuildActivityPlaceholder"), Is.EqualTo("正在读取帮会活动…"));
+            _client.DrainQueued(_window.ShowingApplications, _window.ShowingActivities);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+        }
+        [Test] public void ActivitiesPageOutsideGuildOffersRanking()
+        {
+            int requests = 0; _window.ActivitiesRequested += () => requests++;
+            _client.Reset();
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
+            _window.SetClient(_client); _window.Show(GuildPage.Activities);
+            Assert.That(requests, Is.Zero);
+            Assert.That(NamedText("GuildActivityPlaceholder"), Is.EqualTo("加入帮会后可参与帮会活动。"));
+            Assert.That(Buttons().Any(b => b.name.StartsWith("GuildActivityAction_")), Is.False);
+            Click("BrowseGuildsFromActivities");
+            Assert.That(_window.Page, Is.EqualTo(GuildPage.Ranking));
+        }
+        /// <summary>三张卡片全部由视图驱动:名称、状态、进度、奖励、我的次数与按钮;不再有"暂未开放"的占位按钮。</summary>
+        [Test] public void ActivitiesPageRendersDataDrivenPanels()
+        {
+            int requests = 0; _window.ActivitiesRequested += () => requests++;
+            uint lantern = 0, reunion = 0;
+            _window.LanternRequested += id => lantern = id; _window.ReunionRequested += id => reunion = id;
+            LoadActivities(GuildClientTests.ActivitiesFixture());
+            // 已有新鲜快照:进页不自动拉。
+            Assert.That(requests, Is.Zero);
+            for (int type = 1; type <= 3; type++)
+                Assert.That(Buttons().Count(b => b.name == "GuildActivityAction_" + type), Is.EqualTo(1));
+            Assert.That(Buttons().Any(b => b.name.StartsWith("GuildUnavailable_")), Is.False);
+            Assert.That(ActiveText(), Does.Contain("本期点灯 2 / 3"));
+            Assert.That(NamedText("GuildActivityName_1"), Is.EqualTo("中秋团圆"));
+            Assert.That(NamedText("GuildActivityState_0"), Is.EqualTo("常开"));
+            Assert.That(NamedText("GuildActivityState_2"), Is.EqualTo("未开放"));
+            Assert.That(NamedText("GuildActivityProgress_1"), Is.EqualTo("同时在线 2 / 3"));
+            Assert.That(NamedText("GuildActivityProgress_2"), Is.EqualTo("今日资金胜场 0 / 3"));
+            Assert.That(NamedText("GuildActivityReward_0"), Is.EqualTo("帮贡 +20 · 达成后帮会资金 +500"));
+            Assert.That(NamedText("GuildActivityReward_1"), Is.EqualTo("帮贡 +30 · 物品 #1×4"));
+            Assert.That(NamedText("GuildActivityReward_2"), Is.EqualTo("帮贡 +50 · 胜利帮会资金 +300 · 物品 #2×1"));
+            Assert.That(NamedText("GuildActivityMine_0"), Is.EqualTo("今日 0 / 1"));
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2"));
+            // 样例不带服务端时刻:只写规则,不编一个倒计时。
+            Assert.That(NamedText("GuildActivityReset"), Is.EqualTo("每日 05:00 重置参与次数。"));
+            Assert.That(Label("GuildActivityAction_1"), Is.EqualTo("点亮花灯"));
+            Assert.That(Buttons().Single(b => b.name == "GuildActivityAction_1").interactable, Is.True);
+            // 团圆人数未齐、历练未开放:按钮说明原因且点不动。
+            Assert.That(Label("GuildActivityAction_2"), Is.EqualTo("人数未齐"));
+            Assert.That(Buttons().Single(b => b.name == "GuildActivityAction_2").interactable, Is.False);
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("未开放"));
+            Assert.That(Buttons().Single(b => b.name == "GuildActivityAction_3").interactable, Is.False);
+            // 没有花费,不加确认框;带出的是视图里的 activity_id。
+            Click("GuildActivityAction_1");
+            Assert.That(_window.ModalVisible, Is.False);
+            Assert.That(lantern, Is.EqualTo(1u));
+
+            var ready = GuildClientTests.ActivitiesFixture();
+            ready.Activities[1].Progress = 3; ready.Activities[1].BlockedTipId = 0;
+            LoadActivities(ready);
+            Assert.That(Label("GuildActivityAction_2"), Is.EqualTo("领取团圆礼"));
+            Click("GuildActivityAction_2");
+            Assert.That(reunion, Is.EqualTo(2u));
+        }
+        /// <summary>服务端少下发一种活动(配表没有可见行):按类型落位,缺的那张卡写"暂无活动",后面的卡不错位。</summary>
+        [Test] public void MissingActivityTypeKeepsItsCardAsUnavailable()
+        {
+            var partial = GuildClientTests.ActivitiesFixture();
+            partial.Activities.RemoveAt(0);
+            LoadActivities(partial);
+            Assert.That(Label("GuildActivityAction_1"), Is.EqualTo("暂无活动"));
+            Assert.That(Buttons().Single(b => b.name == "GuildActivityAction_1").interactable, Is.False);
+            Assert.That(NamedText("GuildActivityName_0"), Is.EqualTo("元宵灯会"));
+            Assert.That(NamedText("GuildActivityName_1"), Is.EqualTo("中秋团圆"));
+            Assert.That(NamedText("GuildActivityProgress_1"), Is.EqualTo("同时在线 2 / 3"));
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("未开放"));
+        }
+        /// <summary>
+        /// 历练按钮的五种状态(06 §6.38),按顺序取第一条:进行中 / 取消邀请 / 响应邀请 / 等待同道(含正在开战)/ 组队历练。
+        /// 前四种先于 blocked_tip_id;第五种不可参与时写原因。"我的状态"的第二行写在途状态的短结论。
+        /// 每一例都重新进一次活动页(Hide 会清掉"已弹过邀请框"的记录,与玩家重开窗口一致)。
+        /// </summary>
+        [Test] public void TrialButtonStates()
+        {
+            ulong responded = 0; bool accepted = true; int responses = 0;
+            _window.TrialInviteResponded += (id, ok) => { responded = id; accepted = ok; responses++; };
+            void Enter(GetGuildActivitiesResponse activities) { _window.Hide(); LoadActivities(activities); }
+            Button TrialAction() => Buttons().Single(b => b.name == "GuildActivityAction_3");
+
+            // ① 本人有进行中的历练对局:只读。
+            var launched = GuildClientTests.Lobby(1, 3); launched.AcceptedPlayerIds.Add(3);
+            launched.State = GuildTrialLobbyState.Launched; launched.BattleId = 9001;
+            var fighting = GuildClientTests.TrialFixture(launched); fighting.Activities[2].MyTrialBattleId = 9001;
+            Enter(fighting);
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("历练进行中"));
+            Assert.That(TrialAction().interactable, Is.False);
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2\n历练进行中"));
+
+            // ② 等待确认、本人是发起人:取消邀请,直接发出,带的是画按钮时看到的房间。
+            Enter(GuildClientTests.TrialFixture(GuildClientTests.Lobby(1, 3, 5)));
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("取消邀请"));
+            Assert.That(TrialAction().interactable, Is.True);
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2\n等待同道确认 1/3"));
+            Assert.That(_window.ModalVisible, Is.False);
+            Click("GuildActivityAction_3");
+            Assert.That(responses, Is.EqualTo(1));
+            Assert.That(responded, Is.EqualTo(77ul));
+            Assert.That(accepted, Is.False);
+
+            // ③ 等待确认、本人被邀请还没应答:响应邀请(邀请框已自动弹出);今日次数已满也照样能应答。
+            var invited = GuildClientTests.TrialFixture(GuildClientTests.Lobby(3, 1, 5));
+            invited.Activities[2].MyUsedCount = 2; invited.Activities[2].BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            Enter(invited);
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("响应邀请"));
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 2 / 2\n收到邀请，待你响应"));
+            Assert.That(_window.ModalVisible, Is.True);
+
+            // ④ 本人已同意:等待同道;全员已同意、正在开战:正在开战。都点不动,也不弹邀请框。
+            var waiting = GuildClientTests.Lobby(3, 1, 5); waiting.AcceptedPlayerIds.Add(1);
+            Enter(GuildClientTests.TrialFixture(waiting));
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("等待同道"));
+            Assert.That(TrialAction().interactable, Is.False);
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2\n等待同道确认 2/3"));
+            Assert.That(_window.ModalVisible, Is.False);
+            var launching = GuildClientTests.Lobby(3, 1); launching.AcceptedPlayerIds.Add(1);
+            launching.State = GuildTrialLobbyState.Launching;
+            Enter(GuildClientTests.TrialFixture(launching));
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("正在开战"));
+            Assert.That(TrialAction().interactable, Is.False);
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2\n正在开战…"));
+
+            // ⑤ 其余:可参与时组队历练(打开选人框);不可参与时写原因。
+            Enter(GuildClientTests.TrialFixture());
+            Assert.That(NamedText("GuildActivityState_2"), Is.EqualTo("常开"));
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("组队历练"));
+            Assert.That(TrialAction().interactable, Is.True);
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2"));
+            Click("GuildActivityAction_3");
+            Assert.That(Buttons().Any(b => b.name == "ConfirmGuildTrial"), Is.True);
+            var used = GuildClientTests.TrialFixture();
+            used.Activities[2].MyUsedCount = 2; used.Activities[2].BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            Enter(used);
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("今日次数已满"));
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 2 / 2"));
+            Assert.That(TrialAction().interactable, Is.False);
+            Enter(GuildClientTests.ActivitiesFixture());
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("未开放"));
+            Assert.That(TrialAction().interactable, Is.False);
+            // 房间显示"已开战"但本人没有进行中的对局(战斗已结束,或集结失败):可以再发起。
+            var over = GuildClientTests.Lobby(1, 3); over.AcceptedPlayerIds.Add(3);
+            over.State = GuildTrialLobbyState.Launched; over.BattleId = 9001;
+            Enter(GuildClientTests.TrialFixture(over));
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("组队历练"));
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2\n历练已开启"));
+            Assert.That(responses, Is.EqualTo(1));
+        }
+        [Test] public void LanternButtonDisabledAfterClaim()
+        {
+            _window.LanternRequested += id => _client.LightLantern(id);
+            LoadActivities(GuildClientTests.ActivitiesFixture());
+            Click("GuildActivityAction_1");
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.LightGuildLantern));
+            // 请求在途:所有活动按钮点不动,不会连点两次。
+            _window.SetClient(_client);
+            Assert.That(Buttons().Single(b => b.name == "GuildActivityAction_1").interactable, Is.False);
+            _net.Reply(new LightGuildLanternResponse { Activity = GuildClientTests.LitLantern() });
+            _window.SetClient(_client);
+            Assert.That(Label("GuildActivityAction_1"), Is.EqualTo("今日已点灯"));
+            Assert.That(Buttons().Single(b => b.name == "GuildActivityAction_1").interactable, Is.False);
+            Assert.That(NamedText("GuildActivityMine_0"), Is.EqualTo("今日 1 / 1"));
+            Assert.That(NamedText("GuildActivityProgress_0"), Is.EqualTo("本期点灯 3 / 3"));
+            Assert.That(NamedText("GuildActivityReward_0"), Is.EqualTo("帮贡 +20 · 帮会资金 +500 已入库"));
+        }
+        /// <summary>背包满时物品奖励保持待发放:不是错误,"我的状态"写原因与件数;永久拒绝只在没有待发放时提示。</summary>
+        [Test] public void PendingRewardShowsBagFullReason()
+        {
+            var activities = GuildClientTests.ActivitiesFixture();
+            var reunion = activities.Activities[1];
+            reunion.MyUsedCount = 1; reunion.ThresholdReached = true; reunion.Progress = 0;
+            reunion.BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            reunion.MyPendingRewardCount = 1; reunion.MyPendingReasonTipId = GuildAssetReasons.BagFull;
+            LoadActivities(activities);
+            Assert.That(NamedText("GuildActivityMine_1"), Is.EqualTo("今日 1 / 1 · 背包已满，腾出空间后自动发放(1)"));
+            Assert.That(NamedText("GuildActivityProgress_1"), Is.EqualTo("本期已团圆"));
+            Assert.That(Label("GuildActivityAction_2"), Is.EqualTo("今日已领取"));
+            Assert.That(_client.RequiresReconnect, Is.False);
+
+            var rejected = GuildClientTests.ActivitiesFixture();
+            rejected.Activities[1].MyUsedCount = 1; rejected.Activities[1].MyLastRewardRejectTipId = GuildAssetReasons.Blocked;
+            LoadActivities(rejected);
+            Assert.That(NamedText("GuildActivityMine_1"), Is.EqualTo("今日 1 / 1 · 上次物品发放失败"));
+        }
+        /// <summary>开放状态与不可参与的按钮标签逐种核对(纯函数,不建界面)。时间按 UTC+8 显示。</summary>
+        [Test] public void ActivityStateAndBlockedLabelsCoverEveryCase()
+        {
+            // 2026-03-05 05:00 (UTC+8) = 2026-03-04 21:00 UTC。
+            ulong when = (ulong)new DateTimeOffset(2026, 3, 4, 21, 0, 0, TimeSpan.Zero).ToUnixTimeMilliseconds();
+            var view = new GuildActivityView { Type = GuildActivityType.Lantern, State = GuildActivityState.Open, MinGuildLevel = 1 };
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("常开"));
+            view.StartAtMs = when - 86400000; view.EndAtMs = when;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("至 03-05 05:00 结束"));
+            view.MinGuildLevel = 6;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("进行中 · 需帮会 6 级"));
+            view.State = GuildActivityState.Upcoming; view.StartAtMs = when;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("03-05 05:00 开启"));
+            view.State = GuildActivityState.Ended;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("已结束"));
+            view.State = GuildActivityState.Disabled;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("未开放"));
+            // 配表把时间填坏也不让界面抛异常。
+            view.State = GuildActivityState.Upcoming; view.StartAtMs = ulong.MaxValue;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("-- 开启"));
+            // "9999-12-31 23:59:59 UTC"(常被拿来表示长期开放)本身还在 DateTimeOffset 的范围内,加上 8 小时的显示偏移才越界:同样不抛。
+            const ulong endOfTimeUtc = 253402300799000;
+            view.StartAtMs = endOfTimeUtc;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("-- 开启"));
+            view.State = GuildActivityState.Open; view.MinGuildLevel = 1; view.StartAtMs = when; view.EndAtMs = endOfTimeUtc;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("至 -- 结束"));
+            // 边界:加完偏移正好落在 9999-12-31 23:59:59.999(UTC+8)的那一毫秒还能显示,再晚一毫秒就写"--"。
+            view.EndAtMs = 253402271999999;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("至 12-31 23:59 结束"));
+            view.EndAtMs = 253402272000000;
+            Assert.That(GuildWindow.ActivityStateText(view, 5), Is.EqualTo("至 -- 结束"));
+
+            string Blocked(guild_error tip, GuildActivityState state) => GuildWindow.ActivityBlockedLabel(
+                new GuildActivityView { BlockedTipId = (uint)tip, State = state }, "今日已点灯");
+            Assert.That(Blocked(guild_error.KGuildActivityAlreadyClaimed, GuildActivityState.Open), Is.EqualTo("今日已点灯"));
+            Assert.That(Blocked(guild_error.KGuildActivityNotOpen, GuildActivityState.Disabled), Is.EqualTo("未开放"));
+            Assert.That(Blocked(guild_error.KGuildActivityNotOpen, GuildActivityState.Upcoming), Is.EqualTo("尚未开启"));
+            Assert.That(Blocked(guild_error.KGuildActivityNotOpen, GuildActivityState.Ended), Is.EqualTo("已结束"));
+            Assert.That(Blocked(guild_error.KGuildActivityLevelTooLow, GuildActivityState.Open), Is.EqualTo("帮会等级不足"));
+            Assert.That(Blocked(guild_error.KGuildActivityJoinTooRecent, GuildActivityState.Open), Is.EqualTo("入帮时间不足"));
+            Assert.That(Blocked(guild_error.KGuildActivityThresholdNotReached, GuildActivityState.Open), Is.EqualTo("人数未齐"));
+            // 不认识的原因码(服务端日后新增):按钮仍然点不动,给一个不误导的说法。
+            Assert.That(Blocked(guild_error.KGuildBusyRetry, GuildActivityState.Open), Is.EqualTo("暂不可参与"));
+        }
+        [Test] public void ActivitiesRefreshButtonReloadsOnlyThisPage()
+        {
+            int activities = 0, guild = 0;
+            _window.ActivitiesRequested += () => activities++; _window.RefreshRequested += () => guild++;
+            LoadActivities(GuildClientTests.ActivitiesFixture());
+            Click("RefreshGuild");
+            Assert.That(activities, Is.EqualTo(1));
+            Assert.That(guild, Is.Zero);
+        }
+        /// <summary>
+        /// 倒计时以视图的 server_time_ms 为基准、按流逝时间往前走(Tick 只改这一行文字);停在本页跨过 05:00 时
+        /// 自动排一次重拉,拉回来之前不连发,离开活动页后 Tick 不再管它。
+        /// </summary>
+        [Test] public void ActivitiesPageCountsDownAndReloadsPastDailyReset()
+        {
+            long clock = 0;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = GuildClientTests.Fixture() });
+            var activities = GuildClientTests.ActivitiesFixture();
+            foreach (var view in activities.Activities) { view.ServerTimeMs = 1_000_000_000; view.NextResetMs = 1_000_000_000 + 200 * 60000; }
+            client.RefreshActivities(); net.Reply(activities);
+            int requests = 0; _window.ActivitiesRequested += () => requests++;
+            _window.SetClient(client); _window.Show(GuildPage.Activities);
+            Assert.That(NamedText("GuildActivityReset"), Is.EqualTo("每日 05:00 重置 · 距下次重置 3 小时 20 分"));
+            clock += 30 * 60000; _window.Tick();
+            Assert.That(NamedText("GuildActivityReset"), Is.EqualTo("每日 05:00 重置 · 距下次重置 2 小时 50 分"));
+            Assert.That(requests, Is.Zero);
+            clock += 170 * 60000; _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+            Assert.That(NamedText("GuildActivityReset"), Does.Contain("已到重置时间"));
+            _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+            _window.Show(GuildPage.Overview); _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+            // 交还 SetUp 的客户端:TearDown 里窗口不再碰这个已释放的替身。
+            _window.SetClient(_client);
+        }
+        /// <summary>
+        /// 活动页所有文字按 30 号正文核框(设计稿的 24–27 号字格子会被 GuildUiArt.Text 抬到 30):单行的框高够一行、
+        /// 字形总宽不超框宽(否则被省略号截掉);两行的(奖励 / 我的状态)排版后总高不超框高。取各格最长的现实文案。
+        /// </summary>
+        [Test] public void ActivityPageTextBoxesFitAtBodySize()
+        {
+            long clock = 0;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            var info = GuildClientTests.Fixture();
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = info });
+            var activities = GuildClientTests.ActivitiesFixture();
+            ulong now = 1_800_000_000_000;
+            foreach (var view in activities.Activities) { view.ServerTimeMs = now; view.NextResetMs = now + (23 * 60 + 59) * 60000ul; }
+            var lantern = activities.Activities[0];
+            lantern.StartAtMs = now - 86400000; lantern.EndAtMs = now + 86400000;
+            lantern.PersonalContribution = 120; lantern.GuildFunds = 120000; lantern.GuildThreshold = 100; lantern.Progress = 100;
+            lantern.ThresholdReached = true; lantern.FundsGranted = true; lantern.MyUsedCount = 1;
+            lantern.BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            var reunion = activities.Activities[1];
+            reunion.GuildFunds = 120000; reunion.GuildThreshold = 100; reunion.Progress = 99; reunion.MyUsedCount = 1;
+            reunion.RewardItems.Add(new GuildRewardItem { ItemId = 1001, Count = 20 });
+            reunion.RewardItems.Add(new GuildRewardItem { ItemId = 1002, Count = 5 });
+            // 最长的暂时原因:战斗中暂不结算。
+            reunion.MyPendingRewardCount = 16; reunion.MyPendingReasonTipId = GuildAssetReasons.InBattle;
+            var trial = activities.Activities[2];
+            trial.State = GuildActivityState.Open; trial.EndAtMs = now + 86400000; trial.MinGuildLevel = 10;
+            trial.BlockedTipId = (uint)guild_error.KGuildActivityLevelTooLow;
+            trial.GuildFunds = 120000; trial.GuildThreshold = 10; trial.Progress = 10; trial.DailyLimit = 10; trial.MyUsedCount = 10;
+            trial.MyLastRewardRejectTipId = GuildAssetReasons.Blocked;
+            client.RefreshActivities(); net.Reply(activities);
+            _window.SetClient(client); _window.Show(GuildPage.Activities);
+            Assert.That(NamedText("GuildActivityState_2"), Is.EqualTo("进行中 · 需帮会 10 级"));
+
+            var checkedNames = AssertBodyLinesFit();
+            foreach (string name in new[] { "GuildActivityReset", "GuildActivityState_0", "GuildActivityProgress_2", "GuildActivityFooter" })
+                Assert.That(checkedNames, Has.Member(name));
+            int wrapped = 0;
+            foreach (var text in _root.GetComponentsInChildren<TMP_Text>().Where(t => t.name.StartsWith("GuildActivity")))
+            {
+                var rect = text.rectTransform.rect;
+                if (text.textWrappingMode == TextWrappingModes.NoWrap)
+                    Assert.That(text.GetPreferredValues(text.text).x, Is.LessThanOrEqualTo(rect.width), text.name + " / " + text.text);
+                else
+                {
+                    wrapped++;
+                    Assert.That(text.GetPreferredValues(text.text, rect.width, 0).y, Is.LessThanOrEqualTo(rect.height), text.name + " / " + text.text);
+                }
+            }
+            // 三张卡片各有奖励与我的状态两格。
+            Assert.That(wrapped, Is.EqualTo(6));
+            _window.SetClient(_client);
+        }
+        /// <summary>活动快照还没拉到时被隔离(请求超时,待重新登录):不挂"正在读取",写恢复提示。</summary>
+        [Test] public void ActivitiesPageShowsRecoveryWhileQuarantined()
+        {
+            int requests = 0; _window.ActivitiesRequested += () => requests++;
+            _client.RefreshActivities(); _net.Error("rpc timeout");
+            Assert.That(_client.RequiresReconnect, Is.True);
+            _window.SetClient(_client); _window.Show(GuildPage.Activities);
+            Assert.That(NamedText("GuildActivityPlaceholder"), Is.EqualTo(GuildClient.RecoveryMessage));
+            Assert.That(ActiveText(), Does.Not.Contain("正在读取"));
+            Assert.That(requests, Is.Zero);
+        }
+
+        // ── 同道历练：选人框与邀请框（B6b-cli）──────────────────────────
+
+        /// <summary>
+        /// 选人框:候选是在线且不是自己的成员(按编号升序);队伍上限 3 人时只能再选 2 位,选满后再点别人不生效;
+        /// 发出时自己在首位、其余按点选顺序,带的是活动 id。
+        /// </summary>
+        [Test] public void TrialPickerLimitsSelectionAndRaisesEvent()
+        {
+            uint activity = 0; IReadOnlyList<ulong> roster = null; int raised = 0;
+            _window.TrialRequested += (id, members) => { activity = id; roster = members; raised++; };
+            LoadActivities(GuildClientTests.TrialFixture(teamMax: 3));
+            Click("GuildActivityAction_3");
+            Assert.That(_window.ModalVisible, Is.True);
+            // 样例里 1、3、5、7 在线,自己是 1。
+            var candidates = Buttons().Select(b => b.name).Where(n => n.StartsWith("GuildTrialMember_")).ToArray();
+            Assert.That(candidates, Is.EqualTo(new[] { "GuildTrialMember_3", "GuildTrialMember_5", "GuildTrialMember_7" }));
+            Assert.That(ActiveText(), Does.Contain("选择 1–2 位在线同道"));
+            Assert.That(Label("GuildTrialMember_3"), Is.EqualTo("道友 · 3"));
+            // 还没选人:人数不够,不能发出。
+            Assert.That(Buttons().Single(b => b.name == "ConfirmGuildTrial").interactable, Is.False);
+            Click("GuildTrialMember_5"); Click("GuildTrialMember_3"); Click("GuildTrialMember_7");
+            Assert.That(ActiveText(), Does.Contain("已选 2 位"));
+            Assert.That(Buttons().Single(b => b.name == "ConfirmGuildTrial").interactable, Is.True);
+            // 换人要先点掉一个。
+            Click("GuildTrialMember_5"); Click("GuildTrialMember_7");
+            Click("ConfirmGuildTrial");
+            Assert.That(raised, Is.EqualTo(1));
+            Assert.That(activity, Is.EqualTo(3u));
+            Assert.That(roster.ToArray(), Is.EqualTo(new ulong[] { 1, 3, 7 }));
+            Assert.That(_window.ModalVisible, Is.False);
+            // 取消 / 重新打开都从空名单开始。
+            Click("GuildActivityAction_3");
+            Assert.That(ActiveText(), Does.Contain("已选 0 位"));
+            Click("GuildTrialMember_3"); Click("CancelGuildTrial");
+            Assert.That(_window.ModalVisible, Is.False);
+            Assert.That(raised, Is.EqualTo(1));
+            // 没有在线同道:说明原因,发不出去。
+            var alone = GuildClientTests.Fixture();
+            foreach (var member in alone.Members) member.Online = member.PlayerId == 1;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = alone }); _window.SetClient(_client);
+            Click("GuildActivityAction_3");
+            Assert.That(NamedText("GuildTrialPickerEmpty"), Does.Contain("暂无在线同道"));
+            Assert.That(Buttons().Single(b => b.name == "ConfirmGuildTrial").interactable, Is.False);
+        }
+        /// <summary>
+        /// 选人框开着时:请求在途(推送触发的重拉)就发不出去,"发出邀请"置灰,硬点也不关框、不丢已选的人;
+        /// 成员快照换过(有人下线)时,确认前按最新名单筛一遍,人少了先重画给玩家看,不直接发一份他没看过的名单。
+        /// 翻页保留已选。
+        /// </summary>
+        [Test] public void TrialPickerWaitsWhileBusyAndDropsMembersWhoLeft()
+        {
+            int raised = 0; IReadOnlyList<ulong> roster = null;
+            _window.TrialRequested += (id, members) => { raised++; roster = members; };
+            LoadActivities(GuildClientTests.TrialFixture());
+            Click("GuildActivityAction_3"); Click("GuildTrialMember_3"); Click("GuildTrialMember_5");
+            _client.Refresh(); _window.SetClient(_client);
+            Assert.That(Buttons().Single(b => b.name == "ConfirmGuildTrial").interactable, Is.False);
+            Click("ConfirmGuildTrial");
+            Assert.That(raised, Is.Zero);
+            Assert.That(_window.ModalVisible, Is.True);
+            var info = GuildClientTests.Fixture(); info.Members[4].Online = false;
+            _net.Reply(new GetPlayerGuildResponse { Guild = info }); _window.SetClient(_client);
+            Assert.That(Buttons().Single(b => b.name == "ConfirmGuildTrial").interactable, Is.True);
+            Click("ConfirmGuildTrial");
+            Assert.That(raised, Is.Zero);
+            Assert.That(Buttons().Any(b => b.name == "GuildTrialMember_5"), Is.False);
+            Assert.That(ActiveText(), Does.Contain("已选 1 位"));
+            Click("ConfirmGuildTrial");
+            Assert.That(raised, Is.EqualTo(1));
+            Assert.That(roster.ToArray(), Is.EqualTo(new ulong[] { 1, 3 }));
+
+            // 在线同道多于一页(6 人):翻页后再选,前一页选的人还在。
+            var crowded = GuildClientTests.Fixture();
+            for (ulong i = 8; i <= 16; i++) crowded.Members.Add(new GuildMember { PlayerId = i, Online = true });
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = crowded }); _window.SetClient(_client);
+            Click("GuildActivityAction_3");
+            Assert.That(ActiveText(), Does.Contain("（第 1/2 页）"));
+            Assert.That(Buttons().Count(b => b.name.StartsWith("GuildTrialMember_")), Is.EqualTo(GuildWindow.TrialMembersPerPage));
+            Assert.That(Buttons().Single(b => b.name == "GuildTrialPrevious").interactable, Is.False);
+            Click("GuildTrialMember_3"); Click("GuildTrialNext");
+            Assert.That(ActiveText(), Does.Contain("（第 2/2 页）"));
+            Assert.That(Buttons().Single(b => b.name == "GuildTrialNext").interactable, Is.False);
+            Click("GuildTrialMember_16"); Click("ConfirmGuildTrial");
+            Assert.That(raised, Is.EqualTo(2));
+            Assert.That(roster.ToArray(), Is.EqualTo(new ulong[] { 1, 3, 16 }));
+        }
+        /// <summary>
+        /// 被邀请且未应答:进活动页即弹邀请框(谁邀请、队伍几人);同一个房间只自动弹一次,重画不重复弹;
+        /// 玩家按 Esc 关掉后可从卡片的"响应邀请"再打开;点同意带出的是打开时看到的房间 id。
+        /// </summary>
+        [Test] public void TrialInviteModalShownOnceAndResponds()
+        {
+            ulong lobby = 0; bool accepted = false; int responses = 0;
+            _window.TrialInviteResponded += (id, ok) => { lobby = id; accepted = ok; responses++; };
+            LoadActivities(GuildClientTests.TrialFixture(GuildClientTests.Lobby(3, 1, 5)));
+            Assert.That(_window.ModalVisible, Is.True);
+            Assert.That(Buttons().Count(b => b.name == "AcceptGuildTrial"), Is.EqualTo(1));
+            Assert.That(Buttons().Count(b => b.name == "DeclineGuildTrial"), Is.EqualTo(1));
+            Assert.That(ActiveText(), Does.Contain("道友 · 3 邀请你同往历练（队伍共 3 人）。"));
+            Assert.That(ActiveText(), Does.Not.Contain("次数已满"));
+            // 样例不带服务端时刻:不编倒计时。
+            Assert.That(NamedText("GuildTrialInviteCountdown"), Is.EqualTo("请尽快响应，邀请超时后自动失效。"));
+            _window.SetClient(_client);
+            Assert.That(Buttons().Count(b => b.name == "AcceptGuildTrial"), Is.EqualTo(1));
+            _window.Back();
+            Assert.That(_window.ModalVisible, Is.False);
+            Assert.That(_window.IsVisible, Is.True);
+            _window.SetClient(_client); _window.Tick();
+            Assert.That(_window.ModalVisible, Is.False);
+            Assert.That(responses, Is.Zero);
+            Click("GuildActivityAction_3");
+            Assert.That(_window.ModalVisible, Is.True);
+            Click("AcceptGuildTrial");
+            Assert.That(responses, Is.EqualTo(1));
+            Assert.That(lobby, Is.EqualTo(77ul));
+            Assert.That(accepted, Is.True);
+            Assert.That(_window.ModalVisible, Is.False);
+        }
+        /// <summary>
+        /// 邀请框跟着房间走:今日次数已满的人也能应答(框里说清"胜利不再得奖");请求在途时两个按钮置灰,硬点不关框也不发事件;
+        /// 房间不再等本人应答(发起人取消了)时框自己关掉,卡片写短结论、状态栏写完整的一句;
+        /// 换了一个新房间再弹一次,应答带的是新房间的 id。
+        /// </summary>
+        [Test] public void TrialInviteModalFollowsTheLobby()
+        {
+            int responses = 0; ulong responded = 0; bool accepted = true;
+            _window.TrialInviteResponded += (id, ok) => { responses++; responded = id; accepted = ok; };
+            var invited = GuildClientTests.TrialFixture(GuildClientTests.Lobby(3, 1));
+            invited.Activities[2].MyUsedCount = 2; invited.Activities[2].BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            LoadActivities(invited);
+            Assert.That(ActiveText(), Does.Contain("你今日次数已满，胜利不再得奖。"));
+            _client.Refresh(); _window.SetClient(_client);
+            Assert.That(Buttons().Single(b => b.name == "AcceptGuildTrial").interactable, Is.False);
+            Assert.That(Buttons().Single(b => b.name == "DeclineGuildTrial").interactable, Is.False);
+            Click("AcceptGuildTrial");
+            Assert.That(responses, Is.Zero);
+            Assert.That(_window.ModalVisible, Is.True);
+            _net.Reply(new GetPlayerGuildResponse { Guild = GuildClientTests.Fixture() }); _window.SetClient(_client);
+            Assert.That(Buttons().Single(b => b.name == "AcceptGuildTrial").interactable, Is.True);
+
+            _client.RefreshActivities();
+            _net.Reply(GuildClientTests.TrialFixture(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1),
+                guild_error.KGuildTrialInviteDeclined, "3")));
+            _window.SetClient(_client);
+            Assert.That(_window.ModalVisible, Is.False);
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2\n邀请已取消"));
+            Assert.That(_client.Status, Is.EqualTo("道友 · 3 取消了同道历练。"));
+            Assert.That(Label("GuildActivityAction_3"), Is.EqualTo("组队历练"));
+
+            var again = GuildClientTests.Lobby(5, 1); again.LobbyId = 78;
+            _client.RefreshActivities(); _net.Reply(GuildClientTests.TrialFixture(again)); _window.SetClient(_client);
+            Assert.That(_window.ModalVisible, Is.True);
+            Assert.That(ActiveText(), Does.Contain("道友 · 5 邀请你同往历练（队伍共 2 人）。"));
+            Click("DeclineGuildTrial");
+            Assert.That(responses, Is.EqualTo(1));
+            Assert.That(responded, Is.EqualTo(78ul));
+            Assert.That(accepted, Is.False);
+        }
+        /// <summary>
+        /// 邀请框的倒计时按房间的 expire_at_ms 与估算的服务端时刻走(Tick 只改这一行字)。到点时服务端不推送:
+        /// 窗口自动排一次重拉,回来之前不连发;重拉回来房间已过期,邀请框关掉,卡片与状态栏说明原因,快照不再判过时。
+        /// </summary>
+        [Test] public void TrialInviteCountsDownAndClosesWhenTheLobbyExpires()
+        {
+            long clock = 0;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = GuildClientTests.Fixture() });
+            ulong now = 1_000_000_000, reset = now + 200 * 60000;
+            var lobby = GuildClientTests.Lobby(3, 1); lobby.ExpireAtMs = now + 30_000;
+            var activities = GuildClientTests.TrialFixture(lobby);
+            foreach (var view in activities.Activities) { view.ServerTimeMs = now; view.NextResetMs = reset; }
+            client.RefreshActivities(); net.Reply(activities);
+            int requests = 0; _window.ActivitiesRequested += () => requests++;
+            _window.SetClient(client); _window.Show(GuildPage.Activities);
+            Assert.That(NamedText("GuildTrialInviteCountdown"), Is.EqualTo("请在 30 秒内响应，超时邀请自动失效。"));
+            clock += 12_500; _window.Tick();
+            Assert.That(NamedText("GuildTrialInviteCountdown"), Is.EqualTo("请在 18 秒内响应，超时邀请自动失效。"));
+            Assert.That(requests, Is.Zero);
+            clock += 17_500; _window.Tick();
+            Assert.That(NamedText("GuildTrialInviteCountdown"), Is.EqualTo("邀请已到期，正在确认…"));
+            Assert.That(requests, Is.EqualTo(1));
+            _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+
+            var expired = GuildClientTests.TrialFixture(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1),
+                guild_error.KGuildTrialInviteExpired));
+            foreach (var view in expired.Activities) { view.ServerTimeMs = now + 30_100; view.NextResetMs = reset; }
+            client.RefreshActivities(); net.Reply(expired); _window.SetClient(client);
+            Assert.That(_window.ModalVisible, Is.False);
+            Assert.That(NamedText("GuildActivityMine_2"), Is.EqualTo("今日 0 / 2\n邀请已过期"));
+            Assert.That(client.Status, Is.EqualTo("邀请已过期，有同道未及时响应。"));
+            _window.Tick();
+            Assert.That(requests, Is.EqualTo(1));
+            // 交还 SetUp 的客户端:TearDown 里窗口不再碰这个已释放的替身。
+            _window.SetClient(_client);
+        }
+        /// <summary>
+        /// 邀请框什么时候不弹:不在活动页(由 GuildUiRoot 把窗口带过来)、别的弹窗开着(等它关掉,由 Tick 补弹)、
+        /// 已隔离(应答发不出去)。
+        /// </summary>
+        [Test] public void TrialInviteWaitsForTheActivitiesPageAndForOtherModals()
+        {
+            _client.RefreshActivities(); _net.Reply(GuildClientTests.TrialFixture(GuildClientTests.Lobby(3, 1)));
+            _window.SetClient(_client); _window.Show(GuildPage.Overview);
+            Assert.That(_window.ModalVisible, Is.False);
+            _window.Show(GuildPage.Activities);
+            Assert.That(Buttons().Any(b => b.name == "AcceptGuildTrial"), Is.True);
+
+            _window.Hide();
+            LoadActivities(GuildClientTests.TrialFixture());
+            Click("GuildActivityAction_3");
+            _client.RefreshActivities(); _net.Reply(GuildClientTests.TrialFixture(GuildClientTests.Lobby(3, 1)));
+            _window.SetClient(_client);
+            Assert.That(Buttons().Any(b => b.name == "ConfirmGuildTrial"), Is.True);
+            Assert.That(Buttons().Any(b => b.name == "AcceptGuildTrial"), Is.False);
+            Click("CancelGuildTrial");
+            Assert.That(_window.ModalVisible, Is.False);
+            _window.Tick();
+            Assert.That(Buttons().Any(b => b.name == "AcceptGuildTrial"), Is.True);
+
+            _window.Hide();
+            _client.Refresh(); _net.Error("rpc timeout");
+            Assert.That(_client.RequiresReconnect, Is.True);
+            _window.SetClient(_client); _window.Show(GuildPage.Activities);
+            Assert.That(_window.ModalVisible, Is.False);
+            Assert.That(Buttons().Single(b => b.name == "GuildActivityAction_3").interactable, Is.False);
+        }
+        /// <summary>
+        /// 历练新增的文字按 30 号正文(按钮 32 号)核框:卡片第二行的各种短结论不折成第三行;状态栏的完整原因在 1660 宽以内;
+        /// 邀请框的说明两行以内、倒计时一行;选人框的说明、空态与成员按钮(名字最长 12 个字;取名失败的兜底名带 18–20 位编号)不被截断。
+        /// </summary>
+        [Test] public void TrialTextBoxesFitAtBodySize()
+        {
+            const string longName = "名字最长是十二个汉字的人";
+            var info = GuildClientTests.Fixture();
+            info.Members[2].Name = longName; info.Members[4].Name = longName;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = info });
+            Assert.That(longName.Length, Is.EqualTo(12));
+            var lobbies = new List<GuildTrialLobbyView>();
+            var hosting = GuildClientTests.Lobby(1, 2, 3, 4, 5); lobbies.Add(hosting);
+            lobbies.Add(GuildClientTests.Lobby(3, 1, 5, 6, 7));
+            var launching = GuildClientTests.Lobby(3, 1); launching.AcceptedPlayerIds.Add(1);
+            launching.State = GuildTrialLobbyState.Launching; lobbies.Add(launching);
+            var launched = GuildClientTests.Lobby(3, 1); launched.AcceptedPlayerIds.Add(1);
+            launched.State = GuildTrialLobbyState.Launched; lobbies.Add(launched);
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildTrialInviteDeclined, "5"));
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildTrialInviteDeclined, "3"));
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildTrialInviteExpired));
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildTrialTeamInvalid, "not_ready", "3"));
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildTrialServiceBusy));
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildActivityAlreadyClaimed));
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildActivityNotOpen));
+            lobbies.Add(GuildClientTests.EndedLobby(GuildClientTests.Lobby(3, 1), guild_error.KGuildBusyRetry));
+            foreach (var lobby in lobbies)
+            {
+                _window.Hide();
+                var activities = GuildClientTests.TrialFixture(lobby);
+                activities.Activities[2].DailyLimit = 10; activities.Activities[2].MyUsedCount = 10;
+                LoadActivities(activities);
+                var mine = _root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "GuildActivityMine_2");
+                var rect = mine.rectTransform.rect;
+                string[] lines = mine.text.Split('\n');
+                Assert.That(lines.Length, Is.EqualTo(2), mine.text);
+                foreach (string line in lines)
+                    Assert.That(mine.GetPreferredValues(line).x, Is.LessThanOrEqualTo(rect.width), line);
+                Assert.That(mine.GetPreferredValues(mine.text, rect.width, 0).y, Is.LessThanOrEqualTo(rect.height), mine.text);
+                // 状态栏与这一格同字体同字号(30 号正文),借它量完整原因的宽度。
+                Assert.That(mine.GetPreferredValues(_client.Status).x, Is.LessThanOrEqualTo(1660f), _client.Status);
+                if (!_window.ModalVisible) continue;
+                // 邀请框(本人被邀请的那几例):说明换行、倒计时一行。
+                AssertModalTextFits();
+            }
+
+            // 邀请框:最长的说明(12 个字的名字 + 次数已满的提醒)与带数字的倒计时。
+            long clock = 0;
+            var net = new GuildFakeTransport();
+            using var client = new GuildClient(net, null, () => clock);
+            client.Refresh(); net.Reply(new GetPlayerGuildResponse { Guild = info });
+            var invite = GuildClientTests.Lobby(3, 1, 5, 6, 7); invite.ExpireAtMs = 1_000_030_000;
+            var invited = GuildClientTests.TrialFixture(invite);
+            foreach (var view in invited.Activities) { view.ServerTimeMs = 1_000_000_000; view.NextResetMs = 1_000_000_000 + 200 * 60000; }
+            invited.Activities[2].MyUsedCount = 2; invited.Activities[2].BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed;
+            client.RefreshActivities(); net.Reply(invited);
+            _window.Hide(); _window.SetClient(client); _window.Show(GuildPage.Activities);
+            Assert.That(_window.ModalVisible, Is.True);
+            Assert.That(ActiveText(), Does.Contain(longName + " 邀请你同往历练（队伍共 5 人）。你今日次数已满，胜利不再得奖。"));
+            Assert.That(NamedText("GuildTrialInviteCountdown"), Does.StartWith("请在 30 秒内响应"));
+            AssertModalTextFits();
+            Assert.That(AssertBodyLinesFit(), Has.Member("GuildTrialInviteCountdown"));
+            clock += 60_000; _window.Tick();
+            AssertModalTextFits();
+            _window.Hide(); _window.SetClient(_client);
+
+            // 选人框:两页、选满时的说明;成员按钮上 12 个字的名字;翻页与底部按钮。
+            var crowded = info.Clone();
+            for (ulong i = 8; i <= 16; i++) crowded.Members.Add(new GuildMember { PlayerId = i, Online = true, Name = longName });
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = crowded });
+            LoadActivities(GuildClientTests.TrialFixture());
+            Click("GuildActivityAction_3");
+            Click("GuildTrialMember_3"); Click("GuildTrialMember_5"); Click("GuildTrialMember_7"); Click("GuildTrialMember_8");
+            Assert.That(ActiveText(), Does.Contain("已选 4 位。（第 1/2 页）"));
+            AssertModalTextFits();
+            foreach (var button in Buttons().Where(b => b.name.StartsWith("GuildTrial") || b.name.EndsWith("GuildTrial")))
+            {
+                var caption = button.GetComponentInChildren<TMP_Text>();
+                var box = caption.rectTransform.rect;
+                Assert.That(caption.GetPreferredValues(caption.text).x, Is.LessThanOrEqualTo(box.width), button.name + " / " + caption.text);
+                var face = caption.font.faceInfo;
+                float line = (face.ascentLine - face.descentLine) * face.scale * caption.fontSize / face.pointSize;
+                Assert.That(box.height, Is.GreaterThanOrEqualTo(line), button.name);
+            }
+            // 取名失败的兜底名"道友 · 编号":存量 snowflake 号是 18–19 位,ulong 的上限是 20 位。成员按钮缩到正文下限 30 号时
+            // 整串都要放得下(按钮的伪粗体放不下,所以兜底名用正文字重),编号的尾巴不能被省略号截掉。
+            _window.Hide();
+            var legacy = GuildClientTests.Fixture();
+            ulong[] longIds = { 281253138764136448, 9223372036854775807, ulong.MaxValue };
+            foreach (ulong id in longIds) legacy.Members.Add(new GuildMember { PlayerId = id, Online = true });
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = legacy });
+            LoadActivities(GuildClientTests.TrialFixture());
+            Click("GuildActivityAction_3");
+            foreach (ulong id in longIds)
+            {
+                var caption = Buttons().Single(b => b.name == "GuildTrialMember_" + id).GetComponentInChildren<TMP_Text>();
+                Assert.That(caption.text, Is.EqualTo("道友 · " + id));
+                Assert.That(caption.fontSizeMin, Is.GreaterThanOrEqualTo(30f));
+                Assert.That(WidthAtSmallestSize(caption), Is.LessThanOrEqualTo(caption.rectTransform.rect.width), caption.text);
+            }
+            // 没有在线同道时的空态一行。
+            _window.Hide();
+            var alone = GuildClientTests.Fixture();
+            foreach (var member in alone.Members) member.Online = member.PlayerId == 1;
+            _client.Refresh(); _net.Reply(new GetPlayerGuildResponse { Guild = alone });
+            LoadActivities(GuildClientTests.TrialFixture());
+            Click("GuildActivityAction_3");
+            AssertModalTextFits();
+            Assert.That(AssertBodyLinesFit(), Has.Member("GuildTrialPickerEmpty"));
+        }
+        /// <summary>
+        /// 一行文字"缩到允许的最小字号时"的宽度:比框宽还大,才会被省略号截断。自动缩字的文字,GetPreferredValues 按上限字号量,
+        /// 而字宽与字距都随字号等比变化,所以按比例折到下限;没开自动缩字的就是当前字号下的宽度。
+        /// </summary>
+        private static float WidthAtSmallestSize(TMP_Text text)
+        {
+            float width = text.GetPreferredValues(text.text).x;
+            return text.enableAutoSizing ? width * text.fontSizeMin / text.fontSizeMax : width;
+        }
+        /// <summary>
+        /// 弹窗里的正文(GuildModalFrame 下、不在按钮上的文字):单行的字形总宽不超框宽,换行的排版总高不超框高。
+        /// 单行的框高由 AssertBodyLinesFit 统一核。
+        /// </summary>
+        private void AssertModalTextFits()
+        {
+            var frame = _root.GetComponentsInChildren<RectTransform>().Single(r => r.name == "GuildModalFrame");
+            int checkedTexts = 0;
+            foreach (var text in frame.GetComponentsInChildren<TMP_Text>())
+            {
+                if (string.IsNullOrEmpty(text.text) || text.GetComponentInParent<Button>() != null) continue;
+                var rect = text.rectTransform.rect;
+                if (text.textWrappingMode == TextWrappingModes.NoWrap)
+                    Assert.That(text.GetPreferredValues(text.text).x, Is.LessThanOrEqualTo(rect.width), text.text);
+                else
+                    Assert.That(text.GetPreferredValues(text.text, rect.width, 0).y, Is.LessThanOrEqualTo(rect.height), text.text);
+                checkedTexts++;
+            }
+            // 至少有标题与说明两段。
+            Assert.That(checkedTexts, Is.GreaterThanOrEqualTo(2));
+        }
+        /// <summary>拉一份活动快照并进入活动页(本类的用例没把 Changed 接到窗口,所以手动 SetClient)。</summary>
+        private void LoadActivities(GetGuildActivitiesResponse activities)
+        {
+            _client.RefreshActivities(); _net.Reply(activities);
+            _window.SetClient(_client); _window.Show(GuildPage.Activities);
         }
         private List<string> AssertBodyLinesFit()
         {

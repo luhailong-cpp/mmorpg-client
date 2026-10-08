@@ -53,6 +53,10 @@ public static class GuildUiVerification
         // 捐献页 / 商店页的读取(B5):替身有样例,进页面即自动拉取;捐献、兑换、升级是写操作,同上不接。
         window.DonationsRequested += () => _previewClient.RefreshDonations();
         window.ShopRequested += () => _previewClient.RefreshShop();
+        // 活动页的读取(B6a):正式环境里这个事件只排队、由 GuildUiRoot 每帧的 DrainQueued 发出;预览没有那个循环,
+        // 而替身是同步回包(不会 Busy),所以直接拉。点灯 / 领团圆礼、历练的发出邀请 / 应答(B6b)是写操作,同上不接:
+        // 历练卡片的样例是"本人发起、等待同道确认"(按钮"取消邀请"点了没有反应);选人框与邀请框见 CaptureAll 的 12 / 13 两屏。
+        window.ActivitiesRequested += () => _previewClient.RefreshActivities();
         _previewClient.Refresh(); window.SetClient(_previewClient); window.Show();
         Badge(design);
         foreach (var child in _preview.GetComponentsInChildren<UnityEngine.Transform>(true)) child.gameObject.hideFlags = HideFlags.DontSave;
@@ -72,11 +76,13 @@ public static class GuildUiVerification
     {
         _missingGlyphs.Clear();
         Capture(2560, 1080); Capture(1920, 1080);
-        // 11 屏 × 2 分辨率：六个页签 + 公告编辑 + 未入帮 + 长帮名确认 + 需重连 + 入帮申请审批。
+        // 13 屏 × 2 分辨率：六个页签 + 公告编辑 + 未入帮 + 长帮名确认 + 需重连 + 入帮申请审批 + 历练选人框 + 历练邀请框。
+        // 六个页签都是带样例数据的真实页面(B6a 起活动页也是:05-activities 为灯会 / 团圆 / 历练三张卡片;
+        // B6b 起历练卡片是"本人发起、等待同道确认"的邀请房间,另加 12-trial-picker 与 13-trial-invite 两屏弹窗)。
         // 有文字没出字形就记为 failed(不中断截图,好让所有问题一次看全)。
         bool passed = _missingGlyphs.Count == 0;
         File.WriteAllText(Path.Combine(OutputDirectory, "capture.json"),
-            "{\"status\":\"" + (passed ? "passed" : "failed") + "\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":22,"
+            "{\"status\":\"" + (passed ? "passed" : "failed") + "\",\"source\":\"production GuildWindow with offline fixtures\",\"screenshots\":26,"
             + "\"missingGlyphLabels\":" + _missingGlyphs.Count + ",\"liveServerVerification\":false}");
         if (!passed) Debug.LogError("帮会界面有文字未渲染(框高不足一行?):\n" + string.Join("\n", _missingGlyphs));
         Debug.Log("Guild UI capture completed: " + OutputDirectory);
@@ -124,6 +130,9 @@ public static class GuildUiVerification
             // 捐献页 / 商店页进页面自动拉取(同步回包),04-donate / 06-shop 截到的是样例数据而不是"点击刷新"。
             window.DonationsRequested += () => client.RefreshDonations();
             window.ShopRequested += () => client.RefreshShop();
+            // 活动页同理(B6a):05-activities 截到的是三张带样例数据的卡片,不再是"暂未开放"占位。
+            // 截图流程没有每帧的 DrainQueued,替身又是同步回包,所以直接拉而不排队。
+            window.ActivitiesRequested += () => client.RefreshActivities();
             client.Refresh(); window.SetClient(client); Badge(design);
             void Shoot(string name)
             {
@@ -147,6 +156,20 @@ public static class GuildUiVerification
             }
             foreach (GuildPage page in Enum.GetValues(typeof(GuildPage)))
             { window.Show(page); Shoot("0" + ((int)page + 1) + "-" + page.ToString().ToLowerInvariant()); }
+            // 同道历练的两个弹窗(B6b)。替身是同步回包:换一种样例后重拉一次活动视图,Changed → SetClient 会把页面重画。
+            void Press(string name)
+            {
+                foreach (var button in canvasObject.GetComponentsInChildren<Button>())
+                    if (button.name == name) { button.onClick.Invoke(); break; }
+            }
+            // 12:没有房间、可发起 → 点"组队历练"打开选人框,选中两位在线同道(每点一下选人框整个重画,所以逐个找按钮)。
+            net.Trial = FixtureTransport.TrialSample.Open; client.RefreshActivities(); window.Show(GuildPage.Activities);
+            Press("GuildActivityAction_3"); Press("GuildTrialMember_10002"); Press("GuildTrialMember_10004");
+            Shoot("12-trial-picker");
+            // 13:被 10002 邀请、尚未应答 → 活动页重画时邀请框自动弹出(带倒计时)。
+            window.Back(); net.Trial = FixtureTransport.TrialSample.Invited; client.RefreshActivities();
+            Shoot("13-trial-invite");
+            window.Back(); net.Trial = FixtureTransport.TrialSample.Hosting; client.RefreshActivities();
             window.Show(GuildPage.Overview);
             foreach (var button in canvasObject.GetComponentsInChildren<Button>())
                 if (button.name == "EditGuildAnnouncement") { button.onClick.Invoke(); break; }
@@ -191,6 +214,9 @@ public static class GuildUiVerification
         public bool IsReady => true;
         public bool HasGuild = true;
         public bool LongName, FailNext;
+        /// <summary>历练卡片的样例:本人发起、等待确认(默认,05-activities)/ 没有房间、可发起(选人框)/ 被邀请、待应答(邀请框)。</summary>
+        public enum TrialSample { Hosting, Open, Invited }
+        public TrialSample Trial = TrialSample.Hosting;
         public event Action Disconnected;
         public void RegisterNotify(uint id, Action<MessageContent> handler) { }
         public void SendOneWay(uint id, IMessage message) { }
@@ -228,6 +254,7 @@ public static class GuildUiVerification
             else if (id == MessageIds.ListMyGuildApplications) response = new ListMyGuildApplicationsResponse();
             else if (id == MessageIds.GetGuildDonateOptions) response = DonateFixture();
             else if (id == MessageIds.GetGuildShop) response = ShopFixture();
+            else if (id == MessageIds.GetGuildActivities) response = ActivitiesFixture();
             else { error("离线验收不执行服务端操作"); return; }
             success((T)response);
         }
@@ -271,6 +298,46 @@ public static class GuildUiVerification
             Add(301, "花灯", 3, 1, 50, 1, 1, 5, 5); Add(302, "月饼礼盒", 3, 1, 100, 1, 2, 7); Add(303, "同心结", 3, 1, 200, 5, 0, 0);
             response.PendingOrders.Add(new GuildShopOrderView { OpId = 7101, GoodsId = 203, Count = 1, Status = GuildAssetOrderStatus.Pending,
                 CostContribution = 120, ReasonTipId = GuildAssetReasons.BagFull });
+            return response;
+        }
+        // 活动样例:三种按钮态同屏 —— 灯会可点(本期 2 / 3,本人未点);团圆本期已锁存、本人已领,物品因背包满待发放;
+        // 历练已开放(B6b),默认是"本人发起、已有一人同意、等待另一人确认"的邀请房间(按钮"取消邀请"),
+        // 另两种样例见 TrialSample。带服务端时刻,标题行右侧显示"距下次重置 7 小时 25 分"。
+        private GetGuildActivitiesResponse ActivitiesFixture()
+        {
+            ulong now = (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            ulong nextReset = now + (7 * 60 + 25) * 60000ul;
+            var response = new GetGuildActivitiesResponse();
+            response.Activities.Add(new GuildActivityView { ActivityId = 1, Type = GuildActivityType.Lantern, Name = "元宵灯会",
+                State = GuildActivityState.Open, MinGuildLevel = 1, PersonalContribution = 20, GuildFunds = 500, GuildThreshold = 3,
+                DailyLimit = 1, MyUsedCount = 0, Progress = 2, ServerTimeMs = now, NextResetMs = nextReset });
+            // 团圆带档期(还有三天结束),顺带验"至 MM-dd HH:mm 结束"这一格的宽度。
+            var reunion = new GuildActivityView { ActivityId = 2, Type = GuildActivityType.Reunion, Name = "中秋团圆",
+                State = GuildActivityState.Open, StartAtMs = now - 86400000ul, EndAtMs = now + 3 * 86400000ul, MinGuildLevel = 1,
+                PersonalContribution = 30, GuildThreshold = 3, DailyLimit = 1, MyUsedCount = 1, ThresholdReached = true,
+                BlockedTipId = (uint)guild_error.KGuildActivityAlreadyClaimed,
+                MyPendingRewardCount = 1, MyPendingReasonTipId = GuildAssetReasons.BagFull,
+                ServerTimeMs = now, NextResetMs = nextReset };
+            reunion.RewardItems.Add(new GuildRewardItem { ItemId = 1, Count = 4 });
+            response.Activities.Add(reunion);
+            var trial = new GuildActivityView { ActivityId = 3, Type = GuildActivityType.Trial, Name = "同道历练",
+                State = GuildActivityState.Open, MinGuildLevel = 1, PersonalContribution = 50, GuildFunds = 300, GuildThreshold = 3,
+                DailyLimit = 2, MyUsedCount = 1, Progress = 1, DungeonId = 1, TeamSizeMin = 2, TeamSizeMax = 5,
+                ServerTimeMs = now, NextResetMs = nextReset };
+            trial.RewardItems.Add(new GuildRewardItem { ItemId = 2, Count = 1 });
+            if (Trial != TrialSample.Open)
+            {
+                // 邀请房间:三人队,24 秒后到期。Hosting = 样例账号(10001)发起,10002 已同意;Invited = 10002 发起,样例账号还没应答。
+                ulong initiator = Trial == TrialSample.Hosting ? 10001ul : 10002ul;
+                var lobby = new GuildTrialLobbyView { LobbyId = Trial == TrialSample.Hosting ? 9001ul : 9002ul,
+                    InitiatorPlayerId = initiator, State = GuildTrialLobbyState.Pending, ExpireAtMs = now + 24000 };
+                lobby.MemberPlayerIds.Add(initiator); lobby.AcceptedPlayerIds.Add(initiator);
+                lobby.MemberPlayerIds.Add(Trial == TrialSample.Hosting ? 10002ul : 10001ul);
+                lobby.MemberPlayerIds.Add(10003);
+                if (Trial == TrialSample.Hosting) lobby.AcceptedPlayerIds.Add(10002);
+                trial.TrialLobby = lobby;
+            }
+            response.Activities.Add(trial);
             return response;
         }
     }

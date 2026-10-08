@@ -30,6 +30,8 @@ namespace MmorpgClient.UI.Ugui.Guild
         private RectTransform _hud;
         private ulong _player;
         private bool _available;
+        // 上一帧战斗层是否显示;由显示变为不显示的那一帧 = 一场战斗刚结束。
+        private bool _inBattle;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -79,6 +81,14 @@ namespace MmorpgClient.UI.Ugui.Guild
             _window.UpgradeRequested += level => { if (_available) _client?.Upgrade(level); };
             _window.ShopRequested += () => { if (_available) _client?.RefreshShop(); };
             _window.ShopBuyRequested += id => { if (_available) _client?.Buy(id); };
+            // 活动(B6a):读取只排队(打开窗口那一发 GetPlayerGuild 多半还在路上),由下面 Update 里的 DrainQueued 发出;
+            // 点灯 / 领团圆礼是写操作。
+            _window.ActivitiesRequested += () => { if (_available) _client?.QueueActivities(); };
+            _window.LanternRequested += id => { if (_available) _client?.LightLantern(id); };
+            _window.ReunionRequested += id => { if (_available) _client?.ClaimReunion(id); };
+            // 同道历练(B6b):选人框发出邀请(建房),邀请框 / 卡片按钮应答(同意、婉拒、发起人取消)。
+            _window.TrialRequested += (id, members) => { if (_available) _client?.StartTrial(id, members); };
+            _window.TrialInviteResponded += (lobby, accept) => { if (_available) _client?.RespondTrialInvite(lobby, accept); };
             _hud.gameObject.SetActive(false);
         }
         private uint ZoneId => AppBootstrap.Instance?.Session?.SelectedZoneId ?? 0;
@@ -98,15 +108,23 @@ namespace MmorpgClient.UI.Ugui.Guild
             ulong player = inGame ? game.PlayerId : 0;
             if (_player != player)
             { _player = player; _window.ResetSession(); _client?.Reset(); _window.SetClient(_client); }
-            _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
+            bool inBattle = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
+            // 战斗层刚收起 = 一场战斗刚结束。打的若是同道历练,活动快照里还留着"历练进行中 / 已开启":结算推送可能丢、
+            // 也可能晚到,让客户端把这份快照标成过时,下次进活动页自动重拉(没有在途历练时它什么也不做)。
+            if (_inBattle && !inBattle) _client?.NoteBattleEnded();
+            _inBattle = inBattle;
+            _available = inGame && !inBattle;
             _hud.gameObject.SetActive(_available);
+            // 开战(收到 NotifyBattleStart 后战斗层显示)由战斗界面接管:本窗口连同邀请框 / 选人框在这里关掉。
+            // 战斗中到达的历练邀请不弹,标志留在 GuildClient 里(有时限,见 TrialInvitePending)。
             if (!_available) { HidePanel(); return; }
+            OpenPendingTrialInvite();
             // NotifyGuildChanged 只置排队标志;真正的拉取在这里按帧消费,一帧最多发一个请求,
             // 不让每条推送都触发一次全量 Refresh。窗口关着不拉,Toggle() 打开时已有 Refresh()。
-            // Tick 排在后面:停在捐献 / 商店页跨过日 / 周切点没有任何事件,由它补判快照过时;DrainQueued 刚发了请求时它什么也不做。
-            if (_window.IsVisible) { _client?.DrainQueued(_window.ShowingApplications); _window.Tick(); }
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            bool typing = selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true;
+            // Tick 排在后面:停在捐献 / 商店 / 活动页跨过日 / 周切点没有任何事件,由它补判快照过时;DrainQueued 刚发了请求时它什么也不做。
+            // 活动视图只在活动页可见时重拉(ShowingActivities):不可见时排队标志留着,进页那一帧再发。
+            if (_window.IsVisible) { _client?.DrainQueued(_window.ShowingApplications, _window.ShowingActivities); _window.Tick(); }
+            bool typing = IsTyping();
             if (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
@@ -122,13 +140,46 @@ namespace MmorpgClient.UI.Ugui.Guild
         {
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
+            HideOtherPanels();
+            _window.Show();
+            _client?.Refresh();
+        }
+        /// <summary>主城的几个大面板互斥:打开帮会窗口前收起别的。</summary>
+        private static void HideOtherPanels()
+        {
             Team.TeamUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
-            _window.Show();
-            _client?.Refresh();
+        }
+        /// <summary>
+        /// 收到同道历练邀请(GuildClient.TrialInvitePending)时把帮会窗口带到活动页,邀请框由窗口在拿到视图后自己弹出。
+        /// 邀请只有几十秒有效,所以主动打开;但不打断玩家手上的事 ——
+        ///   · 战斗中:走不到这里(Update 在 _available 为假时已返回),标志留着;
+        ///   · 帮会窗口开着且有弹窗(正在确认解散、写公告、选历练同道……),或正在成员查找框里打字:等它结束;
+        ///   · 帮会窗口关着,而别的全屏界面开着或玩家正在输入框里打字(GameplayInputGate.IsKeyboardBlocked):等它结束。
+        /// 等太久邀请就过期了:标志自己失效(TrialInvitePending 有时限),不会在几分钟后凭空弹出一个空页面。
+        /// 帮会窗口开着、手上没事时直接切到活动页:IsKeyboardBlocked 此时恒为真(窗口自己就挂着输入拦截),不能拿它判。
+        /// </summary>
+        private void OpenPendingTrialInvite()
+        {
+            // 已隔离(帮会请求待重新登录)时应答发不出去,不为它开窗;重连会把标志连同会话一起清掉。
+            if (_client == null || !_client.TrialInvitePending || _client.RequiresReconnect) return;
+            bool wasVisible = _window.IsVisible;
+            if (wasVisible ? _window.ModalVisible || IsTyping() : GameplayInputGate.IsKeyboardBlocked) return;
+            _client.ConsumeTrialInvite();
+            if (!wasVisible) HideOtherPanels();
+            if (!_window.ShowingActivities) _window.Show(GuildPage.Activities);
+            // 窗口是这一下才打开的:同 Toggle,先拉一次帮会快照(这次登录可能还没拉过,活动视图要等它)。
+            // 活动视图只排队:有快照时下一个空闲帧发出;还没有快照时这一下不生效,快照落定后由窗口进页的自动拉取补上。
+            if (!wasVisible) _client.Refresh();
+            _client.QueueActivities();
+        }
+        private static bool IsTyping()
+        {
+            var selected = EventSystem.current?.currentSelectedGameObject;
+            return selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true;
         }
         public void HidePanel() => _window?.Hide();
         private void Changed() => _window?.SetClient(_client);
