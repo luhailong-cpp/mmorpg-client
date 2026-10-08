@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
-  "sourceAuditSha256": "48cdcb1e2212145b98ab6383245ee17d212e946f770f28c58505f32daa037d77",
-  "snapshotFinishedUtc": "2026-10-06T01:02:29.669872+00:00",
+  "sourceAuditSha256": "c027c03c3d2404e1d1361660a1237f60d683bbbedc53d67e0508b90fc4e819d0",
+  "snapshotFinishedUtc": "2026-10-08T09:08:57.214881+00:00",
   "petCount": 20,
   "staticIdleFrames": 40,
   "portraitCount": 20,
-  "completePetCount": 14,
-  "activeCombatClips": 112,
-  "activeCombatFrames": 1256,
+  "completePetCount": 16,
+  "activeCombatClips": 114,
+  "activeCombatFrames": 1280,
   "activeClipsByAction": {
     "hit": 40,
-    "attack": 34,
+    "attack": 36,
     "cast": 38
   },
-  "pendingCombatClips": 8,
-  "pendingFramesPromoted": 286,
-  "pendingCombatFrames": 88,
-  "totalCombatFrames": 1344,
-  "missingCombatFrames": 16,
+  "pendingCombatClips": 6,
+  "pendingFramesPromoted": 307,
+  "pendingCombatFrames": 67,
+  "totalCombatFrames": 1347,
+  "missingCombatFrames": 13,
   "expectedCombatFrames": 1360,
   "runAnimation": "not_delivered; no idle duplicate or interpolation fabricated as run",
   "completion": "partial_source_snapshot; complete clips only activated; client_runtime_pending",
@@ -69,19 +69,7 @@
     },
     {
       "petId": "15-landuoxian",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "W",
-          "presentFrames": 11,
-          "expectedFrames": 12,
-          "missingFrames": [
-            12
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     },
     {
       "petId": "06-xiluo",
@@ -101,20 +89,7 @@
     },
     {
       "petId": "07-cangzhanglin",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "E",
-          "presentFrames": 10,
-          "expectedFrames": 12,
-          "missingFrames": [
-            11,
-            12
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     },
     {
       "petId": "08-zhufengli",

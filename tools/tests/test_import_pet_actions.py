@@ -43,8 +43,8 @@ class PetDeliveryTests(unittest.TestCase):
             self.assertTrue(all(not p['activated'] for p in pending))
             active += len(manifest['clips']) - 2
             total_frames += len(pet['frames'])
-        self.assertEqual(112, active)
-        self.assertEqual(1344, total_frames)
+        self.assertEqual(114, active)
+        self.assertEqual(1347, total_frames)
 
     def test_missing_frame_cannot_be_enabled_by_flag(self):
         pet = copy.deepcopy(self.delivery['pets'][0])
@@ -94,7 +94,8 @@ class PetDeliveryTests(unittest.TestCase):
 
     def test_contact_and_release_do_not_fire_on_windup_or_secondary_contact(self):
         expected = {'11-xiajiaolu': {('attack', 'E'): 6, ('cast', 'W'): 9},
-                    '15-landuoxian': {('cast', 'E'): 8},
+                    '15-landuoxian': {('cast', 'E'): 8, ('attack', 'W'): 6},
+                    '07-cangzhanglin': {('attack', 'E'): 6, ('cast', 'W'): 9},
                     'legacy-fu-xiao-hu': {('cast', 'W'): 9}}
         for pid, events in expected.items():
             pet = next(p for p in self.delivery['pets'] if p['id'] == pid)

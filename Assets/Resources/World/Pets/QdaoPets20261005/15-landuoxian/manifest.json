@@ -109,6 +109,33 @@
       "pivotY": 0.08
     },
     {
+      "action": "attack",
+      "direction": "W",
+      "frameCount": 12,
+      "frameDurationMs": 30,
+      "frameDurationsMs": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "eventFrame": 6,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
       "action": "cast",
       "direction": "E",
       "frameCount": 16,
