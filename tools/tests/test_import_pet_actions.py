@@ -43,12 +43,15 @@ class PetDeliveryTests(unittest.TestCase):
             self.assertTrue(all(not p['activated'] for p in pending))
             active += len(manifest['clips']) - 2
             total_frames += len(pet['frames'])
-        self.assertEqual(114, active)
-        self.assertEqual(1347, total_frames)
+        self.assertEqual(120, active)
+        self.assertEqual(1360, total_frames)
 
     def test_missing_frame_cannot_be_enabled_by_flag(self):
         pet = copy.deepcopy(self.delivery['pets'][0])
-        partial = next(c for c in pet['clips'] if not c['completeFrameSet'])
+        partial = pet['clips'][0]
+        pet['frames'] = [f for f in pet['frames'] if (f['action'], f['direction'], f['frame']) !=
+                         (partial['action'], partial['direction'], partial['expectedFrameCount'])]
+        partial['presentFrameCount'] -= 1
         partial['eligibleCompleteClip'] = partial['completeFrameSet'] = True
         with self.assertRaisesRegex(ValueError, '不完整'):
             IMPORTER.build_pet(pet)
@@ -93,10 +96,13 @@ class PetDeliveryTests(unittest.TestCase):
             self.assertFalse((project / IMPORTER.FAMILY).exists())
 
     def test_contact_and_release_do_not_fire_on_windup_or_secondary_contact(self):
-        expected = {'11-xiajiaolu': {('attack', 'E'): 6, ('cast', 'W'): 9},
+        expected = {'01-zhuling': {('attack', 'W'): 6},
+                    '06-xiluo': {('attack', 'E'): 6, ('cast', 'W'): 9},
+                    '11-xiajiaolu': {('attack', 'E'): 6, ('cast', 'W'): 9},
                     '15-landuoxian': {('cast', 'E'): 8, ('attack', 'W'): 6},
                     '07-cangzhanglin': {('attack', 'E'): 6, ('cast', 'W'): 9},
-                    'legacy-fu-xiao-hu': {('cast', 'W'): 9}}
+                    'legacy-fu-xiao-hu': {('cast', 'W'): 9},
+                    'legacy-ling-yue': {('attack', 'E'): -1, ('cast', 'W'): -1}}
         for pid, events in expected.items():
             pet = next(p for p in self.delivery['pets'] if p['id'] == pid)
             manifest, _, _ = IMPORTER.build_pet(pet)
@@ -146,6 +152,8 @@ class PetDeliveryTests(unittest.TestCase):
             self.assertEqual(prior, Path(str(target) + '.meta').read_text())
             self.assertEqual('not owned', unrelated.read_text())
             self.assertEqual('verified', IMPORTER.run(delivery, source, project, verify=True)['mode'])
+            report = json.loads((project / IMPORTER.FAMILY / 'import-report.json').read_text())
+            self.assertEqual('complete_source_snapshot; client_runtime_pending', report['completion'])
             IMPORTER.run(delivery, source, project, execute=True)
             self.assertEqual(prior, Path(str(target) + '.meta').read_text())
 

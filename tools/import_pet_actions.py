@@ -282,7 +282,10 @@ def run(delivery, source_root, project, execute=False, verify=False):
                   pendingCombatFrames=pending_frames, totalCombatFrames=combat_frames,
                   missingCombatFrames=len(pets) * 68 - combat_frames, expectedCombatFrames=len(pets) * 68,
                   runAnimation='not_delivered; no idle duplicate or interpolation fabricated as run',
-                  completion='partial_source_snapshot; complete clips only activated; client_runtime_pending',
+                  completion=('complete_source_snapshot; client_runtime_pending'
+                              if combat_frames == len(pets) * 68 and not pending_frames and
+                              all(not parts for _, _, parts in plans.values())
+                              else 'partial_source_snapshot; complete clips only activated; client_runtime_pending'),
                   pending=[dict(petId=pid, clips=parts) for pid, (_, _, parts) in plans.items()])
     if verify:
         # Git's Windows checkout may normalize JSON to CRLF; preserve every other character.
