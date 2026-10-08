@@ -1,0 +1,46 @@
+fileFormatVersion: 2
+guid: f9a27144ec69c0aefee4fc77d7c6bfb1
+TextureImporter:
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    enableMipMap: 0
+    sRGBTexture: 1
+  isReadable: 0
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  spriteMode: 1
+  spriteMeshType: 1
+  spritePixelsToUnits: 100
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  textureType: 8
+  textureShape: 1
+  maxTextureSize: 2048
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: f9a27144ec69c0aefee4fc77d7c6bfb1
+    internalID: 0
+    nameFileIdTable: {}
+  userData: GPT Image equipment UI; see E:/work/image/designs/equipment-ui-20261008
+  assetBundleName: 
+  assetBundleVariant: 
