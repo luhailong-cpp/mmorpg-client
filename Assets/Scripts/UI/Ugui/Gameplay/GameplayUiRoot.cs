@@ -1,3 +1,4 @@
+using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
@@ -69,6 +70,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window = new GameplayWindow(design);
             _window.BagRequested += type => _client?.RequestBag(type);
             _window.SortRequested += () => _client?.SortBag();
+            _window.EquipmentRequested += () => _client?.RequestEquipment();
+            _window.EquipRequested += id => _client?.EquipItem(id);
+            _window.UnequipRequested += id => _client?.UnequipItem(id);
             _window.MissionsRequested += () => _client?.RequestMissions();
             _window.ActivitiesRequested += () => _client?.RequestActivities();
             _window.MissionAcceptRequested += (scope, id) => _client?.AcceptMission(scope, id);
@@ -89,6 +93,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool inGame = game != null && game.InGame && game.IsGateReady;
             if (_playerId != (inGame ? game.PlayerId : 0))
             { _window.ResetSession(); _playerId = inGame ? game.PlayerId : 0; }
+            // 装备 tooltip 的等级要求标红用:属性面板拉到过才有等级,没有就是 0(不标红)。值没变时窗口不重画。
+            _window.SetCharacterLevel(AttributeClient.Instance?.Panel?.Level ?? 0);
             _available = inGame && _client != null && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             if (!_available) { HidePanel(); return; }
@@ -124,7 +130,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void Changed()
         {
             if (_client == null) return;
-            _window.SetBag(_client.Bag, _client.BagLoading, _client.BagError, _client.BusySort);
+            _window.SetBagPage(_client.Bag, _client.BagLoading, _client.BagError, _client.BusySort,
+                _client.Equipment, _client.EquipmentLoading, _client.EquipmentError, _client.BusyEquip);
             _window.SetMissions(_client.Missions, _client.MissionsLoading, _client.MissionsError, _client.BusyMissionAction);
             _window.SetActivities(_client.Activities, _client.ActivitiesLoading, _client.ActivitiesError);
             if (_trackedMission != 0 && _client.Missions != null)

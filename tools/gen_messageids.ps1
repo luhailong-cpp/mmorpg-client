@@ -162,6 +162,8 @@ $whitelist = @{
     # 背包、任务、活动窗口（正式协议注册表分配编号）。
     "SceneBagClientPlayerGetBag"                            = "GetBag"
     "SceneBagClientPlayerSortBag"                           = "SortBag"
+    "SceneBagClientPlayerEquipItem"                         = "EquipItem"
+    "SceneBagClientPlayerUnequipItem"                       = "UnequipItem"
     "SceneMissionClientPlayerGetMissionList"                = "GetMissionList"
     "SceneActivityClientPlayerGetActivityList"              = "GetActivityList"
 

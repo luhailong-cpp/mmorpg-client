@@ -77,6 +77,8 @@ $files = @(
     "proto/scene/player_bag.proto",
     "proto/scene/player_mission.proto",
     "proto/scene/player_activity.proto",
+    # 装备穿脱错误码由服务端 Tip.xlsx 导表生成，客户端不手写码值。
+    "generated/code/proto/tip/equip_error_tip.proto",
 
     # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
     "proto/battle/battle_data.proto",

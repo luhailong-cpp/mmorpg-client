@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static MmorpgClient.UI.Ugui.Gameplay.EquipUiStyle;
 using static MmorpgClient.UI.Ugui.Gameplay.GameplayUiArt;
 
 namespace MmorpgClient.UI.Ugui.Gameplay
@@ -15,6 +16,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     {
         public event Action<uint> BagRequested;
         public event Action SortRequested;
+        /// <summary>打开 / 刷新背包页时与 <see cref="BagRequested"/> 一起发:装备栏是另一份快照(bag_type = 2)。</summary>
+        public event Action EquipmentRequested;
+        /// <summary>参数是物品实例 id:穿上人物背包里的装备 / 卸下装备栏里的装备。</summary>
+        public event Action<ulong> EquipRequested;
+        public event Action<ulong> UnequipRequested;
         public event Action MissionsRequested;
         public event Action ActivitiesRequested;
         public event Action<uint, uint> MissionAcceptRequested;
@@ -27,15 +33,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly TextMeshProUGUI _title, _subtitle;
         private readonly Button[] _tabs = new Button[3];
         private readonly TMP_InputField _search;
-        private BagInfo _bag;
+        private readonly EquipTooltip _tooltip;
+        private BagInfo _bag, _equipment;
         private GetMissionListResponse _missions;
         private GetActivityListResponse _activities;
         private bool _bagLoading, _missionLoading, _activityLoading, _sorting, _missionActionBusy;
-        private string _bagError, _missionError, _activityError, _query = "";
+        private bool _equipLoading, _equipBusy;
+        private string _bagError, _missionError, _activityError, _equipError, _query = "";
         private int _objectivePage;
-        private int _bagFilter, _missionFilter, _activityFilter, _bagPage, _missionPage, _activityPage;
-        private uint _bagType, _selectedActivity;
+        private int _bagFilter, _missionFilter, _activityFilter, _bagPage, _missionPage, _activityPage, _equipPage;
+        private uint _bagType, _selectedActivity, _characterLevel;
         private ulong _selectedMission, _trackedMission;
+        // 玩家点过的物品实例 id(人物背包或装备栏里的都算);它此刻在哪个包里每次重画现查。
         private ulong _selectedItem;
 
         public GameplayWindow(UnityEngine.Transform parent)
@@ -63,6 +72,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             ((TMP_Text)_search.placeholder).color = Muted;
             _search.onValueChanged.AddListener(value => { _query = value; _bagPage = 0; if (Page == GameplayPage.Bag) Render(); });
             _body = QdaoUguiFactory.CreateRect("PageContent", frame, 60, 174, 2040, 700);
+            // 卡片是 _body 的兄弟节点:Render 每次清空 _body,卡片不跟着销毁;位置对齐详情栏(_body 在 frame 的 60,174)。
+            _tooltip = new EquipTooltip(frame, 60 + DetailX + TooltipInsetX, 174 + TooltipInsetY);
             Hide();
         }
 
@@ -82,15 +93,31 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Refresh();
         }
 
-        public void Hide() { _root.gameObject.SetActive(false); Closed?.Invoke(); }
+        public void Hide() { _tooltip.Hide(); _root.gameObject.SetActive(false); Closed?.Invoke(); }
         public void Refresh()
         {
-            if (Page == GameplayPage.Bag) BagRequested?.Invoke(_bagType);
+            if (Page == GameplayPage.Bag) { BagRequested?.Invoke(_bagType); EquipmentRequested?.Invoke(); }
             else if (Page == GameplayPage.Missions) MissionsRequested?.Invoke();
             else { ActivitiesRequested?.Invoke(); MissionsRequested?.Invoke(); }
         }
         public void SetBag(BagInfo bag, bool loading, string error, bool sorting)
         { _bag = bag; _bagLoading = loading; _bagError = error; _sorting = sorting; if (IsVisible && Page == GameplayPage.Bag) Render(); }
+        /// <summary>装备栏快照(bag_type = 2)。busy = 穿上 / 卸下在途;error 原样显示在背包页的状态行。</summary>
+        public void SetEquipment(BagInfo equipment, bool loading, string error, bool busy)
+        { _equipment = equipment; _equipLoading = loading; _equipError = error; _equipBusy = busy; if (IsVisible && Page == GameplayPage.Bag) Render(); }
+        /// <summary>
+        /// 人物背包与装备栏一起换,只重画一次。数据层每次通知都同时带着两份(见 GameplayUiRoot.Changed):
+        /// 先后各调一次 <see cref="SetEquipment"/> / <see cref="SetBag"/> 会把整页重建两遍。
+        /// </summary>
+        public void SetBagPage(BagInfo bag, bool bagLoading, string bagError, bool sorting,
+            BagInfo equipment, bool equipLoading, string equipError, bool equipBusy)
+        {
+            _equipment = equipment; _equipLoading = equipLoading; _equipError = equipError; _equipBusy = equipBusy;
+            SetBag(bag, bagLoading, bagError, sorting);
+        }
+        /// <summary>角色等级(0 = 未知),只用来给 tooltip 的等级要求标红;能不能穿由服务器裁决。</summary>
+        public void SetCharacterLevel(uint level)
+        { if (_characterLevel == level) return; _characterLevel = level; if (IsVisible && Page == GameplayPage.Bag) Render(); }
         public void SetMissions(GetMissionListResponse missions, bool loading, string error, bool actionBusy = false)
         {
             _missions = missions;
@@ -103,19 +130,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         { _activities = activities; _activityLoading = loading; _activityError = error; if (IsVisible && Page == GameplayPage.Activities) Render(); }
         public void ResetSession()
         {
-            _bag = null; _missions = null; _activities = null; _trackedMission = 0;
+            _bag = null; _equipment = null; _missions = null; _activities = null; _trackedMission = 0;
             _selectedItem = 0; _selectedMission = 0; _selectedActivity = 0;
-            _bagPage = _missionPage = _activityPage = _objectivePage = 0;
+            _bagPage = _missionPage = _activityPage = _objectivePage = _equipPage = 0;
             _bagFilter = _missionFilter = _activityFilter = 0; _query = string.Empty;
             _search.SetTextWithoutNotify(string.Empty); _search.DeactivateInputField();
             _bagLoading = _missionLoading = _activityLoading = _sorting = _missionActionBusy = false;
-            _bagError = _missionError = _activityError = string.Empty;
+            _equipLoading = _equipBusy = false; _characterLevel = 0;
+            _bagError = _missionError = _activityError = _equipError = string.Empty;
             TrackingChanged?.Invoke(null); Hide();
         }
 
         private void Render()
         {
             Clear(_body);
+            if (Page != GameplayPage.Bag) _tooltip.Hide(); // 卡片不在 _body 里,离开背包页要显式收起
             if (Page == GameplayPage.Bag) RenderBag();
             else if (Page == GameplayPage.Missions) RenderMissions();
             else RenderActivities();
@@ -160,15 +189,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 string amount = _bag?.Currency != null && i < _bag.Currency.Values.Count ? _bag.Currency.Values[i].ToString("N0") : "—";
                 Text(_body, amount, 166, 406 + i * 40, 130, 38, 27, Ink, alignment: TextAlignmentOptions.MidlineRight);
             }
-            Button(_body, "刷新", 0, 638, 152, 62, Refresh, enabled: !_bagLoading && !_sorting);
+            Button(_body, "刷新", 0, 638, 152, 62, Refresh, enabled: !_bagLoading && !_sorting && !_equipBusy);
             Button(_body, _sorting ? "整理中" : "整理背包", 171, 638, 168, 62, () => SortRequested?.Invoke(), true,
-                !_bagLoading && !_sorting && _bag?.Layout != null && _bag.Layout.CanSort && _bag.Layout.BagType == 0);
-            Art(_body, "content_panel", 1518, 0, 522, 614);
+                !_bagLoading && !_sorting && !_equipBusy && _bag?.Layout != null && _bag.Layout.CanSort && _bag.Layout.BagType == 0);
+            Art(_body, "content_panel", DetailX, 0, DetailW, PanelH);
+            var worn = EquipBagModel.Slots(_equipment);
             if (_bag?.Layout == null)
             {
-                Notice(_bagLoading ? "正在打开行囊…" : !string.IsNullOrEmpty(_bagError) ? "行囊暂未同步，请刷新重试" : "行囊尚未开启", 368, 250, 1110);
-                StateLine(_bagError, _bagLoading, 396, 650, 1080);
-                Text(_body, "物品详情", 1560, 26, 438, 55, 34, Ink, alignment: TextAlignmentOptions.Center);
+                Notice(_bagLoading ? "正在打开行囊…" : !string.IsNullOrEmpty(_bagError) ? "行囊暂未同步，请刷新重试" : "行囊尚未开启", GridX, 250, GridW);
+                BagStateLine(GridX + 22, 650, GridW - 30);
+                // 两份快照各读各的:行囊还没到时,身上的装备照样可以查看 / 卸下。
+                ulong wornId = EquipBagModel.ResolveSelection(_selectedItem, worn, null, out _);
+                RenderEquipColumn(worn, wornId);
+                if (wornId != 0) ShowTooltip(EquipBagModel.FindWorn(worn, wornId), true);
+                else
+                {
+                    _tooltip.Hide();
+                    Text(_body, "物品详情", DetailX + 24, 26, DetailW - 48, 55, 34, Ink, alignment: TextAlignmentOptions.Center);
+                }
                 return;
             }
             var items = _bag.Items.GroupBy(i => i.ItemId).ToDictionary(g => g.Key, g => g.First());
@@ -184,12 +222,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             int count = filtered ? visible.Count : (int)Math.Min(_bag.Layout.Capacity, int.MaxValue);
             _bagPage = Math.Min(_bagPage, Math.Max(0, (count - 1) / 28));
             var bySlot = slots.GroupBy(s => s.Slot).ToDictionary(g => g.Key, g => g.First());
-            if (_selectedItem == 0 || !visible.Any(s => s.ItemId == _selectedItem)) _selectedItem = visible.FirstOrDefault()?.ItemId ?? 0;
+            // 穿上 / 卸下后同一件装备换了包,选中按 item_id 跟过去;哪边都找不到时退回第一件可见物品,
+            // 且不改 _selectedItem(两份快照先后到达,中间那次重画不能把记忆冲掉)。
+            ulong selectedId = EquipBagModel.ResolveSelection(_selectedItem, worn, visible.Select(s => s.ItemId), out bool selectedWorn);
+            RenderEquipColumn(worn, selectedWorn ? selectedId : 0);
             for (int i = 0; i < 28 && _bagPage * 28 + i < count; ++i)
             {
                 int index = _bagPage * 28 + i;
                 BagSlotInfo slot = filtered ? visible[index] : bySlot.TryGetValue((uint)index, out var found) ? found : null;
-                float x = 374 + i % 7 * 158, y = i / 7 * 151;
+                float x = GridX + i % 7 * GridPitchX, y = i / 7 * 151;
                 Art(_body, "paper_tile", x + 7, y + 7, 134, 126);
                 var button = Button(_body, "", x, y, 148, 140, () => { _selectedItem = slot.ItemId; Render(); },
                     enabled: slot != null, key: "portrait_frame");
@@ -199,30 +240,105 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     var item = items[slot.ItemId];
                     ItemIcon(button.transform, item.IconKey, 22, 12, 101);
                     Text(button.transform, item.Count.ToString(), 55, 98, 70, 32, 25, Ink, alignment: TextAlignmentOptions.MidlineRight);
-                    if (_selectedItem == slot.ItemId) Art(button.transform, "check", 114, 8, 29, 29, true);
+                    if (!selectedWorn && selectedId == slot.ItemId) Art(button.transform, "check", 114, 8, 29, 29, true);
                 }
                 else Text(button.transform, (index + 1).ToString(), 15, 103, 55, 26, 20, Muted);
             }
-            if (filtered && count == 0) Notice("没有找到符合条件的物品", 374, 254, 1090);
-            else if (slots.Count == 0 && !_bagLoading && string.IsNullOrEmpty(_bagError)) Text(_body, "行囊空空，沿途拾得的灵物会收在这里", 394, 612, 1080, 36, 27, Muted);
-            StateLine(_bagError, _bagLoading, 374, 606, 1110);
-            Text(_body, $"容量  {slots.Count} / {_bag.Layout.Capacity}", 380, 650, 480, 45, 28, Muted);
-            Pager(_bagPage, count, 28, 987, 642, p => { _bagPage = p; Render(); });
-            if (_selectedItem != 0 && items.TryGetValue(_selectedItem, out var selected))
+            bool stated = BagStateLine(GridX, 606, GridW);
+            if (filtered && count == 0) Notice("没有找到符合条件的物品", GridX, 254, GridW);
+            else if (slots.Count == 0 && !stated) Text(_body, "行囊空空，沿途拾得的灵物会收在这里", GridX + 20, 612, GridW - 20, 36, 27, Muted);
+            Text(_body, $"容量  {slots.Count} / {_bag.Layout.Capacity}", GridX + 6, 650, 480, 45, 28, Muted);
+            Pager(_bagPage, count, 28, GridX + GridW - 466, 642, p => { _bagPage = p; Render(); });
+            BagItemInfo selected = selectedWorn ? EquipBagModel.FindWorn(worn, selectedId) :
+                selectedId != 0 && items.TryGetValue(selectedId, out var held) ? held : null;
+            // 装备(以及装备栏里的任何东西)用 tooltip 卡片,盖在详情栏上;其余物品沿用详情栏。
+            if (selected != null && (selectedWorn || selected.EquipKind != 0)) { ShowTooltip(selected, selectedWorn); return; }
+            _tooltip.Hide();
+            float center = DetailX + DetailW / 2;
+            if (selected != null)
             {
-                Art(_body, "portrait_frame", 1702, 40, 154, 144);
-                ItemIcon(_body, selected.IconKey, 1726, 54, 105);
-                Text(_body, ItemName(selected), 1554, 202, 450, 61, 40, Ink, alignment: TextAlignmentOptions.Center);
-                Text(_body, selected.EquipKind != 0 ? "装备" : "物品", 1554, 269, 450, 38, 27, Gold, alignment: TextAlignmentOptions.Center);
+                Art(_body, "portrait_frame", center - 77, 40, 154, 144);
+                ItemIcon(_body, selected.IconKey, center - 53, 54, 105);
+                Text(_body, ItemName(selected), DetailX + 20, 202, DetailW - 40, 61, 40, Ink, alignment: TextAlignmentOptions.Center);
+                Text(_body, "物品", DetailX + 20, 269, DetailW - 40, 38, 27, Gold, alignment: TextAlignmentOptions.Center);
                 Text(_body, string.IsNullOrWhiteSpace(selected.Description) ? "暂无物品说明。" : selected.Description,
-                    1563, 333, 428, 125, 30, Muted, true);
-                Text(_body, $"持有数量  {selected.Count}\n叠放上限  {selected.MaxStack}", 1605, 472, 365, 66, 27, Ink, true);
+                    DetailX + 28, 333, DetailW - 56, 125, 30, Muted, true);
+                Text(_body, $"持有数量  {selected.Count}\n叠放上限  {selected.MaxStack}", DetailX + 60, 472, DetailW - 110, 66, 27, Ink, true);
             }
             else
             {
-                Art(_body, "icon_bag", 1690, 111, 177, 177, true);
-                Text(_body, "选一件灵物\n查看它的详情", 1570, 352, 412, 120, 33, Muted, true);
+                Art(_body, "icon_bag", center - 89, 111, 177, 177, true);
+                Text(_body, "选一件灵物\n查看它的详情", DetailX + 52, 352, DetailW - 104, 120, 33, Muted, true);
             }
+        }
+
+        /// <summary>
+        /// 背包页的状态行。行囊自身的读取状态优先(沿用通用提示);其次是穿脱 / 装备栏的失败文案,
+        /// 原样显示数据层给的原因(与任务页显示领奖失败原因同一做法)。返回是否写了提示。
+        /// </summary>
+        private bool BagStateLine(float x, float y, float width)
+        {
+            if (!string.IsNullOrEmpty(_bagError) || _bagLoading) { StateLine(_bagError, _bagLoading, x, y, width); return true; }
+            if (!string.IsNullOrEmpty(_equipError)) { Text(_body, _equipError, x, y, width, 36, 25, QdaoUguiTheme.Html("#9A442D")); return true; }
+            if (_equipBusy) { Text(_body, "正在更换装备…", x, y, width, 36, 25, Muted); return true; }
+            return false;
+        }
+
+        /// <summary>
+        /// 左侧装备栏:按服务器下发的槽位定义画出全部格子。空槽写部位名,穿着的画图标,点它即选中。
+        /// 格高按槽位数均分栏高;超过一页(<see cref="EquipSlotsPerPage"/> 格)才出现翻页。
+        /// </summary>
+        private void RenderEquipColumn(List<EquipSlotView> worn, ulong selectedWorn)
+        {
+            float x = EquipColumnX, width = EquipColumnW, cell = width - 20;
+            Art(_body, "paper_tile", x + 6, 6, width - 12, PanelH - 12);
+            Art(_body, "portrait_frame", x, 0, width, PanelH);
+            Text(_body, "装备栏", x, 12, width, 44, 28, Ink, alignment: TextAlignmentOptions.Center);
+            if (_equipment?.Layout == null || worn.Count == 0)
+            {
+                string state = _equipment?.Layout != null ? "暂无栏位" : _equipLoading ? "读取中…" :
+                    !string.IsNullOrEmpty(_equipError) ? "未同步" : "未读取";
+                Text(_body, state, x, 250, width, 40, 24, Muted, alignment: TextAlignmentOptions.Center);
+                return;
+            }
+            int pages = (worn.Count + EquipSlotsPerPage - 1) / EquipSlotsPerPage;
+            _equipPage = Math.Max(0, Math.Min(_equipPage, pages - 1));
+            float room = PanelH - EquipSlotsTop - EquipSlotsBottomPad - (pages > 1 ? EquipPagerH : 0);
+            // 多页时每页都按满页算格高,翻页时格子不跳。
+            float pitch = Math.Min(EquipSlotMaxPitch, room / (pages > 1 ? EquipSlotsPerPage : worn.Count));
+            float height = pitch - EquipSlotGap;
+            for (int i = _equipPage * EquipSlotsPerPage; i < worn.Count && i < (_equipPage + 1) * EquipSlotsPerPage; ++i)
+            {
+                var view = worn[i];
+                ulong itemId = view.Item?.ItemId ?? 0;
+                float y = EquipSlotsTop + (i - _equipPage * EquipSlotsPerPage) * pitch;
+                var button = Button(_body, "", x + 10, y, cell, height, () => { _selectedItem = itemId; Render(); },
+                    enabled: view.Item != null, key: "portrait_frame");
+                button.name = "EquipSlot_" + view.Slot;
+                if (view.Item == null)
+                {
+                    Text(button.transform, view.Name, 4, 0, cell - 8, height, 24, Muted, alignment: TextAlignmentOptions.Center);
+                    continue;
+                }
+                float icon = Math.Min(cell, height) - 14;
+                ItemIcon(button.transform, view.Item.IconKey, (cell - icon) / 2, (height - icon) / 2, icon);
+                if (selectedWorn == itemId) Art(button.transform, "check", cell - 30, 4, 26, 26, true);
+            }
+            if (pages <= 1) return;
+            // 栏太窄,放不下带 20 边距文字的通用按钮:与槽位格一样用细框 + 自己铺满的文字。
+            float pagerY = PanelH - EquipSlotsBottomPad - EquipPagerH + 4, pagerH = EquipPagerH - 6;
+            var up = Button(_body, "", x + 10, pagerY, 54, pagerH, () => { --_equipPage; Render(); }, enabled: _equipPage > 0, key: "portrait_frame");
+            Text(up.transform, "上", 0, 0, 54, pagerH, 22, Ink, alignment: TextAlignmentOptions.Center);
+            var down = Button(_body, "", x + width - 64, pagerY, 54, pagerH, () => { ++_equipPage; Render(); }, enabled: _equipPage + 1 < pages, key: "portrait_frame");
+            Text(down.transform, "下", 0, 0, 54, pagerH, 22, Ink, alignment: TextAlignmentOptions.Center);
+        }
+
+        private void ShowTooltip(BagItemInfo item, bool worn)
+        {
+            ulong itemId = item.ItemId;
+            // 穿脱与整理在数据层互斥:对方在途时按钮置灰,不让玩家点出一条「请稍候」。
+            _tooltip.Show(item, worn, !_equipBusy && !_sorting, _characterLevel,
+                () => { if (worn) UnequipRequested?.Invoke(itemId); else EquipRequested?.Invoke(itemId); });
         }
 
         private void RenderMissions()

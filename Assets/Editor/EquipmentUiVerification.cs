@@ -91,9 +91,14 @@ public static class EquipmentUiVerification
             Require(confirmed.Length==0,"Clear must confirm an empty preference.");
             wish.Show(ArmourOptions(),new uint[]{8},ids=>confirmed=ids,()=>cancelled=true); wish.Cancel();
             Require(cancelled && !wish.IsVisible,"Cancel must close and invoke cancellation.");
-            var weapon=Weapon(); int actions=0; card.Show(weapon,()=>actions++); Shoot("03-weapon-detail");
+            var weapon=Weapon(); int actions=0; card.Show(weapon,()=>actions++,()=>actions++,()=>actions++); Shoot("03-weapon-detail");
+            Require(root.GetComponentsInChildren<TMP_Text>().Count(t=>t.name.StartsWith(EquipDetailCard.LinePrefix))==10,"All 10 weapon rows must be present.");
+            Require(!root.GetComponentsInChildren<RectTransform>().Any(t=>t.name=="TooltipAttributesViewport"),"All 10 reference weapon rows must fit together.");
             Find("EquipAction").onClick.Invoke(); Require(actions==1,"Card must delegate the equipment action.");
-            card.Show(Boots(),()=>actions++); Shoot("04-boots-detail"); card.Hide();
+            card.Show(Boots(),()=>actions++,()=>actions++,()=>actions++); Shoot("04-boots-detail");
+            Require(root.GetComponentsInChildren<TMP_Text>().Count(t=>t.name.StartsWith(EquipDetailCard.LinePrefix))==14,"All 14 boots rows must be present, including repeated attribute names.");
+            Require(!root.GetComponentsInChildren<RectTransform>().Any(t=>t.name=="TooltipAttributesViewport"),"All 14 reference rows must fit together.");
+            card.Hide();
             wish.Show(null,null,ids=>confirmed=ids); Require(!Find("ConfirmWishSelection").interactable,"Missing options must disable confirmation.");
             Shoot("05-pool-unavailable"); wish.Hide();
             var longCard=Weapon(); for(int i=0;i<20;i++)longCard.Lines.Add(new EquipDetailLine("附加属性样例 "+i,EquipDetailCard.TextColor));
@@ -125,13 +130,27 @@ public static class EquipmentUiVerification
     private static EquipWishOption O(uint id,string label)=>new EquipWishOption(id,label);
     private static EquipDetailCardData Weapon()
     {
-        var d=new EquipDetailCardData{Name="青云灵剑",IconKey="UI/Ugui/EquipmentV1/icon_sword",State="已穿戴",LevelRequirement="角色要求：等级 80",ClassRequirement="职业要求：无",Description="玉刃凝青霄，剑鸣伴云行。",ActionLabel="卸下",ActionEnabled=true};
-        Add(d,"伤害：1288","#FFF3D6");Add(d,"准确：360","#FFF3D6");Add(d,"力量 18/24","#5AA7FF");Add(d,"所有技能上升 5/10","#5AA7FF");Add(d,"物理必杀率 12%/20%","#FF7AD9");Add(d,"伤害 240/320","#FFD84A");return d;
+        var d=new EquipDetailCardData{Name="青云灵剑",IconKey="UI/Ugui/EquipmentV1/icon_sword",State="已穿戴",ItemLevelText="120",ElementText="火",StarsText="☆ · · · · · · · · ·",ActionLabel="卸下",ActionEnabled=true};
+        d.HeaderLines.Add(new EquipDetailLine("改4(+34.5204%)",EquipUiSkin.Blue));
+        d.HeaderLines.Add(new EquipDetailLine("角色要求：金系",EquipUiSkin.Ink));
+        d.HeaderLines.Add(new EquipDetailLine("进化星级：0/19",EquipUiSkin.Ink));
+        Add(d,"伤害：8468","#245A92");Add(d,"所有技能上升 10/10","#245A92");
+        Add(d,"所有相性 5/5","#245A92");Add(d,"忽视所有抗异常 20%/20%","#245A92");
+        Add(d,"木相性 4/5","#92346C");Add(d,"伤害 2400/3200","#806011");
+        Add(d,"强力克水 9%/20%","#286246");Add(d,"速度 90/98","#286246");
+        Add(d,"改造伤害 3892","#245A92");Add(d,"限制交易 20天","#A6362B");return d;
     }
     private static EquipDetailCardData Boots()
     {
-        var d=new EquipDetailCardData{Name="踏云靴",IconKey="UI/Ugui/EquipmentV1/icon_boots",State="未穿戴",LevelRequirement="角色要求：等级 80",ClassRequirement="职业要求：无",Description="云纹藏足下，一步过青山。",ActionLabel="装备",ActionEnabled=true};
-        Add(d,"防御：216","#FFF3D6");Add(d,"速度：54","#FFF3D6");Add(d,"敏捷 15/30","#5AA7FF");Add(d,"所有属性 20/24","#5AA7FF");Add(d,"气血 150/180","#FF7AD9");Add(d,"防御 48/64","#FFD84A");return d;
+        var d=new EquipDetailCardData{Name="踏云靴",IconKey="UI/Ugui/EquipmentV1/icon_boots",State="已穿戴",ItemLevelText="123",ElementText="火",StarsText="★ ★ · · · · · · · ·",ActionLabel="卸下",ActionEnabled=true};
+        d.HeaderLines.Add(new EquipDetailLine("改5(+30.1224%)",EquipUiSkin.Blue));
+        d.HeaderLines.Add(new EquipDetailLine("角色要求：无",EquipUiSkin.Ink));
+        d.HeaderLines.Add(new EquipDetailLine("进化星级：3/19",EquipUiSkin.Ink));
+        Add(d,"防御：2160","#245A92");Add(d,"速度：543","#245A92");
+        Add(d,"敏捷 15/30","#245A92");Add(d,"速度 150/160","#245A92");Add(d,"所有属性 20/24","#245A92");
+        Add(d,"所有属性 23/24","#92346C");Add(d,"速度 150/160","#806011");Add(d,"概率躲避攻击 10%/30%","#286246");
+        Add(d,"速度 27/100","#286246");Add(d,"改造防御 1805","#245A92");Add(d,"改造气血 506","#245A92");
+        Add(d,"改4 气血 95","#245A92");Add(d,"改5 气血 285","#727366");Add(d,"限制交易 52天","#A6362B");return d;
     }
     private static void Add(EquipDetailCardData d,string label,string color)=>d.Lines.Add(new EquipDetailLine(label,QdaoUguiTheme.Html(color)));
     private static BagInfo Bag()
