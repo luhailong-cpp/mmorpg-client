@@ -41,8 +41,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 alignment: TextAlignmentOptions.Center);
             _close = EquipUiSkin.Button(_frame, "CloseWishDialog", "", Width - 113, 24, 80, 80,
                 Cancel, artKey: "close");
+            Text(_frame, "可选择多项属性", 84, 140, 1312, 28, 24, EquipUiSkin.Muted,
+                alignment: TextAlignmentOptions.Center).name = "WishSelectionSubtitle";
             _list = QdaoUguiFactory.CreateRect("WishOptions", _frame, 84, 178, 1312, 490);
-            _summary = Text(_frame, "", 84, 684, 910, 38, 28, Muted);
+            _summary = Text(_frame, "", 84, 684, 910, 38, 28, EquipUiSkin.Jade);
             _previous = EquipUiSkin.Button(_frame, "WishPreviousPage", "上一页", 994, 681, 120, 44,
                 () => ChangePage(-1), fontSize: 24);
             _pageLabel = Text(_frame, "", 1122, 681, 126, 44, 24, Muted, alignment: TextAlignmentOptions.Center);
@@ -111,20 +113,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     x, y, 426, 64, null, out var background);
                 background.color = Color.white;
                 var colors = button.colors;
-                colors.normalColor = new Color(.11f, .39f, .30f, .055f);
+                colors.normalColor = OptionTint(_selection.IsSelected(option.Id));
                 colors.highlightedColor = new Color(.11f, .39f, .30f, .14f);
                 colors.selectedColor = new Color(.83f, .61f, .19f, .24f);
                 colors.pressedColor = new Color(.11f, .39f, .30f, .25f);
+                colors.fadeDuration = .10f;
                 colors.colorMultiplier = 1f; button.colors = colors;
                 var box = EquipUiSkin.Art(button.transform,
                     _selection.IsSelected(option.Id) ? "checkbox_on" : "checkbox_off", 5, 8, 48, 48,
                     _selection.IsSelected(option.Id) ? QdaoUguiTheme.Html("#176C5F") : QdaoUguiTheme.Html("#CDBA86"));
-                var label = Text(button.transform, option.Label, 66, 5, 354, 58, 30, Ink, true);
+                var label = Text(button.transform, option.Label, 66, 5, 354, 58, 30, EquipUiSkin.Ink, true);
                 label.alignment = TextAlignmentOptions.MidlineLeft;
                 button.onClick.AddListener(() => {
                     _selection.Toggle(option.Id);
                     EquipUiSkin.Apply(box, _selection.IsSelected(option.Id) ? "checkbox_on" : "checkbox_off",
                         _selection.IsSelected(option.Id) ? QdaoUguiTheme.Html("#176C5F") : QdaoUguiTheme.Html("#CDBA86"));
+                    var updatedColors = button.colors;
+                    updatedColors.normalColor = OptionTint(_selection.IsSelected(option.Id));
+                    button.colors = updatedColors;
                     UpdateSummary();
                 });
                 _optionButtons.Add(button);
@@ -146,7 +152,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void UpdateSummary()
         {
-            _summary.text = _selection.CanConfirm ? $"已选择 {_selection.Count} 项" : "可选属性尚未提供";
+            _summary.text = _selection.CanConfirm ? $"已选 {_selection.Count} 项  /  可选 {_selection.Options.Count} 项" : "可选属性尚未提供";
             _confirm.interactable = _selection.CanConfirm && _confirmed != null;
             _clear.interactable = _selection.CanConfirm;
         }
@@ -165,6 +171,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             _input.Controls = controls;
         }
+        private static Color OptionTint(bool selected) => selected
+            ? new Color(.11f, .39f, .30f, .12f) : new Color(.11f, .39f, .30f, .035f);
         private void FocusFirst() => _input.FocusFirst();
     }
 }

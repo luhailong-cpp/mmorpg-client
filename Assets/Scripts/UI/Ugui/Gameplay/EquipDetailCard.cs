@@ -29,12 +29,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string RootName = "EquipTooltip", ActionName = "EquipAction";
         public const string LinePrefix = "TooltipLine_", DescriptionName = "TooltipDescription";
         public const float Width = 396, MinHeight = 598, MaxHeight = 692;
-        public const float Pad = 22, LineFont = 28, LinePitch = 40, MinLineFont = 24;
+        public const float Pad = 38, LineFont = 28, LinePitch = 40, MinLineFont = 24;
+        public const float BottomPad = 22;
         public const float DescriptionFont = 24, DescriptionGap = 8, DescriptionMinHeight = 64;
         public const float ActionHeight = 64, ActionGap = 14;
-        public static readonly Color TextColor = QdaoUguiTheme.Html("#FFF3D6");
-        public static readonly Color MutedColor = QdaoUguiTheme.Html("#B9AE95");
-        public static readonly Color UnmetColor = QdaoUguiTheme.Html("#FF5540");
+        public static readonly Color TextColor = EquipUiSkin.Ink;
+        public static readonly Color MutedColor = EquipUiSkin.Muted;
+        public static readonly Color UnmetColor = EquipUiSkin.Unmet;
         private static readonly Color EdgeColor = new Color(.77f, .59f, .27f, .85f);
         private readonly RectTransform _root;
         private readonly Image _plate;
@@ -51,26 +52,29 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (data == null) { Hide(); return; }
             Clear(_root);
-            bool skinned = EquipUiSkin.Apply(_plate, "tooltip_panel", QdaoUguiTheme.Html("#12392F"));
+            bool skinned = EquipUiSkin.Apply(_plate, "tooltip_panel", EquipUiSkin.Paper);
             float inner = Width - Pad * 2;
-            // Keep the source artwork's top medallion clear (top safe area: 74 design pixels).
-            Art(_root, "portrait_frame", Pad, 78, 68, 60);
-            ItemIcon(_root, data.IconKey, Pad + 9, 82, 50);
-            var name = Text(_root, data.Name, Pad + 82, 74, inner - 82, 40, 36,
-                QdaoUguiTheme.Html("#FFE9A8"), true);
+            if (!skinned)
+                QdaoUguiFactory.CreateImage("TooltipHeader", _root, 8, 8, Width - 16, 118, null).color = EquipUiSkin.Jade;
+            // The jade nameplate is fixed by the sprite's top nine-slice border; the icon and
+            // requirements sit on paper below it, so the central taiji crest remains clear.
+            var name = Text(_root, data.Name, 64, 50, Width - 128, 36, 30,
+                EquipUiSkin.HeaderText, alignment: TextAlignmentOptions.Center);
             name.name = "TooltipName";
-            name.enableAutoSizing = true; name.fontSizeMin = 24; name.fontSizeMax = 36;
-            Text(_root, data.State, Pad + 82, 116, inner - 82, 26, 24, MutedColor).name = "TooltipState";
-            float y = 144;
-            Rule(Pad, y, inner, 2); y += 10;
-            Text(_root, data.LevelRequirement, Pad, y, inner, 32, 28,
+            name.enableAutoSizing = true; name.fontSizeMin = 24; name.fontSizeMax = 30;
+            Art(_root, "portrait_frame", Pad, 136, 104, 96);
+            ItemIcon(_root, data.IconKey, Pad + 16, 147, 72);
+            Text(_root, data.State, 150, 140, Width - 150 - Pad, 28, 24, EquipUiSkin.Jade).name = "TooltipState";
+            float y = 172;
+            Text(_root, data.LevelRequirement, 150, y, Width - 150 - Pad, 28, 24,
                 data.LevelUnmet ? UnmetColor : TextColor).name = "TooltipLevel";
-            y += 32;
-            Text(_root, data.ClassRequirement, Pad, y, inner, 32, 28, TextColor).name = "TooltipClass";
-            y += 40; Rule(Pad, y, inner, 2); y += 12;
+            y += 28;
+            Text(_root, data.ClassRequirement, 150, y, Width - 150 - Pad, 28, 24, TextColor).name = "TooltipClass";
+            Section("TooltipAttributesHeading", "装备属性", 240, inner);
+            y = 268;
 
             bool described = !string.IsNullOrWhiteSpace(data.Description);
-            float footer = ActionGap + ActionHeight + Pad;
+            float footer = ActionGap + ActionHeight + BottomPad;
             float reserved = described ? DescriptionGap + DescriptionMinHeight : 0;
             float room = MaxHeight - y - footer - reserved;
             float pitch = data.Lines.Count == 0 ? LinePitch : Mathf.Min(LinePitch, room / data.Lines.Count);
@@ -111,7 +115,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 var row = data.Lines[i];
                 float font = Mathf.Min(LineFont, pitch * .72f);
-                var label = Text(linesParent, row.Text, lineX, rowY, inner, pitch, font, row.Color, scroll);
+                var label = Text(linesParent, row.Text, lineX, rowY, inner, pitch, font, EquipUiSkin.PaperInk(row.Color), scroll);
                 label.name = LinePrefix + i;
                 if (scroll)
                 {
@@ -130,7 +134,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Text(_root, data.Description, Pad, top, inner, height - footer - top, DescriptionFont,
                     MutedColor, true).name = DescriptionName;
             }
-            EquipUiSkin.Button(_root, ActionName, data.ActionLabel, Pad, height - Pad - ActionHeight,
+            EquipUiSkin.Button(_root, ActionName, data.ActionLabel, Pad, height - BottomPad - ActionHeight,
                 inner, ActionHeight, action, true, data.ActionEnabled && action != null);
             if (!skinned)
             {
@@ -141,6 +145,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         public void Hide() => _root.gameObject.SetActive(false);
+        private void Section(string name, string label, float y, float inner)
+        {
+            Text(_root, label, Pad, y, 104, 22, 20, MutedColor).name = name;
+            Rule(Pad + 112, y + 11, inner - 112, 1);
+        }
         private void Rule(float x, float y, float width, float height)
             => QdaoUguiFactory.CreateImage("Rule", _root, x, y, width, height, null).color = EdgeColor;
     }

@@ -130,8 +130,13 @@ namespace MmorpgClient.World.Tianyong
             // and navigation but hands its visuals to the city artwork.
             // If the artwork is missing the 3D town stays visible, so its
             // building footprints must drive navigation again.
-            if (painted && !TianyongPaintedCity.Apply(instance))
-                instance.Navigation = new TianyongNavigationGrid();
+            if (painted)
+            {
+                if (TianyongPaintedCity.Apply(instance))
+                    TianyongCityNpcs.Build(instance);
+                else
+                    instance.Navigation = new TianyongNavigationGrid();
+            }
 
             instance.UpdateVisibleChunks(
                 TianyongMapDefinition.DefaultSpawn,

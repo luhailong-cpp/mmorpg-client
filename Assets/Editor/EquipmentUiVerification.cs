@@ -16,7 +16,7 @@ using UnityEngine.UI;
 /// <summary>Isolated production-view fixtures. No session, transport, inventory mutations or refine RPC.</summary>
 public static class EquipmentUiVerification
 {
-    public static string OutputDirectory = "E:/work/image/designs/equipment-ui-20261008/qa";
+    public static string OutputDirectory = "E:/work/image/designs/equipment-ui-20261009/qa";
 
     [MenuItem("MMORPG/UI/Capture equipment artwork")]
     public static void CaptureAll()
@@ -111,12 +111,17 @@ public static class EquipmentUiVerification
         }
     }
 
+    // Screenshot-derived layout samples only; these IDs are not a server attribute schema.
+    // Runtime callers must continue supplying the authoritative equipment attribute pool.
     private static EquipWishOption[] WeaponOptions() => new[]{
         O(1,"伤害"),O(3,"力量"),O(4,"体质"),O(5,"灵力"),O(6,"敏捷"),O(2,"准确"),
-        O(14,"物理连击率"),O(15,"反击率"),O(12,"物理必杀率"),O(17,"所有技能上升"),O(18,"忽视所有抗异常"),O(13,"法术必杀率")};
+        O(14,"物理连击率"),O(15,"反击率"),O(12,"物理会心率"),
+        O(30,"金相性"),O(31,"木相性"),O(32,"水相性"),O(33,"火相性"),O(34,"土相性"),O(35,"所有相性"),
+        O(17,"所有技能上升"),O(36,"忽视所有抗性"),O(18,"忽视所有抗异常")};
     private static EquipWishOption[] ArmourOptions() => new[]{
         O(8,"防御"),O(9,"气血"),O(10,"法力"),O(3,"力量"),O(4,"体质"),O(5,"灵力"),O(6,"敏捷"),O(7,"所有属性"),O(16,"反震率"),
-        O(19,"抗中毒"),O(20,"抗冰冻"),O(21,"抗昏睡"),O(22,"抗遗忘"),O(23,"抗混乱"),O(24,"所有抗异常"),O(25,"抗法术"),O(26,"抗物理")};
+        O(40,"金抗性"),O(41,"木抗性"),O(42,"水抗性"),O(43,"火抗性"),O(44,"土抗性"),O(19,"抗中毒"),
+        O(20,"抗冰冻"),O(21,"抗昏睡"),O(22,"抗遗忘"),O(23,"抗混乱"),O(45,"所有抗性"),O(24,"所有抗异常")};
     private static EquipWishOption O(uint id,string label)=>new EquipWishOption(id,label);
     private static EquipDetailCardData Weapon()
     {

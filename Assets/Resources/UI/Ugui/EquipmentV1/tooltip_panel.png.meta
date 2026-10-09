@@ -19,7 +19,7 @@ TextureImporter:
   spriteMeshType: 1
   spritePixelsToUnits: 100
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 48, y: 74, z: 48, w: 100}
+  spriteBorder: {x: 48, y: 80, z: 48, w: 160}
   alphaUsage: 1
   alphaIsTransparency: 1
   textureType: 8
@@ -41,6 +41,6 @@ TextureImporter:
     spriteID: 398b2fd6f1d43eb756dc01798c478211
     internalID: 0
     nameFileIdTable: {}
-  userData: GPT Image equipment UI; see E:/work/image/designs/equipment-ui-20261008
+  userData: GPT Image equipment UI paper card; source E:/work/image/designs/equipment-ui-20261009
   assetBundleName: 
   assetBundleVariant: 
