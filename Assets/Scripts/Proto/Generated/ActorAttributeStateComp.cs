@@ -28,17 +28,27 @@ public static partial class ActorAttributeStateCompReflection {
           "Z3NFbnRyeRoxCg9TdGF0ZUZsYWdzRW50cnkSCwoDa2V5GAEgASgNEg0KBXZh",
           "bHVlGAIgASgIOgI4ASJXChhDYWxjdWxhdGVkQXR0cmlidXRlc0NvbXASFAoM",
           "YXR0YWNrX3Bvd2VyGAEgASgNEhUKDWRlZmVuc2VfcG93ZXIYAiABKA0SDgoG",
-          "aXNEZWFkGAMgASgIIowBChVEZXJpdmVkQXR0cmlidXRlc0NvbXASEgoKbWF4",
-          "X2hlYWx0aBgBIAEoBBIQCghtYXhfbWFuYRgCIAEoBBIXCg9waHlzaWNhbF9h",
-          "dHRhY2sYAyABKAQSFAoMbWFnaWNfYXR0YWNrGAQgASgEEg8KB2RlZmVuc2UY",
-          "BSABKAQSDQoFc3BlZWQYBiABKARCEloQY29tbW9uL2NvbXBvbmVudGIGcHJv",
-          "dG8z"));
+          "aXNEZWFkGAMgASgIIoEDChBDb21iYXRBdHRyaWJ1dGVzEhoKEnBoeXNpY2Fs",
+          "X2NyaXRfcmF0ZRgBIAEoBBIXCg9tYWdpY19jcml0X3JhdGUYAiABKAQSEgoK",
+          "Y29tYm9fcmF0ZRgDIAEoBBIUCgxjb3VudGVyX3JhdGUYBCABKAQSFAoMcmVm",
+          "bGVjdF9yYXRlGAUgASgEEhkKEXNraWxsX2xldmVsX2JvbnVzGAYgASgEEh0K",
+          "FWlnbm9yZV9haWxtZW50X3Jlc2lzdBgHIAEoBBIVCg1yZXNpc3RfcG9pc29u",
+          "GAggASgEEhUKDXJlc2lzdF9mcmVlemUYCSABKAQSFAoMcmVzaXN0X3NsZWVw",
+          "GAogASgEEhUKDXJlc2lzdF9mb3JnZXQYCyABKAQSGAoQcmVzaXN0X2NvbmZ1",
+          "c2lvbhgMIAEoBBIaChJyZXNpc3RfYWxsX2FpbG1lbnQYDSABKAQSFAoMbWFn",
+          "aWNfcmVzaXN0GA4gASgEEhcKD3BoeXNpY2FsX3Jlc2lzdBgPIAEoBCKvAQoV",
+          "RGVyaXZlZEF0dHJpYnV0ZXNDb21wEhIKCm1heF9oZWFsdGgYASABKAQSEAoI",
+          "bWF4X21hbmEYAiABKAQSFwoPcGh5c2ljYWxfYXR0YWNrGAMgASgEEhQKDG1h",
+          "Z2ljX2F0dGFjaxgEIAEoBBIPCgdkZWZlbnNlGAUgASgEEg0KBXNwZWVkGAYg",
+          "ASgEEiEKBmNvbWJhdBgHIAEoCzIRLkNvbWJhdEF0dHJpYnV0ZXNCEloQY29t",
+          "bW9uL2NvbXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::CombatStateFlagsComp), global::CombatStateFlagsComp.Parser, new[]{ "StateFlags" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::CalculatedAttributesComp), global::CalculatedAttributesComp.Parser, new[]{ "AttackPower", "DefensePower", "IsDead" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::DerivedAttributesComp), global::DerivedAttributesComp.Parser, new[]{ "MaxHealth", "MaxMana", "PhysicalAttack", "MagicAttack", "Defense", "Speed" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::CombatAttributes), global::CombatAttributes.Parser, new[]{ "PhysicalCritRate", "MagicCritRate", "ComboRate", "CounterRate", "ReflectRate", "SkillLevelBonus", "IgnoreAilmentResist", "ResistPoison", "ResistFreeze", "ResistSleep", "ResistForget", "ResistConfusion", "ResistAllAilment", "MagicResist", "PhysicalResist" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::DerivedAttributesComp), global::DerivedAttributesComp.Parser, new[]{ "MaxHealth", "MaxMana", "PhysicalAttack", "MagicAttack", "Defense", "Speed", "Combat" }, null, null, null, null)
         }));
   }
   #endregion
@@ -520,6 +530,778 @@ public sealed partial class CalculatedAttributesComp : pb::IMessage<CalculatedAt
 }
 
 /// <summary>
+/// 战斗类属性(设计文档 docs/design/equipment-attributes.md §3.3)。
+///
+/// 只装**装备等外部来源的加成部分**,不含角色基础暴击率 / 基础抗性
+/// (那两项仍在 BaseAttributesComp.critchance / resistance)。运行时派生,不落库:
+/// PlayerAttributeSystem::Recalculate 每次从装备栏现算并整块覆盖,不做增量维护。
+/// 百分比一律是整数百分点。
+///
+/// **字段号 == equiprules::CombatStat 枚举值 == EquipAttribute 表 effect=5 行的
+/// effect_param**,三处不得错位;新增只能追加。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class CombatAttributes : pb::IMessage<CombatAttributes>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<CombatAttributes> _parser = new pb::MessageParser<CombatAttributes>(() => new CombatAttributes());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<CombatAttributes> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ActorAttributeStateCompReflection.Descriptor.MessageTypes[2]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CombatAttributes() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CombatAttributes(CombatAttributes other) : this() {
+    physicalCritRate_ = other.physicalCritRate_;
+    magicCritRate_ = other.magicCritRate_;
+    comboRate_ = other.comboRate_;
+    counterRate_ = other.counterRate_;
+    reflectRate_ = other.reflectRate_;
+    skillLevelBonus_ = other.skillLevelBonus_;
+    ignoreAilmentResist_ = other.ignoreAilmentResist_;
+    resistPoison_ = other.resistPoison_;
+    resistFreeze_ = other.resistFreeze_;
+    resistSleep_ = other.resistSleep_;
+    resistForget_ = other.resistForget_;
+    resistConfusion_ = other.resistConfusion_;
+    resistAllAilment_ = other.resistAllAilment_;
+    magicResist_ = other.magicResist_;
+    physicalResist_ = other.physicalResist_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CombatAttributes Clone() {
+    return new CombatAttributes(this);
+  }
+
+  /// <summary>Field number for the "physical_crit_rate" field.</summary>
+  public const int PhysicalCritRateFieldNumber = 1;
+  private ulong physicalCritRate_;
+  /// <summary>
+  /// 物理必杀率(普攻 / 物理技能)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PhysicalCritRate {
+    get { return physicalCritRate_; }
+    set {
+      physicalCritRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "magic_crit_rate" field.</summary>
+  public const int MagicCritRateFieldNumber = 2;
+  private ulong magicCritRate_;
+  /// <summary>
+  /// 法术必杀率(法术技能)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MagicCritRate {
+    get { return magicCritRate_; }
+    set {
+      magicCritRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "combo_rate" field.</summary>
+  public const int ComboRateFieldNumber = 3;
+  private ulong comboRate_;
+  /// <summary>
+  /// 物理连击率
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ComboRate {
+    get { return comboRate_; }
+    set {
+      comboRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "counter_rate" field.</summary>
+  public const int CounterRateFieldNumber = 4;
+  private ulong counterRate_;
+  /// <summary>
+  /// 反击率
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong CounterRate {
+    get { return counterRate_; }
+    set {
+      counterRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reflect_rate" field.</summary>
+  public const int ReflectRateFieldNumber = 5;
+  private ulong reflectRate_;
+  /// <summary>
+  /// 反震率
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ReflectRate {
+    get { return reflectRate_; }
+    set {
+      reflectRate_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "skill_level_bonus" field.</summary>
+  public const int SkillLevelBonusFieldNumber = 6;
+  private ulong skillLevelBonus_;
+  /// <summary>
+  /// 所有技能上升(技能伤害表达式的等级参数 +N)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SkillLevelBonus {
+    get { return skillLevelBonus_; }
+    set {
+      skillLevelBonus_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "ignore_ailment_resist" field.</summary>
+  public const int IgnoreAilmentResistFieldNumber = 7;
+  private ulong ignoreAilmentResist_;
+  /// <summary>
+  /// 忽视所有抗异常(进攻方,抵扣目标的抗异常)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong IgnoreAilmentResist {
+    get { return ignoreAilmentResist_; }
+    set {
+      ignoreAilmentResist_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resist_poison" field.</summary>
+  public const int ResistPoisonFieldNumber = 8;
+  private ulong resistPoison_;
+  /// <summary>
+  /// 抗中毒
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ResistPoison {
+    get { return resistPoison_; }
+    set {
+      resistPoison_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resist_freeze" field.</summary>
+  public const int ResistFreezeFieldNumber = 9;
+  private ulong resistFreeze_;
+  /// <summary>
+  /// 抗冰冻
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ResistFreeze {
+    get { return resistFreeze_; }
+    set {
+      resistFreeze_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resist_sleep" field.</summary>
+  public const int ResistSleepFieldNumber = 10;
+  private ulong resistSleep_;
+  /// <summary>
+  /// 抗昏睡(引擎映射到眩晕)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ResistSleep {
+    get { return resistSleep_; }
+    set {
+      resistSleep_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resist_forget" field.</summary>
+  public const int ResistForgetFieldNumber = 11;
+  private ulong resistForget_;
+  /// <summary>
+  /// 抗遗忘(引擎映射到沉默)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ResistForget {
+    get { return resistForget_; }
+    set {
+      resistForget_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resist_confusion" field.</summary>
+  public const int ResistConfusionFieldNumber = 12;
+  private ulong resistConfusion_;
+  /// <summary>
+  /// 抗混乱(引擎暂无混乱状态,未消费)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ResistConfusion {
+    get { return resistConfusion_; }
+    set {
+      resistConfusion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "resist_all_ailment" field.</summary>
+  public const int ResistAllAilmentFieldNumber = 13;
+  private ulong resistAllAilment_;
+  /// <summary>
+  /// 所有抗异常
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ResistAllAilment {
+    get { return resistAllAilment_; }
+    set {
+      resistAllAilment_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "magic_resist" field.</summary>
+  public const int MagicResistFieldNumber = 14;
+  private ulong magicResist_;
+  /// <summary>
+  /// 抗法术(叠加在基础抗性上,仅对法术伤害)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong MagicResist {
+    get { return magicResist_; }
+    set {
+      magicResist_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "physical_resist" field.</summary>
+  public const int PhysicalResistFieldNumber = 15;
+  private ulong physicalResist_;
+  /// <summary>
+  /// 抗物理(叠加在基础抗性上,仅对物理伤害)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PhysicalResist {
+    get { return physicalResist_; }
+    set {
+      physicalResist_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as CombatAttributes);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(CombatAttributes other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PhysicalCritRate != other.PhysicalCritRate) return false;
+    if (MagicCritRate != other.MagicCritRate) return false;
+    if (ComboRate != other.ComboRate) return false;
+    if (CounterRate != other.CounterRate) return false;
+    if (ReflectRate != other.ReflectRate) return false;
+    if (SkillLevelBonus != other.SkillLevelBonus) return false;
+    if (IgnoreAilmentResist != other.IgnoreAilmentResist) return false;
+    if (ResistPoison != other.ResistPoison) return false;
+    if (ResistFreeze != other.ResistFreeze) return false;
+    if (ResistSleep != other.ResistSleep) return false;
+    if (ResistForget != other.ResistForget) return false;
+    if (ResistConfusion != other.ResistConfusion) return false;
+    if (ResistAllAilment != other.ResistAllAilment) return false;
+    if (MagicResist != other.MagicResist) return false;
+    if (PhysicalResist != other.PhysicalResist) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PhysicalCritRate != 0UL) hash ^= PhysicalCritRate.GetHashCode();
+    if (MagicCritRate != 0UL) hash ^= MagicCritRate.GetHashCode();
+    if (ComboRate != 0UL) hash ^= ComboRate.GetHashCode();
+    if (CounterRate != 0UL) hash ^= CounterRate.GetHashCode();
+    if (ReflectRate != 0UL) hash ^= ReflectRate.GetHashCode();
+    if (SkillLevelBonus != 0UL) hash ^= SkillLevelBonus.GetHashCode();
+    if (IgnoreAilmentResist != 0UL) hash ^= IgnoreAilmentResist.GetHashCode();
+    if (ResistPoison != 0UL) hash ^= ResistPoison.GetHashCode();
+    if (ResistFreeze != 0UL) hash ^= ResistFreeze.GetHashCode();
+    if (ResistSleep != 0UL) hash ^= ResistSleep.GetHashCode();
+    if (ResistForget != 0UL) hash ^= ResistForget.GetHashCode();
+    if (ResistConfusion != 0UL) hash ^= ResistConfusion.GetHashCode();
+    if (ResistAllAilment != 0UL) hash ^= ResistAllAilment.GetHashCode();
+    if (MagicResist != 0UL) hash ^= MagicResist.GetHashCode();
+    if (PhysicalResist != 0UL) hash ^= PhysicalResist.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (PhysicalCritRate != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PhysicalCritRate);
+    }
+    if (MagicCritRate != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(MagicCritRate);
+    }
+    if (ComboRate != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ComboRate);
+    }
+    if (CounterRate != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(CounterRate);
+    }
+    if (ReflectRate != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(ReflectRate);
+    }
+    if (SkillLevelBonus != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(SkillLevelBonus);
+    }
+    if (IgnoreAilmentResist != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(IgnoreAilmentResist);
+    }
+    if (ResistPoison != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(ResistPoison);
+    }
+    if (ResistFreeze != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(ResistFreeze);
+    }
+    if (ResistSleep != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(ResistSleep);
+    }
+    if (ResistForget != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(ResistForget);
+    }
+    if (ResistConfusion != 0UL) {
+      output.WriteRawTag(96);
+      output.WriteUInt64(ResistConfusion);
+    }
+    if (ResistAllAilment != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(ResistAllAilment);
+    }
+    if (MagicResist != 0UL) {
+      output.WriteRawTag(112);
+      output.WriteUInt64(MagicResist);
+    }
+    if (PhysicalResist != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(PhysicalResist);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (PhysicalCritRate != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PhysicalCritRate);
+    }
+    if (MagicCritRate != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(MagicCritRate);
+    }
+    if (ComboRate != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ComboRate);
+    }
+    if (CounterRate != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(CounterRate);
+    }
+    if (ReflectRate != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(ReflectRate);
+    }
+    if (SkillLevelBonus != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(SkillLevelBonus);
+    }
+    if (IgnoreAilmentResist != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(IgnoreAilmentResist);
+    }
+    if (ResistPoison != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(ResistPoison);
+    }
+    if (ResistFreeze != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(ResistFreeze);
+    }
+    if (ResistSleep != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(ResistSleep);
+    }
+    if (ResistForget != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(ResistForget);
+    }
+    if (ResistConfusion != 0UL) {
+      output.WriteRawTag(96);
+      output.WriteUInt64(ResistConfusion);
+    }
+    if (ResistAllAilment != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(ResistAllAilment);
+    }
+    if (MagicResist != 0UL) {
+      output.WriteRawTag(112);
+      output.WriteUInt64(MagicResist);
+    }
+    if (PhysicalResist != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(PhysicalResist);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (PhysicalCritRate != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PhysicalCritRate);
+    }
+    if (MagicCritRate != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MagicCritRate);
+    }
+    if (ComboRate != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ComboRate);
+    }
+    if (CounterRate != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CounterRate);
+    }
+    if (ReflectRate != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ReflectRate);
+    }
+    if (SkillLevelBonus != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SkillLevelBonus);
+    }
+    if (IgnoreAilmentResist != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(IgnoreAilmentResist);
+    }
+    if (ResistPoison != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ResistPoison);
+    }
+    if (ResistFreeze != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ResistFreeze);
+    }
+    if (ResistSleep != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ResistSleep);
+    }
+    if (ResistForget != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ResistForget);
+    }
+    if (ResistConfusion != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ResistConfusion);
+    }
+    if (ResistAllAilment != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ResistAllAilment);
+    }
+    if (MagicResist != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MagicResist);
+    }
+    if (PhysicalResist != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PhysicalResist);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(CombatAttributes other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PhysicalCritRate != 0UL) {
+      PhysicalCritRate = other.PhysicalCritRate;
+    }
+    if (other.MagicCritRate != 0UL) {
+      MagicCritRate = other.MagicCritRate;
+    }
+    if (other.ComboRate != 0UL) {
+      ComboRate = other.ComboRate;
+    }
+    if (other.CounterRate != 0UL) {
+      CounterRate = other.CounterRate;
+    }
+    if (other.ReflectRate != 0UL) {
+      ReflectRate = other.ReflectRate;
+    }
+    if (other.SkillLevelBonus != 0UL) {
+      SkillLevelBonus = other.SkillLevelBonus;
+    }
+    if (other.IgnoreAilmentResist != 0UL) {
+      IgnoreAilmentResist = other.IgnoreAilmentResist;
+    }
+    if (other.ResistPoison != 0UL) {
+      ResistPoison = other.ResistPoison;
+    }
+    if (other.ResistFreeze != 0UL) {
+      ResistFreeze = other.ResistFreeze;
+    }
+    if (other.ResistSleep != 0UL) {
+      ResistSleep = other.ResistSleep;
+    }
+    if (other.ResistForget != 0UL) {
+      ResistForget = other.ResistForget;
+    }
+    if (other.ResistConfusion != 0UL) {
+      ResistConfusion = other.ResistConfusion;
+    }
+    if (other.ResistAllAilment != 0UL) {
+      ResistAllAilment = other.ResistAllAilment;
+    }
+    if (other.MagicResist != 0UL) {
+      MagicResist = other.MagicResist;
+    }
+    if (other.PhysicalResist != 0UL) {
+      PhysicalResist = other.PhysicalResist;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PhysicalCritRate = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          MagicCritRate = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ComboRate = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          CounterRate = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          ReflectRate = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          SkillLevelBonus = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          IgnoreAilmentResist = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          ResistPoison = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          ResistFreeze = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          ResistSleep = input.ReadUInt64();
+          break;
+        }
+        case 88: {
+          ResistForget = input.ReadUInt64();
+          break;
+        }
+        case 96: {
+          ResistConfusion = input.ReadUInt64();
+          break;
+        }
+        case 104: {
+          ResistAllAilment = input.ReadUInt64();
+          break;
+        }
+        case 112: {
+          MagicResist = input.ReadUInt64();
+          break;
+        }
+        case 120: {
+          PhysicalResist = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          PhysicalCritRate = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          MagicCritRate = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ComboRate = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          CounterRate = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          ReflectRate = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          SkillLevelBonus = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          IgnoreAilmentResist = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          ResistPoison = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          ResistFreeze = input.ReadUInt64();
+          break;
+        }
+        case 80: {
+          ResistSleep = input.ReadUInt64();
+          break;
+        }
+        case 88: {
+          ResistForget = input.ReadUInt64();
+          break;
+        }
+        case 96: {
+          ResistConfusion = input.ReadUInt64();
+          break;
+        }
+        case 104: {
+          ResistAllAilment = input.ReadUInt64();
+          break;
+        }
+        case 112: {
+          MagicResist = input.ReadUInt64();
+          break;
+        }
+        case 120: {
+          PhysicalResist = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
 /// 二级属性(服务器按 AttributeDimension 表系数重算,不落库;设计文档
 /// docs/design/player-attribute-allocation.md §3)。
 /// 全部 uint64:与 BaseAttributesComp / BattlePlayerSnapshot 同口径,战斗公式不窄化。
@@ -539,7 +1321,7 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ActorAttributeStateCompReflection.Descriptor.MessageTypes[2]; }
+    get { return global::ActorAttributeStateCompReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -565,6 +1347,7 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
     magicAttack_ = other.magicAttack_;
     defense_ = other.defense_;
     speed_ = other.speed_;
+    combat_ = other.combat_ != null ? other.combat_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -664,6 +1447,21 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
     }
   }
 
+  /// <summary>Field number for the "combat" field.</summary>
+  public const int CombatFieldNumber = 7;
+  private global::CombatAttributes combat_;
+  /// <summary>
+  /// 战斗类属性的装备加成(开战时原样拷进 BattlePlayerSnapshot.combat)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CombatAttributes Combat {
+    get { return combat_; }
+    set {
+      combat_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -685,6 +1483,7 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
     if (MagicAttack != other.MagicAttack) return false;
     if (Defense != other.Defense) return false;
     if (Speed != other.Speed) return false;
+    if (!object.Equals(Combat, other.Combat)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -698,6 +1497,7 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
     if (MagicAttack != 0UL) hash ^= MagicAttack.GetHashCode();
     if (Defense != 0UL) hash ^= Defense.GetHashCode();
     if (Speed != 0UL) hash ^= Speed.GetHashCode();
+    if (combat_ != null) hash ^= Combat.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -740,6 +1540,10 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
       output.WriteRawTag(48);
       output.WriteUInt64(Speed);
     }
+    if (combat_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Combat);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -774,6 +1578,10 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
       output.WriteRawTag(48);
       output.WriteUInt64(Speed);
     }
+    if (combat_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(Combat);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -801,6 +1609,9 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
     }
     if (Speed != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Speed);
+    }
+    if (combat_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Combat);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -831,6 +1642,12 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
     }
     if (other.Speed != 0UL) {
       Speed = other.Speed;
+    }
+    if (other.combat_ != null) {
+      if (combat_ == null) {
+        Combat = new global::CombatAttributes();
+      }
+      Combat.MergeFrom(other.Combat);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -875,6 +1692,13 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
           Speed = input.ReadUInt64();
           break;
         }
+        case 58: {
+          if (combat_ == null) {
+            Combat = new global::CombatAttributes();
+          }
+          input.ReadMessage(Combat);
+          break;
+        }
       }
     }
   #endif
@@ -916,6 +1740,13 @@ public sealed partial class DerivedAttributesComp : pb::IMessage<DerivedAttribut
         }
         case 48: {
           Speed = input.ReadUInt64();
+          break;
+        }
+        case 58: {
+          if (combat_ == null) {
+            Combat = new global::CombatAttributes();
+          }
+          input.ReadMessage(Combat);
           break;
         }
       }

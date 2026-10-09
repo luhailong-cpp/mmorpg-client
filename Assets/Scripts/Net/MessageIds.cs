@@ -26,6 +26,7 @@ namespace MmorpgClient.Net
         public const uint DonateToGuild          =   53; // GuildServiceDonateToGuild
         public const uint EnterGame              =   26; // ClientPlayerLoginEnterGame
         public const uint EnterScene             =   63; // SceneSceneClientPlayerEnterScene
+        public const uint EquipItem              =  249; // SceneBagClientPlayerEquipItem
         public const uint GetActivityList        =  190; // SceneActivityClientPlayerGetActivityList
         public const uint GetAttributePanel      =  167; // SceneAttributeClientPlayerGetAttributePanel
         public const uint GetBag                 =  191; // SceneBagClientPlayerGetBag
@@ -119,6 +120,7 @@ namespace MmorpgClient.Net
         public const uint TransferGuildLeader    =  216; // GuildServiceTransferGuildLeader
         public const uint TransferLeader         =  212; // ClientPlayerTeamTransferLeader
         public const uint TravelToZone           =  226; // SceneSceneClientPlayerTravelToZone
+        public const uint UnequipItem            =  246; // SceneBagClientPlayerUnequipItem
         public const uint UpgradeGuild           =   76; // GuildServiceUpgradeGuild
         public const uint WatchBattle            =  163; // MatchServiceWatchBattle
     }
