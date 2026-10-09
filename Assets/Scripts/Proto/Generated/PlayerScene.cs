@@ -30,41 +30,57 @@ public static partial class PlayerSceneReflection {
           "X2luZm8YASABKAsyDi5TY2VuZUluZm9Db21wIj8KFUVudGVyU2NlbmVDMlNS",
           "ZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3Nh",
           "Z2UiMwoNRW50ZXJTY2VuZVMyQxIiCgpzY2VuZV9pbmZvGAEgASgLMg4uU2Nl",
-          "bmVJbmZvQ29tcCIyCgxTY2VuZUluZm9TMkMSIgoKc2NlbmVfaW5mbxgBIAMo",
-          "CzIOLlNjZW5lSW5mb0NvbXAiEgoQU2NlbmVJbmZvUmVxdWVzdCI3ChFTY2Vu",
-          "ZUluZm9SZXNwb25zZRIiCgpzY2VuZV9pbmZvGAEgAygLMg4uU2NlbmVJbmZv",
-          "Q29tcCK5AQoOQWN0b3JDcmVhdGVTMkMSDgoGZW50aXR5GAEgASgEEh0KCXRy",
-          "YW5zZm9ybRgCIAEoCzIKLlRyYW5zZm9ybRIeCgphY3Rvcl90eXBlGAMgASgO",
-          "MgouQWN0b3JUeXBlEgwKBGd1aWQYBCABKAQSEQoJY29uZmlnX2lkGAUgASgE",
-          "EhUKDWFwcGVhcmFuY2VfaWQYBiABKAkSEAoIY2xhc3NfaWQYByABKA0SDgoG",
-          "Z2VuZGVyGAggASgNIiEKD0FjdG9yRGVzdHJveVMyQxIOCgZlbnRpdHkYASAB",
-          "KAQiOQoSQWN0b3JMaXN0Q3JlYXRlUzJDEiMKCmFjdG9yX2xpc3QYASADKAsy",
-          "Dy5BY3RvckNyZWF0ZVMyQyIlChNBY3Rvckxpc3REZXN0cm95UzJDEg4KBmVu",
-          "dGl0eRgBIAMoBCJGChNUcmF2ZWxUb1pvbmVSZXF1ZXN0EhYKDnRhcmdldF96",
-          "b25lX2lkGAEgASgNEhcKD3NjZW5lX2NvbmZpZ19pZBgCIAEoDSI+ChRUcmF2",
-          "ZWxUb1pvbmVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2UqSwoJQWN0b3JUeXBlEhMKD0FDVE9SX1RZUEVfTk9ORRAA",
-          "EhUKEUFDVE9SX1RZUEVfUExBWUVSEAESEgoOQUNUT1JfVFlQRV9OUEMQAjLr",
-          "AwoWU2NlbmVTY2VuZUNsaWVudFBsYXllchI7CgpFbnRlclNjZW5lEhUuRW50",
-          "ZXJTY2VuZUMyU1JlcXVlc3QaFi5FbnRlclNjZW5lQzJTUmVzcG9uc2USKgoQ",
-          "Tm90aWZ5RW50ZXJTY2VuZRIOLkVudGVyU2NlbmVTMkMaBi5FbXB0eRIpCgxT",
-          "Y2VuZUluZm9DMlMSES5TY2VuZUluZm9SZXF1ZXN0GgYuRW1wdHkSKAoPTm90",
-          "aWZ5U2NlbmVJbmZvEg0uU2NlbmVJbmZvUzJDGgYuRW1wdHkSLAoRTm90aWZ5",
-          "QWN0b3JDcmVhdGUSDy5BY3RvckNyZWF0ZVMyQxoGLkVtcHR5Ei4KEk5vdGlm",
-          "eUFjdG9yRGVzdHJveRIQLkFjdG9yRGVzdHJveVMyQxoGLkVtcHR5EjQKFU5v",
-          "dGlmeUFjdG9yTGlzdENyZWF0ZRITLkFjdG9yTGlzdENyZWF0ZVMyQxoGLkVt",
-          "cHR5EjYKFk5vdGlmeUFjdG9yTGlzdERlc3Ryb3kSFC5BY3Rvckxpc3REZXN0",
-          "cm95UzJDGgYuRW1wdHkSOwoMVHJhdmVsVG9ab25lEhQuVHJhdmVsVG9ab25l",
-          "UmVxdWVzdBoVLlRyYXZlbFRvWm9uZVJlc3BvbnNlGgqAqMMBAYiowwEBQg5a",
-          "BXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
+          "bmVJbmZvQ29tcCJxChBTY2VuZUNoYW5uZWxJbmZvEhAKCHNjZW5lX2lkGAEg",
+          "ASgEEhIKCmNoYW5uZWxfbm8YAiABKA0SFAoMcGxheWVyX2NvdW50GAMgASgN",
+          "EiEKBXN0YXRlGAQgASgOMhIuU2NlbmVDaGFubmVsU3RhdGUi1wEKFVNjZW5l",
+          "Q2hhbm5lbERpcmVjdG9yeRIPCgd6b25lX2lkGAEgASgNEhcKD3NjZW5lX2Nv",
+          "bmZpZ19pZBgCIAEoDRIjCghjaGFubmVscxgDIAMoCzIRLlNjZW5lQ2hhbm5l",
+          "bEluZm8SFQoNdXBkYXRlZF9hdF9tcxgEIAEoBBIfChdzd2l0Y2hfY29vbGRv",
+          "d25fc2Vjb25kcxgFIAEoDRIfChdtYXhfcGxheWVyc19wZXJfY2hhbm5lbBgG",
+          "IAEoDRIWCg5zd2l0Y2hfZW5hYmxlZBgHIAEoCCJlCgxTY2VuZUluZm9TMkMS",
+          "IgoKc2NlbmVfaW5mbxgBIAMoCzIOLlNjZW5lSW5mb0NvbXASMQoRY2hhbm5l",
+          "bF9kaXJlY3RvcnkYAiABKAsyFi5TY2VuZUNoYW5uZWxEaXJlY3RvcnkiMgoQ",
+          "U2NlbmVJbmZvUmVxdWVzdBIeChZ3aXRoX2NoYW5uZWxfZGlyZWN0b3J5GAEg",
+          "ASgIIjcKEVNjZW5lSW5mb1Jlc3BvbnNlEiIKCnNjZW5lX2luZm8YASADKAsy",
+          "Di5TY2VuZUluZm9Db21wIrkBCg5BY3RvckNyZWF0ZVMyQxIOCgZlbnRpdHkY",
+          "ASABKAQSHQoJdHJhbnNmb3JtGAIgASgLMgouVHJhbnNmb3JtEh4KCmFjdG9y",
+          "X3R5cGUYAyABKA4yCi5BY3RvclR5cGUSDAoEZ3VpZBgEIAEoBBIRCgljb25m",
+          "aWdfaWQYBSABKAQSFQoNYXBwZWFyYW5jZV9pZBgGIAEoCRIQCghjbGFzc19p",
+          "ZBgHIAEoDRIOCgZnZW5kZXIYCCABKA0iIQoPQWN0b3JEZXN0cm95UzJDEg4K",
+          "BmVudGl0eRgBIAEoBCI5ChJBY3Rvckxpc3RDcmVhdGVTMkMSIwoKYWN0b3Jf",
+          "bGlzdBgBIAMoCzIPLkFjdG9yQ3JlYXRlUzJDIiUKE0FjdG9yTGlzdERlc3Ry",
+          "b3lTMkMSDgoGZW50aXR5GAEgAygEIkYKE1RyYXZlbFRvWm9uZVJlcXVlc3QS",
+          "FgoOdGFyZ2V0X3pvbmVfaWQYASABKA0SFwoPc2NlbmVfY29uZmlnX2lkGAIg",
+          "ASgNIj4KFFRyYXZlbFRvWm9uZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZSrWAQoRU2NlbmVDaGFubmVsU3RhdGUS",
+          "HwobU0NFTkVfQ0hBTk5FTF9TVEFURV9VTktOT1dOEAASHgoaU0NFTkVfQ0hB",
+          "Tk5FTF9TVEFURV9TTU9PVEgQARIcChhTQ0VORV9DSEFOTkVMX1NUQVRFX0JV",
+          "U1kQAhIcChhTQ0VORV9DSEFOTkVMX1NUQVRFX0ZVTEwQAxIfChtTQ0VORV9D",
+          "SEFOTkVMX1NUQVRFX0NMT1NJTkcQBBIjCh9TQ0VORV9DSEFOTkVMX1NUQVRF",
+          "X1VOQVZBSUxBQkxFEAUqSwoJQWN0b3JUeXBlEhMKD0FDVE9SX1RZUEVfTk9O",
+          "RRAAEhUKEUFDVE9SX1RZUEVfUExBWUVSEAESEgoOQUNUT1JfVFlQRV9OUEMQ",
+          "AjLrAwoWU2NlbmVTY2VuZUNsaWVudFBsYXllchI7CgpFbnRlclNjZW5lEhUu",
+          "RW50ZXJTY2VuZUMyU1JlcXVlc3QaFi5FbnRlclNjZW5lQzJTUmVzcG9uc2US",
+          "KgoQTm90aWZ5RW50ZXJTY2VuZRIOLkVudGVyU2NlbmVTMkMaBi5FbXB0eRIp",
+          "CgxTY2VuZUluZm9DMlMSES5TY2VuZUluZm9SZXF1ZXN0GgYuRW1wdHkSKAoP",
+          "Tm90aWZ5U2NlbmVJbmZvEg0uU2NlbmVJbmZvUzJDGgYuRW1wdHkSLAoRTm90",
+          "aWZ5QWN0b3JDcmVhdGUSDy5BY3RvckNyZWF0ZVMyQxoGLkVtcHR5Ei4KEk5v",
+          "dGlmeUFjdG9yRGVzdHJveRIQLkFjdG9yRGVzdHJveVMyQxoGLkVtcHR5EjQK",
+          "FU5vdGlmeUFjdG9yTGlzdENyZWF0ZRITLkFjdG9yTGlzdENyZWF0ZVMyQxoG",
+          "LkVtcHR5EjYKFk5vdGlmeUFjdG9yTGlzdERlc3Ryb3kSFC5BY3Rvckxpc3RE",
+          "ZXN0cm95UzJDGgYuRW1wdHkSOwoMVHJhdmVsVG9ab25lEhQuVHJhdmVsVG9a",
+          "b25lUmVxdWVzdBoVLlRyYXZlbFRvWm9uZVJlc3BvbnNlGgqAqMMBAYiowwEB",
+          "Qg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::ActorCompReflection.Descriptor, global::SceneInfoReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ActorType), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SceneChannelState), typeof(global::ActorType), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneC2SRequest), global::EnterSceneC2SRequest.Parser, new[]{ "SceneInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneC2SResponse), global::EnterSceneC2SResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneS2C), global::EnterSceneS2C.Parser, new[]{ "SceneInfo" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoS2C), global::SceneInfoS2C.Parser, new[]{ "SceneInfo" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoRequest), global::SceneInfoRequest.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SceneChannelInfo), global::SceneChannelInfo.Parser, new[]{ "SceneId", "ChannelNo", "PlayerCount", "State" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SceneChannelDirectory), global::SceneChannelDirectory.Parser, new[]{ "ZoneId", "SceneConfigId", "Channels", "UpdatedAtMs", "SwitchCooldownSeconds", "MaxPlayersPerChannel", "SwitchEnabled" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoS2C), global::SceneInfoS2C.Parser, new[]{ "SceneInfo", "ChannelDirectory" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoRequest), global::SceneInfoRequest.Parser, new[]{ "WithChannelDirectory" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoResponse), global::SceneInfoResponse.Parser, new[]{ "SceneInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorCreateS2C), global::ActorCreateS2C.Parser, new[]{ "Entity", "Transform", "ActorType", "Guid", "ConfigId", "AppearanceId", "ClassId", "Gender" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorDestroyS2C), global::ActorDestroyS2C.Parser, new[]{ "Entity" }, null, null, null, null),
@@ -78,6 +94,35 @@ public static partial class PlayerSceneReflection {
 
 }
 #region Enums
+/// <summary>
+/// 一条分线对玩家可见的状态(docs/design/world-channel-switch.md §3)。
+/// 只有 SMOOTH / BUSY 可以被玩家主动选中;其余客户端置灰。服务端对 FULL / CLOSING 会拒;UNAVAILABLE 由进场时
+/// 的节点判定决定(再入屏障内拒,屏障过后可能改派到活节点放行)。
+/// </summary>
+public enum SceneChannelState {
+  [pbr::OriginalName("SCENE_CHANNEL_STATE_UNKNOWN")] Unknown = 0,
+  /// <summary>
+  /// 流畅
+  /// </summary>
+  [pbr::OriginalName("SCENE_CHANNEL_STATE_SMOOTH")] Smooth = 1,
+  /// <summary>
+  /// 繁忙
+  /// </summary>
+  [pbr::OriginalName("SCENE_CHANNEL_STATE_BUSY")] Busy = 2,
+  /// <summary>
+  /// 爆满:人数已到每线上限
+  /// </summary>
+  [pbr::OriginalName("SCENE_CHANNEL_STATE_FULL")] Full = 3,
+  /// <summary>
+  /// 回收中:已从选线集合摘除,等玩家走空后销毁
+  /// </summary>
+  [pbr::OriginalName("SCENE_CHANNEL_STATE_CLOSING")] Closing = 4,
+  /// <summary>
+  /// 所在节点暂不可用(刚判死 / 身份歧义 / 映射缺失)
+  /// </summary>
+  [pbr::OriginalName("SCENE_CHANNEL_STATE_UNAVAILABLE")] Unavailable = 5,
+}
+
 public enum ActorType {
   [pbr::OriginalName("ACTOR_TYPE_NONE")] None = 0,
   [pbr::OriginalName("ACTOR_TYPE_PLAYER")] Player = 1,
@@ -709,6 +754,754 @@ public sealed partial class EnterSceneS2C : pb::IMessage<EnterSceneS2C>
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SceneChannelInfo : pb::IMessage<SceneChannelInfo>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SceneChannelInfo> _parser = new pb::MessageParser<SceneChannelInfo>(() => new SceneChannelInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SceneChannelInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChannelInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChannelInfo(SceneChannelInfo other) : this() {
+    sceneId_ = other.sceneId_;
+    channelNo_ = other.channelNo_;
+    playerCount_ = other.playerCount_;
+    state_ = other.state_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChannelInfo Clone() {
+    return new SceneChannelInfo(this);
+  }
+
+  /// <summary>Field number for the "scene_id" field.</summary>
+  public const int SceneIdFieldNumber = 1;
+  private ulong sceneId_;
+  /// <summary>
+  /// 这条线的场景实例 id;切线 = EnterScene(scene_config_id, 这个 scene_id)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SceneId {
+    get { return sceneId_; }
+    set {
+      sceneId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "channel_no" field.</summary>
+  public const int ChannelNoFieldNumber = 2;
+  private uint channelNo_;
+  /// <summary>
+  /// 线号,从 1 起;同一条线在其生命周期内不变
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ChannelNo {
+    get { return channelNo_; }
+    set {
+      channelNo_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player_count" field.</summary>
+  public const int PlayerCountFieldNumber = 3;
+  private uint playerCount_;
+  /// <summary>
+  /// scene_manager 记的人数,秒级滞后,只用于展示
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlayerCount {
+    get { return playerCount_; }
+    set {
+      playerCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state" field.</summary>
+  public const int StateFieldNumber = 4;
+  private global::SceneChannelState state_ = global::SceneChannelState.Unknown;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SceneChannelState State {
+    get { return state_; }
+    set {
+      state_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SceneChannelInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SceneChannelInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SceneId != other.SceneId) return false;
+    if (ChannelNo != other.ChannelNo) return false;
+    if (PlayerCount != other.PlayerCount) return false;
+    if (State != other.State) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SceneId != 0UL) hash ^= SceneId.GetHashCode();
+    if (ChannelNo != 0) hash ^= ChannelNo.GetHashCode();
+    if (PlayerCount != 0) hash ^= PlayerCount.GetHashCode();
+    if (State != global::SceneChannelState.Unknown) hash ^= State.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SceneId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(SceneId);
+    }
+    if (ChannelNo != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ChannelNo);
+    }
+    if (PlayerCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PlayerCount);
+    }
+    if (State != global::SceneChannelState.Unknown) {
+      output.WriteRawTag(32);
+      output.WriteEnum((int) State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SceneId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(SceneId);
+    }
+    if (ChannelNo != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ChannelNo);
+    }
+    if (PlayerCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PlayerCount);
+    }
+    if (State != global::SceneChannelState.Unknown) {
+      output.WriteRawTag(32);
+      output.WriteEnum((int) State);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SceneId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SceneId);
+    }
+    if (ChannelNo != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ChannelNo);
+    }
+    if (PlayerCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerCount);
+    }
+    if (State != global::SceneChannelState.Unknown) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) State);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SceneChannelInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SceneId != 0UL) {
+      SceneId = other.SceneId;
+    }
+    if (other.ChannelNo != 0) {
+      ChannelNo = other.ChannelNo;
+    }
+    if (other.PlayerCount != 0) {
+      PlayerCount = other.PlayerCount;
+    }
+    if (other.State != global::SceneChannelState.Unknown) {
+      State = other.State;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SceneId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ChannelNo = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          PlayerCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          State = (global::SceneChannelState) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SceneId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          ChannelNo = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          PlayerCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          State = (global::SceneChannelState) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 一张大世界地图在一个 zone 里的分线目录。
+/// 它是 scene_manager 发布到 Redis 的读模型(key: world_channel_directory:zone:{zone}:{conf},
+/// value 就是本消息的序列化字节),scene 节点原样读出、放进 SceneInfoS2C 推给客户端。
+/// 目录只用于展示和客户端预判,不是放行凭据:切线请求仍由 scene_manager 在 EnterScene 里重新校验。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SceneChannelDirectory : pb::IMessage<SceneChannelDirectory>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SceneChannelDirectory> _parser = new pb::MessageParser<SceneChannelDirectory>(() => new SceneChannelDirectory());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SceneChannelDirectory> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[4]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChannelDirectory() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChannelDirectory(SceneChannelDirectory other) : this() {
+    zoneId_ = other.zoneId_;
+    sceneConfigId_ = other.sceneConfigId_;
+    channels_ = other.channels_.Clone();
+    updatedAtMs_ = other.updatedAtMs_;
+    switchCooldownSeconds_ = other.switchCooldownSeconds_;
+    maxPlayersPerChannel_ = other.maxPlayersPerChannel_;
+    switchEnabled_ = other.switchEnabled_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChannelDirectory Clone() {
+    return new SceneChannelDirectory(this);
+  }
+
+  /// <summary>Field number for the "zone_id" field.</summary>
+  public const int ZoneIdFieldNumber = 1;
+  private uint zoneId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ZoneId {
+    get { return zoneId_; }
+    set {
+      zoneId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "scene_config_id" field.</summary>
+  public const int SceneConfigIdFieldNumber = 2;
+  private uint sceneConfigId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SceneConfigId {
+    get { return sceneConfigId_; }
+    set {
+      sceneConfigId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "channels" field.</summary>
+  public const int ChannelsFieldNumber = 3;
+  private static readonly pb::FieldCodec<global::SceneChannelInfo> _repeated_channels_codec
+      = pb::FieldCodec.ForMessage(26, global::SceneChannelInfo.Parser);
+  private readonly pbc::RepeatedField<global::SceneChannelInfo> channels_ = new pbc::RepeatedField<global::SceneChannelInfo>();
+  /// <summary>
+  /// 按 channel_no 升序
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::SceneChannelInfo> Channels {
+    get { return channels_; }
+  }
+
+  /// <summary>Field number for the "updated_at_ms" field.</summary>
+  public const int UpdatedAtMsFieldNumber = 4;
+  private ulong updatedAtMs_;
+  /// <summary>
+  /// 发布时刻(scene_manager 墙钟,毫秒)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong UpdatedAtMs {
+    get { return updatedAtMs_; }
+    set {
+      updatedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "switch_cooldown_seconds" field.</summary>
+  public const int SwitchCooldownSecondsFieldNumber = 5;
+  private uint switchCooldownSeconds_;
+  /// <summary>
+  /// 两次主动切线的最小间隔;0 = 无冷却
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SwitchCooldownSeconds {
+    get { return switchCooldownSeconds_; }
+    set {
+      switchCooldownSeconds_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_players_per_channel" field.</summary>
+  public const int MaxPlayersPerChannelFieldNumber = 6;
+  private uint maxPlayersPerChannel_;
+  /// <summary>
+  /// 每线人数上限(判定 FULL 的分母);scene_manager 恒填正数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxPlayersPerChannel {
+    get { return maxPlayersPerChannel_; }
+    set {
+      maxPlayersPerChannel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "switch_enabled" field.</summary>
+  public const int SwitchEnabledFieldNumber = 7;
+  private bool switchEnabled_;
+  /// <summary>
+  /// false = 服务端关闭了玩家主动切线,客户端整面板置灰
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SwitchEnabled {
+    get { return switchEnabled_; }
+    set {
+      switchEnabled_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SceneChannelDirectory);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SceneChannelDirectory other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ZoneId != other.ZoneId) return false;
+    if (SceneConfigId != other.SceneConfigId) return false;
+    if(!channels_.Equals(other.channels_)) return false;
+    if (UpdatedAtMs != other.UpdatedAtMs) return false;
+    if (SwitchCooldownSeconds != other.SwitchCooldownSeconds) return false;
+    if (MaxPlayersPerChannel != other.MaxPlayersPerChannel) return false;
+    if (SwitchEnabled != other.SwitchEnabled) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ZoneId != 0) hash ^= ZoneId.GetHashCode();
+    if (SceneConfigId != 0) hash ^= SceneConfigId.GetHashCode();
+    hash ^= channels_.GetHashCode();
+    if (UpdatedAtMs != 0UL) hash ^= UpdatedAtMs.GetHashCode();
+    if (SwitchCooldownSeconds != 0) hash ^= SwitchCooldownSeconds.GetHashCode();
+    if (MaxPlayersPerChannel != 0) hash ^= MaxPlayersPerChannel.GetHashCode();
+    if (SwitchEnabled != false) hash ^= SwitchEnabled.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ZoneId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ZoneId);
+    }
+    if (SceneConfigId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SceneConfigId);
+    }
+    channels_.WriteTo(output, _repeated_channels_codec);
+    if (UpdatedAtMs != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(UpdatedAtMs);
+    }
+    if (SwitchCooldownSeconds != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(SwitchCooldownSeconds);
+    }
+    if (MaxPlayersPerChannel != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(MaxPlayersPerChannel);
+    }
+    if (SwitchEnabled != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(SwitchEnabled);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ZoneId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ZoneId);
+    }
+    if (SceneConfigId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SceneConfigId);
+    }
+    channels_.WriteTo(ref output, _repeated_channels_codec);
+    if (UpdatedAtMs != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(UpdatedAtMs);
+    }
+    if (SwitchCooldownSeconds != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(SwitchCooldownSeconds);
+    }
+    if (MaxPlayersPerChannel != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(MaxPlayersPerChannel);
+    }
+    if (SwitchEnabled != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(SwitchEnabled);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ZoneId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ZoneId);
+    }
+    if (SceneConfigId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SceneConfigId);
+    }
+    size += channels_.CalculateSize(_repeated_channels_codec);
+    if (UpdatedAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UpdatedAtMs);
+    }
+    if (SwitchCooldownSeconds != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SwitchCooldownSeconds);
+    }
+    if (MaxPlayersPerChannel != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxPlayersPerChannel);
+    }
+    if (SwitchEnabled != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SceneChannelDirectory other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ZoneId != 0) {
+      ZoneId = other.ZoneId;
+    }
+    if (other.SceneConfigId != 0) {
+      SceneConfigId = other.SceneConfigId;
+    }
+    channels_.Add(other.channels_);
+    if (other.UpdatedAtMs != 0UL) {
+      UpdatedAtMs = other.UpdatedAtMs;
+    }
+    if (other.SwitchCooldownSeconds != 0) {
+      SwitchCooldownSeconds = other.SwitchCooldownSeconds;
+    }
+    if (other.MaxPlayersPerChannel != 0) {
+      MaxPlayersPerChannel = other.MaxPlayersPerChannel;
+    }
+    if (other.SwitchEnabled != false) {
+      SwitchEnabled = other.SwitchEnabled;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ZoneId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          SceneConfigId = input.ReadUInt32();
+          break;
+        }
+        case 26: {
+          channels_.AddEntriesFrom(input, _repeated_channels_codec);
+          break;
+        }
+        case 32: {
+          UpdatedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          SwitchCooldownSeconds = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          MaxPlayersPerChannel = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          SwitchEnabled = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ZoneId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          SceneConfigId = input.ReadUInt32();
+          break;
+        }
+        case 26: {
+          channels_.AddEntriesFrom(ref input, _repeated_channels_codec);
+          break;
+        }
+        case 32: {
+          UpdatedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          SwitchCooldownSeconds = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          MaxPlayersPerChannel = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          SwitchEnabled = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
@@ -723,7 +1516,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[3]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -744,6 +1537,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public SceneInfoS2C(SceneInfoS2C other) : this() {
     sceneInfo_ = other.sceneInfo_.Clone();
+    channelDirectory_ = other.channelDirectory_ != null ? other.channelDirectory_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -764,6 +1558,21 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
     get { return sceneInfo_; }
   }
 
+  /// <summary>Field number for the "channel_directory" field.</summary>
+  public const int ChannelDirectoryFieldNumber = 2;
+  private global::SceneChannelDirectory channelDirectory_;
+  /// <summary>
+  /// 玩家当前所在大世界地图的分线目录。副本 / 镜像里、或目录尚未发布时不带(has_channel_directory == false)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SceneChannelDirectory ChannelDirectory {
+    get { return channelDirectory_; }
+    set {
+      channelDirectory_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -780,6 +1589,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
       return true;
     }
     if(!sceneInfo_.Equals(other.sceneInfo_)) return false;
+    if (!object.Equals(ChannelDirectory, other.ChannelDirectory)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -788,6 +1598,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
   public override int GetHashCode() {
     int hash = 1;
     hash ^= sceneInfo_.GetHashCode();
+    if (channelDirectory_ != null) hash ^= ChannelDirectory.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -807,6 +1618,10 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
     output.WriteRawMessage(this);
   #else
     sceneInfo_.WriteTo(output, _repeated_sceneInfo_codec);
+    if (channelDirectory_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(ChannelDirectory);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -818,6 +1633,10 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     sceneInfo_.WriteTo(ref output, _repeated_sceneInfo_codec);
+    if (channelDirectory_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(ChannelDirectory);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -829,6 +1648,9 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
   public int CalculateSize() {
     int size = 0;
     size += sceneInfo_.CalculateSize(_repeated_sceneInfo_codec);
+    if (channelDirectory_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ChannelDirectory);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -842,6 +1664,12 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
       return;
     }
     sceneInfo_.Add(other.sceneInfo_);
+    if (other.channelDirectory_ != null) {
+      if (channelDirectory_ == null) {
+        ChannelDirectory = new global::SceneChannelDirectory();
+      }
+      ChannelDirectory.MergeFrom(other.ChannelDirectory);
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -863,6 +1691,13 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
           break;
         case 10: {
           sceneInfo_.AddEntriesFrom(input, _repeated_sceneInfo_codec);
+          break;
+        }
+        case 18: {
+          if (channelDirectory_ == null) {
+            ChannelDirectory = new global::SceneChannelDirectory();
+          }
+          input.ReadMessage(ChannelDirectory);
           break;
         }
       }
@@ -888,6 +1723,13 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
           sceneInfo_.AddEntriesFrom(ref input, _repeated_sceneInfo_codec);
           break;
         }
+        case 18: {
+          if (channelDirectory_ == null) {
+            ChannelDirectory = new global::SceneChannelDirectory();
+          }
+          input.ReadMessage(ChannelDirectory);
+          break;
+        }
       }
     }
   }
@@ -910,7 +1752,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -930,6 +1772,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public SceneInfoRequest(SceneInfoRequest other) : this() {
+    withChannelDirectory_ = other.withChannelDirectory_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -937,6 +1780,23 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public SceneInfoRequest Clone() {
     return new SceneInfoRequest(this);
+  }
+
+  /// <summary>Field number for the "with_channel_directory" field.</summary>
+  public const int WithChannelDirectoryFieldNumber = 1;
+  private bool withChannelDirectory_;
+  /// <summary>
+  /// true = 连同当前地图的分线目录一起要(SceneInfoS2C.channel_directory,docs/design/world-channel-switch.md §3)。
+  /// 做成显式开关而不是默认附带:带目录要让 scene 节点多读一次 zone Redis、推送也更大,而压测机器人把
+  /// SceneInfoC2S 当作高频的"动一下"在发 —— 不带本字段的请求,开销与改动前逐字节相同。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool WithChannelDirectory {
+    get { return withChannelDirectory_; }
+    set {
+      withChannelDirectory_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -954,6 +1814,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (WithChannelDirectory != other.WithChannelDirectory) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -961,6 +1822,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
+    if (WithChannelDirectory != false) hash ^= WithChannelDirectory.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -979,6 +1841,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
+    if (WithChannelDirectory != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(WithChannelDirectory);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -989,6 +1855,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (WithChannelDirectory != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(WithChannelDirectory);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -999,6 +1869,9 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
+    if (WithChannelDirectory != false) {
+      size += 1 + 1;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1010,6 +1883,9 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   public void MergeFrom(SceneInfoRequest other) {
     if (other == null) {
       return;
+    }
+    if (other.WithChannelDirectory != false) {
+      WithChannelDirectory = other.WithChannelDirectory;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1030,6 +1906,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
+        case 8: {
+          WithChannelDirectory = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -1049,6 +1929,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
+        case 8: {
+          WithChannelDirectory = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -1071,7 +1955,7 @@ public sealed partial class SceneInfoResponse : pb::IMessage<SceneInfoResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1258,7 +2142,7 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1730,7 +2614,7 @@ public sealed partial class ActorDestroyS2C : pb::IMessage<ActorDestroyS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1928,7 +2812,7 @@ public sealed partial class ActorListCreateS2C : pb::IMessage<ActorListCreateS2C
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2115,7 +2999,7 @@ public sealed partial class ActorListDestroyS2C : pb::IMessage<ActorListDestroyS
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2312,7 +3196,7 @@ public sealed partial class TravelToZoneRequest : pb::IMessage<TravelToZoneReque
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2550,7 +3434,7 @@ public sealed partial class TravelToZoneResponse : pb::IMessage<TravelToZoneResp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
