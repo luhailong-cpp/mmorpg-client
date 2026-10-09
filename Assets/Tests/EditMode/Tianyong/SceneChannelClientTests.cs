@@ -607,6 +607,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase((uint)scene_error.KEnterSceneFailed, SceneChannelClient.SwitchRejectedMessage)]
         [TestCase((uint)common_error.KRateLimitExceeded, SceneChannelClient.TooFastMessage)]
         [TestCase((uint)common_error.KServiceUnavailable, SceneChannelClient.ServerBusyMessage)]
+        [TestCase((uint)scene_error.KEnterSceneServerBusy, SceneChannelClient.ServerBusyMessage)]
         public void SyncReply_WithTip_FailsImmediatelyWithMatchingText(uint tipId, string expected)
         {
             LoadDirectory();
@@ -1132,6 +1133,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase((uint)scene_error.KEnterSceneFailed)]
         [TestCase((uint)scene_error.KEnterSceneChangingScene)]
         [TestCase((uint)common_error.KServiceUnavailable)]
+        [TestCase((uint)scene_error.KEnterSceneServerBusy)]
         public void FailureTip_BeforeTheSyncReply_AlsoEndsTheSwitch_AndTheLateReplyIsIgnored(uint tipId)
         {
             Assert.That(SceneChannelClient.IsSwitchFailureTip(tipId), Is.True);

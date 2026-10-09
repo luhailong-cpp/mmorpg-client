@@ -477,9 +477,9 @@ namespace MmorpgClient.Game.WorldTravel
             uint tipId = tip?.Id ?? 0;
             if (!SwitchPending || !IsSwitchFailureTip(tipId)) return;
             // 服务端把 scene_manager 的各种拒绝统一折成一个码,拿不到「满了还是冷却中」,所以先给通用文案。
-            // 1003 是「结果未知」:这次切线可能其实成了,所以多记一份,入场通知随后到达时补结算。
+            // 1003 / 3028 是「结果未知」:这次切线可能其实成了,所以多记一份,入场通知随后到达时补结算。
             FailSwitch(SwitchFailedMessage, refresh: true, rememberTarget: true,
-                outcomeUnknown: tipId == (uint)common_error.KServiceUnavailable);
+                outcomeUnknown: IsOutcomeUnknownTip(tipId));
             Changed?.Invoke();
         }
 
@@ -538,6 +538,7 @@ namespace MmorpgClient.Game.WorldTravel
                 case (uint)scene_error.KEnterSceneFailed: return SwitchRejectedMessage;
                 case (uint)common_error.KRateLimitExceeded: return TooFastMessage;
                 case (uint)common_error.KServiceUnavailable: return ServerBusyMessage;
+                case (uint)scene_error.KEnterSceneServerBusy: return ServerBusyMessage;
                 default: return "切线失败（tip=" + tipId.ToString(CultureInfo.InvariantCulture) + "）。";
             }
         }
@@ -548,6 +549,7 @@ namespace MmorpgClient.Game.WorldTravel
         ///  - kEnterSceneFailed:scene_manager 拒绝(满 / 冷却 / 回收中 / 功能关闭 …),或交接起不来、中途放弃;
         ///  - kEnterSceneChangingScene:要起跨节点交接时发现已有一次交接在途,这次请求被丢弃;
         ///  - kServiceUnavailable:scene 到 scene_manager 的调用传输失败,或 gate 路由不到 scene 节点。
+        ///  - kEnterSceneServerBusy:新版服务端在「换图时内部调用没拿到结果」时用它取代上一条(同样是结果未知)。
         ///    这一条服务端的本意是「结果未知,别再等了」;而且 gate 对任何路由不到的请求(好友 / 聊天 / 帮会 …)
         ///    推的也是这个码、不带请求号,客户端对不上号。认它是为了不干等满 75 秒,代价是可能把一次其实成功的
         ///    切线先报成失败 —— 所以目标线的入场通知随后到达时按成功补结算(<see cref="HandleSceneEntered"/>)。
@@ -558,7 +560,15 @@ namespace MmorpgClient.Game.WorldTravel
         public static bool IsSwitchFailureTip(uint tipId) =>
             tipId == (uint)scene_error.KEnterSceneFailed ||
             tipId == (uint)scene_error.KEnterSceneChangingScene ||
-            tipId == (uint)common_error.KServiceUnavailable;
+            IsOutcomeUnknownTip(tipId);
+
+        /// <summary>
+        /// 这条失败提示是不是「结果未知」:服务端没拿到 scene_manager 的结论就先告诉客户端别等了,
+        /// 这次切线可能其实已经被受理。旧版服务端发 kServiceUnavailable,新版发 kEnterSceneServerBusy。
+        /// </summary>
+        public static bool IsOutcomeUnknownTip(uint tipId) =>
+            tipId == (uint)common_error.KServiceUnavailable ||
+            tipId == (uint)scene_error.KEnterSceneServerBusy;
 
         // ── 推送 ────────────────────────────────────────────────────────────
         // 两个处理器都跑在 gate 的收包分发里,绝不能抛异常:抛出去会打断同一批里后面的消息。

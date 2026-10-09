@@ -6,6 +6,9 @@ using UnityEngine.TestTools;
 
 namespace MmorpgClient.Tests.PlayMode
 {
+    // proto 生成物在全局命名空间里有同名的 Vector3;别名必须写在命名空间内部才能盖过它。
+    using Vector3 = UnityEngine.Vector3;
+
     public sealed class QdaoArchivedActionsPlayModeTests
     {
         private const string Id = "00_reference_topright_boy";

@@ -1,9 +1,10 @@
 using MmorpgClient.Game.Pet;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 namespace MmorpgClient.World
 {
+    using Vector3 = UnityEngine.Vector3;
+
     /// <summary>
     /// Local cosmetic companion driven by the server's active PetId. The scene protocol has no pet AOI actor;
     /// this visual never enters ActorWorld's entity map or invents remote pet ownership.

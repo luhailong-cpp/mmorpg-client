@@ -12,10 +12,12 @@ using MmorpgClient.World;
 using NUnit.Framework;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using Vector3 = UnityEngine.Vector3;
 
 namespace MmorpgClient.Tests.EditMode.Battle
 {
+    // proto 生成物在全局命名空间里有同名的 Vector3;别名必须写在命名空间内部才能盖过它。
+    using Vector3 = UnityEngine.Vector3;
+
     public sealed class PetAppearanceIntegrationTests
     {
         private const BindingFlags Hidden = BindingFlags.NonPublic | BindingFlags.Instance;
