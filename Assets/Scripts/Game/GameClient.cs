@@ -1225,6 +1225,11 @@ namespace MmorpgClient.Game
             // TravelToZone 不是 GM 消息,这条 RPC 上的 kFeatureUnavailable 只来自服务端的"实体退出中"闸
             // (停机 / 排空 / 身份冲突时,连接还在但实体正在退出),说成"暂时无法传送"不算编造原因。
             (uint)common_error.KFeatureUnavailable => "当前无法传送,请稍后再试。",
+            // 换图 / 进镜像副本的请求在服务端内部没拿到结果(scene_manager 不可达或超时)。结果未知:
+            // 多数情况没换成、留在原地,少数情况稍后仍会被搬过去 —— 所以文案只说"繁忙、稍后再试",
+            // 不说"失败";也**不**进 IsTravelFailureTip(那是"确定没成"的判据,跨区传送的失败不发这个码)。
+            // 服务端:docs/design/grpc-client-deadline-failure-callback.md §5。
+            (uint)scene_error.KEnterSceneServerBusy => "服务器繁忙,请稍后再试。",
             _ => $"传送失败(tip={tipId})",
         };
 

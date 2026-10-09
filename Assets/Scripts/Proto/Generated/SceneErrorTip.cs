@@ -23,7 +23,7 @@ public static partial class SceneErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc2NlbmVfZXJyb3JfdGlwLnBy",
-          "b3RvKocHCgtzY2VuZV9lcnJvchISCg5rU2NlbmVfZXJyb3JPSxAAEhgKE2tF",
+          "b3RvKqMHCgtzY2VuZV9lcnJvchISCg5rU2NlbmVfZXJyb3JPSxAAEhgKE2tF",
           "bnRlclNjZW5lTm90Rm91bmQQuBcSFwoSa0VudGVyU2NlbmVOb3RGdWxsELkX",
           "EhgKE2tFbnRlclNjZW5lTWFpbkZ1bGwQuhcSGgoVa0VudGVyTm9kZVVuYXZh",
           "aWxhYmxlELsXEhoKFWtFbnRlclNjZW5lU2VydmVyVHlwZRC8FxIaChVrRW50",
@@ -43,8 +43,8 @@ public static partial class SceneErrorTipReflection {
           "dG9yEM4XEhYKEWtFbnRlclNjZW5lRmFpbGVkEM8XEiIKHWtab25lVHJhdmVs",
           "VGFyZ2V0Wm9uZU5vdEZvdW5kENAXEhgKE2tab25lVHJhdmVsSW5CYXR0bGUQ",
           "0RcSFgoRa1pvbmVUcmF2ZWxJblRlYW0Q0hcSGgoVa1pvbmVUcmF2ZWxUYXJn",
-          "ZXRCdXN5ENMXQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFi",
-          "bGViBnByb3RvMw=="));
+          "ZXRCdXN5ENMXEhoKFWtFbnRlclNjZW5lU2VydmVyQnVzeRDUF0IkCg5jb20u",
+          "Z2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::scene_error), }, null, null));
@@ -83,6 +83,7 @@ public enum scene_error {
   [pbr::OriginalName("kZoneTravelInBattle")] KZoneTravelInBattle = 3025,
   [pbr::OriginalName("kZoneTravelInTeam")] KZoneTravelInTeam = 3026,
   [pbr::OriginalName("kZoneTravelTargetBusy")] KZoneTravelTargetBusy = 3027,
+  [pbr::OriginalName("kEnterSceneServerBusy")] KEnterSceneServerBusy = 3028,
 }
 
 #endregion

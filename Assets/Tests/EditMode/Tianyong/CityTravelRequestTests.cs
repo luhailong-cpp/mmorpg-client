@@ -245,6 +245,19 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void DescribeTravelTip_ServerBusyHasTextButIsNotATravelFailure()
+        {
+            // 服务端换图时内部调用失败(结果未知)推 kEnterSceneServerBusy:要有人话文案,不能显示成裸编号;
+            // 但它不是"这次传送确定没成",不能让跨区在途的行程因此收场,也不能当进场失败。
+            uint busy = (uint)scene_error.KEnterSceneServerBusy;
+            Assert.That(GameClient.DescribeTravelTip(busy), Does.Not.Contain("tip="));
+            Assert.That(GameClient.DescribeTravelTip(busy), Does.Contain("稍后再试"));
+            Assert.That(GameClient.IsTravelFailureTip(busy), Is.False);
+            Assert.That(GameClient.IsEnterFailureTip(busy), Is.False);
+            Assert.That(GameClient.DescribeKickReason(busy), Is.Null);
+        }
+
+        [Test]
         public void DescribeKickReason_TravelFailureCodeYieldsRelogText()
         {
             // 服务端 S3L1-1 第二层出口：跨区传送受理后没成且回不到原地，先推失败 tip 再踢线（原因码同一个）。
