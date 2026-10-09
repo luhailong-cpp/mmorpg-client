@@ -1,10 +1,13 @@
 """归档动作清单的边界测试；不改动正式美术文件。"""
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import struct
 import tempfile
 import unittest
+import zlib
 
 SCRIPT = Path(__file__).resolve().parents[1] / 'import_archived_actions.py'
 SPEC = importlib.util.spec_from_file_location('archived_importer', SCRIPT)
@@ -97,6 +100,40 @@ class ArchivedDeliveryTests(unittest.TestCase):
             meta.write_text('fileFormatVersion: 2\nguid: user-existing-guid\n')
             IMPORTER.meta(target, root)
             self.assertIn('user-existing-guid', meta.read_text())
+
+    def make_client_snapshot(self, project):
+        def chunk(kind, data):
+            return struct.pack('>I', len(data)) + kind + data + struct.pack('>I', zlib.crc32(kind + data))
+        png = (b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', 1024, 1024, 8, 6, 0, 0, 0)) +
+               chunk(b'IDAT', zlib.compress((b'\0' + b'\0' * 4096) * 1024)) + chunk(b'IEND', b''))
+        character = copy.deepcopy(self.delivery['characters'][0])
+        destination = project / IMPORTER.FAMILY / character['characterId']
+        for frame in character['frames']:
+            frame['sha256'] = hashlib.sha256(png).hexdigest()
+            path = destination / frame['action'] / frame['direction'] / f"{frame['frame']:02d}.png"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(png)
+        manifest = IMPORTER.runtime_manifest(character)
+        manifest_path = destination / 'manifest.json'
+        manifest_path.write_bytes(IMPORTER.json_bytes(manifest).replace(b'\n', b'\r\n'))
+        return {'schemaVersion': 1, 'characters': [character]}, manifest_path
+
+    def test_client_verification_accepts_windows_crlf_checkout(self):
+        with tempfile.TemporaryDirectory() as folder:
+            project = Path(folder)
+            delivery, _ = self.make_client_snapshot(project)
+            result = IMPORTER.run(delivery, project / 'absent-source', project, verify=True)
+            self.assertEqual({'characters': 1, 'clips': 14, 'pngs': 196, 'mode': 'verified'}, result)
+
+    def test_client_verification_still_rejects_changed_timing_with_crlf(self):
+        with tempfile.TemporaryDirectory() as folder:
+            project = Path(folder)
+            delivery, manifest_path = self.make_client_snapshot(project)
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            manifest['clips'][0]['frameDurationsMs'][0] += 1
+            manifest_path.write_bytes(IMPORTER.json_bytes(manifest).replace(b'\n', b'\r\n'))
+            with self.assertRaisesRegex(ValueError, '客户端时序/锚点清单不匹配'):
+                IMPORTER.run(delivery, project / 'absent-source', project, verify=True)
 
 
 if __name__ == '__main__':
