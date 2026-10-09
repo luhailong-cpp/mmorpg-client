@@ -189,6 +189,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 foreach (var renderer in map.Root.GetComponentsInChildren<Renderer>(true))
                 {
                     if (renderer.transform.parent == ground) continue;
+                    if (renderer.GetComponentInParent<TianyongCityNpcs>() != null) continue;
                     Assert.That(renderer.enabled, Is.False,
                         $"town renderer '{renderer.name}' must be hidden in painted mode");
                 }

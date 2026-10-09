@@ -1,0 +1,317 @@
+{
+  "previewType": "Deterministic composite, not an engine screenshot",
+  "npcCount": 23,
+  "allReachable": true,
+  "positions": [
+    {
+      "id": "01",
+      "displayName": "杨镖头",
+      "x": 189,
+      "z": 89,
+      "reachable": true
+    },
+    {
+      "id": "02",
+      "displayName": "屠娇娇",
+      "x": 119,
+      "z": 195,
+      "reachable": true
+    },
+    {
+      "id": "03",
+      "displayName": "董老头",
+      "x": 107,
+      "z": 123,
+      "reachable": true
+    },
+    {
+      "id": "04",
+      "displayName": "辛仁皑",
+      "x": 77,
+      "z": 159,
+      "reachable": true
+    },
+    {
+      "id": "05",
+      "displayName": "北斗星使",
+      "x": 267,
+      "z": 249,
+      "reachable": true
+    },
+    {
+      "id": "06",
+      "displayName": "赤灵尊神",
+      "x": 311,
+      "z": 243,
+      "reachable": true
+    },
+    {
+      "id": "07",
+      "displayName": "擂台管理员",
+      "x": 137,
+      "z": 225,
+      "reachable": true
+    },
+    {
+      "id": "08",
+      "displayName": "阵营战表彰大使",
+      "x": 137,
+      "z": 243,
+      "reachable": true
+    },
+    {
+      "id": "09",
+      "displayName": "镇魔道人",
+      "x": 175,
+      "z": 243,
+      "reachable": true
+    },
+    {
+      "id": "10",
+      "displayName": "车夫",
+      "x": 215,
+      "z": 63,
+      "reachable": true
+    },
+    {
+      "id": "11",
+      "displayName": "无想僧",
+      "x": 173,
+      "z": 203,
+      "reachable": true
+    },
+    {
+      "id": "12",
+      "displayName": "无意僧",
+      "x": 227,
+      "z": 203,
+      "reachable": true
+    },
+    {
+      "id": "13",
+      "displayName": "陆压真人",
+      "x": 305,
+      "z": 225,
+      "reachable": true
+    },
+    {
+      "id": "14",
+      "displayName": "朱雀",
+      "x": 285,
+      "z": 103,
+      "reachable": true
+    },
+    {
+      "id": "15",
+      "displayName": "苏苏",
+      "x": 139,
+      "z": 67,
+      "reachable": true
+    },
+    {
+      "id": "16",
+      "displayName": "月老",
+      "x": 303,
+      "z": 77,
+      "reachable": true
+    },
+    {
+      "id": "17",
+      "displayName": "无名药铺老板",
+      "x": 97,
+      "z": 171,
+      "reachable": true
+    },
+    {
+      "id": "18",
+      "displayName": "仙界神捕",
+      "x": 213,
+      "z": 255,
+      "reachable": true
+    },
+    {
+      "id": "19",
+      "displayName": "无名武器店老板",
+      "x": 93,
+      "z": 129,
+      "reachable": true
+    },
+    {
+      "id": "20",
+      "displayName": "善财童子",
+      "x": 313,
+      "z": 171,
+      "reachable": true
+    },
+    {
+      "id": "21",
+      "displayName": "段铁心",
+      "x": 131,
+      "z": 141,
+      "reachable": true
+    },
+    {
+      "id": "22",
+      "displayName": "云游大仙",
+      "x": 123,
+      "z": 59,
+      "reachable": true
+    },
+    {
+      "id": "23",
+      "displayName": "店铺掌柜",
+      "x": 101,
+      "z": 143,
+      "reachable": true
+    }
+  ],
+  "bodyBoundingBoxIntersections": [],
+  "mapTiles": [
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c01.png",
+      "sha256": "acef6b280e096fb99c12091ba895af743227f147ccb43f5ff439bb8a0a1180ff"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c02.png",
+      "sha256": "7f78354043939e6eabcfe10ec1d747fabc0aff0251cec4009f9e51bc3f216790"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c03.png",
+      "sha256": "44dfb90b4c43a5e2ffb25ad9f4e3d2a6d944c7c0727d880d7a069940a615b98f"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c04.png",
+      "sha256": "77d98293f9b89052d1176788fea37608aa06ca19b5753e02bdcff893c8f7c902"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c05.png",
+      "sha256": "cdfcb2d2024c8c21d0f460028ac82aa48d6ff055bb96b5bee0a6403ed08afb53"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c06.png",
+      "sha256": "a8d31160ed5b2fc694c36359f20042f4427952707c4520fb780eda7acabf10ad"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c01.png",
+      "sha256": "512fbdf78a15ca44aae0127d282c33cd5134d849940cd7cb815f31ea22358f0d"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c02.png",
+      "sha256": "66333353fbf2c8396487489edf7a700e99bf7d6d0dbd50c1cdd7d1c59926dfd5"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c03.png",
+      "sha256": "2817b3d98d3e33c8503e6a7c9f0e96f2f1143fc83c9b126908bb792878f8a2f6"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c04.png",
+      "sha256": "e3435a9eb050cc8108ae617dccc1c41f06b6944e4122f2c0ed2250713689f652"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c05.png",
+      "sha256": "5fcd3fecf13cf0dc70557541dea989aa0024a8639ef168f5fd16b92c6697488b"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r02_c06.png",
+      "sha256": "2fc870e343591a043e7a50d7b447c6aff99af60d058c15eaa4727b36b4bcb20b"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c01.png",
+      "sha256": "4da3dd3a181a7d49f1c2f3493ecc94131fa68ad01b6656c98975f57cb68bcf6d"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c02.png",
+      "sha256": "d96210c8bbcbec1675548813d4a5a1709b6dfb52e5b9b7a58d3adf350d086a9a"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c03.png",
+      "sha256": "e3a85d94b236ea20acb5e107dde9e3fbdf80558c4cf44c9ee91992fc6dcf9be6"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c04.png",
+      "sha256": "c45a4e52ecf8869a71fbe128cf6d47a5346c7f13eaf00eefd365f7b56e76b456"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c05.png",
+      "sha256": "7255a06e8b8efbc9f229958ddeb1dbb8e26a5bd11f03776a3ab432b68b455eac"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r03_c06.png",
+      "sha256": "ac83edd5cfad784c7b805938869bfa21d01665ac2df8c7ff26650b73c6d237e7"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c01.png",
+      "sha256": "b32608bcbbd0d45f20e50655fa0c06a6894f3f1d73745240eba8072d4f835142"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c02.png",
+      "sha256": "94cfcdb3ce2c1ff04df37c36dba7202df1dd9d0068d1e0012e7fbb8666070e83"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c03.png",
+      "sha256": "5ff55386a6a43822d0c814d104784caf81ed93a3d1b04f40f6acfda270ca0afd"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c04.png",
+      "sha256": "d1aad39efd47bde8f8b3748bf26fbf899095bec3aa318fc35a1144a1b1b5e2f8"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c05.png",
+      "sha256": "0ad530a7df58b377f3c7744ec44386d6d1caeb62ce514df9801cd9a8b05c2bc6"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r04_c06.png",
+      "sha256": "f70d729fdad820268cbbad079749c42ca67388ffb99829a84a2f317e76da2759"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c01.png",
+      "sha256": "e0659e23e1239788e21618303c5c0842a487981e03f1e4788427ed203d28664b"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c02.png",
+      "sha256": "48f7bf205506d9e85d2a26dfdf03b9f1545b7d45e15eb1711543d5faea1152da"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c03.png",
+      "sha256": "ef7f964a661f45ad107c3b1bf6c99288219349673857537e5ae6bbc353236955"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c04.png",
+      "sha256": "eb27ce120126bad5df4f0d9da9c0ed5f3fff5c44d5b6d4981d2fa85337ffa881"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c05.png",
+      "sha256": "c03b4a1aa22250b68abd1da0ec1822b88b662fb58f6d6b2daf44060fcf941a7a"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r05_c06.png",
+      "sha256": "abb7e9509035f90e98d60369fcb958346b1f81a3e3305394f5368560e17c6450"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c01.png",
+      "sha256": "0b152608f261b188defd712db21e59152e7f22eba9afcebd5fd14f98bf29c685"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c02.png",
+      "sha256": "c92d8f6178fa5ab6b397e4e1ac27625165187c35732c3d28911253dd10debb94"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c03.png",
+      "sha256": "62301e212c68f3f4b69c80fdde846e166ca4445f1e0d729c829da9e0c07b83ae"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c04.png",
+      "sha256": "b3cfcc78cd4fd81b769598d6815041e840694233f07601b53ccd17894c72469d"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c05.png",
+      "sha256": "833b3b970dc9e4b85119e422a9fb2e07b09d1bedf32c644d280e312dd464ebe8"
+    },
+    {
+      "file": "Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r06_c06.png",
+      "sha256": "c27febd276379beddb573e5e4cce4900ebe4b2b3c66530b1aab3e75d6bd91eb3"
+    }
+  ],
+  "placementSha256": "b364dbd951b29828a3edee350cf69d3394fd441f4f90eb1b762c5e6bb0aabac3",
+  "navigationSha256": "cceeb57d50d412ae54acb245dab12bd3b565344be0d24d973bb2fbbfb818dfc0"
+}

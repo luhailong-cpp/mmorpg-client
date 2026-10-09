@@ -1,0 +1,259 @@
+{
+  "npcCount": 23,
+  "imageOperation": "byte-identical copy",
+  "entries": [
+    {
+      "id": "01",
+      "name": "杨镖头",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/01-yang-biaotou.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/01-yang-biaotou.png",
+      "sha256": "67700d30f178a0f1bcf8de94de81883960a81009c313176ad06da335d2942278",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/01-yang-biaotou.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "02",
+      "name": "屠娇娇",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/02_tu-jiaojiao.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/02_tu-jiaojiao.png",
+      "sha256": "0da13b16f962dce480b42e5dc523449217609f0acec398310a52853574e14702",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/02_tu-jiaojiao.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "03",
+      "name": "董老头",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/03_dong-laotou.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/03_dong-laotou.png",
+      "sha256": "b87ab97364d5672cd3237bc85dabdd9deb4693bf8b14f7e8a8b7c8c8b7cf989d",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/03_dong-laotou.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "04",
+      "name": "辛仁皑",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/04_xin-ren-ai.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/04_xin-ren-ai.png",
+      "sha256": "8d245b299cd0d29d8711585ddaf1739ab590911382dec6d3f13634afbca06e53",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/04_xin-ren-ai.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "05",
+      "name": "北斗星使",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/05_beidou-xingshi.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/05_beidou-xingshi.png",
+      "sha256": "3b4e8a9a21504ccf1e1ce34d9d77df78e5f5ed1f4f293c9a8d7182c749eda5f8",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/05_beidou-xingshi.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "06",
+      "name": "赤灵尊神",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/06_chiling-zunshen.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/06_chiling-zunshen.png",
+      "sha256": "56a3eccead7ed0fb14fb3dc0d2c07e162b7041da5d39fc1b0f791d7e17e6e014",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/06_chiling-zunshen.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "07",
+      "name": "擂台管理员",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/07_arena-manager.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/07_arena-manager.png",
+      "sha256": "3cb0f370e19e18cdf1ce8806c2451b4a86ceb61bf8a082ccbcd88c4c6da37c59",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/07_arena-manager.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "08",
+      "name": "阵营战表彰大使",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/08-faction-commendation-envoy.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/08-faction-commendation-envoy.png",
+      "sha256": "d90af6b1537313daa138d8db52e022df833ac34911f1a69756a15ad181c9fe79",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/08-faction-commendation-envoy.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "09",
+      "name": "镇魔道人",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/09-demon-quelling-taoist.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/09-demon-quelling-taoist.png",
+      "sha256": "9ca2cc8b4024e06051a63b325b003ca3bcb825ba5d1e459cb9e3c9425d31f169",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/09-demon-quelling-taoist.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "10",
+      "name": "车夫",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/10-carter.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/10-carter.png",
+      "sha256": "86eb9c24de2f9f387ef5301973b830e1d62178160b786b0bce66e049a572bc8d",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/10-carter.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "11",
+      "name": "无想僧",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/11-wuxiang-monk.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/11-wuxiang-monk.png",
+      "sha256": "4c99d03d94aa1cd6bcaaff86ff023d999bc2fa2cddd7e01330f33f61e8dd7ab4",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/11-wuxiang-monk.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "12",
+      "name": "无意僧",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/12-wuyi-monk.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/12-wuyi-monk.png",
+      "sha256": "6daf12e4ce61f3390c33ab6a49308286dcff738ece7386c2cdd735b4b9ef9645",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/12-wuyi-monk.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "13",
+      "name": "陆压真人",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/13-luya-immortal.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/13-luya-immortal.png",
+      "sha256": "3a1583a4ced5b6bd5aa4e8b195ca065b20800befcab44a22bbd65de46b0780ed",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/13-luya-immortal.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "14",
+      "name": "朱雀",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/14-zhuque.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/14-zhuque.png",
+      "sha256": "0297bba34a4db3d7ab15b8912fd190406b92e7c1b96117a06fd092f17fceef68",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/14-zhuque.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "15",
+      "name": "苏苏",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/15-susu.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/15-susu.png",
+      "sha256": "f95f21a49aa736f3dcf96df869804ad18b6b9116577fe0704dc9383e4c0767e4",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/15-susu.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "16",
+      "name": "月老",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/16-yue-lao.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/16-yue-lao.png",
+      "sha256": "85a8ffd19480b9f2e94eba8000ddbbfc4d95a369ccad55f691c484a09636de6b",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/16-yue-lao.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "17",
+      "name": "无名药铺老板",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/17-medicine-shopkeeper.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/17-medicine-shopkeeper.png",
+      "sha256": "52f4a339ed86202d7d539214aeafb8047718046747d333534355b3afcca86315",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/17-medicine-shopkeeper.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "18",
+      "name": "仙界神捕",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/18-celestial-constable.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/18-celestial-constable.png",
+      "sha256": "1949068103d76e206dc6cdb7f3a2ebaa03d2e36567ff88492a0b704998bacfcb",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/18-celestial-constable.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "19",
+      "name": "无名武器店老板",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/19-weapon-shopkeeper.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/19-weapon-shopkeeper.png",
+      "sha256": "556b1708e6b20cdc0093e74899b9a8c7377927bc6bfbb679e686d2de766aa506",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/19-weapon-shopkeeper.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "20",
+      "name": "善财童子",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/20-shancai.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/20-shancai.png",
+      "sha256": "b1a9b7edb1069f04846cdc470211171b634ca9b04bf9a8d0e31d05c802ccdba1",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/20-shancai.png.generation.json",
+      "referenceCompleteness": "complete_or_mostly_complete",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "21",
+      "name": "段铁心（补全）",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/21_duan-tiexin-completion.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/21_duan-tiexin-completion.png",
+      "sha256": "87e81cff763ca176f1a65707525db21aa849fb813d7edf94829c6c298f833cff",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/supplemental/21_duan-tiexin-completion.png.generation.json",
+      "referenceCompleteness": "partial",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "22",
+      "name": "云游大仙（补全）",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/22_yunyou-daxian-completion.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/22_yunyou-daxian-completion.png",
+      "sha256": "ba80ea45c80a1fb2d76c5b464516d179d3ae33eb7eac827cbabf6424709abf08",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/supplemental/22_yunyou-daxian-completion.png.generation.json",
+      "referenceCompleteness": "partial",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    },
+    {
+      "id": "23",
+      "name": "店铺掌柜（补全）",
+      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/23_shopkeeper-completion.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/23_shopkeeper-completion.png",
+      "sha256": "9afc85bea134d875c3da99e282b9c6ad49b7302c5bcc1aafbc7b4e195b14855d",
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/supplemental/23_shopkeeper-completion.png.generation.json",
+      "referenceCompleteness": "partial",
+      "actualModel": "gpt-image",
+      "actualQuality": null
+    }
+  ]
+}

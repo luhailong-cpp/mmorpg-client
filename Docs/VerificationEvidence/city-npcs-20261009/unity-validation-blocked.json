@@ -1,0 +1,9 @@
+{
+  "attempted": true,
+  "engineExecuted": false,
+  "fullLog": "E:/work/tmp/city-npc-placement-20261009/verification/unity-verification.log",
+  "previewIsEngineScreenshot": false,
+  "reason": "No valid Unity Editor license found. Please activate your license.",
+  "exitCode": 198,
+  "testsExecuted": false
+}
