@@ -1,55 +1,30 @@
 {
   "schemaVersion": 1,
-  "sourceAuditSha256": "48cdcb1e2212145b98ab6383245ee17d212e946f770f28c58505f32daa037d77",
-  "snapshotFinishedUtc": "2026-10-06T01:02:29.669872+00:00",
+  "sourceAuditSha256": "5347af1b6e47dd5696a87cb302c90ad03e7bca234fe1566351cef0b24783e784",
+  "snapshotFinishedUtc": "2026-10-08T11:58:06.805210+00:00",
   "petCount": 20,
   "staticIdleFrames": 40,
   "portraitCount": 20,
-  "completePetCount": 14,
-  "activeCombatClips": 112,
-  "activeCombatFrames": 1256,
+  "completePetCount": 20,
+  "activeCombatClips": 120,
+  "activeCombatFrames": 1360,
   "activeClipsByAction": {
     "hit": 40,
-    "attack": 34,
-    "cast": 38
+    "attack": 40,
+    "cast": 40
   },
-  "pendingCombatClips": 8,
-  "pendingFramesPromoted": 286,
-  "pendingCombatFrames": 88,
-  "totalCombatFrames": 1344,
-  "missingCombatFrames": 16,
+  "pendingCombatClips": 0,
+  "pendingFramesPromoted": 374,
+  "pendingCombatFrames": 0,
+  "totalCombatFrames": 1360,
+  "missingCombatFrames": 0,
   "expectedCombatFrames": 1360,
   "runAnimation": "not_delivered; no idle duplicate or interpolation fabricated as run",
-  "completion": "partial_source_snapshot; complete clips only activated; client_runtime_pending",
+  "completion": "complete_source_snapshot; client_runtime_pending",
   "pending": [
     {
       "petId": "01-zhuling",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "W",
-          "presentFrames": 11,
-          "expectedFrames": 12,
-          "missingFrames": [
-            9
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        },
-        {
-          "action": "cast",
-          "direction": "W",
-          "presentFrames": 13,
-          "expectedFrames": 16,
-          "missingFrames": [
-            13,
-            15,
-            16
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     },
     {
       "petId": "02-jiangling",
@@ -69,52 +44,15 @@
     },
     {
       "petId": "15-landuoxian",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "W",
-          "presentFrames": 11,
-          "expectedFrames": 12,
-          "missingFrames": [
-            12
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     },
     {
       "petId": "06-xiluo",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "W",
-          "presentFrames": 11,
-          "expectedFrames": 12,
-          "missingFrames": [
-            12
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     },
     {
       "petId": "07-cangzhanglin",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "E",
-          "presentFrames": 10,
-          "expectedFrames": 12,
-          "missingFrames": [
-            11,
-            12
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     },
     {
       "petId": "08-zhufengli",
@@ -142,35 +80,7 @@
     },
     {
       "petId": "11-xiajiaolu",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "W",
-          "presentFrames": 6,
-          "expectedFrames": 12,
-          "missingFrames": [
-            7,
-            8,
-            9,
-            10,
-            11,
-            12
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        },
-        {
-          "action": "cast",
-          "direction": "E",
-          "presentFrames": 15,
-          "expectedFrames": 16,
-          "missingFrames": [
-            16
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     },
     {
       "petId": "13-yalingtong",
@@ -190,19 +100,7 @@
     },
     {
       "petId": "legacy-ling-yue",
-      "clips": [
-        {
-          "action": "attack",
-          "direction": "E",
-          "presentFrames": 11,
-          "expectedFrames": 12,
-          "missingFrames": [
-            10
-          ],
-          "reason": "incomplete_or_not_eligible_in_source_audit",
-          "activated": false
-        }
-      ]
+      "clips": []
     }
   ]
 }

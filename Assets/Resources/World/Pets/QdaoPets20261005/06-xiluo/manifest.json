@@ -52,7 +52,7 @@
         40,
         40
       ],
-      "eventFrame": -1,
+      "eventFrame": 1,
       "frameWidth": 1024,
       "frameHeight": 1024,
       "pixelsPerUnit": 160.0,
@@ -73,7 +73,7 @@
         40,
         40
       ],
-      "eventFrame": -1,
+      "eventFrame": 1,
       "frameWidth": 1024,
       "frameHeight": 1024,
       "pixelsPerUnit": 160.0,
@@ -100,7 +100,34 @@
         30,
         30
       ],
-      "eventFrame": -1,
+      "eventFrame": 6,
+      "frameWidth": 1024,
+      "frameHeight": 1024,
+      "pixelsPerUnit": 160.0,
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.08
+    },
+    {
+      "action": "attack",
+      "direction": "W",
+      "frameCount": 12,
+      "frameDurationMs": 30,
+      "frameDurationsMs": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "eventFrame": 6,
       "frameWidth": 1024,
       "frameHeight": 1024,
       "pixelsPerUnit": 160.0,
@@ -131,7 +158,7 @@
         45,
         45
       ],
-      "eventFrame": -1,
+      "eventFrame": 9,
       "frameWidth": 1024,
       "frameHeight": 1024,
       "pixelsPerUnit": 160.0,
@@ -162,7 +189,7 @@
         45,
         45
       ],
-      "eventFrame": -1,
+      "eventFrame": 9,
       "frameWidth": 1024,
       "frameHeight": 1024,
       "pixelsPerUnit": 160.0,
