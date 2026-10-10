@@ -39,6 +39,15 @@ namespace MmorpgClient.UI.Ugui.Pet
         /// <summary>关掉宝宝窗(属性窗打开时调;理由见 AttributeUiRoot.HidePanel)。</summary>
         public void HidePanel() => _panel?.Hide();
 
+        /// <summary>从技能页返回当前选中的宝宝。</summary>
+        public void OpenPanel(bool allocation = true)
+        {
+            EnsureBound();
+            if (_clientBound && _app?.GameClient?.InGame == true &&
+                _app.GameClient.IsGateReady && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
+                _panel?.ShowSection(allocation);
+        }
+
         // ── 生命周期 ────────────────────────────────────────
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]

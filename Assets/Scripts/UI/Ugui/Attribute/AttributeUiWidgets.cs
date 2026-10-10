@@ -48,6 +48,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
         /// <summary>面板显示值里不随本次加点变化的部分(自然成长 + 外部加成)。</summary>
         public ulong BaseValue;
 
+        /// <summary>已含在显示值中的外部加成，仅以括号标注来源。</summary>
+        public uint Bonus;
+
         private Action<UiPointRow> _onChanged;
         private bool _suppress;
 
@@ -55,12 +58,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         /// <summary>用服务器面板数据重置整行(committed = 权威值,pending 回落到 committed)。</summary>
         public void SetFromServer(uint dimensionId, string name, ulong displayValue, uint allocated,
-            uint cap, uint remaining, bool interactable)
+            uint cap, uint remaining, bool interactable, uint bonus = 0)
         {
             DimensionId = dimensionId;
             Committed = allocated;
             Pending = allocated;
             BaseValue = displayValue >= allocated ? displayValue - allocated : 0;
+            Bonus = bonus;
             if (NameLabel != null) NameLabel.text = name ?? string.Empty;
             ApplyRange(cap, remaining, interactable);
             Refresh();
@@ -102,9 +106,10 @@ namespace MmorpgClient.UI.Ugui.Attribute
             {
                 // 面板显示值 = 不变部分 + 待提交分配;有未提交增量时用「当前→目标」提示
                 ulong shown = BaseValue + Pending;
+                string bonus = Bonus > 0 ? $"(+{Bonus})" : string.Empty;
                 ValueLabel.text = Pending > Committed
-                    ? $"{BaseValue + Committed}<color=#7FD98A>+{Pending - Committed}</color>"
-                    : shown.ToString();
+                    ? $"{BaseValue + Committed}<color=#7FD98A>+{Pending - Committed}</color>{bonus}"
+                    : shown + bonus;
             }
             if (Slider != null && !_suppress && !Mathf.Approximately(Slider.value, Pending))
             {

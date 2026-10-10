@@ -27,8 +27,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public const uint Pvp1V1BattleConfigId = 1;
 
-        /// <summary>PVE 组队(5人)匹配的 battle_config_id(对应 DungeonTable id;人数由服务端按 min(配置,5) 收口)。</summary>
+        /// <summary>PVE 组队匹配的 battle_config_id(对应 DungeonTable id;排几人档见 <see cref="PveTeamMaxSize"/>)。</summary>
         public const uint PveTeamBattleConfigId = 1;
+
+        /// <summary>
+        /// PVE 人数档上限:排队面板提供 1..N 人档(1 人即时开战,其余凑满即开;每人对应一整组怪)。
+        /// 必须与服务端 match 配置 PveTeamSizeByConfigId[PveTeamBattleConfigId] 一致(本地为 5):
+        /// 选了服务端没开放的人数会被拒(kMatchModeNotOpen)。
+        /// </summary>
+        public const uint PveTeamMaxSize = 5;
 
         /// <summary>PVP 5v5 匹配的 battle_config_id(0 = 服务器默认规则)。</summary>
         public const uint Pvp5V5BattleConfigId = 0;

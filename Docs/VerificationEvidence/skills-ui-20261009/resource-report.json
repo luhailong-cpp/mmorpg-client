@@ -1,0 +1,26 @@
+{
+  "perClass": [
+    {
+      "classId": "1",
+      "count": 8
+    },
+    {
+      "classId": "2",
+      "count": 8
+    },
+    {
+      "classId": "3",
+      "count": 8
+    },
+    {
+      "classId": "4",
+      "count": 8
+    }
+  ],
+  "skillCount": 32,
+  "uniqueIcons": 32,
+  "checkedAtUtc": "2026-10-09T17:10:44.7819508Z",
+  "uniqueIds": 32,
+  "status": "passed",
+  "errors": []
+}

@@ -77,6 +77,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             if(_window.IsVisible){HidePanel();return;}if(!_available)return;
             Team.TeamUiRoot.Instance?.HidePanel();Guild.GuildUiRoot.Instance?.HidePanel();Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();Social.SocialUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();CityTravelUiRoot.Instance?.HidePanel();AttributeUiRoot.Instance?.HidePanel();PetUiRoot.Instance?.HidePanel();
+            Skills.SkillUiRoot.Instance?.HidePanel();
             _window.Show();
         }
         public void HidePanel()=>_window?.Hide();

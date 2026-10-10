@@ -142,6 +142,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Team.TeamUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();
+            Skills.SkillUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
             _window.SetZones(BuildZones());
             _window.Show(CurrentScene, _app.WorldMap != null && _app.WorldMap.FestivalAppearance);
