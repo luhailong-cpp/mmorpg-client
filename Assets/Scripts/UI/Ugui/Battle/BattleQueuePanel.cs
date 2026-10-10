@@ -198,18 +198,28 @@ namespace MmorpgClient.UI.Ugui.Battle
             RefreshPveSizeSelection();
         }
 
-        /// <summary>选中的人数档用强调色,匹配按钮文案写明人数与怪物倍数(客户端不知道一组怪有几只,只写倍数)。</summary>
+        /// <summary>
+        /// 选中的人数档换古铜色底并在文案前加「√」(两态都显式赋值,切档时旧的要还原)。
+        /// 用「√」(U+221A)而不是「✓」(U+2713):本面板的字体 SimKai 里没有后者的字形,会显示成方框;
+        /// 匹配按钮文案写明人数与怪物倍数(客户端不知道一组怪有几只,只写倍数)。
+        /// </summary>
         private void RefreshPveSizeSelection()
         {
             if (_pveSizeButtons != null)
             {
                 for (int i = 0; i < _pveSizeButtons.Length; i++)
                 {
-                    var plate = _pveSizeButtons[i]?.Plate;
-                    if (plate == null) continue;
-                    plate.color = (uint)(i + 1) == _pveTeamSize
-                        ? BattleUiStyle.ButtonPlateAccent
-                        : BattleUiStyle.ButtonPlate;
+                    var sizeButton = _pveSizeButtons[i];
+                    if (sizeButton == null) continue;
+                    uint size = (uint)(i + 1);
+                    bool selected = size == _pveTeamSize;
+                    if (sizeButton.Plate != null)
+                    {
+                        sizeButton.Plate.color = selected
+                            ? BattleUiStyle.PveSizeSelectedPlate
+                            : BattleUiStyle.ButtonPlate;
+                    }
+                    sizeButton.SetText(selected ? $"√{size}人" : $"{size}人");
                 }
             }
             _pveButton?.SetText(_pveTeamSize <= 1
