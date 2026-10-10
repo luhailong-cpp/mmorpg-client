@@ -165,6 +165,28 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(behind, Is.EqualTo(5f).Within(Tolerance));
         }
 
+        [TestCase(0.00001f, 5f, 0.00001f)]
+        [TestCase(0.01f, 45.01f, 0f)]
+        public void DistanceBehindHead_NearlyOverlappingSegments_OnlyTreatsTinyDifferencesAsTies(
+            float offset, float expectedBehind, float expectedLateral)
+        {
+            // 新旧两段几乎重合时保留新段;确实偏离 1 厘米时仍应选择更近的旧段。
+            var trail = new TeamFollowTrail(100f);
+            trail.Reset(new Vector3(offset, 0f, -5f), new[]
+            {
+                new Vector3(offset, 0f, 5f),
+                new Vector3(-10f, 0f, 5f),
+                new Vector3(-10f, 0f, -5f),
+                new Vector3(0f, 0f, -5f),
+                new Vector3(0f, 0f, 5f),
+            });
+
+            float behind = trail.DistanceBehindHead(Vector3.zero, out float lateral);
+
+            Assert.That(behind, Is.EqualTo(expectedBehind).Within(Tolerance));
+            Assert.That(lateral, Is.EqualTo(expectedLateral).Within(0.000001f));
+        }
+
         [Test]
         public void Reset_WithTail_LetsFollowersLineUpBehindAStandingLeader()
         {
