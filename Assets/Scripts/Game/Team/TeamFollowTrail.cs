@@ -20,6 +20,9 @@ namespace MmorpgClient.Game.Team
         /// <summary>一次停步回拉最多从末端收回这么长。远端外推冲过头的量不会超过它;再多就不是回拉了。</summary>
         public const float MaxRetractLength = 1.5f;
 
+        // 相交轨迹的投影会有浮点舍入差异;0.1 毫米内视为同样近,优先保留靠近队首的段。
+        private const float ProjectionTieTolerance = 0.0001f;
+
         // 已落定的记录点,从旧到新。队首 _head 不在表里,除非它刚好被落定为最后一个点。
         private readonly List<Vector3> _points = new List<Vector3>();
         private readonly float _maxLength;
@@ -165,8 +168,8 @@ namespace MmorpgClient.Game.Team
                 {
                     float t = ProjectOntoSegment(position, from, to);
                     float distance = Horizontal(position, Vector3.Lerp(from, to, t));
-                    // 严格小于才替换:同样近时保留先找到的(离队首更近的)那一处。
-                    if (distance < lateral)
+                    // 排除浮点投影误差后确实更近才替换,避免自交点被较旧的路线抢走。
+                    if (distance < lateral - ProjectionTieTolerance)
                     {
                         lateral = distance;
                         best = walked + segment * t;
