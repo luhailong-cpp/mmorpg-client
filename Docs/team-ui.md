@@ -66,3 +66,61 @@ Unity 6000.6.0f1：EditMode 27/27、PlayMode 6/6，均为 Passed；CaptureAll �
 正式 `TeamWindow` 已换成原稿的云头玉牌、细金纸面、横向成员行和申请卡；现有状态机和主城入口继续沿用。共享 GameplayV1 仅用于既有灯笼与短流苏。实际截图及回归运行在独立验证工程，保留主编辑器当前未保存场景。
 
 切片、来源/九宫格清单、官方 MCP 成功响应和本轮验收证据位于 `E:/work/image/designs/team-ui-v2/unity-slices/`。原有服务边界不变，离线 UI 验证不代表主城组队 RPC 已实现。
+
+# 2026-10-09:组队跟随(走路时跟着队长)
+
+问道式一路纵队:队长点地走,队员在身后按入队先后排成一列,沿队长走过的路一个跟一个;队长停,队员走到自己的位置也停。
+
+## 怎么实现的
+
+**每个客户端只驱动自己的角色。** 队员的客户端把本地角色走到「沿队长轨迹往回数 槽位 × 1.4」的点上,照常发 `MoveStart / MoveSync / MoveStop`,服务端照常裁决;别的队员在本机上的位置来自他们各自的移动广播(`ActorMoveS2C`)。
+
+| 文件 | 职责 |
+|---|---|
+| `Assets/Scripts/Game/Team/TeamFollowTrail.cs` | 队长轨迹(折线)。纯几何,不碰 Unity 运行时 |
+| `Assets/Scripts/Game/Team/TeamFollowPlanner.cs` | 槽位(`SlotOf`)与每帧指令(`Plan` / `PlanToPoint`:`Hold` / `Steer` / `Route`)。纯规则 |
+| `Assets/Scripts/Game/Team/TeamFollowDriver.cs` | 每帧:算槽位 → 在 `ActorWorld` 里按 `PlayerId` 找队长 → 记轨迹 → 规划 → 驱动本地控制器 |
+| `Assets/Scripts/World/Tianyong/TianyongPlayerController.cs` | 跟随接管:`SetFollowControlled` / `FollowSteer` / `FollowRoute` / `FollowHold` |
+| `Assets/Scripts/UI/Ugui/Team/TeamFollowUiRoot.cs` | 宿主(自动生成的常驻对象):持有驱动并每帧驱动它、开关按钮与提示。队伍状态只读 `TeamUiRoot.Instance.Client`,`TeamUiRoot.cs` 本身没有改 |
+| `Assets/Scripts/World/ActorWorld.cs` | 远端角色的插值、外推上限、碰撞体(见下「顺带修正」) |
+
+关键数值都在 `TeamFollowPlanner` / `TeamFollowDriver` / `TeamFollowTrail` 顶部的常量里:间距 1.4、最多 4 个跟随槽位、前视 0.8、停步容差 0.15 / 起步容差 0.6(滞回,避免反复起停刷移动包)、偏离轨迹 2 以上改寻路、落后 0.3 以上移速 ×1.1(9.9,不超过服务端的客户端速度信任上限 10)、轨迹保留 80、停步回拉最多收回 1.5。
+
+## 行为
+
+- **槽位**:非队长成员按 `JoinSeq` 升序,同号按玩家编号;1 紧跟队长。转让队长后原队长按自己的 `JoinSeq` 排进队列。
+- **接管期间**玩家自己点地面 / 按方向键不会移动角色,只弹一条提示(3 秒内最多一次);界面占着键盘(聊天打字、弹窗)时照样跟着走。脚本化方向(`SetDebugDirection`,验收用)优先级仍然最高。
+- **开关按钮**(组队入口右侧,`TeamFollowUiRoot` 自己的画布上,名字 `TeamFollowToggle`):跟随中显示「暂离」;暂离中显示「归队」;在队里但看不到队长时显示「寻找队长」(不可点,此时本来就能自己走)。没有队伍或自己是队长时不显示。点完会取消选中,免得紧接着按空格 / 回车又触发一次。
+- **暂离是纯本地状态**,服务端不知道:换图照样被队长带走,也可能被服务端瞬移回队长身边(例如单人打完一场战斗),只是到了之后不排队。确认换队 / 离队时复位;断线重连期间队伍视图暂时拿不到不算换队。
+- **看不到队长就不跟**:队长的角色不在本机 `ActorWorld` 里时恢复自由移动,再看到时重新接管。
+- **队长掉头**:队长带着速度往回走时轨迹折成发夹原样留着,队员继续走到折返点附近再掉头跟上(蛇形),不会被赶到队长前面。只有队长站定时才把轨迹末端收回一小段(停步后显示位置被拉回停点,最多 1.5)。
+- **刚看到队长、或暂离 / 战斗回来而队长已经挪了位置时**,在他背后(按他的朝向)铺一段直线尾巴重起轨迹;尾巴碰到不可走的格子就停,后排的人先叠在最后一个可走点上,队长一走出去就拉开。新进视野的远端角色朝向为 0(`ActorCreateS2C` 不带朝向),所以站着不动的队长背后一律是 −Z 方向。
+- **槽位落在不可走的格子里**时目标统一换成最近的可走点(到了就站住,没到就寻路)。
+- **直线跟随被行走掩码挡住**(轨迹按远端角色的显示位置记,拐角处可能擦到不可走格)时,接下来 0.75 秒改用寻路去槽位;寻路找不到路则 2 秒后再试。
+- 战斗画面亮着、未进游戏、组队快照还没有权威视图时一律不接管。
+
+## 顺带修正(影响所有远端角色,不只是队友)
+
+这些路径此前从未真正运行过(服务端不发 `ActorMoveS2C`),跟随是它们的第一个使用者:
+
+- **`ActorWorld.Tick` 的插值**:旧实现收到移动样本后先在 0.15 秒内朝「上报时的位置」插值,过了窗口才按速度外推,所以行走中的远端角色恒定落后 速度 × 0.15 = 1.35(一个跟随槽位)。现在样本一到就按它的速度外推,插值的两端一起前进,被收掉的只是收到样本那一刻的显示误差:本来就走在正确位置上的角色保持匀速,不会每收一个样本就顿一下。`Clock` 字段与 `Tick(float)` 重载是为了让测试能确定性地驱动它。
+- **外推上限**:超过 1 秒(`ActorWorld.MaxExtrapolationSeconds`)没有新样本就停止外推。走着的人掉线、或被服务端冻结而「停步」没发出来时,不会在别人屏幕上一直直线跑下去。
+- **角色不做物理障碍**:`ActorWorld.SpawnActor` 禁用图元自带的碰撞体(本地角色的控制器接管时本来就会删掉它)。可走性只看行走掩码,其它角色不挡路。
+- **转向立即上报**:`TianyongPlayerController` 在行进方向相对上一次上报转过约 20° 以上时立刻补发一条 `MoveSync`(两次之间至少 0.12 秒,约 8 条 / 秒封顶;gate 对 `MoveSync` 的额度是每窗口 20 条)。远端按最后一次上报的速度外推,不上报拐弯的话别人会看到你先直着冲出最多 2.25 再被拉回。
+
+## 依赖服务端的部分
+
+以下三件事在服务端分支 `feat/team-follow`(`xuanming-server-mmo`,设计文档 `docs/design/team-system.md` 文末「组队跟随 v1.1」),**未编译**。旧的 `scene.exe` 上本功能不会生效:
+
+1. 移动广播 `ActorMoveS2C`(133):此前服务端从不发送,别的玩家在客户端上根本不会动。
+2. 入队后把队员带到队长所在的线 / 场景。
+3. 同一场景内把队员瞬移到队长脚下(`TeleportS2C`,reason = 5),并重建双方可见性。
+
+## 验证
+
+- 离线 Roslyn 编译:运行时程序集(397 个文件)与 `MmorpgClient.Tests.EditMode.Tianyong`(41 个文件)均 0 error。
+- 纯逻辑测试 `TeamFollowTrailTests`(16)+ `TeamFollowPlannerTests`(20)在离线运行器里 36/36 通过。其中三条是逐帧模拟:队长走 L 形后队员停在槽位上且不反复起步;掉队 6 米后在行进中追回且不走走停停;队长原路掉头时队员不会跑到他前面。八个故意改坏的版本(间距、回退收点、起停滞回、自交取近、无条件收回、收回不设上限、追赶门槛过低、定点容差写反)各被对应用例抓到。
+- 这些模拟是规则层面的:步进照抄控制器 `FollowStep` 的截短规则,「是否在走」用上一帧的指令代替控制器的 `IsMoving`。控制器自己的分支(被掩码挡住、寻路、服务器吸附)不在其中。
+- **没有在 Unity 里跑过**:`TeamFollowDriver`、控制器的跟随分支与转向上报、`TeamFollowUiRoot`(宿主与按钮)、`ActorWorldFoundationTests` 里新增的五条(`RemoteActor_*` 四条、`SpawnedActors_AreNotPhysicalObstacles`,需要 GameObject,离线运行器跑不了)只过了编译。Unity 内的 EditMode 测试命令:`Unity.exe -batchmode -nographics -projectPath <工程> -runTests -testPlatform EditMode -testFilter "TeamFollow;ActorWorldFoundation" -testResults <xml> -logFile <log>`(不带 `-quit`)。
+- 联机验收步骤见服务端设计文档 V.6 第 3 步。
+- 注意:自动化驱动(`DevAutoPilot` 的 `SetDestination` 路径测试等)所用账号若是某支队伍的非队长成员,点击寻路会被跟随接管覆盖;跑这类验收前先离队或点暂离。
