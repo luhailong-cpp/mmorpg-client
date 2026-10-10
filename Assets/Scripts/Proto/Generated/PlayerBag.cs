@@ -611,7 +611,7 @@ public sealed partial class EquipSlotInfo : pb::IMessage<EquipSlotInfo>
   public const int NameFieldNumber = 3;
   private string name_ = "";
   /// <summary>
-  /// 部位名(武器 / 帽子 …),缺配时为空
+  /// 部位名(武器 / 帽子 …);只有「没配名字却被占着」的槽才会为空
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1869,7 +1869,8 @@ public sealed partial class BagLayoutInfo : pb::IMessage<BagLayoutInfo>
       = pb::FieldCodec.ForMessage(42, global::EquipSlotInfo.Parser);
   private readonly pbc::RepeatedField<global::EquipSlotInfo> equipSlots_ = new pbc::RepeatedField<global::EquipSlotInfo>();
   /// <summary>
-  /// 仅装备栏(bag_type = 2):全部槽位定义,slot 升序。
+  /// 仅装备栏(bag_type = 2):槽位定义,slot 升序。服务器只下发容量内的槽;
+  /// 没配部位名的槽(不对玩家展示)只在被占用时才下发。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

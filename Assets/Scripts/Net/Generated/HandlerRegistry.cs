@@ -70,8 +70,11 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(SceneAttributeClientPlayerRenameAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerRenameAttributeSchemeHandler.Dispatch(client, mc));
             client.OnNotify(SceneAttributeClientPlayerResetAttributePointsHandler.MessageId, mc => SceneAttributeClientPlayerResetAttributePointsHandler.Dispatch(client, mc));
             client.OnNotify(SceneAttributeClientPlayerSwitchAttributeSchemeHandler.MessageId, mc => SceneAttributeClientPlayerSwitchAttributeSchemeHandler.Dispatch(client, mc));
+            client.OnNotify(SceneBagClientPlayerEquipItemHandler.MessageId, mc => SceneBagClientPlayerEquipItemHandler.Dispatch(client, mc));
             client.OnNotify(SceneBagClientPlayerGetBagHandler.MessageId, mc => SceneBagClientPlayerGetBagHandler.Dispatch(client, mc));
+            client.OnNotify(SceneBagClientPlayerGmGrantItemHandler.MessageId, mc => SceneBagClientPlayerGmGrantItemHandler.Dispatch(client, mc));
             client.OnNotify(SceneBagClientPlayerSortBagHandler.MessageId, mc => SceneBagClientPlayerSortBagHandler.Dispatch(client, mc));
+            client.OnNotify(SceneBagClientPlayerUnequipItemHandler.MessageId, mc => SceneBagClientPlayerUnequipItemHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonKickPlayerHandler.MessageId, mc => SceneClientPlayerCommonKickPlayerHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonRedirectToGateHandler.MessageId, mc => SceneClientPlayerCommonRedirectToGateHandler.Dispatch(client, mc));
             client.OnNotify(SceneClientPlayerCommonSendTipToClientHandler.MessageId, mc => SceneClientPlayerCommonSendTipToClientHandler.Dispatch(client, mc));

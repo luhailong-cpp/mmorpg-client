@@ -1437,7 +1437,8 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
 }
 
 /// <summary>
-/// 重连提示:scene 在 RECONNECT 链路发现 InBattleComp 时推送,客户端随后 GetBattleState 补拉
+/// 重连提示:scene 在换会话(RECONNECT / REPLACE)或登录重建出 FIGHTING 冻结时经大厅推送;
+/// 客户端凭 battle_id 经 MatchService.RequestBattleTicket 补签、重建直连,直连就绪后 GetBattleState 补拉
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class BattleReconnectS2C : pb::IMessage<BattleReconnectS2C>
@@ -1641,6 +1642,7 @@ public sealed partial class BattleReconnectS2C : pb::IMessage<BattleReconnectS2C
 /// ---- 观战 S2C(二期,设计文档 §10) ----
 /// 观众入场首帧:全量状态复用 BattleStateS2C(BuildStateSnapshot 同源,action_deadline_ms
 /// 由 battle 节点按房间 timer 回填)。观众与参战者用不同的消息号,客户端两套状态机互不干扰。
+/// 首帧在观众直连握手成功后紧跟握手应答经直连下发(snapshot on connect,turn-based §22 D69)。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class SpectateStateS2C : pb::IMessage<SpectateStateS2C>
@@ -2817,7 +2819,7 @@ public sealed partial class GetBattleStateRequest : pb::IMessage<GetBattleStateR
 }
 
 /// <summary>
-/// 退出观战(观众主动;经 gate 按 BindBattleEvent 建立的绑定路由到 battle 节点)
+/// 退出观战(观众主动;经观战直连发到 battle 节点)
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class StopWatchBattleRequest : pb::IMessage<StopWatchBattleRequest>
@@ -3670,7 +3672,7 @@ public sealed partial class SetAutoBattleResponse : pb::IMessage<SetAutoBattleRe
 }
 
 /// <summary>
-/// 票据载荷:battle 节点在 CreateBattle / AddObserver 成功后签发(HMAC-SHA256,
+/// 票据载荷:battle 节点在 CreateBattle / AddObserver 登记之前预签(签不出即拒绝,turn-based §22 D70;HMAC-SHA256,
 /// 密钥 BaseDeployConfig.battle_token_secret,全部 battle 实例共享,与 gate 令牌密钥分域)。
 /// 签名 = hex(HMAC-SHA256(secret, 序列化后的本消息字节)),形态与 GateTokenPayload 一致。
 /// 寿命 = 房间作废期限(D25):同一票可重复用于战斗中重连;房间销毁即失效。
@@ -4593,10 +4595,10 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
 }
 
 /// <summary>
-/// 落点分配(battle 节点 → 客户端,经大厅通道 Kafka gate-{id} 推送;D26):
+/// 落点分配(battle 节点 → 客户端,大厅公告:无直连时经大厅通道 Kafka gate-cmd 推送;D26):
 /// 收到后客户端向 host:port 建第二条 TCP 连接并以票据握手。
 /// CreateBattle 成功后每参战者先收本消息再收 BattleStartS2C(同 key 保序);
-/// 观众 AddObserver 成功后先收本消息再收 SpectateStateS2C。
+/// 观众 AddObserver 成功后只收本消息,SpectateStateS2C 首帧在直连握手成功后经直连下发(turn-based §22 D69)。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
@@ -4665,7 +4667,8 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
   public const int HostFieldNumber = 2;
   private string host_ = "";
   /// <summary>
-  /// battle 节点客户端面地址(NodeInfo.endpoint)
+  /// battle 客户端可达地址(NodeInfo.client_endpoint,缺省回落 endpoint;集群外入口 D76/D78)。
+  /// host 可以是 IPv4 字面量或 DNS 名;port 可能是 hostPort / Agones 分配端口,与 endpoint.port 不同。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
