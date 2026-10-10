@@ -16,6 +16,7 @@ namespace MmorpgClient.Net
         public const uint CancelGuildApplication =  219; // GuildServiceCancelGuildApplication
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
         public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
+        public const uint ClaimGuildReunion      =  240; // GuildServiceClaimGuildReunion
         public const uint CreateAttributeScheme  =  174; // SceneAttributeClientPlayerCreateAttributeScheme
         public const uint CreateGuild            =   15; // GuildServiceCreateGuild
         public const uint CreatePlayer           =   14; // ClientPlayerLoginCreatePlayer
@@ -32,6 +33,7 @@ namespace MmorpgClient.Net
         public const uint GetBag                 =  191; // SceneBagClientPlayerGetBag
         public const uint GetBattleState         =  140; // BattleClientPlayerGetBattleState
         public const uint GetGuild               =   60; // GuildServiceGetGuild
+        public const uint GetGuildActivities     =  241; // GuildServiceGetGuildActivities
         public const uint GetGuildDonateOptions  =  120; // GuildServiceGetGuildDonateOptions
         public const uint GetGuildRank           =   27; // GuildServiceGetGuildRank
         public const uint GetGuildRankByGuild    =   52; // GuildServiceGetGuildRankByGuild
@@ -56,6 +58,7 @@ namespace MmorpgClient.Net
         public const uint LeaveGame              =   17; // ClientPlayerLoginLeaveGame
         public const uint LeaveGuild             =   29; // GuildServiceLeaveGuild
         public const uint LeaveTeam              =  210; // ClientPlayerTeamLeaveTeam
+        public const uint LightGuildLantern      =  239; // GuildServiceLightGuildLantern
         public const uint ListGuildApplications  =  221; // GuildServiceListGuildApplications
         public const uint ListMyGuildApplications =  222; // GuildServiceListMyGuildApplications
         public const uint ListMyInvites          =  205; // ClientPlayerTeamListMyInvites
@@ -103,6 +106,7 @@ namespace MmorpgClient.Net
         public const uint ResetAttributePoints   =  172; // SceneAttributeClientPlayerResetAttributePoints
         public const uint ResetPetPoints         =  182; // ScenePetClientPlayerResetPetPoints
         public const uint RespondChallenge       =  151; // MatchServiceRespondChallenge
+        public const uint RespondGuildTrialInvite =  243; // GuildServiceRespondGuildTrialInvite
         public const uint RespondInvite          =  204; // ClientPlayerTeamRespondInvite
         public const uint ReviewGuildApplication =  223; // GuildServiceReviewGuildApplication
         public const uint SceneInfoC2S           =   43; // SceneSceneClientPlayerSceneInfoC2S
@@ -110,6 +114,7 @@ namespace MmorpgClient.Net
         public const uint SetGuildAnnouncement   =   39; // GuildServiceSetAnnouncement
         public const uint SetGuildMemberRole     =   19; // GuildServiceSetGuildMemberRole
         public const uint SortBag                =  192; // SceneBagClientPlayerSortBag
+        public const uint StartGuildTrial        =  242; // GuildServiceStartGuildTrial
         public const uint StartTeamMatch         =  211; // ClientPlayerTeamStartTeamMatch
         public const uint StopWatchBattle        =  165; // BattleClientPlayerStopWatchBattle
         public const uint SubmitBattleAction     =  149; // BattleClientPlayerSubmitBattleAction
