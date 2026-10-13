@@ -8376,8 +8376,12 @@
     {
       "id": "01-zhuling",
       "displayName": "烛翎",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        5
+      ],
+      "modelIds": [
+        1005
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/01-zhuling/idle_E.png",
@@ -11012,8 +11016,12 @@
     {
       "id": "02-jiangling",
       "displayName": "绛铃",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        6
+      ],
+      "modelIds": [
+        1006
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/02-jiangling/idle_E.png",
@@ -13591,8 +13599,12 @@
     {
       "id": "03-shuangtuan",
       "displayName": "霜团貂",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        7
+      ],
+      "modelIds": [
+        1007
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/03-shuangtuan/idle_E.png",
@@ -16159,8 +16171,12 @@
     {
       "id": "04-guideng",
       "displayName": "桂灯童",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        8
+      ],
+      "modelIds": [
+        1008
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/04-guideng/idle_E.png",
@@ -18737,8 +18753,12 @@
     {
       "id": "05-yanyuling",
       "displayName": "砚羽灵",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        9
+      ],
+      "modelIds": [
+        1009
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/05-yanyuling/idle_E.png",
@@ -21347,8 +21367,12 @@
     {
       "id": "15-landuoxian",
       "displayName": "岚铎仙",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        10
+      ],
+      "modelIds": [
+        1010
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/15-landuoxian/idle_E.png",
@@ -23926,8 +23950,12 @@
     {
       "id": "06-xiluo",
       "displayName": "汐螺",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        11
+      ],
+      "modelIds": [
+        1011
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/06-xiluo/idle_E.png",
@@ -26830,8 +26858,12 @@
     {
       "id": "07-cangzhanglin",
       "displayName": "苍嶂麟",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        12
+      ],
+      "modelIds": [
+        1012
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/07-cangzhanglin/idle_E.png",
@@ -29399,8 +29431,12 @@
     {
       "id": "08-zhufengli",
       "displayName": "竹风狸",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        13
+      ],
+      "modelIds": [
+        1013
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/08-zhufengli/idle_E.png",
@@ -31962,8 +31998,12 @@
     {
       "id": "09-chishakui",
       "displayName": "赤砂魁",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        14
+      ],
+      "modelIds": [
+        1014
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/09-chishakui/idle_E.png",
@@ -34540,8 +34580,12 @@
     {
       "id": "10-xuanchaogui",
       "displayName": "玄潮龟",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        15
+      ],
+      "modelIds": [
+        1015
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/10-xuanchaogui/idle_E.png",
@@ -37108,8 +37152,12 @@
     {
       "id": "12-yuexianshi",
       "displayName": "月弦师",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        16
+      ],
+      "modelIds": [
+        1016
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/12-yuexianshi/idle_E.png",
@@ -39686,8 +39734,12 @@
     {
       "id": "16-luhualing",
       "displayName": "露华灵",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        17
+      ],
+      "modelIds": [
+        1017
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/16-luhualing/idle_E.png",
@@ -42264,8 +42316,12 @@
     {
       "id": "14-feierling",
       "displayName": "绯耳灵",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        18
+      ],
+      "modelIds": [
+        1018
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-xianling-20260924/runtime/14-feierling/idle_E.png",
@@ -44832,8 +44888,12 @@
     {
       "id": "11-xiajiaolu",
       "displayName": "霞角鹿",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        19
+      ],
+      "modelIds": [
+        1019
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-original-20260924/runtime/11-xiajiaolu/idle_E.png",
@@ -48424,8 +48484,12 @@
     {
       "id": "13-yalingtong",
       "displayName": "芽铃童",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        20
+      ],
+      "modelIds": [
+        1020
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/pets-original-20260924/runtime/13-yalingtong/idle_E.png",
@@ -50992,8 +51056,12 @@
     {
       "id": "legacy-hu-tuan-tuan",
       "displayName": "葫团团",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        21
+      ],
+      "modelIds": [
+        1021
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/creature-combat-20261005/pets/legacy-hu-tuan-tuan/design/E.png",
@@ -53562,8 +53630,12 @@
     {
       "id": "legacy-fu-xiao-hu",
       "displayName": "符小虎",
-      "petTableIds": [],
-      "modelIds": [],
+      "petTableIds": [
+        22
+      ],
+      "modelIds": [
+        1022
+      ],
       "staticAssets": [
         {
           "sourceRelative": "designs/creature-combat-20261005/pets/legacy-fu-xiao-hu/design/E-reference.png",

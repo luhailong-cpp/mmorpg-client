@@ -61,10 +61,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
         }
 
-        [TestCase(1u, true)]
-        [TestCase(1u, false)]
-        [TestCase(4u, true)]
-        [TestCase(4u, false)]
+        private static IEnumerable<TestCaseData> BoundPetCases()
+        {
+            foreach (uint tableId in new uint[] { 1, 4 }.Concat(Enumerable.Range(5, 18).Select(x => (uint)x)))
+            foreach (bool east in new[] { true, false })
+                yield return new TestCaseData(tableId, east);
+        }
+
+        [TestCaseSource(nameof(BoundPetCases))]
         public void BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(uint tableId, bool east)
         {
             int baseline = QdaoActionResources.ResidentClipCount;
@@ -185,7 +189,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void CatalogHasTwentyDistinctPreviewIdentitiesAndOnlyProvenNetworkBindings()
+        public void CatalogHasTwentyDistinctServerBindingsAndPreservesUnmappedLegacySpecies()
         {
             Assert.That(QdaoPetCatalog.Entries.Count, Is.EqualTo(20));
             Assert.That(QdaoPetCatalog.Entries.Select(x => x.id).Distinct().Count(), Is.EqualTo(20));
@@ -196,6 +200,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(QdaoPetCatalog.Resolve(2, 1001), Is.Null, "Table identity wins over a conflicting model.");
             Assert.That(QdaoPetCatalog.Resolve(1, 1004), Is.Null);
             Assert.That(QdaoPetCatalog.Resolve(0, 1001)?.id, Is.EqualTo("legacy-ling-yue"));
+            string[] added = { "01-zhuling", "02-jiangling", "03-shuangtuan", "04-guideng", "05-yanyuling",
+                "15-landuoxian", "06-xiluo", "07-cangzhanglin", "08-zhufengli", "09-chishakui",
+                "10-xuanchaogui", "12-yuexianshi", "16-luhualing", "14-feierling", "11-xiajiaolu",
+                "13-yalingtong", "legacy-hu-tuan-tuan", "legacy-fu-xiao-hu" };
+            for (uint i = 0; i < added.Length; i++)
+            {
+                Assert.That(QdaoPetCatalog.Resolve(5 + i, 1005 + i)?.id, Is.EqualTo(added[i]));
+                Assert.That(QdaoPetCatalog.Resolve(0, 1005 + i)?.id, Is.EqualTo(added[i]));
+                Assert.That(QdaoPetCatalog.Resolve(5 + i, 1001), Is.Null);
+            }
         }
 
         [Test]
@@ -304,6 +318,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Tick(companion);
                 Assert.That(companion.PetIdentity, Is.EqualTo("legacy-yun-jiu-jiu"));
                 Assert.That(world.Actors.Count, Is.EqualTo(1));
+                foreach (var entry in QdaoPetCatalog.Entries)
+                {
+                    list.Pets[0].PetTableId = entry.petTableIds.Single();
+                    list.Pets[0].ModelId = entry.modelIds.Single();
+                    net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = list });
+                    Tick(companion);
+                    Assert.That(companion.PetIdentity, Is.EqualTo(entry.id));
+                    Assert.That(world.Actors.Count, Is.EqualTo(1));
+                }
                 world.Clear();
                 Assert.That(companion.ActivePetId, Is.Zero, "Clear hides immediately, including reset and respawn within one frame.");
                 world.SpawnActor(11, ActorKind.Npc, 1, new Vector3(15, 0, 0), Vector3.zero);

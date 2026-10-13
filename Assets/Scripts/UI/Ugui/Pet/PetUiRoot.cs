@@ -182,7 +182,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void HandleError(string message)
         {
-            _panel?.SetStatus(message, true);
+            _panel?.ApplyError(message);
             ShowToast(message, true);
         }
 

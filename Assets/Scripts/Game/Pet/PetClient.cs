@@ -33,6 +33,8 @@ namespace MmorpgClient.Game.Pet
         public bool HasList => Pets != null;
         public bool ListRequestPending { get; private set; }
         private int _listRequestVersion;
+        private int _grantRequestVersion;
+        public bool IsReady => _net.IsReady;
 
         /// <summary>有写请求在途(UI 据此禁用提交按钮)。</summary>
         public bool Busy { get; private set; }
@@ -244,11 +246,13 @@ namespace MmorpgClient.Game.Pet
         /// <summary>GM:发一只宝宝(开发调试用;核心线唯一获取入口,上线前经 gate GM 鉴权收口)。</summary>
         public void GmGrantPet(uint petTableId)
         {
+            if (!HasList) { OnError?.Invoke("请先等待宝宝列表加载完成"); return; }
             if (!BeginWrite(petTableId == 0 ? "没有选中宝宝种类" : null)) return;
+            int version = ++_grantRequestVersion;
             _net.Call(MessageIds.GmGrantPet, new GmGrantPetRequest { PetTableId = petTableId },
                 GmGrantPetResponse.Parser,
-                resp => CompleteWrite("GM 发宝宝失败", resp.ErrorMessage, resp.Pets),
-                err => FailWrite(err));
+                resp => { if (version == _grantRequestVersion) CompleteWrite("GM 发宝宝失败", resp.ErrorMessage, resp.Pets); },
+                err => { if (version == _grantRequestVersion) FailWrite(err); });
         }
 
         // ── 内部 ────────────────────────────────────────────
@@ -323,6 +327,7 @@ namespace MmorpgClient.Game.Pet
         private void HandleDisconnected()
         {
             ++_listRequestVersion;
+            ++_grantRequestVersion;
             ListRequestPending = false;
             Pets = null;
             SetBusy(false);
