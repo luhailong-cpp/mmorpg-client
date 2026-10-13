@@ -23,14 +23,22 @@ public static partial class EquipErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZXF1aXBfZXJyb3JfdGlwLnBy",
-          "b3RvKq0CCgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
+          "b3RvKvAECgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
           "cXVpcEl0ZW1Ob3RGb3VuZBDg2gESGAoSa0VxdWlwTm90RXF1aXBtZW50EOHa",
           "ARIaChRrRXF1aXBMZXZlbE5vdEVub3VnaBDi2gESGQoTa0VxdWlwQ2xhc3NN",
           "aXNtYXRjaBDj2gESEgoMa0VxdWlwTm9TbG90EOTaARIXChFrRXF1aXBOb3RF",
           "cXVpcHBlZBDl2gESEwoNa0VxdWlwQmFnRnVsbBDm2gESFAoOa0VxdWlwSW5C",
           "YXR0bGUQ59oBEhIKDGtFcXVpcEZyb3plbhDo2gESGAoSa0VxdWlwR3JhbnRJ",
-          "bnZhbGlkEOnaARIZChNrRXF1aXBJbnRlcm5hbEVycm9yEOraAUIkCg5jb20u",
-          "Z2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "bnZhbGlkEOnaARIZChNrRXF1aXBJbnRlcm5hbEVycm9yEOraARIeChhrRXF1",
+          "aXBFbmhhbmNlVW5hdmFpbGFibGUQ69oBEhsKFWtFcXVpcEVuaGFuY2VNYXhM",
+          "ZXZlbBDs2gESJAoea0VxdWlwRW5oYW5jZU1hdGVyaWFsTm90RW5vdWdoEO3a",
+          "ARIgChprRXF1aXBFbmhhbmNlR29sZE5vdEVub3VnaBDu2gESFQoPa0VxdWlw",
+          "R2VtTm90R2VtEO/aARIXChFrRXF1aXBHZW1Ob3RPd25lZBDw2gESHAoWa0Vx",
+          "dWlwR2VtU29ja2V0SW52YWxpZBDx2gESHQoXa0VxdWlwR2VtU29ja2V0T2Nj",
+          "dXBpZWQQ8toBEhoKFGtFcXVpcEdlbVNvY2tldEVtcHR5EPPaARIbChVrRXF1",
+          "aXBHZW1UeXBlTWlzbWF0Y2gQ9NoBEhYKEGtFcXVpcEdlbUJhZ0Z1bGwQ9doB",
+          "QiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3Rv",
+          "Mw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::equip_error), }, null, null));
@@ -52,6 +60,17 @@ public enum equip_error {
   [pbr::OriginalName("kEquipFrozen")] KEquipFrozen = 28008,
   [pbr::OriginalName("kEquipGrantInvalid")] KEquipGrantInvalid = 28009,
   [pbr::OriginalName("kEquipInternalError")] KEquipInternalError = 28010,
+  [pbr::OriginalName("kEquipEnhanceUnavailable")] KEquipEnhanceUnavailable = 28011,
+  [pbr::OriginalName("kEquipEnhanceMaxLevel")] KEquipEnhanceMaxLevel = 28012,
+  [pbr::OriginalName("kEquipEnhanceMaterialNotEnough")] KEquipEnhanceMaterialNotEnough = 28013,
+  [pbr::OriginalName("kEquipEnhanceGoldNotEnough")] KEquipEnhanceGoldNotEnough = 28014,
+  [pbr::OriginalName("kEquipGemNotGem")] KEquipGemNotGem = 28015,
+  [pbr::OriginalName("kEquipGemNotOwned")] KEquipGemNotOwned = 28016,
+  [pbr::OriginalName("kEquipGemSocketInvalid")] KEquipGemSocketInvalid = 28017,
+  [pbr::OriginalName("kEquipGemSocketOccupied")] KEquipGemSocketOccupied = 28018,
+  [pbr::OriginalName("kEquipGemSocketEmpty")] KEquipGemSocketEmpty = 28019,
+  [pbr::OriginalName("kEquipGemTypeMismatch")] KEquipGemTypeMismatch = 28020,
+  [pbr::OriginalName("kEquipGemBagFull")] KEquipGemBagFull = 28021,
 }
 
 #endregion

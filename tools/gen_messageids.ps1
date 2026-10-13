@@ -176,6 +176,11 @@ $whitelist = @{
     "SceneBagClientPlayerSortBag"                           = "SortBag"
     "SceneBagClientPlayerEquipItem"                         = "EquipItem"
     "SceneBagClientPlayerUnequipItem"                       = "UnequipItem"
+    # 装备强化 / 镶嵌 / 取下宝石(服务端 docs/design/equipment-enhance-inlay.md §3.3)。号由服务端 proto-gen 发,
+    # 发号之前 message_id.txt 里没有这三行:脚本只出一条 Warning、常量不生成,PlayerFeaturesClient.cs 就是预期的 CS0117。
+    "SceneBagClientPlayerEnhanceEquip"                      = "EnhanceEquip"
+    "SceneBagClientPlayerInlayGem"                          = "InlayGem"
+    "SceneBagClientPlayerRemoveGem"                         = "RemoveGem"
     "SceneMissionClientPlayerGetMissionList"                = "GetMissionList"
     "SceneActivityClientPlayerGetActivityList"              = "GetActivityList"
 

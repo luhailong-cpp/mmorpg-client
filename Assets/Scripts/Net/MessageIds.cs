@@ -25,6 +25,7 @@ namespace MmorpgClient.Net
         public const uint DisbandTeam            =  209; // ClientPlayerTeamDisbandTeam
         public const uint Disconnect             =   58; // ClientPlayerLoginDisconnect
         public const uint DonateToGuild          =   53; // GuildServiceDonateToGuild
+        public const uint EnhanceEquip           =  251; // SceneBagClientPlayerEnhanceEquip
         public const uint EnterGame              =   26; // ClientPlayerLoginEnterGame
         public const uint EnterScene             =   63; // SceneSceneClientPlayerEnterScene
         public const uint EquipItem              =  249; // SceneBagClientPlayerEquipItem
@@ -46,6 +47,7 @@ namespace MmorpgClient.Net
         public const uint GmGrantPet             =  187; // ScenePetClientPlayerGmGrantPet
         public const uint GmSetPlayerLevel       =  175; // SceneAttributeClientPlayerGmSetPlayerLevel
         public const uint HandleApplication      =  208; // ClientPlayerTeamHandleApplication
+        public const uint InlayGem               =  250; // SceneBagClientPlayerInlayGem
         public const uint InviteToTeam           =  201; // ClientPlayerTeamInviteToTeam
         public const uint JoinQueue              =  157; // MatchServiceJoinQueue
         public const uint JubaozhaiBrowseListings =  196; // ClientPlayerJubaozhaiBrowseListings
@@ -100,6 +102,7 @@ namespace MmorpgClient.Net
         public const uint RedirectToGate         =  124; // SceneClientPlayerCommonRedirectToGate
         public const uint RefreshToken           =  127; // ClientPlayerLoginRefreshToken
         public const uint ReleaseSkill           =   84; // SceneSkillClientPlayerReleaseSkill
+        public const uint RemoveGem              =  252; // SceneBagClientPlayerRemoveGem
         public const uint RenameAttributeScheme  =  169; // SceneAttributeClientPlayerRenameAttributeScheme
         public const uint RenamePet              =  189; // ScenePetClientPlayerRenamePet
         public const uint RequestBattleTicket    =  179; // MatchServiceRequestBattleTicket
