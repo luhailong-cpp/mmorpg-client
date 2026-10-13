@@ -98,6 +98,7 @@ namespace MmorpgClient.Game.Battle
         // 连续战斗:最近一次显式 JoinQueue 的参数记忆(切磋不计,§11.2 只按队列参数重排)
         private Match.MatchMode _lastQueueMode;
         private uint _lastQueueConfigId;
+        private uint _lastQueueTeamSize;
         private bool _hasQueueMemory;
         private bool _endAckPending;         // 战斗已结束、等 UI AckBattleEnd(连续战斗的触发闸)
 
@@ -259,7 +260,11 @@ namespace MmorpgClient.Game.Battle
 
         // ── 契约方法:匹配队列 ──────────────────────────────
 
-        public void JoinQueue(Match.MatchMode mode, uint battleConfigId)
+        /// <param name="teamSize">
+        /// PVE 人数档(JoinQueueRequest.team_size,只有 PveTeam 模式读它):想凑成几人的队伍,
+        /// 怪物数量跟参战人数走(每人一整组)。0 = 该副本的人数上限;其余模式传 0。
+        /// </param>
+        public void JoinQueue(Match.MatchMode mode, uint battleConfigId, uint teamSize = 0)
         {
             if (Phase != BattlePhase.None)
             {
@@ -270,6 +275,7 @@ namespace MmorpgClient.Game.Battle
             // 连续战斗的参数记忆:含自动重排本身(同值覆写无害),新排队作废未消费的结束 Ack
             _lastQueueMode = mode;
             _lastQueueConfigId = battleConfigId;
+            _lastQueueTeamSize = teamSize;
             _hasQueueMemory = true;
             _endAckPending = false;
 
@@ -283,6 +289,7 @@ namespace MmorpgClient.Game.Battle
                 PlayerId = MyPlayerId,
                 Mode = mode,
                 BattleConfigId = battleConfigId,
+                TeamSize = teamSize,
             };
             _net.Call(MessageIds.JoinQueue, req, Match.JoinQueueResponse.Parser,
                 resp =>
@@ -502,7 +509,7 @@ namespace MmorpgClient.Game.Battle
             _endAckPending = false;
             if (!ContinuousBattle || !_hasQueueMemory) return;
             if (Phase != BattlePhase.None) return; // 已在新排队/新战斗(重连等):不抢入口
-            JoinQueue(_lastQueueMode, _lastQueueConfigId);
+            JoinQueue(_lastQueueMode, _lastQueueConfigId, _lastQueueTeamSize);
         }
 
         /// <summary>

@@ -18,11 +18,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly EquipWishDialogInput _input;
         private readonly EquipWishSelection _selection = new EquipWishSelection();
         private readonly TMP_Text _title, _summary, _pageLabel;
+        private readonly TMP_Text _hint, _subtitle;
         private readonly Button _confirm, _clear, _previous, _next, _cancel, _close;
         private readonly List<Selectable> _optionButtons = new List<Selectable>();
         private Action<uint[]> _confirmed;
         private Action _cancelled;
         private GameObject _previousFocus;
+        private string _unavailableMessage;
         private int _page;
         public bool IsVisible => _root.gameObject.activeSelf;
 
@@ -41,8 +43,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 alignment: TextAlignmentOptions.Center);
             _close = EquipUiSkin.Button(_frame, "CloseWishDialog", "", Width - 113, 24, 80, 80,
                 Cancel, artKey: "close");
-            Text(_frame, "可选择多项属性", 84, 140, 1312, 28, 24, EquipUiSkin.Muted,
-                alignment: TextAlignmentOptions.Center).name = "WishSelectionSubtitle";
+            _subtitle = Text(_frame, "可选择多项属性", 84, 140, 1312, 28, 24, EquipUiSkin.Muted,
+                alignment: TextAlignmentOptions.Center);
+            _subtitle.name = "WishSelectionSubtitle";
             _list = QdaoUguiFactory.CreateRect("WishOptions", _frame, 84, 178, 1312, 490);
             _summary = Text(_frame, "", 84, 684, 910, 38, 28, EquipUiSkin.Jade);
             _previous = EquipUiSkin.Button(_frame, "WishPreviousPage", "上一页", 994, 681, 120, 44,
@@ -50,8 +53,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _pageLabel = Text(_frame, "", 1122, 681, 126, 44, 24, Muted, alignment: TextAlignmentOptions.Center);
             _next = EquipUiSkin.Button(_frame, "WishNextPage", "下一页", 1260, 681, 136, 44,
                 () => ChangePage(1), fontSize: 24);
-            Text(_frame, "勾选后确认，可随时重新调整。", 84, 729, 1312, 35, 26, Muted,
-                alignment: TextAlignmentOptions.Center).name = "WishSelectionHint";
+            _hint = Text(_frame, "勾选后确认，可随时重新调整。", 84, 729, 1312, 35, 26, Muted,
+                alignment: TextAlignmentOptions.Center);
+            _hint.name = "WishSelectionHint";
             _clear = EquipUiSkin.Button(_frame, "ClearWishSelection", "全部清除", 84, 789, 280, 68,
                 () => { _selection.Clear(); RenderOptions(); FocusFirst(); });
             _cancel = EquipUiSkin.Button(_frame, "CancelWishSelection", "取消", 798, 789, 280, 68, Cancel);
@@ -60,11 +64,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         public void Show(IEnumerable<EquipWishOption> options, IEnumerable<uint> selected,
-            Action<uint[]> confirmed, Action cancelled = null, string title = "选择期望属性")
+            Action<uint[]> confirmed, Action cancelled = null, string title = "选择期望属性",
+            string unavailableMessage = null)
         {
             if (!IsVisible) _previousFocus = EventSystem.current?.currentSelectedGameObject;
             _selection.Reset(options, selected); _page = 0;
             _confirmed = confirmed; _cancelled = cancelled;
+            _unavailableMessage = unavailableMessage;
+            _subtitle.text = _selection.CanConfirm ? "可选择多项属性" : "暂无可选属性";
+            _hint.text = string.IsNullOrEmpty(unavailableMessage) ? "勾选后确认，可随时重新调整。" : "返回装备可继续查看属性、穿戴或卸下。";
             _title.text = string.IsNullOrWhiteSpace(title) ? "选择期望属性" : title;
             _root.SetAsLastSibling(); _root.gameObject.SetActive(true);
             RenderOptions(); FocusFirst();
@@ -137,7 +145,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (options.Count == 0)
             {
-                var unavailable = Text(_list, "尚未提供可选属性\n请等待该装备的属性范围同步后再选择", 70, 125, 1172, 170, 34,
+                var unavailable = Text(_list, _unavailableMessage ?? "尚未提供可选属性\n请等待该装备的属性范围同步后再选择", 70, 125, 1172, 170, 34,
                     Muted, true, TextAlignmentOptions.Center);
                 unavailable.name = "WishOptionsUnavailable";
                 unavailable.alignment = TextAlignmentOptions.Center;

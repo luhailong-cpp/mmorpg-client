@@ -23,20 +23,21 @@ public static partial class CommonReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ch5wcm90by9jb21tb24vYmFzZS9jb21tb24ucHJvdG8iKAoMRW5kcG9pbnRD",
-          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0i9AEKCE5vZGVJbmZvEg8K",
+          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0inAIKCE5vZGVJbmZvEg8K",
           "B25vZGVfaWQYASABKA0SEQoJbm9kZV90eXBlGAIgASgNEhMKC2xhdW5jaF90",
           "aW1lGAMgASgEEhcKD3NjZW5lX25vZGVfdHlwZRgEIAEoDRIfCghlbmRwb2lu",
           "dBgFIAEoCzINLkVuZHBvaW50Q29tcBIPCgd6b25lX2lkGAYgASgNEhUKDXBy",
           "b3RvY29sX3R5cGUYByABKA0SEQoJbm9kZV91dWlkGAggASgJEhQKDHBsYXll",
           "cl9jb3VudBgJIAEoDRIkCg1ncnBjX2VuZHBvaW50GAogASgLMg0uRW5kcG9p",
-          "bnRDb21wIjAKEE5vZGVJbmZvTGlzdENvbXASHAoJbm9kZV9saXN0GAEgAygL",
-          "MgkuTm9kZUluZm8iKgoOTmV0d29ya0FkZHJlc3MSCgoCaXAYASABKAkSDAoE",
-          "cG9ydBgCIAEoDUINWgtjb21tb24vYmFzZWIGcHJvdG8z"));
+          "bnRDb21wEiYKD2NsaWVudF9lbmRwb2ludBgLIAEoCzINLkVuZHBvaW50Q29t",
+          "cCIwChBOb2RlSW5mb0xpc3RDb21wEhwKCW5vZGVfbGlzdBgBIAMoCzIJLk5v",
+          "ZGVJbmZvIioKDk5ldHdvcmtBZGRyZXNzEgoKAmlwGAEgASgJEgwKBHBvcnQY",
+          "AiABKA1CDVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EndpointComp), global::EndpointComp.Parser, new[]{ "Ip", "Port" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfoListComp), global::NodeInfoListComp.Parser, new[]{ "NodeList" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NetworkAddress), global::NetworkAddress.Parser, new[]{ "Ip", "Port" }, null, null, null, null)
         }));
@@ -325,6 +326,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     nodeUuid_ = other.nodeUuid_;
     playerCount_ = other.playerCount_;
     grpcEndpoint_ = other.grpcEndpoint_ != null ? other.grpcEndpoint_.Clone() : null;
+    clientEndpoint_ = other.clientEndpoint_ != null ? other.clientEndpoint_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -463,6 +465,30 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
   }
 
+  /// <summary>Field number for the "client_endpoint" field.</summary>
+  public const int ClientEndpointFieldNumber = 11;
+  private global::EndpointComp clientEndpoint_;
+  /// <summary>
+  /// 客户端可达地址（advertised address，语义同 Kafka advertised.listeners）。
+  /// 只由客户端面节点（gate / battle）在 etcd 发布前自报。
+  /// 缺失（未设置或不可用，判据见下）时：消费方 require=false 回落 endpoint（podip 模式）；
+  /// require=true 跳过该节点 / 拒签（external 模式纵深防御）。require 即 login / scene_manager 的
+  /// RequireClientEndpoint、battle 的 CLIENT_ENDPOINT_REQUIRED（docs/design/k8s-client-entry.md D78 / D79）。
+  /// 只用于下发给客户端：login CandidatesForZone / scene_manager RedirectToGate / battle BuildAssignment。
+  /// 不参与端口 CAS、节点间对端校验、gRPC 拨号、FindNodeByPodIP —— 这些永远用 endpoint / grpc_endpoint。
+  /// ip 可以是 IPv4 字面量或 DNS 名；port 是客户端连接端口（可能是 NodePort / hostPort，与 endpoint.port 不同）。
+  /// 可用 = ip 非空且 port 在 1..65535；半填（只有 ip 或只有 port）视为缺失。
+  /// 字段号 11 上线后不复用；废弃时写 `reserved 11;`（AGENTS.md §4.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::EndpointComp ClientEndpoint {
+    get { return clientEndpoint_; }
+    set {
+      clientEndpoint_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -488,6 +514,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (NodeUuid != other.NodeUuid) return false;
     if (PlayerCount != other.PlayerCount) return false;
     if (!object.Equals(GrpcEndpoint, other.GrpcEndpoint)) return false;
+    if (!object.Equals(ClientEndpoint, other.ClientEndpoint)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -505,6 +532,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (NodeUuid.Length != 0) hash ^= NodeUuid.GetHashCode();
     if (PlayerCount != 0) hash ^= PlayerCount.GetHashCode();
     if (grpcEndpoint_ != null) hash ^= GrpcEndpoint.GetHashCode();
+    if (clientEndpoint_ != null) hash ^= ClientEndpoint.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -563,6 +591,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(82);
       output.WriteMessage(GrpcEndpoint);
     }
+    if (clientEndpoint_ != null) {
+      output.WriteRawTag(90);
+      output.WriteMessage(ClientEndpoint);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -613,6 +645,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(82);
       output.WriteMessage(GrpcEndpoint);
     }
+    if (clientEndpoint_ != null) {
+      output.WriteRawTag(90);
+      output.WriteMessage(ClientEndpoint);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -652,6 +688,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (grpcEndpoint_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(GrpcEndpoint);
+    }
+    if (clientEndpoint_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ClientEndpoint);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -700,6 +739,12 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
         GrpcEndpoint = new global::EndpointComp();
       }
       GrpcEndpoint.MergeFrom(other.GrpcEndpoint);
+    }
+    if (other.clientEndpoint_ != null) {
+      if (clientEndpoint_ == null) {
+        ClientEndpoint = new global::EndpointComp();
+      }
+      ClientEndpoint.MergeFrom(other.ClientEndpoint);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -766,6 +811,13 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
           input.ReadMessage(GrpcEndpoint);
           break;
         }
+        case 90: {
+          if (clientEndpoint_ == null) {
+            ClientEndpoint = new global::EndpointComp();
+          }
+          input.ReadMessage(ClientEndpoint);
+          break;
+        }
       }
     }
   #endif
@@ -829,6 +881,13 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
             GrpcEndpoint = new global::EndpointComp();
           }
           input.ReadMessage(GrpcEndpoint);
+          break;
+        }
+        case 90: {
+          if (clientEndpoint_ == null) {
+            ClientEndpoint = new global::EndpointComp();
+          }
+          input.ReadMessage(ClientEndpoint);
           break;
         }
       }

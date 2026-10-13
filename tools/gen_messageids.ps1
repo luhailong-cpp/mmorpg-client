@@ -69,6 +69,14 @@ $whitelist = @{
     "GuildServiceUpgradeGuild"             = "UpgradeGuild"
     "GuildServiceGetGuildShop"             = "GetGuildShop"
     "GuildServiceBuyGuildShopGoods"        = "BuyGuildShopGoods"
+    # 帮会二期 B6 活动:灯会 / 团圆 / 历练(设计 docs/design/guild-phase2/06-activities.md §6.36)。
+    # 五个号在 B6a 一次加齐;历练两个在服务端 B6b 落地前固定回"未开放",客户端 B6b 才用到,先占好常量。
+    # 常量名不与别的域撞:GetActivityList 是 scene 的活动窗口、RespondInvite 是组队邀请,与这里的不是一回事。
+    "GuildServiceGetGuildActivities"       = "GetGuildActivities"
+    "GuildServiceLightGuildLantern"        = "LightGuildLantern"
+    "GuildServiceClaimGuildReunion"        = "ClaimGuildReunion"
+    "GuildServiceStartGuildTrial"          = "StartGuildTrial"
+    "GuildServiceRespondGuildTrialInvite"  = "RespondGuildTrialInvite"
 
     # 聚宝斋(proto/trade/jubaozhai.proto, service ClientPlayerJubaozhai)。
     # 内部 TradeAdmin(SeedListing)刻意不列:gate 不转发,客户端也不应持有其消息号。

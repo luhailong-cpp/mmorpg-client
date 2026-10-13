@@ -89,6 +89,21 @@ namespace MmorpgClient.World
         public System.Func<ActorView, string> AppearanceProvider;
 
         /// <summary>
+        /// Monotonic seconds used to time remote interpolation. Tests replace it to drive
+        /// <see cref="ApplyMove"/> / <see cref="Tick(float)"/> deterministically.
+        /// </summary>
+        public System.Func<float> Clock = () => Time.realtimeSinceStartup;
+
+        /// <summary>
+        /// How long a remote actor keeps coasting on its last reported velocity when no
+        /// further sample arrives. A walking actor reports at least every 0.25 s, so a full
+        /// second of silence means the "stopped" message was lost or never sent (the mover
+        /// disconnected, or the server froze it for a battle); without this cap the actor
+        /// would run on in a straight line forever.
+        /// </summary>
+        public const float MaxExtrapolationSeconds = 1f;
+
+        /// <summary>
         /// Places the actor container under the persistent application root.
         /// Network positions remain actor-local coordinates, so the default
         /// path normalizes the root transform after reparenting.
@@ -169,6 +184,15 @@ namespace MmorpgClient.World
                 ? GameObject.CreatePrimitive(PrimitiveType.Cube)
                 : GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             prim.name = $"{kind}#{entity}";
+            // Actors are not physical obstacles. Walkability is decided by the walk mask on
+            // the client and the navmesh on the server, neither of which knows about other
+            // actors; leaving the collider that comes with the primitive enabled would let a
+            // remote player stop the local CharacterController (two team followers assigned
+            // the same spot would shove each other forever, and a member the server drops
+            // onto the leader would start inside the leader). Disabled rather than destroyed:
+            // the local controller removes it when it takes over the actor.
+            var primitiveCollider = prim.GetComponent<Collider>();
+            if (primitiveCollider != null) primitiveCollider.enabled = false;
             prim.transform.SetParent(_root, false);
             prim.transform.localPosition = position;
             prim.transform.localEulerAngles = eulerDeg;
@@ -327,7 +351,7 @@ namespace MmorpgClient.World
             v.TargetPos       = targetPos;
             v.TargetEuler     = targetEuler;
             v.Velocity        = velocity;
-            v.InterpStart     = Time.realtimeSinceStartup;
+            v.InterpStart     = Clock();
             v.InterpDuration  = Mathf.Max(0.001f, interpDuration);
             v.HasTarget       = true;
         }
@@ -379,14 +403,32 @@ namespace MmorpgClient.World
         /// Drive interpolation + extrapolation. Call from a MonoBehaviour
         /// Update once per frame. Frame-rate independent.
         /// </summary>
-        public void Tick()
+        public void Tick() => Tick(Time.deltaTime);
+
+        /// <summary>
+        /// <see cref="Tick()"/> with an explicit frame time; timing comes from <see cref="Clock"/>.
+        /// </summary>
+        public void Tick(float deltaTime)
         {
-            float now = Time.realtimeSinceStartup;
-            float dt  = Time.deltaTime;
+            float now = Clock();
             foreach (var v in _actors.Values)
             {
                 if (IsLocal(v.Entity)) continue;
                 if (!v.HasTarget || v.Go == null) continue;
+                // The authoritative sample keeps moving at its reported velocity from the
+                // moment it arrives. Both ends of the blend advance with it, so what is being
+                // blended away is only the *error* the actor had when the sample arrived, and
+                // an actor that was already on track simply keeps walking at constant speed.
+                // Blending toward the stale reported point and only extrapolating afterwards
+                // (the previous behaviour) left a walking actor permanently
+                // velocity * InterpDuration behind where it really is: 1.35 units at walking
+                // speed, a whole slot in a team-follow line. Advancing only the target would
+                // remove that lag but make the actor stall and lunge once per sample.
+                if (now - v.InterpStart > MaxExtrapolationSeconds)
+                    v.Velocity = UnityEngine.Vector3.zero;
+                var advance = v.Velocity * deltaTime;
+                v.InterpFromPos += advance;
+                v.TargetPos += advance;
                 float t = (now - v.InterpStart) / v.InterpDuration;
                 if (t < 1f)
                 {
@@ -395,8 +437,6 @@ namespace MmorpgClient.World
                 }
                 else
                 {
-                    // Past the interp window: dead-reckon with last velocity.
-                    v.TargetPos += v.Velocity * dt;
                     v.Go.transform.localPosition    = v.TargetPos;
                     v.Go.transform.localEulerAngles = v.TargetEuler;
                 }

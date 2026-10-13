@@ -1,6 +1,7 @@
 using System;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Social;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
@@ -62,6 +63,33 @@ namespace MmorpgClient.UI.Ugui.Social
         {
             if(Window.IsVisible){HidePanel();return;}
             if(!_available)return;
+            OpenPanel(State.Page);
+        }
+        /// <summary>从装备卡进入世界聊天，只填写草稿，发送仍须玩家确认。</summary>
+        public bool TryComposeEquipment(BagItemInfo item)
+        {
+            var game=AppBootstrap.Instance?.GameClient;
+            // 按当前连接再核对一次，防止点击发生在 Update 观察到换号或断线之前。
+            if(!_available||Window==null||Client==null||State==null||game==null||!game.InGame||!game.IsGateReady
+                ||game.PlayerId==0||!ReferenceEquals(_game,game)||_player!=game.PlayerId
+                ||!ReferenceEquals(_connection,game.GateConnectionIdentity)||State.PlayerId!=game.PlayerId
+                ||(BattleUiRoot.Instance?.IsBattleLayerVisible??false))
+            {State?.Notify("请进入可用角色会话后分享装备。");return false;}
+            if(State.IsPreview||!State.CanSend(SocialChannel.World)||Client.RequiresReconnect)
+            {State.Notify(State.RequiresReconnect?SocialClient.RecoveryMessage:"聊天正在同步，请稍后再试。");return false;}
+            if(!EquipShareText.TryCreateDraft(item,State.Draft(SocialChannel.World),out var draft))
+            {State.Notify(string.IsNullOrEmpty(State.Draft(SocialChannel.World))?"这件物品暂无可分享的装备信息。":"世界频道已有草稿，请先处理原草稿后再分享装备。");return false;}
+
+            State.SetDraft(SocialChannel.World,draft);
+            State.SelectChannel(SocialChannel.World);
+            // 此入口不刷新历史、不发消息；玩家可先编辑，再主动点击发送。
+            OpenPanel(SocialPage.World,false);
+            State.Notify("装备文字已填入世界频道草稿，尚未发送；可编辑后点击发送。");
+            Window.FocusComposer();
+            return true;
+        }
+        private void OpenPanel(SocialPage page,bool refreshHistory=true)
+        {
             Mail.MailUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
@@ -69,8 +97,9 @@ namespace MmorpgClient.UI.Ugui.Social
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
             Attribute.AttributeUiRoot.Instance?.HidePanel();
+            Skills.SkillUiRoot.Instance?.HidePanel();
             Pet.PetUiRoot.Instance?.HidePanel();
-            Window.Show(State.Page);Opened?.Invoke();
+            Window.Show(page,refreshHistory);Opened?.Invoke();
         }
         public void HidePanel()=>Window?.Hide();
         public static bool IsTyping()

@@ -117,6 +117,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();
+            Skills.SkillUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
             _window.Show();
             _client?.Open();
@@ -150,5 +151,4 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         }
     }
 }
-
 

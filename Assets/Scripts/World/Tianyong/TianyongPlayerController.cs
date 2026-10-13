@@ -30,6 +30,17 @@ namespace MmorpgClient.World.Tianyong
         private int _waypoint;
         private bool _moving;
         private float _nextSyncAt;
+        // Heading and time of the last movement report, for the turn-triggered sync.
+        private Vector3 _reportedDirection;
+        private float _reportedAt = -100f;
+        private const float SyncInterval = 0.25f;
+        // A turn sharper than ~20 degrees is reported right away instead of waiting for the
+        // next periodic sync: remote clients extrapolate along the last reported velocity, so
+        // an unreported turn shows up there as up to SyncInterval * speed (2.25 units) of
+        // running straight on, then a pull back. The minimum spacing keeps a continuously
+        // curving walk at ~8 reports/s, inside the gate's MoveSync quota (20 per ~2 s window).
+        private const float TurnSyncCosine = 0.94f;
+        private const float TurnSyncMinInterval = 0.12f;
         private float _moveSpeed = DefaultMoveSpeed;
         private float _arrivalDistance = 0.35f;
         private Vector3? _networkTarget;
@@ -48,8 +59,83 @@ namespace MmorpgClient.World.Tianyong
         private Vector3? _destination;
         private int _replanOnBlock;
 
+        // ── 组队跟随(TeamFollowDriver 接管)────────────────────────────
+        private const float FollowArrivalDistance = 0.03f;
+        private const float MinFollowSpeedScale = 0.5f;
+        private const float MaxFollowSpeedScale = 1.1f;
+        private bool _followControlled;
+        private Vector3? _followWaypoint;
+        private float _followSpeedScale = 1f;
+        private bool _followBlocked;
+
         public CharacterController Motor => _motor;
         public bool IsMoving => _moving;
+
+        /// <summary>
+        /// 组队跟随是否正在接管本地角色。为 true 时玩家自己的点击 / 键盘不再驱动角色(队员跟着队长走,
+        /// 不能自由行动),移动改由 <see cref="FollowSteer"/> / <see cref="FollowRoute"/> /
+        /// <see cref="FollowHold"/> 决定;走出去的每一步仍然过本地行走掩码、仍然照常上报服务器。
+        /// 与验收用的 <see cref="SetScriptedInputOwner"/> 不同:跟随期间即使界面占着键盘(聊天打字、弹窗)
+        /// 也继续走。脚本化方向(<see cref="SetDebugDirection"/>)优先级仍然最高。
+        /// </summary>
+        public bool FollowControlled => _followControlled;
+
+        /// <summary>上一次 <see cref="FollowSteer"/> 的那一步是否被行走掩码拒绝(角色已停下)。</summary>
+        public bool FollowBlocked => _followBlocked;
+
+        /// <summary>跟随接管期间,玩家点了地面或按了方向键(每次点击 / 每帧按住各触发一次,订阅方自己限频)。</summary>
+        public event System.Action FollowInputRejected;
+
+        /// <summary>
+        /// 交出或收回控制权。两个方向都会丢掉当前路径并在行走中时通知服务器停步:
+        /// 接管时玩家自己点的目的地作废,归还时跟随走到一半的那一步作废。
+        /// </summary>
+        public void SetFollowControlled(bool controlled)
+        {
+            if (_followControlled == controlled) return;
+            _followControlled = controlled;
+            _followWaypoint = null;
+            _followSpeedScale = 1f;
+            _followBlocked = false;
+            _destination = null;
+            CancelPath(true);
+        }
+
+        /// <summary>
+        /// 跟随:朝 feetWaypoint 直线走(不寻路)。调用方每帧给出轨迹上稍靠前的一点;走到该点即停,
+        /// 不会冲过头。被行走掩码挡住时停下并置 <see cref="FollowBlocked"/>,由调用方改用
+        /// <see cref="FollowRoute"/>。未接管时调用无效。
+        /// </summary>
+        public void FollowSteer(Vector3 feetWaypoint, float speedScale = 1f)
+        {
+            if (!_followControlled) return;
+            // 从寻路切回直线跟随:丢掉路径但不发停步,人是连续在走的。
+            _path.Clear();
+            _waypoint = 0;
+            _networkTarget = null;
+            _destination = null;
+            _followWaypoint = feetWaypoint;
+            _followSpeedScale = Mathf.Clamp(speedScale, MinFollowSpeedScale, MaxFollowSpeedScale);
+        }
+
+        /// <summary>跟随:寻路去 feetDestination(离轨迹太远或直线被挡时用)。找不到路返回 false 并停下。</summary>
+        public bool FollowRoute(Vector3 feetDestination)
+        {
+            if (!_followControlled) return false;
+            _followWaypoint = null;
+            _followBlocked = false;
+            return SetDestination(feetDestination);
+        }
+
+        /// <summary>跟随:已到位,原地站定。</summary>
+        public void FollowHold()
+        {
+            if (!_followControlled) return;
+            _followWaypoint = null;
+            _followBlocked = false;
+            _destination = null;
+            CancelPath(true);
+        }
 
         /// <summary>
         /// Acceptance-only switch: when true, <see cref="MoveInDirection"/>
@@ -341,7 +427,9 @@ namespace MmorpgClient.World.Tianyong
             var keyboardBlocked = GameplayInputGate.IsKeyboardBlocked;
             var pointerBlocked = GameplayInputGate.IsPointerBlocked;
             var scripted = _debugDirection.sqrMagnitude > 0.01f;
-            if (keyboardBlocked && !scripted)
+            // 组队跟随接管中:界面占着键盘也照走(边聊天边跟队),玩家自己的输入只触发提示。
+            var following = _followControlled && !scripted;
+            if (keyboardBlocked && !scripted && !following)
             {
                 // Keep the authored path so movement may resume after an input
                 // field/modal releases focus, but stop both motor and network
@@ -350,9 +438,10 @@ namespace MmorpgClient.World.Tianyong
                 return;
             }
 
-            if (!pointerBlocked && !scripted && !_ignoreLocalInput) HandleClick();
+            if (following) NoticeRejectedFollowInput(pointerBlocked, keyboardBlocked);
+            else if (!pointerBlocked && !scripted && !_ignoreLocalInput) HandleClick();
             var keyboard = scripted ? _debugDirection
-                : _ignoreLocalInput ? Vector3.zero
+                : _ignoreLocalInput || following ? Vector3.zero
                 : ReadKeyboardDirection();
             if (keyboard.sqrMagnitude > 0.01f)
             {
@@ -360,6 +449,12 @@ namespace MmorpgClient.World.Tianyong
                 _waypoint = 0;
                 _networkTarget = null;
                 MoveInDirection(keyboard.normalized, Time.deltaTime);
+                return;
+            }
+
+            if (following && _followWaypoint.HasValue)
+            {
+                FollowStep(Time.deltaTime);
                 return;
             }
 
@@ -391,6 +486,33 @@ namespace MmorpgClient.World.Tianyong
             }
 
             StopMoving();
+        }
+
+        /// <summary>朝跟随转向点走一步;最后一步按剩余距离截短,正好停在点上。</summary>
+        private void FollowStep(float deltaTime)
+        {
+            var current = FeetPosition;
+            var target = _followWaypoint.Value;
+            target.y = current.y;
+            var delta = target - current;
+            delta.y = 0f;
+            var distance = delta.magnitude;
+            if (distance < FollowArrivalDistance)
+            {
+                _followBlocked = false;
+                StopMoving();
+                return;
+            }
+
+            _followBlocked = !MoveInDirection(delta / distance, deltaTime, _followSpeedScale, distance);
+        }
+
+        private void NoticeRejectedFollowInput(bool pointerBlocked, bool keyboardBlocked)
+        {
+            if (_ignoreLocalInput || FollowInputRejected == null) return;
+            var clicked = !pointerBlocked && _camera != null && Input.GetMouseButtonDown(0);
+            var keyed = !keyboardBlocked && ReadKeyboardDirection().sqrMagnitude > 0.01f;
+            if (clicked || keyed) FollowInputRejected.Invoke();
         }
 
         private void HandleClick()
@@ -441,8 +563,14 @@ namespace MmorpgClient.World.Tianyong
             return forward.normalized * vertical + right.normalized * horizontal;
         }
 
-        /// <summary>Returns false when the walk mask refused the step (the actor stopped).</summary>
-        private bool MoveInDirection(Vector3 direction, float deltaTime)
+        /// <summary>
+        /// Returns false when the walk mask refused the step (the actor stopped).
+        /// speedScale / maxDistance are only used by team follow: catch-up speed, and
+        /// a last step shortened to land exactly on the waypoint. The defaults reproduce
+        /// plain player movement.
+        /// </summary>
+        private bool MoveInDirection(Vector3 direction, float deltaTime, float speedScale = 1f,
+            float maxDistance = float.PositiveInfinity)
         {
             if (direction.sqrMagnitude < 0.001f)
             {
@@ -451,8 +579,10 @@ namespace MmorpgClient.World.Tianyong
             }
 
             var dt = Mathf.Min(Mathf.Max(deltaTime, 0f), 0.05f);
-            var velocity = direction.normalized * _moveSpeed;
-            var candidateFeet = TianyongMapDefinition.ClampXZ(FeetPosition + velocity * dt, 2f);
+            var velocity = direction.normalized * (_moveSpeed * speedScale);
+            var step = velocity * dt;
+            if (step.magnitude > maxDistance) step = direction.normalized * maxDistance;
+            var candidateFeet = TianyongMapDefinition.ClampXZ(FeetPosition + step, 2f);
             if (!_debugIgnoreMask && !_navigation.IsWalkable(candidateFeet))
             {
                 StopMoving();
@@ -465,7 +595,7 @@ namespace MmorpgClient.World.Tianyong
                 desiredRotation,
                 1f - Mathf.Exp(-TurnSpeed * dt));
             var before = FeetPosition;
-            _motor.Move(velocity * dt + Vector3.down * (Gravity * dt));
+            _motor.Move(step + Vector3.down * (Gravity * dt));
             // The CharacterController can slide a few centimetres off the
             // intended line (leftover collider edges, capsule skin). The mask
             // check above validated the intended step, not where the motor
@@ -480,17 +610,26 @@ namespace MmorpgClient.World.Tianyong
                 PlaceFeet(back);
             }
 
+            var reportNow = Time.unscaledTime;
+            var heading = direction.normalized;
             if (!_moving)
             {
                 _moving = true;
                 if (_client != null && _client.InGame)
                     _client.SendMoveStart(FeetPosition, transform.eulerAngles, velocity, _networkTarget);
-                _nextSyncAt = Time.unscaledTime + 0.25f;
+                _nextSyncAt = reportNow + SyncInterval;
+                _reportedDirection = heading;
+                _reportedAt = reportNow;
             }
-            else if (_client != null && _client.InGame && Time.unscaledTime >= _nextSyncAt)
+            else if (_client != null && _client.InGame &&
+                     (reportNow >= _nextSyncAt ||
+                      (reportNow >= _reportedAt + TurnSyncMinInterval &&
+                       Vector3.Dot(heading, _reportedDirection) < TurnSyncCosine)))
             {
                 _client.SendMoveSync(FeetPosition, transform.eulerAngles, velocity);
-                _nextSyncAt = Time.unscaledTime + 0.25f;
+                _nextSyncAt = reportNow + SyncInterval;
+                _reportedDirection = heading;
+                _reportedAt = reportNow;
             }
             return true;
         }
@@ -526,6 +665,14 @@ namespace MmorpgClient.World.Tianyong
                 _client.SendMoveStop(FeetPosition, transform.eulerAngles);
         }
 
-        private void OnDisable() => StopMoving();
+        private void OnDisable()
+        {
+            StopMoving();
+            // 控制器被禁用(卸图 / 本地角色被替换)时跟随状态一并清掉:重新启用后由
+            // TeamFollowDriver 重新接管,不带着上一张图的转向点继续走。
+            _followControlled = false;
+            _followWaypoint = null;
+            _followBlocked = false;
+        }
     }
 }

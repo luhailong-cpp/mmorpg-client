@@ -13,7 +13,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string DescriptionName = EquipDetailCard.DescriptionName;
         private readonly EquipDetailCard _card;
         public EquipTooltip(UnityEngine.Transform parent, float x, float y) => _card = new EquipDetailCard(parent, x, y);
-        public void Show(BagItemInfo item, bool worn, bool actionEnabled, uint characterLevel, Action action)
+        public void Show(BagItemInfo item, bool worn, bool actionEnabled, uint characterLevel, Action action,
+            Action more = null, Action share = null)
         {
             if (item == null) { Hide(); return; }
             var data = new EquipDetailCardData {
@@ -22,11 +23,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 ClassRequirement = EquipBagModel.ClassRequirement(item),
                 LevelUnmet = EquipBagModel.LevelUnmet(item, characterLevel), Description = item.Description,
                 ActionLabel = worn ? "卸下" : "装备", ActionEnabled = actionEnabled,
+                ItemLevelText = item.EquipLevel == 0 ? "" : item.EquipLevel.ToString(),
             };
             foreach (var line in EquipDisplay.LinesOf(item))
                 data.Lines.Add(new EquipDetailLine(EquipDisplay.FormatLine(line),
                     EquipUiStyle.TierColor(EquipDisplay.TierOf(line.Tier))));
-            _card.Show(data, action);
+            _card.Show(data, action, more, share);
         }
         public void Hide() => _card.Hide();
     }

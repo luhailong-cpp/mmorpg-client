@@ -6,6 +6,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 namespace MmorpgClient.UI.Ugui.Attribute
 {
@@ -27,6 +30,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         private AttributeClient _client;
         private bool _clientBound;
+        private ulong _playerId;
+        private bool _hadPanel;
 
         private UiTextButton _entryButton;
         private AttributePanel _panel;
@@ -42,6 +47,25 @@ namespace MmorpgClient.UI.Ugui.Attribute
         /// 玩家以为自己关掉了、其实它还开着在下面吃点击。
         /// </summary>
         public void HidePanel() => _panel?.Hide();
+
+        /// <summary>供装备详情跳回人物面板，沿用正式入口的可用状态和窗口互斥。</summary>
+        public void OpenPanel()
+        {
+            EnsureBound();
+            RefreshEntryVisibility();
+            if (_clientBound && _app?.GameClient != null && _app.GameClient.InGame &&
+                _app.GameClient.IsGateReady && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
+                _panel?.Show();
+        }
+
+        public void OpenPanel(bool allocation)
+        {
+            EnsureBound();
+            RefreshEntryVisibility();
+            if (_clientBound && _app?.GameClient?.InGame == true && _app.GameClient.IsGateReady &&
+                !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
+                _panel?.ShowSection(allocation);
+        }
 
         // ── 生命周期 ────────────────────────────────────────
 
@@ -70,6 +94,15 @@ namespace MmorpgClient.UI.Ugui.Attribute
         {
             EnsureBound();
             RefreshEntryVisibility();
+            if (_panel == null || !_panel.IsVisible) return;
+            var selected = EventSystem.current?.currentSelectedGameObject;
+            if (selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
+                selected.GetComponentInParent<InputField>()?.isFocused == true)) return;
+#if ENABLE_INPUT_SYSTEM
+            if (Keyboard.current?.escapeKey.wasPressedThisFrame == true) _panel.Back();
+#elif ENABLE_LEGACY_INPUT_MANAGER
+            if (Input.GetKeyDown(KeyCode.Escape)) _panel.Back();
+#endif
         }
 
         private void OnDestroy()
@@ -87,9 +120,26 @@ namespace MmorpgClient.UI.Ugui.Attribute
             }
             if (_canvasGo == null) BuildCanvas();
 
+            var game = _app.GameClient;
+            var current = game?.Attributes;
+            ulong playerId = game != null && game.InGame && game.IsGateReady ? game.PlayerId : 0;
+            if (_client != current)
+            {
+                UnbindClient();
+                _client = current;
+                _panel.ResetSession();
+                _hadPanel = false;
+            }
+            if (_playerId != playerId || (_hadPanel && _client?.Panel == null))
+            {
+                _playerId = playerId;
+                _panel.ResetSession();
+                _hadPanel = false;
+            }
+
             if (!_clientBound)
             {
-                var client = AttributeClient.Instance;
+                var client = current;
                 if (client != null)
                 {
                     _client = client;
@@ -100,6 +150,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                     _clientBound = true;
                 }
             }
+            if (playerId != 0 && !_hadPanel && _client?.Panel != null) HandlePanel(_client.Panel);
         }
 
         private void UnbindClient()
@@ -177,7 +228,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         // ── 事件 ────────────────────────────────────────────
 
-        private void HandlePanel(AttributePanelInfo panel) => _panel?.ApplyPanel(panel);
+        private void HandlePanel(AttributePanelInfo panel)
+        {
+            _hadPanel = panel != null;
+            _panel?.ApplyPanel(panel);
+        }
 
         private void HandleAutoSuggestion(uint poolId, IReadOnlyDictionary<uint, uint> suggested)
             => _panel?.ApplyAutoSuggestion(poolId, suggested);
@@ -197,7 +252,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private void RefreshEntryVisibility()
         {
             if (_entryButton == null) return;
-            bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame;
+            bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame && _app.GameClient.IsGateReady;
             // 战斗屏/观战屏亮着时不显示入口(战斗中服务端也拒绝改属性)
             bool battleBusy = BattleUiRoot.Instance != null && BattleUiRoot.Instance.IsBattleLayerVisible;
             bool visible = _clientBound && inGame && !battleBusy;

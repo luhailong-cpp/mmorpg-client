@@ -48,6 +48,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private readonly TMP_Text _tooltipText;
         private PetListInfo _list;
         private ulong _selectedPetId;
+        private bool _reopenDetailsAfterRefresh;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
@@ -288,6 +289,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                     _detailsRoot.gameObject.SetActive(false);
                     _archivePreview.gameObject.SetActive(false);
                 });
+                else if (i == 2) tab.Button.onClick.AddListener(OpenSkills);
                 else if (i == 4) tab.Button.onClick.AddListener(() => _archivePreview.gameObject.SetActive(true));
                 else
                 {
@@ -296,6 +298,13 @@ namespace MmorpgClient.UI.Ugui.Pet
                     hover.OnEnter = () => SetStatus(label + "暂未开放。");
                 }
             }
+        }
+
+        private void OpenSkills()
+        {
+            var pet = FindPet(_selectedPetId);
+            if (pet == null) { SetStatus("请先选择一只宝宝。", true); return; }
+            Skills.SkillUiRoot.OpenPet(pet.PetId, pet.Name);
         }
 
         private void BuildDetails()
@@ -416,6 +425,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         public void Show()
         {
+            Skills.SkillUiRoot.Instance?.HidePanel();
             // 属性窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
             AttributeUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
@@ -428,10 +438,24 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         public void Hide()
         {
+            _reopenDetailsAfterRefresh = false;
             HideTooltip();
             if (_archivePreview != null) _archivePreview.gameObject.SetActive(false);
             if (_detailsRoot != null) _detailsRoot.gameObject.SetActive(false);
             if (_root != null) _root.gameObject.SetActive(false);
+        }
+
+        /// <summary>技能页返回时恢复所选宝宝，并打开指定的属性或加点内容。</summary>
+        public void ShowSection(bool allocation)
+        {
+            _reopenDetailsAfterRefresh = !allocation;
+            Show();
+            if (allocation)
+            {
+                _detailsRoot.gameObject.SetActive(false);
+                _archivePreview.gameObject.SetActive(false);
+            }
+            else ShowDetails();
         }
 
         public void Toggle()
@@ -453,6 +477,8 @@ namespace MmorpgClient.UI.Ugui.Pet
         public void ApplyList(PetListInfo list)
         {
             if (list == null) return;
+            bool restoreDetails = _reopenDetailsAfterRefresh && IsVisible;
+            _reopenDetailsAfterRefresh = false;
             _list = list;
             HideTooltip();
             _detailsRoot.gameObject.SetActive(false);
@@ -469,6 +495,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             RefreshDerived();
             RebuildRows();
             RefreshActionButtons();
+            if (restoreDetails && FindPet(_selectedPetId) != null) ShowDetails();
         }
 
         /// <summary>在途状态变化:按钮与加点行一起进 / 出 Busy(失败回包后必须解锁)。</summary>

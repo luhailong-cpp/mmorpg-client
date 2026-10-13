@@ -24,6 +24,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private static readonly MethodInfo TweenTick = typeof(RealtimeTween).GetMethod("UpdateAll", BindingFlags.NonPublic | BindingFlags.Static);
         [Serializable] private sealed class DeliveryManifest { public DeliveryClip[] clips; }
         [Serializable] private sealed class DeliveryClip { public string action, direction; }
+        private static readonly string[] DeliveredPetIds =
+        {
+            "01-zhuling", "02-jiangling", "03-shuangtuan", "04-guideng", "05-yanyuling",
+            "06-xiluo", "07-cangzhanglin", "08-zhufengli", "09-chishakui", "10-xuanchaogui",
+            "11-xiajiaolu", "12-yuexianshi", "13-yalingtong", "14-feierling", "15-landuoxian",
+            "16-luhualing", "legacy-hu-tuan-tuan", "legacy-fu-xiao-hu", "legacy-yun-jiu-jiu", "legacy-ling-yue"
+        };
 
         [TestCase("attack", 12, .36f)]
         [TestCase("hit", 6, .24f)]
@@ -32,32 +39,48 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             int baseline = QdaoActionResources.ResidentClipCount;
             int published = 0;
+            Assert.That(QdaoPetCatalog.Entries.Select(entry => entry.id), Is.EquivalentTo(DeliveredPetIds));
             foreach (var entry in QdaoPetCatalog.Entries)
             foreach (var direction in new[] { "E", "W" })
             {
-                bool expected = Declared(entry.id, action, direction);
-                Assert.That(QdaoPetCatalog.HasAction(entry.id, action, direction), Is.EqualTo(expected));
+                string label = entry.id + "/" + action + "/" + direction;
+                Assert.That(Declared(entry.id, action, direction), Is.True, label + " must be delivered");
+                Assert.That(QdaoPetCatalog.HasAction(entry.id, action, direction), Is.True, label);
                 using var strip = BattleArtCatalog.LoadCharacterAction(entry.id, action, direction == "E");
-                if (!expected)
-                {
-                    Assert.That(strip, Is.Null, entry.id + "/" + action + "/" + direction + " must keep the procedural fallback.");
-                    continue;
-                }
+                using var clip = QdaoPetCatalog.Acquire(entry.id, action, direction);
+                using var opposite = QdaoPetCatalog.Acquire(entry.id, action, direction == "E" ? "W" : "E");
                 published++;
-                Assert.That(strip, Is.Not.Null, entry.id + "/" + action + "/" + direction);
-                Assert.That(strip.Count, Is.EqualTo(count));
-                Assert.That(strip.DurationSeconds, Is.EqualTo(seconds).Within(.0001f));
-                Assert.That(strip.Mirrored, Is.False);
-                Assert.That(strip.UseWorldGeometry, Is.True);
-                Assert.That(strip.EventFrame, Is.InRange(-1, count - 1));
+                Assert.That(strip, Is.Not.Null, label);
+                Assert.That(clip?.IsValid, Is.True, label);
+                Assert.That(opposite?.IsValid, Is.True, label + " opposite direction");
+                Assert.That(strip.Count, Is.EqualTo(count), label);
+                Assert.That(strip.DurationSeconds, Is.EqualTo(seconds).Within(.0001f), label);
+                Assert.That(strip.Mirrored, Is.False, label);
+                Assert.That(strip.UseWorldGeometry, Is.True, label);
+                Assert.That(clip.FrameDurationsSeconds.Length, Is.EqualTo(count), label);
+                Assert.That(strip.EventFrame, Is.InRange(-1, count - 1), label);
+                Assert.That(strip.EventFrame, Is.EqualTo(clip.EventFrame), label);
+                float frameSeconds = seconds / count;
+                float expectedEvent = strip.EventFrame < 0 ? -1f : strip.EventFrame * frameSeconds;
+                Assert.That(clip.EventTimeSeconds, Is.EqualTo(expectedEvent).Within(.0001f), label);
+                Assert.That(QdaoActionResources.GetEventTimeSeconds(entry.id, action, direction, QdaoPetCatalog.ResourceRoot),
+                    Is.EqualTo(expectedEvent).Within(.0001f), label);
+                Assert.That(QdaoActionResources.GetDurationSeconds(entry.id, action, direction, QdaoPetCatalog.ResourceRoot),
+                    Is.EqualTo(seconds).Within(.0001f), label);
+                var uniqueTextures = new HashSet<Texture2D>();
                 for (int i = 0; i < count; i++)
                 {
-                    Assert.That(strip.Frames[i] != null && strip.Frames[i].texture != null, Is.True);
+                    Assert.That(strip.Frames[i] != null && strip.Frames[i].texture != null, Is.True, label + "/" + i);
+                    Assert.That(uniqueTextures.Add(strip.Frames[i].texture), Is.True, label + " repeats a texture");
+                    Assert.That(opposite.Frames.Any(frame => frame.texture == strip.Frames[i].texture),
+                        Is.False, label + " borrows the other direction");
                     Assert.That(strip.Frames[i].name, Is.EqualTo(entry.id + "_archived_" + action + "_" + direction + "_" + (i + 1).ToString("00")));
-                    Assert.That(strip.FrameAt((i + .5f) / count), Is.SameAs(strip.Frames[i]));
+                    Assert.That(clip.FrameDurationsSeconds[i], Is.EqualTo(frameSeconds).Within(.000001f), label + "/" + i);
+                    Assert.That(strip.FrameAt((i + .5f) / count), Is.SameAs(strip.Frames[i]), label);
+                    Assert.That(clip.FrameAt((i + .5f) * frameSeconds, false), Is.SameAs(strip.Frames[i]), label);
                 }
             }
-            Assert.That(published, Is.GreaterThan(0));
+            Assert.That(published, Is.EqualTo(40), "All twenty pets need both authored directions for every combat action.");
             Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
         }
 

@@ -152,6 +152,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();
+            Skills.SkillUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
             Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
             Mail.MailUiRoot.Instance?.HidePanel();

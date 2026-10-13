@@ -99,6 +99,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // 技能子面板
         private readonly RectTransform _skillPanel;
+        private readonly RectTransform _skillContent;
+        private readonly UnityEngine.UI.ScrollRect _skillScroll;
         private readonly TMP_Text _skillEmptyText;
         private readonly List<UiTextButton> _skillButtons = new();
 
@@ -234,16 +236,29 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             // ── 技能子面板 ──
             var skillBg = BattleUiWidgets.CreatePanel("SkillPanel", _hudRoot,
-                830f, 470f, 900f, 300f, BattleUiStyle.PanelBgLight);
+                830f, 380f, 900f, 400f, BattleUiStyle.PanelBgLight);
             BattleRoundCounter.ApplyNineSlice(skillBg, "panel_9slice");
             _skillPanel = (RectTransform)skillBg.transform;
             QdaoUguiFactory.CreateText("SkillTitle", _skillPanel, 24f, 12f, 400f, 40f,
-                "选择法术", 24f, QdaoUguiTheme.Cream);
-            var skillClose = BattleUiWidgets.CreateTextButton("SkillClose", _skillPanel, 846f, 10f, 44f, 44f,
+                "选择技能", 28f, QdaoUguiTheme.Cream);
+            var skillClose = BattleUiWidgets.CreateTextButton("SkillClose", _skillPanel, 826f, 8f, 58f, 58f,
                 "×", 26f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             skillClose.Button.onClick.AddListener(() => _skillPanel.gameObject.SetActive(false));
             _skillEmptyText = QdaoUguiFactory.CreateText("SkillEmpty", _skillPanel, 24f, 70f, 852f, 40f,
-                "无可用法术", 22f, QdaoUguiTheme.MutedBrown);
+                "暂无可施放技能", 24f, QdaoUguiTheme.Cream);
+            var skillViewport = QdaoUguiFactory.CreateRect("SkillViewport", _skillPanel, 24f, 76f, 852f, 300f);
+            var skillViewportImage = skillViewport.gameObject.AddComponent<Image>();
+            skillViewportImage.color = new Color(0f, 0f, 0f, 0.001f);
+            skillViewportImage.raycastTarget = true;
+            skillViewport.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+            _skillContent = QdaoUguiFactory.CreateRect("SkillContent", skillViewport, 0f, 0f, 852f, 300f);
+            _skillScroll = skillViewport.gameObject.AddComponent<UnityEngine.UI.ScrollRect>();
+            _skillScroll.viewport = skillViewport;
+            _skillScroll.content = _skillContent;
+            _skillScroll.horizontal = false;
+            _skillScroll.vertical = true;
+            _skillScroll.movementType = UnityEngine.UI.ScrollRect.MovementType.Clamped;
+            _skillScroll.scrollSensitivity = 60f;
 
             // ── 道具子面板 ──
             var itemBg = BattleUiWidgets.CreatePanel("ItemPanel", _hudRoot,
@@ -680,7 +695,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _skillPanel.gameObject.SetActive(false);
             _pending = PendingKind.Skill;
             _pendingSkillId = skillTableId;
-            EnterTargetMode($"请为 法术{skillTableId} 选择目标");
+            EnterTargetMode($"请为【{Skills.SkillUiRoot.FindPresentation(skillTableId)?.name ?? $"技能{skillTableId}"}】选择目标");
         }
 
         private void OnItemPicked()
@@ -1013,7 +1028,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             foreach (var button in _skillButtons)
             {
                 if (button.Rect != null)
+                {
+                    button.Rect.gameObject.SetActive(false);
                     UnityEngine.Object.Destroy(button.Rect.gameObject);
+                }
             }
             _skillButtons.Clear();
 
@@ -1023,21 +1041,41 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 foreach (var skillId in me.SkillTableIds)
                 {
+                    // 列表归属仍来自战斗快照；这里只补显示元数据，不授予技能或计算战斗规则。
+                    var definition = Skills.SkillUiRoot.FindPresentation(skillId);
+                    if (definition?.IsPassive == true) continue;
                     me.SkillCooldownRounds.TryGetValue(skillId, out uint cooldown);
-                    int row = index / 4;
-                    int col = index % 4;
+                    int row = index / 3;
+                    int col = index % 3;
                     uint captured = skillId;
-                    var button = BattleUiWidgets.CreateTextButton($"Skill_{skillId}", _skillPanel,
-                        24f + col * 216f, 70f + row * 74f, 200f, 60f,
-                        cooldown > 0 ? $"法术{skillId}(冷却{cooldown})" : $"法术{skillId}",
-                        20f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+                    var button = BattleUiWidgets.CreateTextButton($"Skill_{skillId}", _skillContent,
+                        col * 284f, row * 100f, 270f, 88f,
+                        string.Empty, 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+                    button.Label.gameObject.SetActive(false);
                     BattleRoundCounter.ApplyNineSlice(button.Plate, "button_9slice");
+                    var iconSprite = definition == null ? null : QdaoUguiTheme.LoadSprite(definition.IconResource);
+                    var icon = QdaoUguiFactory.CreateImage("Icon", button.Rect, 10f, 14f, 60f, 60f,
+                        iconSprite != null ? iconSprite : QdaoRefreshArt.Load("round_badge_taiji"));
+                    icon.preserveAspect = true;
+                    icon.raycastTarget = false;
+                    var skillName = QdaoUguiFactory.CreateText("Name", button.Rect, 80f, 7f, 182f, 36f,
+                        definition?.name ?? $"技能{skillId}", 24f, QdaoUguiTheme.Cream);
+                    skillName.raycastTarget = false;
+                    skillName.textWrappingMode = TextWrappingModes.NoWrap;
+                    skillName.overflowMode = TextOverflowModes.Ellipsis;
+                    var detail = cooldown > 0 ? $"冷却 {cooldown} 回合" :
+                        definition == null ? "选择目标后施放" : $"{definition.TargetLabel} · {definition.manaPercent * 100:0.#}%法力";
+                    var caption = QdaoUguiFactory.CreateText("Detail", button.Rect, 80f, 45f, 182f, 30f,
+                        detail, 19f, cooldown > 0 ? BattleUiStyle.WarnText : QdaoUguiTheme.Cream);
+                    caption.raycastTarget = false;
                     button.SetInteractable(cooldown == 0);
                     button.Button.onClick.AddListener(() => OnSkillPicked(captured));
                     _skillButtons.Add(button);
                     index++;
                 }
             }
+            _skillContent.sizeDelta = new Vector2(852f, Mathf.Max(300f, ((index + 2) / 3) * 100f));
+            _skillScroll.verticalNormalizedPosition = 1f;
             _skillEmptyText.gameObject.SetActive(index == 0);
         }
 

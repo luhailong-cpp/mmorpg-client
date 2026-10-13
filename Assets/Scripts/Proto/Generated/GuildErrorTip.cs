@@ -23,7 +23,7 @@ public static partial class GuildErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZ3VpbGRfZXJyb3JfdGlwLnBy",
-          "b3RvKuoGCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
+          "b3RvKqwJCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
           "dWlsZEFscmVhZHlJbkd1aWxkELBtEhMKDmtHdWlsZE5vdEZvdW5kELFtEhUK",
           "EGtHdWlsZE5vdEluR3VpbGQQsm0SDwoKa0d1aWxkRnVsbBCzbRIaChVrR3Vp",
           "bGRMZWFkZXJDYW50TGVhdmUQtG0SFAoPa0d1aWxkTm90TGVhZGVyELVtEhcK",
@@ -42,8 +42,15 @@ public static partial class GuildErrorTipReflection {
           "bGRBc3NldFBlbmRpbmcQym0SGAoTa0d1aWxkQXNzZXRSZWplY3RlZBDLbRIc",
           "ChdrR3VpbGRTaG9wR29vZHNOb3RGb3VuZBDMbRIaChVrR3VpbGRTaG9wTGV2",
           "ZWxUb29Mb3cQzW0SFAoPa0d1aWxkU2hvcExpbWl0EM5tEiMKHmtHdWlsZENv",
-          "bnRyaWJ1dGlvbkluc3VmZmljaWVudBDPbUIkCg5jb20uZ2FtZS50YWJsZVoS",
-          "Z2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "bnRyaWJ1dGlvbkluc3VmZmljaWVudBDPbRIaChVrR3VpbGRBY3Rpdml0eU5v",
+          "dE9wZW4Q0G0SIQoca0d1aWxkQWN0aXZpdHlBbHJlYWR5Q2xhaW1lZBDRbRIm",
+          "CiFrR3VpbGRBY3Rpdml0eVRocmVzaG9sZE5vdFJlYWNoZWQQ0m0SGwoWa0d1",
+          "aWxkVHJpYWxUZWFtSW52YWxpZBDTbRIeChlrR3VpbGRBY3Rpdml0eUxldmVs",
+          "VG9vTG93ENRtEiAKG2tHdWlsZEFjdGl2aXR5Sm9pblRvb1JlY2VudBDVbRId",
+          "ChhrR3VpbGRUcmlhbEludml0ZUV4cGlyZWQQ1m0SHgoZa0d1aWxkVHJpYWxJ",
+          "bnZpdGVEZWNsaW5lZBDXbRIeChlrR3VpbGRUcmlhbEludml0ZUNvb2xkb3du",
+          "ENhtEhsKFmtHdWlsZFRyaWFsU2VydmljZUJ1c3kQ2W1CJAoOY29tLmdhbWUu",
+          "dGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::guild_error), }, null, null));
@@ -86,6 +93,16 @@ public enum guild_error {
   [pbr::OriginalName("kGuildShopLevelTooLow")] KGuildShopLevelTooLow = 14029,
   [pbr::OriginalName("kGuildShopLimit")] KGuildShopLimit = 14030,
   [pbr::OriginalName("kGuildContributionInsufficient")] KGuildContributionInsufficient = 14031,
+  [pbr::OriginalName("kGuildActivityNotOpen")] KGuildActivityNotOpen = 14032,
+  [pbr::OriginalName("kGuildActivityAlreadyClaimed")] KGuildActivityAlreadyClaimed = 14033,
+  [pbr::OriginalName("kGuildActivityThresholdNotReached")] KGuildActivityThresholdNotReached = 14034,
+  [pbr::OriginalName("kGuildTrialTeamInvalid")] KGuildTrialTeamInvalid = 14035,
+  [pbr::OriginalName("kGuildActivityLevelTooLow")] KGuildActivityLevelTooLow = 14036,
+  [pbr::OriginalName("kGuildActivityJoinTooRecent")] KGuildActivityJoinTooRecent = 14037,
+  [pbr::OriginalName("kGuildTrialInviteExpired")] KGuildTrialInviteExpired = 14038,
+  [pbr::OriginalName("kGuildTrialInviteDeclined")] KGuildTrialInviteDeclined = 14039,
+  [pbr::OriginalName("kGuildTrialInviteCooldown")] KGuildTrialInviteCooldown = 14040,
+  [pbr::OriginalName("kGuildTrialServiceBusy")] KGuildTrialServiceBusy = 14041,
 }
 
 #endregion

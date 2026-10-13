@@ -600,6 +600,88 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.False);
         }
 
+        [Test]
+        public void EquipmentEntryFiltersBagAndRequestsBothSnapshots()
+        {
+            Open(MakeBag(true), MakeEquipment(true));
+            _window.ShowEquipment();
+            CollectionAssert.AreEqual(new[] { "BagSlot_1" }, OccupiedBagSlots());
+            Assert.That(TooltipText("TooltipName").text, Is.EqualTo("惊雷剑"));
+            CollectionAssert.AreEqual(new uint[] { 0, 2 },
+                _net.Calls.Select(call => ((GetBagRequest)call.Request).BagType));
+        }
+
+        [Test]
+        public void MoreAndUnavailableWishAreReachableWithoutMutationAndBackKeepsBagOpen()
+        {
+            Open(MakeBag(true), MakeEquipment(true));
+            BagSlot(1).onClick.Invoke();
+            Buttons().Single(b => b.name == "EquipMore").onClick.Invoke();
+            Assert.That(_window.HasEquipmentModal, Is.True);
+            var controls = _fixture.GetComponentsInChildren<CanvasGroup>().Single();
+            Assert.That(controls.interactable || controls.blocksRaycasts, Is.False);
+            Buttons().Single(b => b.name == "EquipOpenWish").onClick.Invoke();
+            AssertText("期望属性 · 尚未开放");
+            Assert.That(Buttons().Single(b => b.name == "ConfirmWishSelection").interactable, Is.False);
+            Assert.That(_net.Calls, Is.Empty, "没有属性池和炼化接口时不得假发写请求");
+            _window.Back();
+            Assert.That(_window.IsVisible, Is.True);
+            Assert.That(_window.HasEquipmentModal, Is.False);
+            Assert.That(controls.interactable && controls.blocksRaycasts, Is.True);
+            Assert.That(_window.EquipmentModalOwnsKeyboard, Is.True, "同一帧的 Esc 不能穿透关闭背包");
+            Assert.That(TooltipText("TooltipName").text, Is.EqualTo("惊雷剑"));
+            _window.Back();
+            Assert.That(_window.IsVisible, Is.False);
+        }
+
+        [Test]
+        public void AttributeLinkDelegatesAndShareUsesCopyOfCurrentEquipment()
+        {
+            Open(MakeBag(true), MakeEquipment(true));
+            BagSlot(1).onClick.Invoke();
+            int attributes = 0;
+            _window.AttributesRequested += () => attributes++;
+            Buttons().Single(b => b.name == "EquipMore").onClick.Invoke();
+            Buttons().Single(b => b.name == "EquipViewAttributes").onClick.Invoke();
+            Assert.That(attributes, Is.EqualTo(1));
+            Assert.That(_window.HasEquipmentModal, Is.False);
+            BagItemInfo shared = null;
+            _window.EquipmentShareRequested += item => shared = item;
+            Buttons().Single(b => b.name == "EquipShare").onClick.Invoke();
+            Assert.That(shared.ItemId, Is.EqualTo(Sword));
+            shared.Name = "草稿改名";
+            Assert.That(_client.Bag.Items.Single(i => i.ItemId == Sword).Name, Is.EqualTo("惊雷剑"));
+            Assert.That(_net.Calls, Is.Empty, "分享入口只交给草稿流程，不能穿脱或直接发送");
+        }
+
+        [Test]
+        public void ItemDisappearingClosesItsModalAndRestoresBagControls()
+        {
+            Open(MakeBag(true), MakeEquipment(true));
+            BagSlot(1).onClick.Invoke();
+            Buttons().Single(b => b.name == "EquipMore").onClick.Invoke();
+            Buttons().Single(b => b.name == "EquipOpenWish").onClick.Invoke();
+            _window.SetBagPage(MakeBag(false), false, null, false, MakeEquipment(true), false, null, false);
+            Assert.That(_window.HasEquipmentModal, Is.False);
+            Assert.That(_fixture.GetComponentsInChildren<CanvasGroup>().Single().interactable, Is.True);
+            Assert.That(_window.IsVisible, Is.True);
+            Assert.That(_net.Calls, Is.Empty);
+        }
+
+        [Test]
+        public void SessionResetClosesEquipmentModalAndDoesNotRetainItsSelection()
+        {
+            Open(MakeBag(true), MakeEquipment(true));
+            BagSlot(1).onClick.Invoke();
+            Buttons().Single(b => b.name == "EquipMore").onClick.Invoke();
+            _window.ResetSession();
+            Assert.That(_window.IsVisible || _window.HasEquipmentModal, Is.False);
+            _window.SetBagPage(MakeBag(true), false, null, false, MakeEquipment(true), false, null, false);
+            _window.Show(GameplayPage.Bag);
+            Assert.That(TooltipRoot().gameObject.activeSelf, Is.False);
+            Assert.That(_fixture.GetComponentsInChildren<CanvasGroup>().Single().interactable, Is.True);
+        }
+
         // ── 夹具与查询 ──────────────────────────────────────
 
         /// <summary>打开背包页并喂两份读回包(人物背包、装备栏),然后清掉出站记录。</summary>
