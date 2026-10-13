@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.World;
@@ -16,11 +17,17 @@ namespace MmorpgClient.UI.Ugui.Pet
         private QdaoActionResources.Lease _clip;
         private string _id, _direction = "E", _action;
         private float _elapsed;
+        private UiTextButton _acquireButton;
+        private Func<string, string> _acquireBlockedReason;
+        private Func<string, bool> _isOwned;
+        private string _notice;
+        private bool _noticeWarning;
         public string SelectedId => _id;
         public string ActiveAction => _action;
         public Sprite CurrentSprite => _body != null ? _body.sprite : null;
 
-        public void Build()
+        public void Build(Action<string> acquire = null, Func<string, string> acquireBlockedReason = null,
+            Func<string, bool> isOwned = null)
         {
             var root = (RectTransform)transform;
             var plate = root.gameObject.AddComponent<Image>();
@@ -30,6 +37,15 @@ namespace MmorpgClient.UI.Ugui.Pet
                 "宝宝图鉴 · 本地外观预览", 38f, PetUiStyle.FieldLabel);
             var close = Button("CloseGallery", 1730f, 20f, 150f, 52f, "关闭");
             close.Button.onClick.AddListener(() => gameObject.SetActive(false));
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            if (acquire != null)
+            {
+                _acquireBlockedReason = acquireBlockedReason;
+                _isOwned = isOwned;
+                _acquireButton = Button("AcquirePet", 1300f, 20f, 390f, 52f, "开发测试领取");
+                _acquireButton.Button.onClick.AddListener(() => acquire(_id));
+            }
+#endif
             int index = 0;
             foreach (var entry in QdaoPetCatalog.Entries)
             {
@@ -79,9 +95,37 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (entry == null) return;
             Clear();
             _id = id;
+            _notice = null;
             if (_title != null) _title.text = entry.displayName;
             RefreshActions();
+            RefreshAcquisition();
             Play("idle");
+        }
+
+        public void SetNotice(string value, bool warning = false)
+        {
+            _notice = value;
+            _noticeWarning = warning;
+            RefreshStatus();
+        }
+
+        private void RefreshAcquisition()
+        {
+            if (_acquireButton == null) return;
+            string reason = _acquireBlockedReason?.Invoke(_id);
+            _acquireButton.SetText(_isOwned?.Invoke(_id) == true ? "查看已拥有" : "开发测试领取");
+            _acquireButton.SetInteractable(string.IsNullOrEmpty(reason));
+            RefreshStatus(reason);
+        }
+
+        private void RefreshStatus(string blockedReason = null)
+        {
+            if (_status == null) return;
+            _status.text = !string.IsNullOrEmpty(_notice) ? _notice : !string.IsNullOrEmpty(blockedReason)
+                ? blockedReason : _acquireButton != null
+                    ? "选择形象仅预览；领取后可回到宝宝列表点击「出战」。"
+                    : "本地外观预览，选择形象不改变服务器宝宝或出战状态。";
+            _status.color = _noticeWarning && !string.IsNullOrEmpty(_notice) ? PetUiStyle.WarnText : PetUiStyle.HintText;
         }
 
         private void Face(string direction)
@@ -122,6 +166,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void Update()
         {
+            RefreshAcquisition();
             if (_clip == null) return;
             _elapsed += Time.unscaledDeltaTime;
             if (_action != "idle" && _elapsed >= _clip.DurationSeconds) Play("idle");

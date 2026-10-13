@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.World;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,6 +50,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private PetListInfo _list;
         private ulong _selectedPetId;
         private bool _reopenDetailsAfterRefresh;
+        private uint _requestedPetTableId;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
@@ -77,7 +79,11 @@ namespace MmorpgClient.UI.Ugui.Pet
             BuildDetails();
             var archiveRoot = QdaoUguiFactory.CreateRect("PetArchiveGallery", _root, 40f, 46f, 1920f, 840f);
             _archivePreview = archiveRoot.gameObject.AddComponent<PetArchivePreview>();
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            _archivePreview.Build(OnArchiveAcquireClicked, ArchiveAcquireBlockedReason, id => FindOwnedArchivePet(id) != null);
+#else
             _archivePreview.Build();
+#endif
 
             _tooltip = QdaoUguiFactory.CreateRect("Tooltip", _root, 0f, 0f, 650f, 88f);
             var tooltipPlate = _tooltip.gameObject.AddComponent<Image>();
@@ -439,6 +445,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         public void Hide()
         {
             _reopenDetailsAfterRefresh = false;
+            _requestedPetTableId = 0;
             HideTooltip();
             if (_archivePreview != null) _archivePreview.gameObject.SetActive(false);
             if (_detailsRoot != null) _detailsRoot.gameObject.SetActive(false);
@@ -466,9 +473,16 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         public void SetStatus(string value, bool warn = false)
         {
+            _archivePreview?.SetNotice(value, warn);
             if (_statusText == null) return;
             _statusText.text = value ?? string.Empty;
             _statusText.color = warn ? PetUiStyle.WarnText : PetUiStyle.HintText;
+        }
+
+        public void ApplyError(string message)
+        {
+            _requestedPetTableId = 0;
+            SetStatus(message, true);
         }
 
         // ── 数据应用 ────────────────────────────────────────
@@ -482,6 +496,19 @@ namespace MmorpgClient.UI.Ugui.Pet
             _list = list;
             HideTooltip();
             _detailsRoot.gameObject.SetActive(false);
+
+            if (_requestedPetTableId != 0)
+            {
+                foreach (var pet in list.Pets)
+                {
+                    if (pet.PetTableId != _requestedPetTableId || QdaoPetCatalog.Resolve(pet.PetTableId, pet.ModelId) == null) continue;
+                    _selectedPetId = pet.PetId;
+                    _requestedPetTableId = 0;
+                    _archivePreview.gameObject.SetActive(false);
+                    SetStatus("已领取并选中宝宝，点击「出战」即可随行参战。");
+                    break;
+                }
+            }
 
             // 选中项失效(第一次打开 / 宝宝被换掉)时优先选出战中的那只,否则选第一只
             if (_selectedPetId == 0 || FindPet(_selectedPetId) == null)
@@ -501,6 +528,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         /// <summary>在途状态变化:按钮与加点行一起进 / 出 Busy(失败回包后必须解锁)。</summary>
         public void ApplyBusy(bool busy)
         {
+            if (_owner.Client?.HasList != true) _requestedPetTableId = 0;
             RefreshRowRanges();
             RefreshActionButtons();
         }
@@ -722,6 +750,52 @@ namespace MmorpgClient.UI.Ugui.Pet
             }
             return null;
         }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        private PetInfo FindOwnedArchivePet(string id)
+        {
+            var list = _owner.Client?.Pets;
+            if (list == null) return null;
+            foreach (var pet in list.Pets)
+                if (QdaoPetCatalog.Resolve(pet.PetTableId, pet.ModelId)?.id == id) return pet;
+            return null;
+        }
+
+        private string ArchiveAcquireBlockedReason(string id)
+        {
+            var client = _owner.Client;
+            if (client == null || !client.IsReady) return "尚未进入游戏，无法领取宝宝。";
+            if (!client.HasList) return "请先等待宝宝列表加载完成。";
+            if (client.Busy) return "正在等待服务器确认，请稍候。";
+            if (PendingDelta() > 0) return "有未确认的加点，请先「确认加点」或「重置」。";
+            var entry = QdaoPetCatalog.Find(id);
+            if (entry?.petTableIds == null || entry.petTableIds.Length != 1 ||
+                entry.modelIds == null || entry.modelIds.Length != 1 ||
+                QdaoPetCatalog.Resolve(entry.petTableIds[0], entry.modelIds[0]) != entry)
+                return "该形象暂未配置可领取的宝宝。";
+            if (FindOwnedArchivePet(id) == null && client.Pets.Pets.Count >= client.Pets.MaxPets)
+                return "可携带的宝宝数量已达上限。";
+            return null;
+        }
+
+        private void OnArchiveAcquireClicked(string id)
+        {
+            string reason = ArchiveAcquireBlockedReason(id);
+            if (!string.IsNullOrEmpty(reason)) { SetStatus(reason, true); return; }
+            var owned = FindOwnedArchivePet(id);
+            if (owned != null)
+            {
+                _selectedPetId = owned.PetId;
+                ApplyList(_owner.Client.Pets);
+                _archivePreview.gameObject.SetActive(false);
+                SetStatus("已选中已有宝宝，点击「出战」即可随行参战。");
+                return;
+            }
+            _requestedPetTableId = QdaoPetCatalog.Find(id).petTableIds[0];
+            SetStatus("正在领取宝宝，等待服务器确认…");
+            _owner.Client.GmGrantPet(_requestedPetTableId);
+        }
+#endif
 
         private uint FindCap(uint dimensionId)
         {
