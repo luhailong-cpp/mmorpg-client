@@ -68,6 +68,28 @@ namespace MmorpgClient.Game.Team
         /// </summary>
         public const float MaxSpeedScale = 1.1f;
 
+        // ── 游标(队员记着自己走到轨迹的哪儿了,见带 cursor 的 Plan)────────────────
+        /// <summary>
+        /// 每帧在上一帧里程往回多远的范围内找自己。要容得下"站得比槽位靠前、沿轨迹退回去"的那一步
+        /// (一帧最多 0.5),再留余量。
+        /// </summary>
+        public const float CursorBack = 1f;
+        /// <summary>每帧在上一帧里程往前多远的范围内找自己。一帧最多走 0.5,留出前视与掉帧的余量。</summary>
+        public const float CursorAhead = 2f;
+        /// <summary>
+        /// 队长后来又从身边走过(折返、绕圈回来)时,那一段更新的轨迹离自己不超过它就跳过去,
+        /// 等于抄掉队长绕的那一圈。只往前跳;取小是为了不隔着一堵薄墙跳到另一侧。
+        /// </summary>
+        public const float JumpLateral = 0.5f;
+        /// <summary>游标窗口内几处差不多一样近时(折返点附近)的判同容差:取里程离上一帧最近的,保持连续。</summary>
+        public const float TrackTieTolerance = 0.05f;
+        /// <summary>
+        /// 重新在整条轨迹上找自己时的判同容差:几段相差不超过它就取离队首最近的一段。
+        /// 远端角色的显示位置带着厘米级的摆动,来回走过同一条线的几趟不会严丝合缝;
+        /// 容差太小,"最近的一段"会被摆动决定。
+        /// </summary>
+        public const float AcquireTieTolerance = 0.25f;
+
         /// <summary>
         /// 本地玩家的跟随槽位:1 表示紧跟队长,最大 MaxFollowers;0 表示不跟随
         /// (没有队伍、自己就是队长、名单里没有自己或没有队长)。
@@ -124,8 +146,74 @@ namespace MmorpgClient.Game.Team
         {
             if (trail == null || !trail.HasHead || slot <= 0) return new TeamFollowCommand(TeamFollowCommandKind.None);
 
-            float slotDistance = Mathf.Min(slot, MaxFollowers) * SlotSpacing;
             float behind = trail.DistanceBehindHead(selfPosition, out float lateral);
+            return Decide(trail, slot, moving, behind, lateral);
+        }
+
+        /// <summary>
+        /// 这一帧的移动指令,带着"自己走到轨迹的哪儿了"的游标。逐帧驱动本地角色时必须用这一个:
+        /// 不带游标的重载每次都在整条轨迹上重新找最近的一段,队长沿原路折返 / 来回走同一条街时轨迹有几段
+        /// 重叠,选中的段会在新旧两趟之间来回跳,而两趟的行进方向相反 —— 队员就在原地来回踱步
+        /// (2026-10-13 真实客户端联机验收抓到:队长向北走一段、原路走回、再拐弯,约一半的概率卡住)。
+        ///
+        /// 规则:
+        ///   1. 有游标:只在上一帧里程附近([-CursorBack, +CursorAhead])找自己;
+        ///   2. 例外:更靠近队首的某一段(里程在窗口之后)离自己不超过 JumpLateral 时跳过去 —— 队长折返后
+        ///      从身边走过、或绕一圈回来,队员不必把那一圈走完。只往前跳,所以不会来回;
+        ///   3. 没有游标 / 轨迹重起过 / 窗口里已经找不到自己(偏离超过 OffTrailDistance):在整条轨迹上重新找,
+        ///      几段差不多近时取离队首最近的。
+        /// </summary>
+        /// <param name="cursor">
+        /// 由本方法逐帧推进。调用方第一次传 default;自己不再沿轨迹走的时候(暂离、被寻路带离、换队长)
+        /// 重新置为 default。
+        /// </param>
+        public static TeamFollowCommand Plan(TeamFollowTrail trail, int slot, Vector3 selfPosition, bool moving,
+            ref TeamFollowCursor cursor)
+        {
+            if (trail == null || !trail.HasHead || slot <= 0)
+            {
+                cursor = default;
+                return new TeamFollowCommand(TeamFollowCommandKind.None);
+            }
+
+            double head = trail.HeadOdometer;
+            double odometer = 0d;
+            float lateral = float.PositiveInfinity;
+            bool tracked = false;
+            if (cursor.Valid && cursor.Epoch == trail.Epoch)
+            {
+                // 停步回拉把末端收回后,队首里程可能退到游标之前。
+                double hint = System.Math.Min(cursor.Odometer, head);
+                tracked = trail.TryProject(selfPosition, hint - CursorBack, hint + CursorAhead, hint,
+                              TrackTieTolerance, out odometer, out lateral) &&
+                          lateral <= OffTrailDistance;
+                if (tracked &&
+                    trail.TryProject(selfPosition, hint + CursorAhead, double.PositiveInfinity, double.PositiveInfinity,
+                        TrackTieTolerance, out double later, out float laterLateral) &&
+                    laterLateral <= JumpLateral)
+                {
+                    odometer = later;
+                    lateral = laterLateral;
+                }
+            }
+            if (!tracked &&
+                !trail.TryProject(selfPosition, double.NegativeInfinity, double.PositiveInfinity, double.PositiveInfinity,
+                    AcquireTieTolerance, out odometer, out lateral))
+            {
+                // HasHead 时队首本身总是候选,走不到这里;留着是为了不带着未赋值的里程往下算。
+                cursor = default;
+                return new TeamFollowCommand(TeamFollowCommandKind.None);
+            }
+
+            cursor = new TeamFollowCursor(trail.Epoch, odometer);
+            return Decide(trail, slot, moving, (float)(head - odometer), lateral);
+        }
+
+        /// <summary>已知"落后队首多少弧长、偏离轨迹多远"之后的决策;两个 Plan 重载共用。</summary>
+        private static TeamFollowCommand Decide(TeamFollowTrail trail, int slot, bool moving,
+            float behind, float lateral)
+        {
+            float slotDistance = Mathf.Min(slot, MaxFollowers) * SlotSpacing;
             if (lateral > OffTrailDistance)
                 return new TeamFollowCommand(TeamFollowCommandKind.Route, trail.PointBehindHead(slotDistance));
 

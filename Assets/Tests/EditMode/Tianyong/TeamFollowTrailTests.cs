@@ -188,6 +188,84 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void HeadOdometer_GrowsWithTheWalkAndShrinksWhenTheEndIsRetracted()
+        {
+            var trail = Walk(new TeamFollowTrail(50f), new Vector3(0f, 0f, 0f), new Vector3(4.5f, 0f, 0f));
+            Assert.That(trail.HeadOdometer, Is.EqualTo(4.5d).Within(Tolerance));
+
+            // 停步回拉 0.6:末端收回,队首里程跟着退。
+            trail.Push(new Vector3(3.9f, 0f, 0f), allowRetract: true);
+            Assert.That(trail.HeadOdometer, Is.EqualTo(3.9d).Within(Tolerance));
+
+            // 掉头往回走(不收回):走过的路都算里程。
+            var back = Walk(new TeamFollowTrail(50f), new Vector3(0f, 0f, 0f), new Vector3(4f, 0f, 0f));
+            Walk(back, new Vector3(4f, 0f, 0f), new Vector3(1f, 0f, 0f));
+            Assert.That(back.HeadOdometer, Is.EqualTo(7d).Within(Tolerance));
+        }
+
+        [Test]
+        public void HeadOdometer_SurvivesTrimmingAndRestartsWithANewEpoch()
+        {
+            // 裁掉旧段不改变里程(里程是绝对的,游标才不会因为裁剪而错位)。
+            var trail = Walk(new TeamFollowTrail(5f), new Vector3(0f, 0f, 0f), new Vector3(40f, 0f, 0f));
+            Assert.That(trail.HeadOdometer, Is.EqualTo(40d).Within(Tolerance));
+
+            int epoch = trail.Epoch;
+            trail.Reset(new Vector3(1f, 0f, 1f), null);
+            Assert.That(trail.Epoch, Is.Not.EqualTo(epoch));
+            Assert.That(trail.HeadOdometer, Is.EqualTo(0d).Within(Tolerance));
+        }
+
+        [Test]
+        public void TryProject_OnlyLooksInsideTheOdometerWindow()
+        {
+            // 向北 10 再原路走回:z = 4 处去程里程 4、回程里程 16。
+            var trail = Walk(new TeamFollowTrail(80f), new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 10f));
+            Walk(trail, new Vector3(0f, 0f, 10f), new Vector3(0f, 0f, 0f));
+            var position = new Vector3(0.2f, 0f, 4f);
+
+            Assert.That(trail.TryProject(position, 3d, 6d, 4d, 0f, out double outbound, out float outboundLateral), Is.True);
+            Assert.That(outbound, Is.EqualTo(4d).Within(Tolerance));
+            Assert.That(outboundLateral, Is.EqualTo(0.2f).Within(Tolerance));
+
+            Assert.That(trail.TryProject(position, 14d, 18d, 16d, 0f, out double inbound, out _), Is.True);
+            Assert.That(inbound, Is.EqualTo(16d).Within(Tolerance));
+
+            // 窗口只盖住去程的 6..8:最近点被夹在窗口边上,不会滑到窗口外面去。
+            Assert.That(trail.TryProject(position, 6d, 8d, 6d, 0f, out double clamped, out float clampedLateral), Is.True);
+            Assert.That(clamped, Is.EqualTo(6d).Within(Tolerance));
+            Assert.That(clampedLateral, Is.GreaterThan(2f - Tolerance));
+
+            // 窗口在队首之后 / 整个落在轨迹之外:没有候选。
+            Assert.That(trail.TryProject(position, 25d, 30d, 25d, 0f, out _, out _), Is.False);
+            Assert.That(trail.TryProject(position, -9d, -1d, -1d, 0f, out _, out _), Is.False);
+        }
+
+        [Test]
+        public void TryProject_AmongNearTies_PicksTheRequestedOdometer()
+        {
+            // 去程在 x = 0.03,回程在 x = 0:站在 x = 0.02 处离去程更近 1 厘米。
+            var trail = Walk(new TeamFollowTrail(80f), new Vector3(0.03f, 0f, 0f), new Vector3(0.03f, 0f, 10f));
+            Walk(trail, new Vector3(0f, 0f, 10f), new Vector3(0f, 0f, 0f));
+            var position = new Vector3(0.02f, 0f, 4f);
+            double outbound = 4d, inbound = trail.HeadOdometer - 4d;
+
+            // 不容差:严格取最近的(去程)。
+            Assert.That(trail.TryProject(position, double.NegativeInfinity, double.PositiveInfinity, double.PositiveInfinity,
+                0f, out double strict, out _), Is.True);
+            Assert.That(strict, Is.EqualTo(outbound).Within(Tolerance));
+
+            // 5 厘米内算一样近:要离队首最近的 → 回程;要离里程 4 最近的 → 去程。
+            Assert.That(trail.TryProject(position, double.NegativeInfinity, double.PositiveInfinity, double.PositiveInfinity,
+                0.05f, out double nearHead, out float nearHeadLateral), Is.True);
+            Assert.That(nearHead, Is.EqualTo(inbound).Within(Tolerance));
+            Assert.That(nearHeadLateral, Is.EqualTo(0.02f).Within(Tolerance));
+            Assert.That(trail.TryProject(position, double.NegativeInfinity, double.PositiveInfinity, 4d,
+                0.05f, out double nearHint, out _), Is.True);
+            Assert.That(nearHint, Is.EqualTo(outbound).Within(Tolerance));
+        }
+
+        [Test]
         public void Reset_WithTail_LetsFollowersLineUpBehindAStandingLeader()
         {
             var tail = new List<Vector3>();

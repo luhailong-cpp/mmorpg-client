@@ -64,6 +64,8 @@ namespace MmorpgClient.Game.Team
         // 有一段时间没有在记轨迹(暂离、战斗、视图未知):期间队长可能绕过了墙角,
         // 旧队首到他现在的位置之间不能直接连一条线。
         private bool _trailStale;
+        // 自己走到轨迹的哪儿了(TeamFollowPlanner 逐帧推进)。不再沿轨迹走的时候丢掉,回来时在整条轨迹上重新找。
+        private TeamFollowCursor _cursor;
         private bool _routing;
         private bool _routeFound;
         private Vector3 _routeTarget;
@@ -169,6 +171,7 @@ namespace MmorpgClient.Game.Team
         {
             _routing = false;
             _forceRouteUntil = 0f;
+            _cursor = default;
             if (_controller == null) return;
             // Unity 重载的 == 在对象已销毁时为 true,上面那句已经拦住;这里一定是活对象。
             _controller.FollowInputRejected -= HandleInputRejected;
@@ -196,12 +199,13 @@ namespace MmorpgClient.Game.Team
             // 两边目的地不一致,人就在边界和格心之间来回踱步。统一成"最近可走点",只做到没到 / 寻路过去。
             if (!navigation.IsWalkable(slotPoint))
             {
+                _cursor = default;
                 return navigation.TryFindNearestWalkable(slotPoint, out var reachable)
                     ? TeamFollowPlanner.PlanToPoint(reachable, self, moving)
                     : new TeamFollowCommand(TeamFollowCommandKind.Hold);
             }
 
-            var command = TeamFollowPlanner.Plan(_trail, slot, self, moving);
+            var command = TeamFollowPlanner.Plan(_trail, slot, self, moving, ref _cursor);
             // 上一步直线跟随被掩码挡住(轨迹是按远端角色的显示位置记的,拐角处可能擦到不可走格):
             // 接下来一小段时间改用寻路去槽位,绕过去之后再回到直线跟随。
             if (controller.FollowBlocked) _forceRouteUntil = now + BlockedRouteSeconds;
@@ -293,6 +297,7 @@ namespace MmorpgClient.Game.Team
             _leaderId = 0;
             _hasLeaderEntity = false;
             _trail.Clear();
+            _cursor = default;
         }
 
         /// <summary>

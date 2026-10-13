@@ -185,9 +185,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         // ── 走一遍 ──────────────────────────────────────────────────────────
-        // 这两条是规则层面的模拟:步进照抄 TianyongPlayerController.FollowStep 的截短规则,
-        // "是否在走"用上一帧的指令代替控制器的 IsMoving。控制器自己的分支(被掩码挡住、寻路、
-        // 服务器吸附)不在这里,要在 Unity 里联机验。
+        // 这几条是规则层面的模拟:步进照抄 TianyongPlayerController.FollowStep 的截短规则,
+        // "是否在走"用上一帧的指令代替控制器的 IsMoving;与 TeamFollowDriver 一样每个队员带着自己的游标。
+        // 控制器自己的分支(被掩码挡住、寻路、服务器吸附)不在这里,要在 Unity 里联机验。
 
         [Test]
         public void Simulation_LeaderTurnsBack_FollowersNeverEndUpAheadOfIt()
@@ -199,6 +199,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             trail.Push(leader);
             var followers = new[] { leader, leader, leader };
             var moving = new bool[3];
+            var cursors = new TeamFollowCursor[3];
 
             // 向东 12 米,停 1 秒,再沿原路向西 10 米,停 2 秒。
             float worstLead = 0f;
@@ -213,7 +214,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
                 for (int i = 0; i < followers.Length; i++)
                 {
-                    var command = TeamFollowPlanner.Plan(trail, i + 1, followers[i], moving[i]);
+                    var command = TeamFollowPlanner.Plan(trail, i + 1, followers[i], moving[i], ref cursors[i]);
                     moving[i] = command.Kind == TeamFollowCommandKind.Steer;
                     if (!moving[i]) continue;
                     var delta = command.Point - followers[i];
@@ -245,6 +246,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var leader = new Vector3(0f, 0f, 0f);
             var follower = leader;
             bool moving = false;
+            var cursor = default(TeamFollowCursor);
             int restartsAfterLeaderStopped = 0;
             float worstLateral = 0f;
             trail.Push(leader);
@@ -261,7 +263,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 }
                 trail.Push(leader);
 
-                var command = TeamFollowPlanner.Plan(trail, slot, follower, moving);
+                var command = TeamFollowPlanner.Plan(trail, slot, follower, moving, ref cursor);
                 Assert.That(command.Kind, Is.Not.EqualTo(TeamFollowCommandKind.Route), "全程都在轨迹上,不该触发寻路");
                 bool wasMoving = moving;
                 moving = command.Kind == TeamFollowCommandKind.Steer;
@@ -299,6 +301,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             // 槽位 1 应在队长身后 1.4;起步时落后了 6 米(刚从后台切回来)。
             var follower = new Vector3(10f - 1.4f - 6f, 0f, 0f);
             bool moving = false;
+            var cursor = default(TeamFollowCursor);
 
             // 队长继续匀速走 20 秒。追赶速度只比队长快 10%,每秒收回 0.9 米。
             float gapAfterTwoSeconds = float.NaN;
@@ -307,7 +310,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 leader += new Vector3(speed * dt, 0f, 0f);
                 trail.Push(leader);
-                var command = TeamFollowPlanner.Plan(trail, 1, follower, moving);
+                var command = TeamFollowPlanner.Plan(trail, 1, follower, moving, ref cursor);
                 if (moving && command.Kind != TeamFollowCommandKind.Steer) stops++;
                 moving = command.Kind == TeamFollowCommandKind.Steer;
                 if (moving)
@@ -329,6 +332,164 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             // 队长一直在走,队员就该一直在走:追赶门槛若压到停步容差附近,会变成"追上-站住-落后-再起步"。
             Assert.That(stops, Is.EqualTo(0));
         }
+
+        [Test]
+        public void Simulation_LeaderDoublesBackAlongAWobblyLineThenTurns_FollowerDoesNotPaceBackAndForth()
+        {
+            // 2026-10-13 真实客户端联机验收抓到的现场:队长向北走 13.5、原路走回、再向东拐。
+            // 远端角色的显示位置带着厘米级的摆动,去程和回程不会严丝合缝(这里各加 3 厘米、相位相反的摆动);
+            // 每帧在整条轨迹上找"最近的一段"时,选中的段在去程与回程之间来回跳,两趟行进方向相反,
+            // 队员就在原地一步向北一步向南(机器人记下的上报是 v=-9.9 / +9.9 交替),再也没跟上向东走的队长。
+            const float dt = 1f / 60f;
+            const float speed = 9f;
+            const float leg = 13.5f;
+            float pause = 1.5f;
+            var trail = new TeamFollowTrail(80f);
+            var leader = new Vector3(0f, 0f, 0f);
+            var follower = leader;
+            bool moving = false;
+            var cursor = default(TeamFollowCursor);
+            var lastDirection = Vector3.zero;
+            int reversals = 0;
+            float behindAfterReturn = float.NaN;
+            trail.Push(leader);
+
+            float walk = leg / speed;
+            float northEnd = walk, southStart = northEnd + pause, southEnd = southStart + walk;
+            float eastStart = southEnd + pause, eastEnd = eastStart + walk;
+            int frames = Mathf.RoundToInt((eastEnd + 2.5f) / dt);
+            for (int frame = 0; frame < frames; frame++)
+            {
+                float t = (frame + 1) * dt;
+                bool standing;
+                if (t <= northEnd)
+                {
+                    float z = t * speed;
+                    leader = new Vector3(Wobble(z, 0f), 0f, z);
+                    standing = false;
+                }
+                else if (t <= southStart)
+                {
+                    leader = new Vector3(Wobble(leg, 0f), 0f, leg);
+                    standing = true;
+                }
+                else if (t <= southEnd)
+                {
+                    float z = leg - (t - southStart) * speed;
+                    leader = new Vector3(Wobble(z, Mathf.PI), 0f, z);
+                    standing = false;
+                }
+                else if (t <= eastStart)
+                {
+                    leader = new Vector3(Wobble(0f, Mathf.PI), 0f, 0f);
+                    standing = true;
+                }
+                else if (t <= eastEnd)
+                {
+                    leader = new Vector3((t - eastStart) * speed, 0f, 0f);
+                    standing = false;
+                }
+                else
+                {
+                    leader = new Vector3(leg, 0f, 0f);
+                    standing = true;
+                }
+                trail.Push(leader, allowRetract: standing);
+
+                var command = TeamFollowPlanner.Plan(trail, 1, follower, moving, ref cursor);
+                Assert.That(command.Kind, Is.Not.EqualTo(TeamFollowCommandKind.Route), "全程都贴着轨迹,不该触发寻路");
+                moving = command.Kind == TeamFollowCommandKind.Steer;
+                if (moving)
+                {
+                    var delta = command.Point - follower;
+                    delta.y = 0f;
+                    float distance = delta.magnitude;
+                    if (distance > 0f)
+                    {
+                        var direction = delta / distance;
+                        if (lastDirection != Vector3.zero && Vector3.Dot(direction, lastDirection) < 0f) reversals++;
+                        lastDirection = direction;
+                        follower += direction * Mathf.Min(speed * command.SpeedScale * dt, distance);
+                    }
+                }
+
+                // 队长走回原点、站定之后:队员应当排在他北边(他走来的那一侧),而不是被甩在后面或冲到前面。
+                if (Mathf.Abs(t - (eastStart - 2f * dt)) < dt * 0.5f) behindAfterReturn = follower.z - leader.z;
+            }
+
+            // 整个过程只有一次真正的掉头:队长折返后从身边走过,队员跟着转身。
+            Assert.That(reversals, Is.LessThanOrEqualTo(2), "队员在重叠的两趟轨迹之间来回踱步");
+            Assert.That(behindAfterReturn, Is.EqualTo(TeamFollowPlanner.SlotSpacing).Within(TeamFollowPlanner.StartTolerance));
+            Assert.That(moving, Is.False, "队长停下 2.5 秒后队员应当已经站定");
+            Assert.That(follower.x, Is.EqualTo(leg - TeamFollowPlanner.SlotSpacing).Within(TeamFollowPlanner.StartTolerance));
+            Assert.That(Mathf.Abs(follower.z), Is.LessThanOrEqualTo(TeamFollowPlanner.StartTolerance));
+        }
+
+        [Test]
+        public void Plan_WithACursor_StaysOnItsOwnPassWhenAnOlderPassIsAHairCloser()
+        {
+            // 去程在 x = 0.03,回程在 x = 0;队员跟着回程走,此刻偏到了 x = 0.02(离去程 1 厘米、离回程 2 厘米)。
+            var trail = new TeamFollowTrail(80f);
+            TeamFollowTrailTests.Walk(trail, new Vector3(0.03f, 0f, 0f), new Vector3(0.03f, 0f, 10f));
+            TeamFollowTrailTests.Walk(trail, new Vector3(0f, 0f, 10f), new Vector3(0f, 0f, 2f));
+            var cursor = default(TeamFollowCursor);
+            // 先让游标落在回程上(站在回程正中)。
+            TeamFollowPlanner.Plan(trail, 1, new Vector3(0f, 0f, 6f), true, ref cursor);
+
+            var command = TeamFollowPlanner.Plan(trail, 1, new Vector3(0.02f, 0f, 6.1f), true, ref cursor);
+
+            // 回程向南(z 减小):转向点在自己南边。跳到去程上的话转向点会在北边。
+            Assert.That(command.Kind, Is.EqualTo(TeamFollowCommandKind.Steer));
+            Assert.That(command.Point.z, Is.LessThan(6.1f));
+        }
+
+        [Test]
+        public void Plan_WithACursor_JumpsForwardWhenTheLeaderComesBackPastTheFollower()
+        {
+            // 队长向东走 10、原路折返;队员还在去程 x = 6 处往东走。
+            var trail = new TeamFollowTrail(80f);
+            TeamFollowTrailTests.Walk(trail, new Vector3(0f, 0f, 0f), new Vector3(10f, 0f, 0f));
+            var cursor = default(TeamFollowCursor);
+            TeamFollowPlanner.Plan(trail, 1, new Vector3(6f, 0f, 0f), true, ref cursor);
+            double before = cursor.Odometer;
+
+            // 回程走到 x = 8:还没到队员身边,队员继续沿去程往东。
+            TeamFollowTrailTests.Walk(trail, new Vector3(10f, 0f, 0f), new Vector3(8f, 0f, 0f));
+            var ahead = TeamFollowPlanner.Plan(trail, 1, new Vector3(6f, 0f, 0f), true, ref cursor);
+            Assert.That(ahead.Point.x, Is.GreaterThan(6f));
+            Assert.That(cursor.Odometer, Is.EqualTo(before).Within(Tolerance));
+
+            // 回程越过队员走到 x = 3:队员跳到回程上,不必先走到折返点;此后落后 3,转向点在西边。
+            TeamFollowTrailTests.Walk(trail, new Vector3(8f, 0f, 0f), new Vector3(3f, 0f, 0f));
+            var turned = TeamFollowPlanner.Plan(trail, 1, new Vector3(6f, 0f, 0f), true, ref cursor);
+            Assert.That(turned.Kind, Is.EqualTo(TeamFollowCommandKind.Steer));
+            Assert.That(turned.Point.x, Is.LessThan(6f));
+            Assert.That(trail.HeadOdometer - cursor.Odometer, Is.EqualTo(3d).Within(Tolerance));
+
+            // 只往前跳:此后去程不再是候选,即使它近了一丁点。
+            var stays = TeamFollowPlanner.Plan(trail, 1, new Vector3(5.8f, 0f, 0f), true, ref cursor);
+            Assert.That(stays.Point.x, Is.LessThan(5.8f));
+        }
+
+        [Test]
+        public void Plan_WithACursorFromAnOlderTrail_StartsOver()
+        {
+            var trail = StraightTrail();
+            var cursor = default(TeamFollowCursor);
+            TeamFollowPlanner.Plan(trail, 1, new Vector3(5f, 0f, 0f), true, ref cursor);
+
+            // 轨迹重起(队长跳变 / 暂离回来):旧里程作废,在新轨迹上重新找。
+            trail.Reset(new Vector3(0f, 0f, 20f), new[] { new Vector3(0f, 0f, 19.5f), new Vector3(0f, 0f, 19f) });
+            var command = TeamFollowPlanner.Plan(trail, 1, new Vector3(0f, 0f, 19.2f), false, ref cursor);
+
+            Assert.That(cursor.Valid, Is.True);
+            Assert.That(cursor.Epoch, Is.EqualTo(trail.Epoch));
+            Assert.That(trail.HeadOdometer - cursor.Odometer, Is.EqualTo(0.8d).Within(Tolerance));
+            Assert.That(command.Kind, Is.EqualTo(TeamFollowCommandKind.Steer));
+        }
+
+        // 远端角色显示位置的摆动:3 厘米,沿前进方向约 2 米一个周期。
+        private static float Wobble(float along, float phase) => 0.03f * Mathf.Sin(along * 3f + phase);
 
         private static TeamFollowTrail StraightTrail()
             => TeamFollowTrailTests.Walk(new TeamFollowTrail(50f), new Vector3(0f, 0f, 0f), new Vector3(10f, 0f, 0f));
