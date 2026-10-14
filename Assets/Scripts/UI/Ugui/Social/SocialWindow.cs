@@ -53,12 +53,21 @@ namespace MmorpgClient.UI.Ugui.Social
             State.Changed+=Changed;
         }
         private static string PageName(SocialPage p)=>p==SocialPage.Groups?"群组":p==SocialPage.World?"世界":"谣言";
-        public void Show(SocialPage page=SocialPage.Groups)
+        public void Show(SocialPage page=SocialPage.Groups,bool refreshHistory=true)
         {
             bool opening=!IsVisible;if(opening)_returnFocus=EventSystem.current?.currentSelectedGameObject;
             CloseModal(false);_forceBottom=true;_root.gameObject.SetActive(true);State.SelectPage(page);
             if(opening)EventSystem.current?.SetSelectedGameObject(_tabs[page].gameObject);
-            if(!State.IsPreview&&page==SocialPage.World&&State.Supports(State.Channel))RefreshRequested?.Invoke(State.Channel);
+            if(refreshHistory&&!State.IsPreview&&page==SocialPage.World&&State.Supports(State.Channel))RefreshRequested?.Invoke(State.Channel);
+        }
+        /// <summary>聚焦已打开的聊天草稿，光标放到文末，不触发发送。</summary>
+        public bool FocusComposer()
+        {
+            if(!IsVisible||State.Page!=SocialPage.World||_composer==null||!_composer.interactable)return false;
+            EventSystem.current?.SetSelectedGameObject(_composer.gameObject);
+            _composer.ActivateInputField();
+            _composer.MoveTextEnd(false);
+            return true;
         }
         public void Hide()
         {

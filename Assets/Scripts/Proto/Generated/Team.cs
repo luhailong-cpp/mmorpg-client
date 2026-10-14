@@ -3407,7 +3407,7 @@ namespace Teampb {
     public const int NameFieldNumber = 2;
     private string name_ = "";
     /// <summary>
-    /// 仓库暂无昵称,恒为 ""(§G.2)
+    /// 从玩家存档资料(PlayerProfileComp.name)读取;未取名 / 旧存档为 "",由客户端兜底显示
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

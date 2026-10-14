@@ -294,7 +294,7 @@ namespace MmorpgClient.Game
                 s => Log($"[battle-route] {s}"));
             Battle = BattleClient.Attach(battleRoute, battleRoute);
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
-            Attributes = AttributeClient.Attach(new GameClientBattleTransport(this));
+            Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
             Pets = PetClient.Attach(new GameClientBattleTransport(this));
             var companion = World.Root.GetComponent<QdaoPetCompanion>() ?? World.Root.gameObject.AddComponent<QdaoPetCompanion>();
             companion.Bind(World, Pets);
@@ -2068,6 +2068,8 @@ namespace MmorpgClient.Game
                 CurrentSceneId = 0;
                 CurrentSceneConfigId = 0;
                 PlayerId = 0;
+                // 静默重连也要清掉上一角色的属性，并作废旧穿脱之前发出的属性读取。
+                Attributes?.Reset();
                 _enterRequestPlayerId = 0; // RedirectFlow 在 ResetConnectionState 之前已捕获
                 CurrentZoneId = 0;      // 所在区 = 当前连着的 gate 所属的区;连接没了就没有"所在区"
                 _knownRoles.Clear();

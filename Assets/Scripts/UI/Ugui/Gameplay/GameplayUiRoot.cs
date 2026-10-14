@@ -73,6 +73,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.EquipmentRequested += () => _client?.RequestEquipment();
             _window.EquipRequested += id => _client?.EquipItem(id);
             _window.UnequipRequested += id => _client?.UnequipItem(id);
+            _window.AttributesRequested += () => AttributeUiRoot.Instance?.OpenPanel();
+            _window.EquipmentShareRequested += item =>
+            {
+                if (!(Social.SocialUiRoot.Instance?.TryComposeEquipment(item) ?? false))
+                    _window.SetEquipmentNotice(Social.SocialUiRoot.Instance?.State?.Status ?? "仙友会尚未就绪，请稍后重试。");
+            };
             _window.MissionsRequested += () => _client?.RequestMissions();
             _window.ActivitiesRequested += () => _client?.RequestActivities();
             _window.MissionAcceptRequested += (scope, id) => _client?.AcceptMission(scope, id);
@@ -98,6 +104,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _available = inGame && _client != null && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             if (!_available) { HidePanel(); return; }
+            // 子弹窗独占键盘；Esc 由弹窗自己的输入组件处理，避免同一按键把背包一起关掉。
+            if (_window.EquipmentModalOwnsKeyboard) return;
             bool typing = EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null &&
                 EventSystem.current.currentSelectedGameObject.GetComponentInParent<TMP_InputField>()?.isFocused == true;
             if (typing) return;
@@ -105,27 +113,43 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
             if (keys == null) return;
-            if (keys.escapeKey.wasPressedThisFrame) HidePanel();
+            if (keys.escapeKey.wasPressedThisFrame) _window.Back();
             else if (keys.bKey.wasPressedThisFrame) Toggle(GameplayPage.Bag);
             else if (keys.jKey.wasPressedThisFrame) Toggle(GameplayPage.Missions);
             else if (keys.oKey.wasPressedThisFrame) Toggle(GameplayPage.Activities);
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            if (Input.GetKeyDown(KeyCode.Escape)) HidePanel();
+            if (Input.GetKeyDown(KeyCode.Escape)) _window.Back();
             else if (Input.GetKeyDown(KeyCode.B)) Toggle(GameplayPage.Bag);
             else if (Input.GetKeyDown(KeyCode.J)) Toggle(GameplayPage.Missions);
             else if (Input.GetKeyDown(KeyCode.O)) Toggle(GameplayPage.Activities);
 #endif
         }
         public void HidePanel() => _window?.Hide();
+        public void OpenEquipment()
+        {
+            if (!_available) return;
+            PrepareOpen(); Changed(); _window.ShowEquipment();
+            AttributeClient.Instance?.RequestPanel();
+        }
         private void Toggle(GameplayPage page)
         { if (_window.IsVisible && _window.Page == page) HidePanel(); else Open(page); }
         private void Open(GameplayPage page)
         {
             if (!_available) return;
+            PrepareOpen();
+            Changed(); _window.Show(page);
+            if (page == GameplayPage.Bag) AttributeClient.Instance?.RequestPanel();
+        }
+        private static void PrepareOpen()
+        {
+            Skills.SkillUiRoot.Instance?.HidePanel();
+            Social.SocialUiRoot.Instance?.HidePanel();
+            Mail.MailUiRoot.Instance?.HidePanel();
+            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
+            CityTravelUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel(); PetUiRoot.Instance?.HidePanel();
-            Changed(); _window.Show(page);
         }
         private void Changed()
         {
@@ -160,5 +184,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_client != null) _client.OnChanged -= Changed;
             if (Instance == this) Instance = null;
         }
+        private void OnDisable() => HidePanel();
     }
 }

@@ -27,8 +27,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public const uint Pvp1V1BattleConfigId = 1;
 
-        /// <summary>PVE 组队(5人)匹配的 battle_config_id(对应 DungeonTable id;人数由服务端按 min(配置,5) 收口)。</summary>
+        /// <summary>PVE 组队匹配的 battle_config_id(对应 DungeonTable id;排几人档见 <see cref="PveTeamMaxSize"/>)。</summary>
         public const uint PveTeamBattleConfigId = 1;
+
+        /// <summary>
+        /// PVE 人数档上限:排队面板提供 1..N 人档(1 人即时开战,其余凑满即开;每人对应一整组怪)。
+        /// 必须与服务端 match 配置 PveTeamSizeByConfigId[PveTeamBattleConfigId] 一致(本地为 5):
+        /// 选了服务端没开放的人数会被拒(kMatchModeNotOpen)。
+        /// </summary>
+        public const uint PveTeamMaxSize = 5;
 
         /// <summary>PVP 5v5 匹配的 battle_config_id(0 = 服务器默认规则)。</summary>
         public const uint Pvp5V5BattleConfigId = 0;
@@ -56,6 +63,13 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         public static readonly Color ButtonPlate       = QdaoRefreshArt.Jade;
         public static readonly Color ButtonPlateAccent = QdaoUguiTheme.Html("#246E59");
+        /// <summary>
+        /// PVE 人数档的选中态底色。ButtonPlateAccent 与 ButtonPlate 都是深绿,乘上按钮贴图后几乎分不出来,
+        /// 选中态单独用偏橙的古铜色,并在文案前加「√」双重提示。
+        /// 着色是与薄荷绿按钮贴图相乘的:更亮的金色(如 #C9A15E)乘完偏黄绿,米色字压在上面对比度只有约 3.5:1;
+        /// 这个色值按贴图像素估算,米色字对比度约 4.2~7.6:1。**没有人目视确认过**,观感不对就只改这一个常量。
+        /// </summary>
+        public static readonly Color PveSizeSelectedPlate = QdaoUguiTheme.Html("#B8742E");
         public static readonly Color ButtonText        = QdaoUguiTheme.Cream;
 
         // ── 右侧 HUD 入口按钮(战斗 / 观战 / 角色,自上而下) ──

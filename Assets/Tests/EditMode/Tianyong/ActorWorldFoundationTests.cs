@@ -74,6 +74,120 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void SpawnedActors_AreNotPhysicalObstacles()
+        {
+            _world = CreateWorld();
+            _world.SpawnActor(41, ActorKind.Player, 0, Vector3.zero, Vector3.zero);
+            _world.SpawnActor(42, ActorKind.Npc, 0, new Vector3(3f, 0f, 0f), Vector3.zero);
+
+            foreach (var id in new ulong[] { 41, 42 })
+                foreach (var collider in _world.Actors[id].Go.GetComponentsInChildren<Collider>(true))
+                    Assert.That(collider.enabled, Is.False, $"actor {id} must not block the local CharacterController");
+        }
+
+        [Test]
+        public void RemoteActor_WalkingAtConstantVelocity_DoesNotTrailByTheInterpolationWindow()
+        {
+            // 服务端每 0.25 秒转发一次移动上报;远端角色以 9/s 匀速直线走 3 秒。
+            const float dt = 1f / 60f;
+            float now = 100f;
+            _world = CreateWorld();
+            _world.Clock = () => now;
+            _world.SpawnActor(31, ActorKind.Player, 0, Vector3.zero, Vector3.zero);
+            var actor = _world.Actors[31].Go.transform;
+            var velocity = new Vector3(9f, 0f, 0f);
+
+            float worstLag = 0f;
+            float slowestStep = float.PositiveInfinity;
+            float fastestStep = 0f;
+            for (int frame = 0; frame < 180; frame++)
+            {
+                float elapsed = frame * dt;
+                if (frame % 15 == 0) _world.ApplyMove(31, velocity * elapsed, Vector3.zero, velocity);
+                float before = actor.localPosition.x;
+                now += dt;
+                _world.Tick(dt);
+                float step = actor.localPosition.x - before;
+                worstLag = Mathf.Max(worstLag, Mathf.Abs(actor.localPosition.x - 9f * (elapsed + dt)));
+                slowestStep = Mathf.Min(slowestStep, step);
+                fastestStep = Mathf.Max(fastestStep, step);
+            }
+
+            // 一直贴着权威位置走;旧实现恒定落后 速度 x 插值时长 = 1.35。
+            Assert.That(worstLag, Is.LessThan(0.05f));
+            // 每帧步长恒定:不能每收到一个样本就"顿一下再冲一下"。
+            Assert.That(slowestStep, Is.GreaterThan(9f * dt * 0.9f));
+            Assert.That(fastestStep, Is.LessThan(9f * dt * 1.1f));
+        }
+
+        [Test]
+        public void RemoteActor_SampleThatDisagreesWithTheDisplay_IsBlendedInWithoutASnap()
+        {
+            // 显示位置比权威样本超前 1 米(上一段外推过头):0.15 秒内匀速收敛,期间照常前进。
+            const float dt = 1f / 60f;
+            float now = 10f;
+            _world = CreateWorld();
+            _world.Clock = () => now;
+            _world.SpawnActor(33, ActorKind.Player, 0, new Vector3(1f, 0f, 0f), Vector3.zero);
+            var actor = _world.Actors[33].Go.transform;
+            var velocity = new Vector3(9f, 0f, 0f);
+
+            _world.ApplyMove(33, Vector3.zero, Vector3.zero, velocity);
+            float largestStep = 0f;
+            for (int frame = 0; frame < 18; frame++)
+            {
+                float before = actor.localPosition.x;
+                now += dt;
+                _world.Tick(dt);
+                largestStep = Mathf.Max(largestStep, Mathf.Abs(actor.localPosition.x - before));
+            }
+
+            // 18 帧 = 0.3 秒,权威位置走到 2.7;误差已经收完。
+            Assert.That(actor.localPosition.x, Is.EqualTo(9f * 18 * dt).Within(0.01f));
+            // 没有瞬间拉回:单帧位移不超过正常步长。
+            Assert.That(largestStep, Is.LessThanOrEqualTo(9f * dt + 0.001f));
+        }
+
+        [Test]
+        public void RemoteActor_WithoutFurtherSamples_StopsCoastingAfterTheCap()
+        {
+            // 走着的人掉线 / 被服务端冻结时不会再有"停步"消息:最多按最后的速度滑行 1 秒。
+            const float dt = 1f / 60f;
+            float now = 20f;
+            _world = CreateWorld();
+            _world.Clock = () => now;
+            _world.SpawnActor(34, ActorKind.Player, 0, Vector3.zero, Vector3.zero);
+            var actor = _world.Actors[34].Go.transform;
+
+            _world.ApplyMove(34, Vector3.zero, Vector3.zero, new Vector3(9f, 0f, 0f));
+            for (int frame = 0; frame < 300; frame++) { now += dt; _world.Tick(dt); }
+
+            // 5 秒过去:不加上限会走到 45。
+            Assert.That(actor.localPosition.x, Is.GreaterThan(9f * (ActorWorld.MaxExtrapolationSeconds - 0.1f)));
+            Assert.That(actor.localPosition.x, Is.LessThan(9f * (ActorWorld.MaxExtrapolationSeconds + 0.1f)));
+        }
+
+        [Test]
+        public void RemoteActor_StopSample_SettlesExactlyOnTheReportedPoint()
+        {
+            const float dt = 1f / 60f;
+            float now = 50f;
+            _world = CreateWorld();
+            _world.Clock = () => now;
+            _world.SpawnActor(32, ActorKind.Player, 0, Vector3.zero, Vector3.zero);
+            var actor = _world.Actors[32].Go.transform;
+            var velocity = new Vector3(0f, 0f, 9f);
+
+            _world.ApplyMove(32, Vector3.zero, Vector3.zero, velocity);
+            for (int frame = 0; frame < 30; frame++) { now += dt; _world.Tick(dt); }
+            var stop = new Vector3(0f, 0f, 4.5f);
+            _world.ApplyMove(32, stop, Vector3.zero, Vector3.zero);
+            for (int frame = 0; frame < 30; frame++) { now += dt; _world.Tick(dt); }
+
+            Assert.That(Vector3.Distance(actor.localPosition, stop), Is.LessThan(0.001f));
+        }
+
+        [Test]
         public void Teleport_PreservesEnabledCharacterController()
         {
             _world = CreateWorld();

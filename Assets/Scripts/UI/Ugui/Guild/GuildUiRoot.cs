@@ -147,6 +147,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         /// <summary>主城的几个大面板互斥:打开帮会窗口前收起别的。</summary>
         private static void HideOtherPanels()
         {
+            Skills.SkillUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();

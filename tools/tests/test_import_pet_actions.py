@@ -71,9 +71,15 @@ class PetDeliveryTests(unittest.TestCase):
             self.assertEqual(size / 6.4, clip['pixelsPerUnit'])
             self.assertEqual((.5, .08), (clip['pivotX'], clip['pivotY']))
 
-    def test_exact_bindings_do_not_assume_similar_species(self):
+    def test_server_bindings_preserve_legacy_species_and_assign_new_contract(self):
         bindings = {p['id']: (p['petTableIds'], p['modelIds']) for p in self.delivery['pets'] if p['petTableIds'] or p['modelIds']}
-        self.assertEqual({'legacy-ling-yue': ([1], [1001]), 'legacy-yun-jiu-jiu': ([4], [1004])}, bindings)
+        expected = {'legacy-ling-yue': ([1], [1001]), 'legacy-yun-jiu-jiu': ([4], [1004])}
+        new_identities = ['01-zhuling', '02-jiangling', '03-shuangtuan', '04-guideng', '05-yanyuling',
+                          '15-landuoxian', '06-xiluo', '07-cangzhanglin', '08-zhufengli', '09-chishakui',
+                          '10-xuanchaogui', '12-yuexianshi', '16-luhualing', '14-feierling', '11-xiajiaolu',
+                          '13-yalingtong', 'legacy-hu-tuan-tuan', 'legacy-fu-xiao-hu']
+        expected.update({pid: ([table_id], [1000 + table_id]) for table_id, pid in enumerate(new_identities, 5)})
+        self.assertEqual(expected, bindings)
 
     def test_source_hash_drift_fails_before_publishing_anything(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -21,6 +21,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         /// <summary>参数是物品实例 id:穿上人物背包里的装备 / 卸下装备栏里的装备。</summary>
         public event Action<ulong> EquipRequested;
         public event Action<ulong> UnequipRequested;
+        public event Action<BagItemInfo> EquipmentShareRequested;
+        public event Action AttributesRequested;
         public event Action MissionsRequested;
         public event Action ActivitiesRequested;
         public event Action<uint, uint> MissionAcceptRequested;
@@ -28,12 +30,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action<PlayerMissionInfo> TrackingChanged;
         public event Action Closed;
         public bool IsVisible => _root.gameObject.activeSelf;
+        public bool HasEquipmentModal => _actions.IsVisible || _wish.IsVisible;
+        public bool EquipmentModalOwnsKeyboard => HasEquipmentModal || _modalClosedFrame == Time.frameCount;
         public GameplayPage Page { get; private set; }
         private readonly RectTransform _root, _body;
         private readonly TextMeshProUGUI _title, _subtitle;
         private readonly Button[] _tabs = new Button[3];
         private readonly TMP_InputField _search;
         private readonly EquipTooltip _tooltip;
+        private readonly EquipActionsDialog _actions;
+        private readonly EquipWishDialog _wish;
+        private readonly CanvasGroup _frameControls;
+        private ulong _modalItemId;
+        private string _equipmentNotice;
+        private int _modalClosedFrame = -1;
         private BagInfo _bag, _equipment;
         private GetMissionListResponse _missions;
         private GetActivityListResponse _activities;
@@ -52,7 +62,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _root = QdaoUguiFactory.CreateStretch("PlayerFeaturesWindow", parent, Vector4.zero);
             var shade = _root.gameObject.AddComponent<Image>();
             shade.color = new Color(.025f, .10f, .08f, .68f); shade.raycastTarget = true;
+            _root.gameObject.AddComponent<MmorpgClient.World.Tianyong.GameplayInputBlocker>();
             var frame = QdaoUguiFactory.CreateCenteredRect("JadePaperWindow", _root, 2160, 924);
+            _frameControls = frame.gameObject.AddComponent<CanvasGroup>();
             Art(frame, "main_frame", 0, 0, 2160, 924);
             Art(frame, "title_plate", 62, -21, 480, 114);
             _title = Text(frame, "行囊", 100, -7, 400, 84, 49, Cream, alignment: TextAlignmentOptions.Center);
@@ -74,11 +86,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _body = QdaoUguiFactory.CreateRect("PageContent", frame, 60, 174, 2040, 700);
             // 卡片是 _body 的兄弟节点:Render 每次清空 _body,卡片不跟着销毁;位置对齐详情栏(_body 在 frame 的 60,174)。
             _tooltip = new EquipTooltip(frame, 60 + DetailX + TooltipInsetX, 174 + TooltipInsetY);
+            _actions = new EquipActionsDialog(_root);
+            _wish = new EquipWishDialog(_root);
             Hide();
         }
 
         public void Show(GameplayPage page)
         {
+            CloseEquipmentModals(); _equipmentNotice = null;
             Page = page; _root.gameObject.SetActive(true);
             for (int i = 0; i < 3; ++i)
             {
@@ -93,9 +108,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Refresh();
         }
 
-        public void Hide() { _tooltip.Hide(); _root.gameObject.SetActive(false); Closed?.Invoke(); }
+        public void Hide() { CloseEquipmentModals(); _tooltip.Hide(); _root.gameObject.SetActive(false); Closed?.Invoke(); }
+        public void Back() { if (HasEquipmentModal) CloseEquipmentModals(); else Hide(); }
+        /// <summary>从人物面板进入时直接筛选装备，仍由正式背包读接口提供数据。</summary>
+        public void ShowEquipment()
+        {
+            _bagType = 0; _bagFilter = 1; _bagPage = 0; _query = string.Empty;
+            _search.SetTextWithoutNotify(string.Empty); _search.DeactivateInputField();
+            Show(GameplayPage.Bag);
+        }
+        public void SetEquipmentNotice(string message)
+        { _equipmentNotice = message; if (IsVisible && Page == GameplayPage.Bag) Render(); }
         public void Refresh()
         {
+            _equipmentNotice = null;
             if (Page == GameplayPage.Bag) { BagRequested?.Invoke(_bagType); EquipmentRequested?.Invoke(); }
             else if (Page == GameplayPage.Missions) MissionsRequested?.Invoke();
             else { ActivitiesRequested?.Invoke(); MissionsRequested?.Invoke(); }
@@ -137,12 +163,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _search.SetTextWithoutNotify(string.Empty); _search.DeactivateInputField();
             _bagLoading = _missionLoading = _activityLoading = _sorting = _missionActionBusy = false;
             _equipLoading = _equipBusy = false; _characterLevel = 0;
+            _equipmentNotice = null;
             _bagError = _missionError = _activityError = _equipError = string.Empty;
             TrackingChanged?.Invoke(null); Hide();
         }
 
         private void Render()
         {
+            // 刷新后装备消失或换页时，不保留指向旧物品的弹窗。
+            if (HasEquipmentModal && (Page != GameplayPage.Bag || FindEquipment(_modalItemId) == null))
+                CloseEquipmentModals();
             Clear(_body);
             if (Page != GameplayPage.Bag) _tooltip.Hide(); // 卡片不在 _body 里,离开背包页要显式收起
             if (Page == GameplayPage.Bag) RenderBag();
@@ -281,6 +311,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!string.IsNullOrEmpty(_bagError) || _bagLoading) { StateLine(_bagError, _bagLoading, x, y, width); return true; }
             if (!string.IsNullOrEmpty(_equipError)) { Text(_body, _equipError, x, y, width, 36, 25, QdaoUguiTheme.Html("#9A442D")); return true; }
             if (_equipBusy) { Text(_body, "正在更换装备…", x, y, width, 36, 25, Muted); return true; }
+            if (!string.IsNullOrEmpty(_equipmentNotice)) { Text(_body, _equipmentNotice, x, y, width, 36, 25, Muted); return true; }
             return false;
         }
 
@@ -338,7 +369,46 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             ulong itemId = item.ItemId;
             // 穿脱与整理在数据层互斥:对方在途时按钮置灰,不让玩家点出一条「请稍候」。
             _tooltip.Show(item, worn, !_equipBusy && !_sorting, _characterLevel,
-                () => { if (worn) UnequipRequested?.Invoke(itemId); else EquipRequested?.Invoke(itemId); });
+                () => { _equipmentNotice = null; if (worn) UnequipRequested?.Invoke(itemId); else EquipRequested?.Invoke(itemId); },
+                () => OpenEquipmentActions(itemId),
+                () => { var current = FindEquipment(itemId); if (current != null) EquipmentShareRequested?.Invoke(current.Clone()); });
+        }
+
+        private BagItemInfo FindEquipment(ulong id)
+        {
+            if (id == 0) return null;
+            return _equipment?.Items.FirstOrDefault(i => i.ItemId == id) ??
+                _bag?.Items.FirstOrDefault(i => i.ItemId == id && i.EquipKind != 0);
+        }
+
+        private void OpenEquipmentActions(ulong id)
+        {
+            var item = FindEquipment(id);
+            if (item == null) return;
+            _modalItemId = id; SetModalControls(true);
+            _actions.Show(ItemName(item), () => AttributesRequested?.Invoke(),
+                () => OpenEquipmentWish(id), () => { _modalItemId = 0; SetModalControls(false); });
+        }
+
+        private void OpenEquipmentWish(ulong id)
+        {
+            if (FindEquipment(id) == null) return;
+            _modalItemId = id; SetModalControls(true);
+            // 当前协议没有可选属性池或炼化接口，不能把现有词条当作完整池，也不能假装保存成功。
+            _wish.Show(null, null, null, CloseEquipmentModals, "期望属性 · 尚未开放",
+                "炼化功能尚未开放\n可选属性开放后，可在这里勾选期望属性。");
+        }
+
+        private void CloseEquipmentModals()
+        {
+            _actions.Close(); _wish.Hide(); _modalItemId = 0; SetModalControls(false);
+        }
+
+        private void SetModalControls(bool modal)
+        {
+            // 弹窗 Update 可能先于根窗口执行；关闭那一帧仍要吞掉 Esc，不能顺手关掉背包。
+            if (!modal && !_frameControls.interactable) _modalClosedFrame = Time.frameCount;
+            _frameControls.interactable = !modal; _frameControls.blocksRaycasts = !modal;
         }
 
         private void RenderMissions()

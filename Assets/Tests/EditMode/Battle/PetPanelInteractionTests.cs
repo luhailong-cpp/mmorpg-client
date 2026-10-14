@@ -3,6 +3,7 @@ using System.Reflection;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui.Pet;
+using MmorpgClient.World;
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
@@ -38,6 +39,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 .SetValue(owner, _client);
             _panel = new PetPanel(owner, _uiRoot.transform);
             _client.OnList += _panel.ApplyList;
+            _client.OnBusyChanged += _panel.ApplyBusy;
+            _client.OnError += _panel.ApplyError;
 
             _list = MakeList();
             _panel.Show();
@@ -48,7 +51,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [TearDown]
         public void TearDown()
         {
-            if (_client != null && _panel != null) _client.OnList -= _panel.ApplyList;
+            if (_client != null && _panel != null)
+            {
+                _client.OnList -= _panel.ApplyList;
+                _client.OnBusyChanged -= _panel.ApplyBusy;
+                _client.OnError -= _panel.ApplyError;
+            }
             if (_uiRoot != null) Object.DestroyImmediate(_uiRoot);
         }
 
@@ -125,6 +133,101 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.Pets.Pets[0].Dimensions[0].Allocated, Is.EqualTo(0u));
             Assert.That(_client.Pets.Pets[0].RemainingPoints, Is.EqualTo(5u));
         }
+
+        [Test]
+        public void GalleryAcquiresEveryBoundPetThroughServerAndReusesOwnedPets()
+        {
+            _list.MaxPets = 22;
+            foreach (var entry in QdaoPetCatalog.Entries)
+            {
+                OpenGallery(entry.id);
+                Assert.That(_net.Calls, Is.Empty, "Selecting art alone must not send a request.");
+                Click("AcquirePet");
+                var owned = _list.Pets.FirstOrDefault(pet => pet.PetTableId == entry.petTableIds.Single());
+                if (owned == null)
+                {
+                    var grant = _net.CallsOf(MessageIds.GmGrantPet).Single();
+                    Assert.That(((GmGrantPetRequest)grant.Request).PetTableId, Is.EqualTo(entry.petTableIds.Single()));
+                    Assert.That(_client.Pets.Pets.Any(p => p.PetTableId == entry.petTableIds.Single()), Is.False);
+                    Button("AcquirePet").onClick.Invoke(); // Even a queued click cannot send a second write.
+                    Assert.That(_net.Calls, Has.Count.EqualTo(1));
+                    owned = new PetInfo { PetId = 900100 + entry.petTableIds.Single(),
+                        PetTableId = entry.petTableIds.Single(), ModelId = entry.modelIds.Single(), Name = entry.displayName };
+                    _list.Pets.Add(owned);
+                    grant.Respond(new GmGrantPetResponse { Pets = _list });
+                }
+                else Assert.That(_net.Calls, Is.Empty, "Owned pets are selected without duplicate grants.");
+                Assert.That(SelectedPetId(), Is.EqualTo(owned.PetId));
+                Assert.That(_client.Pets.ActivePetId, Is.Zero, "Receiving a pet must not summon it automatically.");
+                Assert.That(_net.CallsOf(MessageIds.SummonPet), Is.Empty);
+                _net.Calls.Clear();
+            }
+            Assert.That(_client.Pets.Pets.Count, Is.EqualTo(20));
+            Click("Summon");
+            Assert.That(((SummonPetRequest)_net.CallsOf(MessageIds.SummonPet).Single().Request).PetId,
+                Is.EqualTo(SelectedPetId()));
+        }
+
+        [Test]
+        public void GalleryGrantCannotDiscardPendingPoints()
+        {
+            Click("Row0Plus");
+            OpenGallery("01-zhuling");
+            Assert.That(Button("AcquirePet").interactable, Is.False);
+            Button("AcquirePet").onClick.Invoke();
+            Assert.That(_net.Calls, Is.Empty);
+            Assert.That(Text("DeliveryStatus").text, Does.Contain("未确认的加点"));
+            AssertDraftPointIsVisible();
+            Click("CloseGallery");
+            Click("Discard");
+            OpenGallery("01-zhuling");
+            Click("AcquirePet");
+            Assert.That(_net.CallsOf(MessageIds.GmGrantPet), Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void GalleryRespectsCapacityButCanSelectOwnedPetWhenFull()
+        {
+            _list.MaxPets = 1;
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = _list });
+            OpenGallery("01-zhuling");
+            Assert.That(Button("AcquirePet").interactable, Is.False);
+            Button("AcquirePet").onClick.Invoke();
+            Assert.That(Text("DeliveryStatus").text, Does.Contain("上限"));
+            Assert.That(_net.Calls, Is.Empty);
+            OpenGallery("legacy-ling-yue");
+            Click("AcquirePet");
+            Assert.That(SelectedPetId(), Is.EqualTo(PetId));
+            Assert.That(_net.Calls, Is.Empty);
+        }
+
+        [Test]
+        public void GalleryShowsServerRejectionAndCannotGrantWhileDisconnected()
+        {
+            OpenGallery("01-zhuling");
+            Click("AcquirePet");
+            _net.CallsOf(MessageIds.GmGrantPet).Single().Respond(new GmGrantPetResponse
+                { ErrorMessage = new TipInfoMessage { Id = 26016 } });
+            Assert.That(Text("DeliveryStatus").text, Does.Contain("创建失败"));
+            Assert.That(_client.Pets.Pets, Has.Count.EqualTo(1));
+            Assert.That(_client.Busy, Is.False);
+            _net.IsReady = false;
+            _net.RaiseDisconnected();
+            OpenGallery("02-jiangling");
+            Assert.That(Button("AcquirePet").interactable, Is.False);
+            Button("AcquirePet").onClick.Invoke();
+            Assert.That(_net.CallsOf(MessageIds.GmGrantPet), Has.Count.EqualTo(1));
+            Assert.That(_client.HasList, Is.False);
+        }
+
+        private void OpenGallery(string id)
+        {
+            Click("Tab图鉴");
+            _uiRoot.GetComponentInChildren<PetArchivePreview>(true).Select(id);
+        }
+
+        private ulong SelectedPetId() => (ulong)typeof(PetPanel)
+            .GetField("_selectedPetId", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(_panel);
 
         private void AssertDraftPointIsVisible()
         {

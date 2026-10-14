@@ -18,12 +18,26 @@ namespace MmorpgClient.Game.Attribute
     ///    ——服务器侧 Allocate 是"目标值"幂等语义,重复提交也不会多扣点,这里只是省掉无谓往返;
     ///  - 断线:清空面板与在途状态,重连后由 UI 重新 RequestPanel。
     /// </summary>
-    public sealed class AttributeClient
+    public sealed class AttributeClient : IDisposable
     {
         /// <summary>单例挂接(实例由 GameClient 持有,静态 Instance 供 UI 路解析;测试直接 new)。</summary>
         public static AttributeClient Instance { get; private set; }
 
         private readonly IBattleTransport _net;
+        private readonly Func<object> _connectionIdentity;
+        private object _connection;
+        private ulong _player;
+        private long _epoch, _serial, _panelRevision, _latestRead, _latestAuto, _activeWrite;
+        private bool _disposed, _refreshAfterWrite;
+
+        private readonly struct RequestStamp
+        {
+            public readonly long Epoch, Id, Revision;
+            public readonly ulong Player;
+            public readonly object Connection;
+            public RequestStamp(long epoch, long id, long revision, ulong player, object connection)
+            { Epoch=epoch; Id=id; Revision=revision; Player=player; Connection=connection; }
+        }
 
         // ── 契约属性 ────────────────────────────────────────
 
@@ -52,17 +66,21 @@ namespace MmorpgClient.Game.Attribute
 
         // ── 构造/挂接 ───────────────────────────────────────
 
-        public AttributeClient(IBattleTransport transport)
+        public AttributeClient(IBattleTransport transport, Func<object> connectionIdentity = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
+            _connectionIdentity = connectionIdentity ?? (() => transport);
+            _connection = _connectionIdentity();
+            _player = _net.PlayerId;
             _net.RegisterNotify(MessageIds.NotifyAttributePanelChanged, HandlePanelChanged);
             _net.Disconnected += HandleDisconnected;
         }
 
         /// <summary>生产入口:创建实例并登记为单例(GameClient 构造时调用)。</summary>
-        public static AttributeClient Attach(IBattleTransport transport)
+        public static AttributeClient Attach(IBattleTransport transport, Func<object> connectionIdentity = null)
         {
-            var client = new AttributeClient(transport);
+            Instance?.Dispose();
+            var client = new AttributeClient(transport, connectionIdentity);
             Instance = client;
             return client;
         }
@@ -128,19 +146,21 @@ namespace MmorpgClient.Game.Attribute
         /// <summary>拉取面板(打开界面/重连后调用)。</summary>
         public void RequestPanel()
         {
-            if (!_net.IsReady)
-            {
-                OnError?.Invoke("尚未进入游戏,无法查看属性");
-                return;
-            }
+            if (!Ready("尚未进入游戏,无法查看属性")) return;
+            // 写入期间的读取合并到写回包之后，避免读到修改前的面板。
+            if (Busy) { _refreshAfterWrite = true; return; }
+            var stamp = Capture();
+            _latestRead = stamp.Id;
             _net.Call(MessageIds.GetAttributePanel, new GetAttributePanelRequest(),
                 GetAttributePanelResponse.Parser,
                 resp =>
                 {
+                    if (!CurrentRead(stamp)) return;
+                    _latestRead = 0;
                     if (HasTip(resp.ErrorMessage)) { OnError?.Invoke(DescribeTip("拉取属性面板失败", resp.ErrorMessage)); return; }
                     ApplyPanel(resp.Panel);
                 },
-                err => OnError?.Invoke(err));
+                err => { if (CurrentRead(stamp)) { _latestRead = 0; OnError?.Invoke(err); } });
         }
 
         // ── 写 ──────────────────────────────────────────────
@@ -151,7 +171,7 @@ namespace MmorpgClient.Game.Attribute
         /// </summary>
         public void Allocate(uint poolId, IReadOnlyDictionary<uint, uint> target)
         {
-            if (!BeginWrite(target != null && target.Count > 0 ? null : "没有需要提交的加点"))
+            if (!BeginWrite(target != null && target.Count > 0 ? null : "没有需要提交的加点", out var stamp))
             {
                 return;
             }
@@ -161,21 +181,21 @@ namespace MmorpgClient.Game.Attribute
                 req.Allocated[kv.Key] = kv.Value;
             }
             _net.Call(MessageIds.AllocateAttributePoints, req, AllocateAttributePointsResponse.Parser,
-                resp => CompleteWrite("加点失败", resp.ErrorMessage, resp.Panel),
-                err => FailWrite(err));
+                resp => CompleteWrite(stamp, "加点失败", resp.ErrorMessage, resp.Panel),
+                err => FailWrite(stamp, err));
         }
 
         /// <summary>重置(洗点):清空当前方案里该池的全部分配,按表扣银两。</summary>
         public void ResetPool(uint poolId)
         {
-            if (!BeginWrite(null))
+            if (!BeginWrite(null, out var stamp))
             {
                 return;
             }
             _net.Call(MessageIds.ResetAttributePoints, new ResetAttributePointsRequest { PoolId = poolId },
                 ResetAttributePointsResponse.Parser,
-                resp => CompleteWrite("重置失败", resp.ErrorMessage, resp.Panel),
-                err => FailWrite(err));
+                resp => CompleteWrite(stamp, "重置失败", resp.ErrorMessage, resp.Panel),
+                err => FailWrite(stamp, err));
         }
 
         /// <summary>
@@ -185,16 +205,17 @@ namespace MmorpgClient.Game.Attribute
         /// </summary>
         public void AutoAllocate(uint poolId)
         {
-            if (!_net.IsReady)
-            {
-                OnError?.Invoke("尚未进入游戏,无法自动加点");
-                return;
-            }
+            if (!Ready("尚未进入游戏,无法自动加点")) return;
+            if (Busy) { OnError?.Invoke("上一次操作还在处理中,请稍候"); return; }
+            var stamp = Capture();
+            _latestAuto = stamp.Id;
             _net.Call(MessageIds.AutoAllocateAttributePoints,
                 new AutoAllocateAttributePointsRequest { PoolId = poolId },
                 AutoAllocateAttributePointsResponse.Parser,
                 resp =>
                 {
+                    if (!CurrentAuto(stamp)) return;
+                    _latestAuto = 0;
                     if (HasTip(resp.ErrorMessage))
                     {
                         OnError?.Invoke(DescribeTip("自动加点失败", resp.ErrorMessage));
@@ -207,70 +228,67 @@ namespace MmorpgClient.Game.Attribute
                     }
                     OnAutoSuggestion?.Invoke(resp.PoolId, suggestion);
                 },
-                err => OnError?.Invoke(err));
+                err => { if (CurrentAuto(stamp)) { _latestAuto = 0; OnError?.Invoke(err); } });
         }
 
         /// <summary>开启新方案(超出免费数后按表扣银两)。</summary>
         public void CreateScheme(string name)
         {
-            if (!BeginWrite(null))
+            if (!BeginWrite(null, out var stamp))
             {
                 return;
             }
             _net.Call(MessageIds.CreateAttributeScheme, new CreateAttributeSchemeRequest { Name = name ?? string.Empty },
                 CreateAttributeSchemeResponse.Parser,
-                resp => CompleteWrite("开启新方案失败", resp.ErrorMessage, resp.Panel),
-                err => FailWrite(err));
+                resp => CompleteWrite(stamp, "开启新方案失败", resp.ErrorMessage, resp.Panel),
+                err => FailWrite(stamp, err));
         }
 
         /// <summary>切换当前生效方案(服务器侧有冷却,战斗中拒绝)。</summary>
         public void SwitchScheme(uint schemeId)
         {
-            if (!BeginWrite(null))
+            if (!BeginWrite(null, out var stamp))
             {
                 return;
             }
             _net.Call(MessageIds.SwitchAttributeScheme, new SwitchAttributeSchemeRequest { SchemeId = schemeId },
                 SwitchAttributeSchemeResponse.Parser,
-                resp => CompleteWrite("切换方案失败", resp.ErrorMessage, resp.Panel),
-                err => FailWrite(err));
+                resp => CompleteWrite(stamp, "切换方案失败", resp.ErrorMessage, resp.Panel),
+                err => FailWrite(stamp, err));
         }
 
         public void RenameScheme(uint schemeId, string name)
         {
-            if (!BeginWrite(string.IsNullOrWhiteSpace(name) ? "方案名不能为空" : null))
+            if (!BeginWrite(string.IsNullOrWhiteSpace(name) ? "方案名不能为空" : null, out var stamp))
             {
                 return;
             }
             _net.Call(MessageIds.RenameAttributeScheme,
                 new RenameAttributeSchemeRequest { SchemeId = schemeId, Name = name },
                 RenameAttributeSchemeResponse.Parser,
-                resp => CompleteWrite("方案改名失败", resp.ErrorMessage, resp.Panel),
-                err => FailWrite(err));
+                resp => CompleteWrite(stamp, "方案改名失败", resp.ErrorMessage, resp.Panel),
+                err => FailWrite(stamp, err));
         }
 
         /// <summary>GM:直接设等级(开发调试用;服务器侧上线前经 gate GM 鉴权收口)。</summary>
         public void GmSetLevel(uint level)
         {
-            if (!BeginWrite(null))
+            if (!BeginWrite(null, out var stamp))
             {
                 return;
             }
             _net.Call(MessageIds.GmSetPlayerLevel, new GmSetPlayerLevelRequest { Level = level },
                 GmSetPlayerLevelResponse.Parser,
-                resp => CompleteWrite("GM 设等级失败", resp.ErrorMessage, resp.Panel),
-                err => FailWrite(err));
+                resp => CompleteWrite(stamp, "GM 设等级失败", resp.ErrorMessage, resp.Panel),
+                err => FailWrite(stamp, err));
         }
 
         // ── 内部 ────────────────────────────────────────────
 
-        private bool BeginWrite(string rejectReason)
+        private bool BeginWrite(string rejectReason, out RequestStamp stamp)
         {
-            if (!_net.IsReady)
-            {
-                OnError?.Invoke("尚未进入游戏");
-                return false;
-            }
+            stamp = default;
+            if (!Ready("尚未进入游戏")) return false;
             if (rejectReason != null)
             {
                 OnError?.Invoke(rejectReason);
@@ -281,28 +299,89 @@ namespace MmorpgClient.Game.Attribute
                 OnError?.Invoke("上一次操作还在处理中,请稍候");
                 return false;
             }
+            _latestRead = _latestAuto = 0;
+            stamp = Capture();
+            _activeWrite = stamp.Id;
             SetBusy(true);
             return true;
         }
 
-        private void EndWrite() => SetBusy(false);
-
         /// <summary>写请求回包统一收口:先看响应体 tip(拒绝 → 报错、保留旧面板),再应用全量面板。</summary>
-        private void CompleteWrite(string what, TipInfoMessage tip, AttributePanelInfo panel)
+        private void CompleteWrite(RequestStamp stamp, string what, TipInfoMessage tip, AttributePanelInfo panel)
         {
+            if (!CurrentWrite(stamp)) return;
             if (HasTip(tip))
             {
-                FailWrite(DescribeTip(what, tip));
+                FailWrite(stamp, DescribeTip(what, tip));
                 return;
             }
-            EndWrite();
-            ApplyPanel(panel);
+            // 协议没有服务器面板版本号。等待期间收到推送时保留推送，并在写入结束后重读确认。
+            // 这样既不让旧回包盖住装备推送，也不假定推送一定晚于服务端执行此次写入。
+            bool refresh = _refreshAfterWrite || stamp.Revision != _panelRevision;
+            if (stamp.Revision == _panelRevision) ApplyPanel(panel);
+            FinishWrite(stamp, refresh);
         }
 
-        private void FailWrite(string message)
+        private void FailWrite(RequestStamp stamp, string message)
         {
-            SetBusy(false);
+            if (!CurrentWrite(stamp)) return;
+            bool refresh = _refreshAfterWrite;
+            FinishWrite(stamp, refresh);
+            if (!Current(stamp)) return;
             OnError?.Invoke(message);
+        }
+
+        private void FinishWrite(RequestStamp stamp, bool refresh)
+        {
+            if (!CurrentWrite(stamp)) return;
+            refresh |= _refreshAfterWrite;
+            _activeWrite = 0;
+            _refreshAfterWrite = false;
+            SetBusy(false);
+            if (refresh && Current(stamp)) RequestPanel();
+        }
+
+        private RequestStamp Capture() => new RequestStamp(_epoch, ++_serial, _panelRevision, _player, _connection);
+
+        private void ObserveSession()
+        {
+            if (_disposed) return;
+            if (_player != _net.PlayerId || !ReferenceEquals(_connection, _connectionIdentity())) Reset();
+        }
+
+        private bool Ready(string message)
+        {
+            if (_disposed) return false;
+            ObserveSession();
+            if (_net.IsReady && _net.PlayerId != 0) return true;
+            OnError?.Invoke(message);
+            return false;
+        }
+
+        private bool Current(RequestStamp stamp)
+        {
+            if (_disposed) return false;
+            ObserveSession();
+            return _net.IsReady && stamp.Epoch == _epoch && stamp.Player != 0 && stamp.Player == _net.PlayerId
+                && ReferenceEquals(stamp.Connection, _connectionIdentity());
+        }
+        private bool CurrentRead(RequestStamp stamp) => Current(stamp) && stamp.Id == _latestRead
+            && stamp.Revision == _panelRevision && !Busy;
+        private bool CurrentAuto(RequestStamp stamp) => Current(stamp) && stamp.Id == _latestAuto
+            && stamp.Revision == _panelRevision && !Busy;
+        private bool CurrentWrite(RequestStamp stamp) => Current(stamp) && stamp.Id == _activeWrite && Busy;
+
+        /// <summary>登出、换号或连接替换时作废旧面板和全部回调，不让旧写释放新会话的等待状态。</summary>
+        public void Reset()
+        {
+            ++_epoch;
+            ++_panelRevision;
+            _latestRead = _latestAuto = _activeWrite = 0;
+            _refreshAfterWrite = false;
+            _player = _net.PlayerId;
+            _connection = _connectionIdentity();
+            Panel = null;
+            SetBusy(false);
         }
 
         private void SetBusy(bool value)
@@ -325,19 +404,29 @@ namespace MmorpgClient.Game.Attribute
                 return;
             }
             Panel = panel;
+            ++_panelRevision;
+            _latestAuto = 0;
             OnPanel?.Invoke(panel);
         }
 
         private void HandlePanelChanged(MessageContent content)
         {
+            if (_disposed) return;
+            ObserveSession();
+            if (!_net.IsReady || _net.PlayerId == 0) return;
             var message = AttributePanelChangedS2C.Parser.ParseFrom(content.SerializedMessage);
             ApplyPanel(message.Panel);
         }
 
-        private void HandleDisconnected()
+        private void HandleDisconnected() => Reset();
+
+        public void Dispose()
         {
-            Panel = null;
-            SetBusy(false);
+            if (_disposed) return;
+            _disposed = true;
+            _net.Disconnected -= HandleDisconnected;
+            Reset();
+            if (ReferenceEquals(Instance, this)) Instance = null;
         }
     }
 }

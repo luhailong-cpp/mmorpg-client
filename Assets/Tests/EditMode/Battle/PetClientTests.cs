@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Net;
 using NUnit.Framework;
@@ -62,6 +63,28 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.ListRequestPending, Is.False);
             _client.RequestList();
             Assert.That(_net.CallsOf(MessageIds.GetPetList).Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void GrantRequiresAuthoritativeListAndIgnoresResponseAfterDisconnect()
+        {
+            _client.GmGrantPet(5);
+            Assert.That(_net.Calls, Is.Empty);
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = MakeList() });
+            _client.GmGrantPet(5);
+            var old = _net.CallsOf(MessageIds.GmGrantPet).Single();
+            Assert.That(((GmGrantPetRequest)old.Request).PetTableId, Is.EqualTo(5));
+            _net.RaiseDisconnected();
+            old.Respond(new GmGrantPetResponse { Pets = MakeList(activePetId: PetA) });
+            Assert.That(_client.HasList, Is.False);
+            Assert.That(_client.Busy, Is.False);
+
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = MakeList() });
+            _client.GmGrantPet(6);
+            old.FailWith("late timeout");
+            Assert.That(_client.Busy, Is.True, "A stale failure cannot unlock the newer request.");
+            _net.CallsOf(MessageIds.GmGrantPet)[1].Respond(new GmGrantPetResponse { Pets = MakeList() });
+            Assert.That(_client.Busy, Is.False);
         }
 
         [Test]

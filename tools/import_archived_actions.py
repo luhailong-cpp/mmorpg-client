@@ -124,7 +124,9 @@ def run(delivery, source_root, project, execute=False, verify=False):
             check_png(path, f['sha256'])
         if verify:
             manifest_path = project / FAMILY / cid / 'manifest.json'
-            require(manifest_path.read_bytes() == json_bytes(manifests[cid]), f'客户端时序/锚点清单不匹配: {cid}')
+            # Git may check JSON out with CRLF on Windows; preserve all other content.
+            require(manifest_path.read_text(encoding='utf-8') == json_bytes(manifests[cid]).decode('utf-8'),
+                    f'客户端时序/锚点清单不匹配: {cid}')
     if execute:
         for c in characters:
             cid = c['characterId']

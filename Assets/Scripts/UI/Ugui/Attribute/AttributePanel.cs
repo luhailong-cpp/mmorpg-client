@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using MmorpgClient.Game.Attribute;
+using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.UI.Ugui.Battle;
 using TMPro;
 using UnityEngine;
@@ -17,6 +19,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private const float RowHeight = 76f;
         private const float RowGap = 32f;
         private const int MaxRows = 8;
+        private const float CombatRowPitch = 62f;
+        private const float CombatViewportH = 498f;
+        private enum PanelPage { Overview, Allocation, Combat }
 
         private readonly AttributeUiRoot _owner;
         private readonly RectTransform _root;
@@ -37,8 +42,12 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private RectTransform _allocationRoot;
         private RectTransform _overviewRoot;
         private RectTransform _rowsRoot;
+        private RectTransform _combatRoot;
+        private RectTransform _combatRows;
         private UiTextButton _attributeNavigation;
         private UiTextButton _allocationNavigation;
+        private UiTextButton _combatNavigation;
+        private PanelPage _page = PanelPage.Allocation;
 
         private readonly RectTransform _tooltip;
         private readonly TMP_Text _tooltipText;
@@ -56,6 +65,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 CharacterAttributeVisuals.WindowW, CharacterAttributeVisuals.WindowH, AttributeUiStyle.WindowPaper);
             CharacterAttributeVisuals.Skin(window, "window_frame");
             _root = (RectTransform)window.transform;
+            _root.gameObject.AddComponent<MmorpgClient.World.Tianyong.GameplayInputBlocker>();
 
             float titleX = (CharacterAttributeVisuals.WindowW - 820f) * 0.5f;
             CharacterAttributeVisuals.Panel("TitlePlate", _root, titleX, -64f, 820f, 138f, "title_plate");
@@ -152,6 +162,10 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 _rows[i] = CharacterAttributeVisuals.PointRow($"Row{i}", _rowsRoot,
                     0f, i * (RowHeight + RowGap), w, RowHeight);
                 _rows[i].Bind(OnRowChanged);
+                // 装备加成标注保留完整数值；较长时在原字段内缩小字体。
+                _rows[i].ValueLabel.enableAutoSizing = true;
+                _rows[i].ValueLabel.fontSizeMax = _rows[i].ValueLabel.fontSize;
+                _rows[i].ValueLabel.fontSizeMin = 20f;
                 AttachRowTooltip(_rows[i]);
                 CharacterAttributeScrollFocus.Bind(_rows[i].Minus, scroll, _rows[i].Rect);
                 CharacterAttributeScrollFocus.Bind(_rows[i].Slider, scroll, _rows[i].Rect);
@@ -179,6 +193,35 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 _overviewValues[i] = CharacterAttributeVisuals.Stat($"OverviewStat{i}", _overviewRoot,
                     (i % 2) * 602f, 152f + (i / 2) * 126f, 570f, labels[i]);
             _overviewRoot.gameObject.SetActive(false);
+
+            // 战斗属性的名称、数值、顺序及百分比单位均以服务器面板为准。
+            _combatRoot = QdaoUguiFactory.CreateRect("CombatPage", _root, x, 104f, w, 602f);
+            QdaoUguiFactory.CreateText("CombatHeading", _combatRoot, 0f, 0f, w - 280f, 88f,
+                "战 斗 属 性", 40f, QdaoRefreshArt.Ink);
+            var viewportCombat = QdaoUguiFactory.CreateRect("CombatViewport", _combatRoot, 0f, 104f, w, CombatViewportH);
+            var combatHit = viewportCombat.gameObject.AddComponent<Image>();
+            combatHit.color = new Color(1f, 1f, 1f, 0.001f);
+            combatHit.raycastTarget = true;
+            viewportCombat.gameObject.AddComponent<RectMask2D>();
+            _combatRows = QdaoUguiFactory.CreateRect("CombatRows", viewportCombat, 0f, 0f, w, CombatViewportH);
+            var combatScroll = viewportCombat.gameObject.AddComponent<ScrollRect>();
+            combatScroll.viewport = viewportCombat;
+            combatScroll.content = _combatRows;
+            combatScroll.horizontal = false;
+            combatScroll.vertical = true;
+            combatScroll.movementType = ScrollRect.MovementType.Clamped;
+            combatScroll.scrollSensitivity = 48f;
+            _combatRoot.gameObject.SetActive(false);
+
+            // 三页共用标题行右侧入口，不挤占属性行和既有侧页签。
+            var equipment = CharacterAttributeVisuals.Button("EquipmentEntry", _root,
+                x + w - 260f, 98f, 260f, 80f, "装 备");
+            equipment.Button.onClick.AddListener(() =>
+            {
+                var gameplay = Gameplay.GameplayUiRoot.Instance;
+                if (gameplay == null) { SetStatus("装备界面尚未就绪，请稍后重试", true); return; }
+                gameplay.OpenEquipment();
+            });
         }
 
         private void BuildSideNavigation()
@@ -186,18 +229,23 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _attributeNavigation = CharacterAttributeVisuals.SideTab("AttributeTab", _root, 116f, "属\n性", false);
             _allocationNavigation = CharacterAttributeVisuals.SideTab("AllocationTab", _root, 302f, "加\n点", true);
             var skill = CharacterAttributeVisuals.SideTab("SkillTab", _root, 488f, "技\n能", false);
-            // The attribute protocol has no skills-page response or action to bind.
-            skill.SetInteractable(false);
-            _attributeNavigation.Button.onClick.AddListener(() => ShowAllocationPage(false));
-            _allocationNavigation.Button.onClick.AddListener(() => ShowAllocationPage(true));
+            skill.Button.onClick.AddListener(Skills.SkillUiRoot.Open);
+            _combatNavigation = CharacterAttributeVisuals.SideTab("CombatTab", _root, 674f, "战\n斗", false);
+            _combatNavigation.SetVisible(false);
+            _attributeNavigation.Button.onClick.AddListener(() => ShowPage(PanelPage.Overview));
+            _allocationNavigation.Button.onClick.AddListener(() => ShowPage(PanelPage.Allocation));
+            _combatNavigation.Button.onClick.AddListener(() => ShowPage(PanelPage.Combat));
         }
 
-        private void ShowAllocationPage(bool allocation)
+        private void ShowPage(PanelPage page)
         {
-            _allocationRoot.gameObject.SetActive(allocation);
-            _overviewRoot.gameObject.SetActive(!allocation);
-            CharacterAttributeVisuals.SelectSideTab(_attributeNavigation, !allocation);
-            CharacterAttributeVisuals.SelectSideTab(_allocationNavigation, allocation);
+            _page = page;
+            _allocationRoot.gameObject.SetActive(page == PanelPage.Allocation);
+            _overviewRoot.gameObject.SetActive(page == PanelPage.Overview);
+            _combatRoot.gameObject.SetActive(page == PanelPage.Combat);
+            CharacterAttributeVisuals.SelectSideTab(_attributeNavigation, page == PanelPage.Overview);
+            CharacterAttributeVisuals.SelectSideTab(_allocationNavigation, page == PanelPage.Allocation);
+            CharacterAttributeVisuals.SelectSideTab(_combatNavigation, page == PanelPage.Combat);
             HideTooltip();
         }
 
@@ -213,6 +261,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         public void Show()
         {
+            Skills.SkillUiRoot.Instance?.HidePanel();
             // 宝宝窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
             Pet.PetUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
@@ -222,6 +271,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
             HideTooltip();
             SetStatus(string.Empty);
             _owner.Client?.RequestPanel();
+        }
+
+        /// <summary>技能页返回时明确落到属性或加点页，不改变任何角色数据。</summary>
+        public void ShowSection(bool allocation)
+        {
+            Show();
+            ShowPage(allocation ? PanelPage.Allocation : PanelPage.Overview);
         }
 
         public void Hide()
@@ -235,6 +291,37 @@ namespace MmorpgClient.UI.Ugui.Attribute
         {
             if (IsVisible) Hide();
             else Show();
+        }
+
+        /// <summary>先收起方案选择，再关闭人物面板，避免一次返回穿透两层。</summary>
+        public void Back()
+        {
+            if (_schemeListOpen) { CloseSchemeList(); return; }
+            Hide();
+        }
+
+        /// <summary>退出、断线及换角色时清掉上个角色的显示和未提交加点。</summary>
+        public void ResetSession()
+        {
+            _panel = null;
+            _activePoolId = 0;
+            Hide();
+            for (int i = 0; i < _statValues.Length; i++) SetStat(i, "—");
+            foreach (var row in _rows)
+            {
+                row.SetFromServer(0, string.Empty, 0, 0, 0, 0, false);
+                row.Rect.gameObject.SetActive(false);
+            }
+            Gameplay.GameplayUiArt.Clear(_combatRows);
+            _combatNavigation.SetVisible(false);
+            ShowPage(PanelPage.Allocation);
+            _schemeButton.SetText("方案一");
+            _schemeButton.SetInteractable(false);
+            _createSchemeButton.SetInteractable(false);
+            RefreshTabs();
+            RefreshActionButtons();
+            _remainText.text = "正在读取属性…";
+            SetStatus(string.Empty);
         }
 
         public void SetStatus(string value, bool warn = false)
@@ -259,6 +346,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
             RefreshSchemeButton();
             RefreshDerived();
+            RefreshCombat();
             RefreshTabs();
             RebuildRows();
             RefreshActionButtons();
@@ -328,6 +416,29 @@ namespace MmorpgClient.UI.Ugui.Attribute
             SetStat(5, derived.Defense.ToString());
         }
 
+        private void RefreshCombat()
+        {
+            Gameplay.GameplayUiArt.Clear(_combatRows);
+            var lines = _panel.Combat.OrderBy(line => line.Sort).ToList();
+            for (int i = 0; i < lines.Count; i++)
+            {
+                var line = lines[i];
+                float x = (i % 2) * 602f, y = (i / 2) * CombatRowPitch;
+                var name = QdaoUguiFactory.CreateText($"CombatName_{i}", _combatRows, x, y, 296f, 56f,
+                    string.IsNullOrWhiteSpace(line.Name) ? $"战斗属性 · {line.CombatId}" : line.Name, 30f, QdaoRefreshArt.Ink);
+                name.richText = false;
+                CharacterAttributeVisuals.Panel($"CombatValuePlate_{i}", _combatRows, x + 310f, y, 260f, 56f, "stat_field");
+                var value = QdaoUguiFactory.CreateText($"CombatValue_{i}", _combatRows, x + 330f, y, 220f, 56f,
+                    EquipDisplay.FormatValue(line.Value, line.Percent), 28f, QdaoRefreshArt.Ink);
+                value.richText = false;
+            }
+            _combatRows.sizeDelta = new Vector2(CharacterAttributeVisuals.RightW,
+                Mathf.Max(CombatViewportH, (lines.Count + 1) / 2 * CombatRowPitch));
+            _combatRows.anchoredPosition = Vector2.zero;
+            _combatNavigation.SetVisible(lines.Count > 0);
+            if (lines.Count == 0 && _page == PanelPage.Combat) ShowPage(PanelPage.Allocation);
+        }
+
         private void SetStat(int index, string value)
         {
             if (index >= 0 && index < _statValues.Length && _statValues[index] != null)
@@ -371,7 +482,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 var row = _rows[index];
                 row.Rect.gameObject.SetActive(true);
                 row.SetFromServer(dimension.DimensionId, dimension.Name, dimension.Value,
-                    dimension.Allocated, dimension.Cap, pool?.Remaining ?? 0, interactable);
+                    dimension.Allocated, dimension.Cap, pool?.Remaining ?? 0, interactable, dimension.Bonus);
                 row.Rect.name = $"Row_{dimension.Name}";
                 index++;
             }

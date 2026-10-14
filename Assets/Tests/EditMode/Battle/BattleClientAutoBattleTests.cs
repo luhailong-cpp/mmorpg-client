@@ -307,6 +307,30 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void ContinuousBattle_RejoinKeepsPveTeamSize()
+        {
+            // PVE 人数档(JoinQueueRequest.team_size)也是排队参数:首发带上,连续战斗重排时原样带回,
+            // 否则 3 人档打完会掉回「副本人数上限」那一档(服务端对 0 的解释)。
+            _client.ContinuousBattle = true;
+            _client.Tick(0);
+            _client.JoinQueue(Match.MatchMode.PveTeam, 1, 3);
+            var first = (Match.JoinQueueRequest)_net.CallsOf(MessageIds.JoinQueue)[0].Request;
+            Assert.That(first.Mode, Is.EqualTo(Match.MatchMode.PveTeam));
+            Assert.That(first.TeamSize, Is.EqualTo(3U));
+
+            PushBattleStart();
+            PushBattleEnd();
+            _client.AckBattleEnd();
+
+            var joins = _net.CallsOf(MessageIds.JoinQueue);
+            Assert.That(joins, Has.Count.EqualTo(2), "Ack 后按记忆重新入队");
+            var again = (Match.JoinQueueRequest)joins[1].Request;
+            Assert.That(again.Mode, Is.EqualTo(Match.MatchMode.PveTeam));
+            Assert.That(again.BattleConfigId, Is.EqualTo(1U));
+            Assert.That(again.TeamSize, Is.EqualTo(3U), "人数档随重排带回");
+        }
+
+        [Test]
         public void ContinuousBattle_Off_AckDoesNothing()
         {
             _client.Tick(0);

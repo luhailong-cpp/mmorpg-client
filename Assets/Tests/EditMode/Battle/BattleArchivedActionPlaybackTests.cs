@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using MmorpgClient.Game.Battle.Presentation;
 using MmorpgClient.UI.Ugui.Battle;
@@ -15,6 +17,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
     public sealed class BattleArchivedActionPlaybackTests
     {
         private const BindingFlags HiddenInstance = BindingFlags.Instance | BindingFlags.NonPublic;
+        private static readonly string[] RetainedCharacters =
+        {
+            "00_reference_topright_boy", "01_ice_sword_girl", "02_fire_talisman_boy",
+            "03_lotus_healer_girl", "04_mountain_guardian_boy", "05_celestial_musician_girl",
+            "06_thunder_caster_boy", "07_moon_shadow_assassin_girl", "08_alchemy_prodigy_boy",
+            "09_bamboo_archer_girl", "10_crimson_spear_girl", "14_short_hair_snow_summoner_girl",
+            "15_water_dragon_scholar_boy", "17_ghost_script_calligrapher_boy", "20_star_formation_master_girl"
+        };
         private static readonly MethodInfo Tick = typeof(RealtimeTween).GetMethod("UpdateAll", BindingFlags.Static | BindingFlags.NonPublic);
         private GameObject _layer;
         private BattleUnitView _view;
@@ -260,26 +270,56 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(sprite == null, Is.True, "The last afterimage releases the archived runtime sprite.");
         }
 
-        [TestCase("00_reference_topright_boy")]
-        [TestCase("01_ice_sword_girl")]
-        [TestCase("07_moon_shadow_assassin_girl")]
-        [TestCase("08_alchemy_prodigy_boy")]
-        [TestCase("09_bamboo_archer_girl")]
-        [TestCase("15_water_dragon_scholar_boy")]
-        [TestCase("20_star_formation_master_girl")]
+        [Test]
+        public void RetainedRosterRequiresAllFifteenDeliveredCombatIdentities()
+        {
+            Assert.That(QdaoCharacterCatalog.RetainedOriginalAll.Select(entry => entry.Id),
+                Is.EquivalentTo(RetainedCharacters));
+        }
+
+        [TestCaseSource(nameof(RetainedCharacters))]
         public void DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(string character)
         {
+            int baseline = QdaoActionResources.ResidentClipCount;
             foreach (bool east in new[] { true, false })
             foreach (var action in new[] { "attack", "hit", "cast" })
             {
+                string direction = east ? "E" : "W";
+                string label = character + "/" + action + "/" + direction;
+                int count = action == "attack" ? 12 : action == "hit" ? 6 : 16;
+                float frameSeconds = action == "attack" ? .03f : action == "hit" ? .04f : .045f;
                 using var strip = BattleArtCatalog.LoadCharacterAction(character, action, east);
-                Assert.That(strip, Is.Not.Null, character + "/" + action);
-                Assert.That(strip.Count, Is.EqualTo(action == "attack" ? 12 : action == "hit" ? 6 : 16));
-                Assert.That(strip.Mirrored, Is.False);
-                Assert.That(strip.DurationSeconds, Is.EqualTo(QdaoActionResources.GetDurationSeconds(character, action, east ? "E" : "W")).Within(.0001f));
-                Assert.That(strip.Frames[0].name, Does.StartWith(character + "_archived_" + action + "_" + (east ? "E" : "W") + "_"));
-                Assert.That(strip.EventFrame, Is.InRange(-1, strip.Count - 1));
+                using var clip = QdaoActionResources.Acquire(character, action, direction);
+                using var opposite = QdaoActionResources.Acquire(character, action, east ? "W" : "E");
+                Assert.That(strip, Is.Not.Null, label);
+                Assert.That(clip?.IsValid, Is.True, label);
+                Assert.That(opposite?.IsValid, Is.True, label + " opposite direction");
+                Assert.That(strip.Count, Is.EqualTo(count), label);
+                Assert.That(strip.Mirrored, Is.False, label);
+                Assert.That(strip.UseWorldGeometry, Is.True, label + " must use authored frames, not a legacy strip");
+                Assert.That(strip.DurationSeconds, Is.EqualTo(count * frameSeconds).Within(.0001f), label);
+                Assert.That(strip.DurationSeconds, Is.EqualTo(QdaoActionResources.GetDurationSeconds(character, action, direction)).Within(.0001f), label);
+                Assert.That(clip.FrameDurationsSeconds.Length, Is.EqualTo(count), label);
+                Assert.That(strip.EventFrame, Is.InRange(-1, count - 1), label);
+                Assert.That(strip.EventFrame, Is.EqualTo(clip.EventFrame), label);
+                float expectedEvent = strip.EventFrame < 0 ? -1f : strip.EventFrame * frameSeconds;
+                Assert.That(clip.EventTimeSeconds, Is.EqualTo(expectedEvent).Within(.0001f), label);
+                Assert.That(QdaoActionResources.GetEventTimeSeconds(character, action, direction),
+                    Is.EqualTo(expectedEvent).Within(.0001f), label);
+                var uniqueTextures = new HashSet<Texture2D>();
+                for (int i = 0; i < count; i++)
+                {
+                    Assert.That(strip.Frames[i] != null && strip.Frames[i].texture != null, Is.True, label + "/" + i);
+                    Assert.That(uniqueTextures.Add(strip.Frames[i].texture), Is.True, label + " repeats a texture");
+                    Assert.That(opposite.Frames.Any(frame => frame.texture == strip.Frames[i].texture),
+                        Is.False, label + " borrows the other direction");
+                    Assert.That(strip.Frames[i].name, Is.EqualTo(character + "_archived_" + action + "_" + direction + "_" + (i + 1).ToString("00")));
+                    Assert.That(clip.FrameDurationsSeconds[i], Is.EqualTo(frameSeconds).Within(.000001f), label + "/" + i);
+                    Assert.That(strip.FrameAt((i + .5f) / count), Is.SameAs(strip.Frames[i]), label);
+                    Assert.That(clip.FrameAt((i + .5f) * frameSeconds, false), Is.SameAs(strip.Frames[i]), label);
+                }
             }
+            Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
         }
 
         private Image Body => _view.Root.Find("Body").GetComponent<Image>();

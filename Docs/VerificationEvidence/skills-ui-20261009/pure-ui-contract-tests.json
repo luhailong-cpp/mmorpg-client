@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "completedAtUtc": "2026-10-09T17:10:05.4661190Z",
+  "passed": 25,
+  "failed": 0,
+  "total": 25,
+  "source": "Assets/Scripts/UI/Ugui/Skills/SkillBookModels.cs",
+  "sourceSha256": "36F332D614B32BC761090A06E9688EC0A4BFA69F58A865ACD8AD0F809AEB5E92",
+  "scope": "Pure presentation state and context identity; no UnityEngine, native UI rendering, game client, server, or battle effects.",
+  "unityNativeTestsExecuted": false,
+  "cases": [
+    {
+      "name": "NullStateCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "NullEntryCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "MissingDefinitionCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "MissingSnapshotCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "ConnectedReadyEntryCanUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "ExactCoinBalanceCanUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "OneCoinShortCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "LoadingCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "PendingRequestCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "ReadOnlyCatalogCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "DisconnectedCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "ErrorStateCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "DisplayMessageDoesNotBlockUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "LockedEntryCannotUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "RankZeroCanSendLearningIntent",
+      "status": "passed"
+    },
+    {
+      "name": "CurrentRankLimitBlocksUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "DefinitionMaxRankBlocksUpgrade",
+      "status": "passed"
+    },
+    {
+      "name": "ZeroDefinitionMaxStillUsesCurrentRankLimit",
+      "status": "passed"
+    },
+    {
+      "name": "ZeroCurrentRankLimitDoesNotGrantSkill",
+      "status": "passed"
+    },
+    {
+      "name": "UInt64CoinBoundaryUsesExactComparison",
+      "status": "passed"
+    },
+    {
+      "name": "CharacterDisplayNamesDoNotChangeIdentity",
+      "status": "passed"
+    },
+    {
+      "name": "SamePetRenamedKeepsIdentity",
+      "status": "passed"
+    },
+    {
+      "name": "SameNameDifferentPetsStaySeparate",
+      "status": "passed"
+    },
+    {
+      "name": "PetAndCharacterStaySeparate",
+      "status": "passed"
+    },
+    {
+      "name": "NullContextNeverMatches",
+      "status": "passed"
+    }
+  ]
+}
