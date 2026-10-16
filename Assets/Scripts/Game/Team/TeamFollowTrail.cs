@@ -332,20 +332,24 @@ namespace MmorpgClient.Game.Team
     }
 
     /// <summary>
-    /// 一个队员"走到轨迹的哪儿了":所在那一代轨迹与里程。由 <see cref="TeamFollowPlanner"/> 逐帧推进,
-    /// 调用方只负责存着,以及在自己不再沿轨迹走的时候(暂离、被寻路带离、换队长)丢掉它(= default)。
+    /// 一个队员"走到轨迹的哪儿了":所在那一代轨迹、里程,以及记下这个里程时人站的位置。
+    /// 由 <see cref="TeamFollowPlanner"/> 逐帧推进,调用方只负责存着,以及在自己不再沿轨迹走的时候
+    /// (暂离、被寻路带离、换队长)丢掉它(= default)。
     /// </summary>
     public struct TeamFollowCursor
     {
-        public TeamFollowCursor(int epoch, double odometer)
+        public TeamFollowCursor(int epoch, double odometer, Vector3 position)
         {
             Valid = true;
             Epoch = epoch;
             Odometer = odometer;
+            Position = position;
         }
 
         public bool Valid { get; }
         public int Epoch { get; }
         public double Odometer { get; }
+        /// <summary>记下里程那一帧人的位置:下一帧里程最多只能后退"人实际挪动的距离"。</summary>
+        public Vector3 Position { get; }
     }
 }

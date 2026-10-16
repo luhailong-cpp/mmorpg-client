@@ -77,6 +77,9 @@ namespace MmorpgClient.UI.Ugui.Team
             _toggle.gameObject.SetActive(false);
             _hud.gameObject.SetActive(false);
             _follow.InputRejected += ShowInputHint;
+            // 联机验收排障:环境变量 MMORPG_FOLLOW_TRACE=1 时把跟随驱动的诊断行写进播放器日志([follow] 前缀)。
+            if (System.Environment.GetEnvironmentVariable("MMORPG_FOLLOW_TRACE") == "1")
+                _follow.Trace = message => Debug.Log("[follow] " + message);
         }
 
         private void Update()

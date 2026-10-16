@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using UnityEngine;
@@ -74,6 +75,14 @@ namespace MmorpgClient.Game.Team
 
         public TeamFollowStatus Status { get; private set; }
 
+        /// <summary>
+        /// 诊断输出(联机验收排障用)。非 null 时:不跟随的原因变化、指令种类 / 被挡住 / 寻路状态变化各写一行,
+        /// 此外跟随中每 0.5 秒一行。为 null(缺省)时不拼任何字符串。宿主决定接到哪里(见 TeamFollowUiRoot)。
+        /// </summary>
+        public Action<string> Trace;
+        private string _traceKey;
+        private float _traceAt;
+
         /// <summary>玩家是否选择了暂离(只在有队且非队长时有意义)。</summary>
         public bool Away { get; private set; }
 
@@ -103,6 +112,7 @@ namespace MmorpgClient.Game.Team
             {
                 Suspend();
                 Status = TeamFollowStatus.None;
+                TraceIdle("no trusted team view");
                 return;
             }
 
@@ -125,12 +135,14 @@ namespace MmorpgClient.Game.Team
             {
                 Suspend();
                 Status = TeamFollowStatus.None;
+                TraceIdle(allowed ? "no slot (not a follower)" : "not allowed (not in game / battle)");
                 return;
             }
             if (Away)
             {
                 Suspend();
                 Status = TeamFollowStatus.Away;
+                TraceIdle("away");
                 return;
             }
 
@@ -143,6 +155,7 @@ namespace MmorpgClient.Game.Team
                 Release();
                 ForgetLeader();
                 Status = TeamFollowStatus.LeaderOutOfSight;
+                TraceIdle(controller == null ? "no local controller" : "leader out of sight");
                 return;
             }
 
@@ -152,6 +165,8 @@ namespace MmorpgClient.Game.Team
             if (moved > LeaderJumpDistance || (_trailStale && moved > TeamFollowTrail.SampleSpacing))
             {
                 SeedTrail(leaderPosition, leader.Go.transform.forward, navigation);
+                if (Trace != null)
+                    Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} trail reseeded: leader moved {1:F2} stale={2}", now, moved, _trailStale));
             }
             else
             {
@@ -162,8 +177,37 @@ namespace MmorpgClient.Game.Team
             _trailStale = false;
 
             Bind(controller);
-            Apply(controller, Plan(controller, slot, now), now);
+            var command = Plan(controller, slot, now);
+            Apply(controller, command, now);
+            if (Trace != null) TraceFollowing(controller, leader, command, now);
             Status = TeamFollowStatus.Following;
+        }
+
+        private void TraceIdle(string reason)
+        {
+            if (Trace == null || _traceKey == reason) return;
+            _traceKey = reason;
+            Trace("idle: " + reason);
+        }
+
+        private void TraceFollowing(TianyongPlayerController controller, ActorView leader, TeamFollowCommand command, float now)
+        {
+            string key = command.Kind + "/" + controller.FollowBlocked + "/" + _routing + "/" + _routeFound + "/" +
+                         controller.IsMoving + "/" + _cursor.Valid;
+            if (key == _traceKey && now < _traceAt) return;
+            _traceKey = key;
+            _traceAt = now + 0.5f;
+            Vector3 self = controller.FeetPosition;
+            Vector3 lead = leader.Go.transform.position;
+            double head = _trail.HeadOdometer;
+            Trace(string.Format(CultureInfo.InvariantCulture,
+                "t={0:F2} kind={1} self=({2:F2},{3:F2}) leader=({4:F2},{5:F2}) leaderV=({6:F1},{7:F1}) head={8:F2} " +
+                "cursor={9:F2} behind={10:F2} point=({11:F2},{12:F2}) scale={13:F2} moving={14} blocked={15} " +
+                "routing={16} routeFound={17} forceRoute={18} epoch={19}",
+                now, command.Kind, self.x, self.z, lead.x, lead.z, leader.Velocity.x, leader.Velocity.z, head,
+                _cursor.Valid ? _cursor.Odometer : -1d, _cursor.Valid ? head - _cursor.Odometer : -1d,
+                command.Point.x, command.Point.z, command.SpeedScale, controller.IsMoving, controller.FollowBlocked,
+                _routing, _routeFound, now < _forceRouteUntil, _trail.Epoch));
         }
 
         /// <summary>把控制权还给玩家(幂等)。不清暂离,也不清轨迹。</summary>

@@ -70,10 +70,11 @@ namespace MmorpgClient.Game.Team
 
         // ── 游标(队员记着自己走到轨迹的哪儿了,见带 cursor 的 Plan)────────────────
         /// <summary>
-        /// 每帧在上一帧里程往回多远的范围内找自己。要容得下"站得比槽位靠前、沿轨迹退回去"的那一步
-        /// (一帧最多 0.5),再留余量。
+        /// 每帧里程最多后退"人这一帧实际挪动的距离 + 它"。里程后退只有一种正当理由:人真的沿轨迹往回走
+        /// (站得比槽位靠前、退回去)。折返点附近去程与回程叠在一起,允许多退的话,已经转到回程上的人会因为
+        /// 厘米级的远近差别被判回去程 —— 去程的前视点朝折返点、回程的朝队长,两帧一个来回,人就卡在那里。
         /// </summary>
-        public const float CursorBack = 1f;
+        public const float CursorBackSlack = 0.1f;
         /// <summary>每帧在上一帧里程往前多远的范围内找自己。一帧最多走 0.5,留出前视与掉帧的余量。</summary>
         public const float CursorAhead = 2f;
         /// <summary>
@@ -89,6 +90,11 @@ namespace MmorpgClient.Game.Team
         /// 容差太小,"最近的一段"会被摆动决定。
         /// </summary>
         public const float AcquireTieTolerance = 0.25f;
+        /// <summary>
+        /// 前视点沿轨迹的距离比直线距离长出这么多,就认定轨迹在前面折了回来(折返点),游标直接跳到前视点。
+        /// 必须大于直角拐弯的差值(LookAhead × (1 - cos45°) ≈ 0.23),否则普通拐弯也会被当成折返而多削一截角。
+        /// </summary>
+        public const float FoldShortcut = 0.4f;
 
         /// <summary>
         /// 本地玩家的跟随槽位:1 表示紧跟队长,最大 MaxFollowers;0 表示不跟随
@@ -157,7 +163,8 @@ namespace MmorpgClient.Game.Team
         /// (2026-10-13 真实客户端联机验收抓到:队长向北走一段、原路走回、再拐弯,约一半的概率卡住)。
         ///
         /// 规则:
-        ///   1. 有游标:只在上一帧里程附近([-CursorBack, +CursorAhead])找自己;
+        ///   1. 有游标:只在上一帧里程附近找自己 —— 往前 CursorAhead,往后最多"这一帧实际挪动的距离 + CursorBackSlack"
+        ///      (里程只随人真的往回走而后退,不会跳回旧的一趟);
         ///   2. 例外:更靠近队首的某一段(里程在窗口之后)离自己不超过 JumpLateral 时跳过去 —— 队长折返后
         ///      从身边走过、或绕一圈回来,队员不必把那一圈走完。只往前跳,所以不会来回;
         ///   3. 没有游标 / 轨迹重起过 / 窗口里已经找不到自己(偏离超过 OffTrailDistance):在整条轨迹上重新找,
@@ -184,7 +191,8 @@ namespace MmorpgClient.Game.Team
             {
                 // 停步回拉把末端收回后,队首里程可能退到游标之前。
                 double hint = System.Math.Min(cursor.Odometer, head);
-                tracked = trail.TryProject(selfPosition, hint - CursorBack, hint + CursorAhead, hint,
+                float back = Horizontal(selfPosition, cursor.Position) + CursorBackSlack;
+                tracked = trail.TryProject(selfPosition, hint - back, hint + CursorAhead, hint,
                               TrackTieTolerance, out odometer, out lateral) &&
                           lateral <= OffTrailDistance;
                 if (tracked &&
@@ -205,8 +213,44 @@ namespace MmorpgClient.Game.Team
                 return new TeamFollowCommand(TeamFollowCommandKind.None);
             }
 
-            cursor = new TeamFollowCursor(trail.Epoch, odometer);
-            return Decide(trail, slot, moving, (float)(head - odometer), lateral);
+            // 折返点:转向点取在"沿轨迹往前 LookAhead"处,而轨迹在前面折了回来时,那一点绕过折返点正好落回自己
+            // 脚下(离折返点约 LookAhead / 2 处是个不动点)——人原地站住,再也不动。沿轨迹要走的路比直线长出
+            // FoldShortcut 以上,说明自己其实已经站在回程旁边了:把游标直接推到那一点上,下一段前视就落在回程上。
+            // 直角拐弯不会触发(沿轨迹 0.8、直线至少 0.57,只差 0.23)。
+            float behind = (float)(head - odometer);
+            float slotDistance = Mathf.Min(slot, MaxFollowers) * SlotSpacing;
+            for (int fold = 0; fold < 2; fold++)
+            {
+                float ahead = behind - Mathf.Max(slotDistance, behind - LookAhead);
+                if (ahead <= FoldShortcut) break;
+                Vector3 target = trail.PointBehindHead(behind - ahead);
+                float straight = Horizontal(target, selfPosition);
+                if (ahead - straight < FoldShortcut) break;
+                // 落到回程上自己脚下那一点(前视点往回 straight 处附近);找不到就落在前视点上。
+                double folded = odometer + ahead;
+                if (trail.TryProject(selfPosition, folded - straight - CursorBackSlack, folded, folded - straight,
+                        TrackTieTolerance, out double foot, out float footLateral) && foot > odometer)
+                {
+                    odometer = foot;
+                    lateral = footLateral;
+                }
+                else
+                {
+                    odometer = folded;
+                    lateral = straight;
+                }
+                behind = (float)(head - odometer);
+            }
+
+            cursor = new TeamFollowCursor(trail.Epoch, odometer, selfPosition);
+            return Decide(trail, slot, moving, behind, lateral);
+        }
+
+        private static float Horizontal(Vector3 a, Vector3 b)
+        {
+            float dx = a.x - b.x;
+            float dz = a.z - b.z;
+            return Mathf.Sqrt(dx * dx + dz * dz);
         }
 
         /// <summary>已知"落后队首多少弧长、偏离轨迹多远"之后的决策;两个 Plan 重载共用。</summary>

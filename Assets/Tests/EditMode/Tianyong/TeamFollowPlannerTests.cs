@@ -337,7 +337,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void Simulation_LeaderDoublesBackAlongAWobblyLineThenTurns_FollowerDoesNotPaceBackAndForth()
         {
             // 2026-10-13 真实客户端联机验收抓到的现场:队长向北走 13.5、原路走回、再向东拐。
-            // 远端角色的显示位置带着厘米级的摆动,去程和回程不会严丝合缝(这里各加 3 厘米、相位相反的摆动);
+            // 远端角色的显示位置带着厘米级的摆动,去程和回程不会严丝合缝(这里各加 6 厘米、相位相反的摆动);
             // 每帧在整条轨迹上找"最近的一段"时,选中的段在去程与回程之间来回跳,两趟行进方向相反,
             // 队员就在原地一步向北一步向南(机器人记下的上报是 v=-9.9 / +9.9 交替),再也没跟上向东走的队长。
             const float dt = 1f / 60f;
@@ -426,6 +426,63 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void Simulation_LeaderPacesBackAndForthOnOneLine_FollowerLinesUpBehindEveryTime()
+        {
+            // 队长在同一条线上来回走四趟(东 6、西 6、东 6、西 6),每趟之间站 1.5 秒;四趟的显示轨迹各带不同相位的摆动,
+            // 轨迹在同一条线上叠了四层。每次站定后队员都应当停在队长走来的那一侧,整个过程只在队长折返时转身。
+            const float dt = 1f / 60f;
+            const float speed = 9f;
+            const float leg = 6f;
+            const float pause = 1.5f;
+            var trail = new TeamFollowTrail(80f);
+            var leader = new Vector3(0f, 0f, 0f);
+            var follower = leader;
+            bool moving = false;
+            var cursor = default(TeamFollowCursor);
+            var lastDirection = Vector3.zero;
+            int reversals = 0;
+            trail.Push(leader);
+
+            float walk = leg / speed;
+            for (int pass = 0; pass < 4; pass++)
+            {
+                bool eastward = pass % 2 == 0;
+                int frames = Mathf.RoundToInt((walk + pause) / dt);
+                for (int frame = 0; frame < frames; frame++)
+                {
+                    float t = (frame + 1) * dt;
+                    float along = Mathf.Min(t * speed, leg);
+                    float x = eastward ? along : leg - along;
+                    bool standing = t * speed >= leg;
+                    leader = new Vector3(x, 0f, Wobble(x, pass * 1.3f));
+                    trail.Push(leader, allowRetract: standing);
+
+                    var command = TeamFollowPlanner.Plan(trail, 1, follower, moving, ref cursor);
+                    Assert.That(command.Kind, Is.Not.EqualTo(TeamFollowCommandKind.Route), "全程都贴着轨迹,不该触发寻路");
+                    moving = command.Kind == TeamFollowCommandKind.Steer;
+                    if (!moving) continue;
+                    var delta = command.Point - follower;
+                    delta.y = 0f;
+                    float distance = delta.magnitude;
+                    if (distance <= 0f) continue;
+                    var direction = delta / distance;
+                    if (lastDirection != Vector3.zero && Vector3.Dot(direction, lastDirection) < 0f) reversals++;
+                    lastDirection = direction;
+                    follower += direction * Mathf.Min(speed * command.SpeedScale * dt, distance);
+                }
+
+                // 这一趟走完并站了 1.5 秒:队员站定,在队长走来的那一侧(向东走完在西边,向西走完在东边)。
+                float behind = eastward ? leader.x - follower.x : follower.x - leader.x;
+                Assert.That(moving, Is.False, "第 " + (pass + 1) + " 趟站定后队员还在走");
+                Assert.That(behind, Is.EqualTo(TeamFollowPlanner.SlotSpacing).Within(TeamFollowPlanner.StartTolerance),
+                    "第 " + (pass + 1) + " 趟站定后队员不在队长身后");
+            }
+
+            // 三次折返各转身一次;第一趟起步时从队长脚下退到槽位再跟上,另算一次。
+            Assert.That(reversals, Is.LessThanOrEqualTo(5), "队员在叠了四层的轨迹上来回踱步");
+        }
+
+        [Test]
         public void Plan_WithACursor_StaysOnItsOwnPassWhenAnOlderPassIsAHairCloser()
         {
             // 去程在 x = 0.03,回程在 x = 0;队员跟着回程走,此刻偏到了 x = 0.02(离去程 1 厘米、离回程 2 厘米)。
@@ -488,8 +545,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(command.Kind, Is.EqualTo(TeamFollowCommandKind.Steer));
         }
 
-        // 远端角色显示位置的摆动:3 厘米,沿前进方向约 2 米一个周期。
-        private static float Wobble(float along, float phase) => 0.03f * Mathf.Sin(along * 3f + phase);
+        // 远端角色显示位置的摆动:6 厘米(联机现场量到的量级:同一条线上两趟的坐标差到 0.06),沿前进方向约 2 米一个周期。
+        private static float Wobble(float along, float phase) => 0.06f * Mathf.Sin(along * 3f + phase);
 
         private static TeamFollowTrail StraightTrail()
             => TeamFollowTrailTests.Walk(new TeamFollowTrail(50f), new Vector3(0f, 0f, 0f), new Vector3(10f, 0f, 0f));

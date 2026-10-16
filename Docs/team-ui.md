@@ -157,10 +157,12 @@ Unity 6000.6.0f1：EditMode 27/27、PlayMode 6/6，均为 Passed；CaptureAll �
 ## 验证
 
 - 离线 Roslyn 编译:主工程(`ba60401f` + 本改动)运行时 429 个文件、Tianyong 测试 41 个文件,均 0 error;出包用的快照工程(`750bddf6` + 本改动)418 / 41,0 error。
-- 纯逻辑测试 46 / 46(原 38 + 新 8):`TeamFollowTrailTests` 里程与开窗投影 4 条;`TeamFollowPlannerTests` 游标 3 条 +
-  逐帧模拟 `Simulation_LeaderDoublesBackAlongAWobblyLineThenTurns_FollowerDoesNotPaceBackAndForth`(去程 / 回程各带 3 厘米、相位相反的摆动,重现联机现场)。
-  三条既有的逐帧模拟改为带游标(与驱动一致)。
-- 变异检查:把带游标的 `Plan` 退回「每帧全局找最近一段」,新模拟用例掉头 156 次(上限 2)、三条游标用例同时失败。
+- 纯逻辑测试 47 / 47(原 38 + 新 9):`TeamFollowTrailTests` 里程与开窗投影 4 条;`TeamFollowPlannerTests` 游标 3 条 + 两条逐帧模拟:
+  `Simulation_LeaderDoublesBackAlongAWobblyLineThenTurns_FollowerDoesNotPaceBackAndForth`(向北、原路走回、向东拐,重现联机现场)与
+  `Simulation_LeaderPacesBackAndForthOnOneLine_FollowerLinesUpBehindEveryTime`(同一条线上来回四趟,轨迹叠四层)。
+  两条的轨迹都带 6 厘米、每趟相位不同的摆动(联机现场量到的量级)—— 严丝合缝的几何测不出这个缺陷。三条既有的逐帧模拟改为带游标(与驱动一致)。
+- 变异检查(三种,各自被抓到):带游标的 `Plan` 退回「每帧全局找最近一段」→ 第一条模拟掉头 220 次(上限 2),共 5 条失败;
+  去掉「往前跳」→ 4 条失败;把游标窗口放到无限大 → 第二条模拟站定后仍在走。
 - 离线运行器的 NUnit 替身补了 `[TestCase]` 支持(此前的 38 条里有 2 条参数化用例跑不了)。
 - 真实客户端复验(新包 + 同一条 robot 验收)结果记在服务端 `docs/PROGRESS.md` 2026-10-13 的条目里。
 - **没有在 Unity 编辑器里跑 EditMode 测试**(命令同上一节「验证」);`TeamFollowDriver` 的改动只有 5 行,靠出包后的联机验收覆盖。
