@@ -45,3 +45,15 @@ EditMode 测试程序集：`MmorpgClient.Tests.EditMode.Social`。测试覆盖�
 Editor 截图与显式预览资源生成由 `Assets/Editor/Social/SocialUiVerification.cs` 统一提供；与邮件一起由协调任务执行 Unity 原生控件点击、截图、编译与测试。本文记录已实现范围，实际通过数量与截图结果以执行报告为准，不把源文件存在等同于 Unity 验收通过。
 
 - RPC 重试边界：外层 `server tip=1005/1006/1008/1010` 属于明确拒绝，可重试；`1003 ServiceUnavailable` 也可能由上游超时产生，发送结果视为未知，保留草稿并隔离至连接切换，避免用新业务 UUID 重复发送。
+
+## 2026-10-15 好友申请代次与真实入口
+
+正式仙友会增加「好友申请」入口，由 `FriendClient` 与 `FriendRequestsWindow` 接现有 Gate RPC：可按玩家编号添加好友、刷新服务端待处理申请、同意/拒绝。保留组队邀请目录已有的好友列表读取。预览窗口不发送好友请求。
+
+申请列表保存服务端 `FriendRequest.request_id`（字段 5）；同意/拒绝发送 `request_id`（字段 3），`from_player_id` 仅作提示。编号为 0 的旧申请可见但不能操作，显示刷新提示；旧 UI 捕获的编号不在当前权威列表时只刷新，不转而处理同一发件人的新申请。添加返回的编号为 0 不宣称提交成功，重复 pending 返回相同非零编号仍为成功。
+
+处理后不按发件人删除本地行，而是重拉权威申请列表。请求超时/传输失败保留申请并显示结果未知，刷新核对前不能再次处理；推送只是刷新提示，不裁定申请或好友关系。回调核对角色、Gate 连接、会话代次与操作代次，断线/换角/换 Gate 作废旧回包。窗口关闭和恢复遵循现有社交入口与战斗遮罩。
+
+定向测试在 `FriendRequestTests.cs`，覆盖协议字段、零编号拒发、同人新申请、旧回包、未知结果、重复 pending、推送补拉和真实按钮。生成绑定由服务端协议源重生，业务文件不手改生成 CS。本段记录实现范围，实际构建/运行结果另据本轮验证报告登记。
+
+本轮实际验证：使用 protoc 35.1 和服务端隔离协议快照，由标准 `gen_proto.ps1` 在临时输出树生成，仅同步 `Friend.cs`；四处字段号为 5 / 2 / 3 / 3。离线运行时编译检查退出 0、431 文件无错误。Unity 6000.6.0f1 最终 EditMode 社交与旧组队好友目录回归共 **89 PASS / 0 FAIL / 0 SKIP**，其中新增好友用例 22、原组队好友目录 17、其余社交 50；包括主窗口入口、同意按钮与手输添加。测试使用可控传输替身，**未验证真实 Gate/服务端端到端或生产容量**。原始 XML 与日志在本机临时目录 `friend-client-requestid-20261015`（`final-social-and-friend-directory-results.xml`、`final-social-and-friend-directory-unity.log`）。

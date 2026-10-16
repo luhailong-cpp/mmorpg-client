@@ -8,6 +8,7 @@ using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Role;
+using MmorpgClient.Game.Sync;
 using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
 using MmorpgClient.World;
@@ -184,6 +185,15 @@ namespace MmorpgClient.Game
         public ZoneTravelClient ZoneTravel { get; }
 
         /// <summary>
+        /// 落地恢复(服务端 docs/design/landing-recovery-sync-digest.md §4.3):每次落地(首登、重登、跨 zone 重定向的
+        /// 第二条腿)向 scene 取一次按域版本摘要,与本地缓存比对后只让变了的域回源拉取。由 <see cref="Tick"/> 驱动;
+        /// GetSyncDigest / NotifySyncDigest 的推送处理器在它构造时经传输接口注册,全仓只有那一处。
+        /// 各域消费者(组队 / 好友 / 帮会)由持有它们的界面宿主经 <see cref="LandingSyncBindings"/> 接上。
+        /// 摘要变化不是红点依据(被动方隐私,设计 §3.5 第 4 条)。
+        /// </summary>
+        public LandingSyncClient LandingSync { get; }
+
+        /// <summary>
         /// RedirectFlow 正在搬连接(msg 124 之后、目标 gate 上重跑完 Login + EnterGame 之前)。
         /// 这段时间 InGame / IsGateReady 会被 ResetConnectionState 清成 false,但玩家并没有掉线;
         /// UI 要靠它区分"正在换服"与"真的断线了",否则传送遮罩会在半路被收掉。
@@ -300,6 +310,10 @@ namespace MmorpgClient.Game
             companion.Bind(World, Pets);
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));
             ZoneTravel = new ZoneTravelClient(this);
+            // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按玩家分键存 PlayerPrefs。
+            LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => InGame, () => Time.realtimeSinceStartup, new PlayerPrefsSyncDigestStore(),
+                s => Log($"[sync] {s}"));
         }
 
         public GatewayHttpClient Http => _http;
@@ -356,6 +370,8 @@ namespace MmorpgClient.Game
                 _nextPetListRequestTime = Time.realtimeSinceStartup + 15f;
                 Pets.RequestList();
             }
+            // 落地判定 / 取摘要 / 超时退避 / 通知各域消费者。Call 的等待循环会重入这里,在途标志防重复发送。
+            LandingSync?.Tick();
             MaybeRefreshToken();
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动

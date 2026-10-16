@@ -31,86 +31,88 @@ namespace Friendpb {
             "GAIgASgDEhYKDmxhc3RfYWN0aXZlX21zGAMgASgDEhEKCWlzX29ubGluZRgE",
             "IAEoCBIMCgRuYW1lGAUgASgJEg0KBWxldmVsGAYgASgNEhAKCGNsYXNzX2lk",
             "GAcgASgNEg4KBmdlbmRlchgIIAEoDRIVCg1hcHBlYXJhbmNlX2lkGAkgASgJ",
-            "Eg8KB3pvbmVfaWQYCiABKA0ihQEKDUZyaWVuZFJlcXVlc3QSFgoOZnJvbV9w",
+            "Eg8KB3pvbmVfaWQYCiABKA0imQEKDUZyaWVuZFJlcXVlc3QSFgoOZnJvbV9w",
             "bGF5ZXJfaWQYASABKAQSFAoMdG9fcGxheWVyX2lkGAIgASgEEhcKD3JlcXVl",
             "c3RfdGltZV9tcxgDIAEoAxItCgZzdGF0dXMYBCABKA4yHS5mcmllbmRwYi5G",
-            "cmllbmRSZXF1ZXN0U3RhdHVzIj0KEEFkZEZyaWVuZFJlcXVlc3QSGAoQdGFy",
-            "Z2V0X3BsYXllcl9pZBgCIAEoBEoECAEQAlIJcGxheWVyX2lkIjsKEUFkZEZy",
-            "aWVuZFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-            "TWVzc2FnZSI+ChNBY2NlcHRGcmllbmRSZXF1ZXN0EhYKDmZyb21fcGxheWVy",
-            "X2lkGAIgASgESgQIARACUglwbGF5ZXJfaWQiPgoUQWNjZXB0RnJpZW5kUmVz",
-            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-            "Ij4KE1JlamVjdEZyaWVuZFJlcXVlc3QSFgoOZnJvbV9wbGF5ZXJfaWQYAiAB",
-            "KARKBAgBEAJSCXBsYXllcl9pZCI+ChRSZWplY3RGcmllbmRSZXNwb25zZRIm",
-            "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiQAoTUmVt",
-            "b3ZlRnJpZW5kUmVxdWVzdBIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgESgQI",
-            "ARACUglwbGF5ZXJfaWQiPgoUUmVtb3ZlRnJpZW5kUmVzcG9uc2USJgoNZXJy",
-            "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlIicKFEdldEZyaWVu",
-            "ZExpc3RSZXF1ZXN0SgQIARACUglwbGF5ZXJfaWQiZwoVR2V0RnJpZW5kTGlz",
-            "dFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVz",
-            "c2FnZRImCgdmcmllbmRzGAIgAygLMhUuZnJpZW5kcGIuRnJpZW5kRW50cnki",
-            "LAoZR2V0UGVuZGluZ1JlcXVlc3RzUmVxdWVzdEoECAEQAlIJcGxheWVyX2lk",
-            "Im8KGkdldFBlbmRpbmdSZXF1ZXN0c1Jlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
-            "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIpCghyZXF1ZXN0cxgCIAMoCzIX",
-            "LmZyaWVuZHBiLkZyaWVuZFJlcXVlc3QiKAoMQmxvY2tSZXF1ZXN0EhgKEHRh",
-            "cmdldF9wbGF5ZXJfaWQYASABKAQiNwoNQmxvY2tSZXNwb25zZRImCg1lcnJv",
-            "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiKgoOVW5ibG9ja1Jl",
-            "cXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoBCI5Cg9VbmJsb2NrUmVz",
-            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-            "IhMKEUxpc3RCbG9ja3NSZXF1ZXN0IjkKCkJsb2NrRW50cnkSGQoRYmxvY2tl",
-            "ZF9wbGF5ZXJfaWQYASABKAQSEAoIc2luY2VfbXMYAiABKAMiYgoSTGlzdEJs",
-            "b2Nrc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-            "TWVzc2FnZRIkCgZibG9ja3MYAiADKAsyFC5mcmllbmRwYi5CbG9ja0VudHJ5",
-            "IngKF1JlY29tbWVuZEZyaWVuZHNSZXF1ZXN0Eg0KBWxpbWl0GAEgASgNEhoK",
-            "EmV4Y2x1ZGVfcGxheWVyX2lkcxgCIAMoBBITCgtvbmxpbmVfb25seRgDIAEo",
-            "CBIOCgZjdXJzb3IYBCABKAkSDQoFcXVlcnkYBSABKAki1wEKDlJlY29tbWVu",
-            "ZEVudHJ5EhsKE2NhbmRpZGF0ZV9wbGF5ZXJfaWQYASABKAQSFgoObXV0dWFs",
-            "X2ZyaWVuZHMYAiABKA0SEQoJaXNfb25saW5lGAMgASgIEhYKDmxhc3RfYWN0",
-            "aXZlX21zGAQgASgDEgwKBG5hbWUYBSABKAkSDQoFbGV2ZWwYBiABKA0SEAoI",
-            "Y2xhc3NfaWQYByABKA0SDgoGZ2VuZGVyGAggASgNEhUKDWFwcGVhcmFuY2Vf",
-            "aWQYCSABKAkSDwoHem9uZV9pZBgKIAEoDSKfAQoYUmVjb21tZW5kRnJpZW5k",
-            "c1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVz",
-            "c2FnZRIsCgpjYW5kaWRhdGVzGAIgAygLMhguZnJpZW5kcGIuUmVjb21tZW5k",
-            "RW50cnkSEwoLbmV4dF9jdXJzb3IYAyABKAkSGAoQb25saW5lX2RpcmVjdG9y",
-            "eRgEIAEoCCJiCg5GcmllbmRFdmVudFMyQxIrCgZyZWFzb24YASABKA4yGy5m",
-            "cmllbmRwYi5GcmllbmRFdmVudFJlYXNvbhIUCgxieV9wbGF5ZXJfaWQYAiAB",
-            "KAQSDQoFdHNfbXMYAyABKAMqhwEKE0ZyaWVuZFJlcXVlc3RTdGF0dXMSGgoW",
-            "RlJJRU5EX1JFUVVFU1RfVU5LTk9XThAAEhoKFkZSSUVORF9SRVFVRVNUX1BF",
-            "TkRJTkcQARIbChdGUklFTkRfUkVRVUVTVF9BQ0NFUFRFRBACEhsKF0ZSSUVO",
-            "RF9SRVFVRVNUX1JFSkVDVEVEEAMqjAEKEUZyaWVuZEV2ZW50UmVhc29uEiMK",
-            "H0ZSSUVORF9FVkVOVF9SRUFTT05fVU5TUEVDSUZJRUQQABIoCiRGUklFTkRf",
-            "RVZFTlRfUkVBU09OX1JFUVVFU1RfUkVDRUlWRUQQARIoCiRGUklFTkRfRVZF",
-            "TlRfUkVBU09OX1JFUVVFU1RfQUNDRVBURUQQAjLWBgoSQ2xpZW50UGxheWVy",
-            "RnJpZW5kEkQKCUFkZEZyaWVuZBIaLmZyaWVuZHBiLkFkZEZyaWVuZFJlcXVl",
-            "c3QaGy5mcmllbmRwYi5BZGRGcmllbmRSZXNwb25zZRJNCgxBY2NlcHRGcmll",
-            "bmQSHS5mcmllbmRwYi5BY2NlcHRGcmllbmRSZXF1ZXN0Gh4uZnJpZW5kcGIu",
-            "QWNjZXB0RnJpZW5kUmVzcG9uc2USTQoMUmVqZWN0RnJpZW5kEh0uZnJpZW5k",
-            "cGIuUmVqZWN0RnJpZW5kUmVxdWVzdBoeLmZyaWVuZHBiLlJlamVjdEZyaWVu",
-            "ZFJlc3BvbnNlEk0KDFJlbW92ZUZyaWVuZBIdLmZyaWVuZHBiLlJlbW92ZUZy",
-            "aWVuZFJlcXVlc3QaHi5mcmllbmRwYi5SZW1vdmVGcmllbmRSZXNwb25zZRJQ",
-            "Cg1HZXRGcmllbmRMaXN0Eh4uZnJpZW5kcGIuR2V0RnJpZW5kTGlzdFJlcXVl",
-            "c3QaHy5mcmllbmRwYi5HZXRGcmllbmRMaXN0UmVzcG9uc2USXwoSR2V0UGVu",
-            "ZGluZ1JlcXVlc3RzEiMuZnJpZW5kcGIuR2V0UGVuZGluZ1JlcXVlc3RzUmVx",
-            "dWVzdBokLmZyaWVuZHBiLkdldFBlbmRpbmdSZXF1ZXN0c1Jlc3BvbnNlEjgK",
-            "BUJsb2NrEhYuZnJpZW5kcGIuQmxvY2tSZXF1ZXN0GhcuZnJpZW5kcGIuQmxv",
-            "Y2tSZXNwb25zZRI+CgdVbmJsb2NrEhguZnJpZW5kcGIuVW5ibG9ja1JlcXVl",
-            "c3QaGS5mcmllbmRwYi5VbmJsb2NrUmVzcG9uc2USRwoKTGlzdEJsb2NrcxIb",
-            "LmZyaWVuZHBiLkxpc3RCbG9ja3NSZXF1ZXN0GhwuZnJpZW5kcGIuTGlzdEJs",
-            "b2Nrc1Jlc3BvbnNlElkKEFJlY29tbWVuZEZyaWVuZHMSIS5mcmllbmRwYi5S",
-            "ZWNvbW1lbmRGcmllbmRzUmVxdWVzdBoiLmZyaWVuZHBiLlJlY29tbWVuZEZy",
-            "aWVuZHNSZXNwb25zZRI1ChFOb3RpZnlGcmllbmRFdmVudBIYLmZyaWVuZHBi",
-            "LkZyaWVuZEV2ZW50UzJDGgYuRW1wdHkaBYiowwEBQhVaE2ZyaWVuZC9wcm90",
-            "by9mcmllbmRiBnByb3RvMw=="));
+            "cmllbmRSZXF1ZXN0U3RhdHVzEhIKCnJlcXVlc3RfaWQYBSABKAQiPQoQQWRk",
+            "RnJpZW5kUmVxdWVzdBIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgESgQIARAC",
+            "UglwbGF5ZXJfaWQiTwoRQWRkRnJpZW5kUmVzcG9uc2USJgoNZXJyb3JfbWVz",
+            "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhIKCnJlcXVlc3RfaWQYAiAB",
+            "KAQiUgoTQWNjZXB0RnJpZW5kUmVxdWVzdBIWCg5mcm9tX3BsYXllcl9pZBgC",
+            "IAEoBBISCgpyZXF1ZXN0X2lkGAMgASgESgQIARACUglwbGF5ZXJfaWQiPgoU",
+            "QWNjZXB0RnJpZW5kUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
+            "LlRpcEluZm9NZXNzYWdlIlIKE1JlamVjdEZyaWVuZFJlcXVlc3QSFgoOZnJv",
+            "bV9wbGF5ZXJfaWQYAiABKAQSEgoKcmVxdWVzdF9pZBgDIAEoBEoECAEQAlIJ",
+            "cGxheWVyX2lkIj4KFFJlamVjdEZyaWVuZFJlc3BvbnNlEiYKDWVycm9yX21l",
+            "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZSJAChNSZW1vdmVGcmllbmRS",
+            "ZXF1ZXN0EhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKARKBAgBEAJSCXBsYXll",
+            "cl9pZCI+ChRSZW1vdmVGcmllbmRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
+            "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiJwoUR2V0RnJpZW5kTGlzdFJlcXVl",
+            "c3RKBAgBEAJSCXBsYXllcl9pZCJnChVHZXRGcmllbmRMaXN0UmVzcG9uc2US",
+            "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiYKB2Zy",
+            "aWVuZHMYAiADKAsyFS5mcmllbmRwYi5GcmllbmRFbnRyeSIsChlHZXRQZW5k",
+            "aW5nUmVxdWVzdHNSZXF1ZXN0SgQIARACUglwbGF5ZXJfaWQibwoaR2V0UGVu",
+            "ZGluZ1JlcXVlc3RzUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
+            "LlRpcEluZm9NZXNzYWdlEikKCHJlcXVlc3RzGAIgAygLMhcuZnJpZW5kcGIu",
+            "RnJpZW5kUmVxdWVzdCIoCgxCbG9ja1JlcXVlc3QSGAoQdGFyZ2V0X3BsYXll",
+            "cl9pZBgBIAEoBCI3Cg1CbG9ja1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+            "ASABKAsyDy5UaXBJbmZvTWVzc2FnZSIqCg5VbmJsb2NrUmVxdWVzdBIYChB0",
+            "YXJnZXRfcGxheWVyX2lkGAEgASgEIjkKD1VuYmxvY2tSZXNwb25zZRImCg1l",
+            "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiEwoRTGlzdEJs",
+            "b2Nrc1JlcXVlc3QiOQoKQmxvY2tFbnRyeRIZChFibG9ja2VkX3BsYXllcl9p",
+            "ZBgBIAEoBBIQCghzaW5jZV9tcxgCIAEoAyJiChJMaXN0QmxvY2tzUmVzcG9u",
+            "c2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiQK",
+            "BmJsb2NrcxgCIAMoCzIULmZyaWVuZHBiLkJsb2NrRW50cnkieAoXUmVjb21t",
+            "ZW5kRnJpZW5kc1JlcXVlc3QSDQoFbGltaXQYASABKA0SGgoSZXhjbHVkZV9w",
+            "bGF5ZXJfaWRzGAIgAygEEhMKC29ubGluZV9vbmx5GAMgASgIEg4KBmN1cnNv",
+            "chgEIAEoCRINCgVxdWVyeRgFIAEoCSLXAQoOUmVjb21tZW5kRW50cnkSGwoT",
+            "Y2FuZGlkYXRlX3BsYXllcl9pZBgBIAEoBBIWCg5tdXR1YWxfZnJpZW5kcxgC",
+            "IAEoDRIRCglpc19vbmxpbmUYAyABKAgSFgoObGFzdF9hY3RpdmVfbXMYBCAB",
+            "KAMSDAoEbmFtZRgFIAEoCRINCgVsZXZlbBgGIAEoDRIQCghjbGFzc19pZBgH",
+            "IAEoDRIOCgZnZW5kZXIYCCABKA0SFQoNYXBwZWFyYW5jZV9pZBgJIAEoCRIP",
+            "Cgd6b25lX2lkGAogASgNIp8BChhSZWNvbW1lbmRGcmllbmRzUmVzcG9uc2US",
+            "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiwKCmNh",
+            "bmRpZGF0ZXMYAiADKAsyGC5mcmllbmRwYi5SZWNvbW1lbmRFbnRyeRITCgtu",
+            "ZXh0X2N1cnNvchgDIAEoCRIYChBvbmxpbmVfZGlyZWN0b3J5GAQgASgIImIK",
+            "DkZyaWVuZEV2ZW50UzJDEisKBnJlYXNvbhgBIAEoDjIbLmZyaWVuZHBiLkZy",
+            "aWVuZEV2ZW50UmVhc29uEhQKDGJ5X3BsYXllcl9pZBgCIAEoBBINCgV0c19t",
+            "cxgDIAEoAyqHAQoTRnJpZW5kUmVxdWVzdFN0YXR1cxIaChZGUklFTkRfUkVR",
+            "VUVTVF9VTktOT1dOEAASGgoWRlJJRU5EX1JFUVVFU1RfUEVORElORxABEhsK",
+            "F0ZSSUVORF9SRVFVRVNUX0FDQ0VQVEVEEAISGwoXRlJJRU5EX1JFUVVFU1Rf",
+            "UkVKRUNURUQQAyqMAQoRRnJpZW5kRXZlbnRSZWFzb24SIwofRlJJRU5EX0VW",
+            "RU5UX1JFQVNPTl9VTlNQRUNJRklFRBAAEigKJEZSSUVORF9FVkVOVF9SRUFT",
+            "T05fUkVRVUVTVF9SRUNFSVZFRBABEigKJEZSSUVORF9FVkVOVF9SRUFTT05f",
+            "UkVRVUVTVF9BQ0NFUFRFRBACMtYGChJDbGllbnRQbGF5ZXJGcmllbmQSRAoJ",
+            "QWRkRnJpZW5kEhouZnJpZW5kcGIuQWRkRnJpZW5kUmVxdWVzdBobLmZyaWVu",
+            "ZHBiLkFkZEZyaWVuZFJlc3BvbnNlEk0KDEFjY2VwdEZyaWVuZBIdLmZyaWVu",
+            "ZHBiLkFjY2VwdEZyaWVuZFJlcXVlc3QaHi5mcmllbmRwYi5BY2NlcHRGcmll",
+            "bmRSZXNwb25zZRJNCgxSZWplY3RGcmllbmQSHS5mcmllbmRwYi5SZWplY3RG",
+            "cmllbmRSZXF1ZXN0Gh4uZnJpZW5kcGIuUmVqZWN0RnJpZW5kUmVzcG9uc2US",
+            "TQoMUmVtb3ZlRnJpZW5kEh0uZnJpZW5kcGIuUmVtb3ZlRnJpZW5kUmVxdWVz",
+            "dBoeLmZyaWVuZHBiLlJlbW92ZUZyaWVuZFJlc3BvbnNlElAKDUdldEZyaWVu",
+            "ZExpc3QSHi5mcmllbmRwYi5HZXRGcmllbmRMaXN0UmVxdWVzdBofLmZyaWVu",
+            "ZHBiLkdldEZyaWVuZExpc3RSZXNwb25zZRJfChJHZXRQZW5kaW5nUmVxdWVz",
+            "dHMSIy5mcmllbmRwYi5HZXRQZW5kaW5nUmVxdWVzdHNSZXF1ZXN0GiQuZnJp",
+            "ZW5kcGIuR2V0UGVuZGluZ1JlcXVlc3RzUmVzcG9uc2USOAoFQmxvY2sSFi5m",
+            "cmllbmRwYi5CbG9ja1JlcXVlc3QaFy5mcmllbmRwYi5CbG9ja1Jlc3BvbnNl",
+            "Ej4KB1VuYmxvY2sSGC5mcmllbmRwYi5VbmJsb2NrUmVxdWVzdBoZLmZyaWVu",
+            "ZHBiLlVuYmxvY2tSZXNwb25zZRJHCgpMaXN0QmxvY2tzEhsuZnJpZW5kcGIu",
+            "TGlzdEJsb2Nrc1JlcXVlc3QaHC5mcmllbmRwYi5MaXN0QmxvY2tzUmVzcG9u",
+            "c2USWQoQUmVjb21tZW5kRnJpZW5kcxIhLmZyaWVuZHBiLlJlY29tbWVuZEZy",
+            "aWVuZHNSZXF1ZXN0GiIuZnJpZW5kcGIuUmVjb21tZW5kRnJpZW5kc1Jlc3Bv",
+            "bnNlEjUKEU5vdGlmeUZyaWVuZEV2ZW50EhguZnJpZW5kcGIuRnJpZW5kRXZl",
+            "bnRTMkMaBi5FbXB0eRoFiKjDAQFCFVoTZnJpZW5kL3Byb3RvL2ZyaWVuZGIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Friendpb.FriendRequestStatus), typeof(global::Friendpb.FriendEventReason), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendEntry), global::Friendpb.FriendEntry.Parser, new[]{ "FriendPlayerId", "SinceMs", "LastActiveMs", "IsOnline", "Name", "Level", "ClassId", "Gender", "AppearanceId", "ZoneId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendRequest), global::Friendpb.FriendRequest.Parser, new[]{ "FromPlayerId", "ToPlayerId", "RequestTimeMs", "Status" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.FriendRequest), global::Friendpb.FriendRequest.Parser, new[]{ "FromPlayerId", "ToPlayerId", "RequestTimeMs", "Status", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AddFriendRequest), global::Friendpb.AddFriendRequest.Parser, new[]{ "TargetPlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AddFriendResponse), global::Friendpb.AddFriendResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AcceptFriendRequest), global::Friendpb.AcceptFriendRequest.Parser, new[]{ "FromPlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AddFriendResponse), global::Friendpb.AddFriendResponse.Parser, new[]{ "ErrorMessage", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AcceptFriendRequest), global::Friendpb.AcceptFriendRequest.Parser, new[]{ "FromPlayerId", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.AcceptFriendResponse), global::Friendpb.AcceptFriendResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RejectFriendRequest), global::Friendpb.RejectFriendRequest.Parser, new[]{ "FromPlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RejectFriendRequest), global::Friendpb.RejectFriendRequest.Parser, new[]{ "FromPlayerId", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RejectFriendResponse), global::Friendpb.RejectFriendResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RemoveFriendRequest), global::Friendpb.RemoveFriendRequest.Parser, new[]{ "TargetPlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Friendpb.RemoveFriendResponse), global::Friendpb.RemoveFriendResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
@@ -735,6 +737,7 @@ namespace Friendpb {
       toPlayerId_ = other.toPlayerId_;
       requestTimeMs_ = other.requestTimeMs_;
       status_ = other.status_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -792,6 +795,21 @@ namespace Friendpb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 5;
+    private ulong requestId_;
+    /// <summary>
+    /// 本次申请的唯一代次；终态后重新申请必须换号。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -811,6 +829,7 @@ namespace Friendpb {
       if (ToPlayerId != other.ToPlayerId) return false;
       if (RequestTimeMs != other.RequestTimeMs) return false;
       if (Status != other.Status) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -822,6 +841,7 @@ namespace Friendpb {
       if (ToPlayerId != 0UL) hash ^= ToPlayerId.GetHashCode();
       if (RequestTimeMs != 0L) hash ^= RequestTimeMs.GetHashCode();
       if (Status != global::Friendpb.FriendRequestStatus.FriendRequestUnknown) hash ^= Status.GetHashCode();
+      if (RequestId != 0UL) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -856,6 +876,10 @@ namespace Friendpb {
         output.WriteRawTag(32);
         output.WriteEnum((int) Status);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -882,6 +906,10 @@ namespace Friendpb {
         output.WriteRawTag(32);
         output.WriteEnum((int) Status);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -903,6 +931,9 @@ namespace Friendpb {
       }
       if (Status != global::Friendpb.FriendRequestStatus.FriendRequestUnknown) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
+      }
+      if (RequestId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -927,6 +958,9 @@ namespace Friendpb {
       }
       if (other.Status != global::Friendpb.FriendRequestStatus.FriendRequestUnknown) {
         Status = other.Status;
+      }
+      if (other.RequestId != 0UL) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -963,6 +997,10 @@ namespace Friendpb {
             Status = (global::Friendpb.FriendRequestStatus) input.ReadEnum();
             break;
           }
+          case 40: {
+            RequestId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -996,6 +1034,10 @@ namespace Friendpb {
           }
           case 32: {
             Status = (global::Friendpb.FriendRequestStatus) input.ReadEnum();
+            break;
+          }
+          case 40: {
+            RequestId = input.ReadUInt64();
             break;
           }
         }
@@ -1239,6 +1281,7 @@ namespace Friendpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AddFriendResponse(AddFriendResponse other) : this() {
       errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1260,6 +1303,21 @@ namespace Friendpb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 2;
+    private ulong requestId_;
+    /// <summary>
+    /// 重复的待处理申请返回同一代次。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1276,6 +1334,7 @@ namespace Friendpb {
         return true;
       }
       if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1284,6 +1343,7 @@ namespace Friendpb {
     public override int GetHashCode() {
       int hash = 1;
       if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+      if (RequestId != 0UL) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1306,6 +1366,10 @@ namespace Friendpb {
         output.WriteRawTag(10);
         output.WriteMessage(ErrorMessage);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1320,6 +1384,10 @@ namespace Friendpb {
         output.WriteRawTag(10);
         output.WriteMessage(ErrorMessage);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1332,6 +1400,9 @@ namespace Friendpb {
       int size = 0;
       if (errorMessage_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+      }
+      if (RequestId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1350,6 +1421,9 @@ namespace Friendpb {
           ErrorMessage = new global::TipInfoMessage();
         }
         ErrorMessage.MergeFrom(other.ErrorMessage);
+      }
+      if (other.RequestId != 0UL) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1377,6 +1451,10 @@ namespace Friendpb {
             input.ReadMessage(ErrorMessage);
             break;
           }
+          case 16: {
+            RequestId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -1401,6 +1479,10 @@ namespace Friendpb {
               ErrorMessage = new global::TipInfoMessage();
             }
             input.ReadMessage(ErrorMessage);
+            break;
+          }
+          case 16: {
+            RequestId = input.ReadUInt64();
             break;
           }
         }
@@ -1446,6 +1528,7 @@ namespace Friendpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AcceptFriendRequest(AcceptFriendRequest other) : this() {
       fromPlayerId_ = other.fromPlayerId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1467,6 +1550,21 @@ namespace Friendpb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private ulong requestId_;
+    /// <summary>
+    /// 必填；操作者身份仅取当前会话。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1483,6 +1581,7 @@ namespace Friendpb {
         return true;
       }
       if (FromPlayerId != other.FromPlayerId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1491,6 +1590,7 @@ namespace Friendpb {
     public override int GetHashCode() {
       int hash = 1;
       if (FromPlayerId != 0UL) hash ^= FromPlayerId.GetHashCode();
+      if (RequestId != 0UL) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1513,6 +1613,10 @@ namespace Friendpb {
         output.WriteRawTag(16);
         output.WriteUInt64(FromPlayerId);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1527,6 +1631,10 @@ namespace Friendpb {
         output.WriteRawTag(16);
         output.WriteUInt64(FromPlayerId);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1539,6 +1647,9 @@ namespace Friendpb {
       int size = 0;
       if (FromPlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(FromPlayerId);
+      }
+      if (RequestId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1554,6 +1665,9 @@ namespace Friendpb {
       }
       if (other.FromPlayerId != 0UL) {
         FromPlayerId = other.FromPlayerId;
+      }
+      if (other.RequestId != 0UL) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1578,6 +1692,10 @@ namespace Friendpb {
             FromPlayerId = input.ReadUInt64();
             break;
           }
+          case 24: {
+            RequestId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -1599,6 +1717,10 @@ namespace Friendpb {
             break;
           case 16: {
             FromPlayerId = input.ReadUInt64();
+            break;
+          }
+          case 24: {
+            RequestId = input.ReadUInt64();
             break;
           }
         }
@@ -1851,6 +1973,7 @@ namespace Friendpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public RejectFriendRequest(RejectFriendRequest other) : this() {
       fromPlayerId_ = other.fromPlayerId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1872,6 +1995,21 @@ namespace Friendpb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private ulong requestId_;
+    /// <summary>
+    /// 必填；保留 from_player_id 兼容字段但不将其用作身份。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1888,6 +2026,7 @@ namespace Friendpb {
         return true;
       }
       if (FromPlayerId != other.FromPlayerId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1896,6 +2035,7 @@ namespace Friendpb {
     public override int GetHashCode() {
       int hash = 1;
       if (FromPlayerId != 0UL) hash ^= FromPlayerId.GetHashCode();
+      if (RequestId != 0UL) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1918,6 +2058,10 @@ namespace Friendpb {
         output.WriteRawTag(16);
         output.WriteUInt64(FromPlayerId);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1932,6 +2076,10 @@ namespace Friendpb {
         output.WriteRawTag(16);
         output.WriteUInt64(FromPlayerId);
       }
+      if (RequestId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1944,6 +2092,9 @@ namespace Friendpb {
       int size = 0;
       if (FromPlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(FromPlayerId);
+      }
+      if (RequestId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1959,6 +2110,9 @@ namespace Friendpb {
       }
       if (other.FromPlayerId != 0UL) {
         FromPlayerId = other.FromPlayerId;
+      }
+      if (other.RequestId != 0UL) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1983,6 +2137,10 @@ namespace Friendpb {
             FromPlayerId = input.ReadUInt64();
             break;
           }
+          case 24: {
+            RequestId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -2004,6 +2162,10 @@ namespace Friendpb {
             break;
           case 16: {
             FromPlayerId = input.ReadUInt64();
+            break;
+          }
+          case 24: {
+            RequestId = input.ReadUInt64();
             break;
           }
         }

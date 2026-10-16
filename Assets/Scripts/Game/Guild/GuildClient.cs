@@ -1324,6 +1324,7 @@ namespace MmorpgClient.Game.Guild
         {
             return tip.Id switch
             {
+                (uint)common_error.KRateLimitExceeded => "申请过于频繁，请稍后再试",
                 (uint)guild_error.KGuildAlreadyInGuild => "你已加入帮会，请刷新查看。",
                 (uint)guild_error.KGuildNotFound => "帮会已不存在，请刷新列表。",
                 (uint)guild_error.KGuildNotInGuild => "你尚未加入帮会。",

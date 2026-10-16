@@ -23,6 +23,8 @@ namespace MmorpgClient.UI.Ugui.Social
         public SocialState State{get;private set;}
         public SocialWindow Window{get;private set;}
         public SocialClient Client{get;private set;}
+        public FriendClient Friends{get;private set;}
+        public FriendRequestsWindow FriendRequests{get;private set;}
         public event Action Opened;
         private GameClient _game;private ulong _player;private object _connection;private RectTransform _hud;private bool _available;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] private static void AutoSpawn()
@@ -37,6 +39,8 @@ namespace MmorpgClient.UI.Ugui.Social
             var entry=GameplayUiArt.Button(_hud,"仙友会 [C]",EntryX,EntryY,BattleUiStyle.HudEntryWidth,BattleUiStyle.HudEntryHeight,Toggle,true,fontSize:32);entry.name="SocialEntry";
             Window=new SocialWindow(design,State);Window.RefreshRequested+=channel=>{if(_available)Client?.Refresh(channel);};Window.SendRequested+=(channel,text)=>{if(_available)Client?.Send(channel,text);};_hud.gameObject.SetActive(false);
             Window.TeamInviteRequested += id => { if (_available) Team.TeamUiRoot.Instance?.OpenInviteForPlayer(id); };
+            FriendRequests = new FriendRequestsWindow(design);
+            Window.FriendRequestsRequested += OpenFriendRequests;
         }
         private void Update()
         {
@@ -44,24 +48,31 @@ namespace MmorpgClient.UI.Ugui.Social
             bool differentGame=!ReferenceEquals(_game,game),differentSession=_player!=player||!ReferenceEquals(_connection,connection);
             if(differentGame)
             {
-                Client?.Dispose();Client=null;_game=game;
-                if(game!=null)Client=new SocialClient(new GameClientBattleTransport(game),State,()=>game.GateConnectionIdentity);
+                Client?.Dispose();Client=null;Friends?.Dispose();Friends=null;_game=game;
+                if(game!=null)
+                {
+                    Client=new SocialClient(new GameClientBattleTransport(game),State,()=>game.GateConnectionIdentity);
+                    Friends=new FriendClient(new GameClientBattleTransport(game),()=>game.GateConnectionIdentity,
+                        ()=>game.InGame&&game.IsGateReady);
+                }
+                FriendRequests.Bind(Friends);
             }
             // Commit all observed identity fields together. Never reset one field inside the comparison of another.
-            if(differentGame||differentSession){Client?.ObserveConnection();Client?.Reset();Window.ResetSession();_player=player;_connection=connection;}
+            if(differentGame||differentSession){Client?.ObserveConnection();Client?.Reset();Friends?.ObserveConnection();Friends?.Reset();Window.ResetSession();FriendRequests.ResetSession();_player=player;_connection=connection;}
+            Friends?.ObserveConnection();
             Client?.ObserveConnection();_available=ready&&!(BattleUiRoot.Instance?.IsBattleLayerVisible??false);_hud.gameObject.SetActive(_available);
             if(!_available){HidePanel();return;}Window.Tick(Time.unscaledTime);
-            if(!Window.IsVisible&&GameplayInputGate.IsKeyboardBlocked)return;
+            if(!Window.IsVisible&&!FriendRequests.IsVisible&&GameplayInputGate.IsKeyboardBlocked)return;
 #if ENABLE_INPUT_SYSTEM
             var keys=Keyboard.current;if(keys==null)return;
-            if(keys.escapeKey.wasPressedThisFrame)Window.Back();else if(!IsTyping()&&keys.cKey.wasPressedThisFrame)Toggle();
+            if(keys.escapeKey.wasPressedThisFrame){if(FriendRequests.IsVisible)FriendRequests.Hide();else Window.Back();}else if(!IsTyping()&&keys.cKey.wasPressedThisFrame)Toggle();
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            if(Input.GetKeyDown(KeyCode.Escape))Window.Back();else if(!IsTyping()&&Input.GetKeyDown(KeyCode.C))Toggle();
+            if(Input.GetKeyDown(KeyCode.Escape)){if(FriendRequests.IsVisible)FriendRequests.Hide();else Window.Back();}else if(!IsTyping()&&Input.GetKeyDown(KeyCode.C))Toggle();
 #endif
         }
         public void Toggle()
         {
-            if(Window.IsVisible){HidePanel();return;}
+            if(Window.IsVisible||FriendRequests.IsVisible){HidePanel();return;}
             if(!_available)return;
             OpenPanel(State.Page);
         }
@@ -90,6 +101,7 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         private void OpenPanel(SocialPage page,bool refreshHistory=true)
         {
+            FriendRequests.Hide();
             Mail.MailUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
@@ -101,10 +113,15 @@ namespace MmorpgClient.UI.Ugui.Social
             Pet.PetUiRoot.Instance?.HidePanel();
             Window.Show(page,refreshHistory);Opened?.Invoke();
         }
-        public void HidePanel()=>Window?.Hide();
+        private void OpenFriendRequests()
+        {
+            if(!_available||Friends==null)return;
+            Window.Hide();FriendRequests.Show();Opened?.Invoke();
+        }
+        public void HidePanel(){Window?.Hide();FriendRequests?.Hide();}
         public static bool IsTyping()
         {var go=EventSystem.current?.currentSelectedGameObject;return go?.GetComponentInParent<TMP_InputField>()?.isFocused==true||go?.GetComponentInParent<InputField>()?.isFocused==true;}
         private void OnDisable()=>HidePanel();
-        private void OnDestroy(){Client?.Dispose();Window?.Dispose();if(Instance==this)Instance=null;}
+        private void OnDestroy(){Client?.Dispose();Friends?.Dispose();FriendRequests?.Dispose();Window?.Dispose();if(Instance==this)Instance=null;}
     }
 }

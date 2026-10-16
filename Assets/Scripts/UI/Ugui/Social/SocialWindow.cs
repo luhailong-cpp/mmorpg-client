@@ -21,6 +21,7 @@ namespace MmorpgClient.UI.Ugui.Social
         public event Action<SocialChannel> RefreshRequested;
         public event Action<SocialChannel,string> SendRequested;
         public event Action<ulong> TeamInviteRequested;
+        public event Action FriendRequestsRequested;
         public event Action Closed;
         private readonly RectTransform _root,_frame,_body;
         private readonly CanvasGroup _frameControls;
@@ -47,6 +48,8 @@ namespace MmorpgClient.UI.Ugui.Social
             Text(_frame,"五 行 奇 谈",130,16,430,48,28,Muted,heading:true);Text(_frame,"山海相逢 · 同道相知",1660,18,478,43,26,Muted,heading:true,align:TextAlignmentOptions.MidlineRight);
             Button(_frame,"SocialClose","",2193,5,76,76,Hide,key:"close_button");
             int index=0;foreach(SocialPage page in Enum.GetValues(typeof(SocialPage))){var captured=page;_tabs[page]=Button(_frame,"SocialTab_"+page,PageName(page),84+index*181,91,169,65,()=>Show(captured),size:31);index++;}
+            Button(_frame,"SocialFriendRequests","好友申请",790,95,260,58,
+                ()=>FriendRequestsRequested?.Invoke(),enabled:!State.IsPreview,size:28);
             Text(_frame,State.IsPreview?"离线界面预览":"仙友传音",1640,102,494,44,25,Muted,align:TextAlignmentOptions.MidlineRight);
             Line(_frame,84,164,2132);_body=QdaoUguiFactory.CreateRect("SocialBody",_frame,84,185,2132,653);Line(_frame,84,855,2132);
             Art(_frame,"notice_icon",90,871,27,27,true);_status=Text(_frame,"",128,864,2010,48,23,Muted,name:"SocialStatus");

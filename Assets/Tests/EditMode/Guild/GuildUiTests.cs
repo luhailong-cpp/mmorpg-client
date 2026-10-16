@@ -316,6 +316,25 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             // 业务 tip 走的是 success 回调，连接完好，不能把帮会功能隔离掉。
             Assert.That(_client.RequiresReconnect, Is.False);
         }
+        [Test] public void RateLimitedApplicationKeepsTheClientReadyToRetry()
+        {
+            Empty();
+            int calls = _net.Calls.Count;
+            _client.ApplyToJoin(555);
+            _net.Reply(new ApplyJoinGuildResponse
+                { ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KRateLimitExceeded } });
+            Assert.That(_client.Status, Is.EqualTo("申请过于频繁，请稍后再试"));
+            Assert.That(_client.Busy, Is.False);
+            Assert.That(_client.RequiresReconnect, Is.False);
+            Assert.That(_client.Info, Is.Null);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+
+            _client.ApplyToJoin(556);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 2));
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ApplyJoinGuild));
+            Assert.That(((ApplyJoinGuildRequest)_net.Requests.Last()).GuildId, Is.EqualTo(556ul));
+            Assert.That(_client.Busy, Is.True);
+        }
         [Test] public void JoinedThenLeftReloadsMyApplications()
         {
             Empty();

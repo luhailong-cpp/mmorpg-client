@@ -96,6 +96,11 @@ $whitelist = @{
     # 跨 zone 场景传送(服务端 docs/design/cross-zone-scene-travel.md CZ-7)。漏配只会出一条
     # Warning、常量静默不生成,Assets/Scripts/Game/WorldTravel/ZoneTravelClient.cs 就编不过。
     "SceneSceneClientPlayerTravelToZone"           = "TravelToZone"
+    # 落地恢复:按域版本摘要(服务端 docs/design/landing-recovery-sync-digest.md §4.1)。GetSyncDigest 的应答是 Empty,
+    # 数据走 NotifySyncDigest 推送;两个号只在 Assets/Scripts/Game/Sync/LandingSyncClient.cs 里发送与注册。
+    # 漏配只出一条 Warning、常量不生成,LandingSyncClient.cs 就是 CS0117。
+    "SceneSceneClientPlayerGetSyncDigest"          = "GetSyncDigest"
+    "SceneSceneClientPlayerNotifySyncDigest"       = "NotifySyncDigest"
     "SceneSceneClientPlayerSceneInfoC2S"           = "SceneInfoC2S"
     "SceneSkillClientPlayerReleaseSkill"           = "ReleaseSkill"
     "SceneSkillClientPlayerListSkills"             = "ListSkills"
