@@ -33,7 +33,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 return "29_he_xiangu";
             });
             Assert.That(queried, Is.EqualTo(101ul));
-            Assert.That(id, Is.EqualTo("29_he_xiangu"));
+            Assert.That(id, Is.EqualTo("03_lotus_healer_girl"));
         }
 
         [TestCase(eBattleActorType.BattleActorTypePet)]
@@ -48,13 +48,57 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(id, Is.EqualTo(BattleArtCatalog.CharacterIdFor(actor)));
         }
 
-        [TestCase(null)]
-        [TestCase("24_crane_hermit")]
-        public void UnknownOrRejectedAppearanceKeepsExistingFallback(string resolved)
+        [TestCase(null, "00_reference_topright_boy")]
+        [TestCase("", "00_reference_topright_boy")]
+        [TestCase("24_crane_hermit", "24_crane_hermit")]
+        [TestCase("future_unavailable_identity", "future_unavailable_identity")]
+        public void MissingAppearanceUsesCurrentDefaultButExplicitUnknownIdentityIsPreserved(string resolved, string expected)
         {
             var actor = new BattleActorState { ActorId = 501, ActorType = eBattleActorType.BattleActorTypePlayer };
             Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => resolved),
-                Is.EqualTo(BattleArtCatalog.CharacterIdFor(actor)));
+                Is.EqualTo(expected));
+            if (string.IsNullOrEmpty(resolved)) return;
+            Assert.That(BattleArtCatalog.LoadPlayerPortrait(actor, _ => resolved), Is.Null);
+            Assert.That(BattleArtCatalog.LoadPlayerWalk(resolved, true), Is.Null);
+        }
+
+        [TestCase("QdaoHeadbandBoy", "00_reference_topright_boy")]
+        [TestCase("11_jade_fist_flat_top_boy", "04_mountain_guardian_boy")]
+        [TestCase("12_iron_saber_flat_top_boy", "00_reference_topright_boy")]
+        [TestCase("13_short_hair_wind_blade_girl", "01_ice_sword_girl")]
+        [TestCase("16_golden_bell_dancer_girl", "05_celestial_musician_girl")]
+        [TestCase("18_desert_sun_monk_girl", "10_crimson_spear_girl")]
+        [TestCase("19_spirit_beast_tamer_boy", "06_thunder_caster_boy")]
+        [TestCase("21_lidazui_hair_cook_boy", "08_alchemy_prodigy_boy")]
+        [TestCase("22_lidazui_hair_waiter_saber_boy", "00_reference_topright_boy")]
+        [TestCase("23_lantern_courier", "01_ice_sword_girl")]
+        [TestCase("24_lu_dongbin", "04_mountain_guardian_boy")]
+        [TestCase("25_lion_drum_guard", "00_reference_topright_boy")]
+        [TestCase("26_osmanthus_healer", "09_bamboo_archer_girl")]
+        [TestCase("27_ink_kite_ranger", "08_alchemy_prodigy_boy")]
+        [TestCase("28_moon_rabbit_artificer", "20_star_formation_master_girl")]
+        [TestCase("29_he_xiangu", "03_lotus_healer_girl")]
+        [TestCase("30_han_xiangzi", "06_thunder_caster_boy")]
+        public void RetiredSnapshotAndAccountIdentityResolveToSameCurrentBodyAndPortrait(string saved, string expected)
+        {
+            var actor = new BattleActorState
+                { ActorId = 501, ActorType = eBattleActorType.BattleActorTypePlayer, AppearanceId = saved, ClassId = 4, Gender = 2 };
+            Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => "future_unavailable_identity"), Is.EqualTo(expected));
+            Assert.That(actor.AppearanceId, Is.EqualTo(saved));
+            Assert.That(actor.ClassId, Is.EqualTo(4u));
+            Assert.That(actor.Gender, Is.EqualTo(2u));
+            var portrait = QdaoCharacterCatalog.LoadPortrait(expected);
+            Assert.That(portrait, Is.Not.Null, expected);
+            Assert.That(BattleArtCatalog.LoadPlayerPortrait(actor, null), Is.SameAs(portrait));
+            using var walk = BattleArtCatalog.LoadPlayerWalk(saved, true);
+            Assert.That(walk, Is.Not.Null, expected);
+            Assert.That(walk.Frames[0].name, Does.StartWith(expected + "_"));
+
+            actor.AppearanceId = "";
+            actor.ClassId = 0;
+            actor.Gender = 0;
+            Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => saved), Is.EqualTo(expected));
+            Assert.That(BattleArtCatalog.LoadPlayerPortrait(actor, _ => saved), Is.SameAs(portrait));
         }
 
         [Test]
@@ -96,8 +140,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Assert.That(idle.Frames[0].rect.width, Is.EqualTo((float)appearance.FrameWidth), entry.Id);
                 if (appearance.IsHd) Assert.That(idle.Frames[0].pixelsPerUnit, Is.EqualTo(104f));
             }
-            var first = BattleArtCatalog.LoadCharacterAction(QdaoCharacterCatalog.All[0].Id, "idle", true);
-            var second = BattleArtCatalog.LoadCharacterAction(QdaoCharacterCatalog.All[1].Id, "idle", true);
+            using var first = BattleArtCatalog.LoadCharacterAction("00_reference_topright_boy", "idle", true);
+            using var second = BattleArtCatalog.LoadCharacterAction("01_ice_sword_girl", "idle", true);
             Assert.That(first.Frames[0].texture, Is.Not.SameAs(second.Frames[0].texture));
         }
 
@@ -105,16 +149,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void UnapprovedOriginalIdsDoNotBorrowRosterBodiesOrPortraitsInBattle()
         {
             var actor = new BattleActorState { ActorId = 101, ActorType = eBattleActorType.BattleActorTypePlayer };
-            foreach (var entry in QdaoCharacterCatalog.OriginalAll)
+            foreach (var entry in QdaoCharacterCatalog.RetainedOriginalAll)
             {
                 Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => entry.Id), Is.EqualTo(entry.Id));
                 if (entry.ResolveAppearance() != null) continue;
                 Assert.That(BattleArtCatalog.LoadPlayerWalk(entry.Id, true), Is.Null);
                 Assert.That(QdaoCharacterCatalog.LoadPortrait(entry.Id), Is.Null);
-                var expectedPortrait = UnityEngine.Resources.Load<UnityEngine.Texture2D>(
-                    BattleArtCatalog.PortraitsRoot + "/" + entry.Id + "_v3");
                 var portrait = BattleArtCatalog.LoadPlayerPortrait(actor, _ => entry.Id);
-                Assert.That(portrait?.texture, Is.SameAs(expectedPortrait), entry.Id);
+                Assert.That(portrait, Is.Null, entry.Id);
                 foreach (bool east in new[] { false, true })
                 foreach (string action in BattleArtCatalog.CharacterActions)
                 {
@@ -150,6 +192,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
                         Assert.That(frame.name, Does.StartWith(entry.Id + "_archived_" + action + "_" + (east ? "E" : "W") + "_"));
                 }
             }
+        }
+
+        [Test]
+        public void PlayerPortraitBeforeSnapshotUsesCurrentDefaultInsteadOfActorIdRotation()
+        {
+            var expected = QdaoCharacterCatalog.LoadPortrait("00_reference_topright_boy");
+            Assert.That(expected, Is.Not.Null);
+            foreach (ulong actorId in new[] { 0UL, 1UL, 101UL, 999UL })
+                Assert.That(BattleArtCatalog.LoadPlayerPortrait(actorId), Is.SameAs(expected));
         }
 
         [Test]

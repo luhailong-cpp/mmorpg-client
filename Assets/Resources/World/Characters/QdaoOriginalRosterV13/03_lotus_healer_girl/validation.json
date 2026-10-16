@@ -1,0 +1,72 @@
+{
+  "version": 13,
+  "character_id": "03_lotus_healer_girl",
+  "status": "passed",
+  "scope": "all8",
+  "verified_at_utc": "2026-09-17T15:21:23.916214+00:00",
+  "manifest_sha256": "a22f6256ecb15cc4d39dd9dc5272895aca4e875b354f7ac5aa88390a18ceb5e4",
+  "qc_sha256": "2b0486e01b42c2412653167f19dcd137b8f9902f55f6a5151dc3fd7f24aac7cc",
+  "visual_review": "passed",
+  "visual_review_sha256": "3035ce79c36c40d2afdc3c3c1fef2db5322f88f582b484bf16a48c5fa6440f43",
+  "missing_generation_receipts": [],
+  "direction_results": {
+    "N": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.022150432014521045,
+      "idle_walk_height_drift": 0.02173587168340574
+    },
+    "NE": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.030458512873573998,
+      "idle_walk_height_drift": 0.0755457829433015
+    },
+    "E": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.020478454341726134,
+      "idle_walk_height_drift": 0.02907064316915209
+    },
+    "SE": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.013341197736389976,
+      "idle_walk_height_drift": 0.007841998257333671
+    },
+    "S": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.010518415529536541,
+      "idle_walk_height_drift": 0.021531100478468845
+    },
+    "SW": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.02206150776991315,
+      "idle_walk_height_drift": 0.025914408411076506
+    },
+    "W": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.011494617601344275,
+      "idle_walk_height_drift": 0.03688218605345672
+    },
+    "NW": {
+      "frames": 16,
+      "unique": 16,
+      "strip_cells_equal": 16,
+      "body_scale_cv": 0.017636585649000287,
+      "idle_walk_height_drift": 0.03908745247148282
+    }
+  },
+  "reconstructed_frames": 136,
+  "synthetic_frames_created": 0
+}

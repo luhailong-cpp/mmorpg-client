@@ -108,7 +108,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const string AdditiveShaderPath = "Battle/Shaders/BattleUiAdditive";
 
         public const string PlayerWalkRoot = "World/Characters/QdaoHeadbandBoy";
-        public const string DefaultCharacterId = "QdaoHeadbandBoy";
+        public const string DefaultCharacterId = QdaoCharacterCatalog.DefaultId;
 
         public const string ArenaBackgroundPath = "UI/Ugui/Battle/Backgrounds/qdao_battle_arena_cloud_terrace_2560x1080_v1";
         public const string EntryLoadingPath = "UI/Ugui/Battle/Backgrounds/qdao_battle_entry_loading_2560x1080_v1";
@@ -184,9 +184,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static bool FacingEast(bool teamIsMine) => !teamIsMine;
 
         /// <summary>
-        /// 22 套角色战斗帧条 id = 立绘文件名去掉 `_v3`(tools/battle_art_gen -mode characters 的产出契约,
-        /// 落在 Battle/Characters/&lt;id&gt;/&lt;action&gt;_{E,W}_strip)。缺图时 LoadCharacterAction 返回 null,
-        /// BattleUnitView 自动回退到 QdaoHeadbandBoy 跑步条首帧,所以这里不做存在性检查(避免开局同步 IO)。
+        /// Historical non-player presentation identifiers. Player identities use the central
+        /// saved-appearance mapping and current delivered artwork instead of this index.
         /// </summary>
         public static readonly string[] CharacterIds = BuildCharacterIds();
 
@@ -202,17 +201,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         /// <summary>
-        /// 玩家外观 id:按 actor_id 从 22 套里稳定挑一套(与头像同一分派函数,所以同一个人
-        /// 的立绘头像与场上身形是同一个角色)。外观表接入后改为按 class/appearance 分派。
+        /// 玩家使用与选角、世界一致的存档外观兼容映射；其他演员保留原分派。
         /// </summary>
         public static string CharacterIdFor(BattleActorState actor)
         {
             if (actor?.ActorType == eBattleActorType.BattleActorTypePet)
                 return QdaoPetCatalog.Resolve(actor.PetTableId)?.id ?? QdaoPetCatalog.UnknownIdentity;
-            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer &&
-                !string.IsNullOrEmpty(actor.AppearanceId)) return actor.AppearanceId;
-            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && actor.ClassId != 0)
-                return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender);
+            if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer)
+                return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender, actor.AppearanceId);
             if (actor == null || CharacterIds.Length == 0) return DefaultCharacterId;
             int index = BattleHudLogic.PortraitIndexFor(actor.ActorId, CharacterIds.Length);
             return CharacterIds[index];
@@ -222,13 +218,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static string CharacterIdFor(BattleActorState actor, Func<ulong, string> resolveCharacterId)
         {
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer &&
-                !string.IsNullOrEmpty(actor.AppearanceId)) return actor.AppearanceId;
+                !string.IsNullOrEmpty(actor.AppearanceId))
+                return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender, actor.AppearanceId);
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && actor.ClassId != 0)
                 return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender);
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer && resolveCharacterId != null)
             {
                 var known = resolveCharacterId(actor.ActorId);
-                if (QdaoCharacterCatalog.Find(known) != null) return known;
+                if (!string.IsNullOrEmpty(known)) return QdaoCharacterCatalog.ResolveVisualId(known);
             }
             return CharacterIdFor(actor);
         }
@@ -253,6 +250,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>角色动作帧条;缺 W 用 E 镜像;都缺返回 null(调用方走程序化动作)。</summary>
         public static StripAnim LoadCharacterAction(string characterId, string action, bool facingEast)
         {
+            characterId = QdaoCharacterCatalog.ResolveVisualId(characterId);
             if (characterId == QdaoPetCatalog.UnknownIdentity || QdaoPetCatalog.Find(characterId) != null)
                 return LoadArchivedAction(characterId, action, facingEast);
             if (action != "idle")
@@ -281,27 +279,19 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static Sprite LoadMonsterPortrait(uint monsterId)
             => LoadSprite($"{MonstersRoot}/{monsterId}/portrait") ?? GetMonsterSilhouette(monsterId);
 
-        /// <summary>玩家跑步条(World 资源,8 帧 512 单格):E/W 两向,缺则 null。</summary>
+        /// <summary>Default players use the current delivered identity and its authored run.</summary>
         public static StripAnim LoadPlayerWalk(bool facingEast)
-        {
-            string key = $"{PlayerWalkRoot}/walk_{(facingEast ? "E" : "W")}";
-            var strip = LoadStrip(key, 0, FeetPivot, 12f);
-            if (strip != null) return strip;
-            // 缺一向:用另一向镜像
-            string other = $"{PlayerWalkRoot}/walk_{(facingEast ? "W" : "E")}";
-            var fallback = LoadStrip(other, 0, FeetPivot, 12f);
-            if (fallback == null) return null;
-            return new StripAnim { Frames = fallback.Frames, Fps = fallback.Fps, Pivot = fallback.Pivot, Mirrored = true };
-        }
+            => LoadPlayerWalk(DefaultCharacterId, facingEast);
 
         /// <summary>Uses the selected character's four/eight real poses and independently authored E/W facings.</summary>
         public static StripAnim LoadPlayerWalk(string characterId, bool facingEast)
         {
+            characterId = QdaoCharacterCatalog.ResolveVisualId(characterId);
             var archived = LoadArchivedAction(characterId, "run", facingEast);
             if (archived != null) return archived;
             if (characterId == QdaoPetCatalog.UnknownIdentity || QdaoPetCatalog.Find(characterId) != null) return null;
             var entry = QdaoCharacterCatalog.Find(characterId);
-            if (entry == null) return LoadPlayerWalk(facingEast);
+            if (entry == null) return string.IsNullOrEmpty(characterId) ? LoadPlayerWalk(facingEast) : null;
             var appearance = entry.ResolveAppearance();
             if (appearance == null) return null;
             return LoadRosterDirection(appearance, facingEast ? "E" : "W", true);
@@ -367,6 +357,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>HD sprite callers supply the Image's lifetime owner; lease-returning APIs support other explicit owners.</summary>
         public static Sprite LoadPlayerIdle(string characterId, bool facingEast, out bool mirrored, QdaoHdSpriteLeaseOwner owner = null)
         {
+            characterId = QdaoCharacterCatalog.ResolveVisualId(characterId);
             if (QdaoCharacterCatalog.Find(characterId) == null)
             {
                 mirrored = false;
@@ -381,13 +372,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             return sprite;
         }
 
-        /// <summary>玩家 idle 单帧(跑步条首帧);缺则 null。</summary>
+        /// <summary>Default players use the same delivered standing pose as the world actor.</summary>
         public static Sprite LoadPlayerIdle(bool facingEast, out bool mirrored)
-        {
-            var walk = LoadPlayerWalk(facingEast);
-            mirrored = walk?.Mirrored ?? false;
-            return walk?.Count > 0 ? walk.Frames[0] : null;
-        }
+            => LoadPlayerIdle(DefaultCharacterId, facingEast, out mirrored);
 
         private static StripAnim LoadDirectionalStrip(string basePath, string action, bool facingEast)
         {
@@ -557,20 +544,14 @@ namespace MmorpgClient.UI.Ugui.Battle
                 return QdaoPetCatalog.LoadPortrait(QdaoPetCatalog.Resolve(actor.PetTableId)?.id) ?? GetMonsterSilhouette(actor.PetTableId);
             string characterId = CharacterIdFor(actor, resolveCharacterId);
             var entry = QdaoCharacterCatalog.Find(characterId);
-            if (entry == null) return !string.IsNullOrEmpty(actor.AppearanceId) ? null : LoadPlayerPortrait(actor.ActorId);
-            if (entry.IsOriginalRoster && entry.ResolveAppearance() == null)
-                return LoadLegacyPlayerPortrait(Array.IndexOf(CharacterIds, characterId));
-            // The V11 portrait framing differs from old v3 head crops: retain its full composition.
+            if (entry == null) return null;
+            // Missing or unapproved explicit identities never borrow another portrait.
             return QdaoCharacterCatalog.LoadPortrait(characterId);
         }
 
-        /// <summary>Unknown players keep the stable legacy portrait and its original head crop.</summary>
+        /// <summary>Before an actor snapshot arrives, use the current delivery's generic player portrait.</summary>
         public static Sprite LoadPlayerPortrait(ulong actorId)
-        {
-            if (PortraitFiles.Length == 0) return null;
-            int index = BattleHudLogic.PortraitIndexFor(actorId, PortraitFiles.Length);
-            return LoadLegacyPlayerPortrait(index);
-        }
+            => QdaoCharacterCatalog.LoadPortrait(DefaultCharacterId);
 
         private static Sprite LoadLegacyPlayerPortrait(int index)
         {

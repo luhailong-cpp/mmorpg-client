@@ -53,3 +53,38 @@ python -m unittest discover -s tools/tests -p test_import_archived_actions.py -v
 首次运行人物与宠物合计53项EditMode专项测试时，Editor因没有可用登录令牌和许可证退出198，未进入项目编译或测试。44个协议类与82个表文件的独立Roslyn类型编译通过，但这不代表完整Unity编译通过。Windows游戏EXE和游戏内接地、滑步、战斗观感验收仍未完成。
 
 Docker/WSL已经安装；本日重启后固件虚拟化仍未开启，需在BIOS开启AMD SVM。服务器尚未成功启动，尚无本次登录与联机战斗验收结果。为恢复现有服务端表契约，同步了正规导表器产出的GuildActivity/GuildRule和AllTable共5个C#文件，未改源表、源协议或美术源。Git提交和推送状态应以实际本地与远端提交号为准。
+
+## 2026-10-16：修复最新 main 缺资源及跨电脑合同失效
+
+核对 `35d1cf52` 发现，后续删除提交 `bfe07afe` 及其合并结果移除了仍被代码引用的资源：人物归档动作缺1354张PNG、9份运行清单；V13/V14基础外观两个资源族全部缺失。目录存在并不代表动作齐全，15人中只有00、09、10、14、17的归档动作仍完整。基础外观缺失会使 `ResolveAppearance` 返回空，选角界面直接跳过这些人物。
+
+本次按原交付恢复人物7278个缺失文件，包含基础外观、动作、合同、HD索引及metadata；保留远端存活资源的后续metadata修改。基础资源共2055张单帧/肖像图和32张V13旧strip，归档动作仍为2940张。宠物整族也被同批删除，一并按当前宠物交付锁恢复，保留10月9日更新的50帧。
+
+另修复Git自动换行破坏严格SHA的问题：V13的manifest/validation历史合同签的是CRLF，V14及07/15候选合同签的是LF。`.gitattributes` 使用 `-text` 保留原合同字节，V13以原CRLF字节提交，V14保持原LF。运行时的严格哈希校验、原审批SHA及候选状态保持原样。07和15仍仅在Unity Editor或Development Build开放，发行版不会因为文件恢复而自动批准它们。
+
+另一台电脑在客户端仓库更新main后，可直接验证，不需要同级美术源仓库：
+
+```powershell
+git pull --ff-only origin main
+python tools/verify_character_checkout.py --hash-images
+python tools/import_archived_actions.py --verify
+python tools/import_pet_actions.py --verify
+python -m unittest discover -s tools/tests -p test_character_checkout.py -v
+```
+
+已有45份真实基础合同在 `core.autocrlf=true/false/input` 的三种新检出及Git archive中逐字节校验通过。新增 `character-resources.yml` 在Windows和Ubuntu检查基础图、人物动作、宠物资源及Git换行回归，不依赖Unity许可证。Unity首次导入会自动重建带本机时间戳的HD运行索引，仍需等待工程编译和导入完成后进入游戏。
+
+按用户本次决定，旧账号也显示这批新人物，不恢复旧职业美术资源。兼容映射只作用于客户端显示，账号、职业、性别与服务器保存的数据不变；已有15个交付外观ID保持原样，无法识别的明确ID仍按错误处理。
+
+| 旧职业默认 | 男角色新图 | 女角色新图 |
+| --- | --- | --- |
+| 破军 | 04 山岳守卫 | 01 冰剑少女 |
+| 玄霄 | 06 雷法少年 | 20 星阵少女 |
+| 丹心 | 08 炼丹童子 | 03 莲花医者 |
+| 逐风 | 00 金发带道童 | 09 竹弓少女 |
+
+保存过的旧外观按同一中央映射解析：23→01、24→04、25→00、26→09、27→08、28→20、29→03、30→06；早期未保留的11→04、12→00、13→01、16→05、18→10、19→06、21→08、22→00；`QdaoHeadbandBoy`→00。头像、场景和战斗使用相同的新身份及其归档动作，不再依赖旧图。
+
+本轮验证：30项Python专项回归通过；441个运行时C#源文件使用本机真实Unity程序集进行Editor/Release独立类型编译，两种配置均通过；调用实际编译DLL的310项显示映射断言通过，覆盖17个旧身份、15个当前身份、未知明确ID、职业/性别、战斗资料优先级及原存档ID不变。这些验证没有启动Unity原生引擎，不能替代EditMode/PlayMode或游戏画面验收。
+
+扩大执行旧导入器测试时，53项中44项通过，9项依赖仓外04/05历史源依据的测试失败：04源清单SHA已变、05历史源清单缺失。这些重新导入源美术的失败与本次项目内成品校验分开记录；未改审批SHA，也未为通过测试补造源依据。本次文件恢复与字节校验不代表已经完成另一台电脑或游戏内的视觉验收。

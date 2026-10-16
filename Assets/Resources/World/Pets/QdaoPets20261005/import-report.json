@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "sourceAuditSha256": "e964d8938db2c7589639dc68825b12443655c15466bec6b0a22f128d7c01cf44",
+  "snapshotFinishedUtc": "2026-10-09T16:14:32.781982+00:00",
+  "petCount": 20,
+  "staticIdleFrames": 40,
+  "portraitCount": 20,
+  "completePetCount": 20,
+  "activeCombatClips": 120,
+  "activeCombatFrames": 1360,
+  "activeClipsByAction": {
+    "hit": 40,
+    "attack": 40,
+    "cast": 40
+  },
+  "pendingCombatClips": 0,
+  "pendingFramesPromoted": 374,
+  "pendingCombatFrames": 0,
+  "totalCombatFrames": 1360,
+  "missingCombatFrames": 0,
+  "expectedCombatFrames": 1360,
+  "runAnimation": "not_delivered; no idle duplicate or interpolation fabricated as run",
+  "completion": "complete_source_snapshot; client_runtime_pending",
+  "pending": [
+    {
+      "petId": "01-zhuling",
+      "clips": []
+    },
+    {
+      "petId": "02-jiangling",
+      "clips": []
+    },
+    {
+      "petId": "03-shuangtuan",
+      "clips": []
+    },
+    {
+      "petId": "04-guideng",
+      "clips": []
+    },
+    {
+      "petId": "05-yanyuling",
+      "clips": []
+    },
+    {
+      "petId": "15-landuoxian",
+      "clips": []
+    },
+    {
+      "petId": "06-xiluo",
+      "clips": []
+    },
+    {
+      "petId": "07-cangzhanglin",
+      "clips": []
+    },
+    {
+      "petId": "08-zhufengli",
+      "clips": []
+    },
+    {
+      "petId": "09-chishakui",
+      "clips": []
+    },
+    {
+      "petId": "10-xuanchaogui",
+      "clips": []
+    },
+    {
+      "petId": "12-yuexianshi",
+      "clips": []
+    },
+    {
+      "petId": "16-luhualing",
+      "clips": []
+    },
+    {
+      "petId": "14-feierling",
+      "clips": []
+    },
+    {
+      "petId": "11-xiajiaolu",
+      "clips": []
+    },
+    {
+      "petId": "13-yalingtong",
+      "clips": []
+    },
+    {
+      "petId": "legacy-hu-tuan-tuan",
+      "clips": []
+    },
+    {
+      "petId": "legacy-fu-xiao-hu",
+      "clips": []
+    },
+    {
+      "petId": "legacy-yun-jiu-jiu",
+      "clips": []
+    },
+    {
+      "petId": "legacy-ling-yue",
+      "clips": []
+    }
+  ]
+}
