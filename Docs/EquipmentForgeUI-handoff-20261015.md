@@ -148,7 +148,7 @@
 
 - 编译：`pwsh -File tools/client_compile_check.ps1`。
 - Unity EditMode：程序集 `MmorpgClient.Tests.EditMode.Battle`（不带 `-quit`）。本批相关的用例类及条数：`EquipForgeUiStateTests` 63、`EquipForgeClientTests` 96、`EquipForgeModelTests` 35、`EquipClientTests` 70、`EquipBagModelTests` 13、`PlayerFeaturesClientTests` 31，另加你新写的窗口级用例。
-- 实机（服务器 main 起栈后）：游戏里没有装备、宝石、强化石的产出，只能靠 GM 发，**客户端也没有发物 / 加银两的 GM 入口**。现成的账号是 `robot_9104` / `123456`（`robot_` 前缀走开发期密码认证），它被服务器仓 `robot\` 下的 `.\robot.exe -c etc/equip_forge_smoke.yaml` 跑过：冒烟每次强化前只把银两与强化石补到刚好够（缺多少补多少），所以跑完之后**强化石是 0**、银两最多剩下角色原本就有的那些；「新手木剑」穿在身上（跑一遍到 +2，跑两遍到 +4），攻击宝石 2101 在行囊里。用这个号能实机验：面板画面、孔位与镶嵌 / 取下、「强化材料不足」的置灰与「持有 … 强化石 ×0」。**要实机点出一次真正的强化，得先在服务器侧给它补强化石（GmGrantItem 2001）和银两（GmAddCurrency）**——目前只有 robot 代码里有这两个调用（`equip_forge_smoke_scenario.go` 的 equipForgeGrant / equipForgeAddGold），需要的话请用户让 Claude 加一个只补货的 robot 模式。服务器表里 +1 到 +3 必成，装备到了 +3 之后，下一级的成功率才低于 100%（第 4 级 90%）。
+- 实机（服务器 main 起栈后）：游戏里没有装备、宝石、强化石的产出，只能靠 GM 发，**客户端也没有发物 / 加银两的 GM 入口**。现成的账号是 `robot_9104` / `123456`（`robot_` 前缀走开发期密码认证），它被服务器仓 `robot\` 下的 `.\robot.exe -c etc/equip_forge_smoke.yaml` 跑过：冒烟每次强化前只把银两与强化石补到刚好够（缺多少补多少），所以跑完之后**强化石是 0**、银两最多剩下角色原本就有的那些；「新手木剑」穿在身上（跑一遍到 +2，跑两遍到 +4），攻击宝石 2101 在行囊里。**要实机点出一次真正的强化，先补货**：在服务器仓 `robot\` 下跑 `.\robot.exe -c etc/equip_forge_topup.yaml`（服务器 main `d7faa7fecd` 起有这个模式，主仓的 `robot.exe` 已按它重编）。它给 `robot_9104` 补 40 万银两、60 颗强化石、四种一级宝石各 3 颗——按强化表，够把一把装备从 +0 强化到满级——发完重新读背包核对到账，日志末行 `EQUIP_FORGE_TOPUP_OK …`。账号上还没有可强化的装备时，先跑一次 `etc/equip_forge_smoke.yaml`（它会发一把「新手木剑」并穿上）。不补货时这个号只能验：面板画面、孔位与镶嵌 / 取下、「强化材料不足」的置灰与「持有 … 强化石 ×0」。服务器表里 +1 到 +3 必成，装备到了 +3 之后，下一级的成功率才低于 100%（第 4 级 90%）。
 
 ## 10. 我做过的验证（都不是 Unity）
 
