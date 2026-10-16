@@ -40,11 +40,12 @@ def main():
     sprites, names = [], []
     for npc in sorted(entries, key=lambda n: -n["z"]):
         with Image.open(ROOT / "Assets/Resources" / (npc["spriteResource"] + ".png")) as source:
-            frame_size = round(npc["visibleHeight"] / npc["visibleHeightFraction"] * ppu)
-            body = source.resize((frame_size, frame_size), Image.Resampling.LANCZOS)
+            frame_height = round(npc["visibleHeight"] / npc["visibleHeightFraction"] * ppu)
+            frame_width = round(frame_height * source.width / source.height)
+            body = source.resize((frame_width, frame_height), Image.Resampling.LANCZOS)
         x, y = (npc["x"] - 50) * ppu, (300 - npc["z"]) * ppu
-        left = round(x - frame_size * npc["pivotX"])
-        top = round(y - frame_size * (1 - npc["pivotY"]))
+        left = round(x - frame_width * npc["pivotX"])
+        top = round(y - frame_height * (1 - npc["pivotY"]))
         canvas.alpha_composite(body, (left, top))
         names.append((x, y + 1.9 * ppu, npc["displayName"]))
         bounds = body.getchannel("A").getbbox()

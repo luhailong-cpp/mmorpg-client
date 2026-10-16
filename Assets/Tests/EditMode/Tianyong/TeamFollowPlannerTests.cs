@@ -487,8 +487,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void Simulation_RobotLeaderPatternFromTheLiveCheck_FollowerEndsEveryLegBehindTheLeader()
         {
             // 联机验收(robot team-follow-smoke 的 client_follower 形态)里机器人队长的走法:东、西、北、南、东、西各 13.5,
-            // 段间站 2.5 秒,带显示摆动与停步冲过头。21 / 88 / 107 / 126 / 189 是离线扫描里"游标允许往回跳"时会卡住的种子:
-            // 已经转到回程上的人,被厘米级偏差判回去程,在折返点附近两帧一个来回。
+            // 段间站 2.5 秒,带显示摆动与停步冲过头(0~2,联机量到过 1.6)。21 / 88 / 107 / 126 / 189 是离线扫描里
+            // "游标允许往回跳"时会卡住的种子:已经转到回程上的人,被厘米级偏差判回去程,在折返点附近两帧一个来回;
+            // 冲过头放到 0~2 之后,3 / 4 / 7 / 10 号种子会抓住"停步回拉收不干净、队员停得离队长太近"。
             var seeds = new List<int> { 21, 88, 107, 126, 189 };
             for (int seed = 1; seed <= 30; seed++) seeds.Add(seed);
             foreach (int seed in seeds)
@@ -584,7 +585,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             const float leg = 13.5f;
             var random = new System.Random(seed);
             float amplitude = 0.02f + (float)random.NextDouble() * 0.06f;
-            float overshoot = (float)random.NextDouble() * 0.5f;
+            float overshoot = (float)random.NextDouble() * 2.0f;
             float frequency = 2f + (float)random.NextDouble() * 3f;
             var directions = new[]
             {

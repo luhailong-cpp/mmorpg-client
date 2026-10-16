@@ -1,0 +1,7 @@
+{
+  "source": "mmorpg-client",
+  "gitRevision": "bfe07afe^",
+  "gitPath": "Assets/Resources/World/Tianyong/Npcs/placements.json",
+  "sha256": "ad2d7d7d8c9161d0c2a7f8a0028b91fba5baa066ebb04a30d1c4ef0bca330b16",
+  "scope": "Prior manually reviewed world positions only; new character art calibration replaces old pivots."
+}

@@ -75,7 +75,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             hit.targetGraphic.raycastTarget = true;
             hit.onClick.AddListener(() => Open(GameplayPage.Missions));
             _trackedRoot.gameObject.SetActive(false);
-            _window = new GameplayWindow(design);
+            _window = new GameplayWindow(design, _forge);
             _window.BagRequested += type => _client?.RequestBag(type);
             _window.SortRequested += () => _client?.SortBag();
             _window.EquipmentRequested += () => _client?.RequestEquipment();
@@ -217,6 +217,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void OnDestroy()
         {
             if (_client != null) _client.OnChanged -= Changed;
+            _window?.Dispose();
             _forge.Dispose();
             if (Instance == this) Instance = null;
         }

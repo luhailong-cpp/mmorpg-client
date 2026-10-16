@@ -21,8 +21,13 @@ namespace MmorpgClient.Game.Team
 
         /// <summary>相邻两个记录点的最小间距。太密浪费、太疏拐弯会被削平。</summary>
         public const float SampleSpacing = 0.5f;
-        /// <summary>一次停步回拉最多从末端收回这么长。远端外推冲过头的量不会超过它;再多就不是回拉了。</summary>
-        public const float MaxRetractLength = 1.5f;
+        /// <summary>
+        /// 一次停步回拉最多从末端剪掉这么长。远端角色停步前按最后的速度外推,停步消息晚到多少就冲过头多少
+        /// (移速 9 时晚 0.18 秒就是 1.6,联机验收量到过);3 盖住约 0.33 秒的延迟。再多就不当回拉处理。
+        /// </summary>
+        public const float MaxRetractLength = 3f;
+        /// <summary>停步回拉时,队首离它在末端那一截上的投影不超过这么远,才在投影处剪断(说明队首确实站在走过的路上)。</summary>
+        public const float RetractSnapDistance = 0.3f;
 
         // 相交轨迹的投影会有浮点舍入差异;0.1 毫米内视为同样近,优先保留靠近队首的段。
         private const float ProjectionTieTolerance = 0.0001f;
@@ -31,7 +36,7 @@ namespace MmorpgClient.Game.Team
         private readonly List<Vector3> _points = new List<Vector3>();
         private readonly float _maxLength;
         private Vector3 _head;
-        // 自上一次落定新记录点以来已经从末端收回的弧长。
+        // 队长这次站定以来已经从末端剪掉的弧长;队长重新走起来(记新点时没在回拉)才清零。
         private float _retracted;
 
         /// <param name="maxLength">保留的最大弧长;更老的部分被裁掉。必须容得下整支队伍再加一段追赶余量。</param>
@@ -114,11 +119,13 @@ namespace MmorpgClient.Game.Team
         /// </summary>
         /// <param name="head">队长当前位置。</param>
         /// <param name="allowRetract">
-        /// 队首往回退时是否把退过的那一小段从末端收掉。只应在队长**站定**时传 true:远端角色靠外推显示,
-        /// 停步时可能先冲过头再被拉回停点,不收的话末端会留下一个"向前再折返"的小尖角,队员跟着走过去
-        /// 再走回来。队长带着速度往回走是真的掉头,必须传 false —— 那时轨迹要折成发夹留着:收掉的话
-        /// 槽位会一直落在"队首再往前"的方向上,队员被赶着跑在队长前面。
-        /// 即使传 true,自上一次落定新点以来最多也只收回 <see cref="MaxRetractLength"/>。
+        /// 队首往回退时是否把退过的那一段从末端剪掉。只应在队长**站定**时传 true:远端角色靠外推显示,
+        /// 停步时可能先冲过头再被拉回停点,不剪的话末端会留下一截"向前再折返"的假路,队员跟着走过去
+        /// 再走回来、或把这截假路算进距离里停得离队长太近。队长带着速度往回走是真的掉头,必须传 false ——
+        /// 那时轨迹要折成发夹留着:剪掉的话槽位会一直落在"队首再往前"的方向上,队员被赶着跑在队长前面。
+        /// 剪法:在末端往回 <see cref="MaxRetractLength"/>(队长这次站定以来累计)以内找队首的投影,
+        /// 离队首不超过 <see cref="RetractSnapDistance"/> 就在投影处截断。一帧跳回很远、或冲过头的那一截
+        /// 只有一个记录点,都能一次剪干净。
         /// </param>
         public void Push(Vector3 head, bool allowRetract = false)
         {
@@ -129,26 +136,14 @@ namespace MmorpgClient.Game.Team
             }
 
             _head = head;
-            if (allowRetract)
-            {
-                // 新位置比最后一个记录点更靠近倒数第二个点 = 队首退过了最后一个点,它已经不在路上了。
-                // 用严格小于:队长站着不动时队首与最后一个点重合,不能每帧把它收掉再加回来。
-                while (_points.Count >= 2 &&
-                       Horizontal(head, _points[_points.Count - 2]) <
-                       Horizontal(_points[_points.Count - 1], _points[_points.Count - 2]))
-                {
-                    float segment = Horizontal(_points[_points.Count - 1], _points[_points.Count - 2]);
-                    if (_retracted + segment > MaxRetractLength) break;
-                    _retracted += segment;
-                    _points.RemoveAt(_points.Count - 1);
-                    _odometers.RemoveAt(_odometers.Count - 1);
-                }
-            }
+            if (allowRetract) CutBackTo(head);
 
             if (Horizontal(head, _points[_points.Count - 1]) >= SampleSpacing)
             {
                 AppendPoint(head);
-                _retracted = 0f;
+                // 回拉额度只在队长重新走起来时才恢复:站定期间显示位置一路往回漂,额度用完后的部分按真路记下
+                // (折成发夹),不能因为记了新点就又能往回剪,那样会把整条路一截一截吞掉。
+                if (!allowRetract) _retracted = 0f;
                 Trim();
             }
         }
@@ -289,6 +284,46 @@ namespace MmorpgClient.Game.Team
             => double.IsPositiveInfinity(prefer)
                 ? candidate > current
                 : System.Math.Abs(candidate - prefer) < System.Math.Abs(current - prefer);
+
+        /// <summary>停步回拉:把末端剪到队首在那一截上的投影处(见 <see cref="Push"/>)。</summary>
+        private void CutBackTo(Vector3 head)
+        {
+            float budget = MaxRetractLength - _retracted;
+            if (budget <= 0f || _points.Count < 2) return;
+
+            int cutSegment = -1;
+            float cutT = 0f, cutRemoved = 0f, best = RetractSnapDistance;
+            float walked = 0f;
+            for (int i = _points.Count - 1; i > 0 && walked < budget; i--)
+            {
+                Vector3 newer = _points[i];
+                Vector3 older = _points[i - 1];
+                float segment = Horizontal(newer, older);
+                if (segment > 0f)
+                {
+                    // t = 0 在新端;剪掉的长度不能超过剩余额度。
+                    float t = Mathf.Min(ProjectOntoSegment(head, newer, older), Mathf.Min(1f, (budget - walked) / segment));
+                    float removed = walked + segment * t;
+                    float distance = Horizontal(head, Vector3.Lerp(newer, older, t));
+                    // 同样近时取剪得少的(离末端近的)那一处:不多剪真走过的路。
+                    if (removed > 0.0001f && distance < best)
+                    {
+                        best = distance;
+                        cutSegment = i;
+                        cutT = t;
+                        cutRemoved = removed;
+                    }
+                    walked += segment;
+                }
+            }
+            if (cutSegment < 0) return;
+
+            Vector3 cut = Vector3.Lerp(_points[cutSegment], _points[cutSegment - 1], cutT);
+            _points.RemoveRange(cutSegment, _points.Count - cutSegment);
+            _odometers.RemoveRange(cutSegment, _odometers.Count - cutSegment);
+            if (Horizontal(cut, _points[_points.Count - 1]) > 0.0001f) AppendPoint(cut);
+            _retracted += cutRemoved;
+        }
 
         private void AppendPoint(Vector3 point)
         {

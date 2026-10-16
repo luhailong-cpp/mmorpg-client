@@ -1,38 +1,41 @@
-# 主城 NPC 接入 · 2026-10-09
+# 主城静态 NPC · 2026-10-16
 
-23 位已交付的主城静态 NPC 已接入客户端源码，使用现行 6×6 主城的坐标。人物、姓名和阴影属于独立图层，主城底图、切片、前景和导航文件没有改动。主城图正在并行重绘，后续可以直接调整人物坐标，不需要重画人物或合并到底图。
+23 位高清 NPC 已导入客户端；本次按用户选择提供独立展示场景，等待新的主城底图。已清理的旧主城底图没有恢复，当前不宣称主城内测试完成。
 
-## 入口
+美术保持原有道家 Q 版、`image/designs` 已确认风格及春节／中秋喜庆服饰细节。使用 `image/designs/city-npcs-hd-20260924/native` 的最终透明 PNG，未重新生成、裁切或放大图片，本次接入未调用付费生图 API。
 
-- [位置与显示配置](../Assets/Resources/World/Tianyong/Npcs/placements.json)：23 个独立脚底位置，Unity X/Z 世界坐标。
-- [运行时图层](../Assets/Scripts/World/Tianyong/TianyongCityNpcs.cs)：在 `TianyongMapBuilder.Build` 成功应用主城画作之后创建；随地图卸载释放。
-- [素材来源](CityNpcs.sources.json)：由 `image/designs/city-npcs-20260924/transparent-1024` 原样复制，23 张文件的 SHA-256 与已交付素材一致。高清重绘目录尚未完成，未混用未验收样稿。
-- [全城排布预览](VerificationEvidence/city-npcs-20261009/npc-layout-overview.jpg) · [西市](VerificationEvidence/city-npcs-20261009/west-market.jpg) · [北区](VerificationEvidence/city-npcs-20261009/north-districts.jpg) · [南区](VerificationEvidence/city-npcs-20261009/south-gardens.jpg)
+## 开始测试
 
-以上图片为实际底图切片与 NPC 素材按配置合成的**排布预览**，不是 Unity 实机截图。姓名排版仅用于检查位置，游戏里由现有 WorldNameplate 绘制，人物使用玩家相同的脚底深度排序。
+在 Unity 打开 `Assets/Scenes/World/NpcArtShowroom.unity` 并进入 Play；独立 Windows 程序和操作说明见 [NPC 展示说明](NpcShowroom/README.md)。当前范围为静态图片、原图比例、透明边缘和细节查看，不包含对话、商店、任务、碰撞或动作动画。
 
-## 已完成检查与限制
+## 素材和主城接入
 
-- 23 张独立 1024×1024 RGBA，真实透明背景；无图像再生成、裁切或重采样，运行时由配置控制显示尺寸。
-- [排布检查](VerificationEvidence/city-npcs-20261009/layout-validation.json)：23/23 位于现行导航可达区域，从当前出生点可达；人物可见包围框没有相交。解析生产地图的导航蒙版，按八方向并禁止斜穿墙角进行静态连通性核验。
-- 查看分区预览后移开了西市的重叠人物，调整杨镖头与云游大仙使其避开装饰。大路及广场中心保持通行。
-- [离线编译](VerificationEvidence/city-npcs-20261009/offline-compilation.json)：372 个运行时源文件、2 个编辑器文件、2 个相关测试文件均 0 错误。测试源文件通过编译不代表测试已执行。
-- [Unity 执行受阻](VerificationEvidence/city-npcs-20261009/unity-validation-blocked.json)：Unity 6000.6.0f1 批处理在进入工程前因 `No valid Unity Editor license found` 返回 198。真实导入、引擎截图、EditMode 测试及新版播放器构建尚未完成。未改动许可证或已运行的客户端。
+- [placements.json](../Assets/Resources/World/Tianyong/Npcs/placements.json) 保存 23 位人物的姓名、历史世界坐标、显示高度、脚底锚点及原生尺寸。
+- [逐图来源](CityNpcs.sources.json) 保存 SHA-256、来源记录、实际尺寸与模型证据。内置生图未披露数值模型版本／质量，不能把配置目标视为实际返回版本。
+- 原生尺寸：杨镖头 941×1672，朱雀 1254×1254，其余 21 张 1122×1402。这些是原生文件，不是原生 4K。
+- 导入器上限调整为 2048，使用 NPOT None、无压缩、无 mipmap，保留原始长宽。运行时对声明的原生尺寸做一致性检查，避免再次被 1024 上限缩小。
+- `pivotX/pivotY` 是以图片左下角为原点的归一化脚底锚点；`visibleHeightFraction` 来自透明包围框。非方图按原始宽高比显示。
+- [锚点记录](NpcShowroom/anchors.json) 的像素坐标以 PNG 左上角为原点。朱雀横向锚点经人工修订为 x=550，避免尾羽使中心偏移。
+- 历史坐标基线和取回来源分别保存在 [placements-baseline.json](NpcShowroom/placements-baseline.json) 与 [baseline-provenance.json](NpcShowroom/baseline-provenance.json)。坐标没有按尚未交付的新地图重新验收。
 
-本次范围为静态视觉摆放：沿用姓名、朝向镜头、接触阴影和遮挡排序；没有新增碰撞、服务端 NPC 实体、对话、商店或任务交互。运行时只在绘制主城挂载；程序化地图和其他地区不复用这些坐标。
+`TianyongCityNpcs` 仍仅在绘制主城挂载成功后创建独立人物、姓名和阴影图层。新底图到位后需要复查道路位置、可达性、人物高度、脚底与前景遮挡；独立展示场景不验证这些事项。
 
-## 后续换图与复验
+## 验证结果
 
-人物可见高度为世界单位，`pivotX/pivotY` 是图片左下角为原点的脚底锚点，`visibleHeightFraction` 来自素材透明包围框。坐标的旧图换算为 `x = 50 + pixelX / 20.48`、`z = 300 - pixelY / 20.48`，旧图为 6144×6144；新图仍使用 300×300 世界范围时，直接保持世界坐标，按新道路逐项复查。
+- [23 张源文件与客户端 SHA-256 检查](NpcShowroom/asset-sha256.json)：全部一致。
+- Python 同步脚本 7 项集成测试通过，覆盖新旧清单、非方图、GUID 保留、锚点及无效输入不写入。
+- 客户端 443 个运行时 C# 源文件离线编译，0 错误；不等同于执行生产主城 EditMode 测试。
+- Unity 6000.6.0f1 Windows 独立播放器构建成功，0 错误。
+- [真实播放器验证](NpcShowroom/verification.json)：30 项通过、0 运行时错误；包括首次 GUI 绘制、23 张纹理原生尺寸与等比绘制，以及浅底、深底、棋盘、高倍缩放四张实机截图。四张截图均已人工视觉检查。
+- 尚未自动化鼠标／键盘点击，也未执行依赖新底图的主城实机测试。
 
-修改 `placements.json` 即可移位。不要运行临时目录里的初版位置草稿覆盖本文件；这里已包含人工视觉修订。
+## 后续同步
 
-复现素材同步和排布预览（Python 需 Pillow）：
+在客户端根目录，使用带 Pillow 的 Python：
 
 ```powershell
-python tools/sync_city_npcs.py
-python tools/preview_city_npcs.py
-pwsh -File tools/client_compile_check.ps1
+python tools/sync_city_npcs.py --source ../image/designs/city-npcs-hd-20260924 --project-root . --positions Docs/NpcShowroom/placements-baseline.json --anchors Docs/NpcShowroom/anchors.json --dry-run
+python -m unittest discover -s tools -p test_sync_city_npcs.py -v
 ```
 
-Unity 许可证恢复且主项目编辑器关闭后，执行 `MmorpgClient.Editor.Tianyong.TianyongNpcVerification.VerifyBatch`（`-batchmode`，不要加 `-nographics`），输出真实引擎截图和验证报告。EditMode 可筛选 `TianyongCityNpcTests` 与 `TianyongPaintedCityTests`。这些入口已经保存并通过离线编译，仍需实际运行。
+确认 dry-run 后移除该参数进行同步。脚本完整预检后才写入；不提供操作系统写入故障时的整批回滚。新地图完成坐标调整后应以实际 `placements.json` 作为 `--positions` 输入，避免覆盖新坐标。旧排布合成脚本已修正非方图比例，但仍需要主城底图，本次未运行。

@@ -312,7 +312,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(ActionButton().interactable, Is.False);
             Assert.That(FindButton("刷新").interactable, Is.False);
             Assert.That(FindButton("整理背包").interactable, Is.False);
-            AssertText("正在更换装备…");
+            AssertText("正在处理装备…");
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0", "BagSlot_1" }));
 
             var worn = MakeEquipment(true);
@@ -329,7 +329,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(ActionButton().interactable, Is.True);
             Assert.That(HasCheck(SlotButton(3)), Is.True);
             Assert.That(HasCheck(BagSlot(0)), Is.False);
-            Assert.That(HasText("正在更换装备…"), Is.False);
+            Assert.That(HasText("正在处理装备…"), Is.False);
             Assert.That(FindButton("刷新").interactable, Is.True);
 
             // 再卸下:同一件装备回到物品格,卡片跟回去。
@@ -404,7 +404,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             Assert.That(_net.Calls.Count, Is.EqualTo(1), "回包自带两份全量:在途期间不发读取");
             Assert.That(HasText(SyncFailedText), Is.False, "也不能冒出一行「未能同步」");
-            AssertText("正在更换装备…");
+            AssertText("正在处理装备…");
 
             equip.Respond(new EquipItemResponse
             {
@@ -529,7 +529,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(TooltipText("TooltipState").text, Is.EqualTo("已穿戴"));
             Assert.That(ActionLabel(), Is.EqualTo("卸下"));
             Assert.That(ActionButton().interactable, Is.False, "装备栏那一半的状态(穿脱在途)也一起生效");
-            AssertText("正在更换装备…");
+            AssertText("正在处理装备…");
         }
 
         [Test]

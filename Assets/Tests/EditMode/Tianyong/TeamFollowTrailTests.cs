@@ -108,13 +108,29 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void Push_RetractIsCapped_SoALongWalkBackIsNeverSwallowed()
         {
-            // 即使调用方一直传 allowRetract(比如速度读数恰好为 0),往回 5 米也只能收掉 1.5 米,其余折成发夹。
+            // 即使调用方一直传 allowRetract(比如速度读数恰好为 0),往回 5 米也只能剪掉 3 米,其余折成发夹。
             var trail = Walk(new TeamFollowTrail(50f), new Vector3(0f, 0f, 0f), new Vector3(10f, 0f, 0f));
             for (float x = 9.75f; x >= 5f - 0.001f; x -= 0.25f) trail.Push(new Vector3(x, 0f, 0f), allowRetract: true);
 
-            // 末端从 10 收回到 8.5,之后 8.5 → 5 这 3.5 米是折回来的新路。
-            Assert.That(trail.Length, Is.EqualTo(8.5f + 3.5f).Within(Tolerance));
-            AssertPoint(trail.PointBehindHead(2f), 7f, 0f);
+            // 末端从 10 剪回到 7,之后 7 → 5 这 2 米是折回来的新路。
+            Assert.That(trail.Length, Is.EqualTo(7f + 2f).Within(Tolerance));
+            AssertPoint(trail.PointBehindHead(2.5f), 6.5f, 0f);
+        }
+
+        [Test]
+        public void Push_LongOvershootPulledBackInOneJump_IsCutAtTheStopPoint()
+        {
+            // 联机验收量到的现场:停步消息晚到,队长的显示位置冲过头 1.6(一帧跳出一长段),随后被拉回停点。
+            // 旧做法逐点收、上限 1.5,这一截收不干净,队员把它算进距离、停得离队长只有 0.3。
+            var trail = Walk(new TeamFollowTrail(50f), new Vector3(0f, 0f, 0f), new Vector3(10f, 0f, 0f));
+            trail.Push(new Vector3(11.6f, 0f, 0f), allowRetract: true);
+            trail.Push(new Vector3(11.0f, 0f, 0f), allowRetract: true);
+            trail.Push(new Vector3(10.3f, 0f, 0f), allowRetract: true);
+            trail.Push(new Vector3(10f, 0f, 0f), allowRetract: true);
+
+            Assert.That(trail.Length, Is.EqualTo(10f).Within(Tolerance));
+            Assert.That(trail.HeadOdometer, Is.EqualTo(10d).Within(Tolerance));
+            AssertPoint(trail.PointBehindHead(1.4f), 8.6f, 0f);
         }
 
         [Test]
