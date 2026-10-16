@@ -99,13 +99,14 @@ namespace MmorpgClient.Game.PlayerFeatures
         }
 
         /// <summary>
-        /// 强化消耗「金币 5000、强化石 ×2」。不要材料(material_config_id 为 0 或数量为 0)时只有金币一段。
+        /// 强化消耗「银两 5000、强化石 ×2」。不要材料(material_config_id 为 0 或数量为 0)时只有银两一段。
         /// 材料名服务器没给(它的 Item 行查不到)时退回带 id 的占位。
+        /// cost_gold 扣的是 kCurrencyGold,契约 §0-1 叫「银两」(背包页的资产栏、属性与宠物的扣费文案同口径)。
         /// </summary>
         public static string FormatEnhanceCost(EquipEnhancePreview next)
         {
             if (next == null) return string.Empty;
-            string gold = $"金币 {next.CostGold.ToString(CultureInfo.InvariantCulture)}";
+            string gold = $"银两 {next.CostGold.ToString(CultureInfo.InvariantCulture)}";
             if (next.MaterialConfigId == 0 || next.MaterialCount == 0) return gold;
             return $"{gold}、{ItemNameOr(next.MaterialName, next.MaterialConfigId)} ×{next.MaterialCount.ToString(CultureInfo.InvariantCulture)}";
         }

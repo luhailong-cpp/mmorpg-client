@@ -17,6 +17,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     public sealed class GameplayUiRoot : MonoBehaviour
     {
         public static GameplayUiRoot Instance { get; private set; }
+        /// <summary>
+        /// 强化 / 镶嵌面板的按钮逻辑。这里只负责它的生命周期:跟着 GameClient.Features 换绑、每帧 Tick、窗口关闭时关上;
+        /// 面板本身(打开入口、画面、把按钮接到它的意图方法)见 Docs/EquipmentForgeUI-handoff-20261015.md。
+        /// </summary>
+        public EquipForgeUiState Forge => _forge;
+        private readonly EquipForgeUiState _forge = new EquipForgeUiState();
+        // 背包页状态行上此刻挂着的是强化结果(兜底提示)。
+        private bool _forgeNoticeShown;
         private PlayerFeaturesClient _client;
         private GameplayWindow _window;
         private RectTransform _hud, _trackedRoot;
@@ -77,13 +85,29 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.EquipmentShareRequested += item =>
             {
                 if (!(Social.SocialUiRoot.Instance?.TryComposeEquipment(item) ?? false))
+                {
+                    _forgeNoticeShown = false; // 状态行换成了分享的提示,不再是强化结果
                     _window.SetEquipmentNotice(Social.SocialUiRoot.Instance?.State?.Status ?? "仙友会尚未就绪，请稍后重试。");
+                }
             };
             _window.MissionsRequested += () => _client?.RequestMissions();
             _window.ActivitiesRequested += () => _client?.RequestActivities();
             _window.MissionAcceptRequested += (scope, id) => _client?.AcceptMission(scope, id);
             _window.MissionClaimRequested += (scope, id) => _client?.ClaimMissionReward(scope, id);
             _window.TrackingChanged += Track;
+            // 面板长在背包窗口里:窗口关掉(含换角色 / 断线时的 ResetSession)它跟着关。
+            _window.Closed += _forge.Close;
+            // 强化结果的兜底提示(面板关了也照样来)。背包页正在屏幕上:写进它的状态行,下一次装备操作开始时由 Changed 收起;
+            // 窗口关着或在别的页:状态行会在重开时被 Show 清掉,改用飘字。掷骰没过不是错误,不用错误色。
+            _forge.Announced += notice =>
+            {
+                if (_window.IsVisible && _window.Page == GameplayPage.Bag)
+                {
+                    _forgeNoticeShown = true;
+                    _window.SetEquipmentNotice(notice.Text);
+                }
+                else BattleUiRoot.Instance?.ShowToast(notice.Text);
+            };
             _hud.gameObject.SetActive(false);
         }
         private void Update()
@@ -95,6 +119,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _window.ResetSession();
                 _client = game?.Features;
                 if (_client != null) _client.OnChanged += Changed;
+                _forge.Bind(_client);
             }
             bool inGame = game != null && game.InGame && game.IsGateReady;
             if (_playerId != (inGame ? game.PlayerId : 0))
@@ -104,6 +129,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _available = inGame && _client != null && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             if (!_available) { HidePanel(); return; }
+            // 发包间隔按时间走完,数据层不为它发通知:面板开着时每帧看一眼,冷却结束才重画。
+            _forge.Tick();
             // 子弹窗独占键盘；Esc 由弹窗自己的输入组件处理，避免同一按键把背包一起关掉。
             if (_window.EquipmentModalOwnsKeyboard) return;
             bool typing = EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null &&
@@ -155,6 +182,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void Changed()
         {
             if (_client == null) return;
+            // 状态行上的强化结果与数据层的 LastEnhanceOutcome 同生同灭:下一次装备操作一开始(或断线 / 换角色)就收起,
+            // 免得一次失败的镶嵌之后状态行上还挂着上一次的「强化成功」。
+            if (_forgeNoticeShown && !_client.LastEnhanceOutcome.HasValue)
+            {
+                _forgeNoticeShown = false;
+                _window.SetEquipmentNotice(null);
+            }
             _window.SetBagPage(_client.Bag, _client.BagLoading, _client.BagError, _client.BusySort,
                 _client.Equipment, _client.EquipmentLoading, _client.EquipmentError, _client.BusyEquip);
             _window.SetMissions(_client.Missions, _client.MissionsLoading, _client.MissionsError, _client.BusyMissionAction);
@@ -183,6 +217,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void OnDestroy()
         {
             if (_client != null) _client.OnChanged -= Changed;
+            _forge.Dispose();
             if (Instance == this) Instance = null;
         }
         private void OnDisable() => HidePanel();

@@ -5,6 +5,8 @@
 
 服务端契约见服务器仓 `docs/design/equipment-enhance-inlay.md`（协议 §3.3、客户端 §6、tip 码 §2.5）。一期（随机属性 + 穿脱）见同目录 `equipment-attributes.md`。
 
+> **2026-10-15：界面按钮逻辑已由 `EquipForgeUiState` 接好，界面接入（入口、面板画面）交给 Codex，见 [EquipmentForgeUI-handoff-20261015.md](EquipmentForgeUI-handoff-20261015.md)。下文「接线建议」第 2、3 条已被它取代，界面不要再直接调这三个入口。** 同日把玩家看到的「金币」统一改叫「银两」（契约 §0-1 的 kCurrencyGold，背包页 / 属性 / 宠物同口径），并新增两个只读属性：`ForgeCooldownRemainingMs`（剩余发包间隔）与 `EquipmentReadError`（装备栏读取本身的失败，不含操作失败）。
+>
 > 2026-10-13 已完成 main 接入前的正式生成门禁：服务器导表和全量 proto-gen 产出的 3 个消息号、11 个 tip 枚举、handler 与 C# 配表已同步。下文「预期的编译错误」保留早期分支交付时的依赖说明；本次正式产物验证已没有这些错误，见文末集成记录。
 
 ## 文件
@@ -33,7 +35,7 @@ features.RemoveGem(itemId, socket);               // 取下：宝石退回人物
 共同的行为：
 
 - **与穿上 / 卸下共用同一个在途标志 `BusyEquip`**。五种操作同一时刻只有一个；在途期间再点任何一个都静默丢弃（不发包、不报错）。按钮按 `BusyEquip` 禁用即可，不用另加标志。
-- **发包间隔**：强化 / 镶嵌 / 取下两次发包至少隔 `ForgeMinIntervalMs`（700 毫秒，三者共用，从上一次**发包**算起）。间隔内的点击同样静默丢弃——所以「点了没反应」在回包后的大半秒内是正常的，界面不要因此补发。数据层不提供「冷却中」状态；想给反馈的话，界面可以在点击后按 `PlayerFeaturesClient.ForgeMinIntervalMs` 自己做按钮冷却。穿脱不受这个间隔约束。
+- **发包间隔**：强化 / 镶嵌 / 取下两次发包至少隔 `ForgeMinIntervalMs`（700 毫秒，三者共用，从上一次**发包**算起）。间隔内的点击同样静默丢弃——所以「点了没反应」在回包后的大半秒内是正常的，界面不要因此补发。剩余冷却可读 `PlayerFeaturesClient.ForgeCooldownRemainingMs`（毫秒，0 = 现在就能发；它随时间变小却不触发 `OnChanged`，要按帧重读——`EquipForgeUiState.Tick` 就是做这个的）。穿脱不受这个间隔约束。
 - **回包整体覆盖人物背包与装备栏两份快照**，然后触发一次 `OnChanged`。界面照常在 `OnChanged` 里重画，不要自己扣金币 / 材料 / 宝石。
 - **失败走 `OnError`，原因留在 `EquipmentError`**（与穿脱同一个属性）。文案格式 `{操作名}:{原因}`，操作名分别是 `无法强化` / `镶嵌失败` / `取下失败`。
 - **传输失败（超时 / 断线）绝不自动重发**——强化不是幂等操作，再发一次就是再扣一次。数据层只重拉两份快照；界面也不要替玩家重试。
@@ -120,7 +122,7 @@ EquipEnhanceOutcome? last = features.LastEnhanceOutcome;   // 最近一次的结
 | `Unavailable` | 强化未开放（`EnhanceMaxLevel == 0`，非装备也在这里），或服务器没给下一级预览 | 该装备无法强化 |
 | `MaxLevel` | `EnhanceLevel >= EnhanceMaxLevel` | 已强化到最高等级 |
 | `MaterialNotEnough` | 人物背包里材料总数 < `EnhanceNext.MaterialCount` | 强化材料不足 |
-| `GoldNotEnough` | `CharacterBag.Currency.Values[GoldCurrencyIndex]` < `EnhanceNext.CostGold` | 金币不足 |
+| `GoldNotEnough` | `CharacterBag.Currency.Values[GoldCurrencyIndex]` < `EnhanceNext.CostGold` | 银两不足 |
 | `Unknown` | 人物背包或其中的货币还没拉到，本地无从判断 | 不置灰，让服务器裁决 |
 
 检查顺序与服务器一致：未开放 → 满级 → 没有预览 → 材料 → 金币（两样都不够时报材料）。这只是提示，能不能强化由服务器裁决——置灰的按钮即使被点到，数据层也不会因为金币 / 材料不够而拒发。
@@ -139,7 +141,7 @@ EquipEnhanceOutcome? last = features.LastEnhanceOutcome;   // 最近一次的结
 | 下一级预览（整件） | `EnhancePreviewLines(item)` | 每条基础属性一行，seq 升序；装备不带 `EnhanceNext` 时为空 | |
 | 名称后缀 | `NameWithEnhance(name, level)` | `{名称} +{N}`；0 级不加 | `青铜剑 +3` |
 | 成功率 | `FormatSuccessRate(permyriad)` | 万分比换成百分数，至多两位小数，去掉末尾的 0 | `90%`、`12.5%`、`0.01%` |
-| 强化消耗 | `FormatEnhanceCost(next)` | `金币 {cost}`；要材料时再加 `、{材料名} ×{count}` | `金币 5000、强化石 ×2` |
+| 强化消耗 | `FormatEnhanceCost(next)` | `银两 {cost}`；要材料时再加 `、{材料名} ×{count}` | `银两 5000、强化石 ×2` |
 | 孔位名 | `SocketName(socket)` | `Name` 非空用它；空则 `孔位 {socket + 1}` | `孔位 1` |
 | 空孔 | `FormatSocketLine(socket)` | `{孔名}：未镶嵌` | `攻击孔：未镶嵌` |
 | 已镶且生效 | `FormatSocketLine(socket)` | `{孔名}：{宝石名}（{属性名} +{值}）` | `攻击孔：攻击宝石·一级（伤害 +30）` |

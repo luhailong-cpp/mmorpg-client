@@ -123,6 +123,11 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// 其次是装备栏读取失败。
         /// </summary>
         public string EquipmentError => _equipActionError.Length != 0 ? _equipActionError : _equipmentReadError;
+        /// <summary>
+        /// 装备栏读取本身的失败原因(不含装备类操作的失败);下一次读取开始、读取成功、或下一次装备类操作开始时清空。
+        /// 强化 / 镶嵌面板用它区分「快照没同步上」与「操作被拒」。
+        /// </summary>
+        public string EquipmentReadError => _equipmentReadError;
         public string MissionsError { get; private set; } = string.Empty;
         public string ActivitiesError { get; private set; } = string.Empty;
         /// <summary>
@@ -130,6 +135,20 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// 断线、换角色时清空,所以它不会与装备类操作的失败原因同时存在。
         /// </summary>
         public EquipEnhanceOutcome? LastEnhanceOutcome { get; private set; }
+        /// <summary>
+        /// 距离下一次强化 / 镶嵌 / 取下可以发包还剩多少毫秒(0 = 现在就能发)。只给界面置灰用的读数:
+        /// 闸本身仍在 PerformEquipAction 里,间隔内的点击照样静默丢弃。与闸同口径 —— 时钟读数倒退(时钟被换过)时为 0。
+        /// 读数会随时间自己变小却不触发 <see cref="OnChanged"/>,界面要按帧(或定时)重新读它。
+        /// </summary>
+        public long ForgeCooldownRemainingMs
+        {
+            get
+            {
+                if (!_lastForgeSendMs.HasValue) return 0;
+                long elapsed = _nowMs() - _lastForgeSendMs.Value;
+                return elapsed < 0 || elapsed >= ForgeMinIntervalMs ? 0 : ForgeMinIntervalMs - elapsed;
+            }
+        }
         /// <summary>
         /// 发包间隔用的毫秒时钟,默认是进程内单调时钟;只给用例替换,传 null 恢复默认。
         /// 不走构造函数(GameClient 里那一处构造调用是别的会话的在途文件);
@@ -681,7 +700,8 @@ namespace MmorpgClient.Game.PlayerFeatures
                 (uint)equip_error.KEquipEnhanceUnavailable => EnhanceUnavailableText,
                 (uint)equip_error.KEquipEnhanceMaxLevel => EnhanceMaxLevelText,
                 (uint)equip_error.KEquipEnhanceMaterialNotEnough => "强化材料不足",
-                (uint)equip_error.KEquipEnhanceGoldNotEnough => "金币不足,无法强化",
+                // 契约 §0-1 把 kCurrencyGold 叫「银两」(背包页、属性、宠物同口径)。Tip.xlsx 这一行若仍写「金币」,客户端先改叫法。
+                (uint)equip_error.KEquipEnhanceGoldNotEnough => "银两不足,无法强化",
                 (uint)equip_error.KEquipGemNotGem => "该物品不是宝石",
                 (uint)equip_error.KEquipGemNotOwned => GemNotOwnedText,
                 (uint)equip_error.KEquipGemSocketInvalid => GemSocketInvalidText,

@@ -402,7 +402,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [TestCase((uint)equip_error.KEquipEnhanceUnavailable, "该装备无法强化")]
         [TestCase((uint)equip_error.KEquipEnhanceMaxLevel, "已强化到最高等级")]
         [TestCase((uint)equip_error.KEquipEnhanceMaterialNotEnough, "强化材料不足")]
-        [TestCase((uint)equip_error.KEquipEnhanceGoldNotEnough, "金币不足,无法强化")]
+        [TestCase((uint)equip_error.KEquipEnhanceGoldNotEnough, "银两不足,无法强化")]
         [TestCase((uint)equip_error.KEquipGemNotGem, "该物品不是宝石")]
         [TestCase((uint)equip_error.KEquipGemNotOwned, "背包里没有这颗宝石")]
         [TestCase((uint)equip_error.KEquipGemSocketInvalid, "该装备没有这个宝石孔")]
@@ -550,7 +550,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Load(StandardBag(gold, stones), StandardEquipment());
             uint tipId = code == "material"
                 ? (uint)equip_error.KEquipEnhanceMaterialNotEnough : (uint)equip_error.KEquipEnhanceGoldNotEnough;
-            string message = code == "material" ? "无法强化:强化材料不足" : "无法强化:金币不足,无法强化";
+            string message = code == "material" ? "无法强化:强化材料不足" : "无法强化:银两不足,无法强化";
             uint[] expected = resync ? new uint[] { 0, 2 } : new uint[0];
 
             _client.EnhanceEquip(Sword);
@@ -981,6 +981,44 @@ namespace MmorpgClient.Tests.EditMode.Battle
             long second = _client.NowMs();
             Assert.That(second, Is.GreaterThanOrEqualTo(first), "默认时钟单调不回退");
             Assert.That(first, Is.GreaterThanOrEqualTo(0));
+        }
+
+        /// <summary>
+        /// ForgeCooldownRemainingMs 是给界面置灰用的读数,必须与闸同口径:读数 &gt; 0 的时刻点击一定被丢弃,读数为 0 的时刻一定放行。
+        /// </summary>
+        [Test]
+        public void CooldownReadingMatchesTheGateExactly()
+        {
+            LoadBoth();
+            Assert.That(_client.ForgeCooldownRemainingMs, Is.EqualTo(0), "还没发过:没有冷却");
+
+            // 本地拒绝不发包,也不起算。
+            _client.InlayGem(Sword, 7, AttackGem);
+            Assert.That(_client.ForgeCooldownRemainingMs, Is.EqualTo(0));
+
+            Send("remove");
+            Assert.That(_client.ForgeCooldownRemainingMs, Is.EqualTo(PlayerFeaturesClient.ForgeMinIntervalMs), "从发包那一刻起算");
+            Last.Respond(new RemoveGemResponse { ErrorMessage = new TipInfoMessage { Id = (uint)equip_error.KEquipInBattle } });
+
+            _now += 699;
+            Assert.That(_client.ForgeCooldownRemainingMs, Is.EqualTo(1));
+            int sent = ForgeCallCount();
+            _client.EnhanceEquip(Sword);
+            Assert.That(ForgeCallCount(), Is.EqualTo(sent), "读数 > 0:闸一定丢弃");
+
+            _now += 1;
+            Assert.That(_client.ForgeCooldownRemainingMs, Is.EqualTo(0));
+            _client.EnhanceEquip(Sword);
+            Assert.That(ForgeCallCount(), Is.EqualTo(sent + 1), "读数为 0:闸一定放行");
+            LastEnhance(Sword).Respond(new EnhanceEquipResponse { ErrorMessage = new TipInfoMessage { Id = (uint)equip_error.KEquipInBattle } });
+
+            // 时钟读数倒退(换过时钟):闸放行,读数也为 0,不能显示成「还要等很久」。
+            _now = 5;
+            Assert.That(_client.ForgeCooldownRemainingMs, Is.EqualTo(0));
+            // 穿脱不起算。
+            _now = 1_000_000;
+            _client.UnequipItem(WornSword);
+            Assert.That(_client.ForgeCooldownRemainingMs, Is.EqualTo(0));
         }
 
         // ── 强化结果的发布与清理 ─────────────────────────────

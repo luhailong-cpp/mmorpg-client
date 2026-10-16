@@ -159,19 +159,19 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void EnhanceCostListsGoldThenMaterial()
         {
             var next = new EquipEnhancePreview { CostGold = 5000, MaterialConfigId = Stone, MaterialName = "强化石", MaterialCount = 2 };
-            Assert.That(EquipDisplay.FormatEnhanceCost(next), Is.EqualTo("金币 5000、强化石 ×2"));
+            Assert.That(EquipDisplay.FormatEnhanceCost(next), Is.EqualTo("银两 5000、强化石 ×2"));
 
             // 不要材料:config 为 0,或数量为 0。
-            Assert.That(EquipDisplay.FormatEnhanceCost(new EquipEnhancePreview { CostGold = 1000 }), Is.EqualTo("金币 1000"));
+            Assert.That(EquipDisplay.FormatEnhanceCost(new EquipEnhancePreview { CostGold = 1000 }), Is.EqualTo("银两 1000"));
             Assert.That(EquipDisplay.FormatEnhanceCost(new EquipEnhancePreview { CostGold = 1000, MaterialConfigId = Stone, MaterialName = "强化石" }),
-                Is.EqualTo("金币 1000"));
-            // 不收金币也照写,数值不省。
+                Is.EqualTo("银两 1000"));
+            // 不收银两也照写,数值不省。
             Assert.That(EquipDisplay.FormatEnhanceCost(new EquipEnhancePreview { MaterialConfigId = Stone, MaterialName = "强化石", MaterialCount = 1 }),
-                Is.EqualTo("金币 0、强化石 ×1"));
+                Is.EqualTo("银两 0、强化石 ×1"));
             // 材料的 Item 行查不到:服务器给空名,退回带 id 的占位,不编造名称。
             Assert.That(EquipDisplay.FormatEnhanceCost(new EquipEnhancePreview { CostGold = 5000, MaterialConfigId = Stone, MaterialCount = 2 }),
-                Is.EqualTo("金币 5000、物品 · 2001 ×2"));
-            Assert.That(EquipDisplay.FormatEnhanceCost(new EquipEnhancePreview { CostGold = ulong.MaxValue }), Is.EqualTo("金币 18446744073709551615"));
+                Is.EqualTo("银两 5000、物品 · 2001 ×2"));
+            Assert.That(EquipDisplay.FormatEnhanceCost(new EquipEnhancePreview { CostGold = ulong.MaxValue }), Is.EqualTo("银两 18446744073709551615"));
             Assert.That(EquipDisplay.FormatEnhanceCost(null), Is.Empty);
         }
 
