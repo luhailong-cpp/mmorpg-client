@@ -22,7 +22,7 @@ namespace MmorpgClient.Editor.Tianyong
             importer.filterMode = FilterMode.Bilinear;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.crunchedCompression = false;
-            importer.maxTextureSize = 1024;
+            importer.maxTextureSize = 2048;
         }
     }
 }

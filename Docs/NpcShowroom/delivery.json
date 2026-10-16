@@ -1,0 +1,31 @@
+{
+  "generatedAtUtc": "2026-10-16T07:21:44.7147348Z",
+  "scope": "Independent static NPC showroom; main-city map, dialogue, animation and input-click automation are outside this verification",
+  "assetCount": 23,
+  "matchingSourceAndClientSha256": 23,
+  "syncIntegrationTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "offlineRuntimeCompilation": {
+    "files": 443,
+    "errors": 0
+  },
+  "unityVersion": "6000.6.0f1",
+  "windowsBuild": {
+    "exeSha256": "718444f6a718fa668da96eb0a58445b009673310e6129152a63dbf7a92b8de00",
+    "errors": 0,
+    "result": "Succeeded"
+  },
+  "playerVerification": {
+    "failed": 0,
+    "screenshotReview": "Reviewed all four captured player screenshots",
+    "requiresVisibleWindow": true,
+    "report": "verification/player-visible/verification.json",
+    "runtimeErrors": 0,
+    "passed": 30
+  },
+  "sourceScene": "E:/work/mmorpg-client/Assets/Scenes/World/NpcArtShowroom.unity",
+  "launcher": "Start-NpcShowroom.cmd",
+  "apiUsedThisIntegration": false
+}

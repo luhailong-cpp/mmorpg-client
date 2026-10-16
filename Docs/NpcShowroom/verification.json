@@ -1,0 +1,223 @@
+{
+    "generatedAtUtc": "2026-10-16T07:18:58.6856457Z",
+    "scope": "Independent static NPC showroom; not main-city gameplay and not input-click automation.",
+    "expectedNpcCount": 23,
+    "actualNpcCount": 23,
+    "checkCount": 30,
+    "passedCount": 30,
+    "failedCount": 0,
+    "passed": true,
+    "checks": [
+        {
+            "name": "manifest-count",
+            "id": "",
+            "detail": "Expected 23, actual 23",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "bundled-chinese-font",
+            "id": "",
+            "detail": "Fonts/TeamNotoSansSC",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "first-gui-repaint",
+            "id": "",
+            "detail": "First rendered frame=1; splash finished=True",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "01",
+            "detail": "Expected 941x1672; actual 941x1672; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "02",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "03",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "04",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "05",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "06",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "07",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "08",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "09",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "10",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "11",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "12",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "13",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "14",
+            "detail": "Expected 1254x1254; actual 1254x1254; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "15",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "16",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "17",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "18",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "19",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "20",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "21",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "22",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "texture-selected-and-rendered",
+            "id": "23",
+            "detail": "Expected 1122x1402; actual 1122x1402; selected=True; drawn=True; unique=True; ",
+            "screenshot": "",
+            "passed": true
+        },
+        {
+            "name": "screenshot",
+            "id": "01",
+            "detail": "ScreenCapture 1440x900; fit multiplier=1; background=0",
+            "screenshot": "01-light.png",
+            "passed": true
+        },
+        {
+            "name": "screenshot",
+            "id": "14",
+            "detail": "ScreenCapture 1440x900; fit multiplier=1; background=1",
+            "screenshot": "14-dark.png",
+            "passed": true
+        },
+        {
+            "name": "screenshot",
+            "id": "23",
+            "detail": "ScreenCapture 1440x900; fit multiplier=1; background=2",
+            "screenshot": "23-checker.png",
+            "passed": true
+        },
+        {
+            "name": "screenshot",
+            "id": "23",
+            "detail": "ScreenCapture 1440x900; fit multiplier=3.5; background=2",
+            "screenshot": "23-high-zoom.png",
+            "passed": true
+        }
+    ],
+    "runtimeErrors": []
+}

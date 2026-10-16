@@ -1,259 +1,1441 @@
 {
   "npcCount": 23,
+  "importedAtUtc": "2026-10-16T07:04:14.991460+00:00",
   "imageOperation": "byte-identical copy",
+  "sourceManifest": "E:/work/image/designs/city-npcs-hd-20260924/manifest.json",
+  "sourceManifestSha256": "e8fd6b49b27cdba5c378ea0b60b9de84ef899243890e134bc426cdc16de004c2",
+  "placementsInput": "E:/work/mmorpg-client/Docs/NpcShowroom/placements-baseline.json",
+  "anchorsInput": "E:\\work\\mmorpg-client\\Docs\\NpcShowroom\\anchors.json",
   "entries": [
     {
       "id": "01",
       "name": "杨镖头",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/01-yang-biaotou.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/01-yang-biaotou.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/01-yang-biaotou.png",
-      "sha256": "67700d30f178a0f1bcf8de94de81883960a81009c313176ad06da335d2942278",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/01-yang-biaotou.png.generation.json",
+      "sha256": "e0dab7c1703362f6723606f47d4b4fca1f9a18008ad52eeea8a5b562d629c299",
+      "sourceSchema": "native",
+      "size": [
+        941,
+        1672
+      ],
+      "visibleBBox": [
+        13,
+        25,
+        926,
+        1660
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 545.73,
+        "pixelY": 1660
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/01-yang-biaotou.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "file": "../../team-ui-v2/team-ui-v2.png",
+          "role": "primary_approved_style",
+          "inputMode": "in-memory JPEG rendition"
+        },
+        {
+          "file": "../source/01-yang-biaotou-hd-attempt-01.png",
+          "role": "identity_pose_and_base_costume",
+          "inputMode": "in-memory JPEG rendition"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "02",
       "name": "屠娇娇",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/02_tu-jiaojiao.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/02_tu-jiaojiao.png",
-      "sha256": "0da13b16f962dce480b42e5dc523449217609f0acec398310a52853574e14702",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/02_tu-jiaojiao.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/02-tu-jiaojiao.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/02-tu-jiaojiao.png",
+      "sha256": "a35c9526f577b65a84fd5675514a21787515b2773f39e3255ee10d06aae3e08f",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        179,
+        64,
+        1097,
+        1343
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 561.53,
+        "pixelY": 1343
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/02-tu-jiaojiao.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 3
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style",
+          "transport": "memory_jpeg_rendition; actual image context via num_last_images_to_include:3",
+          "sha256": "5fab5229de7030ac48172cfa39bb45f612a545cee0dba6303ae6f2dcfdf38750"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/02_tu-jiaojiao.png",
+          "role": "identity_pose_age_proportions_and_primary_colors",
+          "transport": "memory_jpeg_rendition; actual image context via num_last_images_to_include:3",
+          "sha256": "08323499a032019578944f16fff45299900b10820e357facd6345274900d9931"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-hd-20260924/source/01-yang-biaotou-festive-style-sample.png",
+          "role": "supporting_festive_integration_example_only_not_new_user_approved_style",
+          "transport": "memory_jpeg_rendition; actual image context via num_last_images_to_include:3",
+          "sha256": "e0dab7c1703362f6723606f47d4b4fca1f9a18008ad52eeea8a5b562d629c299",
+          "retentionStatus": "removed_after_finalization",
+          "historicalInputSha256": "e0dab7c1703362f6723606f47d4b4fca1f9a18008ad52eeea8a5b562d629c299",
+          "retainedAs": "native/01-yang-biaotou.png"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "03",
       "name": "董老头",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/03_dong-laotou.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/03_dong-laotou.png",
-      "sha256": "b87ab97364d5672cd3237bc85dabdd9deb4693bf8b14f7e8a8b7c8c8b7cf989d",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/03_dong-laotou.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/03-dong-laotou.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/03-dong-laotou.png",
+      "sha256": "cb7c725a49d1617fb89488e31535387e762d508fb9a57693efb16f91b733d0d3",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        255,
+        25,
+        922,
+        1390
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 591.45,
+        "pixelY": 1390
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/03-dong-laotou.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/03_dong-laotou.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "04",
       "name": "辛仁皑",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/04_xin-ren-ai.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/04_xin-ren-ai.png",
-      "sha256": "8d245b299cd0d29d8711585ddaf1739ab590911382dec6d3f13634afbca06e53",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/04_xin-ren-ai.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/04-xin-ren-ai.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/04-xin-ren-ai.png",
+      "sha256": "63f481c61c2d7eebc77f8852228ec975fa5cef7aa739fce740b4ed3179f3d4d0",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        126,
+        13,
+        1010,
+        1374
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 595.18,
+        "pixelY": 1374
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/04-xin-ren-ai.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 3
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style",
+          "transport": "memory_jpeg_rendition; actual image context via num_last_images_to_include:3",
+          "sha256": "5fab5229de7030ac48172cfa39bb45f612a545cee0dba6303ae6f2dcfdf38750"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/04_xin-ren-ai.png",
+          "role": "identity_pose_age_proportions_and_primary_colors",
+          "transport": "memory_jpeg_rendition; actual image context via num_last_images_to_include:3",
+          "sha256": "1ed924aed9bb0234d3045d3eaa713a11056b9ee452ee52afc064be3dd11d8f98"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-hd-20260924/source/01-yang-biaotou-festive-style-sample.png",
+          "role": "supporting_festive_integration_example_only_not_new_user_approved_style",
+          "transport": "memory_jpeg_rendition; actual image context via num_last_images_to_include:3",
+          "sha256": "e0dab7c1703362f6723606f47d4b4fca1f9a18008ad52eeea8a5b562d629c299",
+          "retentionStatus": "removed_after_finalization",
+          "historicalInputSha256": "e0dab7c1703362f6723606f47d4b4fca1f9a18008ad52eeea8a5b562d629c299",
+          "retainedAs": "native/01-yang-biaotou.png"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "05",
       "name": "北斗星使",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/05_beidou-xingshi.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/05_beidou-xingshi.png",
-      "sha256": "3b4e8a9a21504ccf1e1ce34d9d77df78e5f5ed1f4f293c9a8d7182c749eda5f8",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/05_beidou-xingshi.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/05-beidou-xingshi.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/05-beidou-xingshi.png",
+      "sha256": "1332b949a1d17f126063015a2b7445a724cb923e94b81a8398321ea6e04d58e7",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        68,
+        17,
+        1107,
+        1346
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 590.97,
+        "pixelY": 1346
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/05-beidou-xingshi.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": null
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style",
+          "inputConfirmation": "Planned reference; exact call payload not recovered"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/05_beidou-xingshi.png",
+          "role": "identity_pose_age_proportions_and_primary_colors",
+          "inputConfirmation": "Planned reference; exact call payload not recovered"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-hd-20260924/source/01-yang-biaotou-festive-style-sample.png",
+          "role": "supporting_festive_integration_example_only_not_new_user_approved_style",
+          "inputConfirmation": "Planned reference; exact call payload not recovered",
+          "retentionStatus": "removed_after_finalization",
+          "historicalInputSha256": "e0dab7c1703362f6723606f47d4b4fca1f9a18008ad52eeea8a5b562d629c299",
+          "retainedAs": "native/01-yang-biaotou.png"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "06",
       "name": "赤灵尊神",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/06_chiling-zunshen.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/06_chiling-zunshen.png",
-      "sha256": "56a3eccead7ed0fb14fb3dc0d2c07e162b7041da5d39fc1b0f791d7e17e6e014",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/06_chiling-zunshen.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/06-chiling-zunshen.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/06-chiling-zunshen.png",
+      "sha256": "1ff7ea792a238cef2ca539bd6d2f5b0d14fcb8a3eccef108f7af97df708c713d",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        65,
+        18,
+        1063,
+        1378
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 611.99,
+        "pixelY": 1378
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/06-chiling-zunshen.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/06_chiling-zunshen.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "07",
       "name": "擂台管理员",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/07_arena-manager.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/07_arena-manager.png",
-      "sha256": "3cb0f370e19e18cdf1ce8806c2451b4a86ceb61bf8a082ccbcd88c4c6da37c59",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/07_arena-manager.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/07-arena-manager.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/07-arena-manager.png",
+      "sha256": "c0a07b5e739055ecad01ed68cad4e1b8326c00eedff0ce920a1858243ed9ad25",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        169,
+        37,
+        978,
+        1380
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 581.12,
+        "pixelY": 1380
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/07-arena-manager.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/07_arena-manager.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "08",
       "name": "阵营战表彰大使",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/08-faction-commendation-envoy.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/08-faction-commendation-envoy.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/08-faction-commendation-envoy.png",
-      "sha256": "d90af6b1537313daa138d8db52e022df833ac34911f1a69756a15ad181c9fe79",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/08-faction-commendation-envoy.png.generation.json",
+      "sha256": "1e9cec277cddf07665ab1f1385f9037894a138baa2d9183f8242ae0aac6ac1a8",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        258,
+        17,
+        888,
+        1393
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 540.15,
+        "pixelY": 1393
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/08-faction-commendation-envoy.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/08-faction-commendation-envoy.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "09",
       "name": "镇魔道人",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/09-demon-quelling-taoist.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/09-demon-quelling-taoist.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/09-demon-quelling-taoist.png",
-      "sha256": "9ca2cc8b4024e06051a63b325b003ca3bcb825ba5d1e459cb9e3c9425d31f169",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/09-demon-quelling-taoist.png.generation.json",
+      "sha256": "48146538e90352b91c15557f58a830aa7d30c6ee32fcee330a2554586c77d244",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        140,
+        19,
+        1013,
+        1384
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 592.72,
+        "pixelY": 1384
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/09-demon-quelling-taoist.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/09-demon-quelling-taoist.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "10",
       "name": "车夫",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/10-carter.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/10-carter.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/10-carter.png",
-      "sha256": "86eb9c24de2f9f387ef5301973b830e1d62178160b786b0bce66e049a572bc8d",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/10-carter.png.generation.json",
+      "sha256": "9242d61bcfb0d09654ed8408e53b841fcb744e86cd7d922e33721587d7a38df1",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        239,
+        24,
+        914,
+        1389
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 610.17,
+        "pixelY": 1389
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/10-carter.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/10-carter.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "11",
       "name": "无想僧",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/11-wuxiang-monk.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/11-wuxiang-monk.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/11-wuxiang-monk.png",
-      "sha256": "4c99d03d94aa1cd6bcaaff86ff023d999bc2fa2cddd7e01330f33f61e8dd7ab4",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/11-wuxiang-monk.png.generation.json",
+      "sha256": "596498b3f4ab3123aee96dcf79617e6c5797a63767bbd2a6f4d2b87205d98ed2",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        262,
+        80,
+        992,
+        1355
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 608.85,
+        "pixelY": 1355
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/11-wuxiang-monk.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style",
+          "submittedRendition": "In-memory JPEG on #f7f2e8, thumbnail max 1000x1100, quality 85; displayed to tool via recent-image context."
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/11-wuxiang-monk.png",
+          "role": "identity_pose_age_proportions_and_primary_colors",
+          "submittedRendition": "In-memory JPEG on #f7f2e8, thumbnail max 1000x1100, quality 85; displayed to tool via recent-image context."
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "12",
       "name": "无意僧",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/12-wuyi-monk.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/12-wuyi-monk.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/12-wuyi-monk.png",
-      "sha256": "6daf12e4ce61f3390c33ab6a49308286dcff738ece7386c2cdd735b4b9ef9645",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/12-wuyi-monk.png.generation.json",
+      "sha256": "b4fa562a281c2fc66a8a6458313be41f4de4ba3c67adad76b2621af7d3a784dc",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        290,
+        79,
+        968,
+        1340
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 608.13,
+        "pixelY": 1340
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/12-wuyi-monk.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style",
+          "submittedRendition": "In-memory JPEG on #f7f2e8, thumbnail max 1000x1100, quality 85; displayed to tool via recent-image context."
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/12-wuyi-monk.png",
+          "role": "identity_pose_age_proportions_and_primary_colors",
+          "submittedRendition": "In-memory JPEG on #f7f2e8, thumbnail max 1000x1100, quality 85; displayed to tool via recent-image context."
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "13",
       "name": "陆压真人",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/13-luya-immortal.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/13-luya-immortal.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/13-luya-immortal.png",
-      "sha256": "3a1583a4ced5b6bd5aa4e8b195ca065b20800befcab44a22bbd65de46b0780ed",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/13-luya-immortal.png.generation.json",
+      "sha256": "497abf554700953d9014105dede2dfb7e5ef325cb9a776765bfbe927efc27d3b",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        144,
+        33,
+        1059,
+        1384
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 611.08,
+        "pixelY": 1384
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/13-luya-immortal.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style",
+          "submittedRendition": "In-memory JPEG on #f7f2e8, thumbnail max 1000x1100, quality 85; displayed to tool via recent-image context."
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/13-luya-immortal.png",
+          "role": "identity_pose_age_proportions_and_primary_colors",
+          "submittedRendition": "In-memory JPEG on #f7f2e8, thumbnail max 1000x1100, quality 85; displayed to tool via recent-image context."
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "14",
       "name": "朱雀",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/14-zhuque.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/14-zhuque.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/14-zhuque.png",
-      "sha256": "0297bba34a4db3d7ab15b8912fd190406b92e7c1b96117a06fd092f17fceef68",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/14-zhuque.png.generation.json",
+      "sha256": "4989defce3dec7d6b8164bf3180517b9faee2f587f2707e9ef2a873bad09f2b2",
+      "sourceSchema": "native",
+      "size": [
+        1254,
+        1254
+      ],
+      "visibleBBox": [
+        152,
+        6,
+        1177,
+        1242
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 550,
+        "pixelY": 1242
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/14-zhuque.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/14-zhuque.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "15",
       "name": "苏苏",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/15-susu.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/15-susu.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/15-susu.png",
-      "sha256": "f95f21a49aa736f3dcf96df869804ad18b6b9116577fe0704dc9383e4c0767e4",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/15-susu.png.generation.json",
+      "sha256": "c44059824658bf5c15194db57fdefe6286da9a68e667e97769f90d67d6e817b1",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        95,
+        10,
+        1089,
+        1392
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 537.75,
+        "pixelY": 1392
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/15-susu.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/15-susu.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "16",
       "name": "月老",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/16-yue-lao.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/16-yue-lao.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/16-yue-lao.png",
-      "sha256": "85a8ffd19480b9f2e94eba8000ddbbfc4d95a369ccad55f691c484a09636de6b",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/16-yue-lao.png.generation.json",
+      "sha256": "1202b2c574e972a4af7676879efd8f490f7740c96e2af01c0a9e38533db1a39e",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        80,
+        50,
+        1091,
+        1384
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 607.67,
+        "pixelY": 1384
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/16-yue-lao.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/16-yue-lao.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "17",
       "name": "无名药铺老板",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/17-medicine-shopkeeper.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/17-medicine-shopkeeper.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/17-medicine-shopkeeper.png",
-      "sha256": "52f4a339ed86202d7d539214aeafb8047718046747d333534355b3afcca86315",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/17-medicine-shopkeeper.png.generation.json",
+      "sha256": "0a37d4267429f7bbfb2ba2906b1e57d2d2ed4c7307df78a2262a71d0bfb9b12a",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        180,
+        18,
+        957,
+        1377
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 601.06,
+        "pixelY": 1377
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/17-medicine-shopkeeper.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/17-medicine-shopkeeper.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "18",
       "name": "仙界神捕",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/18-celestial-constable.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/18-celestial-constable.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/18-celestial-constable.png",
-      "sha256": "1949068103d76e206dc6cdb7f3a2ebaa03d2e36567ff88492a0b704998bacfcb",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/18-celestial-constable.png.generation.json",
+      "sha256": "e16fe3ef6167b3c04c812fc2bf7c9d28bf7cca46cc4608468f5b789023f63c4f",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        49,
+        27,
+        1022,
+        1382
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 552.77,
+        "pixelY": 1382
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/18-celestial-constable.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/18-celestial-constable.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "19",
       "name": "无名武器店老板",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/19-weapon-shopkeeper.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/19-weapon-shopkeeper.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/19-weapon-shopkeeper.png",
-      "sha256": "556b1708e6b20cdc0093e74899b9a8c7377927bc6bfbb679e686d2de766aa506",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/19-weapon-shopkeeper.png.generation.json",
+      "sha256": "4bcde3484248591f7bb03c80e3db23ff6c0d2cd7b557e16c7ba21d99b93e9e14",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        135,
+        16,
+        1044,
+        1393
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 627.45,
+        "pixelY": 1393
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/19-weapon-shopkeeper.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/19-weapon-shopkeeper.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "20",
       "name": "善财童子",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/20-shancai.png",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/20-shancai.png",
       "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/20-shancai.png",
-      "sha256": "b1a9b7edb1069f04846cdc470211171b634ca9b04bf9a8d0e31d05c802ccdba1",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/characters/20-shancai.png.generation.json",
+      "sha256": "9ca51dcc30feafa65d12fc6a160f27a342302bf14c682e97b8acaeff2ec7dc1c",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        153,
+        18,
+        1028,
+        1367
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 517.26,
+        "pixelY": 1367
+      },
       "referenceCompleteness": "complete_or_mostly_complete",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/20-shancai.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/characters/20-shancai.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "21",
       "name": "段铁心（补全）",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/21_duan-tiexin-completion.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/21_duan-tiexin-completion.png",
-      "sha256": "87e81cff763ca176f1a65707525db21aa849fb813d7edf94829c6c298f833cff",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/supplemental/21_duan-tiexin-completion.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/21-duan-tiexin.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/21-duan-tiexin.png",
+      "sha256": "03874dd15d99e86999057701487c3e24baa0e4601df80d31043d7b58065f8f7c",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        188,
+        81,
+        986,
+        1323
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 582.69,
+        "pixelY": 1323
+      },
       "referenceCompleteness": "partial",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/21-duan-tiexin.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 3
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/supplemental/21_duan-tiexin-completion.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-hd-20260924/source/21-duan-tiexin-attempt-01.png",
+          "role": "edit_target_framing_correction",
+          "retentionStatus": "removed_after_finalization",
+          "historicalInputSha256": "910dd6db19312f975a7cb5cf07237e3fb5093391bd874340bba98dd703bf13d3"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "22",
       "name": "云游大仙（补全）",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/22_yunyou-daxian-completion.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/22_yunyou-daxian-completion.png",
-      "sha256": "ba80ea45c80a1fb2d76c5b464516d179d3ae33eb7eac827cbabf6424709abf08",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/supplemental/22_yunyou-daxian-completion.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/22-yunyou-daxian.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/22-yunyou-daxian.png",
+      "sha256": "a8672b530ebf174f552fcfda21b8d43bf81760c23cb948cea30aa7b235863184",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        88,
+        71,
+        1073,
+        1351
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 587.9,
+        "pixelY": 1351
+      },
       "referenceCompleteness": "partial",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/22-yunyou-daxian.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/supplemental/22_yunyou-daxian-completion.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     },
     {
       "id": "23",
       "name": "店铺掌柜（补全）",
-      "source": "E:/work/image/designs/city-npcs-20260924/transparent-1024/23_shopkeeper-completion.png",
-      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/23_shopkeeper-completion.png",
-      "sha256": "9afc85bea134d875c3da99e282b9c6ad49b7302c5bcc1aafbc7b4e195b14855d",
-      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-20260924/supplemental/23_shopkeeper-completion.png.generation.json",
+      "source": "E:/work/image/designs/city-npcs-hd-20260924/native/23-shopkeeper.png",
+      "destination": "Assets/Resources/World/Tianyong/Npcs/Sprites/23-shopkeeper.png",
+      "sha256": "614af9581e7a305476333fa4833bf0e2de8353ba9125d5e280d6753699eb6299",
+      "sourceSchema": "native",
+      "size": [
+        1122,
+        1402
+      ],
+      "visibleBBox": [
+        156,
+        35,
+        1010,
+        1378
+      ],
+      "feetAnchorTopLeftPixels": {
+        "method": "explicit-pixel-anchor",
+        "pixelX": 570.44,
+        "pixelY": 1378
+      },
       "referenceCompleteness": "partial",
-      "actualModel": "gpt-image",
-      "actualQuality": null
+      "sourceGenerationRecord": "E:/work/image/designs/city-npcs-hd-20260924/native/23-shopkeeper.png.generation.json",
+      "sourceGenerationRecordStatus": "present",
+      "actualModelFamily": "gpt-image",
+      "actualModelVersion": null,
+      "actualQuality": null,
+      "reportedActualModel": "gpt-image",
+      "configTarget": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-09-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst"
+        }
+      },
+      "submittedParameters": {
+        "model": null,
+        "quality": null,
+        "size": null,
+        "num_last_images_to_include": 2
+      },
+      "historicalGenerationReferences": [
+        {
+          "path": "E:/work/image/designs/team-ui-v2/team-ui-v2.png",
+          "role": "primary_user_approved_style"
+        },
+        {
+          "path": "E:/work/image/designs/city-npcs-20260924/supplemental/23_shopkeeper-completion.png",
+          "role": "identity_pose_age_proportions_and_primary_colors"
+        }
+      ],
+      "historicalReferencesNote": "Recorded generation inputs only; not current runtime dependencies or a claim that those files still exist."
     }
   ]
 }
