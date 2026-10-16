@@ -122,6 +122,10 @@ InitTestScene*.unity*
 /.codex/
 /.codex-artifacts/
 
+# 本机开发支持文件与离线包，保留在客户端目录内。
+/.mcp.json
+/tools/unity-packages/
+
 # Python tool caches
 __pycache__/
 *.py[cod]
