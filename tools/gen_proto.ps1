@@ -125,7 +125,14 @@ $files = @(
     # mystery_merchant_error 与 trade / team / friend 同形:由服务端导表器生成,客户端按枚举映射文案、不手抄数字;
     # 所以本脚本只能在服务端导表器跑完之后再跑(否则第二行的文件不存在,protoc 直接报错)。
     "proto/scene/player_mystery_merchant.proto",
-    "generated/code/proto/tip/mystery_merchant_error_tip.proto"
+    "generated/code/proto/tip/mystery_merchant_error_tip.proto",
+
+    # 邮件 M1(服务端 docs/design/mail-system.md §5.2、§9 闸门 3,用户 2026-09-20 授权客户端同批收录)。
+    # 服务端默认 proto_gen.yaml 一旦含 mail 块,带客户端的 proto-gen 会写出 ClientPlayerMail*Handler.cs,
+    # 它们引用 Mailpb.*;少了这两行就是 CS0246。mail_admin.proto(内部发件)与 mail_table.proto(建表)刻意不收。
+    # mail_error 由服务端导表器生成(17000 段),客户端按枚举映射文案、不手抄数字。
+    "proto/mail/mail.proto",
+    "generated/code/proto/tip/mail_error_tip.proto"
 )
 
 Push-Location $ProtoRoot
