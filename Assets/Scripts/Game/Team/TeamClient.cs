@@ -514,7 +514,10 @@ namespace MmorpgClient.Game.Team
             }
             if (ok)
             {
-                bool backfillStart = action == TeamAction.StartMatch && _startExpectsQueue;
+                // 以回包为准:请求在途期间有人入队,服务端按它读到的人数判定「目标 = 现有」而直接开战(视图 STARTING),
+                // 这时就是直接开战,不说「进入匹配队列」也不做核实。
+                bool backfillStart = action == TeamAction.StartMatch && _startExpectsQueue
+                    && reply.Team?.MatchState != TeamMatchState.Starting;
                 Status = action == TeamAction.StartMatch && MatchQueued
                     ? $"队伍已进入匹配队列（目标 {Snapshot.MatchTargetSize} 人），等待补位…"
                     : backfillStart ? "队伍已进入匹配队列，等待补位…" : successText;

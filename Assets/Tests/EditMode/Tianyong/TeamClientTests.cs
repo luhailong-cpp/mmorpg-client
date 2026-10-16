@@ -1107,6 +1107,40 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void MatchQueuedPushWithIdleView_StopsOnceTheViewIsQueued()
+        {
+            Loaded();
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamChangeReason.MatchQueued, ActorId = 10 });
+            _now += TeamClient.QueueViewVerifyDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 3) }); // 第一次重拉就在排了
+            Assert.That(_client.MatchQueued, Is.True);
+
+            int calls = _net.Calls.Count;
+            _now += TeamClient.QueueViewVerifyDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls), "已在排就停,不用完剩下的次数");
+        }
+
+        [Test]
+        public void StartMatchBackfillAnsweredWithDirectStart_IsTreatedAsDirectStart()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            // 请求在途期间有人入队,服务端读到的人数等于目标人数,于是直接开战。
+            var starting = LeaderView(2);
+            starting.MatchState = TeamMatchState.Starting;
+            _net.Reply(new TeamResponse { Team = starting });
+
+            Assert.That(_client.Status, Is.EqualTo("已发起队伍战斗，正在集合队员…"));
+            int calls = _net.Calls.Count;
+            _now += TeamClient.QueueViewVerifyDelaySeconds * 3;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls), "直接开战不做「应当在排」的核实");
+        }
+
+        [Test]
         public void StartMatchBackfillWithIdleReply_StillVerifiesTheQueue()
         {
             Loaded();
@@ -1130,8 +1164,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             ulong queuedAt = _client.Snapshot.MatchQueuedAtMs;
             _client.ConsumeBackfillQueue(teamId, queuedAt);
             Assert.That(_client.MatchQueued, Is.False);
+            // 先把 Consume 自己排的那次刷新走掉,下面「撤销后排一次重拉」的断言才有意义。
+            _now += 0.5f;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 4) });
+            _now += 0.5f;
+            Assert.That(_client.RefreshQueued, Is.False);
+            Assert.That(_client.MatchQueued, Is.False, "同一次排队的视图仍被抹掉");
 
             _client.ReviveBackfillQueue(teamId, queuedAt + 1); // 别的一次排队:不动
+            Assert.That(_client.RefreshQueued, Is.False);
             _push(new TeamSnapshotS2C { Team = QueuedView(1, 4), Reason = TeamChangeReason.MemberOnline });
             Assert.That(_client.MatchQueued, Is.False);
 

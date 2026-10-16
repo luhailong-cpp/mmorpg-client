@@ -439,8 +439,9 @@ namespace MmorpgClient.Game.Battle
                     EndQueuePoll(seq);
                     if (session != _queueSession)
                     {
-                        // 上一次排队的迟到回包:整包丢弃,为这一次排队(若还在排)立刻重问。
-                        if (Phase == BattlePhase.Queued) _nextQueuePollAt = _now;
+                        // 上一次排队的迟到回包:整包丢弃。这一次排队按自己的节奏轮询,不立即重问 —— 自己单排「取消后马上再排」时,
+                        // 立即重问的轮询可能比还在途的 JoinQueue 先被服务端处理,回「不在排」把新的排队打回空闲。
+                        // 若这一次的轮询曾被单飞压住,EndQueuePoll 已经安排了回来后补问。
                         return;
                     }
                     OnQueueStatus?.Invoke(resp);

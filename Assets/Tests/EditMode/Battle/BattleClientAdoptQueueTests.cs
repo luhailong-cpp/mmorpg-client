@@ -286,7 +286,29 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Queued), "上一次排队的结果不能结束这一次");
             Assert.That(_client.QueueAdopted, Is.True);
             _client.Tick(3.1);
-            Assert.That(_net.CallsOf(MessageIds.GetQueueStatus), Has.Count.EqualTo(2), "丢弃后为这一次排队重新问");
+            Assert.That(_net.CallsOf(MessageIds.GetQueueStatus), Has.Count.EqualTo(1), "丢弃后不立即重问");
+            _client.Tick(6.0);
+            Assert.That(_net.CallsOf(MessageIds.GetQueueStatus), Has.Count.EqualTo(2), "这一次排队按自己的节奏(进入排队 3 秒后)问");
+        }
+
+        [Test]
+        public void OwnQueue_LateStaleReplyDoesNotTriggerAnEarlyPoll()
+        {
+            // 自己单排:轮询在途时取消成功(回到空闲),马上又排了一次;上一次的轮询回包这才到。
+            _client.JoinQueue(Match.MatchMode._1V1, 0);
+            _client.Tick(3.0);
+            var stale = _net.CallsOf(MessageIds.GetQueueStatus)[0];
+            _client.CancelQueue();
+            _net.CallsOf(MessageIds.CancelQueue)[0].Respond(new Empty());
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None));
+            _client.JoinQueue(Match.MatchMode._1V1, 0);
+
+            stale.Respond(new Match.GetQueueStatusResponse { State = Match.QueueState.Queued });
+            _client.Tick(3.1);
+
+            Assert.That(_net.CallsOf(MessageIds.GetQueueStatus), Has.Count.EqualTo(1),
+                "不能抢在新的 JoinQueue 被处理之前就去问(会被回「不在排」打回空闲)");
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Queued));
         }
 
         [Test]
@@ -339,6 +361,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [Test]
         public void AdoptedQueueEndedByBattleStart_IsNotTicketEvidence()
         {
+            // 先有一次因「已不在排」结束的被带入排队:标记为真。
+            _client.AdoptQueue("q0");
+            _client.Tick(3.0);
+            _net.CallsOf(MessageIds.GetQueueStatus)[0]
+                .Respond(new Match.GetQueueStatusResponse { State = Match.QueueState.NotQueued });
+            Assert.That(_client.AdoptedQueueEndedByTicket, Is.True);
+
+            // 下一次被带入的排队因开战结束:标记要变回假。
             _client.AdoptQueue("q");
             var state = new BattleStateS2C { BattleId = 91, RoundIndex = 1, Outcome = eBattleOutcome.BattleOutcomeOngoing };
             state.PendingActorIds.Add(MyId);
