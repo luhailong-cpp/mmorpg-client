@@ -1,0 +1,17 @@
+{
+  "alignmentVersion": 2,
+  "characterId": "01_ice_sword_girl",
+  "contactFrame": 0,
+  "cycleDurationMs": 480,
+  "dedicatedIdle": true,
+  "frameCount": 16,
+  "frameDurationMs": 30,
+  "manifest_sha256": "1250c568a803c55e95cc6374ff983cdcf0ccc78cb5d0395807f0357c33f2d729",
+  "qc_sha256": "64636dbb5e8baf746274b4adc34180897c3c93859a6a8256051303122733780a",
+  "sourceCommit": "9adcf9291e4a867601868889a5965f3cd48630ba",
+  "sourceFamily": "original-00-22",
+  "status": "passed",
+  "validation_sha256": "fac5b3630b713d703d4267805fba8cb0f77f2a23cc3a7ea9a1a7e82d50cd1e9d",
+  "version": 13,
+  "visualReview": "passed"
+}

@@ -167,6 +167,7 @@ namespace MmorpgClient.World
         public static bool TryAttach(GameObject actor, string characterId = null)
         {
             if (actor == null) return false;
+            characterId = QdaoCharacterCatalog.ResolveVisualId(characterId) ?? QdaoCharacterCatalog.DefaultId;
             var frames = LoadFrames(characterId);
             if (frames == null) return false;
             var animator = actor.GetComponent<QdaoBoySpriteAnimator>();
@@ -230,6 +231,7 @@ namespace MmorpgClient.World
         /// <summary>Change artwork in place without moving the actor or adding another shadow.</summary>
         public bool SetAppearance(string characterId)
         {
+            characterId = QdaoCharacterCatalog.ResolveVisualId(characterId) ?? QdaoCharacterCatalog.DefaultId;
             _explicitOriginalRequest = QdaoCharacterCatalog.Find(characterId)?.IsOriginalRoster == true;
             var frames = LoadFrames(characterId);
             if (frames == null) return false;

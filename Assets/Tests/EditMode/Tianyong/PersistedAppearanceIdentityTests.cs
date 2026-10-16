@@ -63,7 +63,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(request.ClassId, Is.EqualTo(4u));
             Assert.That(request.Gender, Is.EqualTo(2u));
             Assert.That(QdaoCharacterCatalog.ResolveRole(4, 2, request.AppearanceId), Is.EqualTo(First));
-            Assert.That(QdaoCharacterCatalog.ResolveRole(4, 2, ""), Is.EqualTo("26_osmanthus_healer"));
+            Assert.That(QdaoCharacterCatalog.ResolveRole(4, 2, ""), Is.EqualTo("09_bamboo_archer_girl"));
         }
 
         [Test]
@@ -82,14 +82,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             Invoke("SpawnActorView", new ActorCreateS2C
                 { Entity = 50, Guid = 990, ActorType = ActorType.Player, ClassId = 3, Gender = 2 });
-            Assert.That(_client.World.Actors[50].CharacterId, Is.EqualTo("29_he_xiangu"));
+            Assert.That(_client.World.Actors[50].CharacterId, Is.EqualTo("03_lotus_healer_girl"));
         }
 
         [Test]
         public void AoiRestoredIdentity_OverridesTheEmptyRoleListReturnedBeforeEnterGameSelfHeal()
         {
             Cache(new AccountSimplePlayer { PlayerId = 101, ClassId = 1, Gender = 1 });
-            Assert.That(_client.ResolveCharacterId(101), Is.EqualTo("24_lu_dongbin"));
+            Assert.That(_client.ResolveCharacterId(101), Is.EqualTo("04_mountain_guardian_boy"));
             Spawn(50, 101, First);
             Assert.That(_client.ResolveCharacterId(101), Is.EqualTo(First));
             Assert.That(_client.World.Actors[50].CharacterId, Is.EqualTo(First));
@@ -116,7 +116,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             player.AppearanceId = "";
             player.ClassId = 3;
             player.Gender = 2;
-            Assert.That(BattleArtCatalog.CharacterIdFor(player, _ => First), Is.EqualTo("29_he_xiangu"));
+            Assert.That(BattleArtCatalog.CharacterIdFor(player, _ => First), Is.EqualTo("03_lotus_healer_girl"));
             var pet = new BattleActorState { ActorId = 992, ActorType = eBattleActorType.BattleActorTypePet, OwnerPlayerId = 991 };
             Assert.That(BattleArtCatalog.CharacterIdFor(pet, _ => throw new Exception("Pet must not resolve its owner")),
                 Is.EqualTo(BattleArtCatalog.CharacterIdFor(pet)));
@@ -158,7 +158,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             var visited = new HashSet<string>();
             var result = QdaoCharacterCatalog.SelectAvailableAppearances(entry => { visited.Add(entry.Id); return null; });
-            Assert.That(result.Count, Is.EqualTo(8), "Incomplete originals cannot appear in selection.");
+            Assert.That(result.Count, Is.Zero, "Incomplete originals and retired artwork cannot appear in selection.");
             Assert.That(visited.Count, Is.EqualTo(15));
             Assert.That(QdaoCharacterCatalog.RetainedOriginalAll.Count, Is.EqualTo(15));
             foreach (var id in visited) Assert.That(QdaoCharacterCatalog.IsRetainedOriginal(id), Is.True);

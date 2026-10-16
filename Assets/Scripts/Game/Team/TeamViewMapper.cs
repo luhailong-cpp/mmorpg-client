@@ -125,13 +125,13 @@ namespace MmorpgClient.Game.Team
         }
 
         /// <summary>
-        /// 立绘 id。存档外观 id 与世界、战斗同一口径(PersistedAppearanceIdentityTests 钉住),非空原样返回;
+        /// 立绘 id。存档外观 id 与世界、战斗同一口径；已撤旧图使用中央兼容映射，其他明确 id 保留;
         /// 缺外观时按四职业推导,gender 0 的旧存档按男性处理;都推不出返回 null,界面显示"待同步",
         /// 不拿默认立绘冒充。
         /// </summary>
         public static string ResolveCharacterId(uint classId, uint gender, string appearanceId)
         {
-            if (!string.IsNullOrEmpty(appearanceId)) return appearanceId;
+            if (!string.IsNullOrEmpty(appearanceId)) return QdaoCharacterCatalog.ResolveRole(classId, gender, appearanceId);
             if (classId >= 1 && classId <= 4) return QdaoCharacterCatalog.ResolveRole(classId, gender);
             return null;
         }

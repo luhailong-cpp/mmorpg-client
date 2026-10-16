@@ -54,9 +54,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(QdaoCharacterCatalog.OriginalAll[0].Id, Is.EqualTo("00_reference_topright_boy"));
             Assert.That(QdaoCharacterCatalog.OriginalAll[22].Id, Is.EqualTo("22_lidazui_hair_waiter_saber_boy"));
             Assert.That(QdaoCharacterCatalog.Find("q_daoist_topright_character_full_uncropped"), Is.Null);
-            Assert.That(QdaoCharacterCatalog.DefaultId, Is.EqualTo("24_lu_dongbin"));
+            Assert.That(QdaoCharacterCatalog.DefaultId, Is.EqualTo("00_reference_topright_boy"));
             Assert.That(QdaoCharacterCatalog.LegacyId, Is.EqualTo("QdaoHeadbandBoy"));
-            Assert.That(QdaoCharacterCatalog.ResolveRole(1, 1), Is.EqualTo("24_lu_dongbin"));
+            Assert.That(QdaoCharacterCatalog.ResolveRole(1, 1), Is.EqualTo("04_mountain_guardian_boy"));
             Assert.That(QdaoBoySpriteAnimator.FramesPerDirection, Is.EqualTo(8));
         }
 
@@ -168,15 +168,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void PlayableSelectionAddsOnlyApprovedOriginalIdsAndKeepsTheExistingEight()
+        public void PlayableSelectionContainsOnlyAcceptedCurrentIdentities()
         {
             var original = Select();
             var available = QdaoCharacterCatalog.SelectAvailableAppearances(entry => entry.Id == Character ? original : null);
-            Assert.That(available.Count, Is.EqualTo(9));
-            for (var index = 0; index < 8; index++) Assert.That(available[index], Is.SameAs(QdaoCharacterCatalog.All[index]));
-            Assert.That(available[8].Id, Is.EqualTo(Character));
-            Assert.That(QdaoCharacterCatalog.SelectAvailableAppearances(_ => null).Count, Is.EqualTo(8));
-            Assert.That(QdaoCharacterCatalog.SelectAvailableAppearances(_ => QdaoCharacterCatalog.All[0].BaselineAppearance).Count, Is.EqualTo(8));
+            Assert.That(available.Count, Is.EqualTo(1));
+            Assert.That(available[0].Id, Is.EqualTo(Character));
+            Assert.That(QdaoCharacterCatalog.SelectAvailableAppearances(_ => null).Count, Is.Zero);
+            Assert.That(QdaoCharacterCatalog.SelectAvailableAppearances(_ => QdaoCharacterCatalog.All[0].BaselineAppearance).Count, Is.Zero);
         }
     }
 }

@@ -791,7 +791,9 @@ namespace MmorpgClient.Game
             if (newId == 0)
             { FailPipeline(gen, onError, "create player returned empty list"); yield break; }
 
-            if (!string.IsNullOrEmpty(appearanceId) && ResolveCharacterId(newId) != appearanceId)
+            // Validate the server-owned saved ID, not its display-only compatibility alias.
+            if (!string.IsNullOrEmpty(appearanceId) &&
+                (!_knownRoles.TryGetValue(newId, out var createdRole) || createdRole.AppearanceId != appearanceId))
             {
                 FailPipeline(gen, onError, "服务器未保存所选外观，请更新服务端后重新登录确认角色");
                 yield break;

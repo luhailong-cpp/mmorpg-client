@@ -88,7 +88,7 @@ namespace MmorpgClient.Tests.PlayMode
                     }
                     WriteObservationsIfRequested(observations);
                 }
-                foreach (var original in QdaoCharacterCatalog.OriginalAll)
+                foreach (var original in QdaoCharacterCatalog.RetainedOriginalAll)
                 {
                     var available = original.ResolveAppearance() != null;
                     var listed = false;
@@ -101,13 +101,16 @@ namespace MmorpgClient.Tests.PlayMode
                 }
                 Assert.That(sandbox.SelectCharacter("24_crane_hermit"), Is.False);
 
-                // Keep the existing V12 real-motor baseline even when no Original has passed acceptance.
+                // A saved retired appearance uses the same current body and name as production.
                 Assert.That(sandbox.SelectCharacter("24_lu_dongbin"), Is.True);
-                yield return WalkWithRealMotor(sandbox, "24_lu_dongbin", routeOrigin, observations);
+                Assert.That(animator.CharacterId, Is.EqualTo("04_mountain_guardian_boy"));
+                Assert.That(player.GetComponentInChildren<TMPro.TMP_Text>().text,
+                    Is.EqualTo(QdaoCharacterCatalog.Find("04_mountain_guardian_boy").Name));
+                yield return WalkWithRealMotor(sandbox, "04_mountain_guardian_boy", routeOrigin, observations);
                 Assert.That(controller.Motor, Is.SameAs(motor));
                 observations.behaviorAssertionsCompleted = true;
                 WriteObservationsIfRequested(observations);
-                Debug.Log($"[QdaoRosterCity] {observations.selectedAppearanceCount} appearances switched; {observations.testedOriginalCount} original appearances walked with the real motor; Lu baseline retained. Offline sandbox, no online login asserted.");
+                Debug.Log($"[QdaoRosterCity] {observations.selectedAppearanceCount} appearances switched; {observations.testedOriginalCount} original appearances walked with the real motor; retired identity displayed current artwork. Offline sandbox, no online login asserted.");
             }
             finally
             {
