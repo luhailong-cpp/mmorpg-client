@@ -64,7 +64,11 @@ public static class EquipmentForgeUiVerification
     private static void Capture(int width, int height, List<string> evidence)
     {
         var previousScene = SceneManager.GetActiveScene();
-        var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+        // Batch mode starts with an untitled scene; Unity cannot open another scene additively beside it.
+        // Only the isolated batch run replaces that scene. The menu command preserves the user's scene.
+        bool batchUntitledScene = Application.isBatchMode && string.IsNullOrEmpty(previousScene.path);
+        var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,
+            batchUntitledScene ? NewSceneMode.Single : NewSceneMode.Additive);
         var previousTarget = RenderTexture.active;
         RenderTexture target = null;
         Texture2D pixels = null;
@@ -269,7 +273,7 @@ public static class EquipmentForgeUiVerification
             if (pixels != null) UnityEngine.Object.DestroyImmediate(pixels);
             if (target != null) { target.Release(); UnityEngine.Object.DestroyImmediate(target); }
             if (previousScene.IsValid() && previousScene.isLoaded) SceneManager.SetActiveScene(previousScene);
-            if (scene.IsValid() && scene.isLoaded) EditorSceneManager.CloseScene(scene, true);
+            if (!batchUntitledScene && scene.IsValid() && scene.isLoaded) EditorSceneManager.CloseScene(scene, true);
         }
     }
 

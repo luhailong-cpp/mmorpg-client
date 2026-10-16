@@ -2,6 +2,8 @@
 
 更新日期：2026-10-15。**分工（用户 10-15 定）：Claude 负责强化 / 镶嵌的按钮逻辑，已经写好并有用例；Codex 负责客户端 UI 接入——入口、面板画面、布局、美术、窗口互斥、键盘、窗口级用例。** 按钮逻辑全部在 `EquipForgeUiState` 里，界面只读它的快照来画，点按钮时调它的方法；不要在界面里再写一份判断。
 
+> **2026-10-16 接入进展：Codex 已完成强化 / 镶嵌入口和原生 uGUI 面板，Unity EditMode 相关用例 365/365 通过（新增窗口用例 12/12）。接入文件与验证说明见第 12 节。下文第 1–11 节保留原按钮逻辑交接背景及接入约束。**
+
 服务端契约见服务器仓 `docs/design/equipment-enhance-inlay.md`；数据层（`PlayerFeaturesClient` 的三个入口、拒绝文案、重拉规则）见同目录 `EquipmentForge-20261009.md`。
 
 ## 1. 现状
@@ -173,3 +175,28 @@
 - 冷却置灰最长 700 毫秒（`PlayerFeaturesClient.ForgeMinIntervalMs`）。回包很快时，按钮会在结果出来后再灰大半秒，这是限流档决定的。
 - 面板开着时，强化结果会同时出现在面板状态行和背包页状态行（兜底提示）。换成飘字之后就只剩面板里那一处。
 - 服务器 `Tip.xlsx` 里 `kEquipEnhanceGoldNotEnough` 的文案如果还写着「金币」，客户端已经按银两显示（做法与属性、宠物相同）；服务端表另行同步。
+
+## 12. Codex 界面接入（2026-10-16）
+
+入口已接通：背包或已穿戴装备的卡片「更多」→「强化 / 镶嵌」。人物属性与期望属性入口保留，未开放提示只保留洗练 / 炼化。
+
+| 文件 | 接入内容 |
+|---|---|
+| `EquipForgeDialog.cs`（含 `.meta`） | 1480×900 玉色 / 纸张主面板，展示快照中的等级、成功率、消耗、持有、失败规则、属性预览、孔位、状态和置灰原因。单选宝石每页 6 项；会降级的强化先显示确认层。 |
+| `EquipForgeSocketFocus.cs`（含 `.meta`） | 仅处理键盘选中，使孔位自动滚到可见范围；滚轮和拖动继续交给父 `ScrollRect`。 |
+| `EquipActionsDialog.cs`、`GameplayWindow.cs`、`GameplayUiRoot.cs` | 注入既有 `EquipForgeUiState`，接入口和弹窗互斥；重新记录目标实例 id，防止发包同步通知误关窗口；关闭 / 换页 / 物品消失时同步关闭状态，销毁时解除面板订阅。 |
+| `EquipTooltip.cs` | 装备名称显示强化等级，属性区补充宝石孔位；回包后使用新快照更新。 |
+| `EquipForgeWindowTests.cs`（含 `.meta`） | 12 条窗口级用例，使用真实状态对象 / 数据层与假传输，从原生按钮验证请求、回包、冷却、置灰文案、两步确认、关闭、刷新、纯文本以及孔位滚轮 / 拖动 / 焦点。 |
+| `EquipWindowTests.cs` | 原有 4 处忙状态文案断言更新为「正在处理装备…」。 |
+| `Assets/Editor/EquipmentForgeUiVerification.cs`（含 `.meta`） | `EquipmentForgeUiVerification.CaptureAll()` 使用正式窗口和假传输渲染三种分辨率的原生 Unity 截图，同时断言镶嵌及确认强化的发包行为。 |
+
+界面不直接调用强化 / 镶嵌 RPC，不计算数值，不自动重发。所有服务器文本关闭 richText；按钮状态和提示直接取快照。Esc 先取消宝石选择 / 降级确认，再关闭养成面板；关闭的同一帧不穿透关闭背包。孔位列表可滚动，较多的宝石和属性预览可翻页，键盘导航限定在当前层。
+
+### 本次验证
+
+- 运行时离线编译：`pwsh -File tools/client_compile_check.ps1`，0 错误。
+- Unity 6000.6.0f1 EditMode：最终排版版本的 9 个相关用例类，**365/365 通过**。其中 `EquipForgeWindowTests` 12、`EquipWindowTests` 29、`GameplayWindowTests` 16，原 6 个数据 / 状态用例类共 308。结果：`E:\work\forge-ui-qa-20261016\editmode-results.xml`；日志：`E:\work\forge-ui-qa-20261016\editmode-final.log`。
+- Unity 验证在交接中的副本 `E:\work-archive-20261015\tmp\forge-ui-verify-20261016` 完成；运行前同步当前客户端 `Assets/Scripts`、Battle 测试和新截图脚本，复用副本的资源缓存。
+- 主仓与验证副本的 9 个相关源文件 SHA-256 完全一致，记录：`E:\work\forge-ui-qa-20261016\verified-source-hashes.json`。
+- 原生截图：**18 张**（2560×1080、1920×1080、1280×720，各含可强化、选择宝石、镶嵌在途、降级确认、材料不足、同步中六种状态），脚本断言通过；已目视检查主面板、宝石选择、确认与提示，修正宝石题签与数量落入装饰边框的问题。输出：`E:\work\forge-ui-qa-20261016\screenshots`；记录：`E:\work\forge-ui-qa-20261016\verification.txt`。
+- 本次没有连接游戏服务器或登录账号；真实强化 / 镶嵌联机验收仍按第 9 节补货后执行。第 10 节中「没有界面」的限制已由本次接入解除。

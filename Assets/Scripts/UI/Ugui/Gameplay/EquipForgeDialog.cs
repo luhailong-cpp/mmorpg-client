@@ -22,7 +22,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly ScrollRect _socketScroll;
         private readonly TMP_Text _title, _location, _stage, _status, _level, _rate, _fail, _cost, _owned;
         private readonly TMP_Text _enhanceHint, _refreshHint, _previewPageLabel;
-        private readonly TMP_Text _pickerTitle, _pickerHint, _pickerPageLabel, _confirmTitle, _confirmMessage, _confirmHint;
+        private readonly TMP_Text _pickerTitle, _pickerContext, _pickerHint, _pickerPageLabel, _confirmTitle, _confirmMessage, _confirmHint;
         private readonly Button _enhance, _refresh, _close, _back, _previewPrevious, _previewNext;
         private readonly Button _pickerPrevious, _pickerNext, _cancelInlay, _confirmEnhance, _cancelConfirm;
         private readonly List<Selectable> _socketButtons = new List<Selectable>();
@@ -95,9 +95,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _pickerTitle = Label(pickerFrame, "EquipForgePickerTitle", "", 110, 52, 940, 70, 34,
                 EquipUiSkin.HeaderText, alignment: TextAlignmentOptions.Center);
             Fit(_pickerTitle, 24, 34);
-            Label(pickerFrame, "EquipForgePickerInstruction", "选择一种宝石，即可镶入当前孔位。", 76, 144, 1008, 38, 26,
+            _pickerContext = Label(pickerFrame, "EquipForgePickerContext", "", 76, 139, 1008, 35, 27,
                 EquipUiSkin.Muted, alignment: TextAlignmentOptions.Center);
-            _pickerList = QdaoUguiFactory.CreateRect("EquipForgeGemOptions", pickerFrame, 76, 198, 1008, 384);
+            Fit(_pickerContext, 23, 27);
+            Label(pickerFrame, "EquipForgePickerInstruction", "选中后立即镶嵌。", 76, 177, 1008, 27, 23,
+                EquipUiSkin.Muted, alignment: TextAlignmentOptions.Center);
+            _pickerList = QdaoUguiFactory.CreateRect("EquipForgeGemOptions", pickerFrame, 76, 216, 1008, 384);
             _pickerPrevious = EquipUiSkin.Button(pickerFrame, "EquipForgeGemPrevious", "上一页", 76, 596, 160, 48,
                 () => ChangeGemPage(-1), fontSize: 25);
             _pickerPageLabel = Label(pickerFrame, "EquipForgeGemPage", "", 256, 596, 648, 48, 25,
@@ -275,10 +278,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     EquipUiSkin.Muted);
                 Fit(hint, 18, 22);
                 int rowIndex = i;
-                var trigger = button.gameObject.AddComponent<EventTrigger>();
-                var entry = new EventTrigger.Entry { eventID = EventTriggerType.Select };
-                entry.callback.AddListener(_ => RevealSocket(rowIndex));
-                trigger.triggers.Add(entry);
+                var focus = button.gameObject.AddComponent<EquipForgeSocketFocus>();
+                focus.Selected = () => RevealSocket(rowIndex);
                 _socketButtons.Add(button);
             }
             if (view.Sockets.Count == 0)
@@ -293,7 +294,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Clear(_pickerList); _gemButtons.Clear();
             if (picker == null) { _pickerSocket = null; return; }
             if (_pickerSocket != picker.Socket) { _pickerSocket = picker.Socket; _gemPage = 0; }
-            _pickerTitle.text = picker.Title; _pickerHint.text = picker.Hint;
+            _pickerTitle.text = "选择宝石"; _pickerContext.text = picker.Title; _pickerHint.text = picker.Hint;
             int pages = Math.Max(1, (picker.Options.Count + GemsPerPage - 1) / GemsPerPage);
             _gemPage = Math.Max(0, Math.Min(pages - 1, _gemPage));
             for (int i = 0; i < GemsPerPage && _gemPage * GemsPerPage + i < picker.Options.Count; i++)
@@ -303,12 +304,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var button = EquipUiSkin.Button(_pickerList, "EquipForgeGem_" + configId, "",
                     i % 2 * 512, i / 2 * 128, 496, 116, () => _forge.ChooseGem(configId), enabled: picker.CanChoose);
                 ItemIcon(button.transform, option.IconKey, 14, 22, 70);
-                var name = Label(button.transform, "EquipForgeGemName_" + configId, option.Name, 100, 12, 296, 42, 28,
+                var name = Label(button.transform, "EquipForgeGemName_" + configId, option.Name, 100, 12, 356, 42, 28,
                     EquipUiSkin.Ink);
                 Fit(name, 21, 28);
-                Label(button.transform, "EquipForgeGemCount_" + configId, option.CountText, 398, 12, 84, 42, 25,
-                    EquipUiSkin.Jade, alignment: TextAlignmentOptions.Right);
-                var attr = Label(button.transform, "EquipForgeGemAttr_" + configId, option.AttrText, 100, 62, 382, 42, 25,
+                Label(button.transform, "EquipForgeGemCount_" + configId, option.CountText, 320, 62, 96, 42, 25,
+                    EquipUiSkin.Jade, alignment: TextAlignmentOptions.MidlineRight);
+                var attr = Label(button.transform, "EquipForgeGemAttr_" + configId, option.AttrText, 100, 62, 204, 42, 25,
                     EquipUiSkin.Muted, true);
                 Fit(attr, 20, 25);
                 _gemButtons.Add(button);

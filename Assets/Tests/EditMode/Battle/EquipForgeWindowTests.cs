@@ -9,6 +9,7 @@ using MmorpgClient.UI.Ugui.Gameplay;
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MmorpgClient.Tests.EditMode.Battle
@@ -295,6 +296,48 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Click("EquipForgeEnhance");
             Assert.That(_forge.View.Confirm, Is.Not.Null);
             AssertPlainText();
+        }
+
+        [Test]
+        public void SocketButtonsPassWheelAndDragToTheirScrollListAndKeyboardFocusStaysVisible()
+        {
+            var sword = Weapon(Sword);
+            for (uint socket = 1; socket < 6; ++socket)
+                sword.GemSockets.Add(new EquipGemSocketInfo { Socket = socket, GemType = 1, Name = "攻击孔" + socket });
+            var events = _fixture.AddComponent<EventSystem>();
+            OpenFromMore(StandardBag(sword: sword));
+            Canvas.ForceUpdateCanvases();
+            var list = ForgeRoot().GetComponentsInChildren<ScrollRect>().Single();
+            list.Rebuild(CanvasUpdate.PostLayout);
+            list.verticalNormalizedPosition = 1;
+            var button = Button("EquipForgeSocket_0").gameObject;
+
+            var pointer = new PointerEventData(events) { scrollDelta = new Vector2(0, -1) };
+            ExecuteEvents.ExecuteHierarchy(button, pointer, ExecuteEvents.scrollHandler);
+            Assert.That(list.content.anchoredPosition.y, Is.GreaterThan(0),
+                "光标在镶嵌按钮上滚轮也必须滚动孔位列表");
+
+            list.verticalNormalizedPosition = 1;
+            pointer = new PointerEventData(events)
+            {
+                button = PointerEventData.InputButton.Left, position = Vector2.zero,
+            };
+            ExecuteEvents.ExecuteHierarchy(button, pointer, ExecuteEvents.initializePotentialDrag);
+            ExecuteEvents.ExecuteHierarchy(button, pointer, ExecuteEvents.beginDragHandler);
+            pointer.position = new Vector2(0, 64);
+            ExecuteEvents.ExecuteHierarchy(button, pointer, ExecuteEvents.dragHandler);
+            ExecuteEvents.ExecuteHierarchy(button, pointer, ExecuteEvents.endDragHandler);
+            Assert.That(list.content.anchoredPosition.y, Is.GreaterThan(0),
+                "从镶嵌按钮上拖动也必须滚动孔位列表");
+
+            list.verticalNormalizedPosition = 1;
+            var last = Button("EquipForgeSocket_5");
+            events.SetSelectedGameObject(last.gameObject);
+            var visible = new Bounds(list.viewport.rect.center, list.viewport.rect.size);
+            var focused = RectTransformUtility.CalculateRelativeRectTransformBounds(list.viewport, last.transform);
+            Assert.That(focused.min.y, Is.GreaterThanOrEqualTo(visible.min.y - .1f));
+            Assert.That(focused.max.y, Is.LessThanOrEqualTo(visible.max.y + .1f));
+            Assert.That(_net.Calls, Is.Empty, "滚动与焦点移动都没有装备操作");
         }
 
         private void Push()
