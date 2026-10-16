@@ -74,6 +74,9 @@ pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:\work\xuanming-server-mmo
 主干整合时已按服务端神秘商人分支的 `proto/message_id.txt` 重新生成消息号:
 查询 / 购买 / 公告分别为 **264 / 265 / 266**。旧分支的 250 / 251 / 252 已被装备 RPC 占用,不能继续使用。
 服务端神秘商人分支尚需单独完成合并与发布;再次调整消息号后必须重跑第二条命令。
+提示码 `MysteryMerchantErrorTip.cs` 是 **30000–30011**:服务端最初定的 29000 段已被玩家收件箱(`player_inbox_error`)占用,
+接到新 main 时改用 30000 段;这份 C# 按服务端沙盒导表产出的 tip proto 窄面重新生成过(2026-10-15)。
+服务端正式导表之后再跑一次第一条命令,应当无差异。
 
 客户端主干已包含装备属性对应的 `PlayerBag.cs`;神秘商人继续复用其中的 `BagInfo`。
 此次整合还重新生成了 `PlayerScene.cs` 并补齐摘要消息号,使已在主干的落地恢复摘要逻辑具备匹配的生成协议。
