@@ -189,6 +189,11 @@ $whitelist = @{
     "SceneMissionClientPlayerGetMissionList"                = "GetMissionList"
     "SceneActivityClientPlayerGetActivityList"              = "GetActivityList"
 
+    # 神秘商人(服务端 docs/design/mystery-merchant.md):查询、购买、出现公告(S2C 推送)。
+    "SceneMysteryMerchantClientPlayerGetMysteryMerchantInfo"  = "GetMysteryMerchantInfo"
+    "SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods" = "BuyMysteryMerchantGoods"
+    "SceneMysteryMerchantClientPlayerNotifyMysteryMerchant"   = "NotifyMysteryMerchant"
+
     # 客户端直连 battle 节点(turn-based-battle-server.md §18):落点分配推送 + 丢票补签
     "BattleClientPlayerNotifyBattleAssigned"       = "NotifyBattleAssigned"
     "MatchServiceRequestBattleTicket"              = "RequestBattleTicket"

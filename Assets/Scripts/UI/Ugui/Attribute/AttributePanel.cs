@@ -261,6 +261,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         public void Show()
         {
+            Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
             Skills.SkillUiRoot.Instance?.HidePanel();
             // 宝宝窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
             Pet.PetUiRoot.Instance?.HidePanel();

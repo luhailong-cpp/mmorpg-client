@@ -142,6 +142,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
         private static void PrepareOpen()
         {
+            MysteryMerchantUiRoot.Instance?.HidePanel();
             Skills.SkillUiRoot.Instance?.HidePanel();
             Social.SocialUiRoot.Instance?.HidePanel();
             Mail.MailUiRoot.Instance?.HidePanel();

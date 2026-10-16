@@ -43,6 +43,15 @@ namespace MmorpgClient.Game.Team
         public ulong Version;
         public ulong MembershipEpoch;
         public bool MatchStarting;
+        // 队伍补位匹配:我正随本队在人数档队列里等补位(服务端按我自己的排队票据现算,不带版本号)。
+        // 后三项只在 MatchQueued 为真时有值:目标人数、进队列的服务端毫秒时刻、排的副本。
+        public bool MatchQueued;
+        public uint MatchTargetSize;
+        public ulong MatchQueuedAtMs;
+        public uint MatchBattleConfigId;
+        // 服务端声明支持队伍补位匹配(且开关没关)。为真才给出「目标人数」选项:
+        // 不认识目标人数的服务端(旧版本 / 另一版服务端)会把它静默当成直接开战。
+        public bool MatchFillSupported;
         public uint ApplicationCount;
         public ulong ServerTimeMs;
         public List<TeamRole> Members = new List<TeamRole>();
@@ -58,6 +67,8 @@ namespace MmorpgClient.Game.Team
                 Capacity = Capacity > 0 ? Capacity : 5,
                 ZoneId = ZoneId, Version = Version, MembershipEpoch = MembershipEpoch,
                 MatchStarting = MatchStarting, ApplicationCount = ApplicationCount, ServerTimeMs = ServerTimeMs,
+                MatchQueued = MatchQueued, MatchTargetSize = MatchTargetSize, MatchQueuedAtMs = MatchQueuedAtMs,
+                MatchBattleConfigId = MatchBattleConfigId, MatchFillSupported = MatchFillSupported,
                 Members = CloneRoles(Members), Applications = CloneRoles(Applications),
                 PendingInvites = CloneRoles(PendingInvites), Approved = CloneRoles(Approved)
             };

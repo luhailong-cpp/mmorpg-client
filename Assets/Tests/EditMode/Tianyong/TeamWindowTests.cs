@@ -541,6 +541,117 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void MatchQueued_LocksOnlyStartMatchAndKeepsRosterChanges()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            _snapshot.MatchQueued = true;
+            _snapshot.MatchTargetSize = 4;
+            Mirror(_snapshot, null);
+            _window.Show();
+            int starts = 0;
+            _window.StartMatchRequested += () => starts++;
+            _window.BackfillRequested += _ => starts++;
+
+            // 匹配中名单不锁:名单一变服务端就让全队退出匹配,所以请离 / 转让 / 解散 / 离队都照常可点。
+            foreach (string name in new[] { "Kick_12", "Transfer_12", "LeaveTeam", "DisbandTeam", "InviteToTeam" })
+                Assert.That(FindButton(name).interactable, Is.True, name);
+            Assert.That(FindButton("StartTeamMatch").interactable, Is.False);
+            Assert.That(ButtonText("StartTeamMatch"), Is.EqualTo("匹配中…"));
+            Assert.That(ActiveText(), Does.Contain("队伍匹配中（目标 4 人）"));
+
+            Click("StartTeamMatch");
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(starts, Is.Zero, "Callbacks must guard against direct invocation of disabled buttons.");
+        }
+
+        [Test]
+        public void StartMatchDialog_HidesTargetsWhenServerDoesNotSupportBackfill()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            _snapshot.MatchFillSupported = false;
+            Mirror(_snapshot, null);
+            _window.Show();
+            int direct = 0;
+            var targets = new List<uint>();
+            _window.StartMatchRequested += () => direct++;
+            _window.BackfillRequested += targets.Add;
+
+            Click("StartTeamMatch");
+            Assert.That(_window.IsModalOpen, Is.True);
+            Assert.That(_root.GetComponentsInChildren<UnityEngine.Transform>(true).Any(child => child.name.StartsWith("TeamModalTarget")),
+                Is.False, "旧版本 / 另一版服务端 / 开关已关:不给目标人数,只能直接开战");
+            Click("TeamModalConfirm");
+            Assert.That(direct, Is.EqualTo(1));
+            Assert.That(targets, Is.Empty);
+        }
+
+        [Test]
+        public void StartMatchDialog_OffersBackfillTargets()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            _snapshot.MatchFillSupported = true;
+            Mirror(_snapshot, null);
+            _window.Show();
+            int members = _snapshot.Members.Count;
+            int direct = 0;
+            var targets = new List<uint>();
+            _window.StartMatchRequested += () => direct++;
+            _window.BackfillRequested += targets.Add;
+
+            // 默认选「现有人数」= 直接开战,与加这排按钮之前一致。
+            Click("StartTeamMatch");
+            Assert.That(_window.IsModalOpen, Is.True);
+            Assert.That(ButtonText("TeamModalTarget" + members), Is.EqualTo(TeamWindow.StartTargetLabel(members, members, true)));
+            Assert.That(ButtonText("TeamModalTarget5"), Is.EqualTo(TeamWindow.StartTargetLabel(5, members, false)));
+            Click("TeamModalConfirm");
+            Assert.That(direct, Is.EqualTo(1));
+            Assert.That(targets, Is.Empty);
+
+            // 选一个更大的人数 = 匹配补位。
+            Click("StartTeamMatch");
+            Click("TeamModalTarget5");
+            Assert.That(ButtonText("TeamModalTarget5"), Is.EqualTo(TeamWindow.StartTargetLabel(5, members, true)));
+            Assert.That(ButtonText("TeamModalTarget" + members), Is.EqualTo(TeamWindow.StartTargetLabel(members, members, false)));
+            Assert.That(ActiveText(), Does.Contain("凑满 5 人后一同进入副本"));
+            Click("TeamModalConfirm");
+            Assert.That(direct, Is.EqualTo(1));
+            Assert.That(targets, Is.EqualTo(new[] { 5u }));
+            Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void StartMatchDialog_ClosesWhenRosterSizeChanges()
+        {
+            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            _snapshot.MatchFillSupported = true;
+            Mirror(_snapshot, null);
+            _window.Show();
+            int direct = 0;
+            var targets = new List<uint>();
+            _window.StartMatchRequested += () => direct++;
+            _window.BackfillRequested += targets.Add;
+
+            Click("StartTeamMatch");
+            Assert.That(_window.IsModalOpen, Is.True);
+            // 框开着的时候有人入队:选项、说明都是按打开时的人数算的,框必须关掉。
+            _snapshot.Members.Add(Role(13, "新来的道友", 60, 1, 1));
+            Mirror(_snapshot, null);
+
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(direct, Is.Zero);
+            Assert.That(targets, Is.Empty);
+        }
+
+        [Test]
+        public void StartTargetLabel_MarksDirectStartAndSelection()
+        {
+            Assert.That(TeamWindow.StartTargetLabel(2, 2, false), Is.EqualTo("现有2人"));
+            Assert.That(TeamWindow.StartTargetLabel(2, 2, true), Is.EqualTo("√现有2人"));
+            Assert.That(TeamWindow.StartTargetLabel(4, 2, false), Is.EqualTo("凑满4人"));
+            Assert.That(TeamWindow.StartTargetLabel(4, 2, true), Is.EqualTo("√凑满4人"));
+        }
+
+        [Test]
         public void InvitePrompt_ValidatesDigitsAndSelf()
         {
             Mirror(_snapshot, null);

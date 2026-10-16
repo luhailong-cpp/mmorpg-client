@@ -34,6 +34,15 @@ namespace MmorpgClient.Game.Team
             snapshot.LeaderId = view.LeaderId;
             snapshot.ZoneId = view.ZoneId;
             snapshot.MatchStarting = view.MatchState == TeamMatchState.Starting;
+            // 补位匹配中:目标人数等三项只在这个状态下有意义,其余状态保持零值,免得界面读到无关的数。
+            snapshot.MatchFillSupported = view.MatchFillSupported;
+            snapshot.MatchQueued = view.MatchState == TeamMatchState.Queued;
+            if (snapshot.MatchQueued)
+            {
+                snapshot.MatchTargetSize = view.MatchTargetSize;
+                snapshot.MatchQueuedAtMs = view.MatchQueuedAtMs;
+                snapshot.MatchBattleConfigId = view.MatchBattleConfigId;
+            }
             snapshot.ApplicationCount = view.ApplicationCount;
 
             // 成员按 JoinSeq 升序。插入排序是稳定的:JoinSeq 相同时保持服务端原顺序

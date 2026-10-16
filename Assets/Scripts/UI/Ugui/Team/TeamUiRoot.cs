@@ -94,6 +94,11 @@ namespace MmorpgClient.UI.Ugui.Team
             _window.DisbandRequested += () => { if (_available) _client?.Disband(); };
             // v1 has one team dungeon; it matches the server's only PveTeamSizeByConfigId entry.
             _window.StartMatchRequested += () => { if (_available) _client?.StartMatch(BattleUiStyle.PveTeamBattleConfigId); };
+            // 队伍补位匹配:整队进目标人数档的队列,凑满后同场开战。
+            _window.BackfillRequested += target =>
+            {
+                if (_available) _client?.StartMatch(BattleUiStyle.PveTeamBattleConfigId, target);
+            };
             State.Changed += RenderState;
             State.Reset();
             _hud.gameObject.SetActive(false);
@@ -112,6 +117,7 @@ namespace MmorpgClient.UI.Ugui.Team
                         handler => game.OnTeamSnapshot += handler, handler => game.OnTeamSnapshot -= handler,
                         () => Time.realtimeSinceStartup);
                     _client.Changed += SyncState;
+                    _client.BackfillNotice += ShowBackfillNotice;
                     _directory = new TeamInvitationDirectory(game, () => Social.SocialUiRoot.Instance?.State);
                     _directory.Changed += SyncDirectory;
                 }
@@ -133,6 +139,9 @@ namespace MmorpgClient.UI.Ugui.Team
                 if (_client != null) _client.Reset();
                 else State.Reset(playerId);
             }
+            // 队伍补位匹配:把队伍视图的匹配态与 BattleClient 的排队态对齐(规则见 TeamBackfillQueueSync)。
+            if (inGame) _backfillSync.Step(_client, BattleUiRoot.Instance?.Client);
+            else _backfillSync.Reset();
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             // The live path mirrors the client and holds no token, so this is a no-op kept for consistency.
@@ -161,6 +170,7 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
+            MysteryMerchantUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
@@ -199,6 +209,8 @@ namespace MmorpgClient.UI.Ugui.Team
             _invitations.Show(source, query);
         }
 
+        private readonly TeamBackfillQueueSync _backfillSync = new TeamBackfillQueueSync();
+
         private void SyncDirectory()
         {
             if (_directory == null) return;
@@ -215,6 +227,10 @@ namespace MmorpgClient.UI.Ugui.Team
                 _client.PendingAction, _client.PendingTarget, _client.HighlightPlayerId, _client.Status,
                 _client.InvitationCoolingDown, _client.CreationCoolingDown);
         }
+
+        /// <summary>队伍补位匹配的推送提示:队伍面板通常没开,交给战斗界面弹出来(结束类的还会写进排队面板)。</summary>
+        private static void ShowBackfillNotice(string message, bool ended) =>
+            BattleUiRoot.Instance?.ShowQueueNotice(message, ended);
 
         private void RenderState()
         {
@@ -238,6 +254,7 @@ namespace MmorpgClient.UI.Ugui.Team
             }
             if (_client == null) return;
             _client.Changed -= SyncState;
+            _client.BackfillNotice -= ShowBackfillNotice;
             _client.Dispose();
             _client = null;
         }

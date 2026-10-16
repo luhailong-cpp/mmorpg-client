@@ -46,6 +46,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private float _serverStatusAt = -1f; // realtimeSinceStartup;<0 表示尚无服务器状态
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
+        /// <summary>状态行当前的文字(最后一次 SetStatus 写入的内容)。</summary>
+        public string StatusText => _statusText != null ? _statusText.text : string.Empty;
 
         public BattleQueuePanel(BattleUiRoot owner, UnityEngine.Transform parent)
         {

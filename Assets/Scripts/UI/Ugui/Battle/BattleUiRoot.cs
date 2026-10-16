@@ -54,6 +54,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         private BattleEntryMode _entryMode = BattleEntryMode.Battle;   // 「战斗」入口当前的用途(见 DecideEntryMode)
         private UiTextButton _spectateEntryButton;
         private BattleQueuePanel _queuePanel;
+        // 这一次排队是随队伍被带入的(队伍补位匹配)时,记下采纳时写进排队面板状态行的说明;否则为 null。
+        // 排队结束时要把那句话换掉,而 BattleClient 在发相位事件之前就清了 QueueAdopted,到那时已经读不到。
+        private string _adoptedQueueHint;
         private SpectatePanel _spectatePanel;
         private BattleChallengePopup _challengePopup;
         private BattleScreen _battleScreen;
@@ -400,6 +403,9 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case BattlePhase.Queued:
                     _queuePanel?.SetQueueing(true);
                     _queuePanel?.Show();
+                    // 随队伍被带进队列(队伍补位匹配):面板上没有「我点了哪个档」的上下文,说明文案由带入方给。
+                    _adoptedQueueHint = _client != null && _client.QueueAdopted ? _client.AdoptedQueueHint : null;
+                    if (_adoptedQueueHint != null) _queuePanel?.SetStatus(_adoptedQueueHint);
                     break;
                 case BattlePhase.Preparing:
                     _queuePanel?.SetQueueing(false);
@@ -411,6 +417,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     // 正常开局与重连(None 直接跳到 WaitingAction/Resolving)都在此打开战斗屏
                     _queuePanel?.SetQueueing(false);
                     _queuePanel?.Hide();
+                    EndAdoptedQueueHint("队伍匹配已结束。"); // 可能是凑满开战,也可能是排队中应战切磋开打
                     EnsureBattleOpen();
                     if (_battleOpen) _battleScreen.OnPhaseChanged(phase);
                     break;
@@ -419,6 +426,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     break;
                 case BattlePhase.None:
                     _queuePanel?.SetQueueing(false);
+                    EndAdoptedQueueHint("队伍匹配已结束。");
                     _channelReadyToast = null; // 本局已收尾:不再补「战斗开始 / 已重新连接」
                     // 结算面板/回合播放还在时不收屏,等玩家确认。
                     // 直连判定战斗已结束(BattleGone)时也走到这里,scene 结算的 NotifyBattleEnd 可能随后才到:
@@ -427,6 +435,28 @@ namespace MmorpgClient.UI.Ugui.Battle
                         CloseBattle();
                     break;
             }
+        }
+
+        /// <summary>
+        /// 被带入的排队到此为止:排队面板状态行若还停在采纳时的说明,换成 text。
+        /// 「匹配已取消」的推送与排队轮询的结果谁先到不一定 —— 状态行已被取消原因改写过(ShowQueueNotice)就不覆盖。
+        /// </summary>
+        private void EndAdoptedQueueHint(string text)
+        {
+            if (_adoptedQueueHint == null) return;
+            if (_queuePanel != null && _queuePanel.StatusText == _adoptedQueueHint) _queuePanel.SetStatus(text);
+            _adoptedQueueHint = null;
+        }
+
+        /// <summary>
+        /// 队伍补位匹配的提示(TeamUiRoot 转来的推送文案):弹一次 toast。ended = 这次匹配已结束(队友取消 / 系统撤单),
+        /// 同时写进排队面板状态行 —— 队员收到它时队伍面板通常没开,只写在那边没人看得到。
+        /// </summary>
+        public void ShowQueueNotice(string message, bool ended)
+        {
+            if (string.IsNullOrEmpty(message)) return;
+            ShowToast(message);
+            if (ended) _queuePanel?.SetStatus(message);
         }
 
         private void HandleBattleStart(BattleStartS2C start)

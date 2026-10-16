@@ -43,6 +43,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             Instance?.Source?.State?.Snapshot?.Find(id)?.Definition ?? SkillCatalog.Find(id);
         private void ShowContext(SkillBookContext context)
         {
+            Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
             Attribute.AttributeUiRoot.Instance?.HidePanel();
             Pet.PetUiRoot.Instance?.HidePanel();
             Gameplay.GameplayUiRoot.Instance?.HidePanel();

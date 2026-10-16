@@ -92,6 +92,17 @@ namespace MmorpgClient.Game.Battle
         private double _nextQueuePollAt;     // 下一次排队轮询时刻
         private double _preparingDeadline;   // Preparing 超时时刻(0 = 未挂)
 
+        private bool _cancelVerifyPending;   // 被带入的排队点了取消、等下一次轮询结果确认是否真的退出
+
+        // 排队状态查询(GetQueueStatus:轮询与 ProbeQueueStatus)同一时刻至多一个在途 —— 大厅对零编号回包按消息号
+        // 先进先出配对,两个同号请求同时在途时,先到的回包可能被配给后发的那个回调。在途期间再要求轮询只记一笔「回来后再问」。
+        private int _queuePollSeq;           // 发号器
+        private int _queuePollInFlightSeq;   // 在途那一次的序号;0 = 没有在途
+        private bool _queuePollAgain;
+        // 排队会话序号:每次 JoinQueue / AdoptQueue 进入排队、以及断线时自增(准备超时退回排队不算新会话)。
+        // 轮询与取消的回调只处理发出时那一次排队的回包,上一次排队迟到的结果整包丢弃。
+        private int _queueSession;
+        private bool _endedByTicket;         // 这一次离开排队是因为服务端说「已不在排」(见 AdoptedQueueEndedByTicket)
         private ulong _battleId;             // 当前(或重连恢复中)战斗 id;0 = 无
         private string _queueTicket = string.Empty;
 
@@ -117,6 +128,22 @@ namespace MmorpgClient.Game.Battle
         // ── 契约属性 ────────────────────────────────────────
 
         public BattlePhase Phase { get; private set; } = BattlePhase.None;
+
+        /// <summary>
+        /// 当前的排队不是本机 JoinQueue 发起的,而是随队伍被带进队列的(队伍补位匹配,见 <see cref="AdoptQueue"/>)。
+        /// 在排队态与凑满后的准备阶段(Queued / Preparing)保持为真 —— 准备阶段可能因开局失败退回排队;
+        /// 进入战斗或回到空闲时清掉。
+        /// </summary>
+        public bool QueueAdopted { get; private set; }
+
+        /// <summary>被带进队列时由调用方给的说明文案(排队面板显示用);非 QueueAdopted 时为空串。</summary>
+        public string AdoptedQueueHint { get; private set; } = string.Empty;
+
+        /// <summary>
+        /// 上一次被带入的排队是不是因为服务端说「已不在排」而结束的(票据证据);false = 因开战、断线等其它原因离开。
+        /// 在被带入的排队结束的那一刻更新,相位事件触发时已经就绪。
+        /// </summary>
+        public bool AdoptedQueueEndedByTicket { get; private set; }
 
         /// <summary>最新权威战斗状态(开战/回合结算/补拉时更新;断线清空)。</summary>
         public BattleStateS2C State { get; private set; }
@@ -253,8 +280,19 @@ namespace MmorpgClient.Game.Battle
             if (Phase == BattlePhase.Preparing && _preparingDeadline > 0 && _now >= _preparingDeadline)
             {
                 _preparingDeadline = 0;
-                OnError?.Invoke("战斗准备超时,已退出匹配");
-                SetPhase(BattlePhase.None);
+                if (QueueAdopted)
+                {
+                    // 队伍补位:凑满后开局失败(同组有人备战失败)时,服务端把整队放回队首,票据回到排队态,
+                    // 而本机收不到任何推送。回到排队态并立刻问一次服务端,由 GetQueueStatus 决定去留
+                    // (仍在排 / 已不在排 / 又凑满),不报「已退出匹配」。
+                    SetPhase(BattlePhase.Queued);
+                    _nextQueuePollAt = _now;
+                }
+                else
+                {
+                    OnError?.Invoke("战斗准备超时,已退出匹配");
+                    SetPhase(BattlePhase.None);
+                }
             }
         }
 
@@ -281,6 +319,7 @@ namespace MmorpgClient.Game.Battle
 
             // 先进 Queued 再发请求:失败响应回退 None;若开战抢先到达
             // (solo 即配),迟到的成功响应不允许把相位拉回 Queued。
+            _queueSession++;
             SetPhase(BattlePhase.Queued);
             _nextQueuePollAt = _now + QueuePollIntervalSeconds;
 
@@ -316,6 +355,34 @@ namespace MmorpgClient.Game.Battle
                 });
         }
 
+        /// <summary>
+        /// 队伍补位匹配:服务端已经把我随队伍放进人数档队列(队长发的 StartTeamMatch),本机没有发过 JoinQueue。
+        /// 进入 Queued,让既有的排队面板、3 秒一次的 GetQueueStatus 轮询、取消、凑满后的开战流程原样生效。
+        /// 不发任何请求,不写连续战斗的重排记忆;票据为空(CancelQueue 允许空票据,服务端按本人身份撤掉整队的排队)。
+        /// 只在相位 None 时生效;返回是否进入了排队态。
+        /// </summary>
+        public bool AdoptQueue(string hint)
+        {
+            if (Phase != BattlePhase.None) return false;
+            _queueTicket = string.Empty;
+            _endAckPending = false; // 与 JoinQueue 同口径:新的排队作废未消费的结束 Ack,不让连续战斗紧跟着再单排
+            _queueSession++;
+            QueueAdopted = true;
+            AdoptedQueueHint = hint ?? string.Empty;
+            SetPhase(BattlePhase.Queued);
+            _nextQueuePollAt = _now + QueuePollIntervalSeconds;
+            return true;
+        }
+
+        /// <summary>
+        /// 排队中时把下一次 GetQueueStatus 轮询提前到现在(下一次 Tick 发出)。外部得到「可能已经不在排」的
+        /// 提示(例如队伍视图说没在排)时用它向服务端求证,而不是自己改相位。不在排队态时是空操作。
+        /// </summary>
+        public void PollQueueNow()
+        {
+            if (Phase == BattlePhase.Queued) _nextQueuePollAt = _now;
+        }
+
         public void CancelQueue()
         {
             if (Phase != BattlePhase.Queued)
@@ -329,11 +396,24 @@ namespace MmorpgClient.Game.Battle
                 PlayerId = MyPlayerId,
                 QueueTicket = _queueTicket,
             };
+            int session = _queueSession;
             _net.Call(MessageIds.CancelQueue, req, Empty.Parser,
                 _ =>
                 {
+                    // 上一次排队的取消回包迟到了:与这一次排队无关。
+                    if (session != _queueSession) return;
                     // 收敛:仍在排队才回 None(若期间已开战则维持战斗相位)
-                    if (Phase == BattlePhase.Queued) SetPhase(BattlePhase.None);
+                    if (Phase != BattlePhase.Queued) return;
+                    if (QueueAdopted)
+                    {
+                        // 队伍补位:回包是 Empty,分不出「整队已退出」还是「太迟」(队伍已凑满弹出,取消被忽略)。
+                        // 太迟之后若开局失败,整队会回到队列 —— 此时直接回空闲,本机就再也看不到自己还在排。
+                        // 所以不改相位,立刻问一次服务端:已不在排才回空闲;仍在排 / 已凑满则照实处理。
+                        _cancelVerifyPending = true;
+                        _nextQueuePollAt = _now;
+                        return;
+                    }
+                    SetPhase(BattlePhase.None);
                 },
                 err =>
                 {
@@ -345,12 +425,28 @@ namespace MmorpgClient.Game.Battle
 
         private void PollQueueStatus()
         {
+            // 同一时刻至多一个在途(见 _queuePollInFlightSeq):在途时只记一笔「回来后再问一次」。
+            if (_queuePollInFlightSeq != 0) { _queuePollAgain = true; return; }
+            int seq = BeginQueuePoll();
+            int session = _queueSession;
+            // 取消后的求证只认取消回包之后才发出的那一次轮询:之前就在途的那次,服务端可能还没处理取消。
+            bool cancelVerify = _cancelVerifyPending;
+            _cancelVerifyPending = false;
             var req = new Match.GetQueueStatusRequest { PlayerId = MyPlayerId };
             _net.Call(MessageIds.GetQueueStatus, req, Match.GetQueueStatusResponse.Parser,
                 resp =>
                 {
+                    EndQueuePoll(seq);
+                    if (session != _queueSession)
+                    {
+                        // 上一次排队的迟到回包:整包丢弃,为这一次排队(若还在排)立刻重问。
+                        if (Phase == BattlePhase.Queued) _nextQueuePollAt = _now;
+                        return;
+                    }
                     OnQueueStatus?.Invoke(resp);
                     if (Phase != BattlePhase.Queued) return; // 已开战:轮询结果只透传不改相位
+                    if (cancelVerify && resp.State != Match.QueueState.NotQueued)
+                        OnError?.Invoke("取消未生效:队伍已凑满正在开局,或仍在匹配中");
                     switch (resp.State)
                     {
                         case Match.QueueState.Matched:
@@ -361,11 +457,56 @@ namespace MmorpgClient.Game.Battle
                             break;
                         case Match.QueueState.NotQueued:
                             // 服务端已不认识我们(取消成功/超时被清):收敛回 None
+                            _endedByTicket = true;
                             SetPhase(BattlePhase.None);
                             break;
                     }
                 },
-                err => OnError?.Invoke($"查询排队状态失败:{err}"));
+                err =>
+                {
+                    EndQueuePoll(seq);
+                    OnError?.Invoke($"查询排队状态失败:{err}");
+                });
+        }
+
+        /// <summary>
+        /// 空闲时问一次服务端「我是不是还挂着排队票据」,结果交给 onResult,不改相位、不发事件。
+        /// 给队伍补位匹配用:被带入的排队因开战而结束后,用它核实那一次排队是否真的结束了(TeamBackfillQueueSync)。
+        /// 只在相位 None、连接就绪且没有排队查询在途时发出,返回是否发出;回包到达时若已开始新的排队 / 战斗,结果作废。
+        /// 失败不回调(调用方按「没在排」处理)。
+        /// </summary>
+        public bool ProbeQueueStatus(Action<Match.QueueState> onResult)
+        {
+            if (Phase != BattlePhase.None || !_net.IsReady || _queuePollInFlightSeq != 0) return false;
+            int seq = BeginQueuePoll();
+            int session = _queueSession;
+            var req = new Match.GetQueueStatusRequest { PlayerId = MyPlayerId };
+            _net.Call(MessageIds.GetQueueStatus, req, Match.GetQueueStatusResponse.Parser,
+                resp =>
+                {
+                    EndQueuePoll(seq);
+                    if (session == _queueSession && Phase == BattlePhase.None) onResult?.Invoke(resp.State);
+                },
+                _ => EndQueuePoll(seq));
+            return true;
+        }
+
+        private int BeginQueuePoll()
+        {
+            if (++_queuePollSeq == 0) ++_queuePollSeq;
+            _queuePollInFlightSeq = _queuePollSeq;
+            return _queuePollSeq;
+        }
+
+        // 一次排队状态查询回来了(成功或失败)。它若还是「在途的那一次」(断线会作废在途记录),解除在途;
+        // 期间有人要求再问,就把下一次轮询提前到现在(还在排队态时下一次 Tick 发出)。
+        private void EndQueuePoll(int seq)
+        {
+            if (seq != _queuePollInFlightSeq) return;
+            _queuePollInFlightSeq = 0;
+            if (!_queuePollAgain) return;
+            _queuePollAgain = false;
+            _nextQueuePollAt = _now;
         }
 
         // ── 契约方法:切磋(场景发起 PK) ───────────────────
@@ -733,6 +874,10 @@ namespace MmorpgClient.Game.Battle
             State = null;
             _endAckPending = false;
             _endPendingBattleId = 0;
+            // 在途的排队查询随连接作废(GameClient 会以 disconnected 失败回调):解除在途,旧会话的回包一律丢弃。
+            _queuePollInFlightSeq = 0;
+            _queuePollAgain = false;
+            _queueSession++;
             SetPhase(BattlePhase.None);
             RefreshMyAutoState();
         }
@@ -903,6 +1048,14 @@ namespace MmorpgClient.Game.Battle
         {
             if (Phase == phase) return;
             if (phase != BattlePhase.Preparing) _preparingDeadline = 0;
+            if (phase != BattlePhase.Queued && phase != BattlePhase.Preparing)
+            {
+                if (QueueAdopted) AdoptedQueueEndedByTicket = _endedByTicket;
+                QueueAdopted = false;
+                AdoptedQueueHint = string.Empty;
+            }
+            _endedByTicket = false;
+            if (phase != BattlePhase.Queued) _cancelVerifyPending = false;
             Phase = phase;
             OnPhaseChanged?.Invoke(phase);
         }

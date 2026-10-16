@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using MmorpgClient.Game.Team;
+using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using TMPro;
@@ -31,6 +33,8 @@ namespace MmorpgClient.UI.Ugui.Team
         public event Action<ulong> TransferRequested;
         public event Action DisbandRequested;
         public event Action StartMatchRequested;
+        /// <summary>队伍补位匹配:参数是目标人数(大于当前队伍人数)。直接开战仍走 StartMatchRequested。</summary>
+        public event Action<uint> BackfillRequested;
         public event Action Closed;
         public bool IsVisible => _root.gameObject.activeSelf;
         public bool IsModalOpen => _modal != null;
@@ -189,6 +193,8 @@ namespace MmorpgClient.UI.Ugui.Team
         private bool CanJoin => CanAct && _state.HasLoaded && !_state.HasTeam;
         private bool CanCreate => CanJoin && !_state.CreationCoolingDown;
         private bool CanManage => CanAct && _state.IsLeader && !_state.MatchStarting;
+        // 补位匹配中不锁名单(名单一变服务端就让全队退出匹配),只是不能再发起一次开战。
+        private bool CanStartMatch => CanManage && !_state.MatchQueued;
         private bool CanLeave => CanAct && _state.HasTeam && !_state.MatchStarting;
         // Invitations and rejections stay open while the roster is locked for a match.
         private bool CanInvite => CanAct && _state.IsLeader && !_state.IsFull;
@@ -295,6 +301,9 @@ namespace MmorpgClient.UI.Ugui.Team
             if (!_state.HasLoaded) return "正在连接组队服务…";
             if (!_state.HasTeam) return "尚未加入队伍：可创建队伍、申请入队或接受邀请。";
             if (_state.MatchStarting) return "队伍正在集合进入战斗，名单暂时锁定。";
+            if (_state.MatchQueued)
+                // 状态栏只有一行(936 宽、28 号、溢出省略),这句话要控制在 30 个全角字以内;完整规则在开战确认框和排队面板里。
+                return $"队伍匹配中（目标 {_state.Snapshot.MatchTargetSize} 人）：名单变动或任一队员取消即退出匹配。";
             if (!_state.IsLeader) return "你是队员，入队申请由队长处理。";
             if (_state.IsFull) return "队伍已满，可拒绝剩余申请。";
             return "同意申请后，道友将加入你的队伍。";
@@ -302,14 +311,15 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void UpdateFooter(bool hasTeam, bool leader, bool noTeam)
         {
-            Footer(_startMatch, leader, CanManage);
+            Footer(_startMatch, leader, CanStartMatch);
             Footer(_invite, leader || (noTeam && InviteBrowseRequested != null),
                 InviteBrowseRequested != null ? CanAct && _state.HasLoaded : CanInvite);
             Footer(_disband, leader, CanManage);
             Footer(_leave, hasTeam, CanLeave);
             Footer(_create, noTeam, CanCreate);
             Footer(_apply, noTeam, CanJoin);
-            _startMatchLabel.text = _state?.MatchStarting == true ? "集合中…" : "开始战斗";
+            _startMatchLabel.text = _state?.MatchStarting == true ? "集合中…"
+                : _state?.MatchQueued == true ? "匹配中…" : "开始战斗";
         }
 
         private static void Footer(Button button, bool visible, bool enabled)
@@ -520,11 +530,68 @@ namespace MmorpgClient.UI.Ugui.Team
                 () => CanManage, () => DisbandRequested?.Invoke());
         }
 
+        private const string DirectStartDescription = "全队将一同进入组队副本，集合期间队伍名单会被锁定。确定开始吗？";
+
+        private static string BackfillDescription(uint target) =>
+            $"全队进入匹配队列，凑满 {target} 人后一同进入副本（怪物数量随人数增加）。匹配期间名单变动或任一队员取消，全队都会退出匹配。";
+
+        /// <summary>目标人数按钮的文案:当前人数那一档是直接开战,更大的档是匹配补位;选中的带「√」。</summary>
+        public static string StartTargetLabel(int size, int memberCount, bool selected) =>
+            (selected ? "√" : "") + (size == memberCount ? $"现有{size}人" : $"凑满{size}人");
+
+        /// <summary>
+        /// 开战确认框。队伍没满副本上限时多一排目标人数:当前人数 = 直接开战(StartMatchRequested),
+        /// 更大 = 整队进人数档队列等补位(BackfillRequested)。默认选直接开战,与加这排按钮之前的行为一致。
+        /// </summary>
         private void ConfirmStartMatch()
         {
-            if (!CanManage) return;
-            Confirm("开始战斗", "全队将一同进入组队副本，集合期间队伍名单会被锁定。确定开始吗？",
-                () => CanManage, () => StartMatchRequested?.Invoke());
+            if (!CanStartMatch) return;
+            int memberCount = _state.Snapshot.Members.Count;
+            int maxSize = (int)BattleUiStyle.PveTeamMaxSize;
+            // 人数是这个确认框的前提(选项、说明、确认后的行为都按打开时的人数算):名单一变就不再允许,
+            // Render 会把框关掉(与队长变更同一机制),确认时也会复核。
+            bool StillAllowed() => CanStartMatch && _state.Snapshot.Members.Count == memberCount;
+            // 服务端没声明支持补位(旧版本 / 另一版服务端 / 开关已关)时不给目标人数:那些服务端会把目标人数
+            // 静默当成直接开战,选了「凑满 5 人」却被当场拉进 2 人战斗。
+            if (memberCount <= 0 || memberCount >= maxSize || !_state.Snapshot.MatchFillSupported)
+            {
+                Confirm("开始战斗", DirectStartDescription, StillAllowed, () => StartMatchRequested?.Invoke());
+                return;
+            }
+
+            var frame = Modal("开始战斗", DirectStartDescription, StillAllowed);
+            var description = frame.Find("TeamModalDescription").GetComponent<TMP_Text>();
+            int selected = memberCount;
+            var options = new List<KeyValuePair<int, TMP_Text>>();
+            void Select(int size)
+            {
+                selected = size;
+                description.text = size == memberCount ? DirectStartDescription : BackfillDescription((uint)size);
+                foreach (var option in options)
+                    option.Value.text = StartTargetLabel(option.Key, memberCount, option.Key == selected);
+            }
+            float x = 66;
+            for (int size = memberCount; size <= maxSize; size++)
+            {
+                int value = size;
+                var button = Control(frame, StartTargetLabel(size, memberCount, false), x, 252, 188, 72, () => Select(value), size: 26);
+                button.name = "TeamModalTarget" + size.ToString(CultureInfo.InvariantCulture);
+                options.Add(new KeyValuePair<int, TMP_Text>(size, button.GetComponentInChildren<TMP_Text>(true)));
+                x += 195;
+            }
+            Select(memberCount);
+
+            _modalHint = Label(frame, "", 66, 356, 968, 44, 25, ErrorInk);
+            _modalHint.name = "TeamModalError";
+            var cancel = Control(frame, "取消", 66, 440, 300, 82, CloseModal);
+            cancel.name = "TeamModalCancel";
+            var confirm = Control(frame, "确认", 692, 440, 340, 82, () => SubmitModal(() =>
+            {
+                if (selected == memberCount) StartMatchRequested?.Invoke();
+                else BackfillRequested?.Invoke((uint)selected);
+            }), primary: true);
+            confirm.name = "TeamModalConfirm";
+            EventSystem.current?.SetSelectedGameObject(cancel.gameObject);
         }
 
         private void ConfirmTransfer(ulong playerId)

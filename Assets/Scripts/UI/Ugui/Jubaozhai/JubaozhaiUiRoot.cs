@@ -112,6 +112,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         {
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
+            MysteryMerchantUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
