@@ -116,7 +116,14 @@ $files = @(
     # 本行生成的枚举要含 15007–15009(FriendBlocked / FriendBlockListFull / FriendTargetInboxFull),
     # 所以只能在服务端导表器跑完之后再跑本脚本。
     "proto/friend/friend.proto",
-    "generated/code/proto/tip/friend_error_tip.proto"
+    "generated/code/proto/tip/friend_error_tip.proto",
+
+    # 神秘商人(服务端 docs/design/mystery-merchant.md,service SceneMysteryMerchantClientPlayer):
+    # 查询 / 购买 / 出现公告。它 import 了上面已经在清单里的 player_bag.proto 与 base_comp.proto。
+    # mystery_merchant_error 与 trade / team / friend 同形:由服务端导表器生成,客户端按枚举映射文案、不手抄数字;
+    # 所以本脚本只能在服务端导表器跑完之后再跑(否则第二行的文件不存在,protoc 直接报错)。
+    "proto/scene/player_mystery_merchant.proto",
+    "generated/code/proto/tip/mystery_merchant_error_tip.proto"
 )
 
 Push-Location $ProtoRoot
