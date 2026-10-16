@@ -65,6 +65,8 @@ namespace MmorpgClient.Game.Team
         // 回包走路由服,两路不保序:更早读的回包整表替换时,据此补回新推送的邀请、剔除已撤回的邀请。
         private readonly HashSet<ulong> _pushedInvites = new HashSet<ulong>();
         private readonly HashSet<ulong> _revokedInvites = new HashSet<ulong>();
+        // 在途读取发出时从 SyncReadStarted 取到的确认委托;单飞保证同一时刻最多一个,每次发送都会重写。
+        private Action _syncReadAck;
 
         // ── 状态(只读;调用方不得修改返回的对象)──
         public ulong PlayerId => _net.PlayerId;
@@ -109,6 +111,14 @@ namespace MmorpgClient.Game.Team
 
         public event Action Changed;
 
+        /// <summary>
+        /// 落地恢复的读取确认钩子(服务端 docs/design/landing-recovery-sync-digest.md §4.3,由 LandingSyncBindings.BindTeam 设置)。
+        /// GetMyTeam / ListMyInvites 真正发出时调用一次(参数是 <see cref="TeamAction.Refresh"/> / <see cref="TeamAction.ListInvites"/>),
+        /// 返回的委托在这次读取成功应用之后调用一次;返回 null 表示这次读取不需要确认。不改变任何读取的触发时机。
+        /// 必须在发出时取、成功后才调:只有发出晚于摘要到达的读取才能推进缓存版本(L-2)。
+        /// </summary>
+        public Func<TeamAction, Action> SyncReadStarted { get; set; }
+
         public TeamClient(IBattleTransport net,
                           Func<object> connectionIdentity = null,
                           Action<Action<TeamSnapshotS2C>> subscribeSnapshot = null,
@@ -152,7 +162,7 @@ namespace MmorpgClient.Game.Team
             // 零编号 gRPC 回包无法相关到已取消请求；同连接不得重用其槽位。
             if (Busy) RequiresReconnect = true;
             ++_generation;
-            Busy = false; PendingAction = TeamAction.None; PendingTarget = 0;
+            Busy = false; PendingAction = TeamAction.None; PendingTarget = 0; _syncReadAck = null;
             Snapshot = TeamViewMapper.ToSnapshot(null, PlayerId); _hasView = false; HasLoaded = false;
             _invites.Clear(); _pushedInvites.Clear(); _revokedInvites.Clear(); HighlightPlayerId = 0;
             RefreshQueued = InvitesQueued = _notifyOnlineQueued = true;
@@ -212,6 +222,7 @@ namespace MmorpgClient.Game.Team
             // IBattleTransport 没有注销推送的接口;三个推送处理器开头的 _disposed 判断
             // 保证 Dispose 之后到来的推送不再改动状态。
             _disposed = true; ++_generation; Busy = false; PendingAction = TeamAction.None; PendingTarget = 0;
+            _syncReadAck = null;
         }
 
         // ── 请求 ────────────────────────────────────────────────────────────
@@ -351,7 +362,8 @@ namespace MmorpgClient.Game.Team
         {
             HasLoaded = true;
             bool hasView = reply.Team != null;
-            if (hasView) ApplyView(reply.Team);
+            TeamSnapshotOrder order = TeamSnapshotOrder.Conflict;
+            if (hasView) order = ApplyView(reply.Team);
             else
             {
                 RefreshQueued = true;
@@ -364,6 +376,8 @@ namespace MmorpgClient.Game.Team
                 if (!silent || Status == ConnectingMessage) Status = string.Empty;
                 // 打开面板的无队玩家顺带刷新邀请;没带视图时"无队"只是占位,不作数。
                 if (hasView && !HasTeam) InvitesQueued = true;
+                // 落地恢复:带视图且不是换队冲突(冲突会排队重拉)。被判旧的视图说明本地已有更新的,同样不旧于发出时刻。
+                if (hasView && order != TeamSnapshotOrder.Conflict) CompleteSyncRead();
             }
             else
             {
@@ -401,6 +415,7 @@ namespace MmorpgClient.Game.Team
                 if (index < 0) _invites.Add(invite);
                 else if (invite.ExpiresAt > _invites[index].ExpiresAt) _invites[index] = invite;
             }
+            CompleteSyncRead();
             if (!silent) Status = string.Empty;
         }
 
@@ -587,6 +602,14 @@ namespace MmorpgClient.Game.Team
             return order;
         }
 
+        /// <summary>本次读取已成功应用:交回发出时取的确认委托(至多一次)。</summary>
+        private void CompleteSyncRead()
+        {
+            var ack = _syncReadAck;
+            _syncReadAck = null;
+            ack?.Invoke();
+        }
+
         private static bool Ok(TipInfoMessage tip) => tip == null || tip.Id == 0;
 
         private static bool IsTip(TipInfoMessage tip, team_error code) => tip != null && tip.Id == (uint)code;
@@ -723,6 +746,8 @@ namespace MmorpgClient.Game.Team
                 if (rejection != null) { if (!silent) Reject(rejection); return false; }
             }
 
+            // 落地恢复:读取到这里一定会发出,此刻取确认委托;写操作清掉上一次读取残留的委托。
+            _syncReadAck = read ? SyncReadStarted?.Invoke(action) : null;
             int generation = ++_generation;
             ulong player = PlayerId;
             bool probe = !HasLoaded;

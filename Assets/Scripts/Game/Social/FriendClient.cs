@@ -26,6 +26,27 @@ namespace MmorpgClient.Game.Social
         public string Status { get; private set; } = "请刷新好友申请。";
         public event Action Changed;
 
+        /// <summary>
+        /// 落地恢复的读取确认钩子(服务端 docs/design/landing-recovery-sync-digest.md §4.3,由 LandingSyncBindings 设置)。
+        /// GetPendingRequests 真正发出时调用一次,返回的委托在这次申请列表成功应用后调用一次;null 表示不需要确认。
+        /// 发出时取、成功后才调:只有发出晚于摘要到达的拉取才能推进缓存版本(L-2)。
+        /// </summary>
+        public Func<Action> SyncReadStarted { get; set; }
+
+        /// <summary>
+        /// 后台排队刷新申请列表(落地摘要标脏时调用)。在途时排到当前请求之后;空闲且可用时立即拉取;
+        /// 不可用时什么也不做、也不写提示,等下次落地或玩家打开申请窗口。
+        /// 摘要变化可能来自被动方(设计 §3.5 第 4 条),这里只拉取,红点只能来自拉回的申请列表。
+        /// </summary>
+        public void QueueRefresh()
+        {
+            ObserveConnection();
+            if (_disposed) return;
+            if (Busy) { _refreshQueued = true; return; }
+            if (!_ready() || !_net.IsReady || _net.PlayerId == 0) return;
+            RefreshPending();
+        }
+
         public FriendClient(IBattleTransport net, Func<object> connectionIdentity = null, Func<bool> ready = null)
         {
             _net = net ?? throw new ArgumentNullException(nameof(net));
@@ -77,6 +98,7 @@ namespace MmorpgClient.Game.Social
             if (Busy) { _refreshQueued = true; return; }
             if (!Ready()) return;
             HasFreshPending = false;
+            var syncAck = SyncReadStarted?.Invoke();
             Call(ClientPlayerFriendGetPendingRequestsHandler.MessageId, new GetPendingRequestsRequest(),
                 GetPendingRequestsResponse.Parser, response =>
                 {
@@ -94,6 +116,7 @@ namespace MmorpgClient.Game.Social
                     }
                     _pending.Clear(); _pending.AddRange(next);
                     _hasLoaded = HasFreshPending = true;
+                    syncAck?.Invoke();
                     Publish(missingId ? "部分申请缺少编号，请刷新后再处理。"
                         : next.Count == 0 ? "暂无待处理的好友申请。" : "好友申请已从服务器更新。");
                 });
