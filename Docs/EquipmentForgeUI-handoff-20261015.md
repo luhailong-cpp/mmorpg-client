@@ -150,19 +150,20 @@
 - Unity EditMode：程序集 `MmorpgClient.Tests.EditMode.Battle`（不带 `-quit`）。本批相关的用例类及条数：`EquipForgeUiStateTests` 63、`EquipForgeClientTests` 96、`EquipForgeModelTests` 35、`EquipClientTests` 70、`EquipBagModelTests` 13、`PlayerFeaturesClientTests` 31，另加你新写的窗口级用例。
 - 实机（服务器 main 起栈后）：游戏里没有装备、宝石、强化石的产出，只能靠 GM 发，**客户端也没有发物 / 加银两的 GM 入口**。现成的账号是 `robot_9104` / `123456`（`robot_` 前缀走开发期密码认证），它被服务器仓 `robot\` 下的 `.\robot.exe -c etc/equip_forge_smoke.yaml` 跑过：冒烟每次强化前只把银两与强化石补到刚好够（缺多少补多少），所以跑完之后**强化石是 0**、银两最多剩下角色原本就有的那些；「新手木剑」穿在身上（跑一遍到 +2，跑两遍到 +4），攻击宝石 2101 在行囊里。**要实机点出一次真正的强化，先补货**：在服务器仓 `robot\` 下跑 `.\robot.exe -c etc/equip_forge_topup.yaml`（服务器 main `d7faa7fecd` 起有这个模式，主仓的 `robot.exe` 已按它重编）。它给 `robot_9104` 补 40 万银两、60 颗强化石、四种一级宝石各 3 颗——按强化表，够把一把装备从 +0 强化到满级——发完重新读背包核对到账，日志末行 `EQUIP_FORGE_TOPUP_OK …`。账号上还没有可强化的装备时，先跑一次 `etc/equip_forge_smoke.yaml`（它会发一把「新手木剑」并穿上）。不补货时这个号只能验：面板画面、孔位与镶嵌 / 取下、「强化材料不足」的置灰与「持有 … 强化石 ×0」。服务器表里 +1 到 +3 必成，装备到了 +3 之后，下一级的成功率才低于 100%（第 4 级 90%）。
 
-## 10. 我做过的验证（都不是 Unity）
+## 10. 我做过的验证
 
 | 项 | 结果 |
 |---|---|
 | 运行时程序集离线编译（Roslyn，引用取主工程 csproj，基于提交时的客户端 main，见提交说明） | 0 错误 |
 | Battle 测试程序集离线编译 | 0 错误 |
 | 变异测试 | 把 `EquipForgeUiState` 的 18 处关键判断逐个改坏（每次只改一行，只改临时副本），18 个全部被至少一条用例抓到 |
+| **Unity EditMode（真 Unity 6000.6.0f1，副本工程 batchmode，客户端 main `db969ce4`）** | 跑 `MmorpgClient.Tests.EditMode.Battle` 全量 825 条：本批相关的八个用例类全过——`EquipForgeUiStateTests` 63/63、`EquipForgeClientTests` 96/96、`EquipForgeModelTests` 35/35、`EquipClientTests` 70/70、`EquipBagModelTests` 13/13、`PlayerFeaturesClientTests` 31/31、`EquipWindowTests` 29/29（真搭 uGUI 窗口）、`GameplayWindowTests` 16/16。另有 67 条失败，全在美术资源相关的四个用例类（`PetAppearanceIntegrationTests` 48、`BattleArchivedActionPlaybackTests` 12、`PetPanelInteractionTests` 4、`BattleRosterAppearanceTests` 3）；把本批改动退回合并前（`fccf6f34`）在同一副本重跑，失败的是同样 67 条，属既有问题，与本批无关 |
 | 对抗评审 | 五个独立视角（状态机、契约、Unity 接线、用例、本文档）各自评审，每条发现再由独立代理尝试反驳；确认的 17 条（全是 minor / nit）已全部改完，本文是改完后的版本 |
 | 纯逻辑用例（Unity 自带的 NUnit 在 .NET 上跑） | 308 / 308：`EquipForgeUiStateTests` 63、`EquipForgeClientTests` 96、`EquipForgeModelTests` 35、`EquipClientTests` 70、`EquipBagModelTests` 13、`PlayerFeaturesClientTests` 31 |
 
 **没有做的**：
 
-- 没有在 Unity 里编译或运行。
+- 没有在游戏里实机点过（界面还没做）。
 - `GameplayUiRoot` 里的那几行接线没有自动化用例（它是 MonoBehaviour）。
 - 没有界面，所以也没有实机点过。
 
