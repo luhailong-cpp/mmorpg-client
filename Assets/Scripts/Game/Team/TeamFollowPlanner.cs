@@ -70,12 +70,12 @@ namespace MmorpgClient.Game.Team
 
         // ── 游标(队员记着自己走到轨迹的哪儿了,见带 cursor 的 Plan)────────────────
         /// <summary>
-        /// 每帧里程最多后退"人这一帧实际挪动的距离 + 它"。里程后退只有一种正当理由:人真的沿轨迹往回走
-        /// (站得比槽位靠前、退回去)。折返点附近去程与回程叠在一起,允许多退的话,已经转到回程上的人会因为
-        /// 厘米级的远近差别被判回去程 —— 去程的前视点朝折返点、回程的朝队长,两帧一个来回,人就卡在那里。
+        /// 每帧里程最多后退"人这一帧实际挪动的距离 + 它"。折返点附近去程与回程叠在一起,允许多退的话,人会因为
+        /// 厘米级的远近差别一帧被判到这一趟、下一帧被判到那一趟 —— 两趟的转向点一个朝折返点、一个朝队长,
+        /// 两帧一个来回,人就卡在那里(2026-10-13 联机验收与离线随机扫描都抓到过)。
         /// </summary>
         public const float CursorBackSlack = 0.1f;
-        /// <summary>每帧在上一帧里程往前多远的范围内找自己。一帧最多走 0.5,留出前视与掉帧的余量。</summary>
+        /// <summary>每帧在上一帧里程往前多远的范围内找自己(不越过自己的槽位)。一帧最多走 0.5,留出折返处的跳跃与掉帧的余量。</summary>
         public const float CursorAhead = 2f;
         /// <summary>
         /// 队长后来又从身边走过(折返、绕圈回来)时,那一段更新的轨迹离自己不超过它就跳过去,
@@ -163,10 +163,11 @@ namespace MmorpgClient.Game.Team
         /// (2026-10-13 真实客户端联机验收抓到:队长向北走一段、原路走回、再拐弯,约一半的概率卡住)。
         ///
         /// 规则:
-        ///   1. 有游标:只在上一帧里程附近找自己 —— 往前 CursorAhead,往后最多"这一帧实际挪动的距离 + CursorBackSlack"
-        ///      (里程只随人真的往回走而后退,不会跳回旧的一趟);
-        ///   2. 例外:更靠近队首的某一段(里程在窗口之后)离自己不超过 JumpLateral 时跳过去 —— 队长折返后
-        ///      从身边走过、或绕一圈回来,队员不必把那一圈走完。只往前跳,所以不会来回;
+        ///   1. 有游标:只在上一帧里程附近找自己 —— 往回最多"这一帧实际挪动的距离 + CursorBackSlack",
+        ///      往前最多 CursorAhead 且不越过自己的槽位。里程只会往前跳、往回只随人真的往回走,所以不会在叠在
+        ///      一起的两趟之间来回;
+        ///   2. 例外:更靠近队首、但还没过自己槽位的某一段(里程在窗口之后)离自己不超过 JumpLateral 时跳过去 ——
+        ///      队长折返后从身边走过、或绕一圈回来,队员不必把那一圈走完;
         ///   3. 没有游标 / 轨迹重起过 / 窗口里已经找不到自己(偏离超过 OffTrailDistance):在整条轨迹上重新找,
         ///      几段差不多近时取离队首最近的。
         /// </summary>
@@ -184,6 +185,7 @@ namespace MmorpgClient.Game.Team
             }
 
             double head = trail.HeadOdometer;
+            float slotDistance = Mathf.Min(slot, MaxFollowers) * SlotSpacing;
             double odometer = 0d;
             float lateral = float.PositiveInfinity;
             bool tracked = false;
@@ -191,12 +193,16 @@ namespace MmorpgClient.Game.Team
             {
                 // 停步回拉把末端收回后,队首里程可能退到游标之前。
                 double hint = System.Math.Min(cursor.Odometer, head);
-                float back = Horizontal(selfPosition, cursor.Position) + CursorBackSlack;
-                tracked = trail.TryProject(selfPosition, hint - back, hint + CursorAhead, hint,
-                              TrackTieTolerance, out odometer, out lateral) &&
+                // 往回只随人的实际位移挪;往前最多跳 CursorAhead,而且最远到自己的槽位 —— 轨迹折过来时,槽位旁边
+                // 可能就站着队长(更新的那一段),跳过头会被当成"站到了队长脚下"、再沿轨迹往回退,来回不止。
+                // 站得比槽位靠前(要退回去)时,往前一步也不跳。
+                float moved = Horizontal(selfPosition, cursor.Position) + CursorBackSlack;
+                double slotOdometer = head - slotDistance;
+                double to = System.Math.Min(hint + CursorAhead, System.Math.Max(slotOdometer + CursorBackSlack, hint + moved));
+                tracked = trail.TryProject(selfPosition, hint - moved, to, hint, TrackTieTolerance, out odometer, out lateral) &&
                           lateral <= OffTrailDistance;
-                if (tracked &&
-                    trail.TryProject(selfPosition, hint + CursorAhead, double.PositiveInfinity, double.PositiveInfinity,
+                if (tracked && slotOdometer + CursorBackSlack > hint + CursorAhead &&
+                    trail.TryProject(selfPosition, hint + CursorAhead, slotOdometer + CursorBackSlack, double.PositiveInfinity,
                         TrackTieTolerance, out double later, out float laterLateral) &&
                     laterLateral <= JumpLateral)
                 {
@@ -213,23 +219,28 @@ namespace MmorpgClient.Game.Team
                 return new TeamFollowCommand(TeamFollowCommandKind.None);
             }
 
-            // 折返点:转向点取在"沿轨迹往前 LookAhead"处,而轨迹在前面折了回来时,那一点绕过折返点正好落回自己
-            // 脚下(离折返点约 LookAhead / 2 处是个不动点)——人原地站住,再也不动。沿轨迹要走的路比直线长出
-            // FoldShortcut 以上,说明自己其实已经站在回程旁边了:把游标直接推到那一点上,下一段前视就落在回程上。
-            // 直角拐弯不会触发(沿轨迹 0.8、直线至少 0.57,只差 0.23)。
+            // 折返点:转向点取在"沿轨迹往前(或往回)LookAhead"处,而轨迹在那儿折了回来时,那一点绕过折返点正好落回
+            // 自己脚下(离折返点约 LookAhead / 2 处是个不动点)——人原地站住、或两帧一个来回,再也走不出去。
+            // 往前追与往回退(站得比槽位靠前,沿轨迹退回去;后排队员在队长短距离掉头后常见)是同一个问题。
+            // 沿轨迹要走的路比直线长出 FoldShortcut 以上,说明自己其实已经站在折过来的那一段旁边了:把游标直接挪到
+            // 那一段上自己脚下那一点,下一段转向点就落在折过来的那一段上。直角拐弯不会触发(沿轨迹 0.8、直线至少 0.57,只差 0.23)。
             float behind = (float)(head - odometer);
-            float slotDistance = Mathf.Min(slot, MaxFollowers) * SlotSpacing;
             for (int fold = 0; fold < 2; fold++)
             {
-                float ahead = behind - Mathf.Max(slotDistance, behind - LookAhead);
-                if (ahead <= FoldShortcut) break;
-                Vector3 target = trail.PointBehindHead(behind - ahead);
+                bool forward = behind > slotDistance;
+                float aim = forward ? Mathf.Max(slotDistance, behind - LookAhead) : Mathf.Min(slotDistance, behind + LookAhead);
+                float arc = Mathf.Abs(behind - aim);
+                if (arc <= FoldShortcut) break;
+                Vector3 target = trail.PointBehindHead(aim);
                 float straight = Horizontal(target, selfPosition);
-                if (ahead - straight < FoldShortcut) break;
-                // 落到回程上自己脚下那一点(前视点往回 straight 处附近);找不到就落在前视点上。
-                double folded = odometer + ahead;
-                if (trail.TryProject(selfPosition, folded - straight - CursorBackSlack, folded, folded - straight,
-                        TrackTieTolerance, out double foot, out float footLateral) && foot > odometer)
+                if (arc - straight < FoldShortcut) break;
+                // 落到折过来那一段上自己脚下那一点(转向点沿轨迹往回 straight 处附近);找不到就落在转向点上。
+                double folded = head - aim;
+                double nearFoot = forward ? folded - straight : folded + straight;
+                double from = forward ? nearFoot - CursorBackSlack : folded;
+                double to = forward ? folded : nearFoot + CursorBackSlack;
+                if (trail.TryProject(selfPosition, from, to, nearFoot, TrackTieTolerance, out double foot, out float footLateral) &&
+                    (forward ? foot > odometer : foot < odometer))
                 {
                     odometer = foot;
                     lateral = footLateral;

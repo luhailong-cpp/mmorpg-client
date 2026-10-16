@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MmorpgClient.Game.Team;
 using NUnit.Framework;
 using UnityEngine;
@@ -483,6 +484,38 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void Simulation_RobotLeaderPatternFromTheLiveCheck_FollowerEndsEveryLegBehindTheLeader()
+        {
+            // 联机验收(robot team-follow-smoke 的 client_follower 形态)里机器人队长的走法:东、西、北、南、东、西各 13.5,
+            // 段间站 2.5 秒,带显示摆动与停步冲过头。21 / 88 / 107 / 126 / 189 是离线扫描里"游标允许往回跳"时会卡住的种子:
+            // 已经转到回程上的人,被厘米级偏差判回去程,在折返点附近两帧一个来回。
+            var seeds = new List<int> { 21, 88, 107, 126, 189 };
+            for (int seed = 1; seed <= 30; seed++) seeds.Add(seed);
+            foreach (int seed in seeds)
+            {
+                string problem = RunRobotPattern(seed);
+                Assert.That(problem, Is.EqualTo(null), "seed " + seed + ": " + problem);
+            }
+        }
+
+        [Test]
+        public void Simulation_RandomWalksWithReversalsAndHitches_EveryFollowerSettlesOnItsSlot()
+        {
+            // 固定种子的随机走法(离线扫描 2 万组的缩小版):八个方向、30% 概率原路折返、段长 2~15、段间停 0 / 0.3~1 / 2.5 秒,
+            // 帧间隔随机且 5% 概率卡顿 0.1~0.3 秒,显示位置摆动 2~8 厘米、停步冲过头 0~0.5,四名队员各带游标。
+            // 每次队长站满 2.5 秒后:四个人都已站定,且都在各自槽位 1.5 以内(折返处"弧长差 + 偏离"两个容差会叠加)。
+            // 这里抓过的四种卡法:往前追时前视点绕过折返点落回脚下;往回退时后视点同样落回脚下;重叠的两趟之间
+            // 往前跳、再往回跳;队长短距离掉头后,后排队员跳过自己的槽位落到队长脚下、再退回去。
+            var seeds = new List<int> { 153 };
+            for (int seed = 1; seed <= 120; seed++) seeds.Add(seed);
+            foreach (int seed in seeds)
+            {
+                string problem = RunRandomWalk(seed);
+                Assert.That(problem, Is.EqualTo(null), "seed " + seed + ": " + problem);
+            }
+        }
+
+        [Test]
         public void Plan_WithACursor_StaysOnItsOwnPassWhenAnOlderPassIsAHairCloser()
         {
             // 去程在 x = 0.03,回程在 x = 0;队员跟着回程走,此刻偏到了 x = 0.02(离去程 1 厘米、离回程 2 厘米)。
@@ -543,6 +576,159 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(cursor.Epoch, Is.EqualTo(trail.Epoch));
             Assert.That(trail.HeadOdometer - cursor.Odometer, Is.EqualTo(0.8d).Within(Tolerance));
             Assert.That(command.Kind, Is.EqualTo(TeamFollowCommandKind.Steer));
+        }
+
+        private static string RunRobotPattern(int seed)
+        {
+            const float dt = 1f / 60f;
+            const float leg = 13.5f;
+            var random = new System.Random(seed);
+            float amplitude = 0.02f + (float)random.NextDouble() * 0.06f;
+            float overshoot = (float)random.NextDouble() * 0.5f;
+            float frequency = 2f + (float)random.NextDouble() * 3f;
+            var directions = new[]
+            {
+                new Vector3(0f, 0f, 1f), new Vector3(0f, 0f, -1f), new Vector3(1f, 0f, 0f),
+                new Vector3(-1f, 0f, 0f), new Vector3(0f, 0f, 1f), new Vector3(0f, 0f, -1f),
+            };
+            var phases = new float[directions.Length];
+            for (int i = 0; i < phases.Length; i++) phases[i] = (float)(random.NextDouble() * System.Math.PI * 2);
+
+            var trail = new TeamFollowTrail(80f);
+            var origin = new Vector3(200f, 0f, 180f);
+            var tail = new List<Vector3>();
+            for (float d = 0.5f; d <= 5.6f + 0.001f; d += 0.5f) tail.Add(origin + new Vector3(0f, 0f, -d));
+            trail.Reset(origin, tail);
+            var follower = origin;
+            bool moving = false;
+            var cursor = default(TeamFollowCursor);
+
+            void Step(Vector3 leader, bool standing)
+            {
+                trail.Push(leader, allowRetract: standing);
+                var command = TeamFollowPlanner.Plan(trail, 1, follower, moving, ref cursor);
+                moving = command.Kind == TeamFollowCommandKind.Steer || command.Kind == TeamFollowCommandKind.Route;
+                if (!moving) return;
+                var delta = command.Point - follower;
+                delta.y = 0f;
+                float distance = delta.magnitude;
+                if (distance < 0.03f) moving = false;
+                else follower += delta / distance * Mathf.Min(9f * command.SpeedScale * dt, distance);
+            }
+
+            for (int f = 0; f < 90; f++) Step(origin, true);
+            var start = origin;
+            for (int i = 0; i < directions.Length; i++)
+            {
+                var direction = directions[i];
+                var side = new Vector3(direction.z, 0f, -direction.x);
+                var end = start + direction * leg;
+                int walkFrames = Mathf.RoundToInt(leg / 9f / dt);
+                for (int f = 0; f < walkFrames; f++)
+                {
+                    float along = Mathf.Min((f + 1) * 9f * dt, leg);
+                    Step(start + direction * along + side * (amplitude * Mathf.Sin(along * frequency + phases[i])), false);
+                }
+                for (int f = 0; f < Mathf.RoundToInt(2.5f / dt); f++)
+                    Step(end + direction * (overshoot * Mathf.Max(0f, 1f - (f + 1) * dt / 0.15f)), true);
+
+                float along2 = Vector3.Dot(follower - end, direction);
+                float gap = Vector3.Distance(new Vector3(follower.x, 0f, follower.z), new Vector3(end.x, 0f, end.z));
+                if (moving || gap < 0.5f || gap > 3f || along2 > -0.5f)
+                    return "leg " + i + ": gap=" + gap + " along=" + along2 + " moving=" + moving;
+                start = end;
+            }
+            return null;
+        }
+
+        private static string RunRandomWalk(int seed)
+        {
+            const int followers = 4;
+            var random = new System.Random(seed);
+            float amplitude = 0.02f + (float)random.NextDouble() * 0.06f;
+            float overshoot = (float)random.NextDouble() * 0.5f;
+            float frequency = 2f + (float)random.NextDouble() * 3f;
+            var trail = new TeamFollowTrail(80f);
+            var origin = new Vector3(200f, 0f, 180f);
+            var tail = new List<Vector3>();
+            for (float d = 0.5f; d <= 5.6f + 0.001f; d += 0.5f) tail.Add(origin + new Vector3(0f, 0f, -d));
+            trail.Reset(origin, tail);
+            var positions = new Vector3[followers];
+            var moving = new bool[followers];
+            var cursors = new TeamFollowCursor[followers];
+            for (int i = 0; i < followers; i++) positions[i] = origin;
+
+            float NextDt() => random.NextDouble() < 0.05
+                ? 0.1f + (float)random.NextDouble() * 0.2f
+                : 1f / 120f + (float)random.NextDouble() * (1f / 30f - 1f / 120f);
+
+            void Step(Vector3 leader, bool standing, float dt)
+            {
+                trail.Push(leader, allowRetract: standing);
+                for (int i = 0; i < followers; i++)
+                {
+                    var command = TeamFollowPlanner.Plan(trail, i + 1, positions[i], moving[i], ref cursors[i]);
+                    moving[i] = command.Kind == TeamFollowCommandKind.Steer || command.Kind == TeamFollowCommandKind.Route;
+                    if (!moving[i]) continue;
+                    var delta = command.Point - positions[i];
+                    delta.y = 0f;
+                    float distance = delta.magnitude;
+                    // 与 TianyongPlayerController.FollowStep / MoveInDirection 一致:到达半径 0.03,单步时长封顶 0.05 秒。
+                    if (distance < 0.03f) moving[i] = false;
+                    else positions[i] += delta / distance * Mathf.Min(9f * command.SpeedScale * Mathf.Min(dt, 0.05f), distance);
+                }
+            }
+
+            string Check(string where)
+            {
+                for (int i = 0; i < followers; i++)
+                {
+                    var slotPoint = trail.PointBehindHead((i + 1) * TeamFollowPlanner.SlotSpacing);
+                    float off = Vector3.Distance(new Vector3(positions[i].x, 0f, positions[i].z), new Vector3(slotPoint.x, 0f, slotPoint.z));
+                    if (moving[i] || off > 1.5f) return where + ": follower " + (i + 1) + " off=" + off + " moving=" + moving[i];
+                }
+                return null;
+            }
+
+            for (float t = 0f; t < 2.5f;) { float dt = NextDt(); t += dt; Step(origin, true, dt); }
+            string problem = Check("settle");
+            if (problem != null) return problem;
+
+            var legStart = origin;
+            var lastDirection = new Vector3(0f, 0f, 1f);
+            int legs = 6 + random.Next(7);
+            for (int leg = 0; leg < legs; leg++)
+            {
+                Vector3 direction;
+                if (leg > 0 && random.NextDouble() < 0.3) direction = -lastDirection;
+                else
+                {
+                    double angle = random.Next(8) * System.Math.PI / 4.0;
+                    direction = new Vector3((float)System.Math.Cos(angle), 0f, (float)System.Math.Sin(angle));
+                }
+                lastDirection = direction;
+                var side = new Vector3(direction.z, 0f, -direction.x);
+                float length = 2f + (float)random.NextDouble() * 13f;
+                float phase = (float)(random.NextDouble() * System.Math.PI * 2);
+                double pick = random.NextDouble();
+                float pause = leg == legs - 1 ? 4f : pick < 0.5 ? 2.5f : pick < 0.75 ? 0f : 0.3f + (float)random.NextDouble() * 0.7f;
+                var end = legStart + direction * length;
+                for (float along = 0f; along < length;)
+                {
+                    float dt = NextDt();
+                    along = Mathf.Min(along + 9f * dt, length);
+                    Step(legStart + direction * along + side * (amplitude * Mathf.Sin(along * frequency + phase)), false, dt);
+                }
+                for (float since = 0f; since < pause;)
+                {
+                    float dt = NextDt();
+                    since += dt;
+                    Step(end + direction * (overshoot * Mathf.Max(0f, 1f - since / 0.15f)), true, dt);
+                }
+                if (pause >= 2.5f && (problem = Check("leg " + leg)) != null) return problem;
+                legStart = end;
+            }
+            return null;
         }
 
         // 远端角色显示位置的摆动:6 厘米(联机现场量到的量级:同一条线上两趟的坐标差到 0.06),沿前进方向约 2 米一个周期。
