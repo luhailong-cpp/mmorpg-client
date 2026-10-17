@@ -249,8 +249,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             missionName.enableAutoSizing = true; missionName.fontSizeMin = 30; missionName.fontSizeMax = 46;
             float badgeX = Math.Max(1106, Math.Min(1618, 841 + missionName.GetPreferredValues(MissionName(detail)).x + 24));
             NativeArt(_body, "mission-badge", badgeX, 127, 126, 52);
-            var badgeText = NativeText(_body, MissionStatus(detail.Status), badgeX + 2, 131, 122, 45, 25, Ink, TextAlignmentOptions.Center);
-            badgeText.enableAutoSizing = true; badgeText.fontSizeMin = 18; badgeText.fontSizeMax = 25;
+            var badgeText = NativeText(_body, MissionStatus(detail.Status), badgeX + 15, 131, 96, 45, 20, Ink, TextAlignmentOptions.Center);
+            badgeText.enableAutoSizing = true; badgeText.fontSizeMin = 16; badgeText.fontSizeMax = 20;
             NativeParagraph(_body, string.IsNullOrWhiteSpace(detail.Description) ? "暂无任务说明。" : detail.Description, 852, 202, 872, 85, 28, Ink);
             NativeText(_body, "任务目标", 861, 286, 301, 45, 33);
             var heights = detail.Objectives.Select(goal => Math.Max(54, (float)Math.Ceiling((goal.Description?.Length ?? 0) / 20f) * 36)).ToList();

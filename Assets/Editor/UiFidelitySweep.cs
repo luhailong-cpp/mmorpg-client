@@ -99,6 +99,21 @@ public static class UiFidelitySweep
         File.WriteAllText(Root+"/final-subset-captured.txt",DateTime.UtcNow.ToString("O")+"\nCore16, skills30, mail16, guild26; production native controls with offline fixture data.\n");
         CaptureBattle();
     }
+    public static void CaptureRemaining()
+    {
+        PrepareBatchScene();Directory.CreateDirectory(Root);var items=new List<Item>();
+        void Run(string name,string directory,Action capture)
+        {
+            Directory.CreateDirectory(directory);var item=new Item{module=name,directory=directory,status="captured"};
+            try{capture();}catch(Exception error){item.status="capture-failed";item.error=error.ToString();Debug.LogException(error);}
+            item.screenshots=Directory.GetFiles(directory,"*.png",SearchOption.AllDirectories).Length;items.Add(item);
+        }
+        Run("gameplay-final","E:/work/image/designs/gameplay-ui/fidelity-20261016/qa/post-final-polish",()=>{GameplayUiVerification.OutputDirectory="E:/work/image/designs/gameplay-ui/fidelity-20261016/qa/post-final-polish";GameplayUiVerification.CaptureAll();});
+        Run("team-invitations",Root+"/team-invitations",()=>{TeamInvitationVerification.OutputDirectory=Root+"/team-invitations";TeamInvitationVerification.CaptureAll();});
+        Run("city-hud",Root+"/city-hud",()=>{ClientUiRefreshVerification.OutputDirectory=Root+"/city-hud";ClientUiQaCapture.CaptureCityAttribute();});
+        File.WriteAllText(Root+"/remaining-capture.json",JsonUtility.ToJson(new Report{status=items.TrueForAll(i=>i.status=="captured")?"captured":"captured-with-gaps",completedAtUtc=DateTime.UtcNow.ToString("O"),unityVersion=Application.unityVersion,modules=items.ToArray()},true));
+        Debug.Log("UI_FIDELITY_REMAINING_CAPTURE_FINISHED");
+    }
     public static void CaptureUpdated()
     {
         if(EditorApplication.isPlayingOrWillChangePlaymode)throw new InvalidOperationException("Stable Edit Mode required.");
