@@ -21,6 +21,7 @@ namespace MmorpgClient.Net
     public sealed class GateTcpClient : IFramedConnection
     {
         private readonly MuduoCodec _codec;
+        private readonly object _lifecycle = new();
         private TcpClient _tcp;
         private NetworkStream _stream;
         private Thread _readerThread;
@@ -47,15 +48,27 @@ namespace MmorpgClient.Net
 
         public void Connect(string host, int port)
         {
-            _tcp = new TcpClient { NoDelay = true };
-            _tcp.Connect(host, port);
-            _stream = _tcp.GetStream();
-            _running = true;
-
-            _readerThread = new Thread(ReaderLoop) { IsBackground = true, Name = "GateTcpReader" };
-            _readerThread.Start();
-            _writerThread = new Thread(WriterLoop) { IsBackground = true, Name = "GateTcpWriter" };
-            _writerThread.Start();
+            TcpClient tcp;
+            lock (_lifecycle)
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(GateTcpClient));
+                if (_tcp != null) throw new InvalidOperationException("connection already started");
+                tcp = _tcp = new TcpClient { NoDelay = true };
+            }
+            // 关闭/探测超时可以在另一个线程到达。不能让 Dispose 后完成的 Connect 重新启动读写线程。
+            try
+            {
+                if (!tcp.ConnectAsync(host, port).Wait(TimeSpan.FromSeconds(3))) throw new TimeoutException("TCP connection timed out");
+                lock (_lifecycle)
+                {
+                    if (_disposed) throw new ObjectDisposedException(nameof(GateTcpClient));
+                    _stream = tcp.GetStream(); _running = true;
+                    _readerThread = new Thread(ReaderLoop) { IsBackground = true, Name = "GateTcpReader" };
+                    _writerThread = new Thread(WriterLoop) { IsBackground = true, Name = "GateTcpWriter" };
+                    _readerThread.Start(); _writerThread.Start();
+                }
+            }
+            catch { tcp.Close(); throw; }
         }
 
         public void Send(IMessage message)
@@ -170,11 +183,14 @@ namespace MmorpgClient.Net
 
         public void Dispose()
         {
+            lock (_lifecycle)
+            {
             _disposed = true;
             _running = false;
             try { _outbox.CompleteAdding(); } catch { }
             try { _stream?.Close(); } catch { }
             try { _tcp?.Close(); } catch { }
+            }
         }
 
         /// <summary>

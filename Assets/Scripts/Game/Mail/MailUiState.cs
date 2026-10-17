@@ -8,6 +8,7 @@ namespace MmorpgClient.Game.Mail
     public sealed class MailUiState
     {
         private readonly Func<long> _clock;
+        private readonly Func<long> _timeoutClock;
         private List<MailMessage> _messages = new();
         private int _generation, _pending, _expiredCount;
         private long _started;
@@ -29,15 +30,19 @@ namespace MmorpgClient.Game.Mail
         public MailMessage Selected => _messages.Find(m => m.Id == SelectedId)?.Copy();
         public int UnreadCount => _messages.Count(m => !m.IsRead);
         public int ClaimableCount => _messages.Count(HasValidAttachments);
-        public int CleanableCount => _messages.Count(m => m.IsRead && !HasValidAttachments(m));
+        public int CleanableCount => _messages.Count(m => m.IsRead && !Protected(m));
         public event Action Changed;
         public event Action<MailRequest> ActionRequested;
-        public MailUiState(Func<long> clock = null) { _clock = clock ?? (() => DateTimeOffset.UtcNow.ToUnixTimeSeconds()); }
+        public MailUiState(Func<long> clock = null,Func<long> monotonicSeconds=null) { _clock = clock ?? (() => DateTimeOffset.UtcNow.ToUnixTimeSeconds());_timeoutClock=monotonicSeconds??clock??(()=>System.Diagnostics.Stopwatch.GetTimestamp()/System.Diagnostics.Stopwatch.Frequency); }
         private bool Visible(MailMessage m) => Category == MailCategory.All || m.Category == Category;
         public bool IsExpired(MailMessage m) => m != null && m.ExpiresAt > 0 && m.ExpiresAt <= Now;
-        public bool HasValidAttachments(MailMessage m) => m != null && !m.Claimed && !IsExpired(m) && m.Rewards.Any(r => r.Count > 0);
+        public bool HasValidAttachments(MailMessage m) => m != null && !m.Claimed && !m.DeliveryPending && !m.RequiresManual && !IsExpired(m) && m.Rewards.Any(r => r.Count > 0);
+        private bool Protected(MailMessage m)=>m!=null&&(m.DeliveryPending||m.RequiresManual||HasValidAttachments(m));
+        public bool IsPending(int generation)=>generation!=0&&generation==_pending;
         public bool CanClaimSelected => CanAct && HasValidAttachments(Selected);
-        public bool CanDeleteSelected => CanAct && Selected != null && !HasValidAttachments(Selected);
+        public bool CanDeleteSelected => CanAct && Selected != null && !Protected(Selected);
+        // 由真实网络适配器在绑定角色及连接后启用；首份权威快照仍须通过Refresh取得。
+        public void BeginOnline(){if(PlayerId==0)return;ServiceAvailable=true;IsDemo=false;Status="正在读取邮件…";Changed?.Invoke();}
 
         public void Reset(ulong playerId = 0)
         {
@@ -91,10 +96,10 @@ namespace MmorpgClient.Game.Mail
         {
             var m = Selected;
             if (m == null) return 0;
-            if (HasValidAttachments(m)) { Status = "这封邮件还有可领取的附件，请先领取再删除。"; Changed?.Invoke(); return 0; }
+            if (Protected(m)) { Status = m.RequiresManual?"附件需要协助处理，邮件已保留。":m.DeliveryPending?"附件正在送达，邮件已保留。":"这封邮件还有可领取的附件，请先领取再删除。"; Changed?.Invoke(); return 0; }
             return Request(MailOperation.Delete, new[] { m.Id });
         }
-        public int ClearRead() => Request(MailOperation.ClearRead, _messages.Where(m => m.IsRead && !HasValidAttachments(m)).Select(m => m.Id));
+        public int ClearRead() => Request(MailOperation.ClearRead, _messages.Where(m => m.IsRead && !Protected(m)).Select(m => m.Id));
         public int Refresh() => Request(MailOperation.Refresh, Array.Empty<string>());
 
         private int Request(MailOperation operation, IEnumerable<string> source)
@@ -104,7 +109,7 @@ namespace MmorpgClient.Game.Mail
             if (ids.Length == 0 && operation != MailOperation.Refresh) return 0;
             if (IsDemo) { ApplyDemo(operation, ids); return 1; }
             if (ActionRequested == null) { SetUnavailable(); return 0; }
-            _pending = NextGeneration(); _pendingOperation = operation; _started = Now; Status = "正在同步邮件，请稍候…";
+            _pending = NextGeneration(); _pendingOperation = operation; _started = _timeoutClock(); Status = "正在同步邮件，请稍候…";
             var request = new MailRequest(_pending, operation, ids); Changed?.Invoke();
             ActionRequested(request); return request.Generation;
         }
@@ -124,7 +129,7 @@ namespace MmorpgClient.Game.Mail
                     break;
                 case MailOperation.Delete:
                 case MailOperation.ClearRead:
-                    affected.RemoveAll(HasValidAttachments);
+                    affected.RemoveAll(Protected);
                     foreach (var m in affected) _messages.Remove(m);
                     Status = operation == MailOperation.ClearRead
                         ? $"已清理 {affected.Count} 封已读邮件，待领附件已保留。" : "邮件已删除。";
@@ -147,7 +152,7 @@ namespace MmorpgClient.Game.Mail
         }
         public void Tick()
         {
-            if (IsBusy && Now - _started >= 10) { RequiresRefresh = RequiresRefresh || (_pendingOperation != MailOperation.Read && _pendingOperation != MailOperation.Refresh); Fail(_pending, RequiresRefresh ? "操作结果尚未确认，请刷新邮件后再试。" : "邮件请求超时，请稍后刷新。"); return; }
+            if (IsBusy && _timeoutClock() - _started >= 10) { RequiresRefresh = RequiresRefresh || (_pendingOperation != MailOperation.Read && _pendingOperation != MailOperation.Refresh); Fail(_pending, RequiresRefresh ? "操作结果尚未确认，请刷新邮件后再试。" : "邮件请求超时，请稍后刷新。"); return; }
             int count = _messages.Count(IsExpired);
             if (count != _expiredCount) { _expiredCount = count; Changed?.Invoke(); }
         }

@@ -1,5 +1,6 @@
 using MmorpgClient.Game;
 using MmorpgClient.Game.Mail;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
@@ -15,7 +16,7 @@ using UnityEngine.InputSystem;
 
 namespace MmorpgClient.UI.Ugui.Mail
 {
-    /// <summary>Production entry only. There is no mail RPC adapter yet and this root never loads fixtures.</summary>
+    /// <summary>正式邮件入口，经现有gate传输读取权威邮件，不加载离线样例。</summary>
     public sealed class MailUiRoot : MonoBehaviour
     {
         public static MailUiRoot Instance { get; private set; }
@@ -28,6 +29,8 @@ namespace MmorpgClient.UI.Ugui.Mail
         private object _gate;
         private ulong _player;
         private bool _available;
+        private MailClient _client;
+        private TMP_Text _entryText;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -45,6 +48,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             _hud=QdaoUguiFactory.CreateStretch("HudRoot",design,Vector4.zero);QdaoUguiFactory.ConfigureHudCanvas(_hud);
             var entry=GameplayUiArt.Button(_hud,"仙笺 [N]",EntryX,EntryY,BattleUiStyle.HudEntryWidth,BattleUiStyle.HudEntryHeight,Toggle,true,fontSize:32);
             entry.name="MailEntry";_window=new MailWindow(design);_hud.gameObject.SetActive(false);
+            _entryText=entry.GetComponentInChildren<TMP_Text>();
         }
         public static void ConfigureScaler(CanvasScaler scaler)
         {
@@ -60,9 +64,11 @@ namespace MmorpgClient.UI.Ugui.Mail
             if(!ReferenceEquals(_gate,gate)){ResetSession();_gate=gate;}
             bool inGame=game!=null&&game.InGame&&game.IsGateReady;
             ulong player=inGame?game.PlayerId:0;
-            if(_player!=player){ResetSession();_player=player;_gate=gate;State.Reset(player);}
+            if(_player!=player){ResetSession();_player=player;_gate=gate;State.Reset(player);
+                if(player!=0){_client=new MailClient(new GameClientBattleTransport(game),()=>game.GateConnectionIdentity,State);State.Refresh();}}
             _available=inGame&&!(BattleUiRoot.Instance?.IsBattleLayerVisible??false);
-            _hud.gameObject.SetActive(_available);_window.Tick();
+            _hud.gameObject.SetActive(_available);_window.Tick();_client?.Tick(_window.IsVisible);
+            if(_entryText!=null)_entryText.text=_client?.HasUnseenNotice==true?"仙笺 [N] · 新":State.UnreadCount>0?$"仙笺 [N] · {State.UnreadCount}":"仙笺 [N]";
             if(!_available){HidePanel();return;}
             if(IsTyping()||(!_window.IsVisible&&GameplayInputGate.IsKeyboardBlocked))return;
 #if ENABLE_INPUT_SYSTEM
@@ -76,12 +82,14 @@ namespace MmorpgClient.UI.Ugui.Mail
         {
             if(_window.IsVisible){HidePanel();return;}if(!_available)return;
             Team.TeamUiRoot.Instance?.HidePanel();Guild.GuildUiRoot.Instance?.HidePanel();Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();Social.SocialUiRoot.Instance?.HidePanel();
+            Rank.RankUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();CityTravelUiRoot.Instance?.HidePanel();AttributeUiRoot.Instance?.HidePanel();PetUiRoot.Instance?.HidePanel();
             Skills.SkillUiRoot.Instance?.HidePanel();
             _window.Show();
+            if(!State.IsBusy)State.Refresh();
         }
         public void HidePanel()=>_window?.Hide();
-        private void ResetSession(){_player=0;_gate=null;_available=false;_window?.ResetSession();if(_hud!=null)_hud.gameObject.SetActive(false);}
+        private void ResetSession(){_client?.Dispose();_client=null;_player=0;_gate=null;_available=false;_window?.ResetSession();if(_hud!=null)_hud.gameObject.SetActive(false);}
         public static bool IsTyping()
         {
             var go=EventSystem.current?.currentSelectedGameObject;
@@ -90,7 +98,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         private void OnDisable()=>HidePanel();
         private void OnDestroy()
         {
-            if(_game!=null)_game.OnDisconnected-=ResetSession;_window?.Dispose();if(Instance==this)Instance=null;
+            if(_game!=null)_game.OnDisconnected-=ResetSession;_client?.Dispose();_window?.Dispose();if(Instance==this)Instance=null;
         }
     }
 }

@@ -120,7 +120,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             _expiry.text=mail==null?"":Expiry(mail);
             _claim.gameObject.SetActive(mail?.Rewards.Count>0);
             _claim.interactable=State.CanClaimSelected;
-            SetLabel(_claim,mail==null?"领取附件":State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":"领取附件");
+            SetLabel(_claim,mail==null?"领取附件":mail.RequiresManual?"等待协助":mail.DeliveryPending?"正在送达":State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":"领取附件");
             _event.gameObject.SetActive(mail!=null&&!string.IsNullOrEmpty(mail.ActivityId));
             _event.interactable=mail!=null&&!State.IsExpired(mail)&&(State.IsDemo||ActivityRequested!=null);
             _delete.interactable=State.CanAct&&mail!=null;
@@ -184,7 +184,7 @@ namespace MmorpgClient.UI.Ugui.Mail
                 if(mail.Claimed)Label(_rewards,"RewardClaimed_"+i,"✓",x+2,-3,37,38,26,Jade);
             }
         }
-        private string Status(MailMessage mail)=>State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":mail.Rewards.Count>0?"待领取":"无附件";
+        private string Status(MailMessage mail)=>mail.RequiresManual?"附件需要协助，已保留":mail.DeliveryPending?"附件正在送达":State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":mail.Rewards.Count>0?"待领取":"无附件";
         private static string CategoryLabel(MailCategory category)=>category switch{MailCategory.Event=>"活动",MailCategory.Reward=>"奖励",_=>"系统"};
         private static string Date(long unix,bool dayOnly=false)
         {try{return DateTimeOffset.FromUnixTimeSeconds(unix).ToLocalTime().ToString(dayOnly?"MM-dd":"MM-dd HH:mm");}catch{return "日期待同步";}}

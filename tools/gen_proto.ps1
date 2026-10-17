@@ -102,6 +102,13 @@ $files = @(
     # 只列客户端协议文件:proto/trade/trade_admin.proto(内部 SeedListing)与 trade_table.proto(建表 schema)
     # 刻意不进客户端包。trade_error / common_error 两份 tip 由服务端导表器生成,客户端按枚举映射文案。
     "proto/trade/jubaozhai.proto",
+    "proto/trade/commerce.proto",
+    "proto/mail/mail.proto",
+    "proto/rank/rank.proto",
+    "proto/common/base/service_call_auth.proto",
+    "proto/match/match_network.proto",
+    "generated/code/proto/tip/mail_error_tip.proto",
+    "generated/code/proto/tip/rank_error_tip.proto",
     "generated/code/proto/tip/trade_error_tip.proto",
     "generated/code/proto/tip/common_error_tip.proto",
 

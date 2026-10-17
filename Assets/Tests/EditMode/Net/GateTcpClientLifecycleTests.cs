@@ -13,6 +13,14 @@ namespace MmorpgClient.Tests.EditMode.Net
 {
     public sealed class GateTcpClientLifecycleTests
     {
+        [Test]
+        public void ConnectAfterDisposeCannotStartBackgroundProbeConnection()
+        {
+            using var client = new GateTcpClient(new MuduoCodec());
+            client.Dispose();
+            Assert.Throws<ObjectDisposedException>(() => client.Connect("127.0.0.1", 1));
+            Assert.That(client.Connected, Is.False);
+        }
         [TestCase(true)]
         [TestCase(false)]
         public void DisposeDuringIo_EndsWorkerWithoutEscapingException(bool reader)

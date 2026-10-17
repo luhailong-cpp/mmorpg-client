@@ -11,5 +11,7 @@
   "optionalUnityReferences": [
     "TestAssemblies"
   ],
-  "autoReferenced": false
+  "autoReferenced": false,
+  "overrideReferences": true,
+  "precompiledReferences": ["Google.Protobuf.dll"]
 }

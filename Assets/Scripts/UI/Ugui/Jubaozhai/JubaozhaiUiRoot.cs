@@ -30,6 +30,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private GameClient _game;
         private JubaozhaiClient _client;
         private JubaozhaiWindow _window;
+        private CommerceClient _commerce;
+        private CommerceWindow _commerceWindow;
         private RectTransform _hud;
         private ulong _player;
         private bool _available;
@@ -64,6 +66,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             entry.name = "JubaozhaiEntry";
             _window = new JubaozhaiWindow(design);
+            _commerceWindow = new CommerceWindow(design, () => _game);
+            _window.CommerceRequested += ShowCommerce;
             _hud.gameObject.SetActive(false);
         }
 
@@ -82,9 +86,15 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     // 服务端分页适配器与窗口共用同一个 State;连接身份取 Gate 对象,静默换 Gate 时解除隔离。
                     _client = new JubaozhaiClient(new GameClientBattleTransport(game), _window.State,
                         () => game.GateConnectionIdentity);
+                    _commerce = new CommerceClient(new GameClientBattleTransport(game), new CommerceFileRecoveryStore(
+                        System.IO.Path.Combine(Application.persistentDataPath, "commerce-recovery-v1"), AppBootstrap.Instance.Session.GatewayBaseUrl),
+                        () => game.GateConnectionIdentity);
+                    _commerce.AssetRefreshRequired += RefreshAssets;
+                    _commerceWindow.Bind(_commerce);
                 }
             }
             _client?.ObserveConnection();
+            _commerce?.ObserveConnection();
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             ulong player = inGame ? _game.PlayerId : 0;
             if (_player != player) { ResetSession(); _client?.Reset(); _player = player; }
@@ -96,20 +106,21 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _hud.gameObject.SetActive(available);
             if (!available) { HidePanel(); return; }
             _window.Tick(Time.unscaledTime);
-            if (IsTyping() || (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked)) return;
+            if (IsTyping() || (!_window.IsVisible && !_commerceWindow.IsVisible && GameplayInputGate.IsKeyboardBlocked)) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
             if (keys == null) return;
-            if (keys.escapeKey.wasPressedThisFrame) _window.Back();
+            if (keys.escapeKey.wasPressedThisFrame) { if (_commerceWindow.IsVisible) _commerceWindow.Back(); else _window.Back(); }
             else if (keys.uKey.wasPressedThisFrame) Toggle();
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            if (Input.GetKeyDown(KeyCode.Escape)) _window.Back();
+            if (Input.GetKeyDown(KeyCode.Escape)) { if (_commerceWindow.IsVisible) _commerceWindow.Back(); else _window.Back(); }
             else if (Input.GetKeyDown(KeyCode.U)) Toggle();
 #endif
         }
 
         public void Toggle()
         {
+            if (_commerceWindow.IsVisible) { HidePanel(); return; }
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
             Team.TeamUiRoot.Instance?.HidePanel();
@@ -123,17 +134,33 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _client?.Open();
         }
 
-        public void HidePanel() => _window?.Hide();
+        private void ShowCommerce()
+        {
+            if (!_available) return;
+            _window.Hide();
+            _commerceWindow.Show();
+        }
+        private void RefreshAssets()
+        {
+            if (_game == null || !_game.InGame || !_game.IsGateReady) return;
+            _game.Features.RequestBag();
+            _game.Pets.RequestList();
+        }
+        public void HidePanel() { _window?.Hide(); _commerceWindow?.Hide(); }
         private void DisposeClient()
         {
             _client?.Dispose();
             _client = null;
+            if (_commerce != null) _commerce.AssetRefreshRequired -= RefreshAssets;
+            _commerceWindow?.Bind(null);
+            _commerce?.Dispose(); _commerce = null;
         }
         private void ResetSession()
         {
             _player = 0;
             _available = false;
             _window?.ResetSession();
+            _commerceWindow?.Hide();
             if (_hud != null) _hud.gameObject.SetActive(false);
         }
         public static bool IsTyping()
@@ -147,6 +174,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (_game != null) _game.OnDisconnected -= ResetSession;
             DisposeClient();
             _window?.Dispose();
+            _commerceWindow?.Dispose();
             if (Instance == this) Instance = null;
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Guild;
 using MmorpgClient.Game.Social;
 using MmorpgClient.Game.Team;
 using MmorpgClient.Net;
@@ -126,12 +127,13 @@ namespace MmorpgClient.Game.Sync
         // 本次落地开始时还有旧请求可能晚到:收到的摘要一律按全量拉处理(L-1)。
         private bool _fullPullRequired;
 
-        // ── 取摘要请求(单飞)── 戳 = (玩家, 连接身份, 序号)。
+        // ── 取摘要请求(单飞)── 戳 = (玩家, 连接身份)。
+        // 不带请求序号:摘要推送与 gate 的拒绝回包都不带请求编号(SendOneWay 也不返回 mc.Id),序号无从比较。
+        // 旧落地的推送靠「本次落地已发过请求、还没拿到摘要、戳与当前落地一致」三个条件丢弃,
+        // 分不清的情况由 BeginLanding 里「发出数 > 收到数」时本次全量拉兜底(L-1)。
         private bool _awaiting;
         private ulong _stampPlayer;
         private object _stampConnection;
-        private int _stampSeq;
-        private int _requestSeq;
         private int _sentThisLanding;
         private float _deadline;
         private float _nextAttemptAt = float.NegativeInfinity;
@@ -339,7 +341,6 @@ namespace MmorpgClient.Game.Sync
             _awaiting = true;
             _stampPlayer = _player;
             _stampConnection = _connection;
-            _stampSeq = ++_requestSeq;
             ++_sentThisLanding;
             _deadline = now + DigestTimeoutSeconds;
             _lastSendAt = now;
@@ -348,8 +349,7 @@ namespace MmorpgClient.Game.Sync
         }
 
         private bool StampIsCurrent() =>
-            _player != 0 && _stampPlayer == _player && ReferenceEquals(_stampConnection, _connection)
-            && _stampSeq == _requestSeq;
+            _player != 0 && _stampPlayer == _player && ReferenceEquals(_stampConnection, _connection);
 
         private void Fail(float now, string reason)
         {
@@ -369,6 +369,9 @@ namespace MmorpgClient.Game.Sync
             if (_disposed) return;
             uint tipId = content?.ErrorMessage?.Id ?? 0;
             if (tipId == 0) return;
+            // 被拒的请求不会再有推送:记作已收到,免得它让下一次落地(StalePushHorizonSeconds 之内)无谓地全量拉。
+            // 拒绝回包不带请求编号,分不清是哪一次被拒;但不论是哪一次,都恰好少一条推送,计数照样对。
+            ++_pushesReceived;
             ObserveLanding();
             if (!_awaiting || !StampIsCurrent()) return;
             Fail(_clock(), $"请求被拒绝 tip={tipId}");
@@ -537,8 +540,9 @@ namespace MmorpgClient.Game.Sync
     /// <summary>
     /// 把现有的域客户端接到 <see cref="LandingSyncClient"/>(设计 §4.3 第 5 条)。由持有这些客户端的界面宿主
     /// 在建好客户端之后各调一次,销毁客户端之前 Dispose 返回值。域客户端本身不认识 LandingSyncClient,
-    /// 只暴露通用钩子(SyncReadStarted / QueueRefresh),所以生成的 SyncDomain 只在本文件里出现。
-    /// 新域接入照此追加一个 Bind 方法;帮会(GUILD*)待 GuildClient 提供排队刷新入口与读取确认钩子后接入。
+    /// 只暴露通用钩子(SyncReadStarted / QueueRefresh / QueueSyncRefresh),所以生成的 SyncDomain 只在本文件里出现。
+    /// 新域接入照此追加一个 Bind 方法。现有接线:组队(BindTeam,TeamUiRoot)、好友申请(BindFriendRequests,
+    /// SocialUiRoot)、帮会四个域(BindGuild,GuildUiRoot)。
     /// </summary>
     public static class LandingSyncBindings
     {
@@ -583,9 +587,103 @@ namespace MmorpgClient.Game.Sync
             });
         }
 
+        /// <summary>
+        /// 帮会四个域:
+        ///  - GUILD:标脏时后台排队拉 GetPlayerGuild,快照成功应用或回「不在帮」时确认;
+        ///  - GUILD_APPLICATION:标脏时排队。不在帮时拉 ListMyGuildApplications、本人申请落定后确认;
+        ///    已入帮时不拉(服务端入帮那一刻已删光本人申请),由那次 GetPlayerGuild 拉到「在帮」快照时一并确认
+        ///    (见 <see cref="GuildSnapshotAck"/>),否则在帮玩家这个域永远是脏的,每次落地都要后台多拉一次快照;
+        ///  - GUILD_ECONOMY / GUILD_ACTIVITY:**只被动确认**,不注册消费者,玩家进捐献 / 商店 / 活动页时的自动拉取
+        ///    发出晚于摘要就顺带确认;ECONOMY 要捐献与商店两次读取都确认(见 <see cref="EconomyAck"/>)。
+        /// 经济与活动不后台拉的理由:这两页在帮会窗口之外没有任何显示,GuildClient 每次落地都清掉它们的快照、
+        /// 进页必拉,后台拉只多 RPC(全帮扇出的变化会让上百人同时多拉);而且 Request 的错误路径会把 GuildClient
+        /// 置成需重新登录的隔离态,玩家什么都没做就看到「请重新登录角色后再试」。要改成主动拉,在这里多注册两个消费者即可。
+        /// 排队的读取由 GuildUiRoot 每帧发出(窗口隐藏时 DrainSyncQueued,可见时 DrainQueued),一次一个。
+        /// 只拉取,不据标脏本身给任何提示(被动方隐私,设计 §3.5 第 4 条)。
+        /// </summary>
+        public static IDisposable BindGuild(LandingSyncClient sync, GuildClient guild)
+        {
+            if (sync == null) throw new ArgumentNullException(nameof(sync));
+            if (guild == null) throw new ArgumentNullException(nameof(guild));
+            var economy = new EconomyAck(sync);
+            Func<GuildSyncRead, Action> hook = read => read switch
+            {
+                GuildSyncRead.Guild => GuildSnapshotAck(sync, guild),
+                GuildSyncRead.MyApplications => AckOnSuccess(sync, SyncDomain.GuildApplication),
+                GuildSyncRead.Activities => AckOnSuccess(sync, SyncDomain.GuildActivity),
+                GuildSyncRead.Donations => economy.Begin(GuildSyncRead.Donations),
+                GuildSyncRead.Shop => economy.Begin(GuildSyncRead.Shop),
+                _ => null,
+            };
+            guild.SyncReadStarted = hook;
+            var guildInfo = sync.RegisterConsumer(SyncDomain.Guild, _ => guild.QueueSyncRefresh(GuildSyncRead.Guild));
+            var applications = sync.RegisterConsumer(SyncDomain.GuildApplication,
+                _ => guild.QueueSyncRefresh(GuildSyncRead.MyApplications));
+            return new Binding(() =>
+            {
+                guildInfo.Dispose();
+                applications.Dispose();
+                if (guild.SyncReadStarted == hook) guild.SyncReadStarted = null;
+            });
+        }
+
         /// <summary>发出拉取时取票;该域此刻不脏就返回 null(这次拉取不需要确认)。</summary>
         private static Action AckOnSuccess(LandingSyncClient sync, SyncDomain domain) =>
             sync.TryBeginPull(domain, out var ticket) ? () => sync.Ack(ticket) : (Action)null;
+
+        /// <summary>
+        /// GetPlayerGuild 发出时同时为 GUILD 与 GUILD_APPLICATION 各取一张票,返回复合确认;两个域此刻都不脏时返回 null。
+        /// GUILD 票照常确认。GUILD_APPLICATION 票只在确认那一刻在帮(<see cref="GuildClient.Info"/> 非空)才确认:
+        /// GuildClient 只在快照成功应用(在帮)与回「不在帮」两处调确认委托,读 Info 正好区分这两种结果。
+        /// 在帮 = 服务端入帮那一刻已删光本人申请,这次发出晚于摘要的快照同时落定了「本人申请为空」;
+        /// 不在帮时本人申请要另拉,由 ListMyGuildApplications 那次读取确认。
+        /// </summary>
+        private static Action GuildSnapshotAck(LandingSyncClient sync, GuildClient guild)
+        {
+            bool guildDirty = sync.TryBeginPull(SyncDomain.Guild, out var guildTicket);
+            bool applicationsDirty = sync.TryBeginPull(SyncDomain.GuildApplication, out var applicationTicket);
+            if (!guildDirty && !applicationsDirty) return null;
+            return () =>
+            {
+                bool inGuild = guild.Info != null; // 先读:下面的 Ack 会触发 Changed,不让回调里的改动影响这次判断
+                if (guildDirty) sync.Ack(guildTicket);
+                if (applicationsDirty && inGuild) sync.Ack(applicationTicket);
+            };
+        }
+
+        /// <summary>
+        /// GUILD_ECONOMY 由捐献页与商店页两份快照组成:同一批标脏下两次读取都在摘要之后发出并成功,才确认(L-2)。
+        /// 只成功一次不推进:另一页仍可能停在摘要之前的状态。批次变了(换落地、摘要重算)从头记,
+        /// 比当前记录更旧的批次的完成直接忽略(它的票也已作废)。
+        /// </summary>
+        private sealed class EconomyAck
+        {
+            private readonly LandingSyncClient _sync;
+            private SyncPullTicket _ticket;
+            private bool _has, _donations, _shop;
+
+            public EconomyAck(LandingSyncClient sync) => _sync = sync;
+
+            /// <summary>读取发出时取票;该域此刻不脏就返回 null(这次读取不计入)。</summary>
+            public Action Begin(GuildSyncRead part) =>
+                _sync.TryBeginPull(SyncDomain.GuildEconomy, out var ticket) ? () => Complete(ticket, part) : (Action)null;
+
+            private void Complete(SyncPullTicket ticket, GuildSyncRead part)
+            {
+                if (_has && ticket.Epoch < _ticket.Epoch) return;
+                if (!_has || ticket.Epoch != _ticket.Epoch)
+                {
+                    _ticket = ticket;
+                    _has = true;
+                    _donations = _shop = false;
+                }
+                if (part == GuildSyncRead.Donations) _donations = true;
+                else if (part == GuildSyncRead.Shop) _shop = true;
+                if (!_donations || !_shop) return;
+                _has = false;
+                _sync.Ack(_ticket);
+            }
+        }
 
         private sealed class Binding : IDisposable
         {

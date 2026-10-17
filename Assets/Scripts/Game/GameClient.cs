@@ -174,6 +174,7 @@ namespace MmorpgClient.Game
         /// 本身无定时器(纯请求-响应 + 一条 S2C 推送),不需要 Tick。
         /// </summary>
         public PetClient Pets { get; }
+        public DurableRequestFileStore TeamMatchRecovery { get; }
 
         public PlayerFeaturesClient Features { get; }
 
@@ -281,6 +282,8 @@ namespace MmorpgClient.Game
             // 战斗直连握手包(§18.2);两条连接共用同一个 codec 实例
             _codec.Register<BattleTokenVerifyRequest>();
             _codec.Register<BattleTokenVerifyResponse>();
+            _codec.Register<Match.NetworkProbeChallenge>();
+            _codec.Register<Match.NetworkProbeComplete>();
 
             World = new ActorWorld();
             World.AppearanceProvider = ResolveActorCharacterId;
@@ -303,6 +306,9 @@ namespace MmorpgClient.Game
             var battleRoute = new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink,
                 s => Log($"[battle-route] {s}"));
             Battle = BattleClient.Attach(battleRoute, battleRoute);
+            Battle.RegionProbe = new RegionProbeClient(battleRoute, () => new GateTcpClient(_codec));
+            Battle.QueueRecovery = new FileMatchJoinRecovery(System.IO.Path.Combine(Application.persistentDataPath, "match-intents"), gatewayBaseUrl);
+            TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl);
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
             Pets = PetClient.Attach(new GameClientBattleTransport(this));
@@ -310,9 +316,10 @@ namespace MmorpgClient.Game
             companion.Bind(World, Pets);
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));
             ZoneTravel = new ZoneTravelClient(this);
-            // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按玩家分键存 PlayerPrefs。
+            // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按 (gateway 地址哈希, 玩家) 分键存 PlayerPrefs。
             LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
-                () => InGame, () => Time.realtimeSinceStartup, new PlayerPrefsSyncDigestStore(),
+                () => InGame, () => Time.realtimeSinceStartup,
+                new PlayerPrefsSyncDigestStore(PlayerPrefsSyncDigestStore.NamespaceForGateway(gatewayBaseUrl)),
                 s => Log($"[sync] {s}"));
         }
 

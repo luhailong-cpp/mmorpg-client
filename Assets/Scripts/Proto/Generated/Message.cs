@@ -24,75 +24,61 @@ public static partial class MessageReflection {
         string.Concat(
           "Ch9wcm90by9jb21tb24vYmFzZS9tZXNzYWdlLnByb3RvGh5wcm90by9jb21t",
           "b24vYmFzZS9jb21tb24ucHJvdG8aH3Byb3RvL2NvbW1vbi9iYXNlL3Nlc3Np",
-          "b24ucHJvdG8aG3Byb3RvL2NvbW1vbi9iYXNlL3RpcC5wcm90byJDCg9Sb3V0",
-          "aW5nTm9kZUluZm8SHAoJbm9kZV9pbmZvGAEgASgLMgkuTm9kZUluZm8SEgoK",
-          "bWVzc2FnZV9pZBgCIAEoDSJ0Cg5NZXNzYWdlQ29udGVudBIaChJzZXJpYWxp",
-          "emVkX21lc3NhZ2UYASABKAwSEgoKbWVzc2FnZV9pZBgCIAEoDRIKCgJpZBgD",
-          "IAEoBBImCg1lcnJvcl9tZXNzYWdlGAQgASgLMg8uVGlwSW5mb01lc3NhZ2Ui",
-          "UgoRTm9kZU1lc3NhZ2VIZWFkZXISDwoHbm9kZV9pZBgBIAEoDRISCgpzZXNz",
-          "aW9uX2lkGAIgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAyABKAQiZwoXTm9k",
-          "ZVJvdXRlTWVzc2FnZVJlcXVlc3QSKAoPbWVzc2FnZV9jb250ZW50GAEgASgL",
-          "Mg8uTWVzc2FnZUNvbnRlbnQSIgoGaGVhZGVyGAIgASgLMhIuTm9kZU1lc3Nh",
-          "Z2VIZWFkZXIiaAoYTm9kZVJvdXRlTWVzc2FnZVJlc3BvbnNlEigKD21lc3Nh",
-          "Z2VfY29udGVudBgBIAEoCzIPLk1lc3NhZ2VDb250ZW50EiIKBmhlYWRlchgC",
-          "IAEoCzISLk5vZGVNZXNzYWdlSGVhZGVyIicKElBsYXllckluZm9FeHRlcm5h",
-          "bBIRCglwbGF5ZXJfaWQYASABKAQiaQoYUGxheWVyTm9kZVNlcnZpY2VSZXF1",
-          "ZXN0EigKD21lc3NhZ2VfY29udGVudBgBIAEoCzIPLk1lc3NhZ2VDb250ZW50",
-          "EiMKBmhlYWRlchgCIAEoCzITLlBsYXllckluZm9FeHRlcm5hbCJmChVQbGF5",
-          "ZXJNZXNzYWdlUmVzcG9uc2USKAoPbWVzc2FnZV9jb250ZW50GAEgASgLMg8u",
-          "TWVzc2FnZUNvbnRlbnQSIwoGaGVhZGVyGAIgASgLMhMuUGxheWVySW5mb0V4",
-          "dGVybmFsIjYKFk5vZGVSb3V0aW5nTWVzc2FnZUJvZHkSHAoJbm9kZV9pbmZv",
-          "GAIgASgLMgkuTm9kZUluZm8iXgoeUmVnaXN0ZXJHYW1lTm9kZVNlc3Npb25S",
-          "ZXF1ZXN0EiUKDHNlc3Npb25faW5mbxgBIAEoCzIPLlNlc3Npb25EZXRhaWxz",
-          "EhUKDXNjZW5lX25vZGVfaWQYAiABKA0iSAofUmVnaXN0ZXJHYW1lTm9kZVNl",
-          "c3Npb25SZXNwb25zZRIlCgxzZXNzaW9uX2luZm8YASABKAsyDy5TZXNzaW9u",
-          "RGV0YWlscyJICh9SZWdpc3RlckdhdGVOb2RlU2Vzc2lvblJlc3BvbnNlEiUK",
-          "DHNlc3Npb25faW5mbxgBIAEoCzIPLlNlc3Npb25EZXRhaWxzIkUKHEdhdGVT",
-          "ZXNzaW9uRGlzY29ubmVjdFJlcXVlc3QSJQoMc2Vzc2lvbl9pbmZvGAEgASgL",
-          "Mg8uU2Vzc2lvbkRldGFpbHMifQoTUm91dGVNZXNzYWdlUmVxdWVzdBIMCgRi",
-          "b2R5GAEgASgMEiUKC3JvdXRlX25vZGVzGAIgAygLMhAuUm91dGluZ05vZGVJ",
-          "bmZvEhIKCnNlc3Npb25faWQYAyABKA0SCgoCaWQYBCABKAQSEQoJaXNfY2xp",
-          "ZW50GAUgASgIIn4KFFJvdXRlTWVzc2FnZVJlc3BvbnNlEgwKBGJvZHkYASAB",
-          "KAwSJQoLcm91dGVfbm9kZXMYAiADKAsyEC5Sb3V0aW5nTm9kZUluZm8SEgoK",
-          "c2Vzc2lvbl9pZBgDIAEoDRIKCgJpZBgEIAEoBBIRCglpc19jbGllbnQYBSAB",
-          "KAgicQoZUm91dGVQbGF5ZXJNZXNzYWdlUmVxdWVzdBIMCgRib2R5GAEgASgM",
-          "EhwKCW5vZGVfbGlzdBgCIAMoCzIJLk5vZGVJbmZvEigKC3BsYXllcl9pbmZv",
-          "GAMgASgLMhMuUGxheWVySW5mb0V4dGVybmFsInIKGlJvdXRlUGxheWVyTWVz",
-          "c2FnZVJlc3BvbnNlEgwKBGJvZHkYASABKAwSHAoJbm9kZV9saXN0GAIgAygL",
-          "MgkuTm9kZUluZm8SKAoLcGxheWVyX2luZm8YAyABKAsyEy5QbGF5ZXJJbmZv",
-          "RXh0ZXJuYWwiqAEKF1JlZ2lzdGVyR2FtZU5vZGVSZXF1ZXN0EiMKCnJwY19j",
-          "bGllbnQYASABKAsyDy5OZXR3b3JrQWRkcmVzcxIjCgpycGNfc2VydmVyGAIg",
-          "ASgLMg8uTmV0d29ya0FkZHJlc3MSFQoNc2NlbmVfbm9kZV9pZBgDIAEoDRIT",
-          "CgtzZXJ2ZXJfdHlwZRgEIAEoDRIXCg9zY2VuZV9ub2RlX3R5cGUYBSABKA0i",
-          "VAoXUmVnaXN0ZXJHYXRlTm9kZVJlcXVlc3QSIwoKcnBjX2NsaWVudBgBIAEo",
-          "CzIPLk5ldHdvcmtBZGRyZXNzEhQKDGdhdGVfbm9kZV9pZBgCIAEoDSIyChlV",
-          "bnJlZ2lzdGVyR2FtZU5vZGVSZXF1ZXN0EhUKDXNjZW5lX25vZGVfaWQYASAB",
-          "KA0iKwoaUHJvdG9GaWVsZENoZWNrZXJUZXN0U3ViUEISDQoFaXRlbXMYASAD",
-          "KAkiSwoXUHJvdG9GaWVsZENoZWNrZXJUZXN0UEISMAoLc3ViX21lc3NhZ2UY",
-          "ASABKAsyGy5Qcm90b0ZpZWxkQ2hlY2tlclRlc3RTdWJQQiKuAQoOTXlQcm90",
-          "b01lc3NhZ2USGgoSc2luZ2xlX2ludDMyX2ZpZWxkGAEgASgFEhoKEnNpbmds",
-          "ZV9pbnQ2NF9maWVsZBgCIAEoAxIcChRyZXBlYXRlZF9pbnQzMl9maWVsZBgD",
-          "IAMoBRIcChRyZXBlYXRlZF9pbnQ2NF9maWVsZBgEIAMoAxIoCg5uZXN0ZWRf",
-          "bWVzc2FnZRgFIAEoCzIQLk15TmVzdGVkTWVzc2FnZSJJCg9NeU5lc3RlZE1l",
-          "c3NhZ2USGgoSbmVzdGVkX2ludDMyX2ZpZWxkGAEgASgFEhoKEm5lc3RlZF9p",
-          "bnQ2NF9maWVsZBgCIAEoAyJeCg1DbGllbnRSZXF1ZXN0EgoKAmlkGAEgASgE",
-          "Eg8KB3NlcnZpY2UYAiABKAkSDgoGbWV0aG9kGAMgASgJEgwKBGJvZHkYBCAB",
-          "KAwSEgoKbWVzc2FnZV9pZBgFIAEoDSJUChROb2RlSGFuZHNoYWtlUmVxdWVz",
-          "dBIPCgd2ZXJzaW9uGAEgASgJEg0KBXRva2VuGAIgASgJEhwKCXNlbGZfbm9k",
-          "ZRgDIAEoCzIJLk5vZGVJbmZvIl0KFU5vZGVIYW5kc2hha2VSZXNwb25zZRIm",
-          "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USHAoJcGVl",
-          "cl9ub2RlGAIgASgLMgkuTm9kZUluZm8imAEKEEdhdGVUb2tlblBheWxvYWQS",
-          "FAoMZ2F0ZV9ub2RlX2lkGAEgASgNEg8KB3pvbmVfaWQYAiABKA0SGAoQZXhw",
-          "aXJlX3RpbWVzdGFtcBgDIAEoAxIYChBobWFjX3Nlc3Npb25fa2V5GAQgASgM",
-          "EhEKCXBsYXllcl9pZBgFIAEoBBIWCg50YXJnZXRfem9uZV9pZBgGIAEoDSI+",
-          "ChhDbGllbnRUb2tlblZlcmlmeVJlcXVlc3QSDwoHcGF5bG9hZBgBIAEoDBIR",
-          "CglzaWduYXR1cmUYAiABKAwiOwoZQ2xpZW50VG9rZW5WZXJpZnlSZXNwb25z",
-          "ZRIPCgdzdWNjZXNzGAEgASgIEg0KBWVycm9yGAIgASgJQg1aC2NvbW1vbi9i",
-          "YXNlYgZwcm90bzM="));
+          "b24ucHJvdG8aG3Byb3RvL2NvbW1vbi9iYXNlL3RpcC5wcm90byJ0Cg5NZXNz",
+          "YWdlQ29udGVudBIaChJzZXJpYWxpemVkX21lc3NhZ2UYASABKAwSEgoKbWVz",
+          "c2FnZV9pZBgCIAEoDRIKCgJpZBgDIAEoBBImCg1lcnJvcl9tZXNzYWdlGAQg",
+          "ASgLMg8uVGlwSW5mb01lc3NhZ2UiUgoRTm9kZU1lc3NhZ2VIZWFkZXISDwoH",
+          "bm9kZV9pZBgBIAEoDRISCgpzZXNzaW9uX2lkGAIgASgNEhgKEHRhcmdldF9w",
+          "bGF5ZXJfaWQYAyABKAQiZwoXTm9kZVJvdXRlTWVzc2FnZVJlcXVlc3QSKAoP",
+          "bWVzc2FnZV9jb250ZW50GAEgASgLMg8uTWVzc2FnZUNvbnRlbnQSIgoGaGVh",
+          "ZGVyGAIgASgLMhIuTm9kZU1lc3NhZ2VIZWFkZXIiaAoYTm9kZVJvdXRlTWVz",
+          "c2FnZVJlc3BvbnNlEigKD21lc3NhZ2VfY29udGVudBgBIAEoCzIPLk1lc3Nh",
+          "Z2VDb250ZW50EiIKBmhlYWRlchgCIAEoCzISLk5vZGVNZXNzYWdlSGVhZGVy",
+          "IicKElBsYXllckluZm9FeHRlcm5hbBIRCglwbGF5ZXJfaWQYASABKAQiaQoY",
+          "UGxheWVyTm9kZVNlcnZpY2VSZXF1ZXN0EigKD21lc3NhZ2VfY29udGVudBgB",
+          "IAEoCzIPLk1lc3NhZ2VDb250ZW50EiMKBmhlYWRlchgCIAEoCzITLlBsYXll",
+          "ckluZm9FeHRlcm5hbCJmChVQbGF5ZXJNZXNzYWdlUmVzcG9uc2USKAoPbWVz",
+          "c2FnZV9jb250ZW50GAEgASgLMg8uTWVzc2FnZUNvbnRlbnQSIwoGaGVhZGVy",
+          "GAIgASgLMhMuUGxheWVySW5mb0V4dGVybmFsIjYKFk5vZGVSb3V0aW5nTWVz",
+          "c2FnZUJvZHkSHAoJbm9kZV9pbmZvGAIgASgLMgkuTm9kZUluZm8iXgoeUmVn",
+          "aXN0ZXJHYW1lTm9kZVNlc3Npb25SZXF1ZXN0EiUKDHNlc3Npb25faW5mbxgB",
+          "IAEoCzIPLlNlc3Npb25EZXRhaWxzEhUKDXNjZW5lX25vZGVfaWQYAiABKA0i",
+          "SAofUmVnaXN0ZXJHYW1lTm9kZVNlc3Npb25SZXNwb25zZRIlCgxzZXNzaW9u",
+          "X2luZm8YASABKAsyDy5TZXNzaW9uRGV0YWlscyJICh9SZWdpc3RlckdhdGVO",
+          "b2RlU2Vzc2lvblJlc3BvbnNlEiUKDHNlc3Npb25faW5mbxgBIAEoCzIPLlNl",
+          "c3Npb25EZXRhaWxzIkUKHEdhdGVTZXNzaW9uRGlzY29ubmVjdFJlcXVlc3QS",
+          "JQoMc2Vzc2lvbl9pbmZvGAEgASgLMg8uU2Vzc2lvbkRldGFpbHMiqAEKF1Jl",
+          "Z2lzdGVyR2FtZU5vZGVSZXF1ZXN0EiMKCnJwY19jbGllbnQYASABKAsyDy5O",
+          "ZXR3b3JrQWRkcmVzcxIjCgpycGNfc2VydmVyGAIgASgLMg8uTmV0d29ya0Fk",
+          "ZHJlc3MSFQoNc2NlbmVfbm9kZV9pZBgDIAEoDRITCgtzZXJ2ZXJfdHlwZRgE",
+          "IAEoDRIXCg9zY2VuZV9ub2RlX3R5cGUYBSABKA0iVAoXUmVnaXN0ZXJHYXRl",
+          "Tm9kZVJlcXVlc3QSIwoKcnBjX2NsaWVudBgBIAEoCzIPLk5ldHdvcmtBZGRy",
+          "ZXNzEhQKDGdhdGVfbm9kZV9pZBgCIAEoDSIyChlVbnJlZ2lzdGVyR2FtZU5v",
+          "ZGVSZXF1ZXN0EhUKDXNjZW5lX25vZGVfaWQYASABKA0iKwoaUHJvdG9GaWVs",
+          "ZENoZWNrZXJUZXN0U3ViUEISDQoFaXRlbXMYASADKAkiSwoXUHJvdG9GaWVs",
+          "ZENoZWNrZXJUZXN0UEISMAoLc3ViX21lc3NhZ2UYASABKAsyGy5Qcm90b0Zp",
+          "ZWxkQ2hlY2tlclRlc3RTdWJQQiKuAQoOTXlQcm90b01lc3NhZ2USGgoSc2lu",
+          "Z2xlX2ludDMyX2ZpZWxkGAEgASgFEhoKEnNpbmdsZV9pbnQ2NF9maWVsZBgC",
+          "IAEoAxIcChRyZXBlYXRlZF9pbnQzMl9maWVsZBgDIAMoBRIcChRyZXBlYXRl",
+          "ZF9pbnQ2NF9maWVsZBgEIAMoAxIoCg5uZXN0ZWRfbWVzc2FnZRgFIAEoCzIQ",
+          "Lk15TmVzdGVkTWVzc2FnZSJJCg9NeU5lc3RlZE1lc3NhZ2USGgoSbmVzdGVk",
+          "X2ludDMyX2ZpZWxkGAEgASgFEhoKEm5lc3RlZF9pbnQ2NF9maWVsZBgCIAEo",
+          "AyJeCg1DbGllbnRSZXF1ZXN0EgoKAmlkGAEgASgEEg8KB3NlcnZpY2UYAiAB",
+          "KAkSDgoGbWV0aG9kGAMgASgJEgwKBGJvZHkYBCABKAwSEgoKbWVzc2FnZV9p",
+          "ZBgFIAEoDSJUChROb2RlSGFuZHNoYWtlUmVxdWVzdBIPCgd2ZXJzaW9uGAEg",
+          "ASgJEg0KBXRva2VuGAIgASgJEhwKCXNlbGZfbm9kZRgDIAEoCzIJLk5vZGVJ",
+          "bmZvIl0KFU5vZGVIYW5kc2hha2VSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
+          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USHAoJcGVlcl9ub2RlGAIgASgLMgku",
+          "Tm9kZUluZm8imAEKEEdhdGVUb2tlblBheWxvYWQSFAoMZ2F0ZV9ub2RlX2lk",
+          "GAEgASgNEg8KB3pvbmVfaWQYAiABKA0SGAoQZXhwaXJlX3RpbWVzdGFtcBgD",
+          "IAEoAxIYChBobWFjX3Nlc3Npb25fa2V5GAQgASgMEhEKCXBsYXllcl9pZBgF",
+          "IAEoBBIWCg50YXJnZXRfem9uZV9pZBgGIAEoDSI+ChhDbGllbnRUb2tlblZl",
+          "cmlmeVJlcXVlc3QSDwoHcGF5bG9hZBgBIAEoDBIRCglzaWduYXR1cmUYAiAB",
+          "KAwiOwoZQ2xpZW50VG9rZW5WZXJpZnlSZXNwb25zZRIPCgdzdWNjZXNzGAEg",
+          "ASgIEg0KBWVycm9yGAIgASgJQg1aC2NvbW1vbi9iYXNlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, global::SessionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::RoutingNodeInfo), global::RoutingNodeInfo.Parser, new[]{ "NodeInfo", "MessageId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::MessageContent), global::MessageContent.Parser, new[]{ "SerializedMessage", "MessageId", "Id", "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeMessageHeader), global::NodeMessageHeader.Parser, new[]{ "NodeId", "SessionId", "TargetPlayerId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeRouteMessageRequest), global::NodeRouteMessageRequest.Parser, new[]{ "MessageContent", "Header" }, null, null, null, null),
@@ -105,10 +91,6 @@ public static partial class MessageReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterGameNodeSessionResponse), global::RegisterGameNodeSessionResponse.Parser, new[]{ "SessionInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterGateNodeSessionResponse), global::RegisterGateNodeSessionResponse.Parser, new[]{ "SessionInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GateSessionDisconnectRequest), global::GateSessionDisconnectRequest.Parser, new[]{ "SessionInfo" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::RouteMessageRequest), global::RouteMessageRequest.Parser, new[]{ "Body", "RouteNodes", "SessionId", "Id", "IsClient" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::RouteMessageResponse), global::RouteMessageResponse.Parser, new[]{ "Body", "RouteNodes", "SessionId", "Id", "IsClient" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::RoutePlayerMessageRequest), global::RoutePlayerMessageRequest.Parser, new[]{ "Body", "NodeList", "PlayerInfo" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::RoutePlayerMessageResponse), global::RoutePlayerMessageResponse.Parser, new[]{ "Body", "NodeList", "PlayerInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterGameNodeRequest), global::RegisterGameNodeRequest.Parser, new[]{ "RpcClient", "RpcServer", "SceneNodeId", "ServerType", "SceneNodeType" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterGateNodeRequest), global::RegisterGateNodeRequest.Parser, new[]{ "RpcClient", "GateNodeId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UnregisterGameNodeRequest), global::UnregisterGameNodeRequest.Parser, new[]{ "SceneNodeId" }, null, null, null, null),
@@ -129,259 +111,6 @@ public static partial class MessageReflection {
 }
 #region Messages
 /// <summary>
-/// Routing node info
-/// </summary>
-[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class RoutingNodeInfo : pb::IMessage<RoutingNodeInfo>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<RoutingNodeInfo> _parser = new pb::MessageParser<RoutingNodeInfo>(() => new RoutingNodeInfo());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<RoutingNodeInfo> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[0]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutingNodeInfo() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutingNodeInfo(RoutingNodeInfo other) : this() {
-    nodeInfo_ = other.nodeInfo_ != null ? other.nodeInfo_.Clone() : null;
-    messageId_ = other.messageId_;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutingNodeInfo Clone() {
-    return new RoutingNodeInfo(this);
-  }
-
-  /// <summary>Field number for the "node_info" field.</summary>
-  public const int NodeInfoFieldNumber = 1;
-  private global::NodeInfo nodeInfo_;
-  /// <summary>
-  /// Node info
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::NodeInfo NodeInfo {
-    get { return nodeInfo_; }
-    set {
-      nodeInfo_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "message_id" field.</summary>
-  public const int MessageIdFieldNumber = 2;
-  private uint messageId_;
-  /// <summary>
-  /// Message ID
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint MessageId {
-    get { return messageId_; }
-    set {
-      messageId_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as RoutingNodeInfo);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(RoutingNodeInfo other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (!object.Equals(NodeInfo, other.NodeInfo)) return false;
-    if (MessageId != other.MessageId) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (nodeInfo_ != null) hash ^= NodeInfo.GetHashCode();
-    if (MessageId != 0) hash ^= MessageId.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (nodeInfo_ != null) {
-      output.WriteRawTag(10);
-      output.WriteMessage(NodeInfo);
-    }
-    if (MessageId != 0) {
-      output.WriteRawTag(16);
-      output.WriteUInt32(MessageId);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (nodeInfo_ != null) {
-      output.WriteRawTag(10);
-      output.WriteMessage(NodeInfo);
-    }
-    if (MessageId != 0) {
-      output.WriteRawTag(16);
-      output.WriteUInt32(MessageId);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (nodeInfo_ != null) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(NodeInfo);
-    }
-    if (MessageId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MessageId);
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(RoutingNodeInfo other) {
-    if (other == null) {
-      return;
-    }
-    if (other.nodeInfo_ != null) {
-      if (nodeInfo_ == null) {
-        NodeInfo = new global::NodeInfo();
-      }
-      NodeInfo.MergeFrom(other.NodeInfo);
-    }
-    if (other.MessageId != 0) {
-      MessageId = other.MessageId;
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 10: {
-          if (nodeInfo_ == null) {
-            NodeInfo = new global::NodeInfo();
-          }
-          input.ReadMessage(NodeInfo);
-          break;
-        }
-        case 16: {
-          MessageId = input.ReadUInt32();
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 10: {
-          if (nodeInfo_ == null) {
-            NodeInfo = new global::NodeInfo();
-          }
-          input.ReadMessage(NodeInfo);
-          break;
-        }
-        case 16: {
-          MessageId = input.ReadUInt32();
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
-/// <summary>
 /// Message content
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -399,7 +128,7 @@ public sealed partial class MessageContent : pb::IMessage<MessageContent>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[1]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[0]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -732,7 +461,7 @@ public sealed partial class NodeMessageHeader : pb::IMessage<NodeMessageHeader>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[2]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[1]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1026,7 +755,7 @@ public sealed partial class NodeRouteMessageRequest : pb::IMessage<NodeRouteMess
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[3]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1288,7 +1017,7 @@ public sealed partial class NodeRouteMessageResponse : pb::IMessage<NodeRouteMes
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[4]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1550,7 +1279,7 @@ public sealed partial class PlayerInfoExternal : pb::IMessage<PlayerInfoExternal
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[5]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1754,7 +1483,7 @@ public sealed partial class PlayerNodeServiceRequest : pb::IMessage<PlayerNodeSe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[6]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2016,7 +1745,7 @@ public sealed partial class PlayerMessageResponse : pb::IMessage<PlayerMessageRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[7]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2278,7 +2007,7 @@ public sealed partial class NodeRoutingMessageBody : pb::IMessage<NodeRoutingMes
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[8]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2491,7 +2220,7 @@ public sealed partial class RegisterGameNodeSessionRequest : pb::IMessage<Regist
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[9]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2744,7 +2473,7 @@ public sealed partial class RegisterGameNodeSessionResponse : pb::IMessage<Regis
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[10]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2957,7 +2686,7 @@ public sealed partial class RegisterGateNodeSessionResponse : pb::IMessage<Regis
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[11]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3170,7 +2899,7 @@ public sealed partial class GateSessionDisconnectRequest : pb::IMessage<GateSess
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[12]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3366,1276 +3095,6 @@ public sealed partial class GateSessionDisconnectRequest : pb::IMessage<GateSess
 }
 
 /// <summary>
-/// Route message request (bytes form)
-/// </summary>
-[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class RouteMessageRequest : pb::IMessage<RouteMessageRequest>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<RouteMessageRequest> _parser = new pb::MessageParser<RouteMessageRequest>(() => new RouteMessageRequest());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<RouteMessageRequest> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[13]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RouteMessageRequest() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RouteMessageRequest(RouteMessageRequest other) : this() {
-    body_ = other.body_;
-    routeNodes_ = other.routeNodes_.Clone();
-    sessionId_ = other.sessionId_;
-    id_ = other.id_;
-    isClient_ = other.isClient_;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RouteMessageRequest Clone() {
-    return new RouteMessageRequest(this);
-  }
-
-  /// <summary>Field number for the "body" field.</summary>
-  public const int BodyFieldNumber = 1;
-  private pb::ByteString body_ = pb::ByteString.Empty;
-  /// <summary>
-  /// Message body (bytes)
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pb::ByteString Body {
-    get { return body_; }
-    set {
-      body_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "route_nodes" field.</summary>
-  public const int RouteNodesFieldNumber = 2;
-  private static readonly pb::FieldCodec<global::RoutingNodeInfo> _repeated_routeNodes_codec
-      = pb::FieldCodec.ForMessage(18, global::RoutingNodeInfo.Parser);
-  private readonly pbc::RepeatedField<global::RoutingNodeInfo> routeNodes_ = new pbc::RepeatedField<global::RoutingNodeInfo>();
-  /// <summary>
-  /// Routing node list
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::RepeatedField<global::RoutingNodeInfo> RouteNodes {
-    get { return routeNodes_; }
-  }
-
-  /// <summary>Field number for the "session_id" field.</summary>
-  public const int SessionIdFieldNumber = 3;
-  private uint sessionId_;
-  /// <summary>
-  /// Session ID
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint SessionId {
-    get { return sessionId_; }
-    set {
-      sessionId_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "id" field.</summary>
-  public const int IdFieldNumber = 4;
-  private ulong id_;
-  /// <summary>
-  /// Unique message ID
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong Id {
-    get { return id_; }
-    set {
-      id_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "is_client" field.</summary>
-  public const int IsClientFieldNumber = 5;
-  private bool isClient_;
-  /// <summary>
-  /// Whether from client
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool IsClient {
-    get { return isClient_; }
-    set {
-      isClient_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as RouteMessageRequest);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(RouteMessageRequest other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (Body != other.Body) return false;
-    if(!routeNodes_.Equals(other.routeNodes_)) return false;
-    if (SessionId != other.SessionId) return false;
-    if (Id != other.Id) return false;
-    if (IsClient != other.IsClient) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (Body.Length != 0) hash ^= Body.GetHashCode();
-    hash ^= routeNodes_.GetHashCode();
-    if (SessionId != 0) hash ^= SessionId.GetHashCode();
-    if (Id != 0UL) hash ^= Id.GetHashCode();
-    if (IsClient != false) hash ^= IsClient.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    routeNodes_.WriteTo(output, _repeated_routeNodes_codec);
-    if (SessionId != 0) {
-      output.WriteRawTag(24);
-      output.WriteUInt32(SessionId);
-    }
-    if (Id != 0UL) {
-      output.WriteRawTag(32);
-      output.WriteUInt64(Id);
-    }
-    if (IsClient != false) {
-      output.WriteRawTag(40);
-      output.WriteBool(IsClient);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    routeNodes_.WriteTo(ref output, _repeated_routeNodes_codec);
-    if (SessionId != 0) {
-      output.WriteRawTag(24);
-      output.WriteUInt32(SessionId);
-    }
-    if (Id != 0UL) {
-      output.WriteRawTag(32);
-      output.WriteUInt64(Id);
-    }
-    if (IsClient != false) {
-      output.WriteRawTag(40);
-      output.WriteBool(IsClient);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (Body.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Body);
-    }
-    size += routeNodes_.CalculateSize(_repeated_routeNodes_codec);
-    if (SessionId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SessionId);
-    }
-    if (Id != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Id);
-    }
-    if (IsClient != false) {
-      size += 1 + 1;
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(RouteMessageRequest other) {
-    if (other == null) {
-      return;
-    }
-    if (other.Body.Length != 0) {
-      Body = other.Body;
-    }
-    routeNodes_.Add(other.routeNodes_);
-    if (other.SessionId != 0) {
-      SessionId = other.SessionId;
-    }
-    if (other.Id != 0UL) {
-      Id = other.Id;
-    }
-    if (other.IsClient != false) {
-      IsClient = other.IsClient;
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          routeNodes_.AddEntriesFrom(input, _repeated_routeNodes_codec);
-          break;
-        }
-        case 24: {
-          SessionId = input.ReadUInt32();
-          break;
-        }
-        case 32: {
-          Id = input.ReadUInt64();
-          break;
-        }
-        case 40: {
-          IsClient = input.ReadBool();
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          routeNodes_.AddEntriesFrom(ref input, _repeated_routeNodes_codec);
-          break;
-        }
-        case 24: {
-          SessionId = input.ReadUInt32();
-          break;
-        }
-        case 32: {
-          Id = input.ReadUInt64();
-          break;
-        }
-        case 40: {
-          IsClient = input.ReadBool();
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
-/// <summary>
-/// Route message response (bytes form)
-/// </summary>
-[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class RouteMessageResponse : pb::IMessage<RouteMessageResponse>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<RouteMessageResponse> _parser = new pb::MessageParser<RouteMessageResponse>(() => new RouteMessageResponse());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<RouteMessageResponse> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[14]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RouteMessageResponse() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RouteMessageResponse(RouteMessageResponse other) : this() {
-    body_ = other.body_;
-    routeNodes_ = other.routeNodes_.Clone();
-    sessionId_ = other.sessionId_;
-    id_ = other.id_;
-    isClient_ = other.isClient_;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RouteMessageResponse Clone() {
-    return new RouteMessageResponse(this);
-  }
-
-  /// <summary>Field number for the "body" field.</summary>
-  public const int BodyFieldNumber = 1;
-  private pb::ByteString body_ = pb::ByteString.Empty;
-  /// <summary>
-  /// Message body (bytes)
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pb::ByteString Body {
-    get { return body_; }
-    set {
-      body_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "route_nodes" field.</summary>
-  public const int RouteNodesFieldNumber = 2;
-  private static readonly pb::FieldCodec<global::RoutingNodeInfo> _repeated_routeNodes_codec
-      = pb::FieldCodec.ForMessage(18, global::RoutingNodeInfo.Parser);
-  private readonly pbc::RepeatedField<global::RoutingNodeInfo> routeNodes_ = new pbc::RepeatedField<global::RoutingNodeInfo>();
-  /// <summary>
-  /// Routing node list
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::RepeatedField<global::RoutingNodeInfo> RouteNodes {
-    get { return routeNodes_; }
-  }
-
-  /// <summary>Field number for the "session_id" field.</summary>
-  public const int SessionIdFieldNumber = 3;
-  private uint sessionId_;
-  /// <summary>
-  /// Session ID
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint SessionId {
-    get { return sessionId_; }
-    set {
-      sessionId_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "id" field.</summary>
-  public const int IdFieldNumber = 4;
-  private ulong id_;
-  /// <summary>
-  /// Unique message ID
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong Id {
-    get { return id_; }
-    set {
-      id_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "is_client" field.</summary>
-  public const int IsClientFieldNumber = 5;
-  private bool isClient_;
-  /// <summary>
-  /// Whether from client
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool IsClient {
-    get { return isClient_; }
-    set {
-      isClient_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as RouteMessageResponse);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(RouteMessageResponse other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (Body != other.Body) return false;
-    if(!routeNodes_.Equals(other.routeNodes_)) return false;
-    if (SessionId != other.SessionId) return false;
-    if (Id != other.Id) return false;
-    if (IsClient != other.IsClient) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (Body.Length != 0) hash ^= Body.GetHashCode();
-    hash ^= routeNodes_.GetHashCode();
-    if (SessionId != 0) hash ^= SessionId.GetHashCode();
-    if (Id != 0UL) hash ^= Id.GetHashCode();
-    if (IsClient != false) hash ^= IsClient.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    routeNodes_.WriteTo(output, _repeated_routeNodes_codec);
-    if (SessionId != 0) {
-      output.WriteRawTag(24);
-      output.WriteUInt32(SessionId);
-    }
-    if (Id != 0UL) {
-      output.WriteRawTag(32);
-      output.WriteUInt64(Id);
-    }
-    if (IsClient != false) {
-      output.WriteRawTag(40);
-      output.WriteBool(IsClient);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    routeNodes_.WriteTo(ref output, _repeated_routeNodes_codec);
-    if (SessionId != 0) {
-      output.WriteRawTag(24);
-      output.WriteUInt32(SessionId);
-    }
-    if (Id != 0UL) {
-      output.WriteRawTag(32);
-      output.WriteUInt64(Id);
-    }
-    if (IsClient != false) {
-      output.WriteRawTag(40);
-      output.WriteBool(IsClient);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (Body.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Body);
-    }
-    size += routeNodes_.CalculateSize(_repeated_routeNodes_codec);
-    if (SessionId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SessionId);
-    }
-    if (Id != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Id);
-    }
-    if (IsClient != false) {
-      size += 1 + 1;
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(RouteMessageResponse other) {
-    if (other == null) {
-      return;
-    }
-    if (other.Body.Length != 0) {
-      Body = other.Body;
-    }
-    routeNodes_.Add(other.routeNodes_);
-    if (other.SessionId != 0) {
-      SessionId = other.SessionId;
-    }
-    if (other.Id != 0UL) {
-      Id = other.Id;
-    }
-    if (other.IsClient != false) {
-      IsClient = other.IsClient;
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          routeNodes_.AddEntriesFrom(input, _repeated_routeNodes_codec);
-          break;
-        }
-        case 24: {
-          SessionId = input.ReadUInt32();
-          break;
-        }
-        case 32: {
-          Id = input.ReadUInt64();
-          break;
-        }
-        case 40: {
-          IsClient = input.ReadBool();
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          routeNodes_.AddEntriesFrom(ref input, _repeated_routeNodes_codec);
-          break;
-        }
-        case 24: {
-          SessionId = input.ReadUInt32();
-          break;
-        }
-        case 32: {
-          Id = input.ReadUInt64();
-          break;
-        }
-        case 40: {
-          IsClient = input.ReadBool();
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
-/// <summary>
-/// Route player message request (bytes form)
-/// </summary>
-[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class RoutePlayerMessageRequest : pb::IMessage<RoutePlayerMessageRequest>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<RoutePlayerMessageRequest> _parser = new pb::MessageParser<RoutePlayerMessageRequest>(() => new RoutePlayerMessageRequest());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<RoutePlayerMessageRequest> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[15]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutePlayerMessageRequest() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutePlayerMessageRequest(RoutePlayerMessageRequest other) : this() {
-    body_ = other.body_;
-    nodeList_ = other.nodeList_.Clone();
-    playerInfo_ = other.playerInfo_ != null ? other.playerInfo_.Clone() : null;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutePlayerMessageRequest Clone() {
-    return new RoutePlayerMessageRequest(this);
-  }
-
-  /// <summary>Field number for the "body" field.</summary>
-  public const int BodyFieldNumber = 1;
-  private pb::ByteString body_ = pb::ByteString.Empty;
-  /// <summary>
-  /// Message body (bytes)
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pb::ByteString Body {
-    get { return body_; }
-    set {
-      body_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "node_list" field.</summary>
-  public const int NodeListFieldNumber = 2;
-  private static readonly pb::FieldCodec<global::NodeInfo> _repeated_nodeList_codec
-      = pb::FieldCodec.ForMessage(18, global::NodeInfo.Parser);
-  private readonly pbc::RepeatedField<global::NodeInfo> nodeList_ = new pbc::RepeatedField<global::NodeInfo>();
-  /// <summary>
-  /// Node list
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::RepeatedField<global::NodeInfo> NodeList {
-    get { return nodeList_; }
-  }
-
-  /// <summary>Field number for the "player_info" field.</summary>
-  public const int PlayerInfoFieldNumber = 3;
-  private global::PlayerInfoExternal playerInfo_;
-  /// <summary>
-  /// Player info
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::PlayerInfoExternal PlayerInfo {
-    get { return playerInfo_; }
-    set {
-      playerInfo_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as RoutePlayerMessageRequest);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(RoutePlayerMessageRequest other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (Body != other.Body) return false;
-    if(!nodeList_.Equals(other.nodeList_)) return false;
-    if (!object.Equals(PlayerInfo, other.PlayerInfo)) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (Body.Length != 0) hash ^= Body.GetHashCode();
-    hash ^= nodeList_.GetHashCode();
-    if (playerInfo_ != null) hash ^= PlayerInfo.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    nodeList_.WriteTo(output, _repeated_nodeList_codec);
-    if (playerInfo_ != null) {
-      output.WriteRawTag(26);
-      output.WriteMessage(PlayerInfo);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    nodeList_.WriteTo(ref output, _repeated_nodeList_codec);
-    if (playerInfo_ != null) {
-      output.WriteRawTag(26);
-      output.WriteMessage(PlayerInfo);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (Body.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Body);
-    }
-    size += nodeList_.CalculateSize(_repeated_nodeList_codec);
-    if (playerInfo_ != null) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerInfo);
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(RoutePlayerMessageRequest other) {
-    if (other == null) {
-      return;
-    }
-    if (other.Body.Length != 0) {
-      Body = other.Body;
-    }
-    nodeList_.Add(other.nodeList_);
-    if (other.playerInfo_ != null) {
-      if (playerInfo_ == null) {
-        PlayerInfo = new global::PlayerInfoExternal();
-      }
-      PlayerInfo.MergeFrom(other.PlayerInfo);
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          nodeList_.AddEntriesFrom(input, _repeated_nodeList_codec);
-          break;
-        }
-        case 26: {
-          if (playerInfo_ == null) {
-            PlayerInfo = new global::PlayerInfoExternal();
-          }
-          input.ReadMessage(PlayerInfo);
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          nodeList_.AddEntriesFrom(ref input, _repeated_nodeList_codec);
-          break;
-        }
-        case 26: {
-          if (playerInfo_ == null) {
-            PlayerInfo = new global::PlayerInfoExternal();
-          }
-          input.ReadMessage(PlayerInfo);
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
-/// <summary>
-/// Route player message response (bytes form)
-/// </summary>
-[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class RoutePlayerMessageResponse : pb::IMessage<RoutePlayerMessageResponse>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<RoutePlayerMessageResponse> _parser = new pb::MessageParser<RoutePlayerMessageResponse>(() => new RoutePlayerMessageResponse());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<RoutePlayerMessageResponse> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[16]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutePlayerMessageResponse() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutePlayerMessageResponse(RoutePlayerMessageResponse other) : this() {
-    body_ = other.body_;
-    nodeList_ = other.nodeList_.Clone();
-    playerInfo_ = other.playerInfo_ != null ? other.playerInfo_.Clone() : null;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public RoutePlayerMessageResponse Clone() {
-    return new RoutePlayerMessageResponse(this);
-  }
-
-  /// <summary>Field number for the "body" field.</summary>
-  public const int BodyFieldNumber = 1;
-  private pb::ByteString body_ = pb::ByteString.Empty;
-  /// <summary>
-  /// Message body (bytes)
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pb::ByteString Body {
-    get { return body_; }
-    set {
-      body_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "node_list" field.</summary>
-  public const int NodeListFieldNumber = 2;
-  private static readonly pb::FieldCodec<global::NodeInfo> _repeated_nodeList_codec
-      = pb::FieldCodec.ForMessage(18, global::NodeInfo.Parser);
-  private readonly pbc::RepeatedField<global::NodeInfo> nodeList_ = new pbc::RepeatedField<global::NodeInfo>();
-  /// <summary>
-  /// Node list
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::RepeatedField<global::NodeInfo> NodeList {
-    get { return nodeList_; }
-  }
-
-  /// <summary>Field number for the "player_info" field.</summary>
-  public const int PlayerInfoFieldNumber = 3;
-  private global::PlayerInfoExternal playerInfo_;
-  /// <summary>
-  /// Player info
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::PlayerInfoExternal PlayerInfo {
-    get { return playerInfo_; }
-    set {
-      playerInfo_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as RoutePlayerMessageResponse);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(RoutePlayerMessageResponse other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (Body != other.Body) return false;
-    if(!nodeList_.Equals(other.nodeList_)) return false;
-    if (!object.Equals(PlayerInfo, other.PlayerInfo)) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (Body.Length != 0) hash ^= Body.GetHashCode();
-    hash ^= nodeList_.GetHashCode();
-    if (playerInfo_ != null) hash ^= PlayerInfo.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    nodeList_.WriteTo(output, _repeated_nodeList_codec);
-    if (playerInfo_ != null) {
-      output.WriteRawTag(26);
-      output.WriteMessage(PlayerInfo);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Body.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteBytes(Body);
-    }
-    nodeList_.WriteTo(ref output, _repeated_nodeList_codec);
-    if (playerInfo_ != null) {
-      output.WriteRawTag(26);
-      output.WriteMessage(PlayerInfo);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (Body.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Body);
-    }
-    size += nodeList_.CalculateSize(_repeated_nodeList_codec);
-    if (playerInfo_ != null) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerInfo);
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(RoutePlayerMessageResponse other) {
-    if (other == null) {
-      return;
-    }
-    if (other.Body.Length != 0) {
-      Body = other.Body;
-    }
-    nodeList_.Add(other.nodeList_);
-    if (other.playerInfo_ != null) {
-      if (playerInfo_ == null) {
-        PlayerInfo = new global::PlayerInfoExternal();
-      }
-      PlayerInfo.MergeFrom(other.PlayerInfo);
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          nodeList_.AddEntriesFrom(input, _repeated_nodeList_codec);
-          break;
-        }
-        case 26: {
-          if (playerInfo_ == null) {
-            PlayerInfo = new global::PlayerInfoExternal();
-          }
-          input.ReadMessage(PlayerInfo);
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-    if ((tag & 7) == 4) {
-      // Abort on any end group tag.
-      return;
-    }
-    switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 10: {
-          Body = input.ReadBytes();
-          break;
-        }
-        case 18: {
-          nodeList_.AddEntriesFrom(ref input, _repeated_nodeList_codec);
-          break;
-        }
-        case 26: {
-          if (playerInfo_ == null) {
-            PlayerInfo = new global::PlayerInfoExternal();
-          }
-          input.ReadMessage(PlayerInfo);
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
-/// <summary>
 /// Register scene node request
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -4653,7 +3112,7 @@ public sealed partial class RegisterGameNodeRequest : pb::IMessage<RegisterGameN
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[17]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5035,7 +3494,7 @@ public sealed partial class RegisterGateNodeRequest : pb::IMessage<RegisterGateN
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[18]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5288,7 +3747,7 @@ public sealed partial class UnregisterGameNodeRequest : pb::IMessage<UnregisterG
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[19]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5489,7 +3948,7 @@ public sealed partial class ProtoFieldCheckerTestSubPB : pb::IMessage<ProtoField
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[20]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5676,7 +4135,7 @@ public sealed partial class ProtoFieldCheckerTestPB : pb::IMessage<ProtoFieldChe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[21]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5886,7 +4345,7 @@ public sealed partial class MyProtoMessage : pb::IMessage<MyProtoMessage>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[22]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6241,7 +4700,7 @@ public sealed partial class MyNestedMessage : pb::IMessage<MyNestedMessage>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[23]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6482,7 +4941,7 @@ public sealed partial class ClientRequest : pb::IMessage<ClientRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[24]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6828,7 +5287,7 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[25]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[20]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7109,7 +5568,7 @@ public sealed partial class NodeHandshakeResponse : pb::IMessage<NodeHandshakeRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[26]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[21]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7371,7 +5830,7 @@ public sealed partial class GateTokenPayload : pb::IMessage<GateTokenPayload>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[27]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7786,7 +6245,7 @@ public sealed partial class ClientTokenVerifyRequest : pb::IMessage<ClientTokenV
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[28]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[23]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8030,7 +6489,7 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::MessageReflection.Descriptor.MessageTypes[29]; }
+    get { return global::MessageReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

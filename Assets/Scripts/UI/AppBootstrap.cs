@@ -241,6 +241,7 @@ namespace MmorpgClient.UI
                 if (_gameLogHandler != null) GameClient.OnLog -= _gameLogHandler;
                 GameClient.Disconnect();
                 GameClient.Features?.Dispose();
+                GameClient.LandingSync?.Dispose();
             }
 
             _gameLogHandler = null;

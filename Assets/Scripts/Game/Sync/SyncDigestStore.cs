@@ -99,15 +99,46 @@ namespace MmorpgClient.Game.Sync
     }
 
     /// <summary>
-    /// PlayerPrefs 实现,键 <c>mmorpg.syncdigest.{playerId}</c>(与 ClientSettings 同一个 "mmorpg." 命名空间)。
-    /// PlayerPrefs 是明文存储,这里只放摘要代次与计数。所有读写都吞掉异常(非主线程调用、配额超限等),
-    /// 读失败按没有缓存、写失败只会让下次落地多拉。
+    /// PlayerPrefs 实现,键 <c>mmorpg.syncdigest.{命名空间}.{playerId}</c>(与 ClientSettings 同一个 "mmorpg." 前缀)。
+    /// 命名空间只隔离不同的 gateway:同一台机器先后连本地开发服、共享测试服时,同一个 player_id 不会读到另一个
+    /// gateway 的缓存(两边摘要代次都是 0 时,计数相等会被误判成没变而不拉)。由 GameClient 按 gateway 地址
+    /// 经 <see cref="NamespaceForGateway"/> 算出传入。同一个 gateway 清库后 player_id 被重新发号时命名空间不变,
+    /// 仍会读到旧缓存,那种情况靠摘要代次 g 变化触发全量拉(LandingSyncClient.Apply),不靠这里。
+    /// 键布局变了、值格式没变:<see cref="SyncDigestCodec"/> 的格式版本仍是 1。旧版不带命名空间的键
+    /// <c>mmorpg.syncdigest.{playerId}</c> 不再被读取,自然失效,不做迁移;PlayerPrefs 无法枚举键,也不做清理。
+    /// PlayerPrefs 是明文存储,这里只放摘要代次与计数(gateway 地址只以短哈希出现)。所有读写都吞掉异常
+    /// (非主线程调用、配额超限等),读失败按没有缓存、写失败只会让下次落地多拉。
     /// </summary>
     public sealed class PlayerPrefsSyncDigestStore : ISyncDigestStore
     {
         public const string KeyPrefix = "mmorpg.syncdigest.";
 
-        public static string KeyFor(ulong playerId) => KeyPrefix + playerId.ToString(CultureInfo.InvariantCulture);
+        private readonly string _keyNamespace;
+
+        /// <param name="keyNamespace">环境命名空间,非空且不含 '.'(通常取 <see cref="NamespaceForGateway"/> 的结果)。</param>
+        public PlayerPrefsSyncDigestStore(string keyNamespace)
+        {
+            if (string.IsNullOrEmpty(keyNamespace) || keyNamespace.IndexOf('.') >= 0)
+                throw new ArgumentException("命名空间必须非空且不含 '.'", nameof(keyNamespace));
+            _keyNamespace = keyNamespace;
+        }
+
+        /// <summary>
+        /// gateway 地址的短哈希(SHA-256 前 6 字节,12 位小写十六进制)。地址先去掉首尾空白与末尾的 '/';
+        /// GatewayHttpClient 只去末尾的 '/',这里多去一层空白,只让同一地址的不同写法落到同一命名空间。null 按空串处理。
+        /// </summary>
+        public static string NamespaceForGateway(string gatewayBaseUrl)
+        {
+            string normalized = (gatewayBaseUrl ?? "").Trim().TrimEnd('/');
+            using var sha = System.Security.Cryptography.SHA256.Create();
+            byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(normalized));
+            var text = new StringBuilder(12);
+            for (int i = 0; i < 6; i++) text.Append(hash[i].ToString("x2", CultureInfo.InvariantCulture));
+            return text.ToString();
+        }
+
+        public string KeyFor(ulong playerId) =>
+            KeyPrefix + _keyNamespace + "." + playerId.ToString(CultureInfo.InvariantCulture);
 
         public SyncDigestRecord Load(ulong playerId)
         {

@@ -1,5 +1,6 @@
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Sync;
 using MmorpgClient.Game.Team;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
@@ -39,6 +40,9 @@ namespace MmorpgClient.UI.Ugui.Team
         private TeamWindow _window;
         private TeamInvitationWindow _invitations;
         private TeamInvitationDirectory _directory;
+        // 落地恢复的接线(LandingSyncBindings.BindTeam):随 _client 一起建、在 DisposeClient 里先于它解除;
+        // Toggle / HidePanel / OnDisable / 换角复位都不碰它(TeamClient.Reset 不清钩子)。
+        private System.IDisposable _landingSync;
         private ulong _playerId;
         private bool _available;
 
@@ -111,7 +115,10 @@ namespace MmorpgClient.UI.Ugui.Team
                     _client = new TeamClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity,
                         handler => game.OnTeamSnapshot += handler, handler => game.OnTeamSnapshot -= handler,
                         () => Time.realtimeSinceStartup);
+                    _client.PrepareMatchNetwork = (ready, failed) => game.Battle.RegionProbe.Prepare(_ => ready(), failed);
+                    _client.MatchRecovery = game.TeamMatchRecovery;
                     _client.Changed += SyncState;
+                    if (game.LandingSync != null) _landingSync = LandingSyncBindings.BindTeam(game.LandingSync, _client);
                     _directory = new TeamInvitationDirectory(game, () => Social.SocialUiRoot.Instance?.State);
                     _directory.Changed += SyncDirectory;
                 }
@@ -230,6 +237,9 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void DisposeClient()
         {
+            // 先解绑再销毁客户端,且放在任何提前返回之前,保证一定释放。
+            _landingSync?.Dispose();
+            _landingSync = null;
             if (_directory != null)
             {
                 _directory.Changed -= SyncDirectory;

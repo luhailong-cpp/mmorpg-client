@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Reflection;
 using MmorpgClient.Game.Mail;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Mail;
@@ -11,6 +12,9 @@ using UnityEngine.UI;
 
 namespace MmorpgClient.Tests.EditMode.Mail
 {
+    [ExecuteAlways]
+    public sealed class MailTestEventSystem : EventSystem { }
+
     public sealed class MailWindowTests
     {
         private GameObject _canvas,_events;
@@ -19,7 +23,8 @@ namespace MmorpgClient.Tests.EditMode.Mail
         private const long Now=1800000000;
         [SetUp] public void SetUp()
         {
-            _events=new GameObject("MailTestEvents",typeof(EventSystem));
+            _events=new GameObject("MailTestEvents",typeof(MailTestEventSystem));
+            EventSystem.current=_events.GetComponent<EventSystem>();
             _canvas=new GameObject("MailTestCanvas",typeof(RectTransform),typeof(Canvas));
             _canvas.GetComponent<Canvas>().renderMode=RenderMode.ScreenSpaceOverlay;
             var design=QdaoUguiFactory.CreateCenteredRect("Design",_canvas.transform,2560,1080);
@@ -102,9 +107,16 @@ namespace MmorpgClient.Tests.EditMode.Mail
         {
             bool blocked=GameplayInputGate.IsKeyboardBlocked;var opener=Button("CloseMail").gameObject;
             EventSystem.current.SetSelectedGameObject(_canvas);_window.Show();
-            Assert.That(GameplayInputGate.IsKeyboardBlocked,Is.True);
-            Assert.That(EventSystem.current.currentSelectedGameObject,Is.EqualTo(opener));
-            _window.Hide();Assert.That(EventSystem.current.currentSelectedGameObject,Is.EqualTo(_canvas));
+            var blocker=_window.Root.GetComponent<GameplayInputBlocker>();
+            // EditMode不派发非ExecuteAlways组件生命周期。夹具调用真实Unity消息方法，
+            // 只补引擎边界；不写静态计数，不伪造窗口焦点，也不忽略任何阻断断言。
+            var enable=typeof(GameplayInputBlocker).GetMethod("OnEnable",BindingFlags.Instance|BindingFlags.NonPublic);
+            var disable=typeof(GameplayInputBlocker).GetMethod("OnDisable",BindingFlags.Instance|BindingFlags.NonPublic);
+            enable.Invoke(blocker,null);
+            try{Assert.That(GameplayInputGate.IsKeyboardBlocked,Is.True);
+                Assert.That(EventSystem.current.currentSelectedGameObject,Is.EqualTo(opener));
+                _window.Hide();Assert.That(EventSystem.current.currentSelectedGameObject,Is.EqualTo(_canvas));}
+            finally{disable.Invoke(blocker,null);}
             Assert.That(GameplayInputGate.IsKeyboardBlocked,Is.EqualTo(blocked));
         }
         [Test] public void SessionResetClearsSelectionDataAndDialog()

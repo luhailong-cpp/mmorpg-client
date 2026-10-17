@@ -125,6 +125,9 @@ public sealed partial class ReleaseSkillRequest : pb::IMessage<ReleaseSkillReque
   /// <summary>Field number for the "target_id" field.</summary>
   public const int TargetIdFieldNumber = 2;
   private ulong targetId_;
+  /// <summary>
+  /// 服务端下发的不透明 actor 网络号；0 表示无目标，不得填玩家 GUID 或本地 ECS 句柄。
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong TargetId {
@@ -648,6 +651,9 @@ public sealed partial class SkillInterruptedS2C : pb::IMessage<SkillInterruptedS
   /// <summary>Field number for the "entity" field.</summary>
   public const int EntityFieldNumber = 1;
   private ulong entity_;
+  /// <summary>
+  /// 施法者的不透明 actor 网络号。
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong Entity {
@@ -660,6 +666,9 @@ public sealed partial class SkillInterruptedS2C : pb::IMessage<SkillInterruptedS
   /// <summary>Field number for the "target_entity" field.</summary>
   public const int TargetEntityFieldNumber = 2;
   private ulong targetEntity_;
+  /// <summary>
+  /// 目标的不透明 actor 网络号；0 表示无目标。
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong TargetEntity {
@@ -994,6 +1003,9 @@ public sealed partial class SkillUsedS2C : pb::IMessage<SkillUsedS2C>
   /// <summary>Field number for the "entity" field.</summary>
   public const int EntityFieldNumber = 1;
   private ulong entity_;
+  /// <summary>
+  /// 施法者的不透明 actor 网络号。
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ulong Entity {
@@ -1008,6 +1020,9 @@ public sealed partial class SkillUsedS2C : pb::IMessage<SkillUsedS2C>
   private static readonly pb::FieldCodec<ulong> _repeated_targetEntity_codec
       = pb::FieldCodec.ForUInt64(18);
   private readonly pbc::RepeatedField<ulong> targetEntity_ = new pbc::RepeatedField<ulong>();
+  /// <summary>
+  /// 目标的不透明 actor 网络号列表，不是玩家 GUID 或本地 ECS 句柄。
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<ulong> TargetEntity {

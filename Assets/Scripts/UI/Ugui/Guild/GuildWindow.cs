@@ -19,6 +19,7 @@ namespace MmorpgClient.UI.Ugui.Guild
     public sealed class GuildWindow
     {
         public event Action RefreshRequested;
+        public event Action EconomyRecoveryRequested;
         public event Action<uint> RankRequested;
         public event Action<string> CreateRequested, AnnouncementRequested;
         // 申请制取代“加入”:排行页只发申请 / 撤回,入帮与否由帮主或长老审批。
@@ -134,6 +135,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         private void RefreshCurrentPage()
         {
             if (Busy) return;
+            if (_client?.HasPendingEconomyWrite == true) { EconomyRecoveryRequested?.Invoke(); return; }
             bool inGuild = _client?.Info != null;
             if (Page == GuildPage.Ranking) RankRequested?.Invoke(_client?.Rank?.Page ?? 1);
             else if (Page == GuildPage.Donate && inGuild) DonationsRequested?.Invoke();
@@ -190,6 +192,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             _summary.text = _client?.Info == null ? "结一方同道 · 守一盏人间灯" :
                 _client.Info.Members.Count + " / " + _client.Info.MaxMembers + " 位同道 · 相聚一堂";
             _refresh.interactable = !Busy;
+            _refresh.GetComponentInChildren<TMP_Text>().text = _client?.HasPendingEconomyWrite == true ? "恢复原请求" : "刷新";
             for (int i = 0; i < _tabs.Length; i++)
             {
                 _tabs[i].image.sprite = Load(i == (int)Page ? "button_primary" : "button_secondary");

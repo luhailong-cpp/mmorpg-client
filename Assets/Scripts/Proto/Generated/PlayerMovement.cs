@@ -2069,7 +2069,7 @@ public sealed partial class ActorMoveS2C : pb::IMessage<ActorMoveS2C>
   public const int EntityFieldNumber = 1;
   private ulong entity_;
   /// <summary>
-  /// actor entity id
+  /// 不透明 actor 网络号，不是玩家 GUID 或本地 ECS 句柄。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2643,7 +2643,7 @@ public sealed partial class TeleportS2C : pb::IMessage<TeleportS2C>
   public const int EntityFieldNumber = 1;
   private ulong entity_;
   /// <summary>
-  /// actor being teleported (usually self for the receiver)
+  /// 被传送角色的不透明 actor 网络号，通常为接收者自身。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

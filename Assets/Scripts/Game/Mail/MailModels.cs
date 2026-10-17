@@ -11,7 +11,7 @@ namespace MmorpgClient.Game.Mail
     public sealed class MailReward
     {
         public string Name = "", IconKey = "";
-        public int Count;
+        public long Count;
         public MailReward Copy() => new() { Name = Name, IconKey = IconKey, Count = Count };
     }
 
@@ -21,12 +21,13 @@ namespace MmorpgClient.Game.Mail
         public string Id = "", Title = "", Sender = "", Body = "", BannerKey = "", ActivityId = "";
         public MailCategory Category;
         public long SentAt, ExpiresAt;
-        public bool IsRead, Claimed;
+        public bool IsRead, Claimed, DeliveryPending, RequiresManual;
         public List<MailReward> Rewards = new();
         public MailMessage Copy() => new() {
             Id = Id, Title = Title, Sender = Sender, Body = Body, BannerKey = BannerKey,
             ActivityId = ActivityId, Category = Category, SentAt = SentAt, ExpiresAt = ExpiresAt,
-            IsRead = IsRead, Claimed = Claimed, Rewards = Rewards?.Where(x => x != null).Select(x => x.Copy()).ToList() ?? new()
+            IsRead = IsRead, Claimed = Claimed, DeliveryPending=DeliveryPending, RequiresManual=RequiresManual,
+            Rewards = Rewards?.Where(x => x != null).Select(x => x.Copy()).ToList() ?? new()
         };
     }
 

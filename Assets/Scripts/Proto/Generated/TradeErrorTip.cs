@@ -23,11 +23,19 @@ public static partial class TradeErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvdHJhZGVfZXJyb3JfdGlwLnBy",
-          "b3RvKpoBCgt0cmFkZV9lcnJvchISCg5rVHJhZGVfZXJyb3JPSxAAEhsKFWtU",
+          "b3RvKvIDCgt0cmFkZV9lcnJvchISCg5rVHJhZGVfZXJyb3JPSxAAEhsKFWtU",
           "cmFkZUxpc3RpbmdOb3RGb3VuZBCgnAESGwoVa1RyYWRlSG9tZVpvbmVVbmtu",
           "b3duEKGcARIgChprVHJhZGVGYXZvcml0ZUxpbWl0UmVhY2hlZBCinAESGwoV",
-          "a1RyYWRlRmVhdHVyZURpc2FibGVkEKOcAUIkCg5jb20uZ2FtZS50YWJsZVoS",
-          "Z2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "a1RyYWRlRmVhdHVyZURpc2FibGVkEKOcARIZChNrVHJhZGVPcmRlck5vdEZv",
+          "dW5kEKScARIeChhrVHJhZGVPcmRlclN0YXRlQ29uZmxpY3QQpZwBEhsKFWtU",
+          "cmFkZVJlcXVlc3RDb25mbGljdBCmnAESFgoQa1RyYWRlT3JkZXJMaW1pdBCn",
+          "nAESGwoVa1RyYWRlQ2Fubm90VHJhZGVTZWxmEKicARIfChlrVHJhZGVDb3Vu",
+          "dGVycGFydHlVbmtub3duEKmcARIdChdrVHJhZGVJbnN1ZmZpY2llbnRBc3Nl",
+          "dBCqnAESFQoPa1RyYWRlQmlkVG9vTG93EKucARIYChJrVHJhZGVBdWN0aW9u",
+          "RW5kZWQQrJwBEiAKGmtUcmFkZUFzc2V0RGVsaXZlcnlQZW5kaW5nEK2cARIY",
+          "ChJrVHJhZGVNYW51YWxSZXZpZXcQrpwBEhwKFmtUcmFkZUFzc2V0Tm90VHJh",
+          "ZGFibGUQr5wBQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFi",
+          "bGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::trade_error), }, null, null));
@@ -42,6 +50,18 @@ public enum trade_error {
   [pbr::OriginalName("kTradeHomeZoneUnknown")] KTradeHomeZoneUnknown = 20001,
   [pbr::OriginalName("kTradeFavoriteLimitReached")] KTradeFavoriteLimitReached = 20002,
   [pbr::OriginalName("kTradeFeatureDisabled")] KTradeFeatureDisabled = 20003,
+  [pbr::OriginalName("kTradeOrderNotFound")] KTradeOrderNotFound = 20004,
+  [pbr::OriginalName("kTradeOrderStateConflict")] KTradeOrderStateConflict = 20005,
+  [pbr::OriginalName("kTradeRequestConflict")] KTradeRequestConflict = 20006,
+  [pbr::OriginalName("kTradeOrderLimit")] KTradeOrderLimit = 20007,
+  [pbr::OriginalName("kTradeCannotTradeSelf")] KTradeCannotTradeSelf = 20008,
+  [pbr::OriginalName("kTradeCounterpartyUnknown")] KTradeCounterpartyUnknown = 20009,
+  [pbr::OriginalName("kTradeInsufficientAsset")] KTradeInsufficientAsset = 20010,
+  [pbr::OriginalName("kTradeBidTooLow")] KTradeBidTooLow = 20011,
+  [pbr::OriginalName("kTradeAuctionEnded")] KTradeAuctionEnded = 20012,
+  [pbr::OriginalName("kTradeAssetDeliveryPending")] KTradeAssetDeliveryPending = 20013,
+  [pbr::OriginalName("kTradeManualReview")] KTradeManualReview = 20014,
+  [pbr::OriginalName("kTradeAssetNotTradable")] KTradeAssetNotTradable = 20015,
 }
 
 #endregion

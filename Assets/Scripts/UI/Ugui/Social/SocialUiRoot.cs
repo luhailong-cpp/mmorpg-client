@@ -3,6 +3,7 @@ using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Social;
+using MmorpgClient.Game.Sync;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
 using MmorpgClient.World.Tianyong;
@@ -27,6 +28,9 @@ namespace MmorpgClient.UI.Ugui.Social
         public FriendRequestsWindow FriendRequests{get;private set;}
         public event Action Opened;
         private GameClient _game;private ulong _player;private object _connection;private RectTransform _hud;private bool _available;
+        // 落地恢复的好友申请接线(LandingSyncBindings.BindFriendRequests):随 Friends 一起建、在它销毁之前解除;
+        // Toggle / HidePanel / OnDisable / 会话复位都不碰它(FriendClient.Reset 不清钩子)。
+        private IDisposable _friendSync;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] private static void AutoSpawn()
         {if(Instance!=null)return;var go=new GameObject("[SocialUi]");DontDestroyOnLoad(go);go.AddComponent<SocialUiRoot>();}
         private void Awake()
@@ -48,12 +52,13 @@ namespace MmorpgClient.UI.Ugui.Social
             bool differentGame=!ReferenceEquals(_game,game),differentSession=_player!=player||!ReferenceEquals(_connection,connection);
             if(differentGame)
             {
-                Client?.Dispose();Client=null;Friends?.Dispose();Friends=null;_game=game;
+                _friendSync?.Dispose();_friendSync=null;Client?.Dispose();Client=null;Friends?.Dispose();Friends=null;_game=game;
                 if(game!=null)
                 {
                     Client=new SocialClient(new GameClientBattleTransport(game),State,()=>game.GateConnectionIdentity);
                     Friends=new FriendClient(new GameClientBattleTransport(game),()=>game.GateConnectionIdentity,
                         ()=>game.InGame&&game.IsGateReady);
+                    if(game.LandingSync!=null)_friendSync=LandingSyncBindings.BindFriendRequests(game.LandingSync,Friends);
                 }
                 FriendRequests.Bind(Friends);
             }
@@ -122,6 +127,6 @@ namespace MmorpgClient.UI.Ugui.Social
         public static bool IsTyping()
         {var go=EventSystem.current?.currentSelectedGameObject;return go?.GetComponentInParent<TMP_InputField>()?.isFocused==true||go?.GetComponentInParent<InputField>()?.isFocused==true;}
         private void OnDisable()=>HidePanel();
-        private void OnDestroy(){Client?.Dispose();Friends?.Dispose();FriendRequests?.Dispose();Window?.Dispose();if(Instance==this)Instance=null;}
+        private void OnDestroy(){_friendSync?.Dispose();_friendSync=null;Client?.Dispose();Friends?.Dispose();FriendRequests?.Dispose();Window?.Dispose();if(Instance==this)Instance=null;}
     }
 }

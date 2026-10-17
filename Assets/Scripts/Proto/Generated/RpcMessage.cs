@@ -22,39 +22,35 @@ public static partial class RpcMessageReflection {
   static RpcMessageReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CiNwcm90by9jb21tb24vYmFzZS9ycGNfbWVzc2FnZS5wcm90byKGAQoOR2Ft",
+          "CiNwcm90by9jb21tb24vYmFzZS9ycGNfbWVzc2FnZS5wcm90byKSAQoOR2Ft",
           "ZVJwY01lc3NhZ2USHgoEdHlwZRgBIAEoDjIQLkdhbWVNZXNzYWdlVHlwZRIP",
           "CgdyZXF1ZXN0GAIgASgMEhAKCHJlc3BvbnNlGAMgASgMEh0KBWVycm9yGAQg",
-          "ASgOMg4uR2FtZUVycm9yQ29kZRISCgptZXNzYWdlX2lkGAUgASgNKmMKD0dh",
-          "bWVNZXNzYWdlVHlwZRILCgdSRVFVRVNUEAASDAoIUkVTUE9OU0UQARIWChJS",
-          "UENfQ0xJRU5UX1JFUVVFU1QQAhIOCgpOT0RFX1JPVVRFEAMSDQoJUlBDX0VS",
-          "Uk9SEAQqiQEKDUdhbWVFcnJvckNvZGUSEAoMUlBDX05PX0VSUk9SEAASDwoL",
-          "V1JPTkdfUFJPVE8QARIOCgpOT19TRVJWSUNFEAISDQoJTk9fTUVUSE9EEAMS",
-          "EwoPSU5WQUxJRF9SRVFVRVNUEAQSFAoQSU5WQUxJRF9SRVNQT05TRRAFEgsK",
-          "B1RJTUVPVVQQBkINWgtjb21tb24vYmFzZWIGcHJvdG8z"));
+          "ASgOMg4uR2FtZUVycm9yQ29kZRISCgptZXNzYWdlX2lkGAUgASgNEgoKAmlk",
+          "GAYgASgEKmcKD0dhbWVNZXNzYWdlVHlwZRILCgdSRVFVRVNUEAASDAoIUkVT",
+          "UE9OU0UQARINCglSUENfRVJST1IQBCIECAIQAiIECAMQAyoSUlBDX0NMSUVO",
+          "VF9SRVFVRVNUKgpOT0RFX1JPVVRFKrABCg1HYW1lRXJyb3JDb2RlEhAKDFJQ",
+          "Q19OT19FUlJPUhAAEg8KC1dST05HX1BST1RPEAESDgoKTk9fU0VSVklDRRAC",
+          "Eg0KCU5PX01FVEhPRBADEhMKD0lOVkFMSURfUkVRVUVTVBAEEhQKEElOVkFM",
+          "SURfUkVTUE9OU0UQBRILCgdUSU1FT1VUEAYSEgoOSEFORExFUl9GQUlMRUQQ",
+          "BxIRCg1SRVBMWV9EUk9QUEVEEAhCDVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameMessageType), typeof(global::GameErrorCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::GameRpcMessage), global::GameRpcMessage.Parser, new[]{ "Type", "Request", "Response", "Error", "MessageId" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::GameRpcMessage), global::GameRpcMessage.Parser, new[]{ "Type", "Request", "Response", "Error", "MessageId", "Id" }, null, null, null, null)
         }));
   }
   #endregion
 
 }
 #region Enums
+/// <summary>
+/// 节点间 RPC0 信封(C++ 节点内部,不是客户端契约)。语义见 docs/design/muduo-rpc-channel.md §4.1。
+/// </summary>
 public enum GameMessageType {
   [pbr::OriginalName("REQUEST")] Request = 0,
   [pbr::OriginalName("RESPONSE")] Response = 1,
   /// <summary>
-  /// Server-to-client
-  /// </summary>
-  [pbr::OriginalName("RPC_CLIENT_REQUEST")] RpcClientRequest = 2,
-  /// <summary>
-  /// Inter-node forwarding
-  /// </summary>
-  [pbr::OriginalName("NODE_ROUTE")] NodeRoute = 3,
-  /// <summary>
-  /// not used
+  /// 框架或 handler 拒绝本次调用;回显请求的 id 与 message_id
   /// </summary>
   [pbr::OriginalName("RPC_ERROR")] RpcError = 4,
 }
@@ -65,8 +61,22 @@ public enum GameErrorCode {
   [pbr::OriginalName("NO_SERVICE")] NoService = 2,
   [pbr::OriginalName("NO_METHOD")] NoMethod = 3,
   [pbr::OriginalName("INVALID_REQUEST")] InvalidRequest = 4,
+  /// <summary>
+  /// 线上不发;本地完成状态见 C++ RpcStatusCode
+  /// </summary>
   [pbr::OriginalName("INVALID_RESPONSE")] InvalidResponse = 5,
+  /// <summary>
+  /// 线上不发;本地完成状态见 C++ RpcStatusCode
+  /// </summary>
   [pbr::OriginalName("TIMEOUT")] Timeout = 6,
+  /// <summary>
+  /// handler 显式失败(controller->SetFailed / RpcDoneCallback::Fail):handler 已运行
+  /// </summary>
+  [pbr::OriginalName("HANDLER_FAILED")] HandlerFailed = 7,
+  /// <summary>
+  /// handler 接管 done 后未完成即释放:结果未知
+  /// </summary>
+  [pbr::OriginalName("REPLY_DROPPED")] ReplyDropped = 8,
 }
 
 #endregion
@@ -112,6 +122,7 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     response_ = other.response_;
     error_ = other.error_;
     messageId_ = other.messageId_;
+    id_ = other.id_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -181,6 +192,23 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     }
   }
 
+  /// <summary>Field number for the "id" field.</summary>
+  public const int IdFieldNumber = 6;
+  private ulong id_;
+  /// <summary>
+  /// 调用号(= muduo RpcMessage.id):发起方 channel 内单调递增、从 1 开始;0 = 单向(调用方不要应答)。
+  /// id != 0 的 REQUEST,服务端必须恰好回一帧 RESPONSE 或 RPC_ERROR(Empty / 0 字节响应也回)。
+  /// uint64:按 5 万次/s 算 uint32 约 24 小时回绕;不用原版的 fixed64,小号 varint 只占 1-3 字节。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Id {
+    get { return id_; }
+    set {
+      id_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -201,6 +229,7 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     if (Response != other.Response) return false;
     if (Error != other.Error) return false;
     if (MessageId != other.MessageId) return false;
+    if (Id != other.Id) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -213,6 +242,7 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     if (Response.Length != 0) hash ^= Response.GetHashCode();
     if (Error != global::GameErrorCode.RpcNoError) hash ^= Error.GetHashCode();
     if (MessageId != 0) hash ^= MessageId.GetHashCode();
+    if (Id != 0UL) hash ^= Id.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -251,6 +281,10 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
       output.WriteRawTag(40);
       output.WriteUInt32(MessageId);
     }
+    if (Id != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(Id);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -281,6 +315,10 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
       output.WriteRawTag(40);
       output.WriteUInt32(MessageId);
     }
+    if (Id != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(Id);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -305,6 +343,9 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     }
     if (MessageId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MessageId);
+    }
+    if (Id != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Id);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -332,6 +373,9 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     }
     if (other.MessageId != 0) {
       MessageId = other.MessageId;
+    }
+    if (other.Id != 0UL) {
+      Id = other.Id;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -372,6 +416,10 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
           MessageId = input.ReadUInt32();
           break;
         }
+        case 48: {
+          Id = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -409,6 +457,10 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
         }
         case 40: {
           MessageId = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          Id = input.ReadUInt64();
           break;
         }
       }

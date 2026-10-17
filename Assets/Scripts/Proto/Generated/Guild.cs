@@ -48,24 +48,27 @@ namespace Guildpb {
             "dWlsZHBiLkd1aWxkSW5mbyIqChVHZXRQbGF5ZXJHdWlsZFJlcXVlc3QSEQoJ",
             "cGxheWVyX2lkGAEgASgEImMKFkdldFBsYXllckd1aWxkUmVzcG9uc2USJgoN",
             "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiEKBWd1aWxk",
-            "GAIgASgLMhIuZ3VpbGRwYi5HdWlsZEluZm8iJgoRTGVhdmVHdWlsZFJlcXVl",
-            "c3QSEQoJcGxheWVyX2lkGAEgASgEIjwKEkxlYXZlR3VpbGRSZXNwb25zZRIm",
-            "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiKAoTRGlz",
-            "YmFuZEd1aWxkUmVxdWVzdBIRCglwbGF5ZXJfaWQYASABKAQiPgoURGlzYmFu",
-            "ZEd1aWxkUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcElu",
-            "Zm9NZXNzYWdlIlMKFlNldEFubm91bmNlbWVudFJlcXVlc3QSEAoIZ3VpbGRf",
-            "aWQYASABKAQSEQoJcGxheWVyX2lkGAIgASgEEhQKDGFubm91bmNlbWVudBgD",
-            "IAEoCSJkChdTZXRBbm5vdW5jZW1lbnRSZXNwb25zZRImCg1lcnJvcl9tZXNz",
-            "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIQoFZ3VpbGQYAiABKAsyEi5n",
-            "dWlsZHBiLkd1aWxkSW5mbyJDChlTZXRHdWlsZE1lbWJlclJvbGVSZXF1ZXN0",
-            "EhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKAQSDAoEcm9sZRgCIAEoDSJnChpT",
-            "ZXRHdWlsZE1lbWJlclJvbGVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
-            "ASgLMg8uVGlwSW5mb01lc3NhZ2USIQoFZ3VpbGQYAiABKAsyEi5ndWlsZHBi",
-            "Lkd1aWxkSW5mbyIyChZLaWNrR3VpbGRNZW1iZXJSZXF1ZXN0EhgKEHRhcmdl",
-            "dF9wbGF5ZXJfaWQYASABKAQiZAoXS2lja0d1aWxkTWVtYmVyUmVzcG9uc2US",
-            "JgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiEKBWd1",
-            "aWxkGAIgASgLMhIuZ3VpbGRwYi5HdWlsZEluZm8iNgoaVHJhbnNmZXJHdWls",
-            "ZExlYWRlclJlcXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoBCJoChtU",
+            "GAIgASgLMhIuZ3VpbGRwYi5HdWlsZEluZm8iQQoRTGVhdmVHdWlsZFJlcXVl",
+            "c3QSEQoJcGxheWVyX2lkGAEgASgEEhkKEWV4cGVjdGVkX2d1aWxkX2lkGAIg",
+            "ASgEIjwKEkxlYXZlR3VpbGRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
+            "ASgLMg8uVGlwSW5mb01lc3NhZ2UiQwoTRGlzYmFuZEd1aWxkUmVxdWVzdBIR",
+            "CglwbGF5ZXJfaWQYASABKAQSGQoRZXhwZWN0ZWRfZ3VpbGRfaWQYAiABKAQi",
+            "PgoURGlzYmFuZEd1aWxkUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
+            "CzIPLlRpcEluZm9NZXNzYWdlIlMKFlNldEFubm91bmNlbWVudFJlcXVlc3QS",
+            "EAoIZ3VpbGRfaWQYASABKAQSEQoJcGxheWVyX2lkGAIgASgEEhQKDGFubm91",
+            "bmNlbWVudBgDIAEoCSJkChdTZXRBbm5vdW5jZW1lbnRSZXNwb25zZRImCg1l",
+            "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIQoFZ3VpbGQY",
+            "AiABKAsyEi5ndWlsZHBiLkd1aWxkSW5mbyJeChlTZXRHdWlsZE1lbWJlclJv",
+            "bGVSZXF1ZXN0EhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKAQSDAoEcm9sZRgC",
+            "IAEoDRIZChFleHBlY3RlZF9ndWlsZF9pZBgDIAEoBCJnChpTZXRHdWlsZE1l",
+            "bWJlclJvbGVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
+            "SW5mb01lc3NhZ2USIQoFZ3VpbGQYAiABKAsyEi5ndWlsZHBiLkd1aWxkSW5m",
+            "byJNChZLaWNrR3VpbGRNZW1iZXJSZXF1ZXN0EhgKEHRhcmdldF9wbGF5ZXJf",
+            "aWQYASABKAQSGQoRZXhwZWN0ZWRfZ3VpbGRfaWQYAiABKAQiZAoXS2lja0d1",
+            "aWxkTWVtYmVyUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
+            "cEluZm9NZXNzYWdlEiEKBWd1aWxkGAIgASgLMhIuZ3VpbGRwYi5HdWlsZElu",
+            "Zm8iUQoaVHJhbnNmZXJHdWlsZExlYWRlclJlcXVlc3QSGAoQdGFyZ2V0X3Bs",
+            "YXllcl9pZBgBIAEoBBIZChFleHBlY3RlZF9ndWlsZF9pZBgCIAEoBCJoChtU",
             "cmFuc2Zlckd1aWxkTGVhZGVyUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgB",
             "IAEoCzIPLlRpcEluZm9NZXNzYWdlEiEKBWd1aWxkGAIgASgLMhIuZ3VpbGRw",
             "Yi5HdWlsZEluZm8iKQoVQXBwbHlKb2luR3VpbGRSZXF1ZXN0EhAKCGd1aWxk",
@@ -122,174 +125,176 @@ namespace Guildpb {
             "KAsyGi5ndWlsZHBiLkd1aWxkRG9uYXRpb25WaWV3EhoKEmNvbnRyaWJ1dGlv",
             "bl90b3RhbBgEIAEoBBIcChRjb250cmlidXRpb25fYmFsYW5jZRgFIAEoBBIb",
             "ChNuZXh0X2RhaWx5X3Jlc2V0X21zGAYgASgEEjIKDnJlY2VudF9yZXN1bHRz",
-            "GAcgAygLMhouZ3VpbGRwYi5HdWlsZERvbmF0aW9uVmlldyIpChREb25hdGVU",
-            "b0d1aWxkUmVxdWVzdBIRCglkb25hdGVfaWQYASABKA0ikAEKFURvbmF0ZVRv",
-            "R3VpbGRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-            "b01lc3NhZ2USLAoIZG9uYXRpb24YAiABKAsyGi5ndWlsZHBiLkd1aWxkRG9u",
-            "YXRpb25WaWV3EiEKBWd1aWxkGAMgASgLMhIuZ3VpbGRwYi5HdWlsZEluZm8i",
-            "LQoTVXBncmFkZUd1aWxkUmVxdWVzdBIWCg5leHBlY3RlZF9sZXZlbBgBIAEo",
-            "DSJhChRVcGdyYWRlR3VpbGRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
-            "ASgLMg8uVGlwSW5mb01lc3NhZ2USIQoFZ3VpbGQYAiABKAsyEi5ndWlsZHBi",
-            "Lkd1aWxkSW5mbyIVChNHZXRHdWlsZFNob3BSZXF1ZXN0IqwCChRHZXRHdWls",
-            "ZFNob3BSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-            "b01lc3NhZ2USKgoFZ29vZHMYAiADKAsyGy5ndWlsZHBiLkd1aWxkU2hvcEdv",
-            "b2RzVmlldxIcChRjb250cmlidXRpb25fYmFsYW5jZRgDIAEoBBIzCg5wZW5k",
-            "aW5nX29yZGVycxgEIAMoCzIbLmd1aWxkcGIuR3VpbGRTaG9wT3JkZXJWaWV3",
-            "EhsKE25leHRfZGFpbHlfcmVzZXRfbXMYBSABKAQSHAoUbmV4dF93ZWVrbHlf",
-            "cmVzZXRfbXMYBiABKAQSMgoNcmVjZW50X29yZGVycxgHIAMoCzIbLmd1aWxk",
-            "cGIuR3VpbGRTaG9wT3JkZXJWaWV3IjsKGEJ1eUd1aWxkU2hvcEdvb2RzUmVx",
-            "dWVzdBIQCghnb29kc19pZBgBIAEoDRINCgVjb3VudBgCIAEoDSKNAQoZQnV5",
-            "R3VpbGRTaG9wR29vZHNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
-            "Mg8uVGlwSW5mb01lc3NhZ2USKgoFb3JkZXIYAiABKAsyGy5ndWlsZHBiLkd1",
-            "aWxkU2hvcE9yZGVyVmlldxIcChRjb250cmlidXRpb25fYmFsYW5jZRgDIAEo",
-            "BCIxCg9HdWlsZFJld2FyZEl0ZW0SDwoHaXRlbV9pZBgBIAEoDRINCgVjb3Vu",
-            "dBgCIAEoDSL/AQoTR3VpbGRUcmlhbExvYmJ5VmlldxIQCghsb2JieV9pZBgB",
-            "IAEoBBIbChNpbml0aWF0b3JfcGxheWVyX2lkGAIgASgEEhkKEW1lbWJlcl9w",
-            "bGF5ZXJfaWRzGAMgAygEEhsKE2FjY2VwdGVkX3BsYXllcl9pZHMYBCADKAQS",
-            "LAoFc3RhdGUYBSABKA4yHS5ndWlsZHBiLkd1aWxkVHJpYWxMb2JieVN0YXRl",
-            "EhQKDGV4cGlyZV9hdF9tcxgGIAEoBBIRCgliYXR0bGVfaWQYByABKAQSEgoK",
-            "ZW5kX3RpcF9pZBgIIAEoDRIWCg5lbmRfcGFyYW1ldGVycxgJIAMoCSLBBgoR",
-            "R3VpbGRBY3Rpdml0eVZpZXcSEwoLYWN0aXZpdHlfaWQYASABKA0SKAoEdHlw",
-            "ZRgCIAEoDjIaLmd1aWxkcGIuR3VpbGRBY3Rpdml0eVR5cGUSDAoEbmFtZRgD",
-            "IAEoCRIqCgVzdGF0ZRgEIAEoDjIbLmd1aWxkcGIuR3VpbGRBY3Rpdml0eVN0",
-            "YXRlEhMKC3N0YXJ0X2F0X21zGAUgASgEEhEKCWVuZF9hdF9tcxgGIAEoBBIX",
-            "Cg9taW5fZ3VpbGRfbGV2ZWwYByABKA0SEgoKcGVyaW9kX2tleRgIIAEoDRIV",
-            "Cg1uZXh0X3Jlc2V0X21zGAkgASgEEhYKDnNlcnZlcl90aW1lX21zGAogASgE",
-            "Eh0KFXBlcnNvbmFsX2NvbnRyaWJ1dGlvbhgLIAEoBBITCgtndWlsZF9mdW5k",
-            "cxgMIAEoBBIXCg9ndWlsZF90aHJlc2hvbGQYDSABKA0SLgoMcmV3YXJkX2l0",
-            "ZW1zGA4gAygLMhguZ3VpbGRwYi5HdWlsZFJld2FyZEl0ZW0SEwoLZGFpbHlf",
-            "bGltaXQYDyABKA0SFQoNbXlfdXNlZF9jb3VudBgQIAEoDRIQCghwcm9ncmVz",
-            "cxgRIAEoDRIZChF0aHJlc2hvbGRfcmVhY2hlZBgSIAEoCBIVCg1mdW5kc19n",
-            "cmFudGVkGBMgASgIEhYKDmJsb2NrZWRfdGlwX2lkGBQgASgNEhIKCmR1bmdl",
-            "b25faWQYFSABKA0SFQoNdGVhbV9zaXplX21pbhgWIAEoDRIVCg10ZWFtX3Np",
-            "emVfbWF4GBcgASgNEhoKEm15X3RyaWFsX2JhdHRsZV9pZBgYIAEoBBIfChdt",
-            "eV9wZW5kaW5nX3Jld2FyZF9jb3VudBgZIAEoDRIgChhteV9wZW5kaW5nX3Jl",
-            "YXNvbl90aXBfaWQYGiABKA0SJAocbXlfbGFzdF9yZXdhcmRfcmVqZWN0X3Rp",
-            "cF9pZBgbIAEoDRIWCg5qb2luX21pbl9ob3VycxgcIAEoDRIYChBndWlsZF9w",
-            "ZXJpb2Rfa2V5GB0gASgNEjEKC3RyaWFsX2xvYmJ5GB4gASgLMhwuZ3VpbGRw",
-            "Yi5HdWlsZFRyaWFsTG9iYnlWaWV3IhsKGUdldEd1aWxkQWN0aXZpdGllc1Jl",
-            "cXVlc3QidAoaR2V0R3VpbGRBY3Rpdml0aWVzUmVzcG9uc2USJgoNZXJyb3Jf",
-            "bWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEi4KCmFjdGl2aXRpZXMY",
-            "AiADKAsyGi5ndWlsZHBiLkd1aWxkQWN0aXZpdHlWaWV3Ii8KGExpZ2h0R3Vp",
-            "bGRMYW50ZXJuUmVxdWVzdBITCgthY3Rpdml0eV9pZBgBIAEoDSJxChlMaWdo",
-            "dEd1aWxkTGFudGVyblJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
-            "Dy5UaXBJbmZvTWVzc2FnZRIsCghhY3Rpdml0eRgCIAEoCzIaLmd1aWxkcGIu",
-            "R3VpbGRBY3Rpdml0eVZpZXciLwoYQ2xhaW1HdWlsZFJldW5pb25SZXF1ZXN0",
-            "EhMKC2FjdGl2aXR5X2lkGAEgASgNInEKGUNsYWltR3VpbGRSZXVuaW9uUmVz",
-            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-            "EiwKCGFjdGl2aXR5GAIgASgLMhouZ3VpbGRwYi5HdWlsZEFjdGl2aXR5Vmll",
-            "dyJIChZTdGFydEd1aWxkVHJpYWxSZXF1ZXN0EhMKC2FjdGl2aXR5X2lkGAEg",
-            "ASgNEhkKEW1lbWJlcl9wbGF5ZXJfaWRzGAIgAygEIm8KF1N0YXJ0R3VpbGRU",
-            "cmlhbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-            "TWVzc2FnZRIsCghhY3Rpdml0eRgCIAEoCzIaLmd1aWxkcGIuR3VpbGRBY3Rp",
-            "dml0eVZpZXciQgoeUmVzcG9uZEd1aWxkVHJpYWxJbnZpdGVSZXF1ZXN0EhAK",
-            "CGxvYmJ5X2lkGAEgASgEEg4KBmFjY2VwdBgCIAEoCCJ3Ch9SZXNwb25kR3Vp",
-            "bGRUcmlhbEludml0ZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
-            "Dy5UaXBJbmZvTWVzc2FnZRIsCghhY3Rpdml0eRgCIAEoCzIaLmd1aWxkcGIu",
-            "R3VpbGRBY3Rpdml0eVZpZXcimgEKDkd1aWxkUmFua0VudHJ5EhAKCGd1aWxk",
-            "X2lkGAEgASgEEgwKBG5hbWUYAiABKAkSEQoJbGVhZGVyX2lkGAMgASgEEg0K",
-            "BWxldmVsGAQgASgNEhQKDG1lbWJlcl9jb3VudBgFIAEoDRINCgVzY29yZRgG",
-            "IAEoAxIMCgRyYW5rGAcgASgNEhMKC2xlYWRlcl9uYW1lGAggASgJIksKF1Vw",
-            "ZGF0ZUd1aWxkU2NvcmVSZXF1ZXN0EhAKCGd1aWxkX2lkGAEgASgEEg0KBXNj",
-            "b3JlGAIgASgDEg8KB3pvbmVfaWQYAyABKA0iQgoYVXBkYXRlR3VpbGRTY29y",
-            "ZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVz",
-            "c2FnZSJHChNHZXRHdWlsZFJhbmtSZXF1ZXN0EgwKBHBhZ2UYASABKA0SEQoJ",
-            "cGFnZV9zaXplGAIgASgNEg8KB3pvbmVfaWQYAyABKA0ingEKFEdldEd1aWxk",
-            "UmFua1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-            "TWVzc2FnZRIoCgdlbnRyaWVzGAIgAygLMhcuZ3VpbGRwYi5HdWlsZFJhbmtF",
-            "bnRyeRITCgt0b3RhbF9jb3VudBgDIAEoDRIMCgRwYWdlGAQgASgNEhEKCXBh",
-            "Z2Vfc2l6ZRgFIAEoDSI/ChpHZXRHdWlsZFJhbmtCeUd1aWxkUmVxdWVzdBIQ",
-            "CghndWlsZF9pZBgBIAEoBBIPCgd6b25lX2lkGAIgASgNIm0KG0dldEd1aWxk",
-            "UmFua0J5R3VpbGRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8u",
-            "VGlwSW5mb01lc3NhZ2USJgoFZW50cnkYAiABKAsyFy5ndWlsZHBiLkd1aWxk",
-            "UmFua0VudHJ5KqYECg9HdWlsZENoYW5nZUtpbmQSIQodR1VJTERfQ0hBTkdF",
-            "X0tJTkRfVU5TUEVDSUZJRUQQABIjCh9HVUlMRF9DSEFOR0VfS0lORF9NRU1C",
-            "RVJfSk9JTkVEEAESIQodR1VJTERfQ0hBTkdFX0tJTkRfTUVNQkVSX0xFRlQQ",
-            "AhIjCh9HVUlMRF9DSEFOR0VfS0lORF9NRU1CRVJfS0lDS0VEEAMSIgoeR1VJ",
-            "TERfQ0hBTkdFX0tJTkRfUk9MRV9DSEFOR0VEEAQSKAokR1VJTERfQ0hBTkdF",
-            "X0tJTkRfTEVBREVSX1RSQU5TRkVSUkVEEAUSHwobR1VJTERfQ0hBTkdFX0tJ",
-            "TkRfRElTQkFOREVEEAYSKgomR1VJTERfQ0hBTkdFX0tJTkRfQVBQTElDQVRJ",
-            "T05fUkVDRUlWRUQQBxIqCiZHVUlMRF9DSEFOR0VfS0lORF9BUFBMSUNBVElP",
-            "Tl9SRUpFQ1RFRBAIEiMKH0dVSUxEX0NIQU5HRV9LSU5EX0ZVTkRTX0NIQU5H",
-            "RUQQCRIeChpHVUlMRF9DSEFOR0VfS0lORF9MRVZFTF9VUBAKEioKJkdVSUxE",
-            "X0NIQU5HRV9LSU5EX0FOTk9VTkNFTUVOVF9DSEFOR0VEEAsSJgoiR1VJTERf",
-            "Q0hBTkdFX0tJTkRfQUNUSVZJVFlfQ0hBTkdFRBAMEiMKH0dVSUxEX0NIQU5H",
-            "RV9LSU5EX0RFTElWRVJZX0RPTkUQDSqIAgoVR3VpbGRBc3NldE9yZGVyU3Rh",
-            "dHVzEigKJEdVSUxEX0FTU0VUX09SREVSX1NUQVRVU19VTlNQRUNJRklFRBAA",
-            "EiQKIEdVSUxEX0FTU0VUX09SREVSX1NUQVRVU19QRU5ESU5HEAESJAogR1VJ",
-            "TERfQVNTRVRfT1JERVJfU1RBVFVTX0FQUExJRUQQAhIlCiFHVUlMRF9BU1NF",
-            "VF9PUkRFUl9TVEFUVVNfUkVKRUNURUQQAxIkCiBHVUlMRF9BU1NFVF9PUkRF",
-            "Ul9TVEFUVVNfQUJPUlRFRBAEEiwKKEdVSUxEX0FTU0VUX09SREVSX1NUQVRV",
-            "U19BUFBMSUVEX1BBUlRJQUwQBSqZAQoRR3VpbGRBY3Rpdml0eVR5cGUSIwof",
-            "R1VJTERfQUNUSVZJVFlfVFlQRV9VTlNQRUNJRklFRBAAEh8KG0dVSUxEX0FD",
-            "VElWSVRZX1RZUEVfTEFOVEVSThABEh8KG0dVSUxEX0FDVElWSVRZX1RZUEVf",
-            "UkVVTklPThACEh0KGUdVSUxEX0FDVElWSVRZX1RZUEVfVFJJQUwQAyq/AQoS",
-            "R3VpbGRBY3Rpdml0eVN0YXRlEiQKIEdVSUxEX0FDVElWSVRZX1NUQVRFX1VO",
-            "U1BFQ0lGSUVEEAASIQodR1VJTERfQUNUSVZJVFlfU1RBVEVfRElTQUJMRUQQ",
-            "ARIhCh1HVUlMRF9BQ1RJVklUWV9TVEFURV9VUENPTUlORxACEh0KGUdVSUxE",
-            "X0FDVElWSVRZX1NUQVRFX09QRU4QAxIeChpHVUlMRF9BQ1RJVklUWV9TVEFU",
-            "RV9FTkRFRBAEKtQBChRHdWlsZFRyaWFsTG9iYnlTdGF0ZRInCiNHVUlMRF9U",
-            "UklBTF9MT0JCWV9TVEFURV9VTlNQRUNJRklFRBAAEiMKH0dVSUxEX1RSSUFM",
-            "X0xPQkJZX1NUQVRFX1BFTkRJTkcQARIlCiFHVUlMRF9UUklBTF9MT0JCWV9T",
-            "VEFURV9MQVVOQ0hJTkcQAhIkCiBHVUlMRF9UUklBTF9MT0JCWV9TVEFURV9M",
-            "QVVOQ0hFRBADEiEKHUdVSUxEX1RSSUFMX0xPQkJZX1NUQVRFX0VOREVEEAQy",
-            "vBMKDEd1aWxkU2VydmljZRJICgtDcmVhdGVHdWlsZBIbLmd1aWxkcGIuQ3Jl",
-            "YXRlR3VpbGRSZXF1ZXN0GhwuZ3VpbGRwYi5DcmVhdGVHdWlsZFJlc3BvbnNl",
-            "Ej8KCEdldEd1aWxkEhguZ3VpbGRwYi5HZXRHdWlsZFJlcXVlc3QaGS5ndWls",
-            "ZHBiLkdldEd1aWxkUmVzcG9uc2USUQoOR2V0UGxheWVyR3VpbGQSHi5ndWls",
-            "ZHBiLkdldFBsYXllckd1aWxkUmVxdWVzdBofLmd1aWxkcGIuR2V0UGxheWVy",
-            "R3VpbGRSZXNwb25zZRJFCgpMZWF2ZUd1aWxkEhouZ3VpbGRwYi5MZWF2ZUd1",
-            "aWxkUmVxdWVzdBobLmd1aWxkcGIuTGVhdmVHdWlsZFJlc3BvbnNlEksKDERp",
-            "c2JhbmRHdWlsZBIcLmd1aWxkcGIuRGlzYmFuZEd1aWxkUmVxdWVzdBodLmd1",
-            "aWxkcGIuRGlzYmFuZEd1aWxkUmVzcG9uc2USVAoPU2V0QW5ub3VuY2VtZW50",
-            "Eh8uZ3VpbGRwYi5TZXRBbm5vdW5jZW1lbnRSZXF1ZXN0GiAuZ3VpbGRwYi5T",
-            "ZXRBbm5vdW5jZW1lbnRSZXNwb25zZRJdChJTZXRHdWlsZE1lbWJlclJvbGUS",
-            "Ii5ndWlsZHBiLlNldEd1aWxkTWVtYmVyUm9sZVJlcXVlc3QaIy5ndWlsZHBi",
-            "LlNldEd1aWxkTWVtYmVyUm9sZVJlc3BvbnNlElQKD0tpY2tHdWlsZE1lbWJl",
-            "chIfLmd1aWxkcGIuS2lja0d1aWxkTWVtYmVyUmVxdWVzdBogLmd1aWxkcGIu",
-            "S2lja0d1aWxkTWVtYmVyUmVzcG9uc2USYAoTVHJhbnNmZXJHdWlsZExlYWRl",
-            "chIjLmd1aWxkcGIuVHJhbnNmZXJHdWlsZExlYWRlclJlcXVlc3QaJC5ndWls",
-            "ZHBiLlRyYW5zZmVyR3VpbGRMZWFkZXJSZXNwb25zZRJRCg5BcHBseUpvaW5H",
-            "dWlsZBIeLmd1aWxkcGIuQXBwbHlKb2luR3VpbGRSZXF1ZXN0Gh8uZ3VpbGRw",
-            "Yi5BcHBseUpvaW5HdWlsZFJlc3BvbnNlEmkKFkNhbmNlbEd1aWxkQXBwbGlj",
-            "YXRpb24SJi5ndWlsZHBiLkNhbmNlbEd1aWxkQXBwbGljYXRpb25SZXF1ZXN0",
-            "GicuZ3VpbGRwYi5DYW5jZWxHdWlsZEFwcGxpY2F0aW9uUmVzcG9uc2USbAoX",
-            "TGlzdE15R3VpbGRBcHBsaWNhdGlvbnMSJy5ndWlsZHBiLkxpc3RNeUd1aWxk",
-            "QXBwbGljYXRpb25zUmVxdWVzdBooLmd1aWxkcGIuTGlzdE15R3VpbGRBcHBs",
-            "aWNhdGlvbnNSZXNwb25zZRJmChVMaXN0R3VpbGRBcHBsaWNhdGlvbnMSJS5n",
-            "dWlsZHBiLkxpc3RHdWlsZEFwcGxpY2F0aW9uc1JlcXVlc3QaJi5ndWlsZHBi",
-            "Lkxpc3RHdWlsZEFwcGxpY2F0aW9uc1Jlc3BvbnNlEmkKFlJldmlld0d1aWxk",
-            "QXBwbGljYXRpb24SJi5ndWlsZHBiLlJldmlld0d1aWxkQXBwbGljYXRpb25S",
-            "ZXF1ZXN0GicuZ3VpbGRwYi5SZXZpZXdHdWlsZEFwcGxpY2F0aW9uUmVzcG9u",
-            "c2USNgoSTm90aWZ5R3VpbGRDaGFuZ2VkEhguZ3VpbGRwYi5HdWlsZENoYW5n",
-            "ZWRTMkMaBi5FbXB0eRJXChBVcGRhdGVHdWlsZFNjb3JlEiAuZ3VpbGRwYi5V",
-            "cGRhdGVHdWlsZFNjb3JlUmVxdWVzdBohLmd1aWxkcGIuVXBkYXRlR3VpbGRT",
-            "Y29yZVJlc3BvbnNlEksKDEdldEd1aWxkUmFuaxIcLmd1aWxkcGIuR2V0R3Vp",
-            "bGRSYW5rUmVxdWVzdBodLmd1aWxkcGIuR2V0R3VpbGRSYW5rUmVzcG9uc2US",
-            "YAoTR2V0R3VpbGRSYW5rQnlHdWlsZBIjLmd1aWxkcGIuR2V0R3VpbGRSYW5r",
-            "QnlHdWlsZFJlcXVlc3QaJC5ndWlsZHBiLkdldEd1aWxkUmFua0J5R3VpbGRS",
-            "ZXNwb25zZRJmChVHZXRHdWlsZERvbmF0ZU9wdGlvbnMSJS5ndWlsZHBiLkdl",
-            "dEd1aWxkRG9uYXRlT3B0aW9uc1JlcXVlc3QaJi5ndWlsZHBiLkdldEd1aWxk",
-            "RG9uYXRlT3B0aW9uc1Jlc3BvbnNlEk4KDURvbmF0ZVRvR3VpbGQSHS5ndWls",
-            "ZHBiLkRvbmF0ZVRvR3VpbGRSZXF1ZXN0Gh4uZ3VpbGRwYi5Eb25hdGVUb0d1",
-            "aWxkUmVzcG9uc2USSwoMVXBncmFkZUd1aWxkEhwuZ3VpbGRwYi5VcGdyYWRl",
-            "R3VpbGRSZXF1ZXN0Gh0uZ3VpbGRwYi5VcGdyYWRlR3VpbGRSZXNwb25zZRJL",
-            "CgxHZXRHdWlsZFNob3ASHC5ndWlsZHBiLkdldEd1aWxkU2hvcFJlcXVlc3Qa",
-            "HS5ndWlsZHBiLkdldEd1aWxkU2hvcFJlc3BvbnNlEloKEUJ1eUd1aWxkU2hv",
-            "cEdvb2RzEiEuZ3VpbGRwYi5CdXlHdWlsZFNob3BHb29kc1JlcXVlc3QaIi5n",
-            "dWlsZHBiLkJ1eUd1aWxkU2hvcEdvb2RzUmVzcG9uc2USXQoSR2V0R3VpbGRB",
-            "Y3Rpdml0aWVzEiIuZ3VpbGRwYi5HZXRHdWlsZEFjdGl2aXRpZXNSZXF1ZXN0",
-            "GiMuZ3VpbGRwYi5HZXRHdWlsZEFjdGl2aXRpZXNSZXNwb25zZRJaChFMaWdo",
-            "dEd1aWxkTGFudGVybhIhLmd1aWxkcGIuTGlnaHRHdWlsZExhbnRlcm5SZXF1",
-            "ZXN0GiIuZ3VpbGRwYi5MaWdodEd1aWxkTGFudGVyblJlc3BvbnNlEloKEUNs",
-            "YWltR3VpbGRSZXVuaW9uEiEuZ3VpbGRwYi5DbGFpbUd1aWxkUmV1bmlvblJl",
-            "cXVlc3QaIi5ndWlsZHBiLkNsYWltR3VpbGRSZXVuaW9uUmVzcG9uc2USVAoP",
-            "U3RhcnRHdWlsZFRyaWFsEh8uZ3VpbGRwYi5TdGFydEd1aWxkVHJpYWxSZXF1",
-            "ZXN0GiAuZ3VpbGRwYi5TdGFydEd1aWxkVHJpYWxSZXNwb25zZRJsChdSZXNw",
-            "b25kR3VpbGRUcmlhbEludml0ZRInLmd1aWxkcGIuUmVzcG9uZEd1aWxkVHJp",
-            "YWxJbnZpdGVSZXF1ZXN0GiguZ3VpbGRwYi5SZXNwb25kR3VpbGRUcmlhbElu",
-            "dml0ZVJlc3BvbnNlGgWIqMMBAUITWhFndWlsZC9wcm90by9ndWlsZGIGcHJv",
-            "dG8z"));
+            "GAcgAygLMhouZ3VpbGRwYi5HdWlsZERvbmF0aW9uVmlldyJfChREb25hdGVU",
+            "b0d1aWxkUmVxdWVzdBIRCglkb25hdGVfaWQYASABKA0SGQoRY2xpZW50X3Jl",
+            "cXVlc3RfaWQYAiABKAQSGQoRZXhwZWN0ZWRfZ3VpbGRfaWQYAyABKAQikAEK",
+            "FURvbmF0ZVRvR3VpbGRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+            "Mg8uVGlwSW5mb01lc3NhZ2USLAoIZG9uYXRpb24YAiABKAsyGi5ndWlsZHBi",
+            "Lkd1aWxkRG9uYXRpb25WaWV3EiEKBWd1aWxkGAMgASgLMhIuZ3VpbGRwYi5H",
+            "dWlsZEluZm8iLQoTVXBncmFkZUd1aWxkUmVxdWVzdBIWCg5leHBlY3RlZF9s",
+            "ZXZlbBgBIAEoDSJhChRVcGdyYWRlR3VpbGRSZXNwb25zZRImCg1lcnJvcl9t",
+            "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIQoFZ3VpbGQYAiABKAsy",
+            "Ei5ndWlsZHBiLkd1aWxkSW5mbyIVChNHZXRHdWlsZFNob3BSZXF1ZXN0IqwC",
+            "ChRHZXRHdWlsZFNob3BSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+            "Mg8uVGlwSW5mb01lc3NhZ2USKgoFZ29vZHMYAiADKAsyGy5ndWlsZHBiLkd1",
+            "aWxkU2hvcEdvb2RzVmlldxIcChRjb250cmlidXRpb25fYmFsYW5jZRgDIAEo",
+            "BBIzCg5wZW5kaW5nX29yZGVycxgEIAMoCzIbLmd1aWxkcGIuR3VpbGRTaG9w",
+            "T3JkZXJWaWV3EhsKE25leHRfZGFpbHlfcmVzZXRfbXMYBSABKAQSHAoUbmV4",
+            "dF93ZWVrbHlfcmVzZXRfbXMYBiABKAQSMgoNcmVjZW50X29yZGVycxgHIAMo",
+            "CzIbLmd1aWxkcGIuR3VpbGRTaG9wT3JkZXJWaWV3InEKGEJ1eUd1aWxkU2hv",
+            "cEdvb2RzUmVxdWVzdBIQCghnb29kc19pZBgBIAEoDRINCgVjb3VudBgCIAEo",
+            "DRIZChFjbGllbnRfcmVxdWVzdF9pZBgDIAEoBBIZChFleHBlY3RlZF9ndWls",
+            "ZF9pZBgEIAEoBCKNAQoZQnV5R3VpbGRTaG9wR29vZHNSZXNwb25zZRImCg1l",
+            "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USKgoFb3JkZXIY",
+            "AiABKAsyGy5ndWlsZHBiLkd1aWxkU2hvcE9yZGVyVmlldxIcChRjb250cmli",
+            "dXRpb25fYmFsYW5jZRgDIAEoBCIxCg9HdWlsZFJld2FyZEl0ZW0SDwoHaXRl",
+            "bV9pZBgBIAEoDRINCgVjb3VudBgCIAEoDSL/AQoTR3VpbGRUcmlhbExvYmJ5",
+            "VmlldxIQCghsb2JieV9pZBgBIAEoBBIbChNpbml0aWF0b3JfcGxheWVyX2lk",
+            "GAIgASgEEhkKEW1lbWJlcl9wbGF5ZXJfaWRzGAMgAygEEhsKE2FjY2VwdGVk",
+            "X3BsYXllcl9pZHMYBCADKAQSLAoFc3RhdGUYBSABKA4yHS5ndWlsZHBiLkd1",
+            "aWxkVHJpYWxMb2JieVN0YXRlEhQKDGV4cGlyZV9hdF9tcxgGIAEoBBIRCgli",
+            "YXR0bGVfaWQYByABKAQSEgoKZW5kX3RpcF9pZBgIIAEoDRIWCg5lbmRfcGFy",
+            "YW1ldGVycxgJIAMoCSLBBgoRR3VpbGRBY3Rpdml0eVZpZXcSEwoLYWN0aXZp",
+            "dHlfaWQYASABKA0SKAoEdHlwZRgCIAEoDjIaLmd1aWxkcGIuR3VpbGRBY3Rp",
+            "dml0eVR5cGUSDAoEbmFtZRgDIAEoCRIqCgVzdGF0ZRgEIAEoDjIbLmd1aWxk",
+            "cGIuR3VpbGRBY3Rpdml0eVN0YXRlEhMKC3N0YXJ0X2F0X21zGAUgASgEEhEK",
+            "CWVuZF9hdF9tcxgGIAEoBBIXCg9taW5fZ3VpbGRfbGV2ZWwYByABKA0SEgoK",
+            "cGVyaW9kX2tleRgIIAEoDRIVCg1uZXh0X3Jlc2V0X21zGAkgASgEEhYKDnNl",
+            "cnZlcl90aW1lX21zGAogASgEEh0KFXBlcnNvbmFsX2NvbnRyaWJ1dGlvbhgL",
+            "IAEoBBITCgtndWlsZF9mdW5kcxgMIAEoBBIXCg9ndWlsZF90aHJlc2hvbGQY",
+            "DSABKA0SLgoMcmV3YXJkX2l0ZW1zGA4gAygLMhguZ3VpbGRwYi5HdWlsZFJl",
+            "d2FyZEl0ZW0SEwoLZGFpbHlfbGltaXQYDyABKA0SFQoNbXlfdXNlZF9jb3Vu",
+            "dBgQIAEoDRIQCghwcm9ncmVzcxgRIAEoDRIZChF0aHJlc2hvbGRfcmVhY2hl",
+            "ZBgSIAEoCBIVCg1mdW5kc19ncmFudGVkGBMgASgIEhYKDmJsb2NrZWRfdGlw",
+            "X2lkGBQgASgNEhIKCmR1bmdlb25faWQYFSABKA0SFQoNdGVhbV9zaXplX21p",
+            "bhgWIAEoDRIVCg10ZWFtX3NpemVfbWF4GBcgASgNEhoKEm15X3RyaWFsX2Jh",
+            "dHRsZV9pZBgYIAEoBBIfChdteV9wZW5kaW5nX3Jld2FyZF9jb3VudBgZIAEo",
+            "DRIgChhteV9wZW5kaW5nX3JlYXNvbl90aXBfaWQYGiABKA0SJAocbXlfbGFz",
+            "dF9yZXdhcmRfcmVqZWN0X3RpcF9pZBgbIAEoDRIWCg5qb2luX21pbl9ob3Vy",
+            "cxgcIAEoDRIYChBndWlsZF9wZXJpb2Rfa2V5GB0gASgNEjEKC3RyaWFsX2xv",
+            "YmJ5GB4gASgLMhwuZ3VpbGRwYi5HdWlsZFRyaWFsTG9iYnlWaWV3IhsKGUdl",
+            "dEd1aWxkQWN0aXZpdGllc1JlcXVlc3QidAoaR2V0R3VpbGRBY3Rpdml0aWVz",
+            "UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNz",
+            "YWdlEi4KCmFjdGl2aXRpZXMYAiADKAsyGi5ndWlsZHBiLkd1aWxkQWN0aXZp",
+            "dHlWaWV3Ii8KGExpZ2h0R3VpbGRMYW50ZXJuUmVxdWVzdBITCgthY3Rpdml0",
+            "eV9pZBgBIAEoDSJxChlMaWdodEd1aWxkTGFudGVyblJlc3BvbnNlEiYKDWVy",
+            "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIsCghhY3Rpdml0",
+            "eRgCIAEoCzIaLmd1aWxkcGIuR3VpbGRBY3Rpdml0eVZpZXciLwoYQ2xhaW1H",
+            "dWlsZFJldW5pb25SZXF1ZXN0EhMKC2FjdGl2aXR5X2lkGAEgASgNInEKGUNs",
+            "YWltR3VpbGRSZXVuaW9uUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
+            "CzIPLlRpcEluZm9NZXNzYWdlEiwKCGFjdGl2aXR5GAIgASgLMhouZ3VpbGRw",
+            "Yi5HdWlsZEFjdGl2aXR5VmlldyJIChZTdGFydEd1aWxkVHJpYWxSZXF1ZXN0",
+            "EhMKC2FjdGl2aXR5X2lkGAEgASgNEhkKEW1lbWJlcl9wbGF5ZXJfaWRzGAIg",
+            "AygEIm8KF1N0YXJ0R3VpbGRUcmlhbFJlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
+            "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIsCghhY3Rpdml0eRgCIAEoCzIa",
+            "Lmd1aWxkcGIuR3VpbGRBY3Rpdml0eVZpZXciQgoeUmVzcG9uZEd1aWxkVHJp",
+            "YWxJbnZpdGVSZXF1ZXN0EhAKCGxvYmJ5X2lkGAEgASgEEg4KBmFjY2VwdBgC",
+            "IAEoCCJ3Ch9SZXNwb25kR3VpbGRUcmlhbEludml0ZVJlc3BvbnNlEiYKDWVy",
+            "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIsCghhY3Rpdml0",
+            "eRgCIAEoCzIaLmd1aWxkcGIuR3VpbGRBY3Rpdml0eVZpZXcimgEKDkd1aWxk",
+            "UmFua0VudHJ5EhAKCGd1aWxkX2lkGAEgASgEEgwKBG5hbWUYAiABKAkSEQoJ",
+            "bGVhZGVyX2lkGAMgASgEEg0KBWxldmVsGAQgASgNEhQKDG1lbWJlcl9jb3Vu",
+            "dBgFIAEoDRINCgVzY29yZRgGIAEoAxIMCgRyYW5rGAcgASgNEhMKC2xlYWRl",
+            "cl9uYW1lGAggASgJIksKF1VwZGF0ZUd1aWxkU2NvcmVSZXF1ZXN0EhAKCGd1",
+            "aWxkX2lkGAEgASgEEg0KBXNjb3JlGAIgASgDEg8KB3pvbmVfaWQYAyABKA0i",
+            "QgoYVXBkYXRlR3VpbGRTY29yZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+            "ASABKAsyDy5UaXBJbmZvTWVzc2FnZSJHChNHZXRHdWlsZFJhbmtSZXF1ZXN0",
+            "EgwKBHBhZ2UYASABKA0SEQoJcGFnZV9zaXplGAIgASgNEg8KB3pvbmVfaWQY",
+            "AyABKA0ingEKFEdldEd1aWxkUmFua1Jlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
+            "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIoCgdlbnRyaWVzGAIgAygLMhcu",
+            "Z3VpbGRwYi5HdWlsZFJhbmtFbnRyeRITCgt0b3RhbF9jb3VudBgDIAEoDRIM",
+            "CgRwYWdlGAQgASgNEhEKCXBhZ2Vfc2l6ZRgFIAEoDSI/ChpHZXRHdWlsZFJh",
+            "bmtCeUd1aWxkUmVxdWVzdBIQCghndWlsZF9pZBgBIAEoBBIPCgd6b25lX2lk",
+            "GAIgASgNIm0KG0dldEd1aWxkUmFua0J5R3VpbGRSZXNwb25zZRImCg1lcnJv",
+            "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJgoFZW50cnkYAiAB",
+            "KAsyFy5ndWlsZHBiLkd1aWxkUmFua0VudHJ5KqYECg9HdWlsZENoYW5nZUtp",
+            "bmQSIQodR1VJTERfQ0hBTkdFX0tJTkRfVU5TUEVDSUZJRUQQABIjCh9HVUlM",
+            "RF9DSEFOR0VfS0lORF9NRU1CRVJfSk9JTkVEEAESIQodR1VJTERfQ0hBTkdF",
+            "X0tJTkRfTUVNQkVSX0xFRlQQAhIjCh9HVUlMRF9DSEFOR0VfS0lORF9NRU1C",
+            "RVJfS0lDS0VEEAMSIgoeR1VJTERfQ0hBTkdFX0tJTkRfUk9MRV9DSEFOR0VE",
+            "EAQSKAokR1VJTERfQ0hBTkdFX0tJTkRfTEVBREVSX1RSQU5TRkVSUkVEEAUS",
+            "HwobR1VJTERfQ0hBTkdFX0tJTkRfRElTQkFOREVEEAYSKgomR1VJTERfQ0hB",
+            "TkdFX0tJTkRfQVBQTElDQVRJT05fUkVDRUlWRUQQBxIqCiZHVUlMRF9DSEFO",
+            "R0VfS0lORF9BUFBMSUNBVElPTl9SRUpFQ1RFRBAIEiMKH0dVSUxEX0NIQU5H",
+            "RV9LSU5EX0ZVTkRTX0NIQU5HRUQQCRIeChpHVUlMRF9DSEFOR0VfS0lORF9M",
+            "RVZFTF9VUBAKEioKJkdVSUxEX0NIQU5HRV9LSU5EX0FOTk9VTkNFTUVOVF9D",
+            "SEFOR0VEEAsSJgoiR1VJTERfQ0hBTkdFX0tJTkRfQUNUSVZJVFlfQ0hBTkdF",
+            "RBAMEiMKH0dVSUxEX0NIQU5HRV9LSU5EX0RFTElWRVJZX0RPTkUQDSqIAgoV",
+            "R3VpbGRBc3NldE9yZGVyU3RhdHVzEigKJEdVSUxEX0FTU0VUX09SREVSX1NU",
+            "QVRVU19VTlNQRUNJRklFRBAAEiQKIEdVSUxEX0FTU0VUX09SREVSX1NUQVRV",
+            "U19QRU5ESU5HEAESJAogR1VJTERfQVNTRVRfT1JERVJfU1RBVFVTX0FQUExJ",
+            "RUQQAhIlCiFHVUlMRF9BU1NFVF9PUkRFUl9TVEFUVVNfUkVKRUNURUQQAxIk",
+            "CiBHVUlMRF9BU1NFVF9PUkRFUl9TVEFUVVNfQUJPUlRFRBAEEiwKKEdVSUxE",
+            "X0FTU0VUX09SREVSX1NUQVRVU19BUFBMSUVEX1BBUlRJQUwQBSqZAQoRR3Vp",
+            "bGRBY3Rpdml0eVR5cGUSIwofR1VJTERfQUNUSVZJVFlfVFlQRV9VTlNQRUNJ",
+            "RklFRBAAEh8KG0dVSUxEX0FDVElWSVRZX1RZUEVfTEFOVEVSThABEh8KG0dV",
+            "SUxEX0FDVElWSVRZX1RZUEVfUkVVTklPThACEh0KGUdVSUxEX0FDVElWSVRZ",
+            "X1RZUEVfVFJJQUwQAyq/AQoSR3VpbGRBY3Rpdml0eVN0YXRlEiQKIEdVSUxE",
+            "X0FDVElWSVRZX1NUQVRFX1VOU1BFQ0lGSUVEEAASIQodR1VJTERfQUNUSVZJ",
+            "VFlfU1RBVEVfRElTQUJMRUQQARIhCh1HVUlMRF9BQ1RJVklUWV9TVEFURV9V",
+            "UENPTUlORxACEh0KGUdVSUxEX0FDVElWSVRZX1NUQVRFX09QRU4QAxIeChpH",
+            "VUlMRF9BQ1RJVklUWV9TVEFURV9FTkRFRBAEKtQBChRHdWlsZFRyaWFsTG9i",
+            "YnlTdGF0ZRInCiNHVUlMRF9UUklBTF9MT0JCWV9TVEFURV9VTlNQRUNJRklF",
+            "RBAAEiMKH0dVSUxEX1RSSUFMX0xPQkJZX1NUQVRFX1BFTkRJTkcQARIlCiFH",
+            "VUlMRF9UUklBTF9MT0JCWV9TVEFURV9MQVVOQ0hJTkcQAhIkCiBHVUlMRF9U",
+            "UklBTF9MT0JCWV9TVEFURV9MQVVOQ0hFRBADEiEKHUdVSUxEX1RSSUFMX0xP",
+            "QkJZX1NUQVRFX0VOREVEEAQyvBMKDEd1aWxkU2VydmljZRJICgtDcmVhdGVH",
+            "dWlsZBIbLmd1aWxkcGIuQ3JlYXRlR3VpbGRSZXF1ZXN0GhwuZ3VpbGRwYi5D",
+            "cmVhdGVHdWlsZFJlc3BvbnNlEj8KCEdldEd1aWxkEhguZ3VpbGRwYi5HZXRH",
+            "dWlsZFJlcXVlc3QaGS5ndWlsZHBiLkdldEd1aWxkUmVzcG9uc2USUQoOR2V0",
+            "UGxheWVyR3VpbGQSHi5ndWlsZHBiLkdldFBsYXllckd1aWxkUmVxdWVzdBof",
+            "Lmd1aWxkcGIuR2V0UGxheWVyR3VpbGRSZXNwb25zZRJFCgpMZWF2ZUd1aWxk",
+            "EhouZ3VpbGRwYi5MZWF2ZUd1aWxkUmVxdWVzdBobLmd1aWxkcGIuTGVhdmVH",
+            "dWlsZFJlc3BvbnNlEksKDERpc2JhbmRHdWlsZBIcLmd1aWxkcGIuRGlzYmFu",
+            "ZEd1aWxkUmVxdWVzdBodLmd1aWxkcGIuRGlzYmFuZEd1aWxkUmVzcG9uc2US",
+            "VAoPU2V0QW5ub3VuY2VtZW50Eh8uZ3VpbGRwYi5TZXRBbm5vdW5jZW1lbnRS",
+            "ZXF1ZXN0GiAuZ3VpbGRwYi5TZXRBbm5vdW5jZW1lbnRSZXNwb25zZRJdChJT",
+            "ZXRHdWlsZE1lbWJlclJvbGUSIi5ndWlsZHBiLlNldEd1aWxkTWVtYmVyUm9s",
+            "ZVJlcXVlc3QaIy5ndWlsZHBiLlNldEd1aWxkTWVtYmVyUm9sZVJlc3BvbnNl",
+            "ElQKD0tpY2tHdWlsZE1lbWJlchIfLmd1aWxkcGIuS2lja0d1aWxkTWVtYmVy",
+            "UmVxdWVzdBogLmd1aWxkcGIuS2lja0d1aWxkTWVtYmVyUmVzcG9uc2USYAoT",
+            "VHJhbnNmZXJHdWlsZExlYWRlchIjLmd1aWxkcGIuVHJhbnNmZXJHdWlsZExl",
+            "YWRlclJlcXVlc3QaJC5ndWlsZHBiLlRyYW5zZmVyR3VpbGRMZWFkZXJSZXNw",
+            "b25zZRJRCg5BcHBseUpvaW5HdWlsZBIeLmd1aWxkcGIuQXBwbHlKb2luR3Vp",
+            "bGRSZXF1ZXN0Gh8uZ3VpbGRwYi5BcHBseUpvaW5HdWlsZFJlc3BvbnNlEmkK",
+            "FkNhbmNlbEd1aWxkQXBwbGljYXRpb24SJi5ndWlsZHBiLkNhbmNlbEd1aWxk",
+            "QXBwbGljYXRpb25SZXF1ZXN0GicuZ3VpbGRwYi5DYW5jZWxHdWlsZEFwcGxp",
+            "Y2F0aW9uUmVzcG9uc2USbAoXTGlzdE15R3VpbGRBcHBsaWNhdGlvbnMSJy5n",
+            "dWlsZHBiLkxpc3RNeUd1aWxkQXBwbGljYXRpb25zUmVxdWVzdBooLmd1aWxk",
+            "cGIuTGlzdE15R3VpbGRBcHBsaWNhdGlvbnNSZXNwb25zZRJmChVMaXN0R3Vp",
+            "bGRBcHBsaWNhdGlvbnMSJS5ndWlsZHBiLkxpc3RHdWlsZEFwcGxpY2F0aW9u",
+            "c1JlcXVlc3QaJi5ndWlsZHBiLkxpc3RHdWlsZEFwcGxpY2F0aW9uc1Jlc3Bv",
+            "bnNlEmkKFlJldmlld0d1aWxkQXBwbGljYXRpb24SJi5ndWlsZHBiLlJldmll",
+            "d0d1aWxkQXBwbGljYXRpb25SZXF1ZXN0GicuZ3VpbGRwYi5SZXZpZXdHdWls",
+            "ZEFwcGxpY2F0aW9uUmVzcG9uc2USNgoSTm90aWZ5R3VpbGRDaGFuZ2VkEhgu",
+            "Z3VpbGRwYi5HdWlsZENoYW5nZWRTMkMaBi5FbXB0eRJXChBVcGRhdGVHdWls",
+            "ZFNjb3JlEiAuZ3VpbGRwYi5VcGRhdGVHdWlsZFNjb3JlUmVxdWVzdBohLmd1",
+            "aWxkcGIuVXBkYXRlR3VpbGRTY29yZVJlc3BvbnNlEksKDEdldEd1aWxkUmFu",
+            "axIcLmd1aWxkcGIuR2V0R3VpbGRSYW5rUmVxdWVzdBodLmd1aWxkcGIuR2V0",
+            "R3VpbGRSYW5rUmVzcG9uc2USYAoTR2V0R3VpbGRSYW5rQnlHdWlsZBIjLmd1",
+            "aWxkcGIuR2V0R3VpbGRSYW5rQnlHdWlsZFJlcXVlc3QaJC5ndWlsZHBiLkdl",
+            "dEd1aWxkUmFua0J5R3VpbGRSZXNwb25zZRJmChVHZXRHdWlsZERvbmF0ZU9w",
+            "dGlvbnMSJS5ndWlsZHBiLkdldEd1aWxkRG9uYXRlT3B0aW9uc1JlcXVlc3Qa",
+            "Ji5ndWlsZHBiLkdldEd1aWxkRG9uYXRlT3B0aW9uc1Jlc3BvbnNlEk4KDURv",
+            "bmF0ZVRvR3VpbGQSHS5ndWlsZHBiLkRvbmF0ZVRvR3VpbGRSZXF1ZXN0Gh4u",
+            "Z3VpbGRwYi5Eb25hdGVUb0d1aWxkUmVzcG9uc2USSwoMVXBncmFkZUd1aWxk",
+            "EhwuZ3VpbGRwYi5VcGdyYWRlR3VpbGRSZXF1ZXN0Gh0uZ3VpbGRwYi5VcGdy",
+            "YWRlR3VpbGRSZXNwb25zZRJLCgxHZXRHdWlsZFNob3ASHC5ndWlsZHBiLkdl",
+            "dEd1aWxkU2hvcFJlcXVlc3QaHS5ndWlsZHBiLkdldEd1aWxkU2hvcFJlc3Bv",
+            "bnNlEloKEUJ1eUd1aWxkU2hvcEdvb2RzEiEuZ3VpbGRwYi5CdXlHdWlsZFNo",
+            "b3BHb29kc1JlcXVlc3QaIi5ndWlsZHBiLkJ1eUd1aWxkU2hvcEdvb2RzUmVz",
+            "cG9uc2USXQoSR2V0R3VpbGRBY3Rpdml0aWVzEiIuZ3VpbGRwYi5HZXRHdWls",
+            "ZEFjdGl2aXRpZXNSZXF1ZXN0GiMuZ3VpbGRwYi5HZXRHdWlsZEFjdGl2aXRp",
+            "ZXNSZXNwb25zZRJaChFMaWdodEd1aWxkTGFudGVybhIhLmd1aWxkcGIuTGln",
+            "aHRHdWlsZExhbnRlcm5SZXF1ZXN0GiIuZ3VpbGRwYi5MaWdodEd1aWxkTGFu",
+            "dGVyblJlc3BvbnNlEloKEUNsYWltR3VpbGRSZXVuaW9uEiEuZ3VpbGRwYi5D",
+            "bGFpbUd1aWxkUmV1bmlvblJlcXVlc3QaIi5ndWlsZHBiLkNsYWltR3VpbGRS",
+            "ZXVuaW9uUmVzcG9uc2USVAoPU3RhcnRHdWlsZFRyaWFsEh8uZ3VpbGRwYi5T",
+            "dGFydEd1aWxkVHJpYWxSZXF1ZXN0GiAuZ3VpbGRwYi5TdGFydEd1aWxkVHJp",
+            "YWxSZXNwb25zZRJsChdSZXNwb25kR3VpbGRUcmlhbEludml0ZRInLmd1aWxk",
+            "cGIuUmVzcG9uZEd1aWxkVHJpYWxJbnZpdGVSZXF1ZXN0GiguZ3VpbGRwYi5S",
+            "ZXNwb25kR3VpbGRUcmlhbEludml0ZVJlc3BvbnNlGgWIqMMBAUITWhFndWls",
+            "ZC9wcm90by9ndWlsZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Guildpb.GuildChangeKind), typeof(global::Guildpb.GuildAssetOrderStatus), typeof(global::Guildpb.GuildActivityType), typeof(global::Guildpb.GuildActivityState), typeof(global::Guildpb.GuildTrialLobbyState), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -301,17 +306,17 @@ namespace Guildpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetGuildResponse), global::Guildpb.GetGuildResponse.Parser, new[]{ "ErrorMessage", "Guild" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetPlayerGuildRequest), global::Guildpb.GetPlayerGuildRequest.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetPlayerGuildResponse), global::Guildpb.GetPlayerGuildResponse.Parser, new[]{ "ErrorMessage", "Guild" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.LeaveGuildRequest), global::Guildpb.LeaveGuildRequest.Parser, new[]{ "PlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.LeaveGuildRequest), global::Guildpb.LeaveGuildRequest.Parser, new[]{ "PlayerId", "ExpectedGuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.LeaveGuildResponse), global::Guildpb.LeaveGuildResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.DisbandGuildRequest), global::Guildpb.DisbandGuildRequest.Parser, new[]{ "PlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.DisbandGuildRequest), global::Guildpb.DisbandGuildRequest.Parser, new[]{ "PlayerId", "ExpectedGuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.DisbandGuildResponse), global::Guildpb.DisbandGuildResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.SetAnnouncementRequest), global::Guildpb.SetAnnouncementRequest.Parser, new[]{ "GuildId", "PlayerId", "Announcement" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.SetAnnouncementResponse), global::Guildpb.SetAnnouncementResponse.Parser, new[]{ "ErrorMessage", "Guild" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.SetGuildMemberRoleRequest), global::Guildpb.SetGuildMemberRoleRequest.Parser, new[]{ "TargetPlayerId", "Role" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.SetGuildMemberRoleRequest), global::Guildpb.SetGuildMemberRoleRequest.Parser, new[]{ "TargetPlayerId", "Role", "ExpectedGuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.SetGuildMemberRoleResponse), global::Guildpb.SetGuildMemberRoleResponse.Parser, new[]{ "ErrorMessage", "Guild" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.KickGuildMemberRequest), global::Guildpb.KickGuildMemberRequest.Parser, new[]{ "TargetPlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.KickGuildMemberRequest), global::Guildpb.KickGuildMemberRequest.Parser, new[]{ "TargetPlayerId", "ExpectedGuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.KickGuildMemberResponse), global::Guildpb.KickGuildMemberResponse.Parser, new[]{ "ErrorMessage", "Guild" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.TransferGuildLeaderRequest), global::Guildpb.TransferGuildLeaderRequest.Parser, new[]{ "TargetPlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.TransferGuildLeaderRequest), global::Guildpb.TransferGuildLeaderRequest.Parser, new[]{ "TargetPlayerId", "ExpectedGuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.TransferGuildLeaderResponse), global::Guildpb.TransferGuildLeaderResponse.Parser, new[]{ "ErrorMessage", "Guild" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.ApplyJoinGuildRequest), global::Guildpb.ApplyJoinGuildRequest.Parser, new[]{ "GuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.ApplyJoinGuildResponse), global::Guildpb.ApplyJoinGuildResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
@@ -332,13 +337,13 @@ namespace Guildpb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GuildShopOrderView), global::Guildpb.GuildShopOrderView.Parser, new[]{ "OpId", "GoodsId", "Count", "Status", "CostContribution", "ReasonTipId", "CreatedMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetGuildDonateOptionsRequest), global::Guildpb.GetGuildDonateOptionsRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetGuildDonateOptionsResponse), global::Guildpb.GetGuildDonateOptionsResponse.Parser, new[]{ "ErrorMessage", "Options", "PendingDonations", "ContributionTotal", "ContributionBalance", "NextDailyResetMs", "RecentResults" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.DonateToGuildRequest), global::Guildpb.DonateToGuildRequest.Parser, new[]{ "DonateId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.DonateToGuildRequest), global::Guildpb.DonateToGuildRequest.Parser, new[]{ "DonateId", "ClientRequestId", "ExpectedGuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.DonateToGuildResponse), global::Guildpb.DonateToGuildResponse.Parser, new[]{ "ErrorMessage", "Donation", "Guild" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.UpgradeGuildRequest), global::Guildpb.UpgradeGuildRequest.Parser, new[]{ "ExpectedLevel" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.UpgradeGuildResponse), global::Guildpb.UpgradeGuildResponse.Parser, new[]{ "ErrorMessage", "Guild" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetGuildShopRequest), global::Guildpb.GetGuildShopRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GetGuildShopResponse), global::Guildpb.GetGuildShopResponse.Parser, new[]{ "ErrorMessage", "Goods", "ContributionBalance", "PendingOrders", "NextDailyResetMs", "NextWeeklyResetMs", "RecentOrders" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.BuyGuildShopGoodsRequest), global::Guildpb.BuyGuildShopGoodsRequest.Parser, new[]{ "GoodsId", "Count" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.BuyGuildShopGoodsRequest), global::Guildpb.BuyGuildShopGoodsRequest.Parser, new[]{ "GoodsId", "Count", "ClientRequestId", "ExpectedGuildId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.BuyGuildShopGoodsResponse), global::Guildpb.BuyGuildShopGoodsResponse.Parser, new[]{ "ErrorMessage", "Order", "ContributionBalance" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GuildRewardItem), global::Guildpb.GuildRewardItem.Parser, new[]{ "ItemId", "Count" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Guildpb.GuildTrialLobbyView), global::Guildpb.GuildTrialLobbyView.Parser, new[]{ "LobbyId", "InitiatorPlayerId", "MemberPlayerIds", "AcceptedPlayerIds", "State", "ExpireAtMs", "BattleId", "EndTipId", "EndParameters" }, null, null, null, null),
@@ -403,7 +408,8 @@ namespace Guildpb {
 
   /// <summary>
   /// 客户端可见的资产订单状态。guild_db.proto 的 GuildAssetOpStatus 是库内状态、不下发客户端,
-  /// 这里另起一个;两者数值逐项相同,服务端按值直接转换(新增状态必须两边同加)。
+  /// 这里另起一个;数值 1..5 与库内逐项相同。库内 ABANDONED(6,自动放弃)是库内专用状态,
+  /// 由 logic.orderViewOf 显式映射为 ABORTED,不新增客户端枚举;服务端不按值转换,库内新增状态时在那里显式补映射。
   /// </summary>
   public enum GuildAssetOrderStatus {
     [pbr::OriginalName("GUILD_ASSET_ORDER_STATUS_UNSPECIFIED")] Unspecified = 0,
@@ -3150,6 +3156,7 @@ namespace Guildpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LeaveGuildRequest(LeaveGuildRequest other) : this() {
       playerId_ = other.playerId_;
+      expectedGuildId_ = other.expectedGuildId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3171,6 +3178,21 @@ namespace Guildpb {
       }
     }
 
+    /// <summary>Field number for the "expected_guild_id" field.</summary>
+    public const int ExpectedGuildIdFieldNumber = 2;
+    private ulong expectedGuildId_;
+    /// <summary>
+    /// 见上方 expected_guild_id 说明
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedGuildId {
+      get { return expectedGuildId_; }
+      set {
+        expectedGuildId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3187,6 +3209,7 @@ namespace Guildpb {
         return true;
       }
       if (PlayerId != other.PlayerId) return false;
+      if (ExpectedGuildId != other.ExpectedGuildId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3195,6 +3218,7 @@ namespace Guildpb {
     public override int GetHashCode() {
       int hash = 1;
       if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
+      if (ExpectedGuildId != 0UL) hash ^= ExpectedGuildId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3217,6 +3241,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3231,6 +3259,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3243,6 +3275,9 @@ namespace Guildpb {
       int size = 0;
       if (PlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PlayerId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedGuildId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3258,6 +3293,9 @@ namespace Guildpb {
       }
       if (other.PlayerId != 0UL) {
         PlayerId = other.PlayerId;
+      }
+      if (other.ExpectedGuildId != 0UL) {
+        ExpectedGuildId = other.ExpectedGuildId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3282,6 +3320,10 @@ namespace Guildpb {
             PlayerId = input.ReadUInt64();
             break;
           }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -3303,6 +3345,10 @@ namespace Guildpb {
             break;
           case 8: {
             PlayerId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
             break;
           }
         }
@@ -3555,6 +3601,7 @@ namespace Guildpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public DisbandGuildRequest(DisbandGuildRequest other) : this() {
       playerId_ = other.playerId_;
+      expectedGuildId_ = other.expectedGuildId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3576,6 +3623,21 @@ namespace Guildpb {
       }
     }
 
+    /// <summary>Field number for the "expected_guild_id" field.</summary>
+    public const int ExpectedGuildIdFieldNumber = 2;
+    private ulong expectedGuildId_;
+    /// <summary>
+    /// 见上方 expected_guild_id 说明
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedGuildId {
+      get { return expectedGuildId_; }
+      set {
+        expectedGuildId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3592,6 +3654,7 @@ namespace Guildpb {
         return true;
       }
       if (PlayerId != other.PlayerId) return false;
+      if (ExpectedGuildId != other.ExpectedGuildId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3600,6 +3663,7 @@ namespace Guildpb {
     public override int GetHashCode() {
       int hash = 1;
       if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
+      if (ExpectedGuildId != 0UL) hash ^= ExpectedGuildId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3622,6 +3686,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3636,6 +3704,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3648,6 +3720,9 @@ namespace Guildpb {
       int size = 0;
       if (PlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PlayerId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedGuildId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3663,6 +3738,9 @@ namespace Guildpb {
       }
       if (other.PlayerId != 0UL) {
         PlayerId = other.PlayerId;
+      }
+      if (other.ExpectedGuildId != 0UL) {
+        ExpectedGuildId = other.ExpectedGuildId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3687,6 +3765,10 @@ namespace Guildpb {
             PlayerId = input.ReadUInt64();
             break;
           }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -3708,6 +3790,10 @@ namespace Guildpb {
             break;
           case 8: {
             PlayerId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
             break;
           }
         }
@@ -4489,6 +4575,7 @@ namespace Guildpb {
     public SetGuildMemberRoleRequest(SetGuildMemberRoleRequest other) : this() {
       targetPlayerId_ = other.targetPlayerId_;
       role_ = other.role_;
+      expectedGuildId_ = other.expectedGuildId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4525,6 +4612,21 @@ namespace Guildpb {
       }
     }
 
+    /// <summary>Field number for the "expected_guild_id" field.</summary>
+    public const int ExpectedGuildIdFieldNumber = 3;
+    private ulong expectedGuildId_;
+    /// <summary>
+    /// 见 LeaveGuildRequest 上方的 expected_guild_id 说明
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedGuildId {
+      get { return expectedGuildId_; }
+      set {
+        expectedGuildId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4542,6 +4644,7 @@ namespace Guildpb {
       }
       if (TargetPlayerId != other.TargetPlayerId) return false;
       if (Role != other.Role) return false;
+      if (ExpectedGuildId != other.ExpectedGuildId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4551,6 +4654,7 @@ namespace Guildpb {
       int hash = 1;
       if (TargetPlayerId != 0UL) hash ^= TargetPlayerId.GetHashCode();
       if (Role != 0) hash ^= Role.GetHashCode();
+      if (ExpectedGuildId != 0UL) hash ^= ExpectedGuildId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4577,6 +4681,10 @@ namespace Guildpb {
         output.WriteRawTag(16);
         output.WriteUInt32(Role);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4595,6 +4703,10 @@ namespace Guildpb {
         output.WriteRawTag(16);
         output.WriteUInt32(Role);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4610,6 +4722,9 @@ namespace Guildpb {
       }
       if (Role != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Role);
+      }
+      if (ExpectedGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedGuildId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4628,6 +4743,9 @@ namespace Guildpb {
       }
       if (other.Role != 0) {
         Role = other.Role;
+      }
+      if (other.ExpectedGuildId != 0UL) {
+        ExpectedGuildId = other.ExpectedGuildId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4656,6 +4774,10 @@ namespace Guildpb {
             Role = input.ReadUInt32();
             break;
           }
+          case 24: {
+            ExpectedGuildId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -4681,6 +4803,10 @@ namespace Guildpb {
           }
           case 16: {
             Role = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            ExpectedGuildId = input.ReadUInt64();
             break;
           }
         }
@@ -4752,7 +4878,7 @@ namespace Guildpb {
     public const int GuildFieldNumber = 2;
     private global::Guildpb.GuildInfo guild_;
     /// <summary>
-    /// 成功时为提交后的权威快照
+    /// 成功时为提交后的权威快照;expected_guild_id 不符被拒(kGuildNotInGuild)时为操作者当前所在帮会的快照,不在任何帮则不填
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4982,6 +5108,7 @@ namespace Guildpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public KickGuildMemberRequest(KickGuildMemberRequest other) : this() {
       targetPlayerId_ = other.targetPlayerId_;
+      expectedGuildId_ = other.expectedGuildId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5003,6 +5130,21 @@ namespace Guildpb {
       }
     }
 
+    /// <summary>Field number for the "expected_guild_id" field.</summary>
+    public const int ExpectedGuildIdFieldNumber = 2;
+    private ulong expectedGuildId_;
+    /// <summary>
+    /// 见 LeaveGuildRequest 上方的 expected_guild_id 说明
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedGuildId {
+      get { return expectedGuildId_; }
+      set {
+        expectedGuildId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -5019,6 +5161,7 @@ namespace Guildpb {
         return true;
       }
       if (TargetPlayerId != other.TargetPlayerId) return false;
+      if (ExpectedGuildId != other.ExpectedGuildId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5027,6 +5170,7 @@ namespace Guildpb {
     public override int GetHashCode() {
       int hash = 1;
       if (TargetPlayerId != 0UL) hash ^= TargetPlayerId.GetHashCode();
+      if (ExpectedGuildId != 0UL) hash ^= ExpectedGuildId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5049,6 +5193,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(TargetPlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5063,6 +5211,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(TargetPlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5075,6 +5227,9 @@ namespace Guildpb {
       int size = 0;
       if (TargetPlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TargetPlayerId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedGuildId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5090,6 +5245,9 @@ namespace Guildpb {
       }
       if (other.TargetPlayerId != 0UL) {
         TargetPlayerId = other.TargetPlayerId;
+      }
+      if (other.ExpectedGuildId != 0UL) {
+        ExpectedGuildId = other.ExpectedGuildId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5114,6 +5272,10 @@ namespace Guildpb {
             TargetPlayerId = input.ReadUInt64();
             break;
           }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -5135,6 +5297,10 @@ namespace Guildpb {
             break;
           case 8: {
             TargetPlayerId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
             break;
           }
         }
@@ -5205,6 +5371,9 @@ namespace Guildpb {
     /// <summary>Field number for the "guild" field.</summary>
     public const int GuildFieldNumber = 2;
     private global::Guildpb.GuildInfo guild_;
+    /// <summary>
+    /// 同 SetGuildMemberRoleResponse.guild
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Guildpb.GuildInfo Guild {
@@ -5433,6 +5602,7 @@ namespace Guildpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public TransferGuildLeaderRequest(TransferGuildLeaderRequest other) : this() {
       targetPlayerId_ = other.targetPlayerId_;
+      expectedGuildId_ = other.expectedGuildId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5454,6 +5624,21 @@ namespace Guildpb {
       }
     }
 
+    /// <summary>Field number for the "expected_guild_id" field.</summary>
+    public const int ExpectedGuildIdFieldNumber = 2;
+    private ulong expectedGuildId_;
+    /// <summary>
+    /// 见 LeaveGuildRequest 上方的 expected_guild_id 说明
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedGuildId {
+      get { return expectedGuildId_; }
+      set {
+        expectedGuildId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -5470,6 +5655,7 @@ namespace Guildpb {
         return true;
       }
       if (TargetPlayerId != other.TargetPlayerId) return false;
+      if (ExpectedGuildId != other.ExpectedGuildId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5478,6 +5664,7 @@ namespace Guildpb {
     public override int GetHashCode() {
       int hash = 1;
       if (TargetPlayerId != 0UL) hash ^= TargetPlayerId.GetHashCode();
+      if (ExpectedGuildId != 0UL) hash ^= ExpectedGuildId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5500,6 +5687,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(TargetPlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5514,6 +5705,10 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt64(TargetPlayerId);
       }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5526,6 +5721,9 @@ namespace Guildpb {
       int size = 0;
       if (TargetPlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TargetPlayerId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedGuildId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5541,6 +5739,9 @@ namespace Guildpb {
       }
       if (other.TargetPlayerId != 0UL) {
         TargetPlayerId = other.TargetPlayerId;
+      }
+      if (other.ExpectedGuildId != 0UL) {
+        ExpectedGuildId = other.ExpectedGuildId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5565,6 +5766,10 @@ namespace Guildpb {
             TargetPlayerId = input.ReadUInt64();
             break;
           }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -5586,6 +5791,10 @@ namespace Guildpb {
             break;
           case 8: {
             TargetPlayerId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            ExpectedGuildId = input.ReadUInt64();
             break;
           }
         }
@@ -5656,6 +5865,9 @@ namespace Guildpb {
     /// <summary>Field number for the "guild" field.</summary>
     public const int GuildFieldNumber = 2;
     private global::Guildpb.GuildInfo guild_;
+    /// <summary>
+    /// 同 SetGuildMemberRoleResponse.guild
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Guildpb.GuildInfo Guild {
@@ -11825,6 +12037,8 @@ namespace Guildpb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public DonateToGuildRequest(DonateToGuildRequest other) : this() {
       donateId_ = other.donateId_;
+      clientRequestId_ = other.clientRequestId_;
+      expectedGuildId_ = other.expectedGuildId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -11846,6 +12060,36 @@ namespace Guildpb {
       }
     }
 
+    /// <summary>Field number for the "client_request_id" field.</summary>
+    public const int ClientRequestIdFieldNumber = 2;
+    private ulong clientRequestId_;
+    /// <summary>
+    /// 见上方 client_request_id 说明
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ClientRequestId {
+      get { return clientRequestId_; }
+      set {
+        clientRequestId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "expected_guild_id" field.</summary>
+    public const int ExpectedGuildIdFieldNumber = 3;
+    private ulong expectedGuildId_;
+    /// <summary>
+    /// 非0绑定发起时的帮会；未提交的旧请求不得在换帮后首次执行
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedGuildId {
+      get { return expectedGuildId_; }
+      set {
+        expectedGuildId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -11862,6 +12106,8 @@ namespace Guildpb {
         return true;
       }
       if (DonateId != other.DonateId) return false;
+      if (ClientRequestId != other.ClientRequestId) return false;
+      if (ExpectedGuildId != other.ExpectedGuildId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -11870,6 +12116,8 @@ namespace Guildpb {
     public override int GetHashCode() {
       int hash = 1;
       if (DonateId != 0) hash ^= DonateId.GetHashCode();
+      if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+      if (ExpectedGuildId != 0UL) hash ^= ExpectedGuildId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -11892,6 +12140,14 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt32(DonateId);
       }
+      if (ClientRequestId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ClientRequestId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -11906,6 +12162,14 @@ namespace Guildpb {
         output.WriteRawTag(8);
         output.WriteUInt32(DonateId);
       }
+      if (ClientRequestId != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(ClientRequestId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -11918,6 +12182,12 @@ namespace Guildpb {
       int size = 0;
       if (DonateId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DonateId);
+      }
+      if (ClientRequestId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedGuildId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -11933,6 +12203,12 @@ namespace Guildpb {
       }
       if (other.DonateId != 0) {
         DonateId = other.DonateId;
+      }
+      if (other.ClientRequestId != 0UL) {
+        ClientRequestId = other.ClientRequestId;
+      }
+      if (other.ExpectedGuildId != 0UL) {
+        ExpectedGuildId = other.ExpectedGuildId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -11957,6 +12233,14 @@ namespace Guildpb {
             DonateId = input.ReadUInt32();
             break;
           }
+          case 16: {
+            ClientRequestId = input.ReadUInt64();
+            break;
+          }
+          case 24: {
+            ExpectedGuildId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -11978,6 +12262,14 @@ namespace Guildpb {
             break;
           case 8: {
             DonateId = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            ClientRequestId = input.ReadUInt64();
+            break;
+          }
+          case 24: {
+            ExpectedGuildId = input.ReadUInt64();
             break;
           }
         }
@@ -13356,6 +13648,8 @@ namespace Guildpb {
     public BuyGuildShopGoodsRequest(BuyGuildShopGoodsRequest other) : this() {
       goodsId_ = other.goodsId_;
       count_ = other.count_;
+      clientRequestId_ = other.clientRequestId_;
+      expectedGuildId_ = other.expectedGuildId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -13392,6 +13686,36 @@ namespace Guildpb {
       }
     }
 
+    /// <summary>Field number for the "client_request_id" field.</summary>
+    public const int ClientRequestIdFieldNumber = 3;
+    private ulong clientRequestId_;
+    /// <summary>
+    /// 见 DonateToGuildRequest 上方的 client_request_id 说明;count=0 与 count=1 视为同一参数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ClientRequestId {
+      get { return clientRequestId_; }
+      set {
+        clientRequestId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "expected_guild_id" field.</summary>
+    public const int ExpectedGuildIdFieldNumber = 4;
+    private ulong expectedGuildId_;
+    /// <summary>
+    /// 非0绑定原帮会，事务仍按该帮会复核成员；0兼容旧端
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ExpectedGuildId {
+      get { return expectedGuildId_; }
+      set {
+        expectedGuildId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -13409,6 +13733,8 @@ namespace Guildpb {
       }
       if (GoodsId != other.GoodsId) return false;
       if (Count != other.Count) return false;
+      if (ClientRequestId != other.ClientRequestId) return false;
+      if (ExpectedGuildId != other.ExpectedGuildId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -13418,6 +13744,8 @@ namespace Guildpb {
       int hash = 1;
       if (GoodsId != 0) hash ^= GoodsId.GetHashCode();
       if (Count != 0) hash ^= Count.GetHashCode();
+      if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+      if (ExpectedGuildId != 0UL) hash ^= ExpectedGuildId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -13444,6 +13772,14 @@ namespace Guildpb {
         output.WriteRawTag(16);
         output.WriteUInt32(Count);
       }
+      if (ClientRequestId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(ClientRequestId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -13462,6 +13798,14 @@ namespace Guildpb {
         output.WriteRawTag(16);
         output.WriteUInt32(Count);
       }
+      if (ClientRequestId != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(ClientRequestId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(ExpectedGuildId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -13477,6 +13821,12 @@ namespace Guildpb {
       }
       if (Count != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Count);
+      }
+      if (ClientRequestId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+      }
+      if (ExpectedGuildId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedGuildId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -13495,6 +13845,12 @@ namespace Guildpb {
       }
       if (other.Count != 0) {
         Count = other.Count;
+      }
+      if (other.ClientRequestId != 0UL) {
+        ClientRequestId = other.ClientRequestId;
+      }
+      if (other.ExpectedGuildId != 0UL) {
+        ExpectedGuildId = other.ExpectedGuildId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -13523,6 +13879,14 @@ namespace Guildpb {
             Count = input.ReadUInt32();
             break;
           }
+          case 24: {
+            ClientRequestId = input.ReadUInt64();
+            break;
+          }
+          case 32: {
+            ExpectedGuildId = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -13548,6 +13912,14 @@ namespace Guildpb {
           }
           case 16: {
             Count = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            ClientRequestId = input.ReadUInt64();
+            break;
+          }
+          case 32: {
+            ExpectedGuildId = input.ReadUInt64();
             break;
           }
         }

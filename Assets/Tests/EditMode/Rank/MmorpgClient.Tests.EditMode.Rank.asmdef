@@ -1,0 +1,9 @@
+{
+  "name": "MmorpgClient.Tests.EditMode.Rank",
+  "references": ["MmorpgClient"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false,
+  "overrideReferences": true,
+  "precompiledReferences": ["Google.Protobuf.dll"]
+}

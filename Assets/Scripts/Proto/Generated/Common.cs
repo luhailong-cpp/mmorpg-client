@@ -23,21 +23,22 @@ public static partial class CommonReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ch5wcm90by9jb21tb24vYmFzZS9jb21tb24ucHJvdG8iKAoMRW5kcG9pbnRD",
-          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0inAIKCE5vZGVJbmZvEg8K",
+          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0itQIKCE5vZGVJbmZvEg8K",
           "B25vZGVfaWQYASABKA0SEQoJbm9kZV90eXBlGAIgASgNEhMKC2xhdW5jaF90",
           "aW1lGAMgASgEEhcKD3NjZW5lX25vZGVfdHlwZRgEIAEoDRIfCghlbmRwb2lu",
           "dBgFIAEoCzINLkVuZHBvaW50Q29tcBIPCgd6b25lX2lkGAYgASgNEhUKDXBy",
           "b3RvY29sX3R5cGUYByABKA0SEQoJbm9kZV91dWlkGAggASgJEhQKDHBsYXll",
           "cl9jb3VudBgJIAEoDRIkCg1ncnBjX2VuZHBvaW50GAogASgLMg0uRW5kcG9p",
           "bnRDb21wEiYKD2NsaWVudF9lbmRwb2ludBgLIAEoCzINLkVuZHBvaW50Q29t",
-          "cCIwChBOb2RlSW5mb0xpc3RDb21wEhwKCW5vZGVfbGlzdBgBIAMoCzIJLk5v",
-          "ZGVJbmZvIioKDk5ldHdvcmtBZGRyZXNzEgoKAmlwGAEgASgJEgwKBHBvcnQY",
-          "AiABKA1CDVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
+          "cBIXCg9waHlzaWNhbF9yZWdpb24YDCABKA0iMAoQTm9kZUluZm9MaXN0Q29t",
+          "cBIcCglub2RlX2xpc3QYASADKAsyCS5Ob2RlSW5mbyIqCg5OZXR3b3JrQWRk",
+          "cmVzcxIKCgJpcBgBIAEoCRIMCgRwb3J0GAIgASgNQg1aC2NvbW1vbi9iYXNl",
+          "YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EndpointComp), global::EndpointComp.Parser, new[]{ "Ip", "Port" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint", "PhysicalRegion" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfoListComp), global::NodeInfoListComp.Parser, new[]{ "NodeList" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NetworkAddress), global::NetworkAddress.Parser, new[]{ "Ip", "Port" }, null, null, null, null)
         }));
@@ -327,6 +328,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     playerCount_ = other.playerCount_;
     grpcEndpoint_ = other.grpcEndpoint_ != null ? other.grpcEndpoint_.Clone() : null;
     clientEndpoint_ = other.clientEndpoint_ != null ? other.clientEndpoint_.Clone() : null;
+    physicalRegion_ = other.physicalRegion_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -489,6 +491,21 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
   }
 
+  /// <summary>Field number for the "physical_region" field.</summary>
+  public const int PhysicalRegionFieldNumber = 12;
+  private uint physicalRegion_;
+  /// <summary>
+  /// 真实机房身份，由部署注入。0 = 未声明，不能用于跨地域匹配。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PhysicalRegion {
+    get { return physicalRegion_; }
+    set {
+      physicalRegion_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -515,6 +532,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (PlayerCount != other.PlayerCount) return false;
     if (!object.Equals(GrpcEndpoint, other.GrpcEndpoint)) return false;
     if (!object.Equals(ClientEndpoint, other.ClientEndpoint)) return false;
+    if (PhysicalRegion != other.PhysicalRegion) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -533,6 +551,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (PlayerCount != 0) hash ^= PlayerCount.GetHashCode();
     if (grpcEndpoint_ != null) hash ^= GrpcEndpoint.GetHashCode();
     if (clientEndpoint_ != null) hash ^= ClientEndpoint.GetHashCode();
+    if (PhysicalRegion != 0) hash ^= PhysicalRegion.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -595,6 +614,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(90);
       output.WriteMessage(ClientEndpoint);
     }
+    if (PhysicalRegion != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(PhysicalRegion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -649,6 +672,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(90);
       output.WriteMessage(ClientEndpoint);
     }
+    if (PhysicalRegion != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(PhysicalRegion);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -691,6 +718,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (clientEndpoint_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(ClientEndpoint);
+    }
+    if (PhysicalRegion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PhysicalRegion);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -745,6 +775,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
         ClientEndpoint = new global::EndpointComp();
       }
       ClientEndpoint.MergeFrom(other.ClientEndpoint);
+    }
+    if (other.PhysicalRegion != 0) {
+      PhysicalRegion = other.PhysicalRegion;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -818,6 +851,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
           input.ReadMessage(ClientEndpoint);
           break;
         }
+        case 96: {
+          PhysicalRegion = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -888,6 +925,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
             ClientEndpoint = new global::EndpointComp();
           }
           input.ReadMessage(ClientEndpoint);
+          break;
+        }
+        case 96: {
+          PhysicalRegion = input.ReadUInt32();
           break;
         }
       }

@@ -923,6 +923,47 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(TeamClient.DescribeTip(new TipInfoMessage { Id = 0 }), Is.EqualTo(""));
         }
 
+        [Test]
+        public void StartMatchUnknownReusesOriginalUuidAndMissingStatusCannotReleaseIt()
+        {
+            Loaded();Assert.That(_client.StartMatch(7),Is.True);
+            var original=LastRequest<StartTeamMatchRequest>().Clone();Assert.That(Guid.TryParseExact(original.RequestId,"D",out _),Is.True);
+            _net.Fail("timeout");
+            _net.Identity=new object();_client.ObserveConnection();_now+=4;_client.DrainQueued(false);
+            Assert.That(LastRequest<GetMyTeamRequest>().MatchRequestId,Is.EqualTo(original.RequestId));
+            _net.Reply(new TeamResponse{Team=LeaderView(2)});
+            _now+=1;Assert.That(_client.StartMatch(7),Is.True);
+            Assert.That(LastRequest<StartTeamMatchRequest>(),Is.EqualTo(original));
+            _net.Reply(new TeamResponse{Team=LeaderView(3),MatchIntent=new TeamMatchIntent{RequestId=original.RequestId,BattleId=700,State=4}});
+            _now+=1;Assert.That(_client.StartMatch(7),Is.True);
+            Assert.That(LastRequest<StartTeamMatchRequest>().RequestId,Is.Not.EqualTo(original.RequestId));
+        }
+
+        [Test]
+        public void StartMatchRecoveryFileReopensOriginalIntentAndCorruptionBlocksNewStart()
+        {
+            string directory=System.IO.Path.Combine(System.IO.Path.GetTempPath(),"team-intent-test-"+Guid.NewGuid().ToString("N"));
+            try{
+                var store=new DurableRequestFileStore(directory);_client.MatchRecovery=store;
+                Loaded();Assert.That(_client.StartMatch(7),Is.True);var original=LastRequest<StartTeamMatchRequest>().Clone();
+                Assert.That(store.Load(10),Is.EqualTo(Convert.ToBase64String(original.ToByteArray())));
+                _client.Dispose();_net=new TeamFakeTransport();
+                _client=new TeamClient(_net,()=>_net.Identity,h=>_push=h,h=>{},()=>_now){MatchRecovery=store};
+                _now+=4;_client.DrainQueued(false);Assert.That(LastRequest<GetMyTeamRequest>().MatchRequestId,Is.EqualTo(original.RequestId));
+                _net.Reply(new TeamResponse{Team=LeaderView(2),MatchIntent=new TeamMatchIntent{RequestId=original.RequestId,BattleId=700,State=99}});
+                Assert.That(store.Load(10),Is.Not.Empty,"未来未知状态不能清除待确认原意图");
+                _now+=4;_client.DrainQueued(false);_net.Reply(new TeamResponse{Team=LeaderView(3),MatchIntent=new TeamMatchIntent{RequestId=original.RequestId,BattleId=700,State=5}});
+                Assert.That(store.Load(10),Is.Empty);
+                System.IO.File.WriteAllText(System.IO.Path.Combine(directory,"10.pending"),"corrupt");
+                _client.Dispose();_net=new TeamFakeTransport();_client=new TeamClient(_net,()=>_net.Identity,h=>_push=h,h=>{},()=>_now){MatchRecovery=store};
+                Assert.That(_client.StartMatch(7),Is.False);Assert.That(_net.Calls,Is.Empty);
+            }finally{
+                string full=System.IO.Path.GetFullPath(directory);Assert.That(System.IO.Path.GetDirectoryName(full),Is.EqualTo(System.IO.Path.GetFullPath(System.IO.Path.GetTempPath()).TrimEnd(System.IO.Path.DirectorySeparatorChar)));
+                Assert.That(System.IO.Path.GetFileName(full).StartsWith("team-intent-test-",StringComparison.Ordinal),Is.True);
+                if(System.IO.Directory.Exists(full))System.IO.Directory.Delete(full,true);
+            }
+        }
+
         // ── 助手 ────────────────────────────────────────────────────────────
 
         /// <summary>探针 → 回复视图 → 邀请列表 → 回复空列表;结束时距上次发送已超过发送间隔。</summary>

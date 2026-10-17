@@ -94,6 +94,19 @@ namespace MmorpgClient.Game.Battle
 
         private ulong _battleId;             // 当前(或重连恢复中)战斗 id;0 = 无
         private string _queueTicket = string.Empty;
+        public RegionProbeClient RegionProbe { get; set; }
+        private bool _globalQueue;
+        private bool _lastTransportReady;
+        private int _queueGeneration;
+        private int _queuePollSequence;
+        private bool _joinSent;
+        private double _refreshProbeAt;
+        public IMatchJoinRecovery QueueRecovery { get; set; }
+        private Match.JoinQueueRequest _joinIntent;
+        private ulong _queueIntentPlayer;
+        private bool _joinOutcomeUnknown;
+        private bool _cancelRequested;
+        private bool _recoveryBlocked;
 
         // 连续战斗:最近一次显式 JoinQueue 的参数记忆(切磋不计,§11.2 只按队列参数重排)
         private Match.MatchMode _lastQueueMode;
@@ -235,6 +248,20 @@ namespace MmorpgClient.Game.Battle
         public void Tick(double nowSeconds)
         {
             _now = nowSeconds;
+            RestoreQueueIntent();
+            if (RegionProbe != null && !_net.IsReady && _lastTransportReady) { ++_queueGeneration; RegionProbe.Dispose(); }
+            RegionProbe?.Tick(nowSeconds);
+            if (RegionProbe != null && _net.IsReady && !_lastTransportReady)
+            {
+                if (_joinIntent != null && Phase == BattlePhase.None) SetPhase(BattlePhase.Queued);
+                if (_cancelRequested) SendGlobalCancellation(); else PollQueueStatus();
+            }
+            _lastTransportReady = _net.IsReady;
+            if (_globalQueue && !_cancelRequested && !_joinOutcomeUnknown && Phase == BattlePhase.Queued && _net.IsReady && _now >= _refreshProbeAt && RegionProbe != null && !RegionProbe.Busy)
+            {
+                _refreshProbeAt = _now + 25;
+                RegionProbe.Prepare(_ => { }, error => OnError?.Invoke(error));
+            }
 
             // 补拉遇传输错误后的自动重拉(见 MaxStatePullRetries)。到点时直连已不就绪(断开 / 改服务别的局):
             // 放弃本次,下一次就绪事件自会补拉并重置预算;同局补拉在途时 PullState 自行去重
@@ -244,7 +271,7 @@ namespace MmorpgClient.Game.Battle
                 if (IsBattleChannelReady) PullState();
             }
 
-            if (Phase == BattlePhase.Queued && _net.IsReady && _now >= _nextQueuePollAt)
+            if ((Phase == BattlePhase.Queued || (_globalQueue && Phase == BattlePhase.Preparing)) && _net.IsReady && _now >= _nextQueuePollAt)
             {
                 _nextQueuePollAt = _now + QueuePollIntervalSeconds;
                 PollQueueStatus();
@@ -253,6 +280,7 @@ namespace MmorpgClient.Game.Battle
             if (Phase == BattlePhase.Preparing && _preparingDeadline > 0 && _now >= _preparingDeadline)
             {
                 _preparingDeadline = 0;
+                if (_globalQueue) { PollQueueStatus(); return; }
                 OnError?.Invoke("战斗准备超时,已退出匹配");
                 SetPhase(BattlePhase.None);
             }
@@ -266,6 +294,7 @@ namespace MmorpgClient.Game.Battle
         /// </param>
         public void JoinQueue(Match.MatchMode mode, uint battleConfigId, uint teamSize = 0)
         {
+            RestoreQueueIntent();
             if (Phase != BattlePhase.None)
             {
                 OnError?.Invoke("当前状态不能排队(需先结束当前匹配/战斗)");
@@ -290,14 +319,51 @@ namespace MmorpgClient.Game.Battle
                 Mode = mode,
                 BattleConfigId = battleConfigId,
                 TeamSize = teamSize,
+                RequestId = Guid.NewGuid().ToString("D"),
             };
+            int generation = ++_queueGeneration;
+            _queueIntentPlayer = MyPlayerId;
+            _joinIntent = null; _cancelRequested = false; _joinOutcomeUnknown = false;
+            _joinSent = false;
+            if (RegionProbe != null)
+            {
+                RegionProbe.Prepare(plan =>
+                {
+                    if (generation != _queueGeneration || Phase != BattlePhase.Queued) return;
+                    _globalQueue = plan.Length > 0; req.NetworkPlanId = plan; _refreshProbeAt = _now + 25;
+                    SendJoin();
+                }, error => { if (generation == _queueGeneration && Phase == BattlePhase.Queued) { OnError?.Invoke(error); SetPhase(BattlePhase.None); } });
+                return;
+            }
+            SendJoin();
+
+            void SendJoin()
+            {
+            if (_globalQueue)
+            {
+                try { QueueRecovery?.Save(req, false); }
+                catch (Exception) { OnError?.Invoke("无法保存匹配恢复记录，本次尚未提交。请检查本机存储后重试。"); SetPhase(BattlePhase.None); return; }
+                _joinIntent = req; _joinOutcomeUnknown = true;
+            }
+            _joinSent = true;
             _net.Call(MessageIds.JoinQueue, req, Match.JoinQueueResponse.Parser,
                 resp =>
                 {
+                    if (generation != _queueGeneration) return;
                     // 拒绝原因无论相位是否已变都要抛出来:典型场景是 JoinQueue 发出后
                     // NotifyBattleReconnect 才到、相位已被权威状态拉到 WaitingAction,
                     // 服务端 ErrInBattle 若被静默吞掉,自动驾驶/UI 只能空等超时。
                     bool rejected = resp.ErrorCode != 0 || HasTip(resp.ErrorMessage);
+                    if (_globalQueue && rejected)
+                    {
+                        // 事务提交后的依赖/回包故障仍可能表现为失败；旧票号返回则恢复那张真实票。
+                        if (!string.IsNullOrEmpty(resp.QueueTicket))
+                        {
+                            ClearQueueIntent(); _queueTicket = resp.QueueTicket; PollQueueStatus();
+                        }
+                        else PollQueueStatus();
+                        return;
+                    }
                     if (rejected)
                         OnError?.Invoke(DescribeTip("加入队列失败", resp.ErrorMessage, resp.ErrorCode));
                     if (Phase != BattlePhase.Queued) return; // 已开战/已取消/重连恢复:迟到响应不改相位
@@ -307,20 +373,37 @@ namespace MmorpgClient.Game.Battle
                         return;
                     }
                     _queueTicket = resp.QueueTicket ?? string.Empty;
+                    if (_globalQueue) { _joinOutcomeUnknown = false; TryClearRecovery(); }
                 },
                 err =>
                 {
+                    if (generation != _queueGeneration) return;
                     OnError?.Invoke($"加入队列失败:{err}");
                     if (Phase != BattlePhase.Queued) return;
-                    SetPhase(BattlePhase.None);
+                    if (_globalQueue) PollQueueStatus(); else SetPhase(BattlePhase.None);
                 });
+            }
         }
 
         public void CancelQueue()
         {
+            if (_recoveryBlocked) { OnError?.Invoke("匹配恢复记录损坏或无法读取，保留保护状态；请修复本机存储并重新登录。"); return; }
             if (Phase != BattlePhase.Queued)
             {
                 OnError?.Invoke("当前不在排队中");
+                return;
+            }
+
+            if (RegionProbe != null && !_joinSent)
+            {
+                ++_queueGeneration; RegionProbe.Dispose(); SetPhase(BattlePhase.None); return;
+            }
+            if (_globalQueue)
+            {
+                try { if (_joinIntent != null) QueueRecovery?.Save(_joinIntent, true); }
+                catch (Exception) { OnError?.Invoke("无法保存取消恢复记录，请检查本机存储后重试。"); return; }
+                ++_queueGeneration; _cancelRequested = true;
+                SendGlobalCancellation();
                 return;
             }
 
@@ -345,11 +428,28 @@ namespace MmorpgClient.Game.Battle
 
         private void PollQueueStatus()
         {
-            var req = new Match.GetQueueStatusRequest { PlayerId = MyPlayerId };
+            var generation = _queueGeneration;
+            var query = ++_queuePollSequence;
+            var player = MyPlayerId;
+            var req = new Match.GetQueueStatusRequest { PlayerId = MyPlayerId, RequestId = _joinIntent?.RequestId ?? string.Empty };
             _net.Call(MessageIds.GetQueueStatus, req, Match.GetQueueStatusResponse.Parser,
                 resp =>
                 {
+                    if (generation != _queueGeneration || query != _queuePollSequence || player != MyPlayerId) return;
                     OnQueueStatus?.Invoke(resp);
+                    if (RegionProbe != null && resp.QueueTicket.Length > 0)
+                    {
+                        _queueTicket = resp.QueueTicket; _globalQueue = true;
+                        _joinSent = true;
+                        if (resp.State == Match.QueueState.Queued && Phase == BattlePhase.None) SetPhase(BattlePhase.Queued);
+                        if (resp.BattleId != 0 && (resp.State == Match.QueueState.Ready || resp.State == Match.QueueState.Matched))
+                        {
+                            _battleId = resp.BattleId; EnterPreparing();
+                            if (resp.State == Match.QueueState.Ready) _channel?.EnsureBattle(resp.BattleId);
+                        }
+                    }
+                    if (_globalQueue && Phase == BattlePhase.Preparing && resp.State == Match.QueueState.NotQueued)
+                    { _channel?.Abandon(_battleId); ClearBattleContext(); SetPhase(BattlePhase.None); return; }
                     if (Phase != BattlePhase.Queued) return; // 已开战:轮询结果只透传不改相位
                     switch (resp.State)
                     {
@@ -360,17 +460,63 @@ namespace MmorpgClient.Game.Battle
                             EnterPreparing();
                             break;
                         case Match.QueueState.NotQueued:
-                            // 服务端已不认识我们(取消成功/超时被清):收敛回 None
+                            if (_recoveryBlocked) return;
+                            if (_globalQueue && _joinIntent != null && (_joinOutcomeUnknown || _cancelRequested) && !resp.RequestCancelled)
+                            {
+                                // 迟到 Join 仍可能提交。只有同一请求的撤销墓碑才证明它不会再入队。
+                                if (_cancelRequested) SendGlobalCancellation();
+                                return;
+                            }
+                            ++_queueGeneration; ClearQueueIntent();
                             SetPhase(BattlePhase.None);
                             break;
                     }
                 },
-                err => OnError?.Invoke($"查询排队状态失败:{err}"));
+                err => { if (generation == _queueGeneration && query == _queuePollSequence && player == MyPlayerId) OnError?.Invoke($"查询排队状态失败:{err}"); });
+        }
+
+        private void SendGlobalCancellation()
+        {
+            int generation = _queueGeneration; ulong player = MyPlayerId;
+            if (_joinIntent == null && _queueTicket.Length == 0) { PollQueueStatus(); return; }
+            _net.Call(MessageIds.CancelQueue, new Match.CancelQueueRequest { PlayerId = player, QueueTicket = _queueTicket, RequestId = _joinIntent?.RequestId ?? string.Empty }, Empty.Parser,
+                _ => { if (generation == _queueGeneration && player == MyPlayerId) PollQueueStatus(); },
+                _ => { if (generation == _queueGeneration && player == MyPlayerId) { OnError?.Invoke("取消结果尚未确认，正在查询。"); PollQueueStatus(); } });
+            // 两版 gate 对 Empty 成功不回包，确认必须独立查询，不能等取消 RPC 超时才开始。
+            _nextQueuePollAt = _now + QueuePollIntervalSeconds;
+            PollQueueStatus();
+        }
+        private void RestoreQueueIntent()
+        {
+            if (QueueRecovery == null || MyPlayerId == 0 || _queueIntentPlayer == MyPlayerId) return;
+            _queueIntentPlayer = MyPlayerId;
+            _joinIntent = null; _cancelRequested = false; _joinOutcomeUnknown = false; _recoveryBlocked = false;
+            try
+            {
+                _joinIntent = QueueRecovery.Read(MyPlayerId, out _cancelRequested);
+                if (_joinIntent != null) { _globalQueue = true; _joinSent = true; _joinOutcomeUnknown = true; if (Phase == BattlePhase.None) SetPhase(BattlePhase.Queued); }
+            }
+            catch (Exception) { _recoveryBlocked = true; _globalQueue = true; _joinSent = true; OnError?.Invoke("匹配恢复记录无法读取，请检查本机存储。"); SetPhase(BattlePhase.Queued); }
+        }
+        private void TryClearRecovery()
+        {
+            try { if (_queueIntentPlayer != 0) QueueRecovery?.Clear(_queueIntentPlayer); }
+            catch (Exception) { OnError?.Invoke("匹配结果已确认，本机恢复记录尚未清理。"); }
+        }
+        private void ClearQueueIntent()
+        {
+            TryClearRecovery(); _joinIntent = null; _joinOutcomeUnknown = false; _cancelRequested = false;
         }
 
         // ── 契约方法:切磋(场景发起 PK) ───────────────────
 
         public void ChallengePlayer(ulong targetPlayerId)
+        {
+            if (RegionProbe != null) { RegionProbe.Prepare(plan => { _globalQueue = plan.Length > 0; SendChallengePlayer(targetPlayerId); }, error => OnError?.Invoke(error)); return; }
+            SendChallengePlayer(targetPlayerId);
+        }
+
+        private void SendChallengePlayer(ulong targetPlayerId)
         {
             var req = new Match.ChallengePlayerRequest
             {
@@ -392,6 +538,12 @@ namespace MmorpgClient.Game.Battle
         }
 
         public void RespondChallenge(ulong challengeId, bool accept)
+        {
+            if (accept && RegionProbe != null) { RegionProbe.Prepare(plan => { _globalQueue = plan.Length > 0; SendRespondChallenge(challengeId, true); }, error => OnError?.Invoke(error)); return; }
+            SendRespondChallenge(challengeId, accept);
+        }
+
+        private void SendRespondChallenge(ulong challengeId, bool accept)
         {
             var req = new Match.RespondChallengeRequest
             {
@@ -575,7 +727,7 @@ namespace MmorpgClient.Game.Battle
         private void HandleBattleStart(BattleStartS2C ev)
         {
             if (ev == null) return;
-
+            ++_queueGeneration; ClearQueueIntent();
             _queueTicket = string.Empty;
             _battleId = ev.BattleId != 0 ? ev.BattleId : ev.State?.BattleId ?? 0;
             State = ev.State;
@@ -645,6 +797,7 @@ namespace MmorpgClient.Game.Battle
         private void HandleBattleReconnect(BattleReconnectS2C ev)
         {
             if (ev == null || ev.BattleId == 0) return;
+            ++_queueGeneration; ClearQueueIntent();
             // 契约:NotifyBattleReconnect 到达 → 自动 RequestState(),
             // 相位由返回的权威状态决定(WaitingAction/Resolving)。
             // 直连此刻通常已随大厅断线关闭:RequestState 推迟,分流层随后按本提示补签重建直连,
@@ -726,6 +879,9 @@ namespace MmorpgClient.Game.Battle
 
         private void HandleDisconnected()
         {
+            ++_queueGeneration;
+            RegionProbe?.Dispose();
+            _lastTransportReady = false;
             // 断线:本地战斗/排队态整体作废(补偿矩阵:排队票据失效;战斗照打,
             // 重连后 scene 发现 InBattleComp 会推 NotifyBattleReconnect → RequestState 恢复)。
             // 未消费的结束 Ack 一并作废:断线重连后不允许凭旧 Ack 自动入队。

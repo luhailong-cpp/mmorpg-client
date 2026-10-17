@@ -2,6 +2,8 @@ using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Guild;
 using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.Game.Sync;
+using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Gameplay;
@@ -26,6 +28,9 @@ namespace MmorpgClient.UI.Ugui.Guild
         public const float EntryX = 68, EntryY = 600;
         private GameClient _game;
         private GuildClient _client;
+        // 落地恢复的接线(LandingSyncBindings.BindGuild):随 _client 一起建、在它销毁之前解除;
+        // Toggle / HidePanel / 换角复位都不碰它(GuildClient.Reset 不清钩子)。
+        private System.IDisposable _guildSync;
         private GuildWindow _window;
         private RectTransform _hud;
         private ulong _player;
@@ -61,6 +66,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             entry.name = "GuildEntry";
             _window = new GuildWindow(design);
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
+            _window.EconomyRecoveryRequested += () => { if (_available) _client?.RecoverEconomyRequest(); };
             _window.RankRequested += page => { if (_available) _client?.Browse(page, ZoneId); };
             _window.CreateRequested += name => { if (_available) _client?.Create(name, ZoneId); };
             // 申请制:排行页不再直接入帮,改为提交 / 撤回申请,由帮主或长老审批。
@@ -97,10 +103,18 @@ namespace MmorpgClient.UI.Ugui.Guild
             var game = AppBootstrap.Instance?.GameClient;
             if (_game != game)
             {
+                _guildSync?.Dispose(); _guildSync = null;
                 if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.Dispose(); }
                 _game = game;
-                _client = game == null ? null : new GuildClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity);
-                if (_client != null) { _client.Changed += Changed; _client.AssetsChanged += OnAssetsChanged; }
+                _client = game == null ? null : new GuildClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity,
+                    economyRecovery: DurableRequestFileStore.ForOrigin(
+                        System.IO.Path.Combine(Application.persistentDataPath, "guild-economy-intents-v1"),
+                        AppBootstrap.Instance.Session.GatewayBaseUrl));
+                if (_client != null) {
+                    _client.PrepareMatchNetwork=(ready,failed)=>game.Battle.RegionProbe.Prepare(_=>ready(),failed);
+                    _client.Changed += Changed; _client.AssetsChanged += OnAssetsChanged;
+                    if (game.LandingSync != null) _guildSync = LandingSyncBindings.BindGuild(game.LandingSync, _client);
+                }
                 _window.ResetSession(); _window.SetClient(_client);
             }
             _client?.ObserveConnection();
@@ -120,10 +134,12 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (!_available) { HidePanel(); return; }
             OpenPendingTrialInvite();
             // NotifyGuildChanged 只置排队标志;真正的拉取在这里按帧消费,一帧最多发一个请求,
-            // 不让每条推送都触发一次全量 Refresh。窗口关着不拉,Toggle() 打开时已有 Refresh()。
+            // 不让每条推送都触发一次全量 Refresh。窗口关着不拉推送排的重拉,Toggle() 打开时已有 Refresh()。
             // Tick 排在后面:停在捐献 / 商店 / 活动页跨过日 / 周切点没有任何事件,由它补判快照过时;DrainQueued 刚发了请求时它什么也不做。
             // 活动视图只在活动页可见时重拉(ShowingActivities):不可见时排队标志留着,进页那一帧再发。
+            // 窗口关着时只消费落地恢复排的读取(DrainSyncQueued,帮会快照 / 本人申请);战斗中走不到这里,位留着。
             if (_window.IsVisible) { _client?.DrainQueued(_window.ShowingApplications, _window.ShowingActivities); _window.Tick(); }
+            else _client?.DrainSyncQueued();
             bool typing = IsTyping();
             if (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
@@ -142,7 +158,17 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (!_available) return;
             HideOtherPanels();
             _window.Show();
-            _client?.Refresh();
+            RefreshOrQueue();
+        }
+        /// <summary>
+        /// 打开窗口时拉一次帮会快照。后台的落地恢复读取可能正在途(Busy),这时直接 Refresh 会被静默丢掉,
+        /// 窗口停在旧状态;改为排队,由窗口可见后的 DrainQueued 在空闲的那一帧发出。
+        /// </summary>
+        private void RefreshOrQueue()
+        {
+            if (_client == null) return;
+            if (_client.Busy) _client.QueueRefresh();
+            else _client.Refresh();
         }
         /// <summary>主城的几个大面板互斥:打开帮会窗口前收起别的。</summary>
         private static void HideOtherPanels()
@@ -174,7 +200,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (!_window.ShowingActivities) _window.Show(GuildPage.Activities);
             // 窗口是这一下才打开的:同 Toggle,先拉一次帮会快照(这次登录可能还没拉过,活动视图要等它)。
             // 活动视图只排队:有快照时下一个空闲帧发出;还没有快照时这一下不生效,快照落定后由窗口进页的自动拉取补上。
-            if (!wasVisible) _client.Refresh();
+            if (!wasVisible) RefreshOrQueue();
             _client.QueueActivities();
         }
         private static bool IsTyping()
@@ -195,6 +221,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         private void OnDestroy()
         {
+            _guildSync?.Dispose(); _guildSync = null;
             if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.Dispose(); }
             _window?.Hide();
             if (Instance == this) Instance = null;

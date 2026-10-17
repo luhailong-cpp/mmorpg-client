@@ -17,6 +17,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool ModalVisible => _modal != null && _modal.gameObject.activeSelf;
         public string SelectedId { get; private set; } = "";
+        public event Action CommerceRequested;
 
         private readonly RectTransform _root, _frame, _rows, _categoryContent;
         private readonly CanvasGroup _frameInput;
@@ -63,6 +64,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 () => State.SetTab(JubaozhaiTab.PublicNotice), key: "tab_normal", fontSize: 31);
             Button(_frame, "JubaoEstimate", "估价", 1562, 106, 186, 62,
                 () => ShowNotice("估价", "估价功能尚未开放，开放后可在此查看商品估价。"));
+            Button(_frame, "JubaoCommerce", "交易中心", 1150, 106, 380, 62,
+                () => CommerceRequested?.Invoke());
             Button(_frame, "JubaoRules", "规则", 1764, 106, 186, 62,
                 () => ShowNotice("聚宝斋规则", "寄售、公示、拍卖和货架规则尚未开放。交易规则以正式开放后的说明为准。"));
 
@@ -318,8 +321,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 70, 670, 226, 62, ToggleSelectedFavorite);
             Button(panel, "JubaoContactSeller", "联系卖家", 314, 670, 260, 62,
                 () => ShowNotice("联系卖家", "联系卖家功能尚未开放，暂时无法发起联系。"));
-            Button(panel, "JubaoPurchase", "购买 · 尚未开放", 690, 670, 440, 62,
-                () => ShowNotice("购买", "交易功能尚未开放，暂时无法购买商品。"), true);
+            Button(panel, "JubaoPurchase", "查看可交易商品", 690, 670, 440, 62,
+                () => CommerceRequested?.Invoke(), true);
             BoundNavigation(_modal);
             // 放在弹窗建好之后:描述写回会触发重绘本弹窗,State 按条去重,不会形成请求循环。
             if (State.ServerPaged) State.RequestDetail(item.Id);

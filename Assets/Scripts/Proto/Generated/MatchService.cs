@@ -27,81 +27,91 @@ namespace Match {
             "Ch9wcm90by9tYXRjaC9tYXRjaF9zZXJ2aWNlLnByb3RvEgVtYXRjaBobcHJv",
             "dG8vZGIvcHJvdG9fb3B0aW9uLnByb3RvGh1wcm90by9jb21tb24vYmFzZS9l",
             "bXB0eS5wcm90bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnByb3RvGiBwcm90",
-            "by9iYXR0bGUvcGxheWVyX2JhdHRsZS5wcm90byK4AQoQSm9pblF1ZXVlUmVx",
-            "dWVzdBIRCglwbGF5ZXJfaWQYASABKAQSHgoEbW9kZRgCIAEoDjIQLm1hdGNo",
-            "Lk1hdGNoTW9kZRIVCg1tYXBfY29uZmlnX2lkGAMgASgNEhwKEHBhcnR5X21l",
-            "bWJlcl9pZHMYBCADKARCAhgBEg8KB3pvbmVfaWQYBSABKA0SGAoQYmF0dGxl",
-            "X2NvbmZpZ19pZBgGIAEoDRIRCgl0ZWFtX3NpemUYByABKA0iZQoRSm9pblF1",
-            "ZXVlUmVzcG9uc2USEgoKZXJyb3JfY29kZRgBIAEoDRIUCgxxdWV1ZV90aWNr",
-            "ZXQYAiABKAkSJgoNZXJyb3JfbWVzc2FnZRgDIAEoCzIPLlRpcEluZm9NZXNz",
-            "YWdlIj0KEkNhbmNlbFF1ZXVlUmVxdWVzdBIRCglwbGF5ZXJfaWQYASABKAQS",
-            "FAoMcXVldWVfdGlja2V0GAIgASgJIioKFUdldFF1ZXVlU3RhdHVzUmVxdWVz",
-            "dBIRCglwbGF5ZXJfaWQYASABKAQicgoWR2V0UXVldWVTdGF0dXNSZXNwb25z",
-            "ZRIgCgVzdGF0ZRgBIAEoDjIRLm1hdGNoLlF1ZXVlU3RhdGUSHgoWZXN0aW1h",
-            "dGVkX3dhaXRfc2Vjb25kcxgCIAEoDRIWCg5xdWV1ZWRfc2Vjb25kcxgDIAEo",
-            "DSJfChZDaGFsbGVuZ2VQbGF5ZXJSZXF1ZXN0EhEKCXBsYXllcl9pZBgBIAEo",
-            "BBIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgEEhgKEGJhdHRsZV9jb25maWdf",
-            "aWQYAyABKA0iVwoXQ2hhbGxlbmdlUGxheWVyUmVzcG9uc2USFAoMY2hhbGxl",
-            "bmdlX2lkGAEgASgEEiYKDWVycm9yX21lc3NhZ2UYAiABKAsyDy5UaXBJbmZv",
-            "TWVzc2FnZSJSChdSZXNwb25kQ2hhbGxlbmdlUmVxdWVzdBIRCglwbGF5ZXJf",
-            "aWQYASABKAQSFAoMY2hhbGxlbmdlX2lkGAIgASgEEg4KBmFjY2VwdBgDIAEo",
-            "CCJCChhSZXNwb25kQ2hhbGxlbmdlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
-            "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlIosBChJDaGFsbGVuZ2VJbnZpdGVT",
-            "MkMSFAoMY2hhbGxlbmdlX2lkGAEgASgEEhUKDWNoYWxsZW5nZXJfaWQYAiAB",
-            "KAQSFwoPY2hhbGxlbmdlcl9uYW1lGAMgASgJEhgKEGJhdHRsZV9jb25maWdf",
-            "aWQYBCABKA0SFQoNZXhwaXJlc19hdF9tcxgFIAEoBCJSChJDaGFsbGVuZ2VS",
-            "ZXN1bHRTMkMSFAoMY2hhbGxlbmdlX2lkGAEgASgEEhAKCGFjY2VwdGVkGAIg",
-            "ASgIEhQKDHJlc3BvbmRlcl9pZBgDIAEoBCI6ChJXYXRjaEJhdHRsZVJlcXVl",
-            "c3QSEQoJcGxheWVyX2lkGAEgASgEEhEKCWJhdHRsZV9pZBgCIAEoBCJQChNX",
-            "YXRjaEJhdHRsZVJlc3BvbnNlEhEKCWJhdHRsZV9pZBgBIAEoBBImCg1lcnJv",
-            "cl9tZXNzYWdlGAIgASgLMg8uVGlwSW5mb01lc3NhZ2UiPwobTGlzdFdhdGNo",
-            "YWJsZUJhdHRsZXNSZXF1ZXN0EhEKCXBsYXllcl9pZBgBIAEoBBINCgVsaW1p",
-            "dBgCIAEoDSJKChxMaXN0V2F0Y2hhYmxlQmF0dGxlc1Jlc3BvbnNlEioKB2Jh",
-            "dHRsZXMYASADKAsyGS5tYXRjaC5CYXR0bGVXYXRjaFN1bW1hcnkijgEKEkJh",
-            "dHRsZVdhdGNoU3VtbWFyeRIRCgliYXR0bGVfaWQYASABKAQSHgoEbW9kZRgC",
-            "IAEoDjIQLm1hdGNoLk1hdGNoTW9kZRIYChBiYXR0bGVfY29uZmlnX2lkGAMg",
-            "ASgNEhQKDHBsYXllcl9uYW1lcxgEIAMoCRIVCg1jcmVhdGVkX2F0X21zGAUg",
-            "ASgEIloKFFNwZWN0YXRlQmF0dGxlUmVjb3JkEioKB3N1bW1hcnkYASABKAsy",
-            "GS5tYXRjaC5CYXR0bGVXYXRjaFN1bW1hcnkSFgoOYmF0dGxlX25vZGVfaWQY",
-            "AiABKA0iowEKC01hdGNoUmVzdWx0EhAKCG1hdGNoX2lkGAEgASgJEh4KBG1v",
-            "ZGUYAiABKA4yEC5tYXRjaC5NYXRjaE1vZGUSFQoNbWFwX2NvbmZpZ19pZBgD",
-            "IAEoDRIZChFkdW5nZW9uX2NvbmZpZ19pZBgEIAEoDRIfCgV0ZWFtcxgFIAMo",
-            "CzIQLm1hdGNoLk1hdGNoVGVhbRIPCgd6b25lX2lkGAYgASgNIjMKCU1hdGNo",
-            "VGVhbRISCgp0ZWFtX2luZGV4GAEgASgNEhIKCnBsYXllcl9pZHMYAiADKAQq",
-            "swEKCU1hdGNoTW9kZRIaChZNQVRDSF9NT0RFX1VOU1BFQ0lGSUVEEAASEgoO",
-            "TUFUQ0hfTU9ERV81VjUQARISCg5NQVRDSF9NT0RFXzNWMxACEhIKDk1BVENI",
-            "X01PREVfMVYxEAMSFwoTTUFUQ0hfTU9ERV9QVkVfU09MTxAEEhcKE01BVENI",
-            "X01PREVfUFZFX1RFQU0QBRIcChhNQVRDSF9NT0RFX1BWUF9DSEFMTEVOR0UQ",
-            "BiqnAQoKUXVldWVTdGF0ZRIbChdRVUVVRV9TVEFURV9VTlNQRUNJRklFRBAA",
-            "EhYKElFVRVVFX1NUQVRFX1FVRVVFRBABEhcKE1FVRVVFX1NUQVRFX01BVENI",
-            "RUQQAhIVChFRVUVVRV9TVEFURV9SRUFEWRADEhgKFFFVRVVFX1NUQVRFX0VO",
-            "VEVSSU5HEAQSGgoWUVVFVUVfU1RBVEVfTk9UX1FVRVVFRBAFMoIGCgxNYXRj",
-            "aFNlcnZpY2USQAoJSm9pblF1ZXVlEhcubWF0Y2guSm9pblF1ZXVlUmVxdWVz",
-            "dBoYLm1hdGNoLkpvaW5RdWV1ZVJlc3BvbnNlIgASMgoLQ2FuY2VsUXVldWUS",
-            "GS5tYXRjaC5DYW5jZWxRdWV1ZVJlcXVlc3QaBi5FbXB0eSIAEk8KDkdldFF1",
-            "ZXVlU3RhdHVzEhwubWF0Y2guR2V0UXVldWVTdGF0dXNSZXF1ZXN0Gh0ubWF0",
-            "Y2guR2V0UXVldWVTdGF0dXNSZXNwb25zZSIAElIKD0NoYWxsZW5nZVBsYXll",
-            "chIdLm1hdGNoLkNoYWxsZW5nZVBsYXllclJlcXVlc3QaHi5tYXRjaC5DaGFs",
-            "bGVuZ2VQbGF5ZXJSZXNwb25zZSIAElUKEFJlc3BvbmRDaGFsbGVuZ2USHi5t",
-            "YXRjaC5SZXNwb25kQ2hhbGxlbmdlUmVxdWVzdBofLm1hdGNoLlJlc3BvbmRD",
-            "aGFsbGVuZ2VSZXNwb25zZSIAEjwKFU5vdGlmeUNoYWxsZW5nZUludml0ZRIZ",
-            "Lm1hdGNoLkNoYWxsZW5nZUludml0ZVMyQxoGLkVtcHR5IgASPAoVTm90aWZ5",
-            "Q2hhbGxlbmdlUmVzdWx0EhkubWF0Y2guQ2hhbGxlbmdlUmVzdWx0UzJDGgYu",
-            "RW1wdHkiABJGCgtXYXRjaEJhdHRsZRIZLm1hdGNoLldhdGNoQmF0dGxlUmVx",
-            "dWVzdBoaLm1hdGNoLldhdGNoQmF0dGxlUmVzcG9uc2UiABJSChNSZXF1ZXN0",
-            "QmF0dGxlVGlja2V0EhsuUmVxdWVzdEJhdHRsZVRpY2tldFJlcXVlc3QaHC5S",
-            "ZXF1ZXN0QmF0dGxlVGlja2V0UmVzcG9uc2UiABJhChRMaXN0V2F0Y2hhYmxl",
-            "QmF0dGxlcxIiLm1hdGNoLkxpc3RXYXRjaGFibGVCYXR0bGVzUmVxdWVzdBoj",
-            "Lm1hdGNoLkxpc3RXYXRjaGFibGVCYXR0bGVzUmVzcG9uc2UiABoFiKjDAQFC",
-            "EVoLbWF0Y2gvbWF0Y2iY1GEVYgZwcm90bzM="));
+            "by9iYXR0bGUvcGxheWVyX2JhdHRsZS5wcm90bxofcHJvdG8vbWF0Y2gvbWF0",
+            "Y2hfbmV0d29yay5wcm90byLlAQoQSm9pblF1ZXVlUmVxdWVzdBIRCglwbGF5",
+            "ZXJfaWQYASABKAQSHgoEbW9kZRgCIAEoDjIQLm1hdGNoLk1hdGNoTW9kZRIV",
+            "Cg1tYXBfY29uZmlnX2lkGAMgASgNEhwKEHBhcnR5X21lbWJlcl9pZHMYBCAD",
+            "KARCAhgBEg8KB3pvbmVfaWQYBSABKA0SGAoQYmF0dGxlX2NvbmZpZ19pZBgG",
+            "IAEoDRIRCgl0ZWFtX3NpemUYByABKA0SEgoKcmVxdWVzdF9pZBgIIAEoCRIX",
+            "Cg9uZXR3b3JrX3BsYW5faWQYCSABKAkiZQoRSm9pblF1ZXVlUmVzcG9uc2US",
+            "EgoKZXJyb3JfY29kZRgBIAEoDRIUCgxxdWV1ZV90aWNrZXQYAiABKAkSJgoN",
+            "ZXJyb3JfbWVzc2FnZRgDIAEoCzIPLlRpcEluZm9NZXNzYWdlIlEKEkNhbmNl",
+            "bFF1ZXVlUmVxdWVzdBIRCglwbGF5ZXJfaWQYASABKAQSFAoMcXVldWVfdGlj",
+            "a2V0GAIgASgJEhIKCnJlcXVlc3RfaWQYAyABKAkiPgoVR2V0UXVldWVTdGF0",
+            "dXNSZXF1ZXN0EhEKCXBsYXllcl9pZBgBIAEoBBISCgpyZXF1ZXN0X2lkGAIg",
+            "ASgJIucBChZHZXRRdWV1ZVN0YXR1c1Jlc3BvbnNlEiAKBXN0YXRlGAEgASgO",
+            "MhEubWF0Y2guUXVldWVTdGF0ZRIeChZlc3RpbWF0ZWRfd2FpdF9zZWNvbmRz",
+            "GAIgASgNEhYKDnF1ZXVlZF9zZWNvbmRzGAMgASgNEhQKDHF1ZXVlX3RpY2tl",
+            "dBgEIAEoCRIRCgliYXR0bGVfaWQYBSABKAQSFwoPc2VsZWN0ZWRfcmVnaW9u",
+            "GAYgASgNEhYKDnJldHJ5X2FmdGVyX21zGAcgASgNEhkKEXJlcXVlc3RfY2Fu",
+            "Y2VsbGVkGAggASgIIl8KFkNoYWxsZW5nZVBsYXllclJlcXVlc3QSEQoJcGxh",
+            "eWVyX2lkGAEgASgEEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKAQSGAoQYmF0",
+            "dGxlX2NvbmZpZ19pZBgDIAEoDSJXChdDaGFsbGVuZ2VQbGF5ZXJSZXNwb25z",
+            "ZRIUCgxjaGFsbGVuZ2VfaWQYASABKAQSJgoNZXJyb3JfbWVzc2FnZRgCIAEo",
+            "CzIPLlRpcEluZm9NZXNzYWdlIlIKF1Jlc3BvbmRDaGFsbGVuZ2VSZXF1ZXN0",
+            "EhEKCXBsYXllcl9pZBgBIAEoBBIUCgxjaGFsbGVuZ2VfaWQYAiABKAQSDgoG",
+            "YWNjZXB0GAMgASgIIkIKGFJlc3BvbmRDaGFsbGVuZ2VSZXNwb25zZRImCg1l",
+            "cnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiiwEKEkNoYWxs",
+            "ZW5nZUludml0ZVMyQxIUCgxjaGFsbGVuZ2VfaWQYASABKAQSFQoNY2hhbGxl",
+            "bmdlcl9pZBgCIAEoBBIXCg9jaGFsbGVuZ2VyX25hbWUYAyABKAkSGAoQYmF0",
+            "dGxlX2NvbmZpZ19pZBgEIAEoDRIVCg1leHBpcmVzX2F0X21zGAUgASgEIlIK",
+            "EkNoYWxsZW5nZVJlc3VsdFMyQxIUCgxjaGFsbGVuZ2VfaWQYASABKAQSEAoI",
+            "YWNjZXB0ZWQYAiABKAgSFAoMcmVzcG9uZGVyX2lkGAMgASgEIjoKEldhdGNo",
+            "QmF0dGxlUmVxdWVzdBIRCglwbGF5ZXJfaWQYASABKAQSEQoJYmF0dGxlX2lk",
+            "GAIgASgEIlAKE1dhdGNoQmF0dGxlUmVzcG9uc2USEQoJYmF0dGxlX2lkGAEg",
+            "ASgEEiYKDWVycm9yX21lc3NhZ2UYAiABKAsyDy5UaXBJbmZvTWVzc2FnZSI/",
+            "ChtMaXN0V2F0Y2hhYmxlQmF0dGxlc1JlcXVlc3QSEQoJcGxheWVyX2lkGAEg",
+            "ASgEEg0KBWxpbWl0GAIgASgNIkoKHExpc3RXYXRjaGFibGVCYXR0bGVzUmVz",
+            "cG9uc2USKgoHYmF0dGxlcxgBIAMoCzIZLm1hdGNoLkJhdHRsZVdhdGNoU3Vt",
+            "bWFyeSKOAQoSQmF0dGxlV2F0Y2hTdW1tYXJ5EhEKCWJhdHRsZV9pZBgBIAEo",
+            "BBIeCgRtb2RlGAIgASgOMhAubWF0Y2guTWF0Y2hNb2RlEhgKEGJhdHRsZV9j",
+            "b25maWdfaWQYAyABKA0SFAoMcGxheWVyX25hbWVzGAQgAygJEhUKDWNyZWF0",
+            "ZWRfYXRfbXMYBSABKAQiWgoUU3BlY3RhdGVCYXR0bGVSZWNvcmQSKgoHc3Vt",
+            "bWFyeRgBIAEoCzIZLm1hdGNoLkJhdHRsZVdhdGNoU3VtbWFyeRIWCg5iYXR0",
+            "bGVfbm9kZV9pZBgCIAEoDSKjAQoLTWF0Y2hSZXN1bHQSEAoIbWF0Y2hfaWQY",
+            "ASABKAkSHgoEbW9kZRgCIAEoDjIQLm1hdGNoLk1hdGNoTW9kZRIVCg1tYXBf",
+            "Y29uZmlnX2lkGAMgASgNEhkKEWR1bmdlb25fY29uZmlnX2lkGAQgASgNEh8K",
+            "BXRlYW1zGAUgAygLMhAubWF0Y2guTWF0Y2hUZWFtEg8KB3pvbmVfaWQYBiAB",
+            "KA0iMwoJTWF0Y2hUZWFtEhIKCnRlYW1faW5kZXgYASABKA0SEgoKcGxheWVy",
+            "X2lkcxgCIAMoBCqzAQoJTWF0Y2hNb2RlEhoKFk1BVENIX01PREVfVU5TUEVD",
+            "SUZJRUQQABISCg5NQVRDSF9NT0RFXzVWNRABEhIKDk1BVENIX01PREVfM1Yz",
+            "EAISEgoOTUFUQ0hfTU9ERV8xVjEQAxIXChNNQVRDSF9NT0RFX1BWRV9TT0xP",
+            "EAQSFwoTTUFUQ0hfTU9ERV9QVkVfVEVBTRAFEhwKGE1BVENIX01PREVfUFZQ",
+            "X0NIQUxMRU5HRRAGKqcBCgpRdWV1ZVN0YXRlEhsKF1FVRVVFX1NUQVRFX1VO",
+            "U1BFQ0lGSUVEEAASFgoSUVVFVUVfU1RBVEVfUVVFVUVEEAESFwoTUVVFVUVf",
+            "U1RBVEVfTUFUQ0hFRBACEhUKEVFVRVVFX1NUQVRFX1JFQURZEAMSGAoUUVVF",
+            "VUVfU1RBVEVfRU5URVJJTkcQBBIaChZRVUVVRV9TVEFURV9OT1RfUVVFVUVE",
+            "EAUyvwcKDE1hdGNoU2VydmljZRJeChNHZXROZXR3b3JrUHJvYmVQbGFuEiEu",
+            "bWF0Y2guR2V0TmV0d29ya1Byb2JlUGxhblJlcXVlc3QaIi5tYXRjaC5HZXRO",
+            "ZXR3b3JrUHJvYmVQbGFuUmVzcG9uc2UiABJbChJDb21taXROZXR3b3JrUHJv",
+            "YmUSIC5tYXRjaC5Db21taXROZXR3b3JrUHJvYmVSZXF1ZXN0GiEubWF0Y2gu",
+            "Q29tbWl0TmV0d29ya1Byb2JlUmVzcG9uc2UiABJACglKb2luUXVldWUSFy5t",
+            "YXRjaC5Kb2luUXVldWVSZXF1ZXN0GhgubWF0Y2guSm9pblF1ZXVlUmVzcG9u",
+            "c2UiABIyCgtDYW5jZWxRdWV1ZRIZLm1hdGNoLkNhbmNlbFF1ZXVlUmVxdWVz",
+            "dBoGLkVtcHR5IgASTwoOR2V0UXVldWVTdGF0dXMSHC5tYXRjaC5HZXRRdWV1",
+            "ZVN0YXR1c1JlcXVlc3QaHS5tYXRjaC5HZXRRdWV1ZVN0YXR1c1Jlc3BvbnNl",
+            "IgASUgoPQ2hhbGxlbmdlUGxheWVyEh0ubWF0Y2guQ2hhbGxlbmdlUGxheWVy",
+            "UmVxdWVzdBoeLm1hdGNoLkNoYWxsZW5nZVBsYXllclJlc3BvbnNlIgASVQoQ",
+            "UmVzcG9uZENoYWxsZW5nZRIeLm1hdGNoLlJlc3BvbmRDaGFsbGVuZ2VSZXF1",
+            "ZXN0Gh8ubWF0Y2guUmVzcG9uZENoYWxsZW5nZVJlc3BvbnNlIgASPAoVTm90",
+            "aWZ5Q2hhbGxlbmdlSW52aXRlEhkubWF0Y2guQ2hhbGxlbmdlSW52aXRlUzJD",
+            "GgYuRW1wdHkiABI8ChVOb3RpZnlDaGFsbGVuZ2VSZXN1bHQSGS5tYXRjaC5D",
+            "aGFsbGVuZ2VSZXN1bHRTMkMaBi5FbXB0eSIAEkYKC1dhdGNoQmF0dGxlEhku",
+            "bWF0Y2guV2F0Y2hCYXR0bGVSZXF1ZXN0GhoubWF0Y2guV2F0Y2hCYXR0bGVS",
+            "ZXNwb25zZSIAElIKE1JlcXVlc3RCYXR0bGVUaWNrZXQSGy5SZXF1ZXN0QmF0",
+            "dGxlVGlja2V0UmVxdWVzdBocLlJlcXVlc3RCYXR0bGVUaWNrZXRSZXNwb25z",
+            "ZSIAEmEKFExpc3RXYXRjaGFibGVCYXR0bGVzEiIubWF0Y2guTGlzdFdhdGNo",
+            "YWJsZUJhdHRsZXNSZXF1ZXN0GiMubWF0Y2guTGlzdFdhdGNoYWJsZUJhdHRs",
+            "ZXNSZXNwb25zZSIAGgWIqMMBAUIRWgttYXRjaC9tYXRjaJjUYRViBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerBattleReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerBattleReflection.Descriptor, global::Match.MatchNetworkReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Match.MatchMode), typeof(global::Match.QueueState), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Match.JoinQueueRequest), global::Match.JoinQueueRequest.Parser, new[]{ "PlayerId", "Mode", "MapConfigId", "PartyMemberIds", "ZoneId", "BattleConfigId", "TeamSize" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Match.JoinQueueRequest), global::Match.JoinQueueRequest.Parser, new[]{ "PlayerId", "Mode", "MapConfigId", "PartyMemberIds", "ZoneId", "BattleConfigId", "TeamSize", "RequestId", "NetworkPlanId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.JoinQueueResponse), global::Match.JoinQueueResponse.Parser, new[]{ "ErrorCode", "QueueTicket", "ErrorMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Match.CancelQueueRequest), global::Match.CancelQueueRequest.Parser, new[]{ "PlayerId", "QueueTicket" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Match.GetQueueStatusRequest), global::Match.GetQueueStatusRequest.Parser, new[]{ "PlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Match.GetQueueStatusResponse), global::Match.GetQueueStatusResponse.Parser, new[]{ "State", "EstimatedWaitSeconds", "QueuedSeconds" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Match.CancelQueueRequest), global::Match.CancelQueueRequest.Parser, new[]{ "PlayerId", "QueueTicket", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Match.GetQueueStatusRequest), global::Match.GetQueueStatusRequest.Parser, new[]{ "PlayerId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Match.GetQueueStatusResponse), global::Match.GetQueueStatusResponse.Parser, new[]{ "State", "EstimatedWaitSeconds", "QueuedSeconds", "QueueTicket", "BattleId", "SelectedRegion", "RetryAfterMs", "RequestCancelled" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.ChallengePlayerRequest), global::Match.ChallengePlayerRequest.Parser, new[]{ "PlayerId", "TargetPlayerId", "BattleConfigId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.ChallengePlayerResponse), global::Match.ChallengePlayerResponse.Parser, new[]{ "ChallengeId", "ErrorMessage" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.RespondChallengeRequest), global::Match.RespondChallengeRequest.Parser, new[]{ "PlayerId", "ChallengeId", "Accept" }, null, null, null, null),
@@ -222,6 +232,8 @@ namespace Match {
       zoneId_ = other.zoneId_;
       battleConfigId_ = other.battleConfigId_;
       teamSize_ = other.teamSize_;
+      requestId_ = other.requestId_;
+      networkPlanId_ = other.networkPlanId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -343,6 +355,33 @@ namespace Match {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 8;
+    private string requestId_ = "";
+    /// <summary>
+    /// 同一玩家意图重放必须复用；为空只允许未启用全球权威的开发兼容模式。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "network_plan_id" field.</summary>
+    public const int NetworkPlanIdFieldNumber = 9;
+    private string networkPlanId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string NetworkPlanId {
+      get { return networkPlanId_; }
+      set {
+        networkPlanId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -365,6 +404,8 @@ namespace Match {
       if (ZoneId != other.ZoneId) return false;
       if (BattleConfigId != other.BattleConfigId) return false;
       if (TeamSize != other.TeamSize) return false;
+      if (RequestId != other.RequestId) return false;
+      if (NetworkPlanId != other.NetworkPlanId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -379,6 +420,8 @@ namespace Match {
       if (ZoneId != 0) hash ^= ZoneId.GetHashCode();
       if (BattleConfigId != 0) hash ^= BattleConfigId.GetHashCode();
       if (TeamSize != 0) hash ^= TeamSize.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
+      if (NetworkPlanId.Length != 0) hash ^= NetworkPlanId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -422,6 +465,14 @@ namespace Match {
         output.WriteRawTag(56);
         output.WriteUInt32(TeamSize);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(RequestId);
+      }
+      if (NetworkPlanId.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(NetworkPlanId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -457,6 +508,14 @@ namespace Match {
         output.WriteRawTag(56);
         output.WriteUInt32(TeamSize);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(RequestId);
+      }
+      if (NetworkPlanId.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(NetworkPlanId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -485,6 +544,12 @@ namespace Match {
       }
       if (TeamSize != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TeamSize);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
+      }
+      if (NetworkPlanId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(NetworkPlanId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -516,6 +581,12 @@ namespace Match {
       }
       if (other.TeamSize != 0) {
         TeamSize = other.TeamSize;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
+      }
+      if (other.NetworkPlanId.Length != 0) {
+        NetworkPlanId = other.NetworkPlanId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -565,6 +636,14 @@ namespace Match {
             TeamSize = input.ReadUInt32();
             break;
           }
+          case 66: {
+            RequestId = input.ReadString();
+            break;
+          }
+          case 74: {
+            NetworkPlanId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -611,6 +690,14 @@ namespace Match {
           }
           case 56: {
             TeamSize = input.ReadUInt32();
+            break;
+          }
+          case 66: {
+            RequestId = input.ReadString();
+            break;
+          }
+          case 74: {
+            NetworkPlanId = input.ReadString();
             break;
           }
         }
@@ -944,6 +1031,7 @@ namespace Match {
     public CancelQueueRequest(CancelQueueRequest other) : this() {
       playerId_ = other.playerId_;
       queueTicket_ = other.queueTicket_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -980,6 +1068,21 @@ namespace Match {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private string requestId_ = "";
+    /// <summary>
+    /// 对未知结果的 Join 也能撤销；与原 Join 共用编号，服务端永久阻止该意图迟到入队。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -997,6 +1100,7 @@ namespace Match {
       }
       if (PlayerId != other.PlayerId) return false;
       if (QueueTicket != other.QueueTicket) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1006,6 +1110,7 @@ namespace Match {
       int hash = 1;
       if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
       if (QueueTicket.Length != 0) hash ^= QueueTicket.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1032,6 +1137,10 @@ namespace Match {
         output.WriteRawTag(18);
         output.WriteString(QueueTicket);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1050,6 +1159,10 @@ namespace Match {
         output.WriteRawTag(18);
         output.WriteString(QueueTicket);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1065,6 +1178,9 @@ namespace Match {
       }
       if (QueueTicket.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(QueueTicket);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1083,6 +1199,9 @@ namespace Match {
       }
       if (other.QueueTicket.Length != 0) {
         QueueTicket = other.QueueTicket;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1111,6 +1230,10 @@ namespace Match {
             QueueTicket = input.ReadString();
             break;
           }
+          case 26: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1136,6 +1259,10 @@ namespace Match {
           }
           case 18: {
             QueueTicket = input.ReadString();
+            break;
+          }
+          case 26: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -1181,6 +1308,7 @@ namespace Match {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public GetQueueStatusRequest(GetQueueStatusRequest other) : this() {
       playerId_ = other.playerId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1202,6 +1330,21 @@ namespace Match {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 2;
+    private string requestId_ = "";
+    /// <summary>
+    /// 查询本次 Join 的撤销提交证据；不改变当前票据身份。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1218,6 +1361,7 @@ namespace Match {
         return true;
       }
       if (PlayerId != other.PlayerId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1226,6 +1370,7 @@ namespace Match {
     public override int GetHashCode() {
       int hash = 1;
       if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1248,6 +1393,10 @@ namespace Match {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1262,6 +1411,10 @@ namespace Match {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1274,6 +1427,9 @@ namespace Match {
       int size = 0;
       if (PlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PlayerId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1289,6 +1445,9 @@ namespace Match {
       }
       if (other.PlayerId != 0UL) {
         PlayerId = other.PlayerId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1313,6 +1472,10 @@ namespace Match {
             PlayerId = input.ReadUInt64();
             break;
           }
+          case 18: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1334,6 +1497,10 @@ namespace Match {
             break;
           case 8: {
             PlayerId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -1381,6 +1548,11 @@ namespace Match {
       state_ = other.state_;
       estimatedWaitSeconds_ = other.estimatedWaitSeconds_;
       queuedSeconds_ = other.queuedSeconds_;
+      queueTicket_ = other.queueTicket_;
+      battleId_ = other.battleId_;
+      selectedRegion_ = other.selectedRegion_;
+      retryAfterMs_ = other.retryAfterMs_;
+      requestCancelled_ = other.requestCancelled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1432,6 +1604,69 @@ namespace Match {
       }
     }
 
+    /// <summary>Field number for the "queue_ticket" field.</summary>
+    public const int QueueTicketFieldNumber = 4;
+    private string queueTicket_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string QueueTicket {
+      get { return queueTicket_; }
+      set {
+        queueTicket_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "battle_id" field.</summary>
+    public const int BattleIdFieldNumber = 5;
+    private ulong battleId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong BattleId {
+      get { return battleId_; }
+      set {
+        battleId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "selected_region" field.</summary>
+    public const int SelectedRegionFieldNumber = 6;
+    private uint selectedRegion_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint SelectedRegion {
+      get { return selectedRegion_; }
+      set {
+        selectedRegion_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "retry_after_ms" field.</summary>
+    public const int RetryAfterMsFieldNumber = 7;
+    private uint retryAfterMs_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint RetryAfterMs {
+      get { return retryAfterMs_; }
+      set {
+        retryAfterMs_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "request_cancelled" field.</summary>
+    public const int RequestCancelledFieldNumber = 8;
+    private bool requestCancelled_;
+    /// <summary>
+    /// 对上述 request_id 的 SQL 撤销墓碑已提交；NOT_QUEUED 单独不构成此证据。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool RequestCancelled {
+      get { return requestCancelled_; }
+      set {
+        requestCancelled_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1450,6 +1685,11 @@ namespace Match {
       if (State != other.State) return false;
       if (EstimatedWaitSeconds != other.EstimatedWaitSeconds) return false;
       if (QueuedSeconds != other.QueuedSeconds) return false;
+      if (QueueTicket != other.QueueTicket) return false;
+      if (BattleId != other.BattleId) return false;
+      if (SelectedRegion != other.SelectedRegion) return false;
+      if (RetryAfterMs != other.RetryAfterMs) return false;
+      if (RequestCancelled != other.RequestCancelled) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1460,6 +1700,11 @@ namespace Match {
       if (State != global::Match.QueueState.Unspecified) hash ^= State.GetHashCode();
       if (EstimatedWaitSeconds != 0) hash ^= EstimatedWaitSeconds.GetHashCode();
       if (QueuedSeconds != 0) hash ^= QueuedSeconds.GetHashCode();
+      if (QueueTicket.Length != 0) hash ^= QueueTicket.GetHashCode();
+      if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+      if (SelectedRegion != 0) hash ^= SelectedRegion.GetHashCode();
+      if (RetryAfterMs != 0) hash ^= RetryAfterMs.GetHashCode();
+      if (RequestCancelled != false) hash ^= RequestCancelled.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1490,6 +1735,26 @@ namespace Match {
         output.WriteRawTag(24);
         output.WriteUInt32(QueuedSeconds);
       }
+      if (QueueTicket.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(QueueTicket);
+      }
+      if (BattleId != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(BattleId);
+      }
+      if (SelectedRegion != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(SelectedRegion);
+      }
+      if (RetryAfterMs != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(RetryAfterMs);
+      }
+      if (RequestCancelled != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(RequestCancelled);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1512,6 +1777,26 @@ namespace Match {
         output.WriteRawTag(24);
         output.WriteUInt32(QueuedSeconds);
       }
+      if (QueueTicket.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(QueueTicket);
+      }
+      if (BattleId != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(BattleId);
+      }
+      if (SelectedRegion != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(SelectedRegion);
+      }
+      if (RetryAfterMs != 0) {
+        output.WriteRawTag(56);
+        output.WriteUInt32(RetryAfterMs);
+      }
+      if (RequestCancelled != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(RequestCancelled);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1530,6 +1815,21 @@ namespace Match {
       }
       if (QueuedSeconds != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(QueuedSeconds);
+      }
+      if (QueueTicket.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(QueueTicket);
+      }
+      if (BattleId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+      }
+      if (SelectedRegion != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SelectedRegion);
+      }
+      if (RetryAfterMs != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RetryAfterMs);
+      }
+      if (RequestCancelled != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1551,6 +1851,21 @@ namespace Match {
       }
       if (other.QueuedSeconds != 0) {
         QueuedSeconds = other.QueuedSeconds;
+      }
+      if (other.QueueTicket.Length != 0) {
+        QueueTicket = other.QueueTicket;
+      }
+      if (other.BattleId != 0UL) {
+        BattleId = other.BattleId;
+      }
+      if (other.SelectedRegion != 0) {
+        SelectedRegion = other.SelectedRegion;
+      }
+      if (other.RetryAfterMs != 0) {
+        RetryAfterMs = other.RetryAfterMs;
+      }
+      if (other.RequestCancelled != false) {
+        RequestCancelled = other.RequestCancelled;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1583,6 +1898,26 @@ namespace Match {
             QueuedSeconds = input.ReadUInt32();
             break;
           }
+          case 34: {
+            QueueTicket = input.ReadString();
+            break;
+          }
+          case 40: {
+            BattleId = input.ReadUInt64();
+            break;
+          }
+          case 48: {
+            SelectedRegion = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            RetryAfterMs = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            RequestCancelled = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -1612,6 +1947,26 @@ namespace Match {
           }
           case 24: {
             QueuedSeconds = input.ReadUInt32();
+            break;
+          }
+          case 34: {
+            QueueTicket = input.ReadString();
+            break;
+          }
+          case 40: {
+            BattleId = input.ReadUInt64();
+            break;
+          }
+          case 48: {
+            SelectedRegion = input.ReadUInt32();
+            break;
+          }
+          case 56: {
+            RetryAfterMs = input.ReadUInt32();
+            break;
+          }
+          case 64: {
+            RequestCancelled = input.ReadBool();
             break;
           }
         }

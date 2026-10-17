@@ -19,8 +19,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
     {
         private GuildFakeTransport _net;
         private GuildClient _client;
-        [SetUp] public void SetUp() { _net = new GuildFakeTransport(); _client = new GuildClient(_net); }
-        [TearDown] public void TearDown() => _client.Dispose();
+        private string _recoveryDirectory;
+        [SetUp] public void SetUp()
+        {
+            _recoveryDirectory = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "guild-client-test-" + Guid.NewGuid().ToString("N"));
+            _net = new GuildFakeTransport();
+            _client = new GuildClient(_net, economyRecovery: new DurableRequestFileStore(_recoveryDirectory));
+        }
+        [TearDown] public void TearDown()
+        {
+            _client.Dispose();
+            if (System.IO.Directory.Exists(_recoveryDirectory)) System.IO.Directory.Delete(_recoveryDirectory, true);
+        }
 
         [Test] public void NotInGuildIsLoadedEmptyState()
         {
@@ -1095,6 +1105,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         /// 建房前只挡"明显发不出去"的名单:没有历练视图、活动 id 不是历练、自己不在首位、人数越界、重复、编号为 0。
         /// 在不在线、是不是本帮由服务端核对。发出去的请求带活动 id 与整份名单(顺序不变)。
         /// </summary>
+        [Test] public void TrialDirectEntrancesWaitForOwnNetworkReceiptAndFailureSendsNothing()
+        {
+            Load();_client.RefreshActivities();_net.Reply(TrialFixture());
+            Action ready=null;Action<string> failed=null;_client.PrepareMatchNetwork=(ok,no)=>{ready=ok;failed=no;};
+            int before=_net.Calls.Count;_client.StartTrial(3,new ulong[]{1,3});Assert.That(_net.Calls.Count,Is.EqualTo(before));
+            failed("无法确认战斗网络。");Assert.That(_net.Calls.Count,Is.EqualTo(before));
+            _client.StartTrial(3,new ulong[]{1,3});ready();Assert.That(_net.Calls.Last(),Is.EqualTo(MessageIds.StartGuildTrial));
+            _net.Reply(new StartGuildTrialResponse{Activity=TrialFixture().Activities[0]});
+            before=_net.Calls.Count;_client.RespondTrialInvite(77,true);Assert.That(_net.Calls.Count,Is.EqualTo(before));
+            ready();Assert.That(_net.Calls.Last(),Is.EqualTo(MessageIds.RespondGuildTrialInvite));
+        }
+        [Test] public void TrialNetworkCompletionAfterSessionResetCannotSendOldIntent()
+        {
+            Load();_client.RefreshActivities();_net.Reply(TrialFixture());Action ready=null;
+            _client.PrepareMatchNetwork=(ok,no)=>ready=ok;_client.StartTrial(3,new ulong[]{1,3});int before=_net.Calls.Count;
+            _client.Reset();ready();Assert.That(_net.Calls.Count,Is.EqualTo(before));
+        }
+
         [Test] public void StartTrialValidatesLocally()
         {
             Load();
@@ -1491,6 +1519,78 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _client.RefreshActivities(); _net.Reply(TrialFixture(Lobby(3, 1)));
             _client.NoteBattleEnded();
             Assert.That(_client.ActivitiesNeedReload(0), Is.True);
+        }
+
+        // ── 落地恢复的后台读取(GuildUiRoot 窗口隐藏时每帧 DrainSyncQueued;打开窗口时 Busy 则 QueueRefresh)──
+        [Test] public void DrainSyncQueued_SendsWhileWindowHidden()
+        {
+            int changed = 0; _client.Changed += () => changed++;
+            string status = _client.Status;
+            _client.QueueSyncRefresh(GuildSyncRead.MyApplications);
+            Assert.That(_net.Calls, Is.Empty, "只置位");
+            Assert.That(changed, Is.Zero); Assert.That(_client.Status, Is.EqualTo(status), "排队不写提示(被动方隐私)");
+            // 帮会快照还没拉过:先补拉它,本人申请以它为前提。
+            _client.DrainSyncQueued(); Assert.That(_net.Calls.Single(), Is.EqualTo(MessageIds.GetPlayerGuild));
+            _client.DrainSyncQueued(); Assert.That(_net.Calls.Count, Is.EqualTo(1), "在途时不发第二个");
+            _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
+            _client.DrainSyncQueued(); Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
+            _net.Reply(new ListMyGuildApplicationsResponse());
+            _client.DrainSyncQueued(); Assert.That(_net.Calls.Count, Is.EqualTo(2), "排的读取都已发出");
+        }
+        [Test] public void BackgroundMyApplicationsPull_ThenOpeningWindowSendsOnlyGetPlayerGuild()
+        {
+            GetPlayerGuildResponse NotInGuild() =>
+                new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } };
+            _client.QueueSyncRefresh(GuildSyncRead.MyApplications);
+            _client.DrainSyncQueued(); _net.Reply(NotInGuild());
+            // NotInGuild 分支见本地列表为空,排了一次本人申请重拉;后台这一发要把它一并满足。
+            Assert.That(_client.MyApplicationsQueued, Is.True);
+            _client.DrainSyncQueued(); Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
+            Assert.That(_client.MyApplicationsQueued, Is.False, "后台这一发已满足 NotInGuild 分支排的重拉");
+            _net.Reply(new ListMyGuildApplicationsResponse());
+            int before = _net.Calls.Count;
+            // 玩家打开帮会窗口:Toggle 发一次 Refresh,之后窗口可见的每一帧 DrainQueued。
+            _client.Refresh(); _net.Reply(NotInGuild());
+            _client.DrainQueued(false); _client.DrainQueued(false);
+            Assert.That(_net.Calls.Skip(before), Is.EqualTo(new[] { MessageIds.GetPlayerGuild }), "本人申请刚在后台拉过,开窗不重拉");
+        }
+        [Test] public void DrainSyncQueued_InGuildSkipsMyApplicationsAndIdlesWhenQuarantined()
+        {
+            Load(); int before = _net.Calls.Count;
+            _client.QueueSyncRefresh(GuildSyncRead.MyApplications);
+            _client.DrainSyncQueued(); Assert.That(_net.Calls.Count, Is.EqualTo(before), "已入帮不拉本人申请");
+            _client.Refresh(); _net.Error("rpc timeout"); before = _net.Calls.Count;
+            Assert.That(_client.RequiresReconnect, Is.True);
+            _client.QueueSyncRefresh(GuildSyncRead.Guild);
+            _client.DrainSyncQueued(); Assert.That(_net.Calls.Count, Is.EqualTo(before), "隔离态不发后台读取");
+        }
+        [Test] public void Toggle_WhileBackgroundPullBusy_QueuesRefresh()
+        {
+            _client.QueueSyncRefresh(GuildSyncRead.Guild); _client.DrainSyncQueued();
+            Assert.That(_client.Busy, Is.True, "后台读取在途");
+            // 旧做法:直接 Refresh 会被 Busy 静默吞掉,标志也不留。
+            _client.Refresh(); Assert.That(_net.Calls.Count, Is.EqualTo(1)); Assert.That(_client.RefreshQueued, Is.False);
+            // GuildUiRoot.RefreshOrQueue:Busy 时改为排队,窗口可见后由 DrainQueued 在空闲帧发出。
+            _client.QueueRefresh(); Assert.That(_client.RefreshQueued, Is.True);
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2)); Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+        }
+        [Test] public void SyncReadHookIsTakenOnlyForSentReadsAndAcksOnlyAfterApply()
+        {
+            var started = new List<GuildSyncRead>(); var acked = new List<GuildSyncRead>();
+            _client.SyncReadStarted = read => { started.Add(read); return () => acked.Add(read); };
+            _client.Refresh(); _client.Refresh(); // 第二发被 Busy 挡掉:没发出就不取票
+            Assert.That(started, Is.EqualTo(new[] { GuildSyncRead.Guild }));
+            Assert.That(acked, Is.Empty, "回包前不确认");
+            _net.Reply(new GetPlayerGuildResponse { Guild = Fixture() });
+            Assert.That(acked, Is.EqualTo(new[] { GuildSyncRead.Guild }));
+            _client.SaveAnnouncement("新的公告"); _net.Reply(new SetAnnouncementResponse { Guild = Fixture() });
+            Assert.That(started.Count, Is.EqualTo(1), "写请求不取票");
+            _client.RefreshDonations();
+            Assert.That(started.Last(), Is.EqualTo(GuildSyncRead.Donations));
+            _net.Reply(new GetGuildDonateOptionsResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildBusyRetry } });
+            Assert.That(acked, Is.EqualTo(new[] { GuildSyncRead.Guild }), "错误回包不确认");
         }
 
         private void LoadActivities() { _client.RefreshActivities(); _net.Reply(ActivitiesFixture()); }

@@ -5,6 +5,7 @@ using Google.Protobuf;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
 using Teampb;
+using MmorpgClient.Net.Generated;
 
 namespace MmorpgClient.Game.Team
 {
@@ -39,6 +40,11 @@ namespace MmorpgClient.Game.Team
         private const string TooFastMessage = "操作太快了，请稍候再试。";
         private const string InvalidTargetMessage = "请输入有效的玩家编号。";
         private const string MatchLockedMessage = "队伍正在进入战斗，请稍候。";
+        public DurableRequestFileStore MatchRecovery { get; set; }
+        private StartTeamMatchRequest _pendingStart;
+        private ulong _startRecoveryPlayer;
+        private bool _startRecoveryBlocked;
+        private bool _startHadUncertainAttempt;
         private const string NotMemberMessage = "该玩家不在队伍中。";
 
         private readonly IBattleTransport _net;
@@ -72,6 +78,9 @@ namespace MmorpgClient.Game.Team
         public ulong PlayerId => _net.PlayerId;
         /// <summary>永不为 null;无队或未加载时 TeamId == 0。</summary>
         public TeamSnapshot Snapshot { get; private set; }
+        // 同一地域探测协调器由生产UI根注入；只有已组队玩家周期维护，避免全服空闲玩家持续探测。
+        public Action<Action, Action<string>> PrepareMatchNetwork { get; set; }
+        private float _nextNetworkProbeAt;
         /// <summary>永不为 null;收到的邀请。</summary>
         public IReadOnlyList<TeamInvite> Invites { get; }
         /// <summary>本会话探针 GetMyTeam 已收到回包(TeamResponse),即使带了内层 tip。</summary>
@@ -201,11 +210,17 @@ namespace MmorpgClient.Game.Team
         /// </summary>
         public void DrainQueued(bool panelVisible)
         {
+            RestoreStartIntent();
             if (_disposed) return;
             float now = _clock();
             // 过期邀请即使 Busy 也照样剔除。
             if (_invites.RemoveAll(invite => invite.ExpiresAt <= now) > 0) Changed?.Invoke();
             if (Busy || RequiresReconnect || Suspended || !_net.IsReady || PlayerId == 0) return;
+            if (Snapshot.TeamId != 0 && PrepareMatchNetwork != null && now >= _nextNetworkProbeAt)
+            {
+                _nextNetworkProbeAt = now + 25;
+                PrepareMatchNetwork(() => { }, error => { Status = error; Changed?.Invoke(); });
+            }
             if (TooSoon(now)) return;
             // 排队的读在退避期内不补发;面板的 30 秒刷新本来就隔得够久,不受退避影响。
             bool retryReady = now >= _readRetryAt;
@@ -287,17 +302,59 @@ namespace MmorpgClient.Game.Team
                 TeamResponse.Parser, false,
                 reply => FinishWrite(TeamAction.Disband, 0, reply, "队伍已解散。"));
 
-        public bool StartMatch(uint battleConfigId) =>
-            Send(TeamAction.StartMatch, 0, MessageIds.StartTeamMatch,
-                new StartTeamMatchRequest { BattleConfigId = battleConfigId, ExpectedTeamId = Snapshot.TeamId },
-                TeamResponse.Parser, false,
-                reply => FinishWrite(TeamAction.StartMatch, 0, reply, "已发起队伍战斗，正在集合队员…"));
+        public bool StartMatch(uint battleConfigId)
+        {
+            RestoreStartIntent();
+            if(_startRecoveryBlocked){Status="开局恢复记录无法读取，保留保护状态；请修复本机存储后重新登录。";Changed?.Invoke();return false;}
+            if(_pendingStart!=null&&_pendingStart.BattleConfigId!=battleConfigId){Status="上一笔队伍开局结果尚未确认，请先恢复原请求。";Changed?.Invoke();return false;}
+            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId);
+            int generation = _generation; ulong teamId = Snapshot.TeamId;
+            PrepareMatchNetwork(() => { if (!_disposed && generation == _generation && Snapshot.TeamId == teamId) SendStartMatch(battleConfigId); },
+                error => { if (!_disposed && generation == _generation) { Status = error; Changed?.Invoke(); } });
+            return true;
+        }
+
+        private bool SendStartMatch(uint battleConfigId)
+        {
+            if(_pendingStart!=null)_startHadUncertainAttempt=true;
+            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,RequestId=Guid.NewGuid().ToString("D")};
+            return Send(TeamAction.StartMatch,0,MessageIds.StartTeamMatch,request,TeamResponse.Parser,false,reply=>{
+                FinishWrite(TeamAction.StartMatch,0,reply,"开局已受理，正在集合队员…");
+                if(!_startHadUncertainAttempt&&reply.ErrorMessage!=null&&reply.ErrorMessage.Id!=0&&!TipFaults.IsFault(reply.ErrorMessage.Id)){ClearStartIntent();return;}
+                ObserveStartIntent(reply);
+            },beforeSend:()=>{
+                MatchRecovery?.Save(PlayerId,Convert.ToBase64String(request.ToByteArray()));
+                _pendingStart=request;_startRecoveryPlayer=PlayerId;
+            });
+        }
+        private void RestoreStartIntent()
+        {
+            if(MatchRecovery==null||PlayerId==0||_startRecoveryPlayer==PlayerId)return;
+            _startRecoveryPlayer=PlayerId;_pendingStart=null;_startRecoveryBlocked=false;_startHadUncertainAttempt=false;
+            try{
+                string raw=MatchRecovery.Load(PlayerId);if(raw.Length==0)return;
+                var request=StartTeamMatchRequest.Parser.ParseFrom(Convert.FromBase64String(raw));
+                if(request.ExpectedTeamId==0||request.BattleConfigId==0||!Guid.TryParseExact(request.RequestId,"D",out var parsed)||parsed==Guid.Empty)throw new InvalidOperationException();
+                _pendingStart=request;_startHadUncertainAttempt=true;RefreshQueued=true;Status="有待确认队伍开局，正在查询原请求。";
+            }catch(Exception){_startRecoveryBlocked=true;Status="开局恢复记录损坏或无法读取，保留保护状态。";}
+        }
+        private void ObserveStartIntent(TeamResponse response)
+        {
+            if(_pendingStart==null)return;
+            var view=response.MatchIntent;
+            if(view!=null&&view.RequestId==_pendingStart.RequestId&&view.BattleId!=0&&view.State>=1&&view.State<=5){
+                try{ClearStartIntent();}
+                catch(Exception){Status="开局已受理，本机恢复记录尚未清理。";return;}
+                Status=view.State==5?"原队伍开局已确认中止。":"原队伍开局已受理，正在恢复战斗。";
+            }else{RefreshQueued=true;_readRetryAt=_clock()+ReadRetryDelaySeconds;Status="队伍开局结果尚未确认；重试会使用原请求。";}
+        }
+        private void ClearStartIntent(){if(_pendingStart==null)return;MatchRecovery?.Clear(PlayerId,Convert.ToBase64String(_pendingStart.ToByteArray()));_pendingStart=null;_startHadUncertainAttempt=false;}
 
         // 请求体在调用 Send 之前构造:NotifyOnline 取发送当下的排队值,Send 真正发出后才清零;
         // 服务端没走到上线广播(限流、回包不带视图)时,由回包 / 错误处理按请求体重新置位。
         private bool SendRefresh(bool silent)
         {
-            var request = new GetMyTeamRequest { NotifyOnline = _notifyOnlineQueued };
+            var request = new GetMyTeamRequest { NotifyOnline = _notifyOnlineQueued, MatchRequestId = _pendingStart?.RequestId ?? string.Empty };
             return Send(TeamAction.Refresh, 0, MessageIds.GetMyTeam, request,
                 TeamResponse.Parser, silent, reply => OnMyTeam(reply, silent, request.NotifyOnline));
         }
@@ -383,6 +440,7 @@ namespace MmorpgClient.Game.Team
             {
                 Status = DescribeTip(reply.ErrorMessage);   // 静默也写
             }
+            ObserveStartIntent(reply);
         }
 
         /// <summary>
@@ -456,6 +514,7 @@ namespace MmorpgClient.Game.Team
 
         private void OnTransportError(string error, TeamAction action, IMessage request, bool probe, bool silent)
         {
+            if(action==TeamAction.StartMatch&&_pendingStart!=null)_startHadUncertainAttempt=true;
             if (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal))
             {
                 if (IsRateLimited(error))
@@ -722,7 +781,7 @@ namespace MmorpgClient.Game.Team
         /// silent 为 true 时不写 Status(DrainQueued 的后台读)。
         /// </summary>
         private bool Send<T>(TeamAction action, ulong target, uint messageId, IMessage request,
-                             MessageParser<T> parser, bool silent, Action<T> onReply) where T : IMessage<T>
+                             MessageParser<T> parser, bool silent, Action<T> onReply,Action beforeSend=null) where T : IMessage<T>
         {
             if (_disposed) return false;
             ObserveConnection();
@@ -745,6 +804,9 @@ namespace MmorpgClient.Game.Team
                 string rejection = Precondition(action, target, request);
                 if (rejection != null) { if (!silent) Reject(rejection); return false; }
             }
+
+            try{beforeSend?.Invoke();}
+            catch(Exception){Reject("无法保存队伍开局原请求，尚未发送。");return false;}
 
             // 落地恢复:读取到这里一定会发出,此刻取确认委托;写操作清掉上一次读取残留的委托。
             _syncReadAck = read ? SyncReadStarted?.Invoke(action) : null;
