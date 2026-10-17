@@ -216,6 +216,11 @@ $whitelist = @{
     "ClientPlayerTeamNotifyTeamSnapshot"           = "NotifyTeamSnapshot"
     "ClientPlayerTeamNotifyTeamInvite"             = "NotifyTeamInvite"
     "ClientPlayerTeamNotifyTeamEvent"              = "NotifyTeamEvent"
+
+    # 排行榜(proto/rank/rank.proto, service ClientPlayerRank;服务端 docs/design/leaderboard-system.md §4.6)。
+    # 只有一个读方法;号由 proto/message_id.txt 现场读取。漏配只出一条 Warning、常量不生成,
+    # Assets/Scripts/Game/Rank/RankClient.cs 就是 CS0117。
+    "ClientPlayerRankGetRankPage"                  = "GetRankPage"
 }
 
 $idByMethod = @{}
