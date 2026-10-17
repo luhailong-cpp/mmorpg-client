@@ -32,6 +32,8 @@ namespace MmorpgClient.Game.Team
     ///
     /// 暂离是纯本地状态,服务端不知道:换图时照样会被队长带走(服务端按队伍拉人),只是到了之后不排队。
     /// 只有确认换了队或离了队才复位;断线重连、跨区重定向期间队伍视图暂时拿不到,不算换队。
+    /// 归队(点「归队」,或跟随中看不到队长)要服务端把人带到队长身边:何时请求由 <see cref="TeamRegroupPolicy"/> 定,
+    /// 本类只发 <see cref="RegroupRequested"/>,由宿主交给 TeamClient.RequestRegroup。
     /// 只在主线程使用;不持有任何需要释放的资源,丢弃前调一次 <see cref="Release"/> 即可。
     /// </summary>
     public sealed class TeamFollowDriver
@@ -72,8 +74,16 @@ namespace MmorpgClient.Game.Team
         private Vector3 _routeTarget;
         private float _nextRouteAt;
         private float _forceRouteUntil;
+        private readonly TeamRegroupPolicy _regroup = new TeamRegroupPolicy();
+        // 玩家刚点了「归队」,下一次 Tick 拿到时钟后再交给 _regroup.Manual。
+        private bool _rejoinPending;
+        // 这一帧的"看不到队长"是不是真的看不到:本地角色就绪(地图装好)时才算,换图加载中不算。
+        private bool _localReady;
 
         public TeamFollowStatus Status { get; private set; }
+
+        /// <summary>要请求归队(服务端把自己带到队长身边)。每次最多触发一次;订阅方调用 TeamClient.RequestRegroup。</summary>
+        public event Action RegroupRequested;
 
         /// <summary>
         /// 诊断输出(联机验收排障用)。非 null 时:不跟随的原因变化、指令种类 / 被挡住 / 寻路状态变化各写一行,
@@ -94,10 +104,33 @@ namespace MmorpgClient.Game.Team
             if (Away == away) return;
             Away = away;
             if (away) Suspend();
+            else _rejoinPending = true;
         }
 
         /// <summary>
-        /// 每帧调用一次。
+        /// 每帧调用一次。参数见 <see cref="TickFollow"/>;跟随之外,顺带决定这一帧要不要请求归队。
+        /// </summary>
+        public void Tick(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
+        {
+            _localReady = false;
+            TickFollow(game, snapshot, allowed, now);
+            bool follower = Status == TeamFollowStatus.Following || Status == TeamFollowStatus.LeaderOutOfSight;
+            bool lost = Status == TeamFollowStatus.LeaderOutOfSight && _localReady;
+            bool request = _regroup.Tick(lost, LeaderOnline(snapshot), now);
+            if (_rejoinPending)
+            {
+                _rejoinPending = false;
+                // 点完「归队」这一帧不跟随(战斗画面亮着 / 视图未知)就不请求:那时服务端也不会动人。
+                if (follower && _regroup.Manual(now)) request = true;
+            }
+            if (!request) return;
+            if (Trace != null)
+                Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} regroup requested: status={1} lost={2}", now, Status, lost));
+            RegroupRequested?.Invoke();
+        }
+
+        /// <summary>
+        /// 跟随本身(每帧一次,由 <see cref="Tick"/> 调用)。
         /// </summary>
         /// <param name="game">当前会话;null 等同于不允许跟随。</param>
         /// <param name="snapshot">
@@ -106,7 +139,7 @@ namespace MmorpgClient.Game.Team
         /// </param>
         /// <param name="allowed">此刻是否允许跟随移动(已进游戏、不在战斗画面)。false 时归还控制权但保留暂离选择。</param>
         /// <param name="now">单调时钟秒数(Time.realtimeSinceStartup)。</param>
-        public void Tick(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
+        private void TickFollow(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
         {
             if (snapshot == null || game == null)
             {
@@ -118,9 +151,11 @@ namespace MmorpgClient.Game.Team
 
             if (snapshot.TeamId != _teamId)
             {
-                // 确认换队 / 离队:暂离与上一支队伍的轨迹都不带过去。
+                // 确认换队 / 离队:暂离、没发出去的「归队」与上一支队伍的轨迹都不带过去。
                 _teamId = snapshot.TeamId;
                 Away = false;
+                _rejoinPending = false;
+                _regroup.Reset();
                 ForgetLeader();
             }
             if (game.CurrentSceneId != _sceneId)
@@ -152,6 +187,8 @@ namespace MmorpgClient.Game.Team
             if (leader == null)
             {
                 // 看不到队长:没有可跟的目标,让玩家自己走;轨迹作废,再见到队长时重起。
+                // 本地角色就绪时才算真的走散(Tick 据此请求归队);地图还在加载不算。
+                _localReady = controller != null;
                 Release();
                 ForgetLeader();
                 Status = TeamFollowStatus.LeaderOutOfSight;
@@ -303,6 +340,15 @@ namespace MmorpgClient.Game.Team
         }
 
         private void HandleInputRejected() => InputRejected?.Invoke();
+
+        /// <summary>队伍快照里队长在线;找不到队长那一行(视图未知 / 不在队里)按不在线。</summary>
+        private static bool LeaderOnline(TeamSnapshot snapshot)
+        {
+            if (snapshot == null || snapshot.LeaderId == 0) return false;
+            foreach (var member in snapshot.Members)
+                if (member != null && member.PlayerId == snapshot.LeaderId) return member.IsOnline;
+            return false;
+        }
 
         private static TianyongPlayerController ResolveLocalController(ActorWorld world)
         {

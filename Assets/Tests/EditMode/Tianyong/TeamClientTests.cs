@@ -1202,6 +1202,84 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         /// <summary>探针 → 回复视图 → 邀请列表 → 回复空列表;结束时距上次发送已超过发送间隔。</summary>
+        // ── 归队(组队跟随 v1.1 V.9)──
+
+        [Test]
+        public void RequestRegroup_MemberSendsOneGetMyTeamWithRegroupThenClears()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            int calls = _net.Calls.Count;
+
+            _client.RequestRegroup();
+            Assert.That(_client.RegroupQueued && _client.RefreshQueued, Is.True);
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.True);
+            Assert.That(LastRequest<GetMyTeamRequest>().NotifyOnline, Is.False, "上线通知探针时已经带过");
+            Assert.That(_client.RegroupQueued, Is.False, "真正发出后清零");
+            _net.Reply(new TeamResponse { Team = View(100, 10, 5, 1, 10, 11, 12) });
+
+            // 之后的普通拉取不再带。
+            _now += 0.5f;
+            _client.RequestRefresh();
+            _client.DrainQueued(false);
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.False);
+        }
+
+        [Test]
+        public void RequestRegroup_IsNoOpForLeaderAndWithoutTeam()
+        {
+            Loaded(); // 本机 10 是队长
+            _client.RequestRegroup();
+            Assert.That(_client.RegroupQueued, Is.False, "队长没有可归的队长");
+
+            _client.Reset();
+            LoadedNoTeam();
+            _client.RequestRegroup();
+            Assert.That(_client.RegroupQueued, Is.False, "不在队里");
+        }
+
+        [Test]
+        public void RequestRegroup_RateLimitedIsResentAfterBackoff()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            _client.RequestRegroup();
+            _client.DrainQueued(false);
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.True);
+            _net.Fail("server tip=1008");
+            Assert.That(_client.RegroupQueued, Is.True, "请求没到组队服务,归队要再带一次");
+
+            int calls = _net.Calls.Count;
+            _now += TeamClient.ReadRetryDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.True);
+        }
+
+        [Test]
+        public void RequestRegroup_ReplyWithoutViewIsResent()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            _client.RequestRegroup();
+            _client.DrainQueued(false);
+            _net.Reply(Response(null, team_error.KTeamInternal));
+            Assert.That(_client.RegroupQueued, Is.True, "服务端没读到视图就不会归队");
+        }
+
+        [Test]
+        public void Reset_DropsQueuedRegroup()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            _client.RequestRegroup();
+            _client.Reset();
+            Assert.That(_client.RegroupQueued, Is.False, "新会话进场时服务端自己会跟随");
+        }
+
         private void Loaded(TeamView view = null)
         {
             _now += 0.5f;

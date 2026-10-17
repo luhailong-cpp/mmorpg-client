@@ -62,6 +62,8 @@ namespace MmorpgClient.Game.Team
         private bool _hasView;
         // 下一次 GetMyTeam 是否带 notify_online:构造 / Reset 置位,真正发出后清零。
         private bool _notifyOnlineQueued;
+        // 下一次 GetMyTeam 是否带 regroup(请求归队):RequestRegroup 置位,真正发出后清零;Reset 清掉(新会话进场时服务端自己会跟随)。
+        private bool _regroupQueued;
         private float _lastSendAt;
         private float _lastRefreshAt;
         // 读失败后的退避:此刻之前 DrainQueued 不补发排队的读(探针也算),避免服务端故障时每 0.4 秒打一次。
@@ -197,6 +199,7 @@ namespace MmorpgClient.Game.Team
             _queueViewVerifyLeft = 0; _queueViewVerifyAt = float.PositiveInfinity;
             _invites.Clear(); _pushedInvites.Clear(); _revokedInvites.Clear(); HighlightPlayerId = 0;
             RefreshQueued = InvitesQueued = _notifyOnlineQueued = true;
+            _regroupQueued = false;
             // _lastSendAt / _sentAt 不清:限流按连接算。
             _lastRefreshAt = _readRetryAt = float.NegativeInfinity;
             Status = RequiresReconnect ? RecoveryMessage : Suspended ? SuspendedMessage : ConnectingMessage;
@@ -347,13 +350,13 @@ namespace MmorpgClient.Game.Team
             return sent;
         }
 
-        // 请求体在调用 Send 之前构造:NotifyOnline 取发送当下的排队值,Send 真正发出后才清零;
-        // 服务端没走到上线广播(限流、回包不带视图)时,由回包 / 错误处理按请求体重新置位。
+        // 请求体在调用 Send 之前构造:NotifyOnline / Regroup 取发送当下的排队值,Send 真正发出后才清零;
+        // 服务端没走到上线广播 / 归队(限流、回包不带视图)时,由回包 / 错误处理按请求体重新置位。
         private bool SendRefresh(bool silent)
         {
-            var request = new GetMyTeamRequest { NotifyOnline = _notifyOnlineQueued };
+            var request = new GetMyTeamRequest { NotifyOnline = _notifyOnlineQueued, Regroup = _regroupQueued };
             return Send(TeamAction.Refresh, 0, MessageIds.GetMyTeam, request,
-                TeamResponse.Parser, silent, reply => OnMyTeam(reply, silent, request.NotifyOnline));
+                TeamResponse.Parser, silent, reply => OnMyTeam(reply, silent, request));
         }
 
         private bool SendInvites(bool silent) =>
@@ -410,9 +413,9 @@ namespace MmorpgClient.Game.Team
         /// <summary>
         /// GetMyTeam 回包:只要收到 TeamResponse 就算探针通过,即使带了内层 tip。
         /// 不带视图(服务端自由读失败 4029 / 4030,或视图读失败)时不能据此推断"无队",
-        /// 保留本地快照,退避后重拉;这次服务端没走到上线广播,NotifyOnline 随重拉再发一次。
+        /// 保留本地快照,退避后重拉;这次服务端没走到上线广播 / 归队,NotifyOnline / Regroup 随重拉再发一次。
         /// </summary>
-        private void OnMyTeam(TeamResponse reply, bool silent, bool notifyOnline)
+        private void OnMyTeam(TeamResponse reply, bool silent, GetMyTeamRequest request)
         {
             HasLoaded = true;
             bool hasView = reply.Team != null;
@@ -422,7 +425,8 @@ namespace MmorpgClient.Game.Team
             {
                 RefreshQueued = true;
                 _readRetryAt = _clock() + ReadRetryDelaySeconds;
-                if (notifyOnline) _notifyOnlineQueued = true;
+                if (request.NotifyOnline) _notifyOnlineQueued = true;
+                if (request.Regroup) _regroupQueued = true;
             }
             if (Ok(reply.ErrorMessage))
             {
@@ -546,7 +550,11 @@ namespace MmorpgClient.Game.Team
                     // 读请求退避后重排,写请求交给玩家稍后重试。
                     if (action == TeamAction.Refresh) RefreshQueued = true;
                     if (action == TeamAction.ListInvites) InvitesQueued = true;
-                    if (request is GetMyTeamRequest refresh && refresh.NotifyOnline) _notifyOnlineQueued = true;
+                    if (request is GetMyTeamRequest refresh)
+                    {
+                        if (refresh.NotifyOnline) _notifyOnlineQueued = true;
+                        if (refresh.Regroup) _regroupQueued = true;
+                    }
                     if (action == TeamAction.Refresh || action == TeamAction.ListInvites)
                         _readRetryAt = _clock() + ReadRetryDelaySeconds;
                     if (!silent) Status = TooFastMessage;
@@ -773,6 +781,21 @@ namespace MmorpgClient.Game.Team
             if (!_disposed) RefreshQueued = true;
         }
 
+        /// <summary>
+        /// 请求归队:排一次带 regroup 的静默 GetMyTeam(下一次 DrainQueued 发出,与其他排队的拉取合并成一条)。
+        /// 服务端只在自己是队员(不是队长)时处理:与队长同一场景实例、且看不见或离得远就瞬移到队长脚下,
+        /// 队长在本节点另一个场景就换过去。限流 / 回包不带视图时随重拉再带一次;不在队里时是空操作。
+        /// </summary>
+        public void RequestRegroup()
+        {
+            if (_disposed || !HasTeam || IsLeader) return;
+            _regroupQueued = true;
+            RefreshQueued = true;
+        }
+
+        /// <summary>有一次归队请求排着还没发出(测试与诊断用)。</summary>
+        public bool RegroupQueued => _regroupQueued;
+
         /// <summary>snapshot 若仍标着已结束的那一次排队,把匹配态抹掉。</summary>
         private void StripConsumedQueue(TeamSnapshot snapshot)
         {
@@ -933,6 +956,7 @@ namespace MmorpgClient.Game.Team
                 _lastRefreshAt = _lastSendAt;
                 RefreshQueued = false;
                 _notifyOnlineQueued = false;
+                _regroupQueued = false;
             }
             if (action == TeamAction.ListInvites)
             {
