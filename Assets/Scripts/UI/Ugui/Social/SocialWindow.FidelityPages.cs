@@ -78,6 +78,7 @@ namespace MmorpgClient.UI.Ugui.Social
             FText(_fidelityContent,"GroupAnnouncementValue",current.Announcement,1484,272,264,55,22,Ink,true);
             FText(_fidelityContent,"GroupMembersLabel","群成员",1377,325,105,39,23,Ink);
             FText(_fidelityContent,"GroupMembersValue",current.Members.Count+"/50",1491,326,234,38,22,Muted);
+            FImage(_fidelityContent,"list_paper",1392,359,369,218);
             FPageScroll(_fidelityContent,"SocialGroupMembers",1392,359,369,218,out var members);
             int index=0;
             foreach(ulong id in current.Members)

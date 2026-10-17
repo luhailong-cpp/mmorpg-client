@@ -99,32 +99,44 @@ namespace MmorpgClient.UI.Ugui.Guild
             var shade = _root.gameObject.AddComponent<Image>();
             shade.color = new Color(.025f, .10f, .08f, .68f); shade.raycastTarget = true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
-            _frame = QdaoUguiFactory.CreateCenteredRect("GuildFrame", _root, 2160, 924);
+            _frame = QdaoUguiFactory.CreateCenteredRect("GuildFrame", _root, 1932, 814);
+            float scale = Mathf.Min(2560f / 1932f, 1080f / 814f);
+            _frame.localScale = new UnityEngine.Vector3(scale, scale, 1);
             _frameInput = _frame.gameObject.AddComponent<CanvasGroup>();
-            Art(_frame, "window_frame", 0, 0, 2160, 924);
-            Art(_frame, "title_plate", 752.5f, -34, 655, 110, true);
-            Heading(_frame, "帮 会", 882, -21, 396, 88, 48, Cream, alignment: TextAlignmentOptions.Center);
-            Text(_frame, "五行奇谈 · 同道成一家", 102, 35, 620, 48, 28, Muted);
-            _summary = Text(_frame, "结一方同道 · 守一盏人间灯", 1460, 35, 500, 48, 26, Muted,
-                alignment: TextAlignmentOptions.MidlineRight);
+            Art(_frame, "guild_empty_shell", 0, 0, 1932, 814);
+            FidelityLabel(_frame, "GuildTitle", "帮  会", 836, 28, 260, 55, 39, Cream, align: TextAlignmentOptions.Center);
             string[] titles = { "帮会总览", "帮会成员", "帮会排行", "帮会捐献", "帮会活动", "帮会商店" };
             for (int i = 0; i < _tabs.Length; i++)
             {
                 GuildPage page = (GuildPage)i;
                 _tabs[i] = NamedButton(_frame, "GuildTab_" + page, titles[i],
-                    100 + i * 330, 108, 310, 72, () => Show(page), fontSize: 31);
-                _tabMarkers[i] = Line(_tabs[i].transform, "SelectedTabMarker", 133, 62, 44, 3);
+                    190 + i * 264, 87, 257, 62, () => Show(page), key: "guild_tab_normal", fontSize: 28);
+                _tabMarkers[i] = Line(_tabs[i].transform, "SelectedTabMarker", 110, 54, 37, 2);
                 _tabMarkers[i].color = QdaoUguiTheme.Html("#E3C681");
             }
-            NamedButton(_frame, "CloseGuild", "", 2035, -14, 81, 80, Hide, key: "close_button");
-            Art(_frame, "close_tassel", 2060, 66, 30, 81, true);
-            Line(_frame, "TabsDivider", 100, 196, 1960);
-            Line(_frame, "IdentityDivider", 520, 221, 1.5f, 579);
-            Line(_frame, "FooterDivider", 100, 833, 1960);
-            _rail = QdaoUguiFactory.CreateRect("GuildIdentity", _frame, 100, 214, 394, 610);
-            _body = QdaoUguiFactory.CreateRect("GuildContent", _frame, 556, 214, 1508, 610);
-            _status = Text(_frame, "", 104, 851, 1660, 51, 26, Muted, true);
-            _refresh = NamedButton(_frame, "RefreshGuild", "刷新", 1850, 844, 210, 64, RefreshCurrentPage, true, fontSize: 28);
+            NamedButton(_frame, "CloseGuild", "", 1782, 25, 83, 78, Hide, key: "guild_close");
+            _rail = QdaoUguiFactory.CreateRect("GuildIdentity", _frame, 183, 171, 544, 595);
+            _body = QdaoUguiFactory.CreateRect("GuildContent", _frame, 795, 175, 957, 503);
+            FidelityLabel(_frame, "GuildContributionFooterLabel", "可用 / 累计帮贡", 798, 701, 315, 22, 17, Muted);
+            _summary = FidelityLabel(_frame, "GuildMyContribution", "", 798, 724, 315, 34, 23, Ink);
+            _status = FidelityLabel(_frame, "GuildRuntimeStatus", "", 796, 767, 963, 25, 16, Muted);
+            NamedButton(_frame, "GuildFooterMembers", "查看同道", 1122, 704, 229, 58, () => Show(GuildPage.Members), fontSize: 27);
+            _refresh = NamedButton(_frame, "RefreshGuild", "刷新帮会", 1365, 692, 414, 80, RefreshCurrentPage, true, fontSize: 33);
+        }
+        // Existing five page renderers retain their original coordinate system and
+        // every real callback. Only their uniform presentation scale changes.
+        private void ConfigureFidelityBody()
+        {
+            bool overview = Page == GuildPage.Overview && _client?.Info != null;
+            float scale = overview ? 1f : 957f / 1508f;
+            _body.localScale = new UnityEngine.Vector3(scale, scale, 1);
+            _body.sizeDelta = overview ? new Vector2(957, 503) : new Vector2(1508, 610);
+            _body.anchoredPosition = new Vector2(795, overview ? -175 : -197);
+        }
+        private ulong MyContributionTotal(GuildInfo info)
+        {
+            foreach (var member in info.Members) if (member.PlayerId == _client.PlayerId) return member.ContributionTotal;
+            return 0;
         }
         private bool Busy => _client == null || _client.Busy || _client.RequiresReconnect;
         /// <summary>
@@ -186,13 +198,14 @@ namespace MmorpgClient.UI.Ugui.Guild
             var selected = EventSystem.current?.currentSelectedGameObject;
             if (selected != null && (selected.transform.IsChildOf(_body) || selected.transform.IsChildOf(_rail))) focusName = selected.name;
             Clear(_rail); Clear(_body); _activityReset = null;
+            ConfigureFidelityBody();
             _status.text = _client?.Status ?? "进入角色后，可在此与同道相聚。";
             _summary.text = _client?.Info == null ? "结一方同道 · 守一盏人间灯" :
-                _client.Info.Members.Count + " / " + _client.Info.MaxMembers + " 位同道 · 相聚一堂";
+                GuildClient.FormatAmount(MyContributionBalance(_client.Info)) + " / " + GuildClient.FormatAmount(MyContributionTotal(_client.Info));
             _refresh.interactable = !Busy;
             for (int i = 0; i < _tabs.Length; i++)
             {
-                _tabs[i].image.sprite = Load(i == (int)Page ? "button_primary" : "button_secondary");
+                _tabs[i].image.sprite = Load(i == (int)Page ? "guild_tab_selected" : "guild_tab_normal");
                 _tabs[i].GetComponentInChildren<TMP_Text>().color = i == (int)Page ? Cream : Ink;
                 _tabMarkers[i].gameObject.SetActive(i == (int)Page);
             }
@@ -280,35 +293,52 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         private void RenderIdentity()
         {
-            QdaoUguiFactory.CreateImage("GuildCrest", _rail, 0, 4, 120, 120, GuildSprite("crest")).preserveAspect = true;
+            Art(_rail, "guild_crest", 29, 0, 207, 188, true).name = "GuildCrest";
             var info = _client?.Info;
-            var name = Heading(_rail, info?.Name ?? "静候同道", 136, 8, 258, 128, 32, wrap: true);
-            name.name = "GuildName";
+            var name = FidelityLabel(_rail, "GuildName", info?.Name ?? "静候同道", 268, 12, 258, 78, 37, Ink, true);
+            name.enableAutoSizing = true; name.fontSizeMin = 20; name.fontSizeMax = 37;
             if (info == null)
             {
-                Line(_rail, "IdentityRule", 0, 149, 394);
-                Text(_rail, "灯火可亲，同道可期。\n找到一处归属，\n携手闯荡山海。", 0, 187, 390, 176, 30, Muted, true);
-                GuildIcon(_rail, "round_badge_lotus", 137, 361, 120);
-                NamedButton(_rail, "BrowseGuilds", "寻找帮会", 22, 521, 350, 76, () => Show(GuildPage.Ranking), true);
+                FidelityLabel(_rail, "GuildNoMembership", "灯火可亲，同道可期。\n找到一处归属，携手闯荡山海。", 20, 218, 492, 160, 27, Muted, true);
+                NamedButton(_rail, "BrowseGuilds", "寻找帮会", 135, 539, 260, 58, () => Show(GuildPage.Ranking), true, fontSize: 27);
                 return;
             }
-            Text(_rail, "帮会等级", 0, 144, 236, 46, 27, Muted);
-            Text(_rail, "Lv." + info.Level, 248, 144, 146, 52, 34, Gold, alignment: TextAlignmentOptions.MidlineRight);
-            Line(_rail, "LevelRule", 0, 202, 394);
-            Text(_rail, "帮会编号", 0, 214, 394, 46, 30, Muted);
-            Text(_rail, info.GuildId.ToString(), 0, 264, 394, 46, 28);
-            // B3b 起 GuildInfo.leader_name 由服务端填;取名失败(fail-open)时为空,侧栏这一格照旧显示编号(§3.22)。
-            Text(_rail, "帮主", 0, 314, 394, 46, 30, Muted);
-            Text(_rail, string.IsNullOrWhiteSpace(info.LeaderName) ? info.LeaderId.ToString() : info.LeaderName, 0, 364, 394, 46, 28);
-            Line(_rail, "LeaderRule", 0, 424, 394);
-            Text(_rail, "我的身份", 0, 436, 228, 48, 27, Muted);
-            Text(_rail, RoleName(_client.Role), 242, 436, 152, 48, 30, alignment: TextAlignmentOptions.MidlineRight);
-            Text(_rail, "山海有归处，同道共此时。", 0, 490, 394, 46, 30, Muted);
-            NamedButton(_rail, "GuildMembersEntry", "查看同道", 0, 546, 190, 64, () => Show(GuildPage.Members), fontSize: 26);
-            NamedButton(_rail, "LeaveOrDisbandGuild", _client.IsLeader ? "解散帮会" : "退出帮会", 204, 546, 190, 64,
+            Art(_rail, "guild_level_plate", 274, 74, 171, 55);
+            FidelityLabel(_rail, "GuildLevel", info.Level + " 级帮会", 283, 79, 153, 44, 25, Ink, align: TextAlignmentOptions.Center);
+            if (_client.IsOfficerOrLeader)
+                NamedButton(_rail, "UpgradeGuild", info.UpgradeCostFunds == 0 ? "已满级" : "升级", 265, 139, 115, 40,
+                    ShowUpgrade, enabled: _client.CanUpgrade && !Busy, fontSize: 22);
+            if (_client.CanEditAnnouncement)
+                NamedButton(_rail, "EditGuildAnnouncement", "编辑公告", 391, 139, 134, 40, ShowAnnouncement, enabled: !Busy, fontSize: 21);
+            string leader = string.IsNullOrWhiteSpace(info.LeaderName) ? info.LeaderId.ToString() : info.LeaderName;
+            string[] labels = { "帮主", "帮会编号", "成员", "帮会资金" };
+            string[] values = { leader, info.GuildId.ToString(), info.Members.Count + " / " + info.MaxMembers, GuildClient.FormatAmount(info.Funds) };
+            for (int i = 0; i < labels.Length; i++)
+            {
+                float y = 181 + i * 38;
+                FidelityLabel(_rail, "GuildDetailLabel_" + i, labels[i], 19, y, 200, 34, 23, Muted);
+                FidelityLabel(_rail, "GuildDetailValue_" + i, values[i], 241, y, 283, 34, 23, Ink);
+                if (i == 2) _rail.Find("GuildDetailValue_" + i).name = "GuildMemberCount";
+                if (i == 3) _rail.Find("GuildDetailValue_" + i).name = "GuildFunds";
+                Line(_rail, "GuildDetailRule_" + i, 15, y + 34, 511, 1);
+            }
+            FidelityLabel(_rail, "GuildUpgradeFundsLabel", "升级资金", 16, 340, 119, 31, 21, Ink);
+            Art(_rail, "guild_progress_track", 135, 338, 392, 37);
+            double ratio = info.UpgradeCostFunds == 0 ? 1 : Math.Min(1d, (double)info.Funds / info.UpgradeCostFunds);
+            if (ratio > 0) Art(_rail, "guild_progress_fill", 147, 346, (float)(368 * ratio), 21);
+            FidelityLabel(_rail, "GuildUpgradeFundsValue", info.UpgradeCostFunds == 0 ? "已满级" :
+                GuildClient.FormatAmount(info.Funds) + " / " + GuildClient.FormatAmount(info.UpgradeCostFunds), 149, 343, 365, 27, 17,
+                ratio >= .55 ? Cream : Ink, align: TextAlignmentOptions.Center);
+            Art(_rail, "guild_announcement", -2, 388, 546, 144);
+            FidelityLabel(_rail, "GuildAnnouncementHeading", "帮会公告", 37, 396, 471, 36, 27, Ink);
+            FidelityLabel(_rail, "GuildAnnouncementExcerpt", string.IsNullOrWhiteSpace(info.Announcement) ? "同道相伴，诸事顺遂。" : info.Announcement,
+                39, 438, 466, 78, 23, Ink, true);
+            NamedButton(_rail, "GuildMembersEntry", "同道", 0, 540, 146, 58, () => Show(GuildPage.Members), fontSize: 25);
+            NamedButton(_rail, "ReadGuildAnnouncement", "查看公告", 158, 539, 229, 58, ShowReadAnnouncement, fontSize: 26);
+            NamedButton(_rail, "LeaveOrDisbandGuild", _client.IsLeader ? "解散帮会" : "退出帮会", 398, 540, 145, 58,
                 () => Confirm(_client.IsLeader ? "确认解散帮会" : "确认退出帮会",
                     _client.IsLeader ? "解散后所有成员都将离开帮会，此操作无法恢复。" : "退出后将失去当前帮会身份。确认要离开同道吗？",
-                    () => { if (_client.IsLeader) DisbandRequested?.Invoke(); else LeaveRequested?.Invoke(); }), enabled: !Busy, fontSize: 26);
+                    () => { if (_client.IsLeader) DisbandRequested?.Invoke(); else LeaveRequested?.Invoke(); }), enabled: !Busy, fontSize: 22);
         }
         private void RenderOverview()
         {
@@ -330,40 +360,48 @@ namespace MmorpgClient.UI.Ugui.Guild
                     : "成员信息、公告和排行将随帮会更新。", 24, 532, 1460, 55, 28, Muted);
                 return;
             }
-            Heading(_body, "同道相聚", 0, 0, 950, 64, 43);
-            Text(_body, "一同修行，一同守护这方灯火。", 0, 68, 1440, 46, 27, Muted);
+            FidelityLabel(_body, "GuildOverviewMembersTitle", "帮会成员", 10, 0, 440, 41, 33, Ink);
             int online = 0;
-            ulong total = 0, balance = 0;
-            foreach (var member in info.Members)
+            foreach (var member in info.Members) if (member.Online) online++;
+            FidelityLabel(_body, "GuildOverviewOnlineLabel", "在线", 676, 4, 77, 36, 25, Ink);
+            FidelityLabel(_body, "GuildOnlineCount", online + " 位", 753, 4, 95, 36, 25, Ink, align: TextAlignmentOptions.MidlineRight);
+            FidelityLabel(_body, "GuildOverviewOnlineTotal", " / " + info.Members.Count, 848, 4, 99, 36, 25, Ink);
+            Art(_body, "guild_table_header", 0, 42, 957, 40);
+            FidelityLabel(_body, "GuildOverviewMemberColumn", "成员", 142, 43, 280, 36, 23, Muted);
+            FidelityLabel(_body, "GuildOverviewRoleColumn", "职位", 409, 43, 110, 36, 23, Muted);
+            FidelityLabel(_body, "GuildOverviewContributionColumn", "累计帮贡", 570, 43, 193, 36, 23, Muted);
+            FidelityLabel(_body, "GuildOverviewOnlineColumn", "状态", 824, 43, 121, 36, 23, Muted);
+            var members = new List<GuildMember>(info.Members);
+            members.Sort((a,b) => { int rank = b.Role.CompareTo(a.Role); return rank != 0 ? rank : a.PlayerId.CompareTo(b.PlayerId); });
+            for (int i = 0; i < Math.Min(5, members.Count); i++)
             {
-                if (member.Online) online++;
-                if (member.PlayerId == _client.PlayerId) { total = member.ContributionTotal; balance = member.ContributionBalance; }
+                var member = members[i]; float y = 82 + i * 56;
+                bool self = member.PlayerId == _client.PlayerId;
+                Art(_body, self ? "guild_row_self" : "guild_row_normal", 0, y, 957, 56);
+                // No character appearance is present in GuildMember; use approved default portraits.
+                Art(_body, "guild_portrait_" + (i + 1), 60, y + 1, 63, 54, true);
+                if (self) Art(_body, "guild_self_mark", 13, y + 9, 36, 36, true);
+                FidelityLabel(_body, "GuildOverviewMemberName_" + i, MemberDisplayName(member), 142, y + 6, 263, 43, 24, Ink);
+                FidelityLabel(_body, "GuildOverviewMemberRole_" + i, RoleName(member.Role), 410, y + 6, 118, 43, 24, Ink);
+                FidelityLabel(_body, "GuildOverviewMemberContribution_" + i, GuildClient.FormatAmount(member.ContributionTotal), 570, y + 6, 213, 43, 23, Ink);
+                var dot = QdaoUguiFactory.CreateImage("GuildOnlineDot_" + i, _body, 829, y + 23, 16, 16,
+                    QdaoUguiTheme.LoadSprite(QdaoUguiTheme.StatusDotSpritePath));
+                dot.color = QdaoUguiTheme.Html(member.Online ? "#409951" : "#928772");
+                FidelityLabel(_body, "GuildOverviewMemberOnline_" + i, member.Online ? "在线" : "离线", 859, y + 6, 91, 43, 24, member.Online ? Ink : Muted);
             }
-            // 四列:可用帮贡(能花的)与累计帮贡(只增,排名用)放在同一格,顺序与标签一致。
-            OverviewMetric("GuildMemberCount", "帮会成员", info.Members.Count + " / " + info.MaxMembers, 0);
-            OverviewMetric("GuildOnlineCount", "当前在线", online + " 位", 377);
-            OverviewMetric("GuildFunds", "帮会资金", GuildClient.FormatAmount(info.Funds), 754);
-            OverviewMetric("GuildMyContribution", "可用 / 累计帮贡",
-                GuildClient.FormatAmount(balance) + " / " + GuildClient.FormatAmount(total), 1131, 34);
-            Line(_body, "MetricsRule", 0, 238, 1508);
-            GuildIcon(_body, "notice", 0, 259, 47);
-            Heading(_body, "帮会公告", 66, 250, 590, 63, 36);
-            // 资金够不够交给服务端判(见 GuildClient.CanUpgrade),这里只按职位与是否满级收起按钮;右端 938,不压"查看全文"。
-            if (_client.IsOfficerOrLeader)
-                NamedButton(_body, "UpgradeGuild", info.UpgradeCostFunds == 0 ? "已满级" : "升级帮会", 680, 250, 258, 64,
-                    ShowUpgrade, enabled: _client.CanUpgrade && !Busy, fontSize: 27);
-            NamedButton(_body, "ReadGuildAnnouncement", "查看全文", 958, 250, 252, 64, ShowReadAnnouncement, fontSize: 27);
-            if (_client.CanEditAnnouncement)
-                NamedButton(_body, "EditGuildAnnouncement", "编辑公告", 1230, 250, 278, 64, ShowAnnouncement, enabled: !Busy, fontSize: 27);
-            GuildField(_body, "GuildAnnouncementPanel", 0, 326, 1508, 132);
-            Text(_body, string.IsNullOrWhiteSpace(info.Announcement) ? "帮会尚未发布公告。愿同道相伴，诸事顺遂。" : info.Announcement,
-                28, 340, 1452, 104, 30, wrap: true);
-            Heading(_body, "同道携手 · 帮会事务", 0, 476, 1508, 48, 32, Muted);
-            OverviewEntry("GuildOverviewMembers", "帮会成员", "crest", GuildPage.Members, 0);
-            OverviewEntry("GuildOverviewRanking", "帮会排行", "round_badge_compass", GuildPage.Ranking, 304);
-            OverviewEntry("GuildOverviewDonate", "帮会捐献", "furnace", GuildPage.Donate, 608);
-            OverviewEntry("GuildOverviewActivities", "帮会活动", "round_badge_lotus", GuildPage.Activities, 912);
-            OverviewEntry("GuildOverviewShop", "帮会商店", "round_badge_pagoda", GuildPage.Shop, 1216);
+            if (members.Count == 0) FidelityLabel(_body, "GuildOverviewNoMembers", "暂无同道信息", 70, 151, 810, 78, 30, Muted, align: TextAlignmentOptions.Center);
+            FidelityOverviewEntry("GuildOverviewDonate", "帮会捐献", "guild_entry_donate", GuildPage.Donate, 0, 218);
+            FidelityOverviewEntry("GuildOverviewRanking", "帮会排行", "guild_entry_scroll", GuildPage.Ranking, 231, 220);
+            FidelityOverviewEntry("GuildOverviewActivities", "帮会活动", "guild_entry_activity", GuildPage.Activities, 469, 219);
+            FidelityOverviewEntry("GuildOverviewShop", "帮会商店", "guild_entry_shop", GuildPage.Shop, 701, 245);
+        }
+        private void FidelityOverviewEntry(string name, string label, string key, GuildPage page, float x, float width)
+        {
+            var button = QdaoUguiFactory.CreateArtButton(name, _body, x, 377, width, 126, Load(key), out var image);
+            image.type = Image.Type.Sliced;
+            button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
+            button.onClick.AddListener(() => Show(page));
+            FidelityLabel(button.transform, name + "Caption", label, 12, 94, width - 24, 31, 23, Ink, align: TextAlignmentOptions.Center);
         }
         private void OverviewMetric(string name, string label, string value, float x, int valueFontSize = 43)
         {
@@ -1302,8 +1340,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 EventSystem.current.SetSelectedGameObject(_modalReturnFocus != null && _modalReturnFocus.activeInHierarchy ? _modalReturnFocus : null);
             _modalReturnFocus = null;
         }
-        private static Sprite GuildSprite(string key) => Resources.Load<Sprite>("UI/Ugui/GuildV2/" + key)
-            ?? throw new InvalidOperationException("缺少帮会 Sprite：UI/Ugui/GuildV2/" + key);
+        private static Sprite GuildSprite(string key) => Load(key);
         private static void GuildField(UnityEngine.Transform parent, string name, float x, float y, float width, float height)
         {
             var image = QdaoUguiFactory.CreateImage(name, parent, x, y, width, height, GuildSprite("stat_field"));

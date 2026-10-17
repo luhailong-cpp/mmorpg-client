@@ -43,8 +43,9 @@ namespace MmorpgClient.UI.Ugui.Social
                     () => Show(selected),size:27,color:State.Page==page?Cream:Ink);
             }
             FHit(_fidelityContent,"SocialClose","",1753,51,75,73,Hide);
-            FHit(_fidelityContent,"SocialFriendRequests","好友申请",1590,94,145,38,
-                () => FriendRequestsRequested?.Invoke(),!State.IsPreview,20);
+            var friend=FHit(_fidelityContent,"SocialFriendRequests","",1590,94,145,38,
+                () => FriendRequestsRequested?.Invoke(),!State.IsPreview);
+            FText(friend.transform,"Label","好友申请",65,0,76,38,18,Ink,align:TextAlignmentOptions.Center);
             if(State.Page==SocialPage.World)RenderFidelityWorld();
             else if(State.Page==SocialPage.Groups)RenderFidelityGroups();
             else RenderFidelityRumors();
@@ -63,8 +64,14 @@ namespace MmorpgClient.UI.Ugui.Social
         private TMP_Text FText(UnityEngine.Transform parent,string name,string value,float x,float y,float w,float h,
             float size=22,Color? color=null,bool wrap=false,TextAlignmentOptions align=TextAlignmentOptions.MidlineLeft)
         {
-            var text=QdaoUguiFactory.CreateText(name,parent,x,y,w,h,value,size,color??Ink,align);
+            var ink=QdaoUguiTheme.Html("#16382A");
+            var resolved=color??ink;
+            if(resolved==Ink)resolved=ink;
+            else if(resolved==Jade)resolved=QdaoUguiTheme.Html("#153F2E");
+            else if(resolved==Muted)resolved=QdaoUguiTheme.Html("#675E48");
+            var text=QdaoUguiFactory.CreateText(name,parent,x,y,w,h,value,size,resolved,align);
             text.font=QdaoUguiTheme.ResolveFont();text.richText=false;
+            if(size>=24)text.fontStyle=FontStyles.Bold;
             text.textWrappingMode=wrap?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
             text.overflowMode=TextOverflowModes.Ellipsis;
             return text;
@@ -94,7 +101,7 @@ namespace MmorpgClient.UI.Ugui.Social
         {
             var person=State.Person(id);
             if(State.IsPreview)
-                FImage(parent,"portrait_"+Mathf.Clamp((int)id,1,5),x,y,size,size);
+                FImage(parent,"portrait_"+Mathf.Clamp((int)id,1,5),x,y,size,size).preserveAspect=true;
             else
             {
                 // The chat protocol does not carry a profession or portrait.
@@ -102,6 +109,7 @@ namespace MmorpgClient.UI.Ugui.Social
                 var image=QdaoUguiFactory.CreateImage("UnknownPortrait",parent,x,y,size,size,
                     QdaoUguiTheme.RequireSprite(QdaoUguiTheme.StatusDotSpritePath));
                 image.color=QdaoUguiTheme.Html("#ECE7D6");
+                FImage(parent,"portrait_frame",x,y,size,size);
                 FText(parent,"UnknownPortraitLabel","道友",x,y,size,size,size*.24f,Muted,align:TextAlignmentOptions.Center);
             }
             FHit(parent,"SocialPortrait_"+id+"Button","",x,y,size,size,()=>ShowProfile(id));
@@ -124,8 +132,10 @@ namespace MmorpgClient.UI.Ugui.Social
                 var row=QdaoUguiFactory.CreateRect("SocialMessage_"+message.Id,content,0,y,width,rowHeight);
                 float avatarX=self?width-100:0, bubbleX=self?width-116-bubble:117;
                 FPortrait(row,message.Sender,avatarX,0,98);
-                FText(row,"Sender",person.Name,bubbleX,0,Mathf.Max(140,bubble-110),32,23,Jade);
-                if(person.Level>0)FText(row,"Level",person.Level+"级 · "+(person.Title??""),bubbleX+115,0,170,32,18,Muted);
+                float nameWidth=Mathf.Min(Mathf.Max(80,SocialState.TextLength(person.Name)*23),bubble-90);
+                FText(row,"Sender",person.Name,bubbleX,0,nameWidth,32,23,Jade);
+                float levelWidth=bubble-85-nameWidth-14;
+                if(person.Level>0&&levelWidth>=65)FText(row,"Level",person.Level+"级"+(levelWidth>=160?" · "+(person.Title??""):""),bubbleX+nameWidth+14,0,levelWidth,32,18,Muted);
                 FText(row,"Time",message.TimeLabel,bubbleX+bubble-75,0,75,32,17,Muted,align:TextAlignmentOptions.MidlineRight);
                 var paper=FImage(row,"message_bubble",bubbleX,34,bubble,textHeight+14+cardHeight);
                 if(self){paper.color=QdaoUguiTheme.Html("#E0EFD5");paper.rectTransform.localScale=new UnityEngine.Vector3(-1,1,1);paper.rectTransform.anchoredPosition+=new Vector2(bubble,0);}
@@ -148,7 +158,7 @@ namespace MmorpgClient.UI.Ugui.Social
             FText(_fidelityContent,"ChannelHeading","聊天频道",184,134,251,52,34,Jade,align:TextAlignmentOptions.Center);
             FText(_fidelityContent,"WorldHeading",SocialState.ChannelName(State.Channel)+"频道",506,143,169,45,30,Jade);
             FText(_fidelityContent,"WorldDescription","与四海仙友共话仙途",667,149,680,36,22,Jade);
-            FText(_fidelityContent,"CommunityNotice","文明言谈 · 仙友同行",184,703,247,50,25,Ink,align:TextAlignmentOptions.Center);
+            FText(_fidelityContent,"CommunityNotice","文明言谈 · 仙友同行",184,703,247,50,22,Ink,align:TextAlignmentOptions.Center);
             int index=0;
             foreach(var channel in SocialState.ChatChannels)
             {
@@ -176,7 +186,9 @@ namespace MmorpgClient.UI.Ugui.Social
                 680,708,727,50,true);
             _composer.interactable=State.CanSend(State.Channel);
             _counter=FText(_fidelityContent,"SocialCharacterCount","0/120",1415,713,87,43,22,Muted,align:TextAlignmentOptions.MidlineRight);
+            var sendArt=FImage(_fidelityContent,"send_button",1535,701,220,68);
             _send=FHit(_fidelityContent,"SocialSend","发送",1535,701,220,68,()=>SendComposer(false),size:34,color:Cream);
+            _send.targetGraphic=sendArt;
             FHit(_fidelityContent,"SocialEmoji","",491,701,72,68,ShowEmoji,State.CanSend(State.Channel));
             FHit(_fidelityContent,"SocialShare","",577,701,72,68,ShowShare,State.IsPreview);
             _composer.onValueChanged.AddListener(value=>{State.SetDraft(State.Channel,value);UpdateComposer(false);});

@@ -1682,11 +1682,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(Resources.Load<Sprite>("UI/Ugui/GuildV2/stat_field").border, Is.EqualTo(new Vector4(12, 12, 12, 12)));
             _window.Show();
             var crest = _root.GetComponentsInChildren<Image>().Single(i => i.name == "GuildCrest");
-            Assert.That(crest.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/GuildV2/crest")));
+            Assert.That(crest.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/GuildFidelity20261016/guild_crest")));
+            Assert.That(crest.preserveAspect, Is.True);
             var images = _root.GetComponentsInChildren<Image>();
-            Assert.That(images.Single(i => i.name == "title_plate").preserveAspect, Is.True);
-            Assert.That(images.Single(i => i.name == "close_tassel").raycastTarget, Is.False);
-            Assert.That(images.Single(i => i.name == "window_frame").sprite.border, Is.EqualTo(new Vector4(97, 74, 97, 99)));
+            var shell = images.Single(i => i.name == "guild_empty_shell");
+            Assert.That(shell.raycastTarget, Is.False);
+            Assert.That(shell.sprite.rect.size, Is.EqualTo(new Vector2(1932, 814)));
+            foreach (string key in new[] { "guild_tab_selected", "guild_tab_normal", "guild_announcement", "guild_button_primary",
+                "guild_button_secondary", "guild_row_normal", "guild_row_self", "guild_progress_track", "guild_progress_fill" })
+                Assert.That(Resources.Load<Sprite>("UI/Ugui/GuildFidelity20261016/" + key), Is.Not.Null, key);
+            Assert.That(Resources.Load<Sprite>("UI/Ugui/GuildFidelity20261016/guild_announcement").border,
+                Is.EqualTo(new Vector4(18, 15, 18, 15)));
         }
         [Test] public void ServerStringsAreNotRichText()
         {
@@ -2950,7 +2956,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var names = new List<string>();
             foreach (var text in _root.GetComponentsInChildren<TMP_Text>())
             {
-                if (!text.gameObject.activeInHierarchy || string.IsNullOrEmpty(text.text) || text.font != body
+                if (!text.gameObject.activeInHierarchy || string.IsNullOrEmpty(text.text)
+                    || (text.font != body && text.font != QdaoUguiTheme.ResolveFont())
                     || text.textWrappingMode != TextWrappingModes.NoWrap) continue;
                 var face = text.font.faceInfo;
                 float line = (face.ascentLine - face.descentLine) * face.scale * text.fontSize / face.pointSize;

@@ -9,13 +9,16 @@ namespace MmorpgClient.UI.Ugui.Team
     public static class TeamUiArt
     {
         public const string Root = "UI/Ugui/TeamV2/";
+        public const string FidelityRoot = Root + "Fidelity20261016/";
+        public const string PreviewPortraitPrefix = "preview-team-";
         public static readonly Color Ink = QdaoUguiTheme.Html("#304736");
         public static readonly Color Cream = QdaoUguiTheme.Html("#FFF3D6");
 
         public static Sprite Load(string key)
         {
             // These two existing decorations are shared; all team panels and controls use TeamV2.
-            string root = key == "lantern" || key == "close_tassel" ? Gameplay.GameplayUiArt.Root : Root;
+            string root = key == "team_skin" || key.StartsWith("preview_portrait_",StringComparison.Ordinal) ? FidelityRoot
+                : key == "lantern" || key == "close_tassel" ? Gameplay.GameplayUiArt.Root : Root;
             return QdaoUguiTheme.RequireSprite(root + key);
         }
 
@@ -54,8 +57,9 @@ namespace MmorpgClient.UI.Ugui.Team
             button.interactable = enabled;
             if (click != null) button.onClick.AddListener(() => click());
             // Noto's line metrics need room even on compact pagination and action buttons.
-            float textHeight = Mathf.Max(h, fontSize * 1.6f);
-            Text(button.transform, label, 18, (h - textHeight) * .5f, w - 36, textHeight, fontSize,
+            float textHeight = Mathf.Max(h, fontSize * 1.18f);
+            float padding = Mathf.Min(18f, w * .1f);
+            Text(button.transform, label, padding, (h - textHeight) * .5f, w - padding * 2, textHeight, fontSize,
                 primary ? Cream : Ink, TextAlignmentOptions.Center);
             return button;
         }

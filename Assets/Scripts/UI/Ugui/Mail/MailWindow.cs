@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static MmorpgClient.UI.Ugui.Mail.MailUiArt;
+using static MmorpgClient.UI.Ugui.Mail.MailFidelityArt;
 
 namespace MmorpgClient.UI.Ugui.Mail
 {
@@ -32,53 +32,79 @@ namespace MmorpgClient.UI.Ugui.Mail
         private GameObject _returnFocus,_dialogReturnFocus;
         private string _renderedId,_notice="";
         private bool _disposed;
+        private readonly TMP_Text _unreadCount, _inboxCount;
 
         public MailWindow(UnityEngine.Transform parent,MailUiState state=null)
         {
             State=state??new MailUiState();
-            _root=QdaoUguiFactory.CreateStretch("MailWindow",parent,Vector4.zero);_root.gameObject.SetActive(false);
+            _root=QdaoUguiFactory.CreateStretch("MailWindow",parent,Vector4.zero);
+            _root.gameObject.SetActive(false);
             var shade=_root.gameObject.AddComponent<Image>();shade.color=new Color(.03f,.10f,.075f,.65f);shade.raycastTarget=true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
-            Frame=QdaoUguiFactory.CreateCenteredRect("MailFrame",_root,2250,930);Frame.anchoredPosition=new Vector2(0,-45);
+            // All measurements below are native skin pixels. One uniform parent scale preserves the approved art.
+            Frame=QdaoUguiFactory.CreateCenteredRect("MailFrame",_root,1932,814);
+            float scale=Mathf.Min(2560f/1932f,1080f/814f);
+            Frame.localScale=new UnityEngine.Vector3(scale,scale,1);
             _frameGroup=Frame.gameObject.AddComponent<CanvasGroup>();
-            Art(Frame,"window_frame",0,0,2250,930);
-            Art(Frame,"title_plate",800,-83,650,110);
-            Label(Frame,"MailTitle","仙  笺",895,-62,460,81,54,Cream,title:true,align:TextAlignmentOptions.Center);
-            Art(Frame,"lantern",56,-46,54,96,true);
-            Art(Frame,"close_tassel",2194,51,32,87,true);
-            Label(Frame,"GameName","五行奇谈",131,8,350,45,27,Muted,title:true);
-            Label(Frame,"MailMotto","尺素传情 · 云中寄书",1650,8,455,45,25,Muted,title:true,align:TextAlignmentOptions.MidlineRight);
-            _close=Button(Frame,"CloseMail","",2151,-25,78,78,Hide,key:"close_button");
+            Art(Frame,"mail_empty_frame",0,0,1932,814);
+            Label(Frame,"MailTitle","仙 笺",837,37,250,50,32,Cream,title:true,align:TextAlignmentOptions.Center);
+            Label(Frame,"MailSubtitle","邮件",875,84,174,27,19,Cream,title:true,align:TextAlignmentOptions.Center);
+            _close=Button(Frame,"CloseMail","",1691,48,78,69,Hide,key:"mail_close");
             string[] names={"全部","系统","活动","奖励"};
-            for(int i=0;i<4;i++){var category=(MailCategory)i;_tabs[i]=Button(Frame,"MailCategory_"+category,names[i],77+i*176,55,165,61,
-                ()=>{if(DialogIsOpen)return;_notice="";State.SetCategory(category);},size:30);}
-            _summary=Label(Frame,"MailSummary","",1435,64,735,47,25,Muted,align:TextAlignmentOptions.MidlineRight);
-            Solid(Frame,"ToolbarDivider",77,130,2096,1,Line);
-            Label(Frame,"InboxHeading","收件箱",81,151,280,48,30,title:true);
-            Solid(Frame,"MailColumnDivider",714,148,1,730,Line);
-            ListScroll=Scroll(Frame,"MailListScroll",79,205,606,590,out _listContent);
-            _clean=Button(Frame,"MailClearRead","清理已读",77,816,282,61,ConfirmClean,size:27);
-            _all=Button(Frame,"MailClaimAll","一键领取",378,816,282,61,()=>{if(DialogIsOpen)return;_notice="";State.ClaimAll();},true,27);
-            _title=Label(Frame,"MailDetailTitle","",747,149,1115,54,34,title:true);
-            _meta=Label(Frame,"MailDetailMeta","",747,199,1130,36,21,Muted);
-            _status=Label(Frame,"MailDetailStatus","",1890,154,280,42,22,Jade,align:TextAlignmentOptions.MidlineRight);
-            BodyScroll=Scroll(Frame,"MailBodyScroll",747,239,1424,461,out _bodyContent);
-            Solid(Frame,"AttachmentDivider",747,714,1423,1,Line);
-            _attachmentHeading=Label(Frame,"AttachmentHeading","随信好礼",747,721,360,40,25,title:true);
-            _expiry=Label(Frame,"MailExpiry","",1630,722,540,40,21,Muted,align:TextAlignmentOptions.MidlineRight);
-            var rewardScrollRoot=QdaoUguiFactory.CreateRect("MailRewardScroll",Frame,747,763,830,123);
+            float[] tabX={226,374,499,625};
+            float[] tabW={147,124,125,128};
+            for(int i=0;i<4;i++)
+            {
+                var category=(MailCategory)i;
+                _tabs[i]=Button(Frame,"MailCategory_"+category,names[i],tabX[i],89,tabW[i],56,
+                    ()=>{if(DialogIsOpen)return;_notice="";State.SetCategory(category);},
+                    size:24,key:"mail_tab_normal");
+                var label=_tabs[i].GetComponentInChildren<TMP_Text>();
+                label.rectTransform.anchoredPosition=new Vector2(i==0?53:37,-5);
+                label.rectTransform.sizeDelta=new Vector2(tabW[i]-(i==0?59:42),46);
+                string[] icons={"mail_category_all","mail_category_system","mail_category_event","mail_category_reward"};
+                Art(_tabs[i].transform,icons[i],i==0?17:12,12,30,32,true);
+            }
+            Label(Frame,"MailInboxGlyph","✉",237,157,32,33,24,Muted);
+            _summary=Label(Frame,"MailSummary","未读",276,151,65,40,24,Ink);
+            _unreadCount=Label(Frame,"MailUnreadCount","",337,151,52,40,26,QdaoUguiTheme.Html("#B33324"));
+            _inboxCount=Label(Frame,"MailInboxCount","",553,153,176,36,23,Ink,align:TextAlignmentOptions.MidlineRight);
+            ListScroll=Scroll(Frame,"MailListScroll",211,200,542,486,out _listContent);
+            _all=Button(Frame,"MailClaimAll","一键领取",232,696,297,70,
+                ()=>{if(DialogIsOpen)return;_notice="";State.ClaimAll();},true,27,key:"mail_button_all");
+            SetCaptionArea(_all,110,175);
+            _clean=Button(Frame,"MailClearRead","清理已读",542,698,191,66,ConfirmClean,size:24,key:"mail_button_clean");
+            SetCaptionArea(_clean,54,130);
+            _title=Label(Frame,"MailDetailTitle","",797,115,883,55,33,Ink,title:true);
+            _meta=Label(Frame,"MailDetailMeta","",798,169,660,37,20,Ink);
+            _status=Label(Frame,"MailDetailStatus","",1467,174,241,31,17,Muted,align:TextAlignmentOptions.MidlineRight);
+            BodyScroll=Scroll(Frame,"MailBodyScroll",783,205,938,354,out _bodyContent);
+            _attachmentHeading=Label(Frame,"AttachmentHeading","随信附赠",1180,555,112,32,17,Muted,align:TextAlignmentOptions.Center);
+            _expiry=Label(Frame,"MailExpiry","",838,729,306,41,22,Ink);
+            var rewardScrollRoot=QdaoUguiFactory.CreateRect("MailRewardScroll",Frame,813,585,830,122);
             rewardScrollRoot.gameObject.AddComponent<Image>().color=new Color(1,1,1,.001f);
-            RewardScroll=rewardScrollRoot.gameObject.AddComponent<ScrollRect>();RewardScroll.horizontal=true;RewardScroll.vertical=false;
+            RewardScroll=rewardScrollRoot.gameObject.AddComponent<ScrollRect>();
+            RewardScroll.horizontal=true;RewardScroll.vertical=false;
             RewardScroll.movementType=ScrollRect.MovementType.Clamped;RewardScroll.scrollSensitivity=42;
-            var rewardViewport=QdaoUguiFactory.CreateRect("Viewport",rewardScrollRoot,0,0,830,123);rewardViewport.gameObject.AddComponent<RectMask2D>();
-            _rewards=QdaoUguiFactory.CreateRect("MailRewards",rewardViewport,0,0,830,123);RewardScroll.content=_rewards;RewardScroll.viewport=rewardViewport;
-            _delete=Button(Frame,"MailDelete","删除",1627,810,124,64,ConfirmDelete,size:25);
-            _event=Button(Frame,"MailOpenActivity","前往活动",1767,810,189,64,OpenActivity,size:27);
-            _claim=Button(Frame,"MailClaimSelected","领取附件",1972,810,200,64,()=>{if(DialogIsOpen)return;_notice="";State.ClaimSelected();},true,27);
-            Art(Frame,"notice_icon",77,895,24,24,true);
-            _footer=Label(Frame,"MailFooter","",111,886,1840,42,21,Muted);
-            _refresh=Button(Frame,"MailRefresh","刷新",2012,882,162,45,()=>{if(!DialogIsOpen)State.Refresh();},size:22);
+            var viewport=QdaoUguiFactory.CreateRect("Viewport",rewardScrollRoot,0,0,830,122);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            _rewards=QdaoUguiFactory.CreateRect("MailRewards",viewport,0,0,830,122);
+            RewardScroll.content=_rewards;RewardScroll.viewport=viewport;
+            _event=Button(Frame,"MailOpenActivity","前往活动",1156,716,168,56,OpenActivity,size:23,key:"mail_button_event");
+            _claim=Button(Frame,"MailClaimSelected","领取附件",1326,709,234,66,
+                ()=>{if(DialogIsOpen)return;_notice="";State.ClaimSelected();},true,27,key:"mail_button_claim");
+            _delete=Button(Frame,"MailDelete","删除",1560,716,154,56,ConfirmDelete,size:23,key:"mail_button_delete");
+            SetCaptionArea(_delete,50,96);
+            _footer=Label(Frame,"MailFooter","",795,773,917,25,14,Muted);
+            _refresh=Button(Frame,"MailRefresh","刷新",665,156,66,31,
+                ()=>{if(!DialogIsOpen)State.Refresh();},size:17,key:"mail_tab_normal");
             State.Changed+=Changed;
+        }
+        private static void SetCaptionArea(Button button,float left,float width)
+        {
+            var text=button.GetComponentInChildren<TMP_Text>();
+            text.rectTransform.anchoredPosition=new Vector2(left,-4);
+            text.rectTransform.sizeDelta=new Vector2(width,button.GetComponent<RectTransform>().rect.height-8);
         }
 
         public void Show()
@@ -101,21 +127,30 @@ namespace MmorpgClient.UI.Ugui.Mail
         private void Render()
         {
             float listPosition=ListScroll.verticalNormalizedPosition;
-            float bodyPosition=BodyScroll.verticalNormalizedPosition;float rewardPosition=RewardScroll.horizontalNormalizedPosition;
+            float bodyPosition=BodyScroll.verticalNormalizedPosition;
+            float rewardPosition=RewardScroll.horizontalNormalizedPosition;
             var focused=EventSystem.current?.currentSelectedGameObject;
             string restore=focused!=null&&focused.transform.IsChildOf(_listContent)?focused.name:null;
             Clear(_listContent);Clear(_bodyContent);Clear(_rewards);
-            foreach(var tab in _tabs){bool active=tab.name=="MailCategory_"+State.Category;tab.image.sprite=Load(active?"button_primary":"button_secondary");
-                var text=tab.GetComponentInChildren<TMP_Text>();if(text!=null)text.color=active?Cream:Ink;}
-            _summary.text=$"未读  {State.UnreadCount}  封    ·    待领  {State.ClaimableCount}  封";
+            foreach(var tab in _tabs)
+            {
+                bool active=tab.name=="MailCategory_"+State.Category;
+                tab.image.sprite=Load(active?"mail_tab_selected":"mail_tab_normal");
+                var text=tab.GetComponentInChildren<TMP_Text>();if(text!=null)text.color=active?Cream:Ink;
+                var allGlyph=tab.transform.Find("mail_category_all");
+                if(allGlyph!=null)allGlyph.gameObject.SetActive(active);
+            }
+            _summary.text="未读";_unreadCount.text=State.UnreadCount.ToString();
+            _inboxCount.text="邮件 "+State.Messages.Count;
             var messages=State.VisibleMessages;
-            _listContent.sizeDelta=new Vector2(_listContent.sizeDelta.x,Mathf.Max(590,messages.Count*122));
+            _listContent.sizeDelta=new Vector2(_listContent.sizeDelta.x,Mathf.Max(486,messages.Count*80));
             for(int i=0;i<messages.Count;i++)RenderRow(messages[i],i);
-            if(messages.Count==0){Art(_listContent,"round_badge_taiji",228,147,110,110,true);
-                Label(_listContent,"MailListEmpty","暂无邮件",45,282,470,60,29,Muted,align:TextAlignmentOptions.Center);}
+            if(messages.Count==0)
+                Label(_listContent,"MailListEmpty","暂无邮件",30,202,470,55,24,Muted,align:TextAlignmentOptions.Center);
             var mail=State.Selected;
             bool changed=mail?.Id!=_renderedId;_renderedId=mail?.Id;
-            _title.text=mail?.Title??"云中无新笺";_meta.text=mail==null?"":$"寄件人：{mail.Sender}    {Date(mail.SentAt)}";
+            _title.text=mail?.Title??"云中无新笺";
+            _meta.text=mail==null?"":$"寄件人：{mail.Sender}    {Date(mail.SentAt)}";
             _status.text=mail==null?"":Status(mail);
             _expiry.text=mail==null?"":Expiry(mail);
             _claim.gameObject.SetActive(mail?.Rewards.Count>0);
@@ -123,20 +158,34 @@ namespace MmorpgClient.UI.Ugui.Mail
             SetLabel(_claim,mail==null?"领取附件":State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":"领取附件");
             _event.gameObject.SetActive(mail!=null&&!string.IsNullOrEmpty(mail.ActivityId));
             _event.interactable=mail!=null&&!State.IsExpired(mail)&&(State.IsDemo||ActivityRequested!=null);
+            _delete.gameObject.SetActive(mail!=null);
             _delete.interactable=State.CanAct&&mail!=null;
             _all.interactable=State.CanAct&&State.ClaimableCount>0;
-            _refresh.gameObject.SetActive(!State.IsDemo);_refresh.interactable=State.CanRefresh;
             _clean.interactable=State.CanAct&&State.CleanableCount>0;
-            _attachmentHeading.text=mail?.Rewards.Count>7?"随信好礼 · 左右滑动":mail?.Rewards.Count>0?"随信好礼":"仙笺寄语";
+            _refresh.gameObject.SetActive(!State.IsDemo);_refresh.interactable=State.CanRefresh;
+            // Capacity is not exposed by MailUiState; never invent the original art's example "6/50".
+            _inboxCount.rectTransform.anchoredPosition=new Vector2(553,-153);
+            if(_refresh.gameObject.activeSelf)_inboxCount.rectTransform.sizeDelta=new Vector2(100,36);
+            else _inboxCount.rectTransform.sizeDelta=new Vector2(176,36);
+            _attachmentHeading.text=mail?.Rewards.Count>7?"随信附赠 · 左右滑动":mail?.Rewards.Count>0?"随信附赠":"仙笺寄语";
             if(mail!=null){RenderBody(mail);RenderRewards(mail);}
-            else {Art(_bodyContent,"round_badge_taiji",589,95,138,138,true);
-                Label(_bodyContent,"MailUnavailableTitle",State.ServiceAvailable||State.IsDemo?"仙笺已整理妥当":"邮件暂未开放",80,258,1230,70,39,Jade,title:true,align:TextAlignmentOptions.Center);
-                Label(_bodyContent,"MailUnavailableHint",State.ServiceAvailable||State.IsDemo?"道友，暂时没有需要查收的邮件。":"请稍后再来查收仙笺。",80,339,1230,50,27,Muted,align:TextAlignmentOptions.Center);
-                _bodyContent.sizeDelta=new Vector2(_bodyContent.sizeDelta.x,461);}
+            else
+            {
+                Label(_bodyContent,"MailUnavailableTitle",State.ServiceAvailable||State.IsDemo?"仙笺已整理妥当":"邮件暂未开放",
+                    50,105,800,65,32,Ink,title:true,align:TextAlignmentOptions.Center);
+                Label(_bodyContent,"MailUnavailableHint",State.ServiceAvailable||State.IsDemo?"道友，暂时没有需要查收的邮件。":"请稍后再来查收仙笺。",
+                    50,184,800,54,22,Muted,align:TextAlignmentOptions.Center);
+                _bodyContent.sizeDelta=new Vector2(_bodyContent.sizeDelta.x,354);
+            }
             _footer.text=!string.IsNullOrEmpty(_notice)?_notice:!string.IsNullOrEmpty(State.Status)?State.Status:"阅读不会领取附件，记得在有效期内查收。";
-            ListScroll.verticalNormalizedPosition=listPosition;BodyScroll.verticalNormalizedPosition=changed?1:bodyPosition;RewardScroll.horizontalNormalizedPosition=changed?0:rewardPosition;
-            if(restore!=null&&!DialogIsOpen&&EventSystem.current!=null){var next=_listContent.GetComponentsInChildren<Button>().FirstOrDefault(b=>b.name==restore);
-                EventSystem.current.SetSelectedGameObject(next!=null?next.gameObject:_close.gameObject);}
+            ListScroll.verticalNormalizedPosition=listPosition;
+            BodyScroll.verticalNormalizedPosition=changed?1:bodyPosition;
+            RewardScroll.horizontalNormalizedPosition=changed?0:rewardPosition;
+            if(restore!=null&&!DialogIsOpen&&EventSystem.current!=null)
+            {
+                var next=_listContent.GetComponentsInChildren<Button>().FirstOrDefault(b=>b.name==restore);
+                EventSystem.current.SetSelectedGameObject(next!=null?next.gameObject:_close.gameObject);
+            }
             else if(focused!=null&&!DialogIsOpen&&focused.transform.IsChildOf(Frame)&&
                 (!focused.activeInHierarchy||focused.GetComponent<Button>()?.interactable==false)&&EventSystem.current!=null)
                 EventSystem.current.SetSelectedGameObject(_close.gameObject);
@@ -144,44 +193,61 @@ namespace MmorpgClient.UI.Ugui.Mail
         private void RenderRow(MailMessage mail,int index)
         {
             bool selected=mail.Id==State.SelectedId;
-            var row=Button(_listContent,"MailRow_"+mail.Id,"",0,index*122,576,110,()=>{if(DialogIsOpen)return;_notice="";State.Select(mail.Id);},key:"stat_field");
-            row.image.color=selected?QdaoUguiTheme.Html("#DDE8D0"):Color.white;
-            if(selected)Solid(row.transform,"SelectedEdge",0,13,4,82,Jade);
-            string icon=mail.Category==MailCategory.Event?"round_badge_taiji":mail.Category==MailCategory.Reward?"icon-chest":"icon-scroll";
-            Art(row.transform,icon,12,22,65,65,true);
-            if(!mail.IsRead){var dot=QdaoUguiFactory.CreateImage("UnreadDot",row.transform,64,14,15,15,QdaoUguiTheme.LoadSprite(QdaoUguiTheme.StatusDotSpritePath));dot.color=QdaoUguiTheme.Html("#B75435");}
-            var title=Label(row.transform,"MailRowTitle",mail.Title,89,8,467,51,27);title.fontStyle=mail.IsRead?FontStyles.Normal:FontStyles.Bold;
-            Label(row.transform,"MailRowMeta",Date(mail.SentAt,true)+" · "+CategoryLabel(mail.Category),90,64,243,34,20,Muted);
-            Label(row.transform,"MailRowState",Status(mail),334,64,220,34,20,Muted,align:TextAlignmentOptions.MidlineRight);
+            var row=Button(_listContent,"MailRow_"+mail.Id,"",0,index*80,538,80,
+                ()=>{if(DialogIsOpen)return;_notice="";State.Select(mail.Id);},
+                key:selected?"mail_row_selected":"mail_row_normal");
+            Art(row.transform,mail.IsRead?"mail_envelope_read":"mail_envelope_unread",28,9,88,66,true);
+            if(!mail.IsRead)
+            {
+                var dot=QdaoUguiFactory.CreateImage("UnreadDot",row.transform,100,10,14,14,
+                    QdaoUguiTheme.LoadSprite(QdaoUguiTheme.StatusDotSpritePath));
+                dot.color=QdaoUguiTheme.Html("#C63229");
+            }
+            Label(row.transform,"MailRowTitle",mail.Title,128,7,354,39,22,Ink,title:true);
+            Label(row.transform,"MailRowMeta",Date(mail.SentAt,true),129,46,113,29,17,Muted);
+            Label(row.transform,"MailRowState",Status(mail),250,46,260,29,17,
+                State.HasValidAttachments(mail)?QdaoUguiTheme.Html("#A04428"):Muted,
+                align:TextAlignmentOptions.MidlineRight);
+            if(mail.Rewards.Count>0)Art(row.transform,"mail_gift",488,10,28,30,true);
         }
         private void RenderBody(MailMessage mail)
         {
             float top=0;
             if(!string.IsNullOrEmpty(mail.BannerKey)&&Load(mail.BannerKey)!=null)
             {
-                var crop=QdaoUguiFactory.CreateRect("MailEventBanner",_bodyContent,146,0,1116,294);crop.gameObject.AddComponent<RectMask2D>();
-                var sprite=Load(mail.BannerKey);QdaoUguiFactory.CreateAspectFillImage("ActivityArtwork",crop,sprite,sprite.rect.width/sprite.rect.height);
-                if(mail.ActivityId=="preview-midautumn"){Label(crop,"ActivityKicker","中 秋 雅 集",36,24,650,45,22,Cream,title:true);
-                Label(crop,"ActivityBannerTitle","月满仙山\n玉兔送福",35,69,620,145,43,Cream,true,true);
-                Label(crop,"ActivityCaption","桂香伴月 · 花灯寄情",36,224,660,48,25,Cream,title:true);}
-                top=310;
+                bool approvedOriginal=mail.BannerKey=="event-midautumn";
+                var sprite=Load(approvedOriginal?"mail_banner":mail.BannerKey);
+                var crop=QdaoUguiFactory.CreateRect("MailEventBanner",_bodyContent,0,0,933,267);
+                crop.gameObject.AddComponent<RectMask2D>();
+                QdaoUguiFactory.CreateAspectFillImage("ActivityArtwork",crop,sprite,sprite.rect.width/sprite.rect.height);
+                Label(crop,"MailEventTitle",mail.Title,32,65,520,132,43,Cream,true,true);
+                top=278;
             }
-            var body=Label(_bodyContent,"MailBodyText",mail.Body,48,top,1260,100,28,Ink,true,align:TextAlignmentOptions.TopLeft);
-            body.margin=Vector4.zero;body.ForceMeshUpdate();float height=body.GetPreferredValues(mail.Body,1260,float.PositiveInfinity).y+35;
-            body.rectTransform.sizeDelta=new Vector2(1260,Mathf.Max(100,height));
-            _bodyContent.sizeDelta=new Vector2(_bodyContent.sizeDelta.x,Mathf.Max(461,top+height+18));
+            var body=Label(_bodyContent,"MailBodyText",mail.Body,14,top,887,70,21,Ink,true,align:TextAlignmentOptions.TopLeft);
+            body.margin=Vector4.zero;body.ForceMeshUpdate();
+            float height=body.GetPreferredValues(mail.Body,887,float.PositiveInfinity).y+22;
+            body.rectTransform.sizeDelta=new Vector2(887,Mathf.Max(70,height));
+            _bodyContent.sizeDelta=new Vector2(_bodyContent.sizeDelta.x,Mathf.Max(354,top+height+12));
         }
         private void RenderRewards(MailMessage mail)
         {
-            _rewards.sizeDelta=new Vector2(Mathf.Max(830,mail.Rewards.Count*111),123);
-            if(mail.Rewards.Count==0){Art(_rewards,"notice_icon",0,12,43,43,true);Label(_rewards,"MailNoAttachments","这是一封通知邮件，没有附件。",60,6,735,63,25,Muted);return;}
-            for(int i=0;i<mail.Rewards.Count;i++){var r=mail.Rewards[i];float x=i*111;
-                Art(_rewards,"stat_field",x,0,96,90);
-                var icon=Art(_rewards,r.IconKey,x+10,5,76,76,true);if(State.IsExpired(mail))icon.color=new Color(.68f,.68f,.65f,.75f);
-                Solid(_rewards,"RewardCountPlate_"+i,x+38,63,54,25,Jade);
-                Label(_rewards,"RewardCount_"+i,r.Count.ToString(),x+38,59,54,32,19,Cream,align:TextAlignmentOptions.Center);
-                Label(_rewards,"RewardName_"+i,r.Name,x-2,91,103,32,20,Muted,align:TextAlignmentOptions.Center);
-                if(mail.Claimed)Label(_rewards,"RewardClaimed_"+i,"✓",x+2,-3,37,38,26,Jade);
+            const float step=145;
+            float required=mail.Rewards.Count*step;
+            _rewards.sizeDelta=new Vector2(Mathf.Max(830,required),122);
+            if(mail.Rewards.Count==0)
+            {
+                Label(_rewards,"MailNoAttachments","这是一封通知邮件，没有附件。",20,24,790,54,21,Muted,align:TextAlignmentOptions.Center);
+                return;
+            }
+            float start=required<=830?(830-required)*.5f:0;
+            for(int i=0;i<mail.Rewards.Count;i++)
+            {
+                var r=mail.Rewards[i];float x=start+i*step;
+                Art(_rewards,"mail_reward_slot",x+13,0,116,98);
+                var icon=Art(_rewards,r.IconKey,x+22,7,98,85,true);
+                if(State.IsExpired(mail))icon.color=new Color(.68f,.68f,.65f,.75f);
+                Label(_rewards,"RewardName_"+i,r.Name+" ×"+r.Count,x-2,97,147,25,17,Ink,align:TextAlignmentOptions.Center);
+                if(mail.Claimed)Label(_rewards,"RewardClaimed_"+i,"✓",x+12,-4,34,34,23,Jade);
             }
         }
         private string Status(MailMessage mail)=>State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":mail.Rewards.Count>0?"待领取":"无附件";
