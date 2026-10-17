@@ -1,8 +1,9 @@
 # 神秘商人(客户端)
 
-> 状态(2026-10-09):代码已写完,**没有在 Unity 里运行过**(本机 Unity 许可证离线有效期已过)。
-> 已有的证据:离线 Roslyn 编译三个程序集 0 错误;不依赖 Unity 的测试(规则 34 条 + 数据层 36 条)在离线
-> NUnit 替身里 70/70 通过。窗口测试(23 条)、截图验收、联机购买都还没跑,见文末「还没验证的」。
+> 状态(2026-10-17):**已在真 Unity 6000.6.0f1 里跑过** EditMode 测试与截图验收(主工程 batchmode)。
+> EditMode `-testFilter MysteryMerchant` 94/94 通过(数据层 36、规则 34、窗口 24);截图 2560×1080 / 1920×1080
+> 各 12 张,脚本内断言全过并目视检查过。还没做的是两个客户端联机,见文末「还没验证的」。
+> 服务端的编译、单测与机器人冒烟(三遍 `MERCHANT_SMOKE_OK`)见服务端仓设计文档 §9.1。
 
 服务端设计与协议:服务端仓 `docs/design/mystery-merchant.md`。一句话:每个整点商人随机落到天墉城的某一条分线上,
 停留 30 分钟,卖一批打 6 / 5 / 4 折的东西,每人每件限购。
@@ -81,15 +82,23 @@ pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:\work\xuanming-server-mmo
 客户端主干已包含装备属性对应的 `PlayerBag.cs`;神秘商人继续复用其中的 `BagInfo`。
 此次整合还重新生成了 `PlayerScene.cs` 并补齐摘要消息号,使已在主干的落地恢复摘要逻辑具备匹配的生成协议。
 
+## 已验证(2026-10-17,真 Unity)
+
+1. EditMode:`Unity.exe -batchmode -projectPath <客户端> -runTests -testPlatform EditMode -testFilter MysteryMerchant`
+   → 94/94。第一次跑挂了 1 条 `OpeningSkillBook_ClosesMerchantInsteadOfLeavingItAboveTheSkillPanel`(整合时新加的):
+   测试用 `SendMessage("Awake")` 手动初始化,EditMode 下 Unity 会打出 `ShouldRunBehaviour()` 断言日志、被判为未处理的错误日志;
+   改成与 `TeamInvitationWindowTests` 相同的反射调私有 `Awake` 后通过,断言本身(打开技能面板会收起商店)成立。
+2. 截图:`-executeMethod MysteryMerchantUiVerification.CaptureAll -quit`(不加 `-nographics`)→ 两种分辨率各 12 张,
+   脚本内断言全过(字形 / 截断 / 置灰 / 双击不成交 / 「前往」置灰写原因 / 角标文案)。目视:折后价、已购满置灰、
+   比余额贵的商品不置灰、角标宽度都正常;「确认购买」四个字在按钮里偏满,但没有截断。
+3. 副作用提醒:在主工程跑 batchmode 时,编辑器会把 `QdaoOriginalRosterV14/*/runtime-index.asset` 里的
+   `sourceWriteUtcTicks`(源图文件时间)刷新掉,内容哈希不变;跑完 `git checkout --` 还原即可,别提交。
+
 ## 还没验证的
 
-1. Unity 里的 EditMode 测试:`-runTests -testPlatform EditMode -testFilter MysteryMerchant`(三个测试类,共 93 条;
-   其中窗口的 23 条依赖 UnityEngine,离线没跑过)。
-2. 截图验收:`-executeMethod MysteryMerchantUiVerification.CaptureAll`(不能加 `-nographics`)。
-   重点看角标宽度够不够、卡片上的文字有没有被截断(截图类里有断言);新增了「前往置灰 + 原因」「即将出现」两张。
-3. 联机:本地把 `go/scene_manager/etc/scene_manager_service.yaml` 里 `MysteryMerchant` 那几行的注释去掉
+1. 联机:本地把 `go/scene_manager/etc/scene_manager_service.yaml` 里 `MysteryMerchant` 那几行的注释去掉
    (每两分钟一轮、一直在场),两个客户端分别在商人所在线与别的线,核对:飘字、角标、商人形象的位置、
    点击走过去开店、购买后余额与背包、别的线上「前往」、限购、换轮后货架刷新;
    再核对两件评审后才有的行为:余额不够时按钮仍可点、点了提示「货币不足」;双击「购买」不会成交。
-4. 商人形象:热区大小是按「角色帧高 9.8、人物占一半宽」估的,要在真实镜头下点一点。
-5. 角标与线路角标并排占了右上角约 870 设计像素,其它分辨率下会不会挡到别的 HUD 没看过。
+2. 商人形象:热区大小是按「角色帧高 9.8、人物占一半宽」估的,要在真实镜头下点一点。
+3. 角标与线路角标并排占了右上角约 870 设计像素,其它分辨率下会不会挡到别的 HUD 没看过。

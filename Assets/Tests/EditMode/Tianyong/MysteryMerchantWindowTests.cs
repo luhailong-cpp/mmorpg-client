@@ -410,13 +410,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var merchantObject = new GameObject("MerchantHostTest");
             merchantObject.transform.SetParent(_root.transform, false);
             var merchant = merchantObject.AddComponent<MysteryMerchantUiRoot>();
-            if (merchant.Window == null) merchant.SendMessage("Awake");
+            // EditMode 下组件不会自动跑生命周期;SendMessage 会让 Unity 打出 'ShouldRunBehaviour()' 断言日志、
+            // 被测试框架判为未处理的错误日志。与 TeamInvitationWindowTests 一样用反射直接调私有 Awake。
+            var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            if (merchant.Window == null) typeof(MysteryMerchantUiRoot).GetMethod("Awake", flags).Invoke(merchant, null);
             merchant.Window.SetView(Here());
             merchant.Window.Show();
             var skillObject = new GameObject("SkillHostTest");
             skillObject.transform.SetParent(_root.transform, false);
             var skills = skillObject.AddComponent<MmorpgClient.UI.Ugui.Skills.SkillUiRoot>();
-            if (MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance == null) skills.SendMessage("Awake");
+            if (MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance == null)
+                typeof(MmorpgClient.UI.Ugui.Skills.SkillUiRoot).GetMethod("Awake", flags).Invoke(skills, null);
 
             MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Open();
 
