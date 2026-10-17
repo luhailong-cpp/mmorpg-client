@@ -111,6 +111,9 @@ namespace MmorpgClient.Tests.EditMode.Ugui
                 slider.fillRect.ForceUpdateRectTransforms();
                 Assert.That(slider.fillRect.rect.width, Is.EqualTo(470f * .37f).Within(1f),
                     "Slider fill must represent volume without overflowing its track.");
+                slider.handleRect.ForceUpdateRectTransforms();
+                Assert.That(slider.handleRect.rect.size, Is.EqualTo(new Vector2(42, 42)),
+                    "Slider's perpendicular stretch must preserve a round handle.");
                 Click("SettingsClose"); Click("LandingSettings");
                 Assert.That(Required<Slider>("SettingsVolumeSlider").value, Is.EqualTo(.37f).Within(.001f));
                 Assert.That(Required<TMP_Text>("SettingsVolumeValue").text, Is.EqualTo("37%"));

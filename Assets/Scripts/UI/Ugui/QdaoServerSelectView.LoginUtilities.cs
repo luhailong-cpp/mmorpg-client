@@ -64,12 +64,15 @@ namespace MmorpgClient.UI.Ugui
             fill.rectTransform.anchorMax = Vector2.one;
             fill.rectTransform.offsetMin = Vector2.zero;
             fill.rectTransform.offsetMax = Vector2.zero;
-            var handleArea = QdaoUguiFactory.CreateRect("VolumeHandleArea", sliderRoot, 25, 0, 470, 50);
+            var handleArea = QdaoUguiFactory.CreateRect("VolumeHandleArea", sliderRoot, 25, 4, 470, 42);
             var handle = QdaoUguiFactory.CreateImage("VolumeHandle", handleArea, 0, 4, 42, 42, _statusDotSprite, true);
             handle.color = QdaoUguiTheme.Html("#E7C96E");
             handle.rectTransform.pivot = new Vector2(.5f, .5f);
             handle.rectTransform.anchorMin = handle.rectTransform.anchorMax = new Vector2(0, .5f);
             handle.rectTransform.anchoredPosition = Vector2.zero;
+            // Slider stretches the perpendicular anchors on every refresh.
+            // The area's height supplies the handle height; keep its extra height zero.
+            handle.rectTransform.sizeDelta = new Vector2(42, 0);
             _settingsVolumeSlider = sliderRoot.gameObject.AddComponent<Slider>();
             _settingsVolumeSlider.fillRect = fill.rectTransform;
             _settingsVolumeSlider.handleRect = handle.rectTransform;
