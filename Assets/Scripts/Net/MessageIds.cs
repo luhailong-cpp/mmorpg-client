@@ -46,6 +46,7 @@ namespace MmorpgClient.Net
         public const uint GetPetList             =  181; // ScenePetClientPlayerGetPetList
         public const uint GetPlayerGuild         =   35; // GuildServiceGetPlayerGuild
         public const uint GetQueueStatus         =  153; // MatchServiceGetQueueStatus
+        public const uint GetRankPage            =  275; // ClientPlayerRankGetRankPage
         public const uint GetSyncDigest          =  253; // SceneSceneClientPlayerGetSyncDigest
         public const uint GmGrantPet             =  187; // ScenePetClientPlayerGmGrantPet
         public const uint GmSetPlayerLevel       =  175; // SceneAttributeClientPlayerGmSetPlayerLevel
