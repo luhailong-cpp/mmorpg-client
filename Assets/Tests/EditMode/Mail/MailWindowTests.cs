@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Reflection;
 using MmorpgClient.Game.Mail;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Mail;
@@ -22,6 +23,8 @@ namespace MmorpgClient.Tests.EditMode.Mail
         {
             _previousEvents=EventSystem.current;
             _events=new GameObject("MailTestEvents",typeof(EventSystem));
+            // EditMode does not invoke MonoBehaviour enable callbacks; register the test-only event system explicitly.
+            typeof(EventSystem).GetMethod("OnEnable",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(_events.GetComponent<EventSystem>(),null);
             EventSystem.current=_events.GetComponent<EventSystem>();
             _canvas=new GameObject("MailTestCanvas",typeof(RectTransform),typeof(Canvas));
             _canvas.GetComponent<Canvas>().renderMode=RenderMode.ScreenSpaceOverlay;
@@ -30,8 +33,8 @@ namespace MmorpgClient.Tests.EditMode.Mail
         }
         [TearDown] public void TearDown()
         {
-            _window?.Dispose();if(_canvas!=null)Object.DestroyImmediate(_canvas);if(_events!=null)Object.DestroyImmediate(_events);
-            EventSystem.current=_previousEvents;
+            _window?.Dispose();if(_canvas!=null)Object.DestroyImmediate(_canvas);if(_events!=null){typeof(EventSystem).GetMethod("OnDisable",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(_events.GetComponent<EventSystem>(),null);Object.DestroyImmediate(_events);}
+            if(_previousEvents!=null)EventSystem.current=_previousEvents;
         }
         private Button Button(string name)=>_canvas.GetComponentsInChildren<Button>(true).Single(x=>x.name==name);
         private TMP_Text Text(string name)=>_canvas.GetComponentsInChildren<TMP_Text>(true).Single(x=>x.name==name);

@@ -263,7 +263,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.OpenEquipmentForge(WornSword);
             Assert.That(_net.Calls.Count, Is.EqualTo(1), "只补拉尚未同步的行囊");
             Assert.That(Text("EquipForgeStage").text, Is.EqualTo("正在同步行囊与装备栏…"));
-            Assert.That(Button("EquipForgeEnhance").interactable, Is.False);
+            var hiddenEnhance = ForgeRoot().GetComponentsInChildren<Button>(true)
+                .Single(b => b.name == "EquipForgeEnhance");
+            Assert.That(hiddenEnhance.gameObject.activeInHierarchy, Is.False, "未同步时不展示可操作的强化区");
+            Assert.That(hiddenEnhance.interactable, Is.False);
             Assert.That(Button("EquipForgeRefresh").interactable, Is.False);
             _net.Calls.Single().FailWith("timeout");
             Assert.That(Text("EquipForgeStage").text, Is.EqualTo("行囊或装备栏暂未同步，请点击刷新重试"));

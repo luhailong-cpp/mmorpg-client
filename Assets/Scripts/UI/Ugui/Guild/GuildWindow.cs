@@ -54,6 +54,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         public const int GoodsPerPage = 6;
         private readonly RectTransform _root, _body, _frame, _rail;
         private readonly TMP_Text _status, _summary;
+        private readonly ScrollRect _statusScroll;
         private readonly CanvasGroup _frameInput;
         private readonly Button[] _tabs = new Button[6];
         private readonly Image[] _tabMarkers = new Image[6];
@@ -117,9 +118,21 @@ namespace MmorpgClient.UI.Ugui.Guild
             NamedButton(_frame, "CloseGuild", "", 1782, 25, 83, 78, Hide, key: "guild_close");
             _rail = QdaoUguiFactory.CreateRect("GuildIdentity", _frame, 183, 171, 544, 595);
             _body = QdaoUguiFactory.CreateRect("GuildContent", _frame, 795, 175, 957, 503);
-            FidelityLabel(_frame, "GuildContributionFooterLabel", "可用 / 累计帮贡", 798, 701, 315, 22, 17, Muted);
-            _summary = FidelityLabel(_frame, "GuildMyContribution", "", 798, 724, 315, 34, 23, Ink);
-            _status = FidelityLabel(_frame, "GuildRuntimeStatus", "", 796, 767, 963, 25, 16, Muted);
+            FidelityLabel(_frame, "GuildContributionFooterLabel", "可用 / 累计帮贡", 798, 704, 315, 22, 17, Muted);
+            _summary = FidelityLabel(_frame, "GuildMyContribution", "", 798, 728, 315, 34, 23, Ink);
+            // Dedicated ivory gap: entries end at678; status ends703; contribution/actions start704.
+            var statusViewport = QdaoUguiFactory.CreateRect("GuildRuntimeStatusViewport", _frame, 798, 678, 540, 25);
+            var statusHit = statusViewport.gameObject.AddComponent<Image>();
+            statusHit.color = new Color(1, 1, 1, .001f); statusHit.raycastTarget = true;
+            statusViewport.gameObject.AddComponent<RectMask2D>();
+            _status = FidelityLabel(statusViewport, "GuildRuntimeStatus", "", 0, 0, 540, 25, 16, Muted);
+            _status.overflowMode = TextOverflowModes.Overflow;
+            _status.raycastTarget = false;
+            _statusScroll = statusViewport.gameObject.AddComponent<ScrollRect>();
+            _statusScroll.viewport = statusViewport; _statusScroll.content = _status.rectTransform;
+            _statusScroll.horizontal = true; _statusScroll.vertical = false;
+            _statusScroll.movementType = ScrollRect.MovementType.Clamped;
+            _statusScroll.scrollSensitivity = 36;
             NamedButton(_frame, "GuildFooterMembers", "查看同道", 1122, 704, 229, 58, () => Show(GuildPage.Members), fontSize: 27);
             _refresh = NamedButton(_frame, "RefreshGuild", "刷新帮会", 1365, 692, 414, 80, RefreshCurrentPage, true, fontSize: 33);
         }
@@ -200,6 +213,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             Clear(_rail); Clear(_body); _activityReset = null;
             ConfigureFidelityBody();
             _status.text = _client?.Status ?? "进入角色后，可在此与同道相聚。";
+            // Preserve the complete authoritative message; long status is draggable/wheel-scrollable.
+            _status.rectTransform.sizeDelta = new Vector2(Mathf.Max(540, _status.GetPreferredValues(_status.text).x + 8), 25);
+            _statusScroll.horizontalNormalizedPosition = 0;
             _summary.text = _client?.Info == null ? "结一方同道 · 守一盏人间灯" :
                 GuildClient.FormatAmount(MyContributionBalance(_client.Info)) + " / " + GuildClient.FormatAmount(MyContributionTotal(_client.Info));
             _refresh.interactable = !Busy;
@@ -326,9 +342,19 @@ namespace MmorpgClient.UI.Ugui.Guild
             Art(_rail, "guild_progress_track", 135, 338, 392, 37);
             double ratio = info.UpgradeCostFunds == 0 ? 1 : Math.Min(1d, (double)info.Funds / info.UpgradeCostFunds);
             if (ratio > 0) Art(_rail, "guild_progress_fill", 147, 346, (float)(368 * ratio), 21);
-            FidelityLabel(_rail, "GuildUpgradeFundsValue", info.UpgradeCostFunds == 0 ? "已满级" :
+            var upgradeFundsText = FidelityLabel(_rail, "GuildUpgradeFundsValue", info.UpgradeCostFunds == 0 ? "已满级" :
                 GuildClient.FormatAmount(info.Funds) + " / " + GuildClient.FormatAmount(info.UpgradeCostFunds), 149, 343, 365, 27, 17,
-                ratio >= .55 ? Cream : Ink, align: TextAlignmentOptions.Center);
+                Ink, align: TextAlignmentOptions.Center);
+            if (ratio > 0)
+            {
+                // Keep identical full text geometry; only the actual green fill reveals ivory glyphs.
+                var filledClip = QdaoUguiFactory.CreateRect("GuildUpgradeFundsFilledClip", _rail, 147, 346, (float)(368 * ratio), 21);
+                filledClip.gameObject.AddComponent<RectMask2D>();
+                var filledText = FidelityLabel(filledClip, "GuildUpgradeFundsFilledValue", upgradeFundsText.text,
+                    2, -3, 365, 27, 17, Cream, align: TextAlignmentOptions.Center);
+                filledText.font = upgradeFundsText.font;
+                filledText.fontStyle = upgradeFundsText.fontStyle;
+            }
             Art(_rail, "guild_announcement", -2, 388, 546, 144);
             FidelityLabel(_rail, "GuildAnnouncementHeading", "帮会公告", 37, 396, 471, 36, 27, Ink);
             FidelityLabel(_rail, "GuildAnnouncementExcerpt", string.IsNullOrWhiteSpace(info.Announcement) ? "同道相伴，诸事顺遂。" : info.Announcement,

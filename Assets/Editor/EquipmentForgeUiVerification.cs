@@ -249,12 +249,16 @@ public static class EquipmentForgeUiVerification
             client.RequestEquipment();
             transport.RespondBag(2, EquipmentFixture());
             window.ShowEquipment();
+            Click(root, "BagCategory_3"); // Native worn-equipment view.
             Click(root, "EquipSlot_3");
             Click(root, "EquipMore");
             Click(root, "EquipOpenForge");
             Require(forge.View.Stage == EquipForgeStage.Loading && forge.TargetItemId == 7001,
                 "人物背包快照缺失时，从身上装备入口打开必须呈现同步中状态。");
-            Require(!Find<Button>(root, "EquipForgeEnhance").interactable, "同步中必须禁用强化。");
+            var hiddenEnhance = Find<RectTransform>(root, "EquipForgeDialog")
+                .GetComponentsInChildren<Button>(true).Single(button => button.name == "EquipForgeEnhance");
+            Require(!hiddenEnhance.gameObject.activeInHierarchy && !hiddenEnhance.interactable,
+                "同步中必须隐藏强化区且保持强化不可用。");
             Require(transport.Calls.Count(call => call.Request is GetBagRequest) == 2,
                 "已读取装备栏后，打开面板必须只补拉缺少的人物背包快照。");
             Shoot("06-loading");

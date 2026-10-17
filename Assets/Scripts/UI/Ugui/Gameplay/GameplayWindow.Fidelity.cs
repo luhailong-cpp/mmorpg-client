@@ -46,9 +46,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var b = QdaoUguiFactory.CreateArtButton(name, parent, x, y, w, h, NativeSprite(skin), out var image);
             b.navigation = new Navigation { mode = Navigation.Mode.Automatic }; b.interactable = enabled;
-            var c = b.colors; c.selectedColor = Color.white; c.highlightedColor = new Color(1, .97f, .90f); b.colors = c;
+            var c = b.colors; c.selectedColor = Color.white; c.highlightedColor = new Color(1, .97f, .90f); c.disabledColor = Color.white; b.colors = c;
             if (click != null) b.onClick.AddListener(() => click());
-            if (!string.IsNullOrEmpty(label)) NativeText(b.transform, label, 10, 0, w - 20, h, font, jade ? Cream : Ink, TextAlignmentOptions.Center);
+            if (!string.IsNullOrEmpty(label))
+            {
+                var text = NativeText(b.transform, label, 10, 0, w - 20, h, font, jade ? Cream : Ink, TextAlignmentOptions.Center);
+                if (!enabled) text.color = jade ? new Color(Cream.r, Cream.g, Cream.b, .65f) : Muted;
+            }
             return b;
         }
 
@@ -74,9 +78,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var measure = NativeText(parent, value, 0, 0, width - 8, height, font, color, wrap: true);
             float actual = Math.Max(height, measure.GetPreferredValues(value, width - 8, float.PositiveInfinity).y + 8);
+            float oneLine = measure.GetPreferredValues("道", width - 8, float.PositiveInfinity).y;
+            float advance = Math.Max(1, measure.GetPreferredValues("道\n道", width - 8, float.PositiveInfinity).y - oneLine);
+            int visibleLines = Math.Max(1, Mathf.FloorToInt((height - oneLine) / advance) + 1);
+            float viewportHeight = Math.Min(height, oneLine + (visibleLines - 1) * advance);
             measure.gameObject.SetActive(false);
             if (Application.isPlaying) UnityEngine.Object.Destroy(measure.gameObject); else UnityEngine.Object.DestroyImmediate(measure.gameObject);
-            var content = NativeScroll(parent, "DescriptionScroll", x, y, width, height, actual, 1, _ => { });
+            var content = NativeScroll(parent, "DescriptionScroll", x, y, width, viewportHeight, actual, 1, _ => { });
             NativeText(content, value, 0, 0, width - 8, actual, font, color, wrap: true);
         }
 
@@ -97,7 +105,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 string amount = _bag?.Currency != null && i < _bag.Currency.Values.Count ? _bag.Currency.Values[i].ToString("N0") : "—";
                 NativeText(_body, amount, i == 0 ? 261 : 562, 708, i == 0 ? 132 : 85, 43, 28);
             }
-            NativeHit(_body, "RefreshBag", "刷新", 1109, 757, 72, 25, Refresh, !_bagLoading && !_sorting && !_equipBusy, 20);
+            NativeHit(_body, "RefreshBag", "刷新", 948, 741, 46, 20, Refresh, !_bagLoading && !_sorting && !_equipBusy, 17);
             NativeButton(_body, "SortBag", _sorting ? "整理中" : "整理背包", "bag-sort", 1005, 700, 158, 54,
                 () => SortRequested?.Invoke(), !_bagLoading && !_sorting && !_equipBusy && _bag?.Layout != null && _bag.Layout.CanSort && _bag.Layout.BagType == 0, 26);
 
@@ -132,7 +140,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 ItemIcon(button.transform, item.IconKey, 29, 4, 126);
                 NativeText(button.transform, item.Count > 1 ? item.Count.ToString() : "", 108, 103, 66, 34, 25, Ink, TextAlignmentOptions.MidlineRight);
             }
-            NativeText(_body, _bagFilter == 3 ? "已穿戴 " + wornVisible.Count(v => v.Item != null) : $"背包 {slots.Count}/{_bag?.Layout?.Capacity.ToString() ?? "—"}", 732, 750, 320, 25, 21, Muted);
+            NativeText(_body, _bagFilter == 3 ? "已穿戴 " + wornVisible.Count(v => v.Item != null) : $"背包 {slots.Count}/{_bag?.Layout?.Capacity.ToString() ?? "—"}", 732, 741, 210, 20, 18, Muted);
             string state = !string.IsNullOrEmpty(_bagError) ? "暂时未能同步，请点击刷新重试" : _bagLoading ? "正在打开行囊…" :
                 !string.IsNullOrEmpty(_equipError) ? _equipError : _equipBusy ? "正在处理装备…" : _equipmentNotice;
             if (!string.IsNullOrEmpty(state)) NativeStatus(state, 180, 671, 978, !string.IsNullOrEmpty(_bagError) || !string.IsNullOrEmpty(_equipError));
@@ -151,8 +159,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var panel = QdaoUguiFactory.CreateRect(equipment ? "GameplayEquipmentDetails" : "GameplayItemDetails", _body, 0, 0, NativeWidth, NativeHeight);
             var itemName = NativeText(panel, EquipDisplay.NameWithEnhance(ItemName(item), item.EnhanceLevel), 1256, 90, 508, 64, 43, Ink, TextAlignmentOptions.Center);
             itemName.name = "TooltipName"; itemName.enableAutoSizing = true; itemName.fontSizeMin = 28; itemName.fontSizeMax = 43;
+            NativeArt(panel, "bag-item-badge", 1423, 160, 159, 40);
             NativeText(panel, equipment ? worn ? "已穿戴" : "未穿戴" : "物品", 1423, 160, 159, 40, 27, Cream, TextAlignmentOptions.Center).name = "TooltipState";
-            ItemIcon(panel, item.IconKey, 1365, 216, 280);
+            ItemIcon(panel, item.IconKey, 1380, 216, 250);
             var lines = new List<EquipDetailLine>();
             if (equipment)
             {
@@ -240,16 +249,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             missionName.enableAutoSizing = true; missionName.fontSizeMin = 30; missionName.fontSizeMax = 46;
             float badgeX = Math.Max(1106, Math.Min(1618, 841 + missionName.GetPreferredValues(MissionName(detail)).x + 24));
             NativeArt(_body, "mission-badge", badgeX, 127, 126, 52);
-            NativeText(_body, MissionStatus(detail.Status), badgeX + 2, 131, 122, 45, 25, Ink, TextAlignmentOptions.Center);
+            var badgeText = NativeText(_body, MissionStatus(detail.Status), badgeX + 2, 131, 122, 45, 25, Ink, TextAlignmentOptions.Center);
+            badgeText.enableAutoSizing = true; badgeText.fontSizeMin = 18; badgeText.fontSizeMax = 25;
             NativeParagraph(_body, string.IsNullOrWhiteSpace(detail.Description) ? "暂无任务说明。" : detail.Description, 852, 202, 872, 85, 28, Ink);
             NativeText(_body, "任务目标", 861, 286, 301, 45, 33);
             var heights = detail.Objectives.Select(goal => Math.Max(54, (float)Math.Ceiling((goal.Description?.Length ?? 0) / 20f) * 36)).ToList();
-            var objectives = NativeScroll(_body, "MissionObjectivesScroll", 854, 337, 872, 111, Math.Max(54, heights.Sum()), 1, _ => { });
+            var objectives = NativeScroll(_body, "MissionObjectivesScroll", 854, 337, 872, 108, Math.Max(54, heights.Sum()), 1, _ => { });
             float goalY = 0;
             for (int i = 0; i < detail.Objectives.Count; ++i)
             {
                 var goal = detail.Objectives[i];
-                NativeText(objectives, goal.Completed ? "✓" : "□", 12, goalY, 42, 50, 33, goal.Completed ? Ink : Gold);
+                var stateArt = EquipUiSkin.Art(objectives, goal.Completed ? "checkbox_on" : "checkbox_off", 12, goalY + 7, 32, 32, Gold);
+                stateArt.name = "MissionObjectiveState_" + i;
                 NativeText(objectives, string.IsNullOrWhiteSpace(goal.Description) ? $"目标 {goal.ObjectiveIndex + 1}" : goal.Description, 70, goalY, 610, heights[i], 29, wrap: true);
                 NativeText(objectives, $"{goal.Progress}/{goal.Target}", 691, goalY, 166, 50, 28, Ink, TextAlignmentOptions.MidlineRight);
                 goalY += heights[i];
@@ -283,7 +294,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     i != 3 || (!_activityLoading && !_missionActionBusy));
                 NativeArt(button.transform, icons[i], 26, 15, 80, 81);
                 NativeText(button.transform, filters[i], 108, 18, 175, 65, 32, selected ? Cream : Ink, TextAlignmentOptions.Center);
-                if (selected) NativeText(button.transform, "✓", 281, 29, 33, 49, 34, Cream);
+                if (selected) EquipUiSkin.Art(button.transform, "checkbox_on", 278, 31, 32, 32, Gold);
             }
             NativeText(_body, filters[Math.Min(_activityFilter, 2)], 539, 91, 807, 63, 44);
             var list = _activities?.Activities.Where(a => _activityFilter == 0 || (_activityFilter == 1 ? (int)a.Status == 2 : (int)a.Status < 2)).OrderBy(a => a.ActivityId).ToList() ?? new List<PlayerActivityInfo>();

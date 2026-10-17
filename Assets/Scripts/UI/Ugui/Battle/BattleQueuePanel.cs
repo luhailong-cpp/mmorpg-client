@@ -122,6 +122,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             RefreshButtons();
             RefreshContinuousButton();
+            BattleFidelityArt.ApplyPanel(_root);
             Hide();
         }
 
@@ -227,6 +228,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _pveButton?.SetText(_pveTeamSize <= 1
                 ? "匹配 PVE(1人 · 立即开战)"
                 : $"匹配 PVE({_pveTeamSize}人 · 怪物×{_pveTeamSize})");
+            BattleFidelityArt.ApplyPanel(_root);
         }
 
         private void OnJoinPveClicked()

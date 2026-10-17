@@ -732,7 +732,7 @@ namespace MmorpgClient.UI.Ugui
             {
                 bool active = i == _selectedTopTab;
                 _topButtons[i].interactable = canInteract;
-                QdaoRefreshArt.Skin(_topImages[i], active ? "tab_selected" : "tab_normal");
+                QdaoCoreFidelityArt.Skin(_topImages[i], active ? "tab_selected" : "tab_normal");
                 _topLabels[i].color = active ? QdaoRefreshArt.Ivory : QdaoRefreshArt.Ink;
                 _topSelectionMarks[i].enabled = false;
             }
@@ -741,7 +741,7 @@ namespace MmorpgClient.UI.Ugui
             {
                 bool active = i == _selectedCategory;
                 _categoryButtons[i].interactable = canInteract;
-                QdaoRefreshArt.Skin(_categoryImages[i], active ? "list_row_selected" : "list_row_normal");
+                QdaoCoreFidelityArt.Skin(_categoryImages[i], active ? "list_row_selected" : "list_row_normal");
                 _categoryTexts[i].color = active ? QdaoRefreshArt.Ivory : QdaoRefreshArt.Ink;
                 _categorySelectionMarks[i].enabled = false;
             }
@@ -768,7 +768,7 @@ namespace MmorpgClient.UI.Ugui
                 var zone = _filtered[index];
                 bool selected = zone.zone_id == _selectedZoneId;
                 bool closed = zone.status == "MAINTENANCE" || zone.status == "CLOSED" || zone.status == "PREVIEW";
-                QdaoRefreshArt.Skin(_serverCardImages[slot], "server_card_wide_" +
+                QdaoCoreFidelityArt.Skin(_serverCardImages[slot], "server_card_wide_" +
                     (closed ? "disabled" : selected ? "selected" : "normal"));
                 _serverNames[slot].text = CardDisplayName(zone);
                 _serverSubtitles[slot].text = ZoneSubtitle(zone) + (selected ? " · 已选择" : string.Empty);
@@ -860,7 +860,7 @@ namespace MmorpgClient.UI.Ugui
                 return;
 
             foreach (var text in GetComponentsInChildren<TMP_Text>(true))
-                QdaoUguiTypography.RefreshFont(text);
+                QdaoCoreFidelityArt.ApplyText(text);
         }
 
         private void SetStatus(string value)

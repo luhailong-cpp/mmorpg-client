@@ -59,6 +59,46 @@ public static class UiFidelitySweep
         SceneChannelFidelityVerification.Capture();
         Debug.Log("UI_FIDELITY_SKILLS_CHANNELS_CAPTURE_OK");
     }
+    public static void BuildAndCaptureCore()
+    {
+        PrepareBatchScene();MmorpgClient.UI.EditorTools.QdaoUguiBuilder.BuildAll();
+        ClientUiRefreshVerification.OutputDirectory=Root+"/core";ClientUiRefreshVerification.CaptureAll();
+        Debug.Log("UI_FIDELITY_CORE_REBUILT_AND_CAPTURED");
+    }
+    public static void CaptureCorrected()
+    {
+        PrepareBatchScene();Directory.CreateDirectory(Root);var items=new List<Item>();
+        void Run(string name,string directory,Action capture)
+        {
+            Directory.CreateDirectory(directory);var item=new Item{module=name,directory=directory,status="captured"};
+            try{capture();}catch(Exception error){item.status="capture-failed";item.error=error.ToString();Debug.LogException(error);}
+            item.screenshots=Directory.GetFiles(directory,"*.png",SearchOption.AllDirectories).Length;items.Add(item);
+        }
+        Run("attributes","E:/work/image/designs/attribute-panels/fidelity-20261016/qa/native",()=>{AttributePanelV10Verification.OutputDirectory="E:/work/image/designs/attribute-panels/fidelity-20261016/qa/native";AttributePanelV10Verification.CaptureAll();});
+        Run("skills",SkillUiVerification.OutputDirectory,SkillUiVerification.CaptureAll);
+        Run("gameplay","E:/work/image/designs/gameplay-ui/fidelity-20261016/qa/post-visual-fixes",()=>{GameplayUiVerification.OutputDirectory="E:/work/image/designs/gameplay-ui/fidelity-20261016/qa/post-visual-fixes";GameplayUiVerification.CaptureAll();});
+        Run("equipment",Root+"/equipment",()=>{EquipmentUiVerification.OutputDirectory=Root+"/equipment";EquipmentUiVerification.CaptureAll();});
+        Run("equipment-integration",Root+"/equipment-integration",()=>{EquipmentIntegrationVerification.OutputDirectory=Root+"/equipment-integration";EquipmentIntegrationVerification.CaptureAll();});
+        Run("equipment-forge",Root+"/equipment-forge/screenshots",()=>{EquipmentForgeUiVerification.OutputDirectory=Root+"/equipment-forge/screenshots";EquipmentForgeUiVerification.CaptureAll();});
+        Run("mail","E:/work/image/designs/mail-ui-v1/fidelity-20261016/qa/native",()=>{MailUiVerification.OutputDirectory="E:/work/image/designs/mail-ui-v1/fidelity-20261016/qa/native";MailUiVerification.CaptureAll();});
+        Run("guild",Root+"/guild",()=>{
+            var type=AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("GuildUiVerification")).FirstOrDefault(t=>t!=null)??throw new InvalidOperationException("Guild verification unavailable");
+            type.GetField("OutputDirectory",BindingFlags.Public|BindingFlags.Static).SetValue(null,Root+"/guild");type.GetMethod("CaptureAll",BindingFlags.Public|BindingFlags.Static).Invoke(null,null);
+        });
+        File.WriteAllText(Path.Combine(Root,"corrected-inventory.json"),JsonUtility.ToJson(new Report{status=items.TrueForAll(i=>i.status=="captured")?"captured":"captured-with-gaps",completedAtUtc=DateTime.UtcNow.ToString("O"),unityVersion=Application.unityVersion,modules=items.ToArray()},true));
+        CaptureBattle();
+    }
+    public static void RebuildAndCaptureCorrected(){BuildAndCaptureCore();CaptureCorrected();}
+    public static void CaptureFinalSubset()
+    {
+        BuildAndCaptureCore();
+        SkillUiVerification.CaptureAll();
+        MailUiVerification.OutputDirectory="E:/work/image/designs/mail-ui-v1/fidelity-20261016/qa/native";MailUiVerification.CaptureAll();
+        var type=AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("GuildUiVerification")).FirstOrDefault(t=>t!=null)??throw new InvalidOperationException("Guild verification unavailable");
+        type.GetField("OutputDirectory",BindingFlags.Public|BindingFlags.Static).SetValue(null,Root+"/guild");type.GetMethod("CaptureAll",BindingFlags.Public|BindingFlags.Static).Invoke(null,null);
+        File.WriteAllText(Root+"/final-subset-captured.txt",DateTime.UtcNow.ToString("O")+"\nCore16, skills30, mail16, guild26; production native controls with offline fixture data.\n");
+        CaptureBattle();
+    }
     public static void CaptureUpdated()
     {
         if(EditorApplication.isPlayingOrWillChangePlaymode)throw new InvalidOperationException("Stable Edit Mode required.");

@@ -292,7 +292,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 _gotoCreateButton.Label.rectTransform.anchoredPosition = new Vector2(42f, 0f);
                 _gotoCreateButton.Label.rectTransform.sizeDelta = new Vector2(456f, _roleCardHeight);
                 _gotoCreateButton.Label.fontSize = _roleCardHeight > 170f ? 44f : 34f;
-                QdaoRefreshArt.Skin(_gotoCreateButton.Plate, "server_card_medium_normal");
+                RoleFidelityArt.Skin(_gotoCreateButton.Plate, "server_card_medium_normal");
             }
             for (int i = 0; i < count; i++)
             {
@@ -300,7 +300,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 if (player.PlayerId == _selectedPlayerId ||
                     (_selectedPlayerId == 0 && player.PlayerId == lastPlayed)) selectedIndex = i;
                 var card = new RoleCard { PlayerId = player.PlayerId };
-                card.Button = QdaoRefreshArt.Button($"Role_{player.PlayerId}", _rowContainer,
+                card.Button = RoleFidelityArt.Button($"Role_{player.PlayerId}", _rowContainer,
                     0f, i * (_roleCardHeight + 16f), 540f, _roleCardHeight, "server_card_medium_normal", out card.Plate);
                 ConfigureNavigation(card.Button);
                 float portraitSize = Mathf.Min(176f, _roleCardHeight - 36f);
@@ -310,7 +310,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 float textWidth = 540f - textX - 60f;
                 card.Name = Label("Name", card.Plate.transform, textX, _roleCardHeight * .24f, textWidth, 60f,
                     DisplayName(player), _roleCardHeight > 170f ? 44f : 33f, Ink);
-                QdaoUguiTypography.ApplyHeading(card.Name);
+                QdaoCoreFidelityArt.ApplyText(card.Name);
                 // 角色名最长 12 字(服务端 RoleNameRule),文字区最窄约 250:放不下先缩字号,缩到底再省略
                 card.Name.enableAutoSizing = true;
                 card.Name.fontSizeMax = card.Name.fontSize;
@@ -318,9 +318,9 @@ namespace MmorpgClient.UI.Ugui.Role
                 card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 44f,
                     $"{GenderName(player.Gender)} · {ShortId(player.PlayerId)}" + (player.PlayerId == lastPlayed ? " · 上次" : string.Empty),
                     _roleCardHeight > 170f ? 28f : 26f, Wood);
-                QdaoUguiTypography.ApplyBody(card.Detail);
+                QdaoCoreFidelityArt.ApplyText(card.Detail);
                 card.Check = QdaoUguiFactory.CreateImage("SelectedCheck", card.Plate.transform,
-                    482f, _roleCardHeight * .5f - 23f, 46f, 46f, QdaoRefreshArt.Load("check"));
+                    482f, _roleCardHeight * .5f - 23f, 46f, 46f, RoleFidelityArt.Load("check"));
                 card.Check.gameObject.SetActive(false);
                 int captured = i;
                 card.Button.onClick.AddListener(() => PreviewPlayer(captured));
@@ -348,7 +348,7 @@ namespace MmorpgClient.UI.Ugui.Role
             {
                 var card = _roleCards[i];
                 bool selected = i == index;
-                QdaoRefreshArt.Skin(card.Plate, selected ? "server_card_medium_selected" : "server_card_medium_normal");
+                RoleFidelityArt.Skin(card.Plate, selected ? "server_card_medium_selected" : "server_card_medium_normal");
                 card.Name.color = selected ? Ivory : Ink;
                 card.Detail.color = selected ? Ivory : Wood;
                 card.Check.gameObject.SetActive(selected);
@@ -366,8 +366,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 "人物：" + _appearanceChoices[_appearanceChoice - 1].Name;
             var appearance = QdaoCharacterCatalog.Find(
                 QdaoCharacterCatalog.ResolveRole(_pickedClassId, _pickedGender, PickedAppearanceId))?.ResolveAppearance();
-            _appearanceDetails.text = appearance == null ? string.Empty :
-                (appearance.IsHd ? "高清 · " : string.Empty) + $"8 个方向 · 每方向 {appearance.FrameCount} 帧";
+            _appearanceDetails.text = appearance == null ? string.Empty : "选择喜欢的人物外观";
             RefreshPreview(_pickedClassId, _pickedGender, 0, PickedAppearanceId);
         }
 
@@ -418,7 +417,7 @@ namespace MmorpgClient.UI.Ugui.Role
             // 只在选角模式可见(挂在 _selectRoot 下);服务端没带名字的旧角色显示"未命名"
             if (_roleNameValue != null)
                 _roleNameValue.text = string.IsNullOrWhiteSpace(roleName) ? "未命名" : roleName;
-            _classBadge.sprite = QdaoRefreshArt.Load(ClassBadges[index]);
+            _classBadge.sprite = RoleFidelityArt.Load(ClassBadges[index]);
             _classValue.text = ClassName(classId);
             _genderValue.text = GenderName(gender);
             var zone = AppBootstrap.Instance?.Session?.Zones.Find(z => z.zone_id == _zoneId);
@@ -444,34 +443,13 @@ namespace MmorpgClient.UI.Ugui.Role
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             scaler.referencePixelsPerUnit = 100f;
 
-            var scene = Resources.Load<Sprite>(QdaoRefreshArt.Root + "sanctuary_background") ??
-                        QdaoRefreshArt.Load("login_background") ??
-                        BattleArtCatalog.LoadSprite("UI/Ugui/Native/scene_background");
             BattleUiWidgets.CreateStretchPanel("InputBlocker", _canvasGo.transform, QdaoUguiTheme.Letterbox);
-            if (scene != null)
-                QdaoUguiFactory.CreateAspectFillImage("Sanctuary", _canvasGo.transform, scene,
-                    scene.rect.width / scene.rect.height);
-            _designRoot = QdaoUguiFactory.CreateCenteredRect("RoleDesignRoot", _canvasGo.transform,
-                QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
-
-            var ring = QdaoUguiFactory.CreateImage("CultivationCircle", _designRoot,
-                748f, 780f, 1150f, 300f, BattleArtCatalog.LoadSpawnRing(true));
-            ring.color = new Color(1f, 0.91f, 0.68f, 0.7f);
-            ring.enabled = ring.sprite != null;
-            _hero = QdaoUguiFactory.CreateImage("CharacterArtwork", _designRoot,
-                985f, 256f, 720f, 830f, null);
-            _hero.preserveAspect = true;
-
-            QdaoRefreshArt.Panel("RoleListWindow", _designRoot, 112f, 142f, 624f, 814f, "main_frame");
-            var titlePlate = QdaoRefreshArt.Panel("TitleJade", _designRoot,
-                106f, 72f, 640f, 124f, "primary_button_normal");
-            _title = Label("Title", titlePlate.transform, 65f, 20f, 510f, 84f, "选择角色", 59f,
-                Ivory, TextAlignmentOptions.Center);
-            QdaoUguiTypography.ApplyHeading(_title);
-            QdaoUguiFactory.CreateImage("RoleTitleEmblem", _designRoot, 367f, 7f, 112f, 100f,
-                QdaoRefreshArt.Load("round_badge_taiji")).preserveAspect = true;
-            _listHint = Label("ListHint", _designRoot, 150f, 200f, 540f, 38f,
-                string.Empty, 26f, Wood, TextAlignmentOptions.Center);
+            _designRoot = QdaoUguiFactory.CreateCenteredRect("RoleDesignRoot", _canvasGo.transform, 2560,1080);
+            QdaoUguiFactory.CreateImage("RoleOriginalShell",_designRoot,0,0,2560,1080,RoleFidelityArt.Load("role_shell"));
+            _hero=QdaoUguiFactory.CreateImage("CharacterArtwork",_designRoot,805,20,876,960,null);
+            _hero.preserveAspect=true;
+            _title=Label("Title",_designRoot,180,87,510,84,"选择角色",59,Ivory,TextAlignmentOptions.Center);
+            _listHint=Label("ListHint",_designRoot,150,200,540,38,"",26,Wood,TextAlignmentOptions.Center);
             BuildDetails();
             BuildSelectRoot();
             BuildCreateRoot();
@@ -480,22 +458,18 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private void BuildDetails()
         {
-            QdaoRefreshArt.Panel("RoleDetailsWindow", _designRoot, 1920f, 174f, 510f, 656f, "content_panel");
-            _classBadge = QdaoUguiFactory.CreateImage("ClassEmblem", _designRoot,
-                2118f, 96f, 118f, 118f, null);
-            _classBadge.preserveAspect = true;
-            _previewTitle = Label("PreviewTitle", _designRoot, 1980f, 250f, 390f, 88f,
-                string.Empty, 58f, Ink, TextAlignmentOptions.Center);
-            QdaoUguiTypography.ApplyHeading(_previewTitle);
-            _classValue = DetailRow("Class", "所属职业", 376f);
-            _genderValue = DetailRow("Gender", "性别", 448f);
-            _zoneValue = DetailRow("Zone", "所属区服", 520f);
-            _identityValue = DetailRow("Identity", "角色编号", 592f, out _identityLabel);
-            _directionValue = DetailRow("Direction", "修行方向", 664f);
-            _previewHint = Label("PreviewHint", _designRoot, 1950f, 838f, 474f, 44f,
-                string.Empty, 26f, Wood, TextAlignmentOptions.Center);
+            _classBadge=QdaoUguiFactory.CreateImage("ClassEmblem",_designRoot,2118,96,118,118,null);
+            _classBadge.preserveAspect=true;_classBadge.enabled=false;
+            _previewTitle=Label("PreviewTitle",_designRoot,1980,250,390,88,"",58,Ink,TextAlignmentOptions.Center);
+            _classValue=Label("ClassValue",_designRoot,2070,343,170,48,"",31,Ivory,TextAlignmentOptions.Center);
+            _genderValue=DetailRow("Gender","性别",430);
+            _zoneValue=DetailRow("Zone","所属区服",502);
+            _identityValue=DetailRow("Identity","角色编号",574,out _identityLabel);
+            _directionValue=DetailRow("Direction","修行方向",646);
+            _previewHint=Label("PreviewHint",_designRoot,1950,784,450,34,"",22,Wood,TextAlignmentOptions.Center);
+            _previewHint.enableAutoSizing=true;_previewHint.fontSizeMax=22;_previewHint.fontSizeMin=16;
+            _previewHint.overflowMode=TextOverflowModes.Ellipsis;
         }
-
         private TMP_Text DetailRow(string name, string caption, float y)
             => DetailRow(name, caption, y, out _);
 
@@ -507,8 +481,8 @@ namespace MmorpgClient.UI.Ugui.Role
             captionText = Label(name + "Label", parent, 1982f, y, 155f, 48f, caption, 30f, Wood);
             var value = Label(name + "Value", parent, 2137f, y, 232f, 48f,
                 string.Empty, 32f, Ink, TextAlignmentOptions.MidlineRight);
-            QdaoUguiTypography.ApplyBody(captionText);
-            QdaoUguiTypography.ApplyBody(value);
+            QdaoCoreFidelityArt.ApplyText(captionText);
+            QdaoCoreFidelityArt.ApplyText(value);
             var line = QdaoUguiFactory.CreateImage(name + "Rule", parent,
                 1982f, y + 54f, 387f, 1f, null);
             line.color = new Color(Gold.r, Gold.g, Gold.b, 0.32f);
@@ -527,12 +501,13 @@ namespace MmorpgClient.UI.Ugui.Role
             _gotoCreateButton.Button.onClick.AddListener(ShowCreateMode);
             _enterButton = TextButton("EnterSanctuary", _selectRoot, 1885f, 876f, 570f,
                 "进入仙境", true, 62f);
-            _enterButton.Rect.sizeDelta = new Vector2(570f, 146f);
-            _enterButton.Label.rectTransform.sizeDelta = new Vector2(482f, 116f);
-            QdaoRefreshArt.Skin(_enterButton.Plate, "primary_button_normal");
+            _enterButton.Rect.anchoredPosition=new Vector2(1871,-851);
+            _enterButton.Rect.sizeDelta = new Vector2(572f, 160f);
+            _enterButton.Label.rectTransform.sizeDelta = new Vector2(484f, 130f);
+            RoleFidelityArt.Skin(_enterButton.Plate, "primary_button_normal");
             _enterButton.Button.onClick.AddListener(() => ResolveSelect(_selectedPlayerId));
             // 详情窗第六行(修行方向之下):选中角色的角色名。建角模式下同一位置换成名字输入框。
-            _roleNameValue = DetailRow("RoleName", "角色名", 736f, out _, _selectRoot);
+            _roleNameValue = DetailRow("RoleName", "角色名", 718f, out _, _selectRoot);
             _roleNameValue.enableAutoSizing = true; // 12 字放不进 232 宽的 32 号字,先缩字号
             _roleNameValue.fontSizeMax = _roleNameValue.fontSize;
             _roleNameValue.fontSizeMin = 18f;
@@ -548,7 +523,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 var choice = ChoiceButton($"Class_{definition.id}", _createRoot,
                     150f, 246f + i * 112f, 528f, definition.name + "    " + definition.desc);
                 var badge = QdaoUguiFactory.CreateImage("ClassBadge", choice.Rect,
-                    84f, 17f, 62f, 62f, QdaoRefreshArt.Load(ClassBadges[i]));
+                    84f, 17f, 62f, 62f, RoleFidelityArt.Load(ClassBadges[i]));
                 badge.preserveAspect = true;
                 choice.Label.rectTransform.anchoredPosition = new Vector2(158f, -17f);
                 choice.Label.rectTransform.sizeDelta = new Vector2(290f, 60f);
@@ -567,16 +542,19 @@ namespace MmorpgClient.UI.Ugui.Role
             _maleButton.Button.onClick.AddListener(() => { _pickedGender = 1; RefreshCreateHighlights(); });
             _femaleButton.Button.onClick.AddListener(() => { _pickedGender = 2; RefreshCreateHighlights(); });
             // Only complete approved same-ID V14/V13 packages become selectable.
-            var previousAppearance = TextButton("PreviousAppearance", _createRoot, 792f, 128f, 300f, "‹ 上一人物", false, 30f);
-            var nextAppearance = TextButton("NextAppearance", _createRoot, 1610f, 128f, 300f, "下一人物 ›", false, 30f);
+            var previousAppearance = TextButton("PreviousAppearance", _createRoot, 772f, 24f, 245f, "‹ 上一人物", false, 30f);
+            var nextAppearance = TextButton("NextAppearance", _createRoot, 1625f, 24f, 245f, "下一人物 ›", false, 30f);
+            previousAppearance.Rect.sizeDelta=new Vector2(245,88); previousAppearance.Label.rectTransform.sizeDelta=new Vector2(190,70);
+            nextAppearance.Rect.sizeDelta=new Vector2(245,88); nextAppearance.Label.rectTransform.sizeDelta=new Vector2(190,70);
             previousAppearance.Button.onClick.AddListener(() => CycleAppearance(-1));
             nextAppearance.Button.onClick.AddListener(() => CycleAppearance(1));
-            QdaoRefreshArt.Panel("AppearanceCaption", _createRoot, 1096f, 128f, 510f, 126f, "content_panel");
-            _appearanceLabel = Label("AppearanceName", _createRoot, 1100f, 148f, 500f, 56f,
-                string.Empty, 34f, Ink, TextAlignmentOptions.Center);
-            _appearanceDetails = Label("AppearanceDetails", _createRoot, 1050f, 210f, 600f, 38f,
-                string.Empty, 26f, Wood, TextAlignmentOptions.Center);
+            RoleFidelityArt.Panel("AppearanceCaption", _createRoot, 1028f, 24f, 580f, 88f, "content_panel");
+            _appearanceLabel = Label("AppearanceName", _createRoot, 1040f, 28f, 556f, 45f,
+                string.Empty, 31f, Ink, TextAlignmentOptions.Center);
+            _appearanceDetails = Label("AppearanceDetails", _createRoot, 1040f, 74f, 556f, 31f,
+                string.Empty, 21f, Wood, TextAlignmentOptions.Center);
             _createBackButton = TextButton("BackFromCreate", _createRoot, 208f, 944f, 416f, "返回", false);
+            _createBackButton.Rect.anchoredPosition=new Vector2(250,-954);_createBackButton.Rect.sizeDelta=new Vector2(367,105);
             _createBackButton.Button.onClick.AddListener(() =>
             {
                 if (_players != null && _players.Count > 0) ShowSelectMode();
@@ -584,6 +562,8 @@ namespace MmorpgClient.UI.Ugui.Role
             });
             _confirmCreateButton = TextButton("ConfirmCreate", _createRoot, 1940f, 892f, 532f,
                 "创建并进入", true, 40f);
+            _confirmCreateButton.Rect.anchoredPosition=new Vector2(1871,-851);_confirmCreateButton.Rect.sizeDelta=new Vector2(572,160);
+            _confirmCreateButton.Label.rectTransform.sizeDelta=new Vector2(484,130);_confirmCreateButton.Label.fontSize=51;
             _confirmCreateButton.Button.onClick.AddListener(ResolveCreate);
             BuildNameEntry();
         }
@@ -596,16 +576,19 @@ namespace MmorpgClient.UI.Ugui.Role
         {
             // characterLimit 64 是结构上限:TMP 按 UTF-16 单元计数,32 个码点(RoleNameRules.StructuralMaxChars)
             // 最多 64 个单元;真正的字数(2–12)由服务端 kRoleNameInvalid 回显把关,客户端不写死。
-            _nameInput = QdaoUguiFactory.CreateInputField("RoleNameInput", _createRoot, 1940f, 724f, 330f, 84f,
-                "请输入角色名", RoleNameRules.StructuralMaxChars * 2, QdaoRefreshArt.Load("list_row_normal"));
-            QdaoRefreshArt.Skin(_nameInput.GetComponent<Image>(), "list_row_normal");
+            _nameInput = QdaoUguiFactory.CreateInputField("RoleNameInput", _createRoot, 1940f, 704f, 330f, 72f,
+                "请输入角色名", RoleNameRules.StructuralMaxChars * 2, RoleFidelityArt.Load("clean_search"));
+            RoleFidelityArt.Skin(_nameInput.GetComponent<Image>(), "clean_search");
             _nameInput.textComponent.fontSize = 28f;
             ((TMP_Text)_nameInput.placeholder).fontSize = 26f;
             _nameInput.richText = false; // 名字不走富文本,输入 <b> 之类不该被当成标签渲染
             _nameInput.onValueChanged.AddListener(_ => RefreshNameHint());
 
-            // 竖直中心与输入框对齐(724 + 84/2 = 710 + 112/2 = 766);文字区宽 150 − 88 = 62,放得下两个 26 号字
-            var randomName = TextButton("RandomRoleName", _createRoot, 2276f, 710f, 150f, "随机", false, 26f);
+            // Name input, random action and validation feedback stay inside the details frame.
+            var randomName = TextButton("RandomRoleName", _createRoot, 2284f, 704f, 124f, "随机", false, 26f);
+            randomName.Rect.sizeDelta = new Vector2(124f,72f);
+            randomName.Label.rectTransform.anchoredPosition = new Vector2(12f,0f);
+            randomName.Label.rectTransform.sizeDelta = new Vector2(100f,72f);
             randomName.Button.onClick.AddListener(() => _nameInput.text = RoleNameRules.RandomName(_rng));
         }
 
@@ -653,12 +636,12 @@ namespace MmorpgClient.UI.Ugui.Role
             float width, string text, bool primary, float fontSize = 34f)
         {
             var button = new UiTextButton();
-            button.Button = QdaoRefreshArt.Button(name, parent, x, y, width, 112f,
-                primary ? "primary_button_normal" : "tab_normal", out button.Plate);
+            button.Button = RoleFidelityArt.Button(name, parent, x, y, width, 112f,
+                primary ? "primary_button_normal" : "clean_tab", out button.Plate);
             button.Rect = button.Plate.rectTransform;
             button.Label = Label("Label", button.Rect, 44f, 15f, width - 88f, 80f,
                 text, fontSize, primary ? Ivory : Ink, TextAlignmentOptions.Center);
-            QdaoUguiTypography.ApplyButton(button.Label);
+            QdaoCoreFidelityArt.ApplyText(button.Label);
             ConfigureNavigation(button.Button);
             return button;
         }
@@ -667,12 +650,12 @@ namespace MmorpgClient.UI.Ugui.Role
             float width, string text)
         {
             var button = new UiTextButton();
-            button.Button = QdaoRefreshArt.Button(name, parent, x, y, width, 96f,
+            button.Button = RoleFidelityArt.Button(name, parent, x, y, width, 96f,
                 "list_row_normal", out button.Plate);
             button.Rect = button.Plate.rectTransform;
             button.Label = Label("Label", button.Rect, 30f, 17f, width - 60f, 60f,
                 text, 32f, Ink, TextAlignmentOptions.Center);
-            QdaoUguiTypography.ApplyButton(button.Label);
+            QdaoCoreFidelityArt.ApplyText(button.Label);
             ConfigureNavigation(button.Button);
             return button;
         }
@@ -680,7 +663,7 @@ namespace MmorpgClient.UI.Ugui.Role
         private static void SetChoiceState(UiTextButton button, bool selected)
         {
             if (button == null) return;
-            QdaoRefreshArt.Skin(button.Plate, selected ? "list_row_selected" : "list_row_normal");
+            RoleFidelityArt.Skin(button.Plate, selected ? "list_row_selected" : "list_row_normal");
             button.Label.color = selected ? Ivory : Ink;
         }
 
@@ -700,7 +683,7 @@ namespace MmorpgClient.UI.Ugui.Role
             TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
         {
             var label = QdaoUguiFactory.CreateText(name, parent, x, y, width, height, text, size, color, alignment);
-            QdaoUguiTypography.ApplyDefault(label);
+            QdaoCoreFidelityArt.ApplyText(label);
             return label;
         }
 
@@ -747,7 +730,10 @@ namespace MmorpgClient.UI.Ugui.Role
                ?? ClassName(classId);
 
         private static Sprite ResolvePortrait(uint classId, uint gender, string appearanceId = null)
-            => QdaoCharacterCatalog.LoadPortrait(QdaoCharacterCatalog.ResolveRole(classId, gender, appearanceId));
+        {
+            string id=QdaoCharacterCatalog.ResolveRole(classId,gender,appearanceId);
+            return QdaoCharacterCatalog.LoadPortrait(id) ?? QdaoCoreFidelityArt.LoadCharacterPortrait(id);
+        }
 
 #if UNITY_EDITOR
         private static GameObject _editorPreviewObject;

@@ -65,7 +65,7 @@ namespace MmorpgClient.UI.Ugui.Mail
                 string[] icons={"mail_category_all","mail_category_system","mail_category_event","mail_category_reward"};
                 Art(_tabs[i].transform,icons[i],i==0?17:12,12,30,32,true);
             }
-            Label(Frame,"MailInboxGlyph","✉",237,157,32,33,24,Muted);
+            Art(Frame,"mail_envelope_read",237,163,32,25,true).name="MailInboxGlyph";
             _summary=Label(Frame,"MailSummary","未读",276,151,65,40,24,Ink);
             _unreadCount=Label(Frame,"MailUnreadCount","",337,151,52,40,26,QdaoUguiTheme.Html("#B33324"));
             _inboxCount=Label(Frame,"MailInboxCount","",553,153,176,36,23,Ink,align:TextAlignmentOptions.MidlineRight);
@@ -155,7 +155,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             _expiry.text=mail==null?"":Expiry(mail);
             _claim.gameObject.SetActive(mail?.Rewards.Count>0);
             _claim.interactable=State.CanClaimSelected;
-            SetLabel(_claim,mail==null?"领取附件":State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":"领取附件");
+            SetLabel(_claim,mail==null?"领取附件":State.IsExpired(mail)?"已过期":mail.Claimed?"已领取":"领取附件");
             _event.gameObject.SetActive(mail!=null&&!string.IsNullOrEmpty(mail.ActivityId));
             _event.interactable=mail!=null&&!State.IsExpired(mail)&&(State.IsDemo||ActivityRequested!=null);
             _delete.gameObject.SetActive(mail!=null);
@@ -247,10 +247,10 @@ namespace MmorpgClient.UI.Ugui.Mail
                 var icon=Art(_rewards,r.IconKey,x+22,7,98,85,true);
                 if(State.IsExpired(mail))icon.color=new Color(.68f,.68f,.65f,.75f);
                 Label(_rewards,"RewardName_"+i,r.Name+" ×"+r.Count,x-2,97,147,25,17,Ink,align:TextAlignmentOptions.Center);
-                if(mail.Claimed)Label(_rewards,"RewardClaimed_"+i,"✓",x+12,-4,34,34,23,Jade);
+                if(mail.Claimed)Art(_rewards,"mail_category_all",x+12,-4,34,34,true).name="RewardClaimed_"+i;
             }
         }
-        private string Status(MailMessage mail)=>State.IsExpired(mail)?"已过期":mail.Claimed?"✓ 已领取":mail.Rewards.Count>0?"待领取":"无附件";
+        private string Status(MailMessage mail)=>State.IsExpired(mail)?"已过期":mail.Claimed?"已领取":mail.Rewards.Count>0?"待领取":"无附件";
         private static string CategoryLabel(MailCategory category)=>category switch{MailCategory.Event=>"活动",MailCategory.Reward=>"奖励",_=>"系统"};
         private static string Date(long unix,bool dayOnly=false)
         {try{return DateTimeOffset.FromUnixTimeSeconds(unix).ToLocalTime().ToString(dayOnly?"MM-dd":"MM-dd HH:mm");}catch{return "日期待同步";}}

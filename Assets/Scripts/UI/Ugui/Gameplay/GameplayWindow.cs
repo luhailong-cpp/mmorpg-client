@@ -74,7 +74,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _subtitle = NativeText(frame, "", 0, 0, 1, 1, 1); _subtitle.gameObject.SetActive(false);
             NativeHit(frame, "CloseWindow", "", 1779, 24, 84, 80, Hide);
             _body = QdaoUguiFactory.CreateRect("PageContent", frame, 0, 0, NativeWidth, NativeHeight);
-            _search = QdaoUguiFactory.CreateInputField("BagSearch", frame, 732, 708, 260, 40,
+            _search = QdaoUguiFactory.CreateInputField("BagSearch", frame, 732, 708, 260, 30,
                 "搜索名称或编号", 80, NativeSprite("bag-tab-normal"));
             _search.textComponent.color = Ink; _search.textComponent.fontSize = 22;
             ((TMP_Text)_search.placeholder).color = Muted;

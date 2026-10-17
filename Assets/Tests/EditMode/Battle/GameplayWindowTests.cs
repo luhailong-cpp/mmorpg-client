@@ -386,13 +386,38 @@ namespace MmorpgClient.Tests.EditMode.Battle
             missions.Missions[2].UnavailableReason = "等待服务器允许领奖";
             _window.SetMissions(missions, false, null); _window.Show(GameplayPage.Missions);
             AssertText("任务一"); AssertText("任务二"); AssertText("任务三");
-            Click("筛选·全部任务"); Click("进行中");
+            ClickNamed("MissionFilterMenu"); ClickNamed("MissionStatusFilter_1");
             AssertText("任务二"); Assert.That(HasText("任务一"), Is.False); Assert.That(HasText("任务三"), Is.False);
             Click("追踪任务"); Assert.That(_tracking.Last().MissionId, Is.EqualTo(2));
-            Click("筛选·进行中"); Click("已达成");
+            ClickNamed("MissionFilterMenu"); ClickNamed("MissionStatusFilter_2");
             AssertText("任务三"); AssertText("等待服务器允许领奖"); Assert.That(FindButton("领取奖励").interactable, Is.False);
-            Click("待开启"); AssertText("任务一"); Assert.That(FindButton("接取任务").interactable, Is.True);
+            ClickNamed("AvailableMissions"); AssertText("任务一"); Assert.That(FindButton("接取任务").interactable, Is.True);
             Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty); Assert.That(_missionReads, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void CompletedGoalsUsePaintedChecksAndAllObjectivesRemainScrollable()
+        {
+            var missions = MakeMissions(1);
+            missions.Missions[0].Objectives[0].Completed = true;
+            for (uint i = 1; i < 5; ++i)
+                missions.Missions[0].Objectives.Add(new MissionObjectiveInfo { ObjectiveIndex = i, Description = "目标" + i, Target = 3, Progress = 1 });
+            _window.SetMissions(missions, false, null); _window.Show(GameplayPage.Missions);
+            var check = _fixture.GetComponentsInChildren<Image>().Single(i => i.name == "MissionObjectiveState_0");
+            Assert.That(check.sprite, Is.SameAs(EquipUiSkin.Load("checkbox_on")));
+            var scroll = Scroll("MissionObjectivesScroll");
+            Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height));
+            scroll.verticalNormalizedPosition = 0;
+            Assert.That(scroll.content.anchoredPosition.y, Is.GreaterThan(0));
+            AssertText("目标4"); Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
+        private void ClickNamed(string name)
+        {
+            var button = _fixture.GetComponentsInChildren<Button>(true)
+                .Single(b => b.name == name && b.gameObject.activeInHierarchy);
+            Assert.That(button.interactable, Is.True, "按钮应可点击：" + name);
+            button.onClick.Invoke();
         }
 
         private ScrollRect Scroll(string name)

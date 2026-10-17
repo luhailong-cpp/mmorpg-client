@@ -15,7 +15,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             if(AttributeFidelityLayout.Find(_root,"V10ClassHeading")==null)
                 QdaoUguiFactory.CreateText("V10ClassHeading",_root,81.6f,135,270,52,"四门传承",33.6f,AttributeFidelityLayout.Muted);
             AttributeFidelityLayout.Place(_classLabel.rectTransform,430,98,1200,54);AttributeFidelityLayout.Font(_classLabel,42,AttributeFidelityLayout.Ink);
-            AttributeFidelityLayout.Place(_classInfo.rectTransform,430,155,1200,26);AttributeFidelityLayout.Font(_classInfo,18,AttributeFidelityLayout.Muted,true);_classInfo.textWrappingMode=TextWrappingModes.NoWrap;
+            AttributeFidelityLayout.Place(_classInfo.rectTransform,81.6f,_state?.Context?.IsPet==true?210:700,270,100);AttributeFidelityLayout.Font(_classInfo,22,AttributeFidelityLayout.Muted,true);_classInfo.textWrappingMode=TextWrappingModes.Normal;
             bool petContext=_state?.Context?.IsPet==true;
             for(int i=0;i<_classes.Length;i++)
             {
