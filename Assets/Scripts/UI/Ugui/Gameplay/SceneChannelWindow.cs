@@ -117,9 +117,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _current=Text(frame,"",600,112,730,40,26,Ink,alignment:TextAlignmentOptions.Center);_current.name="SceneChannelCurrent";
             _list=QdaoUguiFactory.CreateRect("SceneChannelLines",frame,ListX,ListY,ListWidth,ListHeight);
             _status=Text(frame,"",375,660,1180,29,20,Muted,alignment:TextAlignmentOptions.Center);_status.name="SceneChannelStatus";
-            _previous=FidelityButton(frame,"上一页",375,FooterY,90,45,()=>MovePage(-1),false,23);_previous.name=PreviousPageButtonName;
+            _previous=FidelityButton(frame,"上一页",375,FooterY,90,45,()=>MovePage(-1),false,17);_previous.name=PreviousPageButtonName;
             _pageLabel=Text(frame,"",468,FooterY,100,45,23,Muted,alignment:TextAlignmentOptions.Center);_pageLabel.name="SceneChannelPage";
-            _next=FidelityButton(frame,"下一页",570,FooterY,90,45,()=>MovePage(1),false,23);_next.name=NextPageButtonName;
+            _next=FidelityButton(frame,"下一页",570,FooterY,90,45,()=>MovePage(1),false,17);_next.name=NextPageButtonName;
             var close=QdaoUguiFactory.CreateHitButton(CloseButtonName,frame,673,686,263,69);close.onClick.AddListener(Hide);
             Text(close.transform,"取消",20,0,223,69,36,Ink,alignment:TextAlignmentOptions.Center);
             _refresh=QdaoUguiFactory.CreateHitButton(RefreshButtonName,frame,989,686,270,69);
@@ -410,3 +410,4 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
     }
 }
+
