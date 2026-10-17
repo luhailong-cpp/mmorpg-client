@@ -802,7 +802,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 NamedButton(_body, actionName, "暂无活动", x + 66, 482, 352, 64, null, enabled: false, fontSize: 28);
                 return;
             }
-            Text(_body, ActivityStateText(view, info.Level), x + 136, 138, 324, 46, 30, Muted).name = "GuildActivityState_" + index;
+            Text(_body, ActivityStateText(view, info.Level), x + 136, 138, 348, 46, 30, Muted).name = "GuildActivityState_" + index;
             Text(_body, ActivityProgressText(view), x + 30, 190, 424, 46, 30).name = "GuildActivityProgress_" + index;
             Text(_body, ActivityRewardText(view), x + 30, 238, 424, 138, 30, Muted, true).name = "GuildActivityReward_" + index;
             // 历练有在途状态(对局进行中 / 邀请房间)时,"我的状态"第二行让给它:第一行只写今日次数,物品待发放的说明暂时不写

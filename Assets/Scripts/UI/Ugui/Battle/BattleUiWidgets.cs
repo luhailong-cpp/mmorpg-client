@@ -186,10 +186,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             widget.Rect = QdaoUguiFactory.CreateRect(name, parent, x, y, width, height);
             widget.Button = QdaoRefreshArt.Button(name + "Plate", widget.Rect,
                 0f, 0f, width, height, "primary_button_normal", out widget.Plate);
+            // Approved v10 HUD skin is independent of the older RefreshV8 panel family.
+            var approvedSkin = Resources.Load<Sprite>("UI/Ugui/CoreFidelity20261016/hud_button");
+            if (approvedSkin != null)
+            {
+                widget.Plate.sprite = approvedSkin;
+                widget.Plate.type = Image.Type.Simple;
+                widget.Plate.preserveAspect = true;
+            }
             ConfigureButtonVisual(widget.Button, widget.Plate);
             widget.Label = QdaoUguiFactory.CreateText($"{name}Text", widget.Plate.transform,
                 32f, 0f, width - 64f, height, text, fontSize,
                 QdaoRefreshArt.Ivory, TextAlignmentOptions.Center);
+            QdaoUguiTypography.ApplyButton(widget.Label);
             widget.Label.fontStyle = fontStyle;
             return widget;
         }

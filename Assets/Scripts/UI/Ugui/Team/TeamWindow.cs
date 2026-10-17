@@ -91,6 +91,7 @@ namespace MmorpgClient.UI.Ugui.Team
             var countDot=QdaoUguiFactory.CreateImage("ApplicationCountBadge",frame,1372,170,43,43,
                 QdaoUguiTheme.RequireSprite(QdaoUguiTheme.StatusDotSpritePath));countDot.color=QdaoUguiTheme.Html("#BA4B3C");
             _applicationCount=Label(frame,"",1372,169,43,44,27,Cream,TextAlignmentOptions.Center);
+            _applicationCount.name="TeamApplicationCount";
             _members=QdaoUguiFactory.CreateRect("TeamMembers",frame,195,201,851,516);
             _applications=QdaoUguiFactory.CreateRect("TeamApplications",frame,1109,238,619,399);
             _memberPrevious=Control(frame,"上页",638,150,83,37,()=>MovePage(TeamPage.Members,-1),size:20);_memberPrevious.name="MemberPreviousPage";

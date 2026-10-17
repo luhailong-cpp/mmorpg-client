@@ -147,36 +147,57 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void RenderNativeItem(BagItemInfo item, bool worn)
         {
             if (item == null) { NativeText(_body, "选一件灵物，查看详情", 1260, 495, 480, 65, 28, Muted, TextAlignmentOptions.Center); return; }
-            var itemName = NativeText(_body, EquipDisplay.NameWithEnhance(ItemName(item), item.EnhanceLevel), 1256, 90, 508, 64, 43, Ink, TextAlignmentOptions.Center);
-            itemName.name = "TooltipName"; itemName.enableAutoSizing = true; itemName.fontSizeMin = 28; itemName.fontSizeMax = 43;
-            NativeText(_body, worn ? "已穿戴" : item.EquipKind != 0 ? "装备" : "物品", 1423, 160, 159, 40, 27, Cream, TextAlignmentOptions.Center);
-            ItemIcon(_body, item.IconKey, 1365, 216, 280);
             bool equipment = worn || item.EquipKind != 0;
+            var panel = QdaoUguiFactory.CreateRect(equipment ? "GameplayEquipmentDetails" : "GameplayItemDetails", _body, 0, 0, NativeWidth, NativeHeight);
+            var itemName = NativeText(panel, EquipDisplay.NameWithEnhance(ItemName(item), item.EnhanceLevel), 1256, 90, 508, 64, 43, Ink, TextAlignmentOptions.Center);
+            itemName.name = "TooltipName"; itemName.enableAutoSizing = true; itemName.fontSizeMin = 28; itemName.fontSizeMax = 43;
+            NativeText(panel, equipment ? worn ? "已穿戴" : "未穿戴" : "物品", 1423, 160, 159, 40, 27, Cream, TextAlignmentOptions.Center).name = "TooltipState";
+            ItemIcon(panel, item.IconKey, 1365, 216, 280);
             var lines = new List<EquipDetailLine>();
             if (equipment)
             {
-                lines.Add(new EquipDetailLine(EquipBagModel.LevelRequirement(item), EquipBagModel.LevelUnmet(item, _characterLevel) ? EquipUiStyle.Unmet : Ink));
-                string cls = EquipBagModel.ClassRequirement(item); if (!string.IsNullOrWhiteSpace(cls)) lines.Add(new EquipDetailLine(cls, Ink));
                 foreach (var line in EquipDisplay.LinesOf(item)) lines.Add(new EquipDetailLine(EquipDisplay.FormatLine(line), EquipUiStyle.TierColor(EquipDisplay.TierOf(line.Tier))));
                 foreach (var socket in EquipDisplay.SocketsOf(item)) lines.Add(new EquipDetailLine(EquipDisplay.FormatSocketLine(socket), socket.GemConfigId != 0 && socket.Attr != null ? EquipUiSkin.Green : Muted));
             }
             else { lines.Add(new EquipDetailLine("持有数量  " + item.Count, Ink)); lines.Add(new EquipDetailLine("叠放上限  " + item.MaxStack, Ink)); }
-            float descH = string.IsNullOrWhiteSpace(item.Description) ? 0 : Math.Max(72, (float)Math.Ceiling(item.Description.Length / 17f) * 31);
-            var details = NativeScroll(_body, "ItemDetailsScroll", 1276, 482, 467, 178, lines.Count * 39 + descH + 12, 1, _ => { });
-            for (int i = 0; i < lines.Count; ++i) NativeText(details, lines[i].Text, 12, i * 39, 439, 38, 27, lines[i].Color).name = "TooltipLine_" + i;
-            if (descH > 0) NativeText(details, item.Description, 12, lines.Count * 39 + 10, 439, descH, 25, Ink, wrap: true).name = "TooltipDescription";
+            var details = NativeScroll(panel, "ItemDetailsScroll", 1276, 482, 467, 178, 178, 1, _ => { });
+            float y = 0;
+            if (equipment)
+            {
+                NativeText(details, EquipBagModel.LevelRequirement(item), 12, y, 439, 39, 28,
+                    EquipBagModel.LevelUnmet(item, _characterLevel) ? EquipUiStyle.Unmet : EquipUiStyle.TooltipText).name = "TooltipLevel";
+                y += 39;
+                NativeText(details, EquipBagModel.ClassRequirement(item), 12, y, 439, 39, 28, EquipUiStyle.TooltipText).name = "TooltipClass";
+                y += 39;
+            }
+            for (int i = 0; i < lines.Count; ++i)
+            {
+                var line = NativeText(details, lines[i].Text, 12, y, 439, 39, 28, lines[i].Color, wrap: true);
+                line.name = "TooltipLine_" + i;
+                float height = Math.Max(39, line.GetPreferredValues(line.text, 439, float.PositiveInfinity).y + 5);
+                line.rectTransform.sizeDelta = new Vector2(439, height); y += height;
+            }
+            if (!string.IsNullOrWhiteSpace(item.Description))
+            {
+                y += 10;
+                var description = NativeText(details, item.Description, 12, y, 439, EquipUiStyle.TooltipDescMinH, 24, EquipUiStyle.TooltipText, wrap: true);
+                description.name = "TooltipDescription";
+                float height = Math.Max(EquipUiStyle.TooltipDescMinH, description.GetPreferredValues(description.text, 439, float.PositiveInfinity).y + 5);
+                description.rectTransform.sizeDelta = new Vector2(439, height); y += height;
+            }
+            details.sizeDelta = new Vector2(467, Math.Max(178, y + 12));
             if (equipment)
             {
                 ulong id = item.ItemId;
-                NativeButton(_body, "EquipMore", "更多", "bag-button-normal", 1235, 678, 210, 68, () => OpenEquipmentActions(id), font: 32);
-                NativeButton(_body, "EquipAction", worn ? "卸下" : "装备", "bag-button-primary", 1459, 673, 308, 81,
+                NativeButton(panel, "EquipMore", "更多", "bag-button-normal", 1235, 678, 210, 68, () => OpenEquipmentActions(id), font: 32);
+                NativeButton(panel, "EquipAction", worn ? "卸下" : "装备", "bag-button-primary", 1459, 673, 308, 81,
                     () => { _equipmentNotice = null; if (worn) UnequipRequested?.Invoke(id); else EquipRequested?.Invoke(id); }, !_equipBusy && !_sorting, 37, true);
-                NativeHit(_body, "EquipShare", "分享", 1666, 166, 80, 35, () => { var current = FindEquipment(id); if (current != null) EquipmentShareRequested?.Invoke(current.Clone()); }, font: 24);
+                NativeHit(panel, "EquipShare", "分享", 1666, 166, 80, 35, () => { var current = FindEquipment(id); if (current != null) EquipmentShareRequested?.Invoke(current.Clone()); }, font: 24);
             }
             else
             {
-                NativeButton(_body, "ItemDetails", "物品详情", "bag-button-normal", 1235, 678, 210, 68, null, false, 30);
-                NativeButton(_body, "ItemActionUnavailable", "暂不可使用", "bag-button-primary", 1459, 673, 308, 81, null, false, 32, true);
+                NativeButton(panel, "ItemDetails", "物品详情", "bag-button-normal", 1235, 678, 210, 68, null, false, 30);
+                NativeButton(panel, "ItemActionUnavailable", "暂不可使用", "bag-button-primary", 1459, 673, 308, 81, null, false, 32, true);
             }
         }
 

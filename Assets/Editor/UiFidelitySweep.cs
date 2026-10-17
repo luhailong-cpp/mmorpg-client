@@ -42,6 +42,23 @@ public static class UiFidelitySweep
     {
         CaptureCatalog();CaptureBattle();
     }
+    public static void CapturePanelsAndChannels()
+    {
+        PrepareBatchScene();
+        AttributePanelV10Verification.OutputDirectory="E:/work/image/designs/attribute-panels/fidelity-20261016/qa/native";
+        AttributePanelV10Verification.CaptureAll();
+        SkillUiVerification.CaptureAll();
+        SceneChannelFidelityVerification.OutputDirectory="E:/work/image/designs/scene-select-ui-v1/fidelity-20261016/qa/native";
+        SceneChannelFidelityVerification.Capture();
+        Debug.Log("UI_FIDELITY_PANELS_CHANNELS_CAPTURE_OK");
+    }
+    public static void CaptureSkillsAndChannels()
+    {
+        PrepareBatchScene();SkillUiVerification.CaptureAll();
+        SceneChannelFidelityVerification.OutputDirectory="E:/work/image/designs/scene-select-ui-v1/fidelity-20261016/qa/native";
+        SceneChannelFidelityVerification.Capture();
+        Debug.Log("UI_FIDELITY_SKILLS_CHANNELS_CAPTURE_OK");
+    }
     public static void CaptureUpdated()
     {
         if(EditorApplication.isPlayingOrWillChangePlaymode)throw new InvalidOperationException("Stable Edit Mode required.");

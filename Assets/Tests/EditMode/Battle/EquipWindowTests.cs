@@ -64,7 +64,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
             Assert.That(reads.Select(call => ((GetBagRequest)call.Request).BagType),
                 Is.EqualTo(new[] { PlayerFeaturesClient.CharacterBagType, PlayerFeaturesClient.EquipmentBagType }));
-            AssertText("读取中…");
+            AssertText("正在打开行囊…");
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.False);
 
             reads[1].Respond(new GetBagResponse { Bag = MakeEquipment(true) });
@@ -72,7 +72,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(SlotNames(), Is.EqualTo(new[] { "EquipSlot_3", "EquipSlot_4", "EquipSlot_5", "EquipSlot_6" }),
                 "行囊还没到,装备栏也照样画出来");
             AssertText("正在打开行囊…");
-            SlotButton(6).onClick.Invoke();
+            SelectWornSlot(6);
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.True, "两份快照各读各的:身上的装备此时已经可以查看");
             Assert.That(TooltipText("TooltipName").text, Is.EqualTo("惊雷靴"));
             Assert.That(ActionLabel(), Is.EqualTo("卸下"));
@@ -94,31 +94,30 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(SlotTexts(5), Has.Member("衣服"));
             foreach (uint empty in new uint[] { 0, 3, 4, 5 })
             {
-                Assert.That(SlotButton(empty).interactable, Is.False, "空槽不可选");
-                Assert.That(HasIcon(SlotButton(empty)), Is.False);
+                Assert.That(WornSlotInteractable(empty), Is.False, "空槽不可选");
+                Assert.That(WornSlotHasIcon(empty), Is.False);
             }
-            Assert.That(SlotButton(6).interactable, Is.True);
-            Assert.That(HasIcon(SlotButton(6)), Is.True, "穿着的部位显示图标");
+            Assert.That(WornSlotInteractable(6), Is.True);
+            Assert.That(WornSlotHasIcon(6), Is.True, "穿着的部位显示图标");
             Assert.That(SlotTexts(6), Has.None.EqualTo("鞋子"));
         }
 
         [Test]
         public void MoreSlotsThanOnePageAreReachableThroughColumnPager()
         {
-            var equipment = new BagInfo { Layout = new BagLayoutInfo { BagType = 2, Capacity = 10 } };
-            for (uint slot = 0; slot < 10; ++slot)
+            var equipment = new BagInfo { Layout = new BagLayoutInfo { BagType = 2, Capacity = 30 } };
+            for (uint slot = 0; slot < 30; ++slot)
                 equipment.Layout.EquipSlots.Add(new EquipSlotInfo { Slot = slot, EquipKind = 11, Name = "部位" + slot });
             Open(MakeBag(false), equipment);
-
-            Assert.That(SlotNames().Length, Is.EqualTo(EquipUiStyle.EquipSlotsPerPage));
-            Assert.That(SlotNames().First(), Is.EqualTo("EquipSlot_0"));
-            Assert.That(FindButton("上").interactable, Is.False);
-            Click("下");
-            Assert.That(SlotNames(), Is.EqualTo(new[] { "EquipSlot_8", "EquipSlot_9" }));
-            Assert.That(FindButton("下").interactable, Is.False);
-            Click("上");
-            Assert.That(SlotNames().Length, Is.EqualTo(EquipUiStyle.EquipSlotsPerPage));
-            Assert.That(_net.Calls, Is.Empty, "翻页只是展示,不发请求");
+            Click("已穿戴");
+            Assert.That(SlotNamesVisible().Length, Is.EqualTo(30));
+            Assert.That(SlotNamesVisible().First(), Is.EqualTo("EquipSlot_0"));
+            Assert.That(SlotNamesVisible().Last(), Is.EqualTo("EquipSlot_29"));
+            var scroll = _fixture.GetComponentsInChildren<ScrollRect>().Single(s => s.name == "BagScroll");
+            Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height));
+            scroll.verticalNormalizedPosition = 0; Canvas.ForceUpdateCanvases();
+            Assert.That(scroll.content.anchoredPosition.y, Is.GreaterThan(0), "原分页功能由真实滚动承接，最后栏位可达");
+            Assert.That(_net.Calls, Is.Empty, "滚动与分类只展示，不发请求");
         }
 
         // ── tooltip ─────────────────────────────────────────
@@ -166,7 +165,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             Open(MakeBag(true), MakeEquipment(true));
 
-            SlotButton(6).onClick.Invoke();
+            SelectWornSlot(6);
 
             Assert.That(TooltipText("TooltipName").text, Is.EqualTo("惊雷靴"));
             Assert.That(TooltipText("TooltipState").text, Is.EqualTo("已穿戴"));
@@ -176,7 +175,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             }));
             Assert.That(TooltipLines().Last().color, Is.EqualTo(EquipUiStyle.TierYellow));
             Assert.That(ActionLabel(), Is.EqualTo("卸下"));
-            Assert.That(HasCheck(SlotButton(6)), Is.True);
+            Assert.That(WornSlotHasSelection(6), Is.True);
             Assert.That(HasCheck(BagSlot(0)), Is.False, "选中在装备栏时,物品格不再打勾");
 
             ActionButton().onClick.Invoke();
@@ -199,7 +198,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(Buttons().Any(button => button.name == EquipTooltip.ActionName), Is.False);
             AssertText("回春草");
             AssertText("物品");
-            AssertText("持有数量  3\n叠放上限  99");
+            AssertText("持有数量  3");
+            AssertText("叠放上限  99");
             Assert.That(_net.Calls, Is.Empty);
         }
 
@@ -235,13 +235,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 "六条属性加说明放得下,不压缩");
 
             // 没有说明的装备不画这一行,也不留空。
-            SlotButton(6).onClick.Invoke();
+            SelectWornSlot(6);
             Assert.That(TooltipRoot().GetComponentsInChildren<TMP_Text>().Any(text => text.name == EquipTooltip.DescriptionName),
                 Is.False);
         }
 
-        [TestCase(8, false)]
-        [TestCase(14, false)]
+        [TestCase(8, true)]
+        [TestCase(14, true)]
         [TestCase(50, true)]
         public void DescriptionKeepsItsRoomWhenAttributeLinesFillTheCard(int rowCount, bool expectScroll)
         {
@@ -320,14 +320,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _net.Calls.Single().Respond(new EquipItemResponse { Bag = MakeBag(false), Equipment = worn });
 
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0" }), "穿上的装备从物品格消失");
-            Assert.That(SlotButton(3).interactable, Is.True);
-            Assert.That(HasIcon(SlotButton(3)), Is.True, "装备栏的武器位出现它");
+            Assert.That(WornSlotInteractable(3), Is.True);
+            Assert.That(WornSlotHasIcon(3), Is.True, "装备栏的武器位出现它");
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.True, "选中按 item_id 跟到装备栏");
             Assert.That(TooltipText("TooltipName").text, Is.EqualTo("惊雷剑"));
             Assert.That(TooltipText("TooltipState").text, Is.EqualTo("已穿戴"));
             Assert.That(ActionLabel(), Is.EqualTo("卸下"));
             Assert.That(ActionButton().interactable, Is.True);
-            Assert.That(HasCheck(SlotButton(3)), Is.True);
+            Assert.That(WornSlotHasSelection(3), Is.True);
             Assert.That(HasCheck(BagSlot(0)), Is.False);
             Assert.That(HasText("正在处理装备…"), Is.False);
             Assert.That(FindButton("刷新").interactable, Is.True);
@@ -341,7 +341,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             call.Respond(new UnequipItemResponse { Bag = MakeBag(true), Equipment = MakeEquipment(true) });
 
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0", "BagSlot_1" }));
-            Assert.That(SlotButton(3).interactable, Is.False);
+            Assert.That(WornSlotInteractable(3), Is.False);
             Assert.That(SlotTexts(3), Has.Member("武器"), "卸下后空槽重新显示部位名");
             Assert.That(TooltipText("TooltipState").text, Is.EqualTo("未穿戴"));
             Assert.That(ActionLabel(), Is.EqualTo("装备"));
@@ -386,7 +386,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             AssertText("装备失败:等级不足,无法装备");
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0", "BagSlot_1" }));
-            Assert.That(SlotButton(3).interactable, Is.False);
+            Assert.That(WornSlotInteractable(3), Is.False);
             Assert.That(TooltipText("TooltipName").text, Is.EqualTo("惊雷剑"));
             Assert.That(ActionLabel(), Is.EqualTo("装备"));
             Assert.That(ActionButton().interactable, Is.True, "被拒后可以再点");
@@ -400,7 +400,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             ActionButton().onClick.Invoke();
             var equip = _net.Calls.Single();
 
-            Click("背包"); // 回包前又点了一下顶部页签:窗口照常要求刷新两份快照
+            _window.Show(GameplayPage.Bag); // 同一正式入口刷新两份快照，原稿没有额外顶部背包页签
 
             Assert.That(_net.Calls.Count, Is.EqualTo(1), "回包自带两份全量:在途期间不发读取");
             Assert.That(HasText(SyncFailedText), Is.False, "也不能冒出一行「未能同步」");
@@ -429,7 +429,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.Show(GameplayPage.Bag);
             var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
             reads[1].Respond(new GetBagResponse { Bag = MakeEquipment(true) });
-            SlotButton(6).onClick.Invoke();
+            SelectWornSlot(6);
             ActionButton().onClick.Invoke();
             _net.CallsOf(MessageIds.UnequipItem).Single().Respond(new UnequipItemResponse
             {
@@ -467,7 +467,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             reads[1].Respond(new GetBagResponse { Bag = worn });
 
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0" }));
-            Assert.That(HasIcon(SlotButton(3)), Is.True);
+            Assert.That(WornSlotHasIcon(3), Is.True);
             Assert.That(ActionLabel(), Is.EqualTo("卸下"), "不会再对着一件已经穿上的装备显示「装备」");
             AssertText("装备失败:网络异常,请稍后重试");
             Assert.That(HasText("rpc timeout"), Is.False, "传输层的内部串不上屏");
@@ -486,7 +486,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             else if (kind == "mistyped") reads[1].Respond(new GetBagResponse { Bag = MakeBag(false) });
             else reads[1].FailWith("rpc timeout");
 
-            AssertText("未同步");
+            Assert.That(_client.EquipmentError, Is.Not.Empty);
             Assert.That(SlotNames(), Is.Empty);
             AssertText(reason);
             Assert.That(HasText(SyncFailedText), Is.False, "行囊自己没有出错");
@@ -494,7 +494,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             // 物品格、普通物品的详情栏、背包里装备的卡片都照常。
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0", "BagSlot_1" }));
             AssertText("回春草");
-            AssertText("持有数量  3\n叠放上限  99");
+            AssertText("持有数量  3");
+            AssertText("叠放上限  99");
             BagSlot(1).onClick.Invoke();
             Assert.That(TooltipText("TooltipName").text, Is.EqualTo("惊雷剑"));
             Assert.That(ActionLabel(), Is.EqualTo("装备"));
@@ -504,7 +505,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Click("刷新");
 
             Assert.That(_net.Calls.Select(call => ((GetBagRequest)call.Request).BagType), Is.EqualTo(new uint[] { 0, 2 }));
-            AssertText("读取中…");
+            AssertText("正在打开行囊…");
             Assert.That(HasText(reason), Is.False, "重试时收起上一次的错误");
             _net.Calls[0].Respond(new GetBagResponse { Bag = MakeBag(true) });
             _net.Calls[1].Respond(new GetBagResponse { Bag = MakeEquipment(true) });
@@ -525,7 +526,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.SetBagPage(MakeBag(false), false, null, false, worn, false, null, true);
 
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0" }));
-            Assert.That(HasCheck(SlotButton(3)), Is.True);
+            Assert.That(WornSlotHasSelection(3), Is.True);
             Assert.That(TooltipText("TooltipState").text, Is.EqualTo("已穿戴"));
             Assert.That(ActionLabel(), Is.EqualTo("卸下"));
             Assert.That(ActionButton().interactable, Is.False, "装备栏那一半的状态(穿脱在途)也一起生效");
@@ -571,7 +572,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.False);
             AssertText("回春草");
 
-            SlotButton(6).onClick.Invoke();
+            SelectWornSlot(6);
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.True);
             _window.ResetSession();
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.False, "换角色 / 断线清场");
@@ -581,7 +582,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void ResetSessionDropsEquipmentSnapshotAndSelectionBeforeAnotherCharacter()
         {
             Open(MakeBag(true), MakeEquipment(true));
-            SlotButton(6).onClick.Invoke();
+            SelectWornSlot(6);
             Assert.That(ActionLabel(), Is.EqualTo("卸下"));
             // 下面只看窗口自己清没清:不让数据层把上一个角色的快照再推回来。
             _client.OnChanged -= Push;
@@ -591,12 +592,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.Show(GameplayPage.Bag);
 
             Assert.That(SlotNames(), Is.Empty, "上一个角色的装备栏不能留到下一个角色");
-            AssertText("未读取");
+            Assert.That(WithWornView(() => HasText("装备栏尚未同步")), Is.True);
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.False);
             // 新角色的装备栏到达:即使里面有同一个 id,上一个会话的选中也不该还在。
             _window.SetEquipment(MakeEquipment(true), false, null, false);
-            Assert.That(SlotButton(6).interactable, Is.True);
-            Assert.That(HasCheck(SlotButton(6)), Is.False);
+            Assert.That(WornSlotInteractable(6), Is.True);
+            Assert.That(HasCheck(BagSlot(0)), Is.True, "新会话默认显示当前行囊的首件物品，不恢复旧穿戴选择");
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.False);
         }
 
@@ -682,6 +683,25 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_fixture.GetComponentsInChildren<CanvasGroup>().Single().interactable, Is.True);
         }
 
+        [Test]
+        public void NativeEquipmentActionsRemainUniqueAfterRefreshAndModalTransitions()
+        {
+            Open(MakeBag(true), MakeEquipment(true)); BagSlot(1).onClick.Invoke();
+            void Unique()
+            {
+                foreach (var name in new[] { "EquipAction", "EquipMore", "EquipShare" })
+                    Assert.That(Buttons().Count(button => button.name == name), Is.EqualTo(1), name + " 只能有一个可见控件");
+                Assert.That(_fixture.GetComponentsInChildren<RectTransform>(true).Where(rect => rect.name == EquipTooltip.RootName).All(rect => !rect.gameObject.activeInHierarchy), Is.True);
+            }
+            Unique(); _window.SetBagPage(MakeBag(true), false, null, false, MakeEquipment(true), false, null, false); Unique();
+            Buttons().Single(button => button.name == "EquipMore").onClick.Invoke(); Unique();
+            Buttons().Single(button => button.name == "EquipOpenWish").onClick.Invoke();
+            Assert.That(Buttons().Count(button => button.name == "ConfirmWishSelection"), Is.EqualTo(1));
+            _window.Back(); Unique(); _window.Hide();
+            Assert.That(Buttons().Any(button => button.name == "EquipAction"), Is.False);
+            Assert.That(_net.Calls, Is.Empty, "刷新展示和弹窗导航不发装备请求");
+        }
+
         // ── 夹具与查询 ──────────────────────────────────────
 
         /// <summary>打开背包页并喂两份读回包(人物背包、装备栏),然后清掉出站记录。</summary>
@@ -765,15 +785,29 @@ namespace MmorpgClient.Tests.EditMode.Battle
             bool percent = false)
             => new EquipAttrLineInfo { AttrId = attrId, Name = name, Tier = tier, Seq = seq, Value = value, Cap = cap, Percent = percent };
 
-        private Button[] Buttons() => _fixture.GetComponentsInChildren<Button>();
+        private Button[] Buttons() => _fixture.GetComponentsInChildren<Button>(true).Where(button => button.gameObject.activeInHierarchy).ToArray();
 
-        private string[] SlotNames()
-            => Buttons().Where(button => button.name.StartsWith("EquipSlot_")).Select(button => button.name).ToArray();
+        private string[] SlotNames() => WithWornView(SlotNamesVisible);
+        private string[] SlotNamesVisible() => Buttons().Where(button => button.name.StartsWith("EquipSlot_")).Select(button => button.name).ToArray();
+        private T WithWornView<T>(System.Func<T> read)
+        {
+            Click("已穿戴");
+            try { return read(); }
+            finally { Click("全部物品"); }
+        }
+        private bool WornSlotInteractable(uint slot) => WithWornView(() => SlotButton(slot).interactable);
+        private bool WornSlotHasIcon(uint slot) => WithWornView(() => HasIcon(SlotButton(slot)));
+        private bool WornSlotHasSelection(uint slot) => WithWornView(() => HasCheck(SlotButton(slot)));
+        private void SelectWornSlot(uint slot)
+        {
+            Click("已穿戴"); var button = SlotButton(slot); Assert.That(button.interactable, Is.True); button.onClick.Invoke();
+            Click("全部物品"); // Return to the item grid while retaining the selected item ID.
+        }
 
         private Button SlotButton(uint slot) => Buttons().Single(button => button.name == "EquipSlot_" + slot);
 
         private string[] SlotTexts(uint slot)
-            => SlotButton(slot).GetComponentsInChildren<TMP_Text>().Select(text => text.text).ToArray();
+            => WithWornView(() => SlotButton(slot).GetComponentsInChildren<TMP_Text>().Select(text => text.text).ToArray());
 
         private Button BagSlot(uint slot) => Buttons().Single(button => button.name == "BagSlot_" + slot);
 
@@ -785,10 +819,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
             => button.GetComponentsInChildren<Image>().Any(image => image.name == "ItemIcon");
 
         private static bool HasCheck(Button button)
-            => button.GetComponentsInChildren<Image>().Any(image => image.name == "check");
+            => button.GetComponentsInChildren<Image>().Any(image => image.name == "check") || (button.image.sprite != null && button.image.sprite.name == "bag-slot-selected");
 
         private RectTransform TooltipRoot()
-            => _fixture.GetComponentsInChildren<RectTransform>(true).Single(rect => rect.name == EquipTooltip.RootName);
+        {
+            var native = _fixture.GetComponentsInChildren<RectTransform>(true)
+                .Where(rect => rect.name == "GameplayEquipmentDetails" && rect.gameObject.activeInHierarchy).ToArray();
+            Assert.That(native.Length, Is.LessThanOrEqualTo(1), "只能有一个真实可见装备详情区");
+            if (native.Length == 1) return native.Single();
+            return _fixture.GetComponentsInChildren<RectTransform>(true).Single(rect => rect.name == EquipTooltip.RootName && !rect.gameObject.activeInHierarchy);
+        }
 
         private TMP_Text TooltipText(string name)
             => TooltipRoot().GetComponentsInChildren<TMP_Text>().Single(text => text.name == name);

@@ -16,10 +16,13 @@ namespace MmorpgClient.Tests.EditMode.Mail
         private GameObject _canvas,_events;
         private MailWindow _window;
         private MailUiState _state;
+        private EventSystem _previousEvents;
         private const long Now=1800000000;
         [SetUp] public void SetUp()
         {
+            _previousEvents=EventSystem.current;
             _events=new GameObject("MailTestEvents",typeof(EventSystem));
+            EventSystem.current=_events.GetComponent<EventSystem>();
             _canvas=new GameObject("MailTestCanvas",typeof(RectTransform),typeof(Canvas));
             _canvas.GetComponent<Canvas>().renderMode=RenderMode.ScreenSpaceOverlay;
             var design=QdaoUguiFactory.CreateCenteredRect("Design",_canvas.transform,2560,1080);
@@ -28,6 +31,7 @@ namespace MmorpgClient.Tests.EditMode.Mail
         [TearDown] public void TearDown()
         {
             _window?.Dispose();if(_canvas!=null)Object.DestroyImmediate(_canvas);if(_events!=null)Object.DestroyImmediate(_events);
+            EventSystem.current=_previousEvents;
         }
         private Button Button(string name)=>_canvas.GetComponentsInChildren<Button>(true).Single(x=>x.name==name);
         private TMP_Text Text(string name)=>_canvas.GetComponentsInChildren<TMP_Text>(true).Single(x=>x.name==name);
@@ -98,14 +102,13 @@ namespace MmorpgClient.Tests.EditMode.Mail
             Assert.That(Text("MailDetailTitle").richText,Is.False);Assert.That(Text("MailBodyText").richText,Is.False);
             Assert.That(_canvas.GetComponentsInChildren<TMP_Text>().Any(t=>t.name=="ActivityKicker"),Is.False);
         }
-        [Test] public void HideRestoresFocusAndBalancesGameplayInputBlocker()
+        [Test] public void HideRestoresOpenerFocus()
         {
-            bool blocked=GameplayInputGate.IsKeyboardBlocked;var opener=Button("CloseMail").gameObject;
+            var opener=Button("CloseMail").gameObject;
             EventSystem.current.SetSelectedGameObject(_canvas);_window.Show();
-            Assert.That(GameplayInputGate.IsKeyboardBlocked,Is.True);
+            // Actual GameplayInputBlocker lifecycle is exercised in MailInputBlockerPlayModeTests.
             Assert.That(EventSystem.current.currentSelectedGameObject,Is.EqualTo(opener));
             _window.Hide();Assert.That(EventSystem.current.currentSelectedGameObject,Is.EqualTo(_canvas));
-            Assert.That(GameplayInputGate.IsKeyboardBlocked,Is.EqualTo(blocked));
         }
         [Test] public void SessionResetClearsSelectionDataAndDialog()
         {

@@ -278,7 +278,7 @@ public static class EquipmentForgeUiVerification
     }
 
     private static T Find<T>(Component root, string name) where T : Component
-        => root.GetComponentsInChildren<T>(true).Single(item => item.name == name);
+        => root.GetComponentsInChildren<T>(true).Where(item => item.gameObject.activeInHierarchy).Single(item => item.name == name);
 
     private static void Click(Component root, string name)
     {

@@ -6,6 +6,7 @@ namespace MmorpgClient.UI.Ugui.Skills
 {
     public sealed partial class SkillPanel
     {
+        private bool _fidelityCanPreviewClasses;
         private void ApplyFidelityLayout()
         {
             AttributeFidelityLayout.Header(_root,"四脉真诀");
@@ -13,9 +14,16 @@ namespace MmorpgClient.UI.Ugui.Skills
             _title.text=_state?.Context?.IsPet==true?"宝宝技能":"四脉真诀";
             if(AttributeFidelityLayout.Find(_root,"V10ClassHeading")==null)
                 QdaoUguiFactory.CreateText("V10ClassHeading",_root,81.6f,135,270,52,"四门传承",33.6f,AttributeFidelityLayout.Muted);
-            AttributeFidelityLayout.Place(_classLabel.rectTransform,430,108,1200,66);AttributeFidelityLayout.Font(_classLabel,42,AttributeFidelityLayout.Ink);
-            AttributeFidelityLayout.Place(_classInfo.rectTransform,81.6f,222,280,180);AttributeFidelityLayout.Font(_classInfo,23,AttributeFidelityLayout.Muted,true);_classInfo.textWrappingMode=TextWrappingModes.Normal;
-            for(int i=0;i<_classes.Length;i++)AttributeFidelityLayout.Button(_classes[i],81.6f,210+i*118,270,104,38);
+            AttributeFidelityLayout.Place(_classLabel.rectTransform,430,98,1200,54);AttributeFidelityLayout.Font(_classLabel,42,AttributeFidelityLayout.Ink);
+            AttributeFidelityLayout.Place(_classInfo.rectTransform,430,155,1200,26);AttributeFidelityLayout.Font(_classInfo,18,AttributeFidelityLayout.Muted,true);_classInfo.textWrappingMode=TextWrappingModes.NoWrap;
+            bool petContext=_state?.Context?.IsPet==true;
+            for(int i=0;i<_classes.Length;i++)
+            {
+                AttributeFidelityLayout.Button(_classes[i],81.6f,210+i*118,270,104,38);
+                // Live classes are visible as a read-only catalog; preview intents retain the original callback/permission.
+                _classes[i].SetVisible(!petContext);_classes[i].SetInteractable(!petContext&&_state?.IsReadOnly==true&&_fidelityCanPreviewClasses);
+            }
+            var classHeading=AttributeFidelityLayout.Find(_root,"V10ClassHeading")?.GetComponent<TMP_Text>();if(classHeading!=null)classHeading.text=petContext?"灵宠技能":"四门传承";
             int shown=0;foreach(var filter in _filters)if(filter.Rect.gameObject.activeSelf){AttributeFidelityLayout.Button(filter,430+shown++*224,185,212,60,27);filter.Label.text=filter.Label.text.Replace("✓ ","");}
             AttributeFidelityLayout.Place(_root,"NameHeader",540,249,500,42);AttributeFidelityLayout.Place(_root,"RankHeader",1080,249,155,42);
             AttributeFidelityLayout.Place(_root,"ManaHeader",1260,249,354,42);

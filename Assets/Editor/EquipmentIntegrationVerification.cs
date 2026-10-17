@@ -122,6 +122,7 @@ public static class EquipmentIntegrationVerification
             Require(equipped == 5001, "Equip must delegate the selected item instance.");
             Shoot("01-bag-equipment-detail");
 
+            Click(root, "BagCategory_3"); // 已穿戴 is the native equipment view.
             Click(root, "EquipSlot_6");
             Require(Find<TMP_Text>(root, "TooltipState").text == "已穿戴", "Equipment slot must show worn state.");
             Click(root, "EquipAction");
@@ -157,7 +158,7 @@ public static class EquipmentIntegrationVerification
             var panel = new AttributePanel(owner, characterRoot);
             var data = CharacterFixture();
             panel.ApplyPanel(data);
-            Find<RectTransform>(characterRoot, "AttributeWindow").gameObject.SetActive(true);
+            characterRoot.GetComponentsInChildren<RectTransform>(true).Single(item => item.name == "AttributeWindow").gameObject.SetActive(true);
             Require(Find<TMP_Text>(characterRoot, "Row0Value").text == "152(+12)", "Allocation rows must display equipment bonuses without adding them twice.");
             Require(Find<Button>(characterRoot, "EquipmentEntryPlate").interactable, "Character equipment entry must be available.");
             Shoot("05-character-equipment-bonus");
@@ -170,8 +171,9 @@ public static class EquipmentIntegrationVerification
             Shoot("06-character-combat-attributes");
             Require(data.Dimensions[0].Bonus == 12 && data.Dimensions[0].Allocated == 60,
                 "Navigation and display must not mutate authoritative fixture data.");
+            var combatTab = Find<Button>(characterRoot, "CombatTabPlate");
             panel.ResetSession();
-            Require(!Find<Button>(characterRoot, "CombatTabPlate").gameObject.activeSelf, "Session reset must clear combat navigation.");
+            Require(!combatTab.gameObject.activeSelf, "Session reset must clear combat navigation.");
             Debug.Log("EQUIPMENT_INTEGRATION_VERIFIED|" + width + "x" + height + "|6 screenshots|" + OutputDirectory);
         }
         finally
@@ -186,7 +188,7 @@ public static class EquipmentIntegrationVerification
     }
 
     private static T Find<T>(Component root, string name) where T : Component
-        => root.GetComponentsInChildren<T>(true).Single(item => item.name == name);
+        => root.GetComponentsInChildren<T>(true).Where(item => item.gameObject.activeInHierarchy).Single(item => item.name == name);
     private static void Click(Component root, string name)
     {
         var button = Find<Button>(root, name);

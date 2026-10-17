@@ -386,7 +386,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(FindContainer("NoTeamCard").gameObject.activeInHierarchy, Is.True);
             Assert.That(ActiveText(), Does.Contain("收到的邀请"));
             Assert.That(ActiveText(), Does.Not.Contain("申请列表"));
-            Assert.That(ActiveText(), Does.Contain("我的玩家编号  11"));
+            Assert.That(ActiveText(), Does.Contain("玩家编号 11"));
             foreach (string name in new[] { "CreateTeam", "ApplyJoinTeam", "RefreshTeam" })
                 Assert.That(FindButton(name).gameObject.activeInHierarchy, Is.True, name);
             foreach (string name in new[] { "LeaveTeam", "DisbandTeam", "StartTeamMatch", "InviteToTeam" })
@@ -419,7 +419,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_window.IsModalOpen, Is.False, "Answering an invite needs no confirmation.");
 
             Mirror(NoTeamSnapshot(), Invites(300, 301, 302, 303, 304));
-            Assert.That(ActiveText(), Does.Contain("5 条"));
+            Assert.That(_root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "TeamApplicationCount").text, Is.EqualTo("5"));
             Assert.That(FindButton("ApplicationNextPage").interactable, Is.True);
             Click("ApplicationNextPage");
             Assert.That(_window.ApplicationPageIndex, Is.EqualTo(1));
@@ -435,7 +435,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
             Assert.That(FindContainer("EmptyInvites").gameObject.activeInHierarchy, Is.True);
             Assert.That(ActiveText(Applications), Does.Contain("暂无组队邀请"));
-            Assert.That(ActiveText(), Does.Contain("0 条"));
+            Assert.That(_root.GetComponentsInChildren<TMP_Text>().Single(t => t.name == "TeamApplicationCount").text, Is.EqualTo("0"));
             Assert.That(FindButton("ApplicationNextPage").gameObject.activeInHierarchy, Is.False);
         }
 

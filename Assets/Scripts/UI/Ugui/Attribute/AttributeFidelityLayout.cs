@@ -13,7 +13,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
         internal static void Place(RectTransform rect,float x,float y,float w,float h)
         { if(rect==null)return;rect.anchoredPosition=new Vector2(x,-y);rect.sizeDelta=new Vector2(w,h); }
         internal static RectTransform Find(UnityEngine.Transform root,string name)
-        { foreach(var rect in root.GetComponentsInChildren<RectTransform>(true))if(rect.name==name)return rect;return null; }
+        {
+            var rects=root.GetComponentsInChildren<RectTransform>(true);
+            foreach(var rect in rects)if(rect.name==name)return rect;
+            // BattleUiWidgets.CreateTextButton uses the plate itself as the root rect.
+            foreach(var rect in rects)if(rect.name==name+"Plate")return rect;
+            return null;
+        }
         internal static void Place(UnityEngine.Transform root,string name,float x,float y,float w,float h)=>Place(Find(root,name),x,y,w,h);
         internal static void Font(TMP_Text text,float size,Color? color=null,bool body=false)
         {
@@ -38,9 +44,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
             var track=row.Slider.transform.GetChild(0) as RectTransform;
             if(track!=null)Place(track,0,24,sw,20.8f);
             Place((RectTransform)row.Slider.fillRect.parent,0,24,sw,20.8f);
-            Place((RectTransform)row.Slider.handleRect.parent,26.4f,0,sw-52.8f,step);
-            row.Slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,52.8f);
-            row.Slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,52.8f);
+            Place((RectTransform)row.Slider.handleRect.parent,30f,0,sw-60f,step);
+            row.Slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,60f);
+            row.Slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,60f);
         }
         internal static void Header(RectTransform root,string title)
         {
@@ -53,5 +59,6 @@ namespace MmorpgClient.UI.Ugui.Attribute
         }
     }
 }
+
 
 

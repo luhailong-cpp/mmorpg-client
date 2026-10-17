@@ -76,14 +76,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         // 2560x1080 design pixels, top-left origin. All three city entries
         // share authored jade-and-gold art, readable labels and the same spacing.
 
-        public const float HudEntryWidth  = 330f;
-        public const float HudEntryHeight = 80f;
-        /// <summary>右缘留 70px。</summary>
-        public const float HudEntryX      = QdaoUguiTheme.DesignWidth - HudEntryWidth - 70f; // reference HUD column
+        public const float HudEntryWidth  = 336f;
+        public const float HudEntryHeight = 81.6f;
+        /// <summary>右缘留 64px。</summary>
+        public const float HudEntryX      = QdaoUguiTheme.DesignWidth - HudEntryWidth - 64f; // reference HUD column
         public const float HudEntryFirstY = 176f;
-        public const float HudEntryGap    = 24f;
+        public const float HudEntryGap    = 22.4f;
         public const float HudEntryFrame  = 2f;
-        public const float HudEntryFontSize = 32f;
+        public const float HudEntryFontSize = 36f;
 
         /// <summary>Shared right-side city entry column.</summary>
         public static float HudEntryY(int index)

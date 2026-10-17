@@ -372,7 +372,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             => _fixture.GetComponentsInChildren<RectTransform>(true).Single(rect => rect.name == "EquipForgeDialog");
 
         private Button Button(string name)
-            => _fixture.GetComponentsInChildren<Button>(true).Single(button => button.name == name);
+            => _fixture.GetComponentsInChildren<Button>(true).Where(button => button.gameObject.activeInHierarchy).Single(button => button.name == name);
 
         private TMP_Text Text(string name)
             => ForgeRoot().GetComponentsInChildren<TMP_Text>(true).Single(text => text.name == name);
@@ -381,7 +381,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             => TooltipRoot().GetComponentsInChildren<TMP_Text>(true).Single(text => text.name == name);
 
         private RectTransform TooltipRoot()
-            => _fixture.GetComponentsInChildren<RectTransform>(true).Single(rect => rect.name == EquipTooltip.RootName);
+            => _fixture.GetComponentsInChildren<RectTransform>(true).Single(rect => rect.name == "GameplayEquipmentDetails" && rect.gameObject.activeInHierarchy);
 
         private bool HasText(string value)
             => ForgeRoot().GetComponentsInChildren<TMP_Text>().Any(text => text.text == value);

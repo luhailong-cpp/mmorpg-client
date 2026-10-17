@@ -57,9 +57,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _panel.ApplyPanel(MakePanel());
 
             Find<Button>("Row0PlusPlate").onClick.Invoke();
-            Assert.That(Find<TMP_Text>("Row0Value").text, Is.EqualTo("170<color=#7FD98A>+1</color>(+15)"));
+            Assert.That(Find<TMP_Text>("Row0Value").text, Is.EqualTo("170<color=#28734E>+1</color>(+15)"));
             Find<Button>("Row1PlusPlate").onClick.Invoke();
-            Assert.That(Find<TMP_Text>("Row1Value").text, Is.EqualTo("135<color=#7FD98A>+1</color>"));
+            Assert.That(Find<TMP_Text>("Row1Value").text, Is.EqualTo("135<color=#28734E>+1</color>"));
 
             // 卸下装备后服务器推来新面板:加成归零,括号消失,未确认的增量按既有规则作废。
             var plain = MakePanel();

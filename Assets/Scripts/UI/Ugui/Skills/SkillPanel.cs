@@ -55,6 +55,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         {
             _refreshAction = refresh;
             _upgradeAction = upgrade;
+            _fidelityCanPreviewClasses = previewClass != null;
             var frame = BattleUiWidgets.CreatePanel("CharacterSkillWindow", parent,
                 CharacterAttributeVisuals.WindowX, CharacterAttributeVisuals.WindowY,
                 CharacterAttributeVisuals.WindowW, CharacterAttributeVisuals.WindowH, Color.white);
