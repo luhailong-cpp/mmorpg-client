@@ -132,7 +132,12 @@ $files = @(
     # 它们引用 Mailpb.*;少了这两行就是 CS0246。mail_admin.proto(内部发件)与 mail_table.proto(建表)刻意不收。
     # mail_error 由服务端导表器生成(17000 段),客户端按枚举映射文案、不手抄数字。
     "proto/mail/mail.proto",
-    "generated/code/proto/tip/mail_error_tip.proto"
+    "generated/code/proto/tip/mail_error_tip.proto",
+
+    # 排行榜 v1(服务端 docs/design/leaderboard-system.md §4.6,用户 2026-09-20 授权客户端同批收录,§9.1#6)。
+    # 服务端默认 proto_gen.yaml 一旦含 rank 块,带客户端的 proto-gen 会写出 ClientPlayerRank*Handler.cs,
+    # 它们引用 Rankpb.*;少了这一行就是 CS0246。rank v1 没有自己的 tip 段(复用 common 段),所以只有这一行。
+    "proto/rank/rank.proto"
 )
 
 Push-Location $ProtoRoot
