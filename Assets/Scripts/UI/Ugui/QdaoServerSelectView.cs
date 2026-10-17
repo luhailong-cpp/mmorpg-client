@@ -238,6 +238,7 @@ namespace MmorpgClient.UI.Ugui
         public void Tick(float deltaTime)
         {
             _ = deltaTime;
+            if (LoginUtilityOpen && Input.GetKeyDown(KeyCode.Escape)) CloseLoginUtilities();
         }
 
         // ── data loading ─────────────────────────────────────────
@@ -414,6 +415,7 @@ namespace MmorpgClient.UI.Ugui
                 return;
 
             _credentialPanel.gameObject.SetActive(visible);
+            RefreshVisualState();
             if (visible && focusAccount && _accountInput != null)
             {
                 _accountInput.Select();
@@ -801,6 +803,7 @@ namespace MmorpgClient.UI.Ugui
             _landingAccount.interactable = canInteract;
             _landingEnter.interactable = canInteract && !_serverListLoading && (chosen == null || enterable);
             RefreshLandingServer(chosen);
+            RefreshLoginUtilityState();
         }
 
         private static string ZoneDisplayName(ServerListZone z)
@@ -884,7 +887,12 @@ namespace MmorpgClient.UI.Ugui
 
         private bool ReferencesValid()
         {
-            var invalid = _landingRoot == null || _serverRoot == null ||
+            var invalid = _landingAnnouncement == null || _landingSettings == null ||
+                          _announcementPanel == null || _settingsPanel == null ||
+                          _announcementBody == null || _settingsVolumeValue == null || _announcementScroll == null ||
+                          _announcementClose == null || _settingsClose == null ||
+                          _settingsVolumeSlider == null || _settingsFullscreen == null ||
+                          _landingRoot == null || _serverRoot == null ||
                           _landingServers == null || _landingEnter == null || _landingAccount == null ||
                           _landingServerText == null || _landingStatusText == null || _emptyListText == null ||
                           _serverBadges == null || _serverBadges.Length != PageSize ||

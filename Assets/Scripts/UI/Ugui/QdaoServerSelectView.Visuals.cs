@@ -61,6 +61,7 @@ namespace MmorpgClient.UI.Ugui
             _landingRoot = QdaoUguiFactory.CreateRect("LoginPage", _contentRoot, 0f, 0f, 2560f, 1080f);
             BuildLandingPage();
             BuildRefreshCredentialPanel();
+            BuildLoginUtilities();
             ShowLanding(true);
         }
 
@@ -70,18 +71,24 @@ namespace MmorpgClient.UI.Ugui
             // real server data and every action remain separate native controls.
             _landingServers = ArtButton("SelectServer", _landingRoot, 230f, 548f, 810f, 100f,
                 "选择服务器", "login_server_bar", out _landingServerText);
-            _landingServerText.rectTransform.anchoredPosition = new Vector2(62f,0);
+            _landingServerText.rectTransform.anchoredPosition = new Vector2(74f,0);
             _landingServerText.rectTransform.sizeDelta = new Vector2(300,100);
-            _landingServerText.alignment=TextAlignmentOptions.MidlineLeft;_landingServerText.fontSize=38;
-            _landingServerDot=QdaoUguiFactory.CreateImage("CurrentServerDot",_landingServers.transform,367,40,20,20,_statusDotSprite);
-            _landingAvailability=Label("CurrentServerAvailability",_landingServers.transform,403,0,150,100,"",34);
+            _landingServerText.alignment=TextAlignmentOptions.MidlineLeft;_landingServerText.fontSize=46;
+            _landingServerText.fontStyle=FontStyles.Bold;
+            _landingServerDot=QdaoUguiFactory.CreateImage("CurrentServerDot",_landingServers.transform,364,40,20,20,_statusDotSprite);
+            _landingAvailability=Label("CurrentServerAvailability",_landingServers.transform,400,0,150,100,"",41);
             var choose=QdaoCoreFidelityArt.Panel("ChooseServerAction",_landingServers.transform,573,13,211,74,"login_choose");
             Label("ChooseServerActionText",choose.transform,17,0,177,74,"选择服务器",28,true,TextAlignmentOptions.Center);
+            choose.gameObject.SetActive(false); // Fixed lettering belongs to the approved source artwork.
             _landingEnter=ArtButton("EnterGame",_landingRoot,272,676,733,167,"进入游戏","login_enter",out var enterLabel);
             enterLabel.fontSize=80;QdaoCoreFidelityArt.ApplyText(enterLabel);
+            enterLabel.gameObject.SetActive(false);
             _landingAccount=QdaoUguiFactory.CreateHitButton("SwitchAccount",_landingRoot,467,856,340,80);
             _landingAccount.navigation=new Navigation{mode=Navigation.Mode.Automatic};
             Label("SwitchAccountText",_landingAccount.transform,0,0,340,80,"切换账号",39,false,TextAlignmentOptions.Center);
+            _landingRoot.Find("SwitchAccount/SwitchAccountText").gameObject.SetActive(false);
+            _landingAnnouncement=QdaoCoreFidelityArt.Button("LandingAnnouncement",_landingRoot,2200,20,180,185,"login_announcement_original",out _);
+            _landingSettings=QdaoCoreFidelityArt.Button("LandingSettings",_landingRoot,2375,20,180,185,"login_settings_original",out _);
             _landingStatusText=Label("LoginStatus",_landingRoot,185,965,860,48,"",30,false,TextAlignmentOptions.Center);
         }
         private void BuildServerPage()
@@ -295,6 +302,7 @@ namespace MmorpgClient.UI.Ugui
             _landingServers.onClick.AddListener(OnLandingServers);
             _landingEnter.onClick.AddListener(OnLandingEnter);
             _landingAccount.onClick.AddListener(OnLandingAccount);
+            BindLoginUtilityEvents();
         }
 
         private void UnbindRefreshEvents()
@@ -302,13 +310,14 @@ namespace MmorpgClient.UI.Ugui
             _landingServers.onClick.RemoveListener(OnLandingServers);
             _landingEnter.onClick.RemoveListener(OnLandingEnter);
             _landingAccount.onClick.RemoveListener(OnLandingAccount);
+            UnbindLoginUtilityEvents();
         }
 
-        private void OnLandingServers() { if (!_busy) ShowLanding(false); }
-        private void OnLandingAccount() { if (!_busy) { ShowCredentialPanel(true, true); SetStatus("请输入账号和密码"); } }
+        private void OnLandingServers() { if (!_busy && !LoginUtilityOpen) ShowLanding(false); }
+        private void OnLandingAccount() { if (!_busy && !LoginUtilityOpen) { ShowCredentialPanel(true, true); SetStatus("请输入账号和密码"); } }
         private void OnLandingEnter()
         {
-            if (_busy) return;
+            if (_busy || LoginUtilityOpen) return;
             if (FindRenderedZone(_selectedZoneId) == null) { ShowLanding(false); SetStatus("请先选择区服"); return; }
             OnEnterClicked();
         }

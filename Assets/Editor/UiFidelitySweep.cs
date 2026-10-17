@@ -65,6 +65,12 @@ public static class UiFidelitySweep
         ClientUiRefreshVerification.OutputDirectory=Root+"/core";ClientUiRefreshVerification.CaptureAll();
         Debug.Log("UI_FIDELITY_CORE_REBUILT_AND_CAPTURED");
     }
+    public static void BuildAndCaptureLoginRevision()
+    {
+        BuildAndCaptureCore();
+        LoginRevisionVerification.CaptureAll();
+        Debug.Log("UI_FIDELITY_LOGIN_REVISION_CAPTURED");
+    }
     public static void CaptureCorrected()
     {
         PrepareBatchScene();Directory.CreateDirectory(Root);var items=new List<Item>();
