@@ -166,8 +166,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         public static bool IsTyping()
         {
             var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
-                   selected?.GetComponentInParent<InputField>()?.isFocused == true;
+            return selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
+                   selected.GetComponentInParent<InputField>()?.isFocused == true);
         }
         private void OnDestroy()
         {

@@ -36,6 +36,9 @@ namespace MmorpgClient.Game.Jubaozhai
         private readonly Func<object> _identity;
         private readonly ICommerceRecoveryStore _recovery;
         private readonly Dictionary<string, CommerceOrderView> _orders = new();
+        // 只用于快照失效去重，不能代替资产收据；换玩家或连接必须重新观察终态。
+        private readonly Dictionary<string, CommerceOrderView> _refreshedTerminalOrders = new();
+        private readonly HashSet<string> _refreshedTerminalMarkets = new(StringComparer.Ordinal);
         private object _connection;
         private ulong _player;
         private int _generation;
@@ -67,6 +70,7 @@ namespace MmorpgClient.Game.Jubaozhai
             RequiresReconnect = changedConnection ? false : RequiresReconnect || Busy;
             _connection = current; _player = _net.PlayerId;
             ++_generation; Busy = false; _orders.Clear();
+            _refreshedTerminalOrders.Clear(); _refreshedTerminalMarkets.Clear();
             Status = HasPendingWrite ? "有待确认交易，请恢复原请求。" : "";
             Changed?.Invoke();
         }
@@ -95,16 +99,48 @@ namespace MmorpgClient.Game.Jubaozhai
 
         private void Apply(IMessage response)
         {
+            bool refreshAssets = false;
             // 缓存和UI事件必须看到同一版本；仅保护缓存仍会让按钮按旧合同重新出现。
-            if (response is CommerceOrderResponse one) one.Order = Cache(one.Order);
+            if (response is CommerceOrderResponse one)
+            {
+                one.Order = Cache(one.Order);
+                ObserveTerminalOrder(one.Order);
+                refreshAssets = one.Order != null;
+            }
             else if (response is ListCommerceOrdersResponse list)
-                for (int index = 0; index < list.Orders.Count; ++index) list.Orders[index] = Cache(list.Orders[index]);
+                for (int index = 0; index < list.Orders.Count; ++index)
+                {
+                    list.Orders[index] = Cache(list.Orders[index]);
+                    refreshAssets |= ObserveTerminalOrder(list.Orders[index]);
+                }
             else if (response is BrowseCommerceOffersResponse offers)
                 foreach (var offer in offers.Offers) offer.Order = Cache(offer.Order);
+            else if (response is MarketOrderResponse market)
+            {
+                ObserveTerminalMarket(market.Order);
+                refreshAssets = market.Order != null;
+            }
+            else if (response is ListMarketOrdersResponse markets)
+                foreach (var order in markets.Orders) refreshAssets |= ObserveTerminalMarket(order);
+            else if (response is AuctionLotResponse lot) refreshAssets = lot.Lot != null;
             // 通知者读取权威背包与宠物列表，不推导“本次应增加多少”。
-            if (response is CommerceOrderResponse || response is MarketOrderResponse || response is AuctionLotResponse)
-                AssetRefreshRequired?.Invoke();
+            if (refreshAssets) AssetRefreshRequired?.Invoke();
         }
+
+        private bool ObserveTerminalOrder(CommerceOrderView order)
+        {
+            if (order == null || string.IsNullOrEmpty(order.OrderId)) return false;
+            if (order.State != CommerceOrderState.Delivered && order.State != CommerceOrderState.Cancelled
+                && order.State != CommerceOrderState.Refunded && order.State != CommerceOrderState.Settled) return false;
+            if (_refreshedTerminalOrders.TryGetValue(order.OrderId, out var before)
+                && before.State == order.State && before.Version >= order.Version) return false;
+            _refreshedTerminalOrders[order.OrderId] = order.Clone();
+            return true;
+        }
+
+        private bool ObserveTerminalMarket(MarketOrderView order) => order != null
+            && !string.IsNullOrEmpty(order.MarketOrderId) && order.State == "done"
+            && _refreshedTerminalMarkets.Add(order.MarketOrderId);
 
         private void Send<T>(uint method, IMessage request, MessageParser<T> parser, bool write, string replayRecord = null)
             where T : IMessage<T>

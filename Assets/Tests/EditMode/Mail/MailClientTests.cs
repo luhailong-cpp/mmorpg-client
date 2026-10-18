@@ -70,5 +70,49 @@ namespace MmorpgClient.Tests.EditMode.Mail
         {
             _connection=new object();_net.Notice(new MessageContent());_client.Tick(true);Assert.That(_net.Calls,Is.Empty);Assert.That(_client.HasUnseenNotice,Is.False);
         }
+        [Test]public void ClaimReplyDoesNotRefreshAssetsUntilCompletedListConfirmsClaimed()
+        {
+            int refreshes=0;_client.AssetRefreshRequired+=()=>refreshes++;
+            _state.SetSnapshot(new[]{MailClient.Map(View(10))});_state.ClaimSelected();
+            _net.Reply(new ClaimMailAttachmentsResponse{Results={new MailActionResult{MailId=10,ClaimState=MailClaimState.MailClaimClaimed,AssetOpId=55}}});
+            Assert.That(refreshes,Is.Zero,"领取回包只触发列表确认，不能推算资产增量");
+            _net.Reply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimPending)}});
+            Assert.That(refreshes,Is.Zero);Assert.That(_state.Selected.Claimed,Is.False);
+            _state.Refresh();_net.Reply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            Assert.That(refreshes,Is.EqualTo(1));Assert.That(_state.Selected.Claimed,Is.True);
+            _state.Refresh();_net.Reply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            _client.Tick(true);Assert.That(refreshes,Is.EqualTo(1));Assert.That(_net.Calls.Count,Is.EqualTo(4));
+        }
+        [Test]public void PagedClaimedListRefreshesAssetsOnceOnlyAfterFinalPage()
+        {
+            int refreshes=0;_client.AssetRefreshRequired+=()=>refreshes++;
+            _state.Refresh();_net.Reply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)},NextBeforeMailId=10});
+            Assert.That(refreshes,Is.Zero);
+            _net.Reply(new ListMailsResponse{Mails={View(9,MailClaimState.MailClaimClaimed)}});
+            Assert.That(refreshes,Is.EqualTo(1));
+        }
+        [TestCase(MailClaimState.MailClaimPending)]
+        [TestCase(MailClaimState.MailClaimManual)]
+        [TestCase((MailClaimState)99)]
+        public void PendingManualAndUnknownListStatesNeverRefreshAssets(MailClaimState claim)
+        {
+            int refreshes=0;_client.AssetRefreshRequired+=()=>refreshes++;
+            _state.Refresh();_net.Reply(new ListMailsResponse{Mails={View(10,claim)}});
+            Assert.That(refreshes,Is.Zero);Assert.That(_state.Selected.Claimed,Is.False);
+        }
+        [Test]public void NewConnectionFirstClaimedListRefreshesAgainAndRejectsOldReply()
+        {
+            int oldRefreshes=0;_client.AssetRefreshRequired+=()=>oldRefreshes++;
+            _state.Refresh();_net.Reply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            Assert.That(oldRefreshes,Is.EqualTo(1));
+            _state.Refresh();var late=_net.Reply;
+            _net.Disconnect();_client.Dispose();_connection=new object();_net.IsReady=true;_state.Reset(7);
+            _client=new MailClient(_net,()=>_connection,_state,()=>_monotonic);
+            int newRefreshes=0;_client.AssetRefreshRequired+=()=>newRefreshes++;
+            _state.Refresh();late(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            Assert.That(oldRefreshes,Is.EqualTo(1));Assert.That(newRefreshes,Is.Zero);
+            _net.Reply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            Assert.That(newRefreshes,Is.EqualTo(1));
+        }
     }
 }

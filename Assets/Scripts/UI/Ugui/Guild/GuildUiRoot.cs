@@ -206,7 +206,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         private static bool IsTyping()
         {
             var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true;
+            return selected != null && selected.GetComponentInParent<TMP_InputField>()?.isFocused == true;
         }
         public void HidePanel() => _window?.Hide();
         private void Changed() => _window?.SetClient(_client);

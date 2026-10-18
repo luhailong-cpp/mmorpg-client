@@ -17,12 +17,15 @@ namespace MmorpgClient.Game.Mail
         private readonly object _boundConnection;
         private readonly ulong _player;
         private readonly MailUiState _state;
+        // 只比较本连接已完成的权威列表；领取受理、PENDING 和分页中间结果都不能触发到账刷新。
+        private HashSet<string> _claimedMailIds = new(StringComparer.Ordinal);
         private bool _disposed, _waiting, _queued;
         private int _generation, _uiGeneration;
         private long _nextPendingRefresh;
         private readonly Func<long> _monotonicMs;
         public bool RequiresReconnect { get; private set; }
         public bool HasUnseenNotice => _queued;
+        public event Action AssetRefreshRequired;
         public MailClient(IBattleTransport net, Func<object> connection, MailUiState state, Func<long> monotonicMs=null)
         {
             _net=net??throw new ArgumentNullException(nameof(net));_connection=connection??throw new ArgumentNullException(nameof(connection));
@@ -81,7 +84,12 @@ namespace MmorpgClient.Game.Mail
                     if((before!=0&&next>=before)||messages.Count>=1000){_state.Fail(_uiGeneration,"邮件列表超出本次同步范围，请稍后重试。");return;}
                     Fetch(generation,next,messages,message);return;
                 }
-                _state.Complete(_uiGeneration,messages,message);_nextPendingRefresh=_monotonicMs()+2000;
+                var claimed=new HashSet<string>(messages.Where(m=>m.Claimed).Select(m=>m.Id),StringComparer.Ordinal);
+                bool refreshAssets=claimed.Any(id=>!_claimedMailIds.Contains(id));
+                if(!_state.Complete(_uiGeneration,messages,message))return;
+                _claimedMailIds=claimed;_nextPendingRefresh=_monotonicMs()+2000;
+                // 新连接首次读到已领取也重拉快照；重复列表不反复读背包，不按附件计算增量。
+                if(refreshAssets&&Current())AssetRefreshRequired?.Invoke();
             });
         }
         private void Call<T>(int generation,uint id,IMessage request,MessageParser<T> parser,Action<T> receive)where T:IMessage<T>

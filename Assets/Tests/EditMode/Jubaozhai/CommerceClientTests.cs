@@ -73,11 +73,13 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
         {
             var net = new JubaozhaiFakeTransport(); var store = new MemoryRecovery();
             using var client = new CommerceClient(net, store);
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
             client.BuySku(12, 1);
             net.Reply(new CommerceOrderResponse { ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KServiceUnavailable } });
             Assert.That(client.HasPendingWrite, Is.True);
             client.RetryPending(); net.Reply(new CommerceOrderResponse());
             Assert.That(client.HasPendingWrite, Is.True);
+            Assert.That(refreshes, Is.Zero);
         }
 
         [Test]
@@ -130,6 +132,99 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
             var sent = (CreateAuctionLotRequest)net.LastRequest;
             Assert.That(sent.Assets.ItemUuids[0], Is.EqualTo(ulong.MaxValue));
             Assert.That(sent.OpeningPrice, Is.EqualTo(ulong.MaxValue - 2));
+        }
+
+        [Test]
+        public void CompletedOrderListCoalescesAssetRefreshAndDoesNotRepeatForSameOrOlderContracts()
+        {
+            var net = new JubaozhaiFakeTransport();
+            using var client = new CommerceClient(net, new MemoryRecovery());
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = {
+                new CommerceOrderView { OrderId = "one", Version = 8, State = CommerceOrderState.Delivering } } });
+            Assert.That(refreshes, Is.Zero);
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = {
+                new CommerceOrderView { OrderId = "one", Version = 9, State = CommerceOrderState.Delivered },
+                new CommerceOrderView { OrderId = "two", Version = 2, State = CommerceOrderState.Cancelled } } });
+            Assert.That(refreshes, Is.EqualTo(1), "一页多个终态合并成一次权威资产读取");
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = {
+                new CommerceOrderView { OrderId = "one", Version = 9, State = CommerceOrderState.Delivered },
+                new CommerceOrderView { OrderId = "two", Version = 2, State = CommerceOrderState.Cancelled } } });
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = {
+                new CommerceOrderView { OrderId = "one", Version = 8, State = CommerceOrderState.Delivering } } });
+            Assert.That(refreshes, Is.EqualTo(1));Assert.That(net.Calls.Count, Is.EqualTo(4));
+            Assert.That(client.Orders["one"].State, Is.EqualTo(CommerceOrderState.Delivered));
+        }
+
+        [TestCase(CommerceOrderState.Delivered)]
+        [TestCase(CommerceOrderState.Cancelled)]
+        [TestCase(CommerceOrderState.Refunded)]
+        [TestCase(CommerceOrderState.Settled)]
+        public void FirstTerminalOrderAndLaterVersionInvalidateAssets(CommerceOrderState state)
+        {
+            var net = new JubaozhaiFakeTransport();
+            using var client = new CommerceClient(net, new MemoryRecovery());
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = {
+                new CommerceOrderView { OrderId = "one", Version = 2, State = state } } });
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = {
+                new CommerceOrderView { OrderId = "one", Version = 3, State = state } } });
+            Assert.That(refreshes, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void MarketListWaitsForDoneAndRepeatedPageDoesNotLoopAssetReads()
+        {
+            var net = new JubaozhaiFakeTransport();
+            using var client = new CommerceClient(net, new MemoryRecovery());
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
+            client.ListMarket(); net.Reply(new ListMarketOrdersResponse { Orders = {
+                new MarketOrderView { MarketOrderId = "one", State = "market_wait", Quantity = 10, FilledQuantity = 10 },
+                new MarketOrderView { MarketOrderId = "two", State = "manual" } } });
+            Assert.That(refreshes, Is.Zero, "已撮合数量不能代替子交付完成");
+            client.ListMarket(); net.Reply(new ListMarketOrdersResponse { Orders = {
+                new MarketOrderView { MarketOrderId = "one", State = "done" },
+                new MarketOrderView { MarketOrderId = "two", State = "done" } } });
+            Assert.That(refreshes, Is.EqualTo(1));
+            client.ListMarket(); net.Reply(new ListMarketOrdersResponse { Orders = {
+                new MarketOrderView { MarketOrderId = "two", State = "done" },
+                new MarketOrderView { MarketOrderId = "one", State = "done" } } });
+            Assert.That(refreshes, Is.EqualTo(1));Assert.That(net.Calls.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void SingleOrderConfirmationAndFollowingListShareInvalidationDeduplication()
+        {
+            var net = new JubaozhaiFakeTransport();
+            using var client = new CommerceClient(net, new MemoryRecovery());
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
+            var order = new CommerceOrderView { OrderId = "one", Version = 2, State = CommerceOrderState.Delivered };
+            client.GetOrder("one"); net.Reply(new CommerceOrderResponse { Order = order.Clone() });
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = { order.Clone() } });
+            Assert.That(refreshes, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void NewConnectionOrPlayerRechecksTerminalAssetsAndOldReplyCannotInvalidateThem()
+        {
+            var net = new JubaozhaiFakeTransport(); object connection = new();
+            using var client = new CommerceClient(net, new MemoryRecovery(), () => connection);
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
+            var order = new CommerceOrderView { OrderId = "one", Version = 2, State = CommerceOrderState.Delivered };
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = { order.Clone() } });
+            client.ListOrders(); var late = net.Pending;
+            connection = new object(); client.ObserveConnection();
+            late(new ListCommerceOrdersResponse { Orders = { order.Clone() } });
+            Assert.That(refreshes, Is.EqualTo(1));
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = { order.Clone() } });
+            Assert.That(refreshes, Is.EqualTo(2));
+            net.PlayerId = 2; client.ObserveConnection();
+            client.ListOrders(); net.Reply(new ListCommerceOrdersResponse { Orders = { order.Clone() } });
+            Assert.That(refreshes, Is.EqualTo(3));
+            client.ListOrders(); late = net.Pending; client.Dispose();
+            late(new ListCommerceOrdersResponse { Orders = {
+                new CommerceOrderView { OrderId = "two", Version = 3, State = CommerceOrderState.Delivered } } });
+            Assert.That(refreshes, Is.EqualTo(3));
         }
     }
 

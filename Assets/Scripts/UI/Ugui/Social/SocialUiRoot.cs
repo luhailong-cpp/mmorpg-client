@@ -125,7 +125,7 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         public void HidePanel(){Window?.Hide();FriendRequests?.Hide();}
         public static bool IsTyping()
-        {var go=EventSystem.current?.currentSelectedGameObject;return go?.GetComponentInParent<TMP_InputField>()?.isFocused==true||go?.GetComponentInParent<InputField>()?.isFocused==true;}
+        {var go=EventSystem.current?.currentSelectedGameObject;return go!=null&&(go.GetComponentInParent<TMP_InputField>()?.isFocused==true||go.GetComponentInParent<InputField>()?.isFocused==true);}
         private void OnDisable()=>HidePanel();
         private void OnDestroy(){_friendSync?.Dispose();_friendSync=null;Client?.Dispose();Friends?.Dispose();FriendRequests?.Dispose();Window?.Dispose();if(Instance==this)Instance=null;}
     }

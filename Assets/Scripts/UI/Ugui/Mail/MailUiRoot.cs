@@ -65,7 +65,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             bool inGame=game!=null&&game.InGame&&game.IsGateReady;
             ulong player=inGame?game.PlayerId:0;
             if(_player!=player){ResetSession();_player=player;_gate=gate;State.Reset(player);
-                if(player!=0){_client=new MailClient(new GameClientBattleTransport(game),()=>game.GateConnectionIdentity,State);State.Refresh();}}
+                if(player!=0){_client=new MailClient(new GameClientBattleTransport(game),()=>game.GateConnectionIdentity,State);_client.AssetRefreshRequired+=RefreshAssets;State.Refresh();}}
             _available=inGame&&!(BattleUiRoot.Instance?.IsBattleLayerVisible??false);
             _hud.gameObject.SetActive(_available);_window.Tick();_client?.Tick(_window.IsVisible);
             if(_entryText!=null)_entryText.text=_client?.HasUnseenNotice==true?"仙笺 [N] · 新":State.UnreadCount>0?$"仙笺 [N] · {State.UnreadCount}":"仙笺 [N]";
@@ -89,16 +89,22 @@ namespace MmorpgClient.UI.Ugui.Mail
             if(!State.IsBusy)State.Refresh();
         }
         public void HidePanel()=>_window?.Hide();
-        private void ResetSession(){_client?.Dispose();_client=null;_player=0;_gate=null;_available=false;_window?.ResetSession();if(_hud!=null)_hud.gameObject.SetActive(false);}
+        private void RefreshAssets()
+        {
+            if(_game==null||!_game.InGame||!_game.IsGateReady||_game.PlayerId!=_player||!ReferenceEquals(_gate,_game.GateConnectionIdentity))return;
+            _game.Features.RequestBag();
+        }
+        private void DisposeClient(){if(_client==null)return;_client.AssetRefreshRequired-=RefreshAssets;_client.Dispose();_client=null;}
+        private void ResetSession(){DisposeClient();_player=0;_gate=null;_available=false;_window?.ResetSession();if(_hud!=null)_hud.gameObject.SetActive(false);}
         public static bool IsTyping()
         {
             var go=EventSystem.current?.currentSelectedGameObject;
-            return go?.GetComponentInParent<TMP_InputField>()?.isFocused==true||go?.GetComponentInParent<InputField>()?.isFocused==true;
+            return go!=null&&(go.GetComponentInParent<TMP_InputField>()?.isFocused==true||go.GetComponentInParent<InputField>()?.isFocused==true);
         }
         private void OnDisable()=>HidePanel();
         private void OnDestroy()
         {
-            if(_game!=null)_game.OnDisconnected-=ResetSession;_client?.Dispose();_window?.Dispose();if(Instance==this)Instance=null;
+            if(_game!=null)_game.OnDisconnected-=ResetSession;DisposeClient();_window?.Dispose();if(Instance==this)Instance=null;
         }
     }
 }
