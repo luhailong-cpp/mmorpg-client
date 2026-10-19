@@ -166,9 +166,12 @@ namespace MmorpgClient.Game.Jubaozhai
             int generation = ++_generation;
             object connection = _connection;
             Busy = true; SetStatus(write ? "交易已提交，正在确认…" : "正在读取…");
+            // 传输保证主线程回调；首个成功或错误先封口，迟到结果不得改恢复记录或已发布状态。
+            bool completed = false;
             _net.Call(method, request, parser, response =>
             {
-                if (!Current(generation, player, connection)) return;
+                if (completed || !Current(generation, player, connection)) return;
+                completed = true;
                 Busy = false;
                 uint tip = Tip(response);
                 // 故障和缺少合同的空成功都不能证明未提交，保留原请求继续幂等恢复。
@@ -187,7 +190,8 @@ namespace MmorpgClient.Game.Jubaozhai
                 Changed?.Invoke();
             }, error =>
             {
-                if (!Current(generation, player, connection)) return;
+                if (completed || !Current(generation, player, connection)) return;
+                completed = true;
                 Busy = false;
                 if (error == JubaozhaiClient.TimeoutError) RequiresReconnect = true;
                 SetStatus(write ? "结果暂未确认；请恢复原请求，勿重复下单。" : "读取失败，请稍后重试。");

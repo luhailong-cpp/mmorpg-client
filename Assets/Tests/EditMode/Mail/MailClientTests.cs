@@ -114,5 +114,68 @@ namespace MmorpgClient.Tests.EditMode.Mail
             _net.Reply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
             Assert.That(newRefreshes,Is.EqualTo(1));
         }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ConsumedClaimCallbackCannotQueueAnotherConfirmationOrQuarantineNextCall(bool lateError)
+        {
+            int refreshes=0;_client.AssetRefreshRequired+=()=>refreshes++;
+            _state.SetSnapshot(new[]{MailClient.Map(View(10))});_state.ClaimSelected();
+            var claimReply=_net.Reply;var claimError=_net.Error;
+            claimReply(new ClaimMailAttachmentsResponse{Results={new MailActionResult{MailId=10,ClaimState=MailClaimState.MailClaimPending,AssetOpId=55}}});
+            var listReply=_net.Reply;
+            if(lateError)claimError("timeout");
+            else claimReply(new ClaimMailAttachmentsResponse{Results={new MailActionResult{MailId=10,ClaimState=MailClaimState.MailClaimClaimed,AssetOpId=55}}});
+            Assert.That(_net.Calls.Count,Is.EqualTo(2),"已消费的领取回调不能往同类FIFO再塞确认请求");
+            Assert.That(_client.RequiresReconnect,Is.False,"领取已受理后的旧错误不能隔离正在确认的列表");
+            Assert.That(_state.IsBusy,Is.True);Assert.That(refreshes,Is.Zero);
+            listReply(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimPending)}});
+            Assert.That(_state.Selected.DeliveryPending,Is.True);Assert.That(refreshes,Is.Zero);
+        }
+
+        [Test]public void ConsumedPageCannotReplaceOutstandingNextPage()
+        {
+            int refreshes=0;_client.AssetRefreshRequired+=()=>refreshes++;
+            _state.Refresh();var firstPage=_net.Reply;
+            firstPage(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)},NextBeforeMailId=10});
+            var lastPage=_net.Reply;
+            firstPage(new ListMailsResponse{Mails={View(99,MailClaimState.MailClaimPending)},NextBeforeMailId=9});
+            Assert.That(_net.Calls.Count,Is.EqualTo(2));Assert.That(_state.IsBusy,Is.True);Assert.That(_state.Messages,Is.Empty);
+            lastPage(new ListMailsResponse{Mails={View(9,MailClaimState.MailClaimClaimed)}});
+            Assert.That(_state.Messages.Count,Is.EqualTo(2));Assert.That(_state.Messages[0].Id,Is.EqualTo("10"));
+            Assert.That(_state.Messages[1].Id,Is.EqualTo("9"));Assert.That(refreshes,Is.EqualTo(1));
+        }
+
+        [Test]public void PendingSqlReceiptAfterReconnectRejectsOldOwnerCompletionAndRefreshesOnce()
+        {
+            int oldRefreshes=0;_client.AssetRefreshRequired+=()=>oldRefreshes++;
+            _state.Refresh();var oldList=_net.Reply;
+            oldList(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimPending)}});
+            Assert.That(oldRefreshes,Is.Zero);Assert.That(_state.CanClaimSelected,Is.False);
+            _state.Refresh();var delayedOldList=_net.Reply;
+            _net.Disconnect();_client.Dispose();_connection=new object();_net.IsReady=true;_state.Reset(7);
+            _client=new MailClient(_net,()=>_connection,_state,()=>_monotonic);
+            int refreshes=0;_client.AssetRefreshRequired+=()=>refreshes++;
+            _state.Refresh();var currentList=_net.Reply;
+            delayedOldList(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            Assert.That(_state.IsBusy,Is.True);Assert.That(_state.Messages,Is.Empty);Assert.That(refreshes,Is.Zero);
+            currentList(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            delayedOldList(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimPending)}});
+            currentList(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            Assert.That(_state.Selected.Claimed,Is.True);Assert.That(_state.Selected.DeliveryPending,Is.False);
+            Assert.That(refreshes,Is.EqualTo(1));Assert.That(oldRefreshes,Is.Zero);
+        }
+
+        [Test]public void OlderCompletedRefreshCannotOverwriteNewOutstandingOperation()
+        {
+            int refreshes=0;_client.AssetRefreshRequired+=()=>refreshes++;
+            _state.Refresh();var oldList=_net.Reply;
+            oldList(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimPending)}});
+            _state.Refresh();var currentList=_net.Reply;
+            oldList(new ListMailsResponse{Mails={View(99,MailClaimState.MailClaimClaimed)}});
+            Assert.That(_state.IsBusy,Is.True);Assert.That(_state.Selected.Id,Is.EqualTo("10"));Assert.That(refreshes,Is.Zero);
+            currentList(new ListMailsResponse{Mails={View(10,MailClaimState.MailClaimClaimed)}});
+            Assert.That(_state.Selected.Id,Is.EqualTo("10"));Assert.That(refreshes,Is.EqualTo(1));
+        }
     }
 }

@@ -226,6 +226,60 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
                 new CommerceOrderView { OrderId = "two", Version = 3, State = CommerceOrderState.Delivered } } });
             Assert.That(refreshes, Is.EqualTo(3));
         }
+
+        [Test]
+        public void TimedOutWriteCannotBeCompletedByLateSuccessOnSameConnection()
+        {
+            var net = new JubaozhaiFakeTransport(); var store = new MemoryRecovery();
+            using var client = new CommerceClient(net, store);
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
+            client.BuySku(12, 1); var late = net.Pending;
+            string original = store.Load(1);
+            net.Error(JubaozhaiClient.TimeoutError); string status = client.Status;
+            late(new CommerceOrderResponse { Order = new CommerceOrderView { OrderId = "old", Version = 99, State = CommerceOrderState.Delivered } });
+            Assert.That(store.Load(1), Is.EqualTo(original), "超时已封口，迟到成功只能由重连后的原请求恢复核实");
+            Assert.That(client.RequiresReconnect, Is.True); Assert.That(client.Status, Is.EqualTo(status));
+            Assert.That(client.Orders, Is.Empty); Assert.That(refreshes, Is.Zero);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CompletedWriteIgnoresDuplicateSuccessAndLateTimeout(bool lateError)
+        {
+            var net = new JubaozhaiFakeTransport(); var store = new MemoryRecovery();
+            using var client = new CommerceClient(net, store);
+            int refreshes = 0, responses = 0;
+            client.AssetRefreshRequired += () => refreshes++; client.Response += _ => responses++;
+            client.BuySku(12, 1); var reply = net.Pending; var error = net.Error;
+            var accepted = new CommerceOrderResponse { Order = new CommerceOrderView { OrderId = "one", Version = 2, State = CommerceOrderState.Delivered } };
+            reply(accepted); string status = client.Status;
+            if (lateError) error(JubaozhaiClient.TimeoutError); else reply(accepted.Clone());
+            Assert.That(client.RequiresReconnect, Is.False); Assert.That(client.Status, Is.EqualTo(status));
+            Assert.That(store.Load(1), Is.Empty); Assert.That(responses, Is.EqualTo(1)); Assert.That(refreshes, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ReconnectedOwnerReplaysOriginalWriteAndOldOwnerCannotCompleteCurrentRequest()
+        {
+            var net = new JubaozhaiFakeTransport(); var store = new MemoryRecovery(); object connection = new();
+            using var client = new CommerceClient(net, store, () => connection);
+            client.BuySku(12, 2); var oldReply = net.Pending; var oldError = net.Error;
+            byte[] original = net.LastRequest.ToByteArray(); string saved = store.Load(1);
+            net.Disconnect(); net.IsReady = true; connection = new object(); client.ObserveConnection();
+            client.RetryPending(); var currentReply = net.Pending;
+            Assert.That(net.LastRequest.ToByteArray(), Is.EqualTo(original));
+            oldReply(new CommerceOrderResponse { Order = new CommerceOrderView { OrderId = "old", Version = 99, State = CommerceOrderState.Delivered } });
+            oldError(JubaozhaiClient.TimeoutError);
+            Assert.That(client.Busy, Is.True); Assert.That(client.RequiresReconnect, Is.False);
+            Assert.That(store.Load(1), Is.EqualTo(saved)); Assert.That(client.Orders, Is.Empty);
+            currentReply(new CommerceOrderResponse { Order = new CommerceOrderView { OrderId = "current", Version = 2, State = CommerceOrderState.Delivering } });
+            Assert.That(store.Load(1), Is.Empty); Assert.That(client.Orders["current"].State, Is.EqualTo(CommerceOrderState.Delivering));
+            client.ListOrders(); var delayedSqlList = net.Pending;
+            oldReply(new CommerceOrderResponse { Order = new CommerceOrderView { OrderId = "old", Version = 99, State = CommerceOrderState.Delivered } });
+            Assert.That(client.Busy, Is.True); Assert.That(client.Orders.ContainsKey("old"), Is.False);
+            delayedSqlList(new ListCommerceOrdersResponse { Orders = { new CommerceOrderView { OrderId = "current", Version = 3, State = CommerceOrderState.Delivered } } });
+            Assert.That(client.Orders["current"].Version, Is.EqualTo(3)); Assert.That(client.Busy, Is.False);
+        }
     }
 
     public sealed class CommerceRecoveryFileStoreTests

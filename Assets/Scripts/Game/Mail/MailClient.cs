@@ -95,9 +95,11 @@ namespace MmorpgClient.Game.Mail
         private void Call<T>(int generation,uint id,IMessage request,MessageParser<T> parser,Action<T> receive)where T:IMessage<T>
         {
             if(!Current()||generation!=_generation||!_state.IsPending(_uiGeneration))return;_waiting=true;
+            // 回调按传输契约回到主线程；同一调用只消费首个结果，不能让旧领取/前页碰到下一段。
+            bool completed=false;
             _net.Call(id,request,parser,response=>
-            {if(!Current()||generation!=_generation)return;_waiting=false;if(!_state.IsPending(_uiGeneration))return;receive(response);},_=>
-            {if(!Current()||generation!=_generation)return;_waiting=false;Quarantine();});
+            {if(completed||!Current()||generation!=_generation)return;completed=true;_waiting=false;if(!_state.IsPending(_uiGeneration))return;receive(response);},_=>
+            {if(completed||!Current()||generation!=_generation)return;completed=true;_waiting=false;Quarantine();});
         }
         private void Quarantine(){RequiresReconnect=true;++_generation;_waiting=false;_state.SetUnavailable("邮件操作结果尚未确认，请重连后刷新；附件会由服务器继续送达。");}
         private void Disconnected(){if(_disposed)return;++_generation;_waiting=false;_state.Reset();}
