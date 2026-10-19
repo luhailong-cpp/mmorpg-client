@@ -1,4 +1,14 @@
-# Tianyong City world map
+# 正式主城地图（2026-10-18）
+
+正式联机主城已接入 `Assets/Resources/World/CurrentMaps20261009/main/layout.png`，与八仙岛、东海渔村共同使用 `CurrentMapCatalog` 和 `CurrentMapBuilder`。不再使用下文历史主城分块和 F1–F4 外观；旧沙盒和美术工具仍保留用于历史调试。
+
+当前主城出生点是 Unity `(199, 0, 133)` / 服务端 `(133, 199, 0)`；原始布局图为 1254×1254，导航为 150×150、每格 2 单位，世界矩形 X=50..350、Z=0..300。高清分块仍待完成。贴图、导航及来源记录全部随客户端 Git 交付。
+
+完整资源契约、三图传送、服务端同步和当前验收限制见 [正式联机地图接入](FestivalRegions.md)。当前本机仅完成编译和独立导航校验，尚未完成 Unity 实机联机验收。
+
+## 历史实现说明（以下不代表当前正式地图）
+
+# Historical Tianyong City world map
 
 The production scene now presents a dedicated painted main-city backdrop when
 the player enters Tianyong. The existing world-space map remains active behind

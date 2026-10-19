@@ -312,6 +312,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _skillPanel.gameObject.SetActive(false);
             _itemPanel.gameObject.SetActive(false);
+            BattleFidelityArt.ApplyHud(_hudRoot);
             _root.gameObject.SetActive(false);
         }
 
@@ -1070,6 +1071,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     caption.raycastTarget = false;
                     button.SetInteractable(cooldown == 0);
                     button.Button.onClick.AddListener(() => OnSkillPicked(captured));
+                    BattleFidelityArt.Button(button.Button);
                     _skillButtons.Add(button);
                     index++;
                 }

@@ -22,6 +22,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 var texture = Resources.Load<Texture2D>(entry.spriteResource);
                 Assert.That(texture, Is.Not.Null, entry.id + ": missing texture");
+                Assert.That(entry.nativeWidth, Is.GreaterThan(0), entry.id + ": source width is missing");
+                Assert.That(entry.nativeHeight, Is.GreaterThan(0), entry.id + ": source height is missing");
+                Assert.That(texture.width, Is.EqualTo(entry.nativeWidth), entry.id + ": importer resized width");
+                Assert.That(texture.height, Is.EqualTo(entry.nativeHeight), entry.id + ": importer resized height");
                 Assert.That(texture.mipmapCount, Is.EqualTo(1), entry.id + ": unwanted sprite mipmaps");
                 Assert.That(texture.wrapMode, Is.EqualTo(TextureWrapMode.Clamp), entry.id);
                 Assert.That(navigation.IsWalkable(entry.FeetPosition), Is.True, entry.id + ": feet are not on pavement");

@@ -69,6 +69,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _confirmGroup = _confirmButton.Rect.gameObject.AddComponent<CanvasGroup>();
             _confirmButton.Button.onClick.AddListener(() => onConfirm?.Invoke());
 
+            BattleFidelityArt.ApplyPanel(_root);
             Hide();
         }
 
@@ -91,12 +92,12 @@ namespace MmorpgClient.UI.Ugui.Battle
                      (outcome == eBattleOutcome.BattleOutcomeSideBWin && myTeam == 1))
             {
                 title = "胜 利";
-                titleColor = BattleUiStyle.WarnText;
+                titleColor = QdaoUguiTheme.Html("#205B46");
             }
             else if (outcome == eBattleOutcome.BattleOutcomeOngoing)
             {
                 title = "战斗结束";
-                titleColor = QdaoUguiTheme.Cream;
+                titleColor = BattleFidelityArt.Ink;
             }
             else
             {
@@ -133,7 +134,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             for (int i = 0; i < lines.Count; i++)
             {
                 var text = QdaoUguiFactory.CreateText($"Row{i}", _rows, 0f, i * RowHeight, rowsW, RowHeight,
-                    lines[i], 26f, QdaoUguiTheme.StatusCream);
+                    lines[i], 26f, BattleFidelityArt.Ink);
                 var go = text.gameObject;
                 _rowObjects.Add(go);
                 var rect = text.rectTransform;

@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "pets": [
+    {
+      "id": "01-zhuling",
+      "displayName": "烛翎",
+      "petTableIds": [
+        5
+      ],
+      "modelIds": [
+        1005
+      ]
+    },
+    {
+      "id": "02-jiangling",
+      "displayName": "绛铃",
+      "petTableIds": [
+        6
+      ],
+      "modelIds": [
+        1006
+      ]
+    },
+    {
+      "id": "03-shuangtuan",
+      "displayName": "霜团貂",
+      "petTableIds": [
+        7
+      ],
+      "modelIds": [
+        1007
+      ]
+    },
+    {
+      "id": "04-guideng",
+      "displayName": "桂灯童",
+      "petTableIds": [
+        8
+      ],
+      "modelIds": [
+        1008
+      ]
+    },
+    {
+      "id": "05-yanyuling",
+      "displayName": "砚羽灵",
+      "petTableIds": [
+        9
+      ],
+      "modelIds": [
+        1009
+      ]
+    },
+    {
+      "id": "15-landuoxian",
+      "displayName": "岚铎仙",
+      "petTableIds": [
+        10
+      ],
+      "modelIds": [
+        1010
+      ]
+    },
+    {
+      "id": "06-xiluo",
+      "displayName": "汐螺",
+      "petTableIds": [
+        11
+      ],
+      "modelIds": [
+        1011
+      ]
+    },
+    {
+      "id": "07-cangzhanglin",
+      "displayName": "苍嶂麟",
+      "petTableIds": [
+        12
+      ],
+      "modelIds": [
+        1012
+      ]
+    },
+    {
+      "id": "08-zhufengli",
+      "displayName": "竹风狸",
+      "petTableIds": [
+        13
+      ],
+      "modelIds": [
+        1013
+      ]
+    },
+    {
+      "id": "09-chishakui",
+      "displayName": "赤砂魁",
+      "petTableIds": [
+        14
+      ],
+      "modelIds": [
+        1014
+      ]
+    },
+    {
+      "id": "10-xuanchaogui",
+      "displayName": "玄潮龟",
+      "petTableIds": [
+        15
+      ],
+      "modelIds": [
+        1015
+      ]
+    },
+    {
+      "id": "12-yuexianshi",
+      "displayName": "月弦师",
+      "petTableIds": [
+        16
+      ],
+      "modelIds": [
+        1016
+      ]
+    },
+    {
+      "id": "16-luhualing",
+      "displayName": "露华灵",
+      "petTableIds": [
+        17
+      ],
+      "modelIds": [
+        1017
+      ]
+    },
+    {
+      "id": "14-feierling",
+      "displayName": "绯耳灵",
+      "petTableIds": [
+        18
+      ],
+      "modelIds": [
+        1018
+      ]
+    },
+    {
+      "id": "11-xiajiaolu",
+      "displayName": "霞角鹿",
+      "petTableIds": [
+        19
+      ],
+      "modelIds": [
+        1019
+      ]
+    },
+    {
+      "id": "13-yalingtong",
+      "displayName": "芽铃童",
+      "petTableIds": [
+        20
+      ],
+      "modelIds": [
+        1020
+      ]
+    },
+    {
+      "id": "legacy-hu-tuan-tuan",
+      "displayName": "葫团团",
+      "petTableIds": [
+        21
+      ],
+      "modelIds": [
+        1021
+      ]
+    },
+    {
+      "id": "legacy-fu-xiao-hu",
+      "displayName": "符小虎",
+      "petTableIds": [
+        22
+      ],
+      "modelIds": [
+        1022
+      ]
+    },
+    {
+      "id": "legacy-yun-jiu-jiu",
+      "displayName": "云啾啾",
+      "petTableIds": [
+        4
+      ],
+      "modelIds": [
+        1004
+      ]
+    },
+    {
+      "id": "legacy-ling-yue",
+      "displayName": "灵玥",
+      "petTableIds": [
+        1
+      ],
+      "modelIds": [
+        1001
+      ]
+    }
+  ]
+}

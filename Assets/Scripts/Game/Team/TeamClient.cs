@@ -21,6 +21,12 @@ namespace MmorpgClient.Game.Team
         public const string SuspendedMessage  = "组队服务暂不可用，请稍后重新登录再试。";
         // 与 robot 的 400ms 一致,只防连点;gate 的限流按 message_id 另算,见 MessageWindowSeconds。
         public const float  MinSendIntervalSeconds      = 0.4f;
+        /// <summary>
+        /// 「应当在排、视图却没在排」时隔多久重拉一次队伍视图、最多几次。服务端读排队票据出错时会把视图如实下发成
+        /// 没在排,并在随后约 5 秒内不再读(熔断),所以间隔要跨过 5 秒。
+        /// </summary>
+        public const float  QueueViewVerifyDelaySeconds = 6f;
+        public const int    QueueViewVerifyAttempts     = 2;
         public const float  PanelRefreshIntervalSeconds = 30f;
         /// <summary>
         /// 同一 message_id 的本地发送窗口。gate 的 MessageLimiter 按 message_id 各自计数、时间戳取整秒,
@@ -45,6 +51,8 @@ namespace MmorpgClient.Game.Team
         private ulong _startRecoveryPlayer;
         private bool _startRecoveryBlocked;
         private bool _startHadUncertainAttempt;
+        private const string MatchQueuedMessage = "队伍正在匹配中，如需重新开始请先取消匹配。";
+        private bool _backfillIntentRecoverySupported;
         private const string NotMemberMessage = "该玩家不在队伍中。";
 
         private readonly IBattleTransport _net;
@@ -61,10 +69,16 @@ namespace MmorpgClient.Game.Team
         private bool _hasView;
         // 下一次 GetMyTeam 是否带 notify_online:构造 / Reset 置位,真正发出后清零。
         private bool _notifyOnlineQueued;
+        // 下一次 GetMyTeam 是否带 regroup(请求归队):RequestRegroup 置位,真正发出后清零;Reset 清掉(新会话进场时服务端自己会跟随)。
+        private bool _regroupQueued;
         private float _lastSendAt;
         private float _lastRefreshAt;
         // 读失败后的退避:此刻之前 DrainQueued 不补发排队的读(探针也算),避免服务端故障时每 0.4 秒打一次。
         private float _readRetryAt;
+        // 「应当在排、视图却没在排」时的有界核实(见 ExpectQueuedView):剩余次数与下一次的时刻。
+        private int _queueViewVerifyLeft;
+        private float _queueViewVerifyAt = float.PositiveInfinity;
+        private bool _startExpectsQueue;   // 在途的 StartMatch 带的目标人数大于当时的人数(补位)
         // 每个 message_id 最近几次真正发出的时刻。限流按连接算,Reset 不清(同 _lastSendAt)。
         private readonly Dictionary<uint, Queue<float>> _sentAt = new Dictionary<uint, Queue<float>>();
         // ListMyInvites 发出之后收到的邀请推送 / 撤回事件(按 TeamId)。邀请没有排序键,推送走 Kafka、
@@ -108,6 +122,17 @@ namespace MmorpgClient.Game.Team
         public bool HasTeam => Snapshot.TeamId != 0;
         public bool IsLeader => HasTeam && PlayerId != 0 && Snapshot.LeaderId == PlayerId;
         public bool MatchStarting => HasTeam && Snapshot.MatchStarting;
+        /// <summary>队伍补位匹配中(整队在人数档队列里等凑满)。名单不锁:名单一变服务端就让全队退出匹配。</summary>
+        public bool MatchQueued => HasTeam && Snapshot.MatchQueued;
+        /// <summary>
+        /// 每应用一份权威视图(或会话重置)加一。补位匹配态不带版本号,外部(TeamUiRoot 的排队同步)
+        /// 靠它判断「这份快照是不是我上次看过的那一份」。
+        /// </summary>
+        public ulong ViewSerial { get; private set; }
+
+        // 已结束的那一次补位排队的身份(队伍 + 入队时刻);0 = 没有。见 ConsumeBackfillQueue。
+        private ulong _consumedQueueTeamId;
+        private ulong _consumedQueueAtMs;
         /// <summary>Read-only action pacing for the UI; each action keeps its own Send quota.</summary>
         public bool InvitationCoolingDown => WriteCoolingDown(MessageIds.InviteToTeam);
         public bool CreationCoolingDown => WriteCoolingDown(MessageIds.CreateTeam);
@@ -119,6 +144,12 @@ namespace MmorpgClient.Game.Team
         }
 
         public event Action Changed;
+        /// <summary>
+        /// 队伍补位匹配的推送提示(文案, 是否是「这次匹配已结束」)。Status 只显示在队伍面板里,而队员收到
+        /// 「队长发起了匹配 / 某某取消了匹配 / 因为谁被撤单」时队伍面板通常没开 —— 界面层据此把它弹出来。
+        /// 每条推送至多触发一次。
+        /// </summary>
+        public event Action<string, bool> BackfillNotice;
 
         /// <summary>
         /// 落地恢复的读取确认钩子(服务端 docs/design/landing-recovery-sync-digest.md §4.3,由 LandingSyncBindings.BindTeam 设置)。
@@ -172,9 +203,13 @@ namespace MmorpgClient.Game.Team
             if (Busy) RequiresReconnect = true;
             ++_generation;
             Busy = false; PendingAction = TeamAction.None; PendingTarget = 0; _syncReadAck = null;
-            Snapshot = TeamViewMapper.ToSnapshot(null, PlayerId); _hasView = false; HasLoaded = false;
+            Snapshot = TeamViewMapper.ToSnapshot(null, PlayerId); _hasView = false; HasLoaded = false; ViewSerial++;
+            // 新会话重新相信服务端视图:断线重连后若仍在排,要能恢复「匹配中」。
+            _consumedQueueTeamId = 0; _consumedQueueAtMs = 0;
+            _queueViewVerifyLeft = 0; _queueViewVerifyAt = float.PositiveInfinity;
             _invites.Clear(); _pushedInvites.Clear(); _revokedInvites.Clear(); HighlightPlayerId = 0;
             RefreshQueued = InvitesQueued = _notifyOnlineQueued = true;
+            _regroupQueued = false;
             // _lastSendAt / _sentAt 不清:限流按连接算。
             _lastRefreshAt = _readRetryAt = float.NegativeInfinity;
             Status = RequiresReconnect ? RecoveryMessage : Suspended ? SuspendedMessage : ConnectingMessage;
@@ -222,6 +257,17 @@ namespace MmorpgClient.Game.Team
                 PrepareMatchNetwork(() => { }, error => { Status = error; Changed?.Invoke(); });
             }
             if (TooSoon(now)) return;
+            // 「应当在排、视图却没在排」的有界核实(见 ExpectQueuedView):到点排一次静默刷新。
+            if (_queueViewVerifyLeft > 0 && now >= _queueViewVerifyAt)
+            {
+                if (MatchQueued) _queueViewVerifyLeft = 0;
+                else
+                {
+                    _queueViewVerifyLeft--;
+                    _queueViewVerifyAt = now + QueueViewVerifyDelaySeconds;
+                    RefreshQueued = true;
+                }
+            }
             // 排队的读在退避期内不补发;面板的 30 秒刷新本来就隔得够久,不受退避影响。
             bool retryReady = now >= _readRetryAt;
             if ((RefreshQueued || !HasLoaded) && retryReady) { SendRefresh(silent: true); return; }
@@ -302,35 +348,51 @@ namespace MmorpgClient.Game.Team
                 TeamResponse.Parser, false,
                 reply => FinishWrite(TeamAction.Disband, 0, reply, "队伍已解散。"));
 
-        public bool StartMatch(uint battleConfigId)
+        /// <param name="targetTeamSize">0 为直接开局；目标人数更大时等待补位，必须由服务端明确声明支持。</param>
+        public bool StartMatch(uint battleConfigId, uint targetTeamSize = 0)
         {
             RestoreStartIntent();
             if(_startRecoveryBlocked){Status="开局恢复记录无法读取，保留保护状态；请修复本机存储后重新登录。";Changed?.Invoke();return false;}
-            if(_pendingStart!=null&&_pendingStart.BattleConfigId!=battleConfigId){Status="上一笔队伍开局结果尚未确认，请先恢复原请求。";Changed?.Invoke();return false;}
-            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId);
+            if(_pendingStart!=null&&(_pendingStart.BattleConfigId!=battleConfigId||_pendingStart.TargetTeamSize!=targetTeamSize)){Status="上一笔队伍开局结果尚未确认，请先恢复原请求。";Changed?.Invoke();return false;}
+            // 旧补位分支忽略 UUID。未知结果只能先读权威队列，不能盲目重发成为第二次开局。
+            if (_pendingStart != null && _pendingStart.TargetTeamSize > 0 && _startHadUncertainAttempt
+                && !_backfillIntentRecoverySupported)
+            {
+                Status = "上一笔队伍补位结果尚未确认，正在核实原队列。";
+                RefreshQueued = true;
+                Changed?.Invoke();
+                return false;
+            }
+            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId, targetTeamSize);
             int generation = _generation; ulong teamId = Snapshot.TeamId;
-            PrepareMatchNetwork(() => { if (!_disposed && generation == _generation && Snapshot.TeamId == teamId) SendStartMatch(battleConfigId); },
+            PrepareMatchNetwork(() => { if (!_disposed && generation == _generation && Snapshot.TeamId == teamId) SendStartMatch(battleConfigId, targetTeamSize); },
                 error => { if (!_disposed && generation == _generation) { Status = error; Changed?.Invoke(); } });
             return true;
         }
 
-        private bool SendStartMatch(uint battleConfigId)
+        private bool SendStartMatch(uint battleConfigId, uint targetTeamSize)
         {
-            if(_pendingStart!=null)_startHadUncertainAttempt=true;
-            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,RequestId=Guid.NewGuid().ToString("D")};
+            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,TargetTeamSize=targetTeamSize,RequestId=Guid.NewGuid().ToString("D")};
+            bool backfill = request.TargetTeamSize > Snapshot.Members.Count;
             return Send(TeamAction.StartMatch,0,MessageIds.StartTeamMatch,request,TeamResponse.Parser,false,reply=>{
-                FinishWrite(TeamAction.StartMatch,0,reply,"开局已受理，正在集合队员…");
+                FinishWrite(TeamAction.StartMatch,0,reply,"已发起队伍战斗，正在集合队员…");
+                // 统一后的服务器若返回正式恢复意图，始终以它为准，包括目标人数大于当前人数的请求。
+                if (reply.MatchIntent != null) { ObserveStartIntent(reply); return; }
+                // 远端补位分支尚无 MatchIntent；明确成功回包已确认入队，保留队列原文案。
+                if (backfill && Ok(reply.ErrorMessage)) { ClearStartIntent(); return; }
                 if(!_startHadUncertainAttempt&&reply.ErrorMessage!=null&&reply.ErrorMessage.Id!=0&&!TipFaults.IsFault(reply.ErrorMessage.Id)){ClearStartIntent();return;}
                 ObserveStartIntent(reply);
             },beforeSend:()=>{
+                // 只有真正越过 Busy/冷却/前置条件后再发原请求，才属于再次尝试；本地拒绝的连点不算。
+                if (_pendingStart != null) _startHadUncertainAttempt = true;
                 MatchRecovery?.Save(PlayerId,Convert.ToBase64String(request.ToByteArray()));
-                _pendingStart=request;_startRecoveryPlayer=PlayerId;
+                _pendingStart=request;_startRecoveryPlayer=PlayerId;_startExpectsQueue=backfill;
             });
         }
         private void RestoreStartIntent()
         {
             if(MatchRecovery==null||PlayerId==0||_startRecoveryPlayer==PlayerId)return;
-            _startRecoveryPlayer=PlayerId;_pendingStart=null;_startRecoveryBlocked=false;_startHadUncertainAttempt=false;
+            _startRecoveryPlayer=PlayerId;_pendingStart=null;_startRecoveryBlocked=false;_startHadUncertainAttempt=false;_backfillIntentRecoverySupported=false;
             try{
                 string raw=MatchRecovery.Load(PlayerId);if(raw.Length==0)return;
                 var request=StartTeamMatchRequest.Parser.ParseFrom(Convert.FromBase64String(raw));
@@ -342,21 +404,32 @@ namespace MmorpgClient.Game.Team
         {
             if(_pendingStart==null)return;
             var view=response.MatchIntent;
+            if (view != null && view.RequestId == _pendingStart.RequestId) _backfillIntentRecoverySupported = true;
+            // 旧补位契约没有恢复意图：当前同一队伍/副本/目标人数的权威队列足以证明所求效果已存在。
+            // 不以空闲视图证明旧请求失败，也不把异队/异副本/异目标的队列当成原意图。
+            var team = response.Team;
+            if (view == null && _pendingStart.TargetTeamSize > 0 && team != null
+                && team.TeamId == _pendingStart.ExpectedTeamId && team.MatchState == TeamBackfillProtocol.QueuedState
+                && team.MatchBattleConfigId == _pendingStart.BattleConfigId && team.MatchTargetSize == _pendingStart.TargetTeamSize)
+            {
+                ClearStartIntent();
+                return;
+            }
             if(view!=null&&view.RequestId==_pendingStart.RequestId&&view.BattleId!=0&&view.State>=1&&view.State<=5){
                 try{ClearStartIntent();}
                 catch(Exception){Status="开局已受理，本机恢复记录尚未清理。";return;}
                 Status=view.State==5?"原队伍开局已确认中止。":"原队伍开局已受理，正在恢复战斗。";
             }else{RefreshQueued=true;_readRetryAt=_clock()+ReadRetryDelaySeconds;Status="队伍开局结果尚未确认；重试会使用原请求。";}
         }
-        private void ClearStartIntent(){if(_pendingStart==null)return;MatchRecovery?.Clear(PlayerId,Convert.ToBase64String(_pendingStart.ToByteArray()));_pendingStart=null;_startHadUncertainAttempt=false;}
+        private void ClearStartIntent(){if(_pendingStart==null)return;MatchRecovery?.Clear(PlayerId,Convert.ToBase64String(_pendingStart.ToByteArray()));_pendingStart=null;_startHadUncertainAttempt=false;_backfillIntentRecoverySupported=false;}
 
-        // 请求体在调用 Send 之前构造:NotifyOnline 取发送当下的排队值,Send 真正发出后才清零;
-        // 服务端没走到上线广播(限流、回包不带视图)时,由回包 / 错误处理按请求体重新置位。
+        // 请求体在调用 Send 之前构造:NotifyOnline / Regroup 取发送当下的排队值,Send 真正发出后才清零;
+        // 服务端没走到上线广播 / 归队(限流、回包不带视图)时,由回包 / 错误处理按请求体重新置位。
         private bool SendRefresh(bool silent)
         {
-            var request = new GetMyTeamRequest { NotifyOnline = _notifyOnlineQueued, MatchRequestId = _pendingStart?.RequestId ?? string.Empty };
+            var request = new GetMyTeamRequest { NotifyOnline = _notifyOnlineQueued, Regroup = _regroupQueued, MatchRequestId = _pendingStart?.RequestId ?? string.Empty };
             return Send(TeamAction.Refresh, 0, MessageIds.GetMyTeam, request,
-                TeamResponse.Parser, silent, reply => OnMyTeam(reply, silent, request.NotifyOnline));
+                TeamResponse.Parser, silent, reply => OnMyTeam(reply, silent, request));
         }
 
         private bool SendInvites(bool silent) =>
@@ -413,9 +486,9 @@ namespace MmorpgClient.Game.Team
         /// <summary>
         /// GetMyTeam 回包:只要收到 TeamResponse 就算探针通过,即使带了内层 tip。
         /// 不带视图(服务端自由读失败 4029 / 4030,或视图读失败)时不能据此推断"无队",
-        /// 保留本地快照,退避后重拉;这次服务端没走到上线广播,NotifyOnline 随重拉再发一次。
+        /// 保留本地快照,退避后重拉;这次服务端没走到上线广播 / 归队,NotifyOnline / Regroup 随重拉再发一次。
         /// </summary>
-        private void OnMyTeam(TeamResponse reply, bool silent, bool notifyOnline)
+        private void OnMyTeam(TeamResponse reply, bool silent, GetMyTeamRequest request)
         {
             HasLoaded = true;
             bool hasView = reply.Team != null;
@@ -425,7 +498,8 @@ namespace MmorpgClient.Game.Team
             {
                 RefreshQueued = true;
                 _readRetryAt = _clock() + ReadRetryDelaySeconds;
-                if (notifyOnline) _notifyOnlineQueued = true;
+                if (request.NotifyOnline) _notifyOnlineQueued = true;
+                if (request.Regroup) _regroupQueued = true;
             }
             if (Ok(reply.ErrorMessage))
             {
@@ -483,6 +557,16 @@ namespace MmorpgClient.Game.Team
         /// </summary>
         private void FinishWrite(TeamAction action, ulong target, TeamResponse reply, string successText)
         {
+            // 自己这次开战被「队伍正在匹配中」拒绝、回包视图就是 QUEUED:这是对本次请求的新鲜应答,票据确实在排。
+            // 这一次排队若被本机记成了已结束(ConsumeBackfillQueue),那个结论是错的 —— 例如排队中应战切磋开打、
+            // 而服务端没能把排队撤掉。撤销它,视图恢复「匹配中」,TeamBackfillQueueSync 会重新采纳;
+            // 否则本机既不显示匹配中、也没有取消入口,凑满时被直接拉进副本。
+            if (action == TeamAction.StartMatch && reply.Team != null
+                && reply.Team.MatchState == TeamBackfillProtocol.QueuedState && IsTip(reply.ErrorMessage, team_error.KTeamInMatch))
+            {
+                _consumedQueueTeamId = 0;
+                _consumedQueueAtMs = 0;
+            }
             if (reply.Team != null) ApplyView(reply.Team); else RefreshQueued = true;
             var tip = reply.ErrorMessage;
             bool ok = Ok(tip);
@@ -497,9 +581,26 @@ namespace MmorpgClient.Game.Team
                 Status = "队伍正在进入战斗，请稍候…";
                 return;
             }
+            // 同理:重复开战回 4023 而视图在补位匹配中,不算错误。
+            if (!ok && action == TeamAction.StartMatch && IsTip(tip, team_error.KTeamInMatch)
+                && reply.Team?.MatchState == TeamBackfillProtocol.QueuedState)
+            {
+                Status = "队伍正在匹配中，请稍候…";
+                // 回包视图因排序规则没被应用(在途期间先到了更高版本的推送):排一次重拉,不等面板刷新。
+                if (!MatchQueued) RefreshQueued = true;
+                return;
+            }
             if (ok)
             {
-                Status = successText;
+                // 以回包为准:请求在途期间有人入队,服务端按它读到的人数判定「目标 = 现有」而直接开战(视图 STARTING),
+                // 这时就是直接开战,不说「进入匹配队列」也不做核实。
+                bool backfillStart = action == TeamAction.StartMatch && _startExpectsQueue
+                    && reply.Team?.MatchState != TeamMatchState.Starting;
+                Status = action == TeamAction.StartMatch && MatchQueued
+                    ? $"队伍已进入匹配队列（目标 {Snapshot.MatchTargetSize} 人），等待补位…"
+                    : backfillStart ? "队伍已进入匹配队列，等待补位…" : successText;
+                // 补位入队成功、回包视图却没在排(服务端读票据失败时如实下发):有界核实,拿到在排的视图才能被带入排队。
+                if (backfillStart) ExpectQueuedView();
                 // 接受或谢绝都会消耗这条邀请。
                 if (action == TeamAction.RespondInvite) RemoveInvite(target);
                 return;
@@ -514,17 +615,32 @@ namespace MmorpgClient.Game.Team
 
         private void OnTransportError(string error, TeamAction action, IMessage request, bool probe, bool silent)
         {
-            if(action==TeamAction.StartMatch&&_pendingStart!=null)_startHadUncertainAttempt=true;
             if (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal))
             {
                 if (IsRateLimited(error))
                 {
-                    // gate 限流是对这一包的明确拒绝:回包带原请求 id,走 GameClient 的精确匹配,不会打乱 FIFO,
+                    // gate 限流是对这一包的明确拒绝：回包带原请求 id，由 GameClient 精确匹配，
                     // 请求也没有到达组队服务(照 SocialClient.IsDefiniteRejection)。不停用、不要求重连;
                     // 读请求退避后重排,写请求交给玩家稍后重试。
+                    if (action == TeamAction.StartMatch && _pendingStart != null && !_startHadUncertainAttempt)
+                    {
+                        // 首次尝试在 gate 即明确被拒绝，服务端没有执行；不能把它误当成旧补位协议的未知结果。
+                        // 若此前已有不确定尝试，本次限流只证明这一包没执行，原意图仍必须保留。
+                        try { ClearStartIntent(); }
+                        catch (Exception)
+                        {
+                            _startRecoveryBlocked = true;
+                            Status = "已拒绝的开局记录无法清理，请修复本机存储后重新登录。";
+                            return;
+                        }
+                    }
                     if (action == TeamAction.Refresh) RefreshQueued = true;
                     if (action == TeamAction.ListInvites) InvitesQueued = true;
-                    if (request is GetMyTeamRequest refresh && refresh.NotifyOnline) _notifyOnlineQueued = true;
+                    if (request is GetMyTeamRequest refresh)
+                    {
+                        if (refresh.NotifyOnline) _notifyOnlineQueued = true;
+                        if (refresh.Regroup) _regroupQueued = true;
+                    }
                     if (action == TeamAction.Refresh || action == TeamAction.ListInvites)
                         _readRetryAt = _clock() + ReadRetryDelaySeconds;
                     if (!silent) Status = TooFastMessage;
@@ -543,7 +659,8 @@ namespace MmorpgClient.Game.Team
                 Status = SuspendedMessage;
                 return;
             }
-            // GameClient 的 gRPC FIFO 无法区分超时旧响应，必须等真实断线后再发组队请求。
+            // 写请求可能已在服务端生效；重连后按原意图与权威状态恢复，避免重复副作用。
+            if (action == TeamAction.StartMatch && _pendingStart != null) _startHadUncertainAttempt = true;
             RequiresReconnect = true;
             Status = RecoveryMessage;
         }
@@ -600,6 +717,27 @@ namespace MmorpgClient.Game.Team
                     Status = string.Empty;
                     HighlightPlayerId = 0;
                     break;
+                case TeamBackfillProtocol.MatchQueuedReason:
+                    Status = MatchQueued
+                        ? $"队长已发起队伍匹配（目标 {Snapshot.MatchTargetSize} 人），等待补位…"
+                        : "队长已发起队伍匹配，等待补位…";
+                    HighlightPlayerId = 0;
+                    BackfillNotice?.Invoke(Status, false);
+                    // 推送里的视图没在排(服务端读票据失败时如实下发):有界核实,拿到在排的视图才能被带入排队。
+                    ExpectQueuedView();
+                    break;
+                case TeamBackfillProtocol.MatchQueueCanceledReason:
+                {
+                    // 主动取消带取消者(actor_id);系统撤单带原因(tip,参数里可能是出问题的队员)。
+                    string text = DescribeTip(message.Tip);
+                    if (!string.IsNullOrEmpty(text)) Status = "队伍匹配已取消：" + text;
+                    else if (message.ActorId != 0 && message.ActorId == PlayerId) Status = "已取消队伍匹配。";
+                    else if (message.ActorId != 0) Status = MemberName(message.ActorId) + " 取消了队伍匹配。";
+                    else Status = "队伍匹配已取消。";
+                    HighlightPlayerId = IsMemberStateTip(message.Tip) ? TipPlayerId(message.Tip) : 0;
+                    BackfillNotice?.Invoke(Status, true);
+                    break;
+                }
             }
             Changed?.Invoke();
         }
@@ -655,7 +793,8 @@ namespace MmorpgClient.Game.Team
             bool hadTeam = HasTeam;
             var incoming = TeamViewMapper.ToSnapshot(view, PlayerId);
             var order = TeamViewMapper.Compare(_hasView ? Snapshot : null, incoming);
-            if (order == TeamSnapshotOrder.Accept) { Snapshot = incoming; _hasView = true; }
+            StripConsumedQueue(incoming);
+            if (order == TeamSnapshotOrder.Accept) { Snapshot = incoming; _hasView = true; ViewSerial++; }
             else if (order == TeamSnapshotOrder.Conflict) RefreshQueued = true;   // epoch 相等但 TeamId 不同:丢弃并尽快重拉
             if (hadTeam && !HasTeam) InvitesQueued = true;                         // 刚离队 / 被踢 / 解散:重拉邀请
             return order;
@@ -677,6 +816,91 @@ namespace MmorpgClient.Game.Team
         private static bool IsMemberStateTip(TipInfoMessage tip) =>
             IsTip(tip, team_error.KTeamMemberOffline) || IsTip(tip, team_error.KTeamMemberInBattle)
             || IsTip(tip, team_error.KTeamMemberNotReady);
+
+        /// <summary>
+        /// 记下「这一次补位排队已经结束」。调用方(TeamBackfillQueueSync)是从排队票据那一侧得知的:
+        /// 轮询到已不在排、或已经开战 —— 票据才是「是否在排」的事实来源,队伍视图里的匹配态只是提示,
+        /// 而且不带版本号:服务端在凑满开战时不会补推视图,迟到的旧视图也可能再把它带回来。
+        /// 之后凡是同一次排队(同一队伍 + 同一入队时刻)的视图,匹配态一律按「没在排」处理;
+        /// 队长重新发起匹配会有新的入队时刻,不受影响。同时排一次静默的 GetMyTeam,成败都不影响这里的结论。
+        /// </summary>
+        public void ConsumeBackfillQueue(ulong teamId, ulong queuedAtMs)
+        {
+            if (_disposed || teamId == 0 || queuedAtMs == 0) return;
+            _consumedQueueTeamId = teamId;
+            _consumedQueueAtMs = queuedAtMs;
+            RefreshQueued = true;
+            if (!Snapshot.MatchQueued || Snapshot.TeamId != teamId || Snapshot.MatchQueuedAtMs != queuedAtMs) return;
+            StripConsumedQueue(Snapshot);
+            ViewSerial++;
+            Changed?.Invoke();
+        }
+
+        /// <summary>
+        /// 撤销 <see cref="ConsumeBackfillQueue"/> 记下的「这一次排队已结束」(只在身份对得上时),并排一次静默刷新:
+        /// 服务端的排队票据说那一次排队其实还在(TeamBackfillQueueSync 规则 2 的核实)。刷新回来的视图由规则 1 重新采纳。
+        /// </summary>
+        public void ReviveBackfillQueue(ulong teamId, ulong queuedAtMs)
+        {
+            if (_disposed || teamId == 0 || queuedAtMs == 0) return;
+            if (_consumedQueueTeamId != teamId || _consumedQueueAtMs != queuedAtMs) return;
+            _consumedQueueTeamId = 0;
+            _consumedQueueAtMs = 0;
+            RefreshQueued = true;
+        }
+
+        /// <summary>
+        /// 我们知道全队应当在排(收到「队长发起了匹配」、自己的补位入队成功了),但手里的视图没在排:
+        /// 服务端读排队票据失败时会如实下发「没在排」,并在随后约 5 秒内不再读。没有在排的视图就不会被带入排队,
+        /// 也就没有排队面板和取消入口 —— 所以隔 <see cref="QueueViewVerifyDelaySeconds"/> 秒静默重拉,
+        /// 视图在排或次数用完就停。
+        /// </summary>
+        private void ExpectQueuedView()
+        {
+            if (MatchQueued) return;
+            _queueViewVerifyLeft = QueueViewVerifyAttempts;
+            _queueViewVerifyAt = _clock() + QueueViewVerifyDelaySeconds;
+        }
+
+        /// <summary>排一次静默的 GetMyTeam(下一次 DrainQueued 发出;发不出去也不报错)。</summary>
+        public void RequestRefresh()
+        {
+            if (!_disposed) RefreshQueued = true;
+        }
+
+        /// <summary>
+        /// 请求归队:排一次带 regroup 的静默 GetMyTeam(下一次 DrainQueued 发出,与其他排队的拉取合并成一条)。
+        /// 服务端只在自己是队员(不是队长)时处理:与队长同一场景实例、且看不见或离得远就瞬移到队长脚下,
+        /// 队长在本节点另一个场景就换过去。限流 / 回包不带视图时随重拉再带一次;不在队里时是空操作。
+        /// </summary>
+        public void RequestRegroup()
+        {
+            if (_disposed || !HasTeam || IsLeader) return;
+            _regroupQueued = true;
+            RefreshQueued = true;
+        }
+
+        /// <summary>有一次归队请求排着还没发出(测试与诊断用)。</summary>
+        public bool RegroupQueued => _regroupQueued;
+
+        /// <summary>snapshot 若仍标着已结束的那一次排队,把匹配态抹掉。</summary>
+        private void StripConsumedQueue(TeamSnapshot snapshot)
+        {
+            if (_consumedQueueAtMs == 0 || !snapshot.MatchQueued) return;
+            if (snapshot.TeamId != _consumedQueueTeamId || snapshot.MatchQueuedAtMs != _consumedQueueAtMs) return;
+            snapshot.MatchQueued = false;
+            snapshot.MatchTargetSize = 0;
+            snapshot.MatchQueuedAtMs = 0;
+            snapshot.MatchBattleConfigId = 0;
+        }
+
+        /// <summary>队员的显示名;已不在队里时退回泛称。</summary>
+        private string MemberName(ulong playerId)
+        {
+            foreach (var member in Snapshot.Members)
+                if (member != null && member.PlayerId == playerId) return TeamViewMapper.DisplayName(member);
+            return "队员";
+        }
 
         private bool IsMember(ulong playerId)
         {
@@ -746,6 +970,9 @@ namespace MmorpgClient.Game.Team
                 case TeamAction.StartMatch:
                     if (!IsLeader) return "只有队长可以开始战斗。";
                     if (!(request is StartTeamMatchRequest start) || start.BattleConfigId == 0) return "该副本未开放组队。";
+                    if (MatchQueued) return MatchQueuedMessage;
+                    if (start.TargetTeamSize > Snapshot.Members.Count && !Snapshot.MatchFillSupported)
+                        return "当前服务器未开放队伍补位匹配。";
                     return MatchStarting ? MatchLockedMessage : null;
                 default:
                     return null;   // Refresh / ListInvites 无前置条件
@@ -821,6 +1048,7 @@ namespace MmorpgClient.Game.Team
                 _lastRefreshAt = _lastSendAt;
                 RefreshQueued = false;
                 _notifyOnlineQueued = false;
+                _regroupQueued = false;
             }
             if (action == TeamAction.ListInvites)
             {

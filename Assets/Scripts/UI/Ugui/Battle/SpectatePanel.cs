@@ -64,6 +64,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 30f, ListTop + MaxEntries * (EntryH + EntryGap) + 12f, PanelW - 60f, 72f,
                 string.Empty, 18f, QdaoUguiTheme.StatusCream);
 
+            BattleFidelityArt.ApplyPanel(_root);
             Hide();
         }
 
@@ -141,6 +142,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             ulong battleId = summary.BattleId;
             entry.Button.onClick.AddListener(() => OnEntryClicked(battleId));
             _entries.Add(entry);
+            BattleFidelityArt.ApplyPanel(_root);
         }
 
         private void OnRandomClicked()

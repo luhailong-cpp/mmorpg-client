@@ -45,17 +45,18 @@ namespace MmorpgClient.Tests.EditMode.Ugui
         {
             AssertSerializedPrefabReferences();
             Assert.That(Invoke("ReferencesValid"), Is.True);
+            _view.ShowLanding(true);
             Assert.That(_instance.transform.Find("ReferenceArtwork"), Is.Null);
             Assert.That(_instance.transform.Find("ScreenBaseHeadband"), Is.Null);
 
-            foreach (var name in new[] { "ScreenArtwork", "Hero", "ServerFrame", "CredentialArt" })
+            foreach (var name in new[] { "ScreenArtwork", "CredentialArt" })
             {
                 var image = Required<Image>(name);
                 Assert.That(image.sprite, Is.Not.Null, name);
                 Assert.That(image.enabled && image.color.a > 0.01f, Is.True, name);
-                StringAssert.StartsWith("Assets/Resources/UI/Ugui/RefreshV8/", AssetDatabase.GetAssetPath(image.sprite), name);
+
             }
-            foreach (var name in new[] { "SelectServer", "EnterGame", "SwitchAccount", "TopTab_0", "CategoryArt_0",
+            foreach (var name in new[] { "SelectServer", "EnterGame", "TopTab_0", "CategoryArt_0",
                          "ServerCardArt_0", "BackButton", "RefreshButton", "EnterButton",
                          "CredentialCancelButton", "CredentialSubmitButton" })
             {
@@ -69,6 +70,10 @@ namespace MmorpgClient.Tests.EditMode.Ugui
                 .All(button => button.targetGraphic is Image image && image.raycastTarget), Is.True,
                 "Each semantic action must retain a raycastable Image target.");
             Assert.That(Required<Image>("ScreenArtwork").raycastTarget, Is.False);
+            Assert.That(AssetDatabase.GetAssetPath(Required<Image>("ScreenArtwork").sprite),
+                Is.EqualTo("Assets/Resources/UI/Ugui/CoreFidelity20261016/login_shell.png"));
+            Assert.That(Required<Button>("SwitchAccount").targetGraphic, Is.TypeOf<Image>());
+            Assert.That(Required<TMP_Text>("SwitchAccountText").text, Is.EqualTo("切换账号"));
             Assert.That(Required<Image>("CredentialBlocker").raycastTarget, Is.True);
             var backdrop = Required<Image>("LetterboxBackdrop");
             Assert.That(backdrop.sprite, Is.Null);
@@ -108,8 +113,12 @@ namespace MmorpgClient.Tests.EditMode.Ugui
             _view.ShowLanding(true);
             Click("SelectServer");
             Assert.That(Required<RectTransform>("ServerPage").gameObject.activeSelf, Is.True);
+            Assert.That(AssetDatabase.GetAssetPath(Required<Image>("ScreenArtwork").sprite),
+                Is.EqualTo("Assets/Resources/UI/Ugui/CoreFidelity20261016/server_shell.png"));
             Assert.That(Required<RectTransform>("LoginPage").gameObject.activeSelf, Is.False);
             Click("BackButton");
+            Assert.That(AssetDatabase.GetAssetPath(Required<Image>("ScreenArtwork").sprite),
+                Is.EqualTo("Assets/Resources/UI/Ugui/CoreFidelity20261016/login_shell.png"));
             Assert.That(Required<RectTransform>("LoginPage").gameObject.activeSelf, Is.True);
             Assert.That(Required<RectTransform>("ServerPage").gameObject.activeSelf, Is.False);
             Assert.That(Required<RectTransform>("CredentialPanel").gameObject.activeSelf, Is.False);
@@ -207,6 +216,39 @@ namespace MmorpgClient.Tests.EditMode.Ugui
             Assert.That(Invoke("ReferencesValid"), Is.False, $"An old prefab missing {field} must require rebuilding.");
         }
 
+        [Test]
+        public void ServerDataLabels_RenderVisibleGlyphsForSelectedAndUnselectedCardsAndSummary()
+        {
+            var host = new GameObject("NativeServerTextCanvas", typeof(RectTransform), typeof(Canvas));
+            try
+            {
+                host.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+                _instance.transform.SetParent(host.transform, false);
+                _view.PrepareForPreview();
+                Canvas.ForceUpdateCanvases();
+                foreach (var name in new[] { "ServerName_0", "ServerStatus_0", "ServerName_1",
+                             "ServerStatus_1", "SelectedServerText", "RefreshButtonText" })
+                {
+                    var label = Required<TMP_Text>(name);
+                    Assert.That(label.text, Is.Not.Empty, name + " must be populated from preview/session data.");
+                    label.ForceMeshUpdate(true, true);
+                    var info = label.textInfo;
+                    bool visible = Enumerable.Range(0, info.characterCount).Any(i =>
+                        info.characterInfo[i].isVisible &&
+                        info.characterInfo[i].topRight.y > info.characterInfo[i].bottomLeft.y);
+                    Assert.That(visible, Is.True, name + " must contain rendered glyphs, not merely a nonempty string.");
+                    Assert.That(label.rectTransform.rect.height + .5f,
+                        Is.GreaterThanOrEqualTo(label.GetPreferredValues("国", float.PositiveInfinity,
+                            float.PositiveInfinity).y), name + " must fit its actual font line height.");
+                }
+            }
+            finally
+            {
+                _instance.transform.SetParent(null, false);
+                Object.DestroyImmediate(host);
+            }
+        }
+
         private void PrepareDisconnectedSession()
         {
             _appHost = new GameObject("[QdaoServerSelectTests Offline Session]");
@@ -281,3 +323,4 @@ namespace MmorpgClient.Tests.EditMode.Ugui
         }
     }
 }
+

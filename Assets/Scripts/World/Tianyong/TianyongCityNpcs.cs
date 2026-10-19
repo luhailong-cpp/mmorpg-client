@@ -21,6 +21,8 @@ namespace MmorpgClient.World.Tianyong
         public float pivotX;
         public float pivotY;
         public float visibleHeightFraction;
+        public int nativeWidth;
+        public int nativeHeight;
         public string location;
 
         public Vector3 FeetPosition => new(x, 0f, z);
@@ -60,6 +62,9 @@ namespace MmorpgClient.World.Tianyong
                          !Finite(entry.pivotX) || entry.pivotX < 0f || entry.pivotX > 1f ||
                          !Finite(entry.pivotY) || entry.pivotY < 0f || entry.pivotY > 1f)
                     error = $"NPC {entry.id} has invalid sprite size or feet pivot.";
+                if (error == null && (entry.nativeWidth < 0 || entry.nativeHeight < 0 ||
+                    (entry.nativeWidth == 0) != (entry.nativeHeight == 0)))
+                    error = $"NPC {entry.id} has invalid native texture dimensions.";
                 if (error != null) return false;
             }
             return true;
@@ -137,9 +142,17 @@ namespace MmorpgClient.World.Tianyong
             for (var i = 0; i < textures.Length; i++)
             {
                 textures[i] = Resources.Load<Texture2D>(manifest.entries[i].spriteResource);
-                if (textures[i] != null) continue;
-                Debug.LogError($"[TianyongCityNpcs] Missing sprite for {manifest.entries[i].id}: {manifest.entries[i].spriteResource}");
-                return null;
+                if (textures[i] == null)
+                {
+                    Debug.LogError($"[TianyongCityNpcs] Missing sprite for {manifest.entries[i].id}: {manifest.entries[i].spriteResource}");
+                    return null;
+                }
+                var entry = manifest.entries[i];
+                if (entry.nativeWidth > 0 && (textures[i].width != entry.nativeWidth || textures[i].height != entry.nativeHeight))
+                {
+                    Debug.LogError($"[TianyongCityNpcs] NPC {entry.id} was resized during import; expected {entry.nativeWidth}x{entry.nativeHeight}, got {textures[i].width}x{textures[i].height}.");
+                    return null;
+                }
             }
 
             var root = new GameObject(RootName);

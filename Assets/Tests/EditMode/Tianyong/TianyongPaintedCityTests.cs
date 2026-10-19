@@ -1,4 +1,5 @@
 using MmorpgClient.World.Tianyong;
+using MmorpgClient.World;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -62,29 +63,29 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void PlayerSprite_IsReadableAtDefaultZoom_AndKeepsHdSampling()
         {
-            var texture = Resources.Load<Texture2D>(
-                "World/Characters/QdaoHeadbandBoy/walk_S");
+            using var run = QdaoActionResources.Acquire("00_reference_topright_boy", "run", "S");
+            Assert.That(run, Is.Not.Null);
+            var sprite = run.Frames[0];
+            var texture = sprite.texture;
 
             Assert.That(texture, Is.Not.Null);
-            Assert.That(texture.width, Is.EqualTo(4096));
-            Assert.That(texture.height, Is.EqualTo(512));
+            Assert.That(texture.width, Is.EqualTo(1024));
+            Assert.That(texture.height, Is.EqualTo(1024));
             Assert.That(texture.mipmapCount, Is.EqualTo(1));
             Assert.That(texture.filterMode, Is.EqualTo(FilterMode.Bilinear));
             Assert.That(texture.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
 
-            var frameWorldHeight = texture.height /
-                                   MmorpgClient.World.QdaoBoySpriteAnimator.PixelsPerUnit;
-            Assert.That(frameWorldHeight, Is.EqualTo(512f / 52f).Within(0.01f),
-                "512 px / 52 ppu should render as a ~9.846-unit-tall visual without scaling the actor root");
+            Assert.That(sprite.pixelsPerUnit, Is.EqualTo(104f));
+            var frameWorldHeight = sprite.rect.height / sprite.pixelsPerUnit;
+            Assert.That(frameWorldHeight, Is.EqualTo(QdaoBoySpriteAnimator.FrameWorldHeight).Within(0.01f),
+                "1024 px / 104 ppu must preserve the established world height without scaling the actor root");
 
             var config = TianyongMapConfig.LoadDefault();
             Assert.That(config, Is.Not.Null);
             // ortho 27 at 1080p: 9.846 u x 1080 / 54 = 196.9 px per frame.
             var frameScreenHeight = frameWorldHeight * 1080f / (2f * config.CameraZoomDefault);
             Assert.That(frameScreenHeight, Is.InRange(185f, 210f),
-                "At the default zoom the 512 px frame should be ~197 px tall at 1080p, so the drawn " +
-                "figure (418/512 of the frame) is ~161 px = 14.9 % of the screen height; the reference " +
-                "video's character stands 15-16 % of the screen height (64 ppu gave only 12 %)");
+                "At the default zoom the full 1024 px frame should preserve the ~197 px screen height at 1080p.");
             Assert.That(frameScreenHeight, Is.LessThanOrEqualTo(texture.height),
                 "The default camera should downsample the HD character frame, not magnify it");
         }

@@ -106,7 +106,7 @@ namespace MmorpgClient.Tests.PlayMode
                     Is.SameAs(QdaoCharacterCatalog.LoadPortrait("26_osmanthus_healer")), "An existing role keeps its identity.");
                 Click(host, "CreateNewRole");
                 Assert.That(ReadText(host, "PreviewTitle"), Is.EqualTo("炼丹童子"));
-                Assert.That(ReadText(host, "AppearanceDetails"), Does.Contain("8 个方向").And.Contain("每方向 16 帧"));
+                Assert.That(ReadText(host, "AppearanceDetails"), Is.EqualTo("选择喜欢的人物外观"));
                 Capture(host.GetComponentInChildren<Canvas>(), "create-default-alchemy-v14-disconnected-ui");
 
                 var available = QdaoCharacterCatalog.RetainedOriginalAll.Where(entry => entry.ResolveAppearance() != null).ToArray();

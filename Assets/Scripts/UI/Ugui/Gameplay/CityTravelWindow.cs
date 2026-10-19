@@ -17,6 +17,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public string DayResourcePath;
         public string FestivalResourcePath;
         public string FestivalName;
+        public bool Available = true;
         public bool HasFestival => !string.IsNullOrEmpty(FestivalResourcePath);
     }
 
@@ -58,58 +59,36 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public CityTravelWindow(UnityEngine.Transform parent)
         {
-            _root = QdaoUguiFactory.CreateStretch("CityTravelWindow", parent, Vector4.zero);
-            _root.gameObject.SetActive(false);
-            var shade = _root.gameObject.AddComponent<Image>();
-            shade.color = new Color(.025f, .10f, .08f, .68f);
-            shade.raycastTarget = true;
+            _root=QdaoUguiFactory.CreateStretch("CityTravelWindow",parent,Vector4.zero);_root.gameObject.SetActive(false);
+            var shade=_root.gameObject.AddComponent<Image>();shade.color=new Color(.025f,.10f,.08f,.68f);shade.raycastTarget=true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
-            var frame = QdaoUguiFactory.CreateCenteredRect("CityTravelFrame", _root, 2160, 924);
-            Art(frame, "main_frame", 0, 0, 2160, 924);
-            Art(frame, "title_plate", 62, -21, 480, 114);
-            Text(frame, "山海行图", 100, -7, 400, 84, 49, Cream, alignment: TextAlignmentOptions.Center);
-            _current = Text(frame, "", 604, 40, 1270, 58, 30, Muted);
-            var close = Button(frame, "", 2036, 28, 76, 76, Hide, key: "close");
-            close.name = "CloseCityTravel";
-
-            Art(frame, "content_panel", 56, 156, 336, 694);
-            _destinationList = QdaoUguiFactory.CreateRect("Destinations", frame, 76, 176, 296, 640);
-            Art(frame, "content_panel", 420, 145, 716, 716);
-            var previewRect = QdaoUguiFactory.CreateRect("SelectedMapPreview", frame, 431, 156, 694, 694);
-            _preview = previewRect.gameObject.AddComponent<RawImage>();
-            _preview.raycastTarget = false;
-            _preview.color = Color.white;
-
-            _name = Text(frame, "", 1190, 170, 850, 74, 52);
-            _description = Text(frame, "", 1194, 264, 806, 118, 31, Muted, true);
-            Text(frame, "四时景色", 1194, 424, 800, 45, 32, Gold);
-            _day = Button(frame, "日景", 1190, 490, 358, 80,
-                () => SelectFestival(false), key: "tab_selected", fontSize: 32);
-            _day.name = "DayAppearance";
-            _festivalButton = Button(frame, "节庆", 1584, 490, 426, 80,
-                () => SelectFestival(true), key: "tab_normal", fontSize: 32);
-            _festivalButton.name = "FestivalAppearance";
-            _festivalLabel = _festivalButton.GetComponentInChildren<TMP_Text>();
-            _appearanceHint = Text(frame, "", 1194, 598, 806, 70, 28, Muted, true);
-            _status = Text(frame, "", 1194, 680, 806, 70, 28, Muted, true);
-            // 区服切换放在“前往”左侧的空位。默认隐藏：没有可去的区服（单区部署、测试、截图验收）时
-            // 窗口与原来完全一致，现有用例按名字找按钮也不受影响。
-            _zoneButton = Button(frame, "本区", 1190, 770, 220, 82, CycleZone, key: "tab_normal", fontSize: 28);
-            _zoneButton.name = "TravelZoneCycle";
-            _zoneLabel = _zoneButton.GetComponentInChildren<TMP_Text>();
-            _zoneLabel.overflowMode = TextOverflowModes.Ellipsis; // 区服名由运营配置，长名字不能撑破按钮
-            _zoneButton.gameObject.SetActive(false);
-            _travel = Button(frame, "前往", 1422, 770, 588, 82,
-                () =>
-                {
-                    if (_selected == null) return;
-                    var zone = SelectedZone;
-                    if (zone != null) ZoneTravelRequested?.Invoke(zone.ZoneId, _selected.SceneConfigId, _festival);
-                    else TravelRequested?.Invoke(_selected.SceneConfigId, _festival);
-                },
-                true, fontSize: 35);
-            _travel.name = "TravelToSelectedCity";
-            _travelLabel = _travel.GetComponentInChildren<TMP_Text>();
+            var frame=QdaoUguiFactory.CreateCenteredRect("CityTravelFrame",_root,2560,1080);
+            QdaoUguiFactory.CreateImage("ApprovedWorldMap",frame,0,0,2560,1080,QdaoUguiTheme.RequireSprite(FidelityResourceRoot+"world_skin"));
+            var close=QdaoUguiFactory.CreateHitButton("CloseCityTravel",frame,2435,12,93,93);close.onClick.AddListener(Hide);
+            _current=Text(frame,"",128,984,307,40,26,Ink);_current.name="CityTravelCurrent";
+            _destinationList=QdaoUguiFactory.CreateRect("Destinations",frame,515,976,800,64);
+            // The approved world map is the main artwork. Existing destination-preview data remains available to the view,
+            // but its old square thumbnail is not a second painted map over the original composition.
+            var previewRect=QdaoUguiFactory.CreateRect("SelectedMapPreview",frame,0,0,0,0);
+            _preview=previewRect.gameObject.AddComponent<RawImage>();_preview.raycastTarget=false;_preview.color=Color.clear;
+            _name=Text(frame,"",1336,984,292,43,25,Ink);_name.name="SelectedDestinationName";
+            _description=Text(frame,"",515,925,1050,32,23,Cream);_description.name="SelectedDestinationDescription";
+            _appearanceHint=Text(frame,"",515,893,1050,30,21,Cream);_appearanceHint.name="DestinationAppearanceHint";
+            _status=Text(frame,"",515,859,1400,32,23,Cream);_status.name="CityTravelStatus";
+            _day=QdaoUguiFactory.CreateHitButton("DayAppearance",frame,2007,970,80,67);_day.onClick.AddListener(()=>SelectFestival(false));
+            Text(_day.transform,"日景",0,0,80,67,25,Cream,alignment:TextAlignmentOptions.Center);
+            _festivalButton=QdaoUguiFactory.CreateHitButton("FestivalAppearance",frame,2087,970,116,67);_festivalButton.onClick.AddListener(()=>SelectFestival(true));
+            _festivalLabel=Text(_festivalButton.transform,"节庆",0,0,116,67,25,Cream,alignment:TextAlignmentOptions.Center);
+            _zoneButton=FidelityButton(frame,"本区",1648,976,236,64,CycleZone,25);_zoneButton.name="TravelZoneCycle";
+            _zoneLabel=_zoneButton.GetComponentInChildren<TMP_Text>();_zoneLabel.overflowMode=TextOverflowModes.Ellipsis;_zoneButton.gameObject.SetActive(false);
+            _travel=QdaoUguiFactory.CreateHitButton("TravelToSelectedCity",frame,2218,960,304,80);
+            _travel.onClick.AddListener(()=>
+            {
+                if(_selected==null||!_selected.Available||!_travel.interactable)return;var zone=SelectedZone;
+                if(zone!=null)ZoneTravelRequested?.Invoke(zone.ZoneId,_selected.SceneConfigId,_festival);
+                else TravelRequested?.Invoke(_selected.SceneConfigId,_festival);
+            });
+            _travelLabel=Text(_travel.transform,"前往",91,0,203,80,27,Cream,alignment:TextAlignmentOptions.Center);
         }
 
         public void SetDestinations(IReadOnlyList<CityTravelDestination> destinations)
@@ -122,8 +101,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 var value = destination;
                 int row = _destinationButtons.Count;
-                var button = Button(_destinationList, value.Name, 0, row * 144, 296, 116,
-                    () => Select(value), key: "tab_normal", fontSize: 34);
+                var button=FidelityButton(_destinationList,value.Name,row*195,0,190,64,()=>Select(value),26);
                 button.name = "CityDestination_" + value.SceneConfigId;
                 _destinationButtons.Add(button);
             }
@@ -182,7 +160,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void Select(CityTravelDestination destination)
         {
-            if (_busy) return;
+            if (_busy || destination == null || !destination.Available) return;
             _selected = destination;
             _festival = destination.SceneConfigId == _currentScene && _currentFestival && destination.HasFestival;
             Refresh();
@@ -202,7 +180,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 bool selected = _destinations[i] == _selected;
                 SetTab(_destinationButtons[i], selected);
-                _destinationButtons[i].interactable = !_busy;
+                _destinationButtons[i].interactable = !_busy && _destinations[i].Available;
             }
             _name.text = _selected.Name;
             _description.text = _selected.Description;
@@ -226,18 +204,27 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 ? "将前往其他区服，途中会重新连接，请稍候片刻。"
                 : _selected.HasFestival
                     ? sameScene ? "更换此地景色，继续在原处游历。" : "选好景色，启程前往这片山海。"
-                    : "灯火映长街，云游自此启程。";
+                    : "沿着石路自在游历。";
             _travelLabel.text = _busy ? "正在传送…"
                 : crossZone ? "前往" + zone.Name + " · " + _selected.Name
-                : sameScene ? "应用景色" : "前往" + _selected.Name;
-            _travel.interactable = !_busy &&
+                : sameScene ? (_selected.HasFestival ? "应用景色" : "已在此地") : "前往" + _selected.Name;
+            _travel.interactable = !_busy && _selected.Available &&
                 (crossZone || !sameScene || _selected.HasFestival && _festival != _currentFestival);
         }
 
-        private static void SetTab(Button button, bool selected)
+        private const string FidelityResourceRoot="UI/Ugui/WorldMapOriginal/Fidelity20261016/";
+        private static Button FidelityButton(UnityEngine.Transform parent,string value,float x,float y,float w,float h,Action click,float size)
         {
-            ((Image)button.targetGraphic).sprite = Load(selected ? "tab_selected" : "tab_normal");
-            button.GetComponentInChildren<TMP_Text>().color = selected ? Cream : Ink;
+            var button=QdaoUguiFactory.CreateArtButton(value,parent,x,y,w,h,QdaoUguiTheme.RequireSprite(FidelityResourceRoot+"destination_plate"),out var image);
+            image.type=Image.Type.Simple;button.navigation=new Navigation{mode=Navigation.Mode.Automatic};button.onClick.AddListener(()=>click?.Invoke());
+            Text(button.transform,value,12,0,w-24,h,size,Ink,alignment:TextAlignmentOptions.Center);return button;
+        }
+
+        private static void SetTab(Button button,bool selected)
+        {
+            var image=button.targetGraphic as Image;
+            if(image!=null&&image.sprite!=null)image.color=selected?new Color(1f,.94f,.75f):Color.white;
+            var label=button.GetComponentInChildren<TMP_Text>();if(label!=null)label.color=button.name=="DayAppearance"||button.name=="FestivalAppearance"?(selected?Cream:Gold):Ink;
         }
     }
 }

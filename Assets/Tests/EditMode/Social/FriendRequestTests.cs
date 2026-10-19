@@ -240,7 +240,7 @@ namespace MmorpgClient.Tests.EditMode.Social
             using var social = new SocialWindow(_parent.transform, new SocialState());
             social.FriendRequestsRequested += _window.Show;
             social.Show();
-            social.Root.GetComponentsInChildren<Button>(true).Single(button => button.name == "SocialFriendRequests")
+            social.Root.GetComponentsInChildren<Button>(false).Single(button => button.name == "SocialFriendRequests")
                 .onClick.Invoke();
             Assert.That(_window.IsVisible, Is.True);
             Assert.That(_net.Calls.Single().Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));

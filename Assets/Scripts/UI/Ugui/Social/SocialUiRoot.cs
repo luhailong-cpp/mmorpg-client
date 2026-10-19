@@ -106,10 +106,12 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         private void OpenPanel(SocialPage page,bool refreshHistory=true)
         {
+            MysteryMerchantUiRoot.Instance?.HidePanel();
             FriendRequests.Hide();
             Mail.MailUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
             Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
@@ -121,6 +123,7 @@ namespace MmorpgClient.UI.Ugui.Social
         private void OpenFriendRequests()
         {
             if(!_available||Friends==null)return;
+            MysteryMerchantUiRoot.Instance?.HidePanel();
             Window.Hide();FriendRequests.Show();Opened?.Invoke();
         }
         public void HidePanel(){Window?.Hide();FriendRequests?.Hide();}

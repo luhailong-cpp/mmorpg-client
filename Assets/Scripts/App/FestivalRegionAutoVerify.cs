@@ -6,6 +6,7 @@ using System.IO;
 using MmorpgClient.Game;
 using MmorpgClient.UI;
 using MmorpgClient.UI.Ugui.Gameplay;
+using MmorpgClient.World.CurrentMaps;
 using MmorpgClient.World.Tianyong;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace MmorpgClient.App
     [DisallowMultipleComponent]
     public sealed class FestivalRegionAutoVerify : MonoBehaviour
     {
-        private const string Prefix = "[FestivalMapVerify]";
+        private const string Prefix = "[CurrentMapVerify]";
 
         [Serializable]
         public sealed class SceneEvidence
@@ -37,15 +38,11 @@ namespace MmorpgClient.App
             public float pathError;
             public int movementAcks;
             public int movementReconciles;
-            public bool festivalKeptSceneAndEntity;
-            public bool festivalKeptNavigation;
-            public float festivalPositionError;
-            public float festivalPathError;
-            public int festivalMovementReconciles;
+            public string mapKey;
+            public string resourcePath;
             public int nativeWidth;
             public int nativeHeight;
             public string dayScreenshot;
-            public string festivalScreenshot;
             public bool passed;
         }
 
@@ -86,9 +83,9 @@ namespace MmorpgClient.App
         private static void AutoSpawn()
         {
             var args = Environment.GetCommandLineArgs();
-            if (!HasArgument(args, "-festivalMapVerify")) return;
+            if (!HasArgument(args, "-currentMapVerify") && !HasArgument(args, "-festivalMapVerify")) return;
             if (FindAnyObjectByType<FestivalRegionAutoVerify>() != null) return;
-            var go = new GameObject("[FestivalMapVerify]");
+            var go = new GameObject("[CurrentMapVerify]");
             DontDestroyOnLoad(go);
             go.AddComponent<FestivalRegionAutoVerify>();
         }
@@ -96,9 +93,10 @@ namespace MmorpgClient.App
         private void Start()
         {
             var args = Environment.GetCommandLineArgs();
-            _output = ArgumentValue(args, "-festivalMapVerifyOut") ?? Path.GetFullPath("festival-map-verification");
-            _quit = !HasArgument(args, "-festivalMapVerifyNoQuit");
-            if (float.TryParse(ArgumentValue(args, "-festivalMapVerifyTimeout"), NumberStyles.Float,
+            _output = ArgumentValue(args, "-currentMapVerifyOut") ?? ArgumentValue(args, "-festivalMapVerifyOut")
+                ?? Path.GetFullPath("current-map-verification");
+            _quit = !HasArgument(args, "-currentMapVerifyNoQuit") && !HasArgument(args, "-festivalMapVerifyNoQuit");
+            if (float.TryParse(ArgumentValue(args, "-currentMapVerifyTimeout") ?? ArgumentValue(args, "-festivalMapVerifyTimeout"), NumberStyles.Float,
                 CultureInfo.InvariantCulture, out float timeout) && timeout > 0) _timeout = timeout;
             _startTime = Time.realtimeSinceStartup;
             _deadline = _startTime + _timeout;
@@ -144,18 +142,30 @@ namespace MmorpgClient.App
             _report.gate = _game.AssignedGate;
             yield return new WaitForSecondsRealtime(.8f);
 
-            foreach (uint sceneConfigId in new uint[] { 2, 3, 4, 1 })
+            foreach (uint sceneConfigId in VerificationRoute(_game.CurrentSceneConfigId))
             {
                 if (_done) yield break;
                 yield return Visit(sceneConfigId);
                 if (_done) yield break;
             }
 
-            if (_report.scenes.Count != 4 || _report.screenshots != 7)
+            if (_report.scenes.Count != 3 || _report.screenshots != 3)
             { Finish(false, "场景或截图数量不完整。"); yield break; }
             foreach (var scene in _report.scenes)
                 if (!scene.passed) { Finish(false, "存在未通过的场景记录。"); yield break; }
-            Finish(true, "四次真实传送、三组日景与节庆、四图移动及返城验收通过。");
+            Finish(true, "三张当前地图真实传送、原图加载、导航一致性、移动及返城验收通过。");
+        }
+
+        public static uint[] VerificationRoute(uint currentScene)
+        {
+            // Same-scene travel deliberately sends no scene notification. Visit the
+            // other maps first, then return to the account's starting map.
+            return currentScene switch
+            {
+                2 => new uint[] { 3, 1, 2 },
+                3 => new uint[] { 1, 2, 3 },
+                _ => new uint[] { 2, 3, 1 },
+            };
         }
 
         private IEnumerator Visit(uint sceneConfigId)
@@ -164,8 +174,11 @@ namespace MmorpgClient.App
             ResetController();
             var evidence = new SceneEvidence { sceneConfigId = sceneConfigId };
             _report.scenes.Add(evidence);
-            var region = FestivalRegionMap.Find(sceneConfigId);
-            var expectedSpawn = region != null ? region.Spawn : TianyongMapDefinition.DefaultSpawn;
+            var region = CurrentMapCatalog.Find(sceneConfigId);
+            if (region == null) { Finish(false, "目标场景没有当前地图交付。"); yield break; }
+            evidence.mapKey = region.Key;
+            evidence.resourcePath = region.TexturePath;
+            var expectedSpawn = region.Spawn;
             evidence.expectedSpawn = Coordinates(expectedSpawn);
             int notificationStart = _sceneNotifications;
             CityTravelUiRoot.Instance.Toggle();
@@ -174,12 +187,12 @@ namespace MmorpgClient.App
             while (!_done && Time.realtimeSinceStartup < deadline)
             {
                 if (_game.CurrentSceneConfigId == sceneConfigId && _sceneNotifications > notificationStart &&
-                    TryController(out _controller) && MapReady(region, false)) break;
+                    TryController(out _controller) && MapReady(region)) break;
                 yield return null;
             }
             if (_done) yield break;
             if (_game.CurrentSceneConfigId != sceneConfigId || _sceneNotifications <= notificationStart ||
-                !TryController(out _controller) || !MapReady(region, false))
+                !TryController(out _controller) || !MapReady(region))
             { Finish(false, "目标场景未同时收到服务端通知、地图贴图和控制器就绪。"); yield break; }
             CityTravelUiRoot.Instance.HidePanel();
             _controller.SetScriptedInputOwner(true);
@@ -198,7 +211,7 @@ namespace MmorpgClient.App
                 var point = new Vector3((x + .5f) * nav.CellSize, 0, (z + .5f) * nav.CellSize);
                 bool walkable = nav.IsWalkable(point);
                 if (walkable) ++evidence.walkableCells; else ++evidence.blockedCells;
-                if (region != null && walkable != region.IsWalkable(point)) ++evidence.navigationMismatches;
+                if (walkable != region.IsWalkable(point)) ++evidence.navigationMismatches;
             }
             Debug.Log($"{Prefix} NAV scene={sceneConfigId} walkable={evidence.walkableCells} blocked={evidence.blockedCells} " +
                 $"mismatches={evidence.navigationMismatches} spawn_error={evidence.spawnError:F3}");
@@ -247,59 +260,12 @@ namespace MmorpgClient.App
             yield return Capture(evidence.dayScreenshot);
             if (_done) yield break;
 
-            if (region != null)
-            {
-                SetPhase("festival_" + sceneConfigId);
-                var sceneInstance = _game.CurrentSceneId;
-                var localEntity = _game.World.LocalEntity;
-                int notificationsBeforeAppearance = _sceneNotifications;
-                var beforeAppearance = _controller.FeetPosition;
-                CityTravelUiRoot.Instance.RequestTravel(sceneConfigId, true);
-                deadline = Time.realtimeSinceStartup + 8f;
-                while (!_done && Time.realtimeSinceStartup < deadline &&
-                    (!_app.WorldMap.FestivalAppearance || !MapReady(region, true) || !TryController(out _controller)))
-                    yield return null;
-                if (_done) yield break;
-                if (!_app.WorldMap.FestivalAppearance || !MapReady(region, true) || !TryController(out _controller))
-                { Finish(false, "节庆外观未正确加载。"); yield break; }
-                _controller.SetScriptedInputOwner(true);
-                yield return new WaitForSecondsRealtime(.8f);
-                if (!ControllerValid()) yield break;
-                evidence.festivalKeptSceneAndEntity = _game.CurrentSceneId == sceneInstance &&
-                    _game.World.LocalEntity == localEntity && _sceneNotifications == notificationsBeforeAppearance;
-                evidence.festivalKeptNavigation = ReferenceEquals(nav, _controller.Navigation);
-                evidence.festivalPositionError = Distance(beforeAppearance, _controller.FeetPosition);
-                var native = Resources.Load<Texture2D>(region.TexturePath(true));
-                evidence.nativeWidth = native != null ? native.width : 0;
-                evidence.nativeHeight = native != null ? native.height : 0;
-                if (!evidence.festivalKeptSceneAndEntity || !evidence.festivalKeptNavigation ||
-                    evidence.festivalPositionError > .15f ||
-                    evidence.nativeWidth != 1254 || evidence.nativeHeight != 1254 ||
-                    !_controller.Navigation.IsWalkable(_controller.FeetPosition))
-                { Finish(false, "节庆切换改变了真实场景、位置或未使用原生完整地图。"); yield break; }
-                if (!FindPathTarget(_controller.Navigation, _controller.FeetPosition, out var festivalTarget) ||
-                    !_controller.ClickAt(festivalTarget))
-                { Finish(false, "节庆地图无法启动合法寻路。"); yield break; }
-                int festivalReconciles = _game.MoveReconcileCount;
-                deadline = Time.realtimeSinceStartup + 25f;
-                while (!_done && Time.realtimeSinceStartup < deadline)
-                {
-                    if (!ControllerValid()) yield break;
-                    if (Distance(_controller.FeetPosition, festivalTarget) <= 1.2f && !_controller.IsMoving) break;
-                    yield return null;
-                }
-                if (_done) yield break;
-                yield return new WaitForSecondsRealtime(.6f);
-                if (!ControllerValid()) yield break;
-                evidence.festivalPathError = Distance(_controller.FeetPosition, festivalTarget);
-                evidence.festivalMovementReconciles = _game.MoveReconcileCount - festivalReconciles;
-                if (evidence.festivalPathError > 1.5f || evidence.festivalMovementReconciles != 0 ||
-                    !_controller.Navigation.IsWalkable(_controller.FeetPosition))
-                { Finish(false, "节庆地图寻路未抵达或合法道路被服务器回拉。"); yield break; }
-                evidence.festivalScreenshot = "scene-" + sceneConfigId + "-festival.png";
-                yield return Capture(evidence.festivalScreenshot);
-                if (_done) yield break;
-            }
+            var native = region.LoadTexture();
+            evidence.nativeWidth = native.width;
+            evidence.nativeHeight = native.height;
+            if (evidence.nativeWidth != CurrentMapCatalog.LayoutPixels ||
+                evidence.nativeHeight != CurrentMapCatalog.LayoutPixels)
+            { Finish(false, "当前地图未按原始尺寸导入。"); yield break; }
             evidence.passed = true;
             SaveReport();
         }
@@ -315,12 +281,12 @@ namespace MmorpgClient.App
                 ReferenceEquals(controller.Navigation, _app.WorldMap.Map.Navigation);
         }
 
-        private bool MapReady(FestivalRegionDefinition region, bool festival)
+        private bool MapReady(CurrentMapDefinition region)
         {
             var map = _app?.WorldMap?.Map;
             if (map?.Root == null || !map.Root.activeInHierarchy) return false;
-            if (region == null) return _game.CurrentSceneConfigId == 1;
-            var expected = Resources.Load<Texture2D>(region.TexturePath(festival));
+            if (region == null) return false;
+            var expected = region.LoadTexture();
             if (expected == null || expected.width != 1254 || expected.height != 1254) return false;
             foreach (var renderer in map.Root.GetComponentsInChildren<Renderer>(true))
                 foreach (var material in renderer.sharedMaterials)
@@ -448,7 +414,7 @@ namespace MmorpgClient.App
         {
             _report.elapsedSeconds = Time.realtimeSinceStartup - _startTime;
             _report.sceneNotifications = _sceneNotifications;
-            File.WriteAllText(Path.Combine(_output, "festival-map-verification.json"), JsonUtility.ToJson(_report, true));
+            File.WriteAllText(Path.Combine(_output, "current-map-verification.json"), JsonUtility.ToJson(_report, true));
         }
 
         private void OnDestroy()

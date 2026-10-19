@@ -46,6 +46,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private float _serverStatusAt = -1f; // realtimeSinceStartup;<0 表示尚无服务器状态
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
+        /// <summary>状态行当前的文字(最后一次 SetStatus 写入的内容)。</summary>
+        public string StatusText => _statusText != null ? _statusText.text : string.Empty;
 
         public BattleQueuePanel(BattleUiRoot owner, UnityEngine.Transform parent)
         {
@@ -120,6 +122,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             RefreshButtons();
             RefreshContinuousButton();
+            BattleFidelityArt.ApplyPanel(_root);
             Hide();
         }
 
@@ -225,6 +228,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _pveButton?.SetText(_pveTeamSize <= 1
                 ? "匹配 PVE(1人 · 立即开战)"
                 : $"匹配 PVE({_pveTeamSize}人 · 怪物×{_pveTeamSize})");
+            BattleFidelityArt.ApplyPanel(_root);
         }
 
         private void OnJoinPveClicked()

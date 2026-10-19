@@ -10,7 +10,7 @@ namespace MmorpgClient.World
     public static class QdaoCharacterCatalog
     {
         public const string LegacyId = "QdaoHeadbandBoy";
-        public const string DefaultId = "24_lu_dongbin";
+        public const string DefaultId = "00_reference_topright_boy";
         private const string V11Root = "World/Characters/QdaoRosterV11";
         private const string V12Root = "World/Characters/QdaoRosterV12";
         private const string V13Root = "World/Characters/QdaoRosterV13";
@@ -506,13 +506,13 @@ namespace MmorpgClient.World
                id == "15_water_dragon_scholar_boy" || id == "17_ghost_script_calligrapher_boy" ||
                id == "20_star_formation_master_girl";
 
-        /// <summary>Existing eight characters plus only fully approved/loaded originals; used by playable selection.</summary>
+        /// <summary>Only accepted, loaded identities from the current delivery are selectable.</summary>
         public static IReadOnlyList<Definition> AvailableAll => SelectAvailableAppearances(entry => entry.ResolveAppearance());
 
         public static IReadOnlyList<Definition> SelectAvailableAppearances(Func<Definition, Appearance> resolve)
         {
             if (resolve == null) throw new ArgumentNullException(nameof(resolve));
-            var result = new List<Definition>(Entries);
+            var result = new List<Definition>();
             foreach (var entry in RetainedOriginalAll)
             {
                 var appearance = resolve(entry);
@@ -533,26 +533,56 @@ namespace MmorpgClient.World
             return null;
         }
 
-        /// <summary>Existing four professions and two genders keep their gameplay unchanged.</summary>
+        /// <summary>
+        /// Display-only aliases for retired artwork. Persisted identity, profession and gender are
+        /// never rewritten. Explicit unknown IDs remain unknown rather than borrowing a default body.
+        /// </summary>
+        public static string ResolveVisualId(string id)
+        {
+            switch (id)
+            {
+                case LegacyId: return "00_reference_topright_boy";
+                case "11_jade_fist_flat_top_boy": return "04_mountain_guardian_boy";
+                case "12_iron_saber_flat_top_boy": return "00_reference_topright_boy";
+                case "13_short_hair_wind_blade_girl": return "01_ice_sword_girl";
+                case "16_golden_bell_dancer_girl": return "05_celestial_musician_girl";
+                case "18_desert_sun_monk_girl": return "10_crimson_spear_girl";
+                case "19_spirit_beast_tamer_boy": return "06_thunder_caster_boy";
+                case "21_lidazui_hair_cook_boy": return "08_alchemy_prodigy_boy";
+                case "22_lidazui_hair_waiter_saber_boy": return "00_reference_topright_boy";
+                case "23_lantern_courier": return "01_ice_sword_girl";
+                case "24_lu_dongbin": return "04_mountain_guardian_boy";
+                case "25_lion_drum_guard": return "00_reference_topright_boy";
+                case "26_osmanthus_healer": return "09_bamboo_archer_girl";
+                case "27_ink_kite_ranger": return "08_alchemy_prodigy_boy";
+                case "28_moon_rabbit_artificer": return "20_star_formation_master_girl";
+                case "29_he_xiangu": return "03_lotus_healer_girl";
+                case "30_han_xiangzi": return "06_thunder_caster_boy";
+                default: return id;
+            }
+        }
+
+        /// <summary>Current artwork for the existing four professions; gameplay fields stay unchanged.</summary>
         public static string ResolveRole(uint classId, uint gender)
         {
             var female = gender == 2;
             switch (classId)
             {
-                case 1: return female ? "23_lantern_courier" : "24_lu_dongbin";
-                case 2: return female ? "28_moon_rabbit_artificer" : "30_han_xiangzi";
-                case 3: return female ? "29_he_xiangu" : "27_ink_kite_ranger";
-                case 4: return female ? "26_osmanthus_healer" : "25_lion_drum_guard";
+                case 1: return ResolveVisualId(female ? "23_lantern_courier" : "24_lu_dongbin");
+                case 2: return ResolveVisualId(female ? "28_moon_rabbit_artificer" : "30_han_xiangzi");
+                case 3: return ResolveVisualId(female ? "29_he_xiangu" : "27_ink_kite_ranger");
+                case 4: return ResolveVisualId(female ? "26_osmanthus_healer" : "25_lion_drum_guard");
                 default: return DefaultId;
             }
         }
 
-        /// <summary>Persisted identity is independent of profession/gender and resource-version availability.</summary>
+        /// <summary>Explicit saved identities win over profession defaults, with retired artwork aliases applied.</summary>
         public static string ResolveRole(uint classId, uint gender, string appearanceId)
-            => string.IsNullOrEmpty(appearanceId) ? ResolveRole(classId, gender) : appearanceId;
+            => string.IsNullOrEmpty(appearanceId) ? ResolveRole(classId, gender) : ResolveVisualId(appearanceId);
 
         public static Sprite LoadPortrait(string id)
         {
+            id = ResolveVisualId(id);
             var entry = Find(id);
             if (entry == null) return null;
             var appearance = entry.ResolveAppearance();

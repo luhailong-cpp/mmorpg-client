@@ -151,10 +151,40 @@ namespace MmorpgClient.Tests.EditMode.Battle
             battle.Tick(4);
             var oldPoll = net.CallsOf(MessageIds.GetQueueStatus).Last();
             battle.CancelQueue();
+            Assert.That(net.CallsOf(MessageIds.GetQueueStatus).Last(), Is.SameAs(oldPoll), "单在途：取消后的求证等旧查询释放后再发");
+            oldPoll.Respond(new Match.GetQueueStatusResponse { State = Match.QueueState.Ready, QueueTicket = "ticket", BattleId = 9 });
+            Assert.That(battle.Phase, Is.EqualTo(BattlePhase.Queued), "取消代次不接受旧查询的Ready结果");
+            battle.Tick(4.1);
             net.CallsOf(MessageIds.GetQueueStatus).Last().Respond(new Match.GetQueueStatusResponse { State = Match.QueueState.NotQueued, RequestCancelled = true });
             Assert.That(battle.Phase, Is.EqualTo(BattlePhase.None));
             oldPoll.Respond(new Match.GetQueueStatusResponse { State = Match.QueueState.Ready, QueueTicket = "ticket", BattleId = 9 });
             Assert.That(battle.Phase, Is.EqualTo(BattlePhase.None), "旧代查询回包不能覆盖已确认取消后的状态");
+        }
+
+        [Test]
+        public void AdoptedQueueWithAProductionRegionProbeStillSendsCancellation()
+        {
+            var net = new FakeBattleTransport();
+            var battle = new BattleClient(net) { RegionProbe = new RegionProbeClient(net, () => new Connection(), work => work()) };
+            Assert.That(battle.AdoptQueue("随队匹配"), Is.True);
+            battle.CancelQueue();
+            Assert.That(net.CallsOf(MessageIds.CancelQueue), Has.Count.EqualTo(1), "服务端已随队入队，不能只取消本地网络探测");
+            Assert.That(battle.Phase, Is.EqualTo(BattlePhase.Queued));
+        }
+
+        [Test]
+        public void AdoptedGlobalQueuePreparingTimeoutReturnsToPollingWithoutDiscardingTheQueue()
+        {
+            var net = new FakeBattleTransport();
+            var battle = new BattleClient(net) { RegionProbe = new RegionProbeClient(net, () => new Connection(), work => work()) };
+            battle.AdoptQueue("随队匹配");
+            battle.Tick(0);
+            net.CallsOf(MessageIds.GetQueueStatus).Last().Respond(new Match.GetQueueStatusResponse
+                { State = Match.QueueState.Matched, QueueTicket = "team-ticket", BattleId = 9 });
+            Assert.That(battle.Phase, Is.EqualTo(BattlePhase.Preparing));
+            battle.Tick(BattleClient.PreparingTimeoutSeconds);
+            Assert.That(battle.Phase, Is.EqualTo(BattlePhase.Queued));
+            Assert.That(battle.QueueAdopted, Is.True);
         }
     }
 }

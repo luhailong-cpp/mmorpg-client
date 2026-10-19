@@ -18,7 +18,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (item == null) { Hide(); return; }
             var data = new EquipDetailCardData {
-                Name = ItemName(item), IconKey = item.IconKey, State = worn ? "已穿戴" : "未穿戴",
+                Name = EquipDisplay.NameWithEnhance(ItemName(item), item.EnhanceLevel), IconKey = item.IconKey, State = worn ? "已穿戴" : "未穿戴",
                 LevelRequirement = EquipBagModel.LevelRequirement(item),
                 ClassRequirement = EquipBagModel.ClassRequirement(item),
                 LevelUnmet = EquipBagModel.LevelUnmet(item, characterLevel), Description = item.Description,
@@ -28,6 +28,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             foreach (var line in EquipDisplay.LinesOf(item))
                 data.Lines.Add(new EquipDetailLine(EquipDisplay.FormatLine(line),
                     EquipUiStyle.TierColor(EquipDisplay.TierOf(line.Tier))));
+            foreach (var socket in EquipDisplay.SocketsOf(item))
+                data.Lines.Add(new EquipDetailLine(EquipDisplay.FormatSocketLine(socket),
+                    socket.GemConfigId != 0 && socket.Attr != null ? EquipUiSkin.Green : EquipUiSkin.Muted));
             _card.Show(data, action, more, share);
         }
         public void Hide() => _card.Hide();

@@ -367,6 +367,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     group.alpha = 0.45f;
                 }
             }
+            BattleFidelityArt.ApplyParty(_root);
         }
 
         public void SetHealth(ulong actorId, ulong hp)

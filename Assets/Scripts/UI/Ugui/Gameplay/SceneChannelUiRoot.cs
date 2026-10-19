@@ -147,7 +147,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_window.IsVisible) { HidePanel(); return; }
             // 跨区传送在途时不开:地图窗正挡在屏上当遮罩,下面那串收起会把它一起撤掉。
             if (!_available || _client == null || _client.Travelling) return;
+            MysteryMerchantUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();

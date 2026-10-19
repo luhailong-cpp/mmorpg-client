@@ -28,6 +28,8 @@ namespace MmorpgClient.Net.Generated
             2029u,
             2030u,
             2031u,
+            2035u,
+            2036u,
             3003u,
             3010u,
             3012u,

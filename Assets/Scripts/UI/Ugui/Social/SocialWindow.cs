@@ -12,7 +12,7 @@ using static MmorpgClient.UI.Ugui.Social.SocialUiArt;
 namespace MmorpgClient.UI.Ugui.Social
 {
     /// <summary>Painted Sprite skin and native TMP text. Sample mutation is gated by State.IsPreview.</summary>
-    public sealed class SocialWindow : IDisposable
+    public sealed partial class SocialWindow : IDisposable
     {
         public SocialState State { get; }
         public RectTransform Root => _root;
@@ -60,7 +60,7 @@ namespace MmorpgClient.UI.Ugui.Social
         {
             bool opening=!IsVisible;if(opening)_returnFocus=EventSystem.current?.currentSelectedGameObject;
             CloseModal(false);_forceBottom=true;_root.gameObject.SetActive(true);State.SelectPage(page);
-            if(opening)EventSystem.current?.SetSelectedGameObject(_tabs[page].gameObject);
+            if(opening)EventSystem.current?.SetSelectedGameObject(ActivePageTab(page).gameObject);
             if(refreshHistory&&!State.IsPreview&&page==SocialPage.World&&State.Supports(State.Channel))RefreshRequested?.Invoke(State.Channel);
         }
         /// <summary>聚焦已打开的聊天草稿，光标放到文末，不触发发送。</summary>
@@ -78,14 +78,14 @@ namespace MmorpgClient.UI.Ugui.Social
             if(wasVisible){EventSystem.current?.SetSelectedGameObject(_returnFocus!=null&&_returnFocus.activeInHierarchy?_returnFocus:null);Closed?.Invoke();}_returnFocus=null;
         }
         public void Back(){if(HasModal)CloseModal();else Hide();}
-        public void ResetSession(){Hide();Clear(_body);_composer=null;_chatScroll=null;_countdowns.Clear();_groupSearch="";}
+        public void ResetSession(){Hide();Clear(_body);if(_fidelityContent!=null)Clear(_fidelityContent);_composer=null;_chatScroll=null;_countdowns.Clear();_groupSearch="";}
         public void Tick(float now=0)
         {
             if(!IsVisible)return;long second=State.NowMs/1000;if(second==_lastSecond)return;_lastSecond=second;
             foreach(var pair in _countdowns)if(pair.Key!=null)pair.Key.text=pair.Value.StateLabel(State.NowMs);
             if(_channelClock!=null)_channelClock.text="频道时刻  "+TimeLabel(State.NowMs);
         }
-        private void Changed(){if(!IsVisible)return;if(_modal!=null){_deferred=true;_status.text=State.Status;return;}Render();}
+        private void Changed(){if(!IsVisible)return;if(_modal!=null){_deferred=true;_status.text=State.Status;if(_fidelityStatus!=null)_fidelityStatus.text=State.Status;return;}Render();}
         private void Render()
         {
             if(_rendering)return;_rendering=true;
@@ -94,10 +94,10 @@ namespace MmorpgClient.UI.Ugui.Social
             Clear(_body);_composer=null;_chatScroll=null;_countdowns.Clear();_latestLabel=null;_channelClock=null;
             _title.text=State.Page==SocialPage.Groups?"仙 友 会":State.Page==SocialPage.World?"四 海 传 音":"仙 闻 谣 言";
             foreach(var pair in _tabs){var img=pair.Value.GetComponent<Image>();img.sprite=Load(State.Page==pair.Key?"button_primary":"button_secondary");var label=pair.Value.GetComponentInChildren<TMP_Text>();if(label!=null)label.color=State.Page==pair.Key?Cream:Ink;}
-            if(State.Page==SocialPage.Groups)RenderGroups();else if(State.Page==SocialPage.World)RenderWorld();else RenderRumors();
+            RenderFidelityPage();
             _status.text=State.Status;Canvas.ForceUpdateCanvases();
             if(_chatScroll!=null){if(_forceBottom||!reading)_chatScroll.verticalNormalizedPosition=0;else{float max=Mathf.Max(0,_chatScroll.content.rect.height-_chatScroll.viewport.rect.height);var point=_chatScroll.content.anchoredPosition;point.y=Mathf.Clamp(scrollValue,0,max);_chatScroll.content.anchoredPosition=point;}UpdateLatest();}
-            if(!string.IsNullOrEmpty(focusName)){var selected=_body.GetComponentsInChildren<Selectable>().FirstOrDefault(s=>s.name==focusName&&s.IsInteractable());if(selected!=null){EventSystem.current?.SetSelectedGameObject(selected.gameObject);var nextInput=selected.GetComponent<TMP_InputField>();if(nextInput!=null&&oldInput!=null){nextInput.ActivateInputField();nextInput.stringPosition=Mathf.Min(caret,nextInput.text.Length);}}}
+            if(!string.IsNullOrEmpty(focusName)){var selected=_fidelityContent.GetComponentsInChildren<Selectable>().FirstOrDefault(s=>s.name==focusName&&s.IsInteractable());if(selected!=null){EventSystem.current?.SetSelectedGameObject(selected.gameObject);var nextInput=selected.GetComponent<TMP_InputField>();if(nextInput!=null&&oldInput!=null){nextInput.ActivateInputField();nextInput.stringPosition=Mathf.Min(caret,nextInput.text.Length);}}}
             _forceBottom=false;_rendering=false;Tick();
         }
         private void Empty(UnityEngine.Transform parent,string title,string message,float w,float h,string icon="round_badge_taiji")
@@ -124,6 +124,8 @@ namespace MmorpgClient.UI.Ugui.Social
         {
             if(_latestLabel==null||_chatScroll==null)return;
             if(_chatScroll.verticalNormalizedPosition<=.025f)State.MarkRead(State.Channel);
+            if(State.Page==SocialPage.World&&_fidelityRoot!=null&&_fidelityRoot.gameObject.activeSelf)
+            {_latestLabel.transform.parent.gameObject.SetActive(true);_latestLabel.text=State.Unread(State.Channel)>0?State.Unread(State.Channel)+"条新消息":"最新消息";return;}
             bool visible=_chatScroll.verticalNormalizedPosition>.025f||State.Unread(State.Channel)>0;
             _latestLabel.transform.parent.gameObject.SetActive(visible);_latestLabel.text=State.Unread(State.Channel)>0?State.Unread(State.Channel)+"条新消息 ↓":"回到最新 ↓";
         }
@@ -234,6 +236,7 @@ namespace MmorpgClient.UI.Ugui.Social
         {
             CloseModal(false);_modalReturnFocus=EventSystem.current?.currentSelectedGameObject;
             _frameControls.interactable=false;_frameControls.blocksRaycasts=false;
+            if(_fidelityControls!=null){_fidelityControls.interactable=false;_fidelityControls.blocksRaycasts=false;}
             _modal=QdaoUguiFactory.CreateStretch("SocialModal",_root,Vector4.zero);var shade=_modal.gameObject.AddComponent<Image>();shade.color=new Color(.02f,.10f,.07f,.73f);shade.raycastTarget=true;
             var panel=QdaoUguiFactory.CreateCenteredRect("SocialModalPanel",_modal,w,h);Art(panel,"window_frame",0,0,w,h);Text(panel,title,76,29,w-200,83,43,Jade,heading:true);
             var close=Button(panel,"SocialModalClose","",w-99,23,65,65,()=>CloseModal(),key:"close_button");EventSystem.current?.SetSelectedGameObject(close.gameObject);
@@ -243,11 +246,12 @@ namespace MmorpgClient.UI.Ugui.Social
         {
             if(_modal!=null){var go=_modal.gameObject;go.SetActive(false);if(Application.isPlaying)UnityEngine.Object.Destroy(go);else UnityEngine.Object.DestroyImmediate(go);_modal=null;}
             _frameControls.interactable=true;_frameControls.blocksRaycasts=true;
+            if(_fidelityControls!=null){_fidelityControls.interactable=true;_fidelityControls.blocksRaycasts=true;}
             string focusName=_modalReturnFocus!=null?_modalReturnFocus.name:null;
             if(_deferred){_deferred=false;if(IsVisible)Render();}
             if(restore){GameObject focus=_modalReturnFocus!=null&&_modalReturnFocus.activeInHierarchy?_modalReturnFocus:null;
-                if(focus==null&&!string.IsNullOrEmpty(focusName))focus=_frame.GetComponentsInChildren<Selectable>().FirstOrDefault(s=>s.name==focusName&&s.IsInteractable())?.gameObject;
-                EventSystem.current?.SetSelectedGameObject(focus??_tabs[State.Page].gameObject);}
+                if(focus==null&&!string.IsNullOrEmpty(focusName))focus=_root.GetComponentsInChildren<Selectable>().FirstOrDefault(s=>s.name==focusName&&s.IsInteractable())?.gameObject;
+                EventSystem.current?.SetSelectedGameObject(focus??ActivePageTab(State.Page).gameObject);}
             _modalReturnFocus=null;
         }
         private void ShowProfile(ulong id)

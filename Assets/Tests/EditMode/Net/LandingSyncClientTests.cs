@@ -50,8 +50,8 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(_net.Notifies.Keys,
                 Is.EquivalentTo(new[] { MessageIds.NotifySyncDigest, MessageIds.GetSyncDigest }));
             Assert.That(_net.Sent, Is.Empty, "构造不发请求");
-            Assert.That(_sync.Domains, Has.None.EqualTo(SyncDomain.Unspecified));
-            Assert.That(_sync.Domains, Does.Contain(SyncDomain.FriendRequest));
+            Assert.That(_sync.Domains, Has.No.Member(SyncDomain.Unspecified));
+            Assert.That(_sync.Domains, Has.Member(SyncDomain.FriendRequest));
         }
 
         [Test]

@@ -11,7 +11,7 @@ using static MmorpgClient.UI.Ugui.Jubaozhai.JubaozhaiArt;
 namespace MmorpgClient.UI.Ugui.Jubaozhai
 {
     /// <summary>Interactive native catalog. Data and session-local favorites live in State, outside the skin.</summary>
-    public sealed class JubaozhaiWindow : IDisposable
+    public sealed partial class JubaozhaiWindow : IDisposable
     {
         public JubaozhaiState State { get; }
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
@@ -48,64 +48,63 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             State = state ?? new JubaozhaiState();
             _root = QdaoUguiFactory.CreateStretch("JubaozhaiWindow", parent, Vector4.zero);
             _root.gameObject.SetActive(false);
-            var shade = _root.gameObject.AddComponent<Image>();
-            shade.color = new Color(.025f, .10f, .08f, .65f);
-            shade.raycastTarget = true;
+            var shade = _root.gameObject.AddComponent<Image>(); shade.color = new Color(.025f, .10f, .08f, .65f); shade.raycastTarget = true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
-            _frame = QdaoUguiFactory.CreateRect("JubaozhaiFrame", _root, 180, 96, 2200, 940);
+            _frame = QdaoUguiFactory.CreateCenteredRect("JubaozhaiFrame", _root, 1932, 814);
+            _frame.gameObject.AddComponent<JubaozhaiDesignFit>();
             _frameInput = _frame.gameObject.AddComponent<CanvasGroup>();
-            Art(_frame, "main_frame", 0, 0, 2200, 940);
-            // The source title plate contains the fixed calligraphy; all changing text is native TMP.
-            Art(_frame, "title_plate", 814, -58, 572, 164);
-            Button(_frame, "JubaoClose", "", 2080, 30, 74, 74, Hide, key: "close");
-            _topTabs[0] = Button(_frame, "JubaoTab_Consignment", "寄售列表", 438, 103, 258, 67,
-                () => State.SetTab(JubaozhaiTab.Consignment), key: "tab_normal", fontSize: 31);
-            _topTabs[1] = Button(_frame, "JubaoTab_PublicNotice", "公示列表", 704, 103, 258, 67,
-                () => State.SetTab(JubaozhaiTab.PublicNotice), key: "tab_normal", fontSize: 31);
-            Button(_frame, "JubaoEstimate", "估价", 1562, 106, 186, 62,
-                () => ShowNotice("估价", "估价功能尚未开放，开放后可在此查看商品估价。"));
-            Button(_frame, "JubaoCommerce", "交易中心", 1150, 106, 380, 62,
-                () => CommerceRequested?.Invoke());
-            Button(_frame, "JubaoRules", "规则", 1764, 106, 186, 62,
-                () => ShowNotice("聚宝斋规则", "寄售、公示、拍卖和货架规则尚未开放。交易规则以正式开放后的说明为准。"));
-
-            Art(_frame, "panel", 54, 188, 350, 600);
-            _categoryScroll = CreateScroll(_frame, "JubaoCategories", 69, 204, 320, 568, out _categoryContent);
-            Art(_frame, "panel", 432, 188, 1570, 568);
-            Text(_frame, "商品", 474, 196, 520, 48, 29, Gold);
-            Text(_frame, "信息", 1070, 196, 490, 48, 29, Gold);
-            Text(_frame, "剩余时间", 1750, 196, 210, 48, 29, Gold, alignment: TextAlignmentOptions.Center);
-            _rows = QdaoUguiFactory.CreateRect("JubaoRows", _frame, 448, 248, 1538, 496);
+            NativeArt(_frame, "native-frame", 0, 0, 1932, 814);
+            NativeHit(_frame, "JubaoClose", "", 1735, 60, 65, 62, Hide);
+            _topTabs[0] = Button(_frame, "JubaoTab_Consignment", "寄售列表", 507, 136, 253, 56,
+                () => State.SetTab(JubaozhaiTab.Consignment), key: "tab_normal", fontSize: 30);
+            _topTabs[1] = Button(_frame, "JubaoTab_PublicNotice", "公示列表", 763, 136, 245, 56,
+                () => State.SetTab(JubaozhaiTab.PublicNotice), key: "tab_normal", fontSize: 30);
+            Button(_frame, "JubaoCommerce", "交易中心", 1027, 136, 380, 53,
+                () => CommerceRequested?.Invoke(), fontSize: 27);
+            Button(_frame, "JubaoEstimate", "估价", 1425, 136, 137, 53,
+                () => ShowNotice("估价", "估价功能尚未开放，开放后可在此查看商品估价。"), fontSize: 27);
+            Button(_frame, "JubaoRules", "规则", 1578, 136, 139, 53,
+                () => ShowNotice("聚宝斋规则", "寄售、公示、拍卖和货架规则尚未开放。交易规则以正式开放后的说明为准。"), fontSize: 27);
+            var clearSearch = Button(_frame, "JubaoClearSearch", "清空搜索", 200, 198, 263, 50,
+                () => { _search.SetTextWithoutNotify(""); State.SetSearch(""); }, key: "tab_normal", fontSize: 28);
+            NativeArt(clearSearch.transform, "category-search", 19, 5, 35, 37);
+            _favoritesOnly = Button(_frame, "JubaoFavoritesOnly", "收藏", 200, 251, 263, 50,
+                () => State.SetFavoritesOnly(!State.FavoritesOnly), key: "tab_normal", fontSize: 29);
+            var favoritesLabel = _favoritesOnly.GetComponentInChildren<TMP_Text>(); favoritesLabel.alignment = TextAlignmentOptions.MidlineLeft;
+            favoritesLabel.rectTransform.anchoredPosition = new Vector2(65, 0); favoritesLabel.rectTransform.sizeDelta = new Vector2(151, 50);
+            NativeArt(_favoritesOnly.transform, "category-favorite", 19, 6, 35, 36);
+            Text(_favoritesOnly.transform, "›", 224, 0, 26, 50, 31, Gold, alignment: TextAlignmentOptions.Center).name = "FavoriteMarker";
+            _categoryScroll = NativeCategoryScroll(_frame, "JubaoCategories", 200, 304, 263, 431, out _categoryContent);
+            NativeArt(_frame, "table-header", 500, 198, 1226, 51);
+            _sort = NativeHit(_frame, "JubaoSort", "默认排序 · 切换", 580, 204, 424, 39, CycleSort, 25);
+            Text(_frame, "信息", 1097, 204, 191, 39, 27, alignment: TextAlignmentOptions.Center);
+            Text(_frame, "剩余时间", 1517, 204, 169, 39, 27, alignment: TextAlignmentOptions.Center);
+            _rowScroll = NativeCategoryScroll(_frame, "JubaoRowsViewport", 501, 247, 1224, 451, out _rows);
             string[] sectionLabels = { "寄\n售", "拍\n卖", "货\n架" };
+            float[] sectionY = { 188, 351, 512 }, sectionHeight = { 159, 160, 147 };
             for (int i = 0; i < _sections.Length; i++)
             {
                 var section = (JubaozhaiSection)i;
-                _sections[i] = Button(_frame, "JubaoSection_" + section, sectionLabels[i], 2020, 198 + i * 153,
-                    121, 141, () => State.SetSection(section), key: "tab_normal", fontSize: 34);
-                var label = _sections[i].GetComponentInChildren<TMP_Text>();
-                label.textWrappingMode = TextWrappingModes.Normal;
+                _sections[i] = NativeButton(_frame, "JubaoSection_" + section, sectionLabels[i], i == 2 ? "section-normal-short" : "section-normal", 1737, sectionY[i],
+                    93, sectionHeight[i], () => State.SetSection(section), 35);
+                _sections[i].GetComponentInChildren<TMP_Text>().textWrappingMode = TextWrappingModes.Normal;
             }
-            _search = QdaoUguiFactory.CreateInputField("JubaoSearch", _frame, 438, 772, 586, 60,
+            _search = QdaoUguiFactory.CreateInputField("JubaoSearch", _frame, 504, 712, 331, 56,
                 JubaozhaiCatalog.SearchPlaceholder, 64, Load("input"));
-            _search.textComponent.fontSize = 27;
-            ((TMP_Text)_search.placeholder).fontSize = 27;
-            _search.textComponent.richText = false;
-            ((TMP_Text)_search.placeholder).richText = false;
+            _search.textComponent.fontSize = 25; ((TMP_Text)_search.placeholder).fontSize = 24;
+            _search.textComponent.richText = false; ((TMP_Text)_search.placeholder).richText = false;
             _search.onSubmit.AddListener(value => State.SetSearch(value));
-            Button(_frame, "JubaoSearchSubmit", "搜索", 1038, 772, 154, 60, () => State.SetSearch(_search.text), true);
-            Button(_frame, "JubaoClearSearch", "清空", 1205, 772, 142, 60, () => { _search.SetTextWithoutNotify(""); State.SetSearch(""); });
-            _previous = Button(_frame, "JubaoPreviousPage", "上一页", 1400, 772, 154, 60, () => State.SetPage(State.PageNumber - 1), fontSize: 25);
-            _pageLabel = Text(_frame, "1 / 1", 1558, 776, 196, 50, 28, alignment: TextAlignmentOptions.Center);
-            _next = Button(_frame, "JubaoNextPage", "下一页", 1758, 772, 154, 60, () => State.SetPage(State.PageNumber + 1), fontSize: 25);
-            _sort = Button(_frame, "JubaoSort", "默认排序", 1092, 108, 358, 58, CycleSort, fontSize: 26);
-            _favoritesOnly = Button(_frame, "JubaoFavoritesOnly", "仅看收藏", 438, 842, 244, 54,
-                () => State.SetFavoritesOnly(!State.FavoritesOnly), fontSize: 26);
-            _selection = Text(_frame, "选择商品后可查看详情", 702, 842, 796, 54, 25, Muted);
-            _favorite = Button(_frame, "JubaoFavorite", "收藏", 1540, 841, 206, 57, ToggleSelectedFavorite, fontSize: 28);
-            _view = Button(_frame, "JubaoView", "查看", 1760, 841, 208, 57, ShowSelectedDetails, true, fontSize: 28);
-            _status = Text(_frame, "聚宝斋尚未开放", 66, 806, 342, 87, 25, Muted, true, TextAlignmentOptions.Center);
-            State.Changed += StateChanged;
-            Render();
+            NativeButton(_frame, "JubaoSearchSubmit", "", "search-button", 820, 707, 78, 63, () => State.SetSearch(_search.text));
+            _previous = NativeButton(_frame, "JubaoPreviousPage", "", "page-previous", 985, 718, 47, 48, () => State.SetPage(State.PageNumber - 1));
+            _pageLabel = Text(_frame, "1 / 1", 1036, 720, 96, 42, 25, alignment: TextAlignmentOptions.Center);
+            _next = NativeButton(_frame, "JubaoNextPage", "", "page-next", 1134, 718, 47, 48, () => State.SetPage(State.PageNumber + 1));
+            _favorite = Button(_frame, "JubaoFavorite", "收藏", 1295, 710, 170, 58, ToggleSelectedFavorite, fontSize: 29);
+            _view = Button(_frame, "JubaoView", "查看", 1475, 704, 249, 67, ShowSelectedDetails, true, fontSize: 36);
+            _selection = Text(_frame, "选择商品后可查看详情", 502, 771, 758, 19, 16, Muted);
+            _selection.gameObject.SetActive(false);
+            NativeCategoryScroll(_frame, "JubaoStatusScroll", 502, 771, 1224, 26, out var statusContent);
+            _status = Text(statusContent, "聚宝斋尚未开放", 0, 0, 1218, 26, 20, Muted, true, TextAlignmentOptions.Center);
+            State.Changed += StateChanged; Render();
         }
 
         public void Show()
@@ -161,24 +160,28 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             string focusName = focused != null && focused.transform.IsChildOf(_frame) ? focused.name : null;
             if (_builtCategory != State.Category) BuildCategories();
             for (int i = 0; i < _topTabs.Length; i++) Select(_topTabs[i], (int)State.Tab == i);
-            for (int i = 0; i < _sections.Length; i++) Select(_sections[i], (int)State.Section == i);
+            for (int i = 0; i < _sections.Length; i++) NativeSelect(_sections[i], (int)State.Section == i, i == 2 ? "section-normal-short" : "section-normal", i == 2 ? "section-selected-short" : "section-selected");
             foreach (var pair in _categoryButtons)
             {
                 bool active = State.Category == pair.Key;
                 Select(pair.Value, active);
-                SetButtonLabel(pair.Value, (active ? "已选 · " : "") + JubaozhaiCatalog.CategoryName(pair.Key));
+                SetButtonLabel(pair.Value, JubaozhaiCatalog.CategoryName(pair.Key));
+                var marker = pair.Value.transform.Find("CategoryMarker")?.GetComponent<TMP_Text>();
+                if (marker != null) { marker.text = active ? "✓" : "›"; marker.color = active ? Cream : Gold; }
             }
             foreach (var pair in _subcategoryButtons)
             {
                 bool active = State.Subcategory == pair.Key;
-                Select(pair.Value, active, "button_secondary", "button_primary");
-                SetButtonLabel(pair.Value, (active ? "已选 · " : "") + (pair.Key.Length == 0 ? "全部" : pair.Key));
+                Select(pair.Value, active, "tab_normal", "tab_selected");
+                SetButtonLabel(pair.Value, pair.Key.Length == 0 ? "全部" : pair.Key);
             }
             if (!_search.isFocused) _search.SetTextWithoutNotify(State.Search);
             _status.text = State.IsDemo ? "离线演示\n商品与价格均为样例" : State.ServerPaged ? ServerStatusText()
                 : State.ServiceAvailable ? "收藏仅在本次登录保留" : "聚宝斋尚未开放";
+            LayoutNativeStatus();
             var page = State.GetPage();
             _pageItems = page.Items;
+            PrepareNativeRows(page);
             _renderedTotal = page.TotalCount; _renderedPageNumber = page.PageNumber; _renderedPageCount = page.PageCount;
             bool selectedFound = false;
             foreach (var item in _pageItems) if (item.Id == SelectedId) selectedFound = true;
@@ -186,13 +189,15 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             bool refreshDetails = ModalVisible && _detailSnapshot != null && selectedFound && !SameListing(_detailSnapshot, SelectedListing());
             Clear(_rows); _rowButtons.Clear(); _remainingLabels.Clear();
             if (page.Items.Count == 0) RenderEmpty();
-            else for (int i = 0; i < page.Items.Count && i < 4; i++) RenderRow(page.Items[i], i);
+            else for (int i = 0; i < page.Items.Count; i++) RenderRow(page.Items[i], i);
             _pageLabel.text = page.PageNumber + " / " + page.PageCount;
             _previous.interactable = page.PageNumber > 1;
             _next.interactable = page.PageNumber < page.PageCount;
-            SetButtonLabel(_favoritesOnly, State.FavoritesOnly ? "已选 · 仅看收藏" : "仅看收藏");
-            Select(_favoritesOnly, State.FavoritesOnly, "button_secondary", "button_primary");
-            SetButtonLabel(_sort, SortLabel(State.Sort) + " · 切换");
+            SetButtonLabel(_favoritesOnly, "收藏");
+            var favoriteMarker = _favoritesOnly.transform.Find("FavoriteMarker")?.GetComponent<TMP_Text>();
+            if (favoriteMarker != null) { favoriteMarker.text = State.FavoritesOnly ? "✓" : "›"; favoriteMarker.color = State.FavoritesOnly ? Cream : Gold; }
+            Select(_favoritesOnly, State.FavoritesOnly, "tab_normal", "tab_selected");
+            SetButtonLabel(_sort, NativeSortLabel(State.Sort));
             UpdateSelection();
             if (refreshDetails) ShowSelectedDetails();
             if (!ModalVisible) BoundNavigation(_frame);
@@ -208,56 +213,58 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             foreach (var category in JubaozhaiCatalog.AllCategories)
             {
                 var captured = category;
-                var button = Button(_categoryContent, "Category_" + captured, JubaozhaiCatalog.CategoryName(captured), 0, y, 296, 50,
-                    () => { if (State.Category == captured) State.SetSubcategory(""); else State.SetCategory(captured); }, key: "tab_normal", fontSize: 28);
+                var button = Button(_categoryContent, "Category_" + captured, JubaozhaiCatalog.CategoryName(captured), 0, y, 263, 50,
+                    () => { if (State.Category == captured) State.SetSubcategory(""); else State.SetCategory(captured); }, key: "tab_normal", fontSize: 29);
+                var label = button.GetComponentInChildren<TMP_Text>(); label.alignment = TextAlignmentOptions.MidlineLeft;
+                label.rectTransform.anchoredPosition = new Vector2(65, 0); label.rectTransform.sizeDelta = new Vector2(151, 50);
+                NativeArt(button.transform, "category-" + captured.ToString().ToLowerInvariant(), 18, 5, 36, 39);
+                Text(button.transform, "›", 224, 0, 26, 50, 31, Gold, alignment: TextAlignmentOptions.Center).name = "CategoryMarker";
                 _categoryButtons.Add(captured, button);
                 if (State.Category == captured) selectedY = y;
                 y += 54;
-                if (State.Category != captured) continue;
-                if (JubaozhaiCatalog.SubcategoriesFor(captured).Count == 0) continue;
-                var subcategories = new List<string> { "" };
-                subcategories.AddRange(JubaozhaiCatalog.SubcategoriesFor(captured));
-                foreach (var subcategory in subcategories)
+                if (State.Category != captured || JubaozhaiCatalog.SubcategoriesFor(captured).Count == 0) continue;
+                // Clicking the active category selects all its subcategories, as in the approved design.
+                foreach (var subcategory in JubaozhaiCatalog.SubcategoriesFor(captured))
                 {
                     string value = subcategory;
-                    _subcategoryButtons[value] = Button(_categoryContent, "Subcategory_" + (value.Length == 0 ? "All" : value),
-                        value.Length == 0 ? "全部" : value, 18, y, 278, 42, () => State.SetSubcategory(value), fontSize: 24);
-                    y += 45;
+                    _subcategoryButtons[value] = Button(_categoryContent, "Subcategory_" + value, value, 7, y, 249, 43, () => State.SetSubcategory(value), key: "tab_normal", fontSize: 26);
+                    y += 46;
                 }
-                y += 5;
+                y += 18;
             }
-            _categoryContent.sizeDelta = new Vector2(300, Math.Max(568, y));
-            Canvas.ForceUpdateCanvases();
-            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)_categoryScroll.transform);
+            _categoryContent.sizeDelta = new Vector2(263, Math.Max(431, y));
+            Canvas.ForceUpdateCanvases(); LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)_categoryScroll.transform);
             _categoryScroll.StopMovement();
             float range = Mathf.Max(0, _categoryContent.rect.height - _categoryScroll.viewport.rect.height);
-            float offset = Mathf.Clamp(selectedY - 20, 0, range);
+            // The first category stays at the source's native y=304. Later categories scroll into reach.
+            float offset = Mathf.Clamp(selectedY - 54, 0, range);
             _categoryScroll.verticalNormalizedPosition = range > 0 ? 1 - offset / range : 1;
             _builtCategory = State.Category;
         }
 
         private void RenderRow(JubaozhaiListing item, int index)
         {
-            var row = Button(_rows, "JubaoRow_" + item.Id, "", 0, index * 124, 1538, 119,
+            var row = Button(_rows, "JubaoRow_" + item.Id, "", 0, index * 114, 1224, 108,
                 () => SelectListing(item.Id), key: item.Id == SelectedId ? "row_selected" : "row_normal");
             _rowButtons[item.Id] = row;
-            DrawIcon(row.transform, item, 22, 4, 110);
-            Text(row.transform, item.Name, 153, 14, 445, 44, 31).fontStyle = FontStyles.Bold;
-            Text(row.transform, "编号 " + item.Id, 155, 66, 438, 31, 22, Muted);
-            Text(row.transform, item.Summary, 626, 16, 566, 40, 28);
-            Text(row.transform, JubaozhaiCatalog.FormatPrice(item.Price), 626, 64, 460, 38, 31, Gold);
-            _remainingLabels[item.Id] = Text(row.transform, State.RemainingTime(item), 1285, 15, 226, 48, 29, Muted, alignment: TextAlignmentOptions.Center);
-            var selected = Text(row.transform, item.Id == SelectedId ? "已选择" : State.IsFavorite(item.Id) ? "已收藏" : "", 1285, 68, 226, 32,
-                24, Gold, alignment: TextAlignmentOptions.Center);
+            DrawIcon(row.transform, item, 38, -6, 140);
+            var name = Text(row.transform, item.Name, 224, 12, 350, 43, 31); name.fontStyle = FontStyles.Bold;
+            name.enableAutoSizing = true; name.fontSizeMin = 24; name.fontSizeMax = 31;
+            Text(row.transform, JubaozhaiCatalog.FormatPrice(item.Price), 226, 55, 350, 39, 30, QdaoUguiTheme.Html("#B82D25"));
+            NativeSummary(row.transform, item.Summary, 590, 17, 407, 76, 27);
+            _remainingLabels[item.Id] = Text(row.transform, State.RemainingTime(item), 1030, 26, 165, 48, 29, Ink, alignment: TextAlignmentOptions.Center);
+            var selected = Text(row.transform, item.Id == SelectedId ? "已选择" : State.IsFavorite(item.Id) ? "已收藏" : "", 1040, 77, 145, 24,
+                18, Gold, alignment: TextAlignmentOptions.Center);
             selected.name = "RowState";
         }
 
         private void RenderEmpty()
         {
-            Art(_rows, "empty_guide", 646, 66, 232, 224, true);
+            Art(_rows, "empty_guide", 187, 53, 409, 341, true);
+            NativeArt(_rows, "empty-bubble", 504, 128, 451, 150);
             string title = State.FavoritesOnly ? "当前筛选下暂无收藏" : !string.IsNullOrWhiteSpace(State.Search) ? "未找到符合条件的商品" : JubaozhaiCatalog.EmptyTitle;
-            Text(_rows, title, 134, 315, 1270, 58, 39, alignment: TextAlignmentOptions.Center);
-            Text(_rows, !State.IsDemo && !State.ServiceAvailable ? "聚宝斋尚未开放，敬请期待" : "可切换类别、清空搜索或调整筛选", 134, 378, 1270, 46,
+            Text(_rows, title, 579, 155, 316, 53, 29, alignment: TextAlignmentOptions.Center);
+            Text(_rows, !State.IsDemo && !State.ServiceAvailable ? "聚宝斋服务尚未连接" : JubaozhaiCatalog.EmptyDescription, 579, 210, 316, 43,
                 27, Muted, alignment: TextAlignmentOptions.Center);
         }
 
@@ -440,9 +447,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (item.Category == JubaozhaiCategory.Character || item.Category == JubaozhaiCategory.Pet || equipment)
             {
                 // The source badges were removed during slicing; native fields occupy the same exact circles.
-                float levelCenterX = equipment ? .942f : .846f;
+                float levelCenterX = equipment ? .144f : .846f;
                 RoundBadge(parent, "JubaoLevelBadge", item.Level.ToString(),
-                    x + size * levelCenterX, y + size * .644f, size * .43f, Cream, Ink, size * .185f);
+                    x + size * levelCenterX, y + size * .644f, size * .38f, Ink, Cream, size * .185f);
                 if (item.Category == JubaozhaiCategory.Pet || equipment)
                 {
                     string category = item.Category switch
@@ -451,8 +458,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                         JubaozhaiCategory.Armor => "防", _ => "套"
                     };
                     RoundBadge(parent, "JubaoCategoryBadge", category,
-                        x + size * (equipment ? .144f : .115f), y + size * .644f,
-                        size * (equipment ? .41f : .36f), Ink, Cream, size * .20f);
+                        x + size * (equipment ? .942f : .115f), y + size * .644f,
+                        size * (equipment ? .38f : .33f), Gold, Cream, size * .20f);
                 }
             }
             else

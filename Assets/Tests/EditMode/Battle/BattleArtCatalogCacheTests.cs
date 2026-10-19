@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.World;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -40,18 +41,20 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void PortraitReloadsAfterCachedTextureIsDestroyed()
         {
             const ulong actorId = 1;
-            int index = BattleHudLogic.PortraitIndexFor(actorId, BattleArtCatalog.PortraitFiles.Length);
-            string path = BattleArtCatalog.PortraitsRoot + "/" + BattleArtCatalog.PortraitFiles[index];
+            var appearance = QdaoCharacterCatalog.Find(QdaoCharacterCatalog.DefaultId).ResolveAppearance();
+            Assert.That(appearance, Is.Not.Null);
             CreateTemporarySprite();
-            Cache<Texture2D>("s_textures")[path] = _temporaryTexture;
-            Cache<Sprite>("s_sprites")[path + "#head"] = _temporarySprite;
+            var portraits = (Dictionary<string, Sprite>)typeof(QdaoCharacterCatalog)
+                .GetField("Portraits", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            portraits[appearance.CacheKey] = _temporarySprite;
             Object.DestroyImmediate(_temporaryTexture);
 
             var reloaded = BattleArtCatalog.LoadPlayerPortrait(actorId);
 
-            Assert.That(reloaded != null, Is.True, "头像贴图失效后必须重新裁头，不保留已销毁的贴图句柄。");
+            Assert.That(reloaded != null, Is.True, "当前人物头像缓存失效后必须重建，不保留已销毁的贴图句柄。");
             Assert.That(reloaded.texture != null, Is.True);
             Assert.That(ReferenceEquals(reloaded, _temporarySprite), Is.False);
+            Assert.That(reloaded, Is.SameAs(portraits[appearance.CacheKey]));
         }
 
         private void CreateTemporarySprite()

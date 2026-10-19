@@ -238,6 +238,7 @@ namespace MmorpgClient.UI.Ugui
         public void Tick(float deltaTime)
         {
             _ = deltaTime;
+            if (LoginUtilityOpen && Input.GetKeyDown(KeyCode.Escape)) CloseLoginUtilities();
         }
 
         // ── data loading ─────────────────────────────────────────
@@ -414,6 +415,7 @@ namespace MmorpgClient.UI.Ugui
                 return;
 
             _credentialPanel.gameObject.SetActive(visible);
+            RefreshVisualState();
             if (visible && focusAccount && _accountInput != null)
             {
                 _accountInput.Select();
@@ -732,7 +734,7 @@ namespace MmorpgClient.UI.Ugui
             {
                 bool active = i == _selectedTopTab;
                 _topButtons[i].interactable = canInteract;
-                QdaoRefreshArt.Skin(_topImages[i], active ? "tab_selected" : "tab_normal");
+                QdaoCoreFidelityArt.Skin(_topImages[i], active ? "tab_selected" : "tab_normal");
                 _topLabels[i].color = active ? QdaoRefreshArt.Ivory : QdaoRefreshArt.Ink;
                 _topSelectionMarks[i].enabled = false;
             }
@@ -741,7 +743,7 @@ namespace MmorpgClient.UI.Ugui
             {
                 bool active = i == _selectedCategory;
                 _categoryButtons[i].interactable = canInteract;
-                QdaoRefreshArt.Skin(_categoryImages[i], active ? "list_row_selected" : "list_row_normal");
+                QdaoCoreFidelityArt.Skin(_categoryImages[i], active ? "list_row_selected" : "list_row_normal");
                 _categoryTexts[i].color = active ? QdaoRefreshArt.Ivory : QdaoRefreshArt.Ink;
                 _categorySelectionMarks[i].enabled = false;
             }
@@ -768,7 +770,7 @@ namespace MmorpgClient.UI.Ugui
                 var zone = _filtered[index];
                 bool selected = zone.zone_id == _selectedZoneId;
                 bool closed = zone.status == "MAINTENANCE" || zone.status == "CLOSED" || zone.status == "PREVIEW";
-                QdaoRefreshArt.Skin(_serverCardImages[slot], "server_card_wide_" +
+                QdaoCoreFidelityArt.Skin(_serverCardImages[slot], "server_card_wide_" +
                     (closed ? "disabled" : selected ? "selected" : "normal"));
                 _serverNames[slot].text = CardDisplayName(zone);
                 _serverSubtitles[slot].text = ZoneSubtitle(zone) + (selected ? " · 已选择" : string.Empty);
@@ -801,6 +803,7 @@ namespace MmorpgClient.UI.Ugui
             _landingAccount.interactable = canInteract;
             _landingEnter.interactable = canInteract && !_serverListLoading && (chosen == null || enterable);
             RefreshLandingServer(chosen);
+            RefreshLoginUtilityState();
         }
 
         private static string ZoneDisplayName(ServerListZone z)
@@ -860,7 +863,7 @@ namespace MmorpgClient.UI.Ugui
                 return;
 
             foreach (var text in GetComponentsInChildren<TMP_Text>(true))
-                QdaoUguiTypography.RefreshFont(text);
+                QdaoCoreFidelityArt.ApplyText(text);
         }
 
         private void SetStatus(string value)
@@ -884,7 +887,12 @@ namespace MmorpgClient.UI.Ugui
 
         private bool ReferencesValid()
         {
-            var invalid = _landingRoot == null || _serverRoot == null ||
+            var invalid = _landingAnnouncement == null || _landingSettings == null ||
+                          _announcementPanel == null || _settingsPanel == null ||
+                          _announcementBody == null || _settingsVolumeValue == null || _announcementScroll == null ||
+                          _announcementClose == null || _settingsClose == null ||
+                          _settingsVolumeSlider == null || _settingsFullscreen == null ||
+                          _landingRoot == null || _serverRoot == null ||
                           _landingServers == null || _landingEnter == null || _landingAccount == null ||
                           _landingServerText == null || _landingStatusText == null || _emptyListText == null ||
                           _serverBadges == null || _serverBadges.Length != PageSize ||

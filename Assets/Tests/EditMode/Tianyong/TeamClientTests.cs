@@ -966,7 +966,444 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         // ── 助手 ────────────────────────────────────────────────────────────
 
+        // ── 队伍补位匹配 ────────────────────────────────────────────────────
+
+        [Test]
+        public void StartMatch_BackfillRequiresTheServerCapabilityAtTheApiBoundary()
+        {
+            var view = LeaderView(1);
+            view.MatchFillSupported = false;
+            Loaded(view);
+            AssertRejected(() => _client.StartMatch(1, 5), "当前服务器未开放队伍补位匹配。");
+        }
+
+        [Test]
+        public void StartMatch_BackfillSuccessWithoutIntentPreservesQueueAndReleasesTheConfirmedRequest()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 5) });
+            Assert.That(_client.Status, Is.EqualTo("队伍已进入匹配队列（目标 5 人），等待补位…"));
+            _push(new TeamSnapshotS2C { Team = LeaderView(2), Reason = TeamBackfillProtocol.MatchQueueCanceledReason });
+            _now += 1;
+            Assert.That(_client.StartMatch(2, 5), Is.True, "明确补位成功后不保留无从查询的旧分支意图");
+        }
+
+        [Test]
+        public void StartMatch_BackfillWithFormalIntentAlwaysUsesTheIntentEvenWhenQueueIsPresent()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            string requestId = LastRequest<StartTeamMatchRequest>().RequestId;
+            _net.Reply(new TeamResponse {
+                Team = QueuedView(1, 5), MatchIntent = new TeamMatchIntent { RequestId = requestId, BattleId = 700, State = 99 }
+            });
+            _push(new TeamSnapshotS2C { Team = LeaderView(2), Reason = TeamBackfillProtocol.MatchQueueCanceledReason });
+            _now += 4;
+            AssertRejected(() => _client.StartMatch(2, 5), "上一笔队伍开局结果尚未确认，请先恢复原请求。");
+            _client.DrainQueued(false);
+            Assert.That(LastRequest<GetMyTeamRequest>().MatchRequestId, Is.EqualTo(requestId));
+            _net.Reply(new TeamResponse {
+                Team = LeaderView(3), MatchIntent = new TeamMatchIntent { RequestId = requestId, BattleId = 700, State = 4 }
+            });
+            _now += 1;
+            Assert.That(_client.StartMatch(2, 5), Is.True);
+        }
+
+        [Test]
+        public void StartMatch_BackfillTimeoutCannotBlindlyRetryAgainstTheLegacyContract()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            _net.Fail("rpc timeout");
+            _net.Identity = new object();
+            _client.ObserveConnection();
+            _now += 4;
+            _client.DrainQueued(false);
+            _net.Reply(new TeamResponse { Team = LeaderView(2) });
+            _now += 1;
+            AssertRejected(() => _client.StartMatch(1, 5), "上一笔队伍补位结果尚未确认，正在核实原队列。");
+
+            _now += 4;
+            _client.DrainQueued(false);
+            _net.Reply(new TeamResponse { Team = QueuedView(3, 5) });
+            _push(new TeamSnapshotS2C { Team = LeaderView(4), Reason = TeamBackfillProtocol.MatchQueueCanceledReason });
+            _now += 1;
+            Assert.That(_client.StartMatch(2, 5), Is.True, "权威队列核对原team/config/target一致后解除本地意图");
+        }
+
+        [Test]
+        public void StartMatch_BackfillCanRetryTheOriginalUuidWhenTheServerReturnsItsFormalIntent()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            var original = LastRequest<StartTeamMatchRequest>().Clone();
+            _net.Fail("rpc timeout");
+            _net.Identity = new object();
+            _client.ObserveConnection();
+            _now += 4;
+            _client.DrainQueued(false);
+            _net.Reply(new TeamResponse {
+                Team = LeaderView(2), MatchIntent = new TeamMatchIntent { RequestId = original.RequestId, State = 0 }
+            });
+            _now += 1;
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            Assert.That(LastRequest<StartTeamMatchRequest>(), Is.EqualTo(original));
+        }
+
+        /// <summary>队长视图 + 补位匹配中(目标 target 人)。</summary>
+        private static TeamView QueuedView(ulong version, uint target)
+        {
+            var view = LeaderView(version);
+            view.MatchState = TeamBackfillProtocol.QueuedState;
+            view.MatchTargetSize = target;
+            view.MatchQueuedAtMs = 5000;
+            view.MatchBattleConfigId = 1;
+            return view;
+        }
+
+        [Test]
+        public void StartMatch_WithTargetSizeEntersBackfillQueue()
+        {
+            Loaded();
+            ulong serial = _client.ViewSerial;
+
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            var request = LastRequest<StartTeamMatchRequest>();
+            Assert.That(request.BattleConfigId, Is.EqualTo(1u));
+            Assert.That(request.ExpectedTeamId, Is.EqualTo(100UL));
+            Assert.That(request.TargetTeamSize, Is.EqualTo(5u));
+
+            // 服务端不写队伍记录:回包视图 version 不变,仍要被接受(同版本后到者生效)。
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 5) });
+
+            Assert.That(_client.MatchQueued, Is.True);
+            Assert.That(_client.MatchStarting, Is.False);
+            Assert.That(_client.Snapshot.MatchTargetSize, Is.EqualTo(5u));
+            Assert.That(_client.Status, Is.EqualTo("队伍已进入匹配队列（目标 5 人），等待补位…"));
+            Assert.That(_client.ViewSerial, Is.GreaterThan(serial), "每应用一份视图序号都要变");
+
+            // 匹配中再点开战:本地拦下,不发请求。
+            _now += 0.5f;
+            AssertRejected(() => _client.StartMatch(1, 5), "队伍正在匹配中，如需重新开始请先取消匹配。");
+            AssertRejected(() => _client.StartMatch(1), "队伍正在匹配中，如需重新开始请先取消匹配。");
+        }
+
+        [Test]
+        public void StartMatch_DefaultTargetIsDirectStart()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1), Is.True);
+            Assert.That(LastRequest<StartTeamMatchRequest>().TargetTeamSize, Is.Zero, "不带目标人数 = 加字段前的直接开战");
+        }
+
+        [Test]
+        public void StartMatch_InMatchWithQueuedViewIsNotAnError()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 4), Is.True);
+            _net.Reply(Response(QueuedView(1, 4), team_error.KTeamInMatch));
+
+            Assert.That(_client.MatchQueued, Is.True);
+            Assert.That(_client.Status, Is.EqualTo("队伍正在匹配中，请稍候…"));
+            Assert.That(_client.RequiresReconnect || _client.Suspended, Is.False);
+        }
+
+        [Test]
+        public void BackfillQueue_DoesNotLockRoster()
+        {
+            Loaded(QueuedView(1, 5));
+            Assert.That(_client.MatchQueued, Is.True);
+            // 匹配中名单不锁:踢人 / 离队照常发出(服务端提交后让全队退出匹配)。
+            Assert.That(_client.Kick(11), Is.True);
+            Assert.That(LastId, Is.EqualTo(MessageIds.KickMember));
+        }
+
+        [Test]
+        public void MatchQueuedPush_ShowsTargetSize()
+        {
+            Loaded();
+            _push(new TeamSnapshotS2C { Team = QueuedView(1, 3), Reason = TeamBackfillProtocol.MatchQueuedReason, ActorId = 10 });
+
+            Assert.That(_client.MatchQueued, Is.True);
+            Assert.That(_client.Status, Is.EqualTo("队长已发起队伍匹配（目标 3 人），等待补位…"));
+        }
+
+        [Test]
+        public void MatchQueueCanceledPush_ExplainsWhoOrWhy()
+        {
+            Loaded(QueuedView(1, 5));
+
+            // 队友主动取消:带取消者。
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamBackfillProtocol.MatchQueueCanceledReason, ActorId = 11 });
+            Assert.That(_client.MatchQueued, Is.False, "同版本的后到视图生效");
+            Assert.That(_client.Status, Does.EndWith(" 取消了队伍匹配。"));
+            Assert.That(_client.HighlightPlayerId, Is.Zero);
+
+            // 自己取消。
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamBackfillProtocol.MatchQueueCanceledReason, ActorId = 10 });
+            Assert.That(_client.Status, Is.EqualTo("已取消队伍匹配。"));
+
+            // 系统撤单:原因在 tip,参数里的队员被高亮。
+            _push(new TeamSnapshotS2C
+            {
+                Team = LeaderView(1), Reason = TeamBackfillProtocol.MatchQueueCanceledReason,
+                Tip = Tip(team_error.KTeamMemberOffline, "12")
+            });
+            Assert.That(_client.Status, Is.EqualTo("队伍匹配已取消：有队员不在线。"));
+            Assert.That(_client.HighlightPlayerId, Is.EqualTo(12UL));
+
+            // 既没有取消者也没有原因。
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamBackfillProtocol.MatchQueueCanceledReason });
+            Assert.That(_client.Status, Is.EqualTo("队伍匹配已取消。"));
+            Assert.That(_client.HighlightPlayerId, Is.Zero);
+        }
+
+        [Test]
+        public void BackfillPushes_RaiseANoticeForTheBattleUi()
+        {
+            Loaded();
+            var texts = new List<string>();
+            var ended = new List<bool>();
+            _client.BackfillNotice += (text, isEnd) => { texts.Add(text); ended.Add(isEnd); };
+
+            _push(new TeamSnapshotS2C { Team = QueuedView(1, 3), Reason = TeamBackfillProtocol.MatchQueuedReason, ActorId = 10 });
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamBackfillProtocol.MatchQueueCanceledReason, ActorId = 11 });
+            // 其它原因的推送不触发。
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamChangeReason.MemberOnline });
+
+            Assert.That(texts, Is.EqualTo(new[] { "队长已发起队伍匹配（目标 3 人），等待补位…", _client.Status }));
+            Assert.That(texts[1], Does.EndWith(" 取消了队伍匹配。"));
+            Assert.That(ended, Is.EqualTo(new[] { false, true }));
+        }
+
+        [Test]
+        public void StartMatch_InMatchWithQueuedViewRevivesAQueueWronglyMarkedEnded()
+        {
+            Loaded(QueuedView(1, 4));
+            ulong teamId = _client.Snapshot.TeamId;
+            ulong queuedAt = _client.Snapshot.MatchQueuedAtMs;
+            // 本机曾把这一次排队记成已结束(例如排队中应战切磋开打,而服务端没能把排队撤掉)。
+            _client.ConsumeBackfillQueue(teamId, queuedAt);
+            Assert.That(_client.MatchQueued, Is.False);
+            // 同一次排队的普通视图仍被抹掉 —— 迟到的旧视图不能把人带回排队态。
+            _push(new TeamSnapshotS2C { Team = QueuedView(1, 4), Reason = TeamChangeReason.MemberOnline });
+            Assert.That(_client.MatchQueued, Is.False);
+
+            // 自己点开战被「队伍正在匹配中」拒绝、回包视图就是这一次排队:票据确实在排,撤销「已结束」。
+            Assert.That(_client.StartMatch(1, 4), Is.True);
+            _net.Reply(Response(QueuedView(1, 4), team_error.KTeamInMatch));
+
+            Assert.That(_client.MatchQueued, Is.True);
+            Assert.That(_client.Snapshot.MatchQueuedAtMs, Is.EqualTo(queuedAt));
+            // 之后同一次排队的视图不再被抹。
+            _push(new TeamSnapshotS2C { Team = QueuedView(1, 4), Reason = TeamChangeReason.MemberOnline });
+            Assert.That(_client.MatchQueued, Is.True);
+        }
+
+        [Test]
+        public void MatchQueuedPushWithIdleView_RefetchesUntilQueued()
+        {
+            Loaded();
+            // 服务端读排队票据出错(随后约 5 秒不再读)时,推送如实带着「没在排」的视图。
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamBackfillProtocol.MatchQueuedReason, ActorId = 10 });
+            Assert.That(_client.MatchQueued, Is.False);
+            int calls = _net.Calls.Count;
+            _now += 1f;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls), "熔断窗口内先不重拉");
+
+            _now += TeamClient.QueueViewVerifyDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(new TeamResponse { Team = LeaderView(1) }); // 第一次仍没在排
+            _now += TeamClient.QueueViewVerifyDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 3) });
+            Assert.That(_client.MatchQueued, Is.True);
+
+            // 次数用完(或已在排)就停。
+            calls = _net.Calls.Count;
+            _now += TeamClient.QueueViewVerifyDelaySeconds * 3;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls));
+        }
+
+        [Test]
+        public void MatchQueuedPushWithIdleView_StopsOnceTheViewIsQueued()
+        {
+            Loaded();
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamBackfillProtocol.MatchQueuedReason, ActorId = 10 });
+            _now += TeamClient.QueueViewVerifyDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 3) }); // 第一次重拉就在排了
+            Assert.That(_client.MatchQueued, Is.True);
+
+            int calls = _net.Calls.Count;
+            _now += TeamClient.QueueViewVerifyDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls), "已在排就停,不用完剩下的次数");
+        }
+
+        [Test]
+        public void StartMatchBackfillAnsweredWithDirectStart_IsTreatedAsDirectStart()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            // 请求在途期间有人入队,服务端读到的人数等于目标人数,于是直接开战。
+            var starting = LeaderView(2);
+            starting.MatchState = TeamMatchState.Starting;
+            _net.Reply(new TeamResponse { Team = starting });
+
+            Assert.That(_client.Status, Is.EqualTo("已发起队伍战斗，正在集合队员…"));
+            int calls = _net.Calls.Count;
+            _now += TeamClient.QueueViewVerifyDelaySeconds * 3;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls), "直接开战不做「应当在排」的核实");
+        }
+
+        [Test]
+        public void StartMatchBackfillWithIdleReply_StillVerifiesTheQueue()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(1, 5), Is.True);
+            _net.Reply(new TeamResponse { Team = LeaderView(1) }); // 入队成功,但服务端没能给视图装上匹配态
+            Assert.That(_client.Status, Is.EqualTo("队伍已进入匹配队列，等待补位…"));
+            Assert.That(_client.MatchQueued, Is.False);
+
+            _now += TeamClient.QueueViewVerifyDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 5) });
+            Assert.That(_client.MatchQueued, Is.True);
+        }
+
+        [Test]
+        public void ReviveBackfillQueue_OnlyUndoesTheSameQueue()
+        {
+            Loaded(QueuedView(1, 4));
+            ulong teamId = _client.Snapshot.TeamId;
+            ulong queuedAt = _client.Snapshot.MatchQueuedAtMs;
+            _client.ConsumeBackfillQueue(teamId, queuedAt);
+            Assert.That(_client.MatchQueued, Is.False);
+            // 先把 Consume 自己排的那次刷新走掉,下面「撤销后排一次重拉」的断言才有意义。
+            _now += 0.5f;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(new TeamResponse { Team = QueuedView(1, 4) });
+            _now += 0.5f;
+            Assert.That(_client.RefreshQueued, Is.False);
+            Assert.That(_client.MatchQueued, Is.False, "同一次排队的视图仍被抹掉");
+
+            _client.ReviveBackfillQueue(teamId, queuedAt + 1); // 别的一次排队:不动
+            Assert.That(_client.RefreshQueued, Is.False);
+            _push(new TeamSnapshotS2C { Team = QueuedView(1, 4), Reason = TeamChangeReason.MemberOnline });
+            Assert.That(_client.MatchQueued, Is.False);
+
+            _client.ReviveBackfillQueue(teamId, queuedAt);
+            Assert.That(_client.RefreshQueued, Is.True, "撤销后排一次重拉");
+            _push(new TeamSnapshotS2C { Team = QueuedView(1, 4), Reason = TeamChangeReason.MemberOnline });
+            Assert.That(_client.MatchQueued, Is.True);
+        }
+
+        [Test]
+        public void ViewSerial_ChangesOnEveryAppliedViewAndOnReset()
+        {
+            Loaded();
+            ulong serial = _client.ViewSerial;
+
+            _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamChangeReason.MemberOnline });
+            Assert.That(_client.ViewSerial, Is.EqualTo(serial + 1), "同版本视图也算应用了一份");
+
+            // 过期视图(版本更旧)不应用,序号不变。
+            _push(new TeamSnapshotS2C { Team = LeaderView(0), Reason = TeamChangeReason.MemberOnline });
+            Assert.That(_client.ViewSerial, Is.EqualTo(serial + 1));
+
+            _client.Reset();
+            Assert.That(_client.ViewSerial, Is.EqualTo(serial + 2));
+        }
+
         /// <summary>探针 → 回复视图 → 邀请列表 → 回复空列表;结束时距上次发送已超过发送间隔。</summary>
+        // ── 归队(组队跟随 v1.1 V.9)──
+
+        [Test]
+        public void RequestRegroup_MemberSendsOneGetMyTeamWithRegroupThenClears()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            int calls = _net.Calls.Count;
+
+            _client.RequestRegroup();
+            Assert.That(_client.RegroupQueued && _client.RefreshQueued, Is.True);
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.True);
+            Assert.That(LastRequest<GetMyTeamRequest>().NotifyOnline, Is.False, "上线通知探针时已经带过");
+            Assert.That(_client.RegroupQueued, Is.False, "真正发出后清零");
+            _net.Reply(new TeamResponse { Team = View(100, 10, 5, 1, 10, 11, 12) });
+
+            // 之后的普通拉取不再带。
+            _now += 0.5f;
+            _client.RequestRefresh();
+            _client.DrainQueued(false);
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.False);
+        }
+
+        [Test]
+        public void RequestRegroup_IsNoOpForLeaderAndWithoutTeam()
+        {
+            Loaded(); // 本机 10 是队长
+            _client.RequestRegroup();
+            Assert.That(_client.RegroupQueued, Is.False, "队长没有可归的队长");
+
+            _client.Reset();
+            LoadedNoTeam();
+            _client.RequestRegroup();
+            Assert.That(_client.RegroupQueued, Is.False, "不在队里");
+        }
+
+        [Test]
+        public void RequestRegroup_RateLimitedIsResentAfterBackoff()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            _client.RequestRegroup();
+            _client.DrainQueued(false);
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.True);
+            _net.Fail("server tip=1008");
+            Assert.That(_client.RegroupQueued, Is.True, "请求没到组队服务,归队要再带一次");
+
+            int calls = _net.Calls.Count;
+            _now += TeamClient.ReadRetryDelaySeconds;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+            Assert.That(LastRequest<GetMyTeamRequest>().Regroup, Is.True);
+        }
+
+        [Test]
+        public void RequestRegroup_ReplyWithoutViewIsResent()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            _client.RequestRegroup();
+            _client.DrainQueued(false);
+            _net.Reply(Response(null, team_error.KTeamInternal));
+            Assert.That(_client.RegroupQueued, Is.True, "服务端没读到视图就不会归队");
+        }
+
+        [Test]
+        public void Reset_DropsQueuedRegroup()
+        {
+            _net.PlayerId = 11;
+            Loaded(View(100, 10, 5, 1, 10, 11, 12));
+            _client.RequestRegroup();
+            _client.Reset();
+            Assert.That(_client.RegroupQueued, Is.False, "新会话进场时服务端自己会跟随");
+        }
+
         private void Loaded(TeamView view = null)
         {
             _now += 0.5f;
@@ -1003,7 +1440,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         private T LastRequest<T>() where T : class, IMessage => (T)_net.Calls[_net.Calls.Count - 1].Request;
 
         /// <summary>队长视图:队伍 100、队长 10、成员 10/11/12、epoch 5。</summary>
-        private static TeamView LeaderView(ulong version) => View(100, 10, 5, version, 10, 11, 12);
+        private static TeamView LeaderView(ulong version)
+        {
+            var view = View(100, 10, 5, version, 10, 11, 12);
+            view.MatchFillSupported = true;
+            return view;
+        }
 
         private static TeamView View(ulong teamId, ulong leaderId, ulong epoch, ulong version, params ulong[] members)
         {

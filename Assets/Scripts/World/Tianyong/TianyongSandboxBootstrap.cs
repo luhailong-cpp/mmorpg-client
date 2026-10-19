@@ -61,6 +61,7 @@ namespace MmorpgClient.World.Tianyong
 
             // Same look as production actors: the qdao walk sprite when present
             // and a name label parked under the feet.
+            characterId = QdaoCharacterCatalog.ResolveVisualId(characterId);
             QdaoBoySpriteAnimator.TryAttach(player, characterId);
             _playerLabel = WorldNameplate.Create(player.transform,
                 QdaoCharacterCatalog.Find(characterId)?.Name ?? "云行客", WorldNameplate.LocalPlayerColor);
@@ -86,6 +87,7 @@ namespace MmorpgClient.World.Tianyong
         /// <summary>Switch the offline playable appearance without rebuilding the map or controller.</summary>
         public bool SelectCharacter(string id)
         {
+            id = QdaoCharacterCatalog.ResolveVisualId(id);
             if (QdaoCharacterCatalog.Find(id) == null || Player == null) return false;
             var previousId = Player.GetComponent<QdaoBoySpriteAnimator>()?.CharacterId;
             if (!QdaoBoySpriteAnimator.TryAttach(Player, id)) return false;

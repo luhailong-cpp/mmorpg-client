@@ -125,8 +125,47 @@ $files = @(
     # 本行生成的枚举要含 15007–15009(FriendBlocked / FriendBlockListFull / FriendTargetInboxFull),
     # 所以只能在服务端导表器跑完之后再跑本脚本。
     "proto/friend/friend.proto",
-    "generated/code/proto/tip/friend_error_tip.proto"
+    "generated/code/proto/tip/friend_error_tip.proto",
+    # 保留神秘商人已入库客户端；服务端尚未合入时仅跳过这两份协议的重生成。
+    "proto/scene/player_mystery_merchant.proto",
+    "generated/code/proto/tip/mystery_merchant_error_tip.proto"
 )
+
+$merchantProtoFiles = @(
+    'proto/scene/player_mystery_merchant.proto',
+    'generated/code/proto/tip/mystery_merchant_error_tip.proto'
+)
+$merchantPresent = @($merchantProtoFiles | Where-Object { Test-Path -LiteralPath (Join-Path $ProtoRoot $_) })
+if ($merchantPresent.Count -eq 0) {
+    $files = @($files | Where-Object { $_ -notin $merchantProtoFiles })
+    Write-Warning '[gen_proto] 当前服务端没有神秘商人协议；保留客户端已入库类型，消息号由gen_messageids.ps1生成未支持的0。'
+} elseif ($merchantPresent.Count -ne $merchantProtoFiles.Count) {
+    throw '神秘商人协议与导表提示码不完整；请先完成服务端生成，不能发布部分契约。'
+}
+$teamBridge = Join-Path $repoRoot 'Assets/Scripts/Proto/TeamBackfillProtocol.cs'
+if (Test-Path -LiteralPath $teamBridge) {
+    $teamSource = Get-Content -LiteralPath (Join-Path $ProtoRoot 'proto/team/team.proto') -Raw
+    function Get-TeamMessageBody([string]$name) {
+        $pattern = '(?s)\bmessage\s+' + [regex]::Escape($name) + '\s*\{(.*?)\}'
+        $match = [regex]::Match($teamSource, $pattern)
+        if (-not $match.Success) { throw "组队协议兼容预检：缺少消息 $name" }
+        return $match.Groups[1].Value
+    }
+    $getBody = Get-TeamMessageBody 'GetMyTeamRequest'
+    $startBody = Get-TeamMessageBody 'StartTeamMatchRequest'
+    $replyBody = Get-TeamMessageBody 'TeamResponse'
+    $viewBody = Get-TeamMessageBody 'TeamView'
+    if ($getBody -notmatch '(?m)^\s*string\s+match_request_id\s*=\s*2\s*;' -or
+        $startBody -notmatch '(?m)^\s*string\s+request_id\s*=\s*3\s*;' -or
+        $replyBody -notmatch '(?m)^\s*TeamMatchIntent\s+match_intent\s*=\s*3\s*;') {
+        throw '组队协议兼容预检：所选源会覆盖本地CPP/Java恢复接口；请先整合两套正式契约，再重新生成。'
+    }
+    if ($getBody -match '(?m)^\s*bool\s+regroup\s*=' -or
+        $startBody -match '(?m)^\s*uint32\s+target_team_size\s*=' -or
+        $viewBody -match '(?m)^\s*(?:uint32|uint64|bool)\s+(?:match_target_size|match_queued_at_ms|match_battle_config_id|match_fill_supported)\s*=') {
+        throw '组队协议兼容预检：源协议已定义桥接字段；请先移除或整合TeamBackfillProtocol对应partial成员，再重新生成。'
+    }
+}
 
 Push-Location $ProtoRoot
 try {

@@ -42,7 +42,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     /// </summary>
     public sealed class SceneChannelWindow
     {
-        public const int Columns = 2;
+        public const int Columns = 3;
         public const int RowsPerColumn = 8;
         public const int LinesPerPage = Columns * RowsPerColumn;
 
@@ -66,12 +66,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string RefreshText = "刷新";
         public const string RefreshingText = "获取中…";
 
-        private const float FrameWidth = 1760, FrameHeight = 924;
-        private const float ListX = 100, ListY = 183;
-        private const float RowWidth = 760, RowHeight = 66, RowPitch = 71, ColumnGap = 40;
+        private const float FrameWidth = 1931, FrameHeight = 814;
+        private const float ListX = 363, ListY = 159;
+        private const float RowWidth = 393, RowHeight = 60, RowPitch = 62.5f, ColumnGap = 14;
         private const float ListWidth = RowWidth * Columns + ColumnGap * (Columns - 1);
         private const float ListHeight = RowPitch * (RowsPerColumn - 1) + RowHeight;
-        private const float FooterY = 798;
+        private const float FooterY = 695;
 
         // 流畅 / 繁忙 / 爆满三色与选服界面一致:QdaoServerSelectView 的 DotSmooth / DotBusy / DotFull
         // (那边是 private,这里复制数值);回收中 / 暂不可用 / 未知用灰色。
@@ -106,38 +106,26 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public SceneChannelWindow(UnityEngine.Transform parent)
         {
-            _root = QdaoUguiFactory.CreateStretch("SceneChannelWindow", parent, Vector4.zero);
+            _root=QdaoUguiFactory.CreateStretch("SceneChannelWindow",parent,Vector4.zero);
             _root.gameObject.SetActive(false);
-            var shade = _root.gameObject.AddComponent<Image>();
-            shade.color = new Color(.025f, .10f, .08f, .68f);
-            shade.raycastTarget = true;
+            var shade=_root.gameObject.AddComponent<Image>();shade.color=new Color(.025f,.10f,.08f,.68f);shade.raycastTarget=true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
-            var frame = QdaoUguiFactory.CreateCenteredRect("SceneChannelFrame", _root, FrameWidth, FrameHeight);
-            Art(frame, "main_frame", 0, 0, FrameWidth, FrameHeight);
-            Art(frame, "title_plate", 62, -21, 480, 114);
-            Text(frame, TitleText, 100, -7, 400, 84, 49, Cream, alignment: TextAlignmentOptions.Center);
-            _current = Text(frame, "", 604, 40, 760, 58, 30, Muted);
-            _current.name = "SceneChannelCurrent";
-
-            Art(frame, "content_panel", 56, 150, FrameWidth - 112, 632);
-            _list = QdaoUguiFactory.CreateRect("SceneChannelLines", frame, ListX, ListY, ListWidth, ListHeight);
-
-            // 底栏是固定槽位:状态行、翻页、刷新、关闭;渲染只改它们的文字与可用性,不重建。
-            _status = Text(frame, "", 72, FooterY, 760, 64, 28, Muted);
-            _status.name = "SceneChannelStatus";
-            _previous = Button(frame, "上一页", 860, FooterY + 4, 150, 56, () => MovePage(-1), fontSize: 26);
-            _previous.name = PreviousPageButtonName;
-            _pageLabel = Text(frame, "", 1014, FooterY + 4, 110, 56, 26, Muted, alignment: TextAlignmentOptions.Center);
-            _pageLabel.name = "SceneChannelPage";
-            _next = Button(frame, "下一页", 1128, FooterY + 4, 150, 56, () => MovePage(1), fontSize: 26);
-            _next.name = NextPageButtonName;
-            _refresh = Button(frame, RefreshText, 1296, FooterY, 190, 64,
-                () => { if (CanRefresh) RefreshRequested?.Invoke(); });
-            _refresh.name = RefreshButtonName;
-            _refreshLabel = _refresh.GetComponentInChildren<TMP_Text>(true);
-            var close = Button(frame, "关闭", 1498, FooterY, 190, 64, Hide);
-            close.name = CloseButtonName;
-            Pagination(_previous, _next, _pageLabel, 0, 1);
+            var frame=QdaoUguiFactory.CreateCenteredRect("SceneChannelFrame",_root,FrameWidth,FrameHeight);
+            frame.localScale=UnityEngine.Vector3.one*(2560f/1931f);
+            FidelityArt(frame,"scene_skin",0,0,FrameWidth,FrameHeight);
+            var topClose=QdaoUguiFactory.CreateHitButton("SceneChannelTopClose",frame,1547,30,86,86);topClose.onClick.AddListener(Hide);
+            _current=Text(frame,"",600,112,730,40,26,Ink,alignment:TextAlignmentOptions.Center);_current.name="SceneChannelCurrent";
+            _list=QdaoUguiFactory.CreateRect("SceneChannelLines",frame,ListX,ListY,ListWidth,ListHeight);
+            _status=Text(frame,"",375,660,1180,29,20,Muted,alignment:TextAlignmentOptions.Center);_status.name="SceneChannelStatus";
+            _previous=FidelityButton(frame,"上一页",375,FooterY,90,45,()=>MovePage(-1),false,17);_previous.name=PreviousPageButtonName;
+            _pageLabel=Text(frame,"",468,FooterY,100,45,23,Muted,alignment:TextAlignmentOptions.Center);_pageLabel.name="SceneChannelPage";
+            _next=FidelityButton(frame,"下一页",570,FooterY,90,45,()=>MovePage(1),false,17);_next.name=NextPageButtonName;
+            var close=QdaoUguiFactory.CreateHitButton(CloseButtonName,frame,673,686,263,69);close.onClick.AddListener(Hide);
+            Text(close.transform,"取消",20,0,223,69,36,Ink,alignment:TextAlignmentOptions.Center);
+            _refresh=QdaoUguiFactory.CreateHitButton(RefreshButtonName,frame,989,686,270,69);
+            _refresh.onClick.AddListener(()=>{if(CanRefresh)RefreshRequested?.Invoke();});
+            _refreshLabel=Text(_refresh.transform,RefreshText,20,0,230,69,36,Cream,alignment:TextAlignmentOptions.Center);
+            Pagination(_previous,_next,_pageLabel,0,1);
         }
 
         /// <summary>
@@ -330,11 +318,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool selectable = IsSelectable(line, context);
             bool switching = IsSwitchTarget(line, context);
             ulong sceneId = line.SceneId;
-            float x = slot % Columns * (RowWidth + ColumnGap);
+            float x = slot % Columns == 0 ? 0 : slot % Columns == 1 ? 412 : 813;
             float y = slot / Columns * RowPitch;
-            var button = Button(_list, SceneChannelModels.LineName(line.ChannelNo), x, y, RowWidth, RowHeight,
-                () => RequestSwitch(sceneId), enabled: selectable, key: line.IsCurrent ? "tab_selected" : "tab_normal",
-                fontSize: 32);
+            var button=FidelityButton(_list,SceneChannelModels.LineName(line.ChannelNo),x,y,RowWidth,RowHeight,
+                ()=>RequestSwitch(sceneId),line.IsCurrent,27,selectable,true);
             button.name = LineButtonPrefix + line.ChannelNo;
             // 行比底图原稿(高 114)矮:按高度等比缩小九宫格的边(只有中段横向拉伸),两端的云头和对勾才不会被压扁。
             // 做法同 QdaoRefreshArt.Skin。缩小后两端纹饰各占约 48,行内文字从 64 起排。
@@ -343,7 +330,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             // 工厂给的是居中的按钮文字;行里左边放线名、右边放状态,把它挪到左侧。
             var name = button.GetComponentInChildren<TMP_Text>(true);
-            name.rectTransform.anchoredPosition = new Vector2(64, 0);
+            name.rectTransform.anchoredPosition = new Vector2(82, 0);
             name.rectTransform.sizeDelta = new Vector2(170, RowHeight);
             name.alignment = TextAlignmentOptions.MidlineLeft;
             if (line.IsCurrent)
@@ -352,7 +339,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var colors = button.colors;
                 colors.disabledColor = Color.white;
                 button.colors = colors;
-                Text(button.transform, CurrentTagText, 250, 0, 110, RowHeight, 26, Cream).name = CurrentTagName;
+                Text(button.transform, CurrentTagText, 308, -7, 72, 24, 18, Cream).name = CurrentTagName;
             }
             else if (!selectable)
             {
@@ -361,12 +348,26 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             // 状态:色点 + 文字。选中态底图是深玉色,绿字压在上面看不清,所在线的状态字改用米白,颜色留给色点。
             Color loadColor = LoadColor(line.Load);
-            var dot = QdaoUguiFactory.CreateImage("LoadDot", button.transform, 520, (RowHeight - 18) / 2, 18, 18,
+            var dot = QdaoUguiFactory.CreateImage("LoadDot", button.transform, 31, (RowHeight - 18) / 2, 18, 18,
                 QdaoUguiTheme.RequireSprite(QdaoUguiTheme.StatusDotSpritePath));
             dot.color = loadColor;
             var load = Text(button.transform, switching ? SwitchingRowText : SceneChannelModels.LoadText(line.Load),
-                546, 0, 160, RowHeight, 28, line.IsCurrent ? Cream : switching ? Gold : loadColor);
+                252, 0, 126, RowHeight, 21, line.IsCurrent ? Cream : switching ? Gold : loadColor);
             load.name = LoadLabelPrefix + line.ChannelNo;
+        }
+
+        private const string FidelityResourceRoot="UI/Ugui/SceneSelectV1/Fidelity20261016/";
+        private static Image FidelityArt(UnityEngine.Transform parent,string key,float x,float y,float w,float h)
+            => QdaoUguiFactory.CreateImage(key,parent,x,y,w,h,QdaoUguiTheme.RequireSprite(FidelityResourceRoot+key));
+        private static Button FidelityButton(UnityEngine.Transform parent,string value,float x,float y,float w,float h,
+            Action click,bool selected=false,float fontSize=26,bool enabled=true,bool row=false)
+        {
+            var button=QdaoUguiFactory.CreateArtButton(value,parent,x,y,w,h,QdaoUguiTheme.RequireSprite(FidelityResourceRoot+
+                (row?(selected?"row_selected":"row_normal"):(selected?"button_primary":"button_secondary"))),out var image);
+            image.type=Image.Type.Simple;button.interactable=enabled;button.navigation=new Navigation{mode=Navigation.Mode.Automatic};
+            button.onClick.AddListener(()=>click?.Invoke());
+            Text(button.transform,value,16,0,w-32,h,fontSize,selected?Cream:Ink,alignment:TextAlignmentOptions.Center);
+            return button;
         }
 
         private void RequestSwitch(ulong sceneId)
@@ -409,3 +410,4 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
     }
 }
+

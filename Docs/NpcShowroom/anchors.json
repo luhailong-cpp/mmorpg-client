@@ -1,0 +1,117 @@
+{
+  "01": {
+    "pixelX": 545.73,
+    "pixelY": 1660,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "02": {
+    "pixelX": 561.53,
+    "pixelY": 1343,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "03": {
+    "pixelX": 591.45,
+    "pixelY": 1390,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "04": {
+    "pixelX": 595.18,
+    "pixelY": 1374,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "05": {
+    "pixelX": 590.97,
+    "pixelY": 1346,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "06": {
+    "pixelX": 611.99,
+    "pixelY": 1378,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "07": {
+    "pixelX": 581.12,
+    "pixelY": 1380,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "08": {
+    "pixelX": 540.15,
+    "pixelY": 1393,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "09": {
+    "pixelX": 592.72,
+    "pixelY": 1384,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "10": {
+    "pixelX": 610.17,
+    "pixelY": 1389,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "11": {
+    "pixelX": 608.85,
+    "pixelY": 1355,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "12": {
+    "pixelX": 608.13,
+    "pixelY": 1340,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "13": {
+    "pixelX": 611.08,
+    "pixelY": 1384,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "14": {
+    "pixelX": 550,
+    "pixelY": 1242,
+    "method": "Manually aligned between the two shoes; exclude tail and robe from horizontal feet center."
+  },
+  "15": {
+    "pixelX": 537.75,
+    "pixelY": 1392,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "16": {
+    "pixelX": 607.67,
+    "pixelY": 1384,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "17": {
+    "pixelX": 601.06,
+    "pixelY": 1377,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "18": {
+    "pixelX": 552.77,
+    "pixelY": 1382,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "19": {
+    "pixelX": 627.45,
+    "pixelY": 1393,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "20": {
+    "pixelX": 517.26,
+    "pixelY": 1367,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "21": {
+    "pixelX": 582.69,
+    "pixelY": 1323,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "22": {
+    "pixelX": 587.9,
+    "pixelY": 1351,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  },
+  "23": {
+    "pixelX": 570.44,
+    "pixelY": 1378,
+    "method": "visible-feet-band centroid; reviewed on full-character overlay"
+  }
+}

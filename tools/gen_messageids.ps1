@@ -226,6 +226,10 @@ $whitelist = @{
     # 组队(proto/team/team.proto, service ClientPlayerTeam;docs/design/team-system.md §H.1)。
     # 后三条是 S→C 推送:服务端写成返回 Empty 的 rpc 只为拿消息号,客户端用 GameClient.OnNotify 注册。
     # 数值不写死在这里,由 proto/message_id.txt 现场读取(当前 201..215)。
+    # 神秘商人方法必须由服务端分配消息号；尚未合入时生成0，由客户端明确显示未开放。
+    "SceneMysteryMerchantClientPlayerGetMysteryMerchantInfo"  = "GetMysteryMerchantInfo"
+    "SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods" = "BuyMysteryMerchantGoods"
+    "SceneMysteryMerchantClientPlayerNotifyMysteryMerchant"   = "NotifyMysteryMerchant"
     "ClientPlayerTeamCreateTeam"                   = "CreateTeam"
     "ClientPlayerTeamGetMyTeam"                    = "GetMyTeam"
     "ClientPlayerTeamApplyJoinTeam"                = "ApplyJoinTeam"
@@ -243,6 +247,11 @@ $whitelist = @{
     "ClientPlayerTeamNotifyTeamEvent"              = "NotifyTeamEvent"
 }
 
+$optionalUnsupportedMethods = @(
+    'SceneMysteryMerchantClientPlayerGetMysteryMerchantInfo',
+    'SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods',
+    'SceneMysteryMerchantClientPlayerNotifyMysteryMerchant'
+)
 $idByMethod = @{}
 foreach ($line in Get-Content -LiteralPath $source) {
     if ($line -match '^\s*(\d+)\s*=\s*([A-Za-z0-9_]+)\s*$') {
@@ -255,6 +264,9 @@ $emit = New-Object System.Collections.Generic.List[object]
 foreach ($k in $whitelist.Keys) {
     if ($idByMethod.ContainsKey($k)) {
         $emit.Add([pscustomobject]@{ Const = $whitelist[$k]; Id = $idByMethod[$k]; Method = $k })
+    } elseif ($k -in $optionalUnsupportedMethods) {
+        $emit.Add([pscustomobject]@{ Const = $whitelist[$k]; Id = 0; Method = "$k (unsupported)" })
+        $missing += $k
     } else {
         $missing += $k
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using UnityEngine;
@@ -31,6 +32,8 @@ namespace MmorpgClient.Game.Team
     ///
     /// 暂离是纯本地状态,服务端不知道:换图时照样会被队长带走(服务端按队伍拉人),只是到了之后不排队。
     /// 只有确认换了队或离了队才复位;断线重连、跨区重定向期间队伍视图暂时拿不到,不算换队。
+    /// 归队(点「归队」,或跟随中看不到队长)要服务端把人带到队长身边:何时请求由 <see cref="TeamRegroupPolicy"/> 定,
+    /// 本类只发 <see cref="RegroupRequested"/>,由宿主交给 TeamClient.RequestRegroup。
     /// 只在主线程使用;不持有任何需要释放的资源,丢弃前调一次 <see cref="Release"/> 即可。
     /// </summary>
     public sealed class TeamFollowDriver
@@ -64,13 +67,31 @@ namespace MmorpgClient.Game.Team
         // 有一段时间没有在记轨迹(暂离、战斗、视图未知):期间队长可能绕过了墙角,
         // 旧队首到他现在的位置之间不能直接连一条线。
         private bool _trailStale;
+        // 自己走到轨迹的哪儿了(TeamFollowPlanner 逐帧推进)。不再沿轨迹走的时候丢掉,回来时在整条轨迹上重新找。
+        private TeamFollowCursor _cursor;
         private bool _routing;
         private bool _routeFound;
         private Vector3 _routeTarget;
         private float _nextRouteAt;
         private float _forceRouteUntil;
+        private readonly TeamRegroupPolicy _regroup = new TeamRegroupPolicy();
+        // 玩家刚点了「归队」,下一次 Tick 拿到时钟后再交给 _regroup.Manual。
+        private bool _rejoinPending;
+        // 这一帧的"看不到队长"是不是真的看不到:本地角色就绪(地图装好)时才算,换图加载中不算。
+        private bool _localReady;
 
         public TeamFollowStatus Status { get; private set; }
+
+        /// <summary>要请求归队(服务端把自己带到队长身边)。每次最多触发一次;订阅方调用 TeamClient.RequestRegroup。</summary>
+        public event Action RegroupRequested;
+
+        /// <summary>
+        /// 诊断输出(联机验收排障用)。非 null 时:不跟随的原因变化、指令种类 / 被挡住 / 寻路状态变化各写一行,
+        /// 此外跟随中每 0.5 秒一行。为 null(缺省)时不拼任何字符串。宿主决定接到哪里(见 TeamFollowUiRoot)。
+        /// </summary>
+        public Action<string> Trace;
+        private string _traceKey;
+        private float _traceAt;
 
         /// <summary>玩家是否选择了暂离(只在有队且非队长时有意义)。</summary>
         public bool Away { get; private set; }
@@ -83,10 +104,33 @@ namespace MmorpgClient.Game.Team
             if (Away == away) return;
             Away = away;
             if (away) Suspend();
+            else _rejoinPending = true;
         }
 
         /// <summary>
-        /// 每帧调用一次。
+        /// 每帧调用一次。参数见 <see cref="TickFollow"/>;跟随之外,顺带决定这一帧要不要请求归队。
+        /// </summary>
+        public void Tick(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
+        {
+            _localReady = false;
+            TickFollow(game, snapshot, allowed, now);
+            bool follower = Status == TeamFollowStatus.Following || Status == TeamFollowStatus.LeaderOutOfSight;
+            bool lost = Status == TeamFollowStatus.LeaderOutOfSight && _localReady;
+            bool request = _regroup.Tick(lost, LeaderOnline(snapshot), now);
+            if (_rejoinPending)
+            {
+                _rejoinPending = false;
+                // 点完「归队」这一帧不跟随(战斗画面亮着 / 视图未知)就不请求:那时服务端也不会动人。
+                if (follower && _regroup.Manual(now)) request = true;
+            }
+            if (!request) return;
+            if (Trace != null)
+                Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} regroup requested: status={1} lost={2}", now, Status, lost));
+            RegroupRequested?.Invoke();
+        }
+
+        /// <summary>
+        /// 跟随本身(每帧一次,由 <see cref="Tick"/> 调用)。
         /// </summary>
         /// <param name="game">当前会话;null 等同于不允许跟随。</param>
         /// <param name="snapshot">
@@ -95,20 +139,23 @@ namespace MmorpgClient.Game.Team
         /// </param>
         /// <param name="allowed">此刻是否允许跟随移动(已进游戏、不在战斗画面)。false 时归还控制权但保留暂离选择。</param>
         /// <param name="now">单调时钟秒数(Time.realtimeSinceStartup)。</param>
-        public void Tick(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
+        private void TickFollow(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
         {
             if (snapshot == null || game == null)
             {
                 Suspend();
                 Status = TeamFollowStatus.None;
+                TraceIdle("no trusted team view");
                 return;
             }
 
             if (snapshot.TeamId != _teamId)
             {
-                // 确认换队 / 离队:暂离与上一支队伍的轨迹都不带过去。
+                // 确认换队 / 离队:暂离、没发出去的「归队」与上一支队伍的轨迹都不带过去。
                 _teamId = snapshot.TeamId;
                 Away = false;
+                _rejoinPending = false;
+                _regroup.Reset();
                 ForgetLeader();
             }
             if (game.CurrentSceneId != _sceneId)
@@ -123,12 +170,14 @@ namespace MmorpgClient.Game.Team
             {
                 Suspend();
                 Status = TeamFollowStatus.None;
+                TraceIdle(allowed ? "no slot (not a follower)" : "not allowed (not in game / battle)");
                 return;
             }
             if (Away)
             {
                 Suspend();
                 Status = TeamFollowStatus.Away;
+                TraceIdle("away");
                 return;
             }
 
@@ -138,9 +187,12 @@ namespace MmorpgClient.Game.Team
             if (leader == null)
             {
                 // 看不到队长:没有可跟的目标,让玩家自己走;轨迹作废,再见到队长时重起。
+                // 本地角色就绪时才算真的走散(Tick 据此请求归队);地图还在加载不算。
+                _localReady = controller != null;
                 Release();
                 ForgetLeader();
                 Status = TeamFollowStatus.LeaderOutOfSight;
+                TraceIdle(controller == null ? "no local controller" : "leader out of sight");
                 return;
             }
 
@@ -150,6 +202,8 @@ namespace MmorpgClient.Game.Team
             if (moved > LeaderJumpDistance || (_trailStale && moved > TeamFollowTrail.SampleSpacing))
             {
                 SeedTrail(leaderPosition, leader.Go.transform.forward, navigation);
+                if (Trace != null)
+                    Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} trail reseeded: leader moved {1:F2} stale={2}", now, moved, _trailStale));
             }
             else
             {
@@ -160,8 +214,37 @@ namespace MmorpgClient.Game.Team
             _trailStale = false;
 
             Bind(controller);
-            Apply(controller, Plan(controller, slot, now), now);
+            var command = Plan(controller, slot, now);
+            Apply(controller, command, now);
+            if (Trace != null) TraceFollowing(controller, leader, command, now);
             Status = TeamFollowStatus.Following;
+        }
+
+        private void TraceIdle(string reason)
+        {
+            if (Trace == null || _traceKey == reason) return;
+            _traceKey = reason;
+            Trace("idle: " + reason);
+        }
+
+        private void TraceFollowing(TianyongPlayerController controller, ActorView leader, TeamFollowCommand command, float now)
+        {
+            string key = command.Kind + "/" + controller.FollowBlocked + "/" + _routing + "/" + _routeFound + "/" +
+                         controller.IsMoving + "/" + _cursor.Valid;
+            if (key == _traceKey && now < _traceAt) return;
+            _traceKey = key;
+            _traceAt = now + 0.5f;
+            Vector3 self = controller.FeetPosition;
+            Vector3 lead = leader.Go.transform.position;
+            double head = _trail.HeadOdometer;
+            Trace(string.Format(CultureInfo.InvariantCulture,
+                "t={0:F2} kind={1} self=({2:F2},{3:F2}) leader=({4:F2},{5:F2}) leaderV=({6:F1},{7:F1}) head={8:F2} " +
+                "cursor={9:F2} behind={10:F2} point=({11:F2},{12:F2}) scale={13:F2} moving={14} blocked={15} " +
+                "routing={16} routeFound={17} forceRoute={18} epoch={19}",
+                now, command.Kind, self.x, self.z, lead.x, lead.z, leader.Velocity.x, leader.Velocity.z, head,
+                _cursor.Valid ? _cursor.Odometer : -1d, _cursor.Valid ? head - _cursor.Odometer : -1d,
+                command.Point.x, command.Point.z, command.SpeedScale, controller.IsMoving, controller.FollowBlocked,
+                _routing, _routeFound, now < _forceRouteUntil, _trail.Epoch));
         }
 
         /// <summary>把控制权还给玩家(幂等)。不清暂离,也不清轨迹。</summary>
@@ -169,6 +252,7 @@ namespace MmorpgClient.Game.Team
         {
             _routing = false;
             _forceRouteUntil = 0f;
+            _cursor = default;
             if (_controller == null) return;
             // Unity 重载的 == 在对象已销毁时为 true,上面那句已经拦住;这里一定是活对象。
             _controller.FollowInputRejected -= HandleInputRejected;
@@ -196,12 +280,13 @@ namespace MmorpgClient.Game.Team
             // 两边目的地不一致,人就在边界和格心之间来回踱步。统一成"最近可走点",只做到没到 / 寻路过去。
             if (!navigation.IsWalkable(slotPoint))
             {
+                _cursor = default;
                 return navigation.TryFindNearestWalkable(slotPoint, out var reachable)
                     ? TeamFollowPlanner.PlanToPoint(reachable, self, moving)
                     : new TeamFollowCommand(TeamFollowCommandKind.Hold);
             }
 
-            var command = TeamFollowPlanner.Plan(_trail, slot, self, moving);
+            var command = TeamFollowPlanner.Plan(_trail, slot, self, moving, ref _cursor);
             // 上一步直线跟随被掩码挡住(轨迹是按远端角色的显示位置记的,拐角处可能擦到不可走格):
             // 接下来一小段时间改用寻路去槽位,绕过去之后再回到直线跟随。
             if (controller.FollowBlocked) _forceRouteUntil = now + BlockedRouteSeconds;
@@ -256,6 +341,15 @@ namespace MmorpgClient.Game.Team
 
         private void HandleInputRejected() => InputRejected?.Invoke();
 
+        /// <summary>队伍快照里队长在线;找不到队长那一行(视图未知 / 不在队里)按不在线。</summary>
+        private static bool LeaderOnline(TeamSnapshot snapshot)
+        {
+            if (snapshot == null || snapshot.LeaderId == 0) return false;
+            foreach (var member in snapshot.Members)
+                if (member != null && member.PlayerId == snapshot.LeaderId) return member.IsOnline;
+            return false;
+        }
+
         private static TianyongPlayerController ResolveLocalController(ActorWorld world)
         {
             if (world == null || !world.HasLocalPlayer) return null;
@@ -293,6 +387,7 @@ namespace MmorpgClient.Game.Team
             _leaderId = 0;
             _hasLeaderEntity = false;
             _trail.Clear();
+            _cursor = default;
         }
 
         /// <summary>

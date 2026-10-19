@@ -34,6 +34,15 @@ namespace MmorpgClient.Game.Team
             snapshot.LeaderId = view.LeaderId;
             snapshot.ZoneId = view.ZoneId;
             snapshot.MatchStarting = view.MatchState == TeamMatchState.Starting;
+            // 补位匹配中:目标人数等三项只在这个状态下有意义,其余状态保持零值,免得界面读到无关的数。
+            snapshot.MatchFillSupported = view.MatchFillSupported;
+            snapshot.MatchQueued = view.MatchState == TeamBackfillProtocol.QueuedState;
+            if (snapshot.MatchQueued)
+            {
+                snapshot.MatchTargetSize = view.MatchTargetSize;
+                snapshot.MatchQueuedAtMs = view.MatchQueuedAtMs;
+                snapshot.MatchBattleConfigId = view.MatchBattleConfigId;
+            }
             snapshot.ApplicationCount = view.ApplicationCount;
 
             // 成员按 JoinSeq 升序。插入排序是稳定的:JoinSeq 相同时保持服务端原顺序
@@ -116,13 +125,13 @@ namespace MmorpgClient.Game.Team
         }
 
         /// <summary>
-        /// 立绘 id。存档外观 id 与世界、战斗同一口径(PersistedAppearanceIdentityTests 钉住),非空原样返回;
+        /// 立绘 id。存档外观 id 与世界、战斗同一口径；已撤旧图使用中央兼容映射，其他明确 id 保留;
         /// 缺外观时按四职业推导,gender 0 的旧存档按男性处理;都推不出返回 null,界面显示"待同步",
         /// 不拿默认立绘冒充。
         /// </summary>
         public static string ResolveCharacterId(uint classId, uint gender, string appearanceId)
         {
-            if (!string.IsNullOrEmpty(appearanceId)) return appearanceId;
+            if (!string.IsNullOrEmpty(appearanceId)) return QdaoCharacterCatalog.ResolveRole(classId, gender, appearanceId);
             if (classId >= 1 && classId <= 4) return QdaoCharacterCatalog.ResolveRole(classId, gender);
             return null;
         }

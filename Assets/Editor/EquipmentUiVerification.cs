@@ -63,6 +63,9 @@ public static class EquipmentUiVerification
 
             void Shoot(string name)
             {
+                foreach (var actionName in new[] { "EquipAction", "EquipMore", "EquipShare", "ConfirmWishSelection" })
+                    if (root.GetComponentsInChildren<Button>(true).Count(b => b.gameObject.activeInHierarchy && b.name == actionName) > 1)
+                        throw new InvalidOperationException("Multiple visible equipment controls: " + actionName);
                 scope.transform.SetAsLastSibling(); RealtimeTween.AdvanceEditorCapture(1f);
                 foreach(var go in scene.GetRootGameObjects())
                 {
@@ -75,7 +78,7 @@ public static class EquipmentUiVerification
                 pixels.ReadPixels(new Rect(0,0,width,height),0,0,false); pixels.Apply(false,false);
                 File.WriteAllBytes(Path.Combine(OutputDirectory,name+"_"+width+"x"+height+".png"),pixels.EncodeToPNG());
             }
-            Button Find(string name) => root.GetComponentsInChildren<Button>(true).Single(b=>b.name==name);
+            Button Find(string name) => root.GetComponentsInChildren<Button>(true).Where(b=>b.gameObject.activeInHierarchy).Single(b=>b.name==name);
             void Require(bool condition,string message){if(!condition)throw new InvalidOperationException(message);}
 
             uint[] confirmed=null; bool cancelled=false;
@@ -91,6 +94,8 @@ public static class EquipmentUiVerification
             Require(confirmed.Length==0,"Clear must confirm an empty preference.");
             wish.Show(ArmourOptions(),new uint[]{8},ids=>confirmed=ids,()=>cancelled=true); wish.Cancel();
             Require(cancelled && !wish.IsVisible,"Cancel must close and invoke cancellation.");
+            // Standalone card fixtures own this state; hide the gameplay details before opening another card.
+            window.Hide();
             var weapon=Weapon(); int actions=0; card.Show(weapon,()=>actions++,()=>actions++,()=>actions++); Shoot("03-weapon-detail");
             Require(root.GetComponentsInChildren<TMP_Text>().Count(t=>t.name.StartsWith(EquipDetailCard.LinePrefix))==10,"All 10 weapon rows must be present.");
             Require(!root.GetComponentsInChildren<RectTransform>().Any(t=>t.name=="TooltipAttributesViewport"),"All 10 reference weapon rows must fit together.");

@@ -13,6 +13,7 @@ namespace MmorpgClient.Net
         public const uint AutoAllocateAttributePoints =  173; // SceneAttributeClientPlayerAutoAllocateAttributePoints
         public const uint AutoAllocatePetPoints  =  188; // ScenePetClientPlayerAutoAllocatePetPoints
         public const uint BuyGuildShopGoods      =  233; // GuildServiceBuyGuildShopGoods
+        public const uint BuyMysteryMerchantGoods =    0; // SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods (unsupported)
         public const uint CancelGuildApplication =  219; // GuildServiceCancelGuildApplication
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
         public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
@@ -41,6 +42,7 @@ namespace MmorpgClient.Net
         public const uint GetGuildRankByGuild    =   52; // GuildServiceGetGuildRankByGuild
         public const uint GetGuildShop           =  228; // GuildServiceGetGuildShop
         public const uint GetMissionList         =  193; // SceneMissionClientPlayerGetMissionList
+        public const uint GetMysteryMerchantInfo =    0; // SceneMysteryMerchantClientPlayerGetMysteryMerchantInfo (unsupported)
         public const uint GetMyTeam              =  207; // ClientPlayerTeamGetMyTeam
         public const uint GetNetworkProbePlan    =  275; // MatchServiceGetNetworkProbePlan
         public const uint GetPetList             =  181; // ScenePetClientPlayerGetPetList
@@ -115,6 +117,7 @@ namespace MmorpgClient.Net
         public const uint NotifyEnterScene       =   79; // SceneSceneClientPlayerNotifyEnterScene
         public const uint NotifyGuildChanged     =  220; // GuildServiceNotifyGuildChanged
         public const uint NotifyMoveAck          =  137; // SceneMovementClientPlayerNotifyMoveAck
+        public const uint NotifyMysteryMerchant  =    0; // SceneMysteryMerchantClientPlayerNotifyMysteryMerchant (unsupported)
         public const uint NotifyPetListChanged   =  184; // ScenePetClientPlayerNotifyPetListChanged
         public const uint NotifySceneInfo        =   31; // SceneSceneClientPlayerNotifySceneInfo
         public const uint NotifySkillInterrupted =   33; // SceneSkillClientPlayerNotifySkillInterrupted

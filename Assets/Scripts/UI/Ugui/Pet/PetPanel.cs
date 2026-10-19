@@ -14,7 +14,7 @@ namespace MmorpgClient.UI.Ugui.Pet
     /// 服务器保有全部数值和分配规则；本地只保存待确认增量。
     /// 美术使用已交付的无字边框与独立肖像，整屏效果图不参与运行时绘制。
     /// </summary>
-    public sealed class PetPanel
+    public sealed partial class PetPanel
     {
         private const float RowHeight = 74f;
         private const int MaxRows = 6;
@@ -57,8 +57,8 @@ namespace MmorpgClient.UI.Ugui.Pet
         public PetPanel(PetUiRoot owner, UnityEngine.Transform parent)
         {
             _owner = owner;
-            var window = CreatePaintedPanel("PetWindow", parent, PetUiStyle.WindowX,
-                PetUiStyle.WindowY, PetUiStyle.WindowW, PetUiStyle.WindowH, "window_frame");
+            var window = CreatePaintedPanel("PetWindow", parent, FidelityPetGeometry.WindowX,
+                FidelityPetGeometry.WindowY, FidelityPetGeometry.WindowW, FidelityPetGeometry.WindowH, "window_frame");
             window.raycastTarget = true;
             _root = window.rectTransform;
 
@@ -66,9 +66,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             QdaoUguiFactory.CreateImage("Title", _root, 885f, -32f, 270f, 60f,
                 LoadPainted("title_pet")).preserveAspect = true;
             var close = CreateAction("Close", _root,
-                PetUiStyle.WindowW - 34f, -14f, 82f, 82f, string.Empty, false);
+                FidelityPetGeometry.WindowW - 34f, -14f, 82f, 82f, string.Empty, false);
             SkinPainted(close.Plate, "close_button");
-            QdaoUguiFactory.CreateImage("CloseTassel", _root, PetUiStyle.WindowW + 34f,
+            QdaoUguiFactory.CreateImage("CloseTassel", _root, FidelityPetGeometry.WindowW + 34f,
                 28f, 28f, 70f, LoadPainted("close_tassel")).preserveAspect = true;
             close.Button.onClick.AddListener(Hide);
 
@@ -94,21 +94,22 @@ namespace MmorpgClient.UI.Ugui.Pet
             _tooltip.gameObject.SetActive(false);
             Hide();
             RefreshActionButtons();
+            ApplyFidelityLayout();
         }
 
         private void BuildLeftColumn()
         {
-            _carryText = QdaoUguiFactory.CreateText("CarryCount", _root, PetUiStyle.LeftX,
-                66f, PetUiStyle.LeftW, 48f, "携带数量：—", 36f,
+            _carryText = QdaoUguiFactory.CreateText("CarryCount", _root, FidelityPetGeometry.LeftX,
+                66f, FidelityPetGeometry.LeftW, 48f, "携带数量：—", 36f,
                 PetUiStyle.FieldLabel, TextAlignmentOptions.Center);
             var viewport = QdaoUguiFactory.CreateRect("PetRosterViewport", _root,
-                PetUiStyle.LeftX, 124f, PetUiStyle.LeftW, PetUiStyle.RosterHeight);
+                FidelityPetGeometry.LeftX, 124f, FidelityPetGeometry.LeftW, FidelityPetGeometry.RosterHeight);
             var hit = viewport.gameObject.AddComponent<Image>();
             hit.color = new Color(1f, 1f, 1f, 0.001f);
             hit.raycastTarget = true;
             viewport.gameObject.AddComponent<RectMask2D>();
             _rosterContent = QdaoUguiFactory.CreateRect("PetRosterContent", viewport,
-                0f, 0f, PetUiStyle.LeftW, PetUiStyle.RosterHeight);
+                0f, 0f, FidelityPetGeometry.LeftW, FidelityPetGeometry.RosterHeight);
             var scroll = viewport.gameObject.AddComponent<ScrollRect>();
             scroll.viewport = viewport;
             scroll.content = _rosterContent;
@@ -117,14 +118,14 @@ namespace MmorpgClient.UI.Ugui.Pet
             scroll.movementType = ScrollRect.MovementType.Clamped;
             scroll.scrollSensitivity = 70f;
             _emptyText = BattleUiWidgets.CreateWrappedText("EmptyRoster", _root,
-                PetUiStyle.LeftX + 30f, 344f, PetUiStyle.LeftW - 60f, 160f,
+                FidelityPetGeometry.LeftX + 30f, 344f, FidelityPetGeometry.LeftW - 60f, 160f,
                 "暂无宝宝\n获得宝宝后可在此查看与培养", 32f, PetUiStyle.HintText);
             _emptyText.alignment = TextAlignmentOptions.Center;
 
-            var help = CreateAction("CultivationHelp", _root, PetUiStyle.LeftX,
+            var help = CreateAction("CultivationHelp", _root, FidelityPetGeometry.LeftX,
                 806f, 256f, 76f, "培养说明", false);
             help.Button.onClick.AddListener(ShowDetails);
-            _summonButton = CreateAction("Summon", _root, PetUiStyle.LeftX + 274f,
+            _summonButton = CreateAction("Summon", _root, FidelityPetGeometry.LeftX + 274f,
                 806f, 256f, 76f, "出 战", true);
             _summonButton.Button.onClick.AddListener(OnSummonClicked);
 
@@ -138,8 +139,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             {
                 int index = _petItems.Count;
                 var item = CreateAction($"PetItem{index}", _rosterContent, 0f,
-                    index * (PetUiStyle.PetItemHeight + PetUiStyle.PetItemGap),
-                    PetUiStyle.LeftW, PetUiStyle.PetItemHeight, string.Empty, false);
+                    index * (FidelityPetGeometry.PetItemHeight + FidelityPetGeometry.PetItemGap),
+                    FidelityPetGeometry.LeftW, FidelityPetGeometry.PetItemHeight, string.Empty, false);
                 SkinPainted(item.Plate, "pet_card_normal");
                 item.Button.onClick.AddListener(() => OnPetItemClicked(index));
                 CreatePaintedPanel("PortraitFrame", item.Rect,
@@ -175,7 +176,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             for (int i = 0; i < labels.Length; i++)
             {
                 int position = positions[i];
-                float x = PetUiStyle.MidX + position % 2 * 592f;
+                float x = FidelityPetGeometry.MidX + position % 2 * 592f;
                 float y = 108f + position / 2 * 82f;
                 QdaoUguiFactory.CreateText($"Stat{i}Label", _root, x, y, 150f, 64f,
                     labels[i], 40f, PetUiStyle.FieldLabel);
@@ -187,9 +188,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                 _statValues[i].fontSizeMax = 36f;
             }
             _levelValue = QdaoUguiFactory.CreateText("PetLevel", _root,
-                PetUiStyle.MidX, 354f, 420f, 40f, "等级 —", 27f, PetUiStyle.HintText);
+                FidelityPetGeometry.MidX, 354f, 420f, 40f, "等级 —", 27f, PetUiStyle.HintText);
             _growthValue = QdaoUguiFactory.CreateText("PetGrowth", _root,
-                PetUiStyle.MidX + 592f, 354f, 500f, 40f, "成长率 —", 27f, PetUiStyle.HintText);
+                FidelityPetGeometry.MidX + 592f, 354f, 500f, 40f, "成长率 —", 27f, PetUiStyle.HintText);
         }
 
         private void BuildRightColumn()
@@ -205,67 +206,39 @@ namespace MmorpgClient.UI.Ugui.Pet
 
             for (int i = 0; i < MaxRows; i++)
             {
-                _rows[i] = CreatePointStepper($"Row{i}", PetUiStyle.MidX + i % 2 * 592f,
+                _rows[i] = CreatePointStepper($"Row{i}", FidelityPetGeometry.MidX + i % 2 * 592f,
                     490f + i / 2 * 92f);
                 _rows[i].Bind(OnRowChanged);
                 AttachRowTooltip(_rows[i]);
                 _rows[i].Rect.gameObject.SetActive(false);
             }
-            _remainText = QdaoUguiFactory.CreateText("Remain", _root, PetUiStyle.MidX,
+            _remainText = QdaoUguiFactory.CreateText("Remain", _root, FidelityPetGeometry.MidX,
                 666f, 700f, 58f, "未分配　—", 36f, PetUiStyle.RemainText);
-            _resetButton = CreateAction("Reset", _root, PetUiStyle.MidX,
+            _resetButton = CreateAction("Reset", _root, FidelityPetGeometry.MidX,
                 730f, 316f, 72f, "一键洗点", false);
             _resetButton.Button.onClick.AddListener(OnResetClicked);
-            _discardButton = CreateAction("Discard", _root, PetUiStyle.MidX + 344f,
+            _discardButton = CreateAction("Discard", _root, FidelityPetGeometry.MidX + 344f,
                 730f, 316f, 72f, "重 置", false);
             _discardButton.Button.onClick.AddListener(OnDiscardClicked);
-            _confirmButton = CreateAction("Confirm", _root, PetUiStyle.MidX + 744f,
+            _confirmButton = CreateAction("Confirm", _root, FidelityPetGeometry.MidX + 744f,
                 730f, 378f, 72f, "确认加点", true);
             _confirmButton.Button.onClick.AddListener(OnConfirmClicked);
-            var resistance = CreateAction("Resistance", _root, PetUiStyle.MidX,
+            var resistance = CreateAction("Resistance", _root, FidelityPetGeometry.MidX,
                 814f, 316f, 72f, "抗 性", false);
             resistance.SetInteractable(false);
             var resistanceHover = resistance.Rect.gameObject.AddComponent<UiPointerHoverRelay>();
             resistanceHover.OnEnter = () => SetStatus("抗性培养暂未开放。");
-            _autoButton = CreateAction("Auto", _root, PetUiStyle.MidX + 744f,
+            _autoButton = CreateAction("Auto", _root, FidelityPetGeometry.MidX + 744f,
                 814f, 378f, 72f, "自动加点", true);
             _autoButton.Button.onClick.AddListener(OnAutoClicked);
             _statusText = BattleUiWidgets.CreateWrappedText("Status", _root,
-                PetUiStyle.MidX + 334f, 814f, 396f, 72f, string.Empty, 24f, PetUiStyle.HintText);
+                FidelityPetGeometry.MidX + 334f, 814f, 396f, 72f, string.Empty, 24f, PetUiStyle.HintText);
         }
 
-        private UiPointRow CreatePointStepper(string name, float x, float y)
+        private UiPointRow CreatePointStepper(string name,float x,float y)
         {
-            var row = new UiPointRow
-            {
-                Rect = QdaoUguiFactory.CreateRect(name, _root, x, y, 530f, RowHeight)
-            };
-            var hit = row.Rect.gameObject.AddComponent<Image>();
-            hit.color = new Color(1f, 1f, 1f, 0.001f);
-            row.Hover = row.Rect.gameObject.AddComponent<UiPointerHoverRelay>();
-            row.NameLabel = QdaoUguiFactory.CreateText(name + "Name", row.Rect,
-                0f, 0f, 146f, RowHeight, string.Empty, 40f, PetUiStyle.FieldLabel);
-            CreateValuePlate(name + "ValuePlate", row.Rect, 234f, 7f, 176f, 60f);
-            row.ValueLabel = QdaoUguiFactory.CreateText(name + "Value", row.Rect,
-                240f, 7f, 164f, 60f, "0", 36f, PetUiStyle.PointValue, TextAlignmentOptions.Center);
-            row.ValueLabel.richText = true;
-            row.ValueLabel.enableAutoSizing = true;
-            row.ValueLabel.fontSizeMin = 24f;
-            row.ValueLabel.fontSizeMax = 36f;
-            var minus = CreateStep(name + "Minus", row.Rect, 158f, "−");
-            row.Minus = minus.Button;
-            row.Minus.onClick.AddListener(() => row.Step(-1));
-            var plus = CreateStep(name + "Plus", row.Rect, 428f, "+");
-            row.Plus = plus.Button;
-            row.Plus.onClick.AddListener(() => row.Step(1));
-            // 复用既有权威上下界与待提交逻辑；宝宝效果图仅展示数字步进器。
-            var range = QdaoUguiFactory.CreateRect(name + "Range", row.Rect, 0f, 0f, 1f, 1f);
-            row.Slider = range.gameObject.AddComponent<Slider>();
-            row.Slider.wholeNumbers = true;
-            row.Slider.navigation = new Navigation { mode = Navigation.Mode.None };
-            row.Slider.onValueChanged.AddListener(row.HandleSliderChanged);
-            range.gameObject.SetActive(false);
-            return row;
+            // Same UiPointRow pending/committed model and callbacks; expose the v10 slider presentation.
+            return CharacterAttributeVisuals.PointRow(name,_root,x,y,1088,78.4f);
         }
 
         private static UiTextButton CreateStep(string name, UnityEngine.Transform parent, float x, string text)
@@ -285,7 +258,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 string label = names[i];
                 bool selected = i == 1;
                 var tab = CreateAction("Tab" + label, _root,
-                    PetUiStyle.WindowW - 6f, 124f + i * 158f, 106f, 150f,
+                    FidelityPetGeometry.WindowW - 6f, 124f + i * 158f, 106f, 150f,
                     label[0] + "\n" + label[1], selected);
                 tab.Label.fontSize = 39f;
                 SkinPainted(tab.Plate, selected ? "tab_vertical_selected" : "tab_vertical_normal");
@@ -431,10 +404,12 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         public void Show()
         {
+            Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
             Skills.SkillUiRoot.Instance?.HidePanel();
             // 属性窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
             AttributeUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
             Gameplay.GameplayUiRoot.Instance?.HidePanel();
             if (_root != null) _root.gameObject.SetActive(true);
             HideTooltip();
@@ -558,9 +533,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             EnsurePetItems(_list.Pets.Count);
             _carryText.text = $"携带数量：{_list.Pets.Count}/{_list.MaxPets}";
             _emptyText.gameObject.SetActive(_list.Pets.Count == 0);
-            _rosterContent.sizeDelta = new Vector2(PetUiStyle.LeftW,
-                Mathf.Max(PetUiStyle.RosterHeight, _list.Pets.Count *
-                    (PetUiStyle.PetItemHeight + PetUiStyle.PetItemGap) - PetUiStyle.PetItemGap));
+            _rosterContent.sizeDelta = new Vector2(FidelityPetGeometry.LeftW,
+                Mathf.Max(FidelityPetGeometry.RosterHeight, _list.Pets.Count *
+                    (FidelityPetGeometry.PetItemHeight + FidelityPetGeometry.PetItemGap) - FidelityPetGeometry.PetItemGap));
             for (int i = 0; i < _petItems.Count; i++)
             {
                 bool visible = i < _list.Pets.Count;
@@ -658,11 +633,12 @@ namespace MmorpgClient.UI.Ugui.Pet
             float rowSpacing = index > 4 ? 60f : 92f;
             for (int i = 0; i < index; i++)
             {
-                Place(_rows[i].Rect, PetUiStyle.MidX + i % 2 * 592f,
+                Place(_rows[i].Rect, FidelityPetGeometry.MidX + i % 2 * 592f,
                     (index > 4 ? 474f : 490f) + i / 2 * rowSpacing, 530f, RowHeight);
                 _rows[i].Rect.localScale = index > 4 ? new UnityEngine.Vector3(1f, 0.8f, 1f) : UnityEngine.Vector3.one;
             }
             RefreshRemainText();
+            ApplyFidelityLayout();
         }
 
         private IEnumerable<UiPointRow> ActiveRows()
@@ -925,7 +901,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (string.IsNullOrEmpty(desc) || _tooltip == null) return;
             _tooltipText.text = desc;
             // 贴在该行下方偏左
-            var anchored = row.Rect.anchoredPosition;
+            var anchored = (Vector2)_root.InverseTransformPoint(row.Rect.TransformPoint(UnityEngine.Vector3.zero));
             _tooltip.anchoredPosition = new Vector2(anchored.x + 60f, anchored.y - RowHeight + 4f);
             _tooltip.SetAsLastSibling();
             _tooltip.gameObject.SetActive(true);

@@ -15,10 +15,19 @@ namespace MmorpgClient.Game.Team
     /// </summary>
     public sealed class TeamFollowTrail
     {
+        // 每个记录点的里程:队长从这条轨迹的起点走到该点累计的弧长,与 _points 一一对应。
+        // 用 double:里程只增不减地累加一整个会话,float 走到几万米后分辨率就不够 1 厘米了。
+        private readonly List<double> _odometers = new List<double>();
+
         /// <summary>相邻两个记录点的最小间距。太密浪费、太疏拐弯会被削平。</summary>
         public const float SampleSpacing = 0.5f;
-        /// <summary>一次停步回拉最多从末端收回这么长。远端外推冲过头的量不会超过它;再多就不是回拉了。</summary>
-        public const float MaxRetractLength = 1.5f;
+        /// <summary>
+        /// 一次停步回拉最多从末端剪掉这么长。远端角色停步前按最后的速度外推,停步消息晚到多少就冲过头多少
+        /// (移速 9 时晚 0.18 秒就是 1.6,联机验收量到过);3 盖住约 0.33 秒的延迟。再多就不当回拉处理。
+        /// </summary>
+        public const float MaxRetractLength = 3f;
+        /// <summary>停步回拉时,队首离它在末端那一截上的投影不超过这么远,才在投影处剪断(说明队首确实站在走过的路上)。</summary>
+        public const float RetractSnapDistance = 0.3f;
 
         // 相交轨迹的投影会有浮点舍入差异;0.1 毫米内视为同样近,优先保留靠近队首的段。
         private const float ProjectionTieTolerance = 0.0001f;
@@ -27,7 +36,7 @@ namespace MmorpgClient.Game.Team
         private readonly List<Vector3> _points = new List<Vector3>();
         private readonly float _maxLength;
         private Vector3 _head;
-        // 自上一次落定新记录点以来已经从末端收回的弧长。
+        // 队长这次站定以来已经从末端剪掉的弧长;队长重新走起来(记新点时没在回拉)才清零。
         private float _retracted;
 
         /// <param name="maxLength">保留的最大弧长;更老的部分被裁掉。必须容得下整支队伍再加一段追赶余量。</param>
@@ -41,6 +50,26 @@ namespace MmorpgClient.Game.Team
 
         /// <summary>队长当前位置。</summary>
         public Vector3 Head => _head;
+
+        /// <summary>
+        /// 每次清空 / 重起(<see cref="Clear"/>、<see cref="Reset"/>)加一。里程只在同一代轨迹内可比,
+        /// 持有里程的一方(<see cref="TeamFollowCursor"/>)据此发现自己记的是上一条轨迹。
+        /// </summary>
+        public int Epoch { get; private set; }
+
+        /// <summary>
+        /// 队首的里程:队长沿这条轨迹走到当前位置累计的弧长。停步回拉把末端收回时会相应变小。
+        /// 轨迹上一点"距队首的弧长" = 队首里程 - 该点里程。
+        /// </summary>
+        public double HeadOdometer
+        {
+            get
+            {
+                if (!HasHead || _points.Count == 0) return 0d;
+                int last = _points.Count - 1;
+                return _odometers[last] + Horizontal(_head, _points[last]);
+            }
+        }
 
         /// <summary>从队首沿折线到最老记录点的弧长。</summary>
         public float Length
@@ -57,6 +86,8 @@ namespace MmorpgClient.Game.Team
         public void Clear()
         {
             _points.Clear();
+            _odometers.Clear();
+            Epoch++;
             HasHead = false;
             _head = default;
             _retracted = 0f;
@@ -70,11 +101,13 @@ namespace MmorpgClient.Game.Team
         public void Reset(Vector3 head, IReadOnlyList<Vector3> tailBehindHead)
         {
             _points.Clear();
+            _odometers.Clear();
+            Epoch++;
             if (tailBehindHead != null)
             {
-                for (int i = tailBehindHead.Count - 1; i >= 0; i--) _points.Add(tailBehindHead[i]);
+                for (int i = tailBehindHead.Count - 1; i >= 0; i--) AppendPoint(tailBehindHead[i]);
             }
-            _points.Add(head);
+            AppendPoint(head);
             _head = head;
             HasHead = true;
             _retracted = 0f;
@@ -86,11 +119,13 @@ namespace MmorpgClient.Game.Team
         /// </summary>
         /// <param name="head">队长当前位置。</param>
         /// <param name="allowRetract">
-        /// 队首往回退时是否把退过的那一小段从末端收掉。只应在队长**站定**时传 true:远端角色靠外推显示,
-        /// 停步时可能先冲过头再被拉回停点,不收的话末端会留下一个"向前再折返"的小尖角,队员跟着走过去
-        /// 再走回来。队长带着速度往回走是真的掉头,必须传 false —— 那时轨迹要折成发夹留着:收掉的话
-        /// 槽位会一直落在"队首再往前"的方向上,队员被赶着跑在队长前面。
-        /// 即使传 true,自上一次落定新点以来最多也只收回 <see cref="MaxRetractLength"/>。
+        /// 队首往回退时是否把退过的那一段从末端剪掉。只应在队长**站定**时传 true:远端角色靠外推显示,
+        /// 停步时可能先冲过头再被拉回停点,不剪的话末端会留下一截"向前再折返"的假路,队员跟着走过去
+        /// 再走回来、或把这截假路算进距离里停得离队长太近。队长带着速度往回走是真的掉头,必须传 false ——
+        /// 那时轨迹要折成发夹留着:剪掉的话槽位会一直落在"队首再往前"的方向上,队员被赶着跑在队长前面。
+        /// 剪法:在末端往回 <see cref="MaxRetractLength"/>(队长这次站定以来累计)以内找队首的投影,
+        /// 离队首不超过 <see cref="RetractSnapDistance"/> 就在投影处截断。一帧跳回很远、或冲过头的那一截
+        /// 只有一个记录点,都能一次剪干净。
         /// </param>
         public void Push(Vector3 head, bool allowRetract = false)
         {
@@ -101,25 +136,14 @@ namespace MmorpgClient.Game.Team
             }
 
             _head = head;
-            if (allowRetract)
-            {
-                // 新位置比最后一个记录点更靠近倒数第二个点 = 队首退过了最后一个点,它已经不在路上了。
-                // 用严格小于:队长站着不动时队首与最后一个点重合,不能每帧把它收掉再加回来。
-                while (_points.Count >= 2 &&
-                       Horizontal(head, _points[_points.Count - 2]) <
-                       Horizontal(_points[_points.Count - 1], _points[_points.Count - 2]))
-                {
-                    float segment = Horizontal(_points[_points.Count - 1], _points[_points.Count - 2]);
-                    if (_retracted + segment > MaxRetractLength) break;
-                    _retracted += segment;
-                    _points.RemoveAt(_points.Count - 1);
-                }
-            }
+            if (allowRetract) CutBackTo(head);
 
             if (Horizontal(head, _points[_points.Count - 1]) >= SampleSpacing)
             {
-                _points.Add(head);
-                _retracted = 0f;
+                AppendPoint(head);
+                // 回拉额度只在队长重新走起来时才恢复:站定期间显示位置一路往回漂,额度用完后的部分按真路记下
+                // (折成发夹),不能因为记了新点就又能往回剪,那样会把整条路一截一截吞掉。
+                if (!allowRetract) _retracted = 0f;
                 Trim();
             }
         }
@@ -181,6 +205,135 @@ namespace MmorpgClient.Game.Team
             return best;
         }
 
+        /// <summary>
+        /// 把 position 投影到轨迹上里程落在 [fromOdometer, toOdometer] 之内的那一部分。
+        /// 返回 false 表示窗口内没有轨迹(窗口整个落在已裁掉的旧段之外,或在队首之前)。
+        ///
+        /// 为什么要按里程开窗:队长沿原路折返、或在同一条街上来回走时,轨迹的几段在几何上重叠,
+        /// 只按"哪一段离我最近"选,选中的段会随着厘米级的偏差在新旧两段之间来回跳 —— 两段的行进方向
+        /// 相反,队员就在原地一步向前一步向后。调用方记着自己上一帧的里程,只在它附近找,就不会被
+        /// 几十米之前走过的那一趟抢走。
+        /// </summary>
+        /// <param name="preferOdometer">
+        /// 几处差不多一样近(相差不超过 tieTolerance)时取里程离它最近的一处;
+        /// 传 <see cref="double.PositiveInfinity"/> 表示取离队首最近的。
+        /// </param>
+        /// <param name="odometer">最近点的里程。</param>
+        /// <param name="lateral">position 到最近点的水平距离。</param>
+        public bool TryProject(Vector3 position, double fromOdometer, double toOdometer, double preferOdometer,
+            float tieTolerance, out double odometer, out float lateral)
+        {
+            odometer = 0d;
+            lateral = float.PositiveInfinity;
+            if (!HasHead || _points.Count == 0 || fromOdometer > toOdometer) return false;
+
+            // 第一遍找窗口内的最近距离,第二遍在"差不多一样近"的候选里按里程偏好挑:
+            // 一遍做完的话,一串两两相近的候选会让结果顺着链条漂走。
+            float nearest = float.PositiveInfinity;
+            for (int pass = 0; pass < 2; pass++)
+            {
+                bool found = false;
+                double headOdometer = HeadOdometer;
+                // 队首自己也是候选:窗口只盖到队首、或 position 在队首前面时,最近点就是它。
+                if (headOdometer >= fromOdometer && headOdometer <= toOdometer)
+                    Consider(pass, Horizontal(position, _head), headOdometer, preferOdometer, tieTolerance,
+                        ref nearest, ref found, ref odometer, ref lateral);
+
+                Vector3 newer = _head;
+                double newerOdometer = headOdometer;
+                for (int i = _points.Count - 1; i >= 0; i--)
+                {
+                    Vector3 older = _points[i];
+                    double olderOdometer = _odometers[i];
+                    // 从队首往回走,里程单调不增:整段都比窗口旧,后面的只会更旧。
+                    if (newerOdometer < fromOdometer) break;
+                    float segment = Horizontal(newer, older);
+                    if (segment > 0f && olderOdometer <= toOdometer)
+                    {
+                        // t = 0 在新端,t = 1 在旧端;把 t 夹到窗口盖住的那一截上。
+                        float low = newerOdometer > toOdometer ? (float)((newerOdometer - toOdometer) / segment) : 0f;
+                        float high = olderOdometer < fromOdometer ? (float)((newerOdometer - fromOdometer) / segment) : 1f;
+                        float t = Mathf.Clamp(ProjectOntoSegment(position, newer, older), Mathf.Clamp01(low), Mathf.Clamp01(high));
+                        Consider(pass, Horizontal(position, Vector3.Lerp(newer, older, t)), newerOdometer - segment * t,
+                            preferOdometer, tieTolerance, ref nearest, ref found, ref odometer, ref lateral);
+                    }
+                    newer = older;
+                    newerOdometer = olderOdometer;
+                }
+                if (pass == 0 && float.IsPositiveInfinity(nearest)) return false;
+            }
+            return true;
+        }
+
+        private static void Consider(int pass, float distance, double candidate, double prefer, float tieTolerance,
+            ref float nearest, ref bool found, ref double odometer, ref float lateral)
+        {
+            if (pass == 0)
+            {
+                if (distance < nearest) nearest = distance;
+                return;
+            }
+            if (distance > nearest + tieTolerance) return;
+            if (found && !CloserTo(prefer, candidate, odometer)) return;
+            found = true;
+            odometer = candidate;
+            lateral = distance;
+        }
+
+        private static bool CloserTo(double prefer, double candidate, double current)
+            => double.IsPositiveInfinity(prefer)
+                ? candidate > current
+                : System.Math.Abs(candidate - prefer) < System.Math.Abs(current - prefer);
+
+        /// <summary>停步回拉:把末端剪到队首在那一截上的投影处(见 <see cref="Push"/>)。</summary>
+        private void CutBackTo(Vector3 head)
+        {
+            float budget = MaxRetractLength - _retracted;
+            if (budget <= 0f || _points.Count < 2) return;
+
+            int cutSegment = -1;
+            float cutT = 0f, cutRemoved = 0f, best = RetractSnapDistance;
+            float walked = 0f;
+            for (int i = _points.Count - 1; i > 0 && walked < budget; i--)
+            {
+                Vector3 newer = _points[i];
+                Vector3 older = _points[i - 1];
+                float segment = Horizontal(newer, older);
+                if (segment > 0f)
+                {
+                    // t = 0 在新端;剪掉的长度不能超过剩余额度。
+                    float t = Mathf.Min(ProjectOntoSegment(head, newer, older), Mathf.Min(1f, (budget - walked) / segment));
+                    float removed = walked + segment * t;
+                    float distance = Horizontal(head, Vector3.Lerp(newer, older, t));
+                    // 同样近时取剪得少的(离末端近的)那一处:不多剪真走过的路。
+                    if (removed > 0.0001f && distance < best)
+                    {
+                        best = distance;
+                        cutSegment = i;
+                        cutT = t;
+                        cutRemoved = removed;
+                    }
+                    walked += segment;
+                }
+            }
+            if (cutSegment < 0) return;
+
+            Vector3 cut = Vector3.Lerp(_points[cutSegment], _points[cutSegment - 1], cutT);
+            _points.RemoveRange(cutSegment, _points.Count - cutSegment);
+            _odometers.RemoveRange(cutSegment, _odometers.Count - cutSegment);
+            if (Horizontal(cut, _points[_points.Count - 1]) > 0.0001f) AppendPoint(cut);
+            _retracted += cutRemoved;
+        }
+
+        private void AppendPoint(Vector3 point)
+        {
+            double odometer = _points.Count == 0
+                ? 0d
+                : _odometers[_odometers.Count - 1] + Horizontal(point, _points[_points.Count - 1]);
+            _points.Add(point);
+            _odometers.Add(odometer);
+        }
+
         private void Trim()
         {
             // 从最老的一端裁,但永远留至少两个点,保证还有一段可以站。
@@ -190,6 +343,7 @@ namespace MmorpgClient.Game.Team
                 float oldest = Horizontal(_points[0], _points[1]);
                 if (length - oldest < _maxLength) break;
                 _points.RemoveAt(0);
+                _odometers.RemoveAt(0);
                 length -= oldest;
             }
         }
@@ -210,5 +364,27 @@ namespace MmorpgClient.Game.Team
             float dz = a.z - b.z;
             return Mathf.Sqrt(dx * dx + dz * dz);
         }
+    }
+
+    /// <summary>
+    /// 一个队员"走到轨迹的哪儿了":所在那一代轨迹、里程,以及记下这个里程时人站的位置。
+    /// 由 <see cref="TeamFollowPlanner"/> 逐帧推进,调用方只负责存着,以及在自己不再沿轨迹走的时候
+    /// (暂离、被寻路带离、换队长)丢掉它(= default)。
+    /// </summary>
+    public struct TeamFollowCursor
+    {
+        public TeamFollowCursor(int epoch, double odometer, Vector3 position)
+        {
+            Valid = true;
+            Epoch = epoch;
+            Odometer = odometer;
+            Position = position;
+        }
+
+        public bool Valid { get; }
+        public int Epoch { get; }
+        public double Odometer { get; }
+        /// <summary>记下里程那一帧人的位置:下一帧里程最多只能后退"人实际挪动的距离"。</summary>
+        public Vector3 Position { get; }
     }
 }

@@ -10,7 +10,8 @@ namespace MmorpgClient.UI.Ugui.Team
 {
     /// <summary>
     /// 组队跟随的宿主:持有 <see cref="TeamFollowDriver"/> 并每帧驱动它,HUD 上放一个「暂离 / 归队」开关。
-    /// 队伍状态只读 <see cref="TeamUiRoot"/> 的 TeamClient,自己不发任何组队请求。
+    /// 队伍状态只读 <see cref="TeamUiRoot"/> 的 TeamClient;唯一会发的组队请求是驱动要求的归队
+    /// (TeamClient.RequestRegroup,排进 TeamUiRoot 每帧的 DrainQueued 里发出)。
     /// 只认已经应用过权威视图的快照:探针回来之前 TeamClient.Snapshot 是占位的"无队",
     /// 那时传 null 给驱动(表示"不知道"),既不接管,也不把它当成离队。
     /// 战斗 / 观战画面亮着、没进游戏时不跟随。
@@ -31,7 +32,6 @@ namespace MmorpgClient.UI.Ugui.Team
         public const float ToggleWidth = 210;
         public const string LabelAway = "暂离";
         public const string LabelRejoin = "归队";
-        public const string LabelSearching = "寻找队长";
         public const string InputHint = "正在跟随队长，点「暂离」后可以自己走。";
         /// <summary>跟随中玩家反复点地面时,提示最多这么久弹一次。</summary>
         public const float HintIntervalSeconds = 3f;
@@ -77,6 +77,10 @@ namespace MmorpgClient.UI.Ugui.Team
             _toggle.gameObject.SetActive(false);
             _hud.gameObject.SetActive(false);
             _follow.InputRejected += ShowInputHint;
+            _follow.RegroupRequested += RequestRegroup;
+            // 联机验收排障:环境变量 MMORPG_FOLLOW_TRACE=1 时把跟随驱动的诊断行写进播放器日志([follow] 前缀)。
+            if (System.Environment.GetEnvironmentVariable("MMORPG_FOLLOW_TRACE") == "1")
+                _follow.Trace = message => Debug.Log("[follow] " + message);
         }
 
         private void Update()
@@ -97,15 +101,15 @@ namespace MmorpgClient.UI.Ugui.Team
             if (status == _shownStatus) return;
             _shownStatus = status;
             _toggle.gameObject.SetActive(status != TeamFollowStatus.None);
-            // 按钮写的是"点了会发生什么":跟随中 → 暂离;暂离中 → 归队;看不到队长时没有可切换的东西,只说明现状。
-            _toggle.interactable = status != TeamFollowStatus.LeaderOutOfSight;
+            // 按钮写的是"点了会发生什么":暂离中 → 归队(回到跟随,并请服务端把人带到队长身边);
+            // 跟随中、看不到队长时 → 暂离。看不到队长时驱动会自动请求归队,想自己走就得能点暂离。
             if (_toggleLabel != null)
-                _toggleLabel.text = status == TeamFollowStatus.Away ? LabelRejoin
-                    : status == TeamFollowStatus.LeaderOutOfSight ? LabelSearching
-                    : LabelAway;
+                _toggleLabel.text = status == TeamFollowStatus.Away ? LabelRejoin : LabelAway;
         }
 
-        /// <summary>暂离 / 归队。纯本地开关:只决定本机要不要自动跟着队长走。</summary>
+        private void RequestRegroup() => TeamUiRoot.Instance?.Client?.RequestRegroup();
+
+        /// <summary>暂离 / 归队。暂离是纯本地开关;归队时驱动另外请求服务端把人带到队长身边(见 TeamRegroupPolicy)。</summary>
         public void ToggleAway()
         {
             if (!_available) return;
@@ -128,6 +132,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private void OnDestroy()
         {
             _follow.InputRejected -= ShowInputHint;
+            _follow.RegroupRequested -= RequestRegroup;
             _follow.Release();
             if (Instance == this) Instance = null;
         }

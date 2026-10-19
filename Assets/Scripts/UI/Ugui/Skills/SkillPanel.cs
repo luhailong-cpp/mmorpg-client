@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace MmorpgClient.UI.Ugui.Skills
 {
     /// <summary>角色和宠物共用的原生技能簿；只展示快照并转发操作意图。</summary>
-    public sealed class SkillPanel
+    public sealed partial class SkillPanel
     {
         private sealed class Row
         {
@@ -37,7 +37,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private uint _selectedId;
         private int _filter;
         private static readonly string[] FilterNames = { "全部", "主动", "被动", "障碍", "辅助" };
-        private const float ListHeight = 430f, RowHeight = 82f, RowStep = 86f;
+        private const float ListHeight = 500f, RowHeight = 82f, RowStep = 86f;
         public bool IsVisible => _root.gameObject.activeSelf;
 
         public SkillPanel(SkillUiRoot owner, UnityEngine.Transform parent) : this(parent,
@@ -55,6 +55,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         {
             _refreshAction = refresh;
             _upgradeAction = upgrade;
+            _fidelityCanPreviewClasses = previewClass != null;
             var frame = BattleUiWidgets.CreatePanel("CharacterSkillWindow", parent,
                 CharacterAttributeVisuals.WindowX, CharacterAttributeVisuals.WindowY,
                 CharacterAttributeVisuals.WindowW, CharacterAttributeVisuals.WindowH, Color.white);
@@ -331,6 +332,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             else if (readOnly) SetStatus(_state?.Message ?? "技能信息未同步 · 仅浏览职业图鉴");
             else if (_state?.IsConnected != true) SetStatus("连接已断开 · 技能修习暂不可用", true);
             else SetStatus(_state?.Message ?? string.Empty);
+            ApplyFidelityLayout();
         }
         private string Condition(SkillDefinition skill, SkillEntryState entry, bool readOnly)
         {

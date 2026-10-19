@@ -173,12 +173,14 @@ namespace MmorpgClient.UI.Ugui.Guild
         /// <summary>主城的几个大面板互斥:打开帮会窗口前收起别的。</summary>
         private static void HideOtherPanels()
         {
+            MysteryMerchantUiRoot.Instance?.HidePanel();
             Skills.SkillUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
         }
         /// <summary>
         /// 收到同道历练邀请(GuildClient.TrialInvitePending)时把帮会窗口带到活动页,邀请框由窗口在拿到视图后自己弹出。

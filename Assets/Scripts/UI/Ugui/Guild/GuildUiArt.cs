@@ -15,7 +15,25 @@ namespace MmorpgClient.UI.Ugui.Guild
         public static readonly Color Gold = QdaoUguiTheme.Html("#AA803E");
         public static readonly Color Rule = new Color(.66f, .56f, .36f, .42f);
 
-        public static Sprite Load(string key) => QdaoUguiTheme.RequireSprite(Root + key);
+        public const string FidelityRoot = "UI/Ugui/GuildFidelity20261016/";
+        public static Sprite Load(string key)
+        {
+            string alias = key switch {
+                "button_primary" => "guild_button_primary", "button_secondary" => "guild_button_secondary",
+                "stat_field" => "guild_announcement", "crest" => "guild_crest", _ => key };
+            return Resources.Load<Sprite>(FidelityRoot + alias) ?? QdaoUguiTheme.RequireSprite(Root + key);
+        }
+        public static TextMeshProUGUI FidelityLabel(UnityEngine.Transform parent, string name, string value,
+            float x, float y, float w, float h, float size, Color color, bool wrap = false,
+            TextAlignmentOptions align = TextAlignmentOptions.MidlineLeft)
+        {
+            var text = QdaoUguiFactory.CreateText(name, parent, x, y, w, h, value, size, color, align);
+            text.font = QdaoUguiTheme.ResolveFont(); text.richText = false;
+            text.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+            text.overflowMode = TextOverflowModes.Ellipsis;
+            if (wrap) text.alignment = TextAlignmentOptions.TopLeft;
+            return text;
+        }
 
         public static Image Art(UnityEngine.Transform parent, string key, float x, float y, float w, float h, bool aspect = false)
         {
@@ -38,7 +56,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             // Keep supporting copy readable when the 2560-wide canvas scales to 1280.
             size = Mathf.Max(30, size);
             var label = QdaoUguiFactory.CreateText("Label", parent, x, y, w, h, value, size, color ?? Ink, alignment);
-            QdaoUguiTypography.ApplyBody(label);
+            label.font = QdaoUguiTheme.ResolveFont();
             label.richText = false;
             label.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
             if (wrap) label.alignment = TextAlignmentOptions.TopLeft;
@@ -49,7 +67,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             float size = 42, Color? color = null, bool wrap = false, TextAlignmentOptions alignment = TextAlignmentOptions.MidlineLeft)
         {
             var label = Text(parent, value, x, y, w, h, size, color, wrap, alignment);
-            QdaoUguiTypography.ApplyHeading(label);
+            label.font = QdaoUguiTheme.ResolveFont();
             return label;
         }
 
@@ -67,9 +85,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             button.colors = colors;
             button.interactable = enabled;
             if (click != null) button.onClick.AddListener(() => click());
-            var caption = Text(button.transform, label, 18, 0, w - 36, h, Mathf.Max(32, fontSize),
-                primary ? Cream : Ink, alignment: TextAlignmentOptions.Center);
-            QdaoUguiTypography.ApplyButton(caption);
+            var caption = FidelityLabel(button.transform, "ButtonCaption", label, 18, 0, w - 36, h, fontSize,
+                primary ? Cream : Ink, align: TextAlignmentOptions.Center);
+            caption.font = QdaoUguiTheme.ResolveFont();
             return button;
         }
 

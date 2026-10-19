@@ -245,7 +245,7 @@ namespace MmorpgClient.World
             string characterId = null;
             try
             {
-                characterId = AppearanceProvider?.Invoke(view);
+                characterId = QdaoCharacterCatalog.ResolveVisualId(AppearanceProvider?.Invoke(view));
             }
             catch (System.Exception ex)
             {

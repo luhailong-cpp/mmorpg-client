@@ -43,12 +43,14 @@ namespace MmorpgClient.UI.Ugui.Skills
             Instance?.Source?.State?.Snapshot?.Find(id)?.Definition ?? SkillCatalog.Find(id);
         private void ShowContext(SkillBookContext context)
         {
+            Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
             Attribute.AttributeUiRoot.Instance?.HidePanel();
             Pet.PetUiRoot.Instance?.HidePanel();
             Gameplay.GameplayUiRoot.Instance?.HidePanel();
             Gameplay.CityTravelUiRoot.Instance?.HidePanel();
             Gameplay.SceneChannelUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             Social.SocialUiRoot.Instance?.HidePanel();
             Mail.MailUiRoot.Instance?.HidePanel();

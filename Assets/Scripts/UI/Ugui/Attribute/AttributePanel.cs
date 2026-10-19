@@ -14,7 +14,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
     /// All values, pool limits, schemes and allocation actions remain server-authoritative.
     /// Only pending allocation deltas live locally until the player confirms.
     /// </summary>
-    public sealed class AttributePanel
+    public sealed partial class AttributePanel
     {
         private const float RowHeight = 76f;
         private const float RowGap = 32f;
@@ -92,6 +92,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _tooltipText = QdaoUguiFactory.CreateText("TooltipText", _tooltip, 20f, 0f, 640f, 76f,
                 string.Empty, 28f, AttributeUiStyle.TooltipText);
             _tooltip.gameObject.SetActive(false);
+            ApplyFidelityLayout();
             Hide();
         }
 
@@ -247,6 +248,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             CharacterAttributeVisuals.SelectSideTab(_allocationNavigation, page == PanelPage.Allocation);
             CharacterAttributeVisuals.SelectSideTab(_combatNavigation, page == PanelPage.Combat);
             HideTooltip();
+            ApplyFidelityLayout();
         }
 
         /// <summary>给一行挂 hover 事件:显示服务器下发的维度说明(截图里的黑底提示条)。</summary>
@@ -261,10 +263,12 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         public void Show()
         {
+            Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
             Skills.SkillUiRoot.Instance?.HidePanel();
             // 宝宝窗与本窗同位置同尺寸,必须互斥(见 AttributeUiRoot.HidePanel)
             Pet.PetUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
             Gameplay.GameplayUiRoot.Instance?.HidePanel();
             if (_root != null) _root.gameObject.SetActive(true);
             CloseSchemeList();
@@ -494,6 +498,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 Mathf.Max(418f, index * (RowHeight + RowGap) - RowGap));
             _rowsRoot.anchoredPosition = Vector2.zero;
             RefreshRemainText();
+            ApplyFidelityLayout();
         }
 
         private IEnumerable<UiPointRow> ActiveRows()
@@ -564,6 +569,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _resetButton?.SetInteractable(!busy && unlocked);
             _resetButton?.SetText(pool != null && pool.ResetCostGold > 0 ? $"重置({pool.ResetCostGold} 银两)" : "重 置");
             RefreshSchemeButton();
+            ApplyFidelityLayout();
         }
 
         private AttributePoolInfo FindPool(uint poolId)
@@ -706,6 +712,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _schemeDropdown.SetAsLastSibling();
             _schemeDropdown.gameObject.SetActive(true);
             _schemeListOpen = true;
+            ApplyFidelityLayout();
         }
 
         private void CloseSchemeList()

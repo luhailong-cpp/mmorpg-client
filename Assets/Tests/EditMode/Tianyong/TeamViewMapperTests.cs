@@ -52,6 +52,48 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void ToSnapshot_MapsBackfillQueueState()
+        {
+            var view = new TeamView
+            {
+                TeamId = 100, LeaderId = 10, Capacity = 5, Version = 3, MembershipEpoch = 5,
+                MatchState = TeamBackfillProtocol.QueuedState, MatchTargetSize = 4, MatchQueuedAtMs = 987654, MatchBattleConfigId = 1
+            };
+            view.Members.Add(new TeamMemberView { PlayerId = 10, JoinSeq = 1 });
+
+            var queued = TeamViewMapper.ToSnapshot(view, 10);
+            Assert.That(queued.MatchFillSupported, Is.False, "服务端没声明就是不支持");
+            view.MatchFillSupported = true;
+            queued = TeamViewMapper.ToSnapshot(view, 10);
+            Assert.That(queued.MatchFillSupported, Is.True);
+            Assert.That(queued.Clone().MatchFillSupported, Is.True);
+            Assert.That(queued.MatchQueued, Is.True);
+            Assert.That(queued.MatchStarting, Is.False, "匹配中不是集合中:名单不锁");
+            Assert.That(queued.MatchTargetSize, Is.EqualTo(4u));
+            Assert.That(queued.MatchQueuedAtMs, Is.EqualTo(987654UL));
+            Assert.That(queued.MatchBattleConfigId, Is.EqualTo(1u));
+
+            // Clone 是手写的:新字段漏拷的话界面镜像里会静默丢失。
+            var copy = queued.Clone();
+            Assert.That(copy.MatchQueued, Is.True);
+            Assert.That(copy.MatchTargetSize, Is.EqualTo(4u));
+            Assert.That(copy.MatchQueuedAtMs, Is.EqualTo(987654UL));
+            Assert.That(copy.MatchBattleConfigId, Is.EqualTo(1u));
+
+            // 其余状态下三项保持零值,即使服务端带了数也不读。
+            view.MatchState = TeamMatchState.Starting;
+            var starting = TeamViewMapper.ToSnapshot(view, 10);
+            Assert.That(starting.MatchQueued, Is.False);
+            Assert.That(starting.MatchStarting, Is.True);
+            Assert.That(starting.MatchTargetSize, Is.Zero);
+            Assert.That(starting.MatchQueuedAtMs, Is.Zero);
+            Assert.That(starting.MatchBattleConfigId, Is.Zero);
+
+            view.MatchState = TeamMatchState.Idle;
+            Assert.That(TeamViewMapper.ToSnapshot(view, 10).MatchQueued, Is.False);
+        }
+
+        [Test]
         public void ToSnapshot_SortsMembersByJoinSeqStably()
         {
             var view = new TeamView { TeamId = 100, LeaderId = 12, MembershipEpoch = 1 };
@@ -99,6 +141,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void ResolveCharacterId()
         {
+            Assert.That(TeamViewMapper.ResolveCharacterId(4, 2, "24_lu_dongbin"), Is.EqualTo("04_mountain_guardian_boy"));
+            Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, "QdaoHeadbandBoy"), Is.EqualTo("00_reference_topright_boy"));
+            Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, "11_jade_fist_flat_top_boy"), Is.EqualTo("04_mountain_guardian_boy"));
+            Assert.That(TeamViewMapper.ResolveCharacterId(4, 2, "07_moon_shadow_assassin_girl"), Is.EqualTo("07_moon_shadow_assassin_girl"));
             Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, "not_a_known_id"), Is.EqualTo("not_a_known_id"));
             Assert.That(TeamViewMapper.ResolveCharacterId(0, 0, "persisted"), Is.EqualTo("persisted"));
             Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, ""), Is.EqualTo(QdaoCharacterCatalog.ResolveRole(1, 1)));

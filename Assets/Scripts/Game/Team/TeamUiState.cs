@@ -46,6 +46,8 @@ namespace MmorpgClient.Game.Team
                                 Snapshot.LocalPlayerId == Snapshot.LeaderId;
         public bool IsFull => Snapshot.Members.Count >= Snapshot.Capacity;
         public bool MatchStarting => HasTeam && Snapshot.MatchStarting;
+        /// <summary>队伍正在人数档队列里等补位;名单不锁(名单一变服务端就让全队退出匹配)。</summary>
+        public bool MatchQueued => HasTeam && Snapshot.MatchQueued;
 
         public event Action Changed;
 

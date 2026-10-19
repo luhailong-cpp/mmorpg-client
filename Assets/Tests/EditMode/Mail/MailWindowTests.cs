@@ -20,10 +20,14 @@ namespace MmorpgClient.Tests.EditMode.Mail
         private GameObject _canvas,_events;
         private MailWindow _window;
         private MailUiState _state;
+        private EventSystem _previousEvents;
         private const long Now=1800000000;
         [SetUp] public void SetUp()
         {
-            _events=new GameObject("MailTestEvents",typeof(MailTestEventSystem));
+            _previousEvents=EventSystem.current;
+            _events=new GameObject("MailTestEvents",typeof(EventSystem));
+            // EditMode does not invoke MonoBehaviour enable callbacks; register the test-only event system explicitly.
+            typeof(EventSystem).GetMethod("OnEnable",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(_events.GetComponent<EventSystem>(),null);
             EventSystem.current=_events.GetComponent<EventSystem>();
             _canvas=new GameObject("MailTestCanvas",typeof(RectTransform),typeof(Canvas));
             _canvas.GetComponent<Canvas>().renderMode=RenderMode.ScreenSpaceOverlay;
@@ -32,7 +36,8 @@ namespace MmorpgClient.Tests.EditMode.Mail
         }
         [TearDown] public void TearDown()
         {
-            _window?.Dispose();if(_canvas!=null)Object.DestroyImmediate(_canvas);if(_events!=null)Object.DestroyImmediate(_events);
+            _window?.Dispose();if(_canvas!=null)Object.DestroyImmediate(_canvas);if(_events!=null){typeof(EventSystem).GetMethod("OnDisable",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(_events.GetComponent<EventSystem>(),null);Object.DestroyImmediate(_events);}
+            if(_previousEvents!=null)EventSystem.current=_previousEvents;
         }
         private Button Button(string name)=>_canvas.GetComponentsInChildren<Button>(true).Single(x=>x.name==name);
         private TMP_Text Text(string name)=>_canvas.GetComponentsInChildren<TMP_Text>(true).Single(x=>x.name==name);
@@ -105,7 +110,8 @@ namespace MmorpgClient.Tests.EditMode.Mail
         }
         [Test] public void HideRestoresFocusAndBalancesGameplayInputBlocker()
         {
-            bool blocked=GameplayInputGate.IsKeyboardBlocked;var opener=Button("CloseMail").gameObject;
+            bool blocked=GameplayInputGate.IsKeyboardBlocked;
+            var opener=Button("CloseMail").gameObject;
             EventSystem.current.SetSelectedGameObject(_canvas);_window.Show();
             var blocker=_window.Root.GetComponent<GameplayInputBlocker>();
             // EditMode不派发非ExecuteAlways组件生命周期。夹具调用真实Unity消息方法，
