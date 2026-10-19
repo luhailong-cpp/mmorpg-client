@@ -37,16 +37,33 @@ public static partial class PlayerSkillReflection {
           "IAEoDRIQCghza2lsbF9pZBgFIAEoBCJ9CgxTa2lsbFVzZWRTMkMSDgoGZW50",
           "aXR5GAEgASgEEhUKDXRhcmdldF9lbnRpdHkYAiADKAQSFgoOc2tpbGxfdGFi",
           "bGVfaWQYAyABKA0SGgoIcG9zaXRpb24YBCABKAsyCC5WZWN0b3IzEhIKCnRp",
-          "bWVfc3RhbXAYBSABKAQiEwoRTGlzdFNraWxsc1JlcXVlc3QiZgoSTGlzdFNr",
-          "aWxsc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-          "TWVzc2FnZRIoCgpza2lsbF9saXN0GAIgASgLMhQuUGxheWVyU2tpbGxMaXN0",
-          "Q29tcDL6AQoWU2NlbmVTa2lsbENsaWVudFBsYXllchI7CgxSZWxlYXNlU2tp",
-          "bGwSFC5SZWxlYXNlU2tpbGxSZXF1ZXN0GhUuUmVsZWFzZVNraWxsUmVzcG9u",
-          "c2USKAoPTm90aWZ5U2tpbGxVc2VkEg0uU2tpbGxVc2VkUzJDGgYuRW1wdHkS",
-          "NgoWTm90aWZ5U2tpbGxJbnRlcnJ1cHRlZBIULlNraWxsSW50ZXJydXB0ZWRT",
-          "MkMaBi5FbXB0eRI1CgpMaXN0U2tpbGxzEhIuTGlzdFNraWxsc1JlcXVlc3Qa",
-          "Ey5MaXN0U2tpbGxzUmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY",
-          "1GEDYgZwcm90bzM="));
+          "bWVfc3RhbXAYBSABKAQiEwoRTGlzdFNraWxsc1JlcXVlc3QizQEKEkxpc3RT",
+          "a2lsbHNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2USKAoKc2tpbGxfbGlzdBgCIAEoCzIULlBsYXllclNraWxsTGlz",
+          "dENvbXASIwoHY2F0YWxvZxgDIAMoCzISLlNraWxsQ2F0YWxvZ0VudHJ5EhQK",
+          "DHBsYXllcl9sZXZlbBgEIAEoDRIQCghjbGFzc19pZBgFIAEoDRIYChBjdXJy",
+          "ZW5jeV9iYWxhbmNlGAYgASgEIocDChFTa2lsbENhdGFsb2dFbnRyeRIWCg5z",
+          "a2lsbF90YWJsZV9pZBgBIAEoDRIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0",
+          "aW9uGAMgASgJEhAKCGljb25fa2V5GAQgASgJEhAKCGNsYXNzX2lkGAUgASgN",
+          "EhAKCGNhdGVnb3J5GAYgASgJEg8KB3Bhc3NpdmUYByABKAgSEwoLdGFyZ2V0",
+          "X3RlYW0YCCABKA0SEwoLbWF4X3RhcmdldHMYCSABKA0SFAoMdW5sb2NrX2xl",
+          "dmVsGAogASgNEhAKCG1heF9yYW5rGAsgASgNEgwKBHJhbmsYDCABKA0SEgoK",
+          "cmFua19saW1pdBgNIAEoDRIUCgxtYW5hX3BlcmNlbnQYDiABKAESFwoPY29v",
+          "bGRvd25fcm91bmRzGA8gASgNEhYKDm5leHRfcmFua19jb3N0GBAgASgEEhwK",
+          "FHVwZ3JhZGVfYmxvY2tfdGlwX2lkGBEgASgNEhcKD2R1cmF0aW9uX3JvdW5k",
+          "cxgSIAEoDSJTChNVcGdyYWRlU2tpbGxSZXF1ZXN0EhYKDnNraWxsX3RhYmxl",
+          "X2lkGAEgASgNEhUKDWV4cGVjdGVkX3JhbmsYAiABKA0SDQoFY291bnQYAyAB",
+          "KA0ijwEKFFVwZ3JhZGVTa2lsbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIiCgVzdGF0ZRgCIAEoCzITLkxpc3RT",
+          "a2lsbHNSZXNwb25zZRIWCg51cGdyYWRlZF9jb3VudBgDIAEoDRITCgtzdG9w",
+          "X3RpcF9pZBgEIAEoDTK3AgoWU2NlbmVTa2lsbENsaWVudFBsYXllchI7CgxS",
+          "ZWxlYXNlU2tpbGwSFC5SZWxlYXNlU2tpbGxSZXF1ZXN0GhUuUmVsZWFzZVNr",
+          "aWxsUmVzcG9uc2USKAoPTm90aWZ5U2tpbGxVc2VkEg0uU2tpbGxVc2VkUzJD",
+          "GgYuRW1wdHkSNgoWTm90aWZ5U2tpbGxJbnRlcnJ1cHRlZBIULlNraWxsSW50",
+          "ZXJydXB0ZWRTMkMaBi5FbXB0eRI1CgpMaXN0U2tpbGxzEhIuTGlzdFNraWxs",
+          "c1JlcXVlc3QaEy5MaXN0U2tpbGxzUmVzcG9uc2USOwoMVXBncmFkZVNraWxs",
+          "EhQuVXBncmFkZVNraWxsUmVxdWVzdBoVLlVwZ3JhZGVTa2lsbFJlc3BvbnNl",
+          "GgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::BaseCompReflection.Descriptor, global::EmptyReflection.Descriptor, global::PlayerSkillCompReflection.Descriptor, global::ActorCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -55,7 +72,10 @@ public static partial class PlayerSkillReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SkillInterruptedS2C), global::SkillInterruptedS2C.Parser, new[]{ "Entity", "TargetEntity", "SkillTableId", "ReasonCode", "SkillId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SkillUsedS2C), global::SkillUsedS2C.Parser, new[]{ "Entity", "TargetEntity", "SkillTableId", "Position", "TimeStamp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsRequest), global::ListSkillsRequest.Parser, null, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsResponse), global::ListSkillsResponse.Parser, new[]{ "ErrorMessage", "SkillList" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsResponse), global::ListSkillsResponse.Parser, new[]{ "ErrorMessage", "SkillList", "Catalog", "PlayerLevel", "ClassId", "CurrencyBalance" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SkillCatalogEntry), global::SkillCatalogEntry.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "ClassId", "Category", "Passive", "TargetTeam", "MaxTargets", "UnlockLevel", "MaxRank", "Rank", "RankLimit", "ManaPercent", "CooldownRounds", "NextRankCost", "UpgradeBlockTipId", "DurationRounds" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillRequest), global::UpgradeSkillRequest.Parser, new[]{ "SkillTableId", "ExpectedRank", "Count" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillResponse), global::UpgradeSkillResponse.Parser, new[]{ "ErrorMessage", "State", "UpgradedCount", "StopTipId" }, null, null, null, null)
         }));
   }
   #endregion
@@ -1469,6 +1489,8 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
 
 /// <summary>
 /// List skills response
+/// 3..6 是四职业技能书(2026-10-19,docs/design/class-skills.md §4):服务端按当前职业现算的完整目录 + 角色等级 + 余额。
+/// skill_list 仍是"已拥有"的原样列表(robot / 旧客户端只读它);catalog 只列当前职业的职业技能,未学的也在里面(rank = 0)。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse>
@@ -1507,6 +1529,10 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
   public ListSkillsResponse(ListSkillsResponse other) : this() {
     errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
     skillList_ = other.skillList_ != null ? other.skillList_.Clone() : null;
+    catalog_ = other.catalog_.Clone();
+    playerLevel_ = other.playerLevel_;
+    classId_ = other.classId_;
+    currencyBalance_ = other.currencyBalance_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1540,6 +1566,59 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     }
   }
 
+  /// <summary>Field number for the "catalog" field.</summary>
+  public const int CatalogFieldNumber = 3;
+  private static readonly pb::FieldCodec<global::SkillCatalogEntry> _repeated_catalog_codec
+      = pb::FieldCodec.ForMessage(26, global::SkillCatalogEntry.Parser);
+  private readonly pbc::RepeatedField<global::SkillCatalogEntry> catalog_ = new pbc::RepeatedField<global::SkillCatalogEntry>();
+  /// <summary>
+  /// 按 skill_table_id 升序
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::SkillCatalogEntry> Catalog {
+    get { return catalog_; }
+  }
+
+  /// <summary>Field number for the "player_level" field.</summary>
+  public const int PlayerLevelFieldNumber = 4;
+  private uint playerLevel_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlayerLevel {
+    get { return playerLevel_; }
+    set {
+      playerLevel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "class_id" field.</summary>
+  public const int ClassIdFieldNumber = 5;
+  private uint classId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ClassId {
+    get { return classId_; }
+    set {
+      classId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "currency_balance" field.</summary>
+  public const int CurrencyBalanceFieldNumber = 6;
+  private ulong currencyBalance_;
+  /// <summary>
+  /// 修习货币余额(CurrencySystem kCurrencyGold,客户端称"银两")
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong CurrencyBalance {
+    get { return currencyBalance_; }
+    set {
+      currencyBalance_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1557,6 +1636,10 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     }
     if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
     if (!object.Equals(SkillList, other.SkillList)) return false;
+    if(!catalog_.Equals(other.catalog_)) return false;
+    if (PlayerLevel != other.PlayerLevel) return false;
+    if (ClassId != other.ClassId) return false;
+    if (CurrencyBalance != other.CurrencyBalance) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1566,6 +1649,10 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     int hash = 1;
     if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
     if (skillList_ != null) hash ^= SkillList.GetHashCode();
+    hash ^= catalog_.GetHashCode();
+    if (PlayerLevel != 0) hash ^= PlayerLevel.GetHashCode();
+    if (ClassId != 0) hash ^= ClassId.GetHashCode();
+    if (CurrencyBalance != 0UL) hash ^= CurrencyBalance.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1592,6 +1679,19 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
       output.WriteRawTag(18);
       output.WriteMessage(SkillList);
     }
+    catalog_.WriteTo(output, _repeated_catalog_codec);
+    if (PlayerLevel != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PlayerLevel);
+    }
+    if (ClassId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ClassId);
+    }
+    if (CurrencyBalance != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(CurrencyBalance);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1610,6 +1710,19 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
       output.WriteRawTag(18);
       output.WriteMessage(SkillList);
     }
+    catalog_.WriteTo(ref output, _repeated_catalog_codec);
+    if (PlayerLevel != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(PlayerLevel);
+    }
+    if (ClassId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ClassId);
+    }
+    if (CurrencyBalance != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(CurrencyBalance);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1625,6 +1738,16 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     }
     if (skillList_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(SkillList);
+    }
+    size += catalog_.CalculateSize(_repeated_catalog_codec);
+    if (PlayerLevel != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerLevel);
+    }
+    if (ClassId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClassId);
+    }
+    if (CurrencyBalance != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CurrencyBalance);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1649,6 +1772,16 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
         SkillList = new global::PlayerSkillListComp();
       }
       SkillList.MergeFrom(other.SkillList);
+    }
+    catalog_.Add(other.catalog_);
+    if (other.PlayerLevel != 0) {
+      PlayerLevel = other.PlayerLevel;
+    }
+    if (other.ClassId != 0) {
+      ClassId = other.ClassId;
+    }
+    if (other.CurrencyBalance != 0UL) {
+      CurrencyBalance = other.CurrencyBalance;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1683,6 +1816,22 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
           input.ReadMessage(SkillList);
           break;
         }
+        case 26: {
+          catalog_.AddEntriesFrom(input, _repeated_catalog_codec);
+          break;
+        }
+        case 32: {
+          PlayerLevel = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          CurrencyBalance = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1714,6 +1863,1500 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
             SkillList = new global::PlayerSkillListComp();
           }
           input.ReadMessage(SkillList);
+          break;
+        }
+        case 26: {
+          catalog_.AddEntriesFrom(ref input, _repeated_catalog_codec);
+          break;
+        }
+        case 32: {
+          PlayerLevel = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          CurrencyBalance = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 技能书的一行:配置表的展示投影 + 本角色的等级与可修习性。数值真源是 Skill 表与服务端规则,
+/// 客户端只展示,不得据此推算、也不回传这些派生值。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SkillCatalogEntry> _parser = new pb::MessageParser<SkillCatalogEntry>(() => new SkillCatalogEntry());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SkillCatalogEntry> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[6]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SkillCatalogEntry() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SkillCatalogEntry(SkillCatalogEntry other) : this() {
+    skillTableId_ = other.skillTableId_;
+    name_ = other.name_;
+    description_ = other.description_;
+    iconKey_ = other.iconKey_;
+    classId_ = other.classId_;
+    category_ = other.category_;
+    passive_ = other.passive_;
+    targetTeam_ = other.targetTeam_;
+    maxTargets_ = other.maxTargets_;
+    unlockLevel_ = other.unlockLevel_;
+    maxRank_ = other.maxRank_;
+    rank_ = other.rank_;
+    rankLimit_ = other.rankLimit_;
+    manaPercent_ = other.manaPercent_;
+    cooldownRounds_ = other.cooldownRounds_;
+    nextRankCost_ = other.nextRankCost_;
+    upgradeBlockTipId_ = other.upgradeBlockTipId_;
+    durationRounds_ = other.durationRounds_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SkillCatalogEntry Clone() {
+    return new SkillCatalogEntry(this);
+  }
+
+  /// <summary>Field number for the "skill_table_id" field.</summary>
+  public const int SkillTableIdFieldNumber = 1;
+  private uint skillTableId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SkillTableId {
+    get { return skillTableId_; }
+    set {
+      skillTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 2;
+  private string name_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "description" field.</summary>
+  public const int DescriptionFieldNumber = 3;
+  private string description_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Description {
+    get { return description_; }
+    set {
+      description_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "icon_key" field.</summary>
+  public const int IconKeyFieldNumber = 4;
+  private string iconKey_ = "";
+  /// <summary>
+  /// Unity Resources 相对键,不带扩展名、不带 Assets/Resources/ 前缀(如 "UI/Skills/1101")
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string IconKey {
+    get { return iconKey_; }
+    set {
+      iconKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "class_id" field.</summary>
+  public const int ClassIdFieldNumber = 5;
+  private uint classId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ClassId {
+    get { return classId_; }
+    set {
+      classId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "category" field.</summary>
+  public const int CategoryFieldNumber = 6;
+  private string category_ = "";
+  /// <summary>
+  /// 表里的分类文案(主动 / 被动 …),只用于展示
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Category {
+    get { return category_; }
+    set {
+      category_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "passive" field.</summary>
+  public const int PassiveFieldNumber = 7;
+  private bool passive_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Passive {
+    get { return passive_; }
+    set {
+      passive_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_team" field.</summary>
+  public const int TargetTeamFieldNumber = 8;
+  private uint targetTeam_;
+  /// <summary>
+  /// 1 = 敌方,2 = 友方,3 = 自身(class_skill_rules.h TargetTeam)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TargetTeam {
+    get { return targetTeam_; }
+    set {
+      targetTeam_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_targets" field.</summary>
+  public const int MaxTargetsFieldNumber = 9;
+  private uint maxTargets_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxTargets {
+    get { return maxTargets_; }
+    set {
+      maxTargets_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "unlock_level" field.</summary>
+  public const int UnlockLevelFieldNumber = 10;
+  private uint unlockLevel_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UnlockLevel {
+    get { return unlockLevel_; }
+    set {
+      unlockLevel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_rank" field.</summary>
+  public const int MaxRankFieldNumber = 11;
+  private uint maxRank_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxRank {
+    get { return maxRank_; }
+    set {
+      maxRank_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rank" field.</summary>
+  public const int RankFieldNumber = 12;
+  private uint rank_;
+  /// <summary>
+  /// 已学等级;0 = 未学
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Rank {
+    get { return rank_; }
+    set {
+      rank_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rank_limit" field.</summary>
+  public const int RankLimitFieldNumber = 13;
+  private uint rankLimit_;
+  /// <summary>
+  /// 按当前角色等级能修到的最高重;未到解锁等级为 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RankLimit {
+    get { return rankLimit_; }
+    set {
+      rankLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "mana_percent" field.</summary>
+  public const int ManaPercentFieldNumber = 14;
+  private double manaPercent_;
+  /// <summary>
+  /// 耗蓝比例(0.03 = 最大法力的 3%,战斗内向上取整、至少 1)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public double ManaPercent {
+    get { return manaPercent_; }
+    set {
+      manaPercent_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cooldown_rounds" field.</summary>
+  public const int CooldownRoundsFieldNumber = 15;
+  private uint cooldownRounds_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CooldownRounds {
+    get { return cooldownRounds_; }
+    set {
+      cooldownRounds_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_rank_cost" field.</summary>
+  public const int NextRankCostFieldNumber = 16;
+  private ulong nextRankCost_;
+  /// <summary>
+  /// 再修一重的价格;已满重为 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextRankCost {
+    get { return nextRankCost_; }
+    set {
+      nextRankCost_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "upgrade_block_tip_id" field.</summary>
+  public const int UpgradeBlockTipIdFieldNumber = 17;
+  private uint upgradeBlockTipId_;
+  /// <summary>
+  /// 0 = 现在可以修习一重;否则为不能修习的原因(tip 码,skill_error 段)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UpgradeBlockTipId {
+    get { return upgradeBlockTipId_; }
+    set {
+      upgradeBlockTipId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "duration_rounds" field.</summary>
+  public const int DurationRoundsFieldNumber = 18;
+  private uint durationRounds_;
+  /// <summary>
+  /// 附带增益 / 减益的持续回合;没有为 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint DurationRounds {
+    get { return durationRounds_; }
+    set {
+      durationRounds_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SkillCatalogEntry);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SkillCatalogEntry other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SkillTableId != other.SkillTableId) return false;
+    if (Name != other.Name) return false;
+    if (Description != other.Description) return false;
+    if (IconKey != other.IconKey) return false;
+    if (ClassId != other.ClassId) return false;
+    if (Category != other.Category) return false;
+    if (Passive != other.Passive) return false;
+    if (TargetTeam != other.TargetTeam) return false;
+    if (MaxTargets != other.MaxTargets) return false;
+    if (UnlockLevel != other.UnlockLevel) return false;
+    if (MaxRank != other.MaxRank) return false;
+    if (Rank != other.Rank) return false;
+    if (RankLimit != other.RankLimit) return false;
+    if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ManaPercent, other.ManaPercent)) return false;
+    if (CooldownRounds != other.CooldownRounds) return false;
+    if (NextRankCost != other.NextRankCost) return false;
+    if (UpgradeBlockTipId != other.UpgradeBlockTipId) return false;
+    if (DurationRounds != other.DurationRounds) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (Description.Length != 0) hash ^= Description.GetHashCode();
+    if (IconKey.Length != 0) hash ^= IconKey.GetHashCode();
+    if (ClassId != 0) hash ^= ClassId.GetHashCode();
+    if (Category.Length != 0) hash ^= Category.GetHashCode();
+    if (Passive != false) hash ^= Passive.GetHashCode();
+    if (TargetTeam != 0) hash ^= TargetTeam.GetHashCode();
+    if (MaxTargets != 0) hash ^= MaxTargets.GetHashCode();
+    if (UnlockLevel != 0) hash ^= UnlockLevel.GetHashCode();
+    if (MaxRank != 0) hash ^= MaxRank.GetHashCode();
+    if (Rank != 0) hash ^= Rank.GetHashCode();
+    if (RankLimit != 0) hash ^= RankLimit.GetHashCode();
+    if (ManaPercent != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ManaPercent);
+    if (CooldownRounds != 0) hash ^= CooldownRounds.GetHashCode();
+    if (NextRankCost != 0UL) hash ^= NextRankCost.GetHashCode();
+    if (UpgradeBlockTipId != 0) hash ^= UpgradeBlockTipId.GetHashCode();
+    if (DurationRounds != 0) hash ^= DurationRounds.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SkillTableId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Name);
+    }
+    if (Description.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Description);
+    }
+    if (IconKey.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(IconKey);
+    }
+    if (ClassId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ClassId);
+    }
+    if (Category.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Category);
+    }
+    if (Passive != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(Passive);
+    }
+    if (TargetTeam != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(TargetTeam);
+    }
+    if (MaxTargets != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(MaxTargets);
+    }
+    if (UnlockLevel != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(UnlockLevel);
+    }
+    if (MaxRank != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(MaxRank);
+    }
+    if (Rank != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(Rank);
+    }
+    if (RankLimit != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(RankLimit);
+    }
+    if (ManaPercent != 0D) {
+      output.WriteRawTag(113);
+      output.WriteDouble(ManaPercent);
+    }
+    if (CooldownRounds != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(CooldownRounds);
+    }
+    if (NextRankCost != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(NextRankCost);
+    }
+    if (UpgradeBlockTipId != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(UpgradeBlockTipId);
+    }
+    if (DurationRounds != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(DurationRounds);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SkillTableId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Name);
+    }
+    if (Description.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Description);
+    }
+    if (IconKey.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(IconKey);
+    }
+    if (ClassId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ClassId);
+    }
+    if (Category.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Category);
+    }
+    if (Passive != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(Passive);
+    }
+    if (TargetTeam != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(TargetTeam);
+    }
+    if (MaxTargets != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(MaxTargets);
+    }
+    if (UnlockLevel != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(UnlockLevel);
+    }
+    if (MaxRank != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(MaxRank);
+    }
+    if (Rank != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(Rank);
+    }
+    if (RankLimit != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(RankLimit);
+    }
+    if (ManaPercent != 0D) {
+      output.WriteRawTag(113);
+      output.WriteDouble(ManaPercent);
+    }
+    if (CooldownRounds != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(CooldownRounds);
+    }
+    if (NextRankCost != 0UL) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt64(NextRankCost);
+    }
+    if (UpgradeBlockTipId != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(UpgradeBlockTipId);
+    }
+    if (DurationRounds != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(DurationRounds);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SkillTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (Description.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Description);
+    }
+    if (IconKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(IconKey);
+    }
+    if (ClassId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ClassId);
+    }
+    if (Category.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Category);
+    }
+    if (Passive != false) {
+      size += 1 + 1;
+    }
+    if (TargetTeam != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetTeam);
+    }
+    if (MaxTargets != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxTargets);
+    }
+    if (UnlockLevel != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnlockLevel);
+    }
+    if (MaxRank != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxRank);
+    }
+    if (Rank != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Rank);
+    }
+    if (RankLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RankLimit);
+    }
+    if (ManaPercent != 0D) {
+      size += 1 + 8;
+    }
+    if (CooldownRounds != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CooldownRounds);
+    }
+    if (NextRankCost != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextRankCost);
+    }
+    if (UpgradeBlockTipId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(UpgradeBlockTipId);
+    }
+    if (DurationRounds != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(DurationRounds);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SkillCatalogEntry other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SkillTableId != 0) {
+      SkillTableId = other.SkillTableId;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
+    if (other.Description.Length != 0) {
+      Description = other.Description;
+    }
+    if (other.IconKey.Length != 0) {
+      IconKey = other.IconKey;
+    }
+    if (other.ClassId != 0) {
+      ClassId = other.ClassId;
+    }
+    if (other.Category.Length != 0) {
+      Category = other.Category;
+    }
+    if (other.Passive != false) {
+      Passive = other.Passive;
+    }
+    if (other.TargetTeam != 0) {
+      TargetTeam = other.TargetTeam;
+    }
+    if (other.MaxTargets != 0) {
+      MaxTargets = other.MaxTargets;
+    }
+    if (other.UnlockLevel != 0) {
+      UnlockLevel = other.UnlockLevel;
+    }
+    if (other.MaxRank != 0) {
+      MaxRank = other.MaxRank;
+    }
+    if (other.Rank != 0) {
+      Rank = other.Rank;
+    }
+    if (other.RankLimit != 0) {
+      RankLimit = other.RankLimit;
+    }
+    if (other.ManaPercent != 0D) {
+      ManaPercent = other.ManaPercent;
+    }
+    if (other.CooldownRounds != 0) {
+      CooldownRounds = other.CooldownRounds;
+    }
+    if (other.NextRankCost != 0UL) {
+      NextRankCost = other.NextRankCost;
+    }
+    if (other.UpgradeBlockTipId != 0) {
+      UpgradeBlockTipId = other.UpgradeBlockTipId;
+    }
+    if (other.DurationRounds != 0) {
+      DurationRounds = other.DurationRounds;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          Name = input.ReadString();
+          break;
+        }
+        case 26: {
+          Description = input.ReadString();
+          break;
+        }
+        case 34: {
+          IconKey = input.ReadString();
+          break;
+        }
+        case 40: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          Category = input.ReadString();
+          break;
+        }
+        case 56: {
+          Passive = input.ReadBool();
+          break;
+        }
+        case 64: {
+          TargetTeam = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          MaxTargets = input.ReadUInt32();
+          break;
+        }
+        case 80: {
+          UnlockLevel = input.ReadUInt32();
+          break;
+        }
+        case 88: {
+          MaxRank = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          Rank = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          RankLimit = input.ReadUInt32();
+          break;
+        }
+        case 113: {
+          ManaPercent = input.ReadDouble();
+          break;
+        }
+        case 120: {
+          CooldownRounds = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          NextRankCost = input.ReadUInt64();
+          break;
+        }
+        case 136: {
+          UpgradeBlockTipId = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          DurationRounds = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          Name = input.ReadString();
+          break;
+        }
+        case 26: {
+          Description = input.ReadString();
+          break;
+        }
+        case 34: {
+          IconKey = input.ReadString();
+          break;
+        }
+        case 40: {
+          ClassId = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          Category = input.ReadString();
+          break;
+        }
+        case 56: {
+          Passive = input.ReadBool();
+          break;
+        }
+        case 64: {
+          TargetTeam = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          MaxTargets = input.ReadUInt32();
+          break;
+        }
+        case 80: {
+          UnlockLevel = input.ReadUInt32();
+          break;
+        }
+        case 88: {
+          MaxRank = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          Rank = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          RankLimit = input.ReadUInt32();
+          break;
+        }
+        case 113: {
+          ManaPercent = input.ReadDouble();
+          break;
+        }
+        case 120: {
+          CooldownRounds = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          NextRankCost = input.ReadUInt64();
+          break;
+        }
+        case 136: {
+          UpgradeBlockTipId = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          DurationRounds = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 修习(学习 = 从 0 升到 1)。修习者由服务端会话确定,请求里没有角色身份。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<UpgradeSkillRequest> _parser = new pb::MessageParser<UpgradeSkillRequest>(() => new UpgradeSkillRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<UpgradeSkillRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UpgradeSkillRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UpgradeSkillRequest(UpgradeSkillRequest other) : this() {
+    skillTableId_ = other.skillTableId_;
+    expectedRank_ = other.expectedRank_;
+    count_ = other.count_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UpgradeSkillRequest Clone() {
+    return new UpgradeSkillRequest(this);
+  }
+
+  /// <summary>Field number for the "skill_table_id" field.</summary>
+  public const int SkillTableIdFieldNumber = 1;
+  private uint skillTableId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SkillTableId {
+    get { return skillTableId_; }
+    set {
+      skillTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_rank" field.</summary>
+  public const int ExpectedRankFieldNumber = 2;
+  private uint expectedRank_;
+  /// <summary>
+  /// 客户端看到的当前等级;与服务端不一致整笔拒绝(旧请求重放不会再扣一次)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedRank {
+    get { return expectedRank_; }
+    set {
+      expectedRank_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "count" field.</summary>
+  public const int CountFieldNumber = 3;
+  private uint count_;
+  /// <summary>
+  /// 只收 1 或 10;10 次在满重 / 等级上限 / 余额不足处提前停
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Count {
+    get { return count_; }
+    set {
+      count_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as UpgradeSkillRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(UpgradeSkillRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SkillTableId != other.SkillTableId) return false;
+    if (ExpectedRank != other.ExpectedRank) return false;
+    if (Count != other.Count) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
+    if (ExpectedRank != 0) hash ^= ExpectedRank.GetHashCode();
+    if (Count != 0) hash ^= Count.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SkillTableId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (ExpectedRank != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedRank);
+    }
+    if (Count != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Count);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SkillTableId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SkillTableId);
+    }
+    if (ExpectedRank != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(ExpectedRank);
+    }
+    if (Count != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Count);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SkillTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
+    }
+    if (ExpectedRank != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedRank);
+    }
+    if (Count != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Count);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(UpgradeSkillRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SkillTableId != 0) {
+      SkillTableId = other.SkillTableId;
+    }
+    if (other.ExpectedRank != 0) {
+      ExpectedRank = other.ExpectedRank;
+    }
+    if (other.Count != 0) {
+      Count = other.Count;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          ExpectedRank = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Count = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          ExpectedRank = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Count = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class UpgradeSkillResponse : pb::IMessage<UpgradeSkillResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<UpgradeSkillResponse> _parser = new pb::MessageParser<UpgradeSkillResponse>(() => new UpgradeSkillResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<UpgradeSkillResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSkillReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UpgradeSkillResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UpgradeSkillResponse(UpgradeSkillResponse other) : this() {
+    errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
+    state_ = other.state_ != null ? other.state_.Clone() : null;
+    upgradedCount_ = other.upgradedCount_;
+    stopTipId_ = other.stopTipId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public UpgradeSkillResponse Clone() {
+    return new UpgradeSkillResponse(this);
+  }
+
+  /// <summary>Field number for the "error_message" field.</summary>
+  public const int ErrorMessageFieldNumber = 1;
+  private global::TipInfoMessage errorMessage_;
+  /// <summary>
+  /// 整笔拒绝(一重都没修成)时才填;部分成功不填
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TipInfoMessage ErrorMessage {
+    get { return errorMessage_; }
+    set {
+      errorMessage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state" field.</summary>
+  public const int StateFieldNumber = 2;
+  private global::ListSkillsResponse state_;
+  /// <summary>
+  /// 处理完之后的完整技能书(拒绝时也带,客户端据此整体替换)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ListSkillsResponse State {
+    get { return state_; }
+    set {
+      state_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "upgraded_count" field.</summary>
+  public const int UpgradedCountFieldNumber = 3;
+  private uint upgradedCount_;
+  /// <summary>
+  /// 实际修成的重数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UpgradedCount {
+    get { return upgradedCount_; }
+    set {
+      upgradedCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "stop_tip_id" field.</summary>
+  public const int StopTipIdFieldNumber = 4;
+  private uint stopTipId_;
+  /// <summary>
+  /// 少于 count 时的停止原因(tip 码);按请求次数全部修成为 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint StopTipId {
+    get { return stopTipId_; }
+    set {
+      stopTipId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as UpgradeSkillResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(UpgradeSkillResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
+    if (!object.Equals(State, other.State)) return false;
+    if (UpgradedCount != other.UpgradedCount) return false;
+    if (StopTipId != other.StopTipId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
+    if (state_ != null) hash ^= State.GetHashCode();
+    if (UpgradedCount != 0) hash ^= UpgradedCount.GetHashCode();
+    if (StopTipId != 0) hash ^= StopTipId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(State);
+    }
+    if (UpgradedCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(UpgradedCount);
+    }
+    if (StopTipId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(StopTipId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (errorMessage_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(ErrorMessage);
+    }
+    if (state_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(State);
+    }
+    if (UpgradedCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(UpgradedCount);
+    }
+    if (StopTipId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(StopTipId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (errorMessage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorMessage);
+    }
+    if (state_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(State);
+    }
+    if (UpgradedCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UpgradedCount);
+    }
+    if (StopTipId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(StopTipId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(UpgradeSkillResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.errorMessage_ != null) {
+      if (errorMessage_ == null) {
+        ErrorMessage = new global::TipInfoMessage();
+      }
+      ErrorMessage.MergeFrom(other.ErrorMessage);
+    }
+    if (other.state_ != null) {
+      if (state_ == null) {
+        State = new global::ListSkillsResponse();
+      }
+      State.MergeFrom(other.State);
+    }
+    if (other.UpgradedCount != 0) {
+      UpgradedCount = other.UpgradedCount;
+    }
+    if (other.StopTipId != 0) {
+      StopTipId = other.StopTipId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (state_ == null) {
+            State = new global::ListSkillsResponse();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+        case 24: {
+          UpgradedCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          StopTipId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (errorMessage_ == null) {
+            ErrorMessage = new global::TipInfoMessage();
+          }
+          input.ReadMessage(ErrorMessage);
+          break;
+        }
+        case 18: {
+          if (state_ == null) {
+            State = new global::ListSkillsResponse();
+          }
+          input.ReadMessage(State);
+          break;
+        }
+        case 24: {
+          UpgradedCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          StopTipId = input.ReadUInt32();
           break;
         }
       }

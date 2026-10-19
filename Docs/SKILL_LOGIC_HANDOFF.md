@@ -228,3 +228,71 @@ pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:/work/xuanming-server-mmo
 交付时列出：实际改动文件、当前协议/配置版本、逐功能验证结果、未执行项及真实失败；说明 C++/Go 与 Java 两版状态。定位到 Java 仓库后按其规范维护 `PARITY.md`；找不到则明确待做。不得声称“所有技能完成”而遗漏宠物、真实联网、持久化或另一版。
 
 最后边界：**Claude 负责逻辑与适配；保留 Codex 已完成的技能 UI、入口、图片、布局和窗口交互。不要运行旧批量发布脚本，不要用 staging 整文件覆盖正式 UI。**
+
+## 8. 2026-10-19 接入记录(Claude Code)
+
+本节只追加,上面 §1–§7 原文不动。结论:**角色技能的 A(协议与权威数据)、B(学习升级、保存与属性)、C(快照带等级 + 引擎施放规则)、D 的服务端填值与客户端演出消费都已落码;宠物技能(§6)与截图新机制没做。**服务端代码未编译、未跑测试(按服务端 AGENTS §10.1 交 Codex);客户端已离线编译通过、新增用例已离线实跑通过,但没有在 Unity 里跑、没有联机。
+
+### 8.1 分支与位置
+
+| 仓 | 分支 / 工作树 | 内容 |
+|---|---|---|
+| 服务端 | `feat/class-skills`,`E:/work/xuanming-server-mmo-wt-skills`,基于 origin/main `c63b22dca2` | 配表 + proto + 导表产物 + scene / 引擎逻辑 + 测试 + 设计文档 `docs/design/class-skills.md`;**proto-gen 未跑**(生成器源码比仓内 exe 新,要 Codex 先 `proto-gen-build`),命令清单 `docs/handoff/class-skills-handoff-20261019.md` |
+| 客户端 | `feat/class-skills`,`E:/work/mmorpg-client-wt-skills`(稀疏检出,只含 `Assets/Scripts`、`Assets/Tests`、`Assets/Plugins`、`Docs`、`tools`;`Library` 是指向主工程的目录联接) | 本节下列文件 |
+
+客户端改动文件:
+- 生成协议(用服务端分支的 proto 现生成,全量 `gen_proto.ps1` 对比确认只有这四份变化):`Assets/Scripts/Proto/Generated/{PlayerSkill,PlayerSkillComp,BattleData}.cs`、新增 `SkillErrorTip.cs`;
+  `Assets/Scripts/Net/MessageIds.cs` 新增 `UpgradeSkill = 317`;导表产物 `Assets/Scripts/Table/Generated/SkillTable.cs`。
+- 生成脚本:`tools/gen_proto.ps1` 清单加 `generated/code/proto/tip/skill_error_tip.proto`;`tools/gen_messageids.ps1` 白名单加 `SceneSkillClientPlayerUpgradeSkill`。
+- 业务:新增 `Assets/Scripts/Game/Skills/SkillBookClient.cs`(实现 `ISkillBookSource`)、`SkillBookMapper.cs`(协议 → UI 模型、tip 文案);
+  `GameClient.cs` 挂 `Skills`;`UI/AppBootstrap.cs` 启动时 `SkillUiRoot.EnsureSpawned()` + `Bind(GameClient.Skills)`,销毁时先 `Unbind` 再 `Dispose`;
+  `Game/Battle/Presentation/TurnPlan.cs` 读 `mana_delta`(有就以它的符号为准,同一出手内多条按顺序累计)。
+- 测试:`Assets/Tests/EditMode/Skills/`(新程序集 `MmorpgClient.Tests.EditMode.Skills`:`SkillBookClientTests` 18 条、`SkillBookMapperTests` 6 个方法 / 10 例)、
+  `Assets/Tests/EditMode/Battle/ManaDeltaPlanTests.cs`(5 条)。
+- **没碰** `Assets/Scripts/UI/Ugui/Skills/`、`Assets/Resources/UI/Skills/`、战斗选技 UI。
+
+### 8.2 契约要点(给 Codex 做 UI 时参考)
+
+- `ListSkillsResponse.catalog`:当前职业完整目录,未学 `rank = 0`;`upgrade_block_tip_id` 非 0 时适配器把它译成 `SkillEntryState.LockedReason`(UI 的 CanUpgrade 已据此禁用)。
+- 修习结果:成功 / 部分成功 / 被拒但带了新技能书 → 写 `State.Message`(例:「【横戈裂岳】修习成功,提升 2 重(已停止:角色等级不足,暂不能继续修习)」),快照整份替换,不挡下一次修习;
+  超时 / 网络失败 → 写 `State.Error`「修习结果未确认…请刷新」,UI 按既有规则禁止修习、只留刷新。现有 `SkillPanel` 在无 Error / 非加载 / 非提交时显示 `Message`,不需要改 UI。
+- 宠物上下文:`IsReadOnly = true`、空目录、`Message = 宠物技能服务端尚未开放,暂不能查看与修习`,不发任何请求。
+- 战斗选技目标:服务端按技能阵营校验,`target_id = 0` 时由服务端按规则选(友方治疗选血量比例最低的存活友方)。当前 `BattleScreen.IsTargetable` 对技能放开任意存活单位,功能上能用;
+  **UI 需求(交 Codex)**:按 `SkillUiRoot.FindPresentation(id).targetTeam` 过滤高亮 —— `enemy` 只亮敌方、`ally` 只亮己方(含自己与宝宝)、`self` 直接以自己为目标或免选目标(提交 `TargetId = 0` 也被服务端接受)。
+- 战斗内被动不显示、不能施放(服务端快照不下发被动的施放 id);职业技能冷却在 `BattleActorState.skill_cooldown_rounds` 里按技能 id 给剩余回合。
+
+### 8.3 生成与验证命令
+
+服务端分支合入 main 并由 Codex 跑完 proto-gen 之后,客户端在**合入后的服务端主目录**上复核一次(只应得到与本分支相同的四份协议与 MessageIds):
+
+```powershell
+Set-Location E:/work/mmorpg-client
+pwsh -File tools/gen_proto.ps1 -ProtoRoot E:/work/xuanming-server-mmo -Protoc E:/work/xuanming-server-mmo/third_party/grpc/install_vs2026_dbg/bin/protoc.exe
+pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:/work/xuanming-server-mmo
+pwsh -File tools/client_compile_check.ps1
+```
+
+已实际执行(Claude,2026-10-19,客户端工作树):
+- `tools/client_compile_check.ps1 -ProjectPath <工作树> -Csproj <主工程>/MmorpgClient.csproj`:改动前 524 个文件 0 错误;改动后 527 个文件 0 错误。
+- 离线 NUnit 跑具(Unity 自带 `nunit.framework.dll` + .NET 10,反射执行 `[Test]` / `[TestCase]`;替身只有 `UnityEngine.Debug`、`SkillCatalog`(读 Resources)与 `MessageContent`):
+  技能书 28 / 28 通过;`ManaDeltaPlanTests` + 既有 `TurnPlanTests` + `EquipCombatEventsPlanTests` 共 48 / 48 通过(TurnPlan 改动无回归)。
+- **没做**:Unity EditMode 真跑(新程序集 asmdef 要 Unity 生成工程后才进 Test Runner)、截图、联机。
+
+### 8.4 §7 最低测试清单逐项状态
+
+| # | 项 | 状态 |
+|---|---|---|
+| 1 | 目录 4×8、ID / 职业 / 解锁 / 图标键一致;无重复字段号 / 消息号;hit_kind 未丢;指纹不一致拒绝开局 | 服务端真表契约用例**已写未跑**;字段号已人工核对(21 / 28 / 15 / 6 / 7 均空闲,combat 20 / 27、hit_kind 14 保留);消息号 317 无冲突;指纹整表序列化,新列自动纳入 |
+| 2 | 初始学习、未学 → 学习、单次 / 10 次、部分成功、满级、等级不足、金币不足、错误职业 / 宠物主人、非法 count、重复请求、旧 expected_rank、乱序回包、断线 / 切宠物 | 服务端 13 条**已写未跑**;客户端乱序 / 换号 / 换连接 / 断线 / 切宠物 / 超时 **已实跑**(离线);宠物主人校验**未做**(无宠物技能协议) |
+| 3 | 属性即时更新、重算 / 重登不叠加、保存后重登、旧档兼容、战斗 / 传送 / 交接窗口拒写、扣费与等级不丢一边 | 逻辑已落(被动只在 scene 重算、`kSkillChanged` 按比例保持 HP/MP、窗口拒写、同回调扣费改级);窗口拒写 / 不扣费**已写未跑**;即时重算与重登不叠加**未写专门用例**,留给联机冒烟看属性面板 |
+| 4 | 32 技能逐项效果、最强叠加、驱散、冷却、被动不可施放、scene / battle 不重复加成 | 引擎按类别 17 条**已写未跑**(内存表行,形状同真表);32 个技能逐个数值核对**未做** |
+| 5 | 截图新机制、宠物技能真实行动路径 | **未做** |
+| 6 | ManaDelta 全链、群体只扣一次、回放 / 观战 / 重连一致 | 服务端填值与"群体一次扣蓝"**已写未跑**;客户端演出消费**已实跑**(离线 5 条 + 回归);观战 / 重连**未测** |
+| 7 | 两端联网全流程 | **未做**(前置:服务端 proto-gen + 编译 + 测试) |
+
+### 8.5 遗留
+
+- 宠物技能(§6)整块、截图三种机制、Java 版(本机没有 `D:/luyuan/xuanming-server-mmo`,`PARITY.md` 待登记)。
+- 玩家挂机 / 超时仍只普攻;没有职业技能 AI。
+- 老 robot / 旧客户端仍能用 `skill_list`;robot 已改为剔除被动(服务端分支内)。
+- 客户端两分支都没合入 main:服务端要先由负责人把 origin/main 合进本地 main(当前落后 19 个提交),再合 `feat/class-skills`;客户端 `feat/class-skills` 基于客户端 main `d6338af1`,可直接合。

@@ -28,107 +28,114 @@ public static partial class BattleDataReflection {
           "QmF0dGxlUm91dGluZxISCgpzZXNzaW9uX2lkGAEgASgNEhQKDGdhdGVfbm9k",
           "ZV9pZBgCIAEoDRIYChBnYXRlX2luc3RhbmNlX2lkGAMgASgJEhUKDXNjZW5l",
           "X25vZGVfaWQYBCABKA0SGQoRc2NlbmVfaW5zdGFuY2VfaWQYBSABKAkSDwoH",
-          "em9uZV9pZBgGIAEoDSJyCg9CYXR0bGVCdWZmRW50cnkSDwoHYnVmZl9pZBgB",
-          "IAEoBBIVCg1idWZmX3RhYmxlX2lkGAIgASgNEg0KBWxheWVyGAMgASgNEhUK",
-          "DXJlbWFpbl9yb3VuZHMYBCABKA0SEQoJY2FzdGVyX2lkGAUgASgEIjcKD0Jh",
-          "dHRsZUl0ZW1FbnRyeRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNvdW50",
-          "GAIgASgEIooEChRCYXR0bGVQbGF5ZXJTbmFwc2hvdBIRCglwbGF5ZXJfaWQY",
-          "ASABKAQSEwoLcGxheWVyX25hbWUYAiABKAkSDQoFbGV2ZWwYAyABKA0SLAoP",
-          "YmFzZV9hdHRyaWJ1dGVzGAQgASgLMhMuQmFzZUF0dHJpYnV0ZXNDb21wEhIK",
-          "Cm1heF9oZWFsdGgYBSABKAQSEAoIbWF4X21hbmEYBiABKAQSFwoPc2tpbGxf",
-          "dGFibGVfaWRzGAcgAygNEh8KBWJ1ZmZzGAggAygLMhAuQmF0dGxlQnVmZkVu",
-          "dHJ5Eh8KBWl0ZW1zGAkgAygLMhAuQmF0dGxlSXRlbUVudHJ5Eh8KB3JvdXRp",
-          "bmcYCiABKAsyDi5CYXR0bGVSb3V0aW5nEhIKCnRlYW1faW5kZXgYCyABKA0S",
-          "GQoRdGFibGVfZmluZ2VycHJpbnQYDCABKAkSFwoPcGh5c2ljYWxfYXR0YWNr",
-          "GA0gASgEEhQKDG1hZ2ljX2F0dGFjaxgOIAEoBBIPCgdkZWZlbnNlGA8gASgE",
-          "EiAKBHBldHMYECADKAsyEi5CYXR0bGVQZXRTbmFwc2hvdBIVCg1hcHBlYXJh",
-          "bmNlX2lkGBEgASgJEhAKCGNsYXNzX2lkGBIgASgNEg4KBmdlbmRlchgTIAEo",
-          "DRIhCgZjb21iYXQYFCABKAsyES5Db21iYXRBdHRyaWJ1dGVzIqACChFCYXR0",
-          "bGVQZXRTbmFwc2hvdBIOCgZwZXRfaWQYASABKAQSFwoPb3duZXJfcGxheWVy",
-          "X2lkGAIgASgEEhAKCHBldF9uYW1lGAMgASgJEhQKDHBldF90YWJsZV9pZBgE",
-          "IAEoDRINCgVsZXZlbBgFIAEoDRIsCg9iYXNlX2F0dHJpYnV0ZXMYBiABKAsy",
-          "Ey5CYXNlQXR0cmlidXRlc0NvbXASEgoKbWF4X2hlYWx0aBgHIAEoBBIQCght",
-          "YXhfbWFuYRgIIAEoBBIXCg9waHlzaWNhbF9hdHRhY2sYCSABKAQSFAoMbWFn",
-          "aWNfYXR0YWNrGAogASgEEg8KB2RlZmVuc2UYCyABKAQSFwoPc2tpbGxfdGFi",
-          "bGVfaWRzGAwgAygNIt8FChBCYXR0bGVBY3RvclN0YXRlEhAKCGFjdG9yX2lk",
-          "GAEgASgEEiUKCmFjdG9yX3R5cGUYAiABKA4yES5lQmF0dGxlQWN0b3JUeXBl",
-          "EhIKCnRlYW1faW5kZXgYAyABKA0SDAoEbmFtZRgEIAEoCRINCgVsZXZlbBgF",
-          "IAEoDRInCgphdHRyaWJ1dGVzGAYgASgLMhMuQmFzZUF0dHJpYnV0ZXNDb21w",
-          "EhIKCm1heF9oZWFsdGgYByABKAQSEAoIbWF4X21hbmEYCCABKAQSDwoHaXNf",
-          "ZGVhZBgJIAEoCBIUCgxpc19kZWZlbmRpbmcYCiABKAgSDAoEZmxlZBgLIAEo",
-          "CBIfCgVidWZmcxgMIAMoCzIQLkJhdHRsZUJ1ZmZFbnRyeRIXCg9za2lsbF90",
-          "YWJsZV9pZHMYDSADKA0SGAoQbW9uc3Rlcl90YWJsZV9pZBgOIAEoDRJJChVz",
-          "a2lsbF9jb29sZG93bl9yb3VuZHMYDyADKAsyKi5CYXR0bGVBY3RvclN0YXRl",
-          "LlNraWxsQ29vbGRvd25Sb3VuZHNFbnRyeRIPCgdpc19hdXRvGBAgASgIEhYK",
-          "DmZvcm1hdGlvbl9zbG90GBEgASgNEhcKD3BoeXNpY2FsX2F0dGFjaxgSIAEo",
-          "BBIUCgxtYWdpY19hdHRhY2sYEyABKAQSDwoHZGVmZW5zZRgUIAEoBBIXCg9v",
-          "d25lcl9wbGF5ZXJfaWQYFSABKAQSFAoMcGV0X3RhYmxlX2lkGBYgASgNEg4K",
-          "BnBldF9pZBgXIAEoBBIVCg1hcHBlYXJhbmNlX2lkGBggASgJEhAKCGNsYXNz",
-          "X2lkGBkgASgNEg4KBmdlbmRlchgaIAEoDRIhCgZjb21iYXQYGyABKAsyES5D",
-          "b21iYXRBdHRyaWJ1dGVzGjoKGFNraWxsQ29vbGRvd25Sb3VuZHNFbnRyeRIL",
-          "CgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBInkKDEJhdHRsZUFjdGlv",
-          "bhInCgthY3Rpb25fdHlwZRgBIAEoDjISLmVCYXR0bGVBY3Rpb25UeXBlEhYK",
-          "DnNraWxsX3RhYmxlX2lkGAIgASgNEhEKCXRhcmdldF9pZBgDIAEoBBIVCg1p",
-          "dGVtX3RhYmxlX2lkGAQgASgNItkCCg9CYXR0bGVFdmVudEl0ZW0SJQoKZXZl",
-          "bnRfdHlwZRgBIAEoDjIRLmVCYXR0bGVFdmVudFR5cGUSEQoJc291cmNlX2lk",
-          "GAIgASgEEhEKCXRhcmdldF9pZBgDIAEoBBIWCg5za2lsbF90YWJsZV9pZBgE",
-          "IAEoDRIVCg1idWZmX3RhYmxlX2lkGAUgASgNEg0KBXZhbHVlGAYgASgEEhMK",
-          "C2lzX2NyaXRpY2FsGAcgASgIEg8KB3N1Y2Nlc3MYCCABKAgSGwoTdGFyZ2V0",
-          "X2hlYWx0aF9hZnRlchgJIAEoBBIVCg1pdGVtX3RhYmxlX2lkGAogASgNEhAK",
-          "CGdyb3VwX2lkGAsgASgNEhEKCWhpdF9pbmRleBgMIAEoDRIZChF0YXJnZXRf",
-          "bWFuYV9hZnRlchgNIAEoBBIhCghoaXRfa2luZBgOIAEoDjIPLmVCYXR0bGVI",
-          "aXRLaW5kIj8KE0JhdHRsZU1vbnN0ZXJEZWZlYXQSGQoRbW9uc3Rlcl9jb25m",
-          "aWdfaWQYASABKA0SDQoFY291bnQYAiABKA0inAMKFEJhdHRsZVNldHRsZW1l",
-          "bnREYXRhEhEKCWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQS",
-          "IAoHb3V0Y29tZRgDIAEoDjIPLmVCYXR0bGVPdXRjb21lEhkKEXBsYXllcl90",
-          "ZWFtX2luZGV4GAQgASgNEg4KBmhlYWx0aBgFIAEoBBIMCgRtYW5hGAYgASgE",
-          "EhAKCGV4cF9nYWluGAcgASgEEhEKCWdvbGRfZ2FpbhgIIAEoBBIoCg5pdGVt",
-          "c19jb25zdW1lZBgJIAMoCzIQLkJhdHRsZUl0ZW1FbnRyeRImCgxpdGVtc19n",
-          "YWluZWQYCiADKAsyEC5CYXR0bGVJdGVtRW50cnkSDwoHaXNfZGVhZBgLIAEo",
-          "CBIMCgRmbGVkGAwgASgIEhQKDHRvdGFsX3JvdW5kcxgNIAEoDRImCgRwZXRz",
-          "GA4gAygLMhguQmF0dGxlUGV0U2V0dGxlbWVudERhdGESLwoRZGVmZWF0ZWRf",
-          "bW9uc3RlcnMYDyADKAsyFC5CYXR0bGVNb25zdGVyRGVmZWF0IlgKF0JhdHRs",
-          "ZVBldFNldHRsZW1lbnREYXRhEg4KBnBldF9pZBgBIAEoBBIOCgZoZWFsdGgY",
-          "AiABKAQSDAoEbWFuYRgDIAEoBBIPCgdpc19kZWFkGAQgASgIIq0BChVCYXR0",
-          "bGVBY3Rpdml0eUNvbnRleHQSIgoEa2luZBgBIAEoDjIULmVCYXR0bGVBY3Rp",
-          "dml0eUtpbmQSEAoIZ3VpbGRfaWQYAiABKAQSEwoLYWN0aXZpdHlfaWQYAyAB",
-          "KA0SEgoKcGVyaW9kX2tleRgEIAEoDRIbChNpbml0aWF0b3JfcGxheWVyX2lk",
-          "GAUgASgEEhgKEGd1aWxkX3BlcmlvZF9rZXkYBiABKA0qhgEKEGVCYXR0bGVB",
-          "Y3RvclR5cGUSGgoWQkFUVExFX0FDVE9SX1RZUEVfTk9ORRAAEhwKGEJBVFRM",
-          "RV9BQ1RPUl9UWVBFX1BMQVlFUhABEh0KGUJBVFRMRV9BQ1RPUl9UWVBFX01P",
-          "TlNURVIQAhIZChVCQVRUTEVfQUNUT1JfVFlQRV9QRVQQAyqoAQoRZUJhdHRs",
-          "ZUFjdGlvblR5cGUSFgoSQkFUVExFX0FDVElPTl9OT05FEAASGAoUQkFUVExF",
-          "X0FDVElPTl9BVFRBQ0sQARIXChNCQVRUTEVfQUNUSU9OX1NLSUxMEAISGAoU",
-          "QkFUVExFX0FDVElPTl9ERUZFTkQQAxIWChJCQVRUTEVfQUNUSU9OX0lURU0Q",
-          "BBIWChJCQVRUTEVfQUNUSU9OX0ZMRUUQBSqdAwoQZUJhdHRsZUV2ZW50VHlw",
-          "ZRIVChFCQVRUTEVfRVZFTlRfTk9ORRAAEhcKE0JBVFRMRV9FVkVOVF9BVFRB",
-          "Q0sQARIWChJCQVRUTEVfRVZFTlRfU0tJTEwQAhIXChNCQVRUTEVfRVZFTlRf",
-          "REFNQUdFEAMSFQoRQkFUVExFX0VWRU5UX0hFQUwQBBIZChVCQVRUTEVfRVZF",
-          "TlRfQlVGRl9BREQQBRIcChhCQVRUTEVfRVZFTlRfQlVGRl9SRU1PVkUQBhIa",
-          "ChZCQVRUTEVfRVZFTlRfQlVGRl9USUNLEAcSFgoSQkFUVExFX0VWRU5UX0RF",
-          "QVRIEAgSFwoTQkFUVExFX0VWRU5UX0RFRkVORBAJEhUKEUJBVFRMRV9FVkVO",
-          "VF9JVEVNEAoSFQoRQkFUVExFX0VWRU5UX0ZMRUUQCxIVChFCQVRUTEVfRVZF",
-          "TlRfTUlTUxAMEhYKEkJBVFRMRV9FVkVOVF9CTE9DSxANEhUKEUJBVFRMRV9F",
-          "VkVOVF9NQU5BEA4SFwoTQkFUVExFX0VWRU5UX1JFU0lTVBAPKm0KDmVCYXR0",
-          "bGVIaXRLaW5kEhUKEUJBVFRMRV9ISVRfTk9STUFMEAASFAoQQkFUVExFX0hJ",
-          "VF9DT01CTxABEhYKEkJBVFRMRV9ISVRfQ09VTlRFUhACEhYKEkJBVFRMRV9I",
-          "SVRfUkVGTEVDVBADKoMBCg5lQmF0dGxlT3V0Y29tZRIaChZCQVRUTEVfT1VU",
-          "Q09NRV9PTkdPSU5HEAASHQoZQkFUVExFX09VVENPTUVfU0lERV9BX1dJThAB",
-          "Eh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQl9XSU4QAhIXChNCQVRUTEVfT1VU",
-          "Q09NRV9EUkFXEAMqWgoTZUJhdHRsZUFjdGl2aXR5S2luZBIdChlCQVRUTEVf",
-          "QUNUSVZJVFlfS0lORF9OT05FEAASJAogQkFUVExFX0FDVElWSVRZX0tJTkRf",
-          "R1VJTERfVFJJQUwQAUIIWgZiYXR0bGViBnByb3RvMw=="));
+          "em9uZV9pZBgGIAEoDSKfAQoPQmF0dGxlQnVmZkVudHJ5Eg8KB2J1ZmZfaWQY",
+          "ASABKAQSFQoNYnVmZl90YWJsZV9pZBgCIAEoDRINCgVsYXllchgDIAEoDRIV",
+          "Cg1yZW1haW5fcm91bmRzGAQgASgNEhEKCWNhc3Rlcl9pZBgFIAEoBBIUCgxz",
+          "dGF0X3BlcmNlbnQYBiABKAESFQoNYXBwbGllZF9yb3VuZBgHIAEoDSI3Cg9C",
+          "YXR0bGVJdGVtRW50cnkSFQoNaXRlbV90YWJsZV9pZBgBIAEoDRINCgVjb3Vu",
+          "dBgCIAEoBCL5BAoUQmF0dGxlUGxheWVyU25hcHNob3QSEQoJcGxheWVyX2lk",
+          "GAEgASgEEhMKC3BsYXllcl9uYW1lGAIgASgJEg0KBWxldmVsGAMgASgNEiwK",
+          "D2Jhc2VfYXR0cmlidXRlcxgEIAEoCzITLkJhc2VBdHRyaWJ1dGVzQ29tcBIS",
+          "CgptYXhfaGVhbHRoGAUgASgEEhAKCG1heF9tYW5hGAYgASgEEhcKD3NraWxs",
+          "X3RhYmxlX2lkcxgHIAMoDRIfCgVidWZmcxgIIAMoCzIQLkJhdHRsZUJ1ZmZF",
+          "bnRyeRIfCgVpdGVtcxgJIAMoCzIQLkJhdHRsZUl0ZW1FbnRyeRIfCgdyb3V0",
+          "aW5nGAogASgLMg4uQmF0dGxlUm91dGluZxISCgp0ZWFtX2luZGV4GAsgASgN",
+          "EhkKEXRhYmxlX2ZpbmdlcnByaW50GAwgASgJEhcKD3BoeXNpY2FsX2F0dGFj",
+          "axgNIAEoBBIUCgxtYWdpY19hdHRhY2sYDiABKAQSDwoHZGVmZW5zZRgPIAEo",
+          "BBIgCgRwZXRzGBAgAygLMhIuQmF0dGxlUGV0U25hcHNob3QSFQoNYXBwZWFy",
+          "YW5jZV9pZBgRIAEoCRIQCghjbGFzc19pZBgSIAEoDRIOCgZnZW5kZXIYEyAB",
+          "KA0SIQoGY29tYmF0GBQgASgLMhEuQ29tYmF0QXR0cmlidXRlcxI6Cgtza2ls",
+          "bF9yYW5rcxgVIAMoCzIlLkJhdHRsZVBsYXllclNuYXBzaG90LlNraWxsUmFu",
+          "a3NFbnRyeRoxCg9Ta2lsbFJhbmtzRW50cnkSCwoDa2V5GAEgASgNEg0KBXZh",
+          "bHVlGAIgASgNOgI4ASKgAgoRQmF0dGxlUGV0U25hcHNob3QSDgoGcGV0X2lk",
+          "GAEgASgEEhcKD293bmVyX3BsYXllcl9pZBgCIAEoBBIQCghwZXRfbmFtZRgD",
+          "IAEoCRIUCgxwZXRfdGFibGVfaWQYBCABKA0SDQoFbGV2ZWwYBSABKA0SLAoP",
+          "YmFzZV9hdHRyaWJ1dGVzGAYgASgLMhMuQmFzZUF0dHJpYnV0ZXNDb21wEhIK",
+          "Cm1heF9oZWFsdGgYByABKAQSEAoIbWF4X21hbmEYCCABKAQSFwoPcGh5c2lj",
+          "YWxfYXR0YWNrGAkgASgEEhQKDG1hZ2ljX2F0dGFjaxgKIAEoBBIPCgdkZWZl",
+          "bnNlGAsgASgEEhcKD3NraWxsX3RhYmxlX2lkcxgMIAMoDSLKBgoQQmF0dGxl",
+          "QWN0b3JTdGF0ZRIQCghhY3Rvcl9pZBgBIAEoBBIlCgphY3Rvcl90eXBlGAIg",
+          "ASgOMhEuZUJhdHRsZUFjdG9yVHlwZRISCgp0ZWFtX2luZGV4GAMgASgNEgwK",
+          "BG5hbWUYBCABKAkSDQoFbGV2ZWwYBSABKA0SJwoKYXR0cmlidXRlcxgGIAEo",
+          "CzITLkJhc2VBdHRyaWJ1dGVzQ29tcBISCgptYXhfaGVhbHRoGAcgASgEEhAK",
+          "CG1heF9tYW5hGAggASgEEg8KB2lzX2RlYWQYCSABKAgSFAoMaXNfZGVmZW5k",
+          "aW5nGAogASgIEgwKBGZsZWQYCyABKAgSHwoFYnVmZnMYDCADKAsyEC5CYXR0",
+          "bGVCdWZmRW50cnkSFwoPc2tpbGxfdGFibGVfaWRzGA0gAygNEhgKEG1vbnN0",
+          "ZXJfdGFibGVfaWQYDiABKA0SSQoVc2tpbGxfY29vbGRvd25fcm91bmRzGA8g",
+          "AygLMiouQmF0dGxlQWN0b3JTdGF0ZS5Ta2lsbENvb2xkb3duUm91bmRzRW50",
+          "cnkSDwoHaXNfYXV0bxgQIAEoCBIWCg5mb3JtYXRpb25fc2xvdBgRIAEoDRIX",
+          "Cg9waHlzaWNhbF9hdHRhY2sYEiABKAQSFAoMbWFnaWNfYXR0YWNrGBMgASgE",
+          "Eg8KB2RlZmVuc2UYFCABKAQSFwoPb3duZXJfcGxheWVyX2lkGBUgASgEEhQK",
+          "DHBldF90YWJsZV9pZBgWIAEoDRIOCgZwZXRfaWQYFyABKAQSFQoNYXBwZWFy",
+          "YW5jZV9pZBgYIAEoCRIQCghjbGFzc19pZBgZIAEoDRIOCgZnZW5kZXIYGiAB",
+          "KA0SIQoGY29tYmF0GBsgASgLMhEuQ29tYmF0QXR0cmlidXRlcxI2Cgtza2ls",
+          "bF9yYW5rcxgcIAMoCzIhLkJhdHRsZUFjdG9yU3RhdGUuU2tpbGxSYW5rc0Vu",
+          "dHJ5GjoKGFNraWxsQ29vbGRvd25Sb3VuZHNFbnRyeRILCgNrZXkYASABKA0S",
+          "DQoFdmFsdWUYAiABKA06AjgBGjEKD1NraWxsUmFua3NFbnRyeRILCgNrZXkY",
+          "ASABKA0SDQoFdmFsdWUYAiABKA06AjgBInkKDEJhdHRsZUFjdGlvbhInCgth",
+          "Y3Rpb25fdHlwZRgBIAEoDjISLmVCYXR0bGVBY3Rpb25UeXBlEhYKDnNraWxs",
+          "X3RhYmxlX2lkGAIgASgNEhEKCXRhcmdldF9pZBgDIAEoBBIVCg1pdGVtX3Rh",
+          "YmxlX2lkGAQgASgNIoEDCg9CYXR0bGVFdmVudEl0ZW0SJQoKZXZlbnRfdHlw",
+          "ZRgBIAEoDjIRLmVCYXR0bGVFdmVudFR5cGUSEQoJc291cmNlX2lkGAIgASgE",
+          "EhEKCXRhcmdldF9pZBgDIAEoBBIWCg5za2lsbF90YWJsZV9pZBgEIAEoDRIV",
+          "Cg1idWZmX3RhYmxlX2lkGAUgASgNEg0KBXZhbHVlGAYgASgEEhMKC2lzX2Ny",
+          "aXRpY2FsGAcgASgIEg8KB3N1Y2Nlc3MYCCABKAgSGwoTdGFyZ2V0X2hlYWx0",
+          "aF9hZnRlchgJIAEoBBIVCg1pdGVtX3RhYmxlX2lkGAogASgNEhAKCGdyb3Vw",
+          "X2lkGAsgASgNEhEKCWhpdF9pbmRleBgMIAEoDRIZChF0YXJnZXRfbWFuYV9h",
+          "ZnRlchgNIAEoBBIhCghoaXRfa2luZBgOIAEoDjIPLmVCYXR0bGVIaXRLaW5k",
+          "EhcKCm1hbmFfZGVsdGEYDyABKBJIAIgBAUINCgtfbWFuYV9kZWx0YSI/ChNC",
+          "YXR0bGVNb25zdGVyRGVmZWF0EhkKEW1vbnN0ZXJfY29uZmlnX2lkGAEgASgN",
+          "Eg0KBWNvdW50GAIgASgNIpwDChRCYXR0bGVTZXR0bGVtZW50RGF0YRIRCgli",
+          "YXR0bGVfaWQYASABKAQSEQoJcGxheWVyX2lkGAIgASgEEiAKB291dGNvbWUY",
+          "AyABKA4yDy5lQmF0dGxlT3V0Y29tZRIZChFwbGF5ZXJfdGVhbV9pbmRleBgE",
+          "IAEoDRIOCgZoZWFsdGgYBSABKAQSDAoEbWFuYRgGIAEoBBIQCghleHBfZ2Fp",
+          "bhgHIAEoBBIRCglnb2xkX2dhaW4YCCABKAQSKAoOaXRlbXNfY29uc3VtZWQY",
+          "CSADKAsyEC5CYXR0bGVJdGVtRW50cnkSJgoMaXRlbXNfZ2FpbmVkGAogAygL",
+          "MhAuQmF0dGxlSXRlbUVudHJ5Eg8KB2lzX2RlYWQYCyABKAgSDAoEZmxlZBgM",
+          "IAEoCBIUCgx0b3RhbF9yb3VuZHMYDSABKA0SJgoEcGV0cxgOIAMoCzIYLkJh",
+          "dHRsZVBldFNldHRsZW1lbnREYXRhEi8KEWRlZmVhdGVkX21vbnN0ZXJzGA8g",
+          "AygLMhQuQmF0dGxlTW9uc3RlckRlZmVhdCJYChdCYXR0bGVQZXRTZXR0bGVt",
+          "ZW50RGF0YRIOCgZwZXRfaWQYASABKAQSDgoGaGVhbHRoGAIgASgEEgwKBG1h",
+          "bmEYAyABKAQSDwoHaXNfZGVhZBgEIAEoCCKtAQoVQmF0dGxlQWN0aXZpdHlD",
+          "b250ZXh0EiIKBGtpbmQYASABKA4yFC5lQmF0dGxlQWN0aXZpdHlLaW5kEhAK",
+          "CGd1aWxkX2lkGAIgASgEEhMKC2FjdGl2aXR5X2lkGAMgASgNEhIKCnBlcmlv",
+          "ZF9rZXkYBCABKA0SGwoTaW5pdGlhdG9yX3BsYXllcl9pZBgFIAEoBBIYChBn",
+          "dWlsZF9wZXJpb2Rfa2V5GAYgASgNKoYBChBlQmF0dGxlQWN0b3JUeXBlEhoK",
+          "FkJBVFRMRV9BQ1RPUl9UWVBFX05PTkUQABIcChhCQVRUTEVfQUNUT1JfVFlQ",
+          "RV9QTEFZRVIQARIdChlCQVRUTEVfQUNUT1JfVFlQRV9NT05TVEVSEAISGQoV",
+          "QkFUVExFX0FDVE9SX1RZUEVfUEVUEAMqqAEKEWVCYXR0bGVBY3Rpb25UeXBl",
+          "EhYKEkJBVFRMRV9BQ1RJT05fTk9ORRAAEhgKFEJBVFRMRV9BQ1RJT05fQVRU",
+          "QUNLEAESFwoTQkFUVExFX0FDVElPTl9TS0lMTBACEhgKFEJBVFRMRV9BQ1RJ",
+          "T05fREVGRU5EEAMSFgoSQkFUVExFX0FDVElPTl9JVEVNEAQSFgoSQkFUVExF",
+          "X0FDVElPTl9GTEVFEAUqnQMKEGVCYXR0bGVFdmVudFR5cGUSFQoRQkFUVExF",
+          "X0VWRU5UX05PTkUQABIXChNCQVRUTEVfRVZFTlRfQVRUQUNLEAESFgoSQkFU",
+          "VExFX0VWRU5UX1NLSUxMEAISFwoTQkFUVExFX0VWRU5UX0RBTUFHRRADEhUK",
+          "EUJBVFRMRV9FVkVOVF9IRUFMEAQSGQoVQkFUVExFX0VWRU5UX0JVRkZfQURE",
+          "EAUSHAoYQkFUVExFX0VWRU5UX0JVRkZfUkVNT1ZFEAYSGgoWQkFUVExFX0VW",
+          "RU5UX0JVRkZfVElDSxAHEhYKEkJBVFRMRV9FVkVOVF9ERUFUSBAIEhcKE0JB",
+          "VFRMRV9FVkVOVF9ERUZFTkQQCRIVChFCQVRUTEVfRVZFTlRfSVRFTRAKEhUK",
+          "EUJBVFRMRV9FVkVOVF9GTEVFEAsSFQoRQkFUVExFX0VWRU5UX01JU1MQDBIW",
+          "ChJCQVRUTEVfRVZFTlRfQkxPQ0sQDRIVChFCQVRUTEVfRVZFTlRfTUFOQRAO",
+          "EhcKE0JBVFRMRV9FVkVOVF9SRVNJU1QQDyptCg5lQmF0dGxlSGl0S2luZBIV",
+          "ChFCQVRUTEVfSElUX05PUk1BTBAAEhQKEEJBVFRMRV9ISVRfQ09NQk8QARIW",
+          "ChJCQVRUTEVfSElUX0NPVU5URVIQAhIWChJCQVRUTEVfSElUX1JFRkxFQ1QQ",
+          "AyqDAQoOZUJhdHRsZU91dGNvbWUSGgoWQkFUVExFX09VVENPTUVfT05HT0lO",
+          "RxAAEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQV9XSU4QARIdChlCQVRUTEVf",
+          "T1VUQ09NRV9TSURFX0JfV0lOEAISFwoTQkFUVExFX09VVENPTUVfRFJBVxAD",
+          "KloKE2VCYXR0bGVBY3Rpdml0eUtpbmQSHQoZQkFUVExFX0FDVElWSVRZX0tJ",
+          "TkRfTk9ORRAAEiQKIEJBVFRMRV9BQ1RJVklUWV9LSU5EX0dVSUxEX1RSSUFM",
+          "EAFCCFoGYmF0dGxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, global::ActorAttributeStateCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleHitKind), typeof(global::eBattleOutcome), typeof(global::eBattleActivityKind), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRouting), global::BattleRouting.Parser, new[]{ "SessionId", "GateNodeId", "GateInstanceId", "SceneNodeId", "SceneInstanceId", "ZoneId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleBuffEntry), global::BattleBuffEntry.Parser, new[]{ "BuffId", "BuffTableId", "Layer", "RemainRounds", "CasterId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleBuffEntry), global::BattleBuffEntry.Parser, new[]{ "BuffId", "BuffTableId", "Layer", "RemainRounds", "CasterId", "StatPercent", "AppliedRound" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleItemEntry), global::BattleItemEntry.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePlayerSnapshot), global::BattlePlayerSnapshot.Parser, new[]{ "PlayerId", "PlayerName", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "SkillTableIds", "Buffs", "Items", "Routing", "TeamIndex", "TableFingerprint", "PhysicalAttack", "MagicAttack", "Defense", "Pets", "AppearanceId", "ClassId", "Gender", "Combat" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattlePlayerSnapshot), global::BattlePlayerSnapshot.Parser, new[]{ "PlayerId", "PlayerName", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "SkillTableIds", "Buffs", "Items", "Routing", "TeamIndex", "TableFingerprint", "PhysicalAttack", "MagicAttack", "Defense", "Pets", "AppearanceId", "ClassId", "Gender", "Combat", "SkillRanks" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSnapshot), global::BattlePetSnapshot.Parser, new[]{ "PetId", "OwnerPlayerId", "PetName", "PetTableId", "Level", "BaseAttributes", "MaxHealth", "MaxMana", "PhysicalAttack", "MagicAttack", "Defense", "SkillTableIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorState), global::BattleActorState.Parser, new[]{ "ActorId", "ActorType", "TeamIndex", "Name", "Level", "Attributes", "MaxHealth", "MaxMana", "IsDead", "IsDefending", "Fled", "Buffs", "SkillTableIds", "MonsterTableId", "SkillCooldownRounds", "IsAuto", "FormationSlot", "PhysicalAttack", "MagicAttack", "Defense", "OwnerPlayerId", "PetTableId", "PetId", "AppearanceId", "ClassId", "Gender", "Combat" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleActorState), global::BattleActorState.Parser, new[]{ "ActorId", "ActorType", "TeamIndex", "Name", "Level", "Attributes", "MaxHealth", "MaxMana", "IsDead", "IsDefending", "Fled", "Buffs", "SkillTableIds", "MonsterTableId", "SkillCooldownRounds", "IsAuto", "FormationSlot", "PhysicalAttack", "MagicAttack", "Defense", "OwnerPlayerId", "PetTableId", "PetId", "AppearanceId", "ClassId", "Gender", "Combat", "SkillRanks" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleAction), global::BattleAction.Parser, new[]{ "ActionType", "SkillTableId", "TargetId", "ItemTableId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEventItem), global::BattleEventItem.Parser, new[]{ "EventType", "SourceId", "TargetId", "SkillTableId", "BuffTableId", "Value", "IsCritical", "Success", "TargetHealthAfter", "ItemTableId", "GroupId", "HitIndex", "TargetManaAfter", "HitKind" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEventItem), global::BattleEventItem.Parser, new[]{ "EventType", "SourceId", "TargetId", "SkillTableId", "BuffTableId", "Value", "IsCritical", "Success", "TargetHealthAfter", "ItemTableId", "GroupId", "HitIndex", "TargetManaAfter", "HitKind", "ManaDelta" }, new[]{ "ManaDelta" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleMonsterDefeat), global::BattleMonsterDefeat.Parser, new[]{ "MonsterConfigId", "Count" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSettlementData), global::BattlePetSettlementData.Parser, new[]{ "PetId", "Health", "Mana", "IsDead" }, null, null, null, null),
@@ -716,6 +723,8 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
     layer_ = other.layer_;
     remainRounds_ = other.remainRounds_;
     casterId_ = other.casterId_;
+    statPercent_ = other.statPercent_;
+    appliedRound_ = other.appliedRound_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -797,6 +806,38 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
     }
   }
 
+  /// <summary>Field number for the "stat_percent" field.</summary>
+  public const int StatPercentFieldNumber = 6;
+  private double statPercent_;
+  /// <summary>
+  /// 四职业技能的属性增减(docs/design/class-skills.md §6.4):带符号比例,0.25 = +25%、-0.15 = -15%。
+  /// 施加时按施法者当时的技能等级算定并存在这里,之后升级 / 换人都不改它;0 = 不是这类 buff(老 buff 全为 0)。
+  /// 改的是哪一项由 Buff 表的 buff_type 决定(turn_battle_constants.h ClassSkillStatOfBuffType)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public double StatPercent {
+    get { return statPercent_; }
+    set {
+      statPercent_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "applied_round" field.</summary>
+  public const int AppliedRoundFieldNumber = 7;
+  private uint appliedRound_;
+  /// <summary>
+  /// 施加(或刷新)它的回合号。回合末结算时不扣它这一回合,所以"持续 2 回合"是完整的 2 回合;0 = 老口径(当回合末就扣)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint AppliedRound {
+    get { return appliedRound_; }
+    set {
+      appliedRound_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -817,6 +858,8 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
     if (Layer != other.Layer) return false;
     if (RemainRounds != other.RemainRounds) return false;
     if (CasterId != other.CasterId) return false;
+    if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(StatPercent, other.StatPercent)) return false;
+    if (AppliedRound != other.AppliedRound) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -829,6 +872,8 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
     if (Layer != 0) hash ^= Layer.GetHashCode();
     if (RemainRounds != 0) hash ^= RemainRounds.GetHashCode();
     if (CasterId != 0UL) hash ^= CasterId.GetHashCode();
+    if (StatPercent != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(StatPercent);
+    if (AppliedRound != 0) hash ^= AppliedRound.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -867,6 +912,14 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
       output.WriteRawTag(40);
       output.WriteUInt64(CasterId);
     }
+    if (StatPercent != 0D) {
+      output.WriteRawTag(49);
+      output.WriteDouble(StatPercent);
+    }
+    if (AppliedRound != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(AppliedRound);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -897,6 +950,14 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
       output.WriteRawTag(40);
       output.WriteUInt64(CasterId);
     }
+    if (StatPercent != 0D) {
+      output.WriteRawTag(49);
+      output.WriteDouble(StatPercent);
+    }
+    if (AppliedRound != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(AppliedRound);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -921,6 +982,12 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
     }
     if (CasterId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CasterId);
+    }
+    if (StatPercent != 0D) {
+      size += 1 + 8;
+    }
+    if (AppliedRound != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AppliedRound);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -948,6 +1015,12 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
     }
     if (other.CasterId != 0UL) {
       CasterId = other.CasterId;
+    }
+    if (other.StatPercent != 0D) {
+      StatPercent = other.StatPercent;
+    }
+    if (other.AppliedRound != 0) {
+      AppliedRound = other.AppliedRound;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -988,6 +1061,14 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
           CasterId = input.ReadUInt64();
           break;
         }
+        case 49: {
+          StatPercent = input.ReadDouble();
+          break;
+        }
+        case 56: {
+          AppliedRound = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1025,6 +1106,14 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
         }
         case 40: {
           CasterId = input.ReadUInt64();
+          break;
+        }
+        case 49: {
+          StatPercent = input.ReadDouble();
+          break;
+        }
+        case 56: {
+          AppliedRound = input.ReadUInt32();
           break;
         }
       }
@@ -1330,6 +1419,7 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     classId_ = other.classId_;
     gender_ = other.gender_;
     combat_ = other.combat_ != null ? other.combat_.Clone() : null;
+    skillRanks_ = other.skillRanks_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1613,6 +1703,22 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     }
   }
 
+  /// <summary>Field number for the "skill_ranks" field.</summary>
+  public const int SkillRanksFieldNumber = 21;
+  private static readonly pbc::MapField<uint, uint>.Codec _map_skillRanks_codec
+      = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForUInt32(16, 0), 170);
+  private readonly pbc::MapField<uint, uint> skillRanks_ = new pbc::MapField<uint, uint>();
+  /// <summary>
+  /// 已学职业技能的生效等级(skill_table_id -> 等级,含被动;docs/design/class-skills.md §6.1)。
+  /// scene 按职业 / 角色等级夹好再填,引擎再按同一规则复核一次。旧通用技能不进这里。
+  /// 被动的属性加成 scene 已算进上面的派生属性,引擎只消费战斗专用被动(治疗加成),不重复叠加。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<uint, uint> SkillRanks {
+    get { return skillRanks_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1648,6 +1754,7 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (ClassId != other.ClassId) return false;
     if (Gender != other.Gender) return false;
     if (!object.Equals(Combat, other.Combat)) return false;
+    if (!SkillRanks.Equals(other.SkillRanks)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1675,6 +1782,7 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (ClassId != 0) hash ^= ClassId.GetHashCode();
     if (Gender != 0) hash ^= Gender.GetHashCode();
     if (combat_ != null) hash ^= Combat.GetHashCode();
+    hash ^= SkillRanks.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1761,6 +1869,7 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
       output.WriteRawTag(162, 1);
       output.WriteMessage(Combat);
     }
+    skillRanks_.WriteTo(output, _map_skillRanks_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1839,6 +1948,7 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
       output.WriteRawTag(162, 1);
       output.WriteMessage(Combat);
     }
+    skillRanks_.WriteTo(ref output, _map_skillRanks_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1901,6 +2011,7 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
     if (combat_ != null) {
       size += 2 + pb::CodedOutputStream.ComputeMessageSize(Combat);
     }
+    size += skillRanks_.CalculateSize(_map_skillRanks_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1974,6 +2085,7 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
       }
       Combat.MergeFrom(other.Combat);
     }
+    skillRanks_.MergeFrom(other.skillRanks_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -2083,6 +2195,10 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
           input.ReadMessage(Combat);
           break;
         }
+        case 170: {
+          skillRanks_.AddEntriesFrom(input, _map_skillRanks_codec);
+          break;
+        }
       }
     }
   #endif
@@ -2190,6 +2306,10 @@ public sealed partial class BattlePlayerSnapshot : pb::IMessage<BattlePlayerSnap
             Combat = new global::CombatAttributes();
           }
           input.ReadMessage(Combat);
+          break;
+        }
+        case 170: {
+          skillRanks_.AddEntriesFrom(ref input, _map_skillRanks_codec);
           break;
         }
       }
@@ -2879,6 +2999,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     classId_ = other.classId_;
     gender_ = other.gender_;
     combat_ = other.combat_ != null ? other.combat_.Clone() : null;
+    skillRanks_ = other.skillRanks_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3255,6 +3376,20 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     }
   }
 
+  /// <summary>Field number for the "skill_ranks" field.</summary>
+  public const int SkillRanksFieldNumber = 28;
+  private static readonly pbc::MapField<uint, uint>.Codec _map_skillRanks_codec
+      = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForUInt32(16, 0), 226);
+  private readonly pbc::MapField<uint, uint> skillRanks_ = new pbc::MapField<uint, uint>();
+  /// <summary>
+  /// 本局职业技能生效等级(来自快照 skill_ranks,引擎复核后的值;怪物 / 宝宝为空)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<uint, uint> SkillRanks {
+    get { return skillRanks_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3297,6 +3432,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     if (ClassId != other.ClassId) return false;
     if (Gender != other.Gender) return false;
     if (!object.Equals(Combat, other.Combat)) return false;
+    if (!SkillRanks.Equals(other.SkillRanks)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3331,6 +3467,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     if (ClassId != 0) hash ^= ClassId.GetHashCode();
     if (Gender != 0) hash ^= Gender.GetHashCode();
     if (combat_ != null) hash ^= Combat.GetHashCode();
+    hash ^= SkillRanks.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3448,6 +3585,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       output.WriteRawTag(218, 1);
       output.WriteMessage(Combat);
     }
+    skillRanks_.WriteTo(output, _map_skillRanks_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3557,6 +3695,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       output.WriteRawTag(218, 1);
       output.WriteMessage(Combat);
     }
+    skillRanks_.WriteTo(ref output, _map_skillRanks_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3642,6 +3781,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
     if (combat_ != null) {
       size += 2 + pb::CodedOutputStream.ComputeMessageSize(Combat);
     }
+    size += skillRanks_.CalculateSize(_map_skillRanks_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -3735,6 +3875,7 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
       }
       Combat.MergeFrom(other.Combat);
     }
+    skillRanks_.MergeFrom(other.skillRanks_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -3869,6 +4010,10 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
           input.ReadMessage(Combat);
           break;
         }
+        case 226: {
+          skillRanks_.AddEntriesFrom(input, _map_skillRanks_codec);
+          break;
+        }
       }
     }
   #endif
@@ -4001,6 +4146,10 @@ public sealed partial class BattleActorState : pb::IMessage<BattleActorState>
             Combat = new global::CombatAttributes();
           }
           input.ReadMessage(Combat);
+          break;
+        }
+        case 226: {
+          skillRanks_.AddEntriesFrom(ref input, _map_skillRanks_codec);
           break;
         }
       }
@@ -4336,6 +4485,7 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
 {
   private static readonly pb::MessageParser<BattleEventItem> _parser = new pb::MessageParser<BattleEventItem>(() => new BattleEventItem());
   private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<BattleEventItem> Parser { get { return _parser; } }
@@ -4363,6 +4513,7 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public BattleEventItem(BattleEventItem other) : this() {
+    _hasBits0 = other._hasBits0;
     eventType_ = other.eventType_;
     sourceId_ = other.sourceId_;
     targetId_ = other.targetId_;
@@ -4377,6 +4528,7 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
     hitIndex_ = other.hitIndex_;
     targetManaAfter_ = other.targetManaAfter_;
     hitKind_ = other.hitKind_;
+    manaDelta_ = other.manaDelta_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4575,6 +4727,38 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
     }
   }
 
+  /// <summary>Field number for the "mana_delta" field.</summary>
+  public const int ManaDeltaFieldNumber = 15;
+  private readonly static long ManaDeltaDefaultValue = 0L;
+
+  private long manaDelta_;
+  /// <summary>
+  /// 法力的实际变化量(带符号):负 = 消耗,正 = 恢复,0 = 实际没变(例如满蓝回蓝)。
+  /// 只在法力真的被结算过的事件上带(MANA / ITEM);value 仍是绝对值,老客户端不读本字段照旧。
+  /// target_mana_after 才是权威终值,客户端演出与它不一致时以它为准。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public long ManaDelta {
+    get { if ((_hasBits0 & 1) != 0) { return manaDelta_; } else { return ManaDeltaDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      manaDelta_ = value;
+    }
+  }
+  /// <summary>Gets whether the "mana_delta" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasManaDelta {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "mana_delta" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearManaDelta() {
+    _hasBits0 &= ~1;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4604,6 +4788,7 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
     if (HitIndex != other.HitIndex) return false;
     if (TargetManaAfter != other.TargetManaAfter) return false;
     if (HitKind != other.HitKind) return false;
+    if (ManaDelta != other.ManaDelta) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4625,6 +4810,7 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
     if (HitIndex != 0) hash ^= HitIndex.GetHashCode();
     if (TargetManaAfter != 0UL) hash ^= TargetManaAfter.GetHashCode();
     if (HitKind != global::eBattleHitKind.BattleHitNormal) hash ^= HitKind.GetHashCode();
+    if (HasManaDelta) hash ^= ManaDelta.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4699,6 +4885,10 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
       output.WriteRawTag(112);
       output.WriteEnum((int) HitKind);
     }
+    if (HasManaDelta) {
+      output.WriteRawTag(120);
+      output.WriteSInt64(ManaDelta);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4765,6 +4955,10 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
       output.WriteRawTag(112);
       output.WriteEnum((int) HitKind);
     }
+    if (HasManaDelta) {
+      output.WriteRawTag(120);
+      output.WriteSInt64(ManaDelta);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4816,6 +5010,9 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
     }
     if (HitKind != global::eBattleHitKind.BattleHitNormal) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) HitKind);
+    }
+    if (HasManaDelta) {
+      size += 1 + pb::CodedOutputStream.ComputeSInt64Size(ManaDelta);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4870,6 +5067,9 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
     }
     if (other.HitKind != global::eBattleHitKind.BattleHitNormal) {
       HitKind = other.HitKind;
+    }
+    if (other.HasManaDelta) {
+      ManaDelta = other.ManaDelta;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4946,6 +5146,10 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
           HitKind = (global::eBattleHitKind) input.ReadEnum();
           break;
         }
+        case 120: {
+          ManaDelta = input.ReadSInt64();
+          break;
+        }
       }
     }
   #endif
@@ -5019,6 +5223,10 @@ public sealed partial class BattleEventItem : pb::IMessage<BattleEventItem>
         }
         case 112: {
           HitKind = (global::eBattleHitKind) input.ReadEnum();
+          break;
+        }
+        case 120: {
+          ManaDelta = input.ReadSInt64();
           break;
         }
       }

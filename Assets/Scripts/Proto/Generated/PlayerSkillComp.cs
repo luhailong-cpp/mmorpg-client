@@ -23,14 +23,14 @@ public static partial class PlayerSkillCompReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5wcm90by9jb21tb24vY29tcG9uZW50L3BsYXllcl9za2lsbF9jb21wLnBy",
-          "b3RvIjUKD1BsYXllclNraWxsQ29tcBIKCgJpZBgBIAEoBBIWCg5za2lsbF90",
-          "YWJsZV9pZBgCIAEoDSI7ChNQbGF5ZXJTa2lsbExpc3RDb21wEiQKCnNraWxs",
-          "X2xpc3QYASADKAsyEC5QbGF5ZXJTa2lsbENvbXBCEloQY29tbW9uL2NvbXBv",
-          "bmVudGIGcHJvdG8z"));
+          "b3RvIkMKD1BsYXllclNraWxsQ29tcBIKCgJpZBgBIAEoBBIWCg5za2lsbF90",
+          "YWJsZV9pZBgCIAEoDRIMCgRyYW5rGAMgASgNIjsKE1BsYXllclNraWxsTGlz",
+          "dENvbXASJAoKc2tpbGxfbGlzdBgBIAMoCzIQLlBsYXllclNraWxsQ29tcEIS",
+          "WhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerSkillComp), global::PlayerSkillComp.Parser, new[]{ "Id", "SkillTableId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerSkillComp), global::PlayerSkillComp.Parser, new[]{ "Id", "SkillTableId", "Rank" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerSkillListComp), global::PlayerSkillListComp.Parser, new[]{ "SkillList" }, null, null, null, null)
         }));
   }
@@ -75,6 +75,7 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
   public PlayerSkillComp(PlayerSkillComp other) : this() {
     id_ = other.id_;
     skillTableId_ = other.skillTableId_;
+    rank_ = other.rank_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -108,6 +109,23 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
     }
   }
 
+  /// <summary>Field number for the "rank" field.</summary>
+  public const int RankFieldNumber = 3;
+  private uint rank_;
+  /// <summary>
+  /// 技能等级(2026-10-19 四职业技能,docs/design/class-skills.md §3)。
+  /// 职业技能(Skill.class_id != 0):已学为 1..Skill.max_rank;0 不是"未学",是坏记录,加载时剔除 ——
+  /// 未学的职业技能根本不出现在本列表里。旧通用技能(Skill.class_id == 0)不分等级,本字段恒为 0、读写都忽略。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Rank {
+    get { return rank_; }
+    set {
+      rank_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -125,6 +143,7 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
     }
     if (Id != other.Id) return false;
     if (SkillTableId != other.SkillTableId) return false;
+    if (Rank != other.Rank) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -134,6 +153,7 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
     int hash = 1;
     if (Id != 0UL) hash ^= Id.GetHashCode();
     if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
+    if (Rank != 0) hash ^= Rank.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -160,6 +180,10 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
       output.WriteRawTag(16);
       output.WriteUInt32(SkillTableId);
     }
+    if (Rank != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Rank);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -178,6 +202,10 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
       output.WriteRawTag(16);
       output.WriteUInt32(SkillTableId);
     }
+    if (Rank != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Rank);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -193,6 +221,9 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
     }
     if (SkillTableId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SkillTableId);
+    }
+    if (Rank != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Rank);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -211,6 +242,9 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
     }
     if (other.SkillTableId != 0) {
       SkillTableId = other.SkillTableId;
+    }
+    if (other.Rank != 0) {
+      Rank = other.Rank;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -239,6 +273,10 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
           SkillTableId = input.ReadUInt32();
           break;
         }
+        case 24: {
+          Rank = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -264,6 +302,10 @@ public sealed partial class PlayerSkillComp : pb::IMessage<PlayerSkillComp>
         }
         case 16: {
           SkillTableId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Rank = input.ReadUInt32();
           break;
         }
       }

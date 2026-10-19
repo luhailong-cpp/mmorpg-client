@@ -165,6 +165,7 @@ namespace MmorpgClient.Net
         public const uint TravelToZone           =  226; // SceneSceneClientPlayerTravelToZone
         public const uint UnequipItem            =  246; // SceneBagClientPlayerUnequipItem
         public const uint UpgradeGuild           =   76; // GuildServiceUpgradeGuild
+        public const uint UpgradeSkill           =  317; // SceneSkillClientPlayerUpgradeSkill
         public const uint WatchBattle            =  163; // MatchServiceWatchBattle
     }
 }

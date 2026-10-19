@@ -89,6 +89,12 @@ namespace MmorpgClient.Game.Battle.Presentation
         public int HitIndex;
         public ulong ManaAfter;
         public bool HasManaAfter;
+        /// <summary>
+        /// 法力的实际变化量(带符号,负 = 消耗、正 = 恢复,服务端 BattleEventItem.mana_delta)。
+        /// 老服务端不带(HasManaDelta=false),MergeMana 退回"自己扣自己按消耗"的推断。
+        /// </summary>
+        public long ManaDelta;
+        public bool HasManaDelta;
 
         public static TurnEventInput From(BattleEventItem ev)
         {
@@ -111,6 +117,9 @@ namespace MmorpgClient.Game.Battle.Presentation
                 ManaAfter = ev.TargetManaAfter,
                 // proto3 标量无 has 位:MANA 事件恒视为带 target_mana_after;其余事件非 0 才算带
                 HasManaAfter = type == BattleEventCodes.Mana || ev.TargetManaAfter != 0,
+                // mana_delta 是 optional 字段,有 has 位:带了就以它的符号为准(回蓝不再被当成扣蓝)
+                HasManaDelta = ev.HasManaDelta,
+                ManaDelta = ev.HasManaDelta ? ev.ManaDelta : 0,
             };
         }
     }
@@ -576,13 +585,22 @@ namespace MmorpgClient.Game.Battle.Presentation
         {
             ulong who = ev.TargetId != 0 ? ev.TargetId : ev.SourceId;
             long delta = ev.Value;
-            // uint64 承载的"消耗"没有符号:目标即出手者且未带符号时按消耗处理
-            if (delta > 0 && who == beat.ActorId && ev.SourceId == who) delta = -delta;
+            if (ev.HasManaDelta)
+            {
+                // 服务端给了带符号的实际变化:负 = 消耗,正 = 恢复(太虚澄心这类自身回蓝不再显示成扣蓝)
+                delta = ev.ManaDelta;
+            }
+            else if (delta > 0 && who == beat.ActorId && ev.SourceId == who)
+            {
+                // 老服务端:uint64 承载的"消耗"没有符号,目标即出手者时按消耗处理
+                delta = -delta;
+            }
 
             ulong manaAfter = ev.HasManaAfter ? ev.ManaAfter : (ulong)Math.Max(0L, ev.Value);
             if (who == beat.ActorId && beat.Kind != BeatKind.Mana)
             {
-                beat.ActorManaDelta = delta;
+                // 同一次出手可能先耗蓝再回蓝:变化量按事件顺序累计,终值取最后一条(权威 target_mana_after)
+                beat.ActorManaDelta = beat.HasActorManaAfter ? beat.ActorManaDelta + delta : delta;
                 beat.ActorManaAfter = manaAfter;
                 beat.HasActorManaAfter = true;
                 return;
@@ -591,9 +609,10 @@ namespace MmorpgClient.Game.Battle.Presentation
             var existing = beat.FindTarget(who);
             if (existing != null)
             {
+                bool hadMana = existing.HasManaAfter;
                 existing.ManaAfter = manaAfter;
                 existing.HasManaAfter = true;
-                if (existing.Effect == TargetEffect.Mana) existing.Value = delta;
+                if (existing.Effect == TargetEffect.Mana) existing.Value = hadMana ? existing.Value + delta : delta;
                 return;
             }
 
