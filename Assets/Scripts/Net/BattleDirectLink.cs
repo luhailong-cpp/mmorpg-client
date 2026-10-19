@@ -53,7 +53,7 @@ namespace MmorpgClient.Net
     /// 本类不引用 UnityEngine:时钟由宿主注入(GameClient.Tick 传 Time.realtimeSinceStartup),
     /// 连接由 <see cref="IFramedConnection"/> 工厂产出,EditMode 测试用假连接穷打状态机。
     /// </summary>
-    public sealed class BattleDirectLink
+    public sealed class BattleDirectLink : IRpcChannel
     {
         public enum LinkState
         {
@@ -100,13 +100,6 @@ namespace MmorpgClient.Net
         /// <summary>直连未就绪时战斗 RPC 的本地快速失败错误串(带传输层前缀,不发任何网络请求)。</summary>
         public const string NotReadyError = TransportErrorPrefix + "not ready";
 
-        private sealed class PendingCall
-        {
-            public double Deadline;
-            public Action<MessageContent> Callback;
-            public Action<string> OnError;
-        }
-
         private sealed class ConnectResult
         {
             public int Job;
@@ -121,7 +114,8 @@ namespace MmorpgClient.Net
         private readonly Func<double> _random01;
 
         private readonly ConcurrentQueue<ConnectResult> _connectResults = new();
-        private readonly Dictionary<ulong, PendingCall> _pending = new();
+        // 在途请求-响应调用:与大厅 GameClient 共用同一个实现,超时 / 断线 / 迟到回包的语义逐条相同。
+        private readonly OutstandingCalls _calls;
         private readonly Dictionary<uint, Action<MessageContent>> _notify = new();
 
         private IFramedConnection _conn;
@@ -133,7 +127,6 @@ namespace MmorpgClient.Net
         private double _reconnectAt;      // >0 = 到点用同票重连
         private double _reissueAt;        // >0 = 到点自动补签(退避中)
         private string _reissueReason;    // 退避到点时补签的原因(日志用)
-        private long _seq;
 
         private BattleAssignedS2C _assignment;
         private ulong _targetBattleId;    // 本链路服务的战斗(分配包或重连提示带来)
@@ -205,6 +198,7 @@ namespace MmorpgClient.Net
         {
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
             _log = log ?? (_ => { });
+            _calls = new OutstandingCalls(ex => _log($"回调异常: {ex}"));
             _unixNowMs = unixNowMs ?? (() => (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             _connectRunner = connectRunner ?? (a => ThreadPool.QueueUserWorkItem(_ => a()));
             if (random01 == null)
@@ -427,21 +421,7 @@ namespace MmorpgClient.Net
                 FailHandshake("handshake_timeout", retrySameTicket: true);
             }
 
-            if (_pending.Count > 0)
-            {
-                List<ulong> expired = null;
-                foreach (var kv in _pending)
-                {
-                    if (kv.Value.Deadline <= _now) (expired ??= new List<ulong>()).Add(kv.Key);
-                }
-                if (expired != null)
-                {
-                    foreach (var id in expired)
-                    {
-                        if (_pending.Remove(id, out var pc)) pc.OnError?.Invoke(TransportErrorPrefix + "rpc timeout");
-                    }
-                }
-            }
+            _calls.ExpireDue(_now);
         }
 
         // ── IBattleTransport 用到的三件事 ─────────────────────
@@ -450,50 +430,50 @@ namespace MmorpgClient.Net
         public void RegisterNotify(uint messageId, Action<MessageContent> handler)
             => _notify[messageId] = handler;
 
-        /// <summary>请求-响应(仅 Verified 时可用;其它状态立即以 <see cref="NotReadyError"/> 失败)。</summary>
-        public void Call<TResp>(uint messageId, IMessage request, MessageParser<TResp> parser,
-                                Action<TResp> onResponse, Action<string> onError)
+        /// <summary>
+        /// 请求-响应,每次调用自带回调(<see cref="IRpcChannel"/> 的契约)。仅 Verified 时发出;
+        /// 其它状态在返回前同步以 NotSent("not ready")完成,不发任何网络请求、绝不改走大厅(D66)。
+        /// 超时 <see cref="CallTimeoutSeconds"/> 由 <see cref="Tick"/> 扫描;断线 / 关闭时以 Disconnected(原因)完成。
+        /// </summary>
+        public void CallMethod<TResp>(uint messageId, IMessage request, MessageParser<TResp> parser, RpcDone<TResp> done)
             where TResp : IMessage<TResp>
         {
+            var completion = OutstandingCalls.Typed(parser, done);
             var conn = _conn;
             if (!IsVerified || conn == null)
             {
-                onError?.Invoke(NotReadyError);
+                completion(RpcStatus.NotSent("not ready"), null);
                 return;
             }
 
-            ulong id = (ulong)(++_seq);
-            _pending[id] = new PendingCall
-            {
-                Deadline = _now + CallTimeoutSeconds,
-                OnError = onError,
-                Callback = mc =>
-                {
-                    if (mc.ErrorMessage != null && mc.ErrorMessage.Id != 0)
-                    {
-                        onError?.Invoke($"server tip={mc.ErrorMessage.Id}");
-                        return;
-                    }
-                    try { onResponse?.Invoke(parser.ParseFrom(mc.SerializedMessage)); }
-                    catch (Exception ex) { onError?.Invoke($"parse response: {ex.Message}"); }
-                },
-            };
-
+            ulong id = _calls.Add(_now + CallTimeoutSeconds, completion);
             if (!TrySend(conn, new ClientRequest { Id = id, MessageId = messageId, Body = request.ToByteString() }))
             {
-                _pending.Remove(id);
-                onError?.Invoke(TransportErrorPrefix + "send failed");
+                if (_calls.Remove(id)) completion(RpcStatus.NotSent("send failed"), null);
                 HandleDisconnected(conn, "send_failed"); // 发不出去 = 连接已死,走恢复
             }
         }
+
+        /// <summary>
+        /// 旧字符串错误契约的外形(IBattleTransport 分流层用):传输层失败带 <see cref="TransportErrorPrefix"/>,
+        /// 未就绪即 <see cref="NotReadyError"/>,服务端拒绝为 "server tip=N"。新代码直接用 CallMethod。
+        /// </summary>
+        public void Call<TResp>(uint messageId, IMessage request, MessageParser<TResp> parser,
+                                Action<TResp> onResponse, Action<string> onError)
+            where TResp : IMessage<TResp>
+            => CallMethod(messageId, request, parser, (status, response) =>
+            {
+                if (status.IsOk) onResponse?.Invoke(response);
+                else onError?.Invoke(status.ToLegacyError(TransportErrorPrefix));
+            });
 
         /// <summary>单向发送(仅 Verified 时生效;其它状态静默丢弃 —— 分流层在调用前已判就绪并记日志)。</summary>
         public void SendOneWay(uint messageId, IMessage request)
         {
             var conn = _conn;
             if (!IsVerified || conn == null) return;
-            ulong id = (ulong)(++_seq);
-            if (!TrySend(conn, new ClientRequest { Id = id, MessageId = messageId, Body = request.ToByteString() }))
+            // 不登记回调,请求号填 0(不关联);服务端对它的错误信封同样带 id = 0,按 message_id 交给推送处理器。
+            if (!TrySend(conn, new ClientRequest { Id = 0, MessageId = messageId, Body = request.ToByteString() }))
             {
                 HandleDisconnected(conn, "send_failed");
             }
@@ -588,8 +568,8 @@ namespace MmorpgClient.Net
 
             if (mc.Id != 0)
             {
-                if (_pending.Remove(mc.Id, out var pc)) pc.Callback(mc);
-                else _log($"应答无对应请求(已超时?) id={mc.Id} message_id={mc.MessageId}");
+                if (!_calls.TryComplete(mc))
+                    _log($"应答无对应请求(已超时?) id={mc.Id} message_id={mc.MessageId} late_total={_calls.LateReplies}");
                 return;
             }
             if (_notify.TryGetValue(mc.MessageId, out var handler)) handler(mc);
@@ -837,12 +817,7 @@ namespace MmorpgClient.Net
         }
 
         private void FailPending(string reason)
-        {
-            if (_pending.Count == 0) return;
-            var calls = new List<PendingCall>(_pending.Values);
-            _pending.Clear();
-            foreach (var pc in calls) pc.OnError?.Invoke(TransportErrorPrefix + reason);
-        }
+            => _calls.FailAll(RpcStatus.Disconnected(reason));
 
         /// <summary>只负责发与记日志;失败后的恢复由调用方决定(避免同一次失败触发两次恢复)。</summary>
         private bool TrySend(IFramedConnection conn, IMessage message)

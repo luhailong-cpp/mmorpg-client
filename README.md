@@ -55,8 +55,11 @@ Bootstrap.unity
   with adler-32 covering `[nameLen .. body]`.
 * **RPC envelope**: C2S = `ClientRequest{ id, message_id, body }`,
   S2C reply/notify = `MessageContent{ id, message_id, serialized_message,
-  error_message }`. Replies match by `id`; notifies have `id == 0` and
-  dispatch by `message_id`.
+  error_message }`. 每次请求自带回调(`IRpcChannel.CallMethod`,`Net/RpcStatus.cs`):
+  请求号非 0、连接内单调,回包**只按 `id` 认领**,回调恰好一次(回包 / 信封错误 /
+  超时 / 断线 / 本地未发出);`id ≠ 0` 却认领不到的是迟到回包,记日志丢弃。
+  单向消息(移动等)与推送都是 `id == 0`,按 `message_id` 派发。大厅与战斗直连共用
+  `Net/OutstandingCalls.cs`。契约见服务端仓 `docs/design/client-rpc-callback.md`。
 * **Token verify** is the first protobuf frame after TCP connect:
   `ClientTokenVerifyRequest{ payload, signature }` from the gateway's
   `assign-gate` response. Server replies `ClientTokenVerifyResponse{ success }`.

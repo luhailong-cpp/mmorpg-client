@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
@@ -31,27 +30,16 @@ namespace MmorpgClient.Game
     /// a fixed node. Server-pushed RedirectToGateNotify (cross-zone / gate
     /// migration) is handled transparently by reconnecting to the new gate.
     /// </summary>
-    public sealed class GameClient
+    public sealed class GameClient : IRpcChannel
     {
         private readonly GatewayHttpClient _http;
         private readonly MuduoCodec _codec;
         private GateTcpClient _gate;
 
-        private long _seq;
-
-        private sealed class PendingCall
-        {
-            public uint MessageId;
-            public Action<MessageContent> Callback;
-        }
-
-        // gRPC-backed replies (Login/CreatePlayer/EnterGame/...) come back with
-        // MessageContent.id == 0 because the C++ gate's SetIfEmptyHandler only
-        // fills serialized_message + message_id (cpp/nodes/gate/main.cpp).
-        // Scene replies do echo the id. So matching is two-tier: exact id
-        // first, then FIFO by message_id (same strategy as the Go robot).
-        private readonly Dictionary<ulong, PendingCall> _pending = new();
-        private readonly Dictionary<uint, List<ulong>> _pendingIdsByMsg = new();
+        // 大厅连接上的在途请求-响应调用。回包只按 MessageContent.id 认领:服务端每条请求回包都回显
+        // ClientRequest.id(路由 / 直连 / scene / gate 拒绝信封,服务端仓 docs/design/client-rpc-callback.md §3),
+        // 早先「id 为 0 时按 message_id 先进先出」的兜底已删 —— 它会把超时后迟到的回包错配给下一次同号请求。
+        private readonly OutstandingCalls _calls;
 
         private readonly Dictionary<uint, Action<MessageContent>> _notifyHandlers = new();
         // Persisted appearance_id owns identity. Empty IDs from legacy saves
@@ -98,7 +86,7 @@ namespace MmorpgClient.Game
 
         // 管线世代:每次 EnterZone / RedirectFlow 启动时 +1。旧管线协程在每个
         // yield 恢复点比对世代,不一致立即退出(不触发任何回调),防止用户
-        // 重复点「进入」或重定向并发时,多条管线互踩共享的 _gate/_pending/
+        // 重复点「进入」或重定向并发时,多条管线互踩共享的 _gate/_calls/
         // TokenVerified/_enteredScene 状态。
         private int _pipelineGen;
 
@@ -273,6 +261,7 @@ namespace MmorpgClient.Game
         public GameClient(string gatewayBaseUrl)
         {
             _http = new GatewayHttpClient(gatewayBaseUrl);
+            _calls = new OutstandingCalls(ex => LogError($"[rpc] callback threw: {ex}"));
             _codec = new MuduoCodec();
             // top-level (no package) protos emitted by protoc
             _codec.Register<ClientRequest>();
@@ -371,6 +360,7 @@ namespace MmorpgClient.Game
         public void Tick()
         {
             _gate?.Poll();
+            _calls.ExpireDue(Time.realtimeSinceStartup);
             if (!InGame || !IsGateReady) _nextPetListRequestTime = 0f;
             else if (!Pets.HasList && !Pets.ListRequestPending && Time.realtimeSinceStartup >= _nextPetListRequestTime)
             {
@@ -431,6 +421,9 @@ namespace MmorpgClient.Game
 
         public void OnNotify(uint messageId, Action<MessageContent> handler)
             => _notifyHandlers[messageId] = handler;
+
+        void IRpcChannel.RegisterNotify(uint messageId, Action<MessageContent> handler)
+            => OnNotify(messageId, handler);
 
         public void SetTokens(string access, string refresh, long accessExpire)
         {
@@ -1393,10 +1386,8 @@ namespace MmorpgClient.Game
         }
 
         /// <summary>
-        /// Send a fire-and-forget skill release. Server-pushed
-        /// NotifySkillUsed/NotifySkillInterrupted messages drive the
-        /// world-side FX through the dispatcher set up in
-        /// <see cref="WireSceneNotifyHandlers"/>.
+        /// 释放技能。表现(FX)由服务端推送的 NotifySkillUsed / NotifySkillInterrupted 驱动
+        /// (见 <see cref="WireSceneNotifyHandlers"/>);ReleaseSkill 自己的回包只用来记录拒绝原因。
         /// </summary>
         public void ReleaseSkill(uint skillTableId, ulong targetEntity, UnityEngine.Vector3? position = null)
         {
@@ -1409,7 +1400,16 @@ namespace MmorpgClient.Game
             {
                 req.Position = WorldCoordinateConverter.ToServerVector(position.Value);
             }
-            SendOneWay(MessageIds.ReleaseSkill, req);
+            CallMethod(MessageIds.ReleaseSkill, req, ReleaseSkillResponse.Parser, (status, response) =>
+            {
+                if (!status.IsOk)
+                {
+                    Log($"[skill] ReleaseSkill {skillTableId} failed: {status}");
+                    return;
+                }
+                var tip = response.ErrorMessage?.Id ?? 0;
+                if (tip != 0) Log($"[skill] ReleaseSkill {skillTableId} rejected: tip={tip}");
+            });
         }
 
         // ── Movement ─────────────────────────────────────────────
@@ -1476,7 +1476,7 @@ namespace MmorpgClient.Game
         private void ConnectGate(string host, int port) => AdoptGate(OpenGate(host, port));
 
         /// <summary>
-        /// 建一条新的 gate 连接但**不接管**:不碰 _gate / _pending / TokenVerified。
+        /// 建一条新的 gate 连接但**不接管**:不碰 _gate / _calls / TokenVerified。
         /// 抛异常时内部已经把半成品连接关掉了,调用方不用善后。
         ///
         /// 之所以要把"建连接"和"接管"拆开:重定向必须先把新连接建起来、确认成功之后
@@ -1498,11 +1498,12 @@ namespace MmorpgClient.Game
         /// </summary>
         private void AdoptGate(GateTcpClient fresh)
         {
-            _gate?.Dispose();
-            // A fresh connection means a fresh session: stale pending entries
-            // from the previous gate must not swallow replies on this one.
-            _pending.Clear();
-            _pendingIdsByMsg.Clear();
+            var stale = _gate;
+            _gate = null;
+            stale?.Dispose();
+            // 旧连接上的在途调用结局未知,以 Disconnected 完成(旧字符串 "disconnected",ZoneTravelClient 据此判传送已交接)。
+            // 回调此刻看到的 _gate 为空:回调里重发会以 NotSent 失败,不会抢在新连接验票之前发出(gate 对未验签的请求直接断连)。
+            _calls.FailAll(RpcStatus.Disconnected("disconnected"));
             TokenVerified = false;
             _tokenRejectedByGate = false; // 每条连接的握手状态,只在这里复位(见字段注释)
             _gate = fresh;
@@ -1578,8 +1579,52 @@ namespace MmorpgClient.Game
         private bool IsStillCurrentGate(GateTcpClient gate) => gate != null && ReferenceEquals(_gate, gate);
 
         /// <summary>
-        /// 请求-响应调用(协程,<see cref="RpcTimeoutSec"/> 超时)。public 供 BattleClient 等子系统经
-        /// 传输接口复用同一条管线;回调全部落在主线程(Tick 驱动)。
+        /// 请求-响应调用,每次调用自带回调(<see cref="IRpcChannel"/> 的契约):发出即返回,done 恰好调用一次。
+        /// 超时 <see cref="RpcTimeoutSec"/>,由 <see cref="Tick"/> 扫描;断线 / 换连接时以 Disconnected 完成;
+        /// 未连接或发送异常时在返回前同步以 NotSent 完成。回调全部落在主线程。
+        /// </summary>
+        public void CallMethod<TResp>(uint messageId, IMessage request, MessageParser<TResp> parser, RpcDone<TResp> done)
+            where TResp : IMessage<TResp>
+            => CallMethod(messageId, request, parser, done, RpcTimeoutSec);
+
+        /// <summary>同上,单独指定这次调用的超时(秒)。</summary>
+        public void CallMethod<TResp>(uint messageId, IMessage request, MessageParser<TResp> parser, RpcDone<TResp> done,
+                                      float timeoutSec)
+            where TResp : IMessage<TResp>
+        {
+            var completion = OutstandingCalls.Typed(parser, done);
+            var gate = _gate;
+            if (gate == null || !gate.Connected)
+            {
+                completion(RpcStatus.NotSent("not connected"), null);
+                return;
+            }
+
+            ulong id = _calls.Add(Time.realtimeSinceStartup + timeoutSec, completion);
+            try
+            {
+                gate.Send(new ClientRequest
+                {
+                    Id = id,
+                    MessageId = messageId,
+                    Body = request.ToByteString(),
+                });
+            }
+            catch (Exception ex)
+            {
+                // 还在表里才由这里完成;发送失败 = 连接已死,随后的断线处理让其余在途调用以 Disconnected 完成。
+                if (_calls.Remove(id))
+                    completion(RpcStatus.NotSent($"send failed: {ex.Message}"), null);
+                if (ReferenceEquals(_gate, gate))
+                    HandleTransportDisconnected();
+            }
+        }
+
+        /// <summary>
+        /// <see cref="CallMethod{TResp}(uint, IMessage, MessageParser{TResp}, RpcDone{TResp})"/> 的协程外形,
+        /// 供 <c>yield return</c> 串起来的管线与 <see cref="Game.Battle.IBattleTransport"/> 适配层使用。
+        /// 错误仍按旧字符串契约交给 onError(<see cref="RpcStatus.ToLegacyError"/>);新代码直接用 CallMethod。
+        /// 等待期间每帧调一次 <see cref="Tick"/>:管线可能跑在主循环不驱动 Tick 的语境里(沿用旧行为)。
         /// </summary>
         public IEnumerator Call<TResp>(uint messageId, IMessage request,
                                        MessageParser<TResp> parser,
@@ -1587,69 +1632,19 @@ namespace MmorpgClient.Game
                                        Action<string> onError)
             where TResp : IMessage<TResp>
         {
-            var gate = _gate;
-            if (gate == null || !gate.Connected) { onError("not connected"); yield break; }
-
-            ulong id = (ulong)Interlocked.Increment(ref _seq);
-            var clientReq = new ClientRequest
+            bool finished = false;
+            CallMethod(messageId, request, parser, (status, response) =>
             {
-                Id = id,
-                MessageId = messageId,
-                Body = request.ToByteString(),
-            };
-
-            bool done = false;
-            _pending[id] = new PendingCall
-            {
-                MessageId = messageId,
-                Callback = mc =>
-                {
-                    done = true;
-                    if (mc.ErrorMessage != null && mc.ErrorMessage.Id != 0)
-                    {
-                        onError($"server tip={mc.ErrorMessage.Id}");
-                        return;
-                    }
-                    try { onResp(parser.ParseFrom(mc.SerializedMessage)); }
-                    catch (Exception ex) { onError($"parse response: {ex.Message}"); }
-                },
-            };
-            if (!_pendingIdsByMsg.TryGetValue(messageId, out var fifo))
-                _pendingIdsByMsg[messageId] = fifo = new List<ulong>();
-            fifo.Add(id);
-
-            try
-            {
-                gate.Send(clientReq);
-            }
-            catch (Exception ex)
-            {
-                RemovePending(id, messageId);
-                onError($"send failed: {ex.Message}");
-                if (ReferenceEquals(_gate, gate))
-                    HandleTransportDisconnected();
-                yield break;
-            }
-            float deadline = Time.realtimeSinceStartup + RpcTimeoutSec;
-            while (!done && Time.realtimeSinceStartup < deadline)
+                finished = true;
+                if (status.IsOk) onResp(response);
+                else onError(status.ToLegacyError());
+            });
+            while (!finished)
             {
                 Tick();
-                if (!done && (!ReferenceEquals(_gate, gate) || !gate.Connected))
-                {
-                    RemovePending(id, messageId);
-                    onError("disconnected");
-                    yield break;
-                }
+                if (finished) yield break;
                 yield return null;
             }
-            if (!done) { RemovePending(id, messageId); onError("rpc timeout"); }
-        }
-
-        private void RemovePending(ulong id, uint messageId)
-        {
-            _pending.Remove(id);
-            if (_pendingIdsByMsg.TryGetValue(messageId, out var fifo))
-                fifo.Remove(id);
         }
 
         /// <summary>单向发送(fire-and-forget)。public 理由同 <see cref="Call{TResp}"/>。</summary>
@@ -1660,12 +1655,13 @@ namespace MmorpgClient.Game
         {
             var gate = _gate;
             if (gate == null || !gate.Connected) return false;
-            ulong id = (ulong)Interlocked.Increment(ref _seq);
             try
             {
+                // 单向消息不登记回调,请求号填 0(不关联):服务端对它的错误信封同样带 id = 0,
+                // 与推送一样按 message_id 交给 OnNotify(如 RegisterMovementReply)。
                 gate.Send(new ClientRequest
                 {
-                    Id = id,
+                    Id = 0,
                     MessageId = messageId,
                     Body = request.ToByteString(),
                 });
@@ -1697,25 +1693,17 @@ namespace MmorpgClient.Game
             if (msg is GateTcpClient.DisconnectedSentinel) return;
             if (msg is not MessageContent mc) return;
 
-            // Tier 1: exact request-id match (scene路径回显 id).
-            if (mc.Id != 0 && _pending.Remove(mc.Id, out var byId))
+            // 回包:只按请求号认领(IRpcChannel 契约)。
+            if (mc.Id != 0)
             {
-                if (_pendingIdsByMsg.TryGetValue(byId.MessageId, out var f)) f.Remove(mc.Id);
-                byId.Callback(mc);
+                if (!_calls.TryComplete(mc))
+                {
+                    // 迟到回包:这次调用已以超时 / 断线完成过,不能再当推送派发(否则会被同号的推送处理器当成新数据)。
+                    Log($"[rpc] late reply dropped id={mc.Id} message_id={mc.MessageId} late_total={_calls.LateReplies}");
+                }
                 return;
             }
-            // Tier 2: FIFO match by message_id (gRPC路径 id==0).
-            if (mc.Id == 0 &&
-                _pendingIdsByMsg.TryGetValue(mc.MessageId, out var fifo) && fifo.Count > 0)
-            {
-                ulong id = fifo[0];
-                fifo.RemoveAt(0);
-                if (_pending.Remove(id, out var byMsg))
-                {
-                    byMsg.Callback(mc);
-                    return;
-                }
-            }
+            // 推送,以及单向消息的错误信封(id = 0):按 message_id 派发。
             if (_notifyHandlers.TryGetValue(mc.MessageId, out var nh)) nh(mc);
             else Log($"[unhandled] message_id={mc.MessageId} bytes={mc.SerializedMessage.Length}");
         }
@@ -1794,18 +1782,6 @@ namespace MmorpgClient.Game
             // 这里是唯一注册点,Battle / Spectate 都不要再抢注。
             OnNotify(MessageIds.NotifyBattleAssigned, mc =>
                 BattleLink.HandleAssigned(BattleAssignedS2C.Parser.ParseFrom(mc.SerializedMessage)));
-
-            // Fire-and-forget TCP token refresh replies come back with id==0
-            // and no pending entry (SendOneWay) — capture the rotated pair here.
-            OnNotify(MessageIds.RefreshToken, mc =>
-            {
-                var r = RefreshTokenResponse.Parser.ParseFrom(mc.SerializedMessage);
-                if (!string.IsNullOrEmpty(r.AccessToken))
-                {
-                    SetTokens(r.AccessToken, r.RefreshToken, r.AccessTokenExpire);
-                    Log("access_token refreshed");
-                }
-            });
 
             OnNotify(MessageIds.NotifyActorCreate, mc =>
             {
@@ -2048,9 +2024,21 @@ namespace MmorpgClient.Game
             if (Time.realtimeSinceStartup - _lastRefreshAttempt < 60f) return; // 60s cooldown
             _lastRefreshAttempt = Time.realtimeSinceStartup;
             Log("refreshing access_token");
-            // Fire-and-forget; the rotated pair is captured by the
-            // MessageIds.RefreshToken notify handler above.
-            SendOneWay(MessageIds.RefreshToken, new RefreshTokenRequest { RefreshToken = RefreshToken });
+            // 请求自带回调:轮换后的令牌对从这次调用的回包里取。失败只记日志,60s 冷却后 MaybeRefreshToken 自然重试。
+            CallMethod(MessageIds.RefreshToken, new RefreshTokenRequest { RefreshToken = RefreshToken },
+                RefreshTokenResponse.Parser, (status, r) =>
+                {
+                    if (!status.IsOk)
+                    {
+                        Log($"access_token refresh failed: {status}");
+                        return;
+                    }
+                    if (!string.IsNullOrEmpty(r.AccessToken))
+                    {
+                        SetTokens(r.AccessToken, r.RefreshToken, r.AccessTokenExpire);
+                        Log("access_token refreshed");
+                    }
+                });
         }
 
         private void Log(string s) => OnLog?.Invoke(s);
@@ -2115,8 +2103,6 @@ namespace MmorpgClient.Game
                 _travelPending = false; // 连接没了,等不到 msg 124 / tip 了;不清的话重连后第一次传送会被"正在传送中"挡住
                 _isMoving = false;
                 _moveInputSeq = 0;
-                _pending.Clear();
-                _pendingIdsByMsg.Clear();
                 gate?.Dispose();
                 // 大厅会话没了,战斗直连的票据与路由也随之作废(§18.2:两连接互不拆台,但
                 // 直连的身份来自大厅会话;重连后 scene 推 NotifyBattleReconnect 再补签重建)
@@ -2134,6 +2120,10 @@ namespace MmorpgClient.Game
                 DisconnectReason = reason;
                 OnDisconnected?.Invoke();
             }
+
+            // 在途调用最后才失败:连接状态已全部复位、断线通知已发出(与改造前协程下一帧才报 "disconnected" 的先后一致),
+            // 回调里再发请求会以 NotSent 失败,不会落到半拆的连接上。
+            _calls.FailAll(RpcStatus.Disconnected("disconnected"));
         }
     }
 }

@@ -330,6 +330,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.That(dispatch, Is.Not.Null);
 
+                // 移动类是单向消息:客户端发 id = 0,服务端的回执 / 错误信封也带 id = 0,按 message_id 交给推送处理器。
                 foreach (var messageId in new[]
                          {
                              MessageIds.MoveStart,
@@ -339,7 +340,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 {
                     dispatch.Invoke(client, new object[]
                     {
-                        new MessageContent { Id = 42, MessageId = messageId },
+                        new MessageContent { Id = 0, MessageId = messageId },
                     });
                 }
 
@@ -350,7 +351,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 {
                     new MessageContent
                     {
-                        Id = 43,
+                        Id = 0,
                         MessageId = MessageIds.MoveSync,
                         ErrorMessage = new TipInfoMessage { Id = 42 },
                     },
@@ -359,10 +360,25 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
                 dispatch.Invoke(client, new object[]
                 {
-                    new MessageContent { Id = 44, MessageId = uint.MaxValue },
+                    new MessageContent { Id = 0, MessageId = uint.MaxValue },
                 });
                 Assert.That(logs, Has.Some.Contains($"[unhandled] message_id={uint.MaxValue}"),
                     "Unknown messages must remain observable.");
+
+                // id != 0 却没有在途调用 = 迟到回包:只记日志,绝不交给同号的推送处理器。
+                logs.Clear();
+                dispatch.Invoke(client, new object[]
+                {
+                    new MessageContent
+                    {
+                        Id = 45,
+                        MessageId = MessageIds.MoveSync,
+                        ErrorMessage = new TipInfoMessage { Id = 7 },
+                    },
+                });
+                Assert.That(logs, Has.Some.Contains("[rpc] late reply dropped id=45"));
+                Assert.That(logs, Has.None.Contains("[movement]"),
+                    "A late reply must not be dispatched as a push of the same message id.");
             }
             finally
             {
