@@ -78,25 +78,28 @@ public static partial class ProtoOptionReflection {
           "ATpHChlPcHRpb25UaURCUHJlU3BsaXRSZWdpb25zEh8uZ29vZ2xlLnByb3Rv",
           "YnVmLk1lc3NhZ2VPcHRpb25zGLfCHiABKA2IAQE6RgoYT3B0aW9uVGlEQkF1",
           "dG9JRENhY2hlT25lEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25z",
-          "GLjCHiABKAiIAQE6PQoRT3B0aW9uUmVwZWF0TGltaXQSHS5nb29nbGUucHJv",
-          "dG9idWYuRmllbGRPcHRpb25zGMDPJCABKA2IAQE6PgoST3B0aW9uREJGaWVs",
-          "ZEV4dHJhEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjBzyQgASgJ",
-          "iAEBOjwKEE9wdGlvbkRCUmVhZE9ubHkSHS5nb29nbGUucHJvdG9idWYuRmll",
-          "bGRPcHRpb25zGMLPJCABKAiIAQE6PgoST3B0aW9uREJOYW1lUHJlZml4Eh0u",
-          "Z29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjDzyQgASgJiAEBOjsKD09w",
-          "dGlvbkRCTG9hZFNxbBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMY",
-          "xM8kIAEoCYgBATo+ChJPcHRpb25EQk5lZWRFc2NhcGUSHS5nb29nbGUucHJv",
-          "dG9idWYuRmllbGRPcHRpb25zGMXPJCABKAiIAQE6PQoRT3B0aW9uREJQcm9j",
-          "UGFyYW0SHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGMbPJCABKAiI",
-          "AQE6OQoNT3B0aW9uT2xkTmFtZRIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9w",
-          "dGlvbnMYx88kIAEoCYgBATo3CgtPcHRpb25UYWJsZRIdLmdvb2dsZS5wcm90",
-          "b2J1Zi5GaWVsZE9wdGlvbnMYyM8kIAEoCYgBATo9ChFPcHRpb25CYWNrVXBU",
-          "YWJlbBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYyc8kIAEoCYgB",
+          "GLjCHiABKAiIAQE6QQoTT3B0aW9uUGVyc2lzdEZyb3plbhIfLmdvb2dsZS5w",
+          "cm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjIwh4gASgIiAEBOj0KEU9wdGlvblJl",
+          "cGVhdExpbWl0Eh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjAzyQg",
+          "ASgNiAEBOj4KEk9wdGlvbkRCRmllbGRFeHRyYRIdLmdvb2dsZS5wcm90b2J1",
+          "Zi5GaWVsZE9wdGlvbnMYwc8kIAEoCYgBATo8ChBPcHRpb25EQlJlYWRPbmx5",
+          "Eh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjCzyQgASgIiAEBOj4K",
+          "Ek9wdGlvbkRCTmFtZVByZWZpeBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9w",
+          "dGlvbnMYw88kIAEoCYgBATo7Cg9PcHRpb25EQkxvYWRTcWwSHS5nb29nbGUu",
+          "cHJvdG9idWYuRmllbGRPcHRpb25zGMTPJCABKAmIAQE6PgoST3B0aW9uREJO",
+          "ZWVkRXNjYXBlEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjFzyQg",
+          "ASgIiAEBOj0KEU9wdGlvbkRCUHJvY1BhcmFtEh0uZ29vZ2xlLnByb3RvYnVm",
+          "LkZpZWxkT3B0aW9ucxjGzyQgASgIiAEBOjkKDU9wdGlvbk9sZE5hbWUSHS5n",
+          "b29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGMfPJCABKAmIAQE6NwoLT3B0",
+          "aW9uVGFibGUSHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGMjPJCAB",
+          "KAmIAQE6PQoRT3B0aW9uQmFja1VwVGFiZWwSHS5nb29nbGUucHJvdG9idWYu",
+          "RmllbGRPcHRpb25zGMnPJCABKAmIAQE6QgoWT3B0aW9uUGVyc2lzdFVuY2Fy",
+          "cmllZBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMY6M8kIAEoCIgB",
           "AUIySAFaLmdpdGh1Yi5jb20vbHV5dWFuY3BwL3Byb3Rvb3B0aW9uO21lc3Nh",
           "Z2VvcHRpb25iBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::Google.Protobuf.Reflection.DescriptorReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeType), typeof(global::OPERATE_TYPE), typeof(global::BS_RESULT_TYPE), typeof(global::MessagePriority), }, new pb::Extension[] { ProtoOptionExtensions.OptionFileDefaultNode, ProtoOptionExtensions.OptionIsPlayerService, ProtoOptionExtensions.OptionIsClientProtocolService, ProtoOptionExtensions.OptionMessagePriority, ProtoOptionExtensions.OptionTableId, ProtoOptionExtensions.OptionTableName, ProtoOptionExtensions.OptionPrimaryKey, ProtoOptionExtensions.OptionForeignKey, ProtoOptionExtensions.OptionForeignReferences, ProtoOptionExtensions.OptionAutoIncrementKey, ProtoOptionExtensions.OptionBackupTableName, ProtoOptionExtensions.OptionLoadOnly, ProtoOptionExtensions.OptionProcedureName, ProtoOptionExtensions.OptionProcedureResult, ProtoOptionExtensions.OptionIndex, ProtoOptionExtensions.OptionUniqueKey, ProtoOptionExtensions.OptionIsPlayerDatabase, ProtoOptionExtensions.OptionOperateType, ProtoOptionExtensions.OptionTiDBNonclusteredPK, ProtoOptionExtensions.OptionTiDBShardRowIDBits, ProtoOptionExtensions.OptionTiDBPreSplitRegions, ProtoOptionExtensions.OptionTiDBAutoIDCacheOne, ProtoOptionExtensions.OptionRepeatLimit, ProtoOptionExtensions.OptionDBFieldExtra, ProtoOptionExtensions.OptionDBReadOnly, ProtoOptionExtensions.OptionDBNamePrefix, ProtoOptionExtensions.OptionDBLoadSql, ProtoOptionExtensions.OptionDBNeedEscape, ProtoOptionExtensions.OptionDBProcParam, ProtoOptionExtensions.OptionOldName, ProtoOptionExtensions.OptionTable, ProtoOptionExtensions.OptionBackUpTabel }, null));
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeType), typeof(global::OPERATE_TYPE), typeof(global::BS_RESULT_TYPE), typeof(global::MessagePriority), }, new pb::Extension[] { ProtoOptionExtensions.OptionFileDefaultNode, ProtoOptionExtensions.OptionIsPlayerService, ProtoOptionExtensions.OptionIsClientProtocolService, ProtoOptionExtensions.OptionMessagePriority, ProtoOptionExtensions.OptionTableId, ProtoOptionExtensions.OptionTableName, ProtoOptionExtensions.OptionPrimaryKey, ProtoOptionExtensions.OptionForeignKey, ProtoOptionExtensions.OptionForeignReferences, ProtoOptionExtensions.OptionAutoIncrementKey, ProtoOptionExtensions.OptionBackupTableName, ProtoOptionExtensions.OptionLoadOnly, ProtoOptionExtensions.OptionProcedureName, ProtoOptionExtensions.OptionProcedureResult, ProtoOptionExtensions.OptionIndex, ProtoOptionExtensions.OptionUniqueKey, ProtoOptionExtensions.OptionIsPlayerDatabase, ProtoOptionExtensions.OptionOperateType, ProtoOptionExtensions.OptionTiDBNonclusteredPK, ProtoOptionExtensions.OptionTiDBShardRowIDBits, ProtoOptionExtensions.OptionTiDBPreSplitRegions, ProtoOptionExtensions.OptionTiDBAutoIDCacheOne, ProtoOptionExtensions.OptionPersistFrozen, ProtoOptionExtensions.OptionRepeatLimit, ProtoOptionExtensions.OptionDBFieldExtra, ProtoOptionExtensions.OptionDBReadOnly, ProtoOptionExtensions.OptionDBNamePrefix, ProtoOptionExtensions.OptionDBLoadSql, ProtoOptionExtensions.OptionDBNeedEscape, ProtoOptionExtensions.OptionDBProcParam, ProtoOptionExtensions.OptionOldName, ProtoOptionExtensions.OptionTable, ProtoOptionExtensions.OptionBackUpTabel, ProtoOptionExtensions.OptionPersistUncarried }, null));
   }
   #endregion
 
@@ -211,6 +214,15 @@ public static partial class ProtoOptionExtensions {
   public static readonly pb::Extension<global::Google.Protobuf.Reflection.MessageOptions, bool> OptionTiDBAutoIDCacheOne =
     new pb::Extension<global::Google.Protobuf.Reflection.MessageOptions, bool>(500024, pb::FieldCodec.ForBool(4000192, false));
   /// <summary>
+  /// —— 玩家持久字段的混版本保护(docs/design/mixed-version-persist-field-protection.md §3.2)——
+  /// 冻结类型:由手写代码重建、不携带未知字段的持久消息。proto 生成器拒绝给它新增字段(R1);
+  /// C++ 往返一致性测试不在它的节点上注入未知字段,但继续向下遍历(其中会被整份携带的子消息照常检查)。
+  /// 生成器从描述符原始字节按字段号读取本选项,不依赖外部 protooption 模块的编译绑定。
+  /// 编号避开 proto2mysql pbopt 已用的 500000-500024 与 600100-600101。
+  /// </summary>
+  public static readonly pb::Extension<global::Google.Protobuf.Reflection.MessageOptions, bool> OptionPersistFrozen =
+    new pb::Extension<global::Google.Protobuf.Reflection.MessageOptions, bool>(500040, pb::FieldCodec.ForBool(4000320, false));
+  /// <summary>
   /// Repeated field max count
   /// </summary>
   public static readonly pb::Extension<global::Google.Protobuf.Reflection.FieldOptions, uint> OptionRepeatLimit =
@@ -260,6 +272,13 @@ public static partial class ProtoOptionExtensions {
   /// </summary>
   public static readonly pb::Extension<global::Google.Protobuf.Reflection.FieldOptions, string> OptionBackUpTabel =
     new pb::Extension<global::Google.Protobuf.Reflection.FieldOptions, string>(600009, pb::FieldCodec.ForString(4800074, ""));
+  /// <summary>
+  /// 存盘时不原样携带的持久字段:由别的载体重算的投影,或 scene 每次存盘重新生成 / 清空的字段
+  /// (docs/design/mixed-version-persist-field-protection.md §3.2)。C++ 往返一致性测试不经由它注入;
+  /// 只经这类字段可达的消息类型不进入往返测试,也不受冻结规则约束。编号说明同 OptionPersistFrozen。
+  /// </summary>
+  public static readonly pb::Extension<global::Google.Protobuf.Reflection.FieldOptions, bool> OptionPersistUncarried =
+    new pb::Extension<global::Google.Protobuf.Reflection.FieldOptions, bool>(600040, pb::FieldCodec.ForBool(4800320, false));
 }
 
 #region Enums

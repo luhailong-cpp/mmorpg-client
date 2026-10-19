@@ -23,7 +23,7 @@ public static partial class LoginErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbG9naW5fZXJyb3JfdGlwLnBy",
-          "b3RvKoQICgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
+          "b3RvKsUICgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
           "b2dpbkFjY291bnROb3RGb3VuZBDQDxIcChdrTG9naW5BY2NvdW50UGxheWVy",
           "RnVsbBDRDxIkCh9rTG9naW5DcmVhdGVQbGF5ZXJVbkxvYWRBY2NvdW50ENIP",
           "Ei4KKWtMb2dpbkNyZWF0ZVBsYXllckNvbm5lY3Rpb25IYXNOb3RBY2NvdW50",
@@ -45,8 +45,10 @@ public static partial class LoginErrorTipReflection {
           "EhoKFWtMb2dpblNlc3Npb25Ob3RGb3VuZBDsDxIgChtrTG9naW5BY2NvdW50",
           "RGF0YUxvYWRGYWlsZWQQ7Q8SGgoVa0xvZ2luRnNtSW52YWxpZEV2ZW50EO4P",
           "EhIKDWtMb2dpblRpbWVvdXQQ7w8SFQoQa1JvbGVOYW1lSW52YWxpZBDwDxIT",
-          "Cg5rUm9sZU5hbWVUYWtlbhDxDxIXChJrUm9sZU5hbWVTZW5zaXRpdmUQ8g9C",
-          "JAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "Cg5rUm9sZU5hbWVUYWtlbhDxDxIXChJrUm9sZU5hbWVTZW5zaXRpdmUQ8g8S",
+          "Igoda0xvZ2luQXV0aFByb3ZpZGVyVW5hdmFpbGFibGUQ8w8SGwoWa0xvZ2lu",
+          "VG9rZW5Jc3N1ZUZhaWxlZBD0D0IkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJh",
+          "dGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::login_error), }, null, null));
@@ -92,6 +94,8 @@ public enum login_error {
   [pbr::OriginalName("kRoleNameInvalid")] KRoleNameInvalid = 2032,
   [pbr::OriginalName("kRoleNameTaken")] KRoleNameTaken = 2033,
   [pbr::OriginalName("kRoleNameSensitive")] KRoleNameSensitive = 2034,
+  [pbr::OriginalName("kLoginAuthProviderUnavailable")] KLoginAuthProviderUnavailable = 2035,
+  [pbr::OriginalName("kLoginTokenIssueFailed")] KLoginTokenIssueFailed = 2036,
 }
 
 #endregion

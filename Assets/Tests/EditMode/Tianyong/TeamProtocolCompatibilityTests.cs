@@ -6,15 +6,15 @@ using Teampb;
 
 namespace MmorpgClient.Tests.EditMode.Tianyong
 {
-    /// <summary>两正式服务端分支使用的同号不同 wire type 字段必须同时可读写。</summary>
+    /// <summary>合并后的正式恢复与补位字段必须同时可读写，且不丢失其他未知数据。</summary>
     public sealed class TeamProtocolCompatibilityTests
     {
         [Test]
         public void GetMyTeam_PreservesRecoveryAndRegroupAcrossBothWireOrdersAndClone()
         {
             foreach (var bytes in new[] {
-                new byte[] { 0x08, 0x01, 0x10, 0x01, 0x12, 0x01, 0x72 },
-                new byte[] { 0x08, 0x01, 0x12, 0x01, 0x72, 0x10, 0x01 } })
+                new byte[] { 0x08, 0x01, 0x18, 0x01, 0x12, 0x01, 0x72 },
+                new byte[] { 0x08, 0x01, 0x12, 0x01, 0x72, 0x18, 0x01 } })
             {
                 var request = GetMyTeamRequest.Parser.ParseFrom(bytes);
                 Assert.That(request.NotifyOnline, Is.True);
@@ -34,8 +34,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void StartMatch_PreservesRecoveryAndBackfillAcrossBothWireOrdersAndClone()
         {
             foreach (var bytes in new[] {
-                new byte[] { 0x08, 0x07, 0x10, 0x0a, 0x18, 0x05, 0x1a, 0x01, 0x72 },
-                new byte[] { 0x08, 0x07, 0x10, 0x0a, 0x1a, 0x01, 0x72, 0x18, 0x05 } })
+                new byte[] { 0x08, 0x07, 0x10, 0x0a, 0x20, 0x05, 0x1a, 0x01, 0x72 },
+                new byte[] { 0x08, 0x07, 0x10, 0x0a, 0x1a, 0x01, 0x72, 0x20, 0x05 } })
             {
                 var request = StartTeamMatchRequest.Parser.ParseFrom(bytes);
                 Assert.That(request.BattleConfigId, Is.EqualTo(7u));
@@ -62,13 +62,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void OfficialBackfillSerialization_StaysByteIdenticalWithoutRecoveryFields()
+        public void OfficialBackfillSerialization_UsesMergedCanonicalTagsWithoutRecoveryValues()
         {
-            // 由 CPP origin/main fea7f5e9 的未改字段号/类型的官方 proto 生成器核对。
+            // 正式合并契约保持恢复字段2/3，补位请求使用独立字段3/4。
             Assert.That(new GetMyTeamRequest { NotifyOnline = true, Regroup = true }.ToByteArray(),
-                Is.EqualTo(new byte[] { 0x08, 0x01, 0x10, 0x01 }));
+                Is.EqualTo(new byte[] { 0x08, 0x01, 0x18, 0x01 }));
             Assert.That(new StartTeamMatchRequest { BattleConfigId = 7, ExpectedTeamId = 10, TargetTeamSize = 5 }.ToByteArray(),
-                Is.EqualTo(new byte[] { 0x08, 0x07, 0x10, 0x0a, 0x18, 0x05 }));
+                Is.EqualTo(new byte[] { 0x08, 0x07, 0x10, 0x0a, 0x20, 0x05 }));
         }
 
         [Test]
@@ -93,23 +93,23 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void ReplacingScalar_RemovesOnlyItsVarints_PreservingSameNumberOtherWireTypesAndUnknownFields()
         {
             var request = GetMyTeamRequest.Parser.ParseFrom(new byte[] {
-                0x10, 0x00, 0x10, 0x01, // 同一 Regroup 重复出现：最后一次生效。
-                0x12, 0x01, 0x72,       // 同号恢复 string。
-                0x15, 0x01, 0x02, 0x03, 0x04, // 同号未知 fixed32。
+                0x18, 0x00, 0x18, 0x01, // 正式Regroup字段3重复出现：最后一次生效。
+                0x12, 0x01, 0x72,       // 恢复string字段2保持不变。
+                0x1d, 0x01, 0x02, 0x03, 0x04, // 字段3的未知fixed32仍完整保留。
                 0xa0, 0x06, 0x2a       // 另一个未知字段 100。
             });
             Assert.That(request.Regroup, Is.True);
             request.Regroup = true;
-            Assert.That(CountTag(request.ToByteArray(), 0x10), Is.EqualTo(1));
+            Assert.That(CountTag(request.ToByteArray(), 0x18), Is.EqualTo(1));
             request.Regroup = false;
             var bytes = request.ToByteArray();
-            Assert.That(CountTag(bytes, 0x10), Is.Zero);
-            Assert.That(CountTag(bytes, 0x15), Is.EqualTo(1));
+            Assert.That(CountTag(bytes, 0x18), Is.Zero);
+            Assert.That(CountTag(bytes, 0x1d), Is.EqualTo(1));
             Assert.That(CountTag(bytes, 0x320), Is.EqualTo(1));
             Assert.That(GetMyTeamRequest.Parser.ParseFrom(bytes).MatchRequestId, Is.EqualTo("r"));
             var reparsed = GetMyTeamRequest.Parser.ParseFrom(bytes);
             reparsed.Regroup = true;
-            Assert.That(CountTag(reparsed.ToByteArray(), 0x15), Is.EqualTo(1));
+            Assert.That(CountTag(reparsed.ToByteArray(), 0x1d), Is.EqualTo(1));
             Assert.That(CountTag(reparsed.ToByteArray(), 0x320), Is.EqualTo(1));
         }
 

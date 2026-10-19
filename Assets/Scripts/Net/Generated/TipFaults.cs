@@ -50,6 +50,7 @@ namespace MmorpgClient.Net.Generated
             27008u,
             28010u,
             29014u,
+            30011u,
         };
         public static bool IsFault(uint code) => Codes.Contains(code);
     }

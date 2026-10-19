@@ -23,14 +23,15 @@ public static partial class MailErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci1nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbWFpbF9lcnJvcl90aXAucHJv",
-          "dG8qjAIKCm1haWxfZXJyb3ISEQoNa01haWxfZXJyb3JPSxAAEhMKDWtNYWls",
+          "dG8qwwIKCm1haWxfZXJyb3ISEQoNa01haWxfZXJyb3JPSxAAEhMKDWtNYWls",
           "Tm90Rm91bmQQ6IQBEhIKDGtNYWlsRXhwaXJlZBDphAESGwoVa01haWxSZWNp",
           "cGllbnRCb3hGdWxsEOqEARIcChZrTWFpbEF0dGFjaG1lbnRJbnZhbGlkEOuE",
           "ARIaChRrTWFpbFJlcXVlc3RDb25mbGljdBDshAESGgoUa01haWxTeXN0ZW1N",
           "YWlsTGltaXQQ7YQBEhcKEWtNYWlsQ2xhaW1QZW5kaW5nEO6EARIWChBrTWFp",
           "bENsYWltTWFudWFsEO+EARIeChhrTWFpbEF0dGFjaG1lbnRQcm90ZWN0ZWQQ",
-          "8IQBQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnBy",
-          "b3RvMw=="));
+          "8IQBEhcKEWtNYWlsQ2xhaW1Ob3RPcGVuEPGEARIcChZrTWFpbEF0dGFjaG1l",
+          "bnROb3RPcGVuEPKEAUIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3Bi",
+          "L3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::mail_error), }, null, null));
@@ -50,6 +51,8 @@ public enum mail_error {
   [pbr::OriginalName("kMailClaimPending")] KMailClaimPending = 17006,
   [pbr::OriginalName("kMailClaimManual")] KMailClaimManual = 17007,
   [pbr::OriginalName("kMailAttachmentProtected")] KMailAttachmentProtected = 17008,
+  [pbr::OriginalName("kMailClaimNotOpen")] KMailClaimNotOpen = 17009,
+  [pbr::OriginalName("kMailAttachmentNotOpen")] KMailAttachmentNotOpen = 17010,
 }
 
 #endregion

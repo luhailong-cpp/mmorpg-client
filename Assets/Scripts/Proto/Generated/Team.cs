@@ -27,119 +27,125 @@ namespace Teampb {
             "ChVwcm90by90ZWFtL3RlYW0ucHJvdG8SBnRlYW1wYhobcHJvdG8vZGIvcHJv",
             "dG9fb3B0aW9uLnByb3RvGh1wcm90by9jb21tb24vYmFzZS9lbXB0eS5wcm90",
             "bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnByb3RvIhMKEUNyZWF0ZVRlYW1S",
-            "ZXF1ZXN0IkMKEEdldE15VGVhbVJlcXVlc3QSFQoNbm90aWZ5X29ubGluZRgB",
-            "IAEoCBIYChBtYXRjaF9yZXF1ZXN0X2lkGAIgASgJIjAKFEFwcGx5Sm9pblRl",
-            "YW1SZXF1ZXN0EhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKAQiWwoYSGFuZGxl",
-            "QXBwbGljYXRpb25SZXF1ZXN0EhQKDGFwcGxpY2FudF9pZBgBIAEoBBIPCgdh",
-            "cHByb3ZlGAIgASgIEhgKEGV4cGVjdGVkX3RlYW1faWQYAyABKAQiSQoTSW52",
-            "aXRlVG9UZWFtUmVxdWVzdBIYChB0YXJnZXRfcGxheWVyX2lkGAEgASgEEhgK",
-            "EGV4cGVjdGVkX3RlYW1faWQYAiABKAQiNwoUUmVzcG9uZEludml0ZVJlcXVl",
-            "c3QSDwoHdGVhbV9pZBgBIAEoBBIOCgZhY2NlcHQYAiABKAgiFgoUTGlzdE15",
-            "SW52aXRlc1JlcXVlc3QiLAoQTGVhdmVUZWFtUmVxdWVzdBIYChBleHBlY3Rl",
-            "ZF90ZWFtX2lkGAEgASgEIkcKEUtpY2tNZW1iZXJSZXF1ZXN0EhgKEHRhcmdl",
-            "dF9wbGF5ZXJfaWQYASABKAQSGAoQZXhwZWN0ZWRfdGVhbV9pZBgCIAEoBCJL",
-            "ChVUcmFuc2ZlckxlYWRlclJlcXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9pZBgB",
-            "IAEoBBIYChBleHBlY3RlZF90ZWFtX2lkGAIgASgEIi4KEkRpc2JhbmRUZWFt",
-            "UmVxdWVzdBIYChBleHBlY3RlZF90ZWFtX2lkGAEgASgEIl8KFVN0YXJ0VGVh",
-            "bU1hdGNoUmVxdWVzdBIYChBiYXR0bGVfY29uZmlnX2lkGAEgASgNEhgKEGV4",
-            "cGVjdGVkX3RlYW1faWQYAiABKAQSEgoKcmVxdWVzdF9pZBgDIAEoCSKFAQoM",
-            "VGVhbVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
-            "TWVzc2FnZRIeCgR0ZWFtGAIgASgLMhAudGVhbXBiLlRlYW1WaWV3Ei0KDG1h",
-            "dGNoX2ludGVudBgDIAEoCzIXLnRlYW1wYi5UZWFtTWF0Y2hJbnRlbnQiRwoP",
-            "VGVhbU1hdGNoSW50ZW50EhIKCnJlcXVlc3RfaWQYASABKAkSEQoJYmF0dGxl",
-            "X2lkGAIgASgEEg0KBXN0YXRlGAMgASgNIogBChVMaXN0TXlJbnZpdGVzUmVz",
-            "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
-            "Ei8KB2ludml0ZXMYAiADKAsyHi50ZWFtcGIuVGVhbUluY29taW5nSW52aXRl",
-            "VmlldxIWCg5zZXJ2ZXJfdGltZV9tcxgDIAEoBCLVAQoOVGVhbU1lbWJlclZp",
-            "ZXcSEQoJcGxheWVyX2lkGAEgASgEEgwKBG5hbWUYAiABKAkSDQoFbGV2ZWwY",
-            "AyABKA0SEAoIY2xhc3NfaWQYBCABKA0SDgoGZ2VuZGVyGAUgASgNEhEKCWlz",
-            "X2xlYWRlchgGIAEoCBIRCglpc19vbmxpbmUYByABKAgSEQoJaW5fYmF0dGxl",
-            "GAggASgIEg8KB3pvbmVfaWQYCSABKA0SEAoIam9pbl9zZXEYCiABKA0SFQoN",
-            "YXBwZWFyYW5jZV9pZBgLIAEoCSJqChNUZWFtQXBwbGljYXRpb25WaWV3EiYK",
-            "BnBsYXllchgBIAEoCzIWLnRlYW1wYi5UZWFtTWVtYmVyVmlldxIVCg1hcHBs",
-            "aWVkX2F0X21zGAIgASgEEhQKDGV4cGlyZV9hdF9tcxgDIAEoBCJXChZUZWFt",
-            "T3V0Z29pbmdJbnZpdGVWaWV3EicKB2ludml0ZWUYASABKAsyFi50ZWFtcGIu",
-            "VGVhbU1lbWJlclZpZXcSFAoMZXhwaXJlX2F0X21zGAIgASgEIqIBChZUZWFt",
-            "SW5jb21pbmdJbnZpdGVWaWV3Eg8KB3RlYW1faWQYASABKAQSJwoHaW52aXRl",
-            "chgCIAEoCzIWLnRlYW1wYi5UZWFtTWVtYmVyVmlldxIRCglsZWFkZXJfaWQY",
-            "AyABKAQSFAoMbWVtYmVyX2NvdW50GAQgASgNEg8KB3pvbmVfaWQYBSABKA0S",
-            "FAoMZXhwaXJlX2F0X21zGAYgASgEIvECCghUZWFtVmlldxIPCgd0ZWFtX2lk",
-            "GAEgASgEEhEKCWxlYWRlcl9pZBgCIAEoBBIQCghjYXBhY2l0eRgDIAEoDRIP",
-            "Cgd6b25lX2lkGAQgASgNEg8KB3ZlcnNpb24YBSABKAQSGAoQbWVtYmVyc2hp",
-            "cF9lcG9jaBgGIAEoBBIrCgttYXRjaF9zdGF0ZRgHIAEoDjIWLnRlYW1wYi5U",
-            "ZWFtTWF0Y2hTdGF0ZRInCgdtZW1iZXJzGAggAygLMhYudGVhbXBiLlRlYW1N",
-            "ZW1iZXJWaWV3EjEKDGFwcGxpY2F0aW9ucxgJIAMoCzIbLnRlYW1wYi5UZWFt",
-            "QXBwbGljYXRpb25WaWV3EjcKD3BlbmRpbmdfaW52aXRlcxgKIAMoCzIeLnRl",
-            "YW1wYi5UZWFtT3V0Z29pbmdJbnZpdGVWaWV3EhkKEWFwcGxpY2F0aW9uX2Nv",
-            "dW50GAsgASgNEhYKDnNlcnZlcl90aW1lX21zGAwgASgEIosBCg9UZWFtU25h",
-            "cHNob3RTMkMSHgoEdGVhbRgBIAEoCzIQLnRlYW1wYi5UZWFtVmlldxIoCgZy",
-            "ZWFzb24YAiABKA4yGC50ZWFtcGIuVGVhbUNoYW5nZVJlYXNvbhIQCghhY3Rv",
-            "cl9pZBgDIAEoBBIcCgN0aXAYBCABKAsyDy5UaXBJbmZvTWVzc2FnZSJXCg1U",
-            "ZWFtSW52aXRlUzJDEi4KBmludml0ZRgBIAEoCzIeLnRlYW1wYi5UZWFtSW5j",
-            "b21pbmdJbnZpdGVWaWV3EhYKDnNlcnZlcl90aW1lX21zGAIgASgEIlYKDFRl",
-            "YW1FdmVudFMyQxIjCgR0eXBlGAEgASgOMhUudGVhbXBiLlRlYW1FdmVudFR5",
-            "cGUSDwoHdGVhbV9pZBgCIAEoBBIQCghhY3Rvcl9pZBgDIAEoBCLQAgoKVGVh",
-            "bVJlY29yZBIPCgd0ZWFtX2lkGAEgASgEEhEKCWxlYWRlcl9pZBgCIAEoBBIP",
-            "Cgd6b25lX2lkGAMgASgNEhUKDWNyZWF0ZWRfYXRfbXMYBCABKAQSKQoHbWVt",
-            "YmVycxgFIAMoCzIYLnRlYW1wYi5UZWFtTWVtYmVyUmVjb3JkEjMKDGFwcGxp",
-            "Y2F0aW9ucxgGIAMoCzIdLnRlYW1wYi5UZWFtQXBwbGljYXRpb25SZWNvcmQS",
-            "KQoHaW52aXRlcxgHIAMoCzIYLnRlYW1wYi5UZWFtSW52aXRlUmVjb3JkEhUK",
-            "DW5leHRfam9pbl9zZXEYCCABKA0SGAoQbWF0Y2hfbG9ja190b2tlbhgJIAEo",
-            "CRIfChdtYXRjaF9sb2NrX2V4cGlyZV9hdF9tcxgKIAEoBBIZChFtYXRjaF9s",
-            "b2NrX3Jvc3RlchgLIAMoBCJeChBUZWFtTWVtYmVyUmVjb3JkEhEKCXBsYXll",
-            "cl9pZBgBIAEoBBIPCgd6b25lX2lkGAIgASgNEhQKDGpvaW5lZF9hdF9tcxgD",
-            "IAEoBBIQCghqb2luX3NlcRgEIAEoDSJoChVUZWFtQXBwbGljYXRpb25SZWNv",
-            "cmQSEQoJcGxheWVyX2lkGAEgASgEEg8KB3pvbmVfaWQYAiABKA0SFQoNYXBw",
-            "bGllZF9hdF9tcxgDIAEoBBIUCgxleHBpcmVfYXRfbXMYBCABKAQieAoQVGVh",
-            "bUludml0ZVJlY29yZBISCgppbnZpdGVlX2lkGAEgASgEEhIKCmludml0ZXJf",
-            "aWQYAiABKAQSDwoHem9uZV9pZBgDIAEoDRIVCg1pbnZpdGVkX2F0X21zGAQg",
-            "ASgEEhQKDGV4cGlyZV9hdF9tcxgFIAEoBCpKCg5UZWFtTWF0Y2hTdGF0ZRIZ",
-            "ChVURUFNX01BVENIX1NUQVRFX0lETEUQABIdChlURUFNX01BVENIX1NUQVRF",
-            "X1NUQVJUSU5HEAEqzQQKEFRlYW1DaGFuZ2VSZWFzb24SIgoeVEVBTV9DSEFO",
-            "R0VfUkVBU09OX1VOU1BFQ0lGSUVEEAASHgoaVEVBTV9DSEFOR0VfUkVBU09O",
-            "X0NSRUFURUQQARIkCiBURUFNX0NIQU5HRV9SRUFTT05fTUVNQkVSX0pPSU5F",
-            "RBACEiIKHlRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfTEVGVBADEiQKIFRF",
-            "QU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfS0lDS0VEEAQSKQolVEVBTV9DSEFO",
-            "R0VfUkVBU09OX0xFQURFUl9UUkFOU0ZFUlJFRBAFEjEKLVRFQU1fQ0hBTkdF",
-            "X1JFQVNPTl9MRUFERVJfT0ZGTElORV9UUkFOU0ZFUlJFRBAGEiAKHFRFQU1f",
-            "Q0hBTkdFX1JFQVNPTl9ESVNCQU5ERUQQBxIqCiZURUFNX0NIQU5HRV9SRUFT",
-            "T05fQVBQTElDQVRJT05fQ0hBTkdFRBAIEiUKIVRFQU1fQ0hBTkdFX1JFQVNP",
-            "Tl9JTlZJVEVfQ0hBTkdFRBAJEiQKIFRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1C",
-            "RVJfT05MSU5FEAoSJAogVEVBTV9DSEFOR0VfUkVBU09OX01BVENIX1NUQVJU",
-            "RUQQCxIiCh5URUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRU5ERUQQDBIjCh9U",
-            "RUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRkFJTEVEEA0SHQoZVEVBTV9DSEFO",
-            "R0VfUkVBU09OX0hFQUxFRBAOKn4KDVRlYW1FdmVudFR5cGUSHwobVEVBTV9F",
-            "VkVOVF9UWVBFX1VOU1BFQ0lGSUVEEAASKAokVEVBTV9FVkVOVF9UWVBFX0FQ",
-            "UExJQ0FUSU9OX1JFSkVDVEVEEAESIgoeVEVBTV9FVkVOVF9UWVBFX0lOVklU",
-            "RV9SRVZPS0VEEAIygQgKEENsaWVudFBsYXllclRlYW0SPwoKQ3JlYXRlVGVh",
-            "bRIZLnRlYW1wYi5DcmVhdGVUZWFtUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVz",
-            "cG9uc2UiABI9CglHZXRNeVRlYW0SGC50ZWFtcGIuR2V0TXlUZWFtUmVxdWVz",
-            "dBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJFCg1BcHBseUpvaW5UZWFtEhwu",
-            "dGVhbXBiLkFwcGx5Sm9pblRlYW1SZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNw",
-            "b25zZSIAEk0KEUhhbmRsZUFwcGxpY2F0aW9uEiAudGVhbXBiLkhhbmRsZUFw",
-            "cGxpY2F0aW9uUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJDCgxJ",
-            "bnZpdGVUb1RlYW0SGy50ZWFtcGIuSW52aXRlVG9UZWFtUmVxdWVzdBoULnRl",
-            "YW1wYi5UZWFtUmVzcG9uc2UiABJFCg1SZXNwb25kSW52aXRlEhwudGVhbXBi",
-            "LlJlc3BvbmRJbnZpdGVSZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNwb25zZSIA",
-            "Ek4KDUxpc3RNeUludml0ZXMSHC50ZWFtcGIuTGlzdE15SW52aXRlc1JlcXVl",
-            "c3QaHS50ZWFtcGIuTGlzdE15SW52aXRlc1Jlc3BvbnNlIgASPQoJTGVhdmVU",
-            "ZWFtEhgudGVhbXBiLkxlYXZlVGVhbVJlcXVlc3QaFC50ZWFtcGIuVGVhbVJl",
-            "c3BvbnNlIgASPwoKS2lja01lbWJlchIZLnRlYW1wYi5LaWNrTWVtYmVyUmVx",
-            "dWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJHCg5UcmFuc2ZlckxlYWRl",
-            "chIdLnRlYW1wYi5UcmFuc2ZlckxlYWRlclJlcXVlc3QaFC50ZWFtcGIuVGVh",
-            "bVJlc3BvbnNlIgASQQoLRGlzYmFuZFRlYW0SGi50ZWFtcGIuRGlzYmFuZFRl",
-            "YW1SZXF1ZXN0GhQudGVhbXBiLlRlYW1SZXNwb25zZSIAEkcKDlN0YXJ0VGVh",
-            "bU1hdGNoEh0udGVhbXBiLlN0YXJ0VGVhbU1hdGNoUmVxdWVzdBoULnRlYW1w",
-            "Yi5UZWFtUmVzcG9uc2UiABI3ChJOb3RpZnlUZWFtU25hcHNob3QSFy50ZWFt",
-            "cGIuVGVhbVNuYXBzaG90UzJDGgYuRW1wdHkiABIzChBOb3RpZnlUZWFtSW52",
-            "aXRlEhUudGVhbXBiLlRlYW1JbnZpdGVTMkMaBi5FbXB0eSIAEjEKD05vdGlm",
-            "eVRlYW1FdmVudBIULnRlYW1wYi5UZWFtRXZlbnRTMkMaBi5FbXB0eSIAGgWI",
-            "qMMBAUINWgR0ZWFtgAEAmNRhD2IGcHJvdG8z"));
+            "ZXF1ZXN0IlQKEEdldE15VGVhbVJlcXVlc3QSFQoNbm90aWZ5X29ubGluZRgB",
+            "IAEoCBIYChBtYXRjaF9yZXF1ZXN0X2lkGAIgASgJEg8KB3JlZ3JvdXAYAyAB",
+            "KAgiMAoUQXBwbHlKb2luVGVhbVJlcXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9p",
+            "ZBgBIAEoBCJbChhIYW5kbGVBcHBsaWNhdGlvblJlcXVlc3QSFAoMYXBwbGlj",
+            "YW50X2lkGAEgASgEEg8KB2FwcHJvdmUYAiABKAgSGAoQZXhwZWN0ZWRfdGVh",
+            "bV9pZBgDIAEoBCJJChNJbnZpdGVUb1RlYW1SZXF1ZXN0EhgKEHRhcmdldF9w",
+            "bGF5ZXJfaWQYASABKAQSGAoQZXhwZWN0ZWRfdGVhbV9pZBgCIAEoBCI3ChRS",
+            "ZXNwb25kSW52aXRlUmVxdWVzdBIPCgd0ZWFtX2lkGAEgASgEEg4KBmFjY2Vw",
+            "dBgCIAEoCCIWChRMaXN0TXlJbnZpdGVzUmVxdWVzdCIsChBMZWF2ZVRlYW1S",
+            "ZXF1ZXN0EhgKEGV4cGVjdGVkX3RlYW1faWQYASABKAQiRwoRS2lja01lbWJl",
+            "clJlcXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoBBIYChBleHBlY3Rl",
+            "ZF90ZWFtX2lkGAIgASgEIksKFVRyYW5zZmVyTGVhZGVyUmVxdWVzdBIYChB0",
+            "YXJnZXRfcGxheWVyX2lkGAEgASgEEhgKEGV4cGVjdGVkX3RlYW1faWQYAiAB",
+            "KAQiLgoSRGlzYmFuZFRlYW1SZXF1ZXN0EhgKEGV4cGVjdGVkX3RlYW1faWQY",
+            "ASABKAQieQoVU3RhcnRUZWFtTWF0Y2hSZXF1ZXN0EhgKEGJhdHRsZV9jb25m",
+            "aWdfaWQYASABKA0SGAoQZXhwZWN0ZWRfdGVhbV9pZBgCIAEoBBISCgpyZXF1",
+            "ZXN0X2lkGAMgASgJEhgKEHRhcmdldF90ZWFtX3NpemUYBCABKA0ihQEKDFRl",
+            "YW1SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01l",
+            "c3NhZ2USHgoEdGVhbRgCIAEoCzIQLnRlYW1wYi5UZWFtVmlldxItCgxtYXRj",
+            "aF9pbnRlbnQYAyABKAsyFy50ZWFtcGIuVGVhbU1hdGNoSW50ZW50IkcKD1Rl",
+            "YW1NYXRjaEludGVudBISCgpyZXF1ZXN0X2lkGAEgASgJEhEKCWJhdHRsZV9p",
+            "ZBgCIAEoBBINCgVzdGF0ZRgDIAEoDSKIAQoVTGlzdE15SW52aXRlc1Jlc3Bv",
+            "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIv",
+            "CgdpbnZpdGVzGAIgAygLMh4udGVhbXBiLlRlYW1JbmNvbWluZ0ludml0ZVZp",
+            "ZXcSFgoOc2VydmVyX3RpbWVfbXMYAyABKAQi1QEKDlRlYW1NZW1iZXJWaWV3",
+            "EhEKCXBsYXllcl9pZBgBIAEoBBIMCgRuYW1lGAIgASgJEg0KBWxldmVsGAMg",
+            "ASgNEhAKCGNsYXNzX2lkGAQgASgNEg4KBmdlbmRlchgFIAEoDRIRCglpc19s",
+            "ZWFkZXIYBiABKAgSEQoJaXNfb25saW5lGAcgASgIEhEKCWluX2JhdHRsZRgI",
+            "IAEoCBIPCgd6b25lX2lkGAkgASgNEhAKCGpvaW5fc2VxGAogASgNEhUKDWFw",
+            "cGVhcmFuY2VfaWQYCyABKAkiagoTVGVhbUFwcGxpY2F0aW9uVmlldxImCgZw",
+            "bGF5ZXIYASABKAsyFi50ZWFtcGIuVGVhbU1lbWJlclZpZXcSFQoNYXBwbGll",
+            "ZF9hdF9tcxgCIAEoBBIUCgxleHBpcmVfYXRfbXMYAyABKAQiVwoWVGVhbU91",
+            "dGdvaW5nSW52aXRlVmlldxInCgdpbnZpdGVlGAEgASgLMhYudGVhbXBiLlRl",
+            "YW1NZW1iZXJWaWV3EhQKDGV4cGlyZV9hdF9tcxgCIAEoBCKiAQoWVGVhbUlu",
+            "Y29taW5nSW52aXRlVmlldxIPCgd0ZWFtX2lkGAEgASgEEicKB2ludml0ZXIY",
+            "AiABKAsyFi50ZWFtcGIuVGVhbU1lbWJlclZpZXcSEQoJbGVhZGVyX2lkGAMg",
+            "ASgEEhQKDG1lbWJlcl9jb3VudBgEIAEoDRIPCgd6b25lX2lkGAUgASgNEhQK",
+            "DGV4cGlyZV9hdF9tcxgGIAEoBCLmAwoIVGVhbVZpZXcSDwoHdGVhbV9pZBgB",
+            "IAEoBBIRCglsZWFkZXJfaWQYAiABKAQSEAoIY2FwYWNpdHkYAyABKA0SDwoH",
+            "em9uZV9pZBgEIAEoDRIPCgd2ZXJzaW9uGAUgASgEEhgKEG1lbWJlcnNoaXBf",
+            "ZXBvY2gYBiABKAQSKwoLbWF0Y2hfc3RhdGUYByABKA4yFi50ZWFtcGIuVGVh",
+            "bU1hdGNoU3RhdGUSJwoHbWVtYmVycxgIIAMoCzIWLnRlYW1wYi5UZWFtTWVt",
+            "YmVyVmlldxIxCgxhcHBsaWNhdGlvbnMYCSADKAsyGy50ZWFtcGIuVGVhbUFw",
+            "cGxpY2F0aW9uVmlldxI3Cg9wZW5kaW5nX2ludml0ZXMYCiADKAsyHi50ZWFt",
+            "cGIuVGVhbU91dGdvaW5nSW52aXRlVmlldxIZChFhcHBsaWNhdGlvbl9jb3Vu",
+            "dBgLIAEoDRIWCg5zZXJ2ZXJfdGltZV9tcxgMIAEoBBIZChFtYXRjaF90YXJn",
+            "ZXRfc2l6ZRgNIAEoDRIaChJtYXRjaF9xdWV1ZWRfYXRfbXMYDiABKAQSHgoW",
+            "bWF0Y2hfYmF0dGxlX2NvbmZpZ19pZBgPIAEoDRIcChRtYXRjaF9maWxsX3N1",
+            "cHBvcnRlZBgQIAEoCCKLAQoPVGVhbVNuYXBzaG90UzJDEh4KBHRlYW0YASAB",
+            "KAsyEC50ZWFtcGIuVGVhbVZpZXcSKAoGcmVhc29uGAIgASgOMhgudGVhbXBi",
+            "LlRlYW1DaGFuZ2VSZWFzb24SEAoIYWN0b3JfaWQYAyABKAQSHAoDdGlwGAQg",
+            "ASgLMg8uVGlwSW5mb01lc3NhZ2UiVwoNVGVhbUludml0ZVMyQxIuCgZpbnZp",
+            "dGUYASABKAsyHi50ZWFtcGIuVGVhbUluY29taW5nSW52aXRlVmlldxIWCg5z",
+            "ZXJ2ZXJfdGltZV9tcxgCIAEoBCJWCgxUZWFtRXZlbnRTMkMSIwoEdHlwZRgB",
+            "IAEoDjIVLnRlYW1wYi5UZWFtRXZlbnRUeXBlEg8KB3RlYW1faWQYAiABKAQS",
+            "EAoIYWN0b3JfaWQYAyABKAQi0AIKClRlYW1SZWNvcmQSDwoHdGVhbV9pZBgB",
+            "IAEoBBIRCglsZWFkZXJfaWQYAiABKAQSDwoHem9uZV9pZBgDIAEoDRIVCg1j",
+            "cmVhdGVkX2F0X21zGAQgASgEEikKB21lbWJlcnMYBSADKAsyGC50ZWFtcGIu",
+            "VGVhbU1lbWJlclJlY29yZBIzCgxhcHBsaWNhdGlvbnMYBiADKAsyHS50ZWFt",
+            "cGIuVGVhbUFwcGxpY2F0aW9uUmVjb3JkEikKB2ludml0ZXMYByADKAsyGC50",
+            "ZWFtcGIuVGVhbUludml0ZVJlY29yZBIVCg1uZXh0X2pvaW5fc2VxGAggASgN",
+            "EhgKEG1hdGNoX2xvY2tfdG9rZW4YCSABKAkSHwoXbWF0Y2hfbG9ja19leHBp",
+            "cmVfYXRfbXMYCiABKAQSGQoRbWF0Y2hfbG9ja19yb3N0ZXIYCyADKAQiXgoQ",
+            "VGVhbU1lbWJlclJlY29yZBIRCglwbGF5ZXJfaWQYASABKAQSDwoHem9uZV9p",
+            "ZBgCIAEoDRIUCgxqb2luZWRfYXRfbXMYAyABKAQSEAoIam9pbl9zZXEYBCAB",
+            "KA0iaAoVVGVhbUFwcGxpY2F0aW9uUmVjb3JkEhEKCXBsYXllcl9pZBgBIAEo",
+            "BBIPCgd6b25lX2lkGAIgASgNEhUKDWFwcGxpZWRfYXRfbXMYAyABKAQSFAoM",
+            "ZXhwaXJlX2F0X21zGAQgASgEIngKEFRlYW1JbnZpdGVSZWNvcmQSEgoKaW52",
+            "aXRlZV9pZBgBIAEoBBISCgppbnZpdGVyX2lkGAIgASgEEg8KB3pvbmVfaWQY",
+            "AyABKA0SFQoNaW52aXRlZF9hdF9tcxgEIAEoBBIUCgxleHBpcmVfYXRfbXMY",
+            "BSABKAQqZwoOVGVhbU1hdGNoU3RhdGUSGQoVVEVBTV9NQVRDSF9TVEFURV9J",
+            "RExFEAASHQoZVEVBTV9NQVRDSF9TVEFURV9TVEFSVElORxABEhsKF1RFQU1f",
+            "TUFUQ0hfU1RBVEVfUVVFVUVEEAIqnwUKEFRlYW1DaGFuZ2VSZWFzb24SIgoe",
+            "VEVBTV9DSEFOR0VfUkVBU09OX1VOU1BFQ0lGSUVEEAASHgoaVEVBTV9DSEFO",
+            "R0VfUkVBU09OX0NSRUFURUQQARIkCiBURUFNX0NIQU5HRV9SRUFTT05fTUVN",
+            "QkVSX0pPSU5FRBACEiIKHlRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfTEVG",
+            "VBADEiQKIFRFQU1fQ0hBTkdFX1JFQVNPTl9NRU1CRVJfS0lDS0VEEAQSKQol",
+            "VEVBTV9DSEFOR0VfUkVBU09OX0xFQURFUl9UUkFOU0ZFUlJFRBAFEjEKLVRF",
+            "QU1fQ0hBTkdFX1JFQVNPTl9MRUFERVJfT0ZGTElORV9UUkFOU0ZFUlJFRBAG",
+            "EiAKHFRFQU1fQ0hBTkdFX1JFQVNPTl9ESVNCQU5ERUQQBxIqCiZURUFNX0NI",
+            "QU5HRV9SRUFTT05fQVBQTElDQVRJT05fQ0hBTkdFRBAIEiUKIVRFQU1fQ0hB",
+            "TkdFX1JFQVNPTl9JTlZJVEVfQ0hBTkdFRBAJEiQKIFRFQU1fQ0hBTkdFX1JF",
+            "QVNPTl9NRU1CRVJfT05MSU5FEAoSJAogVEVBTV9DSEFOR0VfUkVBU09OX01B",
+            "VENIX1NUQVJURUQQCxIiCh5URUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRU5E",
+            "RUQQDBIjCh9URUFNX0NIQU5HRV9SRUFTT05fTUFUQ0hfRkFJTEVEEA0SHQoZ",
+            "VEVBTV9DSEFOR0VfUkVBU09OX0hFQUxFRBAOEiMKH1RFQU1fQ0hBTkdFX1JF",
+            "QVNPTl9NQVRDSF9RVUVVRUQQDxIrCidURUFNX0NIQU5HRV9SRUFTT05fTUFU",
+            "Q0hfUVVFVUVfQ0FOQ0VMRUQQECp+Cg1UZWFtRXZlbnRUeXBlEh8KG1RFQU1f",
+            "RVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEigKJFRFQU1fRVZFTlRfVFlQRV9B",
+            "UFBMSUNBVElPTl9SRUpFQ1RFRBABEiIKHlRFQU1fRVZFTlRfVFlQRV9JTlZJ",
+            "VEVfUkVWT0tFRBACMoEIChBDbGllbnRQbGF5ZXJUZWFtEj8KCkNyZWF0ZVRl",
+            "YW0SGS50ZWFtcGIuQ3JlYXRlVGVhbVJlcXVlc3QaFC50ZWFtcGIuVGVhbVJl",
+            "c3BvbnNlIgASPQoJR2V0TXlUZWFtEhgudGVhbXBiLkdldE15VGVhbVJlcXVl",
+            "c3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASRQoNQXBwbHlKb2luVGVhbRIc",
+            "LnRlYW1wYi5BcHBseUpvaW5UZWFtUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVz",
+            "cG9uc2UiABJNChFIYW5kbGVBcHBsaWNhdGlvbhIgLnRlYW1wYi5IYW5kbGVB",
+            "cHBsaWNhdGlvblJlcXVlc3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASQwoM",
+            "SW52aXRlVG9UZWFtEhsudGVhbXBiLkludml0ZVRvVGVhbVJlcXVlc3QaFC50",
+            "ZWFtcGIuVGVhbVJlc3BvbnNlIgASRQoNUmVzcG9uZEludml0ZRIcLnRlYW1w",
+            "Yi5SZXNwb25kSW52aXRlUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2Ui",
+            "ABJOCg1MaXN0TXlJbnZpdGVzEhwudGVhbXBiLkxpc3RNeUludml0ZXNSZXF1",
+            "ZXN0Gh0udGVhbXBiLkxpc3RNeUludml0ZXNSZXNwb25zZSIAEj0KCUxlYXZl",
+            "VGVhbRIYLnRlYW1wYi5MZWF2ZVRlYW1SZXF1ZXN0GhQudGVhbXBiLlRlYW1S",
+            "ZXNwb25zZSIAEj8KCktpY2tNZW1iZXISGS50ZWFtcGIuS2lja01lbWJlclJl",
+            "cXVlc3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASRwoOVHJhbnNmZXJMZWFk",
+            "ZXISHS50ZWFtcGIuVHJhbnNmZXJMZWFkZXJSZXF1ZXN0GhQudGVhbXBiLlRl",
+            "YW1SZXNwb25zZSIAEkEKC0Rpc2JhbmRUZWFtEhoudGVhbXBiLkRpc2JhbmRU",
+            "ZWFtUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJHCg5TdGFydFRl",
+            "YW1NYXRjaBIdLnRlYW1wYi5TdGFydFRlYW1NYXRjaFJlcXVlc3QaFC50ZWFt",
+            "cGIuVGVhbVJlc3BvbnNlIgASNwoSTm90aWZ5VGVhbVNuYXBzaG90EhcudGVh",
+            "bXBiLlRlYW1TbmFwc2hvdFMyQxoGLkVtcHR5IgASMwoQTm90aWZ5VGVhbUlu",
+            "dml0ZRIVLnRlYW1wYi5UZWFtSW52aXRlUzJDGgYuRW1wdHkiABIxCg9Ob3Rp",
+            "ZnlUZWFtRXZlbnQSFC50ZWFtcGIuVGVhbUV2ZW50UzJDGgYuRW1wdHkiABoF",
+            "iKjDAQFCDVoEdGVhbYABAJjUYQ9iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Teampb.TeamMatchState), typeof(global::Teampb.TeamChangeReason), typeof(global::Teampb.TeamEventType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.CreateTeamRequest), global::Teampb.CreateTeamRequest.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.GetMyTeamRequest), global::Teampb.GetMyTeamRequest.Parser, new[]{ "NotifyOnline", "MatchRequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.GetMyTeamRequest), global::Teampb.GetMyTeamRequest.Parser, new[]{ "NotifyOnline", "MatchRequestId", "Regroup" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ApplyJoinTeamRequest), global::Teampb.ApplyJoinTeamRequest.Parser, new[]{ "TargetPlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.HandleApplicationRequest), global::Teampb.HandleApplicationRequest.Parser, new[]{ "ApplicantId", "Approve", "ExpectedTeamId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.InviteToTeamRequest), global::Teampb.InviteToTeamRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId" }, null, null, null, null),
@@ -149,7 +155,7 @@ namespace Teampb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.KickMemberRequest), global::Teampb.KickMemberRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TransferLeaderRequest), global::Teampb.TransferLeaderRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.DisbandTeamRequest), global::Teampb.DisbandTeamRequest.Parser, new[]{ "ExpectedTeamId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.StartTeamMatchRequest), global::Teampb.StartTeamMatchRequest.Parser, new[]{ "BattleConfigId", "ExpectedTeamId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.StartTeamMatchRequest), global::Teampb.StartTeamMatchRequest.Parser, new[]{ "BattleConfigId", "ExpectedTeamId", "RequestId", "TargetTeamSize" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamResponse), global::Teampb.TeamResponse.Parser, new[]{ "ErrorMessage", "Team", "MatchIntent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamMatchIntent), global::Teampb.TeamMatchIntent.Parser, new[]{ "RequestId", "BattleId", "State" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ListMyInvitesResponse), global::Teampb.ListMyInvitesResponse.Parser, new[]{ "ErrorMessage", "Invites", "ServerTimeMs" }, null, null, null, null),
@@ -157,7 +163,7 @@ namespace Teampb {
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamApplicationView), global::Teampb.TeamApplicationView.Parser, new[]{ "Player", "AppliedAtMs", "ExpireAtMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamOutgoingInviteView), global::Teampb.TeamOutgoingInviteView.Parser, new[]{ "Invitee", "ExpireAtMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamIncomingInviteView), global::Teampb.TeamIncomingInviteView.Parser, new[]{ "TeamId", "Inviter", "LeaderId", "MemberCount", "ZoneId", "ExpireAtMs" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamView), global::Teampb.TeamView.Parser, new[]{ "TeamId", "LeaderId", "Capacity", "ZoneId", "Version", "MembershipEpoch", "MatchState", "Members", "Applications", "PendingInvites", "ApplicationCount", "ServerTimeMs" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamView), global::Teampb.TeamView.Parser, new[]{ "TeamId", "LeaderId", "Capacity", "ZoneId", "Version", "MembershipEpoch", "MatchState", "Members", "Applications", "PendingInvites", "ApplicationCount", "ServerTimeMs", "MatchTargetSize", "MatchQueuedAtMs", "MatchBattleConfigId", "MatchFillSupported" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamSnapshotS2C), global::Teampb.TeamSnapshotS2C.Parser, new[]{ "Team", "Reason", "ActorId", "Tip" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamInviteS2C), global::Teampb.TeamInviteS2C.Parser, new[]{ "Invite", "ServerTimeMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamEventS2C), global::Teampb.TeamEventS2C.Parser, new[]{ "Type", "TeamId", "ActorId" }, null, null, null, null),
@@ -177,6 +183,11 @@ namespace Teampb {
     /// 开战锁有效:gather 在途,名单冻结
     /// </summary>
     [pbr::OriginalName("TEAM_MATCH_STATE_STARTING")] Starting = 1,
+    /// <summary>
+    /// 接收者正随本队在人数档队列里等补位(team-backfill-matching.md)。按接收者自己的排队票据现算,
+    /// 不进队伍记录、不改 version;名单不冻结 —— 名单一变整队自动退出匹配。
+    /// </summary>
+    [pbr::OriginalName("TEAM_MATCH_STATE_QUEUED")] Queued = 2,
   }
 
   public enum TeamChangeReason {
@@ -219,6 +230,14 @@ namespace Teampb {
     /// 服务端自愈(索引/记录矛盾修复)
     /// </summary>
     [pbr::OriginalName("TEAM_CHANGE_REASON_HEALED")] Healed = 14,
+    /// <summary>
+    /// 整队进队列等补位;actor_id = 队长
+    /// </summary>
+    [pbr::OriginalName("TEAM_CHANGE_REASON_MATCH_QUEUED")] MatchQueued = 15,
+    /// <summary>
+    /// 整队退出补位队列;actor_id = 主动取消者(0 = 系统撤单,原因在 tip)
+    /// </summary>
+    [pbr::OriginalName("TEAM_CHANGE_REASON_MATCH_QUEUE_CANCELED")] MatchQueueCanceled = 16,
   }
 
   public enum TeamEventType {
@@ -434,6 +453,7 @@ namespace Teampb {
     public GetMyTeamRequest(GetMyTeamRequest other) : this() {
       notifyOnline_ = other.notifyOnline_;
       matchRequestId_ = other.matchRequestId_;
+      regroup_ = other.regroup_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -473,6 +493,24 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "regroup" field.</summary>
+    public const int RegroupFieldNumber = 3;
+    private bool regroup_;
+    /// <summary>
+    /// 队员请求归队(点「归队」、跟随中看不到队长):调用者在队里且不是队长时,服务端给他所在的 scene 发一次
+    /// 组队刷新信号,scene 按既有跟随规则处理 —— 与队长同一场景实例、且互相看不见或相距超过 8 → 瞬移到队长脚下;
+    /// 队长在本节点的另一个场景 → 换过去;跨节点 / 跨 zone / 战斗中 → 不动(team-system.md「组队跟随 v1.1」V.9)。
+    /// 不认识本字段的服务端(旧版本)按普通 GetMyTeam 处理,只是不归队。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Regroup {
+      get { return regroup_; }
+      set {
+        regroup_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -490,6 +528,7 @@ namespace Teampb {
       }
       if (NotifyOnline != other.NotifyOnline) return false;
       if (MatchRequestId != other.MatchRequestId) return false;
+      if (Regroup != other.Regroup) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -499,6 +538,7 @@ namespace Teampb {
       int hash = 1;
       if (NotifyOnline != false) hash ^= NotifyOnline.GetHashCode();
       if (MatchRequestId.Length != 0) hash ^= MatchRequestId.GetHashCode();
+      if (Regroup != false) hash ^= Regroup.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -525,6 +565,10 @@ namespace Teampb {
         output.WriteRawTag(18);
         output.WriteString(MatchRequestId);
       }
+      if (Regroup != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Regroup);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -543,6 +587,10 @@ namespace Teampb {
         output.WriteRawTag(18);
         output.WriteString(MatchRequestId);
       }
+      if (Regroup != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Regroup);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -558,6 +606,9 @@ namespace Teampb {
       }
       if (MatchRequestId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(MatchRequestId);
+      }
+      if (Regroup != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -576,6 +627,9 @@ namespace Teampb {
       }
       if (other.MatchRequestId.Length != 0) {
         MatchRequestId = other.MatchRequestId;
+      }
+      if (other.Regroup != false) {
+        Regroup = other.Regroup;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -604,6 +658,10 @@ namespace Teampb {
             MatchRequestId = input.ReadString();
             break;
           }
+          case 24: {
+            Regroup = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -629,6 +687,10 @@ namespace Teampb {
           }
           case 18: {
             MatchRequestId = input.ReadString();
+            break;
+          }
+          case 24: {
+            Regroup = input.ReadBool();
             break;
           }
         }
@@ -2649,6 +2711,7 @@ namespace Teampb {
       battleConfigId_ = other.battleConfigId_;
       expectedTeamId_ = other.expectedTeamId_;
       requestId_ = other.requestId_;
+      targetTeamSize_ = other.targetTeamSize_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2700,6 +2763,22 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "target_team_size" field.</summary>
+    public const int TargetTeamSizeFieldNumber = 4;
+    private uint targetTeamSize_;
+    /// <summary>
+    /// 目标人数(team-backfill-matching.md):0 或等于当前队伍人数 = 有几个人就几个人直接开战(加字段前的行为);
+    /// 大于当前人数 = 整队进该人数档的队列等补位,凑满后同场开战;小于当前人数或超过副本上限 → kTeamSizeExceeded。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint TargetTeamSize {
+      get { return targetTeamSize_; }
+      set {
+        targetTeamSize_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2718,6 +2797,7 @@ namespace Teampb {
       if (BattleConfigId != other.BattleConfigId) return false;
       if (ExpectedTeamId != other.ExpectedTeamId) return false;
       if (RequestId != other.RequestId) return false;
+      if (TargetTeamSize != other.TargetTeamSize) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2728,6 +2808,7 @@ namespace Teampb {
       if (BattleConfigId != 0) hash ^= BattleConfigId.GetHashCode();
       if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
       if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
+      if (TargetTeamSize != 0) hash ^= TargetTeamSize.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2758,6 +2839,10 @@ namespace Teampb {
         output.WriteRawTag(26);
         output.WriteString(RequestId);
       }
+      if (TargetTeamSize != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(TargetTeamSize);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2780,6 +2865,10 @@ namespace Teampb {
         output.WriteRawTag(26);
         output.WriteString(RequestId);
       }
+      if (TargetTeamSize != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(TargetTeamSize);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2798,6 +2887,9 @@ namespace Teampb {
       }
       if (RequestId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
+      }
+      if (TargetTeamSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetTeamSize);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2819,6 +2911,9 @@ namespace Teampb {
       }
       if (other.RequestId.Length != 0) {
         RequestId = other.RequestId;
+      }
+      if (other.TargetTeamSize != 0) {
+        TargetTeamSize = other.TargetTeamSize;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2851,6 +2946,10 @@ namespace Teampb {
             RequestId = input.ReadString();
             break;
           }
+          case 32: {
+            TargetTeamSize = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -2880,6 +2979,10 @@ namespace Teampb {
           }
           case 26: {
             RequestId = input.ReadString();
+            break;
+          }
+          case 32: {
+            TargetTeamSize = input.ReadUInt32();
             break;
           }
         }
@@ -5307,6 +5410,10 @@ namespace Teampb {
       pendingInvites_ = other.pendingInvites_.Clone();
       applicationCount_ = other.applicationCount_;
       serverTimeMs_ = other.serverTimeMs_;
+      matchTargetSize_ = other.matchTargetSize_;
+      matchQueuedAtMs_ = other.matchQueuedAtMs_;
+      matchBattleConfigId_ = other.matchBattleConfigId_;
+      matchFillSupported_ = other.matchFillSupported_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5484,6 +5591,69 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "match_target_size" field.</summary>
+    public const int MatchTargetSizeFieldNumber = 13;
+    private uint matchTargetSize_;
+    /// <summary>
+    /// 以下三项只在 match_state = QUEUED 时有值(team-backfill-matching.md)。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint MatchTargetSize {
+      get { return matchTargetSize_; }
+      set {
+        matchTargetSize_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "match_queued_at_ms" field.</summary>
+    public const int MatchQueuedAtMsFieldNumber = 14;
+    private ulong matchQueuedAtMs_;
+    /// <summary>
+    /// 这一次补位排队的身份:客户端按 (team_id, 本字段) 识别「同一次排队」。QUEUED 时必非 0;同一单存续期间不变
+    /// (含凑满后开局失败、整队回到队首);重新发起必定变化。取值是进队列时刻的毫秒墙钟,也可用来显示已等时长。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong MatchQueuedAtMs {
+      get { return matchQueuedAtMs_; }
+      set {
+        matchQueuedAtMs_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "match_battle_config_id" field.</summary>
+    public const int MatchBattleConfigIdFieldNumber = 15;
+    private uint matchBattleConfigId_;
+    /// <summary>
+    /// 排的副本
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint MatchBattleConfigId {
+      get { return matchBattleConfigId_; }
+      set {
+        matchBattleConfigId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "match_fill_supported" field.</summary>
+    public const int MatchFillSupportedFieldNumber = 16;
+    private bool matchFillSupported_;
+    /// <summary>
+    /// 这台服务端支持队伍补位匹配且开关没关(team-backfill-matching.md §4.6)。客户端只在它为 true 时给出
+    /// 「目标人数」选项:不认识 target_team_size 的服务端(旧版本 / 另一版服务端)会把它静默当成直接开战,
+    /// 那些服务端的视图里这一位天然是 false。无队伍的空视图不填。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool MatchFillSupported {
+      get { return matchFillSupported_; }
+      set {
+        matchFillSupported_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -5511,6 +5681,10 @@ namespace Teampb {
       if(!pendingInvites_.Equals(other.pendingInvites_)) return false;
       if (ApplicationCount != other.ApplicationCount) return false;
       if (ServerTimeMs != other.ServerTimeMs) return false;
+      if (MatchTargetSize != other.MatchTargetSize) return false;
+      if (MatchQueuedAtMs != other.MatchQueuedAtMs) return false;
+      if (MatchBattleConfigId != other.MatchBattleConfigId) return false;
+      if (MatchFillSupported != other.MatchFillSupported) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5530,6 +5704,10 @@ namespace Teampb {
       hash ^= pendingInvites_.GetHashCode();
       if (ApplicationCount != 0) hash ^= ApplicationCount.GetHashCode();
       if (ServerTimeMs != 0UL) hash ^= ServerTimeMs.GetHashCode();
+      if (MatchTargetSize != 0) hash ^= MatchTargetSize.GetHashCode();
+      if (MatchQueuedAtMs != 0UL) hash ^= MatchQueuedAtMs.GetHashCode();
+      if (MatchBattleConfigId != 0) hash ^= MatchBattleConfigId.GetHashCode();
+      if (MatchFillSupported != false) hash ^= MatchFillSupported.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5587,6 +5765,22 @@ namespace Teampb {
         output.WriteRawTag(96);
         output.WriteUInt64(ServerTimeMs);
       }
+      if (MatchTargetSize != 0) {
+        output.WriteRawTag(104);
+        output.WriteUInt32(MatchTargetSize);
+      }
+      if (MatchQueuedAtMs != 0UL) {
+        output.WriteRawTag(112);
+        output.WriteUInt64(MatchQueuedAtMs);
+      }
+      if (MatchBattleConfigId != 0) {
+        output.WriteRawTag(120);
+        output.WriteUInt32(MatchBattleConfigId);
+      }
+      if (MatchFillSupported != false) {
+        output.WriteRawTag(128, 1);
+        output.WriteBool(MatchFillSupported);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5636,6 +5830,22 @@ namespace Teampb {
         output.WriteRawTag(96);
         output.WriteUInt64(ServerTimeMs);
       }
+      if (MatchTargetSize != 0) {
+        output.WriteRawTag(104);
+        output.WriteUInt32(MatchTargetSize);
+      }
+      if (MatchQueuedAtMs != 0UL) {
+        output.WriteRawTag(112);
+        output.WriteUInt64(MatchQueuedAtMs);
+      }
+      if (MatchBattleConfigId != 0) {
+        output.WriteRawTag(120);
+        output.WriteUInt32(MatchBattleConfigId);
+      }
+      if (MatchFillSupported != false) {
+        output.WriteRawTag(128, 1);
+        output.WriteBool(MatchFillSupported);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5675,6 +5885,18 @@ namespace Teampb {
       }
       if (ServerTimeMs != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ServerTimeMs);
+      }
+      if (MatchTargetSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MatchTargetSize);
+      }
+      if (MatchQueuedAtMs != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MatchQueuedAtMs);
+      }
+      if (MatchBattleConfigId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MatchBattleConfigId);
+      }
+      if (MatchFillSupported != false) {
+        size += 2 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5717,6 +5939,18 @@ namespace Teampb {
       }
       if (other.ServerTimeMs != 0UL) {
         ServerTimeMs = other.ServerTimeMs;
+      }
+      if (other.MatchTargetSize != 0) {
+        MatchTargetSize = other.MatchTargetSize;
+      }
+      if (other.MatchQueuedAtMs != 0UL) {
+        MatchQueuedAtMs = other.MatchQueuedAtMs;
+      }
+      if (other.MatchBattleConfigId != 0) {
+        MatchBattleConfigId = other.MatchBattleConfigId;
+      }
+      if (other.MatchFillSupported != false) {
+        MatchFillSupported = other.MatchFillSupported;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5785,6 +6019,22 @@ namespace Teampb {
             ServerTimeMs = input.ReadUInt64();
             break;
           }
+          case 104: {
+            MatchTargetSize = input.ReadUInt32();
+            break;
+          }
+          case 112: {
+            MatchQueuedAtMs = input.ReadUInt64();
+            break;
+          }
+          case 120: {
+            MatchBattleConfigId = input.ReadUInt32();
+            break;
+          }
+          case 128: {
+            MatchFillSupported = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -5850,6 +6100,22 @@ namespace Teampb {
           }
           case 96: {
             ServerTimeMs = input.ReadUInt64();
+            break;
+          }
+          case 104: {
+            MatchTargetSize = input.ReadUInt32();
+            break;
+          }
+          case 112: {
+            MatchQueuedAtMs = input.ReadUInt64();
+            break;
+          }
+          case 120: {
+            MatchBattleConfigId = input.ReadUInt32();
+            break;
+          }
+          case 128: {
+            MatchFillSupported = input.ReadBool();
             break;
           }
         }

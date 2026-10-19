@@ -142,28 +142,42 @@ if ($merchantPresent.Count -eq 0) {
 } elseif ($merchantPresent.Count -ne $merchantProtoFiles.Count) {
     throw '神秘商人协议与导表提示码不完整；请先完成服务端生成，不能发布部分契约。'
 }
+# 组队恢复与补位已合为同一份正式契约；无论业务别名文件是否存在，都必须保护恢复字段及正式编号。
+$teamSource = Get-Content -LiteralPath (Join-Path $ProtoRoot 'proto/team/team.proto') -Raw
+function Get-TeamMessageBody([string]$name) {
+    $pattern = '(?s)\bmessage\s+' + [regex]::Escape($name) + '\s*\{(.*?)\}'
+    $match = [regex]::Match($teamSource, $pattern)
+    if (-not $match.Success) { throw "组队协议兼容预检：缺少消息 $name" }
+    return $match.Groups[1].Value
+}
+$teamContracts = @(
+    @{ Message = 'GetMyTeamRequest'; Type = 'string'; Field = 'match_request_id'; Number = 2 }
+    @{ Message = 'GetMyTeamRequest'; Type = 'bool'; Field = 'regroup'; Number = 3 }
+    @{ Message = 'StartTeamMatchRequest'; Type = 'string'; Field = 'request_id'; Number = 3 }
+    @{ Message = 'StartTeamMatchRequest'; Type = 'uint32'; Field = 'target_team_size'; Number = 4 }
+    @{ Message = 'TeamResponse'; Type = 'TeamMatchIntent'; Field = 'match_intent'; Number = 3 }
+    @{ Message = 'TeamMatchIntent'; Type = 'string'; Field = 'request_id'; Number = 1 }
+    @{ Message = 'TeamMatchIntent'; Type = 'uint64'; Field = 'battle_id'; Number = 2 }
+    @{ Message = 'TeamMatchIntent'; Type = 'uint32'; Field = 'state'; Number = 3 }
+    @{ Message = 'TeamView'; Type = 'uint32'; Field = 'match_target_size'; Number = 13 }
+    @{ Message = 'TeamView'; Type = 'uint64'; Field = 'match_queued_at_ms'; Number = 14 }
+    @{ Message = 'TeamView'; Type = 'uint32'; Field = 'match_battle_config_id'; Number = 15 }
+    @{ Message = 'TeamView'; Type = 'bool'; Field = 'match_fill_supported'; Number = 16 }
+)
+foreach ($contract in $teamContracts) {
+    $body = Get-TeamMessageBody $contract.Message
+    $pattern = '(?m)^\s*' + [regex]::Escape($contract.Type) + '\s+' + [regex]::Escape($contract.Field) +
+        '\s*=\s*' + $contract.Number + '\s*;'
+    if ($body -notmatch $pattern) {
+        throw "组队协议兼容预检：缺少正式契约 $($contract.Message).$($contract.Field) = $($contract.Number) ($($contract.Type))；不能覆盖恢复或补位接口。"
+    }
+}
 $teamBridge = Join-Path $repoRoot 'Assets/Scripts/Proto/TeamBackfillProtocol.cs'
 if (Test-Path -LiteralPath $teamBridge) {
-    $teamSource = Get-Content -LiteralPath (Join-Path $ProtoRoot 'proto/team/team.proto') -Raw
-    function Get-TeamMessageBody([string]$name) {
-        $pattern = '(?s)\bmessage\s+' + [regex]::Escape($name) + '\s*\{(.*?)\}'
-        $match = [regex]::Match($teamSource, $pattern)
-        if (-not $match.Success) { throw "组队协议兼容预检：缺少消息 $name" }
-        return $match.Groups[1].Value
-    }
-    $getBody = Get-TeamMessageBody 'GetMyTeamRequest'
-    $startBody = Get-TeamMessageBody 'StartTeamMatchRequest'
-    $replyBody = Get-TeamMessageBody 'TeamResponse'
-    $viewBody = Get-TeamMessageBody 'TeamView'
-    if ($getBody -notmatch '(?m)^\s*string\s+match_request_id\s*=\s*2\s*;' -or
-        $startBody -notmatch '(?m)^\s*string\s+request_id\s*=\s*3\s*;' -or
-        $replyBody -notmatch '(?m)^\s*TeamMatchIntent\s+match_intent\s*=\s*3\s*;') {
-        throw '组队协议兼容预检：所选源会覆盖本地CPP/Java恢复接口；请先整合两套正式契约，再重新生成。'
-    }
-    if ($getBody -match '(?m)^\s*bool\s+regroup\s*=' -or
-        $startBody -match '(?m)^\s*uint32\s+target_team_size\s*=' -or
-        $viewBody -match '(?m)^\s*(?:uint32|uint64|bool)\s+(?:match_target_size|match_queued_at_ms|match_battle_config_id|match_fill_supported)\s*=') {
-        throw '组队协议兼容预检：源协议已定义桥接字段；请先移除或整合TeamBackfillProtocol对应partial成员，再重新生成。'
+    $bridgeSource = Get-Content -LiteralPath $teamBridge -Raw
+    $partialPattern = '(?m)^\s*(?:(?:public|internal|sealed|abstract|static)\s+)*partial\s+class\s+(?:GetMyTeamRequest|StartTeamMatchRequest|TeamView)\b'
+    if ($bridgeSource -match $partialPattern) {
+        throw '组队协议兼容预检：仍存在旧补位桥接partial成员；请移除桥接并使用正式生成字段，静态TeamBackfillProtocol别名可保留。'
     }
 }
 

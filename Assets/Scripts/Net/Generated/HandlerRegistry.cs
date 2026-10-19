@@ -125,6 +125,9 @@ namespace MmorpgClient.Net.Generated
             client.OnNotify(SceneMovementClientPlayerNotifyMoveAckHandler.MessageId, mc => SceneMovementClientPlayerNotifyMoveAckHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerNotifyTeleportHandler.MessageId, mc => SceneMovementClientPlayerNotifyTeleportHandler.Dispatch(client, mc));
             client.OnNotify(SceneMovementClientPlayerTeleportRequestHandler.MessageId, mc => SceneMovementClientPlayerTeleportRequestHandler.Dispatch(client, mc));
+            client.OnNotify(SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoodsHandler.MessageId, mc => SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoodsHandler.Dispatch(client, mc));
+            client.OnNotify(SceneMysteryMerchantClientPlayerGetMysteryMerchantInfoHandler.MessageId, mc => SceneMysteryMerchantClientPlayerGetMysteryMerchantInfoHandler.Dispatch(client, mc));
+            client.OnNotify(SceneMysteryMerchantClientPlayerNotifyMysteryMerchantHandler.MessageId, mc => SceneMysteryMerchantClientPlayerNotifyMysteryMerchantHandler.Dispatch(client, mc));
             client.OnNotify(ScenePetClientPlayerAllocatePetPointsHandler.MessageId, mc => ScenePetClientPlayerAllocatePetPointsHandler.Dispatch(client, mc));
             client.OnNotify(ScenePetClientPlayerAutoAllocatePetPointsHandler.MessageId, mc => ScenePetClientPlayerAutoAllocatePetPointsHandler.Dispatch(client, mc));
             client.OnNotify(ScenePetClientPlayerGetPetListHandler.MessageId, mc => ScenePetClientPlayerGetPetListHandler.Dispatch(client, mc));
