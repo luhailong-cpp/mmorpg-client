@@ -17,6 +17,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public string DayResourcePath;
         public string FestivalResourcePath;
         public string FestivalName;
+        public bool Available = true;
         public bool HasFestival => !string.IsNullOrEmpty(FestivalResourcePath);
     }
 
@@ -83,7 +84,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _travel=QdaoUguiFactory.CreateHitButton("TravelToSelectedCity",frame,2218,960,304,80);
             _travel.onClick.AddListener(()=>
             {
-                if(_selected==null)return;var zone=SelectedZone;
+                if(_selected==null||!_selected.Available||!_travel.interactable)return;var zone=SelectedZone;
                 if(zone!=null)ZoneTravelRequested?.Invoke(zone.ZoneId,_selected.SceneConfigId,_festival);
                 else TravelRequested?.Invoke(_selected.SceneConfigId,_festival);
             });
@@ -159,7 +160,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void Select(CityTravelDestination destination)
         {
-            if (_busy) return;
+            if (_busy || destination == null || !destination.Available) return;
             _selected = destination;
             _festival = destination.SceneConfigId == _currentScene && _currentFestival && destination.HasFestival;
             Refresh();
@@ -179,7 +180,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 bool selected = _destinations[i] == _selected;
                 SetTab(_destinationButtons[i], selected);
-                _destinationButtons[i].interactable = !_busy;
+                _destinationButtons[i].interactable = !_busy && _destinations[i].Available;
             }
             _name.text = _selected.Name;
             _description.text = _selected.Description;
@@ -203,11 +204,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 ? "将前往其他区服，途中会重新连接，请稍候片刻。"
                 : _selected.HasFestival
                     ? sameScene ? "更换此地景色，继续在原处游历。" : "选好景色，启程前往这片山海。"
-                    : "灯火映长街，云游自此启程。";
+                    : "沿着石路自在游历。";
             _travelLabel.text = _busy ? "正在传送…"
                 : crossZone ? "前往" + zone.Name + " · " + _selected.Name
-                : sameScene ? "应用景色" : "前往" + _selected.Name;
-            _travel.interactable = !_busy &&
+                : sameScene ? (_selected.HasFestival ? "应用景色" : "已在此地") : "前往" + _selected.Name;
+            _travel.interactable = !_busy && _selected.Available &&
                 (crossZone || !sameScene || _selected.HasFestival && _festival != _currentFestival);
         }
 

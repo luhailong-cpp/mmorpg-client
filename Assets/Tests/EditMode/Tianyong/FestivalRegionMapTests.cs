@@ -1,5 +1,6 @@
 using System.Reflection;
 using MmorpgClient.World;
+using MmorpgClient.World.CurrentMaps;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
 using UnityEngine;
@@ -10,37 +11,29 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
     public sealed class FestivalRegionMapTests
     {
+        [TestCase(1u)]
         [TestCase(2u)]
         [TestCase(3u)]
-        [TestCase(4u)]
-        public void DayAndFestival_KeepNativeSquareTexturesAndIdenticalPlayableGeometry(uint sceneId)
+        public void CurrentLayouts_KeepNativeSquareTexturesAndMatchingPlayableGeometry(uint sceneId)
         {
-            var region = FestivalRegionMap.Find(sceneId);
+            var region = CurrentMapCatalog.Find(sceneId);
             Assert.That(region, Is.Not.Null);
-            var day = Resources.Load<Texture2D>(region.TexturePath(false));
-            var festival = Resources.Load<Texture2D>(region.TexturePath(true));
-            foreach (var texture in new[] { day, festival })
-            {
-                Assert.That(texture, Is.Not.Null);
-                Assert.That(texture.width, Is.EqualTo(1254));
-                Assert.That(texture.height, Is.EqualTo(1254));
-                Assert.That(texture.mipmapCount, Is.EqualTo(1));
-                Assert.That(texture.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
-            }
-            Assert.That(festival, Is.Not.SameAs(day));
+            var day = region.LoadTexture();
+            Assert.That(day, Is.Not.Null);
+            Assert.That(day.width, Is.EqualTo(1254));
+            Assert.That(day.height, Is.EqualTo(1254));
+            Assert.That(day.mipmapCount, Is.EqualTo(1));
+            Assert.That(day.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
             var parent = new GameObject("FestivalRegionResourceTest");
             TianyongMapInstance map = null;
             try
             {
-                map = FestivalRegionMap.Build(parent.transform, region, false);
+                map = CurrentMapBuilder.Build(parent.transform, region);
                 var navigation = map.Navigation;
-                var ground = map.Root.transform.Find(FestivalRegionMap.GroundName);
-                var mesh = ground.GetComponent<MeshFilter>().sharedMesh;
+                var ground = map.Root.transform.Find(CurrentMapBuilder.GroundName);
                 var renderer = ground.GetComponent<MeshRenderer>();
                 var material = renderer.sharedMaterial;
                 var floor = map.Root.GetComponentInChildren<BoxCollider>();
-                var position = ground.localPosition;
-                var rotation = ground.localRotation;
                 var scale = ground.localScale;
                 Assert.That(navigation.IsWalkable(region.Spawn), Is.True);
                 Assert.That(material.mainTexture, Is.SameAs(day));
@@ -60,18 +53,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 }
                 Assert.That(walkable, Is.GreaterThan(0));
                 Assert.That(blocked, Is.GreaterThan(0));
-                FestivalRegionMap.SetAppearance(map, region, true);
-                Assert.That(renderer.sharedMaterial, Is.SameAs(material));
-                Assert.That(material.mainTexture, Is.SameAs(festival));
-                Assert.That(map.Navigation, Is.SameAs(navigation));
-                Assert.That(ground.GetComponent<MeshFilter>().sharedMesh, Is.SameAs(mesh));
-                Assert.That(ground.localPosition, Is.EqualTo(position));
-                Assert.That(ground.localRotation, Is.EqualTo(rotation));
-                Assert.That(ground.localScale, Is.EqualTo(scale));
-                Assert.That(map.Root.GetComponentInChildren<BoxCollider>(), Is.SameAs(floor));
-                FestivalRegionMap.SetAppearance(map, region, false);
-                Assert.That(material.mainTexture, Is.SameAs(day));
-                Assert.That(map.Navigation, Is.SameAs(navigation));
+                Assert.That(ground.localPosition, Is.EqualTo(new Vector3(200f, -.045f, 150f)));
+                Assert.That(map.Root.GetComponentInChildren<TianyongPaintedForeground>(), Is.Null,
+                    "The new layout must not reuse old foreground cutouts.");
             }
             finally
             {
@@ -92,7 +76,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 runtime.Initialize(null, null, null, TianyongMapConfig.LoadDefault());
                 GameObject previousRoot = null;
                 TianyongNavigationGrid previousNavigation = null;
-                foreach (uint sceneId in new uint[] { 1, 2, 3, 4, 1 })
+                foreach (uint sceneId in new uint[] { 1, 2, 3, 1 })
                 {
                     // GameClient clears its actor world before publishing the scene notification.
                     Invoke(runtime, "HandleLocalPlayerChanged", (object)null);
@@ -116,7 +100,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                         var navigation = controller.Navigation;
                         var feet = controller.FeetPosition;
                         runtime.SetFestivalAppearance(true);
-                        Assert.That(runtime.FestivalAppearance, Is.True);
+                        Assert.That(runtime.FestivalAppearance, Is.False, "Current layouts cannot switch to legacy festival art.");
                         Assert.That(controller.Navigation, Is.SameAs(navigation));
                         Assert.That(controller.FeetPosition, Is.EqualTo(feet));
                     }
@@ -133,6 +117,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(runtime.FestivalAppearance, Is.False, "A fresh connection must not retain the old night appearance.");
                 Invoke(runtime, "EnterScene", 999u);
                 Assert.That(runtime.Map, Is.Null, "Unsupported scenes must never retain a different map's navigation.");
+                Invoke(runtime, "EnterScene", 4u);
+                Assert.That(runtime.Map, Is.Null, "Undelivered current maps must not load removed legacy resources.");
             }
             finally
             {

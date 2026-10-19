@@ -25,6 +25,7 @@ namespace MmorpgClient.World.Tianyong
         private readonly List<Vector3> _path = new();
         private GameClient _client;
         private TianyongNavigationGrid _navigation;
+        private Vector3 _fallbackSpawn = TianyongMapDefinition.DefaultSpawn;
         private Camera _camera;
         private CharacterController _motor;
         private int _waypoint;
@@ -215,7 +216,8 @@ namespace MmorpgClient.World.Tianyong
             GameClient client,
             TianyongNavigationGrid navigation,
             Camera worldCamera,
-            TianyongMapConfig config)
+            TianyongMapConfig config,
+            Vector3? fallbackSpawn = null)
         {
             // Root position is the public/server feet coordinate. Do not infer
             // it from a prefab's pre-existing CharacterController settings;
@@ -225,6 +227,7 @@ namespace MmorpgClient.World.Tianyong
 
             _client = client;
             _navigation = navigation;
+            _fallbackSpawn = ResolveFallbackSpawn(initialFeet, fallbackSpawn);
             _camera = worldCamera;
             _moveSpeed = config != null ? config.MoveSpeed : DefaultMoveSpeed;
 
@@ -251,8 +254,23 @@ namespace MmorpgClient.World.Tianyong
             _arrivalDistance = Mathf.Max(0.25f, _motor.radius * 0.9f);
 
             if (_navigation != null && !_navigation.IsWalkable(initialFeet))
-                initialFeet = TianyongMapDefinition.DefaultSpawn;
+                initialFeet = _fallbackSpawn;
             WarpTo(initialFeet);
+        }
+
+        private Vector3 ResolveFallbackSpawn(Vector3 initialFeet, Vector3? requested)
+        {
+            var candidate = requested ?? (_navigation != null && _navigation.IsWalkable(initialFeet)
+                ? initialFeet : TianyongMapDefinition.DefaultSpawn);
+            candidate = TianyongMapDefinition.ClampXZ(candidate, 2f);
+            if (_navigation == null || _navigation.IsWalkable(candidate)) return candidate;
+            if (_navigation.TryFindNearestWalkable(candidate, out var nearest))
+            {
+                nearest = TianyongMapDefinition.ClampXZ(nearest, 2f);
+                if (_navigation.IsWalkable(nearest)) return nearest;
+            }
+            throw new System.InvalidOperationException(
+                $"[TianyongPlayerController] No walkable recovery spawn near {candidate}; supply this map's valid spawn.");
         }
 
         /// <summary>Immediately places the capsule so its feet land at the supplied world point.</summary>
@@ -317,7 +335,7 @@ namespace MmorpgClient.World.Tianyong
 
             var stranded = FeetPosition;
             if (!_navigation.TryFindNearestWalkable(stranded, out var recovered))
-                recovered = TianyongMapDefinition.DefaultSpawn;
+                recovered = _fallbackSpawn;
             recovered.y = stranded.y;
             WarpTo(recovered);
 

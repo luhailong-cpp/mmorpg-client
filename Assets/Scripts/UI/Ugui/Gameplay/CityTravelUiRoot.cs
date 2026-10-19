@@ -6,6 +6,7 @@ using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Pet;
 using MmorpgClient.World.Tianyong;
+using MmorpgClient.World.CurrentMaps;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -154,7 +155,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void RequestTravel(uint sceneConfigId, bool festival)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
-            if (sceneConfigId < 1 || sceneConfigId > 4 || _app.WorldMap == null) return;
+            if (CurrentMapCatalog.Find(sceneConfigId) == null || festival || _app.WorldMap == null) return;
             if (sceneConfigId == CurrentScene)
             {
                 _app.WorldMap.SetFestivalAppearance(festival);
@@ -196,7 +197,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void RequestZoneTravel(uint zoneId, uint sceneConfigId, bool festival)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
-            if (zoneId == 0 || sceneConfigId < 1 || sceneConfigId > 4 || _app.WorldMap == null) return;
+            if (zoneId == 0 || CurrentMapCatalog.Find(sceneConfigId) == null || festival || _app.WorldMap == null) return;
             int generation = _request.Begin(sceneConfigId, festival, Time.realtimeSinceStartup,
                 CityTravelRequest.CrossZoneTimeoutSeconds);
             if (generation == 0) return;
@@ -361,26 +362,23 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             new CityTravelDestination
             {
-                SceneConfigId = 1, Name = "天墉城", Description = "太极广场连着热闹长街，道观、灯市与庭院环绕城中。",
-                DayResourcePath = "World/FestivalRegions/tianyong/preview"
+                SceneConfigId = 1, Name = CurrentMapCatalog.Find(1u).Name, Description = "太极广场连着长街，沿着浅灰石路游历道观与庭院。",
+                DayResourcePath = CurrentMapCatalog.Find(1u).TexturePath
             },
             new CityTravelDestination
             {
-                SceneConfigId = 2, Name = "蓬莱岛", Description = "云海托起仙岛，石桥串联道观与庭园，沿岸静赏海天。",
-                DayResourcePath = "World/FestivalRegions/penglai/day",
-                FestivalResourcePath = "World/FestivalRegions/penglai/festival", FestivalName = "中秋月夜"
+                SceneConfigId = 2, Name = CurrentMapCatalog.Find(2u).Name, Description = "八座仙居环绕中央庭园，沿石路探访海岛风光。",
+                DayResourcePath = CurrentMapCatalog.Find(2u).TexturePath
             },
             new CityTravelDestination
             {
-                SceneConfigId = 3, Name = "东海渔村", Description = "码头停舟，渔舍临海，绕过村中小桥与摊市，走向潮声深处。",
-                DayResourcePath = "World/FestivalRegions/donghai/day",
-                FestivalResourcePath = "World/FestivalRegions/donghai/festival", FestivalName = "元宵灯会"
+                SceneConfigId = 3, Name = CurrentMapCatalog.Find(3u).Name, Description = "码头停舟，渔舍临海，村中广场与街巷相连。",
+                DayResourcePath = CurrentMapCatalog.Find(3u).TexturePath
             },
             new CityTravelDestination
             {
-                SceneConfigId = 4, Name = "揽仙镇", Description = "山间古镇炊烟轻起，宽阔街巷通向牌坊、集市与道家院落。",
-                DayResourcePath = "World/FestivalRegions/lanxian/day",
-                FestivalResourcePath = "World/FestivalRegions/lanxian/festival", FestivalName = "春节迎新"
+                SceneConfigId = 4, Name = "揽仙镇 · 未开放", Description = "当前地图暂未开放。",
+                Available = false
             }
         };
     }

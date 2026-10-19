@@ -1,4 +1,5 @@
 using MmorpgClient.Game;
+using MmorpgClient.World.CurrentMaps;
 using UnityEngine;
 
 namespace MmorpgClient.World.Tianyong
@@ -23,32 +24,21 @@ namespace MmorpgClient.World.Tianyong
         private TianyongCameraController _cameraController;
         private ActorView _localPlayer;
         private uint _activeSceneConfigId;
-        private FestivalRegionDefinition _region;
-        private bool _festivalAppearance;
+        private CurrentMapDefinition _currentMap;
 
         public TianyongMapInstance Map => _map;
-        public TianyongTheme Theme => _map?.Theme ?? initialTheme;
+        public TianyongTheme Theme => TianyongTheme.City;
         public TianyongMapConfig Config => config;
         public Camera WorldCamera => worldCamera;
         public Light DirectionalSun => directionalSun;
         public uint ActiveSceneConfigId => _activeSceneConfigId;
-        public bool FestivalAppearance => _region != null && _festivalAppearance;
-        public Vector3 CurrentSpawn => _region?.Spawn ?? TianyongMapDefinition.DefaultSpawn;
+        public bool FestivalAppearance => false;
+        public Vector3 CurrentSpawn => (_currentMap ?? CurrentMapCatalog.Find(1u)).Spawn;
 
         public void SetFestivalAppearance(bool festival)
         {
-            if (_region == null || _map == null) { _festivalAppearance = false; return; }
-            var map = _map;
-            var region = _region;
-            FestivalRegionMap.SetAppearance(map, region, festival, () =>
-            {
-                if (_map != map || _region != region) return;
-                // Painting, actor lighting and reported appearance commit in the same frame.
-                var theme = festival && region.SceneConfigId != 4 ? TianyongTheme.Lantern : TianyongTheme.City;
-                TianyongLighting.Apply(theme, directionalSun);
-                _cameraController?.SetTheme(theme, true);
-                _festivalAppearance = festival;
-            });
+            // The current delivery has one day appearance per map. Old festival art
+            // has different geometry and must never replace the current layout.
         }
 
         public void Initialize(GameClient client)
@@ -94,21 +84,8 @@ namespace MmorpgClient.World.Tianyong
 
         public void SetTheme(TianyongTheme theme)
         {
-            if (_region != null)
-            {
-                SetFestivalAppearance(theme != TianyongTheme.City);
-                return;
-            }
-            initialTheme = theme;
-            if (_map == null) return;
-
-            var focus = GetFocusPosition();
-            _map.Dispose();
-            _map = TianyongMapBuilder.Build(transform, theme, config);
-            _map.UpdateVisibleChunks(focus, VisibleChunkRadius);
-            TianyongLighting.Apply(theme, directionalSun);
-            _cameraController?.SetTheme(theme, TianyongPaintedCity.IsEnabledFor(theme, config));
-            if (_localPlayer?.Go != null) AttachLocalController(_localPlayer);
+            // Retained for callers compiled against the previous runtime. Current
+            // server maps are day-only; keyboard themes cannot restore legacy maps.
         }
 
         private int VisibleChunkRadius => config != null ? config.VisibleChunkRadius : 3;
@@ -126,8 +103,8 @@ namespace MmorpgClient.World.Tianyong
             // The current first-enter packet may omit scene_conf_id. Only the
             // configured default map accepts that compatibility value.
             if (sceneConfigId == 0) sceneConfigId = SceneConfigId;
-            var nextRegion = FestivalRegionMap.Find(sceneConfigId);
-            if (sceneConfigId != SceneConfigId && nextRegion == null)
+            var nextMapDefinition = CurrentMapCatalog.Find(sceneConfigId);
+            if (nextMapDefinition == null)
             {
                 UnloadMap();
                 return;
@@ -139,9 +116,7 @@ namespace MmorpgClient.World.Tianyong
                 TianyongMapInstance nextMap;
                 try
                 {
-                    nextMap = nextRegion != null
-                        ? FestivalRegionMap.Build(transform, nextRegion, _festivalAppearance)
-                        : TianyongMapBuilder.Build(transform, initialTheme, config);
+                    nextMap = CurrentMapBuilder.Build(transform, nextMapDefinition);
                 }
                 catch
                 {
@@ -153,20 +128,15 @@ namespace MmorpgClient.World.Tianyong
                 if (_map?.Root != null) _map.Root.SetActive(false);
                 _map?.Dispose();
                 _map = nextMap;
-                _region = nextRegion;
+                _currentMap = nextMapDefinition;
                 _activeSceneConfigId = sceneConfigId;
-                if (_region == null) _festivalAppearance = false;
             }
             _map.Root.SetActive(true);
             _map.UpdateVisibleChunks(CurrentSpawn, VisibleChunkRadius);
-            if (_region != null) SetFestivalAppearance(_festivalAppearance);
-            else
-            {
-                TianyongLighting.Apply(initialTheme, directionalSun);
-                _cameraController?.SetTheme(initialTheme, TianyongPaintedCity.IsEnabledFor(initialTheme, config));
-            }
+            TianyongLighting.Apply(TianyongTheme.City, directionalSun);
+            _cameraController?.SetTheme(TianyongTheme.City, true);
             if (_localPlayer?.Go != null) AttachLocalController(_localPlayer);
-            Debug.Log($"[FestivalRegion] ready scene={_activeSceneConfigId} festival={FestivalAppearance} spawn={CurrentSpawn}");
+            Debug.Log($"[CurrentMap] ready scene={_activeSceneConfigId} map={_currentMap.Key} spawn={CurrentSpawn}");
         }
 
         private void HandleLocalPlayerChanged(ActorView view)
@@ -212,7 +182,7 @@ namespace MmorpgClient.World.Tianyong
 
             if (controller == null) controller = view.Go.AddComponent<TianyongPlayerController>();
             controller.enabled = true;
-            controller.Initialize(_client, _map.Navigation, worldCamera, config);
+            controller.Initialize(_client, _map.Navigation, worldCamera, config, CurrentSpawn);
             controller.WarpTo(feetPosition);
             if (relocated)
             {
@@ -227,14 +197,6 @@ namespace MmorpgClient.World.Tianyong
         private void Update()
         {
             if (_map == null) return;
-
-            if (!GameplayInputGate.IsKeyboardBlocked)
-            {
-                if (Input.GetKeyDown(KeyCode.F1)) SetTheme(TianyongTheme.City);
-                else if (Input.GetKeyDown(KeyCode.F2)) SetTheme(TianyongTheme.Market);
-                else if (Input.GetKeyDown(KeyCode.F3)) SetTheme(TianyongTheme.Snow);
-                else if (Input.GetKeyDown(KeyCode.F4)) SetTheme(TianyongTheme.Lantern);
-            }
 
             var focus = GetFocusPosition();
             _map.UpdateVisibleChunks(focus, VisibleChunkRadius);
@@ -284,8 +246,7 @@ namespace MmorpgClient.World.Tianyong
 
             _map?.Dispose();
             _map = null;
-            _region = null;
-            _festivalAppearance = false;
+            _currentMap = null;
             _activeSceneConfigId = 0;
             _localPlayer = null;
             _cameraController?.SetTarget(null);

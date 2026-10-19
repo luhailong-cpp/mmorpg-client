@@ -1,4 +1,4 @@
-name: Character and pet resources
+name: Character, pet and map resources
 
 on:
   push:
@@ -25,6 +25,9 @@ jobs:
             Assets/Resources/World/Characters/QdaoOriginalRosterV14
             Assets/Resources/World/Characters/QdaoArchivedActions20261005
             Assets/Resources/World/Pets/QdaoPets20261005
+            Assets/Resources/World/CurrentMaps20261009
+      - name: Install image verification dependency
+        run: python -m pip install Pillow
       - name: Verify baseline images and exact delivery hashes
         run: python tools/verify_character_checkout.py --hash-images
       - name: Verify all archived character actions
@@ -33,3 +36,7 @@ jobs:
         run: python tools/import_pet_actions.py --verify
       - name: Check Git checkout and archive byte preservation
         run: python -m unittest discover -s tools/tests -p test_character_checkout.py -v
+      - name: Verify current map images, navigation and portable source records
+        run: python tools/import_current_maps.py --verify
+      - name: Check map navigation geometry and portable delivery
+        run: python -m unittest discover -s tools/tests -p test_import_current_maps.py -v

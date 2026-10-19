@@ -1,5 +1,6 @@
 using MmorpgClient.App;
 using MmorpgClient.World.Tianyong;
+using MmorpgClient.World.CurrentMaps;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -9,12 +10,30 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
     public sealed class FestivalRegionVerificationProbeTests
     {
+        [TestCase(1u, 2u, 3u, 1u)]
+        [TestCase(2u, 3u, 1u, 2u)]
+        [TestCase(3u, 1u, 2u, 3u)]
+        public void VerificationVisitsEveryMapThroughRealTravelAndReturnsToStartingMap(
+            uint currentScene, uint first, uint second, uint third)
+        {
+            var route = FestivalRegionAutoVerify.VerificationRoute(currentScene);
+            Assert.That(route, Is.EqualTo(new[] { first, second, third }));
+            Assert.That(route, Is.EquivalentTo(new uint[] { 1, 2, 3 }));
+            uint previous = currentScene;
+            foreach (uint next in route)
+            {
+                Assert.That(next, Is.Not.EqualTo(previous), "Same-scene travel cannot produce the required server notification.");
+                previous = next;
+            }
+            Assert.That(previous, Is.EqualTo(currentScene));
+        }
+
+        [TestCase(1u)]
         [TestCase(2u)]
         [TestCase(3u)]
-        [TestCase(4u)]
         public void SpawnHasSafeWasdAndConnectedClickTargets(uint sceneConfigId)
         {
-            var region = FestivalRegionMap.Find(sceneConfigId);
+            var region = CurrentMapCatalog.Find(sceneConfigId);
             Assert.That(region, Is.Not.Null);
             var nav = region.CreateNavigation();
             Assert.That(nav.IsWalkable(region.Spawn), Is.True);

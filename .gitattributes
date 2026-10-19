@@ -4,3 +4,6 @@
 Assets/Resources/World/Characters/QdaoOriginalRosterV13/**/*.json -text whitespace=cr-at-eol
 Assets/Resources/World/Characters/QdaoOriginalRosterV14/**/*.json -text
 Assets/Resources/World/Characters/QdaoArchivedActions20261005/**/*.json -text
+# 地图来源和导航使用精确字节校验，跨平台检出不得改写换行。
+Assets/Resources/World/CurrentMaps20261009/**/*.json -text
+Assets/Resources/World/CurrentMaps20261009/**/walkmask.txt -text

@@ -29,20 +29,21 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void SameCity_OnlyDifferentAppearanceCanBeApplied()
+        public void CurrentDayOnlyCity_CannotEnableLegacyFestivalAppearance()
         {
             _window.Show(2, false);
             Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(2));
             Assert.That(_window.TravelEnabled, Is.False);
             Click("FestivalAppearance");
-            Assert.That(_window.SelectedFestival, Is.True);
-            Assert.That(_window.TravelEnabled, Is.True);
+            Assert.That(_window.SelectedFestival, Is.False);
+            Assert.That(_window.TravelEnabled, Is.False);
+            Assert.That(FindButton("FestivalAppearance").gameObject.activeSelf, Is.False);
             _window.SetState(2, true, false, "");
             Assert.That(_window.TravelEnabled, Is.False);
         }
 
         [Test]
-        public void FestivalTravel_EmitsChosenServerDestinationAndAppearance()
+        public void CurrentMapTravel_EmitsChosenServerDestinationWithDayAppearance()
         {
             uint scene = 0;
             bool festival = false;
@@ -52,19 +53,40 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Click("FestivalAppearance");
             Click("TravelToSelectedCity");
             Assert.That(scene, Is.EqualTo(3));
-            Assert.That(festival, Is.True);
+            Assert.That(festival, Is.False);
         }
 
         [Test]
         public void PendingTravel_DisablesDestinationAndAppearanceControls()
         {
             _window.Show(1, false);
-            Click("CityDestination_4");
+            Click("CityDestination_3");
             _window.SetState(1, false, true, "正在传送");
             Assert.That(_window.TravelEnabled, Is.False);
             Assert.That(FindButton("CityDestination_2").interactable, Is.False);
             Assert.That(FindButton("FestivalAppearance").interactable, Is.False);
-            Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(4));
+            Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void UndeliveredFourthMap_IsUnavailableEvenForDirectButtonCallbacks()
+        {
+            _window.Show(1, false);
+            Assert.That(FindButton("CityDestination_4").interactable, Is.False);
+            Click("CityDestination_4");
+            Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(1));
+            uint requested = 0;
+            _window.TravelRequested += (scene, _) => requested = scene;
+            Click("TravelToSelectedCity");
+            Assert.That(requested, Is.Zero);
+            var destinations = CityTravelUiRoot.CreateDestinations();
+            Assert.That(destinations[3].Available, Is.False);
+            Assert.That(destinations[3].Name, Does.Contain("未开放"));
+            for (int i = 0; i < 3; i++)
+            {
+                Assert.That(destinations[i].DayResourcePath, Does.StartWith("World/CurrentMaps20261009/"));
+                Assert.That(destinations[i].HasFestival, Is.False);
+            }
         }
 
         private void Click(string name) => FindButton(name).onClick.Invoke();
