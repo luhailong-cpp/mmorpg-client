@@ -43,12 +43,12 @@ namespace MmorpgClient.UI.Ugui.Social
                 if(!selected&&group==State.Groups.LastOrDefault()&&State.Groups.Count>2&&Resources.Load<Sprite>(FidelityResources+"group_row_lotus")!=null)
                     rowKey="group_row_lotus";
                 FImage(row,rowKey,0,0,404,112);
-                FText(row,"GroupName",group.Name,116,17,214,39,25,Jade);
+                FText(row,"GroupName",group.Name,116,17,group.Pinned?112:214,39,25,Jade);
                 FText(row,"GroupTime",group.Messages.LastOrDefault()?.TimeLabel??"",329,14,65,30,18,Muted,align:TextAlignmentOptions.MidlineRight);
                 var last=group.Messages.LastOrDefault();
                 string snippet=last==null?"静候道友，结伴同行":State.Person(last.Sender).Name+"："+last.Text;
                 FText(row,"GroupLastMessage",snippet,116,62,274,37,20,Muted);
-                if(group.Pinned)FText(row,"GroupPinned","置顶",300,72,80,25,17,Ink,align:TextAlignmentOptions.Center);
+                if(group.Pinned)FImage(row,"exact_pinned_badge",233,23,57,31).name="GroupPinned";
                 if(group.Unread>0)FText(row,"GroupUnread",group.Unread.ToString(),353,53,36,32,20,QdaoUguiTheme.Html("#A95C3E"),align:TextAlignmentOptions.Center);
                 FHit(row,"SocialGroupSelect_"+group.Id,"",0,0,404,112,()=>{_forceBottom=true;State.SelectGroup(captured.Id);});
                 y+=122;
@@ -89,7 +89,7 @@ namespace MmorpgClient.UI.Ugui.Social
                 FText(members,"GroupMemberName_"+id,person.Name,mx+104,my+32,94,32,21,Jade);
                 FText(members,"GroupMemberStatus_"+id,person.Online?"● 在线":"● 离线",mx+104,my+66,94,28,18,
                     person.Online?QdaoUguiTheme.Html("#2B8A49"):Muted);
-                if(id==current.Owner)FText(members,"GroupOwner_"+id,"群主",mx+10,my+82,76,26,18,Ink,align:TextAlignmentOptions.Center);
+                if(id==current.Owner)FImage(members,"exact_owner_plaque",mx+5,my+78,85,30).name="GroupOwner_"+id;
                 index++;
             }
             members.sizeDelta=new Vector2(369,Mathf.Max(218,((index+1)/2)*116));
@@ -172,12 +172,28 @@ namespace MmorpgClient.UI.Ugui.Social
                 {
                     if(!string.IsNullOrEmpty(rumor.Place))
                     {
-                        var chip=FImage(row,"button_normal",452,78,255,40);chip.color=QdaoUguiTheme.Html("#E6EFD7");
-                        FHit(row,"SocialRumorLocation_"+rumor.Id,rumor.Place+"（"+rumor.Coordinates+"）",452,78,255,40,()=>ShowRumor(captured),size:20,color:Jade);
+                        FImage(row,"exact_rumor_location",452,78,258,42);
+                        FText(row,"RumorPlace_"+rumor.Id,rumor.Place+"（"+rumor.Coordinates+"）",501,83,202,33,20,Jade);
+                        FHit(row,"SocialRumorLocation_"+rumor.Id,"",452,78,258,42,()=>ShowRumor(captured));
                     }
-                    var timer=FText(row,"SocialRumorCountdown_"+rumor.Id,rumor.StateLabel(State.NowMs),
-                        string.IsNullOrEmpty(rumor.Place)?452:722,79,string.IsNullOrEmpty(rumor.Place)?578:351,38,20,Muted);
-                    _countdowns.Add(new KeyValuePair<TMP_Text,SocialRumor>(timer,rumor));
+                    bool numeric=rumor.AppearsAtMs>0;
+                    float timerX=string.IsNullOrEmpty(rumor.Place)?452:722;
+                    if(numeric)
+                    {
+                        FImage(row,"exact_countdown_chip",timerX,78,211,42);
+                        var timer=FText(row,"SocialRumorArtCountdown_"+rumor.Id,FRumorStateLabel(rumor,true),
+                            timerX+118,82,83,34,22,QdaoUguiTheme.Html("#AD2118"));
+                        _countdowns.Add(new KeyValuePair<TMP_Text,SocialRumor>(timer,rumor));
+                    }
+                    else
+                    {
+                        string notice=FRumorNoticeLabel(rumor);
+                        float noticeWidth=Mathf.Clamp(SocialState.TextLength(notice)*22+57,167,418);
+                        FImage(row,"exact_notice_chip",452,78,noticeWidth,42);
+                        if(!string.IsNullOrEmpty(rumor.Icon))Art(row,rumor.Icon,460,84,29,29,true);
+                        FText(row,"RumorRelatedNotice_"+rumor.Id,notice,498,83,noticeWidth-54,34,21,QdaoUguiTheme.Html("#693B16"));
+                        FHit(row,"SocialRumorNotice_"+rumor.Id,"",452,78,noticeWidth,42,()=>ShowRumor(captured));
+                    }
                 }
                 string action=rumor.Ended?"已结束":rumor.Category==RumorCategory.Beast?"查看位置":rumor.Category==RumorCategory.Treasure?"查看珍宝":"查看捷报";
                 FHit(row,"SocialRumorDetail_"+rumor.Id,action,1082,rumor.Ended?15:55,177,58,
@@ -205,6 +221,35 @@ namespace MmorpgClient.UI.Ugui.Social
             var scroll=rect.gameObject.AddComponent<ScrollRect>();scroll.viewport=viewport;scroll.content=content;
             scroll.horizontal=false;scroll.vertical=true;scroll.movementType=ScrollRect.MovementType.Clamped;scroll.scrollSensitivity=40;
             return scroll;
+        }
+        private string FRumorNoticeLabel(SocialRumor rumor)
+        {
+            // Display only related names explicitly present in the actual message text.
+            string text=rumor.Text??"";
+            int quote=text.IndexOf('「');
+            int end=quote>=0?text.IndexOf('」',quote+1):-1;
+            if(quote>=0&&end>quote+1)return text.Substring(quote+1,end-quote-1);
+            if(rumor.Category==RumorCategory.Victory)
+            {
+                int start=text.IndexOf("完成",StringComparison.Ordinal);
+                if(start>=0)
+                {
+                    start+=2;
+                    end=text.IndexOfAny(new[]{'，','。',',','！','!'},start);
+                    if(end>start)return text.Substring(start,end-start);
+                }
+            }
+            return FRumorStateLabel(rumor);
+        }
+        private string FRumorStateLabel(SocialRumor rumor,bool numeric=false)
+        {
+            if(numeric&&!rumor.Ended&&rumor.AppearsAtMs>0)
+            {
+                long seconds=Math.Max(0,(rumor.AppearsAtMs-State.NowMs+999)/1000);
+                return (seconds/60).ToString("00")+":"+(seconds%60).ToString("00");
+            }
+            // Icons are source sprites; native text never depends on unavailable symbol glyphs.
+            return rumor.StateLabel(State.NowMs).TrimStart('\u2713','\u25F7',' ');
         }
         private static string FPageTime(long milliseconds)
         {

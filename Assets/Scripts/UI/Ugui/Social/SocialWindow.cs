@@ -82,7 +82,7 @@ namespace MmorpgClient.UI.Ugui.Social
         public void Tick(float now=0)
         {
             if(!IsVisible)return;long second=State.NowMs/1000;if(second==_lastSecond)return;_lastSecond=second;
-            foreach(var pair in _countdowns)if(pair.Key!=null)pair.Key.text=pair.Value.StateLabel(State.NowMs);
+            foreach(var pair in _countdowns)if(pair.Key!=null)pair.Key.text=FRumorStateLabel(pair.Value,pair.Key.name.StartsWith("SocialRumorArtCountdown_",StringComparison.Ordinal));
             if(_channelClock!=null)_channelClock.text="频道时刻  "+TimeLabel(State.NowMs);
         }
         private void Changed(){if(!IsVisible)return;if(_modal!=null){_deferred=true;_status.text=State.Status;if(_fidelityStatus!=null)_fidelityStatus.text=State.Status;return;}Render();}
@@ -222,7 +222,7 @@ namespace MmorpgClient.UI.Ugui.Social
                 Text(row,"谣言",126,10,90,42,23,QdaoUguiTheme.Html("#7B5B7D"));Text(row,rumor.Title,234,8,1305,46,29,Jade,heading:true);
                 Text(row,TimeLabel(rumor.TimeMs),1870,10,218,42,22,Muted,align:TextAlignmentOptions.MidlineRight);
                 Text(row,rumor.Text,126,57,1760,54,28,Ink);
-                var status=Text(row,rumor.StateLabel(State.NowMs),128,109,1128,43,22,Muted,name:"SocialRumorCountdown_"+rumor.Id);_countdowns.Add(new KeyValuePair<TMP_Text,SocialRumor>(status,rumor));
+                var status=Text(row,FRumorStateLabel(rumor),128,109,1128,43,22,Muted,name:"SocialRumorCountdown_"+rumor.Id);_countdowns.Add(new KeyValuePair<TMP_Text,SocialRumor>(status,rumor));
                 if(!string.IsNullOrEmpty(rumor.Place))Button(row,"SocialRumorLocation_"+rumor.Id,rumor.Place+"（"+rumor.Coordinates+"）",1279,105,514,44,()=>ShowRumor(rumor),size:21);
                 Button(row,"SocialRumorDetail_"+rumor.Id,"查看详情",1840,102,248,49,()=>ShowRumor(rumor),size:24);y+=175;
             }
@@ -284,7 +284,7 @@ namespace MmorpgClient.UI.Ugui.Social
             var panel=Modal(rumor.Title,960,623);Art(panel,rumor.Icon??"round_badge_taiji",405,120,150,150,true);
             Text(panel,rumor.Text,87,285,786,106,29,Ink,wrap:true);
             if(!string.IsNullOrEmpty(rumor.Place))Text(panel,rumor.Place+"（"+rumor.Coordinates+"）",87,399,786,50,27,Jade);
-            var timer=Text(panel,rumor.StateLabel(State.NowMs),87,450,786,48,24,Muted,name:"SocialRumorModalCountdown");_countdowns.Add(new KeyValuePair<TMP_Text,SocialRumor>(timer,rumor));
+            var timer=Text(panel,FRumorStateLabel(rumor),87,450,786,48,24,Muted,name:"SocialRumorModalCountdown");_countdowns.Add(new KeyValuePair<TMP_Text,SocialRumor>(timer,rumor));
             Text(panel,"本地传闻详情，尚未连接游戏寻路。",87,496,786,42,21,Muted);Button(panel,"SocialModalDone","知道了",349,549,262,55,()=>CloseModal(),true,size:25);
         }
         private void ShowCreate()

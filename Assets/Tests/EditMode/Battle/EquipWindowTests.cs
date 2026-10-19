@@ -110,13 +110,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 equipment.Layout.EquipSlots.Add(new EquipSlotInfo { Slot = slot, EquipKind = 11, Name = "部位" + slot });
             Open(MakeBag(false), equipment);
             Click("已穿戴");
-            Assert.That(SlotNamesVisible().Length, Is.EqualTo(30));
+            Assert.That(SlotNamesVisible().Length, Is.EqualTo(20));
             Assert.That(SlotNamesVisible().First(), Is.EqualTo("EquipSlot_0"));
-            Assert.That(SlotNamesVisible().Last(), Is.EqualTo("EquipSlot_29"));
-            var scroll = _fixture.GetComponentsInChildren<ScrollRect>().Single(s => s.name == "BagScroll");
-            Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height));
-            scroll.verticalNormalizedPosition = 0; Canvas.ForceUpdateCanvases();
-            Assert.That(scroll.content.anchoredPosition.y, Is.GreaterThan(0), "原分页功能由真实滚动承接，最后栏位可达");
+            Assert.That(SlotNamesVisible().Last(), Is.EqualTo("EquipSlot_19"));
+            Buttons().Single(b => b.name == "BagNextPage").onClick.Invoke();
+            Assert.That(SlotNamesVisible().Length, Is.EqualTo(10));
+            Assert.That(SlotNamesVisible().First(), Is.EqualTo("EquipSlot_20"));
+            Assert.That(SlotNamesVisible().Last(), Is.EqualTo("EquipSlot_29"), "末个真实槽位仍可达");
+            Buttons().Single(b => b.name == "BagPreviousPage").onClick.Invoke();
+            Assert.That(SlotNamesVisible().First(), Is.EqualTo("EquipSlot_0"));
             Assert.That(_net.Calls, Is.Empty, "滚动与分类只展示，不发请求");
         }
 
@@ -793,7 +795,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             Click("已穿戴");
             try { return read(); }
-            finally { Click("全部物品"); }
+            finally { Click("全部"); }
         }
         private bool WornSlotInteractable(uint slot) => WithWornView(() => SlotButton(slot).interactable);
         private bool WornSlotHasIcon(uint slot) => WithWornView(() => HasIcon(SlotButton(slot)));
@@ -801,7 +803,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private void SelectWornSlot(uint slot)
         {
             Click("已穿戴"); var button = SlotButton(slot); Assert.That(button.interactable, Is.True); button.onClick.Invoke();
-            Click("全部物品"); // Return to the item grid while retaining the selected item ID.
+            Click("全部"); // Return to the item grid while retaining the selected item ID.
         }
 
         private Button SlotButton(uint slot) => Buttons().Single(button => button.name == "EquipSlot_" + slot);
@@ -848,6 +850,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         private Button FindButton(string label)
         {
+            if ((label == "已穿戴" || label == "其他物品" || label == "刷新") &&
+                !Buttons().Any(b => b.GetComponentsInChildren<TMP_Text>().Any(t => t.text == label)))
+                Buttons().Single(b => b.name == "BagTools").onClick.Invoke();
             var matches = Buttons().Where(button => button.GetComponentsInChildren<TMP_Text>().Any(text => text.text == label)).ToArray();
             Assert.That(matches.Length, Is.EqualTo(1), "当前页面应有唯一按钮：" + label);
             return matches[0];

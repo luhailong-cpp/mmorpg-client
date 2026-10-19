@@ -36,7 +36,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private uint _lastClassId;
         private uint _selectedId;
         private int _filter;
-        private static readonly string[] FilterNames = { "全部", "主动", "被动", "障碍", "辅助" };
+        private static readonly string[] FilterNames = { "全部", "主动术法", "被动心法", "障碍", "辅助" };
         private const float ListHeight = 500f, RowHeight = 82f, RowStep = 86f;
         public bool IsVisible => _root.gameObject.activeSelf;
 

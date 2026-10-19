@@ -33,7 +33,7 @@ namespace MmorpgClient.UI.Ugui.Social
             Clear(_fidelityContent); _fidelityTabs.Clear();
             _fidelitySkin.sprite = QdaoUguiTheme.RequireSprite(FidelityResources +
                 (State.Page == SocialPage.Groups ? "groups_skin" : State.Page == SocialPage.Rumor ? "rumor_skin" : "world_skin"));
-            FText(_fidelityContent,"SocialTitle","仙 友",857,24,233,61,43,Cream,align:TextAlignmentOptions.Center);
+            FImage(_fidelityContent,"exact_title",774,0,400,88); // Original fixed title artwork.
             float[] tx = { 677, 873, 1074 };
             int n = 0;
             foreach (SocialPage page in Enum.GetValues(typeof(SocialPage)))
@@ -127,7 +127,7 @@ namespace MmorpgClient.UI.Ugui.Social
                 float textHeight=Mathf.Max(32,probe.GetPreferredValues(message.Text,bubble-32,float.PositiveInfinity).y);
                 probe.gameObject.SetActive(false);
                 if(Application.isPlaying)UnityEngine.Object.Destroy(probe.gameObject);else UnityEngine.Object.DestroyImmediate(probe.gameObject);
-                float cardHeight=string.IsNullOrEmpty(message.Card)?0:61;
+                float cardHeight=string.IsNullOrEmpty(message.Card)?0:message.Card=="bamboo"?61:86;
                 float rowHeight=Mathf.Max(98,39+textHeight+cardHeight+18);
                 var row=QdaoUguiFactory.CreateRect("SocialMessage_"+message.Id,content,0,y,width,rowHeight);
                 float avatarX=self?width-100:0, bubbleX=self?width-116-bubble:117;
@@ -143,9 +143,20 @@ namespace MmorpgClient.UI.Ugui.Social
                 if(cardHeight>0)
                 {
                     var card=message.Card;
-                    string label=card=="bamboo"?"青岚竹海（126，84）":card=="talisman"?"太清护身符 · 点击查看":"青云试炼 · 同游邀约";
-                    FImage(row,"button_normal",bubbleX+16,43+textHeight,bubble-32,52);
-                    FHit(row,"SocialCard_"+message.Id,label,bubbleX+16,43+textHeight,bubble-32,52,()=>ShowCard(card),size:21);
+                    float cardY=43+textHeight;
+                    if(card=="bamboo")
+                    {
+                        FImage(row,"exact_location_card",bubbleX+16,cardY,296,47);
+                        FText(row,"SocialCardLabel_"+message.Id,"青岚竹海（126，84）",bubbleX+68,cardY+6,214,35,21,Ink);
+                        FHit(row,"SocialCard_"+message.Id,"",bubbleX+16,cardY,296,47,()=>ShowCard(card));
+                    }
+                    else
+                    {
+                        FImage(row,"exact_item_card",bubbleX+16,cardY,251,78);
+                        Art(row,card=="talisman"?"icon-talisman":"round_badge_taiji",bubbleX+26,cardY+10,62,59,true);
+                        FText(row,"SocialCardLabel_"+message.Id,card=="talisman"?"太清护身符":"青云试炼",bubbleX+104,cardY+8,132,33,22,Ink);
+                        FHit(row,"SocialCard_"+message.Id,"",bubbleX+16,cardY,251,78,()=>ShowCard(card));
+                    }
                 }
                 y+=rowHeight+10;
             }

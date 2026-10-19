@@ -71,6 +71,11 @@ namespace MmorpgClient.UI.Ugui.Role
         private UiTextButton _gotoCreateButton;
         private UiTextButton _enterButton;
         private float _roleCardHeight;
+        private ScrollRect _roleScroll;
+        private Image _exactSelectionTitle, _exactSelectionSeal;
+        private RectTransform _selectExtraDetails;
+        private TMP_Text _levelValue;
+        private static float RoleRowY(int index) => index == 0 ? 0 : index == 1 ? 248 : 488 + (index - 2) * 244;
 
         private RectTransform _createRoot;
         private readonly List<UiTextButton> _classButtons = new();
@@ -242,6 +247,8 @@ namespace MmorpgClient.UI.Ugui.Role
         {
             _creating = false;
             _title.text = "选择角色";
+            _title.gameObject.SetActive(false);_exactSelectionTitle.gameObject.SetActive(true);_exactSelectionSeal.gameObject.SetActive(true);
+            ApplySelectionDetails();
             _listHint.text = string.Empty;
             _createRoot.gameObject.SetActive(false);
             _selectRoot.gameObject.SetActive(true);
@@ -259,6 +266,8 @@ namespace MmorpgClient.UI.Ugui.Role
             if (_players != null && _players.Count >= MaxRows) return;
             _creating = true;
             _title.text = "创建角色";
+            _title.gameObject.SetActive(true);_exactSelectionTitle.gameObject.SetActive(false);_exactSelectionSeal.gameObject.SetActive(false);
+            ApplyCreationDetails();
             _listHint.text = "选择职业、性别与人物外观";
             _selectRoot.gameObject.SetActive(false);
             _createRoot.gameObject.SetActive(true);
@@ -273,26 +282,25 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private void RebuildRows()
         {
-            for (int i = _rowContainer.childCount - 1; i >= 0; i--)
+            foreach (var oldCard in _roleCards)
             {
-                var previous = _rowContainer.GetChild(i).gameObject;
-                previous.SetActive(false);
-                Destroy(previous);
+                var previous = oldCard.Button.gameObject;
+                previous.SetActive(false);Destroy(previous);
             }
             _roleCards.Clear();
             ulong lastPlayed = ClientSettings.GetLastPlayer(_zoneId);
             int count = Mathf.Min(_players.Count, MaxRows);
             int selectedIndex = 0;
             int slots = count + (count < MaxRows ? 1 : 0);
-            _roleCardHeight = Mathf.Min(224f, (662f - Mathf.Max(0, slots - 1) * 16f) / Mathf.Max(1, slots));
+            _roleCardHeight = 224f; // Approved card size never shrinks when fourth/fifth accounts exist.
+            _rowContainer.sizeDelta = new Vector2(532,Mathf.Max(714,RoleRowY(Mathf.Max(0,slots-1))+(count<MaxRows?208:224)));
+            _roleScroll.verticalNormalizedPosition=1;
             if (_gotoCreateButton != null)
             {
-                _gotoCreateButton.Rect.anchoredPosition = new Vector2(166f, -(246f + count * (_roleCardHeight + 16f)));
-                _gotoCreateButton.Rect.sizeDelta = new Vector2(540f, _roleCardHeight);
-                _gotoCreateButton.Label.rectTransform.anchoredPosition = new Vector2(42f, 0f);
-                _gotoCreateButton.Label.rectTransform.sizeDelta = new Vector2(456f, _roleCardHeight);
-                _gotoCreateButton.Label.fontSize = _roleCardHeight > 170f ? 44f : 34f;
-                RoleFidelityArt.Skin(_gotoCreateButton.Plate, "server_card_medium_normal");
+                _gotoCreateButton.Rect.anchoredPosition = new Vector2(0,-RoleRowY(count));
+                _gotoCreateButton.Rect.sizeDelta = new Vector2(532,208);
+                RoleFidelityArt.Skin(_gotoCreateButton.Plate,"exact_role_create");
+                _gotoCreateButton.Label.gameObject.SetActive(false);
             }
             for (int i = 0; i < count; i++)
             {
@@ -301,26 +309,26 @@ namespace MmorpgClient.UI.Ugui.Role
                     (_selectedPlayerId == 0 && player.PlayerId == lastPlayed)) selectedIndex = i;
                 var card = new RoleCard { PlayerId = player.PlayerId };
                 card.Button = RoleFidelityArt.Button($"Role_{player.PlayerId}", _rowContainer,
-                    0f, i * (_roleCardHeight + 16f), 540f, _roleCardHeight, "server_card_medium_normal", out card.Plate);
+                    0f, RoleRowY(i), 532f, _roleCardHeight, "server_card_medium_normal", out card.Plate);
                 ConfigureNavigation(card.Button);
-                float portraitSize = Mathf.Min(176f, _roleCardHeight - 36f);
+                float portraitSize = 204f;
                 CreateCardPortrait(card.Plate.transform, 30f, (_roleCardHeight - portraitSize) * .5f,
                     portraitSize, ResolvePortrait(player.ClassId, player.Gender, player.AppearanceId));
-                float textX = portraitSize + 54f;
-                float textWidth = 540f - textX - 60f;
-                card.Name = Label("Name", card.Plate.transform, textX, _roleCardHeight * .24f, textWidth, 60f,
-                    DisplayName(player), _roleCardHeight > 170f ? 44f : 33f, Ink);
+                float textX = 254f;
+                float textWidth = 228f;
+                card.Name = Label("Name", card.Plate.transform, textX, 40, textWidth, 69,
+                    DisplayName(player), 57, Ink);
                 QdaoCoreFidelityArt.ApplyText(card.Name);
                 // 角色名最长 12 字(服务端 RoleNameRule),文字区最窄约 250:放不下先缩字号,缩到底再省略
                 card.Name.enableAutoSizing = true;
                 card.Name.fontSizeMax = card.Name.fontSize;
                 card.Name.fontSizeMin = 20f;
-                card.Detail = Label("Identity", card.Plate.transform, textX, _roleCardHeight * .60f, textWidth, 44f,
-                    $"{GenderName(player.Gender)} · {ShortId(player.PlayerId)}" + (player.PlayerId == lastPlayed ? " · 上次" : string.Empty),
-                    _roleCardHeight > 170f ? 28f : 26f, Wood);
+                // AccountSimplePlayer has no level. Profession stays real; gender/id/name live in secondary details.
+                card.Detail = Label("Identity", card.Plate.transform, textX, 140, textWidth, 50,
+                    ClassName(player.ClassId), 39, Wood);
                 QdaoCoreFidelityArt.ApplyText(card.Detail);
                 card.Check = QdaoUguiFactory.CreateImage("SelectedCheck", card.Plate.transform,
-                    482f, _roleCardHeight * .5f - 23f, 46f, 46f, RoleFidelityArt.Load("check"));
+                    468, 129, 69, 75, RoleFidelityArt.Load("exact_role_selected_check"));
                 card.Check.gameObject.SetActive(false);
                 int captured = i;
                 card.Button.onClick.AddListener(() => PreviewPlayer(captured));
@@ -354,6 +362,10 @@ namespace MmorpgClient.UI.Ugui.Role
                 card.Check.gameObject.SetActive(selected);
             }
             RefreshPreview(player.ClassId, player.Gender, player.PlayerId, player.AppearanceId, player.Name);
+            float top=RoleRowY(index),bottom=top+224,viewTop=_rowContainer.anchoredPosition.y;
+            if(top<viewTop)viewTop=top;else if(bottom>viewTop+714)viewTop=bottom-714;
+            float range=Mathf.Max(0,_rowContainer.sizeDelta.y-714);
+            _roleScroll.verticalNormalizedPosition=range>0?1-Mathf.Clamp01(viewTop/range):1;
         }
 
         private void RefreshCreateHighlights()
@@ -449,9 +461,12 @@ namespace MmorpgClient.UI.Ugui.Role
             _hero=QdaoUguiFactory.CreateImage("CharacterArtwork",_designRoot,805,20,876,960,null);
             _hero.preserveAspect=true;
             _title=Label("Title",_designRoot,180,87,510,84,"选择角色",59,Ivory,TextAlignmentOptions.Center);
+            _exactSelectionTitle=RoleFidelityArt.Panel("ExactSelectionTitle",_designRoot,85,0,688,205,"exact_role_title");
+            _exactSelectionSeal=RoleFidelityArt.Panel("ExactSelectionSeal",_designRoot,1910,78,518,130,"exact_role_seal");
             _listHint=Label("ListHint",_designRoot,150,200,540,38,"",26,Wood,TextAlignmentOptions.Center);
             BuildDetails();
             BuildSelectRoot();
+            BuildExactSelectionDetails();
             BuildCreateRoot();
             _canvasGo.SetActive(false);
         }
@@ -492,25 +507,73 @@ namespace MmorpgClient.UI.Ugui.Role
         private void BuildSelectRoot()
         {
             _selectRoot = QdaoUguiFactory.CreateRect("SelectRoot", _designRoot, 0f, 0f, 2560f, 1080f);
-            _rowContainer = QdaoUguiFactory.CreateRect("RoleCards", _selectRoot, 166f, 246f, 540f, 662f);
+            var viewport=QdaoUguiFactory.CreateRect("RoleCardsViewport",_selectRoot,174,220,532,714);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var hit=viewport.gameObject.AddComponent<Image>();hit.color=new Color(1,1,1,.001f);hit.raycastTarget=true;
+            _rowContainer=QdaoUguiFactory.CreateRect("RoleCards",viewport,0,0,532,714);
+            _roleScroll=viewport.gameObject.AddComponent<ScrollRect>();_roleScroll.viewport=viewport;_roleScroll.content=_rowContainer;
+            _roleScroll.horizontal=false;_roleScroll.vertical=true;_roleScroll.inertia=false;_roleScroll.movementType=ScrollRect.MovementType.Clamped;_roleScroll.scrollSensitivity=70;
             var back = TextButton("BackToServers", _selectRoot, 245f, 963f, 360f,
                 "返回选服", false);
             back.Button.onClick.AddListener(ResolveCancel);
+            back.Rect.anchoredPosition=new Vector2(247,-956);back.Rect.sizeDelta=new Vector2(372,101);
+            RoleFidelityArt.Skin(back.Plate,"exact_role_back");back.Label.gameObject.SetActive(false);
             _gotoCreateButton = TextButton("CreateNewRole", _selectRoot, 166f, 700f, 540f,
                 "＋  创建角色", false);
             _gotoCreateButton.Button.onClick.AddListener(ShowCreateMode);
+            _gotoCreateButton.Rect.SetParent(_rowContainer,false);
             _enterButton = TextButton("EnterSanctuary", _selectRoot, 1885f, 876f, 570f,
                 "进入仙境", true, 62f);
-            _enterButton.Rect.anchoredPosition=new Vector2(1871,-851);
-            _enterButton.Rect.sizeDelta = new Vector2(572f, 160f);
+            _enterButton.Rect.anchoredPosition=new Vector2(1870,-854);
+            _enterButton.Rect.sizeDelta = new Vector2(580,164);
             _enterButton.Label.rectTransform.sizeDelta = new Vector2(484f, 130f);
-            RoleFidelityArt.Skin(_enterButton.Plate, "primary_button_normal");
+            RoleFidelityArt.Skin(_enterButton.Plate, "exact_role_enter");_enterButton.Label.gameObject.SetActive(false);
             _enterButton.Button.onClick.AddListener(() => ResolveSelect(_selectedPlayerId));
             // 详情窗第六行(修行方向之下):选中角色的角色名。建角模式下同一位置换成名字输入框。
             _roleNameValue = DetailRow("RoleName", "角色名", 718f, out _, _selectRoot);
             _roleNameValue.enableAutoSizing = true; // 12 字放不进 232 宽的 32 号字,先缩字号
             _roleNameValue.fontSizeMax = _roleNameValue.fontSize;
             _roleNameValue.fontSizeMin = 18f;
+        }
+
+        private RectTransform DetailRect(string name)
+        {
+            foreach(var rect in _designRoot.GetComponentsInChildren<RectTransform>(true))if(rect.name==name)return rect;
+            return null;
+        }
+        private void PlaceDetail(string name,float y,UnityEngine.Transform parent,float font,bool visible=true)
+        {
+            foreach(string suffix in new[]{"Label","Value","Rule"})
+            {
+                var rect=DetailRect(name+suffix);if(rect==null)continue;rect.SetParent(parent,false);rect.gameObject.SetActive(visible);
+                bool label=suffix=="Label",rule=suffix=="Rule";
+                rect.anchoredPosition=new Vector2(label||rule?1982:2137,-(y+(rule?54:0)));
+                rect.sizeDelta=new Vector2(rule?387:label?155:232,rule?1:48);
+                var text=rect.GetComponent<TMP_Text>();if(text!=null)text.fontSize=font;
+            }
+        }
+        private void BuildExactSelectionDetails()
+        {
+            _selectExtraDetails=QdaoUguiFactory.CreateRect("SecondaryRoleDetails",_selectRoot,0,0,2560,1080);
+            _levelValue=DetailRow("Level","等级",454);_levelValue.text="—";
+            var details=TextButton("ToggleRoleDetails",_selectRoot,2110,631,260,"角色详情",false,25);
+            details.Rect.sizeDelta=new Vector2(260,45);details.Label.rectTransform.anchoredPosition=new Vector2(10,0);details.Label.rectTransform.sizeDelta=new Vector2(240,45);
+            details.Button.onClick.AddListener(()=>_selectExtraDetails.gameObject.SetActive(!_selectExtraDetails.gameObject.activeSelf));
+            _selectExtraDetails.gameObject.SetActive(false);
+        }
+        private void ApplySelectionDetails()
+        {
+            _selectExtraDetails.gameObject.SetActive(false);
+            PlaceDetail("Level",454,_selectRoot,38);PlaceDetail("Zone",568,_designRoot,38);
+            PlaceDetail("Gender",666,_selectExtraDetails,24);PlaceDetail("Identity",707,_selectExtraDetails,24);
+            PlaceDetail("Direction",748,_selectExtraDetails,24);PlaceDetail("RoleName",789,_selectExtraDetails,24);
+        }
+        private void ApplyCreationDetails()
+        {
+            _selectExtraDetails.gameObject.SetActive(false);
+            PlaceDetail("Level",454,_selectRoot,38,false);
+            PlaceDetail("Gender",430,_designRoot,30);PlaceDetail("Zone",502,_designRoot,30);
+            PlaceDetail("Identity",574,_designRoot,30);PlaceDetail("Direction",646,_designRoot,30);
         }
 
         private void BuildCreateRoot()

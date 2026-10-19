@@ -16,7 +16,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private const string NativeRoot = "UI/Ugui/GameplayFidelity20261016/";
         private readonly Image _nativeFrame;
         private float _bagScroll = 1, _missionScroll = 1, _activityScroll = 1;
-        private bool _missionFilterMenu;
+        private bool _missionFilterMenu, _bagTools, _activityTools;
+        private const int ExactBagPageSize = 20;
+        // The approved fourth row is compact (80px); occupied icons fit inside it.
+        private static readonly float[] ExactBagY = { 174, 320, 464, 608 };
+        private static readonly float[] ExactBagH = { 138, 136, 135, 80 };
 
         private static Sprite NativeSprite(string key) => QdaoUguiTheme.RequireSprite(NativeRoot + key);
         private static Image NativeArt(UnityEngine.Transform parent, string key, float x, float y, float w, float h)
@@ -28,6 +32,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var t = Text(parent, value, x, y, w, h, size, color, wrap, alignment);
             t.overflowMode = wrap ? TextOverflowModes.Overflow : TextOverflowModes.Ellipsis;
+            ApplyOriginalLettering(parent,t,value,x,y,w,h,size,color ?? Ink,alignment);
             return t;
         }
 
@@ -93,22 +98,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void RenderBag()
         {
-            string[] filters = { "全部物品", "装备", "其他物品", "已穿戴" };
+            // Keep approved primary categories. Protocol has no potion/material taxonomy.
+            string[] filters = { "全部", "装备", "丹药", "材料" };
             for (int i = 0; i < filters.Length; ++i)
             {
-                int f = i; bool selected = _bagFilter == i;
+                int f = i; bool selected = i < 2 && _bagFilter == i;
                 NativeButton(_body, "BagCategory_" + i, filters[i], selected ? "bag-tab-selected" : "bag-tab-normal",
-                    190 + i * 244, 93, 242, 67, () => { _bagFilter = f; _bagScroll = 1; Render(); }, font: 34, jade: selected);
+                    new float[]{190,444,684,924}[i], 93, new float[]{254,240,240,237}[i], 67,
+                    () => { _bagFilter = f; _bagPage = 0; _bagScroll = 1; Render(); }, i < 2, 34, selected);
             }
             for (int i = 0; i < 2; ++i)
             {
                 string amount = _bag?.Currency != null && i < _bag.Currency.Values.Count ? _bag.Currency.Values[i].ToString("N0") : "—";
                 NativeText(_body, amount, i == 0 ? 261 : 562, 708, i == 0 ? 132 : 85, 43, 28);
             }
-            NativeHit(_body, "RefreshBag", "刷新", 948, 741, 46, 20, Refresh, !_bagLoading && !_sorting && !_equipBusy, 17);
-            NativeButton(_body, "SortBag", _sorting ? "整理中" : "整理背包", "bag-sort", 1005, 700, 158, 54,
-                () => SortRequested?.Invoke(), !_bagLoading && !_sorting && !_equipBusy && _bag?.Layout != null && _bag.Layout.CanSort && _bag.Layout.BagType == 0, 26);
-
+            NativeButton(_body, "SortBag", _sorting ? "整理中" : "整理", "bag-sort", 1005, 700, 158, 54,
+                () => SortRequested?.Invoke(), !_bagLoading && !_sorting && !_equipBusy && _bag?.Layout != null && _bag.Layout.CanSort && _bag.Layout.BagType == 0, 30);
             var worn = EquipBagModel.Slots(_equipment);
             var items = _bag?.Items.GroupBy(i => i.ItemId).ToDictionary(g => g.Key, g => g.First()) ?? new Dictionary<ulong, BagItemInfo>();
             var slots = _bag?.Layout?.Slots.OrderBy(s => s.Slot).Where(s => items.ContainsKey(s.ItemId)).ToList() ?? new List<BagSlotInfo>();
@@ -117,44 +122,82 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var visible = slots.Where(s => matches(items[s.ItemId]) && (_bagFilter == 0 || (_bagFilter == 1 ? items[s.ItemId].EquipKind != 0 : _bagFilter == 2 && items[s.ItemId].EquipKind == 0))).ToList();
             var wornVisible = worn.Where(v => v.Item == null ? string.IsNullOrWhiteSpace(_query) : matches(v.Item)).ToList();
             int count = _bagFilter == 3 ? wornVisible.Count : filtered ? visible.Count : (int)Math.Min(_bag?.Layout?.Capacity ?? 0, int.MaxValue);
+            _bagPage = Mathf.Clamp(_bagPage, 0, Math.Max(0, (count - 1) / ExactBagPageSize));
             ulong selectedId = EquipBagModel.ResolveSelection(_selectedItem, worn, visible.Select(s => s.ItemId), out bool selectedWorn);
-            if (_bagFilter == 3 && !wornVisible.Any(v => v.Item != null && v.Item.ItemId == selectedId)) { selectedId = wornVisible.Where(v => v.Item != null).Select(v => v.Item.ItemId).FirstOrDefault(); selectedWorn = true; }
+            if (_bagFilter == 3 && !wornVisible.Any(v => v.Item != null && v.Item.ItemId == selectedId))
+            { selectedId = wornVisible.Where(v => v.Item != null).Select(v => v.Item.ItemId).FirstOrDefault(); selectedWorn = true; }
             var bySlot = slots.GroupBy(s => s.Slot).ToDictionary(g => g.Key, g => g.First());
-            var content = NativeScroll(_body, "BagScroll", 178, 173, 981, 520, (float)Math.Ceiling(count / 5f) * 145, _bagScroll, p => _bagScroll = p);
-            // Every visible slot is created from the current snapshot. No baked slot or selected outline exists behind this viewport.
-            for (int i = 0; i < count; ++i)
+            // Page controls keep every server slot reachable without cutting a populated row.
+            var content = NativeScroll(_body, "BagScroll", 178, 174, 981, 514, 514, 1, _ => { });
+            content.GetComponentInParent<ScrollRect>().vertical = false;
+            int first = _bagPage * ExactBagPageSize;
+            for (int cell = 0; cell < Math.Min(ExactBagPageSize, count - first); ++cell)
             {
-                BagSlotInfo slot = _bagFilter == 3 ? null : filtered ? visible[i] : bySlot.TryGetValue((uint)i, out var found) ? found : null;
-                BagItemInfo item = _bagFilter == 3 ? wornVisible[i].Item : slot != null ? items[slot.ItemId] : null;
-                ulong id = item?.ItemId ?? 0;
-                bool selected = id != 0 && selectedId == id;
-                var button = NativeButton(content, _bagFilter == 3 ? "EquipSlot_" + wornVisible[i].Slot : "BagSlot_" + (slot?.Slot ?? (uint)i), "",
-                    selected ? "bag-slot-selected" : "bag-slot", i % 5 * 196, i / 5 * 145, 190, 140,
+                int index = first + cell, row = cell / 5;
+                BagSlotInfo slot = _bagFilter == 3 ? null : filtered ? visible[index] : bySlot.TryGetValue((uint)index, out var found) ? found : null;
+                BagItemInfo item = _bagFilter == 3 ? wornVisible[index].Item : slot != null ? items[slot.ItemId] : null;
+                ulong id = item?.ItemId ?? 0; bool selected = id != 0 && selectedId == id;
+                float h = ExactBagH[row];
+                var button = NativeButton(content, _bagFilter == 3 ? "EquipSlot_" + wornVisible[index].Slot : "BagSlot_" + (slot?.Slot ?? (uint)index), "",
+                    selected ? "bag-slot-selected" : "bag-slot", cell % 5 * 196, ExactBagY[row] - 174, 190, h,
                     () => { if (id != 0) { _selectedItem = id; Render(); } });
                 if (item == null)
                 {
-                    button.interactable = false; var emptyColors = button.colors; emptyColors.disabledColor = Color.white; button.colors = emptyColors;
-                    if (_bagFilter == 3) NativeText(button.transform, wornVisible[i].Name, 12, 39, 166, 57, 26, Muted, TextAlignmentOptions.Center);
+                    button.interactable = false; var colors = button.colors; colors.disabledColor = Color.white; button.colors = colors;
+                    if (_bagFilter == 3) NativeText(button.transform, wornVisible[index].Name, 12, 8, 166, h - 16, 26, Muted, TextAlignmentOptions.Center);
                     continue;
                 }
-                ItemIcon(button.transform, item.IconKey, 29, 4, 126);
-                NativeText(button.transform, item.Count > 1 ? item.Count.ToString() : "", 108, 103, 66, 34, 25, Ink, TextAlignmentOptions.MidlineRight);
+                float icon = row == 3 ? 68 : 126;
+                ItemIcon(button.transform, item.IconKey, (190 - icon) / 2, 4, icon);
+                NativeText(button.transform, item.Count > 1 ? item.Count.ToString() : "", 108, h - 37, 66, 34, 25, Ink, TextAlignmentOptions.MidlineRight);
             }
-            NativeText(_body, _bagFilter == 3 ? "已穿戴 " + wornVisible.Count(v => v.Item != null) : $"背包 {slots.Count}/{_bag?.Layout?.Capacity.ToString() ?? "—"}", 732, 741, 210, 20, 18, Muted);
+            NativeText(_body, _bagFilter == 3 ? "已穿戴 " + wornVisible.Count(v => v.Item != null) : $"背包 {slots.Count}/{_bag?.Layout?.Capacity.ToString() ?? "—"}", 832, 706, 166, 44, 26, Ink);
             string state = !string.IsNullOrEmpty(_bagError) ? "暂时未能同步，请点击刷新重试" : _bagLoading ? "正在打开行囊…" :
                 !string.IsNullOrEmpty(_equipError) ? _equipError : _equipBusy ? "正在处理装备…" : _equipmentNotice;
-            if (!string.IsNullOrEmpty(state)) NativeStatus(state, 180, 671, 978, !string.IsNullOrEmpty(_bagError) || !string.IsNullOrEmpty(_equipError));
-            else if (_bagFilter == 3 && _equipment?.Layout == null) NativeStatus(_equipLoading ? "读取中…" : "装备栏尚未同步", 434, 400, 640);
-            else if (_bag?.Layout == null && _bagFilter != 3) NativeStatus("行囊尚未开启", 434, 400, 640);
-            else if (filtered && count == 0) NativeStatus("没有找到符合条件的物品", 400, 400, 640);
-            else if (slots.Count == 0 && _bagFilter != 3) NativeStatus("行囊空空，沿途拾得的灵物会收在这里", 310, 400, 780);
+            if (string.IsNullOrEmpty(state))
+            {
+                if (_bagFilter == 3 && _equipment?.Layout == null) NativeStatus(_equipLoading ? "读取中…" : "装备栏尚未同步", 434, 400, 640);
+                else if (_bag?.Layout == null && _bagFilter != 3) NativeStatus("行囊尚未开启", 434, 400, 640);
+                else if (filtered && count == 0) NativeStatus("没有找到符合条件的物品", 400, 400, 640);
+                else if (slots.Count == 0 && _bagFilter != 3) NativeStatus("行囊空空，沿途拾得的灵物会收在这里", 310, 400, 780);
+            }
             BagItemInfo chosen = selectedWorn ? EquipBagModel.FindWorn(worn, selectedId) : items.TryGetValue(selectedId, out var held) ? held : null;
+            if (!_bagTools) RenderExactBagTools(count);
             RenderNativeItem(chosen, selectedWorn);
+            if (!string.IsNullOrEmpty(state)) NativeStatus(state, 1260, 622, 474, !string.IsNullOrEmpty(_bagError) || !string.IsNullOrEmpty(_equipError));
+            if (_bagTools) RenderExactBagTools(count);
+        }
+
+        private void RenderExactBagTools(int count)
+        {
+            NativeHit(_body, "BagTools", "工具", 1694, 208, 66, 34, () => { _bagTools = !_bagTools; Render(); }, font: 22);
+            int pages = Math.Max(1, (count + ExactBagPageSize - 1) / ExactBagPageSize);
+            if (pages > 1)
+            {
+                NativeHit(_body, "BagPreviousPage", "‹", 742, 711, 31, 35, () => { --_bagPage; Render(); }, _bagPage > 0, 28);
+                NativeText(_body, $"{_bagPage + 1}/{pages}", 773, 711, 55, 35, 20, Muted, TextAlignmentOptions.Center);
+                NativeHit(_body, "BagNextPage", "›", 1159, 711, 31, 35, () => { ++_bagPage; Render(); }, _bagPage + 1 < pages, 28);
+            }
+            _search.gameObject.SetActive(_bagTools);
+            if (!_bagTools) return;
+            Art(_body, "content_panel", 1238, 208, 451, 363);
+            NativeText(_body, "行囊工具", 1260, 218, 405, 36, 28);
+            NativeHit(_body, "RefreshBag", "刷新", 1260, 302, 187, 47, Refresh, !_bagLoading && !_sorting && !_equipBusy, 26);
+            NativeHit(_body, "WornEquipment", "已穿戴", 1460, 302, 187, 47, () => { _bagFilter = 3; _bagPage = 0; _bagTools = false; Render(); }, font: 26);
+            NativeHit(_body, "OtherItems", "其他物品", 1260, 355, 187, 47, () => { _bagFilter = 2; _bagPage = 0; _bagTools = false; Render(); }, font: 26);
+            NativeText(_body, "丹药、材料分类及出售尚未开放", 1260, 416, 405, 38, 21, Muted);
+            NativeHit(_body, "CloseBagTools", "收起", 1460, 480, 187, 47, () => { _bagTools = false; Render(); }, font: 26);
         }
 
         private void RenderNativeItem(BagItemInfo item, bool worn)
         {
-            if (item == null) { NativeText(_body, "选一件灵物，查看详情", 1260, 495, 480, 65, 28, Muted, TextAlignmentOptions.Center); return; }
+            if (item == null)
+            {
+                NativeText(_body, "选一件灵物，查看详情", 1260, 495, 480, 65, 28, Muted, TextAlignmentOptions.Center);
+                NativeButton(_body, "SellItem", "出售", "bag-button-normal", 1235, 678, 210, 68, null, false, 32);
+                NativeButton(_body, "EquipActionEmpty", "装备", "bag-button-primary", 1459, 673, 308, 81, null, false, 37, true);
+                return;
+            }
             bool equipment = worn || item.EquipKind != 0;
             var panel = QdaoUguiFactory.CreateRect(equipment ? "GameplayEquipmentDetails" : "GameplayItemDetails", _body, 0, 0, NativeWidth, NativeHeight);
             var itemName = NativeText(panel, EquipDisplay.NameWithEnhance(ItemName(item), item.EnhanceLevel), 1256, 90, 508, 64, 43, Ink, TextAlignmentOptions.Center);
@@ -169,7 +212,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 foreach (var socket in EquipDisplay.SocketsOf(item)) lines.Add(new EquipDetailLine(EquipDisplay.FormatSocketLine(socket), socket.GemConfigId != 0 && socket.Attr != null ? EquipUiSkin.Green : Muted));
             }
             else { lines.Add(new EquipDetailLine("持有数量  " + item.Count, Ink)); lines.Add(new EquipDetailLine("叠放上限  " + item.MaxStack, Ink)); }
-            var details = NativeScroll(panel, "ItemDetailsScroll", 1276, 482, 467, 178, 178, 1, _ => { });
+            bool hasNotice = !string.IsNullOrEmpty(_bagError) || _bagLoading || !string.IsNullOrEmpty(_equipError) || _equipBusy || !string.IsNullOrEmpty(_equipmentNotice);
+            float detailsHeight = hasNotice ? 132 : 178;
+            var details = NativeScroll(panel, "ItemDetailsScroll", 1276, 482, 467, detailsHeight, detailsHeight, 1, _ => { });
             float y = 0;
             if (equipment)
             {
@@ -194,31 +239,32 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 float height = Math.Max(EquipUiStyle.TooltipDescMinH, description.GetPreferredValues(description.text, 439, float.PositiveInfinity).y + 5);
                 description.rectTransform.sizeDelta = new Vector2(439, height); y += height;
             }
-            details.sizeDelta = new Vector2(467, Math.Max(178, y + 12));
+            details.sizeDelta = new Vector2(467, Math.Max(detailsHeight, y + 12));
             if (equipment)
             {
                 ulong id = item.ItemId;
-                NativeButton(panel, "EquipMore", "更多", "bag-button-normal", 1235, 678, 210, 68, () => OpenEquipmentActions(id), font: 32);
+                NativeButton(panel, "SellItem", "出售", "bag-button-normal", 1235, 678, 210, 68, null, false, 32);
+                NativeHit(panel, "EquipMore", "更多", 1694, 248, 66, 34, () => OpenEquipmentActions(id), font: 22);
                 NativeButton(panel, "EquipAction", worn ? "卸下" : "装备", "bag-button-primary", 1459, 673, 308, 81,
                     () => { _equipmentNotice = null; if (worn) UnequipRequested?.Invoke(id); else EquipRequested?.Invoke(id); }, !_equipBusy && !_sorting, 37, true);
                 NativeHit(panel, "EquipShare", "分享", 1666, 166, 80, 35, () => { var current = FindEquipment(id); if (current != null) EquipmentShareRequested?.Invoke(current.Clone()); }, font: 24);
             }
             else
             {
-                NativeButton(panel, "ItemDetails", "物品详情", "bag-button-normal", 1235, 678, 210, 68, null, false, 30);
-                NativeButton(panel, "ItemActionUnavailable", "暂不可使用", "bag-button-primary", 1459, 673, 308, 81, null, false, 32, true);
+                NativeButton(panel, "SellItem", "出售", "bag-button-normal", 1235, 678, 210, 68, null, false, 32);
+                NativeButton(panel, "ItemActionUnavailable", "使用", "bag-button-primary", 1459, 673, 308, 81, null, false, 32, true);
             }
         }
 
         private void RenderMissions()
         {
             bool available = _missionFilter == 3;
-            NativeButton(_body, "AcceptedMissions", "全部任务", available ? "mission-tab" : "mission-tab-selected", 191, 93, 267, 68,
+            NativeButton(_body, "AcceptedMissions", "已接任务", available ? "mission-tab" : "mission-tab-selected", 191, 93, 267, 68,
                 () => { _missionFilter = 0; _missionScroll = 1; Render(); }, font: 34, jade: !available);
-            NativeButton(_body, "AvailableMissions", "待开启", available ? "mission-tab-selected" : "mission-tab", 457, 93, 264, 68,
+            NativeButton(_body, "AvailableMissions", "可接任务", available ? "mission-tab-selected" : "mission-tab", 457, 93, 264, 68,
                 () => { _missionFilter = 3; _missionScroll = 1; Render(); }, font: 34, jade: available);
-            NativeHit(_body, "RefreshMissions", "刷新任务", 608, 698, 146, 40, Refresh, !_missionLoading && !_missionActionBusy, 24);
-            var list = _missions?.Missions.Where(m => _missionFilter == 0 || (_missionFilter == 1 && (int)m.Status == 1) ||
+            NativeHit(_body, "RefreshMissions", "刷新任务", 1608, 113, 132, 36, Refresh, !_missionLoading && !_missionActionBusy, 22);
+            var list = _missions?.Missions.Where(m => (_missionFilter == 0 && (int)m.Status != 0) || (_missionFilter == 1 && (int)m.Status == 1) ||
                 (_missionFilter == 2 && ((int)m.Status == 2 || (int)m.Status == 3)) || (_missionFilter == 3 && (int)m.Status == 0)).OrderBy(m => m.MissionId).ToList() ?? new List<PlayerMissionInfo>();
             if (!list.Any(m => MissionKey(m) == _selectedMission)) _selectedMission = list.Count == 0 ? 0 : MissionKey(list[0]);
             var rows = NativeScroll(_body, "MissionListScroll", 166, 171, 603, 494, list.Count * 101, _missionScroll, p => _missionScroll = p);
@@ -233,14 +279,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             NativeText(_body, "任务数量 " + list.Count, 207, 688, 233, 51, 28);
             string[] statuses = { "全部任务", "进行中", "已达成", "待开启" };
-            NativeButton(_body, "MissionFilterMenu", "筛选·" + statuses[_missionFilter], "mission-tab", 444, 688, 160, 51,
+            NativeButton(_body, "MissionFilterMenu", "筛选·" + statuses[_missionFilter], "mission-tab", 1467, 113, 133, 36,
                 () => { _missionFilterMenu = !_missionFilterMenu; Render(); }, font: 20);
             if (_missionFilterMenu)
                 for (int i = 0; i < statuses.Length; ++i)
                 {
                     int filter = i;
                     NativeButton(_body, "MissionStatusFilter_" + i, statuses[i], _missionFilter == i ? "mission-tab-selected" : "mission-tab",
-                        444, 473 + i * 53, 295, 53, () => { _missionFilter = filter; _missionFilterMenu = false; _missionScroll = 1; Render(); }, font: 26, jade: _missionFilter == i);
+                        1467, 155 + i * 53, 270, 53, () => { _missionFilter = filter; _missionFilterMenu = false; _missionScroll = 1; Render(); }, font: 26, jade: _missionFilter == i);
                 }
             if (list.Count == 0) NativeStatus(_missionLoading ? "正在展开手札…" : !string.IsNullOrEmpty(_missionError) ? "任务暂未同步，请刷新重试" : "这页手札还没有记录", 207, 377, 540);
             var detail = list.FirstOrDefault(m => MissionKey(m) == _selectedMission);
@@ -272,31 +318,33 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 !string.IsNullOrWhiteSpace(detail.UnavailableReason) ? detail.UnavailableReason : detail.CanClaim ? "目标已达成，可以领取奖励" : detail.CanAccept ? "准备妥当，便可开始此行" : "目标进度以当前手札为准";
             NativeParagraph(_body, reason, 873, 573, 603, 79, 25, !string.IsNullOrWhiteSpace(_missionError) ? QdaoUguiTheme.Html("#9A442D") : Muted);
             bool tracked = _trackedMission == MissionKey(detail);
-            NativeButton(_body, "TrackMission", tracked ? "取消追踪" : "追踪任务", "mission-button-normal", 1190, 678, 264, 71,
-                () => { _trackedMission = tracked ? 0 : MissionKey(detail); TrackingChanged?.Invoke(tracked ? null : detail); Render(); }, (int)detail.Status == 1 || tracked, 32);
+            var tracking = NativeHit(_body, "TrackMission", "", 858, 687, 210, 50,
+                () => { _trackedMission = tracked ? 0 : MissionKey(detail); TrackingChanged?.Invoke(tracked ? null : detail); Render(); }, (int)detail.Status == 1 || tracked);
+            EquipUiSkin.Art(tracking.transform, tracked ? "checkbox_on" : "checkbox_off", 0, 0, 44, 44, Gold).name = "AutoTrackState";
+            NativeText(tracking.transform, "自动追踪", 60, 0, 150, 44, 31);
+            NativeButton(_body, "MissionMap", "查看地图", "mission-button-normal", 1190, 678, 264, 71, null, false, 32);
             bool claim = detail.CanClaim || (int)detail.Status == 3;
             bool action = claim || detail.CanAccept || (int)detail.Status == 0;
-            NativeButton(_body, "MissionAction", _missionActionBusy ? "处理中…" : claim ? "领取奖励" : action ? "接取任务" : "正在进行", "mission-button-primary", 1462, 672, 316, 82,
+            NativeButton(_body, "MissionAction", _missionActionBusy ? "处理中…" : claim ? "领取奖励" : action ? "接取任务" : "前往任务", "mission-button-primary", 1462, 672, 316, 82,
                 () => { if (claim) MissionClaimRequested?.Invoke(detail.Scope, detail.MissionId); else MissionAcceptRequested?.Invoke(detail.Scope, detail.MissionId); },
                 action && !_missionActionBusy && !_missionLoading && (claim ? detail.CanClaim : detail.CanAccept), 36, true);
         }
 
         private void RenderActivities()
         {
-            string[] filters = { "全部活动", "进行中", "待开放", "刷新活动" };
+            string[] categories = { "今日推荐", "每日活动", "限时活动", "节庆活动" };
             string[] icons = { "activity-menu-scroll", "activity-menu-taiji", "activity-menu-hourglass", "activity-menu-lantern" };
-            for (int i = 0; i < filters.Length; ++i)
+            for (int i = 0; i < categories.Length; ++i)
             {
-                int f = i;
-                bool selected = i == _activityFilter;
+                bool selected = i == 0;
                 var button = NativeButton(_body, "ActivityCategory_" + i, "", selected ? "activity-nav-selected" : "activity-nav", 166, 96 + i * 109, 319, 104,
-                    () => { if (f == 3) Refresh(); else { _activityFilter = f; _activityScroll = 1; Render(); } },
-                    i != 3 || (!_activityLoading && !_missionActionBusy));
+                    null, false);
                 NativeArt(button.transform, icons[i], 26, 15, 80, 81);
-                NativeText(button.transform, filters[i], 108, 18, 175, 65, 32, selected ? Cream : Ink, TextAlignmentOptions.Center);
+                NativeText(button.transform, categories[i], 108, 18, 175, 65, 32, selected ? Cream : Ink, TextAlignmentOptions.Center);
                 if (selected) EquipUiSkin.Art(button.transform, "checkbox_on", 278, 31, 32, 32, Gold);
             }
-            NativeText(_body, filters[Math.Min(_activityFilter, 2)], 539, 91, 807, 63, 44);
+            NativeText(_body, "今日推荐", 539, 91, 807, 63, 44);
+            NativeHit(_body, "ActivityTools", "筛选", 1647, 110, 100, 38, () => { _activityTools = !_activityTools; Render(); }, font: 24);
             var list = _activities?.Activities.Where(a => _activityFilter == 0 || (_activityFilter == 1 ? (int)a.Status == 2 : (int)a.Status < 2)).OrderBy(a => a.ActivityId).ToList() ?? new List<PlayerActivityInfo>();
             if (!list.Any(a => a.ActivityId == _selectedActivity)) _selectedActivity = list.FirstOrDefault()?.ActivityId ?? 0;
             float width = Math.Max(1256, list.Count * 418 - 8);
@@ -317,13 +365,46 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 string reason = !string.IsNullOrWhiteSpace(_missionError) ? _missionError : _missionActionBusy ? "正在处理任务，请稍候…" :
                     !string.IsNullOrWhiteSpace(a.UnavailableReason) ? a.UnavailableReason : mission != null ? "已加入活动，可查看任务进度" : a.CanParticipate ? "雅集已开启，欢迎道友参与" : "活动暂不可参与";
                 NativeParagraph(card, reason, 40, 344, 335, 62, 23, !string.IsNullOrWhiteSpace(_missionError) ? QdaoUguiTheme.Html("#9A442D") : Muted);
-                NativeButton(card, "ActivityAction_" + a.ActivityId, _missionActionBusy ? "处理中…" : mission != null ? "查看任务" : "参与活动", "activity-button", 41, 412, 327, 66,
+                NativeButton(card, "ActivityAction_" + a.ActivityId, _missionActionBusy ? "处理中…" : mission != null ? "查看任务" : "前往参与", "activity-button", 41, 412, 327, 66,
                     () => { _selectedActivity = a.ActivityId; if (mission != null) ShowMission(mission); else MissionAcceptRequested?.Invoke(0, a.MissionId); },
                     !_missionActionBusy && !_missionLoading && (mission != null || (a.CanParticipate && a.MissionId != 0)), 32, true);
             }
             string state = !string.IsNullOrEmpty(_activityError) ? "活动暂未同步，请刷新重试" : _activityLoading ? "正在查看雅集…" : list.Count == 0 ? "此时暂无活动，静候下一场相聚" : "活动安排与参与资格以服务器为准";
-            NativeStatus(state, 543, list.Count == 0 ? 379 : 692, 982, !string.IsNullOrEmpty(_activityError));
-            NativeHit(_body, "RefreshActivityFooter", "刷新", 1561, 682, 191, 59, Refresh, !_activityLoading && !_missionActionBusy, 30);
+            if (list.Count == 0 || _activityLoading || !string.IsNullOrEmpty(_activityError))
+                NativeStatus(state, 543, list.Count == 0 ? 379 : 628, 982, !string.IsNullOrEmpty(_activityError));
+            RenderExactActivityFooter();
+            if (_activityTools)
+            {
+                Art(_body, "content_panel", 1350, 151, 396, 270);
+                string[] statuses = { "全部活动", "进行中", "待开放" };
+                for (int i = 0; i < statuses.Length; ++i)
+                {
+                    int filter = i;
+                    NativeHit(_body, "ActivityStatusFilter_" + i, statuses[i], 1370, 166 + i * 52, 356, 47,
+                        () => { _activityFilter = filter; _activityScroll = 1; _activityTools = false; Render(); }, font: 26);
+                }
+                NativeHit(_body, "RefreshActivityFooter", "刷新", 1370, 330, 356, 47, Refresh, !_activityLoading && !_missionActionBusy, 26);
+                NativeText(_body, "分类数据尚未开放", 1370, 382, 356, 30, 20, Muted);
+            }
+        }
+
+        private void RenderExactActivityFooter()
+        {
+            NativeText(_body, "今日活跃", 545, 683, 170, 57, 34);
+            NativeText(_body, "—/—", 715, 683, 92, 57, 27, Muted);
+            // No activity points/threshold/claim contract exists in this protocol.
+            // Show empty native progress and disabled exact-crop chest art, never sample 35/100 or claimed checks.
+            var track = QdaoUguiFactory.CreateImage("ActivityVitalityUnavailableTrack", _body, 802, 700, 643, 24, Load("slider_bg"));
+            track.type = Image.Type.Sliced;
+            string[] art = { "activity-chest-inactive-purple", "activity-chest-inactive-purple", "activity-chest-inactive-red", "activity-chest-inactive-red-last" };
+            float[] x = { 946, 1094, 1237, 1376 };
+            for (int i = 0; i < 4; ++i)
+            {
+                NativeButton(_body, "ActivityVitalityChest_" + i, "", art[i], x[i], 665, 73, 66, null, false);
+                NativeText(_body, "未开放", x[i] - 3, 729, 80, 27, 18, Muted, TextAlignmentOptions.Center);
+            }
+            NativeButton(_body, "ActivityCalendar", "活动日历", "bag-button-normal", 1561, 682, 191, 59, null, false, 30);
+            NativeText(_body, "活跃奖励尚未开放", 805, 738, 300, 24, 17, Muted);
         }
     }
 

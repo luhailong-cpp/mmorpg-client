@@ -59,6 +59,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         private readonly CanvasGroup _frameInput;
         private readonly Button[] _tabs = new Button[6];
         private readonly Image[] _tabMarkers = new Image[6];
+        private readonly Image[] _exactTabCaptions = new Image[6];
         private readonly Button _refresh;
         private RectTransform _modal;
         private GuildClient _client;
@@ -105,8 +106,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             float scale = Mathf.Min(2560f / 1932f, 1080f / 814f);
             _frame.localScale = new UnityEngine.Vector3(scale, scale, 1);
             _frameInput = _frame.gameObject.AddComponent<CanvasGroup>();
-            Art(_frame, "guild_empty_shell", 0, 0, 1932, 814);
-            FidelityLabel(_frame, "GuildTitle", "帮  会", 836, 28, 260, 55, 39, Cream, align: TextAlignmentOptions.Center);
+            ExactArt(_frame,"guild-skin",0,0,1932,814);
+            FidelityLabel(_frame, "GuildTitle", "帮  会", 836, 28, 260, 55, 39, Color.clear, align: TextAlignmentOptions.Center);
+            ExactArt(_frame,"title",879,31,183,55);
             string[] titles = { "帮会总览", "帮会成员", "帮会排行", "帮会捐献", "帮会活动", "帮会商店" };
             for (int i = 0; i < _tabs.Length; i++)
             {
@@ -115,6 +117,10 @@ namespace MmorpgClient.UI.Ugui.Guild
                     190 + i * 264, 87, 257, 62, () => Show(page), key: "guild_tab_normal", fontSize: 28);
                 _tabMarkers[i] = Line(_tabs[i].transform, "SelectedTabMarker", 110, 54, 37, 2);
                 _tabMarkers[i].color = QdaoUguiTheme.Html("#E3C681");
+                string originalCaption = i == 0 ? "tab-overview" : i == 1 ? "tab-members" : i == 4 ? "tab-activities" : i == 5 ? "tab-shop" : null;
+                float captionWidth = i == 0 ? 148 : i == 1 ? 72 : i == 4 ? 176 : 180;
+                if(originalCaption != null) _exactTabCaptions[i] = ExactArt(_tabs[i].transform, originalCaption, (257-captionWidth)*.5f, 10, captionWidth, 42);
+                else { var caption=_tabs[i].GetComponentInChildren<TMP_Text>();caption.fontSize=32;caption.fontStyle=FontStyles.Bold; }
             }
             NamedButton(_frame, "CloseGuild", "", 1782, 25, 83, 78, Hide, key: "guild_close");
             _rail = QdaoUguiFactory.CreateRect("GuildIdentity", _frame, 183, 171, 544, 595);
@@ -225,8 +231,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             for (int i = 0; i < _tabs.Length; i++)
             {
                 _tabs[i].image.sprite = Load(i == (int)Page ? "guild_tab_selected" : "guild_tab_normal");
-                _tabs[i].GetComponentInChildren<TMP_Text>().color = i == (int)Page ? Cream : Ink;
-                _tabMarkers[i].gameObject.SetActive(i == (int)Page);
+                _tabs[i].GetComponentInChildren<TMP_Text>().color = _exactTabCaptions[i] != null ? Color.clear : i == (int)Page ? Cream : Ink;
+                if (_exactTabCaptions[i] != null) _exactTabCaptions[i].color = i == (int)Page ? Cream : Ink;
+                _tabMarkers[i].gameObject.SetActive(false);
             }
             RenderIdentity();
             switch (Page)
@@ -312,7 +319,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         private void RenderIdentity()
         {
-            Art(_rail, "guild_crest", 29, 0, 207, 188, true).name = "GuildCrest";
+            ExactArt(_rail,"crest",29,2,205,186).name="GuildCrest";
             var info = _client?.Info;
             var name = FidelityLabel(_rail, "GuildName", info?.Name ?? "静候同道", 268, 12, 258, 78, 37, Ink, true);
             name.enableAutoSizing = true; name.fontSizeMin = 20; name.fontSizeMax = 37;
@@ -335,7 +342,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             for (int i = 0; i < labels.Length; i++)
             {
                 float y = 181 + i * 38;
-                FidelityLabel(_rail, "GuildDetailLabel_" + i, labels[i], 19, y, 200, 34, 23, Muted);
+                FidelityLabel(_rail, "GuildDetailLabel_" + i, labels[i], 19, y, 200, 34, 23, Color.clear);
+                string[] originalLabel={"detail-leader","detail-id","detail-members","detail-funds"};
+                ExactArt(_rail,originalLabel[i],22,181+i*38,i==3?119:112,36).color=Ink;
                 FidelityLabel(_rail, "GuildDetailValue_" + i, values[i], 241, y, 283, 34, 23, Ink);
                 if (i == 2) _rail.Find("GuildDetailValue_" + i).name = "GuildMemberCount";
                 if (i == 3) _rail.Find("GuildDetailValue_" + i).name = "GuildFunds";
@@ -359,7 +368,8 @@ namespace MmorpgClient.UI.Ugui.Guild
                 filledText.fontStyle = upgradeFundsText.fontStyle;
             }
             Art(_rail, "guild_announcement", -2, 388, 546, 144);
-            FidelityLabel(_rail, "GuildAnnouncementHeading", "帮会公告", 37, 396, 471, 36, 27, Ink);
+            FidelityLabel(_rail, "GuildAnnouncementHeading", "帮会公告", 37, 396, 471, 36, 27, Color.clear);
+            ExactArt(_rail,"announcement-heading",39,400,125,33).color=Ink;
             FidelityLabel(_rail, "GuildAnnouncementExcerpt", string.IsNullOrWhiteSpace(info.Announcement) ? "同道相伴，诸事顺遂。" : info.Announcement,
                 39, 438, 466, 78, 23, Ink, true);
             NamedButton(_rail, "GuildMembersEntry", "同道", 0, 540, 146, 58, () => Show(GuildPage.Members), fontSize: 25);
@@ -389,30 +399,38 @@ namespace MmorpgClient.UI.Ugui.Guild
                     : "成员信息、公告和排行将随帮会更新。", 24, 532, 1460, 55, 28, Muted);
                 return;
             }
-            FidelityLabel(_body, "GuildOverviewMembersTitle", "帮会成员", 10, 0, 440, 41, 33, Ink);
+            FidelityLabel(_body, "GuildOverviewMembersTitle", "帮会成员", 10, 0, 440, 41, 33, Color.clear);
+            ExactArt(_body,"members-heading",9,-4,149,42).color=Ink;
             int online = 0;
             foreach (var member in info.Members) if (member.Online) online++;
-            FidelityLabel(_body, "GuildOverviewOnlineLabel", "在线", 676, 4, 77, 36, 25, Ink);
-            FidelityLabel(_body, "GuildOnlineCount", online + " 位", 753, 4, 95, 36, 25, Ink, align: TextAlignmentOptions.MidlineRight);
-            FidelityLabel(_body, "GuildOverviewOnlineTotal", " / " + info.Members.Count, 848, 4, 99, 36, 25, Ink);
-            Art(_body, "guild_table_header", 0, 42, 957, 40);
-            FidelityLabel(_body, "GuildOverviewMemberColumn", "成员", 142, 43, 280, 36, 23, Muted);
-            FidelityLabel(_body, "GuildOverviewRoleColumn", "职位", 409, 43, 110, 36, 23, Muted);
-            FidelityLabel(_body, "GuildOverviewContributionColumn", "累计帮贡", 570, 43, 193, 36, 23, Muted);
-            FidelityLabel(_body, "GuildOverviewOnlineColumn", "状态", 824, 43, 121, 36, 23, Muted);
+            FidelityLabel(_body, "GuildOverviewOnlineLabel", "在线", 676, 4, 77, 36, 25, Color.clear);
+            ExactArt(_body,"online-heading",799,1,65,35).color=Ink;
+            FidelityLabel(_body,"GuildOnlineFraction",online+"/"+info.Members.Count,875,0,72,36,26,Ink,align:TextAlignmentOptions.MidlineRight);
+            FidelityLabel(_body, "GuildOnlineCount", online + " 位", 753, 4, 95, 36, 25, Color.clear, align: TextAlignmentOptions.MidlineRight);
+            FidelityLabel(_body, "GuildOverviewOnlineTotal", " / " + info.Members.Count, 848, 4, 99, 36, 25, Color.clear);
+            ExactArt(_body,"table-header",-1,42,957,40);
+            FidelityLabel(_body, "GuildOverviewMemberColumn", "成员", 142, 43, 280, 36, 23, Color.clear);
+            FidelityLabel(_body,"GuildOverviewLevelColumn","等级",349,43,110,36,23,Color.clear);
+            FidelityLabel(_body, "GuildOverviewRoleColumn", "职位", 490, 43, 110, 36, 23, Color.clear);
+            FidelityLabel(_body, "GuildOverviewContributionColumn", "累计帮贡", 655, 43, 193, 36, 23, Muted);
+            FidelityLabel(_body, "GuildOverviewOnlineColumn", "状态", 824, 43, 121, 36, 23, Color.clear);
             var members = new List<GuildMember>(info.Members);
             members.Sort((a,b) => { int rank = b.Role.CompareTo(a.Role); return rank != 0 ? rank : a.PlayerId.CompareTo(b.PlayerId); });
             for (int i = 0; i < Math.Min(5, members.Count); i++)
             {
-                var member = members[i]; float y = 82 + i * 56;
+                var member = members[i]; float[] sourceRowY={81,136,193,249,305};float[] sourceRowHeight={55,57,56,56,58};
+                float y=sourceRowY[i];
                 bool self = member.PlayerId == _client.PlayerId;
-                Art(_body, self ? "guild_row_self" : "guild_row_normal", 0, y, 957, 56);
+                ExactArt(_body,self?"row-self":"row-normal",0,y,957,sourceRowHeight[i]);
                 // No character appearance is present in GuildMember; use approved default portraits.
-                Art(_body, "guild_portrait_" + (i + 1), 60, y + 1, 63, 54, true);
-                if (self) Art(_body, "guild_self_mark", 13, y + 9, 36, 36, true);
-                FidelityLabel(_body, "GuildOverviewMemberName_" + i, MemberDisplayName(member), 142, y + 6, 263, 43, 24, Ink);
-                FidelityLabel(_body, "GuildOverviewMemberRole_" + i, RoleName(member.Role), 410, y + 6, 118, 43, 24, Ink);
-                FidelityLabel(_body, "GuildOverviewMemberContribution_" + i, GuildClient.FormatAmount(member.ContributionTotal), 570, y + 6, 213, 43, 23, Ink);
+                float[] sourcePortraitY={83,136,192,250,306};
+                Art(_body, "guild_portrait_" + (i + 1), 60, sourcePortraitY[i], 63, 58, true);
+                if (self) Art(_body, "guild_self_mark", 13, y + 11, 36, 36, true);
+                FidelityLabel(_body, "GuildOverviewMemberName_" + i, MemberDisplayName(member), 142, y + 6, 200, 43, 27, Ink);
+                // GuildMember currently has no level field: retain the approved column without inventing example levels.
+                FidelityLabel(_body,"GuildOverviewMemberLevel_"+i,"—",329,y+6,90,43,26,Muted,align:TextAlignmentOptions.Center);
+                FidelityLabel(_body, "GuildOverviewMemberRole_" + i, RoleName(member.Role), 490, y + 6, 118, 43, 27, Ink);
+                FidelityLabel(_body, "GuildOverviewMemberContribution_" + i, GuildClient.FormatAmount(member.ContributionTotal), 665, y + 6, 155, 43, 26, Ink);
                 var dot = QdaoUguiFactory.CreateImage("GuildOnlineDot_" + i, _body, 829, y + 23, 16, 16,
                     QdaoUguiTheme.LoadSprite(QdaoUguiTheme.StatusDotSpritePath));
                 dot.color = QdaoUguiTheme.Html(member.Online ? "#409951" : "#928772");
@@ -426,11 +444,15 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         private void FidelityOverviewEntry(string name, string label, string key, GuildPage page, float x, float width)
         {
-            var button = QdaoUguiFactory.CreateArtButton(name, _body, x, 377, width, 126, Load(key), out var image);
-            image.type = Image.Type.Sliced;
+            string original=key=="guild_entry_donate"?"entry-donate":key=="guild_entry_activity"?"entry-activities":key=="guild_entry_shop"?"entry-shop":"entry-ranking";
+            float sourceX=page==GuildPage.Donate?-1:page==GuildPage.Ranking?231:page==GuildPage.Activities?466:703;
+            width=page==GuildPage.Donate?217:page==GuildPage.Ranking?220:page==GuildPage.Activities?221:244;
+            var button = QdaoUguiFactory.CreateArtButton(name, _body, sourceX, 377, width, 126,
+                QdaoUguiTheme.RequireSprite("UI/Ugui/GuildExact20261017/"+original), out var image);
+            image.type = Image.Type.Simple;
             button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
             button.onClick.AddListener(() => Show(page));
-            FidelityLabel(button.transform, name + "Caption", label, 12, 94, width - 24, 31, 23, Ink, align: TextAlignmentOptions.Center);
+            FidelityLabel(button.transform, name + "Caption", label, 12, 94, width - 24, 31, 23, page==GuildPage.Ranking?Ink:Color.clear, align: TextAlignmentOptions.Center);
         }
         private void OverviewMetric(string name, string label, string value, float x, int valueFontSize = 43)
         {
@@ -1397,6 +1419,13 @@ namespace MmorpgClient.UI.Ugui.Guild
             }
             return input;
         }
+        private static Image ExactArt(UnityEngine.Transform parent, string key, float x, float y, float w, float h)
+        {
+            var image = QdaoUguiFactory.CreateImage("Exact_" + key, parent, x, y, w, h,
+                QdaoUguiTheme.RequireSprite("UI/Ugui/GuildExact20261017/" + key));
+            image.type = Image.Type.Simple; image.raycastTarget = false; return image;
+        }
+
         private static Button NamedButton(UnityEngine.Transform parent, string name, string label, float x, float y, float w, float h,
             Action action, bool primary = false, bool enabled = true, string key = null, float fontSize = 30)
         {

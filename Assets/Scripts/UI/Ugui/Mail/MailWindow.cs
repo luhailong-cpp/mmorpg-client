@@ -33,6 +33,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         private string _renderedId,_notice="";
         private bool _disposed;
         private readonly TMP_Text _unreadCount, _inboxCount;
+        private readonly Image _systemLetterFrame;
 
         public MailWindow(UnityEngine.Transform parent,MailUiState state=null)
         {
@@ -47,8 +48,8 @@ namespace MmorpgClient.UI.Ugui.Mail
             Frame.localScale=new UnityEngine.Vector3(scale,scale,1);
             _frameGroup=Frame.gameObject.AddComponent<CanvasGroup>();
             Art(Frame,"mail_empty_frame",0,0,1932,814);
-            Label(Frame,"MailTitle","仙 笺",837,37,250,50,32,Cream,title:true,align:TextAlignmentOptions.Center);
-            Label(Frame,"MailSubtitle","邮件",875,84,174,27,19,Cream,title:true,align:TextAlignmentOptions.Center);
+            Label(Frame,"MailTitle","",837,37,250,50,32,Cream,title:true,align:TextAlignmentOptions.Center); // Fixed title is preserved in the approved source crop.
+            Label(Frame,"MailSubtitle","",875,84,174,27,19,Cream,title:true,align:TextAlignmentOptions.Center);
             _close=Button(Frame,"CloseMail","",1691,48,78,69,Hide,key:"mail_close");
             string[] names={"全部","系统","活动","奖励"};
             float[] tabX={226,374,499,625};
@@ -78,6 +79,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             _title=Label(Frame,"MailDetailTitle","",797,115,883,55,33,Ink,title:true);
             _meta=Label(Frame,"MailDetailMeta","",798,169,660,37,20,Ink);
             _status=Label(Frame,"MailDetailStatus","",1467,174,241,31,17,Muted,align:TextAlignmentOptions.MidlineRight);
+            _systemLetterFrame=Art(Frame,"mail_system_letter_frame",783,205,933,319);
             BodyScroll=Scroll(Frame,"MailBodyScroll",783,205,938,354,out _bodyContent);
             _attachmentHeading=Label(Frame,"AttachmentHeading","随信附赠",1180,555,112,32,17,Muted,align:TextAlignmentOptions.Center);
             _expiry=Label(Frame,"MailExpiry","",838,729,306,41,22,Ink);
@@ -168,6 +170,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             if(_refresh.gameObject.activeSelf)_inboxCount.rectTransform.sizeDelta=new Vector2(100,36);
             else _inboxCount.rectTransform.sizeDelta=new Vector2(176,36);
             _attachmentHeading.text=mail?.Rewards.Count>7?"随信附赠 · 左右滑动":mail?.Rewards.Count>0?"随信附赠":"仙笺寄语";
+            ConfigureLetterLayout(mail);
             if(mail!=null){RenderBody(mail);RenderRewards(mail);}
             else
             {
@@ -210,10 +213,61 @@ namespace MmorpgClient.UI.Ugui.Mail
                 align:TextAlignmentOptions.MidlineRight);
             if(mail.Rewards.Count>0)Art(row.transform,"mail_gift",488,10,28,30,true);
         }
+        private static bool HasActivityArtwork(MailMessage mail)=>mail!=null&&mail.Category==MailCategory.Event&&
+            !string.IsNullOrEmpty(mail.BannerKey)&&Load(mail.BannerKey)!=null;
+        private void ConfigureLetterLayout(MailMessage mail)
+        {
+            bool plain=mail!=null&&!HasActivityArtwork(mail);
+            _systemLetterFrame.gameObject.SetActive(plain);
+            float bodyHeight=plain?319:354;
+            ((RectTransform)BodyScroll.transform).sizeDelta=new Vector2(938,bodyHeight);
+            BodyScroll.viewport.sizeDelta=new Vector2(938,bodyHeight);
+            if(BodyScroll.transform.Find("Scrollbar") is RectTransform bar)bar.sizeDelta=new Vector2(3,bodyHeight);
+            _attachmentHeading.rectTransform.anchoredPosition=new Vector2(1180,-(plain?521:555));
+            ((RectTransform)RewardScroll.transform).anchoredPosition=new Vector2(813,-(plain?555:585));
+            ((RectTransform)RewardScroll.transform).sizeDelta=new Vector2(830,plain?138:122);
+            RewardScroll.viewport.sizeDelta=new Vector2(830,plain?138:122);
+            var claimRect=(RectTransform)_claim.transform;
+            claimRect.anchoredPosition=new Vector2(plain?1308:1326,-(plain?705:709));
+            claimRect.sizeDelta=new Vector2(plain?247:234,66);
+            var claimLabel=_claim.GetComponentInChildren<TMP_Text>();
+            if(claimLabel!=null)claimLabel.rectTransform.sizeDelta=new Vector2(claimRect.sizeDelta.x-28,claimLabel.rectTransform.sizeDelta.y);
+            ((RectTransform)_delete.transform).anchoredPosition=new Vector2(1560,-(plain?711:716));
+        }
+        private void RenderPlainLetter(MailMessage mail)
+        {
+            // The approved system paper is a fixed frame. True message text scrolls inside it.
+            var paragraphs=(mail.Body??"").Replace("\r\n","\n").Split(new[]{"\n\n"},StringSplitOptions.None);
+            int start=0,end=paragraphs.Length;
+            string greeting="",signature="";
+            if(end>0&&paragraphs[0].Length<=40&&(paragraphs[0].EndsWith("：",StringComparison.Ordinal)||paragraphs[0].EndsWith(":",StringComparison.Ordinal)))
+                greeting=paragraphs[start++];
+            if(end>start&&paragraphs[end-1].Length<=48&&(paragraphs[end-1].EndsWith("敬上",StringComparison.Ordinal)||paragraphs[end-1].EndsWith("手书",StringComparison.Ordinal)||paragraphs[end-1].EndsWith("谨启",StringComparison.Ordinal)))
+                signature=paragraphs[--end];
+            float top=string.IsNullOrEmpty(greeting)?32:85;
+            if(!string.IsNullOrEmpty(greeting))Label(_bodyContent,"MailLetterGreeting",greeting,40,28,832,45,27,Ink,title:true);
+            string message=string.Join("\n\n",paragraphs.Skip(start).Take(end-start));
+            var body=Label(_bodyContent,"MailBodyText",message,88,top,760,70,25,Ink,true,title:true,align:TextAlignmentOptions.TopLeft);
+            body.margin=Vector4.zero;body.lineSpacing=6;body.paragraphSpacing=4;body.ForceMeshUpdate();
+            float height=body.GetPreferredValues(message,760,float.PositiveInfinity).y+8;
+            body.rectTransform.sizeDelta=new Vector2(760,Mathf.Max(35,height));
+            float bottom=top+height;
+            if(!string.IsNullOrEmpty(signature))
+            {
+                float signatureTop=Mathf.Max(260,bottom+18);
+                Label(_bodyContent,"MailLetterSignature",signature,610,signatureTop,286,43,25,Ink,title:true,align:TextAlignmentOptions.MidlineRight);
+                bottom=signatureTop+43;
+            }
+            // The approved red stamp belongs to this actual sender; never apply it to other senders.
+            if(string.Equals(mail.Sender,"天机阁",StringComparison.Ordinal))
+                Art(_bodyContent,"mail_tianji_seal",848,192,37,56);
+            _bodyContent.sizeDelta=new Vector2(_bodyContent.sizeDelta.x,Mathf.Max(319,bottom+16));
+        }
         private void RenderBody(MailMessage mail)
         {
+            if(!HasActivityArtwork(mail)){RenderPlainLetter(mail);return;}
             float top=0;
-            if(!string.IsNullOrEmpty(mail.BannerKey)&&Load(mail.BannerKey)!=null)
+            if(HasActivityArtwork(mail))
             {
                 bool approvedOriginal=mail.BannerKey=="event-midautumn";
                 var sprite=Load(approvedOriginal?"mail_banner":mail.BannerKey);
@@ -231,9 +285,10 @@ namespace MmorpgClient.UI.Ugui.Mail
         }
         private void RenderRewards(MailMessage mail)
         {
-            const float step=145;
+            bool plain=!HasActivityArtwork(mail);
+            float step=plain?171:145;
             float required=mail.Rewards.Count*step;
-            _rewards.sizeDelta=new Vector2(Mathf.Max(830,required),122);
+            _rewards.sizeDelta=new Vector2(Mathf.Max(830,required),plain?138:122);
             if(mail.Rewards.Count==0)
             {
                 Label(_rewards,"MailNoAttachments","这是一封通知邮件，没有附件。",20,24,790,54,21,Muted,align:TextAlignmentOptions.Center);
@@ -243,10 +298,10 @@ namespace MmorpgClient.UI.Ugui.Mail
             for(int i=0;i<mail.Rewards.Count;i++)
             {
                 var r=mail.Rewards[i];float x=start+i*step;
-                Art(_rewards,"mail_reward_slot",x+13,0,116,98);
-                var icon=Art(_rewards,r.IconKey,x+22,7,98,85,true);
+                Art(_rewards,plain?"mail_system_reward_slot":"mail_reward_slot",x+13,0,plain?126:116,plain?107:98);
+                var icon=Art(_rewards,r.IconKey,x+22,7,plain?108:98,plain?94:85,true);
                 if(State.IsExpired(mail))icon.color=new Color(.68f,.68f,.65f,.75f);
-                Label(_rewards,"RewardName_"+i,r.Name+" ×"+r.Count,x-2,97,147,25,17,Ink,align:TextAlignmentOptions.Center);
+                Label(_rewards,"RewardName_"+i,r.Name+" ×"+r.Count,x-2,plain?107:97,plain?157:147,25,plain?19:17,Ink,align:TextAlignmentOptions.Center);
                 if(mail.Claimed)Art(_rewards,"mail_category_all",x+12,-4,34,34,true).name="RewardClaimed_"+i;
             }
         }

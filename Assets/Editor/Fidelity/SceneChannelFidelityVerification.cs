@@ -136,6 +136,7 @@ public static class SceneChannelFidelityVerification
             // 多线:五种状态 + 未知 + 当前线(3线)。顺带核对点击:可切的行发出它的 scene_id,不可切的行置灰。
             Display(View(Lines(24, 3), Ready()), "multi-line");
             Click(SceneChannelWindow.LineButtonPrefix + 2);
+            Click(SceneChannelWindow.ConfirmButtonName);
             if (requested != SceneId(2))
                 throw new InvalidOperationException("点击 2线发出的 scene_id 不对：" + requested);
             ExpectDisabled(SceneChannelWindow.LineButtonPrefix + 3);   // 当前线

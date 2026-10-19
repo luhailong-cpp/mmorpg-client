@@ -24,7 +24,14 @@ namespace MmorpgClient.UI.Ugui.Skills
                 _classes[i].SetVisible(!petContext);_classes[i].SetInteractable(!petContext&&_state?.IsReadOnly==true&&_fidelityCanPreviewClasses);
             }
             var classHeading=AttributeFidelityLayout.Find(_root,"V10ClassHeading")?.GetComponent<TMP_Text>();if(classHeading!=null)classHeading.text=petContext?"灵宠技能":"四门传承";
-            int shown=0;foreach(var filter in _filters)if(filter.Rect.gameObject.activeSelf){AttributeFidelityLayout.Button(filter,430+shown++*224,185,212,60,27);filter.Label.text=filter.Label.text.Replace("✓ ","");}
+            // Preserve the approved three primary categories; extension filters stay secondary.
+            for(int i=0;i<_filters.Length;i++)
+            {
+                var filter=_filters[i];if(!filter.Rect.gameObject.activeSelf)continue;
+                if(i<3)AttributeFidelityLayout.Button(filter,430+i*224,185,212,60,27);
+                else AttributeFidelityLayout.Button(filter,1100+(i-3)*145,841,135,60,24);
+                filter.Label.text=filter.Label.text.Replace("✓ ","");
+            }
             AttributeFidelityLayout.Place(_root,"NameHeader",540,249,500,42);AttributeFidelityLayout.Place(_root,"RankHeader",1080,249,155,42);
             AttributeFidelityLayout.Place(_root,"ManaHeader",1260,249,354,42);
             foreach(string name in new[]{"KindHeader","TargetHeader"}){var rect=AttributeFidelityLayout.Find(_root,name);if(rect!=null)rect.gameObject.SetActive(false);}

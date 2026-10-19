@@ -271,15 +271,37 @@ namespace MmorpgClient.UI.Ugui
             // Availability has its own reserved column; selection and recommendation
             // are independent shapes rather than appending text into the status label.
             _serverSubtitles[slot].text = CompactAvailability(zone);
-            if (closed)
+            // Approved eight emblems belong to stable server identities, not the filtered list slot.
+            int emblem = zone.zone_id >= 1 && zone.zone_id <= 8 ? (int)zone.zone_id - 1 : 1;
+            _serverBadges[slot].sprite = QdaoCoreFidelityArt.Load("exact_server_emblem_" + emblem);
+            _serverBadges[slot].enabled = true;
+            _serverBadges[slot].color = Color.white;
+            _serverBadges[slot].preserveAspect = true;
+            _serverBadges[slot].rectTransform.anchoredPosition = new Vector2(543f, -13f);
+            _serverBadges[slot].rectTransform.sizeDelta = new Vector2(94,85);
+        }
+
+        // ServerPage-only upgrade also works for an already-baked production prefab.
+        // LoginPage, credentials, its source assets and its fixed lettering are untouched.
+        private void ApplyExactServerPresentation()
+        {
+            if (_serverRoot == null) return;
+            var title = _serverRoot.Find("ServerTitle"); if (title != null) title.gameObject.SetActive(false);
+            if (_serverRoot.Find("ExactServerHeader") == null)
+                QdaoCoreFidelityArt.Panel("ExactServerHeader",_serverRoot,366,223,1748,83,"exact_server_title");
+            if (_searchInput != null && _searchInput.transform.Find("ExactSearchMagnifier") == null)
+                QdaoCoreFidelityArt.Panel("ExactSearchMagnifier",_searchInput.transform,17,20,25,28,"exact_server_search_icon");
+            if (_backButton != null)
             {
-                _serverBadges[slot].sprite = QdaoCoreFidelityArt.Load("lock");
-                _serverBadges[slot].enabled = true;
+                QdaoCoreFidelityArt.Skin(_backButton.GetComponent<Image>(),"exact_server_back");
+                var rect=(RectTransform)_backButton.transform;rect.anchoredPosition=new Vector2(1623,-897);rect.sizeDelta=new Vector2(205,76);
+                foreach(var label in _backButton.GetComponentsInChildren<TMP_Text>(true))label.gameObject.SetActive(false);
             }
-            else
+            if (_enterButton != null)
             {
-                string[] emblems = { "pagoda", "pagoda", "mountain", "pagoda", "lotus", "water", "peach_spirit", "lotus" };
-                _serverBadges[slot].sprite = QdaoCoreFidelityArt.Load("round_badge_" + emblems[slot % emblems.Length]);
+                QdaoCoreFidelityArt.Skin(_enterButton.GetComponent<Image>(),_busy?"server_enter":"exact_server_enter");
+                var rect=(RectTransform)_enterButton.transform;rect.anchoredPosition=new Vector2(1851,-895);rect.sizeDelta=new Vector2(320,79);
+                _enterText.gameObject.SetActive(_busy); // Real busy caption uses the clean source control.
             }
         }
 

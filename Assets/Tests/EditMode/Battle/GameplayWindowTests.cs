@@ -53,14 +53,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             Search().text = "202";
             CollectionAssert.AreEqual(new[] { "BagSlot_9" }, OccupiedSlots());
-            Click("其他物品");
+            ClickNamed("BagTools"); Click("其他物品");
             Assert.That(OccupiedSlots(), Is.Empty);
             AssertText("没有找到符合条件的物品");
             Search().text = "";
             CollectionAssert.AreEqual(new[] { "BagSlot_0" }, OccupiedSlots());
             Click("装备");
             CollectionAssert.AreEqual(new[] { "BagSlot_9" }, OccupiedSlots());
-            Click("全部物品");
+            Click("全部");
             Search().text = "回春";
             CollectionAssert.AreEqual(new[] { "BagSlot_0" }, OccupiedSlots());
 
@@ -77,7 +77,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.Show(GameplayPage.Bag);
             _window.SortRequested += () => _window.SetBag(bag, false, null, true);
             Assert.That(_sorts, Is.Zero);
-            Click("整理背包");
+            Click("整理");
             Assert.That(_sorts, Is.EqualTo(1));
             Assert.That(FindButton("整理中").interactable, Is.False);
             Assert.That(FindButton("刷新").interactable, Is.False);
@@ -94,13 +94,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
             activities.Activities[1].Status = (PlayerActivityStatus)2;
             _window.SetMissions(missions, false, null);
             _window.Show(GameplayPage.Missions);
-            Click("追踪任务");
+            ClickNamed("TrackMission");
             Assert.That(_tracking.Last().MissionId, Is.EqualTo(1));
             Click("筛选·全部任务");
             Click("已达成");
             _window.SetActivities(activities, false, null);
             _window.Show(GameplayPage.Activities);
-            Click("进行中");
+            ClickNamed("ActivityTools"); Click("进行中");
             _window.SetBag(MakeBag(), false, null, false);
             _window.Show(GameplayPage.Bag);
             Click("装备");
@@ -118,7 +118,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.Show(GameplayPage.Missions);
             AssertText("任务一");
             AssertText("任务二");
-            Assert.That(HasText("取消追踪"), Is.False);
+            Assert.That(SelectedMissionTracked(), Is.False);
             _window.SetActivities(activities, false, null);
             _window.Show(GameplayPage.Activities);
             AssertText("雅集一");
@@ -185,21 +185,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Click("副本任务");
             AssertText("副本中的独立进度");
             Assert.That(HasText("任务说明1"), Is.False);
-            Click("追踪任务");
+            ClickNamed("TrackMission");
             Assert.That(_tracking.Last().MissionId, Is.EqualTo(1));
             Assert.That(_tracking.Last().Scope, Is.EqualTo(5));
             Click("任务一");
             AssertText("任务说明1");
-            Assert.That(HasText("取消追踪"), Is.False, "同配置不同scope不能共享追踪按钮状态");
+            Assert.That(SelectedMissionTracked(), Is.False, "同配置不同scope不能共享追踪按钮状态");
             Click("副本任务");
-            Assert.That(HasText("取消追踪"), Is.True);
+            Assert.That(SelectedMissionTracked(), Is.True);
 
             var onlyBaseScope = new GetMissionListResponse();
             onlyBaseScope.Missions.Add(missions.Missions[0].Clone());
             _window.SetMissions(onlyBaseScope, false, null);
             Assert.That(_tracking.Last(), Is.Null, "移除被追踪scope时，同ID的另一scope不能替代它");
             AssertText("任务说明1");
-            Assert.That(HasText("取消追踪"), Is.False);
+            Assert.That(SelectedMissionTracked(), Is.False);
         }
         [Test]
         public void RemovingTrackedMissionClearsTrackingAndDoesNotReviveItWhenItReturns()
@@ -207,18 +207,18 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var missions = MakeMissions(2);
             _window.SetMissions(missions, false, null);
             _window.Show(GameplayPage.Missions);
-            Click("追踪任务");
+            ClickNamed("TrackMission");
             Assert.That(_tracking.Last().MissionId, Is.EqualTo(1));
-            Assert.That(HasText("取消追踪"), Is.True);
+            Assert.That(SelectedMissionTracked(), Is.True);
 
             var remaining = new GetMissionListResponse();
             remaining.Missions.Add(missions.Missions[1].Clone());
             _window.SetMissions(remaining, false, null);
             Assert.That(_tracking.Last(), Is.Null);
-            Assert.That(HasText("取消追踪"), Is.False);
+            Assert.That(SelectedMissionTracked(), Is.False);
             _window.SetMissions(missions, false, null);
             Click("任务一");
-            Assert.That(HasText("取消追踪"), Is.False);
+            Assert.That(SelectedMissionTracked(), Is.False);
             Assert.That(_fixture.GetComponentsInChildren<Image>().Any(i => i.name == "check"), Is.False);
             Assert.That(_tracking.Count, Is.EqualTo(2));
         }
@@ -236,7 +236,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.SetBag(empty, false, "请求超时", false);
             AssertText("暂时未能同步，请点击刷新重试");
             Assert.That(HasText("行囊空空，沿途拾得的灵物会收在这里"), Is.False);
-            Assert.That(FindButton("整理背包").interactable, Is.False);
+            Assert.That(FindButton("整理").interactable, Is.False);
             Click("刷新");
             Assert.That(_bagReads, Is.EqualTo(2));
             Assert.That(_sorts, Is.Zero);
@@ -316,7 +316,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_accepts, Is.Empty);
             Assert.That(_missionReads, Is.EqualTo(1), "活动开启时同步任务，以识别已参与状态");
             _window.MissionAcceptRequested += (_, __) => _window.SetMissions(new GetMissionListResponse(), false, null, true);
-            Click("参与活动");
+            Click("前往参与");
             Assert.That(_accepts.Single(), Is.EqualTo((0u, 1u)));
             Assert.That(FindButton("处理中…").interactable, Is.False);
             Assert.That(FindButton("刷新").interactable, Is.False);
@@ -351,7 +351,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             AssertText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）");
             AssertText("即将开启");
             AssertText("尚未到开放时间");
-            Assert.That(FindButton("参与活动").interactable, Is.False, "不因系统日期晚于排期而自行开放");
+            Assert.That(FindButton("前往参与").interactable, Is.False, "不因系统日期晚于排期而自行开放");
             activity.Status = (PlayerActivityStatus)0;
             _window.SetActivities(activities, false, null);
             AssertText("尚未排期");
@@ -385,10 +385,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
             missions.Missions[2].Status = (PlayerMissionStatus)3; missions.Missions[2].CanClaim = false;
             missions.Missions[2].UnavailableReason = "等待服务器允许领奖";
             _window.SetMissions(missions, false, null); _window.Show(GameplayPage.Missions);
-            AssertText("任务一"); AssertText("任务二"); AssertText("任务三");
+            AssertText("任务二"); AssertText("任务三");
+            Assert.That(HasText("任务一"), Is.False, "已接任务不能混入未接任务");
+            ClickNamed("AvailableMissions"); AssertText("任务一");
+            Assert.That(HasText("任务二") || HasText("任务三"), Is.False);
+            ClickNamed("AcceptedMissions"); AssertText("任务二"); AssertText("任务三");
             ClickNamed("MissionFilterMenu"); ClickNamed("MissionStatusFilter_1");
             AssertText("任务二"); Assert.That(HasText("任务一"), Is.False); Assert.That(HasText("任务三"), Is.False);
-            Click("追踪任务"); Assert.That(_tracking.Last().MissionId, Is.EqualTo(2));
+            ClickNamed("TrackMission"); Assert.That(_tracking.Last().MissionId, Is.EqualTo(2));
             ClickNamed("MissionFilterMenu"); ClickNamed("MissionStatusFilter_2");
             AssertText("任务三"); AssertText("等待服务器允许领奖"); Assert.That(FindButton("领取奖励").interactable, Is.False);
             ClickNamed("AvailableMissions"); AssertText("任务一"); Assert.That(FindButton("接取任务").interactable, Is.True);
@@ -410,6 +414,48 @@ namespace MmorpgClient.Tests.EditMode.Battle
             scroll.verticalNormalizedPosition = 0;
             Assert.That(scroll.content.anchoredPosition.y, Is.GreaterThan(0));
             AssertText("目标4"); Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
+        [Test]
+        public void ApprovedPrimaryNavigationAndUnavailableCapabilitiesArePreserved()
+        {
+            _window.SetBag(MakeBag(), false, null, false); _window.Show(GameplayPage.Bag);
+            foreach (string label in new[] { "全部", "装备", "丹药", "材料", "整理" }) AssertText(label);
+            Assert.That(FindButton("丹药").interactable, Is.False, "协议没有物品分类时不得伪造分类结果");
+            Assert.That(FindButton("材料").interactable, Is.False);
+            Assert.That(FindButton("出售").interactable, Is.False, "出售不得借用装备回调");
+            _window.SetMissions(MakeMissions(1), false, null); _window.Show(GameplayPage.Missions);
+            foreach (string label in new[] { "已接任务", "可接任务", "自动追踪", "查看地图" }) AssertText(label);
+            Assert.That(FindButton("查看地图").interactable, Is.False, "没有目标地点合同不能伪造传送");
+            Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
+        [Test]
+        public void OccupiedCompactFourthRowFitsApprovedGridWithoutClippingOrMutatingSlots()
+        {
+            var bag = MakeBag(); bag.Layout.Capacity = 20;
+            bag.Items.Add(new BagItemInfo { ItemId = 9015, ConfigId = 315, Name = "末排灵物", Count = 2, MaxStack = 99 });
+            bag.Layout.Slots.Add(new BagSlotInfo { Slot = 15, ItemId = 9015, Width = 1, Height = 1 });
+            var before = bag.Clone(); _window.SetBag(bag, false, null, false); _window.Show(GameplayPage.Bag);
+            var cell = _fixture.GetComponentsInChildren<Button>().Single(b => b.name == "BagSlot_15");
+            var rect = (RectTransform)cell.transform;
+            var icon = cell.GetComponentsInChildren<Image>().Single(i => i.name == "ItemIcon").rectTransform;
+            Assert.That(rect.sizeDelta.y, Is.EqualTo(80), "原稿第四排是80px紧凑格");
+            Assert.That(-rect.anchoredPosition.y + rect.sizeDelta.y, Is.LessThanOrEqualTo(Scroll("BagScroll").viewport.rect.height));
+            Assert.That(-icon.anchoredPosition.y + icon.sizeDelta.y, Is.LessThanOrEqualTo(rect.rect.height));
+            cell.onClick.Invoke(); AssertText("末排灵物");
+            Assert.That(bag.Equals(before), Is.True); Assert.That(_bagReads, Is.EqualTo(1)); Assert.That(_sorts, Is.Zero);
+        }
+
+        [Test]
+        public void ActivityFooterKeepsFourDisabledMilestonesWithoutBakingSamplePointsOrClaimState()
+        {
+            _window.SetActivities(MakeActivities(1), false, null); _window.Show(GameplayPage.Activities);
+            foreach (string label in new[] { "今日推荐", "每日活动", "限时活动", "节庆活动", "今日活跃", "—/—", "活动日历" }) AssertText(label);
+            var chests = _fixture.GetComponentsInChildren<Button>().Where(b => b.name.StartsWith("ActivityVitalityChest_")).ToArray();
+            Assert.That(chests.Length, Is.EqualTo(4)); Assert.That(chests.All(b => !b.interactable), Is.True);
+            Assert.That(FindButton("活动日历").interactable, Is.False);
+            Assert.That(HasText("35/100"), Is.False); Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
         }
 
         private void ClickNamed(string name)
@@ -435,8 +481,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         private void AssertText(string text) => Assert.That(HasText(text), Is.True, "当前页面应显示：" + text);
 
+        private bool SelectedMissionTracked()
+            => _fixture.GetComponentsInChildren<Image>().Any(i => i.name == "AutoTrackState" && i.sprite == EquipUiSkin.Load("checkbox_on"));
+
         private Button FindButton(string label)
         {
+            if (label == "刷新" && _window.Page == GameplayPage.Bag &&
+                !_fixture.GetComponentsInChildren<Button>().Any(b => b.name == "RefreshBag")) ClickNamed("BagTools");
             var matches = _fixture.GetComponentsInChildren<Button>()
                 .Where(b => b.GetComponentsInChildren<TMP_Text>().Any(t => t.text == label)).ToArray();
             Assert.That(matches.Length, Is.EqualTo(1), "当前页面应有唯一按钮：" + label);

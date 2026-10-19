@@ -790,6 +790,7 @@ namespace MmorpgClient.UI.Ugui
             var last = session != null && session.RecentZoneIds.Count > 0 ? FindZone(session.RecentZoneIds[0]) : null;
             _lastLoginText.text = last == null ? string.Empty : $"最近登录：{CardDisplayName(last)}";
             _enterText.text = _busy ? "进入中…" : "进入选角";
+            ApplyExactServerPresentation();
             _searchInput.interactable = canInteract;
             _accountInput.interactable = canInteract;
             _passwordInput.interactable = canInteract;

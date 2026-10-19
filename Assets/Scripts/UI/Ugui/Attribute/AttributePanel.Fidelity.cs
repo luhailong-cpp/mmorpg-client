@@ -8,6 +8,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private void ApplyFidelityLayout()
         {
             AttributeFidelityLayout.Header(_root,"人物属性");
+            AttributeFidelityLayout.ObjectTabs(_root,false);
             if(AttributeFidelityLayout.Find(_root,"V10OverviewHeading")==null)
                 QdaoUguiFactory.CreateText("V10OverviewHeading",_root,81.6f,145,574.4f,62,"属性总览",44.8f,AttributeFidelityLayout.Ink);
             for(int i=0;i<6;i++)
@@ -38,8 +39,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
             AttributeFidelityLayout.Button(_confirmButton,1577,755.2f,619.8f,84.8f,38.4f);
             var navigation=new[]{_attributeNavigation,_allocationNavigation,_combatNavigation};
             for(int i=0;i<navigation.Length;i++)
-            {AttributeFidelityLayout.Button(navigation[i],1560+i*155,46.4f,145,68.8f,29);if(navigation[i]!=null){navigation[i].Label.text=navigation[i].Label.text.Replace("\n","");bool selected=i==0?_page==PanelPage.Overview:i==1?_page==PanelPage.Allocation:_page==PanelPage.Combat;CharacterAttributeVisuals.Skin(navigation[i].Plate,selected?"button_primary":"button_secondary");navigation[i].Label.color=selected?QdaoRefreshArt.Ivory:AttributeFidelityLayout.Ink;}}
-            var skill=AttributeFidelityLayout.Find(_root,"SkillTab");if(skill!=null){AttributeFidelityLayout.Place(skill,2012,46.4f,145,68.8f);var t=skill.GetComponentInChildren<TMP_Text>();t.text="技能";AttributeFidelityLayout.Place(t.rectTransform,0,0,145,68.8f);AttributeFidelityLayout.Font(t,29);CharacterAttributeVisuals.Skin(skill.GetComponent<Image>(),"button_secondary");}
+            {AttributeFidelityLayout.Button(navigation[i],300+i*155,853,145,45,25);if(navigation[i]!=null){navigation[i].Label.text=navigation[i].Label.text.Replace("\n","");bool selected=i==0?_page==PanelPage.Overview:i==1?_page==PanelPage.Allocation:_page==PanelPage.Combat;CharacterAttributeVisuals.Skin(navigation[i].Plate,selected?"button_primary":"button_secondary");navigation[i].Label.color=selected?QdaoRefreshArt.Ivory:AttributeFidelityLayout.Ink;}}
+            var skill=AttributeFidelityLayout.Find(_root,"SkillTab");if(skill!=null){AttributeFidelityLayout.Place(skill,800,853,145,45);var t=skill.GetComponentInChildren<TMP_Text>();t.text="技能";AttributeFidelityLayout.Place(t.rectTransform,0,0,145,45);AttributeFidelityLayout.Font(t,25);CharacterAttributeVisuals.Skin(skill.GetComponent<Image>(),"button_secondary");}
             AttributeFidelityLayout.Place(_root,"EquipmentEntry",81.6f,853,150,45);
             var equipment=AttributeFidelityLayout.Find(_root,"EquipmentEntry")?.GetComponentInChildren<TMP_Text>();if(equipment!=null){AttributeFidelityLayout.Place(equipment.rectTransform,0,0,150,45);AttributeFidelityLayout.Font(equipment,25);}
             AttributeFidelityLayout.Place(_overviewRoot,784,160,1412.8f,570);AttributeFidelityLayout.Place(_combatRoot,784,160,1412.8f,570);

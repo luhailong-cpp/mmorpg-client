@@ -74,11 +74,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _subtitle = NativeText(frame, "", 0, 0, 1, 1, 1); _subtitle.gameObject.SetActive(false);
             NativeHit(frame, "CloseWindow", "", 1779, 24, 84, 80, Hide);
             _body = QdaoUguiFactory.CreateRect("PageContent", frame, 0, 0, NativeWidth, NativeHeight);
-            _search = QdaoUguiFactory.CreateInputField("BagSearch", frame, 732, 708, 260, 30,
+            _search = QdaoUguiFactory.CreateInputField("BagSearch", frame, 1260, 260, 405, 35,
                 "搜索名称或编号", 80, NativeSprite("bag-tab-normal"));
             _search.textComponent.color = Ink; _search.textComponent.fontSize = 22;
             ((TMP_Text)_search.placeholder).color = Muted;
-            _search.onValueChanged.AddListener(value => { _query = value; _bagScroll = 1; if (Page == GameplayPage.Bag) Render(); });
+            _search.onValueChanged.AddListener(value => { _query = value; _bagPage = 0; _bagScroll = 1; if (Page == GameplayPage.Bag) Render(); });
             _tooltip = new EquipTooltip(frame, 1255, 145); _tooltip.Hide();
             _actions = new EquipActionsDialog(_root); _wish = new EquipWishDialog(_root);
             _forge = forge; _forgeDialog = forge == null ? null : new EquipForgeDialog(_root, forge);
@@ -92,7 +92,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _missionFilterMenu = false;
             _nativeFrame.sprite = NativeSprite(page == GameplayPage.Bag ? "inventory-frame" : page == GameplayPage.Missions ? "quests-frame" : "activities-frame");
             _title.text = page == GameplayPage.Bag ? "背 包" : page == GameplayPage.Missions ? "任 务" : "活 动";
-            _search.gameObject.SetActive(page == GameplayPage.Bag);
+            _search.gameObject.SetActive(false); _bagTools = _activityTools = false;
+            if (page == GameplayPage.Missions && _missionFilter == 0 && _missions?.Missions.Count > 0 &&
+                _missions.Missions.All(m => (int)m.Status == 0)) _missionFilter = 3;
             Render(); Refresh();
         }
 
@@ -148,7 +150,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _bag = null; _equipment = null; _missions = null; _activities = null; _trackedMission = 0;
             _selectedItem = 0; _selectedMission = 0; _selectedActivity = 0;
             _bagPage = _missionPage = _activityPage = _objectivePage = _equipPage = 0;
-            _bagFilter = _missionFilter = _activityFilter = 0; _query = string.Empty;
+            _bagFilter = _missionFilter = _activityFilter = 0; _query = string.Empty; _bagTools = _activityTools = false;
             _bagScroll = _missionScroll = _activityScroll = 1;
             _search.SetTextWithoutNotify(string.Empty); _search.DeactivateInputField();
             _bagLoading = _missionLoading = _activityLoading = _sorting = _missionActionBusy = false;

@@ -8,7 +8,7 @@ namespace MmorpgClient.UI.Ugui.Mail
     internal static class MailFidelityArt
     {
         public const string Root = "UI/Ugui/MailV1Fidelity/";
-        public static readonly Color Ink = QdaoUguiTheme.Html("#394D36"), Muted = QdaoUguiTheme.Html("#786A50"),
+        public static readonly Color Ink = QdaoUguiTheme.Html("#142D20"), Muted = QdaoUguiTheme.Html("#786A50"),
             Jade = QdaoUguiTheme.Html("#285B40"), Cream = QdaoUguiTheme.Html("#FFF1CD"),
             Gold = QdaoUguiTheme.Html("#B59A64"), Line = QdaoUguiTheme.Html("#C7B58B");
         public static TMP_FontAsset BodyFont => QdaoUguiTheme.ResolveFont();
@@ -28,6 +28,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         {
             var text=QdaoUguiFactory.CreateText(name,parent,x,y,w,Mathf.Max(h,size*1.6f),value,size,color??Ink,align);
             text.font=title?QdaoUguiTheme.ResolveFont():BodyFont; text.richText=false;
+            if(title)text.fontStyle=FontStyles.Bold;
             text.textWrappingMode=wrap?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
             text.overflowMode=wrap?TextOverflowModes.Overflow:TextOverflowModes.Ellipsis; return text;
         }

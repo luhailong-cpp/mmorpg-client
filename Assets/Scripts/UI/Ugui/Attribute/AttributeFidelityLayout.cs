@@ -48,6 +48,29 @@ namespace MmorpgClient.UI.Ugui.Attribute
             row.Slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,60f);
             row.Slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,60f);
         }
+        // v10-preview panel.css: entity-tabs right:88px/top:29px, two 103x43px tabs and 10px gap.
+        // Native attribute coordinates are exactly 1.6 times its 1424x570 CSS panel.
+        internal static void ObjectTabs(RectTransform root, bool pet)
+        {
+            string[] labels = { "人物", "宝宝" };
+            for (int i = 0; i < labels.Length; ++i)
+            {
+                string name = "ExactObjectTab_" + i;
+                if (Find(root,name) != null) continue;
+                int mode = i; bool selected = (i == 1) == pet;
+                var button = CharacterAttributeVisuals.Button(name,root,1792 + i * 180.8f,46.4f,164.8f,68.8f,labels[i],selected,33.6f);
+                CharacterAttributeVisuals.Skin(button.Plate,selected ? "tab_horizontal" : "button_secondary");
+                button.Label.color = selected ? QdaoRefreshArt.Ivory : Ink;
+                button.Button.interactable = selected || (i == 0 ? AttributeUiRoot.Instance != null : Pet.PetUiRoot.Instance != null);
+                button.Button.onClick.AddListener(() =>
+                {
+                    if (mode == 0) AttributeUiRoot.Instance?.OpenPanel(true);
+                    else Pet.PetUiRoot.Instance?.OpenPanel(true);
+                });
+                if (selected) QdaoUguiFactory.CreateText(name + "Selected",button.Rect,130,0,28,68.8f,"✓",19.2f,QdaoRefreshArt.Ivory,TextAlignmentOptions.Center);
+            }
+        }
+
         internal static void Header(RectTransform root,string title)
         {
             Place(root,140.8f,89.6f,Width,Height);

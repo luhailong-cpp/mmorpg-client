@@ -130,6 +130,22 @@ namespace MmorpgClient.Tests.EditMode.Ugui
         }
 
         [Test]
+        public void ExactServerFixedArtKeepsDynamicDataBusyCaptionAndLoginArtIndependent()
+        {
+            PrepareDisconnectedSession();_view.ShowLanding(false);
+            Assert.That(Required<Image>("ExactServerHeader").sprite.name,Is.EqualTo("exact_server_title"));
+            Assert.That(Required<Image>("ExactSearchMagnifier").sprite.name,Is.EqualTo("exact_server_search_icon"));
+            Assert.That(Required<Image>("ServerEmblem_0").sprite.name,Is.EqualTo("exact_server_emblem_0"));
+            Assert.That(Required<Image>("ServerEmblem_1").sprite.name,Is.EqualTo("exact_server_emblem_1"));
+            Assert.That(Required<TMP_Text>("ServerName_0").text,Is.Not.Empty);
+            Assert.That(Required<TMP_Text>("EnterButtonText").gameObject.activeSelf,Is.False,"普通状态显示原稿固定文字");
+            Set("_busy",true);Invoke("RefreshVisualState");
+            Assert.That(Required<TMP_Text>("EnterButtonText").gameObject.activeSelf,Is.True);Assert.That(Required<TMP_Text>("EnterButtonText").text,Is.EqualTo("进入中…"));
+            Assert.That(Required<Button>("EnterButton").interactable,Is.False);
+            _view.ShowLanding(true);Assert.That(AssetDatabase.GetAssetPath(Required<Image>("ScreenArtwork").sprite),Is.EqualTo("Assets/Resources/UI/Ugui/CoreFidelity20261016/login_shell.png"));
+        }
+
+        [Test]
         public void EmptySearch_WithPreviouslySelectedSessionZone_DoesNotEnterOrAskForCredentials()
         {
             PrepareDisconnectedSession();

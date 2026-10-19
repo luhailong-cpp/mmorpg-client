@@ -26,8 +26,12 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private readonly TMP_Text _pageLabel, _status, _selection;
         private readonly Button _favorite, _view, _previous, _next, _favoritesOnly, _sort;
         private readonly Button[] _topTabs = new Button[2], _sections = new Button[3];
+        private readonly Image[] _exactTopCaptions = new Image[2];
+        private readonly Image[] _exactSectionCaptions = new Image[3];
         private readonly Dictionary<JubaozhaiCategory, Button> _categoryButtons = new();
+        private readonly Dictionary<JubaozhaiCategory, Image> _exactCategoryCaptions = new(), _exactCategoryIcons = new();
         private readonly Dictionary<string, Button> _subcategoryButtons = new();
+        private readonly Dictionary<string, Image> _exactSubcategoryCaptions = new(), _exactSubcategoryChecks = new();
         private readonly Dictionary<string, Button> _rowButtons = new();
         private readonly Dictionary<string, TMP_Text> _remainingLabels = new();
         private IReadOnlyList<JubaozhaiListing> _pageItems = Array.Empty<JubaozhaiListing>();
@@ -61,24 +65,24 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 () => State.SetTab(JubaozhaiTab.PublicNotice), key: "tab_normal", fontSize: 30);
             Button(_frame, "JubaoCommerce", "交易中心", 1027, 136, 380, 53,
                 () => CommerceRequested?.Invoke(), fontSize: 27);
-            Button(_frame, "JubaoEstimate", "估价", 1425, 136, 137, 53,
+            ExactButton(_frame, "JubaoEstimate", "估价", "estimate", 1418, 131, 149, 62,
                 () => ShowNotice("估价", "估价功能尚未开放，开放后可在此查看商品估价。"), fontSize: 27);
-            Button(_frame, "JubaoRules", "规则", 1578, 136, 139, 53,
+            ExactButton(_frame, "JubaoRules", "规则", "rules", 1573, 131, 148, 62,
                 () => ShowNotice("聚宝斋规则", "寄售、公示、拍卖和货架规则尚未开放。交易规则以正式开放后的说明为准。"), fontSize: 27);
+            _exactTopCaptions[0]=ExactArt(_topTabs[0].transform,"tab-consignment",69,8,159,36);
+            _exactTopCaptions[1]=ExactArt(_topTabs[1].transform,"tab-public",37,9,139,42);
             var clearSearch = Button(_frame, "JubaoClearSearch", "清空搜索", 200, 198, 263, 50,
                 () => { _search.SetTextWithoutNotify(""); State.SetSearch(""); }, key: "tab_normal", fontSize: 28);
             NativeArt(clearSearch.transform, "category-search", 19, 5, 35, 37);
-            _favoritesOnly = Button(_frame, "JubaoFavoritesOnly", "收藏", 200, 251, 263, 50,
-                () => State.SetFavoritesOnly(!State.FavoritesOnly), key: "tab_normal", fontSize: 29);
-            var favoritesLabel = _favoritesOnly.GetComponentInChildren<TMP_Text>(); favoritesLabel.alignment = TextAlignmentOptions.MidlineLeft;
-            favoritesLabel.rectTransform.anchoredPosition = new Vector2(65, 0); favoritesLabel.rectTransform.sizeDelta = new Vector2(151, 50);
-            NativeArt(_favoritesOnly.transform, "category-favorite", 19, 6, 35, 36);
-            Text(_favoritesOnly.transform, "›", 224, 0, 26, 50, 31, Gold, alignment: TextAlignmentOptions.Center).name = "FavoriteMarker";
+            _favoritesOnly = ExactButton(_frame,"JubaoFavoritesOnly","收藏","favorites-normal",199,249,264,50,
+                () => State.SetFavoritesOnly(!State.FavoritesOnly),fontSize:29);
             _categoryScroll = NativeCategoryScroll(_frame, "JubaoCategories", 200, 304, 263, 431, out _categoryContent);
             NativeArt(_frame, "table-header", 500, 198, 1226, 51);
             _sort = NativeHit(_frame, "JubaoSort", "默认排序 · 切换", 580, 204, 424, 39, CycleSort, 25);
-            Text(_frame, "信息", 1097, 204, 191, 39, 27, alignment: TextAlignmentOptions.Center);
-            Text(_frame, "剩余时间", 1517, 204, 169, 39, 27, alignment: TextAlignmentOptions.Center);
+            Text(_frame, "信息", 1097, 204, 191, 39, 27, Color.clear, alignment: TextAlignmentOptions.Center);
+            ExactArt(_frame,"column-info",1161,209,60,31).color=Ink;
+            Text(_frame, "剩余时间", 1517, 204, 169, 39, 27, Color.clear, alignment: TextAlignmentOptions.Center);
+            ExactArt(_frame,"column-remaining",1528,209,131,31).color=Ink;
             _rowScroll = NativeCategoryScroll(_frame, "JubaoRowsViewport", 501, 247, 1224, 451, out _rows);
             string[] sectionLabels = { "寄\n售", "拍\n卖", "货\n架" };
             float[] sectionY = { 188, 351, 512 }, sectionHeight = { 159, 160, 147 };
@@ -88,6 +92,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 _sections[i] = NativeButton(_frame, "JubaoSection_" + section, sectionLabels[i], i == 2 ? "section-normal-short" : "section-normal", 1737, sectionY[i],
                     93, sectionHeight[i], () => State.SetSection(section), 35);
                 _sections[i].GetComponentInChildren<TMP_Text>().textWrappingMode = TextWrappingModes.Normal;
+                string[] originalSection={"section-consignment","section-auction","section-shelf"};
+                _exactSectionCaptions[i]=ExactArt(_sections[i].transform,originalSection[i],i==0?22:24,37,i==0?49:46,i==0?95:87);
             }
             _search = QdaoUguiFactory.CreateInputField("JubaoSearch", _frame, 504, 712, 331, 56,
                 JubaozhaiCatalog.SearchPlaceholder, 64, Load("input"));
@@ -105,6 +111,49 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             NativeCategoryScroll(_frame, "JubaoStatusScroll", 502, 771, 1224, 26, out var statusContent);
             _status = Text(statusContent, "聚宝斋尚未开放", 0, 0, 1218, 26, 20, Muted, true, TextAlignmentOptions.Center);
             State.Changed += StateChanged; Render();
+        }
+
+        private static string OriginalSubcategoryKey(string value)=>value switch
+        {
+            "破军"=>"subcategory-character-0",
+            "玄霄"=>"subcategory-character-1",
+            "逐风"=>"subcategory-character-2",
+            "丹心"=>"subcategory-character-3",
+            "普通"=>"subcategory-pet-0",
+            "灵兽"=>"subcategory-pet-1",
+            "变异"=>"subcategory-pet-2",
+            "神兽"=>"subcategory-pet-3",
+            "元灵"=>"subcategory-pet-4",
+            "其他"=>"subcategory-pet-5",
+            "枪"=>"subcategory-weapon-0",
+            "爪"=>"subcategory-weapon-1",
+            "剑"=>"subcategory-weapon-2",
+            "扇"=>"subcategory-weapon-3",
+            "锤"=>"subcategory-weapon-4",
+            "男帽"=>"subcategory-armor-0",
+            "女帽"=>"subcategory-armor-1",
+            "男衣"=>"subcategory-armor-2",
+            "女衣"=>"subcategory-armor-3",
+            "鞋子"=>"subcategory-armor-4",
+            "神兽召唤令"=>"subcategory-summon-0",
+            "元灵召唤令"=>"subcategory-summon-1",
+            _=>null
+        };
+
+        private static Image ExactArt(UnityEngine.Transform parent, string key, float x, float y, float w, float h)
+        {
+            var image=QdaoUguiFactory.CreateImage("Exact_"+key,parent,x,y,w,h,
+                QdaoUguiTheme.RequireSprite("UI/Ugui/JubaozhaiExact20261017/"+key));
+            image.type=Image.Type.Simple; image.raycastTarget=false; return image;
+        }
+        private static Button ExactButton(UnityEngine.Transform parent,string name,string label,string key,
+            float x,float y,float w,float h,Action action,float fontSize=27)
+        {
+            var button=Button(parent,name,label,x,y,w,h,action,fontSize:fontSize);
+            button.image.sprite=QdaoUguiTheme.RequireSprite("UI/Ugui/JubaozhaiExact20261017/"+key);
+            button.image.type=Image.Type.Simple;
+            button.GetComponentInChildren<TMP_Text>().color=Color.clear;
+            return button;
         }
 
         public void Show()
@@ -159,13 +208,31 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             var focused = EventSystem.current?.currentSelectedGameObject;
             string focusName = focused != null && focused.transform.IsChildOf(_frame) ? focused.name : null;
             if (_builtCategory != State.Category) BuildCategories();
-            for (int i = 0; i < _topTabs.Length; i++) Select(_topTabs[i], (int)State.Tab == i);
-            for (int i = 0; i < _sections.Length; i++) NativeSelect(_sections[i], (int)State.Section == i, i == 2 ? "section-normal-short" : "section-normal", i == 2 ? "section-selected-short" : "section-selected");
+            for (int i = 0; i < _topTabs.Length; i++)
+            {
+                bool active = (int)State.Tab == i; Select(_topTabs[i], active);
+                _topTabs[i].GetComponentInChildren<TMP_Text>().color=Color.clear;
+                _exactTopCaptions[i].color=active?Cream:Ink;
+            }
+            for (int i = 0; i < _sections.Length; i++)
+            {
+                bool active=(int)State.Section==i;
+                NativeSelect(_sections[i],active,i==2?"section-normal-short":"section-normal",i==2?"section-selected-short":"section-selected");
+                _sections[i].GetComponentInChildren<TMP_Text>().color=Color.clear;
+                _exactSectionCaptions[i].color=active?Cream:Ink;
+            }
             foreach (var pair in _categoryButtons)
             {
                 bool active = State.Category == pair.Key;
                 Select(pair.Value, active);
                 SetButtonLabel(pair.Value, JubaozhaiCatalog.CategoryName(pair.Key));
+                pair.Value.GetComponentInChildren<TMP_Text>().color=Color.clear;
+                if(_exactCategoryCaptions.TryGetValue(pair.Key,out var originalCaption))originalCaption.color=active?Cream:Ink;
+                if(_exactCategoryIcons.TryGetValue(pair.Key,out var originalIcon))
+                {
+                    string suffix=active&&pair.Key!=JubaozhaiCategory.Treasure&&pair.Key!=JubaozhaiCategory.Jewelry?"-selected":"-normal";
+                    originalIcon.sprite=QdaoUguiTheme.RequireSprite("UI/Ugui/JubaozhaiExact20261017/category-icon-"+pair.Key.ToString().ToLowerInvariant()+suffix);
+                }
                 var marker = pair.Value.transform.Find("CategoryMarker")?.GetComponent<TMP_Text>();
                 if (marker != null) { marker.text = active ? "✓" : "›"; marker.color = active ? Cream : Gold; }
             }
@@ -174,6 +241,11 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 bool active = State.Subcategory == pair.Key;
                 Select(pair.Value, active, "tab_normal", "tab_selected");
                 SetButtonLabel(pair.Value, pair.Key.Length == 0 ? "全部" : pair.Key);
+                if(_exactSubcategoryCaptions.TryGetValue(pair.Key,out var sourceCaption))
+                {
+                    pair.Value.GetComponentInChildren<TMP_Text>().color=Color.clear;sourceCaption.color=active?Cream:Ink;
+                    if(_exactSubcategoryChecks.TryGetValue(pair.Key,out var sourceCheck))sourceCheck.gameObject.SetActive(active);
+                }
             }
             if (!_search.isFocused) _search.SetTextWithoutNotify(State.Search);
             _status.text = State.IsDemo ? "离线演示\n商品与价格均为样例" : State.ServerPaged ? ServerStatusText()
@@ -196,7 +268,11 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             SetButtonLabel(_favoritesOnly, "收藏");
             var favoriteMarker = _favoritesOnly.transform.Find("FavoriteMarker")?.GetComponent<TMP_Text>();
             if (favoriteMarker != null) { favoriteMarker.text = State.FavoritesOnly ? "✓" : "›"; favoriteMarker.color = State.FavoritesOnly ? Cream : Gold; }
-            Select(_favoritesOnly, State.FavoritesOnly, "tab_normal", "tab_selected");
+            _favoritesOnly.image.sprite=QdaoUguiTheme.RequireSprite("UI/Ugui/JubaozhaiExact20261017/"+(State.FavoritesOnly?"favorites-selected":"favorites-normal"));
+            _favoritesOnly.image.type=Image.Type.Simple;
+            _favoritesOnly.image.rectTransform.anchoredPosition=new Vector2(199,State.FavoritesOnly?-248:-249);
+            _favoritesOnly.image.rectTransform.sizeDelta=new Vector2(264,State.FavoritesOnly?51:50);
+            _favoritesOnly.GetComponentInChildren<TMP_Text>().color=Color.clear;
             SetButtonLabel(_sort, NativeSortLabel(State.Sort));
             UpdateSelection();
             if (refreshDetails) ShowSelectedDetails();
@@ -209,7 +285,10 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private void BuildCategories()
         {
             Clear(_categoryContent); _categoryButtons.Clear(); _subcategoryButtons.Clear();
+            _exactCategoryCaptions.Clear();_exactCategoryIcons.Clear();
+            _exactSubcategoryCaptions.Clear();_exactSubcategoryChecks.Clear();
             float y = 0, selectedY = 0;
+            float categoryStep=State.Category==JubaozhaiCategory.Pet?50:State.Category==JubaozhaiCategory.Weapon?48:State.Category==JubaozhaiCategory.Armor?49.5f:54;
             foreach (var category in JubaozhaiCatalog.AllCategories)
             {
                 var captured = category;
@@ -217,20 +296,32 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     () => { if (State.Category == captured) State.SetSubcategory(""); else State.SetCategory(captured); }, key: "tab_normal", fontSize: 29);
                 var label = button.GetComponentInChildren<TMP_Text>(); label.alignment = TextAlignmentOptions.MidlineLeft;
                 label.rectTransform.anchoredPosition = new Vector2(65, 0); label.rectTransform.sizeDelta = new Vector2(151, 50);
-                NativeArt(button.transform, "category-" + captured.ToString().ToLowerInvariant(), 18, 5, 36, 39);
+                string originalCategoryKey=captured.ToString().ToLowerInvariant();
+                _exactCategoryCaptions[captured]=ExactArt(button.transform,"category-caption-"+originalCategoryKey,63,8,129,35);
+                _exactCategoryIcons[captured]=ExactArt(button.transform,"category-icon-"+originalCategoryKey+"-normal",16,5,37,38);
                 Text(button.transform, "›", 224, 0, 26, 50, 31, Gold, alignment: TextAlignmentOptions.Center).name = "CategoryMarker";
                 _categoryButtons.Add(captured, button);
                 if (State.Category == captured) selectedY = y;
-                y += 54;
+                y += categoryStep;
                 if (State.Category != captured || JubaozhaiCatalog.SubcategoriesFor(captured).Count == 0) continue;
                 // Clicking the active category selects all its subcategories, as in the approved design.
+                if(captured==JubaozhaiCategory.Weapon)y+=2;
+                float subStep=captured==JubaozhaiCategory.Pet?39:captured==JubaozhaiCategory.Weapon||captured==JubaozhaiCategory.Armor?40:46;
+                float subHeight=captured==JubaozhaiCategory.Pet?38:captured==JubaozhaiCategory.Weapon||captured==JubaozhaiCategory.Armor?40:43;
                 foreach (var subcategory in JubaozhaiCatalog.SubcategoriesFor(captured))
                 {
                     string value = subcategory;
-                    _subcategoryButtons[value] = Button(_categoryContent, "Subcategory_" + value, value, 7, y, 249, 43, () => State.SetSubcategory(value), key: "tab_normal", fontSize: 26);
-                    y += 46;
+                    _subcategoryButtons[value] = Button(_categoryContent, "Subcategory_" + value, value, 7, y, 249, subHeight, () => State.SetSubcategory(value), key: "tab_normal", fontSize: 26);
+                    string sourceKey=OriginalSubcategoryKey(value);
+                    if(sourceKey!=null)
+                    {
+                        float glyphHeight=captured==JubaozhaiCategory.Character||captured==JubaozhaiCategory.SummoningOrder?35:32;
+                        _exactSubcategoryCaptions[value]=ExactArt(_subcategoryButtons[value].transform,sourceKey,58,4,129,glyphHeight);
+                        _exactSubcategoryChecks[value]=ExactArt(_subcategoryButtons[value].transform,"subcategory-check",207,7,30,27);
+                    }
+                    y += subStep;
                 }
-                y += 18;
+                y += captured==JubaozhaiCategory.Pet?8:captured==JubaozhaiCategory.Weapon?6:captured==JubaozhaiCategory.Armor?4:18;
             }
             _categoryContent.sizeDelta = new Vector2(263, Math.Max(431, y));
             Canvas.ForceUpdateCanvases(); LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)_categoryScroll.transform);
@@ -446,7 +537,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                              item.Category == JubaozhaiCategory.Set;
             if (item.Category == JubaozhaiCategory.Character || item.Category == JubaozhaiCategory.Pet || equipment)
             {
-                // The source badges were removed during slicing; native fields occupy the same exact circles.
+                // Source thin-gold badge art is restored; actual level/category values stay native.
                 float levelCenterX = equipment ? .144f : .846f;
                 RoundBadge(parent, "JubaoLevelBadge", item.Level.ToString(),
                     x + size * levelCenterX, y + size * .644f, size * .38f, Ink, Cream, size * .185f);
@@ -474,16 +565,15 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private static void RoundBadge(UnityEngine.Transform parent, string name, string value,
             float centerX, float centerY, float diameter, Color fill, Color textColor, float fontSize)
         {
-            var circle = Battle.BattleArtCatalog.CircleSprite;
-            float x = centerX - diameter * .5f, y = centerY - diameter * .5f;
-            var border = QdaoUguiFactory.CreateImage(name, parent, x, y, diameter, diameter, circle);
-            border.color = Gold;
-            float inset = Mathf.Max(2, diameter * .065f);
-            var face = QdaoUguiFactory.CreateImage("Face", border.transform, inset, inset,
-                diameter - inset * 2, diameter - inset * 2, circle);
-            face.color = fill;
-            Text(border.transform, value, inset, inset, diameter - inset * 2, diameter - inset * 2,
-                fontSize, textColor, alignment: TextAlignmentOptions.Center).fontStyle = FontStyles.Bold;
+            bool level=name=="JubaoLevelBadge";
+            float width=diameter*(level ? .96f : .88f),height=diameter*(level ? .80f : .88f);
+            var border=QdaoUguiFactory.CreateImage(name,parent,centerX-width*.5f,centerY-height*.5f,width,height,
+                QdaoUguiTheme.RequireSprite("UI/Ugui/JubaozhaiExact20261017/"+(level?"level-badge":"category-badge")));
+            border.type=Image.Type.Simple;border.raycastTarget=false;
+            var caption=Text(border.transform,value,2,0,width-4,height,fontSize*.80f,textColor,
+                alignment:TextAlignmentOptions.Center);
+            caption.fontStyle=FontStyles.Normal;caption.enableAutoSizing=true;
+            caption.fontSizeMin=fontSize*.55f;caption.fontSizeMax=fontSize*.80f;
         }
 
         private static ScrollRect CreateScroll(UnityEngine.Transform parent, string name, float x, float y, float w, float h,

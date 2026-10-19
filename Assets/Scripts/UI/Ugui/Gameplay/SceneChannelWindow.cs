@@ -35,10 +35,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     }
 
     /// <summary>
-    /// 线路面板:列出当前地图的分线,点一条就发出「切到这条线」的意图。
+    /// 线路面板:列出当前地图的分线,选中线路并确认后发出「切到这条线」的意图。
     /// 只读数据 + 意图事件:不碰网络,不做本地假成功;一行能不能点完全由传入的视图决定,
     /// 点击时按同一条规则再核一遍(两次渲染之间冷却倒计时可能已经走完或刚开始)。
-    /// 版式(设计面 2560×1080,左上原点):居中纸面主框,线路区两列 × 八行、先左后右再换行,超过十六条分页。
+    /// 版式(设计面 2560×1080,左上原点):居中纸面主框,线路区三列 × 八行,超过二十四条分页。
     /// </summary>
     public sealed class SceneChannelWindow
     {
@@ -49,6 +49,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         // 测试与离线截图按名字找控件。
         public const string LineButtonPrefix = "SceneChannelLine_";
         public const string LoadLabelPrefix = "SceneChannelLoad_";
+        public const string ConfirmButtonName = "SceneChannelConfirm";
         public const string RefreshButtonName = "SceneChannelRefresh";
         public const string CloseButtonName = "SceneChannelClose";
         public const string PreviousPageButtonName = "SceneChannelPreviousPage";
@@ -62,7 +63,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string LoadingText = "正在获取线路…";
         public const string NoDirectoryText = "当前场景暂无线路信息。";
         public const string SingleLineHint = "当前地图只有一条线路。";
-        public const string PickHint = "点击流畅或繁忙的线路即可切换。";
+        public const string PickHint = "选中流畅或繁忙的线路，确认后切换。";
         public const string RefreshText = "刷新";
         public const string RefreshingText = "获取中…";
 
@@ -97,7 +98,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private readonly RectTransform _root, _list;
         private readonly TMP_Text _current, _status, _pageLabel, _refreshLabel;
-        private readonly Button _previous, _next, _refresh;
+        private readonly Button _previous, _next, _refresh, _confirm;
+        private ulong _selectedSceneId;
         private SceneChannelPanelView _view;
         // 列表区上一次画出来的内容的指纹(见 DescribeList);null = 还没画过。指纹没变就不重建行。
         private string _listKey;
@@ -121,10 +123,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _pageLabel=Text(frame,"",468,FooterY,100,45,23,Muted,alignment:TextAlignmentOptions.Center);_pageLabel.name="SceneChannelPage";
             _next=FidelityButton(frame,"下一页",570,FooterY,90,45,()=>MovePage(1),false,17);_next.name=NextPageButtonName;
             var close=QdaoUguiFactory.CreateHitButton(CloseButtonName,frame,673,686,263,69);close.onClick.AddListener(Hide);
-            Text(close.transform,"取消",20,0,223,69,36,Ink,alignment:TextAlignmentOptions.Center);
-            _refresh=QdaoUguiFactory.CreateHitButton(RefreshButtonName,frame,989,686,270,69);
+            
+            _confirm=QdaoUguiFactory.CreateHitButton(ConfirmButtonName,frame,989,686,270,69);
+            _confirm.onClick.AddListener(ConfirmSelection);
+            _refresh=FidelityButton(frame,"",1350,695,154,45,null,false,21);_refresh.name=RefreshButtonName;
+            var unusedLabel=_refresh.GetComponentInChildren<TMP_Text>();if(unusedLabel!=null)unusedLabel.enabled=false;
             _refresh.onClick.AddListener(()=>{if(CanRefresh)RefreshRequested?.Invoke();});
-            _refreshLabel=Text(_refresh.transform,RefreshText,20,0,230,69,36,Cream,alignment:TextAlignmentOptions.Center);
+            _refreshLabel=Text(_refresh.transform,RefreshText,6,0,142,45,21,Ink,alignment:TextAlignmentOptions.Center);
             Pagination(_previous,_next,_pageLabel,0,1);
         }
 
@@ -156,7 +161,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         /// <summary>打开面板;从关着到打开时翻到当前线所在的那一页。</summary>
         public void Show()
         {
-            if (!IsVisible) PageIndex = PageOfCurrentLine();
+            if (!IsVisible) { PageIndex = PageOfCurrentLine(); _selectedSceneId = 0; }
             _root.gameObject.SetActive(true);
             Render();
         }
@@ -247,7 +252,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var context = _view.Context;
             uint current = SceneChannelModels.CurrentChannelNo(lines);
             _current.text = !context.HasDirectory ? ""
-                : "当前：" + (current != 0 ? SceneChannelModels.LineName(current) : "未知");
+                : "当前场景：" + (current != 0 ? SceneChannelModels.LineName(current) : "未知");
 
             PageCount = Math.Max(1, (lines.Count + LinesPerPage - 1) / LinesPerPage);
             PageIndex = Mathf.Clamp(PageIndex, 0, PageCount - 1);
@@ -276,6 +281,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
             }
 
+            _confirm.interactable = SceneChannelModels.Evaluate(SceneChannelModels.FindLine(_view.Lines, _selectedSceneId), context) == SceneChannelBlockReason.None;
             _refresh.interactable = CanRefresh;
             _refreshLabel.text = _view.Loading ? RefreshingText : RefreshText;
             RefreshStatus();
@@ -293,7 +299,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             int start = PageIndex * LinesPerPage;
             int count = Math.Min(LinesPerPage, lines.Count - start);
             var key = new StringBuilder(24 * count + 8);
-            key.Append(PageIndex);
+            key.Append(PageIndex).Append(':').Append(_selectedSceneId);
             for (int slot = 0; slot < count; slot++)
             {
                 var line = lines[start + slot];
@@ -321,7 +327,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             float x = slot % Columns == 0 ? 0 : slot % Columns == 1 ? 412 : 813;
             float y = slot / Columns * RowPitch;
             var button=FidelityButton(_list,SceneChannelModels.LineName(line.ChannelNo),x,y,RowWidth,RowHeight,
-                ()=>RequestSwitch(sceneId),line.IsCurrent,27,selectable,true);
+                ()=>SelectLine(sceneId),line.IsCurrent || sceneId==_selectedSceneId,27,selectable,true);
             button.name = LineButtonPrefix + line.ChannelNo;
             // 行比底图原稿(高 114)矮:按高度等比缩小九宫格的边(只有中段横向拉伸),两端的云头和对勾才不会被压扁。
             // 做法同 QdaoRefreshArt.Skin。缩小后两端纹饰各占约 48,行内文字从 64 起排。
@@ -339,7 +345,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var colors = button.colors;
                 colors.disabledColor = Color.white;
                 button.colors = colors;
-                Text(button.transform, CurrentTagText, 308, -7, 72, 24, 18, Cream).name = CurrentTagName;
+                var semanticTag=Text(button.transform, CurrentTagText, 331, -9, 73, 43, 18, Cream);semanticTag.name=CurrentTagName;semanticTag.enabled=false;
+                FidelityArt(button.transform,"current_badge",331,-9,73,43);
+                FidelityArt(button.transform,"current_check",313,13,35,34);
             }
             else if (!selectable)
             {
@@ -348,11 +356,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             // 状态:色点 + 文字。选中态底图是深玉色,绿字压在上面看不清,所在线的状态字改用米白,颜色留给色点。
             Color loadColor = LoadColor(line.Load);
-            var dot = QdaoUguiFactory.CreateImage("LoadDot", button.transform, 31, (RowHeight - 18) / 2, 18, 18,
-                QdaoUguiTheme.RequireSprite(QdaoUguiTheme.StatusDotSpritePath));
-            dot.color = loadColor;
             var load = Text(button.transform, switching ? SwitchingRowText : SceneChannelModels.LoadText(line.Load),
-                252, 0, 126, RowHeight, 21, line.IsCurrent ? Cream : switching ? Gold : loadColor);
+                220, 0, 92, RowHeight, 21, line.IsCurrent || sceneId==_selectedSceneId ? Cream : switching ? Gold : loadColor);
             load.name = LoadLabelPrefix + line.ChannelNo;
         }
 
@@ -364,10 +369,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             var button=QdaoUguiFactory.CreateArtButton(value,parent,x,y,w,h,QdaoUguiTheme.RequireSprite(FidelityResourceRoot+
                 (row?(selected?"row_selected":"row_normal"):(selected?"button_primary":"button_secondary"))),out var image);
-            image.type=Image.Type.Simple;button.interactable=enabled;button.navigation=new Navigation{mode=Navigation.Mode.Automatic};
+            image.type=Image.Type.Simple;button.interactable=enabled;var colors=button.colors;colors.disabledColor=Color.white;button.colors=colors;button.navigation=new Navigation{mode=Navigation.Mode.Automatic};
             button.onClick.AddListener(()=>click?.Invoke());
             Text(button.transform,value,16,0,w-32,h,fontSize,selected?Cream:Ink,alignment:TextAlignmentOptions.Center);
             return button;
+        }
+
+        private void SelectLine(ulong sceneId)
+        {
+            if (SceneChannelModels.Evaluate(SceneChannelModels.FindLine(_view.Lines, sceneId), _view.Context) != SceneChannelBlockReason.None) return;
+            _selectedSceneId=sceneId;
+            Render();
+        }
+
+        private void ConfirmSelection()
+        {
+            ulong sceneId=_selectedSceneId;
+            _selectedSceneId=0;
+            RequestSwitch(sceneId);
+            if(IsVisible)Render();
         }
 
         private void RequestSwitch(ulong sceneId)

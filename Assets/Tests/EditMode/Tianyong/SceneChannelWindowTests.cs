@@ -90,7 +90,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(Texts(other), Is.EqualTo(new[] { "7线", "流畅" }), "同样流畅、但不是所在线:没有标记");
             Assert.That(((Image)other.targetGraphic).sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/row_normal")));
 
-            Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前：1线"));
+            Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前场景：1线"));
             Assert.That(CountLabels(SceneChannelWindow.CurrentTagName), Is.EqualTo(1));
         }
 
@@ -101,7 +101,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _window.SetView(View(lines));
             _window.Show();
 
-            Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前：未知"));
+            Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前场景：未知"));
             Assert.That(CountLabels(SceneChannelWindow.CurrentTagName), Is.Zero);
             Assert.That(FindButton(LineName(1)).interactable, Is.True);
             Assert.That(FindButton(LineName(2)).interactable, Is.True);
@@ -129,8 +129,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _window.Show();
 
             Click(LineName(2));
+            Click(SceneChannelWindow.ConfirmButtonName);
             Assert.That(_switches, Is.EqualTo(new[] { SceneId(2) }));
             Click(LineName(7));
+            Click(SceneChannelWindow.ConfirmButtonName);
             Assert.That(_switches, Is.EqualTo(new[] { SceneId(2), SceneId(7) }));
 
             // onClick.Invoke 会绕过 interactable;窗口自己还要按规则再核一遍,不能把意图发出去。
@@ -183,7 +185,27 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(FindButton(SceneChannelWindow.RefreshButtonName).interactable, Is.False);
 
             Click(LineName(7));
+            Click(SceneChannelWindow.ConfirmButtonName);
             Assert.That(_switches, Is.Empty);
+        }
+
+        [Test]
+        public void SelectingLine_WaitsForConfirmation_AndRechecksChangedAvailability()
+        {
+            _window.SetView(View(SevenLines())); _window.Show();
+            FindButton(LineName(2)).onClick.Invoke();
+            Assert.That(_switches, Is.Empty);
+            Assert.That(FindButton(SceneChannelWindow.ConfirmButtonName).interactable, Is.True);
+            var blocked=Ready();blocked.InBattle=true;
+            _window.SetView(View(SevenLines(),blocked));
+            Click(SceneChannelWindow.ConfirmButtonName);
+            Assert.That(_switches, Is.Empty, "确认时重新校验战斗门禁");
+            _window.SetView(View(SevenLines()));
+            FindButton(LineName(7)).onClick.Invoke();
+            Click(SceneChannelWindow.ConfirmButtonName);
+            Assert.That(_switches, Is.EqualTo(new[]{SceneId(7)}));
+            Click(SceneChannelWindow.ConfirmButtonName);
+            Assert.That(_switches.Count, Is.EqualTo(1), "一次选择最多提交一次");
         }
 
         // ── 刷新 / 关闭 ─────────────────────────────────────────────────────
@@ -288,6 +310,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
             // 留下来的行照样能点。
             Click(LineName(2));
+            Click(SceneChannelWindow.ConfirmButtonName);
             Assert.That(_switches, Is.EqualTo(new[] { SceneId(2) }));
             Assert.That(LineNames(), Is.EqualTo(Names(1, 7)), "没有重复建行");
         }
@@ -487,6 +510,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_window.StatusText, Is.EqualTo("切线冷却中，7秒后可再次切线。"));
             AssertNoRowIsClickable();
             Click(LineName(2));
+            Click(SceneChannelWindow.ConfirmButtonName);
             Assert.That(_switches, Is.Empty);
 
             // 冷却走完:各行按线自己的状态恢复可点,状态行回到数据层留着的那句话。
@@ -495,6 +519,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(FindButton(LineName(3)).interactable, Is.False);
             Assert.That(_window.StatusText, Is.EqualTo("已切换到 2线。"));
             Click(LineName(2));
+            Click(SceneChannelWindow.ConfirmButtonName);
             Assert.That(_switches, Is.EqualTo(new[] { SceneId(2) }));
 
             // 隐藏时只记数,不重画;再打开时按记下的值画。
@@ -568,13 +593,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
                 net.Push(MessageIds.NotifySceneInfo, new SceneInfoS2C { ChannelDirectory = ThreeLineDirectory() });
                 Assert.That(LineNames(), Is.EqualTo(Names(1, 3)));
-                Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前：1线"));
+                Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前场景：1线"));
                 Assert.That(FindButton(LineName(1)).interactable, Is.False);
                 Assert.That(FindButton(LineName(2)).interactable, Is.True);
                 Assert.That(FindButton(LineName(3)).interactable, Is.False);
 
                 // 点 2线:发出去的是 EnterScene(当前地图, 2线的 scene_id);面板进入「切换中」。
                 Click(LineName(2));
+            Click(SceneChannelWindow.ConfirmButtonName);
                 Assert.That(net.Calls.Count, Is.EqualTo(1));
                 Assert.That(net.Calls[0].Id, Is.EqualTo(MessageIds.EnterScene));
                 var request = (EnterSceneC2SRequest)net.Calls[0].Request;
@@ -600,7 +626,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 client.Tick();
                 Assert.That(net.OneWays.Count, Is.EqualTo(2));
                 net.Push(MessageIds.NotifySceneInfo, new SceneInfoS2C { ChannelDirectory = ThreeLineDirectory() });
-                Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前：2线"));
+                Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前场景：2线"));
                 Assert.That(Texts(FindButton(LineName(2))), Is.EqualTo(new[] { "2线", SceneChannelWindow.CurrentTagText, "繁忙" }));
                 AssertNoRowIsClickable();
                 Assert.That(_window.StatusText, Is.EqualTo("切线冷却中，9秒后可再次切线。"));
@@ -752,7 +778,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_window.StatusText, Is.Not.Empty, reason.ToString());
             Assert.That(_window.StatusIsError, Is.False, reason.ToString());
             Click(LineName(2));
+            Click(SceneChannelWindow.ConfirmButtonName);
             Click(LineName(7));
+            Click(SceneChannelWindow.ConfirmButtonName);
         }
 
         private void AssertNoRowIsClickable()

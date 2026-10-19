@@ -16,6 +16,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private void ApplyFidelityLayout()
         {
             AttributeFidelityLayout.Header(_root,"宝宝属性");
+            AttributeFidelityLayout.ObjectTabs(_root,true);
             AttributeFidelityLayout.Place(_carryText.rectTransform,81.6f,134.4f,400,67.2f);AttributeFidelityLayout.Font(_carryText,27.2f,AttributeFidelityLayout.Muted);
             AttributeFidelityLayout.Place(_root,"PetRosterViewport",81.6f,222.4f,400,536);
             AttributeFidelityLayout.Place(_root,"RosterDivider",484.8f,134.4f,16,680);
@@ -69,8 +70,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             string[] tabs={"属性","加点","技能","坐骑","图鉴"};for(int i=0;i<tabs.Length;i++)
             {
                 var rect=AttributeFidelityLayout.Find(_root,"Tab"+tabs[i]+"Plate");if(rect==null)continue;
-                AttributeFidelityLayout.Place(rect,1400+i*150,46.4f,140,68.8f);SkinPainted(rect.GetComponent<Image>(),i==1?"button_primary":"button_secondary");
-                var label=rect.GetComponentInChildren<TMP_Text>();label.text=tabs[i];AttributeFidelityLayout.Place(label.rectTransform,0,0,140,68.8f);AttributeFidelityLayout.Font(label,29);
+                AttributeFidelityLayout.Place(rect,400+i*150,853,140,45);SkinPainted(rect.GetComponent<Image>(),i==1?"button_primary":"button_secondary");
+                var label=rect.GetComponentInChildren<TMP_Text>();label.text=tabs[i];AttributeFidelityLayout.Place(label.rectTransform,0,0,140,45);AttributeFidelityLayout.Font(label,25);
             }
         }
     }

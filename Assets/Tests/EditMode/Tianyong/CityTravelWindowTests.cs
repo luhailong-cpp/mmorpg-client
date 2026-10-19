@@ -32,6 +32,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void CurrentDayOnlyCity_CannotEnableLegacyFestivalAppearance()
         {
             _window.Show(2, false);
+            Click("OpenCityTravelOptions");
             Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(2));
             Assert.That(_window.TravelEnabled, Is.False);
             Click("FestivalAppearance");
@@ -49,6 +50,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             bool festival = false;
             _window.TravelRequested += (id, value) => { scene = id; festival = value; };
             _window.Show(1, false);
+            Click("OpenCityTravelOptions");
             Click("CityDestination_3");
             Click("FestivalAppearance");
             Click("TravelToSelectedCity");
@@ -60,6 +62,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void PendingTravel_DisablesDestinationAndAppearanceControls()
         {
             _window.Show(1, false);
+            Click("OpenCityTravelOptions");
             Click("CityDestination_3");
             _window.SetState(1, false, true, "正在传送");
             Assert.That(_window.TravelEnabled, Is.False);
@@ -87,6 +90,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(destinations[i].DayResourcePath, Does.StartWith("World/CurrentMaps20261009/"));
                 Assert.That(destinations[i].HasFestival, Is.False);
             }
+        }
+
+        [Test]
+        public void OriginalMapEntrypoints_KeepTravelControlsReachableWithoutChangingTheirPurpose()
+        {
+            _window.Show(1, false);
+            var options=FindButton("TravelToSelectedCity").transform.parent.gameObject;
+            Assert.That(options.activeSelf, Is.False, "默认地图保持批准原稿构图");
+            Click("OpenCityTravelOptions");
+            Assert.That(options.activeSelf, Is.True);
+            Click("CityDestination_3");
+            Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(3));
+            Click("CloseCityTravelOptions");
+            Assert.That(options.activeSelf, Is.False);
+            int calls=0;_window.TravelRequested+=(id,festival)=>calls++;
+            Click("WorldMapTrials");
+            Assert.That(options.activeSelf, Is.True);
+            Assert.That(calls, Is.Zero, "尚未开放的试炼入口不会假冒换景或发出错误传送");
         }
 
         private void Click(string name) => FindButton(name).onClick.Invoke();

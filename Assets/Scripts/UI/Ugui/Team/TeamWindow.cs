@@ -53,6 +53,9 @@ namespace MmorpgClient.UI.Ugui.Team
         private static TMP_FontAsset _bodyFont;
         private readonly RectTransform _root, _members, _applications;
         private readonly CanvasGroup _frameControls;
+        private readonly Image _exactApplicationTitle, _exactRefresh;
+        private readonly Image _summaryFallbackPlate, _exactLeaderState, _exactFooterSync, _exactInstruction;
+        private readonly TMP_Text _teamCountValue, _teamIdValue, _memberVacancyValue;
         private readonly TMP_Text _summary, _status, _memberCount, _applicationCount, _applicationTitle, _leaderState, _footerSync;
         private readonly TMP_Text _memberPageLabel, _applicationPageLabel, _refreshLabel, _startMatchLabel;
         private readonly Button _refresh, _close, _memberPrevious, _memberNext, _applicationPrevious, _applicationNext;
@@ -80,20 +83,28 @@ namespace MmorpgClient.UI.Ugui.Team
             var frame=QdaoUguiFactory.CreateCenteredRect("TeamFrame",_root,1931,814);
             frame.localScale=UnityEngine.Vector3.one*(2560f/1931f);
             _frameControls=frame.gameObject.AddComponent<CanvasGroup>();
-            Art(frame,"team_skin",0,0,1931,814);
+            ExactArt(frame,"team-skin",0,0,1931,814);
             _close=QdaoUguiFactory.CreateHitButton("CloseTeamWindow",frame,1747,32,86,86);
             _close.navigation=new Navigation{mode=Navigation.Mode.Automatic};_close.onClick.AddListener(Hide);
+            _summaryFallbackPlate=ExactArt(frame,"summary-fallback",1206,111,338,43);
             _summary=Label(frame,"队伍信息尚未同步",1207,112,332,36,20,BodyInk);
+            _teamCountValue=Label(frame,"",1288,114,51,36,20,BodyInk,TextAlignmentOptions.Center);
+            _teamIdValue=Label(frame,"",1462,114,68,36,20,BodyInk,TextAlignmentOptions.Center);
             Art(frame,"badge_self",1545,110,159,44);
             _leaderState=Label(frame,"待同步",1553,110,143,44,24,Cream,TextAlignmentOptions.Center);
-            _memberCount=Label(frame,"",913,162,134,34,25,BodyMuted,TextAlignmentOptions.MidlineRight);
+            _exactLeaderState=ExactArt(frame,"leader-state",1543,108,161,47);
+            _memberCount=Label(frame,"",913,162,134,34,25,Color.clear,TextAlignmentOptions.MidlineRight);
+            _memberVacancyValue=Label(frame,"",973,162,30,34,25,BodyMuted,TextAlignmentOptions.Center);
+            _memberVacancyValue.enableAutoSizing=true;_memberVacancyValue.fontSizeMin=16;_memberVacancyValue.fontSizeMax=25;
+            ExactArt(frame,"application-title-empty",1180,164,177,56);
             _applicationTitle=Text(frame,"申请列表",1185,165,186,49,35,Cream);
-            var countDot=QdaoUguiFactory.CreateImage("ApplicationCountBadge",frame,1372,170,43,43,
-                QdaoUguiTheme.RequireSprite(QdaoUguiTheme.StatusDotSpritePath));countDot.color=QdaoUguiTheme.Html("#BA4B3C");
-            _applicationCount=Label(frame,"",1372,169,43,44,27,Cream,TextAlignmentOptions.Center);
+            _exactApplicationTitle=ExactArt(frame,"application-title",1180,164,177,56);
+            var countDot=ExactArt(frame,"application-count-empty",1367,168,50,48);countDot.name="ApplicationCountBadge";
+            _applicationCount=Label(frame,"",1370,168,45,48,32,Cream,TextAlignmentOptions.Center);
+            _applicationCount.enableAutoSizing=true;_applicationCount.fontSizeMin=18;_applicationCount.fontSizeMax=32;
             _applicationCount.name="TeamApplicationCount";
-            _members=QdaoUguiFactory.CreateRect("TeamMembers",frame,195,201,851,516);
-            _applications=QdaoUguiFactory.CreateRect("TeamApplications",frame,1109,238,619,399);
+            _members=QdaoUguiFactory.CreateRect("TeamMembers",frame,197,201,851,516);
+            _applications=QdaoUguiFactory.CreateRect("TeamApplications",frame,1110,238,619,399);
             _memberPrevious=Control(frame,"上页",638,150,83,37,()=>MovePage(TeamPage.Members,-1),size:20);_memberPrevious.name="MemberPreviousPage";
             _memberPageLabel=Label(frame,"",724,150,85,37,20,BodyMuted,TextAlignmentOptions.Center);
             _memberNext=Control(frame,"下页",812,150,83,37,()=>MovePage(TeamPage.Members,1),size:20);_memberNext.name="MemberNextPage";
@@ -101,7 +112,9 @@ namespace MmorpgClient.UI.Ugui.Team
             _applicationPageLabel=Label(frame,"",1595,178,60,37,18,BodyMuted,TextAlignmentOptions.Center);
             _applicationNext=Control(frame,"下页",1656,178,66,37,()=>MovePage(TeamPage.Applications,1),size:18);_applicationNext.name="ApplicationNextPage";
             _status=Label(frame,"",1112,667,612,45,23,BodyMuted,TextAlignmentOptions.Center);
+            _exactInstruction=ExactArt(frame,"application-instruction",1276,664,283,39);
             _footerSync=Label(frame,"队伍信息待同步",288,734,258,43,23,BodyMuted);
+            _exactFooterSync=ExactArt(frame,"footer-sync",284,732,174,45);
             // Added gameplay actions retain fixed slots inside the original panel's footer.
             _startMatch=Control(frame,"开始战斗",568,733,166,44,ConfirmStartMatch,true,size:23);_startMatch.name="StartTeamMatch";
             _startMatchLabel=_startMatch.GetComponentInChildren<TMP_Text>(true);
@@ -112,6 +125,8 @@ namespace MmorpgClient.UI.Ugui.Team
             _apply=Control(frame,"申请入队",1087,733,166,44,PromptApply,size:23);_apply.name="ApplyJoinTeam";
             _refresh=Control(frame,"刷新",1538,725,181,54,()=>{if(CanAct)RefreshRequested?.Invoke();},size:27);_refresh.name="RefreshTeam";
             _refreshLabel=_refresh.GetComponentInChildren<TMP_Text>(true);
+            _exactRefresh=ExactArt(_refresh.transform,"refresh",-2,0,184,54);
+            _refresh.targetGraphic=_exactRefresh;
             UpdateFooter(false,false,false);
         }
 
@@ -216,14 +231,30 @@ namespace MmorpgClient.UI.Ugui.Team
             int applicationTotal = hasTeam && !leader ? (int)(_state.Snapshot?.ApplicationCount ?? 0) : applications;
             _summary.text=hasTeam ? $"队伍人数 {members}/{capacity}   队伍编号 {data.TeamId}"
                 : noTeam ? $"尚未入队 · 玩家编号 {data.LocalPlayerId}" : "队伍信息尚未同步";
+            _summaryFallbackPlate.gameObject.SetActive(!hasTeam);
+            _summary.color=hasTeam?Color.clear:BodyInk;
+            _teamCountValue.text=hasTeam?$"{members}/{capacity}":"";
+            _teamIdValue.text=hasTeam?data.TeamId.ToString():"";
             _leaderState.text=hasTeam?(leader?"你是队长":"你是队员"):"尚未入队";
+            _exactLeaderState.gameObject.SetActive(hasTeam&&leader);
+            _leaderState.color=hasTeam&&leader?Color.clear:Cream;
             _footerSync.text=_state?.HasLoaded==true?"队伍信息已同步":"队伍信息待同步";
+            _exactFooterSync.gameObject.SetActive(_state?.HasLoaded==true);
+            _footerSync.color=_state?.HasLoaded==true?Color.clear:BodyMuted;
             _memberCount.text=$"空余 {Math.Max(0,capacity-members)} 席";
+            _memberVacancyValue.text=Math.Max(0,capacity-members).ToString();
             _applicationTitle.text = noTeam ? "收到的邀请" : "申请列表";
+            _exactApplicationTitle.gameObject.SetActive(!noTeam);
+            _applicationTitle.color = noTeam ? Cream : Color.clear;
             _applicationCount.text = (noTeam ? invites : applicationTotal).ToString();
             _status.text = StatusText();
+            bool originalHint=_status.text=="同意申请后，道友将加入你的队伍。";
+            _exactInstruction.gameObject.SetActive(originalHint);
+            _status.color=originalHint?Color.clear:BodyMuted;
             _refresh.interactable = CanAct;
             _refreshLabel.text = _state?.IsLoading == true ? "同步中…" : "刷新";
+            _exactRefresh.gameObject.SetActive(_state?.IsLoading != true);
+            _refreshLabel.color = _state?.IsLoading == true ? Ink : Color.clear;
             UpdateFooter(hasTeam, leader, noTeam);
             int memberPages = noTeam ? 1 : 1 + (Math.Max(capacity, members) - 1) / MaxMemberCards;
             int applicationPages = Math.Max(1, (rightItems + RowsPerPage - 1) / RowsPerPage);
@@ -336,25 +367,27 @@ namespace MmorpgClient.UI.Ugui.Team
                 int slot=start+i;var role=data!=null&&slot<data.Members.Count?data.Members[slot]:null;
                 bool self=role!=null&&role.PlayerId==data.LocalPlayerId;
                 bool highlighted=role!=null&&_state.HighlightPlayerId!=0&&role.PlayerId==_state.HighlightPlayerId;
-                var row=Row(_members,"TeamMemberSlot_"+slot,0,i*104,851,100,"member_row",
+                float[] rowY={0,108,216,323,423}; float[] rowHeight={100,101,102,94,91};
+                var row=ExactRow(_members,"TeamMemberSlot_"+slot,0,rowY[i],851,rowHeight[i],"member-row-"+i,
                     highlighted?QdaoUguiTheme.Html("#F6D9D2"):Color.white);
                 if(role==null)
                 {
-                    Art(row,"empty_slot",44,6,88,88,true);
-                    Label(row,"空余席位",175,8,430,44,29,BodyInk);
-                    Label(row,"等待道友加入",175,56,430,34,23,BodyMuted);
+                    ExactArt(row,i==4?"empty-row-4":"empty-row-3",0,0,851,rowHeight[i]);
+                    Label(row,"空余席位",175,8,430,44,29,Color.clear);
+                    Label(row,"等待道友加入",175,56,430,34,23,Color.clear);
                     continue;
                 }
-                Portrait(row,role,43,0,100);
-                Label(row,DisplayName(role),175,1,232,49,34,bold:false).name="TeamName_"+role.PlayerId;
-                Label(row,Level(role)+" · "+School(role),175,57,232,35,24,BodyInk).name="TeamLevel_"+role.PlayerId;
+                float[] portraitX={41,42,41,44,44};float[] portraitY={0,0,-2,3,1};float[] portraitSize={105,103,104,88,88};
+                Portrait(row,role,portraitX[i],portraitY[i],portraitSize[i]);
+                Label(row,DisplayName(role),173,9,236,49,40,bold:true).name="TeamName_"+role.PlayerId;
+                Label(row,Level(role)+" · "+School(role),173,56,236,35,26,BodyInk).name="TeamLevel_"+role.PlayerId;
                 bool leader=role.PlayerId==data.LeaderId;
-                Art(row,"badge_leader",413,30,118,42);
-                Label(row,leader?"队长":"队员",421,30,102,42,26,BodyInk,TextAlignmentOptions.Center);
+                ExactArt(row,leader?"role-leader":"role-member",410,28,122,44);
+                Label(row,leader?"队长":"队员",421,30,102,42,26,Color.clear,TextAlignmentOptions.Center);
                 if(self)
                 {
-                    Art(row,"badge_self",549,31,86,40);
-                    Label(row,"自己",555,31,74,40,23,Cream,TextAlignmentOptions.Center);
+                    ExactArt(row,"self-state",545,29,88,42);
+                    Label(row,"自己",555,31,74,40,23,Color.clear,TextAlignmentOptions.Center);
                 }
                 else if(manageRows)
                 {
@@ -366,9 +399,11 @@ namespace MmorpgClient.UI.Ugui.Team
                     var kick=Control(row,kicking?"处理中":"请离",624,32,76,40,()=>ConfirmKick(id),
                         enabled:CanManage,size:kicking?16:21);kick.name="Kick_"+id;
                 }
-                if(role.OnlineStatusKnown)Art(row,role.IsOnline?"status_online":"status_offline",710,38,23,23,true);
+                bool originalOnlineState=role.OnlineStatusKnown&&(!role.IsOnline||!role.InBattle);
+                if(originalOnlineState)ExactArt(row,role.IsOnline?"status-online":"status-offline",702,29,138,46);
+                else if(role.OnlineStatusKnown)Art(row,role.IsOnline?"status_online":"status_offline",710,38,23,23,true);
                 Label(row,!role.OnlineStatusKnown?"待同步":role.IsOnline?(role.InBattle?"战斗中":"在线"):"离线",
-                    741,27,95,45,25,role.IsOnline?BodyInk:BodyMuted,TextAlignmentOptions.MidlineRight);
+                    741,27,95,45,25,originalOnlineState?Color.clear:role.IsOnline?BodyInk:BodyMuted,TextAlignmentOptions.MidlineRight);
             }
         }
 
@@ -389,16 +424,17 @@ namespace MmorpgClient.UI.Ugui.Team
             for(int i=0;i<count;i++)
             {
                 var role=list[start+i];if(role==null)continue;
-                var row=Row(_applications,"TeamRow_"+role.PlayerId,0,i*(compact?101:204),619,compact?94:194,"application_card");
+                var row=compact?Row(_applications,"TeamRow_"+role.PlayerId,0,i*101,619,94,"application_card")
+                    :ExactRow(_applications,"TeamRow_"+role.PlayerId,0,i*204,619,194,"application-card-"+i,Color.white);
                 Portrait(row,role,compact?14:19,compact?9:8,compact?76:130);
                 Label(row,DisplayName(role),compact?103:168,compact?5:21,compact?208:420,compact?41:50,
-                    compact?27:37,bold:false).name="TeamName_"+role.PlayerId;
+                    compact?27:42,bold:!compact).name="TeamName_"+role.PlayerId;
                 Label(row,Level(role)+" · "+School(role),compact?103:168,compact?49:77,compact?208:420,compact?34:41,
-                    compact?20:25,BodyInk).name="TeamDetails_"+role.PlayerId;
-                bool pending=_state?.PendingPlayerId==role.PlayerId;float y=compact?25:122;
-                var reject=Control(row,"拒绝",compact?326:135,y,compact?123:214,compact?50:57,
+                    compact?20:28,BodyInk).name="TeamDetails_"+role.PlayerId;
+                bool pending=_state?.PendingPlayerId==role.PlayerId;float y=compact?25:121;
+                var reject=Control(row,"拒绝",compact?326:131,y,compact?123:219,compact?50:60,
                     ()=>Decide(role.PlayerId,false),enabled:CanReject,size:compact?22:30);reject.name="Reject_"+role.PlayerId;
-                var approve=Control(row,pending?"处理中":"同意",compact?459:365,y,compact?138:214,compact?50:57,
+                var approve=Control(row,pending?"处理中":"同意",compact?459:363,y,compact?138:224,compact?50:60,
                     ()=>Decide(role.PlayerId,true),primary:true,enabled:CanApprove,size:pending?23:compact?22:30);approve.name="Approve_"+role.PlayerId;
             }
         }
@@ -766,8 +802,30 @@ namespace MmorpgClient.UI.Ugui.Team
             Action click, bool primary = false, bool enabled = true, string key = null, float size = 30)
         {
             var button = Button(parent, value, x, y, w, h, click, primary, enabled, key, size);
-            button.GetComponentInChildren<TMP_Text>(true).font = BodyFont();
+            var caption = button.GetComponentInChildren<TMP_Text>(true);
+            caption.font = BodyFont();
+            // Only approved fixed application actions use baked source captions. Pending labels remain native.
+            if (w >= 200 && w <= 230 && h >= 50 && h <= 60 && (value == "拒绝" || value == "同意"))
+            {
+                button.image.sprite = QdaoUguiTheme.RequireSprite("UI/Ugui/TeamExact20261017/" + (value == "拒绝" ? "reject" : "approve"));
+                button.image.type = Image.Type.Simple;
+                caption.color = Color.clear;
+            }
             return button;
+        }
+
+        private static RectTransform ExactRow(UnityEngine.Transform parent,string name,float x,float y,float w,float h,string key,Color tint)
+        {
+            var row=QdaoUguiFactory.CreateRect(name,parent,x,y,w,h);
+            ExactArt(row,key,0,0,w,h).color=tint;return row;
+        }
+
+        private static Image ExactArt(UnityEngine.Transform parent, string key, float x, float y, float w, float h)
+        {
+            var image = QdaoUguiFactory.CreateImage("Exact_" + key, parent, x, y, w, h,
+                QdaoUguiTheme.RequireSprite("UI/Ugui/TeamExact20261017/" + key));
+            image.type = Image.Type.Simple; image.raycastTarget = false;
+            return image;
         }
 
         private static string DisplayName(TeamRole role) => TeamViewMapper.DisplayName(role);
