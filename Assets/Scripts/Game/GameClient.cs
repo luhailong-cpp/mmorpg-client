@@ -1524,13 +1524,24 @@ namespace MmorpgClient.Game
             while (Time.realtimeSinceStartup < until) yield return null;
         }
 
-        private static string DescribeLoginCode(GatewayLoginResult r) => r.code switch
+        /// <summary>
+        /// HTTP 登录失败码 → 给人看的文案(网关 LoginResponse,服务端 docs/design/third-party-login-end-to-end-design.md §三)。
+        /// 500 除了 login 不可达(login_unavailable)与网关内部异常,2026-10-18 起还包括 Tip.xlsx 标了 fault 的
+        /// login in-band 码(message 仍是 upstream_err=&lt;tip&gt;):都是服务端出错、凭证不一定有问题,只提示稍后重试,
+        /// 不能落到"账号或密码错误"。message 原样留在括号里,玩家反馈时带得出 tip 码。
+        /// 测试程序集没有 InternalsVisibleTo,所以只能是 public。
+        /// </summary>
+        public static string DescribeLoginCode(GatewayLoginResult r) => r.code switch
         {
             GatewayLoginResult.CodeQueueTimeout => "排队超时,请稍后重试",
             GatewayLoginResult.CodeAuthRejected => "账号或密码错误",
             GatewayLoginResult.CodeRateLimited  => "操作过于频繁,请稍后重试",
-            _ => $"登录失败({(string.IsNullOrEmpty(r.message) ? r.code.ToString() : r.message)})",
+            GatewayLoginResult.CodeInternal     => $"服务器异常,请稍后重试({LoginCodeDetail(r)})",
+            _ => $"登录失败({LoginCodeDetail(r)})",
         };
+
+        private static string LoginCodeDetail(GatewayLoginResult r)
+            => string.IsNullOrEmpty(r.message) ? r.code.ToString() : r.message;
 
         private static string DescribeAssignCode(AssignGateResult r) => r.code switch
         {
