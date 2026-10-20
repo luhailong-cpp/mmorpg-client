@@ -132,6 +132,8 @@ $whitelist = @{
     "SceneSceneClientPlayerSceneInfoC2S"           = "SceneInfoC2S"
     "SceneSkillClientPlayerReleaseSkill"           = "ReleaseSkill"
     "SceneSkillClientPlayerListSkills"             = "ListSkills"
+    # 四职业技能修习(服务端 docs/design/class-skills.md §4)
+    "SceneSkillClientPlayerUpgradeSkill"           = "UpgradeSkill"
 
     "SceneMovementClientPlayerMoveStart"           = "MoveStart"
     "SceneMovementClientPlayerMoveStop"            = "MoveStop"

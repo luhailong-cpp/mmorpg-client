@@ -21,7 +21,8 @@ using UnityEngine.UI;
 /// <summary>真实强化界面的离线编辑器核验：只用内存假传输，不创建游戏连接或登录会话。</summary>
 public static class EquipmentForgeUiVerification
 {
-    public static string OutputDirectory = "E:/work/forge-ui-qa-20261016/screenshots";
+    public static string OutputDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.dataPath,
+        "../Docs/Verification/forge-ui-qa-20261016/screenshots"));
     private const ulong SwordId = 5001;
     private const uint StoneId = 2001;
     private const uint AttackGemId = 2101;

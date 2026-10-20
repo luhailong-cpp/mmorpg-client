@@ -3,8 +3,8 @@
   出跨区匹配验证用的 Windows 64 Development 播放器(batchmode 调用 CrossZoneVerifyBuild.Build)。
 
 .DESCRIPTION
-  产物:E:/work/tmp/crosszone_player/mmorpg.exe(可用 -OutDir 改)。
-  日志:E:/work/tmp/crosszone_build.log;失败时自动 tail 日志并挑出 "error CS" 行。
+  产物:<客户端工程>/Builds/crosszone_player/mmorpg.exe(可用 -OutDir 改)。
+  日志:<客户端工程>/Logs/crosszone_build.log;失败时自动 tail 日志并挑出 "error CS" 行。
   前置:Unity 编辑器未打开该工程(Temp/UnityLockfile 存在则 batchmode 会被拒)。
 
 .EXAMPLE
@@ -15,14 +15,16 @@
 param(
     [string]$UnityExe = "C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Unity.exe",
     [string]$ProjectPath = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path,
-    [string]$OutDir = "E:/work/tmp/crosszone_player",
-    [string]$LogFile = "E:/work/tmp/crosszone_build.log",
+    [string]$OutDir = "",
+    [string]$LogFile = "",
     [switch]$CompileCheckOnly,
     [switch]$NoGraphics = $true,
     [int]$TailLines = 60
 )
 
 $ErrorActionPreference = "Stop"
+if (-not $OutDir) { $OutDir = Join-Path $ProjectPath 'Builds/crosszone_player' }
+if (-not $LogFile) { $LogFile = Join-Path $ProjectPath 'Logs/crosszone_build.log' }
 
 if (-not (Test-Path $UnityExe)) { Write-Error "找不到 Unity.exe: $UnityExe" }
 if (-not (Test-Path (Join-Path $ProjectPath "Assets"))) { Write-Error "不是 Unity 工程目录: $ProjectPath" }

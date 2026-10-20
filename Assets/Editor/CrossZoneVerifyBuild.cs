@@ -10,18 +10,18 @@ namespace MmorpgClient.Editor
     /// <summary>
     /// 跨区匹配验证用播放器出包(batchmode -executeMethod 入口)。
     /// 用主工程真实的 EditorBuildSettings 场景列表构建 Windows 64 Development 播放器
-    /// 到 E:/work/tmp/crosszone_player/mmorpg.exe;两份实例由
+    /// 到客户端工程的 Builds/crosszone_player/mmorpg.exe;两份实例由
     /// tools/run_crosszone_pair.ps1 以不同 -zone/-account 启动(见 DevAutoPilot)。
     ///
     /// 调用(tools/build_crosszone_player.ps1 封装):
     ///   Unity.exe -batchmode -nographics -quit -projectPath E:/work/mmorpg-client
     ///     -executeMethod MmorpgClient.Editor.CrossZoneVerifyBuild.Build
-    ///     [-crossZoneOut E:/work/tmp/crosszone_player] -logFile E:/work/tmp/crosszone_build.log
+    ///     [-crossZoneOut E:/work/mmorpg-client/Builds/crosszone_player] -logFile E:/work/mmorpg-client/Logs/crosszone_build.log
     /// 出包失败以退出码 1 结束编辑器进程(照 TianyongVerifyBuild 的做法)。
     /// </summary>
     public static class CrossZoneVerifyBuild
     {
-        public const string DefaultOutputDir = "E:/work/tmp/crosszone_player";
+        public static string DefaultOutputDir => Path.GetFullPath(Path.Combine(Application.dataPath, "../Builds/crosszone_player"));
         public const string ExeName = "mmorpg.exe";
 
         /// <summary>只做编译检查:batchmode 能走到这里即脚本编译通过。</summary>
