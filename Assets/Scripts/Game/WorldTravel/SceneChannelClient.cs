@@ -236,7 +236,7 @@ namespace MmorpgClient.Game.WorldTravel
 
             _net.Disconnected += HandleDisconnected;
             // 一个 message id 只有一个处理器(GameClient.OnNotify 覆盖写)。31 / 43 全仓只有这里注册:
-            // Net/Generated 下的同名空壳要靠 HandlerRegistry.Register 才会挂上,而它从未被调用。
+            // 推送注册以 OnNotify / <Service>Rpc.On<Method> 为准,别处再注册同号会静默盖掉这里。
             _net.RegisterNotify(MessageIds.NotifySceneInfo, HandleSceneInfo);
             _net.RegisterNotify(MessageIds.SceneInfoC2S, HandleListReply);
             // 构造不发请求:第一次列线由进场(HandleSceneEntered)或界面触发。

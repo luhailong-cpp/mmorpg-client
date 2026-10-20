@@ -192,13 +192,17 @@ namespace MmorpgClient.Net
         /// 补签退避抖动用的 [0,1) 随机源;空 = System.Random。只在主线程调用。
         /// 测试传常量(0.5 = 无抖动)让退避时序确定。
         /// </param>
+        /// <param name="onCallbackException">
+        /// 请求回调(onResponse / onError)抛出的异常;空 = 记进 log。宿主应接到错误级日志(GameClient 接 LogError),
+        /// 与大厅连接的可见性一致。测试接到列表上并在 TearDown 断言为空:回调里的 Assert.Fail 会被在途表捕获,不接就看不见。
+        /// </param>
         public BattleDirectLink(Func<IFramedConnection> factory, Action<string> log = null,
                                 Func<ulong> unixNowMs = null, Action<Action> connectRunner = null,
-                                Func<double> random01 = null)
+                                Func<double> random01 = null, Action<Exception> onCallbackException = null)
         {
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
             _log = log ?? (_ => { });
-            _calls = new OutstandingCalls(ex => _log($"回调异常: {ex}"));
+            _calls = new OutstandingCalls(onCallbackException ?? (ex => _log($"回调异常: {ex}")));
             _unixNowMs = unixNowMs ?? (() => (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             _connectRunner = connectRunner ?? (a => ThreadPool.QueueUserWorkItem(_ => a()));
             if (random01 == null)
@@ -483,7 +487,10 @@ namespace MmorpgClient.Net
 
         private void OpenConnection()
         {
+            // 换到新连接:旧连接上的在途调用回包再也到不了(旧连接已拆,收包有 ReferenceEquals 守卫),立即失败,
+            // 不能留到 15s 超时,也不能被新连接之后的断线顶着失败、把原因安到新局头上。
             TeardownConnection();
+            FailPending("connection_replaced");
             var assignment = _assignment;
             if (assignment == null) { Finish(BattleLinkCloseKind.Unreachable, "no_assignment"); return; }
 
@@ -620,6 +627,7 @@ namespace MmorpgClient.Net
             ulong supersededBattleId = OpenBattleSupersededBy(battleId);
             _epoch++;
             TeardownConnection();
+            FailPending("connection_replaced"); // 理由同 OpenConnection
             _assignment = null;
             _targetBattleId = battleId;
             _ended = false;
@@ -794,6 +802,7 @@ namespace MmorpgClient.Net
             _epoch++;
             _reissueInFlight = false;
             TeardownConnection();
+            FailPending(reason); // 多数调用方已先失败过,此处兜底「拆连接即失败在途调用」这条不变式
             _reconnectAt = 0;
             _reissueAt = 0;
             _handshakeDeadline = 0;

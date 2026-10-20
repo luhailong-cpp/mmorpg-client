@@ -278,7 +278,8 @@ namespace MmorpgClient.Game
             World.AppearanceProvider = ResolveActorCharacterId;
 
             // 战斗直连链路要先于 WireSceneNotifyHandlers 建好:NotifyBattleAssigned 的处理器指向它
-            BattleLink = new BattleDirectLink(() => new GateTcpClient(_codec), s => Log($"[battle-direct] {s}"));
+            BattleLink = new BattleDirectLink(() => new GateTcpClient(_codec), s => Log($"[battle-direct] {s}"),
+                onCallbackException: ex => LogError($"[battle-direct] callback threw: {ex}"));
             BattleLink.TicketReissuer = RequestBattleTicket;
             BattleLink.OnVerified += id =>
                 Log($"[battle-direct] verified battle_id={id} role={BattleLink.Role} endpoint={BattleLink.Assignment?.Host}:{BattleLink.Assignment?.Port}");
@@ -1748,13 +1749,12 @@ namespace MmorpgClient.Game
             // endpoint + token; connect to the new gate, then drop the old link
             // and re-run the whole connect pipeline there. 详见 RedirectFlow 上方的注释。
             //
-            // 这里是 msg 124 在本工程里**唯一**的处理器。Net/Generated/Handlers 下那个
-            // SceneClientPlayerCommonRedirectToGateHandler 是 protogen 出的空壳:它要靠
-            // Net/Generated/HandlerRegistry.Register(client) 才会挂上,而本工程从未调用过
-            // 那个 Register(全仓唯一出现处就是它自己的定义)。真正的注册表是这里的 OnNotify。
-            // ⚠️ OnNotify 是覆盖语义:一旦有人把 HandlerRegistry.Register 接上,生成的空壳
+            // 这里是 msg 124 在本工程里**唯一**的处理器。推送注册以 OnNotify /
+            // <Service>Rpc.On<Method>(Net/Generated/Rpc 下生成的类型化注册)为准;
+            // 旧的每消息生成 Handler 及其注册表已删除,不再有第二处注册入口。
+            // ⚠️ OnNotify 是覆盖语义:别处再注册 124(包括 SceneClientPlayerCommonRpc.OnRedirectToGate)
             // 会**静默盖掉**下面这个处理器,重定向就又变回"服务端推了、客户端什么都不做"。
-            // 要接生成层的话,必须让它在 WireSceneNotifyHandlers 之前跑,或者干脆别接。
+            // 要改用类型化注册,就在这里原地替换,不要另起一处。
             OnNotify(MessageIds.RedirectToGate, mc =>
             {
                 var ev = RedirectToGateNotify.Parser.ParseFrom(mc.SerializedMessage);
@@ -2111,21 +2111,33 @@ namespace MmorpgClient.Game
                 if (hadSessionState) BattleLink?.Close("lobby_disconnected");
                 World.Clear();
             }
+            catch
+            {
+                // 拆连接中途抛异常(World.Clear、直连 Close 等):断线通知发不出去了,但 _gate 可能已置空、回包再也认领不到,
+                // 在途调用仍要立刻以 "disconnected" 收场,不能拖到 15s 后变成 "rpc timeout"(业务把后者当成另一种失败)。
+                _calls.FailAll(RpcStatus.Disconnected("disconnected"));
+                throw;
+            }
             finally
             {
                 _disconnectInProgress = false;
             }
 
-            if (shouldNotify)
+            try
             {
-                // 每次通知前重写(普通断线写成 null),订阅者读到的不会是上一次失败留下的旧文案。
-                DisconnectReason = reason;
-                OnDisconnected?.Invoke();
+                if (shouldNotify)
+                {
+                    // 每次通知前重写(普通断线写成 null),订阅者读到的不会是上一次失败留下的旧文案。
+                    DisconnectReason = reason;
+                    OnDisconnected?.Invoke();
+                }
             }
-
-            // 在途调用最后才失败:连接状态已全部复位、断线通知已发出(与改造前协程下一帧才报 "disconnected" 的先后一致),
-            // 回调里再发请求会以 NotSent 失败,不会落到半拆的连接上。
-            _calls.FailAll(RpcStatus.Disconnected("disconnected"));
+            finally
+            {
+                // 在途调用最后才失败:连接状态已全部复位、断线通知已发出(与改造前协程下一帧才报 "disconnected" 的先后一致),
+                // 回调里再发请求会以 NotSent 失败,不会落到半拆的连接上。放在 finally:某个断线订阅者抛异常也照样执行。
+                _calls.FailAll(RpcStatus.Disconnected("disconnected"));
+            }
         }
     }
 }

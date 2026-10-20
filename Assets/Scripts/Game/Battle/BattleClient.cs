@@ -638,7 +638,8 @@ namespace MmorpgClient.Game.Battle
             _net.Call(MessageIds.CancelQueue, new Match.CancelQueueRequest { PlayerId = player, QueueTicket = _queueTicket, RequestId = _joinIntent?.RequestId ?? string.Empty }, Empty.Parser,
                 _ => { if (generation == _queueGeneration && player == MyPlayerId) PollQueueStatus(); },
                 _ => { if (generation == _queueGeneration && player == MyPlayerId) { OnError?.Invoke("取消结果尚未确认，正在查询。"); PollQueueStatus(); } });
-            // 两版 gate 对 Empty 成功不回包，确认必须独立查询，不能等取消 RPC 超时才开始。
+            // 取消的回包只说明受理(补位 / 凑满竞态下分不出是否真的出队),而且 Java 版 gate 对 Empty 应答成功仍不回包
+            // (C++ 版回空包,见服务端仓 docs/design/client-rpc-callback.md §7 R6),所以确认必须独立查询,不能等取消调用的结局。
             _nextQueuePollAt = _now + QueuePollIntervalSeconds;
             PollQueueStatus();
         }

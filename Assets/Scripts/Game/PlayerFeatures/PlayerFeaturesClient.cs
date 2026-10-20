@@ -201,7 +201,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             BagLoading = true;
             BagError = string.Empty;
             OnChanged?.Invoke();
-            _net.Call(SceneBagClientPlayerGetBagHandler.MessageId,
+            _net.Call(SceneBagClientPlayerRpc.GetBagMessageId,
                 new GetBagRequest { BagType = bagType }, GetBagResponse.Parser,
                 response =>
                 {
@@ -242,7 +242,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             EquipmentLoading = true;
             _equipmentReadError = string.Empty;
             OnChanged?.Invoke();
-            _net.Call(SceneBagClientPlayerGetBagHandler.MessageId,
+            _net.Call(SceneBagClientPlayerRpc.GetBagMessageId,
                 new GetBagRequest { BagType = EquipmentBagType }, GetBagResponse.Parser,
                 response =>
                 {
@@ -504,7 +504,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             BusySort = true;
             BagError = string.Empty;
             OnChanged?.Invoke();
-            _net.Call(SceneBagClientPlayerSortBagHandler.MessageId,
+            _net.Call(SceneBagClientPlayerRpc.SortBagMessageId,
                 new SortBagRequest { BagType = bagType }, SortBagResponse.Parser,
                 response =>
                 {
@@ -533,7 +533,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             MissionsLoading = true;
             MissionsError = string.Empty;
             OnChanged?.Invoke();
-            _net.Call(SceneMissionClientPlayerGetMissionListHandler.MessageId,
+            _net.Call(SceneMissionClientPlayerRpc.GetMissionListMessageId,
                 new GetMissionListRequest(), GetMissionListResponse.Parser,
                 response =>
                 {
@@ -561,7 +561,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             ActivitiesLoading = true;
             ActivitiesError = string.Empty;
             OnChanged?.Invoke();
-            _net.Call(SceneActivityClientPlayerGetActivityListHandler.MessageId,
+            _net.Call(SceneActivityClientPlayerRpc.GetActivityListMessageId,
                 new GetActivityListRequest(), GetActivityListResponse.Parser,
                 response =>
                 {
@@ -613,8 +613,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             MissionsError = string.Empty;
             OnChanged?.Invoke();
             if (!IsCurrent(epoch, playerId) || request != _missionRequest) return;
-            _net.Call(claim ? SceneMissionClientPlayerClaimMissionRewardHandler.MessageId :
-                    SceneMissionClientPlayerAcceptMissionHandler.MessageId,
+            _net.Call(claim ? SceneMissionClientPlayerRpc.ClaimMissionRewardMessageId :
+                    SceneMissionClientPlayerRpc.AcceptMissionMessageId,
                 new MissionActionRequest { Scope = scope, MissionId = missionId }, GetMissionListResponse.Parser,
                 response =>
                 {

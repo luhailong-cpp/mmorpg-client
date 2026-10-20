@@ -25,7 +25,7 @@ namespace MmorpgClient.Tests.EditMode.Social
         public void PendingListKeepsServerRequestIdAndClonesTheResponse()
         {
             _client.RefreshPending();
-            Assert.That(_net.Calls.Single().Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));
+            Assert.That(_net.Calls.Single().Id, Is.EqualTo(ClientPlayerFriendRpc.GetPendingRequestsMessageId));
             var response = Pending(101);
             _net.Reply(0, response); response.Requests[0].RequestId = 999;
             Assert.That(_client.Pending.Single().RequestId, Is.EqualTo(101));
@@ -61,7 +61,7 @@ namespace MmorpgClient.Tests.EditMode.Social
             Assert.That(_client.Status, Does.Contain("缺少编号"));
             Assert.That(accept ? _client.AcceptFriend(0) : _client.RejectFriend(0), Is.False);
             Assert.That(_net.Calls.Count, Is.EqualTo(2));
-            Assert.That(_net.Calls.Last().Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));
+            Assert.That(_net.Calls.Last().Id, Is.EqualTo(ClientPlayerFriendRpc.GetPendingRequestsMessageId));
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace MmorpgClient.Tests.EditMode.Social
             Load(101);
             _client.RefreshPending(); _net.Reply(1, Pending(202));
             Assert.That(_client.AcceptFriend(101), Is.False);
-            Assert.That(_net.Calls.Last().Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));
+            Assert.That(_net.Calls.Last().Id, Is.EqualTo(ClientPlayerFriendRpc.GetPendingRequestsMessageId));
             Assert.That(_client.Pending.Single().RequestId, Is.EqualTo(202));
         }
 
@@ -81,7 +81,7 @@ namespace MmorpgClient.Tests.EditMode.Social
             _net.Reply(1, new AcceptFriendResponse());
             Assert.That(_client.Pending.Single().RequestId, Is.EqualTo(101));
             Assert.That(_client.HasFreshPending, Is.False);
-            Assert.That(_net.Calls[2].Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));
+            Assert.That(_net.Calls[2].Id, Is.EqualTo(ClientPlayerFriendRpc.GetPendingRequestsMessageId));
             _net.Reply(2, Pending(202));
             Assert.That(_client.Pending.Single().RequestId, Is.EqualTo(202));
             Assert.That(_client.RejectFriend(202), Is.True);
@@ -135,7 +135,7 @@ namespace MmorpgClient.Tests.EditMode.Social
             Assert.That(_client.HasFreshPending, Is.False);
             Assert.That(_net.Calls.Count, Is.EqualTo(2));
             Assert.That(_client.AcceptFriend(101), Is.False);
-            Assert.That(_net.Calls.Last().Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));
+            Assert.That(_net.Calls.Last().Id, Is.EqualTo(ClientPlayerFriendRpc.GetPendingRequestsMessageId));
         }
 
         [Test]
@@ -243,7 +243,7 @@ namespace MmorpgClient.Tests.EditMode.Social
             social.Root.GetComponentsInChildren<Button>(false).Single(button => button.name == "SocialFriendRequests")
                 .onClick.Invoke();
             Assert.That(_window.IsVisible, Is.True);
-            Assert.That(_net.Calls.Single().Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));
+            Assert.That(_net.Calls.Single().Id, Is.EqualTo(ClientPlayerFriendRpc.GetPendingRequestsMessageId));
         }
 
         [Test]

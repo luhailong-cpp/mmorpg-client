@@ -166,7 +166,7 @@ namespace MmorpgClient.Tests.EditMode.Net
             _net.Reply(0, PendingRequests());
             Assert.That(_sync.IsDirty(SyncDomain.FriendRequest), Is.True, "摘要之前发出的拉取不确认");
             Assert.That(_net.Calls.Count, Is.EqualTo(2), "排队的刷新紧接着发出");
-            Assert.That(_net.Calls[1].Id, Is.EqualTo(ClientPlayerFriendGetPendingRequestsHandler.MessageId));
+            Assert.That(_net.Calls[1].Id, Is.EqualTo(ClientPlayerFriendRpc.GetPendingRequestsMessageId));
 
             _net.Fail(1, "rpc timeout");
             Assert.That(_sync.IsDirty(SyncDomain.FriendRequest), Is.True, "拉取失败保留脏标");

@@ -61,7 +61,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void OpeningBagPageReadsCharacterBagAndEquipmentSeparately()
         {
             _window.Show(GameplayPage.Bag);
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             Assert.That(reads.Select(call => ((GetBagRequest)call.Request).BagType),
                 Is.EqualTo(new[] { PlayerFeaturesClient.CharacterBagType, PlayerFeaturesClient.EquipmentBagType }));
             AssertText("正在打开行囊…");
@@ -412,7 +412,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             {
                 ErrorMessage = new TipInfoMessage { Id = (uint)equip_error.KEquipLevelNotEnough },
             });
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             Assert.That(reads.Select(call => ((GetBagRequest)call.Request).BagType), Is.EqualTo(new uint[] { 0, 2 }),
                 "被挡下的那次刷新在穿脱收口后补发");
             reads[0].Respond(new GetBagResponse { Bag = MakeBag(true) });
@@ -429,7 +429,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             // 第一次打开:装备栏先到,行囊还在路上就点了「卸下」,被拒。
             _window.Show(GameplayPage.Bag);
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             reads[1].Respond(new GetBagResponse { Bag = MakeEquipment(true) });
             SelectWornSlot(6);
             ActionButton().onClick.Invoke();
@@ -457,7 +457,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             _net.Calls.Single().FailWith("rpc timeout");
 
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             Assert.That(reads.Select(call => ((GetBagRequest)call.Request).BagType), Is.EqualTo(new uint[] { 0, 2 }),
                 "超时不等于没执行:两份快照重新拉");
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0", "BagSlot_1" }), "重拉回来之前仍是旧快照");
@@ -482,7 +482,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void EquipmentReadFailureLeavesBagPageUsableAndRefreshRetries(string kind, string reason)
         {
             _window.Show(GameplayPage.Bag);
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             reads[0].Respond(new GetBagResponse { Bag = MakeBag(true) });
             if (kind == "tip") reads[1].Respond(new GetBagResponse { ErrorMessage = new TipInfoMessage { Id = 5 } });
             else if (kind == "mistyped") reads[1].Respond(new GetBagResponse { Bag = MakeBag(false) });
@@ -569,7 +569,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             // 重新打开时的刷新回包里那件装备已经不在了:选中退回第一件物品(不是装备),卡片不再指向它。
             _window.Show(GameplayPage.Bag);
-            _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId).Last(call => ((GetBagRequest)call.Request).BagType == 0)
+            _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId).Last(call => ((GetBagRequest)call.Request).BagType == 0)
                 .Respond(new GetBagResponse { Bag = MakeBag(false) });
             Assert.That(TooltipRoot().gameObject.activeSelf, Is.False);
             AssertText("回春草");
@@ -710,7 +710,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private void Open(BagInfo bag, BagInfo equipment)
         {
             _window.Show(GameplayPage.Bag);
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             Assert.That(reads.Count, Is.EqualTo(2));
             reads[0].Respond(new GetBagResponse { Bag = bag });
             reads[1].Respond(new GetBagResponse { Bag = equipment });

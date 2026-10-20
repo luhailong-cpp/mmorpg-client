@@ -134,7 +134,7 @@ namespace MmorpgClient.App
         private IEnumerator Leader()
         {
             bool friendAdded = false;
-            yield return Game.Call(ClientPlayerFriendAddFriendHandler.MessageId,
+            yield return Game.Call(ClientPlayerFriendRpc.AddFriendMessageId,
                 new AddFriendRequest { TargetPlayerId = _peerId }, AddFriendResponse.Parser,
                 response => { if (TipOk(response.ErrorMessage, "add friend")) friendAdded = true; }, Fail);
             if (_done || !friendAdded) { if (!_done) Fail("Friend request did not acknowledge success."); yield break; }
@@ -254,7 +254,7 @@ namespace MmorpgClient.App
             yield return Wait(() => !Team.Client.HasTeam, "acceptance team disbanded");
             if (_done) yield break;
             bool removed = false;
-            yield return Game.Call(ClientPlayerFriendRemoveFriendHandler.MessageId,
+            yield return Game.Call(ClientPlayerFriendRpc.RemoveFriendMessageId,
                 new RemoveFriendRequest { TargetPlayerId = _peerId }, RemoveFriendResponse.Parser,
                 response => { if (TipOk(response.ErrorMessage, "remove acceptance friend")) removed = true; }, Fail);
             if (_done || !removed) { if (!_done) Fail("Friend cleanup not acknowledged."); yield break; }
@@ -272,7 +272,7 @@ namespace MmorpgClient.App
             yield return Wait(() => PeerAt("friend-requested", -1), "leader sends real friend request", 60);
             if (_done) yield break;
             bool accepted = false;
-            yield return Game.Call(ClientPlayerFriendAcceptFriendHandler.MessageId,
+            yield return Game.Call(ClientPlayerFriendRpc.AcceptFriendMessageId,
                 new AcceptFriendRequest { FromPlayerId = _peerId }, AcceptFriendResponse.Parser,
                 response => { if (TipOk(response.ErrorMessage, "accept friend")) accepted = true; }, Fail);
             if (_done || !accepted) { if (!_done) Fail("Friend acceptance not acknowledged."); yield break; }
@@ -337,7 +337,7 @@ namespace MmorpgClient.App
         private IEnumerator VerifyFriendRemoved()
         {
             bool verified = false;
-            yield return Game.Call(ClientPlayerFriendGetFriendListHandler.MessageId, new GetFriendListRequest(),
+            yield return Game.Call(ClientPlayerFriendRpc.GetFriendListMessageId, new GetFriendListRequest(),
                 GetFriendListResponse.Parser, response =>
                 {
                     if (!TipOk(response.ErrorMessage, "verify friend cleanup")) return;

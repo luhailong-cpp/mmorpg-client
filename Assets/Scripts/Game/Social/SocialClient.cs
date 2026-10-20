@@ -35,7 +35,7 @@ namespace MmorpgClient.Game.Social
             ObserveConnection();if(_disposed)return;
             if(!Supported(channel)){Publish("此频道服务尚未开放。");return;}
             if(_busy){_queued=channel;return;}
-            Request(ClientPlayerChatPullChatHistoryHandler.MessageId,new PullChatHistoryRequest{Channel=Proto(channel),Limit=50},PullChatHistoryResponse.Parser,response=>
+            Request(ClientPlayerChatRpc.PullChatHistoryMessageId,new PullChatHistoryRequest{Channel=Proto(channel),Limit=50},PullChatHistoryResponse.Parser,response=>
             {if(!Accept(response.ErrorMessage))return;_state.ApplyHistory(channel,response.Messages);Publish(response.Messages.Count==0?"此频道暂无消息。":"频道历史已更新。");});
         }
         public bool Send(SocialChannel channel,string text)
@@ -44,7 +44,7 @@ namespace MmorpgClient.Game.Social
             if(channel==SocialChannel.System||!Supported(channel)||!SocialState.ValidMessage(text)){Publish("请在可发言频道输入1–120字。");return false;}
             if(!Ready())return false;
             var request=new SendChatRequest{RequestId=Guid.NewGuid().ToString("N"),Message=new ChatMessage{SenderPlayerId=_net.PlayerId,Channel=Proto(channel),Content=text}};
-            Request(ClientPlayerChatSendChatHandler.MessageId,request,SendChatResponse.Parser,response=>
+            Request(ClientPlayerChatRpc.SendChatMessageId,request,SendChatResponse.Parser,response=>
             {
                 if(!Accept(response.ErrorMessage))return;
                 // Only the acknowledged draft is cleared. Text typed while the request was pending survives.
