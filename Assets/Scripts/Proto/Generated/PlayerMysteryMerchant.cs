@@ -60,14 +60,14 @@ public static partial class PlayerMysteryMerchantReflection {
           "b25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2US",
           "IgoEaW5mbxgCIAEoCzIULk15c3RlcnlNZXJjaGFudEluZm8SFQoDYmFnGAMg",
           "ASgLMgguQmFnSW5mbyI7ChVNeXN0ZXJ5TWVyY2hhbnROb3RpZnkSIgoEaW5m",
-          "bxgBIAEoCzIULk15c3RlcnlNZXJjaGFudEluZm8yoAIKIFNjZW5lTXlzdGVy",
+          "bxgBIAEoCzIULk15c3RlcnlNZXJjaGFudEluZm8ypwIKIFNjZW5lTXlzdGVy",
           "eU1lcmNoYW50Q2xpZW50UGxheWVyElkKFkdldE15c3RlcnlNZXJjaGFudElu",
           "Zm8SHi5HZXRNeXN0ZXJ5TWVyY2hhbnRJbmZvUmVxdWVzdBofLkdldE15c3Rl",
           "cnlNZXJjaGFudEluZm9SZXNwb25zZRJcChdCdXlNeXN0ZXJ5TWVyY2hhbnRH",
           "b29kcxIfLkJ1eU15c3RlcnlNZXJjaGFudEdvb2RzUmVxdWVzdBogLkJ1eU15",
-          "c3RlcnlNZXJjaGFudEdvb2RzUmVzcG9uc2USNwoVTm90aWZ5TXlzdGVyeU1l",
-          "cmNoYW50EhYuTXlzdGVyeU1lcmNoYW50Tm90aWZ5GgYuRW1wdHkaCoCowwEB",
-          "iKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "c3RlcnlNZXJjaGFudEdvb2RzUmVzcG9uc2USPgoVTm90aWZ5TXlzdGVyeU1l",
+          "cmNoYW50EhYuTXlzdGVyeU1lcmNoYW50Tm90aWZ5GgYuRW1wdHkiBYiZyAEC",
+          "GgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::BaseCompReflection.Descriptor, global::PlayerBagReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

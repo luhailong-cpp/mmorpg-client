@@ -82,7 +82,7 @@ namespace Friendpb {
             "UkVKRUNURUQQAyqMAQoRRnJpZW5kRXZlbnRSZWFzb24SIwofRlJJRU5EX0VW",
             "RU5UX1JFQVNPTl9VTlNQRUNJRklFRBAAEigKJEZSSUVORF9FVkVOVF9SRUFT",
             "T05fUkVRVUVTVF9SRUNFSVZFRBABEigKJEZSSUVORF9FVkVOVF9SRUFTT05f",
-            "UkVRVUVTVF9BQ0NFUFRFRBACMtYGChJDbGllbnRQbGF5ZXJGcmllbmQSRAoJ",
+            "UkVRVUVTVF9BQ0NFUFRFRBACMt0GChJDbGllbnRQbGF5ZXJGcmllbmQSRAoJ",
             "QWRkRnJpZW5kEhouZnJpZW5kcGIuQWRkRnJpZW5kUmVxdWVzdBobLmZyaWVu",
             "ZHBiLkFkZEZyaWVuZFJlc3BvbnNlEk0KDEFjY2VwdEZyaWVuZBIdLmZyaWVu",
             "ZHBiLkFjY2VwdEZyaWVuZFJlcXVlc3QaHi5mcmllbmRwYi5BY2NlcHRGcmll",
@@ -100,9 +100,9 @@ namespace Friendpb {
             "TGlzdEJsb2Nrc1JlcXVlc3QaHC5mcmllbmRwYi5MaXN0QmxvY2tzUmVzcG9u",
             "c2USWQoQUmVjb21tZW5kRnJpZW5kcxIhLmZyaWVuZHBiLlJlY29tbWVuZEZy",
             "aWVuZHNSZXF1ZXN0GiIuZnJpZW5kcGIuUmVjb21tZW5kRnJpZW5kc1Jlc3Bv",
-            "bnNlEjUKEU5vdGlmeUZyaWVuZEV2ZW50EhguZnJpZW5kcGIuRnJpZW5kRXZl",
-            "bnRTMkMaBi5FbXB0eRoFiKjDAQFCFVoTZnJpZW5kL3Byb3RvL2ZyaWVuZGIG",
-            "cHJvdG8z"));
+            "bnNlEjwKEU5vdGlmeUZyaWVuZEV2ZW50EhguZnJpZW5kcGIuRnJpZW5kRXZl",
+            "bnRTMkMaBi5FbXB0eSIFiJnIAQIaBYiowwEBQhVaE2ZyaWVuZC9wcm90by9m",
+            "cmllbmRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Friendpb.FriendRequestStatus), typeof(global::Friendpb.FriendEventReason), }, null, new pbr::GeneratedClrTypeInfo[] {

@@ -40,13 +40,13 @@ public static partial class PlayerSkillReflection {
           "bWVfc3RhbXAYBSABKAQiEwoRTGlzdFNraWxsc1JlcXVlc3QiZgoSTGlzdFNr",
           "aWxsc1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
           "TWVzc2FnZRIoCgpza2lsbF9saXN0GAIgASgLMhQuUGxheWVyU2tpbGxMaXN0",
-          "Q29tcDL6AQoWU2NlbmVTa2lsbENsaWVudFBsYXllchI7CgxSZWxlYXNlU2tp",
+          "Q29tcDKIAgoWU2NlbmVTa2lsbENsaWVudFBsYXllchI7CgxSZWxlYXNlU2tp",
           "bGwSFC5SZWxlYXNlU2tpbGxSZXF1ZXN0GhUuUmVsZWFzZVNraWxsUmVzcG9u",
-          "c2USKAoPTm90aWZ5U2tpbGxVc2VkEg0uU2tpbGxVc2VkUzJDGgYuRW1wdHkS",
-          "NgoWTm90aWZ5U2tpbGxJbnRlcnJ1cHRlZBIULlNraWxsSW50ZXJydXB0ZWRT",
-          "MkMaBi5FbXB0eRI1CgpMaXN0U2tpbGxzEhIuTGlzdFNraWxsc1JlcXVlc3Qa",
-          "Ey5MaXN0U2tpbGxzUmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY",
-          "1GEDYgZwcm90bzM="));
+          "c2USLwoPTm90aWZ5U2tpbGxVc2VkEg0uU2tpbGxVc2VkUzJDGgYuRW1wdHki",
+          "BYiZyAECEj0KFk5vdGlmeVNraWxsSW50ZXJydXB0ZWQSFC5Ta2lsbEludGVy",
+          "cnVwdGVkUzJDGgYuRW1wdHkiBYiZyAECEjUKCkxpc3RTa2lsbHMSEi5MaXN0",
+          "U2tpbGxzUmVxdWVzdBoTLkxpc3RTa2lsbHNSZXNwb25zZRoKgKjDAQGIqMMB",
+          "AUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::BaseCompReflection.Descriptor, global::EmptyReflection.Descriptor, global::PlayerSkillCompReflection.Descriptor, global::ActorCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
