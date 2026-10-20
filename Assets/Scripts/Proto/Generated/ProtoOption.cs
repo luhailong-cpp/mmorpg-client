@@ -36,70 +36,74 @@ public static partial class ProtoOptionReflection {
           "EhEKDU5PREVfU0VDVVJJVFkQGRIVChFOT0RFX0NST1NTX1NFUlZFUhAaEhIK",
           "Dk5PREVfQU5BTFlUSUNTEBsSCwoHTk9ERV9HTRAcEhcKE05PREVfUExBWUVS",
           "X0xPQ0FUT1IQHRIPCgtOT0RFX0JBVFRMRRAeEhoKFk5PREVfQ0xJRU5UX1JQ",
-          "Q19ST1VURVIQHyrPAQoMT1BFUkFURV9UWVBFEhAKDE9QRVJBVEVfTk9ORRAA",
-          "EhIKDk9QRVJBVEVfSU5TRVJUEAESEgoOT1BFUkFURV9VUERBVEUQAhISCg5P",
-          "UEVSQVRFX0RFTEVURRADEhAKDE9QRVJBVEVfTE9BRBAEEhgKFE9QRVJBVEVf",
-          "REVMRVRFX0NBQ0hFEAUSEwoPT1BFUkFURV9SRVBMQUNFEAYSFQoRT1BFUkFU",
-          "RV9DQUxMX1BST0MQBxIZChVPUEVSQVRFX0RFTEVURV9CQUNLVVAQCCpRCg5C",
-          "U19SRVNVTFRfVFlQRRISCg5CU19SRVNVTFRfTk9ORRAAEhUKEUJTX1JFU1VM",
-          "VF9TVUNDRVNTEAESFAoQQlNfUkVTVUxUX0ZBSUxFRBACKk4KD01lc3NhZ2VQ",
-          "cmlvcml0eRIbChdNRVNTQUdFX1BSSU9SSVRZX05PUk1BTBAAEh4KGk1FU1NB",
-          "R0VfUFJJT1JJVFlfSU1QT1JUQU5UEAE6SAoVT3B0aW9uRmlsZURlZmF1bHRO",
-          "b2RlEhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGMOaDCABKA4yCS5O",
-          "b2RlVHlwZTpAChVPcHRpb25Jc1BsYXllclNlcnZpY2USHy5nb29nbGUucHJv",
-          "dG9idWYuU2VydmljZU9wdGlvbnMYgLUYIAEoCDpICh1PcHRpb25Jc0NsaWVu",
-          "dFByb3RvY29sU2VydmljZRIfLmdvb2dsZS5wcm90b2J1Zi5TZXJ2aWNlT3B0",
-          "aW9ucxiBtRggASgIOlEKFU9wdGlvbk1lc3NhZ2VQcmlvcml0eRIeLmdvb2ds",
-          "ZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGJCDGSABKA4yEC5NZXNzYWdlUHJp",
-          "b3JpdHk6OwoNT3B0aW9uVGFibGVJZBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNz",
-          "YWdlT3B0aW9ucxigwh4gASgNiAEBOj0KD09wdGlvblRhYmxlTmFtZRIfLmdv",
-          "b2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxihwh4gASgJiAEBOj4KEE9w",
-          "dGlvblByaW1hcnlLZXkSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlv",
-          "bnMYosIeIAEoCYgBATo+ChBPcHRpb25Gb3JlaWduS2V5Eh8uZ29vZ2xlLnBy",
-          "b3RvYnVmLk1lc3NhZ2VPcHRpb25zGKPCHiABKAmIAQE6RQoXT3B0aW9uRm9y",
-          "ZWlnblJlZmVyZW5jZXMSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlv",
-          "bnMYpcIeIAEoCYgBATpEChZPcHRpb25BdXRvSW5jcmVtZW50S2V5Eh8uZ29v",
-          "Z2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGKbCHiABKAmIAQE6QwoVT3B0",
-          "aW9uQmFja3VwVGFibGVOYW1lEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VP",
-          "cHRpb25zGKfCHiABKAmIAQE6PAoOT3B0aW9uTG9hZE9ubHkSHy5nb29nbGUu",
-          "cHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYqMIeIAEoCIgBATpBChNPcHRpb25Q",
-          "cm9jZWR1cmVOYW1lEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25z",
-          "GKnCHiABKAmIAQE6QwoVT3B0aW9uUHJvY2VkdXJlUmVzdWx0Eh8uZ29vZ2xl",
-          "LnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGKrCHiABKAmIAQE6OQoLT3B0aW9u",
-          "SW5kZXgSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYq8IeIAEo",
-          "CYgBATo9Cg9PcHRpb25VbmlxdWVLZXkSHy5nb29nbGUucHJvdG9idWYuTWVz",
-          "c2FnZU9wdGlvbnMYrMIeIAEoCYgBATpEChZPcHRpb25Jc1BsYXllckRhdGFi",
-          "YXNlEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGK3CHiABKAiI",
-          "AQE6TgoRT3B0aW9uT3BlcmF0ZVR5cGUSHy5nb29nbGUucHJvdG9idWYuTWVz",
-          "c2FnZU9wdGlvbnMYrsIeIAEoDjINLk9QRVJBVEVfVFlQRYgBATpGChhPcHRp",
-          "b25UaURCTm9uY2x1c3RlcmVkUEsSHy5nb29nbGUucHJvdG9idWYuTWVzc2Fn",
-          "ZU9wdGlvbnMYtcIeIAEoCIgBATpGChhPcHRpb25UaURCU2hhcmRSb3dJREJp",
-          "dHMSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYtsIeIAEoDYgB",
-          "ATpHChlPcHRpb25UaURCUHJlU3BsaXRSZWdpb25zEh8uZ29vZ2xlLnByb3Rv",
-          "YnVmLk1lc3NhZ2VPcHRpb25zGLfCHiABKA2IAQE6RgoYT3B0aW9uVGlEQkF1",
-          "dG9JRENhY2hlT25lEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25z",
-          "GLjCHiABKAiIAQE6QQoTT3B0aW9uUGVyc2lzdEZyb3plbhIfLmdvb2dsZS5w",
-          "cm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjIwh4gASgIiAEBOj0KEU9wdGlvblJl",
-          "cGVhdExpbWl0Eh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjAzyQg",
-          "ASgNiAEBOj4KEk9wdGlvbkRCRmllbGRFeHRyYRIdLmdvb2dsZS5wcm90b2J1",
-          "Zi5GaWVsZE9wdGlvbnMYwc8kIAEoCYgBATo8ChBPcHRpb25EQlJlYWRPbmx5",
-          "Eh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjCzyQgASgIiAEBOj4K",
-          "Ek9wdGlvbkRCTmFtZVByZWZpeBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9w",
-          "dGlvbnMYw88kIAEoCYgBATo7Cg9PcHRpb25EQkxvYWRTcWwSHS5nb29nbGUu",
-          "cHJvdG9idWYuRmllbGRPcHRpb25zGMTPJCABKAmIAQE6PgoST3B0aW9uREJO",
-          "ZWVkRXNjYXBlEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjFzyQg",
-          "ASgIiAEBOj0KEU9wdGlvbkRCUHJvY1BhcmFtEh0uZ29vZ2xlLnByb3RvYnVm",
-          "LkZpZWxkT3B0aW9ucxjGzyQgASgIiAEBOjkKDU9wdGlvbk9sZE5hbWUSHS5n",
-          "b29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGMfPJCABKAmIAQE6NwoLT3B0",
-          "aW9uVGFibGUSHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGMjPJCAB",
-          "KAmIAQE6PQoRT3B0aW9uQmFja1VwVGFiZWwSHS5nb29nbGUucHJvdG9idWYu",
-          "RmllbGRPcHRpb25zGMnPJCABKAmIAQE6QgoWT3B0aW9uUGVyc2lzdFVuY2Fy",
-          "cmllZBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMY6M8kIAEoCIgB",
-          "AUIySAFaLmdpdGh1Yi5jb20vbHV5dWFuY3BwL3Byb3Rvb3B0aW9uO21lc3Nh",
-          "Z2VvcHRpb25iBnByb3RvMw=="));
+          "Q19ST1VURVIQHypwCg1DbGllbnRScGNLaW5kEhYKEkNMSUVOVF9SUENfUkVR",
+          "VUVTVBAAEhYKEkNMSUVOVF9SUENfT05FX1dBWRABEhMKD0NMSUVOVF9SUENf",
+          "UFVTSBACEhoKFkNMSUVOVF9SUENfU0VSVkVSX09OTFkQAyrPAQoMT1BFUkFU",
+          "RV9UWVBFEhAKDE9QRVJBVEVfTk9ORRAAEhIKDk9QRVJBVEVfSU5TRVJUEAES",
+          "EgoOT1BFUkFURV9VUERBVEUQAhISCg5PUEVSQVRFX0RFTEVURRADEhAKDE9Q",
+          "RVJBVEVfTE9BRBAEEhgKFE9QRVJBVEVfREVMRVRFX0NBQ0hFEAUSEwoPT1BF",
+          "UkFURV9SRVBMQUNFEAYSFQoRT1BFUkFURV9DQUxMX1BST0MQBxIZChVPUEVS",
+          "QVRFX0RFTEVURV9CQUNLVVAQCCpRCg5CU19SRVNVTFRfVFlQRRISCg5CU19S",
+          "RVNVTFRfTk9ORRAAEhUKEUJTX1JFU1VMVF9TVUNDRVNTEAESFAoQQlNfUkVT",
+          "VUxUX0ZBSUxFRBACKk4KD01lc3NhZ2VQcmlvcml0eRIbChdNRVNTQUdFX1BS",
+          "SU9SSVRZX05PUk1BTBAAEh4KGk1FU1NBR0VfUFJJT1JJVFlfSU1QT1JUQU5U",
+          "EAE6SAoVT3B0aW9uRmlsZURlZmF1bHROb2RlEhwuZ29vZ2xlLnByb3RvYnVm",
+          "LkZpbGVPcHRpb25zGMOaDCABKA4yCS5Ob2RlVHlwZTpAChVPcHRpb25Jc1Bs",
+          "YXllclNlcnZpY2USHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMY",
+          "gLUYIAEoCDpICh1PcHRpb25Jc0NsaWVudFByb3RvY29sU2VydmljZRIfLmdv",
+          "b2dsZS5wcm90b2J1Zi5TZXJ2aWNlT3B0aW9ucxiBtRggASgIOlEKFU9wdGlv",
+          "bk1lc3NhZ2VQcmlvcml0eRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRp",
+          "b25zGJCDGSABKA4yEC5NZXNzYWdlUHJpb3JpdHk6TQoTT3B0aW9uQ2xpZW50",
+          "UnBjS2luZBIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGJGDGSAB",
+          "KA4yDi5DbGllbnRScGNLaW5kOjsKDU9wdGlvblRhYmxlSWQSHy5nb29nbGUu",
+          "cHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYoMIeIAEoDYgBATo9Cg9PcHRpb25U",
+          "YWJsZU5hbWUSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYocIe",
+          "IAEoCYgBATo+ChBPcHRpb25QcmltYXJ5S2V5Eh8uZ29vZ2xlLnByb3RvYnVm",
+          "Lk1lc3NhZ2VPcHRpb25zGKLCHiABKAmIAQE6PgoQT3B0aW9uRm9yZWlnbktl",
+          "eRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxijwh4gASgJiAEB",
+          "OkUKF09wdGlvbkZvcmVpZ25SZWZlcmVuY2VzEh8uZ29vZ2xlLnByb3RvYnVm",
+          "Lk1lc3NhZ2VPcHRpb25zGKXCHiABKAmIAQE6RAoWT3B0aW9uQXV0b0luY3Jl",
+          "bWVudEtleRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucximwh4g",
+          "ASgJiAEBOkMKFU9wdGlvbkJhY2t1cFRhYmxlTmFtZRIfLmdvb2dsZS5wcm90",
+          "b2J1Zi5NZXNzYWdlT3B0aW9ucxinwh4gASgJiAEBOjwKDk9wdGlvbkxvYWRP",
+          "bmx5Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGKjCHiABKAiI",
+          "AQE6QQoTT3B0aW9uUHJvY2VkdXJlTmFtZRIfLmdvb2dsZS5wcm90b2J1Zi5N",
+          "ZXNzYWdlT3B0aW9ucxipwh4gASgJiAEBOkMKFU9wdGlvblByb2NlZHVyZVJl",
+          "c3VsdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiqwh4gASgJ",
+          "iAEBOjkKC09wdGlvbkluZGV4Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VP",
+          "cHRpb25zGKvCHiABKAmIAQE6PQoPT3B0aW9uVW5pcXVlS2V5Eh8uZ29vZ2xl",
+          "LnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGKzCHiABKAmIAQE6RAoWT3B0aW9u",
+          "SXNQbGF5ZXJEYXRhYmFzZRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0",
+          "aW9ucxitwh4gASgIiAEBOk4KEU9wdGlvbk9wZXJhdGVUeXBlEh8uZ29vZ2xl",
+          "LnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGK7CHiABKA4yDS5PUEVSQVRFX1RZ",
+          "UEWIAQE6RgoYT3B0aW9uVGlEQk5vbmNsdXN0ZXJlZFBLEh8uZ29vZ2xlLnBy",
+          "b3RvYnVmLk1lc3NhZ2VPcHRpb25zGLXCHiABKAiIAQE6RgoYT3B0aW9uVGlE",
+          "QlNoYXJkUm93SURCaXRzEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRp",
+          "b25zGLbCHiABKA2IAQE6RwoZT3B0aW9uVGlEQlByZVNwbGl0UmVnaW9ucxIf",
+          "Lmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxi3wh4gASgNiAEBOkYK",
+          "GE9wdGlvblRpREJBdXRvSURDYWNoZU9uZRIfLmdvb2dsZS5wcm90b2J1Zi5N",
+          "ZXNzYWdlT3B0aW9ucxi4wh4gASgIiAEBOkEKE09wdGlvblBlcnNpc3RGcm96",
+          "ZW4SHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYyMIeIAEoCIgB",
+          "ATo9ChFPcHRpb25SZXBlYXRMaW1pdBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVs",
+          "ZE9wdGlvbnMYwM8kIAEoDYgBATo+ChJPcHRpb25EQkZpZWxkRXh0cmESHS5n",
+          "b29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGMHPJCABKAmIAQE6PAoQT3B0",
+          "aW9uREJSZWFkT25seRIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMY",
+          "ws8kIAEoCIgBATo+ChJPcHRpb25EQk5hbWVQcmVmaXgSHS5nb29nbGUucHJv",
+          "dG9idWYuRmllbGRPcHRpb25zGMPPJCABKAmIAQE6OwoPT3B0aW9uREJMb2Fk",
+          "U3FsEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjEzyQgASgJiAEB",
+          "Oj4KEk9wdGlvbkRCTmVlZEVzY2FwZRIdLmdvb2dsZS5wcm90b2J1Zi5GaWVs",
+          "ZE9wdGlvbnMYxc8kIAEoCIgBATo9ChFPcHRpb25EQlByb2NQYXJhbRIdLmdv",
+          "b2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYxs8kIAEoCIgBATo5Cg1PcHRp",
+          "b25PbGROYW1lEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjHzyQg",
+          "ASgJiAEBOjcKC09wdGlvblRhYmxlEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxk",
+          "T3B0aW9ucxjIzyQgASgJiAEBOj0KEU9wdGlvbkJhY2tVcFRhYmVsEh0uZ29v",
+          "Z2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjJzyQgASgJiAEBOkIKFk9wdGlv",
+          "blBlcnNpc3RVbmNhcnJpZWQSHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRp",
+          "b25zGOjPJCABKAiIAQFCMkgBWi5naXRodWIuY29tL2x1eXVhbmNwcC9wcm90",
+          "b29wdGlvbjttZXNzYWdlb3B0aW9uYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::Google.Protobuf.Reflection.DescriptorReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeType), typeof(global::OPERATE_TYPE), typeof(global::BS_RESULT_TYPE), typeof(global::MessagePriority), }, new pb::Extension[] { ProtoOptionExtensions.OptionFileDefaultNode, ProtoOptionExtensions.OptionIsPlayerService, ProtoOptionExtensions.OptionIsClientProtocolService, ProtoOptionExtensions.OptionMessagePriority, ProtoOptionExtensions.OptionTableId, ProtoOptionExtensions.OptionTableName, ProtoOptionExtensions.OptionPrimaryKey, ProtoOptionExtensions.OptionForeignKey, ProtoOptionExtensions.OptionForeignReferences, ProtoOptionExtensions.OptionAutoIncrementKey, ProtoOptionExtensions.OptionBackupTableName, ProtoOptionExtensions.OptionLoadOnly, ProtoOptionExtensions.OptionProcedureName, ProtoOptionExtensions.OptionProcedureResult, ProtoOptionExtensions.OptionIndex, ProtoOptionExtensions.OptionUniqueKey, ProtoOptionExtensions.OptionIsPlayerDatabase, ProtoOptionExtensions.OptionOperateType, ProtoOptionExtensions.OptionTiDBNonclusteredPK, ProtoOptionExtensions.OptionTiDBShardRowIDBits, ProtoOptionExtensions.OptionTiDBPreSplitRegions, ProtoOptionExtensions.OptionTiDBAutoIDCacheOne, ProtoOptionExtensions.OptionPersistFrozen, ProtoOptionExtensions.OptionRepeatLimit, ProtoOptionExtensions.OptionDBFieldExtra, ProtoOptionExtensions.OptionDBReadOnly, ProtoOptionExtensions.OptionDBNamePrefix, ProtoOptionExtensions.OptionDBLoadSql, ProtoOptionExtensions.OptionDBNeedEscape, ProtoOptionExtensions.OptionDBProcParam, ProtoOptionExtensions.OptionOldName, ProtoOptionExtensions.OptionTable, ProtoOptionExtensions.OptionBackUpTabel, ProtoOptionExtensions.OptionPersistUncarried }, null));
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeType), typeof(global::ClientRpcKind), typeof(global::OPERATE_TYPE), typeof(global::BS_RESULT_TYPE), typeof(global::MessagePriority), }, new pb::Extension[] { ProtoOptionExtensions.OptionFileDefaultNode, ProtoOptionExtensions.OptionIsPlayerService, ProtoOptionExtensions.OptionIsClientProtocolService, ProtoOptionExtensions.OptionMessagePriority, ProtoOptionExtensions.OptionClientRpcKind, ProtoOptionExtensions.OptionTableId, ProtoOptionExtensions.OptionTableName, ProtoOptionExtensions.OptionPrimaryKey, ProtoOptionExtensions.OptionForeignKey, ProtoOptionExtensions.OptionForeignReferences, ProtoOptionExtensions.OptionAutoIncrementKey, ProtoOptionExtensions.OptionBackupTableName, ProtoOptionExtensions.OptionLoadOnly, ProtoOptionExtensions.OptionProcedureName, ProtoOptionExtensions.OptionProcedureResult, ProtoOptionExtensions.OptionIndex, ProtoOptionExtensions.OptionUniqueKey, ProtoOptionExtensions.OptionIsPlayerDatabase, ProtoOptionExtensions.OptionOperateType, ProtoOptionExtensions.OptionTiDBNonclusteredPK, ProtoOptionExtensions.OptionTiDBShardRowIDBits, ProtoOptionExtensions.OptionTiDBPreSplitRegions, ProtoOptionExtensions.OptionTiDBAutoIDCacheOne, ProtoOptionExtensions.OptionPersistFrozen, ProtoOptionExtensions.OptionRepeatLimit, ProtoOptionExtensions.OptionDBFieldExtra, ProtoOptionExtensions.OptionDBReadOnly, ProtoOptionExtensions.OptionDBNamePrefix, ProtoOptionExtensions.OptionDBLoadSql, ProtoOptionExtensions.OptionDBNeedEscape, ProtoOptionExtensions.OptionDBProcParam, ProtoOptionExtensions.OptionOldName, ProtoOptionExtensions.OptionTable, ProtoOptionExtensions.OptionBackUpTabel, ProtoOptionExtensions.OptionPersistUncarried }, null));
   }
   #endregion
 
@@ -123,6 +127,13 @@ public static partial class ProtoOptionExtensions {
   /// </summary>
   public static readonly pb::Extension<global::Google.Protobuf.Reflection.MethodOptions, global::MessagePriority> OptionMessagePriority =
     new pb::Extension<global::Google.Protobuf.Reflection.MethodOptions, global::MessagePriority>(410000, pb::FieldCodec.ForEnum(3280000, x => (int) x, x => (global::MessagePriority) x, global::MessagePriority.Normal));
+  /// <summary>
+  /// 客户端协议方法的调用形态(见上方 ClientRpcKind,docs/design/client-rpc-callback.md §5.1)。
+  /// 生成器从描述符原始字节按字段号读取本选项,不依赖外部 protooption 模块的编译绑定(同 OptionPersistFrozen)。
+  /// 410001 已核对未被本仓 proto、third_party 描述符扩展与 Java 仓 game-proto 占用(2026-10-19)。
+  /// </summary>
+  public static readonly pb::Extension<global::Google.Protobuf.Reflection.MethodOptions, global::ClientRpcKind> OptionClientRpcKind =
+    new pb::Extension<global::Google.Protobuf.Reflection.MethodOptions, global::ClientRpcKind>(410001, pb::FieldCodec.ForEnum(3280008, x => (int) x, x => (global::ClientRpcKind) x, global::ClientRpcKind.ClientRpcRequest));
   /// <summary>
   /// Table ID
   /// </summary>
@@ -416,6 +427,30 @@ public enum NodeType {
   /// 客户端 RPC 路由服(gate → 业务 Go 服务的唯一 gRPC 目标)
   /// </summary>
   [pbr::OriginalName("NODE_CLIENT_RPC_ROUTER")] NodeClientRpcRouter = 31,
+}
+
+/// <summary>
+/// 客户端协议方法的调用形态(docs/design/client-rpc-callback.md §5.1)。只对标了 OptionIsClientProtocolService 的服务有意义;
+/// protogen 据此生成客户端调用桩并做生成期校验(§5.2),gate 的单向判定仍以响应类型恰好是 Empty 为准,两者由校验对齐。
+/// 本文件没有 package,枚举值在全局作用域:新增值必须带 CLIENT_RPC_ 前缀,避免与其它无 package 的 proto 撞名。
+/// </summary>
+public enum ClientRpcKind {
+  /// <summary>
+  /// 客户端发起,恰好一个回包(默认,不用显式标注)
+  /// </summary>
+  [pbr::OriginalName("CLIENT_RPC_REQUEST")] ClientRpcRequest = 0,
+  /// <summary>
+  /// 客户端发起,成功不回包,以 id = 0 发送;只用于 scene TCP 路径上响应恰好是 Empty 的方法
+  /// </summary>
+  [pbr::OriginalName("CLIENT_RPC_ONE_WAY")] ClientRpcOneWay = 1,
+  /// <summary>
+  /// 服务端推送,客户端不发起;载荷为方法输入类型
+  /// </summary>
+  [pbr::OriginalName("CLIENT_RPC_PUSH")] ClientRpcPush = 2,
+  /// <summary>
+  /// 服务端内部或 gate 代发,客户端不得发起;不生成任何客户端成员
+  /// </summary>
+  [pbr::OriginalName("CLIENT_RPC_SERVER_ONLY")] ClientRpcServerOnly = 3,
 }
 
 /// <summary>

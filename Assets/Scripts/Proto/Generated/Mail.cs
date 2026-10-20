@@ -65,7 +65,7 @@ namespace Mailpb {
             "RBADKoYBCg5NYWlsQ2xhaW1TdGF0ZRITCg9NQUlMX0NMQUlNX05PTkUQABIY",
             "ChRNQUlMX0NMQUlNX1VOQ0xBSU1FRBABEhYKEk1BSUxfQ0xBSU1fUEVORElO",
             "RxACEhYKEk1BSUxfQ0xBSU1fQ0xBSU1FRBADEhUKEU1BSUxfQ0xBSU1fTUFO",
-            "VUFMEAQy3wMKEENsaWVudFBsYXllck1haWwSQAoJTGlzdE1haWxzEhgubWFp",
+            "VUFMEAQy5gMKEENsaWVudFBsYXllck1haWwSQAoJTGlzdE1haWxzEhgubWFp",
             "bHBiLkxpc3RNYWlsc1JlcXVlc3QaGS5tYWlscGIuTGlzdE1haWxzUmVzcG9u",
             "c2USPQoIUmVhZE1haWwSFy5tYWlscGIuUmVhZE1haWxSZXF1ZXN0GhgubWFp",
             "bHBiLlJlYWRNYWlsUmVzcG9uc2USYQoUQ2xhaW1NYWlsQXR0YWNobWVudHMS",
@@ -74,9 +74,9 @@ namespace Mailpb {
             "Gi5tYWlscGIuRGVsZXRlTWFpbHNSZXF1ZXN0GhsubWFpbHBiLkRlbGV0ZU1h",
             "aWxzUmVzcG9uc2USTwoOQ2xlYXJSZWFkTWFpbHMSHS5tYWlscGIuQ2xlYXJS",
             "ZWFkTWFpbHNSZXF1ZXN0Gh4ubWFpbHBiLkNsZWFyUmVhZE1haWxzUmVzcG9u",
-            "c2USRwoRTm90aWZ5TWFpbENoYW5nZWQSGC5tYWlscGIuTWFpbENoYW5nZWRF",
-            "dmVudBoYLm1haWxwYi5NYWlsQ2hhbmdlZEV2ZW50GgWIqMMBAUIVWg9tYWls",
-            "L3Byb3RvL21haWyY1GENYgZwcm90bzM="));
+            "c2USTgoRTm90aWZ5TWFpbENoYW5nZWQSGC5tYWlscGIuTWFpbENoYW5nZWRF",
+            "dmVudBoYLm1haWxwYi5NYWlsQ2hhbmdlZEV2ZW50IgWImcgBAhoFiKjDAQFC",
+            "FVoPbWFpbC9wcm90by9tYWlsmNRhDWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Mailpb.MailKind), typeof(global::Mailpb.MailClaimState), }, null, new pbr::GeneratedClrTypeInfo[] {

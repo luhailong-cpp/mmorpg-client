@@ -389,7 +389,7 @@ public static class EquipmentForgeUiVerification
         public void RespondBag(uint bagType, BagInfo snapshot)
         {
             var call = Calls.Last(entry => entry.Request is GetBagRequest request && request.BagType == bagType);
-            Require(call.MessageId == SceneBagClientPlayerGetBagHandler.MessageId, "快照必须通过正式读背包消息响应。");
+            Require(call.MessageId == SceneBagClientPlayerRpc.GetBagMessageId, "快照必须通过正式读背包消息响应。");
             call.Respond(new GetBagResponse { Bag = snapshot });
         }
 

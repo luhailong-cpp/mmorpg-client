@@ -29,12 +29,12 @@ public static partial class ClientPlayerCommonReflection {
           "TWVzc2FnZRIQCghvcGVyYXRvchgCIAEoCSKGAQoUUmVkaXJlY3RUb0dhdGVO",
           "b3RpZnkSEQoJdGFyZ2V0X2lwGAEgASgJEhMKC3RhcmdldF9wb3J0GAIgASgN",
           "EhUKDXRva2VuX3BheWxvYWQYAyABKAwSFwoPdG9rZW5fc2lnbmF0dXJlGAQg",
-          "ASgMEhYKDnRva2VuX2RlYWRsaW5lGAUgASgDMrABChdTY2VuZUNsaWVudFBs",
-          "YXllckNvbW1vbhIqCg9TZW5kVGlwVG9DbGllbnQSDy5UaXBJbmZvTWVzc2Fn",
-          "ZRoGLkVtcHR5EiwKCktpY2tQbGF5ZXISFi5HYW1lS2lja1BsYXllclJlcXVl",
-          "c3QaBi5FbXB0eRIvCg5SZWRpcmVjdFRvR2F0ZRIVLlJlZGlyZWN0VG9HYXRl",
-          "Tm90aWZ5GgYuRW1wdHkaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZw",
-          "cm90bzM="));
+          "ASgMEhYKDnRva2VuX2RlYWRsaW5lGAUgASgDMsUBChdTY2VuZUNsaWVudFBs",
+          "YXllckNvbW1vbhIxCg9TZW5kVGlwVG9DbGllbnQSDy5UaXBJbmZvTWVzc2Fn",
+          "ZRoGLkVtcHR5IgWImcgBAhIzCgpLaWNrUGxheWVyEhYuR2FtZUtpY2tQbGF5",
+          "ZXJSZXF1ZXN0GgYuRW1wdHkiBYiZyAECEjYKDlJlZGlyZWN0VG9HYXRlEhUu",
+          "UmVkaXJlY3RUb0dhdGVOb3RpZnkaBi5FbXB0eSIFiJnIAQIaCoCowwEBiKjD",
+          "AQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

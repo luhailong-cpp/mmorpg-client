@@ -117,7 +117,7 @@ namespace Teampb {
             "Q0hfUVVFVUVfQ0FOQ0VMRUQQECp+Cg1UZWFtRXZlbnRUeXBlEh8KG1RFQU1f",
             "RVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEigKJFRFQU1fRVZFTlRfVFlQRV9B",
             "UFBMSUNBVElPTl9SRUpFQ1RFRBABEiIKHlRFQU1fRVZFTlRfVFlQRV9JTlZJ",
-            "VEVfUkVWT0tFRBACMoEIChBDbGllbnRQbGF5ZXJUZWFtEj8KCkNyZWF0ZVRl",
+            "VEVfUkVWT0tFRBACMpAIChBDbGllbnRQbGF5ZXJUZWFtEj8KCkNyZWF0ZVRl",
             "YW0SGS50ZWFtcGIuQ3JlYXRlVGVhbVJlcXVlc3QaFC50ZWFtcGIuVGVhbVJl",
             "c3BvbnNlIgASPQoJR2V0TXlUZWFtEhgudGVhbXBiLkdldE15VGVhbVJlcXVl",
             "c3QaFC50ZWFtcGIuVGVhbVJlc3BvbnNlIgASRQoNQXBwbHlKb2luVGVhbRIc",
@@ -136,11 +136,11 @@ namespace Teampb {
             "YW1SZXNwb25zZSIAEkEKC0Rpc2JhbmRUZWFtEhoudGVhbXBiLkRpc2JhbmRU",
             "ZWFtUmVxdWVzdBoULnRlYW1wYi5UZWFtUmVzcG9uc2UiABJHCg5TdGFydFRl",
             "YW1NYXRjaBIdLnRlYW1wYi5TdGFydFRlYW1NYXRjaFJlcXVlc3QaFC50ZWFt",
-            "cGIuVGVhbVJlc3BvbnNlIgASNwoSTm90aWZ5VGVhbVNuYXBzaG90EhcudGVh",
-            "bXBiLlRlYW1TbmFwc2hvdFMyQxoGLkVtcHR5IgASMwoQTm90aWZ5VGVhbUlu",
-            "dml0ZRIVLnRlYW1wYi5UZWFtSW52aXRlUzJDGgYuRW1wdHkiABIxCg9Ob3Rp",
-            "ZnlUZWFtRXZlbnQSFC50ZWFtcGIuVGVhbUV2ZW50UzJDGgYuRW1wdHkiABoF",
-            "iKjDAQFCDVoEdGVhbYABAJjUYQ9iBnByb3RvMw=="));
+            "cGIuVGVhbVJlc3BvbnNlIgASPAoSTm90aWZ5VGVhbVNuYXBzaG90EhcudGVh",
+            "bXBiLlRlYW1TbmFwc2hvdFMyQxoGLkVtcHR5IgWImcgBAhI4ChBOb3RpZnlU",
+            "ZWFtSW52aXRlEhUudGVhbXBiLlRlYW1JbnZpdGVTMkMaBi5FbXB0eSIFiJnI",
+            "AQISNgoPTm90aWZ5VGVhbUV2ZW50EhQudGVhbXBiLlRlYW1FdmVudFMyQxoG",
+            "LkVtcHR5IgWImcgBAhoFiKjDAQFCDVoEdGVhbYABAJjUYQ9iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Teampb.TeamMatchState), typeof(global::Teampb.TeamChangeReason), typeof(global::Teampb.TeamEventType), }, null, new pbr::GeneratedClrTypeInfo[] {

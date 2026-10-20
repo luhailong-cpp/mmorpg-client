@@ -168,7 +168,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private void RespondBagRead(uint bagType, BagInfo bag)
         {
             var call = Last;
-            Assert.That(call.MessageId, Is.EqualTo(SceneBagClientPlayerGetBagHandler.MessageId), "最近一次出站调用不是读背包");
+            Assert.That(call.MessageId, Is.EqualTo(SceneBagClientPlayerRpc.GetBagMessageId), "最近一次出站调用不是读背包");
             Assert.That(((GetBagRequest)call.Request).BagType, Is.EqualTo(bagType));
             call.Respond(new GetBagResponse { Bag = bag });
         }

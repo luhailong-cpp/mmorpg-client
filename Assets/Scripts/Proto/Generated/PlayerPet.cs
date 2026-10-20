@@ -71,7 +71,7 @@ public static partial class PlayerPetReflection {
           "MgwuUGV0TGlzdEluZm8iKQoRR21HcmFudFBldFJlcXVlc3QSFAoMcGV0X3Rh",
           "YmxlX2lkGAEgASgNImgKEkdtR3JhbnRQZXRSZXNwb25zZRImCg1lcnJvcl9t",
           "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGgoEcGV0cxgCIAEoCzIM",
-          "LlBldExpc3RJbmZvEg4KBnBldF9pZBgDIAEoBDLHBAoUU2NlbmVQZXRDbGll",
+          "LlBldExpc3RJbmZvEg4KBnBldF9pZBgDIAEoBDLOBAoUU2NlbmVQZXRDbGll",
           "bnRQbGF5ZXISNQoKR2V0UGV0TGlzdBISLkdldFBldExpc3RSZXF1ZXN0GhMu",
           "R2V0UGV0TGlzdFJlc3BvbnNlEjIKCVN1bW1vblBldBIRLlN1bW1vblBldFJl",
           "cXVlc3QaEi5TdW1tb25QZXRSZXNwb25zZRIyCglSZWNhbGxQZXQSES5SZWNh",
@@ -82,10 +82,10 @@ public static partial class PlayerPetReflection {
           "dXRvQWxsb2NhdGVQZXRQb2ludHMSHS5BdXRvQWxsb2NhdGVQZXRQb2ludHNS",
           "ZXF1ZXN0Gh4uQXV0b0FsbG9jYXRlUGV0UG9pbnRzUmVzcG9uc2USMgoJUmVu",
           "YW1lUGV0EhEuUmVuYW1lUGV0UmVxdWVzdBoSLlJlbmFtZVBldFJlc3BvbnNl",
-          "EjIKFE5vdGlmeVBldExpc3RDaGFuZ2VkEhIuUGV0TGlzdENoYW5nZWRTMkMa",
-          "Bi5FbXB0eRI1CgpHbUdyYW50UGV0EhIuR21HcmFudFBldFJlcXVlc3QaEy5H",
-          "bUdyYW50UGV0UmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GED",
-          "YgZwcm90bzM="));
+          "EjkKFE5vdGlmeVBldExpc3RDaGFuZ2VkEhIuUGV0TGlzdENoYW5nZWRTMkMa",
+          "Bi5FbXB0eSIFiJnIAQISNQoKR21HcmFudFBldBISLkdtR3JhbnRQZXRSZXF1",
+          "ZXN0GhMuR21HcmFudFBldFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5l",
+          "gAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

@@ -24,8 +24,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private List<ulong> _reissueRequests;
         private Action<BattleAssignedS2C> _reissueOk;
         private Action<uint, string> _reissueFail;
+        private List<Exception> _callbackErrors;
         private List<string> _log;
         private double _now;
+
+        // 请求回调里的 Assert.Fail 会被在途表捕获(NUnit 3.5 不记录被捕获的断言),这里统一亮出来。
+        [TearDown]
+        public void AssertNoCallbackException()
+            => Assert.IsEmpty(_callbackErrors, "a request callback threw: " + string.Join("; ", _callbackErrors));
 
         [SetUp]
         public void SetUp()
@@ -37,8 +43,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _reissueFail = null;
             _log = new List<string>();
             _now = 100;
+            _callbackErrors = new List<Exception>();
             _link = new BattleDirectLink(() => { var c = new FakeFramedConnection(); _conns.Add(c); return c; },
-                unixNowMs: () => 1_000_000, connectRunner: a => a(), random01: () => 0.5);
+                unixNowMs: () => 1_000_000, connectRunner: a => a(), random01: () => 0.5,
+                onCallbackException: _callbackErrors.Add);
             _link.TicketReissuer = (id, ok, fail) =>
             {
                 _reissueRequests.Add(id);

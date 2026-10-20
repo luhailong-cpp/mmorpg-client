@@ -37,7 +37,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         /// <summary>从第 from 个出站调用起,发出的背包读取各是哪一类(bag_type)。</summary>
         private uint[] BagReadsFrom(int from)
-            => _net.Calls.Skip(from).Where(call => call.MessageId == SceneBagClientPlayerGetBagHandler.MessageId)
+            => _net.Calls.Skip(from).Where(call => call.MessageId == SceneBagClientPlayerRpc.GetBagMessageId)
                 .Select(call => ((GetBagRequest)call.Request).BagType).ToArray();
 
         /// <summary>人物背包 / 仓库:每件一格,从 0 号格起。</summary>
@@ -95,7 +95,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _client.RequestBag(); // 人物背包的刷新在途
             _client.RequestEquipment();
 
-            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneBagClientPlayerGetBagHandler.MessageId));
+            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneBagClientPlayerRpc.GetBagMessageId));
             Assert.That(((GetBagRequest)_net.Calls[2].Request).BagType, Is.EqualTo(PlayerFeaturesClient.EquipmentBagType));
             Assert.That(_client.Bag, Is.SameAs(bag), "请求装备栏不得清掉人物背包快照");
             Assert.That(_client.RequestedBagType, Is.Zero);

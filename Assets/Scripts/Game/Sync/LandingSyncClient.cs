@@ -172,7 +172,7 @@ namespace MmorpgClient.Game.Sync
             _store = store ?? throw new ArgumentNullException(nameof(store));
             _log = log;
             // 一个 message id 只有一个处理器(GameClient.OnNotify 覆盖写),这两个号全仓只在这里注册。
-            // Net/Generated 下若生成了同名空壳,也只有 HandlerRegistry.Register 才会挂上,而它从未被调用。
+            // 推送注册以 OnNotify / <Service>Rpc.On<Method> 为准,别处再注册同号会静默盖掉这里。
             _net.RegisterNotify(MessageIds.NotifySyncDigest, HandleDigest);
             _net.RegisterNotify(MessageIds.GetSyncDigest, HandleRequestReply);
             // 构造不发请求:第一次取摘要由落地后的 Tick 发出。

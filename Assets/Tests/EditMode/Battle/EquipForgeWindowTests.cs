@@ -256,7 +256,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void WornEquipmentCanOpenWhileBagIsMissingAndRefreshAfterReadFailure()
         {
             _window.Show(GameplayPage.Bag);
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             reads[0].FailWith("timeout");
             reads[1].Respond(new GetBagResponse { Bag = StandardEquipment() });
             _net.Calls.Clear();
@@ -273,7 +273,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(Button("EquipForgeRefresh").interactable, Is.True);
 
             Click("EquipForgeRefresh");
-            reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             reads[1].Respond(new GetBagResponse { Bag = StandardBag() });
             reads[2].Respond(new GetBagResponse { Bag = StandardEquipment() });
             Assert.That(_forge.View.Stage, Is.EqualTo(EquipForgeStage.Ready));
@@ -350,7 +350,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private void Open(BagInfo bag = null)
         {
             _window.Show(GameplayPage.Bag);
-            var reads = _net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId);
+            var reads = _net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId);
             Assert.That(reads.Count, Is.EqualTo(2));
             reads[0].Respond(new GetBagResponse { Bag = bag ?? StandardBag() });
             reads[1].Respond(new GetBagResponse { Bag = StandardEquipment() });

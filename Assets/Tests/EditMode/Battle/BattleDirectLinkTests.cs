@@ -36,10 +36,17 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private Action<BattleAssignedS2C> _reissueOk;
         private Action<uint, string> _reissueFail;
         private bool _reissueAvailable = true;
+        private List<Exception> _callbackErrors;
+
+        // 请求回调里的 Assert.Fail 会被在途表捕获(NUnit 3.5 不记录被捕获的断言),这里统一亮出来。
+        [TearDown]
+        public void AssertNoCallbackException()
+            => Assert.IsEmpty(_callbackErrors, "a request callback threw: " + string.Join("; ", _callbackErrors));
 
         [SetUp]
         public void SetUp()
         {
+            _callbackErrors = new List<Exception>();
             _conns = new List<FakeFramedConnection>();
             _unixNowMs = 1_000_000;
             _now = 100;
@@ -58,7 +65,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 log: s => _log.Add(s),
                 unixNowMs: () => _unixNowMs,
                 connectRunner: a => a(),
-                random01: () => 0.5);
+                random01: () => 0.5,
+                onCallbackException: _callbackErrors.Add);
             _link.OnVerified += id => _verified.Add(id);
             _link.OnClosed += (id, kind, r) =>
             {
@@ -202,6 +210,26 @@ namespace MmorpgClient.Tests.EditMode.Battle
             conn.PushInbound(Reply(req.Id, MessageIds.GetBattleState, new BattleStateS2C(), tip: 5));
             Tick();
             Assert.AreEqual("server tip=5", err);
+        }
+
+        [Test]
+        public void Call_FailsImmediately_WhenNewAssignmentReplacesTheConnection()
+        {
+            // A 上有在途调用时换到 B:旧连接已拆,回包再也认领不到,调用必须立刻以传输层失败收场,
+            // 不能等 15s 超时,也不能被 B 之后的断线 / 握手失败顶着失败、把原因安到 B 头上。
+            var conn = AssignAndVerify(MakeAssignment(BattleA));
+            string err = null;
+            _link.Call(MessageIds.GetBattleState, new GetBattleStateRequest { BattleId = BattleA },
+                BattleStateS2C.Parser, _ => Assert.Fail("不该成功"), e => err = e);
+            var req = conn.LastSent<ClientRequest>();
+
+            _link.HandleAssigned(MakeAssignment(BattleB));
+            Assert.AreEqual(BattleDirectLink.TransportErrorPrefix + "connection_replaced", err);
+
+            // 旧连接上迟到的回包不再认领(调用已完成,旧连接也不再被轮询)。
+            conn.PushInbound(Reply(req.Id, MessageIds.GetBattleState, new BattleStateS2C()));
+            Tick();
+            Assert.AreEqual(BattleDirectLink.TransportErrorPrefix + "connection_replaced", err);
         }
 
         [Test]

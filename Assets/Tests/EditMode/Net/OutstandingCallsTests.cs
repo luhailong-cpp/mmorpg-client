@@ -22,6 +22,11 @@ namespace MmorpgClient.Tests.EditMode.Net
             _calls = new OutstandingCalls(_callbackErrors.Add);
         }
 
+        // 回调里的 Assert.Fail 会被在途表捕获(NUnit 3.5 不记录被捕获的断言),这里统一亮出来。
+        [TearDown]
+        public void TearDown()
+            => Assert.IsEmpty(_callbackErrors, "a completion callback threw: " + string.Join("; ", _callbackErrors));
+
         private static MessageContent Reply(ulong id, uint messageId, IMessage body = null, uint tip = 0)
         {
             var mc = new MessageContent { Id = id, MessageId = messageId };
@@ -134,6 +139,7 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.AreEqual(1, completed);
             Assert.AreEqual(1, _callbackErrors.Count);
             Assert.AreEqual(0, _calls.Count);
+            _callbackErrors.Clear(); // 本用例故意抛出,不交给 TearDown
         }
 
         [Test]

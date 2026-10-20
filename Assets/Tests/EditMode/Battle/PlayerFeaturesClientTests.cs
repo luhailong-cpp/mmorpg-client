@@ -51,7 +51,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.BagLoading, Is.True);
             Assert.That(_client.HasBag, Is.False);
             Assert.That(_net.Calls.Count, Is.EqualTo(1));
-            Assert.That(_net.Calls[0].MessageId, Is.EqualTo(SceneBagClientPlayerGetBagHandler.MessageId));
+            Assert.That(_net.Calls[0].MessageId, Is.EqualTo(SceneBagClientPlayerRpc.GetBagMessageId));
             Assert.That(((GetBagRequest)_net.Calls[0].Request).BagType, Is.Zero);
             _net.Calls[0].Respond(new GetBagResponse { Bag = Bag() });
 
@@ -61,7 +61,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.Bag.Layout.Slots[0].Slot, Is.EqualTo(9));
             Assert.That(_client.Bag.Layout.Slots[0].ItemId, Is.EqualTo(_client.Bag.Items[0].ItemId));
             CollectionAssert.AreEqual(new ulong[] { 123, 45, 6 }, _client.Bag.Currency.Values);
-            Assert.That(_net.CallsOf(SceneBagClientPlayerSortBagHandler.MessageId), Is.Empty);
+            Assert.That(_net.CallsOf(SceneBagClientPlayerRpc.SortBagMessageId), Is.Empty);
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             LoadBag();
             _client.SortBag();
             var sort = _net.Calls[1];
-            Assert.That(sort.MessageId, Is.EqualTo(SceneBagClientPlayerSortBagHandler.MessageId));
+            Assert.That(sort.MessageId, Is.EqualTo(SceneBagClientPlayerRpc.SortBagMessageId));
             Assert.That(((SortBagRequest)sort.Request).BagType, Is.Zero);
             Assert.That(_client.BusySort, Is.True);
             Assert.That(_client.Bag.Layout.Slots[0].Slot, Is.EqualTo(9), "Do not predict the layout before the server reply.");
@@ -352,7 +352,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var before = LoadMission(5);
             _client.AcceptMission(5, 15);
             Assert.That(_client.BusyMissionAction, Is.True);
-            Assert.That(_net.Calls[1].MessageId, Is.EqualTo(SceneMissionClientPlayerAcceptMissionHandler.MessageId));
+            Assert.That(_net.Calls[1].MessageId, Is.EqualTo(SceneMissionClientPlayerRpc.AcceptMissionMessageId));
             var request = (MissionActionRequest)_net.Calls[1].Request;
             Assert.That(request.Scope, Is.EqualTo(5));
             Assert.That(request.MissionId, Is.EqualTo(15));
@@ -368,8 +368,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _net.Calls[1].Respond(authoritative);
             Assert.That(_client.BusyMissionAction, Is.False);
             Assert.That(_client.Missions.Equals(authoritative), Is.True);
-            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneActivityClientPlayerGetActivityListHandler.MessageId));
-            Assert.That(_net.CallsOf(SceneBagClientPlayerGetBagHandler.MessageId), Is.Empty);
+            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneActivityClientPlayerRpc.GetActivityListMessageId));
+            Assert.That(_net.CallsOf(SceneBagClientPlayerRpc.GetBagMessageId), Is.Empty);
         }
 
         [Test]
@@ -398,21 +398,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var bagBefore = _client.Bag;
             var before = LoadMission(claim: true);
             _client.ClaimMissionReward(0, 15);
-            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneMissionClientPlayerClaimMissionRewardHandler.MessageId));
+            Assert.That(_net.Calls[2].MessageId, Is.EqualTo(SceneMissionClientPlayerRpc.ClaimMissionRewardMessageId));
             Assert.That(_client.Bag, Is.SameAs(bagBefore));
             var claimed = before.Clone();
             claimed.Missions[0].CanClaim = false;
             claimed.Missions[0].Status = (PlayerMissionStatus)2;
             _net.Calls[2].Respond(claimed);
             Assert.That(_client.Missions.Equals(claimed), Is.True);
-            Assert.That(_net.Calls[3].MessageId, Is.EqualTo(SceneActivityClientPlayerGetActivityListHandler.MessageId));
-            Assert.That(_net.Calls[4].MessageId, Is.EqualTo(SceneBagClientPlayerGetBagHandler.MessageId));
+            Assert.That(_net.Calls[3].MessageId, Is.EqualTo(SceneActivityClientPlayerRpc.GetActivityListMessageId));
+            Assert.That(_net.Calls[4].MessageId, Is.EqualTo(SceneBagClientPlayerRpc.GetBagMessageId));
             Assert.That(((GetBagRequest)_net.Calls[4].Request).BagType, Is.EqualTo(1));
             Assert.That(_client.Bag, Is.SameAs(bagBefore), "领奖本身不伪造背包增量");
             _net.Calls[4].Respond(new GetBagResponse { Bag = Bag(1, count: 12) });
             Assert.That(_client.Bag.Items[0].Count, Is.EqualTo(12));
             _client.ClaimMissionReward(0, 15);
-            Assert.That(_net.CallsOf(SceneMissionClientPlayerClaimMissionRewardHandler.MessageId).Count, Is.EqualTo(1));
+            Assert.That(_net.CallsOf(SceneMissionClientPlayerRpc.ClaimMissionRewardMessageId).Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -506,7 +506,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 _client.RequestActivities();
             };
             _client.AcceptMission(0, 15);
-            Assert.That(_net.CallsOf(SceneMissionClientPlayerAcceptMissionHandler.MessageId), Is.Empty);
+            Assert.That(_net.CallsOf(SceneMissionClientPlayerRpc.AcceptMissionMessageId), Is.Empty);
             Assert.That(_net.Calls.Count, Is.EqualTo(2));
             Assert.That(_client.HasMissions || _client.BusyMissionAction, Is.False);
         }

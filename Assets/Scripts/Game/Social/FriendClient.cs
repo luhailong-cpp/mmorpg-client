@@ -57,7 +57,7 @@ namespace MmorpgClient.Game.Social
             _net.Disconnected += Disconnected;
             // 传输接口没有按订阅者注销的能力，弱引用避免已销毁面板被 GameClient 长期保留。
             var weak = new WeakReference<FriendClient>(this);
-            _net.RegisterNotify(ClientPlayerFriendNotifyFriendEventHandler.MessageId, content =>
+            _net.RegisterNotify(ClientPlayerFriendRpc.NotifyFriendEventMessageId, content =>
             {
                 if (weak.TryGetTarget(out var client)) client.Notify(content);
             });
@@ -99,7 +99,7 @@ namespace MmorpgClient.Game.Social
             if (!Ready()) return;
             HasFreshPending = false;
             var syncAck = SyncReadStarted?.Invoke();
-            Call(ClientPlayerFriendGetPendingRequestsHandler.MessageId, new GetPendingRequestsRequest(),
+            Call(ClientPlayerFriendRpc.GetPendingRequestsMessageId, new GetPendingRequestsRequest(),
                 GetPendingRequestsResponse.Parser, response =>
                 {
                     if (!Accept(response.ErrorMessage)) return;
@@ -129,7 +129,7 @@ namespace MmorpgClient.Game.Social
             { Publish("请输入其他道友的玩家编号。"); return false; }
             if (!Ready()) return false;
             LastSubmittedRequestId = 0;
-            Call(ClientPlayerFriendAddFriendHandler.MessageId,
+            Call(ClientPlayerFriendRpc.AddFriendMessageId,
                 new AddFriendRequest { TargetPlayerId = targetPlayerId }, AddFriendResponse.Parser, response =>
                 {
                     if (!Accept(response.ErrorMessage)) return;
@@ -159,11 +159,11 @@ namespace MmorpgClient.Game.Social
             ulong from = request.FromPlayerId;
             HasFreshPending = false;
             if (accept)
-                Call(ClientPlayerFriendAcceptFriendHandler.MessageId,
+                Call(ClientPlayerFriendRpc.AcceptFriendMessageId,
                     new AcceptFriendRequest { RequestId = requestId, FromPlayerId = from }, AcceptFriendResponse.Parser,
                     response => DecisionCompleted(response.ErrorMessage));
             else
-                Call(ClientPlayerFriendRejectFriendHandler.MessageId,
+                Call(ClientPlayerFriendRpc.RejectFriendMessageId,
                     new RejectFriendRequest { RequestId = requestId, FromPlayerId = from }, RejectFriendResponse.Parser,
                     response => DecisionCompleted(response.ErrorMessage));
             return true;

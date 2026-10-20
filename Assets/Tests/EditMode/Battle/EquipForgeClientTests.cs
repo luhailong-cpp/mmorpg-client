@@ -91,7 +91,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private FakeBattleTransport.RecordedCall LastBagRead(uint bagType)
         {
             var call = Last;
-            Assert.That(call.MessageId, Is.EqualTo(SceneBagClientPlayerGetBagHandler.MessageId), "最近一次出站调用不是读背包");
+            Assert.That(call.MessageId, Is.EqualTo(SceneBagClientPlayerRpc.GetBagMessageId), "最近一次出站调用不是读背包");
             Assert.That(call.Request, Is.TypeOf<GetBagRequest>());
             Assert.That(((GetBagRequest)call.Request).BagType, Is.EqualTo(bagType));
             return call;
@@ -114,7 +114,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         /// <summary>从第 from 个出站调用起,发出的背包读取各是哪一类(bag_type)。</summary>
         private uint[] BagReadsFrom(int from)
-            => _net.Calls.Skip(from).Where(call => call.MessageId == SceneBagClientPlayerGetBagHandler.MessageId)
+            => _net.Calls.Skip(from).Where(call => call.MessageId == SceneBagClientPlayerRpc.GetBagMessageId)
                 .Select(call => ((GetBagRequest)call.Request).BagType).ToArray();
 
         // ── 夹具 ────────────────────────────────────────────
@@ -1058,7 +1058,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             LoadBoth();
             EnhanceOnce();
             _client.SortBag();
-            Assert.That(Last.MessageId, Is.EqualTo(SceneBagClientPlayerSortBagHandler.MessageId));
+            Assert.That(Last.MessageId, Is.EqualTo(SceneBagClientPlayerRpc.SortBagMessageId));
             _client.EnhanceEquip(Sword);
             Assert.That(_client.EquipmentError, Is.EqualTo("背包正在整理，请稍候"));
             Assert.That(_client.LastEnhanceOutcome, Is.Null, "失败原因与上一次的成功结果不同时存在");
@@ -1346,13 +1346,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var missions = new GetMissionListResponse();
             missions.Missions.Add(new PlayerMissionInfo { MissionId = 15, CanAccept = true, Configured = true });
             _client.RequestMissions();
-            Assert.That(Last.MessageId, Is.EqualTo(SceneMissionClientPlayerGetMissionListHandler.MessageId));
+            Assert.That(Last.MessageId, Is.EqualTo(SceneMissionClientPlayerRpc.GetMissionListMessageId));
             Last.Respond(missions);
 
             // 整理在途:强化 / 镶嵌 / 取下报「稍候」,不发包。
             _client.SortBag();
             var sort = Last;
-            Assert.That(sort.MessageId, Is.EqualTo(SceneBagClientPlayerSortBagHandler.MessageId));
+            Assert.That(sort.MessageId, Is.EqualTo(SceneBagClientPlayerRpc.SortBagMessageId));
             Assert.That(sort.Request, Is.TypeOf<SortBagRequest>());
             int sent = _net.Calls.Count;
             _client.EnhanceEquip(Sword);

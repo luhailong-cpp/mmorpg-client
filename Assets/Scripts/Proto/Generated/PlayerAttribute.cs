@@ -82,7 +82,7 @@ public static partial class PlayerAttributeReflection {
           "R21TZXRQbGF5ZXJMZXZlbFJlcXVlc3QSDQoFbGV2ZWwYASABKA0iZgoYR21T",
           "ZXRQbGF5ZXJMZXZlbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
           "Dy5UaXBJbmZvTWVzc2FnZRIiCgVwYW5lbBgCIAEoCzITLkF0dHJpYnV0ZVBh",
-          "bmVsSW5mbzKkBgoaU2NlbmVBdHRyaWJ1dGVDbGllbnRQbGF5ZXISSgoRR2V0",
+          "bmVsSW5mbzKrBgoaU2NlbmVBdHRyaWJ1dGVDbGllbnRQbGF5ZXISSgoRR2V0",
           "QXR0cmlidXRlUGFuZWwSGS5HZXRBdHRyaWJ1dGVQYW5lbFJlcXVlc3QaGi5H",
           "ZXRBdHRyaWJ1dGVQYW5lbFJlc3BvbnNlElwKF0FsbG9jYXRlQXR0cmlidXRl",
           "UG9pbnRzEh8uQWxsb2NhdGVBdHRyaWJ1dGVQb2ludHNSZXF1ZXN0GiAuQWxs",
@@ -96,11 +96,11 @@ public static partial class PlayerAttributeReflection {
           "Y2hBdHRyaWJ1dGVTY2hlbWUSHS5Td2l0Y2hBdHRyaWJ1dGVTY2hlbWVSZXF1",
           "ZXN0Gh4uU3dpdGNoQXR0cmlidXRlU2NoZW1lUmVzcG9uc2USVgoVUmVuYW1l",
           "QXR0cmlidXRlU2NoZW1lEh0uUmVuYW1lQXR0cmlidXRlU2NoZW1lUmVxdWVz",
-          "dBoeLlJlbmFtZUF0dHJpYnV0ZVNjaGVtZVJlc3BvbnNlEkAKG05vdGlmeUF0",
+          "dBoeLlJlbmFtZUF0dHJpYnV0ZVNjaGVtZVJlc3BvbnNlEkcKG05vdGlmeUF0",
           "dHJpYnV0ZVBhbmVsQ2hhbmdlZBIZLkF0dHJpYnV0ZVBhbmVsQ2hhbmdlZFMy",
-          "QxoGLkVtcHR5EkcKEEdtU2V0UGxheWVyTGV2ZWwSGC5HbVNldFBsYXllckxl",
-          "dmVsUmVxdWVzdBoZLkdtU2V0UGxheWVyTGV2ZWxSZXNwb25zZRoKgKjDAQGI",
-          "qMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
+          "QxoGLkVtcHR5IgWImcgBAhJHChBHbVNldFBsYXllckxldmVsEhguR21TZXRQ",
+          "bGF5ZXJMZXZlbFJlcXVlc3QaGS5HbVNldFBsYXllckxldmVsUmVzcG9uc2Ua",
+          "CoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

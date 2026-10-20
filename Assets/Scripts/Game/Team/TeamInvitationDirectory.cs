@@ -167,7 +167,7 @@ namespace MmorpgClient.Game.Team
             int view = _view;
             if (Source == TeamInvitationSource.Friends)
             {
-                Request(ClientPlayerFriendGetFriendListHandler.MessageId, new GetFriendListRequest(),
+                Request(ClientPlayerFriendRpc.GetFriendListMessageId, new GetFriendListRequest(),
                     GetFriendListResponse.Parser, view, reply =>
                     {
                         if (reply == null) { Fail("好友名单暂未返回，请刷新重试。"); return; }
@@ -196,7 +196,7 @@ namespace MmorpgClient.Game.Team
             {
                 string cursor = append ? _nextCursor : "";
                 var request = new RecommendFriendsRequest { Limit = PageSize, OnlineOnly = true, Cursor = cursor, Query = Query };
-                Request(ClientPlayerFriendRecommendFriendsHandler.MessageId, request, RecommendFriendsResponse.Parser,
+                Request(ClientPlayerFriendRpc.RecommendFriendsMessageId, request, RecommendFriendsResponse.Parser,
                     view, reply =>
                     {
                         if (reply == null) { Fail("在线名单暂未返回，请刷新重试。"); return; }
