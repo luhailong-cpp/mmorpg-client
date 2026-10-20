@@ -27,7 +27,7 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$ExePath = (Join-Path $PSScriptRoot '../../tmp/qdao-formal-player/mmorpg.exe'),
+    [string]$ExePath = (Join-Path $PSScriptRoot '../Builds/crosszone_player/mmorpg.exe'),
     [string]$Gateway = "http://127.0.0.1:8081",
     [uint32]$Zone = 1,
     # 旧角色:用已有存档的账号(例如此前存着 (0,0,0) 的那个)验证"旧存档无效位置被服务器落到出生点"
@@ -36,7 +36,7 @@ param(
     # 新角色:留空则跳过;给一个从未登录过的账号名(login 侧 robot_ 前缀走 DevPasswordAuth,自动建号)
     [string]$FreshAccount = "",
     [int]$TimeoutSec = 150,
-    [string]$LogDir = (Join-Path $PSScriptRoot ('../../tmp/move_test_' + (Get-Date -Format yyyyMMdd_HHmmss))),
+    [string]$LogDir = (Join-Path $PSScriptRoot ('../Logs/move_test_' + (Get-Date -Format yyyyMMdd_HHmmss))),
     [string]$AppearanceId = "",
     [switch]$AppearanceUi,
     [uint32]$RoleClass = 1,

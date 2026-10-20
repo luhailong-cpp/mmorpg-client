@@ -195,8 +195,8 @@
 ### 本次验证
 
 - 运行时离线编译：`pwsh -File tools/client_compile_check.ps1`，0 错误。
-- Unity 6000.6.0f1 EditMode：最终排版版本的 9 个相关用例类，**365/365 通过**。其中 `EquipForgeWindowTests` 12、`EquipWindowTests` 29、`GameplayWindowTests` 16，原 6 个数据 / 状态用例类共 308。结果：`E:\work\forge-ui-qa-20261016\editmode-results.xml`；日志：`E:\work\forge-ui-qa-20261016\editmode-final.log`。
+- Unity 6000.6.0f1 EditMode：最终排版版本的 9 个相关用例类，**365/365 通过**。其中 `EquipForgeWindowTests` 12、`EquipWindowTests` 29、`GameplayWindowTests` 16，原 6 个数据 / 状态用例类共 308。结果：`E:\work\mmorpg-client\Docs\Verification\forge-ui-qa-20261016\editmode-results.xml`；日志：`E:\work\mmorpg-client\Docs\Verification\forge-ui-qa-20261016\editmode-final.log`。
 - Unity 验证在交接中的副本 `E:\work-archive-20261015\tmp\forge-ui-verify-20261016` 完成；运行前同步当前客户端 `Assets/Scripts`、Battle 测试和新截图脚本，复用副本的资源缓存。
-- 主仓与验证副本的 9 个相关源文件 SHA-256 完全一致，记录：`E:\work\forge-ui-qa-20261016\verified-source-hashes.json`。
-- 原生截图：**18 张**（2560×1080、1920×1080、1280×720，各含可强化、选择宝石、镶嵌在途、降级确认、材料不足、同步中六种状态），脚本断言通过；已目视检查主面板、宝石选择、确认与提示，修正宝石题签与数量落入装饰边框的问题。输出：`E:\work\forge-ui-qa-20261016\screenshots`；记录：`E:\work\forge-ui-qa-20261016\verification.txt`。
+- 主仓与验证副本的 9 个相关源文件 SHA-256 完全一致，记录：`E:\work\mmorpg-client\Docs\Verification\forge-ui-qa-20261016\verified-source-hashes.json`。
+- 原生截图：**18 张**（2560×1080、1920×1080、1280×720，各含可强化、选择宝石、镶嵌在途、降级确认、材料不足、同步中六种状态），脚本断言通过；已目视检查主面板、宝石选择、确认与提示，修正宝石题签与数量落入装饰边框的问题。输出：`E:\work\mmorpg-client\Docs\Verification\forge-ui-qa-20261016\screenshots`；记录：`E:\work\mmorpg-client\Docs\Verification\forge-ui-qa-20261016\verification.txt`。
 - 本次没有连接游戏服务器或登录账号；真实强化 / 镶嵌联机验收仍按第 9 节补货后执行。第 10 节中「没有界面」的限制已由本次接入解除。

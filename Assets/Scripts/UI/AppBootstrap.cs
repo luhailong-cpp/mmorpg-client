@@ -94,6 +94,9 @@ namespace MmorpgClient.UI
                 // 选角/建角界面:挂接 GameClient.PlayerChooser,EnterZone 管线
                 // 在 TCP Login 后弹出(见 RoleFlowUi)
                 MmorpgClient.UI.Ugui.Role.RoleFlowUi.Attach(this);
+                // 技能书:业务适配器只绑这一次;登录 / 断线 / 换号由适配器自己跟踪(未就绪时显示未同步)
+                MmorpgClient.UI.Ugui.Skills.SkillUiRoot.EnsureSpawned();
+                MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance?.Bind(GameClient.Skills);
             }
             catch (Exception ex)
             {
@@ -239,6 +242,9 @@ namespace MmorpgClient.UI
             {
                 GameClient.CoroutineRunner = null;
                 if (_gameLogHandler != null) GameClient.OnLog -= _gameLogHandler;
+                // 先从技能界面解绑,再注销适配器的网络回调
+                MmorpgClient.UI.Ugui.Skills.SkillUiRoot.Instance?.Unbind(GameClient.Skills);
+                GameClient.Skills?.Dispose();
                 GameClient.Disconnect();
                 GameClient.Features?.Dispose();
                 GameClient.LandingSync?.Dispose();

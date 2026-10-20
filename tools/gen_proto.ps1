@@ -62,6 +62,8 @@ $files = @(
     "proto/scene/scene_info.proto",
     "proto/scene/player_scene.proto",
     "proto/scene/player_skill.proto",
+    # 技能域 tip(四职业技能书 / 修习的拒绝原因,服务端 docs/design/class-skills.md §4),客户端按枚举映射文案。
+    "generated/code/proto/tip/skill_error_tip.proto",
     "proto/scene/player_movement.proto",
     "proto/scene/player_lifecycle.proto",
     "proto/scene/client_player_common.proto",

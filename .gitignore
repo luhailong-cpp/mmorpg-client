@@ -126,6 +126,9 @@ InitTestScene*.unity*
 /.mcp.json
 /tools/unity-packages/
 
+# 装备锻造本地验收原始日志与截图；交接文档保留路径引用。
+/Docs/Verification/forge-ui-qa-20261016/
+
 # Python tool caches
 __pycache__/
 *.py[cod]

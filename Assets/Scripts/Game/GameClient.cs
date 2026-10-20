@@ -7,6 +7,7 @@ using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Role;
+using MmorpgClient.Game.Skills;
 using MmorpgClient.Game.Sync;
 using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
@@ -162,6 +163,12 @@ namespace MmorpgClient.Game
         /// 本身无定时器(纯请求-响应 + 一条 S2C 推送),不需要 Tick。
         /// </summary>
         public PetClient Pets { get; }
+
+        /// <summary>
+        /// 角色技能书(服务端 docs/design/class-skills.md §4):ListSkills / UpgradeSkill 的业务适配器,
+        /// 实现技能 UI 的 ISkillBookSource,由 AppBootstrap 绑到 SkillUiRoot。与 Attributes 平行,纯请求-响应,不需要 Tick。
+        /// </summary>
+        public SkillBookClient Skills { get; }
         public DurableRequestFileStore TeamMatchRecovery { get; }
 
         public PlayerFeaturesClient Features { get; }
@@ -302,6 +309,7 @@ namespace MmorpgClient.Game
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
             Pets = PetClient.Attach(new GameClientBattleTransport(this));
+            Skills = SkillBookClient.Attach(new GameClientBattleTransport(this), this, () => GateConnectionIdentity);
             var companion = World.Root.GetComponent<QdaoPetCompanion>() ?? World.Root.gameObject.AddComponent<QdaoPetCompanion>();
             companion.Bind(World, Pets);
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));

@@ -26,11 +26,11 @@
 
 .EXAMPLE
   pwsh -File tools/run_crosszone_pair.ps1
-  pwsh -File tools/run_crosszone_pair.ps1 -TimeoutSec 400 -LogDir E:/work/tmp/crosszone_run1
+  pwsh -File tools/run_crosszone_pair.ps1 -TimeoutSec 400 -LogDir ./Logs/crosszone_run1
 #>
 [CmdletBinding()]
 param(
-    [string]$ExePath = (Join-Path $PSScriptRoot '../../tmp/qdao-formal-player/mmorpg.exe'),
+    [string]$ExePath = (Join-Path $PSScriptRoot '../Builds/crosszone_player/mmorpg.exe'),
     [string]$Gateway = "http://127.0.0.1:8081",
     [uint32]$ZoneA = 1,
     [uint32]$ZoneB = 2,
@@ -40,7 +40,7 @@ param(
     [string]$Mode = "1v1",
     [uint32]$BattleConfig = 1,
     [int]$TimeoutSec = 300,
-    [string]$LogDir = (Join-Path $PSScriptRoot ('../../tmp/battle_pair_' + (Get-Date -Format yyyyMMdd_HHmmss))),
+    [string]$LogDir = (Join-Path $PSScriptRoot ('../Logs/battle_pair_' + (Get-Date -Format yyyyMMdd_HHmmss))),
     [string]$AppearanceA = "",
     [string]$AppearanceB = "",
     [switch]$RequireAppearanceRole,
