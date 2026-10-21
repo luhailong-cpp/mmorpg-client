@@ -31,4 +31,8 @@ NPC 合并仅有 23 个 `.png.meta` 的 add/add 冲突。主干已保存 Unity �
 
 验证：运行时 405 个 C# 文件编译通过（0 错误）；NPC 两个编辑器入口编译通过，原图导入回归 7/7 通过；小游戏开发桥回归 24/24 通过，原型 C# 分别按 Standalone / WebGL 条件独立编译通过。详细本地审计和日志位于被 Git 忽略的 `.codex-artifacts/branch-audit-20261021/`。
 
-本记录不删除分支或归档工作树。清理目录时仍需保存旧工作树中的历史原始状态；业务功能不应由旧生成代码或旧资源快照覆盖主干。
+截至 2026-10-21，本次审计的 11 棵客户端归档工作树（含 `wx-minigame-spike/client-wt`）已通过 `git worktree remove` 实际移除。用户点名的三个构建源副本 `mmorpg-client-build-20261010-111903`、`mmorpg-client-build-20261010-120943`、`mmorpg-client-build-20261013-135317` 也已从 `E:/work-archive-20261015/` 物理删除；其 55,537 个 Assets 文件已核对，没有遗漏的有效独有源码或源图。
+
+7 个独有小游戏原型源码已由 `4768216b` 提交并推送到主干，保留于 `tools/experimental/minigame`。13 个小型恢复场景、个人设置及构建配置文件共 36,355 字节（工作树 5 个 / 13,212 字节，构建副本 8 个 / 23,143 字节），已按来源目录保全到 Git 忽略目录 `.codex-artifacts/branch-audit-20261021/pre-removal-local-state/`，来源与副本 SHA-256 均已逐字节核对，未覆盖主仓当前设置。
+
+实际移除记录分别保存在 `pre-removal-local-state/removal-results.jsonl` 与 `build-copy-audit/removal-results.jsonl`；保全清单为 `pre-removal-local-state/manifest.json` 和 `pre-removal-local-state/build-copies/manifest.json`，均位于上述本地审计目录。废旧导入 `.meta`、已被类型化 RPC 替代的生成 Handler 及构建缓存已随旧目录移除，不重新保留或提交。
