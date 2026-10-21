@@ -1,0 +1,37 @@
+[
+  {
+    "path": "Assets/Plugins/WebGL/MmorpgWebSocket.jslib",
+    "sha256": "16d7b470184c62d7779afeeacb90b86df2a753bc2f74690866a8f1a8badeac54",
+    "bytes": 4386
+  },
+  {
+    "path": "Assets/Scripts/Net/BrowserWebSocketChannel.cs",
+    "sha256": "b94c3543e6601035667bc0c095b3c55cc5a15ea8f8384013c8de31e8b9640011",
+    "bytes": 3049
+  },
+  {
+    "path": "Assets/Scripts/Net/ClientWebSocketChannel.cs",
+    "sha256": "6551f51779991399184a42f8b0abfc1e6e7b9a59f96ec44ffd144c81c4c64850",
+    "bytes": 6560
+  },
+  {
+    "path": "Assets/Scripts/Net/IWebSocketChannel.cs",
+    "sha256": "cc987a998ee622b05f81f339a065d5c070e6255abf198b450309ff23a2efe83c",
+    "bytes": 2019
+  },
+  {
+    "path": "Assets/Scripts/Net/WebSocketFramedConnection.cs",
+    "sha256": "d3dd5a9a0818df3b2958a150d1d21ea1c880254e7ec5a36a952b2626c005aeaa",
+    "bytes": 8434
+  },
+  {
+    "path": "tools/ws-bridge/test_ws_tcp_bridge.py",
+    "sha256": "8aa57b02d1791f73282531d699e3db10d3297676838a882aeaf5c1c81dcedb34",
+    "bytes": 15507
+  },
+  {
+    "path": "tools/ws-bridge/ws_tcp_bridge.py",
+    "sha256": "8579b3a550a085213b51553df5e0131eb8496606b96d91b6ad100f983b460846",
+    "bytes": 25135
+  }
+]
