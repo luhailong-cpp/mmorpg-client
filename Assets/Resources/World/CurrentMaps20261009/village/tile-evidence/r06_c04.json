@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 6,
+  "column": 4,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "da6d7d80ace685ed69798e875f027506a81bc473bae0a1d55231c8ec62afe253",
+  "imageBytes": 29987198,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/r06_c04.candidate.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "56f94c42783ea0fe7f6242cd96fedcd379cd752cfd99f2a521f4e9cd51b15e4c",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "candidate": "work-r06_c04/final-v2/r06_c04.candidate.png",
+    "candidateSha256": "da6d7d80ace685ed69798e875f027506a81bc473bae0a1d55231c8ec62afe253",
+    "internalAccepted": true,
+    "qa": "work-r06_c04/final-v2/root-qa.json",
+    "qaSha256": "51d29016e2ff55b56f6324727aa0bbdba4345e8c53f687193bc03355aed91883",
+    "assembly": "work-r06_c04/final-v2/assembly.json",
+    "assemblySha256": "e169975617c6596701020ecb67620096ab1094942393c7d31dd98ca48095d834",
+    "formalAccepted": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/root-qa.json",
+    "sourceSha256": "51d29016e2ff55b56f6324727aa0bbdba4345e8c53f687193bc03355aed91883",
+    "normalizedDocument": {
+      "tile": "r06_c04",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/r06_c04.candidate.png",
+        "sha256": "da6d7d80ace685ed69798e875f027506a81bc473bae0a1d55231c8ec62afe253"
+      },
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/assembly.json",
+        "sha256": "e169975617c6596701020ecb67620096ab1094942393c7d31dd98ca48095d834"
+      },
+      "internalAccepted": true,
+      "status": "internal-native-seams-pass-external-pending",
+      "reviewer": "root",
+      "reviewedAtUtc": "2026-10-13T04:20:44.248152+00:00",
+      "coverage": {
+        "cores": 16,
+        "verticalSeams": 12,
+        "horizontalSeams": 12,
+        "junctions": 9,
+        "externalNorthSegments": 4,
+        "interiorOtherSideSegments": 12
+      },
+      "visualEvidence": {
+        "contacts": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/root-qa-contacts/manifest.json",
+        "contactManifestSha256": "f22f6155870e20524b1ae9bd81185ea0749e22fb8c5659a0cad53344d212225f",
+        "nativeSeamImages": [
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/vertical-row-1.native.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/vertical-row-2.native.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/vertical-row-3.native.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/vertical-row-4.native.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/horizontal-col-1.native.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/horizontal-col-2.native.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/horizontal-col-3.native.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/qa/horizontal-col-4.native.png"
+        ],
+        "display": "All exact contacts and seam strips reviewed at original detail, no resize."
+      },
+      "notes": [
+        "Workbench seat, rails, draped teal cloth, front and rear legs coherent. Right-end repair has no duplicate external leg or clipped join.",
+        "Upright wood grain, metal collar and rounded foot continuous. Sand textures vary gradually across ground, without hard geometry discontinuity.",
+        "Gray/cyan road curve and slab seams continuous."
+      ],
+      "nativeProof": {
+        "pixels": 16777216,
+        "mismatches": 0,
+        "uncovered": 0,
+        "rootIndependentReplay": true,
+        "sourceRecordReferenceHashesChecked": true
+      },
+      "boundaries": {
+        "north": "pass with current r05_c04",
+        "west": "neighbor pending",
+        "east": "neighbor pending",
+        "south": "neighbor pending"
+      },
+      "formalAccepted": false
+    }
+  }
+}

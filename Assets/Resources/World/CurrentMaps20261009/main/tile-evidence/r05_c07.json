@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 5,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "75374335df252505edbb301d18c17bca9434b8ac74852bdafa698eaba41f10ec",
+  "imageBytes": 26419656,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/candidate/r05_c07-candidate-localcut-e280bcf6d4f6.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r05_c07",
+    "selectedAvailable": 16,
+    "selectedUsable": 16,
+    "missingNativePatches": [],
+    "invalidSelected": [],
+    "completeCandidate": true,
+    "currentCompleteCandidate": true,
+    "internalQAPassed": true,
+    "formalAccepted": false,
+    "latestCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/candidate/r05_c07-candidate-localcut-e280bcf6d4f6.png",
+    "candidateVariants": 5,
+    "qa": {
+      "internalPassed": true,
+      "formalPassed": false,
+      "status": "explicit_current_evidence",
+      "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/qa/acceptance.json",
+      "sha256": "f8d1256dcb0acb00ddfb9bc73617de41d4d04978e6ce331a5d88db9a9cd8641b"
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/qa/acceptance.json",
+    "sourceSha256": "f8d1256dcb0acb00ddfb9bc73617de41d4d04978e6ce331a5d88db9a9cd8641b",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-12T20:46:28.649849+00:00",
+      "tile": "r05_c07",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/candidate/r05_c07-candidate-localcut-e280bcf6d4f6.png",
+        "sha256": "75374335df252505edbb301d18c17bca9434b8ac74852bdafa698eaba41f10ec"
+      },
+      "internalQA": {
+        "status": "passed",
+        "actuallyViewed": true,
+        "seamSegments": 24,
+        "junctions": 9,
+        "evidence": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/qa/r05_c07-candidate-localcut-e280bcf6d4f6/current-candidate-review.json",
+          "sha256": "c1d21635a350d3531e69936a52b565a56e5f09a64911316a61ed2f63424795c5"
+        }
+      },
+      "externalQA": {
+        "status": "partial_passed",
+        "actuallyViewed": true,
+        "reviewedSides": [
+          "west"
+        ],
+        "worldBoundarySides": [],
+        "pendingSides": [
+          "north",
+          "east",
+          "south"
+        ],
+        "evidence": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/qa/r05_c07-candidate-localcut-e280bcf6d4f6/current-candidate-review.json",
+          "sha256": "c1d21635a350d3531e69936a52b565a56e5f09a64911316a61ed2f63424795c5"
+        }
+      },
+      "formalAccepted": false
+    }
+  }
+}

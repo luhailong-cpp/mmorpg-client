@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/production-contract.json",
+  "sourceSha256": "8c7d0558a34ea58195be0b8f4164368cad28e8c8e638746083a8bd8ce67bc416",
+  "normalizedDocument": {
+    "schemaVersion": 1,
+    "userAuthorization": "拿给我开始做 渔村 和岛的游戏图吧，开新窗口做；创建好几个窗口去做和主城图一样",
+    "status": "authorized_game_art_production",
+    "artCanvasPixels": [
+      57344,
+      57344
+    ],
+    "rows": 14,
+    "columns": 14,
+    "formalTilePixels": [
+      4096,
+      4096
+    ],
+    "formalTileCount": 196,
+    "formalAcceptedCount": 0,
+    "artCanvasBasis": "Root production allocation: square 14×14 grid rounds sqrt(0.75)×16 up to whole 4K tiles. This is a raster production choice, not a user-specified world size.",
+    "mainCityArtCanvasPixels": [
+      65536,
+      65536
+    ],
+    "rasterAreaRatioToMain": 0.765625,
+    "worldAreaRatioToMain": 0.75,
+    "worldSideRatioToMain": 0.8660254037844386,
+    "worldSize": null,
+    "equalWorldPixelDensity": false,
+    "pixelDensityRatioIfWorldRatioApplied": 1.0103629710818451,
+    "ratioExplanation": "User's 3/4 applies to world area. A 14×14 square raster has 49/64 of the main city's pixels; eventual world mapping preserves 3/4 area without distorting the artwork, with about 1.04% more pixels per world unit. No capacity gain is claimed.",
+    "capacityTargetDistributedPlayers": 5000,
+    "capacity5000Validated": false,
+    "clientMappingValidated": false,
+    "builtinOnly": true,
+    "paidApiAllowed": false,
+    "actualModelMayBeUnverified": true,
+    "primaryStyleReference": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+    "nativePatchPlan": {
+      "subrows": 4,
+      "subcolumns": 4,
+      "corePixels": 1024,
+      "haloPixels": 115,
+      "expectedNativePixels": 1254,
+      "actualSizeMustBeMeasured": true,
+      "resizeFinalArtAllowed": false
+    },
+    "coordinateSystem": {
+      "origin": "top-left",
+      "tileIndices": "1-based",
+      "tileOrigin": "[(column-1)*4096,(row-1)*4096]",
+      "overviewMapping": "uniform 1254 square -> 57344 square, crop guides are layout-only; not final pixels"
+    },
+    "constraints": [
+      "daylight only; rounded full Q Daoist painterly art matching approved mail style and map references",
+      "Spring Festival architecture: ivory walls/vermilion dados, red doors, window papercuts, couplets, lanterns",
+      "Lantern Festival and Mid-Autumn objects mixed sparingly, no separate festival districts",
+      "natural pale grey/blue-grey stone slabs and low-contrast joints; no red paving; retain appropriate wood/sand",
+      "scattered spent red firecracker scraps, small scorched tubes, wall-side firework boxes; do not clog routes",
+      "trees only beside existing buildings/courtyard walls; no free-standing plaza/street tree islands or potted trees",
+      "roads, courtyard openings, stairs and quay routes visually continuous; no navigation pass inferred",
+      "no NPCs, UI, grid labels, watermarks, giant icons or invented map names baked into art"
+    ],
+    "ownership": {
+      "zoneDirectoriesWritableBy": "respective window only",
+      "sharedMasterWritableBy": "root only",
+      "crossZoneBorderRule": "Read and reference recorded adjacent native pieces when available. Unreviewed cross-zone edges remain candidates. Root reviews shared seams.",
+      "noGlobalThreadWritesFromWorkers": true
+    },
+    "acceptance": [
+      "native detail redrawn, never enlarge a low-resolution overview and call it finished",
+      "internal patch geometry and joins visually checked at native resolution",
+      "4096 square tile fully covered with source hashes and native contribution traceability",
+      "external tile/zone joins checked before formal acceptance",
+      "per-image actual prompt, reference roles/hashes, native dimensions, receipt, submitted selectors and actual model/quality evidence"
+    ],
+    "finalMapComplete": false,
+    "createdAtUtc": "2026-10-09T16:08:09.824Z",
+    "map": "eight-immortals-island",
+    "layoutReference": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-wall-trees-v6.png",
+    "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+    "detailStyleReference": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-detail-v1.png",
+    "detailSha256": "40ca8d6b5b062511ebd18dc0e278399644097ee10608000658f691796884c133",
+    "detailReferencePurpose": "independent style close-up, NOT a coordinate crop",
+    "mapSpecificConstraints": [
+      "eight separate immortal residences, four per side, with existing identity props and open courtyards; do not merge or add residences",
+      "north central main hall, south-west lotus pavilion and south gate are extra buildings, not part of the eight residences",
+      "central taiji plaza, cross roads and circulation around all courtyards remain continuous",
+      "southeast dock and short south route toward main city's north gate preserved",
+      "no enlarged coast or gate exterior; no free-standing coastal trees restored"
+    ],
+    "zones": [
+      {
+        "id": "northwest",
+        "title": "西北仙居道场区",
+        "rows": [
+          1,
+          7
+        ],
+        "columns": [
+          1,
+          7
+        ],
+        "firstTile": "r03_c03",
+        "tileCount": 49,
+        "corePixelBox": [
+          0,
+          0,
+          28672,
+          28672
+        ]
+      },
+      {
+        "id": "northeast",
+        "title": "东北仙居葫芦区",
+        "rows": [
+          1,
+          7
+        ],
+        "columns": [
+          8,
+          14
+        ],
+        "firstTile": "r03_c12",
+        "tileCount": 49,
+        "corePixelBox": [
+          28672,
+          0,
+          57344,
+          28672
+        ]
+      },
+      {
+        "id": "southwest",
+        "title": "西南竹院莲池区",
+        "rows": [
+          8,
+          14
+        ],
+        "columns": [
+          1,
+          7
+        ],
+        "firstTile": "r09_c03",
+        "tileCount": 49,
+        "corePixelBox": [
+          0,
+          28672,
+          28672,
+          57344
+        ]
+      },
+      {
+        "id": "southeast",
+        "title": "东南仙居渡口区",
+        "rows": [
+          8,
+          14
+        ],
+        "columns": [
+          8,
+          14
+        ],
+        "firstTile": "r09_c12",
+        "tileCount": 49,
+        "corePixelBox": [
+          28672,
+          28672,
+          57344,
+          57344
+        ]
+      }
+    ],
+    "previousPrimaryStyleReference": "designs/mail-ui-v1/01-mail-event.png",
+    "primaryStyleSha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63",
+    "productionResumeControl": "qdao_city_tiles_4k_20260916/builtin_q64_production/resume-production-20261010/production-resume.json",
+    "productionResumedAtUtc": "2026-10-10T08:52:16.081417+00:00",
+    "newArtworkGenerationAllowed": true
+  }
+}

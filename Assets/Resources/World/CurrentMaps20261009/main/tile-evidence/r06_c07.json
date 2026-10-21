@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 6,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "e3184ae204d0cd8f0ea701bf6b3281449bb1489c18514f525869f37d72326609",
+  "imageBytes": 25659847,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/candidate/r06_c07-candidate-hard-4c0d654c3aae.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c07",
+    "selectedAvailable": 16,
+    "selectedUsable": 16,
+    "missingNativePatches": [],
+    "invalidSelected": [],
+    "completeCandidate": true,
+    "currentCompleteCandidate": true,
+    "internalQAPassed": true,
+    "formalAccepted": false,
+    "latestCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/candidate/r06_c07-candidate-hard-4c0d654c3aae.png",
+    "candidateVariants": 1,
+    "qa": {
+      "internalPassed": true,
+      "formalPassed": false,
+      "status": "explicit_current_evidence",
+      "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/qa/acceptance.json",
+      "sha256": "e2ca08abb73b5963e29ae8a9d4b47e7da5f83d9142fe141d3f94bbe6e565213d"
+    },
+    "currentNativeDelivery": {
+      "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/delivery-summary-20261012.json",
+      "sha256": "95be4c872b02a7582b4bc1ee939ace8fdbc5cdb85cebdcbcee66a9d19bb8b0b8",
+      "tile": "r06_c07",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/candidate/r06_c07-candidate-hard-4c0d654c3aae.png",
+        "sha256": "e3184ae204d0cd8f0ea701bf6b3281449bb1489c18514f525869f37d72326609",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "wholeZoneComplete": false
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/qa/acceptance.json",
+    "sourceSha256": "e2ca08abb73b5963e29ae8a9d4b47e7da5f83d9142fe141d3f94bbe6e565213d",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r06_c07",
+      "createdAtUtc": "2026-10-13T03:36:21.627905+00:00",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/candidate/r06_c07-candidate-hard-4c0d654c3aae.png",
+        "sha256": "e3184ae204d0cd8f0ea701bf6b3281449bb1489c18514f525869f37d72326609",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "internalQA": {
+        "status": "passed",
+        "actuallyViewed": true,
+        "seamSegments": 24,
+        "junctions": 9,
+        "evidence": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/qa/r06_c07-candidate-hard-4c0d654c3aae.internal-review-final.json",
+          "sha256": "f712c55139b20d69c24703862e5a9da35fcad23490b124b269d69a2ace1be808"
+        }
+      },
+      "externalQA": {
+        "status": "partial_passed",
+        "reviewedSides": [
+          "north",
+          "west"
+        ],
+        "pendingSides": [
+          "east",
+          "south"
+        ],
+        "evidence": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/qa/r06_c07-candidate-hard-4c0d654c3aae.actual-neighbor-review.json",
+          "sha256": "dc90851d0b39320eb7aa32617eac9e911b4f0eab393710827c099d626a27488e"
+        }
+      },
+      "formalAccepted": false
+    }
+  }
+}

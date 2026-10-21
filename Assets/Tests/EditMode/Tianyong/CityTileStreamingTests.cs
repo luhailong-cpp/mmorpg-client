@@ -334,7 +334,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var type = typeof(CityTileStreaming);
             var acquire = type.GetMethod("Acquire", flags);
             var evict = type.GetMethod("Evict", flags);
-            const string path = "World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c01";
+            const string path = "World/CurrentMaps20261009/main/layout";
             var first = acquire.Invoke(null, new object[] { path });
             var second = acquire.Invoke(null, new object[] { path.ToUpperInvariant() });
             var completed = first.GetType().GetField("Completed");

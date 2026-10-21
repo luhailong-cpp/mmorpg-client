@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 7,
+  "column": 15,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "867a563988ae2303c3ea2b1a014c5cc89cca7d7830f73c0ae2fdc62f3a3d25e1",
+  "imageBytes": 24936961,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/candidates/r07_c15.local-repairs-v20261013.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+  "sourceLedgerSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c15",
+    "generatedNativeCount": 18,
+    "selectedCoreCount": 16,
+    "missingCoreCount": 0,
+    "fullyCovered4kCount": 1,
+    "internalPassed4kCount": 1,
+    "formalAcceptedCount": 0,
+    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/candidates/r07_c15.local-repairs-v20261013.png",
+    "candidateSha256": "867a563988ae2303c3ea2b1a014c5cc89cca7d7830f73c0ae2fdc62f3a3d25e1",
+    "workerStatus": "complete_native_candidate_internal_review_passed",
+    "nextPatch": null,
+    "fullInternalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/local-repair-20261013/internal-review-v1.json"
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/local-repair-20261013/internal-review-v1.json",
+    "sourceSha256": "af48f176d85e793392d7d51234f8ecaa7b6607c005dca4fe6ef3a490e20ce4bb",
+    "normalizedDocument": {
+      "tile": "r07_c15",
+      "reviewedAtUtc": "2026-10-13T09:39:58.501928+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/candidates/r07_c15.local-repairs-v20261013.png",
+      "candidateSha256": "867a563988ae2303c3ea2b1a014c5cc89cca7d7830f73c0ae2fdc62f3a3d25e1",
+      "status": "internal_seam_review_passed_shared_world_edges_pending",
+      "internalPassed4kCount": 1,
+      "formalAcceptedCount": 0,
+      "readyInternalPairsReviewed": 24,
+      "completeIntersectionsReviewed": 9,
+      "priorReviewReused": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/model-pause-20261012/visual-review.json",
+      "newCoreReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/local-repair-20261013/baseline-review.json",
+      "repairedFindings": [
+        {
+          "id": "P2-wood-post-start-r1c3",
+          "status": "resolved",
+          "reviewImage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/local-repair-20261013/post-composed-review-v2.png",
+          "finding": "Support now connects continuously to existing eave; interrupted gold/red post cap removed. Lantern/roof alignment retained."
+        },
+        {
+          "id": "P2-stair-plinth-notch-r3c1",
+          "status": "resolved",
+          "reviewImage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/local-repair-20261013/stair-composed-review-v1.png",
+          "finding": "Stone cheek joins platform with continuous supported faces; rectangular notch removed. Stair count and width retained."
+        }
+      ],
+      "p2Issues": [],
+      "p3Notes": [
+        "Small local redwood grain and wall tonal differences retained; no geometry break observed."
+      ],
+      "sourceProof": {
+        "baseCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/core-baseline/4310c2993aead148fef7/r07_c15-core-baseline.candidate.png",
+        "baseSha256": "2f5aedf0aedb7aad7f2f2ea75fbc44182f4b0236b8504e54a5b37ee38b240831",
+        "layers": [
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/native/repairs/post-local-v20261013.png",
+            "sha256": "419a019fe258d5eadd1f05ebc1b771532bef4ad546cea9f6f518564478ea3b81",
+            "targetOrigin": [
+              2450,
+              300
+            ],
+            "crop": [
+              610,
+              160,
+              980,
+              1000
+            ]
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/native/repairs/stair-local-v20261013.png",
+            "sha256": "f318d2a138dfc96ebfcddb2ad6eccc4fb4914b8f7da0bce42ce53b2b5b141222",
+            "targetOrigin": [
+              380,
+              2450
+            ],
+            "crop": [
+              520,
+              510,
+              800,
+              850
+            ]
+          }
+        ],
+        "operation": "integer source crop and paste only; no resampling, feathering, filters or hand-painted pixels",
+        "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/candidates/r07_c15.local-repairs-v20261013.png",
+        "candidateSha256": "867a563988ae2303c3ea2b1a014c5cc89cca7d7830f73c0ae2fdc62f3a3d25e1",
+        "nativeSize": [
+          4096,
+          4096
+        ],
+        "status": "review_pending"
+      },
+      "outsideRepairRectanglesByteIdenticalToReviewedBaseline": true,
+      "westSharedEdgeReviewReused": "All repair rectangles interior; previously reviewed west edge pixels unchanged.",
+      "northEastSouthSharedEdges": "Pending joint review with unfinished adjacent tiles; not formal acceptance"
+    }
+  }
+}

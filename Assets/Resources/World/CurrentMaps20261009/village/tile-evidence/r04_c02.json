@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 4,
+  "column": 2,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210",
+  "imageBytes": 26742768,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/repair-v3/r04_c02.candidate.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "56f94c42783ea0fe7f6242cd96fedcd379cd752cfd99f2a521f4e9cd51b15e4c",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "candidate": "work-r04_c02/repair-v3/r04_c02.candidate.png",
+    "candidateSha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210",
+    "internalAccepted": true,
+    "qa": "work-r04_c02/reviewed-20261012/qa.json",
+    "qaSha256": "83adad1e503673689c628facbc29b21dc08e391ef0fd876230b1cf953b8fcb0d",
+    "assembly": "work-r04_c02/reviewed-20261012/r04_c02.candidate.assembly.json",
+    "assemblySha256": "de4e305392574f7e14337c9b4961f2c7f89662e415b5d818522cb496ff1d6d41",
+    "formalAccepted": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/reviewed-20261012/qa.json",
+    "sourceSha256": "83adad1e503673689c628facbc29b21dc08e391ef0fd876230b1cf953b8fcb0d",
+    "normalizedDocument": {
+      "createdAt": "2026-10-12T11:30:37.325794+00:00",
+      "tile": "r04_c02",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/repair-v3/r04_c02.candidate.png",
+        "sha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210"
+      },
+      "internalAccepted": true,
+      "northBoundaryAccepted": true,
+      "eastBoundaryAccepted": true,
+      "westBoundaryAccepted": false,
+      "southBoundaryAccepted": false,
+      "formalAccepted": false,
+      "rootInspectedThisResume": [
+        "repair-v3 overview for layout only",
+        "paving repair whole after crop at native resolution",
+        "all 16 core-1-1 through core-4-4 native 1024 crops"
+      ],
+      "priorReviewReused": "All 24 internal seam strips, 9 junctions, and 8 north/east boundary crops of repair-v2 were already reviewed in the prior production turn. Latest v3 change is confined to one interior paving joint. No full re-review of accepted tiles performed.",
+      "changedPixelCount": 294674,
+      "changedGlobalBox": [
+        4900,
+        12700,
+        5629,
+        13209
+      ],
+      "sourcePixelProof": {
+        "pixels": 16777216,
+        "mismatches": 0
+      },
+      "sourceMapUnmodified": true,
+      "finding": "Paving junction now continuous, cloth hems/folds and both suspension ropes continuous; no visible object discontinuity across core views. West/south future neighbors remain pending."
+    }
+  }
+}

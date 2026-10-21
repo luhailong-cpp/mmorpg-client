@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 12,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "a7d270fbac5f88277c655f1569088d9cb04cebc27a4426cc2827d33348cb66df",
+  "imageBytes": 18446189,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c12.candidate-sol-20261013-v01.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+  "sourceLedgerSha256": "6136c0c733ea9bc23155e8144f99b501250137e2fc4ab2db4508c7861100ae0d",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": false,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c12",
+    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c12.candidate-sol-20261013-v01.png",
+    "sha256": "a7d270fbac5f88277c655f1569088d9cb04cebc27a4426cc2827d33348cb66df",
+    "fullyCovered": true,
+    "internalPassed": true,
+    "externalPassed": false,
+    "localArtworkAcceptanceReady": false,
+    "formalAccepted": false,
+    "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/source-proof.json",
+    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/root-internal-review-resume-20261013.json",
+    "pending": "actual west/east full neighboring candidates and complete outer-corner review"
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/root-internal-review-resume-20261013.json",
+    "sourceSha256": "023c7d7966dca60877c1063a738a139d7ebd1c3d0ab09bc86ad9e30aab00496f",
+    "normalizedDocument": {
+      "tile": "r14_c12",
+      "reviewedAt": "2026-10-13T08:27:42.348014+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c12.candidate-sol-20261013-v01.png",
+      "sha256": "a7d270fbac5f88277c655f1569088d9cb04cebc27a4426cc2827d33348cb66df",
+      "internalPassed": true,
+      "formalAccepted": false,
+      "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/source-proof.json",
+      "sourceProofSha256": "c76bcd5aeeaa826d94ace2368713c34be32816bd57cf1d6186877102294d4553",
+      "reviewInheritance": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/review-inheritance.json",
+      "unchangedPreviouslyPassedSeams": 18,
+      "unchangedPreviouslyPassedJunctions": 5,
+      "newSeamsViewed": [
+        "h32",
+        "h33",
+        "h42",
+        "h43",
+        "v23",
+        "v33"
+      ],
+      "newJunctionsViewed": [
+        "j22",
+        "j23",
+        "j32",
+        "j33"
+      ],
+      "newContactFiles": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/contact-new-h.png",
+          "sha256": "05d60049392bae75e8a9513a3ed6602a59169fb69e0e1cd0428cff744296e804"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/contact-new-v.png",
+          "sha256": "5c54a16cd02db2c69058dacc7d4a34e9de3c27507e220753a6122cc0f90db052"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c12-sol-20261013-v01/contact-new-j.png",
+          "sha256": "a6655b8792ff4b76427765b6373ca79ed23b8a55ad2a02d1d77e607807b152b2"
+        }
+      ],
+      "visualFinding": "Continuous sea geometry, consistent water scale and color; no hard broken feature or visible rectangular mismatch at the six new seams/four junctions. 24/24 actual seams and 9/9 junctions passed, with unchanged checks reused by hash.",
+      "northActualCandidateEdge": "previously passed four actual segments; input first-row pixels unchanged",
+      "south": "world map boundary, no outside tile required",
+      "externalPassed": false,
+      "pending": "actual west/east full neighboring candidates and complete outer-corner review"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+name: Hydrate native map PNGs on temporary transport branch
+
+on:
+  push:
+    branches: [codex/native-map-tiles-20261021-transfer]
+    paths:
+      - .github/workflows/native-map-tiles-transfer.yml
+      - tools/hydrate_native_map_tiles.py
+      - tools/native-map-tiles-transport-plan.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: native-map-tiles-20261021-transfer
+  cancel-in-progress: false
+
+jobs:
+  hydrate:
+    if: github.repository == 'luhailong-cpp/mmorpg-client' && github.ref == 'refs/heads/codex/native-map-tiles-20261021-transfer'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/native-map-tiles-20261021-transfer
+          fetch-depth: 1
+          lfs: false
+          persist-credentials: true
+          sparse-checkout: |
+            tools
+            Assets/Resources/World/CurrentMaps20261009
+            .github
+      - name: Install exact PNG verifier dependency
+        run: python -m pip install Pillow
+      - name: Reassemble and verify PNGs, then push bounded batches to temporary branch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PYTHONUNBUFFERED: '1'
+        run: python tools/hydrate_native_map_tiles.py --plan tools/native-map-tiles-transport-plan.json

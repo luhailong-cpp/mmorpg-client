@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 4,
+  "column": 4,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "69e4abb394666127250cac0615c45efd27b4dbd7b183e848fc043e2fb33c156e",
+  "imageBytes": 23043601,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c04/final-v2-20261012/r04_c04.with-north-head.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "56f94c42783ea0fe7f6242cd96fedcd379cd752cfd99f2a521f4e9cd51b15e4c",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "candidate": "work-r05_c04/final-v2-20261012/r04_c04.with-north-head.png",
+    "candidateSha256": "69e4abb394666127250cac0615c45efd27b4dbd7b183e848fc043e2fb33c156e",
+    "internalAccepted": true,
+    "qa": "delivery-2x2/resume-20261012/r04_c04.root-qa.json",
+    "qaSha256": "9935bdc00d348f67005c297256acb28c2394451d05773042e0879fed5e2c1875",
+    "assembly": "work-r05_c04/final-v2-20261012/r04_c04.assembly.json",
+    "assemblySha256": "5928e38984712e92f33771776e4d7c4d6c75c52f9866bdca3d30fc56d1d1be6e",
+    "formalAccepted": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/resume-20261012/r04_c04.root-qa.json",
+    "sourceSha256": "9935bdc00d348f67005c297256acb28c2394451d05773042e0879fed5e2c1875",
+    "normalizedDocument": {
+      "createdAt": "2026-10-12T13:12:32.507081+00:00",
+      "tile": "r04_c04",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c04/final-v2-20261012/r04_c04.with-north-head.png",
+        "sha256": "69e4abb394666127250cac0615c45efd27b4dbd7b183e848fc043e2fb33c156e"
+      },
+      "internalAccepted": true,
+      "southBoundaryAccepted": true,
+      "formalAccepted": false,
+      "priorQa": "delivery-2x2/stage-v4/r04_c04.qa.json",
+      "northDelta": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c04/final-v2-20261012/north-delta.json",
+        "sha256": "c667814a5d605cc1c43ac870636134cfa4ff7098f74f9324ff0bd471217b4b70",
+        "baselineSha256": "5739dca98c74fba3eed6eb93a5e9abe1fb858b95b9c41a5fcca95dc0c7ccbb4b"
+      },
+      "deltaMaskPixels": 375176,
+      "outsideDeltaPixelMismatches": 0,
+      "rootInspected": [
+        "whole north-head bridge",
+        "head-top/right contours",
+        "new south join crop"
+      ],
+      "sourceProof": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c04/final-v2-20261012/north-replay-proof.json",
+        "sha256": "c19e3cb44ab97603827fd3fe4e27d9a0d91653b97a1e3cd8fedf5f3ae997b723"
+      },
+      "finding": "Only native slim-post/head bridge delta adopted; prior road and center repairs preserved outside delta."
+    }
+  }
+}

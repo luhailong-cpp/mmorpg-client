@@ -1,0 +1,568 @@
+{
+  "schemaVersion": 1,
+  "deliveryStatus": "partial_native_tiles",
+  "key": "main",
+  "sceneId": 1,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "columns": 16,
+  "rows": 16,
+  "tilePixels": 4096,
+  "worldRect": {
+    "x": 50,
+    "y": 0,
+    "width": 300,
+    "height": 300
+  },
+  "wholeMapAccepted": false,
+  "coverageStatus": "internal_qa_passed_tiles_only_external_seams_incomplete",
+  "fallback": "current_layout_image",
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "productionContract": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/production-contract.json",
+    "sourceSha256": "28443ade4c03c70dc7519e4e22601454521cbe05d43e8100f63724c4d96c99ac",
+    "evidencePath": "tile-evidence/contract.json",
+    "evidenceSha256": "fb998dc94c39627ff2c9b89e9c483faffc54796c38586c2d6c7dac5b4d9abf5b"
+  },
+  "deliveredTileCount": 27,
+  "deliveredImageBytes": 648304259,
+  "excludedTiles": [
+    {
+      "row": 6,
+      "column": 8,
+      "reason": "Current selected candidate incomplete or layout explicitly failed",
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending"
+    },
+    {
+      "row": 7,
+      "column": 7,
+      "reason": "Current selected candidate incomplete or layout explicitly failed",
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending"
+    },
+    {
+      "row": 13,
+      "column": 14,
+      "reason": "Current external boundary explicitly failed",
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": [
+        {
+          "field": "/externalNeighborSeamQA",
+          "value": "west_failed_parasol_remaining_root_corner_pending_other_edges_pending"
+        }
+      ]
+    },
+    {
+      "row": 14,
+      "column": 15,
+      "reason": "Current external boundary explicitly failed",
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": [
+        {
+          "field": "/externalNeighborSeamQA",
+          "value": "north_local_repair_full_pending_west_W02_failed_W04_pending_east_pass_south_pending"
+        },
+        {
+          "field": "/externalCoreFindings/2/currentStatus",
+          "value": "failed_pending"
+        }
+      ]
+    },
+    {
+      "row": 15,
+      "column": 15,
+      "reason": "Current external boundary explicitly failed",
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": [
+        {
+          "field": "/externalNeighborSeamQA/east",
+          "value": "failed_W01_deferred_after_two_native_attempts"
+        }
+      ]
+    },
+    {
+      "row": 15,
+      "column": 16,
+      "reason": "Current external boundary explicitly failed",
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": [
+        {
+          "field": "/externalNeighborSeamQA/west",
+          "value": "failed_W01_deferred_after_two_native_attempts"
+        }
+      ]
+    },
+    {
+      "row": 16,
+      "column": 15,
+      "reason": "Current external boundary explicitly failed",
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": [
+        {
+          "field": "/externalNeighborSeamQA/east",
+          "value": "failed_W02_with_W03_W04_pending_and_W01_watch"
+        }
+      ]
+    }
+  ],
+  "tiles": [
+    {
+      "row": 3,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r03_c04",
+      "sha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
+      "bytes": 22006960,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c04-review.json",
+      "sourceQaSha256": "d049125f8a6e0e6d1c7b52ea257a2574153a1a1b8c88b60a5361f8c25172a998",
+      "evidencePath": "tile-evidence/r03_c04.json",
+      "evidenceSha256": "bd333a53d5fd7c6509c3746d7a470d1c1a866d7a67d99f514e3639203a87ac5c",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r03_c05",
+      "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+      "bytes": 22957446,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c05-review.json",
+      "sourceQaSha256": "535c31487a44be4de331e6f081b33049016d5b509f4f7c779d1564d2b24b2bf6",
+      "evidencePath": "tile-evidence/r03_c05.json",
+      "evidenceSha256": "b5901ac9b47023b3ae2e5d16a830b33ac53d4120eca9ff7031e3cbb0936d4740",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 4,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r04_c04",
+      "sha256": "2d815289e5cce9764a72db71577d1b7b5e740e133ee062b93ffc28d1fafb0335",
+      "bytes": 18185427,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r04_c04.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r04_c04-review.json",
+      "sourceQaSha256": "3185488553d872d524d608ace30106338458cb709c6584908f7c8427501ab31b",
+      "evidencePath": "tile-evidence/r04_c04.json",
+      "evidenceSha256": "259a45d8940bbedeb50df1e7689f6d930fb2c83034ef0ee9f0c7988dd2fe5e89",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 4,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r04_c05",
+      "sha256": "4e4ac2a282d9b2823555284d24acab6798df7b4fcf1f5ee4d4af2294729dcab6",
+      "bytes": 21866287,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r04_c05.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r04_c05-review.json",
+      "sourceQaSha256": "3362df365f5f9ccfbdaa50e32ac01809654836966ae6d398384827045e9d19d7",
+      "evidencePath": "tile-evidence/r04_c05.json",
+      "evidenceSha256": "391823d98618043876f801e7b2b06786df5fd6058ed0da1d294fc2cd30ee3845",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 5,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c04",
+      "sha256": "ccd3167a0a9cade9dc2bc031c210d737615cbd29e804efb7c0cbbbdd2516a72b",
+      "bytes": 18865559,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r05_c04-joint-4096.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/delivery-summary.json",
+      "sourceQaSha256": "8d03448a63a4469a4a4f23a6e2fe44ff8d501408826d940e99b9545b0a07b5bd",
+      "evidencePath": "tile-evidence/r05_c04.json",
+      "evidenceSha256": "fba2c1ad53938050eba273b50244172118e67f79aa49bec7a4c10e0c8e1ba054",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending adjacent native tiles outside the current 2x2"
+    },
+    {
+      "row": 5,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c05",
+      "sha256": "54b64dae7d7cfa1a55744fbbb3cbb823e53d0b90d856a0d737508a6aeac8649c",
+      "bytes": 19317779,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r05_c05-joint-4096.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/delivery-summary.json",
+      "sourceQaSha256": "8d03448a63a4469a4a4f23a6e2fe44ff8d501408826d940e99b9545b0a07b5bd",
+      "evidencePath": "tile-evidence/r05_c05.json",
+      "evidenceSha256": "c081e1aaf5b1a9fd3d14ddf4a766267b2108860131144962fb0865ffd9eef80f",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending adjacent native tiles outside the current 2x2"
+    },
+    {
+      "row": 5,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c06",
+      "sha256": "beb936eca2c223bf30e9d34717d8fd0e2254ee06cc0e1e25e4835a4138f44e39",
+      "bytes": 24089673,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/candidate/r05_c06-candidate-minimum-error-03d4dd9f7332.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/qa/acceptance.json",
+      "sourceQaSha256": "7a231590102a2ad37940c7da037c3bf0e78c7f6754a82a7ff883c33053e3e2f9",
+      "evidencePath": "tile-evidence/r05_c06.json",
+      "evidenceSha256": "23a6c2fcbaba556c1b562aca5bbbe2ee4ef2c214c22aa748a1d2dbaf2dc80703",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending"
+    },
+    {
+      "row": 5,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c07",
+      "sha256": "75374335df252505edbb301d18c17bca9434b8ac74852bdafa698eaba41f10ec",
+      "bytes": 26419656,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/candidate/r05_c07-candidate-localcut-e280bcf6d4f6.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/qa/acceptance.json",
+      "sourceQaSha256": "f8d1256dcb0acb00ddfb9bc73617de41d4d04978e6ce331a5d88db9a9cd8641b",
+      "evidencePath": "tile-evidence/r05_c07.json",
+      "evidenceSha256": "22e1deb98b582993a990094accb1d8104ca9db5fe04c1577fa8b972b0716a61d",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending"
+    },
+    {
+      "row": 5,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c13",
+      "sha256": "a130950d95d08674c325bec88caed4cd68744abf556fe12b9bc7c65d67db7673",
+      "bytes": 20857661,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c13/candidates/r05_c13.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r05_c13.json",
+      "evidenceSha256": "d532acaddcfc15cd0569670c64092872a23ea51341c0b9a29fcb0c1f275c981a",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 5,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c14",
+      "sha256": "2a31de630103864093d9f7f7d5c61ca225b7453b5f8a7faf45184f7d1c092018",
+      "bytes": 20922690,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c14/candidates/r05_c14.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r05_c14.json",
+      "evidenceSha256": "c701d3d07c863dad6633ee25458b8ebe977d440d365fe90c77c672995e3cb406",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 6,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c04",
+      "sha256": "493e896f75ebe6188bc83d8359af92267ec9084132ad5631392b5a074e097282",
+      "bytes": 24228097,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r06_c04-joint-4096.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/delivery-summary.json",
+      "sourceQaSha256": "8d03448a63a4469a4a4f23a6e2fe44ff8d501408826d940e99b9545b0a07b5bd",
+      "evidencePath": "tile-evidence/r06_c04.json",
+      "evidenceSha256": "4da57484092ba6ade5fa6561f8dfef5d4e09522f979c3e5a08d428dbe0ce1e9e",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending adjacent native tiles outside the current 2x2"
+    },
+    {
+      "row": 6,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c05",
+      "sha256": "fe4e9a02cff87b2fa6f69dbba6de12eb9dc13923ff7ffe2288cd1f2999a69213",
+      "bytes": 22586646,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r06_c05-joint-4096.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/delivery-summary.json",
+      "sourceQaSha256": "8d03448a63a4469a4a4f23a6e2fe44ff8d501408826d940e99b9545b0a07b5bd",
+      "evidencePath": "tile-evidence/r06_c05.json",
+      "evidenceSha256": "750a383711859c13b7aafb5d64af01517ba32785af07ede8c8fcb5c53e237f10",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending adjacent native tiles outside the current 2x2"
+    },
+    {
+      "row": 6,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c06",
+      "sha256": "105ed0953773073a1b336660887ab78e4f8ef145ec74285ac0f1bc3ae0a77595",
+      "bytes": 26224838,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c06/candidate/r06_c06-candidate-hard-077556c4fb59.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c06/qa/acceptance.json",
+      "sourceQaSha256": "6d0a8bae47a63a27f05ca216410a3a5b15c75b635e7007106f5a7167a6a27ee9",
+      "evidencePath": "tile-evidence/r06_c06.json",
+      "evidenceSha256": "f7148ad1acdcc525bf119e3f4de29342f9062ccd5a8cce5ea3589cf80079e459",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending"
+    },
+    {
+      "row": 6,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c07",
+      "sha256": "e3184ae204d0cd8f0ea701bf6b3281449bb1489c18514f525869f37d72326609",
+      "bytes": 25659847,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/candidate/r06_c07-candidate-hard-4c0d654c3aae.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/qa/acceptance.json",
+      "sourceQaSha256": "e2ca08abb73b5963e29ae8a9d4b47e7da5f83d9142fe141d3f94bbe6e565213d",
+      "evidencePath": "tile-evidence/r06_c07.json",
+      "evidenceSha256": "8e5da40d87902abaac0a98f976daeb8365208be6462d7214d445fefec625ff0b",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending"
+    },
+    {
+      "row": 6,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c13",
+      "sha256": "7f8784be48316ee2083ceb420d97248f9143bdd274a6a381ef335214e7e64669",
+      "bytes": 23748465,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c13/candidates/r06_c13.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r06_c13.json",
+      "evidenceSha256": "9088fe39bb3fc5eacf2c4cb85f40cbd88b874de299127be7e31ab00052be9ead",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 6,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c14",
+      "sha256": "609ed58611561a612eec2f87ec95b21ca0c7a3712a2ef07585368f4287b99a66",
+      "bytes": 24246164,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c14/candidates/r06_c14.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r06_c14.json",
+      "evidenceSha256": "28a6599308bd2beb936541df76df56cac5c0d7c0b1ff56b971832bcfb9b0b59c",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 7,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c04",
+      "sha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+      "bytes": 22381153,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
+      "sourceQaSha256": "958c9a49df66e54164f0bbe6da0d8e523c55da8bdc9efc4d54939091d71612a7",
+      "evidencePath": "tile-evidence/r07_c04.json",
+      "evidenceSha256": "f205daa206c8064c759d24d8fb29f2e8daaf3993a69e15ec5fc423819bda35ec",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": {
+        "status": "pending",
+        "reviewedSides": [
+          "north"
+        ],
+        "passedSides": [
+          "north"
+        ],
+        "pendingSides": [
+          "east",
+          "south",
+          "west"
+        ],
+        "worldBoundarySides": [],
+        "actuallyViewed": true
+      }
+    },
+    {
+      "row": 7,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c13",
+      "sha256": "179d0e44e3f8d0c49106ec088c18300f4fcfca8df6828fb871a7ede2a2e9957f",
+      "bytes": 24664130,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c13/candidates/r07_c13.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r07_c13.json",
+      "evidenceSha256": "b401b2bcfb11fd08fa63089979dc3a6688e6220877eebbd1330cb03567ea7e6e",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 7,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c14",
+      "sha256": "9919624d9d05bda3b9db79b2e724f9d5d4dcb03ba3c3739c6d618b7ab1358bc6",
+      "bytes": 26498431,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c14/candidates/r07_c14.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r07_c14.json",
+      "evidenceSha256": "752ab1830859c8cc7a1956ed629890a5be39e0e2ec10fb7e612e58422a86a111",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 7,
+      "column": 15,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c15",
+      "sha256": "867a563988ae2303c3ea2b1a014c5cc89cca7d7830f73c0ae2fdc62f3a3d25e1",
+      "bytes": 24936961,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/candidates/r07_c15.local-repairs-v20261013.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/qa/local-repair-20261013/internal-review-v1.json",
+      "sourceQaSha256": "af48f176d85e793392d7d51234f8ecaa7b6607c005dca4fe6ef3a490e20ce4bb",
+      "evidencePath": "tile-evidence/r07_c15.json",
+      "evidenceSha256": "a2fbeaf9025675e3f93da6124fee2017c41b140ab0f08ab6514986c0c04248e5",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 8,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r08_c13",
+      "sha256": "dd20b4e0d2b73b7ff90ef24be9a8337f8e436a17f46ca0430a6240b75532333a",
+      "bytes": 28841786,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c13/candidates/r08_c13.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r08_c13.json",
+      "evidenceSha256": "ed872648294e952f4f4baa3d787d942401d304b5ae779bcaa2d7b462cf100dbc",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 8,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r08_c14",
+      "sha256": "f07aaa048c29eb8e8a4dfdf4c0bfce1dd7bd20592cc5ca2cd5173a93fd65abab",
+      "bytes": 28380005,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c14/candidates/r08_c14.candidate.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+      "sourceQaSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+      "evidencePath": "tile-evidence/r08_c14.json",
+      "evidenceSha256": "7eedd585dab72b03e780ff3c58d27a9486e1a5e6d1fc92503ad5c3dee0c2e9c7",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_or_not_formally_accepted"
+    },
+    {
+      "row": 13,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r13_c13",
+      "sha256": "db5f956694c700b16094eb532ad9097e8a54f4a19d14797325f6fbd0ca18971f",
+      "bytes": 24213930,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c13/candidate/r13_c13-4k-candidate-repaired.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/progress.json",
+      "sourceQaSha256": "4d3b8065f35da41db661836853708c081daf1941a5dc0f869b50133296f3949d",
+      "evidencePath": "tile-evidence/r13_c13.json",
+      "evidenceSha256": "7da8a2810ff88f55737c7f920ff6c465eed211c346db307f3b8136df308735da",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "pending_external_joint_QA"
+    },
+    {
+      "row": 13,
+      "column": 16,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r13_c16",
+      "sha256": "d7c2a1ac688debfbe915c84a05dcce0a254beabd18f22a64652c216307d0c9b3",
+      "bytes": 23476342,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c16/candidate/r13_c16-4k-shore-water-join-20261012-v1-root-reviewed.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/progress.json",
+      "sourceQaSha256": "4d3b8065f35da41db661836853708c081daf1941a5dc0f869b50133296f3949d",
+      "evidencePath": "tile-evidence/r13_c16.json",
+      "evidenceSha256": "4baea2e1ee68087b2a06ddd3bf8708bc4f94f47847e25314518c38aaeaa010de",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "west_local_geometry_material_watch_north_south_pending_east_canvas_boundary"
+    },
+    {
+      "row": 14,
+      "column": 16,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r14_c16",
+      "sha256": "b0fe86100a9c63472dd0c63cf6ca6748c25f086e6188541e39c2880c4d0c96f9",
+      "bytes": 23909332,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-4k-roof-local-repairs-v1-20261013.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/progress.json",
+      "sourceQaSha256": "fbee19ba6bb304c402f564079d6e3742b9d0f79bec2e10d892cf2bf5ef17fd31",
+      "evidencePath": "tile-evidence/r14_c16.json",
+      "evidenceSha256": "5a745ce34ca5619b7067a6128faec613f0eb150d418aa3012aa11228d54bef56",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": "north_pass_west_pass_east_canvas_boundary_south_pending"
+    },
+    {
+      "row": 16,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r16_c13",
+      "sha256": "b9310da8e5fe812e96bf5e9307dce0bab032e242d1641cae56ffaa646da04788",
+      "bytes": 28830840,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-4k-orphan-repair-v2-20261013.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/visual-qa.json",
+      "sourceQaSha256": "8f23a4c34777593964b1f28c9b30b27c5d587fb7abe8d703f523d211960cbc02",
+      "evidencePath": "tile-evidence/r16_c13.json",
+      "evidenceSha256": "fa7aa72c5f94de5b6c3dc558a2bc5ead2f9b0116b7117f744427444099a93934",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": {
+        "north": "local_pass_with_texture_watch; independent_root_review_pending",
+        "west": "pending_missing_r16_c12_neighbor",
+        "east": "pending_r16_c14_generation_and_joint_review",
+        "south": "canvas_outer_boundary_no_neighbor; painted_edge_checked"
+      }
+    },
+    {
+      "row": 16,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r16_c14",
+      "sha256": "962ce4cbce8614b8b266a286c38afedb9bd02b997887ad6a73e4f209819991b0",
+      "bytes": 29988154,
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-4k-material-repair-v2-20261013.png",
+      "sourceQaPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/review/material-band-v2/visual-qa-v2.json",
+      "sourceQaSha256": "f48050e45aff6de8ea26ea35a57cad96491cc78d039e079c977b0d3f28aafa2c",
+      "evidencePath": "tile-evidence/r16_c14.json",
+      "evidenceSha256": "a243ea2f314f2f35729359186287884b26a5cc60ee92abcefb5f1a0be2df4591",
+      "internalQaPassed": true,
+      "formalAccepted": false,
+      "acceptanceStatus": "internal_passed_external_pending",
+      "externalStatus": {
+        "north": "local_pass_with_texture_watch",
+        "west": "local_pass_with_texture_watch",
+        "east": "pending_missing_r16_c15_neighbor",
+        "south": "canvas_outer_boundary_painted_edge_checked"
+      }
+    }
+  ]
+}

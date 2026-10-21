@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/production-contract.json",
+  "sourceSha256": "28443ade4c03c70dc7519e4e22601454521cbe05d43e8100f63724c4d96c99ac",
+  "normalizedDocument": {
+    "schemaVersion": 1,
+    "createdAtUtc": "2026-10-09T11:39:23.5022351Z",
+    "userAuthorization": "可以 主城开始做游戏图吧，把原来的图删除了，然后给我看岛和渔村的预览图；你的开很多个窗口把它做完哦",
+    "status": "active_main_city_game_art_production",
+    "layoutReference": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+    "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+    "detailStyleReference": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+    "detailSha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809",
+    "primaryStyleReference": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+    "artCanvasPixels": [
+      65536,
+      65536
+    ],
+    "artCanvasBasis": "current user-supplied AGENTS.md main-city image target; this freezes artwork coordinates only, not client world dimensions or 5000-player capacity",
+    "formalTilePixels": [
+      4096,
+      4096
+    ],
+    "rows": 16,
+    "columns": 16,
+    "formalAcceptedCount": 0,
+    "worldSize": null,
+    "clientMappingValidated": false,
+    "capacity5000Validated": false,
+    "builtinOnly": true,
+    "paidApiAllowed": false,
+    "actualModelMayBeUnverified": true,
+    "nativePatchPlan": {
+      "subcolumns": 4,
+      "resizeFinalArtAllowed": false,
+      "sourceOutputSizeMustBeVerified": true,
+      "haloPixels": 115,
+      "subrows": 4,
+      "expectedNativePixels": 1254,
+      "corePixels": 1024
+    },
+    "zones": [
+      {
+        "tileCount": 64,
+        "firstTile": "r05_c04",
+        "rows": [
+          1,
+          8
+        ],
+        "columns": [
+          1,
+          8
+        ],
+        "id": "northwest"
+      },
+      {
+        "tileCount": 64,
+        "firstTile": "r05_c13",
+        "rows": [
+          1,
+          8
+        ],
+        "columns": [
+          9,
+          16
+        ],
+        "id": "northeast"
+      },
+      {
+        "tileCount": 64,
+        "firstTile": "r10_c05",
+        "rows": [
+          9,
+          16
+        ],
+        "columns": [
+          1,
+          8
+        ],
+        "id": "southwest"
+      },
+      {
+        "tileCount": 64,
+        "firstTile": "r13_c13",
+        "rows": [
+          9,
+          16
+        ],
+        "columns": [
+          9,
+          16
+        ],
+        "id": "southeast"
+      }
+    ],
+    "constraints": [
+      "approved v9 layout geometry and current near-view material style",
+      "natural pale grey / blue-grey stone; no red paving",
+      "Spring Festival architecture + Lantern Festival and Mid-Autumn sparse mixed props",
+      "spent red firecracker scraps; wall-side fireworks",
+      "trees beside existing buildings / courtyard walls only; no pots or freestanding street tree islands",
+      "at least ten functional roofs; both towers separate; arena retained",
+      "north/south short exit indication only; no expanded exterior panorama"
+    ],
+    "ownership": {
+      "noGlobalThreadWritesFromWorkers": true,
+      "zoneDirectoriesWritableBy": "respective window only",
+      "crossZoneBorderRule": "share recorded neighbor native sources; do not assume independent borders match; root final seam review",
+      "sharedMasterWritableBy": "root only"
+    },
+    "acceptance": [
+      "real native detail contributions; no enlarged overview presented as 4K",
+      "internal 16-patch seams visually reviewed",
+      "exact source hashes, native dimensions, prompts and model/quality evidence",
+      "final tile 4096 square with all pixels painted",
+      "external tile seams reviewed before formal acceptance"
+    ],
+    "finalCityComplete": false,
+    "previousPrimaryStyleReference": "designs/mail-ui-v1/01-mail-event.png",
+    "primaryStyleSha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63",
+    "productionResumeControl": "qdao_city_tiles_4k_20260916/builtin_q64_production/resume-production-20261010/production-resume.json",
+    "productionResumedAtUtc": "2026-10-10T08:52:16.081417+00:00",
+    "newArtworkGenerationAllowed": true
+  }
+}

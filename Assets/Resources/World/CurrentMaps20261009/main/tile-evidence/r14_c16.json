@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 14,
+  "column": 16,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "b0fe86100a9c63472dd0c63cf6ca6748c25f086e6188541e39c2880c4d0c96f9",
+  "imageBytes": 23909332,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-4k-roof-local-repairs-v1-20261013.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/progress.json",
+  "sourceLedgerSha256": "fbee19ba6bb304c402f564079d6e3742b9d0f79bec2e10d892cf2bf5ef17fd31",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "north_pass_west_pass_east_canvas_boundary_south_pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c16",
+    "status": "internal_north_west_visual_pass_material_watch_south_pending",
+    "updatedAt": "2026-10-14T00:07:35.006144+00:00",
+    "activeNativeCount": 16,
+    "formalAccepted": false,
+    "internalArtQA": "passed_with_nonblocking_material_watch",
+    "externalNeighborSeamQA": "north_pass_west_pass_east_canvas_boundary_south_pending",
+    "worldSize": null,
+    "clientMappingValidated": false,
+    "capacity5000Validated": false,
+    "currentPatch": null,
+    "currentVersion": "p04_04_v20261013T160950_75e899ff",
+    "lastIngestedVersion": "p04_04_v20261013T160950_75e899ff",
+    "previousActiveVersion": null,
+    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-4k-roof-local-repairs-v1-20261013.png",
+    "context": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-context-roof-local-repairs-v1-20261013.png",
+    "assemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-roof-local-repairs-v1-selected-manifest.json",
+    "complete4kCandidateCount": 1,
+    "missingNativeCount": 0,
+    "nextStep": "Continue r15_c16; preserve nonblocking gold-trim material watch. South neighboring join needs separate current-core check.",
+    "repairManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/repairs/roof-local-details-20261013-v1/composed-D/composition.json",
+    "actualNativeOutputCount": 23,
+    "internalSeamQA": "passed",
+    "independentVisualQA": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c15/review/independent-r14_c16-b0fe86100a9c6347/visual-qa.json",
+      "sha256": "084b74cef658d94a543decf1f8327c4e76f6ec29f0710ab424c45766e7b92303"
+    },
+    "nonblockingArtFindings": [
+      {
+        "id": "M01",
+        "kind": "nonblocking_material_watch",
+        "severity": "nonblocking",
+        "boxInChildCore": [
+          940,
+          2410,
+          1055,
+          2510
+        ],
+        "evidence": [
+          "v1024-q2",
+          "j1024-2048"
+        ],
+        "description": "Localized golden roof trim shading shoulder/small facet transition near original x1024 assembly area. Main contour remains connected with no open gap or doubled trim. Present in original d82e candidate, unchanged by A/B/C/D repairs. No new native repair requested."
+      }
+    ]
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/progress.json",
+    "sourceSha256": "fbee19ba6bb304c402f564079d6e3742b9d0f79bec2e10d892cf2bf5ef17fd31",
+    "normalizedDocument": {
+      "tile": "r14_c16",
+      "status": "internal_north_west_visual_pass_material_watch_south_pending",
+      "updatedAt": "2026-10-14T00:07:35.006144+00:00",
+      "activeNativeCount": 16,
+      "formalAccepted": false,
+      "internalArtQA": "passed_with_nonblocking_material_watch",
+      "externalNeighborSeamQA": "north_pass_west_pass_east_canvas_boundary_south_pending",
+      "worldSize": null,
+      "clientMappingValidated": false,
+      "capacity5000Validated": false,
+      "currentPatch": null,
+      "currentVersion": "p04_04_v20261013T160950_75e899ff",
+      "lastIngestedVersion": "p04_04_v20261013T160950_75e899ff",
+      "previousActiveVersion": null,
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-4k-roof-local-repairs-v1-20261013.png",
+      "context": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-context-roof-local-repairs-v1-20261013.png",
+      "assemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-roof-local-repairs-v1-selected-manifest.json",
+      "complete4kCandidateCount": 1,
+      "missingNativeCount": 0,
+      "nextStep": "Continue r15_c16; preserve nonblocking gold-trim material watch. South neighboring join needs separate current-core check.",
+      "repairManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/repairs/roof-local-details-20261013-v1/composed-D/composition.json",
+      "actualNativeOutputCount": 23,
+      "internalSeamQA": "passed",
+      "independentVisualQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c15/review/independent-r14_c16-b0fe86100a9c6347/visual-qa.json",
+        "sha256": "084b74cef658d94a543decf1f8327c4e76f6ec29f0710ab424c45766e7b92303"
+      },
+      "nonblockingArtFindings": [
+        {
+          "id": "M01",
+          "kind": "nonblocking_material_watch",
+          "severity": "nonblocking",
+          "boxInChildCore": [
+            940,
+            2410,
+            1055,
+            2510
+          ],
+          "evidence": [
+            "v1024-q2",
+            "j1024-2048"
+          ],
+          "description": "Localized golden roof trim shading shoulder/small facet transition near original x1024 assembly area. Main contour remains connected with no open gap or doubled trim. Present in original d82e candidate, unchanged by A/B/C/D repairs. No new native repair requested."
+        }
+      ]
+    }
+  }
+}

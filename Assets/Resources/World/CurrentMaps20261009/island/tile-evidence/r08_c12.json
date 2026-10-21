@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 8,
+  "column": 12,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "9eb58f9e117fba649e6adc69dca65a084ad1fe13e1c78ca9979c3559e05d4a41",
+  "imageBytes": 24852563,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c12.candidate-v16-foliage-20261016.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+  "sourceLedgerSha256": "6136c0c733ea9bc23155e8144f99b501250137e2fc4ab2db4508c7861100ae0d",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": false,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c12",
+    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c12.candidate-v16-foliage-20261016.png",
+    "sha256": "9eb58f9e117fba649e6adc69dca65a084ad1fe13e1c78ca9979c3559e05d4a41",
+    "fullyCovered": true,
+    "internalPassed": true,
+    "externalPassed": false,
+    "localArtworkAcceptanceReady": false,
+    "formalAccepted": false,
+    "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c12-v16-foliage-20261016/source-proof.json",
+    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c12-v16-foliage-20261016/root-internal-review-20261016.json",
+    "pending": "Actual full neighboring edges and four-tile corners remain required."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c12-v16-foliage-20261016/root-internal-review-20261016.json",
+    "sourceSha256": "9d842dd2723d599dee966278e170afd138319ee40a0940857b163c1657483a0a",
+    "normalizedDocument": {
+      "tile": "r08_c12",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c12.candidate-v16-foliage-20261016.png",
+      "candidateSha256": "9eb58f9e117fba649e6adc69dca65a084ad1fe13e1c78ca9979c3559e05d4a41",
+      "internalPassed": true,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c12-v16-foliage-20261016/source-proof.json",
+      "reviewer": "root",
+      "reviewedAt": "2026-10-16T21:06:43.421602+00:00",
+      "seamCount": 24,
+      "junctionCount": 9,
+      "pending": "Actual full neighboring edges and four-tile corners remain required.",
+      "nativeSpec": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c12-v16-foliage-20261016.spec.json",
+      "seamsReusedByExactPixels": 22,
+      "newSeamsViewed": 2,
+      "junctions": [
+        {
+          "id": "11",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "12",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "13",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "21",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "22",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "23",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "31",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "32",
+          "status": "passed",
+          "mode": "unchanged_previous_v15_pixels"
+        },
+        {
+          "id": "33",
+          "status": "passed",
+          "mode": "root_actual_view"
+        }
+      ],
+      "repairOuterEdgesViewed": [
+        "left=h43",
+        "top=v34",
+        "east4-actual",
+        "south4-actual"
+      ],
+      "finding": "Confirmed vertical clipped leaf line at old tile x3981 repaired. Actual E4 and S4 adjoining foliage contours viewed continuous. Full external status remains pending."
+    }
+  }
+}

@@ -1,0 +1,3407 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "pinnedSourceCommit": "15aadfdc91234d3b0820f40212d72252c410d18f",
+  "targetRepository": "luhailong-cpp/mmorpg-client",
+  "frozenAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "chunkBytes": 4194304,
+  "summary": {
+    "tileCount": 151,
+    "imageBytes": 3829816647,
+    "tileCountsBySource": {
+      "public_media": 106,
+      "git_blob_chunks": 45
+    },
+    "imageBytesBySource": {
+      "public_media": 2636454391,
+      "git_blob_chunks": 1193362256
+    },
+    "chunkCount": 305,
+    "uniqueChunkCount": 305,
+    "uniqueChunkBytes": 1193362256
+  },
+  "tiles": [
+    {
+      "mapKey": "main",
+      "row": 3,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r03_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
+      "imageSha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
+      "localGitBlobSha1": "327484d527e2b2031188c27d8f483c8dbb784df5",
+      "bytes": 22006960,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 3,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r03_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+      "imageSha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+      "localGitBlobSha1": "5ac37ce03b95d166d94b7055d2ef61d3bc1fbcc9",
+      "bytes": 22957446,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 4,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r04_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r04_c04.png",
+      "imageSha256": "2d815289e5cce9764a72db71577d1b7b5e740e133ee062b93ffc28d1fafb0335",
+      "localGitBlobSha1": "c21adcdacaf8c58c4927d8357895c334073b82c8",
+      "bytes": 18185427,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 4,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r04_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r04_c05.png",
+      "imageSha256": "4e4ac2a282d9b2823555284d24acab6798df7b4fcf1f5ee4d4af2294729dcab6",
+      "localGitBlobSha1": "9c8e78caceed057ded574cad6e657d92212fbadb",
+      "bytes": 21866287,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 5,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r05_c04-joint-4096.png",
+      "imageSha256": "ccd3167a0a9cade9dc2bc031c210d737615cbd29e804efb7c0cbbbdd2516a72b",
+      "localGitBlobSha1": "7f17355ef9f8cf17a9b9ef42490c6eb3971497ec",
+      "bytes": 18865559,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 5,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r05_c05-joint-4096.png",
+      "imageSha256": "54b64dae7d7cfa1a55744fbbb3cbb823e53d0b90d856a0d737508a6aeac8649c",
+      "localGitBlobSha1": "eb12f548f3de67520a237f84315cff97f0a47e62",
+      "bytes": 19317779,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 5,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c06",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/candidate/r05_c06-candidate-minimum-error-03d4dd9f7332.png",
+      "imageSha256": "beb936eca2c223bf30e9d34717d8fd0e2254ee06cc0e1e25e4835a4138f44e39",
+      "localGitBlobSha1": "ac1b3feb4b9885bedadee21062758c647c116e09",
+      "bytes": 24089673,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 5,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c07",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c07/candidate/r05_c07-candidate-localcut-e280bcf6d4f6.png",
+      "imageSha256": "75374335df252505edbb301d18c17bca9434b8ac74852bdafa698eaba41f10ec",
+      "localGitBlobSha1": "5328bbc842f4729581ac23a6f5897aee1159708f",
+      "bytes": 26419656,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 5,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c13/candidates/r05_c13.candidate.png",
+      "imageSha256": "a130950d95d08674c325bec88caed4cd68744abf556fe12b9bc7c65d67db7673",
+      "localGitBlobSha1": "21ba1ba7680f5519a625bef94f715514c2c1722e",
+      "bytes": 20857661,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 5,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r05_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c14/candidates/r05_c14.candidate.png",
+      "imageSha256": "2a31de630103864093d9f7f7d5c61ca225b7453b5f8a7faf45184f7d1c092018",
+      "localGitBlobSha1": "2621adc18661be87c1849e2648751213b7761e36",
+      "bytes": 20922690,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 6,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r06_c04-joint-4096.png",
+      "imageSha256": "493e896f75ebe6188bc83d8359af92267ec9084132ad5631392b5a074e097282",
+      "localGitBlobSha1": "84b540ccaf2be101d62dd27c47511af1c7ddeebd",
+      "bytes": 24228097,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 6,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-2x2-r05_c04-r06_c05/deeb69ed9f705a70/tiles/r06_c05-joint-4096.png",
+      "imageSha256": "fe4e9a02cff87b2fa6f69dbba6de12eb9dc13923ff7ffe2288cd1f2999a69213",
+      "localGitBlobSha1": "2427d861b5591e471ae82b2be1151cd00439d611",
+      "bytes": 22586646,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 6,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c06",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c06/candidate/r06_c06-candidate-hard-077556c4fb59.png",
+      "imageSha256": "105ed0953773073a1b336660887ab78e4f8ef145ec74285ac0f1bc3ae0a77595",
+      "localGitBlobSha1": "c2ec4b622be6faf75c640462e8383df723f04d7a",
+      "bytes": 26224838,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 6,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c07",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r06_c07/candidate/r06_c07-candidate-hard-4c0d654c3aae.png",
+      "imageSha256": "e3184ae204d0cd8f0ea701bf6b3281449bb1489c18514f525869f37d72326609",
+      "localGitBlobSha1": "ef4321fab01c6c7fc0281cb4107dcf3e7ddce4ed",
+      "bytes": 25659847,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 6,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c13/candidates/r06_c13.candidate.png",
+      "imageSha256": "7f8784be48316ee2083ceb420d97248f9143bdd274a6a381ef335214e7e64669",
+      "localGitBlobSha1": "a6ebac26740041f35c5767e115c758a88e9dd56a",
+      "bytes": 23748465,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 6,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r06_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c14/candidates/r06_c14.candidate.png",
+      "imageSha256": "609ed58611561a612eec2f87ec95b21ca0c7a3712a2ef07585368f4287b99a66",
+      "localGitBlobSha1": "428bda872d21d35e566673f11b53b32be6be02a7",
+      "bytes": 24246164,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 7,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+      "imageSha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+      "localGitBlobSha1": "07f2886a1122fbc3b1f70bdefa2dfeb8dad8ab75",
+      "bytes": 22381153,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 7,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c13/candidates/r07_c13.candidate.png",
+      "imageSha256": "179d0e44e3f8d0c49106ec088c18300f4fcfca8df6828fb871a7ede2a2e9957f",
+      "localGitBlobSha1": "3cdd612230f32b8745c3e95b25c0ad5dea41b1f7",
+      "bytes": 24664130,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 7,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c14/candidates/r07_c14.candidate.png",
+      "imageSha256": "9919624d9d05bda3b9db79b2e724f9d5d4dcb03ba3c3739c6d618b7ab1358bc6",
+      "localGitBlobSha1": "c4045400035b995d97bb0392660502e71ff8f8e1",
+      "bytes": 26498431,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 7,
+      "column": 15,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r07_c15",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/candidates/r07_c15.local-repairs-v20261013.png",
+      "imageSha256": "867a563988ae2303c3ea2b1a014c5cc89cca7d7830f73c0ae2fdc62f3a3d25e1",
+      "localGitBlobSha1": "ffce7418c6b6a4daf710cf11b519609d0db59eeb",
+      "bytes": 24936961,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 8,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r08_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c13/candidates/r08_c13.candidate.png",
+      "imageSha256": "dd20b4e0d2b73b7ff90ef24be9a8337f8e436a17f46ca0430a6240b75532333a",
+      "localGitBlobSha1": "8b82e9bcd3bb80a09cec3fe0f545a5042c61f398",
+      "bytes": 28841786,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 8,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r08_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c14/candidates/r08_c14.candidate.png",
+      "imageSha256": "f07aaa048c29eb8e8a4dfdf4c0bfce1dd7bd20592cc5ca2cd5173a93fd65abab",
+      "localGitBlobSha1": "c3fad555f5096075e3aa385f4c6e194c9f141848",
+      "bytes": 28380005,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 13,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r13_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c13/candidate/r13_c13-4k-candidate-repaired.png",
+      "imageSha256": "db5f956694c700b16094eb532ad9097e8a54f4a19d14797325f6fbd0ca18971f",
+      "localGitBlobSha1": "5312fff0f60094d085ecf876d49604c555b25dce",
+      "bytes": 24213930,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 13,
+      "column": 16,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r13_c16",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c16/candidate/r13_c16-4k-shore-water-join-20261012-v1-root-reviewed.png",
+      "imageSha256": "d7c2a1ac688debfbe915c84a05dcce0a254beabd18f22a64652c216307d0c9b3",
+      "localGitBlobSha1": "c1ca2be16feab9150a0798ff53179073a069b346",
+      "bytes": 23476342,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 14,
+      "column": 16,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r14_c16",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c16/candidate/r14_c16-4k-roof-local-repairs-v1-20261013.png",
+      "imageSha256": "b0fe86100a9c63472dd0c63cf6ca6748c25f086e6188541e39c2880c4d0c96f9",
+      "localGitBlobSha1": "2745483949df0f97daa8bd70549d9ab389f7de36",
+      "bytes": 23909332,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "c3530461677ed0ebb81259338119c7d5b8413e04",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "22cb89c94f4d3d148ed53725f3b9fb733358d4d8",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "2d6b480a9a095cc21bf215e9c1fe352581b8a62a",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "f71af4abb5819e7d471e439c7e76c38d548625ac",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "4b1e43abe2aa5d3f706b8adb3e1cd89bf9c757d5",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "b102c706a2642a0e08de2bfec75a3f47c3263fb3",
+          "bytes": 2937812,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "main",
+      "row": 16,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r16_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-4k-orphan-repair-v2-20261013.png",
+      "imageSha256": "b9310da8e5fe812e96bf5e9307dce0bab032e242d1641cae56ffaa646da04788",
+      "localGitBlobSha1": "9814278e170cdf4b4c924fe95a9a85777b7666d8",
+      "bytes": 28830840,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "main",
+      "row": 16,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/main/tiles/r16_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-4k-material-repair-v2-20261013.png",
+      "imageSha256": "962ce4cbce8614b8b266a286c38afedb9bd02b997887ad6a73e4f209819991b0",
+      "localGitBlobSha1": "8e5800c83cdb7b8f1dae0050c0f5bc10c6aee199",
+      "bytes": 29988154,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 2,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r02_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c03/resume-20261012-v1/final-v2-verified/r02_c03.candidate.png",
+      "imageSha256": "47aefbfeab411f9da7ddf783e8f625fe4fbd60665d36822d9d93c15e96ad5162",
+      "localGitBlobSha1": "e38fe800b406e6647d9ee05933817cad8474db6d",
+      "bytes": 25786354,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 2,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r02_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c04/resume-20261012-v03/r02_c04.candidate.png",
+      "imageSha256": "45775fa068aad79be89dc161eaab9450c599351cf8cb6d818fdb49c9233a7a69",
+      "localGitBlobSha1": "bac2b17d6218d67600b33fbe41f140704aaa928d",
+      "bytes": 25833054,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 3,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r03_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c03/resume-20261012-v1/final-v2-verified/r03_c02.proposed.png",
+      "imageSha256": "d939a4e2ca9122742753391e252c1ef8626f1722cc9b9ced9a338c20e06f1675",
+      "localGitBlobSha1": "fe13164a4d4697494695996f73510910217d7b8f",
+      "bytes": 24828074,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 3,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r03_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c03/resume-20261012-v1/final-v2-verified/r03_c03.proposed.png",
+      "imageSha256": "8aea1834246cf01b3ef8b98274abb7d94be82c528994dad86e14a90079d6cd0b",
+      "localGitBlobSha1": "9fbf111a1221ab95ffe60b8cd6df43b55dcf401c",
+      "bytes": 23278226,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 3,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r03_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c04/resume-20261012-v02/r03_c04-independent-north-delta/r03_c04.with-delta.candidate.png",
+      "imageSha256": "c599d034dcd96eb2ca99c8441d343874ea60dfc8f31ab9da568f62c1b56185c1",
+      "localGitBlobSha1": "e159dc0127737d7cfe4923aaee7d4dc0b73c8977",
+      "bytes": 23095526,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 3,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r03_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c10/candidate/r03_c10-4096-candidate-v4.png",
+      "imageSha256": "d09540ee1f04f1d70d2640cacde313553b8748587aedbf14a44b9a9e7a5aa3fc",
+      "localGitBlobSha1": "5132ba49c2e3bc7ce104a0c99883484ddcf9ec36",
+      "bytes": 25014892,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 3,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r03_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c11/candidate/r03_c11-4096-candidate-v2.png",
+      "imageSha256": "dd8fc849fe477cadb7ac8814b727a98383ef43efba49c38b889d1c4e2ef5ce18",
+      "localGitBlobSha1": "bc4d3428d90ba28479406a343926714cb799dc4f",
+      "bytes": 23424888,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 4,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r04_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/repair-v3/r04_c02.candidate.png",
+      "imageSha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210",
+      "localGitBlobSha1": "be1fe585ed0db1a6fd9a4b204f7ddb115d5cd095",
+      "bytes": 26742768,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 4,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r04_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/stage-v4/r04_c03.png",
+      "imageSha256": "4f17a7e078c3847241b2b9f79b1ae75108b26f49ddaa1a3582c5cf729d2310c5",
+      "localGitBlobSha1": "79d895436b9eeff07876c4e8a53f151637cb7390",
+      "bytes": 21515593,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 4,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r04_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c04/final-v2-20261012/r04_c04.with-north-head.png",
+      "imageSha256": "69e4abb394666127250cac0615c45efd27b4dbd7b183e848fc043e2fb33c156e",
+      "localGitBlobSha1": "8cb49898a76f0742f61b58b668701f6630d9b28a",
+      "bytes": 23043601,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 4,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r04_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c10/candidate/r04_c10-4096-candidate-v2.png",
+      "imageSha256": "3961a38d871aed8556d49caae0aa15a72a75f18cf4a2d4220f1ba0b123e17032",
+      "localGitBlobSha1": "26716815bf46d5ab30b7f94a15d1048c75b0783f",
+      "bytes": 27504059,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 4,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r04_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c11/candidate/r04_c11-4096-candidate-v3.png",
+      "imageSha256": "0acaa06cfeca7c12845bf8a15243d9bda8dfdac2e747e46437f9641eb3828ce4",
+      "localGitBlobSha1": "041f970c642c99d0c262efa7d64445d8af30b452",
+      "bytes": 27803580,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 5,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r05_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c02/base-v1/r05_c02.candidate.png",
+      "imageSha256": "9fda57eb2c0811c17f9341acc8abdbb9834c7e9b14ba8f22dac5cba665813c88",
+      "localGitBlobSha1": "45de4750547a69765c3e73961590d06be6064b38",
+      "bytes": 29018447,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 5,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r05_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c03/final-v1/r05_c03.candidate.png",
+      "imageSha256": "502810c424dcf6d7559af7f4711f61b1447b9cce63b033a8c3de5d3581eaa448",
+      "localGitBlobSha1": "72e8deefb7d6a40614b1ee42015c2a59af99a1dc",
+      "bytes": 25910029,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 5,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r05_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c04/final-v2-20261012/r05_c04.candidate.png",
+      "imageSha256": "b7124ae1c23ce791bf027fd9c6cd77c33b72f4ca5269ad4265f85c9378c55d4f",
+      "localGitBlobSha1": "ca68186de0ef04129f2e2b974bb78d0ed1f029ae",
+      "bytes": 28681086,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 5,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r05_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c10/candidate/r05_c10-4096-candidate-v4.png",
+      "imageSha256": "12f7182b14e66c662a94e73e9d1aaba428174a2fec48bcc4b68bb4a1a5bb9f6f",
+      "localGitBlobSha1": "a651ce6d1be0573472b062d991727b8450ea2c40",
+      "bytes": 30315513,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 5,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r05_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/candidate/r05_c11-4096-candidate-v4.png",
+      "imageSha256": "f226a32c6b8927c4759fd5b49b895b75fde0786f25f05a7533f0cda21cb00ca5",
+      "localGitBlobSha1": "bdd2b1fd9e3a8ae05206f540b298ab7c75a2fb71",
+      "bytes": 28109558,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 5,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r05_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r05_c13.candidate-sol-v3.png",
+      "imageSha256": "1a7ddce4f85656179a54b3a7b9d542560fd6efa22e7fb6286ae5feedd9cf9aa0",
+      "localGitBlobSha1": "e33d09d28d8686c80a7d31a63d168cc75503113f",
+      "bytes": 25901762,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 6,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r06_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c04/final-v2/r06_c04.candidate.png",
+      "imageSha256": "da6d7d80ace685ed69798e875f027506a81bc473bae0a1d55231c8ec62afe253",
+      "localGitBlobSha1": "af4ee66865101d22394d6c2b7c6e1e3ebc0b4661",
+      "bytes": 29987198,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 6,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r06_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r06_c12.candidate-closure-v5.png",
+      "imageSha256": "880f87bec1b6780b88c19efc2c79d0194f504498287421bab2f2d5716af71a8b",
+      "localGitBlobSha1": "dd782ad70781715b82124b3c1e7d6f8521f860a3",
+      "bytes": 26240787,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 6,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r06_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r06_c13.candidate-v1.png",
+      "imageSha256": "8ccfd6ba6b6abc890a4928f8d4a6a2a0496f1ccb72ff50a05d186ae25a2cf891",
+      "localGitBlobSha1": "78bc679c68992b8778d1dfd92b203e0ec704e74d",
+      "bytes": 27293486,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 6,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r06_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r06_c14.candidate-v1.png",
+      "imageSha256": "77b80761fa46004fa6de84a4895114e568ae5159f9778d3ba1d90c90e63016b8",
+      "localGitBlobSha1": "c31b66bb8eeff67d369459a9b5abc0ace45c027d",
+      "bytes": 26283403,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 7,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r07_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r07_c12.candidate-closure-v5.png",
+      "imageSha256": "c734d5f127620e3554e08b8192827ba0957328c1ed41764c8ee670e6db791daa",
+      "localGitBlobSha1": "41a896d7430938ad68936746f1d22bac1ddba9ca",
+      "bytes": 28103323,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 7,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r07_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r07_c13.candidate-west-v4.png",
+      "imageSha256": "21de66d2efe07a26ff96b40b6cf876840c6f60d87f9b33ef90a1fa97445d2f41",
+      "localGitBlobSha1": "3a95dac558ea145851706fb8a900db3b100a1593",
+      "bytes": 26893793,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 8,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r08_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c04_v1.png",
+      "imageSha256": "ab2ec6a3a827a0838ee4b83c871fad689cda221882f46a0a303a5921aff363e8",
+      "localGitBlobSha1": "38a9f936a0b7fd277129c9f2c66c0289a8f08472",
+      "bytes": 25758644,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "1dbd0a6f38b623b977ed2b4d55baabd9ac680cec",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "929c4caa3a024049d9616a688329220003799f5a",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "fac75b59665b26b4cbd31c7f33424eb8bd04d88c",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "be3e94d17ade34a30dd2d8647a91bc5b2c0c108f",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "92d1b5356965295f56b68b94c96b89d79e2ba40f",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "13f3a204f4f78ce6000f36eec6c953ee9fcbbc2e",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "8412422d2884eef57d718e7f5c19b4c2939d1ce7",
+          "bytes": 592820,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 8,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r08_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c05_v1.png",
+      "imageSha256": "db8c0573c9f0cef0ef1defb77b572d27343fc176b66052cebdbc0f6bcd06a3c7",
+      "localGitBlobSha1": "14b62ded05c66a4f43432b50f67fe5f7257dbca8",
+      "bytes": 24535574,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "cbc507a1d14c51c7d6dd9b216c4a747c85640b36",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "2c2bcc033a653efdfdff8adec2c046735b4ecb29",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "2aa0e879121e493014c93732a39b839ce21b5c15",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "75491401e8de9c36b31a2c89c5fbafeeb76cb09d",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "77a5d949cb6ec3a66422c0b12b08202c9fcd3ac2",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "cffdbff0693dbd506c61acbf47d83b8f63057a67",
+          "bytes": 3564054,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 8,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r08_c06",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c06_v2.png",
+      "imageSha256": "93c5db0e1ef96cbe4b4ec470f9b68990e22b54612e035ddb6c8faca795daf5af",
+      "localGitBlobSha1": "d6a0767b4c4471c1ea8d59aff2af6542b7da05f6",
+      "bytes": 24724951,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "0bafb02b52948c8fee9e4af9d95d3164625f1d04",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "e1163d9b420e2ad714a11cb30f527f9a3313fbf9",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "b3b36249caff5940078623cb0a9044120c13eef0",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "79c5a3d63b8f32fee467fe52e1d9d1ac3edc99f8",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "1bc4d933d5a582f8b583ca00db3f0462da606d08",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "60006443487a1452069334f3b297a23c718817aa",
+          "bytes": 3753431,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 8,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r08_c07",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c07_v1.png",
+      "imageSha256": "f83351c92b52d9749ccc6fea603c1042e60e03f4dde3973f369c10d0dbce7f03",
+      "localGitBlobSha1": "f160d2193f39a1d3768384c3aac813df0c4b6dea",
+      "bytes": 25893578,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "0cceb5af55a1bfd47c4cd6a4fdf7bd260077296a",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "8a880b0f1bba33d4f42fdf5ef456d2f84a05ad1e",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "f541e033ad51092a948c22b163aab991d1192eaa",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "1caf337c9b50dabdd988a15b3264974981eb1317",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "58715af09df53f7e6f861fe955523cb5d7a650a2",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "237b7c1ab8178ffc8edfc35796a4bb922b23bb5d",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "8452ae9333649b596d867dcbce794085332900c5",
+          "bytes": 727754,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 1,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c01",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/candidate-4096.png",
+      "imageSha256": "bfd32418fc291cd16bccbc6869f746500a1004b87b10dc15a9f266a4ada3ff30",
+      "localGitBlobSha1": "3da4c50734927569078d680edde64ae1f3f81b20",
+      "bytes": 30918589,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "94000dae9c1827addcc222b43fa4029bf4fc2b85",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "9ca836a20859a923c6b203bbda2cd7df134abdd8",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "21bf3a91166cd619d4d0f8ea41c3e99b816f0c50",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "b65b6e396d01f3e583c0fcb9d94b1967575865b1",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "2dd1e8c5b827db2bad91ff3154437bdca11b7012",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "e0030f481dbc8e1f2d031197e996f6805f9e534e",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "ae86e138baf303f34812ab87ed8490a330416324",
+          "bytes": 4194304,
+          "offset": 25165824
+        },
+        {
+          "sha": "587375ea64c67406c5485748c815d533f060394d",
+          "bytes": 1558461,
+          "offset": 29360128
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
+      "imageSha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
+      "localGitBlobSha1": "f841d7f5a43f7cce4cda53c87d159d98d88c45c2",
+      "bytes": 27686918,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "cc586378f04775102bc61c2254281032ec32e8cb",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "9e3ca15ae8e83791e06598646db7a671ebc7fc57",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "9469d91c274dfe5b98f2dc825be4749504a002df",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "46cf08bcab13ec47470288f42e3824256aa69e6d",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "ffc4b6d9cf0c7082962757ec8b512ecf06d8bb7d",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "c9a93925108bf6588164bae63dfa42ae207f6b12",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "d21bfa4062dc5c3b44177dcb3b21cdbe37154293",
+          "bytes": 2521094,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r09_c03_v2.png",
+      "imageSha256": "c007223892d5678749a7c6164852d90060a7226c0e70605aceb7585d882e72b1",
+      "localGitBlobSha1": "a45bb575d493239f4af6385e7918c62b1d7421a5",
+      "bytes": 26128245,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r09_c04_v2.png",
+      "imageSha256": "ea922c21b60b935a7d3a0d48ef6eb8420ce2cdafffacf0be0113f7c14dd4e5b9",
+      "localGitBlobSha1": "ee0f2e413434f70843dbc74806ffc7fe37c8cf42",
+      "bytes": 24046915,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "ec9828e56fd7bc344c9608e531a32e82b6ea66e1",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "5ebd8db3a97bba692c72110d9c47a7ca5db66f20",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "f8d3210e44f25f3cd38967bebd6d30e3080bde8c",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "148522dd0c21ca2630cea4468d60ce6b0855ccf3",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "c8a1da45040c3cfeb965b192381a6b9d7aef551c",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "19e7b7850779ba3cb0e97d28f13fd4ee4f8fe159",
+          "bytes": 3075395,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r09_c05_v2.png",
+      "imageSha256": "c39af619f225df98ea24b05ec5d40136f23fe65cf64f0f8592870c18c2cbaa15",
+      "localGitBlobSha1": "dba855523efe08858e154303971197959c58e81b",
+      "bytes": 24997193,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "3744f2c9d0f981250d155b72c9553bb6843fb366",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "a009f30248bd95fbd348aa2508f1ceb311eb52bc",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "efbf907218327d32fc0e515e3e674a8ca76744a4",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "f069cadde08bfff3964a382fa51ea2cab837e518",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "ed9bf3435a207d5a490356ee9d12cc34ae92a00f",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "58c4ee4c60e78adf69f737c8a3c8e28854329a9a",
+          "bytes": 4025673,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c06",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r09_c06_v4.png",
+      "imageSha256": "dfcb7c87e63573df017799347a7cf757c6143e49c5aec40d0a041112b2c76f0d",
+      "localGitBlobSha1": "b101de0338b681c43fff40351d3109a52155f8e1",
+      "bytes": 25059942,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "f4c2082fde2698a8c2ff39a695f2813816de7d7d",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "d83a4ae5914c0f6c54de41662c20a7aaa31cf2ed",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "2d55a6ada443c2009ee64eab225243c09ddb943b",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "99708efba489ac0ba5295b3677d51f1d19cea0bd",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "3bfc2b0496830a223b98d8d3e2e9bbc8fb440f31",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "a60c833e918c01d6ae903dafcff57023d7ea834a",
+          "bytes": 4088422,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c07",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r09_c07_v4.png",
+      "imageSha256": "f7142a8c69e9cb7cce19bcede16e38b2be01bb56225e61d0c57316395404c8bb",
+      "localGitBlobSha1": "f61d8be17382a1121a9b4d23e0cf9ad42f76cae6",
+      "bytes": 25810539,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "f22930fee79a45e6db2b040643691010757a4b45",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "2160a0ae2d4db96cdb56024e8534ac0debdbc2f2",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "fc1653cc335ea67c1fe4a452e310e8d334a57f50",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "eaa142edb75a476ce31b0ce3cfb41c275badcc49",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "37bc68e600fe7efba4906b5bbe14579f544a97ee",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "520de48d10bd2b391ea84bd31837f8bbd90fb66a",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "f68b9b0a91ca5494faf5bcf85a8a460ca252ea40",
+          "bytes": 644715,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 9,
+      "column": 9,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r09_c09",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c09/qa/full-resume-20261012-v4-color/candidate-4096.png",
+      "imageSha256": "06e7b4a390ec7cc1126bf17e2c7c8bce286bc3d54b0a8d689fc9ff16a7bb04dd",
+      "localGitBlobSha1": "3c67fc5fbd8cd89599c1ffb2d3504dcf5670bfe3",
+      "bytes": 25854363,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 10,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r10_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r10_c03_v2.png",
+      "imageSha256": "0c0e55a0ab15f860cea91db08164d24ddf11f469787284a13b53769a84a3721e",
+      "localGitBlobSha1": "6215b73fff7b7084cd5877e8ef6264f0f28ed67f",
+      "bytes": 28277331,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 10,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r10_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r10_c04_v2.png",
+      "imageSha256": "e4e110a6970beaa5a95c6906c41a7d7569d3bd93a0c9705ed4ef967f6f33770f",
+      "localGitBlobSha1": "c25c7e36e7042bda35236f001af45e9c49f90bf9",
+      "bytes": 23742354,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 10,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r10_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r10_c05_v2.png",
+      "imageSha256": "de0584e390be721e4a18f28de1607373a74010ea120eb77427a8a50a4c4262c6",
+      "localGitBlobSha1": "ab90d8c590a98c807829c50d2b719fc85c5b6d7f",
+      "bytes": 26374232,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 10,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r10_c06",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r10_c06_v3.png",
+      "imageSha256": "7005293be4cbe1b60cd24e3f40259038742b9dadfabedbcd90861d2d0b0ab0f1",
+      "localGitBlobSha1": "fe6daab0c4a8a62d579319a018de71bf1931230a",
+      "bytes": 28811583,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 10,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r10_c07",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r10_c07_v2.png",
+      "imageSha256": "2123da9eee1b6955adc85d9741d6f0fd72b899850f9d1e1ebc301e77c506f9c2",
+      "localGitBlobSha1": "24d28e8d8b505d7edfd32a3fcdf6aeabf5dcdc7c",
+      "bytes": 26382075,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 10,
+      "column": 9,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r10_c09",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c09/processed/clothpass/r10_c09-clothpass-candidate.png",
+      "imageSha256": "ec91e8353bcc794c58b166f1923bfe9022db1d2c2df1018f2941ca11ff6182f5",
+      "localGitBlobSha1": "01a78790a3b6ee67884d46675b3c5a4fa7a76086",
+      "bytes": 22878025,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 10,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r10_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c10/r10_c10-candidate-4096.png",
+      "imageSha256": "a9f833d219a3b93d705b7a8bf9d860fc57243769253fe71a008aca024baeeaa5",
+      "localGitBlobSha1": "6b7ee804497983cc40377c49e2fd38ffa4260727",
+      "bytes": 25214487,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 11,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r11_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c03_v2.png",
+      "imageSha256": "8382297870c2be85680ab72536b7ae673b8242a5ca1223e94345f5a6cd989e4f",
+      "localGitBlobSha1": "6c4b5928987cb4bb4d28193ea59f15c1e7af5391",
+      "bytes": 28028602,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "aa285a4ab13b442171b212523a1bae25a2ec1216",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "7a6e7a63c8240a80639eab564e55889ea3b5f18a",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "f130dccad479df3a5583bdaa54f8d555e3ec616d",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "9f2f1033356b20bc9f1cee7cdb0d5daf795375ed",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "317c4e2db13c709e57d5bde035e309bf49230a82",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "4b8310a8f69b9a365c3e08fd3a1fa1b0c35e2b91",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "f127c545d8093929eb4b9451e2ad962931d20967",
+          "bytes": 2862778,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 11,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r11_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c05_v2.png",
+      "imageSha256": "a582a51d0fed8690d4ae1e109f32273af24f27cc626fb0a93d8647e7f0250552",
+      "localGitBlobSha1": "311765d9833639cdbb5cd9aee0b81b0956037696",
+      "bytes": 25848749,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "22d96bec4ff67779ee43958568570048b3e0a73f",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "48a4d2cb581c6b8c363da3b55f9062c4b7c873b1",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "08027b26188cfc4ed35b20217f43e0b767832ba7",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "41b017a71aff1ec97cd4e5b21b289218bcd33211",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "41c11e13534753a8b32dfd5b2661ed6021545cdf",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "686f2e32a7d40e8ca5b34b6667f896b00bbf91a4",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "515f9801739b8170f0efdcc1524bd901d65ff847",
+          "bytes": 682925,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 11,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r11_c06",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c06_v3.png",
+      "imageSha256": "958931b6516804e63b7918dc425516c587ed246b228ac2b92c606446b49e2a95",
+      "localGitBlobSha1": "f251c133fac56dded7adc727dcca023ad8cc1a35",
+      "bytes": 24377987,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 11,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r11_c07",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c07_v1.png",
+      "imageSha256": "cd4b75225918e1dad7ef9dfd5a47dd2572941a66ca273fff7b9bddae03e11246",
+      "localGitBlobSha1": "86c3623ba967ff6983bcc1c80abbdc2552ad9512",
+      "bytes": 27319099,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 11,
+      "column": 8,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r11_c08",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r11_c08/processed/joint-edge-color-v1/candidate-4096.png",
+      "imageSha256": "140b429fd9b1397ccec721ee43e74ff3b05327c62facd890ee051e5cb6f4ff3d",
+      "localGitBlobSha1": "ac8c10970227aa53ccf795b5fcdd9f74814caf7f",
+      "bytes": 28680150,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 11,
+      "column": 9,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r11_c09",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r11_c09/candidate/r11_c09-internal-ready-4096.png",
+      "imageSha256": "32aeee99debd786ea9e21c5540d5f66204e58ca61657a1bde6f8438a1694159b",
+      "localGitBlobSha1": "82132336c636acfff570938b331525559e09784a",
+      "bytes": 23949388,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 11,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r11_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r11_c10/candidate/r11_c10-internal-ready-4096.png",
+      "imageSha256": "fe272333737013523783f6d58925354320a20ffdbffccbf6fc8cf3811b57395f",
+      "localGitBlobSha1": "8eebadd731fe351d09f1a61c1dbfe6b6f97ea1be",
+      "bytes": 25772201,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 12,
+      "column": 1,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r12_c01",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r12_c01_v1.png",
+      "imageSha256": "7d36ae81b30ecf7cabee4e179f76ff9684ca8cc0d13ece4245748711ffbbff99",
+      "localGitBlobSha1": "e4e69422ab7a21ff0bbad8e335dcb29af64aeb46",
+      "bytes": 27330888,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "3af6963bf4fb9a299fe06650021ecee8565cc8d1",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "8fe76620d9379a067434b4ce9d8cd257151c4fdc",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "ed402e6a9dd45be0d096f3f47567e7c1678e0018",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "9ec4c938985068ebb463644d3dd2bc68fbf957a3",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "b7f5719377ad9c5149b4036805cab52ce0d585d6",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "2e0c7a74f4bfeb61d430ef9d947188996727b7df",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "13bdb9697e79806c9a2946fefd79a605aa5c5cd4",
+          "bytes": 2165064,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 12,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r12_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r12_c02_v2.png",
+      "imageSha256": "b4c3813ff4fb7335ea5523b0b05b11785c5af4db1f6ea857848f8500da21b819",
+      "localGitBlobSha1": "d2dfb75737471c1256cad4426a31dc64d2b46aeb",
+      "bytes": 29012631,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "50e88f1a0266fcfe0fe28c7ac38a2e15b4e269f3",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "b7c763c85b314de6af5389b7454f50b52f0d3f29",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "ba8171e87cb86f6c9b9b995e63bb74f6b81f7830",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "46b7b539edf430efaebbdcf34ae2d110f195cbf3",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "1cdb1dc542384a9ee37172e7ccb4444bb2e6277a",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "ddd2b5b887cbee0e4edad9b96c6e83f17e3acfe7",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "dda65fe0ccf4f057b4dbf658551928a07c6c3a08",
+          "bytes": 3846807,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 12,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r12_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r12_c05_v2.png",
+      "imageSha256": "67485941d3ed48422cdbd5ee56b8716f4a714a7c881c0266354fbc232c5ad494",
+      "localGitBlobSha1": "6fab62377ca4735ec573d647c6514f4f786044c6",
+      "bytes": 26635395,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "1a583232ee76424bccb8fe7aa5e02082cf1c1d25",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "f05529aca4f6bac1b2e4a6f34ee9258c6d1e9043",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "f8a715ad49714d8517a5575a1f4b89e9c171b47a",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "14df7ff685096bbf67b8e3dbbb95ba30aec30cf7",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "1dc27a54f804f02dad7e0b5030b09d7e52c0cf65",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "348c145ec7dfff7d9ad55149d93c082c605897be",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "0337379b2c3a18be159d16537cb52394f13fee1e",
+          "bytes": 1469571,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 13,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r13_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r13_c02_v2.png",
+      "imageSha256": "6e5c29624d5ea810e2156729e89b52b93b547231a53f340bf5808b90481a87d7",
+      "localGitBlobSha1": "2c18c48aa79b8274b5ab0a6cf4471f8873a00347",
+      "bytes": 27983750,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "cf2c984652bdf75ac4e5189e7263ee51fda1c730",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "56a25c1c40b3044cff339967dbec6d36d30ac120",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "d58363b39768c60e228b7ba36af4117fe5dc3881",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "d71dc8e6dff57fb64a297c184320b71364c6d842",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "5a23688126a7938ed16558c2032cd23a83f790dc",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "69061f76eed6944249409ea598ca4c7dde487f89",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "79190e70b2e47f746b22bf4aeaf21e307e2430af",
+          "bytes": 2817926,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 13,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r13_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r13_c04_v1.png",
+      "imageSha256": "4533035fcc1f49cb76416a1f4a89fbf658008f9065f0d917ae4a28ec51cb3f4f",
+      "localGitBlobSha1": "3c3bfec0006f575ce9a0326b8ff3fd131e750006",
+      "bytes": 26388046,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "79973acdc3f51c82ab252cf6ff1a8942b07561b8",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "c16183ce6f53acdcee643b304f81ba03f42c712e",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "8f01d6278d79ecdc49846684c2cc87a74c0741fc",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "a048ddbc073728a9990a4d02410ffd49a938c361",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "a3c36d4a63f6143afe531a2c32d33f48b683e88a",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "386e375d06bcda35859bc02fe08240f27a5c73dd",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "59596c957ee75c50dd6f0ed11ae2db5e7cf258a1",
+          "bytes": 1222222,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 13,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r13_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r13_c05_v3.png",
+      "imageSha256": "e91aae1586859b351dc60774b0bad711cd6c8198a0e37cf2214d2336ce54b20d",
+      "localGitBlobSha1": "f93ea5f87ea294cc23cb3ed0f3e5eb4593e93828",
+      "bytes": 25104207,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "45f2f50f13a50a7a2568b33cc58805e18bbe0ebc",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "0fd029d8a69bcdd834b2b29b8dde8a63451d3615",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "d08760ccd31401c1badd73154535eeeb02553aa9",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "0ed5a2cfe88fca6c01109545b7c2171ffde072ce",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "d530d857c85ab45e2a1292087bfb8645503f97bd",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "4bc0213fbaedacbffb5db9828538b9c8ef76955a",
+          "bytes": 4132687,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 13,
+      "column": 8,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r13_c08",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c08/processed/colorpass-resume-20261012-v2/r13_c08-colorpass-candidate.png",
+      "imageSha256": "7a9a7de302ae3640be1ab1e8fcb53af1c9642737a3734439acb56b5d450ee589",
+      "localGitBlobSha1": "2ea9efcb8fd65961e4de9f6c9ac83740f9152ccd",
+      "bytes": 23895836,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 13,
+      "column": 9,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r13_c09",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c09/candidate/r13_c09-internal-ready-4096.png",
+      "imageSha256": "2956e9e6b93c43ecc7fea1aea3a5727a69325b75df97f3e4bbb18184ce2e524f",
+      "localGitBlobSha1": "1a3ed375aa085e34b2cc754b3041e75a6ccc43c0",
+      "bytes": 24994009,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 13,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r13_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c10/candidate/r13_c10-reviewed-native-4096-20261013.png",
+      "imageSha256": "4d0ce338c63a077b453a701bade7e9a83b665126fcd28b250ed7064f65e41910",
+      "localGitBlobSha1": "8fdc6b5aab2e16a25c222c708fa7e51ba8694d3f",
+      "bytes": 27270606,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 1,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c01",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c01_v1.png",
+      "imageSha256": "3663645c204ad33577e8387d62228990966ec70585b3aafbc6e2f5b5c0a7ee26",
+      "localGitBlobSha1": "d94b203b0c6fe14f241ef805135a342fdddc5e6d",
+      "bytes": 31025456,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "cef43ec33ba925a37e3ee89e9534dac18f495d3f",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "eef04eb884f5db1a4ec3abe8631e48886b7bbd77",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "334c1e5b33a76255b8492046221bcadf40227c7e",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "56790346eeab79fc646eb2503a62da7f7f6b1189",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "47f81a2043edc97887f4a30a2cb9d96af7ac5fd8",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "4ab4736063aa48a268138864bbd5f32cd11fd708",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "e5564a0b72f8a82e07395bb42a66b35499b42eb9",
+          "bytes": 4194304,
+          "offset": 25165824
+        },
+        {
+          "sha": "4edd7627691f058b8af23dab9d3b46dcd397c9cc",
+          "bytes": 1665328,
+          "offset": 29360128
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c02_v1.png",
+      "imageSha256": "76a6781fc8a1d186465bf521d5720e93088192c332741f635722f34618a84d1a",
+      "localGitBlobSha1": "e30ca0f841feadd08a4cfe2ab4acc39f877edc74",
+      "bytes": 28845315,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "804ed8b8614e7c051ee7e181509176a5feb930e0",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "eda8ee047bb733749f07135c9c6c8554ba4451a2",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "f6bd261ef648ae09ea290043737ae68b80e25001",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "7eb54f2f3c54c435a560713aea65a28e03b8166b",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "813e1259a0c047e9e43fe0215a492a5c0b1f614d",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "928dae6578cbef334a58abe5b025da4c3c9909e3",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "6b5bb32ef46e23b6ebde1b6aaa7bc75a254b860d",
+          "bytes": 3679491,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c03_v1.png",
+      "imageSha256": "adbdc41ef09599dd44750463b28d47137a968160447f33a476708f5b2270a789",
+      "localGitBlobSha1": "4f63e3d226b78a249d34acb6852123028b637302",
+      "bytes": 31229575,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "af471a2ca0aa0899a6485816843668399bbb4cd9",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "7c7fdbc1aec3f16424d9b567751561db5c3e3062",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "b732043636c4c20cd1f6235187a195da9eff7d92",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "9e4422f43339db8e34e60ee79d5eb904234114ba",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "0f33bdefbfdaccd500773c0dfaabd7a2eb382f37",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "4fe30b818e7f48a9f52deb550b1584e2cd3ad7fb",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "16bc5ed004d820f4c3474c6f3081a04cc849d581",
+          "bytes": 4194304,
+          "offset": 25165824
+        },
+        {
+          "sha": "c9f938f06d320628bde022901a2c662679528ccb",
+          "bytes": 1869447,
+          "offset": 29360128
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c04_v1.png",
+      "imageSha256": "9dfa132bef6bb962469573bc3972c8e69c7c0c0490be4def675b3f629fabdd24",
+      "localGitBlobSha1": "b342bb932ecb7682512dcef46298978190526220",
+      "bytes": 31172389,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "c2b9f841205ec6628915ea6d329da17af1b4114e",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "17ba332a4a681d814ea0c86a7493cd3b4b6fcb92",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "9248cfc6e6b122b581a8e9c1293628e5ea313fa3",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "635fc95ccb4a82b084836cde793928dda322898a",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "2935f1844ef4ada591f0f7d0ebb649e72bfa92de",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "d6c2df1bf4d9b4b5e08c56c9d8eb89fe1bfc4abc",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "b2c36ae6565aba59d0f890a55e2f864ad7f9fb38",
+          "bytes": 4194304,
+          "offset": 25165824
+        },
+        {
+          "sha": "f419285d01514415f72a0b3ca437012e00e82602",
+          "bytes": 1812261,
+          "offset": 29360128
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 5,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c05",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c05_v2.png",
+      "imageSha256": "19861d63a533eec63f31a0a097ea570cb9fabdd6751d3af7c175d1739e2ee66e",
+      "localGitBlobSha1": "7e334b174d4af9db4f6924e264f2d4686182d896",
+      "bytes": 28151404,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "1c415622c49ee30156f065c4ffe87e038c3e621f",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "37895b9e85217eb5845054f6f94aa549ed29a657",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "f53374a901061d17b8a56d6d0840387050af20c9",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "95e98c6f8435e154dc2613fbe1d6987f4c59f017",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "4498c337d419f1b40ce8b706598c666732b37b6b",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "85038593e86b469440953abbb577774f6f723003",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "c26979d3f622ef7a3f7369f18e4e51581ca9396a",
+          "bytes": 2985580,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 6,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c06",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c06_v2.png",
+      "imageSha256": "15066daaef741c4cd2e6c009f13365cc8ee0358d61e0f9a87d912b742d39d250",
+      "localGitBlobSha1": "85dd242d80dc4ce8d684964e869a3defad9e5ee6",
+      "bytes": 24898127,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "dfd1849b0ec415888073888900f68d56d40b0ba6",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "e76d1d23f3f9da0a088dd69ef4335dd12e70d122",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "dbb6c80160135092bef841f9998164e54485da10",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "cdba25188e4301bb3eca0b0f44c576db281d3916",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "b002d35eb0372975a6ca6f85cf43a0fe96f5ea86",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "4ef1f26672f2026b4592db61cea30a2a478bc00d",
+          "bytes": 3926607,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 7,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c07",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c07_v1.png",
+      "imageSha256": "43260b1f3c69988457c4b540321c0002d9846baf5a7f7ffbb7ebdc939f962a11",
+      "localGitBlobSha1": "a48a09fa1097097f4fc36084ea9dcf6e76ed31a1",
+      "bytes": 19105039,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "9da015e23cd2c8ef89f1190f4d989498bb9b55d9",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "1c732472d0c2fda93605fb8ee4d39e8991c0fe06",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "7967cf3dda0189038781ec1a661aca6b35c88cd2",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "dfde7a731ba65804bde51a07195a7c3e363c4770",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "3c3a73ba6dd81a6480f67af4a44c4434615f6843",
+          "bytes": 2327823,
+          "offset": 16777216
+        }
+      ]
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 8,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c08",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c08/processed/colorpass-resume-20261013-v1/r14_c08-colorpass-candidate.png",
+      "imageSha256": "fe1f3a2fc904d6b7baff37a6c2cdd1cd6c14c75f99747d88ae192ac4673a7875",
+      "localGitBlobSha1": "4879fb8b552a77fba47e5dff4e565113b605b5da",
+      "bytes": 21375694,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 9,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c09",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c09/candidate/r14_c09-internal-ready-4096.png",
+      "imageSha256": "f27165cbd32868124898fef06cdca9a66093d71ad320f1c21c144e843b4e24c8",
+      "localGitBlobSha1": "42fa5e96f15a2947cb8039756fb540726a6f964e",
+      "bytes": 20068280,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "village",
+      "row": 14,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/village/tiles/r14_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c10/processed/colorpass-finish-20261013-v1/r14_c10-colorpass-candidate.png",
+      "imageSha256": "83b437f15c62fb49d541263258f76b3d1dd29287510b9e953a7635c95d6f465e",
+      "localGitBlobSha1": "90ac643663d541454423d0e3c978b724924e1d3d",
+      "bytes": 21915620,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 1,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r01_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r01_c13.4096-candidate.png",
+      "imageSha256": "c31ac74ea0f39309a52ddf8f5a7349c980d4d62ba0a39ce99c2f6e07388bce41",
+      "localGitBlobSha1": "e8e29c72f3069030109574e396a8f80af4ad8d26",
+      "bytes": 21423088,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 1,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r01_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r01_c14.4096-candidate.png",
+      "imageSha256": "505a8705793013fa077928c839fdf431444450a7c569c938c96e33e189f5b874",
+      "localGitBlobSha1": "a057f18af33a93ddcda55b2d0960cdc47d3da23a",
+      "bytes": 22660005,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 2,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r02_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r02_c13.4096-candidate.png",
+      "imageSha256": "4cf9dee269627e3be5735d178b169f47f7a4c8f50cf951f63d91eec9555c47ef",
+      "localGitBlobSha1": "f5cee59b6497806bd773b1ff04be788977e2b17c",
+      "bytes": 26402309,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 2,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r02_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r02_c14.4096-candidate.png",
+      "imageSha256": "1ee2c2bb2bbb232441b7fe661073131a94da61104f4ef4d38124b7b4654a6744",
+      "localGitBlobSha1": "d08ba014e906459d8f860882a9a5385a69336d56",
+      "bytes": 22797485,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 1,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c01",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.png",
+      "imageSha256": "f097c9fb6261a2dd2edbc86725f95e539d68d5187eef77e69e1cb62bbbb50d9a",
+      "localGitBlobSha1": "d31bb4274ffa23325c675f0631e59ca5ed9bd914",
+      "bytes": 26755009,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "03d3ff49565ea2b770a711f75797fba3ddaed8f9",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "d75944ed119fb8560439d0cab4ea7f712be7ce67",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "d649dd132574c02d88574181eef68a6df4cf3a04",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "4d50af3917565a8a0fa40774473eebbf0ca4d786",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "aeb56aaa2e7bab846ad5c82efd7aa73cfe2af335",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "cc0355181d070683694fefae187103c56ee7eabe",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "858b2620b96d19a0be2fb1baf91090e63cf5b9b3",
+          "bytes": 1589185,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.png",
+      "imageSha256": "e6a041b128571484a5ddea09143a0085fc34fc2563891bdb1d4487423deb52f4",
+      "localGitBlobSha1": "0f9e2ce8486dcd7c01861add2fdc63d829b1bf56",
+      "bytes": 25540614,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "a5eb94cc71547d6749635e074a3f1e159e9b1f69",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "e5915cb6f6da9b2a4af2e1c867f2cf5ac59af525",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "c77c5947abb900fbc87a093975018a4dd3c4b242",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "d93936f8c25bb5b2c24a5a2b7c5b517426792ec5",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "0b81f6a7420b8ebf162b303fd282914d3b09cdac",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "c159c2fe56fff9c93436d3cbb968ffafe8cd7862",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "142a9be8f52aed3e9b546a2bef6451214f9a2d78",
+          "bytes": 374790,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.png",
+      "imageSha256": "dc09b8171747c5bc26a0d8a9864bc18f967ea093913d290c30387712c69ef439",
+      "localGitBlobSha1": "84ea02850b68420bf577da5376fed012da498025",
+      "bytes": 22024858,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v1/r03_c04_cross-paving-upper-v1_4096.png",
+      "imageSha256": "acdfd1b87fa74cee5404d11cee8b101fe538d46ccba3a0717228ff61948b2ac7",
+      "localGitBlobSha1": "fd46f8e7f467e6a7c9b4946d873945dd76d43fda",
+      "bytes": 24211609,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r03_c10-native-v2-20261013.png",
+      "imageSha256": "2b3a0942c40c828cc3d4655f4663210ad0a0206172743a2405b45e0b26fde982",
+      "localGitBlobSha1": "063ef965217586c3c59c9103f8ad07d2906ba9b8",
+      "bytes": 26637621,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r03_c11.png",
+      "imageSha256": "38a2deea4cef7b0ee4285819849b0ace38d0112e34c81b70af92c9455650746b",
+      "localGitBlobSha1": "dc07cd2347701d30162b9ea1acc68bb971f4be0d",
+      "bytes": 25049198,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r03_c12.png",
+      "imageSha256": "0e6d7aa562ad313907f7d6aca48ce941d8b2f637c505ec92a9b9b12ea49fd3fc",
+      "localGitBlobSha1": "7ae03824133954a7e5b17921493a0f9e72b00dd4",
+      "bytes": 22947185,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r03_c13.png",
+      "imageSha256": "607e8fac0c1fa31793fa887b520e8fd4e84ee66be9c408aca7aa1ad126b8b5e1",
+      "localGitBlobSha1": "1a4ec1b21d994f179343915bf6c475e9b0efec31",
+      "bytes": 25152730,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 3,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r03_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r03_c14.png",
+      "imageSha256": "b85fc423d05d18525b7b53723da04fa9825f4f14cb1287c02d01591922624f60",
+      "localGitBlobSha1": "b63f267db9d9ce854832aa73f517f6d970149077",
+      "bytes": 22408867,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 1,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c01",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r04_c01_west-rock-a01_4096.png",
+      "imageSha256": "dd1a868238436ee70fd1e64c8a2da0889cd2b068d02c47fb1967cd0f29d2e4db",
+      "localGitBlobSha1": "65cf9551684fca3962deb3a4bf2171f163bdea0d",
+      "bytes": 31357787,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "46506d6b0d3028ae12f94123d5e449fca001e9cb",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "2da87285920f375d0492b41362606c85985f667e",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "e92de7fe10cbd3a3675cb21c57187fca0be23a55",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "f92325380faed7d76d1ccb9efc647c5fa000be7d",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "cc4657bc5f8e279273c7e803e3bc2e6b5bd8c9fc",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "e1749b91ab1aa0c1eb39082ff83f0005120f2e99",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "b94fbfcc223e274189987d3775acc079fba772f6",
+          "bytes": 4194304,
+          "offset": 25165824
+        },
+        {
+          "sha": "9c7a407b32d766badc6bfe91f7e4b302652c8c55",
+          "bytes": 1997659,
+          "offset": 29360128
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-r04-r05-cross-v2/r04_c03_cross-pillar-tone-v1_4096.png",
+      "imageSha256": "a56d8e6cf2a646549fb876d7395283a5a4c0cb467869a6c459b7fdeb129549cf",
+      "localGitBlobSha1": "5d8dad2cb1810909bd3f63dccf16c9c53becb568",
+      "bytes": 23542181,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-r04-r05-cross-v4/r04_c04_cross-paving-right-v1_4096.png",
+      "imageSha256": "1f7524b0f5c811677a127aa566361464ebdd21529cd5f55a7bcf1a6be707fbf1",
+      "localGitBlobSha1": "90afa02d51a61dc4234b8d82589c57afcea583c8",
+      "bytes": 29991813,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 10,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c10",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r04_c10-native-v1-20261013.png",
+      "imageSha256": "1c2426a455f774064d391de1606e142c84bd819e94f7e4794ffb4d95d0ebcef6",
+      "localGitBlobSha1": "92ead41c67fc008c46e02fb560c6c8566e6c2cd6",
+      "bytes": 25466448,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "ca5aa80520ac52332c81830a2b067cd77f95f1b3",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "56a857a42a05b7ebbf1b43b8e27d0bb2db986b44",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "511052b5cbd0c5f03b59b646d14ade5359b8b544",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "fdcc758be3d374f1d64d81f9dc5c4cc554b27887",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "e4c674b512408553d26163eb3d671d2c639ba0f2",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "34d9ac93f728bf516fbcd084a4aede3f10205d5c",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "80eea4a827e6c8df8d6d0c56d2888e00ad419b61",
+          "bytes": 300624,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r04_c11.png",
+      "imageSha256": "c7740d60c062bc74d74cb9d63e4499edb342ab524f12c82063556ef5387f4d8b",
+      "localGitBlobSha1": "3dc66c5b561013fbb6fe7ae436c44b9caa1d1f78",
+      "bytes": 27679902,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r04_c12.png",
+      "imageSha256": "1eed7489617d354f15698a671ad822b218555773c90276063dfeed2c4e349e6f",
+      "localGitBlobSha1": "d099f721816b5e6af67caaf68acb9fe18fcc97f3",
+      "bytes": 24223977,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r04_c13.png",
+      "imageSha256": "9568fd0f47a42102b732fdd5cb298f052afaac88b3cd68eee25656a0fb2c6e4f",
+      "localGitBlobSha1": "8468bc3e7fe75ea0c683fd580e83cc3a1f2cd091",
+      "bytes": 26825056,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 4,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r04_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r04_c14.png",
+      "imageSha256": "38cfd83306ac83981ba5739d62aeb1967910f2089c8d488550000a04b583b486",
+      "localGitBlobSha1": "f026073a8e2e84ca2f2d1969e91a962c991c0f80",
+      "bytes": 28599255,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 5,
+      "column": 1,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r05_c01",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.png",
+      "imageSha256": "18f492e18ff6bc5e523f6ddc6c9a2fbf32d725e0bd235b3ac142518e937c7b1d",
+      "localGitBlobSha1": "40bcf425c3d2be85b041d4bcb5a4dae6383876bf",
+      "bytes": 30973722,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "becb44fa92e31213f7836b2a1f901c2170f14896",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "9f9d3fb9a99794b73a77ca3e39c1db15a9e9861d",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "8a3bb0a65884b693aee9da61d0d4bd32390922ad",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "5bd6861b2e0f109f21b295329ef0d5d67d577779",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "fa38c0300c0f1e555df7552f58ad7580a7321847",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "0a7469bac6d75863d9ec5c8f1ed2056798d9520c",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "58b8bb92326c9a0fbafc82e8e080ac1947e92f59",
+          "bytes": 4194304,
+          "offset": 25165824
+        },
+        {
+          "sha": "37495c7d125f96840cb969f91f52f0128a4c0e71",
+          "bytes": 1613594,
+          "offset": 29360128
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 5,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r05_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c12-sol-v1.png",
+      "imageSha256": "d6b9d2d1f087b28c6d8f9ec403f6ce15b7508dcb2b858ee6553c50c0b841826a",
+      "localGitBlobSha1": "700da2a1d9707a35d64548394d41cbca97c99b1d",
+      "bytes": 22402614,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 8,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r08_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c11.candidate-v01.png",
+      "imageSha256": "fb80d659355734f201e7913c7987ffa569ba2d2eac2b37201d06c2cf7e11ba45",
+      "localGitBlobSha1": "0100b390c5f0dfe72365e4901a9b4aebd5e4a4e2",
+      "bytes": 26515225,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 8,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r08_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c12.candidate-v16-foliage-20261016.png",
+      "imageSha256": "9eb58f9e117fba649e6adc69dca65a084ad1fe13e1c78ca9979c3559e05d4a41",
+      "localGitBlobSha1": "7649dca85857ba6ab134cdcdddaf840f4d53ede0",
+      "bytes": 24852563,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "c67f387ac55d394e42dbf19c0885123651e36809",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "e838f13e6159661ee93d4c6b8da566eab3c0ccb6",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "800f8f4cc04e0a6ff592af7022eb101cd094f052",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "2112bf64da867600015b5e6e72eb83e3899f3fe8",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "5ebae777bce0fd74cc7399d5b2099aafcc84b5ef",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "08d3fa6cefee931d2ec5f5766be45f12014ba4f3",
+          "bytes": 3881043,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 8,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r08_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c13.candidate-root-full-20261016-v02.png",
+      "imageSha256": "75f1a287411731b0f8fd9684ebf0d7b1a53cdc47b63e62e0ee9725e26186db91",
+      "localGitBlobSha1": "41283099095c2d9ecd2ba7211c0162e562aa29f3",
+      "bytes": 28548761,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "9a53be7b8272e93e5837bd064ebe48af02ffe117",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "9212e15ca23c1bbc1f8e9b1311f394141117f467",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "939ba63436e7df6c660408022aa9fea223e4123a",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "5bbb859092fd1d3dd0ec9d45329211c321660348",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "b564bc6c82213e6df8cd3ff753ff010ea989f040",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "3dc2a660d5cfd9a5f98c3ae386a94f402b204295",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "dc7aff2614493f9e63028b1b67e60c28634fb253",
+          "bytes": 3382937,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 8,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r08_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c14.candidate-root-full-20261017-v02.png",
+      "imageSha256": "085c80f82b605b099db42b874ef0c23fd34c5bb2108ebd0dd8b80fea5524662b",
+      "localGitBlobSha1": "68df33071882fbb2ac037adbaf8bf4f5898368cd",
+      "bytes": 28621961,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "7a86efe475c40246ca552fb0035787b8bf1a2218",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "46b958feaf3e709581473aa0d222ddcdca5d6bfc",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "33f160d05bd59596ba14c73353534859a6120a80",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "297bdf87f161e7ccbc1f34a5e1707f4aca0d29e8",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "ef2db4aa16a194810e41a79318016e3162e29636",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "bc3cf2a193a84d5af48e97863ac562898694f256",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "ffc808c970cbaf3ed8947fb09a0d638289bfe042",
+          "bytes": 3456137,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 9,
+      "column": 1,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r09_c01",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-west-r09c01-resume20261016-v01-candidate-4096.png",
+      "imageSha256": "d85e1dec05e937e04922341cea08ab97c45747aab14b6ef72b4c05f856c32b07",
+      "localGitBlobSha1": "f1359025fa30c49f943c43fc89abed3d88b80361",
+      "bytes": 33168759,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "212c43886bdd8e39410a531d6d6c476917621365",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "23891dfbe0a3ae6b4c54a344b1e6ceaffbba8ecc",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "2ae461a0932d2d2c3bc02137c2230a429bb1087c",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "f49edfdc124069528e7407a039b1927649597ba3",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "cd2750d9745817226b97b9b4e8b62f3e4f44e5e4",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "90fde48a0ce7a0e1c6103c91bca7931001bc8fde",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "8dfc36df558e16215341211abebd3a7a6abd2d50",
+          "bytes": 4194304,
+          "offset": 25165824
+        },
+        {
+          "sha": "bd00e3dedc3f3eab43017d336f407505f570c484",
+          "bytes": 3808631,
+          "offset": 29360128
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 9,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r09_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r09_c03-native-4096.png",
+      "imageSha256": "2eee6ffa16aa42dcc899507143387af9bc413e25ee69d1b7c5df13e62e9938a9",
+      "localGitBlobSha1": "a083f184b662773181df67e7e032583b8afdd8a5",
+      "bytes": 22190223,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 9,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r09_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r09_c04-native-4096.png",
+      "imageSha256": "635a2267e5e326831e43ec478550bb9c92236223b3da5b4f80e2af2657dd9c6b",
+      "localGitBlobSha1": "00987bb895e9fe95d5367d733d2ce690b025de3c",
+      "bytes": 21628929,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 9,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r09_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c11.candidate-v05.png",
+      "imageSha256": "e74515d2f3f456d12a817af0e9a75e82183d6c813bfa0659b55f47889786b237",
+      "localGitBlobSha1": "5f735ce1bd5969e1e0a2d996f031202fb33ede28",
+      "bytes": 23864756,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 9,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r09_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c12.candidate-v09.png",
+      "imageSha256": "0da101d138998cab48dcc23753ad55166d5090ee7ad13b20da1c1f8584c01d12",
+      "localGitBlobSha1": "8f007975e9ec608dd1f0432d0b61276757656d5c",
+      "bytes": 21999190,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 9,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r09_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c13.candidate-v02.png",
+      "imageSha256": "ac3a5e9dfced3e5034371bea04815a4d74d6b4fdc4fa31be81d0f60bb3358a66",
+      "localGitBlobSha1": "c0584ff0d5c15b6a969c2ca673457c8023f5216d",
+      "bytes": 27119172,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 9,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r09_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c14.candidate-root-full-20261017-v01.png",
+      "imageSha256": "806296b0b5c6579ac16ddc384f0e948b6a900de43af9199c1634bee3a68c2445",
+      "localGitBlobSha1": "25b1f4dffdd71923b1fa7931319dcb6a3e3f850c",
+      "bytes": 27528537,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "003d4354519a1dfe6ee391a2b42394113f7142ab",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "a2705b3b927502a6167e2a092e1727fdcf9d6bf4",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "9455d3ed4dbf01f636625d7697156c0937130c55",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "212c755043e538768f425a58ed14ce524d1d34a2",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "1a5ab1e477079aba2390bbbe21f616132802227e",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "ed8db47e34215a8c85fcf4b0d4a022a9f46ce3ed",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "7b6a5e88a0f6ee0efc7172c1be868e59d8e0be17",
+          "bytes": 2362713,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 10,
+      "column": 2,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r10_c02",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-west-r10c02-v01-candidate-4096.png",
+      "imageSha256": "b05012a819a0bb48304b268f6bf5c5d8c4e27b3be828f1f27e849a5e6861b8aa",
+      "localGitBlobSha1": "2387b14ea46600493501037740f5666037baa027",
+      "bytes": 28676752,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 10,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r10_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png",
+      "imageSha256": "e06bcb9617305ca4be69b183c3384e47374302beb4007405747a065da7fb57bc",
+      "localGitBlobSha1": "7550a0bfe744f24c608469745a4183fae8f74887",
+      "bytes": 24832807,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 10,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r10_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-candidate-4096.png",
+      "imageSha256": "576429802200fe40bd49a486fedfea9832803d33069802af10ee93d42d0ad661",
+      "localGitBlobSha1": "7d9d4da1699ca15359d35f436ce67251f1e6e645",
+      "bytes": 23362889,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 10,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r10_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c11.candidate-v04.png",
+      "imageSha256": "e7da9fbec61324e3626855cf5b2e5833c465e536b4dcbb22625f79decde959b2",
+      "localGitBlobSha1": "0f6c6ec90473350bcaa2ac8cfc24d7ac0d2ae73f",
+      "bytes": 25148417,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 10,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r10_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c12.candidate-v02.png",
+      "imageSha256": "464b608619d2faf6694faad4c7406aca09a678f4fa117551da9830ae77a0e569",
+      "localGitBlobSha1": "6dab3bfa6b1f299be716be530c157498a495c489",
+      "bytes": 25118528,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 10,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r10_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c13.candidate-v02.png",
+      "imageSha256": "fdc219b3fe9d21dcd1d9dca6e074845c3a6f0a68341189fbe3c801a17e1d1ec8",
+      "localGitBlobSha1": "3102a089ac8a55eb8b17bbfc053420174b4f36b1",
+      "bytes": 28200698,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 10,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r10_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c14.candidate-root-full-20261018-v03.png",
+      "imageSha256": "f1b6e07b843157b64d0df9d248c740c05f0348c8c31c852111caa21502fc6d39",
+      "localGitBlobSha1": "5585900ab3887a8db6a793d6179ddbe9d8838a58",
+      "bytes": 27669437,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "303540ef211c6c537c7cbb02d51b065d06243da8",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "38610b706debf01f58d9b32c7f6fa5262dbda0df",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "7af7ed01508adcddb6e63891b5a72e33577a8b21",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "e4e6fa949ab97dbda9b0eb694f8a50d3dcfc89c1",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "3858f29223460a2d61ca9a02e15002b261c4a374",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "6fe88c3ee5249baff7fc136ae7604569aec65bbf",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "1a3ac0e3c6ad90be0fac34d616c2fcc8e7182a3e",
+          "bytes": 2503613,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 11,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r11_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-candidate-4096.png",
+      "imageSha256": "34286c921eafd1cd8cc9dcd0df3d67a34eda3b822bc4c65e12a7f2e9b65c2569",
+      "localGitBlobSha1": "c4a8cec9301784aa768adf7ee6eb67dc4f4efb47",
+      "bytes": 22606644,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 11,
+      "column": 4,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r11_c04",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-candidate-4096.png",
+      "imageSha256": "96628300d5e77e1a700d83e85cbd7fbc493cb83a9ebce9594badb9e80e2857f5",
+      "localGitBlobSha1": "4bb942b3eeb50d6806560c7a14ee69d10a197e7d",
+      "bytes": 22969053,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 11,
+      "column": 9,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r11_c09",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r11_c09.candidate-successor-floor-20261020-v01.png",
+      "imageSha256": "e6f32a635a4cbb1de4eb24a6950624d7308cc08571449980fb13a1962fbd5bbe",
+      "localGitBlobSha1": "7d061b72b526cf5fda2a51546d3f3f1b952905cc",
+      "bytes": 25684962,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "e3054160a92a0ddd022fc43133faf7588f631484",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "37e158a471017bcc9202ab39142cbb7a32ce16fc",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "0378301281b831154e6d7aad1ea98b0a9976ca58",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "7abab574eb9e34e29377fe58948bbd754e636654",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "3d4c10f1f583e88d5a9002744de837a85cfb9e97",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "fa9589256fb61f3c4070a7734fed5653d1f471fb",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "f58f807a1583328b901382476bf97e6bc5c8b1c6",
+          "bytes": 519138,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 11,
+      "column": 11,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r11_c11",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r11_c11.candidate-v02.png",
+      "imageSha256": "4f4627076aaba5926a98ace4265580c87779987af46c0b0fe320b836210819c1",
+      "localGitBlobSha1": "7f06b1f0b8eaf63abb3a8f5ff85f58f4355aa132",
+      "bytes": 22199855,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 11,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r11_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r11_c12.candidate-v02.png",
+      "imageSha256": "0ed5fd885003178cf28ca75411e25299372b62a2cee34f705534f623d0a55bc9",
+      "localGitBlobSha1": "98422d158a1450f9f0226471cfb528801eef51eb",
+      "bytes": 22733131,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 11,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r11_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r11_c13.candidate-v02.png",
+      "imageSha256": "b47d6473521abb948a865ddaacc49ca20bc79209d5ac584f200f5c7a020c8821",
+      "localGitBlobSha1": "e26f296a01ed23ce131b18bd11ab2ca221ac1d7e",
+      "bytes": 25576688,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 11,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r11_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r11_c14.candidate-root-full-20261018-v04.png",
+      "imageSha256": "258767576ab4b38737042c51429842ac2fd6c67fe7d7dd1a66a35cead22b38c7",
+      "localGitBlobSha1": "3658a5100fd2481574d1622b2e5277f571282cee",
+      "bytes": 24565816,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "3cfa4b8a77996abc1b923b4b65c3f6acb35db2f1",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "ab1cb2be990e6e11076e1b0aa1e1adef31906807",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "9fbae3b4a293851a3a37b0d52df3064319317b1b",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "16d675153d74f0547d7609a9804e3e5ce4774bf8",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "91130d3f520173cb4fefc48b5c05875d938c9898",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "2c6785fdf7baca71103f4fe6ecb3fecf50018ed3",
+          "bytes": 3594296,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 12,
+      "column": 9,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r12_c09",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r12_c09.candidate-root-full-20261019-v02.png",
+      "imageSha256": "eef8fe241d261ae754732b24ba610b4fcc0c926dd4e01d28d0da52a7fa1f1f50",
+      "localGitBlobSha1": "54c9f84f4924c3d87ac4d1408460940016f9c8c3",
+      "bytes": 26495821,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "8aabfa8a942ec7a199c5c96be0ecb3eee9809f47",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "acdf0f67fd3da94ed466511d0af08d84df10eb81",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "1e24f2fcfebdc322d318bf5842d8dee1fa7fe1eb",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "30319bc222ddd81317ff9a6c92dfd4c71e392d12",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "c9b224da515b1d27e53cfbcb636878a95cf1f80f",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "918bbb8cafef52b76c1518def5f2b47518f4f02e",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "24e120bfc391af24b69f7463cd9fbca0be94e383",
+          "bytes": 1329997,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 12,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r12_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r12_c13.candidate-sol-20261013-v04-material.png",
+      "imageSha256": "5ce6a1def0e82516792d87e8779c8ca6633ed25a75269869e48f0084401a6a98",
+      "localGitBlobSha1": "3df7ee493d713a50458a8df9bedb3ada15bd5eb1",
+      "bytes": 21162099,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "a0c1859835622c35eadcf8f5bcc246715d50626e",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "c1a9661515367ab28dd723bf4d736f391a62a63f",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "449a329ded2a9f3383cfcb62e2028eb7288173d8",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "676524b20a46d9f64067bf1e7621d02ab791fe9d",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "8d089ba403b7cbfb8e13fd16d030e7ff72e425d1",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "649a9dd076ea4e12c8b6d4f33ad40d6a5f4a3014",
+          "bytes": 190579,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 12,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r12_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r12_c14.candidate-right-oct17-v01.png",
+      "imageSha256": "b867355ad2619d9656088897ab96e0baa25f1ea209fe27192162cf2d9d67090c",
+      "localGitBlobSha1": "25a242268d7e6158c05170a5d00141c31bfe2b10",
+      "bytes": 23262770,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "f529001688163cc597b097980b4d7644ed685b07",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "ad260ea591196b312771313fc6371d92f38194bb",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "30a4962e868e5368b86b318123cbb553e940be1f",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "bb5edf18645ab17977c6ef604878baac580e514c",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "9de458ebf6853c2ddafda946ff3d3227daf416ba",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "68fcc1435142c00c86665424b7f8d468402418d6",
+          "bytes": 2291250,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 14,
+      "column": 3,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r14_c03",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-candidate-4096.png",
+      "imageSha256": "eed71c1832d2bc61c66d644748b204139508bfc5f0d641b0701e690c57c169d3",
+      "localGitBlobSha1": "bc71c804a1787d0a1a910f15e85e9f91a0d9c718",
+      "bytes": 26047948,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "cd38724a1277d07f53a2e13c96ca83f19198d5e5",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "10ae18b57db2e8510c2aee0134951a0a5d0c2d4f",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "4d492298259e26644fd94c981561b3bcc54b50fd",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "a406744b9b4e15a78b1dd35dd7cf3a3bb2747f6d",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "2fa590962b33b25e62faa9ec9af7868a3c101644",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "849e0c6e3e20bfcb149a66c025804de72a70b8b4",
+          "bytes": 4194304,
+          "offset": 20971520
+        },
+        {
+          "sha": "f4435101ef7dd1cd0256bd9b42099ff1b000976f",
+          "bytes": 882124,
+          "offset": 25165824
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 14,
+      "column": 12,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r14_c12",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c12.candidate-sol-20261013-v01.png",
+      "imageSha256": "a7d270fbac5f88277c655f1569088d9cb04cebc27a4426cc2827d33348cb66df",
+      "localGitBlobSha1": "34ccab3e191b13b624f34a0ae3e33d8872d35984",
+      "bytes": 18446189,
+      "source": "public_media",
+      "chunks": []
+    },
+    {
+      "mapKey": "island",
+      "row": 14,
+      "column": 13,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r14_c13",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c13.candidate-right-full-20261016-v03.png",
+      "imageSha256": "7a884e3399d46be5fe2e1178dde9647cbec85ac1f51e65f45f7c0ca2a021945a",
+      "localGitBlobSha1": "ca2c6770e8c3c9d111cc5f9caae64b8d96af86df",
+      "bytes": 21095307,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "57fb21369afdd157a05ce88b879490080061b527",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "73eebbe54071722b080c1773735f1620b34e7395",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "21804f25927014e273e7bfc7aae52434f3395b87",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "fd7b0d04308f4aa2537817e33e9ddc2213519284",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "0a0e985dfa7e432ffd7e5919d3df3c8cacfe6709",
+          "bytes": 4194304,
+          "offset": 16777216
+        },
+        {
+          "sha": "2591ad4cad6585e57591deafd1551a77b8839561",
+          "bytes": 123787,
+          "offset": 20971520
+        }
+      ]
+    },
+    {
+      "mapKey": "island",
+      "row": 14,
+      "column": 14,
+      "resourcePath": "World/CurrentMaps20261009/island/tiles/r14_c14",
+      "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c14.candidate-resume-20261013-v01.png",
+      "imageSha256": "565da65104e87b9d0c325182c895dbc4fa1f53806f104034a5274a0bdeed5062",
+      "localGitBlobSha1": "3b1d65cc7ec89d25f5c4ee032f851c57a99a7f4f",
+      "bytes": 20462187,
+      "source": "git_blob_chunks",
+      "chunks": [
+        {
+          "sha": "f859bcd466b13e0706575de35a118c4a322b57d1",
+          "bytes": 4194304,
+          "offset": 0
+        },
+        {
+          "sha": "ec0d2db34090de4d137195a52b394f3206a45414",
+          "bytes": 4194304,
+          "offset": 4194304
+        },
+        {
+          "sha": "47536720e18b8cb20cbaa2b37565e40a481af7fb",
+          "bytes": 4194304,
+          "offset": 8388608
+        },
+        {
+          "sha": "c6e51b943d62b0457209562c0a1270e53d1a6641",
+          "bytes": 4194304,
+          "offset": 12582912
+        },
+        {
+          "sha": "2ddd9069be53f68ae982b40ceeafbed89becb8d9",
+          "bytes": 3684971,
+          "offset": 16777216
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   Run the checked-in CityTileStreaming tests and real 4K importer checks in a fresh isolated Unity project.
 .DESCRIPTION
   Never opens or changes the main Unity project. Copies exact loader/importer/test sources and one
-  unchanged legacy texture, records SHA-256 for each, and substitutes only the world-rectangle owner.
+  unchanged current layout, records SHA-256 for each, and substitutes only the legacy world-rectangle owner.
   The synthetic 4K texture is a test fixture, never published artwork. Requires cached Test Framework
   and NUnit packages in the main project's Library/PackageCache; no package downloads are requested.
 #>
@@ -63,14 +63,19 @@ function Copy-TestSource([string]$relative, [string]$target) {
 }
 Copy-TestSource 'Assets/Scripts/World/Tianyong/CityTileManifest.cs' 'Assets/Runtime/CityTileManifest.cs'
 Copy-TestSource 'Assets/Scripts/World/Tianyong/CityTileStreaming.cs' 'Assets/Runtime/CityTileStreaming.cs'
+Copy-TestSource 'Assets/Scripts/World/CurrentMaps/CurrentMapTilesManifest.cs' 'Assets/Runtime/CurrentMapTilesManifest.cs'
+Copy-TestSource 'Assets/Scripts/World/CurrentMaps/CurrentMapTileStreaming.cs' 'Assets/Runtime/CurrentMapTileStreaming.cs'
 Copy-TestSource 'Assets/Editor/Tianyong/CityTile4KImporter.cs' 'Assets/Editor/CityTile4KImporter.cs'
+Copy-TestSource 'Assets/Editor/CurrentMapTileImporter.cs' 'Assets/Editor/CurrentMapTileImporter.cs'
 Copy-TestSource 'Assets/Tests/EditMode/Tianyong/CityTileStreamingTests.cs' 'Assets/Tests/CityTileStreamingTests.cs'
-Copy-TestSource 'Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c01.png' 'Assets/Resources/World/Tianyong/SceneTiles6x6/Tiles/tianyong_r01_c01.png'
+Copy-TestSource 'Assets/Tests/EditMode/Tianyong/CurrentMapTileStreamingTests.cs' 'Assets/Tests/CurrentMapTileStreamingTests.cs'
+Copy-TestSource 'Assets/Resources/World/CurrentMaps20261009/main/layout.png' 'Assets/Resources/World/CurrentMaps20261009/main/layout.png'
 $verifier = 'Assets/Editor/Tianyong/CityTileProductionVerification.cs'
 Copy-TestSource $verifier 'Assets/Editor/CityTileProductionVerification.cs'
 $fixtureSource = Join-Path $ProjectPath 'tools/tests/CityTileImportVerificationTests.cs'
 if (-not (Test-Path -LiteralPath $fixtureSource)) { throw "Importer test fixture is missing: $fixtureSource" }
 Copy-TestSource 'tools/tests/CityTileImportVerificationTests.cs' 'Assets/Tests/CityTileImportVerificationTests.cs'
+Copy-TestSource 'tools/tests/CurrentMapTileImportVerificationTests.cs' 'Assets/Tests/CurrentMapTileImportVerificationTests.cs'
 Set-Content -LiteralPath "$isolated/Assets/Runtime/WorldRectFixture.cs" -Encoding utf8 -Value @'
 using UnityEngine;
 namespace MmorpgClient.World.Tianyong {
@@ -85,8 +90,11 @@ Set-Content -LiteralPath "$isolated/Assets/Editor/CityTileValidation.Editor.asmd
 Set-Content -LiteralPath "$isolated/Assets/Tests/CityTileValidation.Tests.asmdef" -Encoding utf8 -Value '{"name":"CityTileValidation.Tests","references":["CityTileValidation.Runtime","CityTileValidation.Editor"],"includePlatforms":["Editor"],"optionalUnityReferences":["TestAssemblies"]}'
 $dependencies = [ordered]@{}
 foreach ($name in @('com.unity.test-framework', 'com.unity.ext.nunit')) {
-    $package = Get-ChildItem -LiteralPath (Join-Path $ProjectPath 'Library/PackageCache') -Directory |
-        Where-Object { $_.Name.StartsWith($name + '@') } | Sort-Object Name | Select-Object -First 1
+    $packageRoots = @((Join-Path $ProjectPath 'Library/PackageCache'),
+        (Join-Path (Split-Path -Parent $UnityExe) 'Data/Resources/PackageManager/BuiltInPackages'))
+    $package = $packageRoots | Where-Object { Test-Path -LiteralPath $_ } |
+        ForEach-Object { Get-ChildItem -LiteralPath $_ -Directory } |
+        Where-Object { $_.Name -eq $name -or $_.Name.StartsWith($name + '@') } | Sort-Object Name | Select-Object -First 1
     if (-not $package) { throw "Required cached package not found: $name" }
     $dependencies[$name] = 'file:' + $package.FullName.Replace('\', '/')
 }
@@ -104,8 +112,8 @@ $invocation = [ordered]@{
     startedAt = (Get-Date).ToString('o'); unityExe = $UnityExe; isolatedProject = $isolated; arguments = $arguments
     mainProjectOpened = $false; completeArtworkValidated = $false
     fixtureDifferences = @('TianyongPaintedCity replaced by its exact fixed (50,0,300,300) world rectangle.',
-        'Only Manifest, Streaming, Importer, optional production verifier and tests copied; no game scenes/bootstrap/network are run.',
-        'One unchanged legacy PNG exercises Resources lifecycle; one generated 4096 texture exercises importer settings only.',
+        'Only tile contracts, streaming, importers, production verifier and tests copied; no game scenes/bootstrap/network are run.',
+        'One unchanged current layout exercises Resources lifecycle; synthetic 4096 textures exercise importer settings only.',
         'Minimal assemblies and cached test packages replace full project configuration; headless EditMode has no GPU performance evidence.')
 }
 $invocation | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath "$EvidencePath/invocation.json" -Encoding utf8

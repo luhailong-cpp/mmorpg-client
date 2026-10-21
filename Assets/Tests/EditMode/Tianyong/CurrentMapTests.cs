@@ -109,6 +109,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(ground.GetComponent<Collider>(), Is.Null);
                 Assert.That(map.Root.GetComponentsInChildren<BoxCollider>().Length, Is.EqualTo(1));
                 Assert.That(map.Root.GetComponent<CityTileStreaming>(), Is.Null);
+                Assert.That(map.Root.GetComponent<CurrentMapTileStreaming>(), Is.Not.Null);
                 Assert.That(map.Root.GetComponentInChildren<TianyongPaintedForeground>(), Is.Null);
                 Assert.That(map.Root.GetComponentInChildren<TianyongCityNpcs>(), Is.Null);
                 int walkable = 0;

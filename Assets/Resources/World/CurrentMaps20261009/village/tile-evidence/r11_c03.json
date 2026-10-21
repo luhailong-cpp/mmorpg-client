@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 11,
+  "column": 3,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "8382297870c2be85680ab72536b7ae673b8242a5ca1223e94345f5a6cd989e4f",
+  "imageBytes": 28028602,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c03_v2.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/art-delivery-index.json",
+  "sourceLedgerSha256": "11410da8b8b608054a614b2e28747d675aae016a14655dcbd93d31232eea8799",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c03",
+    "status": "art_accepted",
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "file": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c03_v2.png",
+      "sha256": "8382297870c2be85680ab72536b7ae673b8242a5ca1223e94345f5a6cd989e4f"
+    },
+    "globalCoreBox": [
+      8192,
+      40960,
+      12288,
+      45056
+    ],
+    "source": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-r11_c03-candidate-4096.png",
+      "sha256": "8382297870c2be85680ab72536b7ae673b8242a5ca1223e94345f5a6cd989e4f"
+    },
+    "sourceTrace": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-trace.json",
+      "sha256": "ae0647a8554284b950be56e77723d5844624e1b66669cd1d0feaf0485edf2f13"
+    },
+    "artAudit": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-art-audit-v1.json",
+      "sha256": "4e5f523db14b82bbac18ef318c6522fb29f32e7f38db89149837ed476440fa92"
+    },
+    "nativeContext": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-r11_c03-context-native.png",
+      "sha256": "9bc374b2fcb1a1c88ee60d45a24d00580540cc222ab3722ff19ef53d3d306245",
+      "size": [
+        4326,
+        4326
+      ]
+    },
+    "noResize": true,
+    "noBlend": true,
+    "sourcePixelIdentity": true,
+    "priorVersion": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c03_v1.png",
+      "sha256": "2ec4887402034d3fbb5cccc7e43f95775f614ee50f44ee4d2dae686fdfa40369"
+    },
+    "runtimeGateActive": false,
+    "provenanceRecord": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c03_v2.png.provenance.json",
+      "sha256": "2d460d9f108f7c4daf4a84a9a81be2fabe1d57dde97ad9ed938aa501b8720fac"
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-art-audit-v1.json",
+    "sourceSha256": "4e5f523db14b82bbac18ef318c6522fb29f32e7f38db89149837ed476440fa92",
+    "normalizedDocument": {
+      "createdAtUtc": "2026-10-16T04:44:06.911797+00:00",
+      "reviewer": "stair_finish_1016",
+      "status": "passed",
+      "trace": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-trace.json",
+        "sha256": "ae0647a8554284b950be56e77723d5844624e1b66669cd1d0feaf0485edf2f13"
+      },
+      "tiles": [
+        "r11_c02",
+        "r11_c03"
+      ],
+      "nativeQaViewedCount": 5,
+      "viewed": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-shared-part01-100pct.png",
+          "sha256": "7f637431856591b9f737fdb10a607fad9281f3ac23049dfca4430a1d38477583",
+          "size": [
+            690,
+            900
+          ],
+          "contextBox": [
+            3866,
+            115,
+            4556,
+            1015
+          ],
+          "globalBox": [
+            7847,
+            40960,
+            8537,
+            41860
+          ],
+          "result": "pass"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-shared-part02-100pct.png",
+          "sha256": "695455cc9493bcc4d60eeb74fc33a757fe4aa12f51d9df0667eb37e01752b734",
+          "size": [
+            690,
+            900
+          ],
+          "contextBox": [
+            3866,
+            915,
+            4556,
+            1815
+          ],
+          "globalBox": [
+            7847,
+            41760,
+            8537,
+            42660
+          ],
+          "result": "pass"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-shared-part03-100pct.png",
+          "sha256": "36de1cd0a069336872f43d11057493e22d39d1dca1a9e38ddc49e197c05f336c",
+          "size": [
+            690,
+            900
+          ],
+          "contextBox": [
+            3866,
+            1715,
+            4556,
+            2615
+          ],
+          "globalBox": [
+            7847,
+            42560,
+            8537,
+            43460
+          ],
+          "result": "pass"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-shared-part04-100pct.png",
+          "sha256": "a28a3e132fe1242b76975864539e389f60160a8e1cc4cd33902191e9f089c772",
+          "size": [
+            690,
+            900
+          ],
+          "contextBox": [
+            3866,
+            2515,
+            4556,
+            3415
+          ],
+          "globalBox": [
+            7847,
+            43360,
+            8537,
+            44260
+          ],
+          "result": "pass"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r11c02-c03-v1-shared-part05-100pct.png",
+          "sha256": "91a4b886cfad8f885a93e272fa8f8b1e481083be07bda1d5840124bcf5483c85",
+          "size": [
+            690,
+            900
+          ],
+          "contextBox": [
+            3866,
+            3311,
+            4556,
+            4211
+          ],
+          "globalBox": [
+            7847,
+            44156,
+            8537,
+            45056
+          ],
+          "result": "pass"
+        }
+      ],
+      "internalAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r11_c02-internal-native-art-audit-v2.json",
+        "sha256": "3226c4d84d69ea8dc83b2a79af5c812b4f476750e0f67c65cfea9d8527572420"
+      },
+      "findings": [],
+      "validation": "All five 100-percent shared-edge windows viewed. Sand material, small rocks, grass bank, light and tree shadows continuous. Native hard source selection, no resampling. Existing c03 north edge unchanged except possible northwest halo; c02 north/west/south neighbors pending.",
+      "formalFullMapAcceptance": false
+    }
+  }
+}

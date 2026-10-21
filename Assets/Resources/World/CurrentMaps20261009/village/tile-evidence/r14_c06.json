@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 14,
+  "column": 6,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "15066daaef741c4cd2e6c009f13365cc8ee0358d61e0f9a87d912b742d39d250",
+  "imageBytes": 24898127,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c06_v2.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/art-delivery-index.json",
+  "sourceLedgerSha256": "11410da8b8b608054a614b2e28747d675aae016a14655dcbd93d31232eea8799",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c06",
+    "status": "art_accepted",
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "file": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c06_v2.png",
+      "sha256": "15066daaef741c4cd2e6c009f13365cc8ee0358d61e0f9a87d912b742d39d250"
+    },
+    "globalCoreBox": [
+      20480,
+      53248,
+      24576,
+      57344
+    ],
+    "source": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r14c05-r14c06-v3-r14_c06-candidate-4096.png",
+      "sha256": "15066daaef741c4cd2e6c009f13365cc8ee0358d61e0f9a87d912b742d39d250"
+    },
+    "sourceTrace": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-r13r14c05-c06-export-trace-1017-v1.json",
+      "sha256": "ed22a1993a7785fdbacca094d2c59a857fded8e56536e28d3f81a112b15b38bc"
+    },
+    "artAudit": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-r13r14c05-c06-export-audit-1017-v1.json",
+      "sha256": "1ea711c53f9015fc1d8dca0ab693bc26decce7de0794de34bdf003739c29e3f1"
+    },
+    "nativeContext": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r14c05-r14c06-v3-r14_c06-context-native.png",
+      "sha256": "ee27d0e7f5fa286c783a0d0d1be267c6b04d4547ffbd884d90f820531a299c67",
+      "size": [
+        4326,
+        4326
+      ]
+    },
+    "noResize": true,
+    "noBlend": true,
+    "sourcePixelIdentity": true,
+    "priorVersion": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c06_v1.png",
+      "sha256": "15c458f195613a5c85f3fe45a8077634ae07787ff5ac1b6633d78e010aa1a0e2"
+    },
+    "runtimeGateActive": false,
+    "provenanceRecord": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r14_c06_v2.png.provenance.json",
+      "sha256": "2db901c6deb1c3a8a8224e8ba0721561c15859849902577a4a0e70206b0d874a"
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-r13r14c05-c06-export-audit-1017-v1.json",
+    "sourceSha256": "1ea711c53f9015fc1d8dca0ab693bc26decce7de0794de34bdf003739c29e3f1",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-17T04:18:54.460064+00:00",
+      "status": "art_passed",
+      "scope": "4096 native core art candidates and inspected c05 north/south + c05/c06 joins; not complete external halo or full-map acceptance.",
+      "trace": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-r13r14c05-c06-export-trace-1017-v1.json",
+        "sha256": "ed22a1993a7785fdbacca094d2c59a857fded8e56536e28d3f81a112b15b38bc"
+      },
+      "reusedVerticalAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r13c05-r14c05-v3-art-audit-v1.json",
+        "sha256": "704f481132fb9900d6aef363f117cac22302ddb5a1a1693aff3206b0c5bcd4f5"
+      },
+      "horizontalAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r14c05-r14c06-v3-art-audit-v1.json",
+        "sha256": "56ee354c5fa10be8dc83f8b600a7d24ad26c0a1829327667a1efc6beb6d09d35"
+      },
+      "verification": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-resume-1017-verification-v1.json",
+        "sha256": "22916fbc6e1ebdff1bc43233728e22f1460b1321f87531d9cfa939de060058a3"
+      },
+      "validation": {
+        "sourceHashesChecked": 80,
+        "verticalNativeReplayExact": true,
+        "horizontalPropagationExact": true,
+        "allCoreCropsExact": true,
+        "allSourceDimensionsMatch": true,
+        "c05c06Shared230Exact": true,
+        "r13c05North230Preserved": true,
+        "r14c06East230Preserved": true,
+        "noResampling": true,
+        "noBlending": true,
+        "noProceduralPainting": true
+      },
+      "reviewedTiles": [
+        "r13_c05",
+        "r14_c05",
+        "r14_c06"
+      ],
+      "unpassedExternalIssues": [
+        {
+          "id": "r14c06-north-halo-water-cut",
+          "status": "not_passed_pending_reserved_neighbor",
+          "tile": "r14_c06",
+          "nativeContextApproxIssueBox": [
+            200,
+            0,
+            260,
+            80
+          ],
+          "pairContextApproxIssueBox": [
+            4296,
+            0,
+            4356,
+            80
+          ],
+          "globalApproxIssueBox": [
+            20565,
+            53133,
+            20625,
+            53213
+          ],
+          "description": "Upper halo shows a vertical water/foam contrast discontinuity near context x230, y0..60; conservative issue box extends to y80. It is outside the exported core starting at y115. Must be resolved with r13_c06 north neighbor; do not claim full-map or complete halo pass.",
+          "coreAffected": false,
+          "reservedNeighbor": "r13_c06",
+          "ownerWorker": "01a1338b-8e38-7080-b600-1e3781939ec2",
+          "evidence": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r14c05-r14c06-v3-north-corner-100pct.png",
+            "sha256": "34892ce3fa737b7f57c30ca3c90735232585d2827047df5fc22dfb47a55ae154",
+            "size": [
+              1254,
+              1254
+            ]
+          }
+        }
+      ],
+      "pendingOtherExternalJoins": [
+        "r13_c05 east to r13_c06",
+        "r13_c05 west to r13_c04",
+        "r14_c05 west to r14_c04",
+        "r14_c06 north to r13_c06"
+      ],
+      "formalAcceptance": false,
+      "wholeMapAccepted": false
+    }
+  }
+}

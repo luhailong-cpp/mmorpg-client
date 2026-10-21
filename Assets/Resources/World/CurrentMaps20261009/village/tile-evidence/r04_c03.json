@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 4,
+  "column": 3,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "4f17a7e078c3847241b2b9f79b1ae75108b26f49ddaa1a3582c5cf729d2310c5",
+  "imageBytes": 21515593,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/stage-v4/r04_c03.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "56f94c42783ea0fe7f6242cd96fedcd379cd752cfd99f2a521f4e9cd51b15e4c",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "candidate": "delivery-2x2/stage-v4/r04_c03.png",
+    "candidateSha256": "4f17a7e078c3847241b2b9f79b1ae75108b26f49ddaa1a3582c5cf729d2310c5",
+    "internalAccepted": true,
+    "qa": "delivery-2x2/stage-v4/r04_c03.qa.json",
+    "qaSha256": "ce9f71b3ff9a8e4c3b76f44280025d5cc9eaefa48139b5adec8da521dc1070bc",
+    "assembly": "delivery-2x2/stage-v4/r04_c03.assembly.json",
+    "assemblySha256": "966525d284a269bd9e865f77f91280bfcb70fcac80beb38dc34d217a12f99fec",
+    "formalAccepted": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/stage-v4/r04_c03.qa.json",
+    "sourceSha256": "ce9f71b3ff9a8e4c3b76f44280025d5cc9eaefa48139b5adec8da521dc1070bc",
+    "normalizedDocument": {
+      "createdAt": "2026-10-10T21:08:49.421821+00:00",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/stage-v4/r04_c03.png",
+        "sha256": "4f17a7e078c3847241b2b9f79b1ae75108b26f49ddaa1a3582c5cf729d2310c5"
+      },
+      "internalAccepted": true,
+      "formalAccepted": false,
+      "allPixelsNative": true,
+      "proof": {
+        "pixels": 16777216,
+        "mismatches": 0,
+        "sourcePixelCounts": {
+          "13": 19603,
+          "14": 12749,
+          "15": 12510,
+          "16": 2969,
+          "20": 1007304,
+          "21": 1093694,
+          "22": 1014874,
+          "23": 1000209,
+          "26": 104133,
+          "60": 1039876,
+          "61": 984152,
+          "62": 1035765,
+          "63": 932548,
+          "64": 1142485,
+          "65": 1180525,
+          "66": 1005663,
+          "67": 807760,
+          "68": 904014,
+          "69": 982489,
+          "70": 1094415,
+          "71": 388268,
+          "72": 65375,
+          "73": 46158,
+          "74": 381941,
+          "75": 93975,
+          "76": 22171,
+          "77": 12009,
+          "78": 33033,
+          "79": 131449,
+          "80": 225100
+        }
+      },
+      "jointReview": "four-shared-boundaries-and-center-pass; exterior-perimeter-awaiting-adjacent-artwork",
+      "evidence": [
+        "work-r03_c03/joint-final/visual-review.json",
+        "work-r04_c04/joint-west/final-v3/visual-review.json",
+        "work-r03_c04/joint-south-resume/proposal-v1/visual-review.json",
+        "work-r03_c04/paving-fresh/paving-repair-review.json",
+        "work-r03_c04/joint-south-resume/center-final/visual-review.json",
+        "work-r03_c02/west-final/west-final.visual-review.json",
+        "work-r03_c04/road-edge-final/final-candidate/visual-review.json"
+      ],
+      "rootInspected": [
+        "north-column-segment-01..08",
+        "E3 lower doorpost",
+        "paving north/south/east/west and former defect4",
+        "stage-v2 center, all four perimeter crops",
+        "stage-v1 south-column07/08",
+        "stage-v1 west-row01/08",
+        "stage-v1 east-row05",
+        "west-final M1, M2, G1, E2-right, roof-bottom, external-3, external-4 at native scale",
+        "stage-v3 west-row segment 01 and connected overview",
+        "stage-v4 native road north/middle/tip and west upper/lower at100%"
+      ],
+      "limitations": [
+        "Current connected neighborhood is not final49tile delivery",
+        "External outer perimeter still requires adjacent artwork"
+      ]
+    }
+  }
+}
