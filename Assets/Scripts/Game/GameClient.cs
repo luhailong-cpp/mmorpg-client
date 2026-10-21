@@ -170,6 +170,7 @@ namespace MmorpgClient.Game
         /// </summary>
         public SkillBookClient Skills { get; }
         public DurableRequestFileStore TeamMatchRecovery { get; }
+        public DurableRequestFileStore TeamActionRecovery { get; }
 
         public PlayerFeaturesClient Features { get; }
 
@@ -306,6 +307,7 @@ namespace MmorpgClient.Game
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => new GateTcpClient(_codec));
             Battle.QueueRecovery = new FileMatchJoinRecovery(System.IO.Path.Combine(Application.persistentDataPath, "match-intents"), gatewayBaseUrl);
             TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl);
+            TeamActionRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-action-intents"),gatewayBaseUrl);
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
             Pets = PetClient.Attach(new GameClientBattleTransport(this));

@@ -52,10 +52,5 @@ namespace MmorpgClient.Net.Generated
         public static void ListSkills(IRpcChannel channel, global::ListSkillsRequest request,
             RpcDone<global::ListSkillsResponse> done)
             => channel.CallMethod(ListSkillsMessageId, request, global::ListSkillsResponse.Parser, done);
-
-        public const uint UpgradeSkillMessageId = 317;
-        public static void UpgradeSkill(IRpcChannel channel, global::UpgradeSkillRequest request,
-            RpcDone<global::UpgradeSkillResponse> done)
-            => channel.CallMethod(UpgradeSkillMessageId, request, global::UpgradeSkillResponse.Parser, done);
     }
 }

@@ -14,7 +14,7 @@ namespace MmorpgClient.Game.Team
     /// 快照按 (MembershipEpoch, Version) 排序应用,推送与回包共用同一套规则。
     /// 不依赖 TeamUiState 与 UnityEngine:界面订阅 Changed 后整份镜像本对象的只读状态。
     /// </summary>
-    public sealed class TeamClient : IDisposable
+    public sealed partial class TeamClient : IDisposable
     {
         public const string ConnectingMessage = "正在连接组队服务…";
         public const string RecoveryMessage   = "组队请求状态尚未确认，请重新登录角色后再试。";
@@ -246,6 +246,7 @@ namespace MmorpgClient.Game.Team
         public void DrainQueued(bool panelVisible)
         {
             RestoreStartIntent();
+            RestoreActionIntent();
             if (_disposed) return;
             float now = _clock();
             // 过期邀请即使 Busy 也照样剔除。
@@ -271,6 +272,7 @@ namespace MmorpgClient.Game.Team
             // 排队的读在退避期内不补发;面板的 30 秒刷新本来就隔得够久,不受退避影响。
             bool retryReady = now >= _readRetryAt;
             if ((RefreshQueued || !HasLoaded) && retryReady) { SendRefresh(silent: true); return; }
+            if (HasLoaded && ReplayActionIntent(now)) return;
             if (InvitesQueued && retryReady) { SendInvites(silent: true); return; }
             if (panelVisible && now >= _lastRefreshAt + PanelRefreshIntervalSeconds) SendRefresh(silent: true);
         }
@@ -1017,6 +1019,11 @@ namespace MmorpgClient.Game.Team
             if (!_net.IsReady || PlayerId == 0) { if (!silent) Reject(NotInGameMessage); return false; }
             if (!HasLoaded && action != TeamAction.Refresh) { if (!silent) Reject(ConnectingMessage); return false; }
             bool read = action == TeamAction.Refresh || action == TeamAction.ListInvites;
+            RestoreActionIntent();
+            bool replay = false;
+            if (!read && action != TeamAction.StartMatch && !BindActionIntent(action, target, messageId, ref request, out replay)) return false;
+            if (!read && action == TeamAction.StartMatch && (_pendingActionRequest != null || _actionRecoveryBlocked))
+            { Reject("有待确认的组队操作，请先恢复原请求。"); return false; }
             float now = _clock();
             if (Busy || TooSoon(now) || !HasQuota(messageId, read, now))
             {
@@ -1026,14 +1033,17 @@ namespace MmorpgClient.Game.Team
                 else if (!silent) Reject(Busy ? BusyMessage : TooFastMessage);
                 return false;
             }
-            if (!read)
+            if (!read && !replay)
             {
                 string rejection = Precondition(action, target, request);
                 if (rejection != null) { if (!silent) Reject(rejection); return false; }
             }
 
-            try{beforeSend?.Invoke();}
-            catch(Exception){Reject("无法保存队伍开局原请求，尚未发送。");return false;}
+            try {
+                if (!read && action != TeamAction.StartMatch) SaveActionIntent(action, target, messageId, request);
+                beforeSend?.Invoke();
+            }
+            catch(Exception){Reject("无法保存组队原请求，尚未发送。");return false;}
 
             // 落地恢复:读取到这里一定会发出,此刻取确认委托;写操作清掉上一次读取残留的委托。
             _syncReadAck = read ? SyncReadStarted?.Invoke(action) : null;
@@ -1070,6 +1080,8 @@ namespace MmorpgClient.Game.Team
                 if (settled || !Current(generation, player)) return;
                 settled = true;
                 Busy = false; PendingAction = TeamAction.None; PendingTarget = 0;
+                if (!read && action != TeamAction.StartMatch && reply is TeamResponse actionReply)
+                    CompleteActionIntent(actionReply);
                 onReply(reply);
                 Changed?.Invoke();
             }, error =>

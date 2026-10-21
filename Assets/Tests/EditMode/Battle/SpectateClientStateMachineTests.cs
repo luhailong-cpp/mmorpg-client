@@ -31,6 +31,24 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         private void UseChannel() => Build(new FakeBattleChannel());
 
+        [Test]
+        public void PreviousWatchReplyCannotOverwriteNewWatchRequest()
+        {
+            _client.Tick(0);
+            _client.WatchBattle(100);
+            var first = _net.CallsOf(MessageIds.WatchBattle)[0];
+            _client.StopWatch();
+            _client.Tick(1);
+            _client.WatchBattle(200);
+            var second = _net.CallsOf(MessageIds.WatchBattle)[1];
+            Assert.That(((Match.WatchBattleRequest)first.Request).RequestId,
+                Is.Not.EqualTo(((Match.WatchBattleRequest)second.Request).RequestId));
+            first.Respond(new Match.WatchBattleResponse { BattleId = 100 });
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Requesting));
+            Assert.That(_client.WatchedBattleId, Is.EqualTo(200));
+            Assert.That(_errors, Is.Empty);
+        }
+
         /// <summary>重建被测对象;传入假直连通道即进入收缩后口径(turn-based §22 D69 / D74)。</summary>
         private void Build(FakeBattleChannel channel)
         {
