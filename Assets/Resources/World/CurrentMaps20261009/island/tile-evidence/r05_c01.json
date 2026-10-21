@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 5,
+  "column": 1,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "18f492e18ff6bc5e523f6ddc6c9a2fbf32d725e0bd235b3ac142518e937c7b1d",
+  "imageBytes": 30973722,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/progress.json",
+  "sourceLedgerSha256": "e1fb3d6dc9f7c775cbb79e0442b3e2232e21e1ca82dce0eac63f5082e2e6fd03",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "requiredCores": 16,
+    "rawVersions": 22,
+    "nativeSlotsWithAnyVersion": 16,
+    "layoutSelectedUniqueCores": 16,
+    "pendingInternalRepairs": [],
+    "candidate4096": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.png",
+    "internalQAPassed": true,
+    "formalAccepted": false,
+    "currentProvenance": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.cross-native-repair.json",
+      "sha256": "180677b2397395098ad3d77f83cdeb94b91719d0a9f6bf79c2451fee5b66b13d"
+    },
+    "internal33Passed": 33,
+    "externalQA": "pending"
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.cross-native-repair.json",
+    "sourceSha256": "180677b2397395098ad3d77f83cdeb94b91719d0a9f6bf79c2451fee5b66b13d",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "operation": "same-coordinate projection of one cross-tile native repair",
+      "isAiGeneration": false,
+      "tileId": "r05_c01",
+      "tileOrigin": [
+        0,
+        16384
+      ],
+      "base": {
+        "image": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/shared-rock-joint-a02-cut-v2-20261020/r05_c01_shared-rock-a02-cut-v2_4096.png",
+          "sha256": "ecbf1f3d813671ca171dd05ec4f1e26015c77e9f153c9e04f2a1ff76ce117796"
+        },
+        "record": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/shared-rock-joint-a02-cut-v2-20261020/r05_c01_shared-rock-a02-cut-v2_4096.cross-native-repair.json",
+          "sha256": "d93ec71271805fdcbfbd0ff449850ef0870b0ed26ed56a2ee303d885b58bd671"
+        }
+      },
+      "operationRecord": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/west-rock-a01.cross-native-operation.json",
+        "sha256": "d11ec8a289dc38d59042d7da58257910206e16b446790a6d043e1d3fa4fbf22f"
+      },
+      "selection": {
+        "tileId": "r05_c01",
+        "tileBox": [
+          0,
+          0,
+          1254,
+          627
+        ],
+        "repairBox": [
+          0,
+          627,
+          1254,
+          1254
+        ],
+        "selectedPixelCount": 114372
+      },
+      "output": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.png",
+        "sha256": "18f492e18ff6bc5e523f6ddc6c9a2fbf32d725e0bd235b3ac142518e937c7b1d",
+        "dimensions": [
+          4096,
+          4096
+        ]
+      },
+      "method": {
+        "registration": false,
+        "resizing": false,
+        "feathering": false,
+        "colorCorrection": false,
+        "pixelSynthesis": false
+      },
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "unassignedPixels": 0,
+        "sameCoordinateRawOrUnchangedBase": true
+      },
+      "formalAcceptedCount": 0,
+      "visualAcceptance": false
+    }
+  }
+}

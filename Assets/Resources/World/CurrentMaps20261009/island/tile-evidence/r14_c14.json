@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 14,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "565da65104e87b9d0c325182c895dbc4fa1f53806f104034a5274a0bdeed5062",
+  "imageBytes": 20462187,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c14.candidate-resume-20261013-v01.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+  "sourceLedgerSha256": "6136c0c733ea9bc23155e8144f99b501250137e2fc4ab2db4508c7861100ae0d",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": false,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c14",
+    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c14.candidate-resume-20261013-v01.png",
+    "sha256": "565da65104e87b9d0c325182c895dbc4fa1f53806f104034a5274a0bdeed5062",
+    "fullyCovered": true,
+    "internalPassed": true,
+    "externalPassed": false,
+    "localArtworkAcceptanceReady": false,
+    "formalAccepted": false,
+    "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c14-resume-20261013-v01/source-proof.json",
+    "review": "qa/r14_c14-resume-20261013-v01/root-internal-review.json",
+    "pending": "Actual full north r13_c14 and west r14_c13 neighbors and their outer corners; east/south are world boundary."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c14-resume-20261013-v01/root-internal-review.json",
+    "sourceSha256": "7ff215a898a98636ce5320cf4e82960721179d0878f9f7ab82fe782fc0a7d65b",
+    "normalizedDocument": {
+      "tile": "r14_c14",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c14.candidate-resume-20261013-v01.png",
+      "candidateSha256": "565da65104e87b9d0c325182c895dbc4fa1f53806f104034a5274a0bdeed5062",
+      "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c14-resume-20261013-v01/source-proof.json",
+      "nativeSpec": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/r14_c14-native-spec-20261013-v01.json",
+      "internalPassed": true,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "reviewedAt": "2026-10-13T21:17:09.480012+00:00",
+      "reviewInheritance": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c14-resume-20261013-v01/review-inheritance.json",
+      "unchangedPassedSeams": 21,
+      "newSeamsViewed": [
+        "h42",
+        "h43",
+        "v33"
+      ],
+      "junctionsViewed": 9,
+      "visualFinding": "All 24 internal seams and nine junctions preserve continuous hand-painted water. Exact final core pixels; no resampling or blending. Approved pure water layout retained, no unintended objects or guide padding. Small water texture variation retained without visible rectangular boundary.",
+      "pending": "Actual full north r13_c14 and west r14_c13 neighbors and their outer corners; east/south are world boundary."
+    }
+  }
+}

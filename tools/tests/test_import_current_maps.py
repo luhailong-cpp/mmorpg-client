@@ -45,7 +45,12 @@ class CurrentMapImportTests(unittest.TestCase):
     def test_delivery_verifies_without_art_checkout_and_detects_changed_mask(self):
         with tempfile.TemporaryDirectory() as directory:
             project = Path(directory)
-            shutil.copytree(maps.PROJECT / maps.DELIVERY, project / maps.DELIVERY)
+            # Native tile payloads are independently tested and can be several
+            # gigabytes; this test only exercises the existing layout/navigation.
+            shutil.copytree(maps.PROJECT / maps.DELIVERY, project / maps.DELIVERY,
+                            ignore=shutil.ignore_patterns('tiles', 'tiles.meta', 'tiles.json',
+                                                          'tiles.json.meta', 'tile-evidence',
+                                                          'tile-evidence.meta'))
             result = maps.verify(project)
             self.assertEqual({r['key']: r['walkableCells'] for r in result},
                              {'main': 6651, 'village': 4524, 'island': 4018})

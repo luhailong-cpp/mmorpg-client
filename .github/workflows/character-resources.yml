@@ -40,3 +40,7 @@ jobs:
         run: python tools/import_current_maps.py --verify
       - name: Check map navigation geometry and portable delivery
         run: python -m unittest discover -s tools/tests -p test_import_current_maps.py -v
+      - name: Verify completed native map tiles and portable provenance
+        run: python tools/import_completed_map_tiles.py --verify
+      - name: Check partial map delivery validation
+        run: python -m unittest discover -s tools/tests -p test_import_completed_map_tiles.py -v

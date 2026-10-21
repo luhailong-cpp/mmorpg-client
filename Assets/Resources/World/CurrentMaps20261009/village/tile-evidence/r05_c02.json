@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 5,
+  "column": 2,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "9fda57eb2c0811c17f9341acc8abdbb9834c7e9b14ba8f22dac5cba665813c88",
+  "imageBytes": 29018447,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c02/base-v1/r05_c02.candidate.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "56f94c42783ea0fe7f6242cd96fedcd379cd752cfd99f2a521f4e9cd51b15e4c",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "candidate": "work-r05_c02/base-v1/r05_c02.candidate.png",
+    "candidateSha256": "9fda57eb2c0811c17f9341acc8abdbb9834c7e9b14ba8f22dac5cba665813c88",
+    "internalAccepted": true,
+    "qa": "work-r05_c02/base-v1/root-qa.json",
+    "qaSha256": "8a1a11878ac26c34453d3612f15ec6da380f97511ccf501570811c8d93c90786",
+    "assembly": "work-r05_c02/base-v1/r05_c02.candidate.assembly.json",
+    "assemblySha256": "19ba3c451139c946af063ab97d7eee88d6b2fc0c1d0578a45d0501365553b558",
+    "formalAccepted": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c02/base-v1/root-qa.json",
+    "sourceSha256": "8a1a11878ac26c34453d3612f15ec6da380f97511ccf501570811c8d93c90786",
+    "normalizedDocument": {
+      "tile": "r05_c02",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c02/base-v1/r05_c02.candidate.png",
+        "sha256": "9fda57eb2c0811c17f9341acc8abdbb9834c7e9b14ba8f22dac5cba665813c88"
+      },
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c02/base-v1/r05_c02.candidate.assembly.json",
+        "sha256": "19ba3c451139c946af063ab97d7eee88d6b2fc0c1d0578a45d0501365553b558"
+      },
+      "internalAccepted": true,
+      "status": "internal-native-seams-pass-external-pending",
+      "reviewedAtUtc": "2026-10-13T02:55:03.640506+00:00",
+      "reviewer": "root",
+      "coverage": {
+        "cores": 16,
+        "verticalSeams": 12,
+        "horizontalSeams": 12,
+        "junctions": 9,
+        "externalNorthSegments": 4,
+        "externalEastSegments": 4
+      },
+      "visualEvidence": {
+        "contactManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c02/base-v1/qa-contacts/manifest.json",
+        "contactManifestSha256": "b0e07502d8456d8ea03e2c161ea63a72e529081d968b175dbe57db5720d6f552",
+        "display": "Viewed all13 contacts with original image detail, no resampling; first two default-detail views repeated at original detail."
+      },
+      "notes": [
+        "Red and blue net strands, knots and supports continuous. Wooden pole, rope wraps and stone base continuous across core joins.",
+        "Lower-left canopy and small brown roof corner follow layout; curved ridge, finial and tile rows continuous.",
+        "Minor painterly ground texture variation remains gradual within sparse pebbles; no geometry break or abrupt seam requiring repair found."
+      ],
+      "nativeProof": {
+        "pixels": 16777216,
+        "mismatches": 0
+      },
+      "boundaries": {
+        "north": "pass with adopted r04_c02",
+        "east": "pass with adopted r05_c03",
+        "south": "neighbor production pending",
+        "west": "neighbor production pending"
+      },
+      "formalAccepted": false,
+      "missingOuterNeighborsAreNotMissingLocalNative": true
+    }
+  }
+}

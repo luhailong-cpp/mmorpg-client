@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 3,
+  "column": 4,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
+  "imageBytes": 22006960,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/progress.json",
+  "sourceLedgerSha256": "2b57837a9615c7c93cd127f43d1869b98773001f2d6aedb3278ad3b6081886ce",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "coordinate": "r03_c04",
+    "canonicalAdoptedFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
+    "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
+    "sha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
+    "pixels": [
+      4096,
+      4096
+    ],
+    "sourceCandidateAlias": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/candidate/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4.png",
+    "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/candidate/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4.assembly.json",
+    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c04-review.json",
+    "internalLocalQA": "PASS",
+    "formalAccepted": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c04-review.json",
+    "sourceSha256": "d049125f8a6e0e6d1c7b52ea257a2574153a1a1b8c88b60a5361f8c25172a998",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUTC": "2026-10-12T22:11:34.881823+00:00",
+      "tile": "r03_c04",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/candidate/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4.png",
+        "sha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/candidate/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4.assembly.json",
+      "baseReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/final-candidate-review.json",
+      "baseReviewSHA256": "fda8fcb1c22495e0e51d0132688bb40daa0a447cc3f0d966db42e78a74a5e6e2",
+      "resolvedKnownFindings": [
+        "Two left-roof shoulder/groove defects",
+        "East D1 return and east shared material/eave splices"
+      ],
+      "qa": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x1024-segment01.png",
+          "sha256": "42cb1c4d699b4d9ff93e1aeffc6f1b07dc9d11d3f13299d67fe959579c738bf5",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x1024-segment02.png",
+          "sha256": "a07ef1d3614321b0c44a11024c5cb5a827967c4f2dcc0c11f1e13a7085b6d4fa",
+          "cropLTRB": [
+            864,
+            1024,
+            1184,
+            2048
+          ],
+          "rotationCCW90": true,
+          "changed": true,
+          "actuallyViewed": true,
+          "reviewer": "boundary_audit",
+          "verdict": "PASS_LOCAL_INTERNAL_NATIVE"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x1024-segment03.png",
+          "sha256": "ca6c821a5b1179c58617af1212fb6d79732e092230077f6c0e31982abd39bf0b",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x1024-segment04.png",
+          "sha256": "fefb0b558a3aca5622a8bc181d66bfcaf7fe482038863fb4d9af1bdb8e790471",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x2048-segment01.png",
+          "sha256": "84101d29621098be72448e519cc17fc748c32d9220f25f2139f7f73394500c3e",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x2048-segment02.png",
+          "sha256": "4daa5fffea2806efca564d0c93b43a8d0ed299641063e8646a3b1d367228bc48",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x2048-segment03.png",
+          "sha256": "8b0bf4847c3d8828913110a9db89960a754984514c5407ea3d07f55f053f5f7a",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x2048-segment04.png",
+          "sha256": "eb339bfaa76b43c611a5047660d6e42b65fb911db35d2053433c1dd1cbac20f1",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x3072-segment01.png",
+          "sha256": "a6cf39412cbf7e92deb73958c48eae52ec8be6f7b1570e3eb746a672d73ebc41",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x3072-segment02.png",
+          "sha256": "0383ab9f440d53f864b9609252ea45e45a114e9062aab356f9030d409dc19e74",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x3072-segment03.png",
+          "sha256": "80124e2f1e5f8486ca903de95ba61f5e2b8ccb9ec30eb95b8fc65fe0c193462a",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-x3072-segment04.png",
+          "sha256": "ed365f4257d9a1138291591a26c26a72ce139cb19e1c261861d5a07025726f4e",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y1024-segment01.png",
+          "sha256": "47ebaeb3c100623bb88f969abf1db7bb0ec380fadfb7d8cc1fcc20105feb672b",
+          "cropLTRB": [
+            0,
+            864,
+            1024,
+            1184
+          ],
+          "rotationCCW90": false,
+          "changed": true,
+          "actuallyViewed": true,
+          "reviewer": "boundary_audit",
+          "verdict": "PASS_LOCAL_INTERNAL_NATIVE"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y1024-segment02.png",
+          "sha256": "5d7dd95f64205b5d30d17f73ea1c75244ea80995d3ed3977b5c8955220f09fe6",
+          "cropLTRB": [
+            1024,
+            864,
+            2048,
+            1184
+          ],
+          "rotationCCW90": false,
+          "changed": true,
+          "actuallyViewed": true,
+          "reviewer": "boundary_audit",
+          "verdict": "PASS_LOCAL_INTERNAL_NATIVE"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y1024-segment03.png",
+          "sha256": "bb9666a9be02d59a0ca89caaedc8f17768bc0637810f656bcd625eea3b68b41a",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y1024-segment04.png",
+          "sha256": "bc1c50c6ed6ec07451ece508aa41deb6de48b597598465bddc6e7ace5a7a3c85",
+          "cropLTRB": [
+            3072,
+            864,
+            4096,
+            1184
+          ],
+          "rotationCCW90": false,
+          "changed": true,
+          "actuallyViewed": true,
+          "reviewer": "boundary_audit",
+          "verdict": "PASS_LOCAL_INTERNAL_NATIVE"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y2048-segment01.png",
+          "sha256": "da656eec3029293245b4abe8e723557cb919bbaab8da52a7dd073e2e39bb7d5d",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y2048-segment02.png",
+          "sha256": "1b8872420566c7c5732f03da697b205d9a02f288844d4886f5059dcfac3f14a5",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y2048-segment03.png",
+          "sha256": "e85f23a2266696231c11996d3da6991f617d2254ffb3fdaf07371640b2114e90",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y2048-segment04.png",
+          "sha256": "59616981beedab646b1e033088abfb19a2438c9e4483df60173496f1bdc4794e",
+          "cropLTRB": [
+            3072,
+            1888,
+            4096,
+            2208
+          ],
+          "rotationCCW90": false,
+          "changed": true,
+          "actuallyViewed": true,
+          "reviewer": "boundary_audit",
+          "verdict": "PASS_LOCAL_INTERNAL_NATIVE"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y3072-segment01.png",
+          "sha256": "71baaf2ccc1b9bc6364d4d8abb478626b9b565817695f718801bdcbb2c1cc16b",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y3072-segment02.png",
+          "sha256": "94e1500834dcbeca336bb104acc1b4203173e9bef7f6b8b4f7d51219f7783afb",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y3072-segment03.png",
+          "sha256": "bd0c8c3747d1928293f630b494c7912cae09eae2dbff8ffd192e81638900bf89",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/internal-y3072-segment04.png",
+          "sha256": "9cc0d6c43403a8b220052a359c1cac1674576585e35bb6240325ef7a9e4eed61",
+          "cropLTRB": [
+            3072,
+            2912,
+            4096,
+            3232
+          ],
+          "rotationCCW90": false,
+          "changed": true,
+          "actuallyViewed": true,
+          "reviewer": "boundary_audit",
+          "verdict": "PASS_LOCAL_INTERNAL_NATIVE"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x1024-y1024.png",
+          "sha256": "ee734a7c8b2f7daa95ce30325338cedf81458bf5cb29f01bc20e9618a18246b4",
+          "cropLTRB": [
+            864,
+            864,
+            1184,
+            1184
+          ],
+          "rotationCCW90": false,
+          "changed": true,
+          "actuallyViewed": true,
+          "reviewer": "boundary_audit",
+          "verdict": "PASS_LOCAL_INTERNAL_NATIVE"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x2048-y1024.png",
+          "sha256": "1054987d800c1d2c1dd1b1cd36fffbf20193fff94eac2b15657cae560e866c91",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x3072-y1024.png",
+          "sha256": "fbb46134c1f680c7b460396844d38223f07c7876fb16fd680c3005bde4a6732e",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x1024-y2048.png",
+          "sha256": "8cae0c49f79ad5198e1c59927569cb1b376de42df25108ec4b233fd6bc91ca96",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x2048-y2048.png",
+          "sha256": "91b9685cd696dd409678a5d0e1769cc3a3d2f97e952c5857d4c6a4c26283e010",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x3072-y2048.png",
+          "sha256": "4024cc27cb14f33a43ae08bb04a17bc2a53c0f0042cab6a664b5b68b5f9edeef",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x1024-y3072.png",
+          "sha256": "4664268a6fabdbf8ebecd0bec58f9c53a03de97e52c3baf13d91a274eb2d868b",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x2048-y3072.png",
+          "sha256": "7c669df8ac36a7104ebf684058ef7d2143778b64c33461e1cb58d1ddf73f6a0b",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/qa/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4/junction-x3072-y3072.png",
+          "sha256": "cc419921648e3b648f200fef712ce629a75e49f829b2d362ea62b006a47a387a",
+          "changed": false,
+          "actuallyViewedThisTurn": false,
+          "verdict": "Pixel-identical to previously reviewed baseline; prior review retained"
+        }
+      ],
+      "changedQACount": 7,
+      "actuallyViewedChangedQACount": 7,
+      "unchangedRetainedQACount": 26,
+      "knownOpenInternalDefects": [],
+      "internalLocalCandidateQA": "PASS",
+      "strictInternalFullyPassed": true,
+      "verifiedOutsideRepairSupportUnchanged": true,
+      "noFinalArtUpscale": true,
+      "formalAccepted": false,
+      "formalPendingReason": "External north/west/east neighbor tiles not available; south checks currently use old available native neighbor sources."
+    }
+  }
+}

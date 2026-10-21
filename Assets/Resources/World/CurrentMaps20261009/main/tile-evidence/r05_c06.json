@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 5,
+  "column": 6,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "beb936eca2c223bf30e9d34717d8fd0e2254ee06cc0e1e25e4835a4138f44e39",
+  "imageBytes": 24089673,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/candidate/r05_c06-candidate-minimum-error-03d4dd9f7332.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r05_c06",
+    "selectedAvailable": 16,
+    "selectedUsable": 16,
+    "missingNativePatches": [],
+    "invalidSelected": [],
+    "completeCandidate": true,
+    "currentCompleteCandidate": true,
+    "internalQAPassed": true,
+    "formalAccepted": false,
+    "latestCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/candidate/r05_c06-candidate-minimum-error-03d4dd9f7332.png",
+    "candidateVariants": 2,
+    "qa": {
+      "internalPassed": true,
+      "formalPassed": false,
+      "status": "explicit_current_evidence",
+      "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/qa/acceptance.json",
+      "sha256": "7a231590102a2ad37940c7da037c3bf0e78c7f6754a82a7ff883c33053e3e2f9"
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/qa/acceptance.json",
+    "sourceSha256": "7a231590102a2ad37940c7da037c3bf0e78c7f6754a82a7ff883c33053e3e2f9",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r05_c06",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/candidate/r05_c06-candidate-minimum-error-03d4dd9f7332.png",
+        "sha256": "beb936eca2c223bf30e9d34717d8fd0e2254ee06cc0e1e25e4835a4138f44e39"
+      },
+      "internalQA": {
+        "status": "passed",
+        "actuallyViewed": true,
+        "seamSegments": 24,
+        "junctions": 9,
+        "reviewer": "east_next_tile actual native-pixel view",
+        "reviewBasis": "Initial33 actual views, then8 changed actual views and25 exact-hash inheritances.",
+        "evidence": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/qa/internal-review-03d4dd9f7332.json",
+          "sha256": "2a44b432e558a20a92b1286009da62f27e6bfbab450955cbd68888776b41d60e"
+        }
+      },
+      "externalQA": {
+        "status": "pending",
+        "actuallyViewed": true,
+        "reviewedSides": [
+          "west",
+          "south"
+        ],
+        "worldBoundarySides": [],
+        "nativePairDiagnostics": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r05_c06/qa/external-native-pairs/review.json",
+          "sha256": "f06da41154918f430ac9cf096ade27ce8bd9755d287f3d86c06caa07d2cabe40"
+        },
+        "pending": [
+          "north neighbor absent",
+          "east neighbor absent"
+        ],
+        "candidateBoundaryEvidence": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/joint-six-tile-review/ac2031be4f9bb37b/external-review.json",
+          "sha256": "de674053356d64cc4926725e34853aaf8f650e059c2601114ffdc821e959bbff"
+        }
+      },
+      "formalAccepted": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "runtimeIntegration": false,
+      "capacity5000Validated": false,
+      "updatedAt": "2026-10-11T17:27:27.566641+00:00"
+    }
+  }
+}

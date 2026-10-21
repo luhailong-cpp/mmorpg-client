@@ -1,5 +1,15 @@
 # 完整主城的生产发布与校验
 
+## 当前部分分片交付（2026-10-21）
+
+用户要求先把已完成的分片放入现有正式联机地图。此次交付使用独立的 `CurrentMaps20261009/{main,village,island}/tiles.json` 合同，状态为 `partial_native_tiles`，保留原版布局底图填补缺块。源 PNG 原样提交，按当前布局 SHA、逐块最新检查状态和修订邻片依赖筛选；明确失败、过时版本和未闭合的依赖不得用历史通过数量补齐。
+
+`tools/import_completed_map_tiles.py` 导入已审计的交付清单，`--verify` 在只有客户端仓库的环境中核对图片、尺寸、哈希、字节数、元数据和来源证据。主城为 16×16 网格，渔村、八仙岛为 14×14；坐标从左上角起，清单行列从 1 开始。资源校验 CI 在 Windows 和 Linux 检出后执行这些检查。
+
+这条部分交付流程不修改下面旧 `CityTileManifest` 的完整数组校验，也不签发 `accepted_complete`。正式完整高清地图、外沿接缝和实机显存仍需各自验收。下面保留的是旧七外观完整交付工具的使用说明，不应把其中 2026-09 的库存或网格要求当成当前三张日景地图的状态。
+
+## 历史完整交付流程
+
 本流程按一套外观执行。当前美术只有局部候选，不能运行生产发布；现况见 [本次交付审计](VerificationEvidence/city-tiles4k-integration-20260921/delivery-audit.md)。`stage_city_tile_candidates.py` 仍只服务 Editor 候选检查。
 
 ## 交付输入

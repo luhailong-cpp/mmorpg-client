@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "maps": [
+    {
+      "key": "main",
+      "sceneId": 1,
+      "deliveredTiles": 27,
+      "totalSlots": 256,
+      "imageBytes": 648304259,
+      "excludedTiles": 7,
+      "wholeMapAccepted": false
+    },
+    {
+      "key": "village",
+      "sceneId": 3,
+      "deliveredTiles": 69,
+      "totalSlots": 196,
+      "imageBytes": 1804082981,
+      "excludedTiles": 14,
+      "wholeMapAccepted": false
+    },
+    {
+      "key": "island",
+      "sceneId": 2,
+      "deliveredTiles": 55,
+      "totalSlots": 196,
+      "imageBytes": 1377429407,
+      "excludedTiles": 13,
+      "wholeMapAccepted": false
+    }
+  ],
+  "imageBytes": 3829816647,
+  "verification": "All delivered PNGs checked with SHA256, byte counts, every chunk CRC including IEND, and full Pillow pixel decode; original layouts/navigation checked by import_current_maps.verify; deterministic metas and portable evidence verified.",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "pythonUnitTestsPassed": 19,
+  "manifestHashes": [
+    {
+      "path": "Assets/Resources/World/CurrentMaps20261009/main/tiles.json",
+      "sha256": "245e923479c32f27f7593add5f0b4e14c98891dd0a448b5c98836f32ba2586c9"
+    },
+    {
+      "path": "Assets/Resources/World/CurrentMaps20261009/village/tiles.json",
+      "sha256": "aa6af458a236b4bdcaa0f93fae901dcbb2922d11406f11cec328aba0ece1677d"
+    },
+    {
+      "path": "Assets/Resources/World/CurrentMaps20261009/island/tiles.json",
+      "sha256": "35ffc2ec9c937f23786d1225d22eb8d294c67b87d8e9afddf31740e62b24e1d6"
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 7,
+  "column": 4,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+  "imageBytes": 22381153,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": {
+    "status": "pending",
+    "reviewedSides": [
+      "north"
+    ],
+    "passedSides": [
+      "north"
+    ],
+    "pendingSides": [
+      "east",
+      "south",
+      "west"
+    ],
+    "worldBoundarySides": [],
+    "actuallyViewed": true
+  },
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c04",
+    "selectedAvailable": 16,
+    "selectedUsable": 16,
+    "missingNativePatches": [],
+    "invalidSelected": [],
+    "completeCandidate": true,
+    "currentCompleteCandidate": true,
+    "internalQAPassed": true,
+    "formalAccepted": false,
+    "latestCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-minimum-error-b38cb951695e.png",
+    "candidateVariants": 3,
+    "qa": {
+      "internalPassed": false,
+      "formalPassed": false,
+      "status": "acceptance_stale_or_candidate_invalid"
+    },
+    "bridgeCandidate": {
+      "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+      "sha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+      "pixels": [
+        4096,
+        4096
+      ],
+      "mode": "RGB"
+    },
+    "bridgeReview": {
+      "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
+      "sha256": "958c9a49df66e54164f0bbe6da0d8e523c55da8bdc9efc4d54939091d71612a7",
+      "tile": "r07_c04",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+        "sha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "wholeZoneComplete": false
+    },
+    "outerBoundaryStatus": {
+      "status": "pending",
+      "reviewedSides": [
+        "north"
+      ],
+      "passedSides": [
+        "north"
+      ],
+      "pendingSides": [
+        "east",
+        "south",
+        "west"
+      ],
+      "worldBoundarySides": [],
+      "actuallyViewed": true
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
+    "sourceSha256": "958c9a49df66e54164f0bbe6da0d8e523c55da8bdc9efc4d54939091d71612a7",
+    "normalizedDocument": {
+      "schemaVersion": 2,
+      "tile": "r07_c04",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+        "sha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "assemblyManifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/assembly.json",
+        "sha256": "514f882d66369ef77a9226d995aef34000c324400d72f0d2813e9ef548a2442d"
+      },
+      "fixedGridSourceCount": 16,
+      "additionalNativeBridgeCount": 3,
+      "totalNativeSourceCount": 19,
+      "internalQA": {
+        "status": "passed",
+        "actuallyViewed": true,
+        "seamSegments": 24,
+        "junctions": 9,
+        "actuallyViewedThisRevision": 5,
+        "inheritedExactPassedOrNonblocking": 28
+      },
+      "bridgeBoundaryQA": {
+        "status": "passed",
+        "actuallyViewed": true,
+        "perimeterCrops": 12,
+        "exclusionCrops": 2,
+        "actuallyViewedThisRevision": 8,
+        "inheritedExactPassedOrNonblocking": 6
+      },
+      "externalQA": {
+        "status": "pending",
+        "reviewedSides": [
+          "north"
+        ],
+        "passedSides": [
+          "north"
+        ],
+        "pendingSides": [
+          "east",
+          "south",
+          "west"
+        ],
+        "worldBoundarySides": [],
+        "actuallyViewed": true
+      },
+      "northExternalQA": {
+        "status": "passed",
+        "actuallyViewed": true,
+        "seamSegments": 4,
+        "neighbor": "r06_c04"
+      },
+      "pixelProof": {
+        "status": "passed",
+        "checkedPixels": 16777216,
+        "allPixelsUnmodifiedNativeSamplesAtExactWorldCoordinates": true,
+        "countsBySource": {
+          "0": 957404,
+          "1": 1014333,
+          "2": 1151354,
+          "3": 957600,
+          "4": 1084118,
+          "5": 970396,
+          "6": 1031345,
+          "7": 1075056,
+          "8": 1078466,
+          "9": 1059904,
+          "10": 882877,
+          "11": 622219,
+          "12": 957064,
+          "13": 526472,
+          "14": 138233,
+          "15": 362196,
+          "16": 1232107,
+          "17": 588326,
+          "18": 1087746
+        }
+      },
+      "sourceIndex": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/source-index.png",
+        "sha256": "d4cdf8c2ed678c4faf95c85c6ff006c8541b58e782c536153e92b962fd674665",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "mode": "L"
+      },
+      "evidence": {
+        "internal": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/qa/r07_c04-candidate-native-bridges-2268d482e68c2928/review-internal.json",
+          "sha256": "4aea777e2d7c4f5529c23c0bb685453559d7570f4b10852b87005fa3c9fc21fb"
+        },
+        "external": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/qa/r07_c04-candidate-native-bridges-2268d482e68c2928/review-external.json",
+          "sha256": "f65fee6ce6d1b906f526702580646bf5da088214dd338c058799f1051304544d"
+        },
+        "eastUnchanged": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/qa/r07_c04-candidate-native-bridges-2268d482e68c2928/east-strip-unchanged.json",
+          "sha256": "830f935ff942285d23f9385b9b17a866efbf7d39301167d530f259c6b2ba8c5b"
+        }
+      },
+      "formalAccepted": false,
+      "remainingIssues": [
+        "No blocking internal or available-north seam issues. East neighbor being generated by root; south/west missing. Whole-zone acceptance not granted."
+      ],
+      "actualModel": null,
+      "actualQuality": null,
+      "nativeSourceInventory": {
+        "selectedFixed": 16,
+        "storedFixedVersions": 27,
+        "selectedBridges": 3,
+        "storedBridgeVersions": 6
+      },
+      "route": "builtin_image_gen",
+      "nativeResampling": false,
+      "finalCandidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+        "sha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "bridgeSources": [
+        {
+          "id": "stair-foot-04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/stair-foot-04/native.png",
+          "sha256": "4fe4543f515ae435feb6e71a5bed416120ef761058e771a3df2314f0d275499f",
+          "nativePixels": [
+            1254,
+            1254
+          ],
+          "tileOriginXY": [
+            1421,
+            2842
+          ],
+          "worldBox": [
+            13709,
+            27418,
+            14963,
+            28672
+          ],
+          "kind": "additional-native-seam-bridge-not-fixed-grid-source",
+          "generationRecord": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/stair-foot-04/generation.json",
+            "sha256": "1e1452a740af18c89075f98ae1e01b57a84db0c455c0adc83ee2de38c4a2f7f0"
+          },
+          "request": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/stair-foot-04/request.json",
+            "sha256": "5e419612c0ebf174c0062448217fbaf236cc47e4c935d1afe499f74bc77b0d89"
+          },
+          "receipt": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/stair-foot-04/tool-result.json",
+            "sha256": "f21736beeea69cc8dcf59619a9674c522ad754b59271b88d55e3a847e763f1ab"
+          },
+          "sourceHostFile": "source-host/C/Users/luyua/.codex/generated_images/01a1296c-73eb-7de1-a33c-c6f0e4ab40b6/exec-4f470c41-bfb8-437f-8a83-edfd8c55d497.png",
+          "sourceHostSha256": "4fe4543f515ae435feb6e71a5bed416120ef761058e771a3df2314f0d275499f",
+          "sourceResampled": false
+        },
+        {
+          "id": "paving-01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-01/native.png",
+          "sha256": "8562efc63052f7a06da730e3f49957ddea71dcb661c4c4aa87c54646cc5ac589",
+          "nativePixels": [
+            1254,
+            1254
+          ],
+          "tileOriginXY": [
+            2445,
+            2842
+          ],
+          "worldBox": [
+            14733,
+            27418,
+            15987,
+            28672
+          ],
+          "kind": "additional-native-seam-bridge-not-fixed-grid-source",
+          "generationRecord": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-01/generation.json",
+            "sha256": "7725dc926cdc02ed90f962e0e5c68db936829652c8b3c32cb263b638dab52d6f"
+          },
+          "request": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-01/request.json",
+            "sha256": "47b0311baccaf07567e423c39420e478aac9c4a3e49c11149733a642cae55471"
+          },
+          "receipt": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-01/tool-result.json",
+            "sha256": "dc2aa6609c9fedc018ab96bc4afefdf0d615925b0c4cf63f435e57ad15fee746"
+          },
+          "sourceHostFile": "source-host/C/Users/luyua/.codex/generated_images/01a1296c-73eb-7de1-a33c-c6f0e4ab40b6/exec-a161a44b-181f-4d9e-8c6e-943e63d018d0.png",
+          "sourceHostSha256": "8562efc63052f7a06da730e3f49957ddea71dcb661c4c4aa87c54646cc5ac589",
+          "sourceResampled": false
+        },
+        {
+          "id": "paving-tip-01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-tip-01/native.png",
+          "sha256": "0c2b072d3483949aa0d698780e06edd86a508f7f1a66362c045fab97bbb35523",
+          "nativePixels": [
+            1254,
+            1254
+          ],
+          "tileOriginXY": [
+            2842,
+            2490
+          ],
+          "worldBox": [
+            15130,
+            27066,
+            16384,
+            28320
+          ],
+          "kind": "additional-native-seam-bridge-not-fixed-grid-source",
+          "generationRecord": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-tip-01/generation.json",
+            "sha256": "a0e4e0ba31a63acc6ec3ff316d73f3aef7dff6195cab1f91139de15316dac675"
+          },
+          "request": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-tip-01/request.json",
+            "sha256": "60a7c785c8302ea904c9649d9f36566702ecab188a5f8b128cf029079635d4dc"
+          },
+          "receipt": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/paving-tip-01/tool-result.json",
+            "sha256": "d4f21670c291acf1c322320b966bd44ee46cda48966edae63f31610d6df485ea"
+          },
+          "sourceHostFile": "source-host/C/Users/luyua/.codex/generated_images/01a1296c-73eb-7de1-a33c-c6f0e4ab40b6/exec-383faed9-e037-4d1a-9273-306eee5b2779.png",
+          "sourceHostSha256": "0c2b072d3483949aa0d698780e06edd86a508f7f1a66362c045fab97bbb35523",
+          "sourceResampled": false
+        }
+      ],
+      "script": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/native_bridges_v2.py",
+        "sha256": "5ff46e85e9b2bd6ad3896ac7feb42169e432ab8da09eefa190e20235d7a8a5df"
+      },
+      "config": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/bridges/config-v6.json",
+        "sha256": "d9ca80c135f347f5ed1f75843d7066740736273d0809f7a739bd8cf91b998327"
+      },
+      "next": "Root may package this as the seventh 4096 native tile; then review new east neighbor using unchanged east230 strip.",
+      "error": null
+    }
+  }
+}

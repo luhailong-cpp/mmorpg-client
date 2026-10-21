@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 3,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "eed71c1832d2bc61c66d644748b204139508bfc5f0d641b0701e690c57c169d3",
+  "imageBytes": 26047948,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-candidate-4096.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+  "sourceLedgerSha256": "17542d37402bf7c5aecb639e5e9e8d270b09c430a5d67eefd34dd5aeb96d0ae6",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": {
+    "north-r13_c03": "geometry_and_material_pass",
+    "west-r14_c02": "pending_neighbor",
+    "east-r14_c04": "geometry_pass_material_pending; paired review central-r14c04-native-review-newchat-20261020.json",
+    "south": "outer_map_edge"
+  },
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-candidate-4096.png",
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "sha256": "eed71c1832d2bc61c66d644748b204139508bfc5f0d641b0701e690c57c169d3",
+    "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-report.json",
+    "sourceReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-report.json",
+    "sourceIdMask": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-source-id-mask.png",
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "sha256": "56168363456d19611316aee198f3b62065d16733b56eca6e39c488e06568af1d",
+      "sourceIdRange": [
+        1,
+        16
+      ]
+    },
+    "nativeSourceCount": 16,
+    "nativePixelsVerified": true,
+    "baseArrayDoesNotFullyDescribeFinalPixels": true,
+    "mode": "native same-global-coordinate binary selection; no resampling/feathering/color adjustment/warping",
+    "internalGeometryPassed": true,
+    "internalMaterialPassed": true,
+    "internalPassed": true,
+    "internalTileSeamsPassed": true,
+    "allOuterTileEdgesPassed": false,
+    "formalAccepted": false,
+    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r14c03-native-review-newchat-20261020.json",
+    "pendingRepairs": [],
+    "sharedEdges": {
+      "north-r13_c03": "geometry_and_material_pass",
+      "west-r14_c02": "pending_neighbor",
+      "east-r14_c04": "geometry_pass_material_pending; paired review central-r14c04-native-review-newchat-20261020.json",
+      "south": "outer_map_edge"
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r14c03-native-review-newchat-20261020.json",
+    "sourceSha256": "8b03286706e9680516e7539bb75523da07498c538296534b1dd894b02176461e",
+    "normalizedDocument": {
+      "reviewedAtUtc": "2026-10-20T17:20:52.227785+00:00",
+      "tile": "r14_c03",
+      "source": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-candidate-4096.png",
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "sha256": "eed71c1832d2bc61c66d644748b204139508bfc5f0d641b0701e690c57c169d3"
+      },
+      "sourceReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-report.json",
+      "nativeExactValidation": {
+        "pixelCount": 16777216,
+        "mismatchedPixels": 0,
+        "exactSameGlobalCoordinateSourcePixels": true,
+        "sourceIdPixelCounts": {
+          "1": 885272,
+          "2": 1205938,
+          "3": 909738,
+          "4": 1051717,
+          "5": 1218719,
+          "6": 966131,
+          "7": 1142694,
+          "8": 1163313,
+          "9": 979405,
+          "10": 1121100,
+          "11": 940290,
+          "12": 1069484,
+          "13": 995482,
+          "14": 1045065,
+          "15": 1049862,
+          "16": 1033006
+        },
+        "sourceInputsAndRecordsUnchanged": true,
+        "interpolation": false,
+        "feathering": false,
+        "colorAdjustment": false,
+        "displacement": false,
+        "diskRoundtripExact": true
+      },
+      "reviewedInternalSegments": 24,
+      "reviewedJunctions": 9,
+      "allInternalSegmentsActuallyViewed": true,
+      "junctionsActuallyViewed": true,
+      "visualMethod": "Eight montage images actually viewed at original1:1: four rows of3vertical strips and four columns of3horizontal strips; all9 individual600x600 junction crops also actually viewed. Preview1254 used only for overall layout.",
+      "viewManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-native-QA-manifest.json",
+      "viewManifestSha256": "38b77a20cfaf0c5f4f12b56a18df780a5fe3ccc42979a22b6593116e2c5bf609",
+      "geometry": "Rounded coastal rock faces, cliff/foam silhouettes and ocean caustics remain continuous through all24 source joins and9 junctions; no straight guide bands, missing native area, displaced shore or black map-edge halo in candidate.",
+      "material": "Warm cream and cool blue-grey stone facets and ocean caustic scale remain coherent. Native painterly variation accepted; repaired y230 foam line and unwanted lower underwater boulder chain are absent.",
+      "internalGeometryPassed": true,
+      "internalMaterialPassed": true,
+      "internalPassed": true,
+      "pendingRepairs": [],
+      "pairedNorthReview": {
+        "derivation": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r14c03-north-pair-20261020.derivation.json",
+        "sources": [
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r13c03-v01-candidate-4096.png",
+            "role": "north r13_c03",
+            "sha256": "6eef1393ced2d24fdf86ade0b68732112535ad8e2de72b6429e0590b62db1700",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-central-r14c03-newchat-v01-candidate-4096.png",
+            "role": "south r14_c03",
+            "sha256": "eed71c1832d2bc61c66d644748b204139508bfc5f0d641b0701e690c57c169d3",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          }
+        ],
+        "nativeViewsActuallyViewed": 4,
+        "geometryPassed": true,
+        "materialPassed": true,
+        "note": "Actually viewed4native1024x600 pairs: foam/water cells and cream/blue-grey boulders/crevices continue across y300."
+      },
+      "remainingEdges": [
+        "west r14_c02 missing neighbor",
+        "east r14_c04 missing neighbor"
+      ],
+      "southEdge": "outer map canvas edge; all native pixels contain ocean, no black guide band",
+      "allOuterTileEdgesPassed": false,
+      "formalAccepted": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "modelEvidence": "Builtin per-image source records/receipts disclose no actual model/quality; current target check stored separately."
+    }
+  }
+}

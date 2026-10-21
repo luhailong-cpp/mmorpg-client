@@ -51,6 +51,7 @@ namespace MmorpgClient.World.CurrentMaps
                 renderer.sharedMaterial = material;
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
+                instance.ConfigureCurrentMapTiles(definition.Key);
                 return instance;
             }
             catch

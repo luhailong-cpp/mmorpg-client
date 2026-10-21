@@ -1,0 +1,886 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 16,
+  "column": 13,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "b9310da8e5fe812e96bf5e9307dce0bab032e242d1641cae56ffaa646da04788",
+  "imageBytes": 28830840,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-4k-orphan-repair-v2-20261013.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/progress.json",
+  "sourceLedgerSha256": "c592d4e2749c56ada92b3634cff4e0d02567c862043ba95a77f5f6b4e149c585",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": {
+    "north": "local_pass_with_texture_watch; independent_root_review_pending",
+    "west": "pending_missing_r16_c12_neighbor",
+    "east": "pending_r16_c14_generation_and_joint_review",
+    "south": "canvas_outer_boundary_no_neighbor; painted_edge_checked"
+  },
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r16_c13",
+    "status": "internal_pass_north_local_pass_with_texture_watch_external_pending",
+    "updatedAt": "2026-10-13T05:44:42.100956+00:00",
+    "activeNativeCount": 16,
+    "formalAccepted": false,
+    "internalArtQA": "pass_after_two_native_local_repairs_with_texture_watch",
+    "externalNeighborSeamQA": {
+      "north": "local_pass_with_texture_watch; independent_root_review_pending",
+      "west": "pending_missing_r16_c12_neighbor",
+      "east": "pending_r16_c14_generation_and_joint_review",
+      "south": "canvas_outer_boundary_no_neighbor; painted_edge_checked"
+    },
+    "worldSize": null,
+    "clientMappingValidated": false,
+    "capacity5000Validated": false,
+    "currentPatch": null,
+    "currentVersion": "p04_04_v20261012T201018_6372fb62",
+    "lastIngestedVersion": "p04_04_v20261012T201018_6372fb62",
+    "previousActiveVersion": null,
+    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-4k-orphan-repair-v2-20261013.png",
+    "context": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-context-4326-orphan-repair-v2-20261013.png",
+    "assemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-orphan-repair-v2-20261013-manifest.json",
+    "complete4kCandidateCount": 1,
+    "missingNativeCount": 0,
+    "nextStep": "Independent north joint review; generate r16_c14 from stable east edge and inspect joined edge. West neighbor absent; south is canvas boundary.",
+    "candidateSha256": "b9310da8e5fe812e96bf5e9307dce0bab032e242d1641cae56ffaa646da04788",
+    "contextSha256": "9a50b7d737d53e04577be551933d23695decbc15708117f24fe4f8ca2b94cfa4",
+    "repairManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-orphan-repair-v2-20261013-manifest.json",
+    "visualQA": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/visual-qa.json",
+      "sha256": "8f23a4c34777593964b1f28c9b30b27c5d587fb7abe8d703f523d211960cbc02"
+    },
+    "actualNativeOutputCount": 19,
+    "activeRepairNativeCount": 1
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/visual-qa.json",
+    "sourceSha256": "8f23a4c34777593964b1f28c9b30b27c5d587fb7abe8d703f523d211960cbc02",
+    "normalizedDocument": {
+      "schemaVersion": 2,
+      "tile": "r16_c13",
+      "reviewedAt": "2026-10-13T05:44:42.100956+00:00",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-4k-orphan-repair-v2-20261013.png",
+        "sha256": "b9310da8e5fe812e96bf5e9307dce0bab032e242d1641cae56ffaa646da04788",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "context": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/candidate/r16_c13-context-4326-orphan-repair-v2-20261013.png",
+        "sha256": "9a50b7d737d53e04577be551933d23695decbc15708117f24fe4f8ca2b94cfa4",
+        "size": [
+          4326,
+          4326
+        ]
+      },
+      "formalAccepted": false,
+      "internalArtQA": "pass_after_two_native_local_repairs_with_texture_watch",
+      "coverage": {
+        "requiredNativeRegions": 49,
+        "seamQuarterRegions": 24,
+        "junctionRegions": 9,
+        "edgeQuarterRegions": 16,
+        "savedCurrentCandidateRegions": [
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-1024-quarter1.png",
+            "sha256": "50f70581a37e036821297a53ed0aeac2a14a19fb568e8b2b143ef737be95d2f7",
+            "cropBox": [
+              768,
+              0,
+              1280,
+              1024
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-1024-quarter2.png",
+            "sha256": "2f1abffc896e2b1451fdd3ba8977a2a877b3ac714c1240da928c1800c05e0bf3",
+            "cropBox": [
+              768,
+              1024,
+              1280,
+              2048
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-1024-quarter3.png",
+            "sha256": "71cb50fd13068592235c7466498dfee28542e2d77f8acaefcf5c1b4d2f04f3e7",
+            "cropBox": [
+              768,
+              2048,
+              1280,
+              3072
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-1024-quarter4.png",
+            "sha256": "64953bea6504ac2ae8d2ad38242c103072d066298b9cd20ec8d37852228c9c73",
+            "cropBox": [
+              768,
+              3072,
+              1280,
+              4096
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-2048-quarter1.png",
+            "sha256": "9a440f36c96a5846df657e1031445d1edb11aef697996de358b89c0e9594ad8c",
+            "cropBox": [
+              1792,
+              0,
+              2304,
+              1024
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-2048-quarter2.png",
+            "sha256": "d3fa13850334050e1970ce3277e693241c5f9fc99379ca4c5d99f788822521f4",
+            "cropBox": [
+              1792,
+              1024,
+              2304,
+              2048
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-2048-quarter3.png",
+            "sha256": "603c77cc2de2a45c6c9e1497afd78a5cae16a785568355fbd9d284501a3aabe2",
+            "cropBox": [
+              1792,
+              2048,
+              2304,
+              3072
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-2048-quarter4.png",
+            "sha256": "9d2b6788cbbb8f3dcaeb0f6cabee832c9617094e3cebce3483a873c8d89affd6",
+            "cropBox": [
+              1792,
+              3072,
+              2304,
+              4096
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-3072-quarter1.png",
+            "sha256": "dedbd4e4569a5a80adc25f8e5f1059cb3d9fe3bd5636ce6ed6c8a2363b0ff78a",
+            "cropBox": [
+              2816,
+              0,
+              3328,
+              1024
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-3072-quarter2.png",
+            "sha256": "7477b2a7730f05825ab1f82da048bdcd39eb902eb87593cbf987f7a32c6fcc07",
+            "cropBox": [
+              2816,
+              1024,
+              3328,
+              2048
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-3072-quarter3.png",
+            "sha256": "3dee8708fd9e6561819fe5103cc05a002065b5a9a96de2d4fe0a0e950a581b09",
+            "cropBox": [
+              2816,
+              2048,
+              3328,
+              3072
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/vertical-3072-quarter4.png",
+            "sha256": "8ac8311213a270114ac2a072482c7c8499355501538d928427b221a38bf2bf47",
+            "cropBox": [
+              2816,
+              3072,
+              3328,
+              4096
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-1024-quarter1.png",
+            "sha256": "d0f4c1a1a10b3700d72cf840b8c6781c00d381e9eddcbb203d640661b546339d",
+            "cropBox": [
+              0,
+              768,
+              1024,
+              1280
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-1024-quarter2.png",
+            "sha256": "fef673351c6fa3d137443f79fa768d59a43ec2af1315af7dcb0c80612f3ef74a",
+            "cropBox": [
+              1024,
+              768,
+              2048,
+              1280
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-1024-quarter3.png",
+            "sha256": "b3d9a4e3bc5a1c78be41261800ee2d50e6a3f7198dfd0df5ebce5bbaa4981778",
+            "cropBox": [
+              2048,
+              768,
+              3072,
+              1280
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-1024-quarter4.png",
+            "sha256": "e9dd3947ef276e2aceccb302fc2d0a07dd352b101a9ffc68889f6fa93734058f",
+            "cropBox": [
+              3072,
+              768,
+              4096,
+              1280
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-2048-quarter1.png",
+            "sha256": "44e306dd202179fbce1fef38c9088a3024aaf895b1ef92aeec7529af10df2aad",
+            "cropBox": [
+              0,
+              1792,
+              1024,
+              2304
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-2048-quarter2.png",
+            "sha256": "a476e73caaa289157621968ddbfc549c59006b4d8094b3ae94df7870be87429a",
+            "cropBox": [
+              1024,
+              1792,
+              2048,
+              2304
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-2048-quarter3.png",
+            "sha256": "c9e1cc0a2a780b7e762c1efbf20f3dc8d0606611e27ec5d9062a51cc05d9e1a0",
+            "cropBox": [
+              2048,
+              1792,
+              3072,
+              2304
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-2048-quarter4.png",
+            "sha256": "aa2f770e25bbd052ea5fa25c4313a980f080b3268999be0764b4e3919af85d00",
+            "cropBox": [
+              3072,
+              1792,
+              4096,
+              2304
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-3072-quarter1.png",
+            "sha256": "e8e657762d2010a79058798efbde1ff54a6234e0e1414d302a69a732c8c9141d",
+            "cropBox": [
+              0,
+              2816,
+              1024,
+              3328
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-3072-quarter2.png",
+            "sha256": "d03ceb7ebf76c6d05bfe9a43f5e6e7daa5f8d8c6aa799ed7e88a62e33e27c6ed",
+            "cropBox": [
+              1024,
+              2816,
+              2048,
+              3328
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-3072-quarter3.png",
+            "sha256": "ac8633f3d862859b6d72e9d977727dc035db39c17fb11193929028c1534c713f",
+            "cropBox": [
+              2048,
+              2816,
+              3072,
+              3328
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/horizontal-3072-quarter4.png",
+            "sha256": "f4ec7ba5d97dc65c5e3cbd49529a59a71682c533883532870181ac6c8d55ae8d",
+            "cropBox": [
+              3072,
+              2816,
+              4096,
+              3328
+            ],
+            "kind": "seam",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-1024-1024.png",
+            "sha256": "16b5a5002417597926ea91536359b87b06d437cbec39fe781b255cf2d7f0510e",
+            "cropBox": [
+              574,
+              574,
+              1474,
+              1474
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-2048-1024.png",
+            "sha256": "4aab613be9975df11c5b8158c56cdb6750abd8032f0edb3e25803667b8e766fa",
+            "cropBox": [
+              1598,
+              574,
+              2498,
+              1474
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-3072-1024.png",
+            "sha256": "0742076f52a16f4ce049c4174b57cbc1b501f520667a01bd0d34a22f03de67bf",
+            "cropBox": [
+              2622,
+              574,
+              3522,
+              1474
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-1024-2048.png",
+            "sha256": "8aafac793b8e024f4832ff015d31c73f5d8a8d531dddd059be27b19bf4708820",
+            "cropBox": [
+              574,
+              1598,
+              1474,
+              2498
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-2048-2048.png",
+            "sha256": "442b03be15bb7ba70d1067889609a11d553d903ddf0948a6931cfb0f03287335",
+            "cropBox": [
+              1598,
+              1598,
+              2498,
+              2498
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-3072-2048.png",
+            "sha256": "3bebd34f7b103fc27e4c2dba7a66a01f60ebe12002554acd882d9d0bed41962e",
+            "cropBox": [
+              2622,
+              1598,
+              3522,
+              2498
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-1024-3072.png",
+            "sha256": "73ccaa8610646ab644f6038b1f9166a2fa157b44e25448651256811ff56d5814",
+            "cropBox": [
+              574,
+              2622,
+              1474,
+              3522
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-2048-3072.png",
+            "sha256": "ef9e159347b252d189e1ca0619124b81b3b68da1e059333af60a0b3d95326d8b",
+            "cropBox": [
+              1598,
+              2622,
+              2498,
+              3522
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/junction-3072-3072.png",
+            "sha256": "8089f5ddad1b02c353b5735d04064151584186da8e4040575fa174e78d7266aa",
+            "cropBox": [
+              2622,
+              2622,
+              3522,
+              3522
+            ],
+            "kind": "junction",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-north-quarter1.png",
+            "sha256": "5c814e7047ba6e6c955091eabf3addd715d36e613da467596455262c3a3f00f8",
+            "cropBox": [
+              0,
+              0,
+              1024,
+              256
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-north-quarter2.png",
+            "sha256": "479f10a52628169432f476b1c78d17c99d31f9148eb13bbee3bba34d6cee3af7",
+            "cropBox": [
+              1024,
+              0,
+              2048,
+              256
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-north-quarter3.png",
+            "sha256": "bbc6c38172dedaf4b2f0d7358ac1b125673798a02569d787f36109ee2bbeb145",
+            "cropBox": [
+              2048,
+              0,
+              3072,
+              256
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-north-quarter4.png",
+            "sha256": "718d702fb1600c5954c4054d86b0190cf5dbc5136c1aaa8c338f9d7d5c150d73",
+            "cropBox": [
+              3072,
+              0,
+              4096,
+              256
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-south-quarter1.png",
+            "sha256": "5d384d4561c73da5155faa29ca860281c8fe1882918cdfa805e12a3deb5a979e",
+            "cropBox": [
+              0,
+              3840,
+              1024,
+              4096
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-south-quarter2.png",
+            "sha256": "066db14d5cbb4edc8bbe65a41b7df5638c51f53658a9417edf587f7a0eadf9ea",
+            "cropBox": [
+              1024,
+              3840,
+              2048,
+              4096
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-south-quarter3.png",
+            "sha256": "00c9545c2d67ddf1e2913cdffcb0832ea160df49fe09d6906add05797203da7c",
+            "cropBox": [
+              2048,
+              3840,
+              3072,
+              4096
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-south-quarter4.png",
+            "sha256": "ff52b36f01461771a2cd345d73defa651dc02399e2d827c201e9108941eba74a",
+            "cropBox": [
+              3072,
+              3840,
+              4096,
+              4096
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-west-quarter1.png",
+            "sha256": "6c6503f9bd4831a3d6e573e4f08924b496a3b6e7c8cd9940eba4e24c817334d7",
+            "cropBox": [
+              0,
+              0,
+              256,
+              1024
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-west-quarter2.png",
+            "sha256": "1b40f4bab56109777087bca429325903fb6556ca28f9167b73c9d5adb3cab8b9",
+            "cropBox": [
+              0,
+              1024,
+              256,
+              2048
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-west-quarter3.png",
+            "sha256": "6f5f9f1a0d670e53599435a73c83bfe24e930ba0d1ca26cb6b899465e175936f",
+            "cropBox": [
+              0,
+              2048,
+              256,
+              3072
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-west-quarter4.png",
+            "sha256": "a6ecded2f4121f19d029d9329a63e9168ef769d5eff0077d044365133e68f815",
+            "cropBox": [
+              0,
+              3072,
+              256,
+              4096
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-east-quarter1.png",
+            "sha256": "00d6f9778f107926dfb27d13679cb720da8ed94170815c0d064c1fb1512f92e4",
+            "cropBox": [
+              3840,
+              0,
+              4096,
+              1024
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-east-quarter2.png",
+            "sha256": "497c3ab1439d280cd1dde772a95a8f8aae3b7a162d9db08bca5ffd6f6630d32c",
+            "cropBox": [
+              3840,
+              1024,
+              4096,
+              2048
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-east-quarter3.png",
+            "sha256": "afe3b2f92c558f668255d1a1d3ca791253eae6a397ceac119d5dbcb7718e1301",
+            "cropBox": [
+              3840,
+              2048,
+              4096,
+              3072
+            ],
+            "kind": "edge",
+            "resized": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/native49/edge-east-quarter4.png",
+            "sha256": "e7aefd12a927991950c016bb90af6513d13d1b0013db9fa91bf49ff4dcb4f207",
+            "cropBox": [
+              3840,
+              3072,
+              4096,
+              4096
+            ],
+            "kind": "edge",
+            "resized": false
+          }
+        ],
+        "inspectionBasis": "All six complete seams and four edges were visually inspected at native scale in 2048-pixel half-band files; all nine 900-pixel junctions inspected. North join four quarters and three intersections inspected. After repair, the two defect areas and affected crossing were visually inspected again. Remaining pixels verified unchanged. Saved 49 quarter-region crops map the same full coverage; not claiming 49 new independent tool views."
+      },
+      "previousNativeViews": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-east-half1.png",
+          "sha256": "acbb9aacc1c5abd05a5229025f6cc1aef2c5cc973dabf0bf8d58f299e9769100"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-east-half2.png",
+          "sha256": "970861bf6f7a3ad466e120e4fac2acbea1b8a621ac6082ba8efba1df10bbb00d"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-north-half1.png",
+          "sha256": "78bc7473f0a7e265cefe21dc245952fcfda32a323c1979afe463acee3021f53e"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-north-half2.png",
+          "sha256": "049af1ebdb7af76aff3755ddb5320b460e6170270599d598ee1ac95e5af4c36c"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-south-half1.png",
+          "sha256": "7f9806e61e48ef824d8ae905510f0f22f837b602c93a92e92f7127729addeeda"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-south-half2.png",
+          "sha256": "0f6bfd985a4f62cac7be91fdd8ecee738fe6f46b694d15bd125a3a350254503b"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-west-half1.png",
+          "sha256": "c4edaf04a06392fa486f7651886825293dac0d99004508c189d35f2e49868bc7"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/edge-west-half2.png",
+          "sha256": "db4e6fed6fffcd341babd0c41d046f6ea176ac7063dc5dbb6fa6187c60dc1763"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/horizontal-y1024-half1.png",
+          "sha256": "07c209228c915b176ec0d87c679fc3f7707b81c01d03fbc35400edbcd654662d"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/horizontal-y1024-half2.png",
+          "sha256": "d1533d3e536fbaee244dbed2e8b1cbb03a64812ce4e5c3f3621f78cf8e81a749"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/horizontal-y2048-half1.png",
+          "sha256": "66d1784ebcbf6e889b09a95b06842fe48612b670e3397b6657f9e3211e2919fc"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/horizontal-y2048-half2.png",
+          "sha256": "50bd6c2fed40db887e5907d025ab60e62273792b8980efd710398972a9a3cdd0"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/horizontal-y3072-half1.png",
+          "sha256": "9672782d04f0c81761346434fa83955d85d2b9cadffb341e6922783d9e4b5670"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/horizontal-y3072-half2.png",
+          "sha256": "e217c528edfd89b931f99c4ea97f25372588d022aa52b1218b93ec51d8f6b9b9"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/north-neighbor-junction1024.png",
+          "sha256": "bbd21e01804597293d35d67a94a9850528433209c48f29b829c74bc015d657b0"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/north-neighbor-junction2048.png",
+          "sha256": "0f34e8a0101629dd5033a31a5736f869275d5dfa1bed90f2bc3302e2da380226"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/north-neighbor-junction3072.png",
+          "sha256": "0291d7de65338299f362c069017e2719456bb5c1d68f6a620bd8383550282114"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/north-neighbor-quarter1.png",
+          "sha256": "2927047861544028b8b751eb1b0884c11339b08022d5054251f9140d586814e2"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/north-neighbor-quarter2.png",
+          "sha256": "ac9fb5be87b2a52e1d8d6b4387939f1b26bf60ac20f12d8f2bf61d7bd46d71c6"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/north-neighbor-quarter3.png",
+          "sha256": "f5e39a6996d8772c72bbd83631f650f10107d39442e44530d1ff1a6b86572367"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/north-neighbor-quarter4.png",
+          "sha256": "6f6670928164e6510a8d164414cb1f8de768dd6ac505abbb85f107119701e739"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/vertical-x1024-half1.png",
+          "sha256": "5fd4dad11192aed4996846ed8367da0c74e24d25cd0f7ad39aeb4e9a93abb9b2"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/vertical-x1024-half2.png",
+          "sha256": "9811d1697c4cb69f1ace41bf931d9349c9edd5d6163189e3a4843e131f42ef60"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/vertical-x2048-half1.png",
+          "sha256": "e9f092794165cb16a05f911100a031b2abd91460a7cd4eefca8fb62b217df4e7"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/vertical-x2048-half2.png",
+          "sha256": "ca38052c7195ada2f1c4e42b1738ef2db313b364e480935d6a0bdc6979fe64ef"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/vertical-x3072-half1.png",
+          "sha256": "1353b7f7b7a6ae433fec4c3669d2fb2fedfd33be26f9ea7f91dc80dc5366d918"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-full-qa-v1/vertical-x3072-half2.png",
+          "sha256": "b01aed6f057cc8bfeabde215b268d5d746cf38f7068401887e74eedd967f6d74"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x1024-y1024-100pct.png",
+          "sha256": "16b5a5002417597926ea91536359b87b06d437cbec39fe781b255cf2d7f0510e"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x1024-y2048-100pct.png",
+          "sha256": "8aafac793b8e024f4832ff015d31c73f5d8a8d531dddd059be27b19bf4708820"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x1024-y3072-100pct.png",
+          "sha256": "73ccaa8610646ab644f6038b1f9166a2fa157b44e25448651256811ff56d5814"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x2048-y1024-100pct.png",
+          "sha256": "4aab613be9975df11c5b8158c56cdb6750abd8032f0edb3e25803667b8e766fa"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x2048-y2048-100pct.png",
+          "sha256": "442b03be15bb7ba70d1067889609a11d553d903ddf0948a6931cfb0f03287335"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x2048-y3072-100pct.png",
+          "sha256": "ef9e159347b252d189e1ca0619124b81b3b68da1e059333af60a0b3d95326d8b"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x3072-y1024-100pct.png",
+          "sha256": "0742076f52a16f4ce049c4174b57cbc1b501f520667a01bd0d34a22f03de67bf"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x3072-y2048-100pct.png",
+          "sha256": "4e440615fce9a53b38221e371db9f1dfe8dae538de9ea40102616fe2656ad1bc"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/assembly-1b42f26f841bf002cac7/junction-x3072-y3072-100pct.png",
+          "sha256": "8089f5ddad1b02c353b5735d04064151584186da8e4040575fa174e78d7266aa"
+        }
+      ],
+      "currentLocalViews": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/repair-scar-a-after-100pct.png",
+          "sha256": "837cd8d653994c9ed2f7792e2a8dbb8d1ba1292d52d74f61b2e91e861dbe818c"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/repair-scar-b-after-100pct.png",
+          "sha256": "cde2521a0670752bdd757cf339a7356886d82e46de5a2cabd670a93706843ee4"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c13/review/native-orphan-repair-v2/repair-crossing-after-100pct.png",
+          "sha256": "b25c529ad05d50d3d9321c8bf48c08724aec910ed9dbe5e1c89ea79c298c2778"
+        }
+      ],
+      "resolved": [
+        {
+          "id": "R16C13-J01",
+          "positionInCore": [
+            2740,
+            2127,
+            2740,
+            2176
+          ],
+          "result": "Removed short upward mortar stub; continuous block above and clean T-junction below retained."
+        },
+        {
+          "id": "R16C13-J02",
+          "positionInCore": [
+            3192,
+            2099,
+            3192,
+            2176
+          ],
+          "result": "Removed short upward mortar stub; horizontal course remains continuous."
+        }
+      ],
+      "externalNeighborSeamQA": {
+        "north": "local_pass_with_texture_watch; independent_root_review_pending",
+        "west": "pending_missing_r16_c12_neighbor",
+        "east": "pending_r16_c14_generation_and_joint_review",
+        "south": "canvas_outer_boundary_no_neighbor; painted_edge_checked"
+      },
+      "textureWatch": "Pale limestone has varying fine mineral grain across native sources. No remaining clear shape break or sharp cut line observed; do not equate local QA with whole-region acceptance.",
+      "replay": {
+        "baseFromSixteenNativesAndSavedAlphaPixelIdentical": true,
+        "repairFromNativeAndSavedAlphaPixelIdentical": true,
+        "outsideRepairSupportsPixelIdentical": true,
+        "allFourOuterEdgesUnchanged": true,
+        "changedPixelCount": 15479
+      },
+      "actualModel": null,
+      "actualQuality": null,
+      "gameRun": false,
+      "worldSize": null,
+      "capacity5000Validated": false
+    }
+  }
+}

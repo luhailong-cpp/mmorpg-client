@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 3,
+  "column": 3,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "dc09b8171747c5bc26a0d8a9864bc18f967ea093913d290c30387712c69ef439",
+  "imageBytes": 22024858,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+  "sourceLedgerSha256": "376053b3ce30f7da7df5c870205f7b08fe1e1fd1e9561cc16503f965efcf406e",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tileId": "r03_c03",
+    "image": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.png",
+      "sha256": "dc09b8171747c5bc26a0d8a9864bc18f967ea093913d290c30387712c69ef439",
+      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.png"
+    },
+    "record": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.cross-native-repair.json",
+      "sha256": "dc31d808d8f8213d35a0f2ba8c181d76bf1915ca56f1c794c519ee098c6dd916",
+      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.cross-native-repair.json"
+    },
+    "selectionBasis": "qa/connected-closure-current-v5.manifest.json",
+    "internalClosurePassedBeforeFreeze": true,
+    "formalAccepted": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/connected-closure-current-v5.manifest.json",
+    "sourceSha256": "3e3f707597d87cda20f361afcebb5f3fde51d92f6fc5f6ea2ebaa653c23de8f1",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tiles": [
+        {
+          "tileId": "r03_c03",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.png",
+            "sha256": "dc09b8171747c5bc26a0d8a9864bc18f967ea093913d290c30387712c69ef439"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r03_c03_cross-paving-left-v1_4096.cross-native-repair.json",
+            "sha256": "dc31d808d8f8213d35a0f2ba8c181d76bf1915ca56f1c794c519ee098c6dd916"
+          }
+        },
+        {
+          "tileId": "r03_c04",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v1/r03_c04_cross-paving-upper-v1_4096.png",
+            "sha256": "acdfd1b87fa74cee5404d11cee8b101fe538d46ccba3a0717228ff61948b2ac7"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v1/r03_c04_cross-paving-upper-v1_4096.cross-native-repair.json",
+            "sha256": "3157f639a0278aad0b2a085b52581791a1637d7e05af5943bf5f454d6b88e5ef"
+          }
+        },
+        {
+          "tileId": "r04_c03",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r04_c03_cross-paving-left-v1_4096.png",
+            "sha256": "13b56ace57abc909dc2a8d644fdb99a3067bb7b940f06d9742bea3be3207aeb8"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v4/r04_c03_cross-paving-left-v1_4096.cross-native-repair.json",
+            "sha256": "c219ad9c05b1e1b4ccd7ff063793390e2867841c04de51b43159abe08b2d21f9"
+          }
+        },
+        {
+          "tileId": "r04_c04",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v3/r04_c04_cross-paving-lower-v1_4096.png",
+            "sha256": "59225f5278c47b512ea3b98b7c79e64ee5c4bb216e28362ba0c082931925a362"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-closure-cross-v3/r04_c04_cross-paving-lower-v1_4096.cross-native-repair.json",
+            "sha256": "d7dc79235c20b56077f58b581ac5089d7700df81281620f8fe915e958b17cbeb"
+          }
+        }
+      ]
+    }
+  }
+}

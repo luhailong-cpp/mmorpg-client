@@ -1,0 +1,3 @@
+Final manifests: main 27, island 55, village 69
+PASS: 1891 assertions on the actual production DLL.
+No Unity native APIs, rendering, JsonUtility, Resources or imported textures executed.

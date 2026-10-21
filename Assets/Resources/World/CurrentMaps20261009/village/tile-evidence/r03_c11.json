@@ -1,0 +1,739 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 3,
+  "column": 11,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "dd8fc849fe477cadb7ac8814b727a98383ef43efba49c38b889d1c4e2ef5ce18",
+  "imageBytes": 23424888,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c11/candidate/r03_c11-4096-candidate-v2.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/progress.json",
+  "sourceLedgerSha256": "d75f04bd949c874bac19ea715bcf3d3e0bce5cd1601b4d0271f5694375022c48",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "nativeCoresSelected": 16,
+    "selected": [
+      "p11",
+      "p12",
+      "p13",
+      "p14",
+      "p21",
+      "p22",
+      "p23",
+      "p24",
+      "p31",
+      "p32",
+      "p33",
+      "p34",
+      "p41",
+      "p42",
+      "p43",
+      "p44"
+    ],
+    "formalAccepted": false,
+    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c11/candidate/r03_c11-4096-candidate-v2.png",
+    "candidateSha256": "dd8fc849fe477cadb7ac8814b727a98383ef43efba49c38b889d1c4e2ef5ce18",
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "status": "candidate_complete_internal_and_within_region_seams_reviewed",
+    "externalRegionSeamsChecked": false
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/progress.json",
+    "sourceSha256": "d75f04bd949c874bac19ea715bcf3d3e0bce5cd1601b4d0271f5694375022c48",
+    "normalizedDocument": {
+      "updatedAt": "2026-10-13T04:42:40.092593+00:00",
+      "status": "production_complete_six_candidates_external_neighbors_pending",
+      "tiles": {
+        "r03_c10": {
+          "nativeCoresSelected": 16,
+          "selected": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "formalAccepted": false,
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c10/candidate/r03_c10-4096-candidate-v4.png",
+          "candidateSha256": "d09540ee1f04f1d70d2640cacde313553b8748587aedbf14a44b9a9e7a5aa3fc",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "status": "candidate_complete_internal_and_within_region_seams_reviewed",
+          "externalRegionSeamsChecked": false
+        },
+        "r03_c11": {
+          "nativeCoresSelected": 16,
+          "selected": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "formalAccepted": false,
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c11/candidate/r03_c11-4096-candidate-v2.png",
+          "candidateSha256": "dd8fc849fe477cadb7ac8814b727a98383ef43efba49c38b889d1c4e2ef5ce18",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "status": "candidate_complete_internal_and_within_region_seams_reviewed",
+          "externalRegionSeamsChecked": false
+        },
+        "r04_c10": {
+          "nativeCoresSelected": 16,
+          "selected": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "formalAccepted": false,
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c10/candidate/r04_c10-4096-candidate-v2.png",
+          "candidateSha256": "3961a38d871aed8556d49caae0aa15a72a75f18cf4a2d4220f1ba0b123e17032",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "status": "candidate_complete_internal_and_within_region_seams_reviewed",
+          "externalRegionSeamsChecked": false
+        },
+        "r04_c11": {
+          "nativeCoresSelected": 16,
+          "selected": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "formalAccepted": false,
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c11/candidate/r04_c11-4096-candidate-v3.png",
+          "candidateSha256": "0acaa06cfeca7c12845bf8a15243d9bda8dfdac2e747e46437f9641eb3828ce4",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "status": "candidate_complete_internal_and_within_region_seams_reviewed",
+          "externalRegionSeamsChecked": false
+        },
+        "r05_c10": {
+          "updatedAt": "2026-10-12T14:51:24.096140+00:00",
+          "tile": "r05_c10",
+          "status": "candidate_complete_internal_and_within_region_seams_reviewed",
+          "selectedNativeCoreCount": 16,
+          "requiredNativeCoreCount": 16,
+          "selected": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "nextCoordinate": null,
+          "formalAccepted": false,
+          "actualModel": null,
+          "actualQuality": null,
+          "builtinOnly": true,
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c10/candidate/r05_c10-4096-candidate-v4.png",
+          "candidateSha256": "12f7182b14e66c662a94e73e9d1aaba428174a2fec48bcc4b68bb4a1a5bb9f6f",
+          "nativeCoreCount": 16,
+          "internalSeamsReviewed": 24,
+          "northSeamsReviewed": 4,
+          "blockingFindings": 0,
+          "qaReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c10/qa/final-v4/findings.json",
+          "validationReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c10/qa/final-v4/findings.json",
+          "formalAcceptanceReason": "Region outer neighbors are not all checked.",
+          "repairCount": 2,
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "externalRegionSeamsChecked": false,
+          "qaManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c10/qa/final-v4/manifest.json",
+          "neighborSeamsReviewed": 4,
+          "repairCountDefinition": "Selected distinct builtin raw repair sources used by this tile; shared source is counted once region-wide.",
+          "repairContributionCount": 3
+        },
+        "r05_c11": {
+          "updatedAt": "2026-10-12T14:51:24.096140+00:00",
+          "tile": "r05_c11",
+          "status": "candidate_complete_internal_and_within_region_seams_reviewed",
+          "selectedNativeCoreCount": 16,
+          "requiredNativeCoreCount": 16,
+          "selected": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "nextCoordinate": null,
+          "formalAccepted": false,
+          "actualModel": null,
+          "actualQuality": null,
+          "builtinOnly": true,
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/candidate/r05_c11-4096-candidate-v4.png",
+          "candidateSha256": "f226a32c6b8927c4759fd5b49b895b75fde0786f25f05a7533f0cda21cb00ca5",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "externalRegionSeamsChecked": false,
+          "qaReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/qa/final-v4/findings.json",
+          "validationReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/qa/final-v4/findings.json",
+          "qaManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/qa/final-v4/manifest.json",
+          "internalSeamsReviewed": 24,
+          "northSeamsReviewed": 4,
+          "neighborSeamsReviewed": 4,
+          "blockingFindings": 0,
+          "repairCount": 6,
+          "repairCountDefinition": "Selected distinct builtin raw repair sources used by this tile; shared source is counted once region-wide.",
+          "repairContributionCount": 6
+        }
+      },
+      "selectedNativeCoreCount": 96,
+      "requiredNativeCoreCount": 96,
+      "nextCoordinate": null,
+      "formalAcceptedCount": 0,
+      "builtinOnly": true,
+      "paidApiUsed": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "externalSeamsChecked": false,
+      "rawGeneratedImageCount": 117,
+      "nextAction": "Recheck current ten exterior native neighbors and review available borders; six assigned tiles already complete. Builtin generation/repair allowed under corrected model preference.",
+      "withinRegionSeamsReviewed": true,
+      "deliveryManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/resume-20261012/candidate-manifest.json",
+      "regionCandidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/resume-20261012/jewelry-approach-six-8192x12288-candidate-v1.png",
+        "sha256": "cd927854c447e2feffcba1b006d6b87778a9f4a6872adb2f941cd5892a5cb135",
+        "dimensions": [
+          8192,
+          12288
+        ],
+        "operation": "unscaled native pixel paste of six4096 candidates"
+      },
+      "lastRecoveryCheckAt": "2026-10-11T05:31:31.689872+00:00",
+      "lastRecoveryCheck": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/delivery/resume-check-20261011.json",
+      "newGeneratedImagesThisRecovery": 0,
+      "remainingNeighborPairs": {
+        "north": [
+          [
+            "r02_c10",
+            "r03_c10"
+          ],
+          [
+            "r02_c11",
+            "r03_c11"
+          ]
+        ],
+        "south": [
+          [
+            "r06_c10",
+            "r05_c10"
+          ],
+          [
+            "r06_c11",
+            "r05_c11"
+          ]
+        ],
+        "west": [
+          [
+            "r03_c09",
+            "r03_c10"
+          ],
+          [
+            "r04_c09",
+            "r04_c10"
+          ],
+          [
+            "r05_c09",
+            "r05_c10"
+          ]
+        ],
+        "east": [
+          [
+            "r03_c12",
+            "r03_c11"
+          ],
+          [
+            "r04_c12",
+            "r04_c11"
+          ],
+          [
+            "r05_c12",
+            "r05_c11"
+          ]
+        ]
+      },
+      "originalFourCandidateCount": 4,
+      "originalFourPreserved": true,
+      "assignedCoordinates": [
+        "r03_c10",
+        "r03_c11",
+        "r04_c10",
+        "r04_c11",
+        "r05_c10",
+        "r05_c11"
+      ],
+      "assignmentSource": "qdao_city_tiles_4k_20260916/builtin_q64_production/acceleration-20261010/assignments.json",
+      "activeExtensionCoordinates": [
+        "r05_c10",
+        "r05_c11"
+      ],
+      "nextCoordinates": [],
+      "previousFourTileInternalSeamsReviewed": true,
+      "migrationCoordination": {
+        "centralOwnerThread": "01a11b5e-158a-77d0-8c02-e8e503b7abe4",
+        "localGitOperationsPaused": true,
+        "automaticGitScriptsOwnedByThisTask": [],
+        "policy": "Artwork resumed under20261012 authority; Git and upload snapshots owned only by migration thread."
+      },
+      "extensionRawGeneratedImageCount": 46,
+      "extensionCoreVersionCount": 33,
+      "extensionRepairRawCount": 13,
+      "generationStopped": true,
+      "candidateCount": 6,
+      "completeCandidateCount": 6,
+      "completeCandidateCountDefinition": "Six full4096 candidates with internal and within-region QA passed; external formal acceptance pending.",
+      "externalRegionSeamsChecked": false,
+      "exteriorNeighborPairs": [
+        {
+          "tile": "r03_c10",
+          "edge": "north",
+          "neighbor": "r02_c10"
+        },
+        {
+          "tile": "r03_c11",
+          "edge": "north",
+          "neighbor": "r02_c11"
+        },
+        {
+          "tile": "r05_c10",
+          "edge": "south",
+          "neighbor": "r06_c10"
+        },
+        {
+          "tile": "r05_c11",
+          "edge": "south",
+          "neighbor": "r06_c11"
+        },
+        {
+          "tile": "r03_c10",
+          "edge": "west",
+          "neighbor": "r03_c09"
+        },
+        {
+          "tile": "r03_c11",
+          "edge": "east",
+          "neighbor": "r03_c12"
+        },
+        {
+          "tile": "r04_c10",
+          "edge": "west",
+          "neighbor": "r04_c09"
+        },
+        {
+          "tile": "r04_c11",
+          "edge": "east",
+          "neighbor": "r04_c12"
+        },
+        {
+          "tile": "r05_c10",
+          "edge": "west",
+          "neighbor": "r05_c09"
+        },
+        {
+          "tile": "r05_c11",
+          "edge": "east",
+          "neighbor": "r05_c12"
+        }
+      ],
+      "migrationFreeze": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/migration-freeze-20261011.json",
+      "currentAdoptedCandidates": [
+        {
+          "tile": "r03_c10",
+          "version": 4,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c10/candidate/r03_c10-4096-candidate-v4.png",
+          "sha256": "d09540ee1f04f1d70d2640cacde313553b8748587aedbf14a44b9a9e7a5aa3fc",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            0,
+            0
+          ],
+          "globalCoreBox": [
+            36864,
+            8192,
+            40960,
+            12288
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r03_c11",
+          "version": 2,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c11/candidate/r03_c11-4096-candidate-v2.png",
+          "sha256": "dd8fc849fe477cadb7ac8814b727a98383ef43efba49c38b889d1c4e2ef5ce18",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            4096,
+            0
+          ],
+          "globalCoreBox": [
+            40960,
+            8192,
+            45056,
+            12288
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r04_c10",
+          "version": 2,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c10/candidate/r04_c10-4096-candidate-v2.png",
+          "sha256": "3961a38d871aed8556d49caae0aa15a72a75f18cf4a2d4220f1ba0b123e17032",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            0,
+            4096
+          ],
+          "globalCoreBox": [
+            36864,
+            12288,
+            40960,
+            16384
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r04_c11",
+          "version": 3,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c11/candidate/r04_c11-4096-candidate-v3.png",
+          "sha256": "0acaa06cfeca7c12845bf8a15243d9bda8dfdac2e747e46437f9641eb3828ce4",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            4096,
+            4096
+          ],
+          "globalCoreBox": [
+            40960,
+            12288,
+            45056,
+            16384
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r05_c10",
+          "version": 4,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c10/candidate/r05_c10-4096-candidate-v4.png",
+          "sha256": "12f7182b14e66c662a94e73e9d1aaba428174a2fec48bcc4b68bb4a1a5bb9f6f",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            0,
+            8192
+          ],
+          "globalCoreBox": [
+            36864,
+            16384,
+            40960,
+            20480
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r05_c11",
+          "version": 4,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/candidate/r05_c11-4096-candidate-v4.png",
+          "sha256": "f226a32c6b8927c4759fd5b49b895b75fde0786f25f05a7533f0cda21cb00ca5",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            4096,
+            8192
+          ],
+          "globalCoreBox": [
+            40960,
+            16384,
+            45056,
+            20480
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        }
+      ],
+      "pendingRepairs": [],
+      "productionResume": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/production-resume-20261012.json",
+      "localArtProductionComplete": true,
+      "candidateManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/resume-20261012/candidate-manifest.json",
+      "productionSummary": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/resume-20261012/production-summary.json",
+      "generationStopReason": "assigned_artwork_complete",
+      "selectedCandidatePaths": [
+        {
+          "tile": "r03_c10",
+          "version": 4,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c10/candidate/r03_c10-4096-candidate-v4.png",
+          "sha256": "d09540ee1f04f1d70d2640cacde313553b8748587aedbf14a44b9a9e7a5aa3fc",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            0,
+            0
+          ],
+          "globalCoreBox": [
+            36864,
+            8192,
+            40960,
+            12288
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r03_c11",
+          "version": 2,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r03_c11/candidate/r03_c11-4096-candidate-v2.png",
+          "sha256": "dd8fc849fe477cadb7ac8814b727a98383ef43efba49c38b889d1c4e2ef5ce18",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            4096,
+            0
+          ],
+          "globalCoreBox": [
+            40960,
+            8192,
+            45056,
+            12288
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r04_c10",
+          "version": 2,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c10/candidate/r04_c10-4096-candidate-v2.png",
+          "sha256": "3961a38d871aed8556d49caae0aa15a72a75f18cf4a2d4220f1ba0b123e17032",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            0,
+            4096
+          ],
+          "globalCoreBox": [
+            36864,
+            12288,
+            40960,
+            16384
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r04_c11",
+          "version": 3,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r04_c11/candidate/r04_c11-4096-candidate-v3.png",
+          "sha256": "0acaa06cfeca7c12845bf8a15243d9bda8dfdac2e747e46437f9641eb3828ce4",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            4096,
+            4096
+          ],
+          "globalCoreBox": [
+            40960,
+            12288,
+            45056,
+            16384
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r05_c10",
+          "version": 4,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c10/candidate/r05_c10-4096-candidate-v4.png",
+          "sha256": "12f7182b14e66c662a94e73e9d1aaba428174a2fec48bcc4b68bb4a1a5bb9f6f",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            0,
+            8192
+          ],
+          "globalCoreBox": [
+            36864,
+            16384,
+            40960,
+            20480
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        },
+        {
+          "tile": "r05_c11",
+          "version": 4,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/candidate/r05_c11-4096-candidate-v4.png",
+          "sha256": "f226a32c6b8927c4759fd5b49b895b75fde0786f25f05a7533f0cda21cb00ca5",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "regionPasteAt": [
+            4096,
+            8192
+          ],
+          "globalCoreBox": [
+            40960,
+            16384,
+            45056,
+            20480
+          ],
+          "formalAccepted": false,
+          "stage": "assigned_artwork_complete_internal_and_region_QA_passed"
+        }
+      ],
+      "exteriorNeighborAvailability": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/r05_c11/qa/resume-20261012/outer-neighbor-availability.json",
+      "generationCounts": {
+        "selectedCoreCount": 96,
+        "requiredCoreCount": 96,
+        "extensionSelectedCoreCount": 32,
+        "priorSelectedCoreCount": 64,
+        "extensionCoreNativeVersionCount": 33,
+        "extensionRepairRawCount": 13,
+        "extensionRawCount": 46,
+        "priorRawCount": 71,
+        "rawGeneratedImageCount": 117,
+        "newRawCountSinceResume": 1,
+        "allRawNativeDimensions1254": true,
+        "allActualModelQualityUnknown": true
+      },
+      "imageGenerationPolicy": {
+        "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/accelerated-jewelry-approach/image-model-preference-20261013.json",
+        "recordSha256": "5930605d24ed53b10e6e2591e1120d73f1467eb12191d52d571e9faa1ddb8472",
+        "sourceDocument": "docs/IMAGE_MODEL_REQUIREMENT.md",
+        "rootInstructions": "AGENTS.md",
+        "preferredModel": "GPT Image 2.5 when free/included",
+        "allowedFallback": "GPT Image 2.0 via existing builtin route",
+        "builtinRoutePermitted": true,
+        "actualModel": null,
+        "newGenerationAllowed": true,
+        "paidApiAuthorized": false,
+        "existingOutputsPreserved": true
+      },
+      "newGenerationPausedForModelRequirement": false,
+      "pausedLocalMissingGenerationTasks": []
+    }
+  }
+}

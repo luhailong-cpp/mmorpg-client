@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 13,
+  "column": 5,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "e91aae1586859b351dc60774b0bad711cd6c8198a0e37cf2214d2336ce54b20d",
+  "imageBytes": 25104207,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r13_c05_v3.png",
+  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/art-delivery-index.json",
+  "sourceLedgerSha256": "11410da8b8b608054a614b2e28747d675aae016a14655dcbd93d31232eea8799",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "internal_passed_external_pending",
+  "externalStatus": "pending_or_not_formally_accepted",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c05",
+    "status": "art_accepted",
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "file": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r13_c05_v3.png",
+      "sha256": "e91aae1586859b351dc60774b0bad711cd6c8198a0e37cf2214d2336ce54b20d"
+    },
+    "globalCoreBox": [
+      16384,
+      49152,
+      20480,
+      53248
+    ],
+    "source": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-r13_c05-candidate-4096.png",
+      "sha256": "e91aae1586859b351dc60774b0bad711cd6c8198a0e37cf2214d2336ce54b20d"
+    },
+    "sourceTrace": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-export-trace.json",
+      "sha256": "edca047b7f66696b48212f57ae197669833d5fe3d0715bbb1342f656df7108c1"
+    },
+    "artAudit": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-export-audit.json",
+      "sha256": "f8bd718d5b095cbe198088401234ea4a882b7aad364bf8178e70a5cfc03e3df3"
+    },
+    "nativeContext": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-r13_c05-context-native.png",
+      "sha256": "98b7123aca88cf9e39c9edc91e7bf94ebcd5cdfb3e78e95a7f8def045deebf3b",
+      "size": [
+        4326,
+        4326
+      ]
+    },
+    "noResize": true,
+    "noBlend": true,
+    "sourcePixelIdentity": true,
+    "priorVersion": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r13_c05_v2.png",
+      "sha256": "fcc3814807629c0937a37ba5808030dfa8304623034bb51fb41b21e3238617c1"
+    },
+    "runtimeGateActive": false,
+    "provenanceRecord": {
+      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r13_c05_v3.png.provenance.json",
+      "sha256": "69df855e22791407eaff142d11233577e7d4ea8f0af62d8f52d9b529d3ba5093"
+    }
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-export-audit.json",
+    "sourceSha256": "f8bd718d5b095cbe198088401234ea4a882b7aad364bf8178e70a5cfc03e3df3",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-17T12:56:39.479077+00:00",
+      "status": "art_passed",
+      "scope": "4096 native CORE artwork of r13_c05/r14_c04/r14_c05 and reviewed core shared joins only; NOT full external halo or full-map acceptance.",
+      "trace": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-export-trace.json",
+        "sha256": "edca047b7f66696b48212f57ae197669833d5fe3d0715bbb1342f656df7108c1"
+      },
+      "verification": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-verification.json",
+        "sha256": "8cb3d144d1507b3c1b09c938ae5337f867b57950d9ee55c871cc43379a046b57"
+      },
+      "generationReceipt": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-receipt-validated.json",
+        "sha256": "c9944ef171a83575e63f031aeafecf2843969c5b4f17cee31dda28166651da37"
+      },
+      "actualModel": null,
+      "reusedC04InternalAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/restart-r14c04-internal-qa-20261017-v1.json",
+        "sha256": "b18fc099853aef2bed81f5bd57fb008a9cec175d067a3cde3021c6b1c40406bb"
+      },
+      "reusedEastAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r14c04-r14c05-restart1017-v1-art-audit-v1.json",
+        "sha256": "d887a7e64505945039089753b19d810d97cc4554661da6c213f6eae4b76057e7"
+      },
+      "reusedNorthArtAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-r13r14c05-c06-export-audit-1017-v1.json",
+        "sha256": "1ea711c53f9015fc1d8dca0ab693bc26decce7de0794de34bdf003739c29e3f1"
+      },
+      "validation": {
+        "schemaVersion": 1,
+        "createdAtUtc": "2026-10-17T12:56:39.144383+00:00",
+        "status": "core_art_verified_external_halo_pending",
+        "script": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-finalize.py",
+          "sha256": "583231467488a00c749c61bff4be24f81990071aed5c848eeaba5b4d4803d1f4"
+        },
+        "repairTrace": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-trace.json",
+          "sha256": "f65459c8cd35bd74d1338903d77bb4cc7ef0227f2ad87c6323639d0af7bb507c"
+        },
+        "generationReceipt": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-receipt-validated.json",
+          "sha256": "c9944ef171a83575e63f031aeafecf2843969c5b4f17cee31dda28166651da37"
+        },
+        "r13North230Preserved": true,
+        "r14c05East230Preserved": true,
+        "r14c04West230Preserved": true,
+        "northSouthShared230Exact": true,
+        "eastWestShared230Exact": true,
+        "threeNativeContextDimensions": [
+          4326,
+          4326
+        ],
+        "threeCoreDimensions": [
+          4096,
+          4096
+        ],
+        "threeCoreCropsExact": true,
+        "r14c04CoreShaUnchangedFromReviewedEastPair": true,
+        "r14c05CoreShaUnchangedFromReviewedEastPair": true,
+        "r13c05All39StandardInternalWindowPixelsUnchanged": true,
+        "c04Original39QaFilesHashesUnchanged": true,
+        "eastFiveQaWindowsExactInCurrentContexts": true,
+        "localCompositePixelSelectionExact": true,
+        "selectedGeneratedPixelCount": 41873,
+        "sourcePixelIdentity": true,
+        "resampled": false,
+        "blended": false,
+        "colourCorrected": false,
+        "proceduralPainting": false,
+        "r13c05CoreChangesFromAccepted": {
+          "changedPixels": 24329,
+          "changedBox": [
+            0,
+            3855,
+            167,
+            4096
+          ]
+        }
+      },
+      "visualObservations": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-local-joined-cut-100pct.png",
+          "sha256": "03d761a5a4e355af4efb91aa13cc5e8e1f7f780c7b87db3091a9597b15c6aa53",
+          "size": [
+            600,
+            450
+          ],
+          "sourceBox": [
+            0,
+            300,
+            600,
+            750
+          ],
+          "role": "AI repair and all local hard-choice cut boundaries",
+          "noResize": true,
+          "status": "pass",
+          "note": "原水平断口消除；原尺寸检查生成像素选择区的上、下、右切口均未见明显硬线。岩石保持原始像素。",
+          "viewedWith": "view_image detail=original"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-r13c05-southwest-100pct.png",
+          "sha256": "04585958dbd4c1529625cbae69806f36f397218c9be870aa6ce9ded57d8bcafc",
+          "size": [
+            690,
+            900
+          ],
+          "sourceBox": [
+            0,
+            3426,
+            690,
+            4326
+          ],
+          "role": "r13_c05 southwest output and former insertion cut",
+          "noResize": true,
+          "status": "pass",
+          "note": "南西角水纹连贯，旧context y4096水平断线已消失。",
+          "viewedWith": "view_image detail=original"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-north-south-shared-west-100pct.png",
+          "sha256": "aea7eb0f59398ccb8c015fc0b5e943713f8af4adb5ad582cca407002cc31843b",
+          "size": [
+            900,
+            690
+          ],
+          "sourceBox": [
+            115,
+            3866,
+            1015,
+            4556
+          ],
+          "role": "affected r13_c05/r14_c05 native core seam west window",
+          "noResize": true,
+          "status": "pass",
+          "note": "南北核心主接缝及原先核心左侧26px断口连贯，无新增可见接缝。",
+          "viewedWith": "view_image detail=original"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-c04-c05-north-halo-100pct.png",
+          "sha256": "97777eafb1c13f6dbefa1d74cfcad28c474f05d63792a79e5c8d44898617fe3f",
+          "size": [
+            690,
+            690
+          ],
+          "sourceBox": [
+            3866,
+            0,
+            4556,
+            690
+          ],
+          "role": "changed c04/c05 north halo and east-overlap propagation edge at image x230",
+          "noResize": true,
+          "status": "not_passed_pending_neighbor",
+          "note": "核心保持。缺r13_c04邻片处的北侧外halo仍保守留待接验收，不计全halo通过。",
+          "viewedWith": "view_image detail=original"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-c04-c05-core-shared-first-100pct.png",
+          "sha256": "94b5a2a3787d886f91aee1a3dd2b58debd3d10d0cad340ea7fa328b580dbcd4f",
+          "size": [
+            690,
+            900
+          ],
+          "sourceBox": [
+            3866,
+            115,
+            4556,
+            1015
+          ],
+          "role": "c04/c05 first core join window",
+          "noResize": true,
+          "status": "pass",
+          "note": "与此前通过的首个东连接核心窗逐像素一致，礁石和白浪连续。",
+          "viewedWith": "view_image detail=original"
+        }
+      ],
+      "extraHaloDetailViews": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-c04-halo-cut-detail-100pct.png",
+          "sha256": "1b404a3ffea9a97691fe71a4049caf0424a94675bcc9f8a9bf02701d2ffed92f",
+          "size": [
+            500,
+            200
+          ],
+          "sourceBox": [
+            3981,
+            0,
+            4481,
+            200
+          ],
+          "viewedWith": "view_image detail=original",
+          "noResize": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-c04-halo-cut-before-100pct.png",
+          "sha256": "160223f6ac08f7de8ba84f10ac1c6f118eaa022c04f00ed53f0587a02cb04b6e",
+          "size": [
+            500,
+            200
+          ],
+          "viewedWith": "view_image detail=original",
+          "noResize": true
+        }
+      ],
+      "resolvedIssues": [
+        "r14c05-northwest-propagation-after-c04-east-join",
+        "r13c05-southwest-insertion-water-cut"
+      ],
+      "unpassedExternalIssues": [
+        {
+          "id": "r14c04-northeast-halo-pending-r13c04",
+          "status": "not_passed_pending_neighbor",
+          "tile": "r14_c04",
+          "description": "AI repair was propagated across the c04/c05 shared overlap. At the upper crop edge a short water/foam transition near c04 context x4096 has changed. Original-size before/after views were inspected; conservatively leave this outer-halo connection pending r13_c04 instead of claiming full halo acceptance. No new core pixels changed in either r14 tile.",
+          "nativeContextApproxIssueBox": [
+            4088,
+            0,
+            4116,
+            80
+          ],
+          "globalApproxIssueBox": [
+            16261,
+            53133,
+            16289,
+            53213
+          ],
+          "coreAffected": false,
+          "coreStartsAtContextY": 115,
+          "allChangedC04PixelsBox": [
+            4096,
+            0,
+            4326,
+            73
+          ],
+          "pendingNeighbor": "r13_c04",
+          "neighborWritten": false,
+          "evidence": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-c04-halo-cut-detail-100pct.png",
+            "sha256": "1b404a3ffea9a97691fe71a4049caf0424a94675bcc9f8a9bf02701d2ffed92f",
+            "size": [
+              500,
+              200
+            ],
+            "sourceBox": [
+              3981,
+              0,
+              4481,
+              200
+            ],
+            "viewedWith": "view_image detail=original",
+            "noResize": true
+          },
+          "beforeEvidence": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-c04-halo-cut-before-100pct.png",
+            "sha256": "160223f6ac08f7de8ba84f10ac1c6f118eaa022c04f00ed53f0587a02cb04b6e",
+            "size": [
+              500,
+              200
+            ],
+            "viewedWith": "view_image detail=original",
+            "noResize": true
+          }
+        }
+      ],
+      "reviewedTiles": [
+        "r13_c05",
+        "r14_c04",
+        "r14_c05"
+      ],
+      "coreArtPassed": true,
+      "formalAcceptance": false,
+      "wholeMapAccepted": false,
+      "fullExternalHaloPassed": false,
+      "coordinatorAdoptionRequired": true,
+      "workerExported": false,
+      "onlyNewQaFilesWritten": true,
+      "indexProgressNativeTilesGitUntouched": true,
+      "r13c04Written": false
+    }
+  }
+}
