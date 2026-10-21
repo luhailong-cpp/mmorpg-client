@@ -82,12 +82,15 @@ def normalize_source_references(value, art_root):
     if isinstance(value, list):
         return [normalize_source_references(v, art_root) for v in value]
     if isinstance(value, str):
-        root = str(art_root.resolve()).rstrip('\\/')
-        for prefix in (root + '\\', root.replace('\\', '/') + '/'):
-            value = re.sub(re.escape(prefix), '', value, flags=re.IGNORECASE)
         # These are source JSON references, not paths consumed by the verifier.
         # Convert their separators so the archived document is readable anywhere.
         value = value.replace('\\', '/')
+        # Windows TEMP can use an 8.3 spelling (RUNNER~1) while resolve() expands
+        # it. Keep both the original absolute spelling and the resolved root.
+        roots = {str(root).replace('\\', '/').rstrip('/')
+                 for root in (art_root.absolute(), art_root.resolve())}
+        for root in sorted(roots, key=len, reverse=True):
+            value = re.sub(re.escape(root + '/'), '', value, flags=re.IGNORECASE)
         # Some QA records mention the generator's original host file, outside
         # the art repository. Label it explicitly as historical provenance;
         # the client does not consume or require that workstation path.

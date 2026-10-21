@@ -1,12 +1,12 @@
 """Partial native tile delivery: portability, provenance and corrupt asset checks."""
 import io
 import json
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import struct
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 import zlib
 
 from PIL import Image
@@ -179,6 +179,29 @@ class CompletedMapTileTests(unittest.TestCase):
         self.assertEqual(evidence['normalizedDocument']['sourceHostFile'],
                          'source-host/C/Users/artist/generated/tile.png')
         self.assertNotEqual(tiles.digest(tiles.json_bytes(evidence)), source_sha)
+
+    def test_qa_normalization_handles_windows_short_and_resolved_root_spellings(self):
+        short = PureWindowsPath('C:/Users/RUNNER~1/AppData/Local/Temp/map-test/art')
+        resolved = PureWindowsPath('C:/Users/runneradmin/AppData/Local/Temp/map-test/art')
+        art_root = MagicMock(spec=Path)
+        art_root.absolute.return_value = short
+        art_root.resolve.return_value = resolved
+        source = {
+            'shortBackslashes': str(short / 'tile.png'),
+            'shortForwardSlashes': (short / 'sub/tile.png').as_posix(),
+            'resolvedBackslashes': str(resolved / 'tile.png'),
+            'resolvedForwardSlashes': (resolved / 'tile.png').as_posix(),
+            'shortDifferentCase': str(short / 'tile.png').lower(),
+            'outsideRoot': str(PureWindowsPath(str(short) + '-other') / 'tile.png'),
+        }
+        self.assertEqual(tiles.normalize_source_references(source, art_root), {
+            'shortBackslashes': 'tile.png',
+            'shortForwardSlashes': 'sub/tile.png',
+            'resolvedBackslashes': 'tile.png',
+            'resolvedForwardSlashes': 'tile.png',
+            'shortDifferentCase': 'tile.png',
+            'outsideRoot': 'source-host/C/Users/RUNNER~1/AppData/Local/Temp/map-test/art-other/tile.png',
+        })
 
 
 if __name__ == '__main__':
