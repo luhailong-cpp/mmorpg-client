@@ -53,6 +53,60 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void SlowProbePlanDoesNotQueryAnUnsentSoloJoin()
+        {
+            var net = new FakeBattleTransport();
+            var battle = new BattleClient(net)
+            {
+                RegionProbe = new RegionProbeClient(net, () => new Connection(), work => work()),
+            };
+            battle.Tick(0);
+            net.CallsOf(MessageIds.GetQueueStatus).Single().Respond(
+                new Match.GetQueueStatusResponse { State = Match.QueueState.NotQueued });
+            net.Calls.Clear();
+
+            battle.JoinQueue(Match.MatchMode.PveSolo, 1);
+            var pendingPlan = net.CallsOf(MessageIds.GetNetworkProbePlan).Single();
+            battle.Tick(3.1);
+            battle.Tick(6.2);
+
+            Assert.That(net.CallsOf(MessageIds.GetQueueStatus), Is.Empty,
+                "地域探测尚未完成，服务端还没有收到入队请求，不能查询并用 NotQueued 撤掉本次匹配");
+            Assert.That(battle.Phase, Is.EqualTo(BattlePhase.Queued));
+            Assert.That(net.CallsOf(MessageIds.JoinQueue), Is.Empty);
+
+            pendingPlan.Respond(new Match.GetNetworkProbePlanResponse { Required = false });
+            var join = (Match.JoinQueueRequest)net.CallsOf(MessageIds.JoinQueue).Single().Request;
+            Assert.That(join.Mode, Is.EqualTo(Match.MatchMode.PveSolo));
+            Assert.That(join.BattleConfigId, Is.EqualTo(1));
+            battle.Tick(6.3);
+            Assert.That(net.CallsOf(MessageIds.GetQueueStatus), Is.Empty,
+                "首轮排队轮询应从真正提交入队请求后计时");
+            battle.Tick(9.3);
+            Assert.That(net.CallsOf(MessageIds.GetQueueStatus), Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void FirstReadyTickDoesNotQueryAnUnsentSoloJoin()
+        {
+            var net = new FakeBattleTransport();
+            var battle = new BattleClient(net)
+            {
+                RegionProbe = new RegionProbeClient(net, () => new Connection(), work => work()),
+            };
+            battle.JoinQueue(Match.MatchMode.PveSolo, 1);
+            var pendingPlan = net.CallsOf(MessageIds.GetNetworkProbePlan).Single();
+
+            battle.Tick(0);
+
+            Assert.That(net.CallsOf(MessageIds.GetQueueStatus), Is.Empty,
+                "首次就绪的补查同样不能抢在本次地域探测及入队请求之前");
+            pendingPlan.Respond(new Match.GetNetworkProbePlanResponse { Required = false });
+            Assert.That(net.CallsOf(MessageIds.JoinQueue), Has.Count.EqualTo(1));
+            Assert.That(battle.Phase, Is.EqualTo(BattlePhase.Queued));
+        }
+
+        [Test]
         public void EchoesChallengesAndSubmitsUnmodifiedSignedReceipt()
         {
             var net = new FakeBattleTransport(); var connection = new Connection();

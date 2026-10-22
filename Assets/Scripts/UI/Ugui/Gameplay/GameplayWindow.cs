@@ -71,6 +71,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _frameControls = frame.gameObject.AddComponent<CanvasGroup>();
             _nativeFrame = QdaoUguiFactory.CreateImage("PageArtwork", frame, 0, 0, NativeWidth, NativeHeight, NativeSprite("inventory-frame"));
             _title = NativeText(frame, "背 包", 755, 27, 420, 67, 52, Cream, TextAlignmentOptions.Center);
+            _title.enabled = false;
+            _nativeTitle = NativeArt(frame, "original-title-bag", 755, 27, 420, 67);
+            _nativeTitle.name = "OriginalPageTitle"; _nativeTitle.raycastTarget = false;
             _subtitle = NativeText(frame, "", 0, 0, 1, 1, 1); _subtitle.gameObject.SetActive(false);
             NativeHit(frame, "CloseWindow", "", 1779, 24, 84, 80, Hide);
             _body = QdaoUguiFactory.CreateRect("PageContent", frame, 0, 0, NativeWidth, NativeHeight);
@@ -92,7 +95,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _missionFilterMenu = false;
             _nativeFrame.sprite = NativeSprite(page == GameplayPage.Bag ? "inventory-frame" : page == GameplayPage.Missions ? "quests-frame" : "activities-frame");
             _title.text = page == GameplayPage.Bag ? "背 包" : page == GameplayPage.Missions ? "任 务" : "活 动";
-            _search.gameObject.SetActive(false); _bagTools = _activityTools = false;
+            _nativeTitle.sprite = NativeSprite(page == GameplayPage.Bag ? "original-title-bag" : page == GameplayPage.Missions ? "original-title-missions" : "original-title-activities");
+            _search.gameObject.SetActive(false); _bagTools = _activityTools = false; _activityDetails = 0;
             if (page == GameplayPage.Missions && _missionFilter == 0 && _missions?.Missions.Count > 0 &&
                 _missions.Missions.All(m => (int)m.Status == 0)) _missionFilter = 3;
             Render(); Refresh();

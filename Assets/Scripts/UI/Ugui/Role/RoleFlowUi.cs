@@ -617,7 +617,11 @@ namespace MmorpgClient.UI.Ugui.Role
             _appearanceDetails = Label("AppearanceDetails", _createRoot, 1040f, 74f, 556f, 31f,
                 string.Empty, 21f, Wood, TextAlignmentOptions.Center);
             _createBackButton = TextButton("BackFromCreate", _createRoot, 208f, 944f, 416f, "返回", false);
-            _createBackButton.Rect.anchoredPosition=new Vector2(250,-954);_createBackButton.Rect.sizeDelta=new Vector2(367,105);
+            _createBackButton.Rect.anchoredPosition=new Vector2(247,-956);_createBackButton.Rect.sizeDelta=new Vector2(372,101);
+            // Only replace the old fixed lettering; the approved shell owns this button frame.
+            RoleFidelityArt.Skin(_createBackButton.Plate,"exact_role_create_back_face");
+            _createBackButton.Label.rectTransform.anchoredPosition=new Vector2(20,0);
+            _createBackButton.Label.rectTransform.sizeDelta=new Vector2(332,101);
             _createBackButton.Button.onClick.AddListener(() =>
             {
                 if (_players != null && _players.Count > 0) ShowSelectMode();
@@ -625,8 +629,10 @@ namespace MmorpgClient.UI.Ugui.Role
             });
             _confirmCreateButton = TextButton("ConfirmCreate", _createRoot, 1940f, 892f, 532f,
                 "创建并进入", true, 40f);
-            _confirmCreateButton.Rect.anchoredPosition=new Vector2(1871,-851);_confirmCreateButton.Rect.sizeDelta=new Vector2(572,160);
-            _confirmCreateButton.Label.rectTransform.sizeDelta=new Vector2(484,130);_confirmCreateButton.Label.fontSize=51;
+            _confirmCreateButton.Rect.anchoredPosition=new Vector2(1870,-854);_confirmCreateButton.Rect.sizeDelta=new Vector2(580,164);
+            RoleFidelityArt.Skin(_confirmCreateButton.Plate,"exact_role_create_enter_face");
+            _confirmCreateButton.Label.rectTransform.anchoredPosition=new Vector2(32,0);
+            _confirmCreateButton.Label.rectTransform.sizeDelta=new Vector2(516,164);_confirmCreateButton.Label.fontSize=51;
             _confirmCreateButton.Button.onClick.AddListener(ResolveCreate);
             BuildNameEntry();
         }

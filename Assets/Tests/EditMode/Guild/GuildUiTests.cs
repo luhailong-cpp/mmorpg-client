@@ -1782,10 +1782,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(Resources.Load<Sprite>("UI/Ugui/GuildV2/stat_field").border, Is.EqualTo(new Vector4(12, 12, 12, 12)));
             _window.Show();
             var crest = _root.GetComponentsInChildren<Image>().Single(i => i.name == "GuildCrest");
-            Assert.That(crest.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/GuildFidelity20261016/guild_crest")));
-            Assert.That(crest.preserveAspect, Is.True);
+            Assert.That(crest.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/GuildExact20261017/crest")));
+            Assert.That(crest.sprite.rect.size, Is.EqualTo(new Vector2(205, 186)), "原稿徽记切片尺寸");
+            Assert.That(crest.rectTransform.sizeDelta, Is.EqualTo(crest.sprite.rect.size), "原比例绘制徽记");
+            Assert.That(crest.type, Is.EqualTo(Image.Type.Simple));
+            Assert.That(crest.raycastTarget, Is.False);
             var images = _root.GetComponentsInChildren<Image>();
-            var shell = images.Single(i => i.name == "guild_empty_shell");
+            var shell = images.Single(i => i.name == "Exact_guild-skin");
+            Assert.That(shell.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/GuildExact20261017/guild-skin")));
             Assert.That(shell.raycastTarget, Is.False);
             Assert.That(shell.sprite.rect.size, Is.EqualTo(new Vector2(1932, 814)));
             foreach (string key in new[] { "guild_tab_selected", "guild_tab_normal", "guild_announcement", "guild_button_primary",

@@ -17,7 +17,7 @@ using UnityEngine.UI;
 /// <summary>Editor-only fixtures for the real skill panel. Never binds a game client or player.</summary>
 public static class SkillUiVerification
 {
-    public static string OutputDirectory => Path.GetFullPath(Path.Combine(Application.dataPath,
+    public static string OutputDirectory { get; set; } = Path.GetFullPath(Path.Combine(Application.dataPath,
         "../Docs/VerificationEvidence/skills-ui-20261009"));
 
     [MenuItem("MMORPG/UI/技能界面/打开交互预览")]

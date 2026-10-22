@@ -1,0 +1,14 @@
+{
+  "checkedUtc": "2026-10-22T05:53:44.1992315+00:00",
+  "unityVersion": "6000.6.0f1",
+  "result": "Passed",
+  "total": 30,
+  "passed": 30,
+  "failed": 0,
+  "skipped": 0,
+  "actualCaseCount": 30,
+  "sourceChangedDuringTest": false,
+  "changedSources": [],
+  "liveServerVerified": false,
+  "playerBuilt": false
+}

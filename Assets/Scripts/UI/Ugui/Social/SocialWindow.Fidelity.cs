@@ -45,7 +45,7 @@ namespace MmorpgClient.UI.Ugui.Social
             FHit(_fidelityContent,"SocialClose","",1753,51,75,73,Hide);
             var friend=FHit(_fidelityContent,"SocialFriendRequests","",1590,94,145,38,
                 () => FriendRequestsRequested?.Invoke(),!State.IsPreview);
-            FText(friend.transform,"Label","好友申请",65,0,76,38,18,Ink,align:TextAlignmentOptions.Center);
+            FText(friend.transform,"Label","申请",56,0,72,38,22,Ink,align:TextAlignmentOptions.Center);
             if(State.Page==SocialPage.World)RenderFidelityWorld();
             else if(State.Page==SocialPage.Groups)RenderFidelityGroups();
             else RenderFidelityRumors();

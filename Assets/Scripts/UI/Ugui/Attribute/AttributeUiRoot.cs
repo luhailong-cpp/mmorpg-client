@@ -41,6 +41,25 @@ namespace MmorpgClient.UI.Ugui.Attribute
         /// <summary>供子面板取 AttributeClient(可能为 null:NET 路尚未初始化)。</summary>
         public AttributeClient Client => _client;
 
+        // Identity is a read-only view of the current server-selected role, never preview data.
+        internal string RoleName
+        {
+            get
+            {
+                var game = _app?.GameClient;
+                return game != null && game.InGame && game.PlayerId != 0 ? game.ResolveRoleName(game.PlayerId) : null;
+            }
+        }
+        internal uint RoleClassId
+        {
+            get
+            {
+                var game = _app?.GameClient;
+                return game != null && game.InGame && game.PlayerId != 0 ? game.ResolveRoleClassId(game.PlayerId) : 0;
+            }
+        }
+
+
         /// <summary>
         /// 关掉属性窗。宝宝窗开的时候调:两个窗同位置同尺寸、Canvas 只差一层
         /// (属性 160 / 宝宝 161),不互斥的话后开的那个会把前一个整个盖住,
@@ -95,6 +114,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             EnsureBound();
             RefreshEntryVisibility();
             if (_panel == null || !_panel.IsVisible) return;
+            _panel.RefreshIdentity();
             var selected = EventSystem.current?.currentSelectedGameObject;
             if (selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
                 selected.GetComponentInParent<InputField>()?.isFocused == true)) return;
@@ -199,6 +219,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 BattleUiStyle.HudEntryFrame);
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
+            WorldHudNavigation.Register(WorldHudEntry.Role, _entryButton.Rect, _entryButton.Button, _entryButton.Label);
 
             _panel = new AttributePanel(this, windowRoot);
 

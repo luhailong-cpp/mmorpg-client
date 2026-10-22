@@ -98,6 +98,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _entry = CreateEntry(_hud, Toggle);
             _entryLabel = _entry.GetComponentInChildren<TMP_Text>(true);
             _entry.gameObject.SetActive(false);
+            WorldHudNavigation.Register(WorldHudEntry.Channel, (RectTransform)_entry.transform, _entry, _entryLabel);
             _window = new SceneChannelWindow(design);
             _window.SwitchRequested += sceneId => { if (_available) _client?.RequestSwitch(sceneId); };
             _window.RefreshRequested += RefreshNow;

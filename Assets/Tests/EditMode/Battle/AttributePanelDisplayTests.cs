@@ -1,4 +1,8 @@
 using System.Linq;
+using System.Reflection;
+using Loginpb;
+using MmorpgClient.Game;
+using MmorpgClient.UI;
 using MmorpgClient.UI.Ugui.Attribute;
 using NUnit.Framework;
 using TMPro;
@@ -15,6 +19,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
     {
         private GameObject _uiRoot;
         private AttributePanel _panel;
+        private AttributeUiRoot _owner;
+        private GameClient _identityGame;
+        private const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
 
         [SetUp]
         public void SetUp()
@@ -26,9 +33,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var ownerGo = new GameObject("AttributeOwner");
             ownerGo.SetActive(false);
             ownerGo.transform.SetParent(_uiRoot.transform, false);
-            var owner = ownerGo.AddComponent<AttributeUiRoot>();
-            owner.enabled = false;
-            _panel = new AttributePanel(owner, _uiRoot.transform);
+            _owner = ownerGo.AddComponent<AttributeUiRoot>();
+            _owner.enabled = false;
+            _panel = new AttributePanel(_owner, _uiRoot.transform);
             // 面板构造完是收起的;这里只看控件状态,不走 Show()(它会去关别的窗、拉面板)。
             Find<RectTransform>("AttributeWindow").gameObject.SetActive(true);
         }
@@ -36,8 +43,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [TearDown]
         public void TearDown()
         {
+            if (_identityGame != null)
+            {
+                _identityGame.Disconnect();
+                if (_identityGame.World.Root != null) Object.DestroyImmediate(_identityGame.World.Root.gameObject);
+                _identityGame = null;
+            }
             if (_uiRoot != null) Object.DestroyImmediate(_uiRoot);
             _panel = null;
+            _owner = null;
         }
 
         // ── 一级属性的装备加成 ──────────────────────────────
@@ -181,9 +195,104 @@ namespace MmorpgClient.Tests.EditMode.Battle
             foreach (var tab in new[] { "AttributeTabPlate", "AllocationTabPlate", "CombatTabPlate" })
             {
                 Find<Button>(tab).onClick.Invoke();
+                Find<Button>("ExactMoreEntryPlate").onClick.Invoke();
                 Assert.That(equipment.gameObject.activeInHierarchy, Is.True);
                 Assert.That(equipment.interactable, Is.True);
             }
+        }
+
+        [Test]
+        public void ApprovedIdentityAndSliderGeometryUsesCurrentServerLevel()
+        {
+            _panel.ApplyPanel(MakePanel());
+            Assert.That(Find<TMP_Text>("ExactIdentityLevel").text, Is.EqualTo("80级"));
+            Assert.That(Find<TMP_Text>("ExactIdentityName").text, Is.EqualTo("道友"));
+            Assert.That(Find<RectTransform>("Title").sizeDelta, Is.EqualTo(new Vector2(289.6f,54.4f)));
+            Assert.That(Find<RectTransform>("Stat0ValuePlate").anchoredPosition.y, Is.EqualTo(-318.4f));
+            var track=Find<Image>("Row0SliderBg");
+            Assert.That(track.preserveAspect, Is.False, "The 13px HTML track must not collapse to its source aspect ratio.");
+            Assert.That(track.rectTransform.sizeDelta.y, Is.EqualTo(20.8f));
+            Assert.That(Find<Image>("ColumnDivider").preserveAspect, Is.False);
+            Assert.That(Find<Image>("ExactObjectTab_0Selected").sprite, Is.Not.Null);
+        }
+
+        [TestCase(1u, "破军")]
+        [TestCase(2u, "玄霄")]
+        [TestCase(3u, "丹心")]
+        [TestCase(4u, "逐风")]
+        public void IdentityHeaderUsesTheActiveAccountRoleNameAndClass(uint classId, string profession)
+        {
+            BindIdentity(new AccountSimplePlayer { PlayerId = 101, Name = "云中君", ClassId = classId });
+            _panel.ApplyPanel(MakePanel());
+            Assert.That(Find<TMP_Text>("ExactIdentityName").text, Is.EqualTo("云中君"));
+            Assert.That(Find<TMP_Text>("ExactIdentityName").richText, Is.False);
+            Assert.That(Find<TMP_Text>("ExactIdentityLevel").text, Is.EqualTo(profession + " · 80级"));
+            Assert.That(Find<TMP_Text>("ExactOverviewLevel").text, Is.EqualTo("80级"));
+        }
+
+        [Test]
+        public void IdentityHeaderUsesNaturalFallbackAndDoesNotGuessAnUnknownClass()
+        {
+            BindIdentity(new AccountSimplePlayer { PlayerId = 101, Name = "   ", ClassId = 99 });
+            _panel.ApplyPanel(MakePanel());
+            Assert.That(Find<TMP_Text>("ExactIdentityName").text, Is.EqualTo("道友"));
+            Assert.That(Find<TMP_Text>("ExactIdentityLevel").text, Is.EqualTo("80级"));
+            var source = new AccountSimplePlayer { PlayerId = 202, Name = "<b>长风</b>", ClassId = 3 };
+            CacheIdentity(source);
+            SetCurrentIdentity(202, true);
+            RefreshIdentity();
+            Assert.That(Find<TMP_Text>("ExactIdentityName").text, Is.EqualTo(source.Name));
+            Assert.That(Find<TMP_Text>("ExactIdentityName").richText, Is.False, "Server-owned names remain literal text.");
+            Assert.That(Find<TMP_Text>("ExactIdentityName").enableAutoSizing, Is.True);
+        }
+
+        [Test]
+        public void IdentityRefreshChangesRoleAndClearsOldIdentityWhenTheSessionEnds()
+        {
+            BindIdentity(new AccountSimplePlayer { PlayerId = 101, Name = "云中君", ClassId = 1 },
+                new AccountSimplePlayer { PlayerId = 202, Name = "白露", ClassId = 3 });
+            _panel.ApplyPanel(MakePanel());
+            Find<Button>("Row0PlusPlate").onClick.Invoke();
+            string pending = Find<TMP_Text>("Row0Value").text;
+            SetCurrentIdentity(202, true);
+            RefreshIdentity();
+            Assert.That(Find<TMP_Text>("ExactIdentityName").text, Is.EqualTo("白露"));
+            Assert.That(Find<TMP_Text>("ExactIdentityLevel").text, Is.EqualTo("丹心 · 80级"));
+            Assert.That(Find<TMP_Text>("Row0Value").text, Is.EqualTo(pending), "Identity refresh must preserve the allocation draft.");
+            _identityGame.Disconnect();
+            RefreshIdentity();
+            Assert.That(Find<TMP_Text>("ExactIdentityName").text, Is.EqualTo("道友"));
+            Assert.That(Find<TMP_Text>("ExactIdentityLevel").text, Is.EqualTo("80级"));
+            Assert.That(_identityGame.ResolveRoleClassId(202), Is.Zero);
+        }
+
+        [Test]
+        public void ClassResolverReadsTheClonedAccountSnapshotWithoutGuessing()
+        {
+            var source = new AccountSimplePlayer { PlayerId = 101, Name = "云中君", ClassId = 1 };
+            BindIdentity(source);
+            source.ClassId = 4;
+            Assert.That(_identityGame.ResolveRoleClassId(101), Is.EqualTo(1u));
+            Assert.That(_identityGame.ResolveRoleClassId(0), Is.Zero);
+            Assert.That(_identityGame.ResolveRoleClassId(999), Is.Zero);
+            CacheIdentity(new AccountSimplePlayer { PlayerId = 202, Name = "白露", ClassId = 3 });
+            Assert.That(_identityGame.ResolveRoleClassId(101), Is.Zero, "A refreshed account list cannot retain an old role.");
+        }
+
+        [Test]
+        public void PendingBadgeTracksDraftAndRefreshWhileBusinessTextStaysIntact()
+        {
+            _panel.ApplyPanel(MakePanel());
+            var badge=Find<RectTransform>("ExactPendingBadge").GetComponentInChildren<TMP_Text>(true);
+            Assert.That(badge.text, Is.EqualTo("待分配"));
+            Find<Button>("Row0PlusPlate").onClick.Invoke();
+            Assert.That(badge.text, Is.EqualTo("待确认 1"));
+            Assert.That(Find<TMP_Text>("ExactRemain").text, Does.Contain(">9</color>"));
+            Assert.That(Find<TMP_Text>("Remain").text, Does.Contain("(待分配 1)"));
+            Assert.That(Find<TMP_Text>("Remain").enabled, Is.False);
+            _panel.ApplyPanel(MakePanel());
+            Assert.That(badge.text, Is.EqualTo("待分配"));
+            Assert.That(Find<TMP_Text>("ExactRemain").text, Does.Contain(">10</color>"));
         }
 
         [Test]
@@ -232,6 +341,33 @@ namespace MmorpgClient.Tests.EditMode.Battle
             };
             return panel;
         }
+
+        // Offline fixtures use the existing account-cache seam. No login, Show(), or transport is invoked.
+        private void BindIdentity(params AccountSimplePlayer[] roles)
+        {
+            _identityGame = new GameClient("http://127.0.0.1:1");
+            var appGo = new GameObject("InactiveIdentityApp");
+            appGo.SetActive(false);
+            appGo.transform.SetParent(_uiRoot.transform, false);
+            var app = appGo.AddComponent<AppBootstrap>();
+            typeof(AppBootstrap).GetField("<GameClient>k__BackingField", Private).SetValue(app, _identityGame);
+            typeof(AttributeUiRoot).GetField("_app", Private).SetValue(_owner, app);
+            CacheIdentity(roles);
+            SetCurrentIdentity(roles[0].PlayerId, true);
+        }
+
+        private void CacheIdentity(params AccountSimplePlayer[] roles)
+            => typeof(GameClient).GetMethod("CacheRoleMetadata", Private).Invoke(_identityGame,
+                new object[] { roles.Select(role => new AccountSimplePlayerWrapper { Player = role }).ToArray() });
+
+        private void SetCurrentIdentity(ulong playerId, bool inGame)
+        {
+            typeof(GameClient).GetField("<PlayerId>k__BackingField", Private).SetValue(_identityGame, playerId);
+            typeof(GameClient).GetField("<InGame>k__BackingField", Private).SetValue(_identityGame, inGame);
+        }
+
+        private void RefreshIdentity()
+            => typeof(AttributePanel).GetMethod("RefreshIdentity", Private).Invoke(_panel, null);
 
         private T Find<T>(string name) where T : Component
             => _uiRoot.GetComponentsInChildren<T>(true).Single(item => item.name == name);

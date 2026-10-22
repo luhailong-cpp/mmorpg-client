@@ -346,6 +346,10 @@ namespace MmorpgClient.Game
         public string ResolveRoleName(ulong playerId)
             => playerId != 0 && _knownRoles.TryGetValue(playerId, out var role) ? role.Name : null;
 
+        /// <summary>Server-owned class from the same account role snapshot as ResolveRoleName; zero when unknown.</summary>
+        public uint ResolveRoleClassId(ulong playerId)
+            => playerId != 0 && _knownRoles.TryGetValue(playerId, out var role) ? role.ClassId : 0;
+
         private string ResolveActorCharacterId(ActorView view)
         {
             if (view == null || view.Kind != ActorKind.Player) return null;

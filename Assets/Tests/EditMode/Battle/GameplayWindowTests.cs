@@ -348,12 +348,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
             activity.UnavailableReason = "尚未到开放时间";
             _window.SetActivities(activities, false, null);
             _window.Show(GameplayPage.Activities);
-            AssertText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）");
             AssertText("即将开启");
             AssertText("尚未到开放时间");
+            ClickNamed("ActivityDetails_1");
+            AssertText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）");
+            AssertText("尚未到开放时间");
+            ClickNamed("CloseActivityDetails_1");
             Assert.That(FindButton("前往参与").interactable, Is.False, "不因系统日期晚于排期而自行开放");
             activity.Status = (PlayerActivityStatus)0;
             _window.SetActivities(activities, false, null);
+            ClickNamed("ActivityDetails_1");
             AssertText("尚未排期");
             Assert.That(HasText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）"), Is.False);
         }
@@ -366,6 +370,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             activities.Activities[0].EndsAtMs = ulong.MaxValue;
             _window.SetActivities(activities, false, null);
             _window.Show(GameplayPage.Activities);
+            ClickNamed("ActivityDetails_1");
             AssertText("开始 待公布\n结束 待公布 北京时间（UTC+8）");
             _window.SetMissions(new GetMissionListResponse(), false, null, true);
             _window.ResetSession();
@@ -458,6 +463,47 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(HasText("35/100"), Is.False); Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
         }
 
+        [TestCase(GameplayPage.Bag, "original-title-bag", "背 包")]
+        [TestCase(GameplayPage.Missions, "original-title-missions", "任 务")]
+        [TestCase(GameplayPage.Activities, "original-title-activities", "活 动")]
+        public void PageSwitchUsesApprovedPaintedTitleWithRetainedSemanticLabel(GameplayPage page, string key, string label)
+        {
+            _window.Show(page);
+            var title = _fixture.GetComponentsInChildren<Image>().Single(i => i.name == "OriginalPageTitle");
+            Assert.That(title.sprite, Is.SameAs(MmorpgClient.UI.Ugui.QdaoUguiTheme.RequireSprite("UI/Ugui/GameplayFidelity20261016/" + key)));
+            Assert.That(title.raycastTarget, Is.False);
+            Assert.That(_fixture.GetComponentsInChildren<TMP_Text>().Single(t => t.text == label).enabled, Is.False);
+        }
+
+        [Test]
+        public void PaintedMissionSelectionMarkFollowsSelectionWithoutChangingTrackingOrSendingActions()
+        {
+            _window.SetMissions(MakeMissions(2), false, null); _window.Show(GameplayPage.Missions);
+            Assert.That(_fixture.GetComponentsInChildren<Image>().Single(i => i.name == "MissionSelectionMark").transform.parent.name, Is.EqualTo("Mission_0_1"));
+            Click("任务二");
+            Assert.That(_fixture.GetComponentsInChildren<Image>().Single(i => i.name == "MissionSelectionMark").transform.parent.name, Is.EqualTo("Mission_0_2"));
+            Assert.That(_tracking, Is.Empty); Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
+        [Test]
+        public void ActivityRewardAreaRetainsEmptyNativeSlotsAndUsesOnlyRealMissionProgress()
+        {
+            _window.SetMissions(MakeMissions(1), false, null);
+            _window.SetActivities(MakeActivities(2), false, null); _window.Show(GameplayPage.Activities);
+            var emptyRewards = _fixture.GetComponentsInChildren<RectTransform>().Where(r => r.name == "ActivityRewardsEmpty").ToArray();
+            Assert.That(emptyRewards.Length, Is.EqualTo(2));
+            foreach (var rewards in emptyRewards)
+            {
+                Assert.That(rewards.GetComponentsInChildren<Image>().Count(i => i.name.StartsWith("ActivityRewardEmptySlot_")), Is.EqualTo(2));
+                Assert.That(rewards.GetComponentsInChildren<Image>().Any(i => i.name == "ItemIcon"), Is.False, "奖励协议未提供图标或数量，不能残留原稿示例奖励");
+            }
+            CollectionAssert.AreEquivalent(new[] { "1/3", "—/—" }, _fixture.GetComponentsInChildren<TMP_Text>().Where(t => t.name == "ActivityProgress").Select(t => t.text));
+            Assert.That(_fixture.GetComponentsInChildren<Image>().Count(i => i.name == "ActivityRewardHeading"), Is.EqualTo(2));
+            ClickNamed("ActivityDetails_2"); AssertText("尚未排期"); AssertText("奖励资料待公布");
+            ClickNamed("CloseActivityDetails_2");
+            Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
         private void ClickNamed(string name)
         {
             var button = _fixture.GetComponentsInChildren<Button>(true)
@@ -488,6 +534,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             if (label == "刷新" && _window.Page == GameplayPage.Bag &&
                 !_fixture.GetComponentsInChildren<Button>().Any(b => b.name == "RefreshBag")) ClickNamed("BagTools");
+            if (label == "刷新" && _window.Page == GameplayPage.Activities &&
+                !_fixture.GetComponentsInChildren<Button>().Any(b => b.name == "RefreshActivityFooter")) ClickNamed("ActivityTools");
             var matches = _fixture.GetComponentsInChildren<Button>()
                 .Where(b => b.GetComponentsInChildren<TMP_Text>().Any(t => t.text == label)).ToArray();
             Assert.That(matches.Length, Is.EqualTo(1), "当前页面应有唯一按钮：" + label);

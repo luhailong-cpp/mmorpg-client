@@ -33,7 +33,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string RootName = "EquipTooltip", ActionName = "EquipAction";
         public const string LinePrefix = "TooltipLine_", DescriptionName = "TooltipDescription";
         public const float Width = 460, MinHeight = 598, MaxHeight = 880;
-        public const float Pad = 38, LineFont = 28, LinePitch = 40, MinLineFont = 24;
+        // preview.html final .attribute-line override applies to every supplied row, including short cards.
+        public const float Pad = 38, LineFont = 24, LinePitch = 30, MinLineFont = 24;
         public const float DenseLinePitch = 30, BottomPad = 22;
         public const float DescriptionFont = 24, DescriptionGap = 8, DescriptionMinHeight = 64;
         public const float ActionHeight = 64, ActionGap = 14;
@@ -77,7 +78,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Text(_root, data.State, 146, 112, Width - 146 - Pad - (share == null ? 0 : 76), 28, 24,
                 EquipUiSkin.Jade).name = "TooltipState";
             if (share != null)
-                EquipUiSkin.Button(_root, "EquipShare", "分享", Width - Pad - 72, 108, 72, 36, share, fontSize: 22);
+            {
+                var shareButton = EquipUiSkin.Button(_root, "EquipShare", "分享", Width - Pad - 72, 108, 72, 36, share, fontSize: 22);
+                // HTML .share-action has 4px horizontal padding; the generic button uses 12px.
+                var shareLabel = shareButton.GetComponentInChildren<TMP_Text>();
+                shareLabel.rectTransform.anchoredPosition = new Vector2(4, 0);
+                shareLabel.rectTransform.sizeDelta = new Vector2(64, 36);
+            }
 
             float headerY = 142;
             if (data.HeaderLines.Count > 0)
@@ -199,3 +206,4 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             => QdaoUguiFactory.CreateImage("Rule", _root, x, y, width, height, null).color = EdgeColor;
     }
 }
+

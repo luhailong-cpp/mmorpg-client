@@ -1,0 +1,199 @@
+{
+  "reviewedAtUtc": "2026-10-21T07:37:07.0178683Z",
+  "scope": "Review of existing Editor preview images; no new Unity capture, Player build, login or battle-effect test executed by this review.",
+  "nativeCaptureCompletedAtUtc": "2026-10-17T12:34:06.5292191Z",
+  "nativeCaptureReport": "../skills-ui-20261009/native-capture.json",
+  "nativeAssertionCount": 122,
+  "existingImageCount": 30,
+  "visuallyReviewedImageCount": 6,
+  "findings": [
+    "Reviewed panels, names, icons, details and scrolling content are visible and readable.",
+    "Character summary footer wraps the final character onto a second line; recorded as a minor layout issue, not a blocker.",
+    "Obstacle and pet preview images use example data and placeholder icons; not proof of implemented effects."
+  ],
+  "liveServerVerified": false,
+  "battleEffectsVerified": false,
+  "newPlayerBuildVerified": false,
+  "images": [
+    {
+      "name": "class1-1920x1080.png",
+      "bytes": 2073203,
+      "sha256": "572194CC57BE89CC4F7CEFC356A5E1DC14B0F5F389611551B879C08B49C20BB3",
+      "visuallyReviewed": true
+    },
+    {
+      "name": "class2-1920x1080.png",
+      "bytes": 2065531,
+      "sha256": "A350FFE8EB82AA9CAE38D7AEF300D724317154338103D529F3FDC0BCE6D0AB90",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "class3-1920x1080.png",
+      "bytes": 2069572,
+      "sha256": "8FDE20A1FA676710B398309DB06BA030EBC99E624457402A27DEE3DCA1BF14E9",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "class4-1920x1080.png",
+      "bytes": 2065920,
+      "sha256": "38B1169C8107DC0D68F9069ED6C72300DB624CE1D990ED9634EE5D9F9DFAC9E9",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "obstacles-1920x1080.png",
+      "bytes": 2112735,
+      "sha256": "346D30496A845742C50EF67F95084FFCA10F1238B19F1208B8A82228C975C170",
+      "visuallyReviewed": true
+    },
+    {
+      "name": "pet-1920x1080.png",
+      "bytes": 2196168,
+      "sha256": "08873B482CC01D37A5952E9AAF36C28D19E19CD68FDDFA508C27EA6FF1BE7C15",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "loading-1920x1080.png",
+      "bytes": 2203568,
+      "sha256": "97A0B5FE1D79313E3148E5481481B5044CFA89CF0A855FFA3AB13865AEC667D6",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "empty-1920x1080.png",
+      "bytes": 2216641,
+      "sha256": "FCD9C13FC46A91225D32EF9D5C28B43294FDC821177B065E25394B395015966A",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "error-1920x1080.png",
+      "bytes": 2059415,
+      "sha256": "C3B4F77E6D9BABA37056F5A483EA9C64630C70D5177B99CC342D03872EDCCCA2",
+      "visuallyReviewed": true
+    },
+    {
+      "name": "insufficientcoins-1920x1080.png",
+      "bytes": 2058288,
+      "sha256": "EA2DC4FCDC0700F7CC072AF1CB6DCDD1AD1F50B908EE8D0A04B4BE9F387B1D7D",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "maxrank-1920x1080.png",
+      "bytes": 2058554,
+      "sha256": "628F25ACE7E46459F526F7504F9340D16E1340FE73A7084908306B297BE2A3A8",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "busy-1920x1080.png",
+      "bytes": 2057315,
+      "sha256": "C1612467A8511F87B291CC8AFB0525C80F6FD18208A2FA043E7EB14B9103A964",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "disconnected-1920x1080.png",
+      "bytes": 2058245,
+      "sha256": "D8A4FC127DCB7AF664E2EB3F889A18965FF72E2A5B84F85B1FAD9AE0B1081BBE",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "battle-skills-1920x1080.png",
+      "bytes": 3157185,
+      "sha256": "F38F1653C25D48F7962DB6766649CDEA39E8AC96C08C411F7FB705DCCEC83FC3",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "battle-skills-scrolled-1920x1080.png",
+      "bytes": 3154768,
+      "sha256": "4FFA041B03D91159175B57829577D954A1FB6C34FAD8BBD1F540CB916F582A3C",
+      "visuallyReviewed": true
+    },
+    {
+      "name": "class1-2560x1080.png",
+      "bytes": 3385640,
+      "sha256": "F8AB2A90D5A0D72B5C98C68D5416D494BB35E3175EACF822E13BD3F9E56B8C80",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "class2-2560x1080.png",
+      "bytes": 3371390,
+      "sha256": "4274924E86CA5454BBCA1A7C99A5663FD5E6E9E82FB5811F0E4E3CF21C5765CE",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "class3-2560x1080.png",
+      "bytes": 3378737,
+      "sha256": "4A9227CAC2B2082F6BA63B854C3BB84DE8C84644F19D29024305FAFEC5BA214D",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "class4-2560x1080.png",
+      "bytes": 3375249,
+      "sha256": "80EEEFBFCB9EE9BE7B53286A7AAA5C976663FC9780D45117E8F8EA7BE041EA1E",
+      "visuallyReviewed": true
+    },
+    {
+      "name": "obstacles-2560x1080.png",
+      "bytes": 3446631,
+      "sha256": "78B045AF4B61B7482058E459225BAD3BA9DDBBDE9AD23D6F8E03CFAFB48E3256",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "pet-2560x1080.png",
+      "bytes": 3575384,
+      "sha256": "40C9D2C684588D58D656408D17F58E5C4E7BCE42FC87484D497A48CF10A5B293",
+      "visuallyReviewed": true
+    },
+    {
+      "name": "loading-2560x1080.png",
+      "bytes": 3581042,
+      "sha256": "89E73F17E80330D2C206658C936DA7D91AF3E3CCA471E628C1AE7480F4A6D9FD",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "empty-2560x1080.png",
+      "bytes": 3600870,
+      "sha256": "4C4044ACE57741A859A9C10B799A3EF1D23C9C0EB4932D8694AA745B377B3F55",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "error-2560x1080.png",
+      "bytes": 3365867,
+      "sha256": "D8368C6F7D20A8B52D88B35002F2D374F4B5DB7BD7663D97D6C2BA95A5077F52",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "insufficientcoins-2560x1080.png",
+      "bytes": 3361799,
+      "sha256": "5B374F2445F759064E55CE9D7DEBEEF71A875238EEB46BDA81ED6D444ED192DE",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "maxrank-2560x1080.png",
+      "bytes": 3362693,
+      "sha256": "80EEDA01CEB0014B27F815C40CD08AA1F39896A39886226CBEC1ABCF36E1DB5B",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "busy-2560x1080.png",
+      "bytes": 3359906,
+      "sha256": "298B9AE9372E8237DED413A5DF2C899D7B659BE54CC9F8596BC571FA49FE9FF5",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "disconnected-2560x1080.png",
+      "bytes": 3362014,
+      "sha256": "6687D567594EE5A5A9B2C2236248E8853ED2DE5FEC445ECEFB5E563E95B90155",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "battle-skills-2560x1080.png",
+      "bytes": 5313933,
+      "sha256": "19955CA6E9F4A53BE588CA0C565713959A89C707CC8575F6FE61059A044B51CE",
+      "visuallyReviewed": false
+    },
+    {
+      "name": "battle-skills-scrolled-2560x1080.png",
+      "bytes": 5309542,
+      "sha256": "FE4E77F41C048E1A4288F0A5E0E4045E935BBFFF1E031B7C4FAEC29EE4C6C8D8",
+      "visuallyReviewed": false
+    }
+  ]
+}

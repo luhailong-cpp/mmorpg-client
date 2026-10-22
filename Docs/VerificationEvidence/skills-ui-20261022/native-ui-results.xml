@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Passed" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-22 05:51:45Z" end-time="2026-10-22 05:51:52Z" duration="7.121992">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="2646" result="Passed" start-time="2026-10-22 05:51:45Z" end-time="2026-10-22 05:51:52Z" duration="7.121992" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2025" name="MmorpgClient.Tests.EditMode.Battle.dll" fullname="E:/work/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Battle.dll" runstate="Runnable" testcasecount="933" result="Passed" start-time="2026-10-22 05:51:45Z" end-time="2026-10-22 05:51:52Z" duration="6.870946" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="66328" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2026" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="933" result="Passed" start-time="2026-10-22 05:51:45Z" end-time="2026-10-22 05:51:52Z" duration="6.798259" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2027" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="933" result="Passed" start-time="2026-10-22 05:51:46Z" end-time="2026-10-22 05:51:52Z" duration="6.758212" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2028" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="933" result="Passed" start-time="2026-10-22 05:51:46Z" end-time="2026-10-22 05:51:52Z" duration="6.691759" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="2029" name="Battle" fullname="MmorpgClient.Tests.EditMode.Battle" runstate="Runnable" testcasecount="933" result="Passed" start-time="2026-10-22 05:51:46Z" end-time="2026-10-22 05:51:52Z" duration="6.623856" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1322" name="BattleSkillTargetSelectionTests" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-22 05:51:46Z" end-time="2026-10-22 05:51:51Z" duration="4.829046" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1324" name="AllySkillIncludesSelfTeammateAndPetAndRejectsEnemyClicks" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.AllySkillIncludesSelfTeammateAndPetAndRejectsEnemyClicks" methodname="AllySkillIncludesSelfTeammateAndPetAndRejectsEnemyClicks" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="2125116441" result="Passed" start-time="2026-10-22 05:51:46Z" end-time="2026-10-22 05:51:48Z" duration="2.181927" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1327" name="CancelClearsTheSelectionAndLateUnitClicksDoNotRestoreIt" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.CancelClearsTheSelectionAndLateUnitClicksDoNotRestoreIt" methodname="CancelClearsTheSelectionAndLateUnitClicksDoNotRestoreIt" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="558462710" result="Passed" start-time="2026-10-22 05:51:48Z" end-time="2026-10-22 05:51:48Z" duration="0.160912" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1323" name="EnemySkillUsesTheRealSkillButtonAndRejectsFriendlyClicks" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.EnemySkillUsesTheRealSkillButtonAndRejectsFriendlyClicks" methodname="EnemySkillUsesTheRealSkillButtonAndRejectsFriendlyClicks" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="1446325609" result="Passed" start-time="2026-10-22 05:51:48Z" end-time="2026-10-22 05:51:49Z" duration="0.839688" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1328" name="OpeningSkillListClearsSelfConfirmationBeforePickingAnotherSkill" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.OpeningSkillListClearsSelfConfirmationBeforePickingAnotherSkill" methodname="OpeningSkillListClearsSelfConfirmationBeforePickingAnotherSkill" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="45103926" result="Passed" start-time="2026-10-22 05:51:49Z" end-time="2026-10-22 05:51:49Z" duration="0.139161" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1334" name="PhaseChangeBlocksStaleConfirmationAndUnitClicks" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.PhaseChangeBlocksStaleConfirmationAndUnitClicks" methodname="PhaseChangeBlocksStaleConfirmationAndUnitClicks" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="711904077" result="Passed" start-time="2026-10-22 05:51:49Z" end-time="2026-10-22 05:51:49Z" duration="0.208300" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1338" name="SameRoundActorCannotActClearsSelection" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundActorCannotActClearsSelection" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 05:51:49Z" end-time="2026-10-22 05:51:50Z" duration="0.408770" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1335" name="SameRoundActorCannotActClearsSelection(&quot;dead&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundActorCannotActClearsSelection(&quot;dead&quot;)" methodname="SameRoundActorCannotActClearsSelection" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="976430052" result="Passed" start-time="2026-10-22 05:51:49Z" end-time="2026-10-22 05:51:50Z" duration="0.158188" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1336" name="SameRoundActorCannotActClearsSelection(&quot;fled&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundActorCannotActClearsSelection(&quot;fled&quot;)" methodname="SameRoundActorCannotActClearsSelection" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="226456923" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.115439" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1337" name="SameRoundActorCannotActClearsSelection(&quot;submitted&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundActorCannotActClearsSelection(&quot;submitted&quot;)" methodname="SameRoundActorCannotActClearsSelection" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="1775447311" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.120710" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1332" name="SameRoundSnapshotInvalidatesDeadOrFledSelection" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundSnapshotInvalidatesDeadOrFledSelection" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.296895" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1330" name="SameRoundSnapshotInvalidatesDeadOrFledSelection(False)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundSnapshotInvalidatesDeadOrFledSelection(False)" methodname="SameRoundSnapshotInvalidatesDeadOrFledSelection" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="576247690" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.104782" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1331" name="SameRoundSnapshotInvalidatesDeadOrFledSelection(True)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundSnapshotInvalidatesDeadOrFledSelection(True)" methodname="SameRoundSnapshotInvalidatesDeadOrFledSelection" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="1030977474" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.124345" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1333" name="SameRoundSnapshotRestoresTheStillValidSelectionHighlight" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SameRoundSnapshotRestoresTheStillValidSelectionHighlight" methodname="SameRoundSnapshotRestoresTheStillValidSelectionHighlight" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="119404803" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.117373" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1325" name="SelfSkillPreselectsOnlySelfAndWaitsForExplicitConfirmation" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SelfSkillPreselectsOnlySelfAndWaitsForExplicitConfirmation" methodname="SelfSkillPreselectsOnlySelfAndWaitsForExplicitConfirmation" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="187302690" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.100059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1329" name="SwitchingFromSelfSkillToAttackClearsTheSelectedSelf" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.SwitchingFromSelfSkillToAttackClearsTheSelectedSelf" methodname="SwitchingFromSelfSkillToAttackClearsTheSelectedSelf" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="197633902" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:50Z" duration="0.098796" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1339" name="TemporaryChannelLossHidesControlsButRestoresTheSameSelectionWhenReady" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.TemporaryChannelLossHidesControlsButRestoresTheSameSelectionWhenReady" methodname="TemporaryChannelLossHidesControlsButRestoresTheSameSelectionWhenReady" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="1457940934" result="Passed" start-time="2026-10-22 05:51:50Z" end-time="2026-10-22 05:51:51Z" duration="0.109202" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1326" name="UnknownSkillMetadataKeepsLivingUnitsSelectable" fullname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests.UnknownSkillMetadataKeepsLivingUnitsSelectable" methodname="UnknownSkillMetadataKeepsLivingUnitsSelectable" classname="MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetSelectionTests" runstate="Runnable" seed="1188218716" result="Passed" start-time="2026-10-22 05:51:51Z" end-time="2026-10-22 05:51:51Z" duration="0.102895" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1953" name="SkillPanelPresentationTests" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-22 05:51:51Z" end-time="2026-10-22 05:51:52Z" duration="1.673116" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1969" name="ClosingPanelHidesTheActualWindow" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.ClosingPanelHidesTheActualWindow" methodname="ClosingPanelHidesTheActualWindow" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1524349279" result="Passed" start-time="2026-10-22 05:51:51Z" end-time="2026-10-22 05:51:51Z" duration="0.199002" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1970" name="PetContextIdentityDoesNotDependOnDisplayName" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.PetContextIdentityDoesNotDependOnDisplayName" methodname="PetContextIdentityDoesNotDependOnDisplayName" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1914531856" result="Passed" start-time="2026-10-22 05:51:51Z" end-time="2026-10-22 05:51:51Z" duration="0.053199" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1957" name="RefreshUsesTheCurrentlyDisplayedPetContext" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.RefreshUsesTheCurrentlyDisplayedPetContext" methodname="RefreshUsesTheCurrentlyDisplayedPetContext" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1681803781" result="Passed" start-time="2026-10-22 05:51:51Z" end-time="2026-10-22 05:51:52Z" duration="0.688552" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1967" name="ReturnedSnapshotChangesTheExpectedRankForTheNextClick" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.ReturnedSnapshotChangesTheExpectedRankForTheNextClick" methodname="ReturnedSnapshotChangesTheExpectedRankForTheNextClick" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="436167689" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.059815" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1968" name="ReusedStateWithNewPetDoesNotKeepThePreviousEmptyFilter" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.ReusedStateWithNewPetDoesNotKeepThePreviousEmptyFilter" methodname="ReusedStateWithNewPetDoesNotKeepThePreviousEmptyFilter" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="372264636" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.071630" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1966" name="UnavailableStatesPreventUpgradeInteraction" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.472769" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1958" name="UnavailableStatesPreventUpgradeInteraction(&quot;loading&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;loading&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1552191792" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.061871" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1959" name="UnavailableStatesPreventUpgradeInteraction(&quot;busy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;busy&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1417638424" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.058747" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1960" name="UnavailableStatesPreventUpgradeInteraction(&quot;error&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;error&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1623888108" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.071815" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1961" name="UnavailableStatesPreventUpgradeInteraction(&quot;disconnected&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;disconnected&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1881021590" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.048306" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1962" name="UnavailableStatesPreventUpgradeInteraction(&quot;readonly&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;readonly&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1128207319" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.050057" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1963" name="UnavailableStatesPreventUpgradeInteraction(&quot;empty&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;empty&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="941122796" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.047700" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1964" name="UnavailableStatesPreventUpgradeInteraction(&quot;insufficient&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;insufficient&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="810424720" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.051806" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1965" name="UnavailableStatesPreventUpgradeInteraction(&quot;maxrank&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UnavailableStatesPreventUpgradeInteraction(&quot;maxrank&quot;)" methodname="UnavailableStatesPreventUpgradeInteraction" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1510498197" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.074121" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1956" name="UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.118773" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1954" name="UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot(&quot;UpgradePlate&quot;,1)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot(&quot;UpgradePlate&quot;,1)" methodname="UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="6562784" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.050934" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1955" name="UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot(&quot;UpgradeTenPlate&quot;,10)" fullname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests.UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot(&quot;UpgradeTenPlate&quot;,10)" methodname="UpgradeForwardsDisplayedIdentityRankAndCountWithoutChangingSnapshot" classname="MmorpgClient.Tests.EditMode.Battle.SkillPanelPresentationTests" runstate="Runnable" seed="1458958813" result="Passed" start-time="2026-10-22 05:51:52Z" end-time="2026-10-22 05:51:52Z" duration="0.063653" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

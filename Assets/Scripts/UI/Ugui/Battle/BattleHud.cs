@@ -391,7 +391,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             foreach (var card in _cards)
             {
-                if (card.Root != null) UnityEngine.Object.Destroy(card.Root.gameObject);
+                if (card.Root == null) continue;
+                if (Application.isPlaying) UnityEngine.Object.Destroy(card.Root.gameObject);
+                else UnityEngine.Object.DestroyImmediate(card.Root.gameObject);
             }
             _cards.Clear();
         }

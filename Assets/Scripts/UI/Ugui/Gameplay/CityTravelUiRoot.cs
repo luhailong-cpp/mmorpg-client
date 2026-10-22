@@ -66,6 +66,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _entry = GameplayUiArt.Button(_hud, "地图", BattleUiStyle.HudEntryX, BattleUiStyle.HudEntryY(7),
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             _entry.name = "CityTravelEntry";
+            WorldHudNavigation.Register(WorldHudEntry.Map, (RectTransform)_entry.transform, _entry, _entry.GetComponentInChildren<TMP_Text>());
             _window = new CityTravelWindow(design);
             _window.SetDestinations(CreateDestinations());
             _window.TravelRequested += RequestTravel;

@@ -1,0 +1,37 @@
+{
+  "completedAtUtc": "2026-10-21T07:50:01.2394864Z",
+  "sourceBase": "4768216b0557ba7cfbb8553479f503a4752c979d",
+  "runtimeFilesCompiled": 407,
+  "runtimeCompileErrors": 0,
+  "nativeTestSourceCompiled": true,
+  "pureTargetRangeTests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0
+  },
+  "independentSourceReview": "Two findings corrected and re-reviewed: real button names and selection cleanup when unable to act. No remaining material blocker found in the reviewed UI scope.",
+  "sourceFiles": [
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleScreen.cs",
+      "sha256": "6637AA5D1B63585716A72E94E021C08D7635351DFB16409FACA0EB0A0636E7D9"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Skills/SkillPanel.cs",
+      "sha256": "5677423EC36428E41BBE032195A974D3BA1F2CCD013197FE1140035CB44BF2F5"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleSkillTargetSelectionTests.cs",
+      "sha256": "2588036D5CFC9B79A9373D5D35AF9F1706864AC3EC9A79DC4EA6188C794CD4C5"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleSkillTargetSelectionTests.cs.meta",
+      "sha256": "9249B0DFED2AD6546675BDA0C0FB9AA0F16915872BACDD6687126F5A3378858E"
+    }
+  ],
+  "sourceFrozen": true,
+  "newNativeScreenshotsExecuted": false,
+  "nativeButtonTestsExecuted": false,
+  "liveServerVerified": false,
+  "newPlayerBuildVerified": false,
+  "buildHandoff": "The chat 启动六个客户端 owns the full Player build and server startup. The first build lacked this UI patch; verify the final rebuilt assembly before delivery."
+}

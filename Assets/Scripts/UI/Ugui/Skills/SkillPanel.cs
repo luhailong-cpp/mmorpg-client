@@ -37,7 +37,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private uint _selectedId;
         private int _filter;
         private static readonly string[] FilterNames = { "全部", "主动术法", "被动心法", "障碍", "辅助" };
-        private const float ListHeight = 500f, RowHeight = 82f, RowStep = 86f;
+        private const float ListHeight = 573.125f, RowHeight = 66.390625f, RowStep = 72.390625f;
         public bool IsVisible => _root.gameObject.activeSelf;
 
         public SkillPanel(SkillUiRoot owner, UnityEngine.Transform parent) : this(parent,
@@ -281,8 +281,8 @@ namespace MmorpgClient.UI.Ugui.Skills
                 row.Rank.text = readOnly ? "未同步" : entry.Rank == 0 ? "未学习" :
                     definition.maxRank > 0 ? $"{entry.Rank}/{definition.maxRank}" : entry.Rank.ToString();
                 row.Kind.text = definition.KindLabel;
-                row.Mana.text = definition.IsPassive ? "常驻 · 无消耗" :
-                    $"{definition.manaPercent * 100:0.#}% / {definition.cooldownRounds}回合";
+                row.Mana.text = definition.IsPassive ? "无消耗" :
+                    $"{definition.manaPercent * 100:0.#}%法力";
                 row.Target.text = definition.TargetLabel +
                     (definition.IsPassive || definition.targetTeam == "self" || definition.maxTargets == 0 ? string.Empty : " " + definition.maxTargets);
                 row.Button.Plate.color = entry.Id == _selectedId ? new Color(.82f, .94f, .85f) : Color.white;
@@ -302,7 +302,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             }
             _classInfo.gameObject.SetActive(!readOnly || pet);
             _classInfo.text = pet ? "宠物技能 · 按实际技能分类展示" :
-                snapshot == null ? "等待技能信息" : $"当前角色等级：{snapshot.PlayerLevel} · {snapshot.Entries.Count}项技能";
+                snapshot == null ? "等待技能信息" : $"等级：{snapshot.PlayerLevel} · 技能：{snapshot.Entries.Count}项";
             _title.text = pet ? "宠物技能" : "角色技能";
             var selected = snapshot?.Find(_selectedId);
             var skill = selected?.Definition;
@@ -377,3 +377,4 @@ namespace MmorpgClient.UI.Ugui.Skills
             QdaoUguiTheme.LoadSprite("UI/Ugui/GameplayV1/icon_scroll");
     }
 }
+

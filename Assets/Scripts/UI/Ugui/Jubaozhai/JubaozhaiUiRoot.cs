@@ -65,6 +65,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             var entry = GameplayUiArt.Button(_hud, "聚宝斋 [U]", EntryX, EntryY,
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             entry.name = "JubaozhaiEntry";
+            WorldHudNavigation.Register(WorldHudEntry.Trade, (RectTransform)entry.transform, entry, entry.GetComponentInChildren<TMP_Text>());
             _window = new JubaozhaiWindow(design);
             _commerceWindow = new CommerceWindow(design, () => _game);
             _window.CommerceRequested += ShowCommerce;

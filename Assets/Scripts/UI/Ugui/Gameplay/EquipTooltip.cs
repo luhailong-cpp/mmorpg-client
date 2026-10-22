@@ -18,7 +18,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (item == null) { Hide(); return; }
             var data = new EquipDetailCardData {
-                Name = EquipDisplay.NameWithEnhance(ItemName(item), item.EnhanceLevel), IconKey = item.IconKey, State = worn ? "已穿戴" : "未穿戴",
+                Name = EquipDisplay.NameWithEnhance(ItemName(item), item.EnhanceLevel), IconKey = item.IconKey, State = worn ? "已装备" : "未装备",
                 LevelRequirement = EquipBagModel.LevelRequirement(item),
                 ClassRequirement = EquipBagModel.ClassRequirement(item),
                 LevelUnmet = EquipBagModel.LevelUnmet(item, characterLevel), Description = item.Description,
@@ -36,3 +36,4 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void Hide() => _card.Hide();
     }
 }
+

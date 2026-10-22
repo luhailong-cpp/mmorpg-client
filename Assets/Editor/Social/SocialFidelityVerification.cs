@@ -281,7 +281,7 @@ public static class SocialFidelityVerification
                     shot.checks = new[]
                     {
                         new Check { name = "native window visible", passed = window.IsVisible },
-                        new Check { name = "native TMP title exists", passed = canvasObject.GetComponentsInChildren<TMP_Text>(false).Any(text => text.name == "SocialTitle" && !string.IsNullOrEmpty(text.text)) },
+                        new Check { name = "approved original title sprite rendered", passed = canvasObject.GetComponentsInChildren<Image>(false).Any(art => art.name == "exact_title" && art.enabled && art.sprite == Resources.Load<Sprite>("UI/Ugui/SocialV1/Fidelity20261016/exact_title") && art.color.a > .99f) },
                         new Check { name = "all three native page buttons exist", passed = HasButton("SocialTab_Groups") && HasButton("SocialTab_World") && HasButton("SocialTab_Rumor") },
                         new Check { name = "native close button exists", passed = HasButton("SocialClose") },
                         new Check { name = "composer presence matches the page", passed = hasComposer == (page != SocialPage.Rumor) },

@@ -630,14 +630,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 case BattleCommand.Attack:
                     if (!CanAct()) return;
-                    CloseSubPanels();
+                    ExitTargetMode();
                     _pending = PendingKind.Attack;
                     EnterTargetMode("请选择攻击目标(敌方)");
                     break;
                 case BattleCommand.Spell:
                     if (!CanAct()) return;
                     if (_skillPanel.gameObject.activeSelf) { _skillPanel.gameObject.SetActive(false); return; }
-                    CloseSubPanels();
+                    ExitTargetMode();
                     PopulateSkillPanel();
                     _skillPanel.gameObject.SetActive(true);
                     _skillPanel.SetAsLastSibling();
@@ -650,7 +650,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 case BattleCommand.Item:
                     if (!CanAct()) return;
                     if (_itemPanel.gameObject.activeSelf) { _itemPanel.gameObject.SetActive(false); return; }
-                    CloseSubPanels();
+                    ExitTargetMode();
                     _itemPanel.gameObject.SetActive(true);
                     _itemPanel.SetAsLastSibling();
                     break;
@@ -696,7 +696,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             _skillPanel.gameObject.SetActive(false);
             _pending = PendingKind.Skill;
             _pendingSkillId = skillTableId;
-            EnterTargetMode($"请为【{Skills.SkillUiRoot.FindPresentation(skillTableId)?.name ?? $"技能{skillTableId}"}】选择目标");
+            var definition = Skills.SkillUiRoot.FindPresentation(skillTableId);
+            bool self = string.Equals(definition?.targetTeam, "self", System.StringComparison.OrdinalIgnoreCase);
+            var name = definition?.name ?? $"技能{skillTableId}";
+            EnterTargetMode(self ? $"【{name}】作用于自身，请确认行动" : $"请为【{name}】选择目标");
+            // 自身技能只预选本人，复用现有确认按钮；选择技能本身不发送行动。
+            if (self) OnUnitClicked(_myId);
         }
 
         private void OnItemPicked()
@@ -746,33 +751,47 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnUnitClicked(ulong actorId)
         {
-            if (_pending == PendingKind.None) return;
+            if (_pending == PendingKind.None || !CanAct()) return;
             if (!_viewById.TryGetValue(actorId, out var view)) return;
             if (!IsTargetable(view)) return;
 
             _selectedTargetId = actorId;
-            foreach (var v in _views)
-                v.SetHighlight(v.ActorId == actorId
-                    ? SlotHighlight.Selected
-                    : (IsTargetable(v) ? SlotHighlight.Targetable : SlotHighlight.None));
-            _confirmButton.SetVisible(true);
+            RefreshTargetSelection();
         }
 
         private bool IsTargetable(BattleUnitView view)
         {
-            if (view.IsDead || view.Fled) return false;
-            // 普攻只允许打敌方;技能/道具的敌我规则依赖表数据,先放开任意存活目标
-            if (_pending == PendingKind.Attack) return view.TeamIndex != _myTeam;
-            return true;
+            if (view == null || _pending == PendingKind.None) return false;
+            // 这里只过滤可见目标；最终施放资格和战斗规则仍由业务与服务端校验。
+            var targetTeam = _pending == PendingKind.Attack ? "enemy" :
+                _pending == PendingKind.Skill ? Skills.SkillUiRoot.FindPresentation(_pendingSkillId)?.targetTeam : null;
+            return BattleTargetPresentation.AllowsTarget(targetTeam, _myId, _myTeam,
+                view.ActorId, view.TeamIndex, view.IsDead, view.Fled);
+        }
+
+        private void RefreshTargetSelection()
+        {
+            if (!CanChooseAction())
+            {
+                ExitTargetMode();
+                return;
+            }
+            // 同回合快照可能移除目标、使其阵亡或逃跑；旧选择不能继续确认。
+            if (!_viewById.TryGetValue(_selectedTargetId, out var selected) || !IsTargetable(selected))
+                _selectedTargetId = 0;
+            // 临时断线只收起高亮与确认，保留本回合的选择，连接恢复后可以继续确认。
+            bool ready = IsChannelReady();
+            foreach (var view in _views)
+                view.SetHighlight(!ready || !IsTargetable(view) ? SlotHighlight.None :
+                    view.ActorId == _selectedTargetId ? SlotHighlight.Selected : SlotHighlight.Targetable);
+            _confirmButton.SetVisible(ready && _selectedTargetId != 0);
         }
 
         private void EnterTargetMode(string hint)
         {
             _selectedTargetId = 0;
             _targetHintText.text = hint ?? string.Empty;
-            foreach (var view in _views)
-                view.SetHighlight(IsTargetable(view) ? SlotHighlight.Targetable : SlotHighlight.None);
-            _confirmButton.SetVisible(false);
+            RefreshTargetSelection();
             _cancelButton.SetVisible(true);
         }
 
@@ -791,7 +810,9 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnConfirmClicked()
         {
-            if (_pending == PendingKind.None || _selectedTargetId == 0) return;
+            if (_pending == PendingKind.None) return;
+            RefreshTargetSelection();
+            if (!CanAct() || _selectedTargetId == 0) return;
             BattleAction action;
             switch (_pending)
             {
@@ -842,13 +863,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             SetHint("已提交行动,等待其他玩家…");
         }
 
-        private bool CanAct()
+        private bool CanAct() => CanChooseAction() && IsChannelReady();
+
+        // 回合/本人状态失效应丢弃选择；连接暂不可用不改变玩家的本回合选择意图。
+        private bool CanChooseAction()
         {
             if (_spectate) return false;
             // 自动战斗中禁止手动出招(is_auto 单位不进 pending,提交会被服务端拒)
             if (_owner?.Client != null && _owner.Client.IsMyActorAuto) return false;
-            // 直连未就绪:战斗 RPC 发不出去(gate 不中继战斗),不进目标选择
-            if (!IsChannelReady()) return false;
             var me = FindMyActor();
             return _phase == BattlePhase.WaitingAction && !_playing && !_submitted
                    && me != null && !me.IsDead && !me.Fled;
@@ -1104,6 +1126,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void RefreshActionBar()
         {
+            if (_pending != PendingKind.None) RefreshTargetSelection();
             // 观战只读:命令环整体隐藏(不是置灰,观众根本没有行动语义)
             _commandRing.SetVisible(!_spectate);
             if (_spectate)
@@ -1120,8 +1143,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool channelFailed = IsChannelFailed();
             _channelReadyShown = channelReady;
             _channelFailedShown = channelFailed;
-            bool canAct = _phase == BattlePhase.WaitingAction && !_playing && !_submitted
-                          && alive && !myAuto && channelReady;
+            bool canAct = CanAct();
             // 一期规则:PVP 不可逃跑(客户端以「敌方含玩家」近似判定,见 open_issues)
             bool canFlee = IsPveBattle();
             // 「自动」不受已提交/播放中限制:战斗内活着随时可切(Resolving 切换下回合生效)
@@ -1168,6 +1190,24 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void SetHint(string value)
         {
             if (_hintText != null) _hintText.text = value ?? string.Empty;
+        }
+    }
+
+    /// <summary>技能元数据对应的目标显示范围，不计算伤害、消耗或施放资格。</summary>
+    public static class BattleTargetPresentation
+    {
+        public static bool AllowsTarget(string targetTeam, ulong actingId, uint actingTeam,
+            ulong targetId, uint targetTeamIndex, bool isDead, bool fled)
+        {
+            if (isDead || fled) return false;
+            if (string.Equals(targetTeam, "enemy", System.StringComparison.OrdinalIgnoreCase))
+                return targetTeamIndex != actingTeam;
+            if (string.Equals(targetTeam, "ally", System.StringComparison.OrdinalIgnoreCase))
+                return targetTeamIndex == actingTeam;
+            if (string.Equals(targetTeam, "self", System.StringComparison.OrdinalIgnoreCase))
+                return actingId != 0 && targetId == actingId;
+            // 旧技能和缺少元数据的道具保留既有可选范围，避免因展示目录未同步而不可操作。
+            return true;
         }
     }
 }

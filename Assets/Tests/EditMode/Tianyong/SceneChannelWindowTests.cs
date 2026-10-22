@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui;
@@ -811,32 +812,28 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             return names;
         }
 
-        /// <summary>一个按钮里启用的文字，按层级先后；禁用的模板占位标签不参与显示。</summary>
+        /// <summary>一个按钮里的可见文字,按层级先后；原稿图标由独立断言验证。</summary>
         private static List<string> Texts(Button button)
         {
             var texts = new List<string>();
             foreach (var label in button.GetComponentsInChildren<TMP_Text>(true))
-                if (label.enabled) texts.Add(label.text);
+                if (label.isActiveAndEnabled) texts.Add(label.text);
             return texts;
         }
 
         private static void AssertCurrentTagRendered(Button button)
         {
             // 生产用正式图片绘制徽章，保留禁用的语义文字；不能把该文字算成第二次可见绘制。
-            var semantic = button.transform.Find(SceneChannelWindow.CurrentTagName);
-            Assert.That(semantic, Is.Not.Null);
-            var label = semantic.GetComponent<TMP_Text>();
-            Assert.That(label, Is.Not.Null);
+            var label = button.GetComponentsInChildren<TMP_Text>(true)
+                .Single(candidate => candidate.name == SceneChannelWindow.CurrentTagName);
             Assert.That(label.text, Is.EqualTo(SceneChannelWindow.CurrentTagText));
             Assert.That(label.enabled, Is.False);
             foreach (var key in new[] { "current_badge", "current_check" })
             {
-                var badge = button.transform.Find(key);
-                Assert.That(badge, Is.Not.Null, key);
-                var image = badge.GetComponent<Image>();
-                Assert.That(image, Is.Not.Null, key);
+                var image = button.GetComponentsInChildren<Image>(true).Single(candidate => candidate.name == key);
                 Assert.That(image.enabled, Is.True, key);
                 Assert.That(image.gameObject.activeInHierarchy, Is.True, key);
+                Assert.That(image.raycastTarget, Is.False, "装饰不拦截线路按钮");
                 Assert.That(image.sprite, Is.SameAs(QdaoUguiTheme.RequireSprite(
                     "UI/Ugui/SceneSelectV1/Fidelity20261016/" + key)), key);
             }

@@ -153,6 +153,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 BattleUiStyle.HudEntryFrame);
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
+            WorldHudNavigation.Register(WorldHudEntry.Pet, _entryButton.Rect, _entryButton.Button, _entryButton.Label);
 
             _panel = new PetPanel(this, windowRoot);
 

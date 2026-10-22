@@ -1,0 +1,247 @@
+{
+  "Status": "PASS",
+  "ReviewDateClient": "2026-10-22",
+  "Scope": "HUD build/source/resource inclusion only; no player launched and no account login performed.",
+  "Executable": "E:\\work\\mmorpg-client\\Builds\\play-20261021-ready\\client\\mmorpg.exe",
+  "ManualLauncher": "E:\\work\\mmorpg-client\\Builds\\play-20261021-ready\\Start-Client.cmd",
+  "PackageAssemblyPdbMatches": true,
+  "SourceChecks": [
+    {
+      "Path": "Assets/Scripts/UI/Ugui/WorldHudNavigation.cs",
+      "CurrentSHA256": "6E4431718604E13ECC3174F37D75B1BD06F97E8EB2F1FAA364257C9F7BE8EC8C",
+      "PreparedSHA256": "6E4431718604E13ECC3174F37D75B1BD06F97E8EB2F1FAA364257C9F7BE8EC8C",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Gameplay/CityTravelUiRoot.cs",
+      "CurrentSHA256": "07FFC52EE4E01C349EA5591BC1C8BC95AC264203702AAE1F1B33D34A3FE1F343",
+      "PreparedSHA256": "07FFC52EE4E01C349EA5591BC1C8BC95AC264203702AAE1F1B33D34A3FE1F343",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiRoot.cs",
+      "CurrentSHA256": "A41E1D94913305F10639B81DE87A772E5EA5BBBE75F431E61D88FA337D747413",
+      "PreparedSHA256": "A41E1D94913305F10639B81DE87A772E5EA5BBBE75F431E61D88FA337D747413",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Gameplay/GameplayUiRoot.cs",
+      "CurrentSHA256": "2F0A7FE4B4B837AD346EACF354BDC4DD51ADA5914E775ACF0A69CD8D8479C9B6",
+      "PreparedSHA256": "2F0A7FE4B4B837AD346EACF354BDC4DD51ADA5914E775ACF0A69CD8D8479C9B6",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Battle/BattleUiRoot.cs",
+      "CurrentSHA256": "1BEDDCC1C88733548169B795C3749BDED1A797C5B0D85E8AEFE6FA24A256C994",
+      "PreparedSHA256": "1BEDDCC1C88733548169B795C3749BDED1A797C5B0D85E8AEFE6FA24A256C994",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Pet/PetUiRoot.cs",
+      "CurrentSHA256": "0D4E7F928500BFA342E5CC8D056815497DEC66CD2CF7CA44133E0C02E2DB8D0C",
+      "PreparedSHA256": "0D4E7F928500BFA342E5CC8D056815497DEC66CD2CF7CA44133E0C02E2DB8D0C",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Gameplay/SceneChannelUiRoot.cs",
+      "CurrentSHA256": "217D9CC125921161A5B7DBD7772D4B793632E72B917955AC473C592A53AC1AF8",
+      "PreparedSHA256": "217D9CC125921161A5B7DBD7772D4B793632E72B917955AC473C592A53AC1AF8",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Team/TeamUiRoot.cs",
+      "CurrentSHA256": "31143999BEF36C8A7A9151EEE6A49BFF9E930DFA949AAC8A9258197633C559B0",
+      "PreparedSHA256": "31143999BEF36C8A7A9151EEE6A49BFF9E930DFA949AAC8A9258197633C559B0",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Rank/RankUiRoot.cs",
+      "CurrentSHA256": "C11EC27DA03F5552C8D0559735E9155DDE27B8C0B098770E2A8B334815B93982",
+      "PreparedSHA256": "C11EC27DA03F5552C8D0559735E9155DDE27B8C0B098770E2A8B334815B93982",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Social/SocialUiRoot.cs",
+      "CurrentSHA256": "0763BD01CD153A5DF94A704403C7C420D27D9C6CF18ECCA9F39F97185BB7CBB0",
+      "PreparedSHA256": "0763BD01CD153A5DF94A704403C7C420D27D9C6CF18ECCA9F39F97185BB7CBB0",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Mail/MailUiRoot.cs",
+      "CurrentSHA256": "A397B4A8DA919F4D4C44AE7165A8592814EAC74243AD662854955AAEA74278C0",
+      "PreparedSHA256": "A397B4A8DA919F4D4C44AE7165A8592814EAC74243AD662854955AAEA74278C0",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiUiRoot.cs",
+      "CurrentSHA256": "F4FA8CC60DF08507C37510405214305CDB31AC6A8552958780DDC3D7C9E501DA",
+      "PreparedSHA256": "F4FA8CC60DF08507C37510405214305CDB31AC6A8552958780DDC3D7C9E501DA",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Scripts/UI/Ugui/Guild/GuildUiRoot.cs",
+      "CurrentSHA256": "6BD3C94FA5D767E4801713180F3E730065B675FA30085D9A1556F80A55E08C9A",
+      "PreparedSHA256": "6BD3C94FA5D767E4801713180F3E730065B675FA30085D9A1556F80A55E08C9A",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/bag.png",
+      "CurrentSHA256": "A80C21C6364715CDB18BB99C33DB4DF3E10C7E278989DC1F379B052EA7386ACF",
+      "PreparedSHA256": "A80C21C6364715CDB18BB99C33DB4DF3E10C7E278989DC1F379B052EA7386ACF",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/bag.png.meta",
+      "CurrentSHA256": "0040330B659E9302B5BFD347F7120C26CB2A5C138C6F5BDA5C9322A959B553B4",
+      "PreparedSHA256": "0040330B659E9302B5BFD347F7120C26CB2A5C138C6F5BDA5C9322A959B553B4",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/team.png",
+      "CurrentSHA256": "7F550153518B754F468C23CFA99408D0734316E6B47470C781725FE2009F5FB1",
+      "PreparedSHA256": "7F550153518B754F468C23CFA99408D0734316E6B47470C781725FE2009F5FB1",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/team.png.meta",
+      "CurrentSHA256": "6717DC9382217BDAC6AC761FCFE0022F88041C552ACF81E5F3D9E0D6E91AE315",
+      "PreparedSHA256": "6717DC9382217BDAC6AC761FCFE0022F88041C552ACF81E5F3D9E0D6E91AE315",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/social.png",
+      "CurrentSHA256": "339F56F57C3566A2034D11E489A9636D858EDF1A9451BCC1EEBECD4732025C9B",
+      "PreparedSHA256": "339F56F57C3566A2034D11E489A9636D858EDF1A9451BCC1EEBECD4732025C9B",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/social.png.meta",
+      "CurrentSHA256": "0C48B8B1BCE383265C3836915C0E6ABA7E2BECCB0281AA8EB11E3C1F96F7848E",
+      "PreparedSHA256": "0C48B8B1BCE383265C3836915C0E6ABA7E2BECCB0281AA8EB11E3C1F96F7848E",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/trade.png",
+      "CurrentSHA256": "B1BFE77E95B60336C48C37C1E52D07BEC65574F0D4924832397BD51DF70667CF",
+      "PreparedSHA256": "B1BFE77E95B60336C48C37C1E52D07BEC65574F0D4924832397BD51DF70667CF",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/trade.png.meta",
+      "CurrentSHA256": "C439C7FE454BAD1A882FB30673710283AD6DFC7E796C2D18D832A8F17182DF84",
+      "PreparedSHA256": "C439C7FE454BAD1A882FB30673710283AD6DFC7E796C2D18D832A8F17182DF84",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/rank.png",
+      "CurrentSHA256": "10AB3398C8619E68246A5A40AB21132BD1F4591A4579EF1E7ADB60BEF7AA97EC",
+      "PreparedSHA256": "10AB3398C8619E68246A5A40AB21132BD1F4591A4579EF1E7ADB60BEF7AA97EC",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/rank.png.meta",
+      "CurrentSHA256": "62A5B982D99B5C7A075D730EE0BD9C97EBA36F44D2C9CDD75EDF7095498DFCA9",
+      "PreparedSHA256": "62A5B982D99B5C7A075D730EE0BD9C97EBA36F44D2C9CDD75EDF7095498DFCA9",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/pet.png",
+      "CurrentSHA256": "9B142F556313960FB78F5047270CE666E6754154DD894917FD8E9AF10E22B703",
+      "PreparedSHA256": "9B142F556313960FB78F5047270CE666E6754154DD894917FD8E9AF10E22B703",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/pet.png.meta",
+      "CurrentSHA256": "B607DBF7776E71AB5F7DEBA9231F33CD0B9924DE1D6E88643263E0330DC043EC",
+      "PreparedSHA256": "B607DBF7776E71AB5F7DEBA9231F33CD0B9924DE1D6E88643263E0330DC043EC",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/spectate.png",
+      "CurrentSHA256": "D164929047B1CD655E943E9707347C301D2F999F5EFEB6906B11E374DE1DAA2F",
+      "PreparedSHA256": "D164929047B1CD655E943E9707347C301D2F999F5EFEB6906B11E374DE1DAA2F",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/spectate.png.meta",
+      "CurrentSHA256": "869130D0E987B8FBCCAB7788B4D805AAF9B0F0664A7F185A8888430520312F6C",
+      "PreparedSHA256": "869130D0E987B8FBCCAB7788B4D805AAF9B0F0664A7F185A8888430520312F6C",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/channel.png",
+      "CurrentSHA256": "ADCED9121562854B3F3AF30B3E2D4AB5FB1978597CF3379FA3DC16007E494F8D",
+      "PreparedSHA256": "ADCED9121562854B3F3AF30B3E2D4AB5FB1978597CF3379FA3DC16007E494F8D",
+      "Matches": true
+    },
+    {
+      "Path": "Assets/Resources/UI/Ugui/WorldHud20261021/channel.png.meta",
+      "CurrentSHA256": "AE26C666A31912EA4A7D073F19757A6270A3EF0B74C3A097A8AD645D8391AF8E",
+      "PreparedSHA256": "AE26C666A31912EA4A7D073F19757A6270A3EF0B74C3A097A8AD645D8391AF8E",
+      "Matches": true
+    }
+  ],
+  "ResourceLookups": [
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/bag",
+      "Present": true
+    },
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/team",
+      "Present": true
+    },
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/social",
+      "Present": true
+    },
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/trade",
+      "Present": true
+    },
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/rank",
+      "Present": true
+    },
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/pet",
+      "Present": true
+    },
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/spectate",
+      "Present": true
+    },
+    {
+      "ResourcePath": "ui/ugui/worldhud20261021/channel",
+      "Present": true
+    }
+  ],
+  "PackageBinaryChecks": [
+    {
+      "Path": "client/mmorpg.exe",
+      "ExpectedSHA256": "718444F6A718FA668DA96EB0A58445B009673310E6129152A63DBF7A92B8DE00",
+      "CurrentSHA256": "718444F6A718FA668DA96EB0A58445B009673310E6129152A63DBF7A92B8DE00",
+      "Matches": true
+    },
+    {
+      "Path": "client/UnityPlayer.dll",
+      "ExpectedSHA256": "48C3863E83C8615567FD62ED6A22FA9852C80B058BB97179721EC30454680345",
+      "CurrentSHA256": "48C3863E83C8615567FD62ED6A22FA9852C80B058BB97179721EC30454680345",
+      "Matches": true
+    },
+    {
+      "Path": "client/mmorpg_Data/Managed/MmorpgClient.dll",
+      "ExpectedSHA256": "B2346720FD9B1B20089F0335BCD55E692E43E87E39058E76F6A3FEA3F0A219CE",
+      "CurrentSHA256": "B2346720FD9B1B20089F0335BCD55E692E43E87E39058E76F6A3FEA3F0A219CE",
+      "Matches": true
+    },
+    {
+      "Path": "client/mmorpg_Data/Managed/MmorpgClient.pdb",
+      "ExpectedSHA256": "331C4C26054C1329DEA51603003D5EA1622EAB8EAE307E1D035D8FF4C431ADB3",
+      "CurrentSHA256": "331C4C26054C1329DEA51603003D5EA1622EAB8EAE307E1D035D8FF4C431ADB3",
+      "Matches": true
+    }
+  ],
+  "NativeBaseline": "verification.json",
+  "HudLayeringBaseline": "hud-layering-tests.xml",
+  "Unverified": "Logged-in production-player interaction in a main-world session."
+}

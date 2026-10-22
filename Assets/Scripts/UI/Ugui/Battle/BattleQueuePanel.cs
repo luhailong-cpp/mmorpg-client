@@ -238,28 +238,28 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_pveTeamSize <= 1)
             {
                 // 1 人档不需要等人:沿用 PVE_SOLO 入口,服务端即时开战
-                client.JoinQueue(Match.MatchMode.PveSolo, BattleUiStyle.PveSoloBattleConfigId);
                 SetStatus("已请求匹配 PVE(1 人),等待服务器…");
+                client.JoinQueue(Match.MatchMode.PveSolo, BattleUiStyle.PveSoloBattleConfigId);
                 return;
             }
-            client.JoinQueue(Match.MatchMode.PveTeam, BattleUiStyle.PveTeamBattleConfigId, _pveTeamSize);
             SetStatus($"已请求匹配 PVE({_pveTeamSize} 人,怪物数量是单人的 {_pveTeamSize} 倍),等待凑满 {_pveTeamSize} 人…");
+            client.JoinQueue(Match.MatchMode.PveTeam, BattleUiStyle.PveTeamBattleConfigId, _pveTeamSize);
         }
 
         private void OnJoinPvpClicked()
         {
             var client = _owner?.Client;
             if (client == null) { SetStatus("战斗模块未就绪"); return; }
-            client.JoinQueue(Match.MatchMode._1V1, BattleUiStyle.Pvp1V1BattleConfigId);
             SetStatus("已请求匹配 PVP(1v1),等待服务器…");
+            client.JoinQueue(Match.MatchMode._1V1, BattleUiStyle.Pvp1V1BattleConfigId);
         }
 
         private void OnJoinPvp5V5Clicked()
         {
             var client = _owner?.Client;
             if (client == null) { SetStatus("战斗模块未就绪"); return; }
-            client.JoinQueue(Match.MatchMode._5V5, BattleUiStyle.Pvp5V5BattleConfigId);
             SetStatus("已请求匹配 PVP(5v5),等待凑满 10 人…");
+            client.JoinQueue(Match.MatchMode._5V5, BattleUiStyle.Pvp5V5BattleConfigId);
         }
 
         private void OnContinuousClicked()
@@ -280,8 +280,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             var client = _owner?.Client;
             if (client == null) { SetStatus("战斗模块未就绪"); return; }
-            client.CancelQueue();
             SetStatus("已请求取消排队…");
+            client.CancelQueue();
         }
 
         private void OnDuelClicked()
@@ -299,8 +299,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 SetStatus("不能挑战自己");
                 return;
             }
-            client.ChallengePlayer(target);
             SetStatus($"已向玩家 {target} 发起切磋,等待对方应答…");
+            client.ChallengePlayer(target);
         }
 
         private void RefreshButtons()

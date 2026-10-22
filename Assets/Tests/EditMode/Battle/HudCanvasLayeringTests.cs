@@ -18,11 +18,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
     {
         private GameObject _fixture;
         private RenderTexture _renderTarget;
+        private WorldHudNavigation _navigationBefore;
 
         [TearDown]
         public void TearDown()
         {
             if (_fixture != null) UnityEngine.Object.DestroyImmediate(_fixture);
+            if (WorldHudNavigation.Instance != null && WorldHudNavigation.Instance != _navigationBefore)
+                UnityEngine.Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
             if (_renderTarget != null)
             {
                 _renderTarget.Release();
@@ -33,6 +36,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [UnityTest]
         public IEnumerator NativeHudCanvasesStayBelowWindowsAndKeepRaycastTargets()
         {
+            _navigationBefore = WorldHudNavigation.Instance;
             _fixture = new GameObject("HudCanvasLayeringTests");
             var eventSystemGo = new GameObject("TestEventSystem", typeof(EventSystem));
             eventSystemGo.transform.SetParent(_fixture.transform, false);

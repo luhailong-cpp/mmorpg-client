@@ -1,0 +1,28 @@
+{
+  "Status": "BLOCKED_BEFORE_MAIN_WORLD",
+  "ReviewDateClient": "2026-10-22",
+  "Scope": "Production-player online HUD acceptance",
+  "Package": "Builds/play-20261021-ready/client/mmorpg.exe",
+  "ObservedSteps": [
+    "Selected one existing running client window from Windows inventory",
+    "Observed an already-authenticated character-selection view with an existing character selected",
+    "Clicked Enter Fairyland once",
+    "Client returned to server-select/login view before main-world HUD appeared"
+  ],
+  "ObservedClientMessage": "[GameClient] [enter] server reported enter failure tip=3023",
+  "ProtocolMeaning": "Enter scene failed",
+  "LogReferences": [
+    "Builds/play-20261021-ready/logs/manual-20261022-013124363-9d56163f/client-01.log",
+    "Builds/play-20261021-ready/logs/manual-20261022-013124279-dcf0de10/client-01.log"
+  ],
+  "Screenshot": "online-entry-failure-20261022.png",
+  "OnlineCategoryChecksCompleted": 0,
+  "NativeOfflineBaseline": "verification.json",
+  "AccountCredentialsEntered": false,
+  "CharactersCreated": false,
+  "MailOpened": false,
+  "PurchaseOrRewardOrBattleTriggered": false,
+  "ServerOrDatabaseChanged": false,
+  "ServerRootCause": "Not determined in limited read-only investigation. Login/enter-game acceptance is followed by server tip3023; no matching finer server-side failure was found. No backend changes or further entry retries performed.",
+  "LoginAcceptedBeforeSceneFailure": true
+}
