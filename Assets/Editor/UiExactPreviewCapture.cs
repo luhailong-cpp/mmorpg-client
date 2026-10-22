@@ -38,7 +38,7 @@ public static class UiExactPreviewCapture
         Run("social",p=>{SocialFidelityVerification.OutputDirectory=p;SocialFidelityVerification.Capture();});
         Run("mail",p=>{MailUiVerification.OutputDirectory=p;MailUiVerification.CaptureAll();});
         Run("attributes",p=>{AttributePanelV10Verification.OutputDirectory=p;AttributePanelV10Verification.CaptureAll();});
-        Run("skills",p=>{SkillUiVerification.CaptureAll();foreach(var f in Directory.GetFiles(SkillUiVerification.OutputDirectory))File.Copy(f,Path.Combine(p,Path.GetFileName(f)),true);});
+        Run("skills",p=>{SkillUiVerification.OutputDirectory=p;SkillUiVerification.CaptureAll();});
         Run("channels",p=>{SceneChannelFidelityVerification.OutputDirectory=p;SceneChannelFidelityVerification.Capture();});
         Run("world",p=>{WorldMapFidelityVerification.OutputDirectory=p;WorldMapFidelityVerification.Capture();});
         Debug.Log("UI_EXACT_PHASE_ONE_CAPTURE_FINISHED");
@@ -62,6 +62,12 @@ public static class UiExactPreviewCapture
         Batch="attributes";Prepare();
         Run("attributes",p=>{AttributePanelV10Verification.OutputDirectory=p;AttributePanelV10Verification.CaptureAll();});
         Debug.Log("UI_EXACT_ATTRIBUTES_CAPTURE_FINISHED");
+    }
+    public static void SkillsOnly()
+    {
+        Batch="skills";Prepare();
+        Run("skills",p=>{SkillUiVerification.OutputDirectory=p;SkillUiVerification.CaptureAll();});
+        Debug.Log("UI_EXACT_SKILLS_CAPTURE_FINISHED");
     }
     public static void FinalRemaining()
     {
