@@ -26,22 +26,26 @@ namespace Teampb {
           string.Concat(
             "ChVwcm90by90ZWFtL3RlYW0ucHJvdG8SBnRlYW1wYhobcHJvdG8vZGIvcHJv",
             "dG9fb3B0aW9uLnByb3RvGh1wcm90by9jb21tb24vYmFzZS9lbXB0eS5wcm90",
-            "bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnByb3RvIhMKEUNyZWF0ZVRlYW1S",
-            "ZXF1ZXN0IlQKEEdldE15VGVhbVJlcXVlc3QSFQoNbm90aWZ5X29ubGluZRgB",
-            "IAEoCBIYChBtYXRjaF9yZXF1ZXN0X2lkGAIgASgJEg8KB3JlZ3JvdXAYAyAB",
-            "KAgiMAoUQXBwbHlKb2luVGVhbVJlcXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9p",
-            "ZBgBIAEoBCJbChhIYW5kbGVBcHBsaWNhdGlvblJlcXVlc3QSFAoMYXBwbGlj",
-            "YW50X2lkGAEgASgEEg8KB2FwcHJvdmUYAiABKAgSGAoQZXhwZWN0ZWRfdGVh",
-            "bV9pZBgDIAEoBCJJChNJbnZpdGVUb1RlYW1SZXF1ZXN0EhgKEHRhcmdldF9w",
-            "bGF5ZXJfaWQYASABKAQSGAoQZXhwZWN0ZWRfdGVhbV9pZBgCIAEoBCI3ChRS",
-            "ZXNwb25kSW52aXRlUmVxdWVzdBIPCgd0ZWFtX2lkGAEgASgEEg4KBmFjY2Vw",
-            "dBgCIAEoCCIWChRMaXN0TXlJbnZpdGVzUmVxdWVzdCIsChBMZWF2ZVRlYW1S",
-            "ZXF1ZXN0EhgKEGV4cGVjdGVkX3RlYW1faWQYASABKAQiRwoRS2lja01lbWJl",
-            "clJlcXVlc3QSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoBBIYChBleHBlY3Rl",
-            "ZF90ZWFtX2lkGAIgASgEIksKFVRyYW5zZmVyTGVhZGVyUmVxdWVzdBIYChB0",
-            "YXJnZXRfcGxheWVyX2lkGAEgASgEEhgKEGV4cGVjdGVkX3RlYW1faWQYAiAB",
-            "KAQiLgoSRGlzYmFuZFRlYW1SZXF1ZXN0EhgKEGV4cGVjdGVkX3RlYW1faWQY",
-            "ASABKAQieQoVU3RhcnRUZWFtTWF0Y2hSZXF1ZXN0EhgKEGJhdHRsZV9jb25m",
+            "bxobcHJvdG8vY29tbW9uL2Jhc2UvdGlwLnByb3RvIicKEUNyZWF0ZVRlYW1S",
+            "ZXF1ZXN0EhIKCnJlcXVlc3RfaWQYASABKAkiVAoQR2V0TXlUZWFtUmVxdWVz",
+            "dBIVCg1ub3RpZnlfb25saW5lGAEgASgIEhgKEG1hdGNoX3JlcXVlc3RfaWQY",
+            "AiABKAkSDwoHcmVncm91cBgDIAEoCCJEChRBcHBseUpvaW5UZWFtUmVxdWVz",
+            "dBIYChB0YXJnZXRfcGxheWVyX2lkGAEgASgEEhIKCnJlcXVlc3RfaWQYAiAB",
+            "KAkibwoYSGFuZGxlQXBwbGljYXRpb25SZXF1ZXN0EhQKDGFwcGxpY2FudF9p",
+            "ZBgBIAEoBBIPCgdhcHByb3ZlGAIgASgIEhgKEGV4cGVjdGVkX3RlYW1faWQY",
+            "AyABKAQSEgoKcmVxdWVzdF9pZBgEIAEoCSJdChNJbnZpdGVUb1RlYW1SZXF1",
+            "ZXN0EhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKAQSGAoQZXhwZWN0ZWRfdGVh",
+            "bV9pZBgCIAEoBBISCgpyZXF1ZXN0X2lkGAMgASgJIksKFFJlc3BvbmRJbnZp",
+            "dGVSZXF1ZXN0Eg8KB3RlYW1faWQYASABKAQSDgoGYWNjZXB0GAIgASgIEhIK",
+            "CnJlcXVlc3RfaWQYAyABKAkiFgoUTGlzdE15SW52aXRlc1JlcXVlc3QiQAoQ",
+            "TGVhdmVUZWFtUmVxdWVzdBIYChBleHBlY3RlZF90ZWFtX2lkGAEgASgEEhIK",
+            "CnJlcXVlc3RfaWQYAiABKAkiWwoRS2lja01lbWJlclJlcXVlc3QSGAoQdGFy",
+            "Z2V0X3BsYXllcl9pZBgBIAEoBBIYChBleHBlY3RlZF90ZWFtX2lkGAIgASgE",
+            "EhIKCnJlcXVlc3RfaWQYAyABKAkiXwoVVHJhbnNmZXJMZWFkZXJSZXF1ZXN0",
+            "EhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKAQSGAoQZXhwZWN0ZWRfdGVhbV9p",
+            "ZBgCIAEoBBISCgpyZXF1ZXN0X2lkGAMgASgJIkIKEkRpc2JhbmRUZWFtUmVx",
+            "dWVzdBIYChBleHBlY3RlZF90ZWFtX2lkGAEgASgEEhIKCnJlcXVlc3RfaWQY",
+            "AiABKAkieQoVU3RhcnRUZWFtTWF0Y2hSZXF1ZXN0EhgKEGJhdHRsZV9jb25m",
             "aWdfaWQYASABKA0SGAoQZXhwZWN0ZWRfdGVhbV9pZBgCIAEoBBISCgpyZXF1",
             "ZXN0X2lkGAMgASgJEhgKEHRhcmdldF90ZWFtX3NpemUYBCABKA0ihQEKDFRl",
             "YW1SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01l",
@@ -144,17 +148,17 @@ namespace Teampb {
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Teampb.TeamMatchState), typeof(global::Teampb.TeamChangeReason), typeof(global::Teampb.TeamEventType), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.CreateTeamRequest), global::Teampb.CreateTeamRequest.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.CreateTeamRequest), global::Teampb.CreateTeamRequest.Parser, new[]{ "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.GetMyTeamRequest), global::Teampb.GetMyTeamRequest.Parser, new[]{ "NotifyOnline", "MatchRequestId", "Regroup" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ApplyJoinTeamRequest), global::Teampb.ApplyJoinTeamRequest.Parser, new[]{ "TargetPlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.HandleApplicationRequest), global::Teampb.HandleApplicationRequest.Parser, new[]{ "ApplicantId", "Approve", "ExpectedTeamId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.InviteToTeamRequest), global::Teampb.InviteToTeamRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.RespondInviteRequest), global::Teampb.RespondInviteRequest.Parser, new[]{ "TeamId", "Accept" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ApplyJoinTeamRequest), global::Teampb.ApplyJoinTeamRequest.Parser, new[]{ "TargetPlayerId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.HandleApplicationRequest), global::Teampb.HandleApplicationRequest.Parser, new[]{ "ApplicantId", "Approve", "ExpectedTeamId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.InviteToTeamRequest), global::Teampb.InviteToTeamRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.RespondInviteRequest), global::Teampb.RespondInviteRequest.Parser, new[]{ "TeamId", "Accept", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.ListMyInvitesRequest), global::Teampb.ListMyInvitesRequest.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.LeaveTeamRequest), global::Teampb.LeaveTeamRequest.Parser, new[]{ "ExpectedTeamId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.KickMemberRequest), global::Teampb.KickMemberRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TransferLeaderRequest), global::Teampb.TransferLeaderRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.DisbandTeamRequest), global::Teampb.DisbandTeamRequest.Parser, new[]{ "ExpectedTeamId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.LeaveTeamRequest), global::Teampb.LeaveTeamRequest.Parser, new[]{ "ExpectedTeamId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.KickMemberRequest), global::Teampb.KickMemberRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TransferLeaderRequest), global::Teampb.TransferLeaderRequest.Parser, new[]{ "TargetPlayerId", "ExpectedTeamId", "RequestId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.DisbandTeamRequest), global::Teampb.DisbandTeamRequest.Parser, new[]{ "ExpectedTeamId", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.StartTeamMatchRequest), global::Teampb.StartTeamMatchRequest.Parser, new[]{ "BattleConfigId", "ExpectedTeamId", "RequestId", "TargetTeamSize" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamResponse), global::Teampb.TeamResponse.Parser, new[]{ "ErrorMessage", "Team", "MatchIntent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Teampb.TeamMatchIntent), global::Teampb.TeamMatchIntent.Parser, new[]{ "RequestId", "BattleId", "State" }, null, null, null, null),
@@ -255,6 +259,9 @@ namespace Teampb {
   #endregion
 
   #region Messages
+  /// <summary>
+  /// 写请求的 UUID 代表原业务意图；传输重试必须复用，新操作另发，回执绑定原角色归属。
+  /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CreateTeamRequest : pb::IMessage<CreateTeamRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -290,6 +297,7 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CreateTeamRequest(CreateTeamRequest other) : this() {
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -297,6 +305,18 @@ namespace Teampb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CreateTeamRequest Clone() {
       return new CreateTeamRequest(this);
+    }
+
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 1;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -314,6 +334,7 @@ namespace Teampb {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -321,6 +342,7 @@ namespace Teampb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -339,6 +361,10 @@ namespace Teampb {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -349,6 +375,10 @@ namespace Teampb {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -359,6 +389,9 @@ namespace Teampb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -370,6 +403,9 @@ namespace Teampb {
     public void MergeFrom(CreateTeamRequest other) {
       if (other == null) {
         return;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -390,6 +426,10 @@ namespace Teampb {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -409,6 +449,10 @@ namespace Teampb {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 10: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -736,6 +780,7 @@ namespace Teampb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ApplyJoinTeamRequest(ApplyJoinTeamRequest other) : this() {
       targetPlayerId_ = other.targetPlayerId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -760,6 +805,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 2;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -776,6 +833,7 @@ namespace Teampb {
         return true;
       }
       if (TargetPlayerId != other.TargetPlayerId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -784,6 +842,7 @@ namespace Teampb {
     public override int GetHashCode() {
       int hash = 1;
       if (TargetPlayerId != 0UL) hash ^= TargetPlayerId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -806,6 +865,10 @@ namespace Teampb {
         output.WriteRawTag(8);
         output.WriteUInt64(TargetPlayerId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -820,6 +883,10 @@ namespace Teampb {
         output.WriteRawTag(8);
         output.WriteUInt64(TargetPlayerId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -832,6 +899,9 @@ namespace Teampb {
       int size = 0;
       if (TargetPlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TargetPlayerId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -847,6 +917,9 @@ namespace Teampb {
       }
       if (other.TargetPlayerId != 0UL) {
         TargetPlayerId = other.TargetPlayerId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -871,6 +944,10 @@ namespace Teampb {
             TargetPlayerId = input.ReadUInt64();
             break;
           }
+          case 18: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -892,6 +969,10 @@ namespace Teampb {
             break;
           case 8: {
             TargetPlayerId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -939,6 +1020,7 @@ namespace Teampb {
       applicantId_ = other.applicantId_;
       approve_ = other.approve_;
       expectedTeamId_ = other.expectedTeamId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -984,6 +1066,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 4;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1002,6 +1096,7 @@ namespace Teampb {
       if (ApplicantId != other.ApplicantId) return false;
       if (Approve != other.Approve) return false;
       if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1012,6 +1107,7 @@ namespace Teampb {
       if (ApplicantId != 0UL) hash ^= ApplicantId.GetHashCode();
       if (Approve != false) hash ^= Approve.GetHashCode();
       if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1042,6 +1138,10 @@ namespace Teampb {
         output.WriteRawTag(24);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1064,6 +1164,10 @@ namespace Teampb {
         output.WriteRawTag(24);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1082,6 +1186,9 @@ namespace Teampb {
       }
       if (ExpectedTeamId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1103,6 +1210,9 @@ namespace Teampb {
       }
       if (other.ExpectedTeamId != 0UL) {
         ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1135,6 +1245,10 @@ namespace Teampb {
             ExpectedTeamId = input.ReadUInt64();
             break;
           }
+          case 34: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1164,6 +1278,10 @@ namespace Teampb {
           }
           case 24: {
             ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -1210,6 +1328,7 @@ namespace Teampb {
     public InviteToTeamRequest(InviteToTeamRequest other) : this() {
       targetPlayerId_ = other.targetPlayerId_;
       expectedTeamId_ = other.expectedTeamId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1243,6 +1362,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1260,6 +1391,7 @@ namespace Teampb {
       }
       if (TargetPlayerId != other.TargetPlayerId) return false;
       if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1269,6 +1401,7 @@ namespace Teampb {
       int hash = 1;
       if (TargetPlayerId != 0UL) hash ^= TargetPlayerId.GetHashCode();
       if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1295,6 +1428,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1313,6 +1450,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1328,6 +1469,9 @@ namespace Teampb {
       }
       if (ExpectedTeamId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1346,6 +1490,9 @@ namespace Teampb {
       }
       if (other.ExpectedTeamId != 0UL) {
         ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1374,6 +1521,10 @@ namespace Teampb {
             ExpectedTeamId = input.ReadUInt64();
             break;
           }
+          case 26: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1399,6 +1550,10 @@ namespace Teampb {
           }
           case 16: {
             ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -1445,6 +1600,7 @@ namespace Teampb {
     public RespondInviteRequest(RespondInviteRequest other) : this() {
       teamId_ = other.teamId_;
       accept_ = other.accept_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1481,6 +1637,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1498,6 +1666,7 @@ namespace Teampb {
       }
       if (TeamId != other.TeamId) return false;
       if (Accept != other.Accept) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1507,6 +1676,7 @@ namespace Teampb {
       int hash = 1;
       if (TeamId != 0UL) hash ^= TeamId.GetHashCode();
       if (Accept != false) hash ^= Accept.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1533,6 +1703,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteBool(Accept);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1551,6 +1725,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteBool(Accept);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1566,6 +1744,9 @@ namespace Teampb {
       }
       if (Accept != false) {
         size += 1 + 1;
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1584,6 +1765,9 @@ namespace Teampb {
       }
       if (other.Accept != false) {
         Accept = other.Accept;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1612,6 +1796,10 @@ namespace Teampb {
             Accept = input.ReadBool();
             break;
           }
+          case 26: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1637,6 +1825,10 @@ namespace Teampb {
           }
           case 16: {
             Accept = input.ReadBool();
+            break;
+          }
+          case 26: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -1843,6 +2035,7 @@ namespace Teampb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LeaveTeamRequest(LeaveTeamRequest other) : this() {
       expectedTeamId_ = other.expectedTeamId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1864,6 +2057,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 2;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1880,6 +2085,7 @@ namespace Teampb {
         return true;
       }
       if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1888,6 +2094,7 @@ namespace Teampb {
     public override int GetHashCode() {
       int hash = 1;
       if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1910,6 +2117,10 @@ namespace Teampb {
         output.WriteRawTag(8);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1924,6 +2135,10 @@ namespace Teampb {
         output.WriteRawTag(8);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1936,6 +2151,9 @@ namespace Teampb {
       int size = 0;
       if (ExpectedTeamId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1951,6 +2169,9 @@ namespace Teampb {
       }
       if (other.ExpectedTeamId != 0UL) {
         ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1975,6 +2196,10 @@ namespace Teampb {
             ExpectedTeamId = input.ReadUInt64();
             break;
           }
+          case 18: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1996,6 +2221,10 @@ namespace Teampb {
             break;
           case 8: {
             ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -2042,6 +2271,7 @@ namespace Teampb {
     public KickMemberRequest(KickMemberRequest other) : this() {
       targetPlayerId_ = other.targetPlayerId_;
       expectedTeamId_ = other.expectedTeamId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2075,6 +2305,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2092,6 +2334,7 @@ namespace Teampb {
       }
       if (TargetPlayerId != other.TargetPlayerId) return false;
       if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2101,6 +2344,7 @@ namespace Teampb {
       int hash = 1;
       if (TargetPlayerId != 0UL) hash ^= TargetPlayerId.GetHashCode();
       if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2127,6 +2371,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2145,6 +2393,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2160,6 +2412,9 @@ namespace Teampb {
       }
       if (ExpectedTeamId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2178,6 +2433,9 @@ namespace Teampb {
       }
       if (other.ExpectedTeamId != 0UL) {
         ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2206,6 +2464,10 @@ namespace Teampb {
             ExpectedTeamId = input.ReadUInt64();
             break;
           }
+          case 26: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -2231,6 +2493,10 @@ namespace Teampb {
           }
           case 16: {
             ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -2277,6 +2543,7 @@ namespace Teampb {
     public TransferLeaderRequest(TransferLeaderRequest other) : this() {
       targetPlayerId_ = other.targetPlayerId_;
       expectedTeamId_ = other.expectedTeamId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2310,6 +2577,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 3;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2327,6 +2606,7 @@ namespace Teampb {
       }
       if (TargetPlayerId != other.TargetPlayerId) return false;
       if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2336,6 +2616,7 @@ namespace Teampb {
       int hash = 1;
       if (TargetPlayerId != 0UL) hash ^= TargetPlayerId.GetHashCode();
       if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2362,6 +2643,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2380,6 +2665,10 @@ namespace Teampb {
         output.WriteRawTag(16);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2395,6 +2684,9 @@ namespace Teampb {
       }
       if (ExpectedTeamId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2413,6 +2705,9 @@ namespace Teampb {
       }
       if (other.ExpectedTeamId != 0UL) {
         ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2441,6 +2736,10 @@ namespace Teampb {
             ExpectedTeamId = input.ReadUInt64();
             break;
           }
+          case 26: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -2466,6 +2765,10 @@ namespace Teampb {
           }
           case 16: {
             ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -2511,6 +2814,7 @@ namespace Teampb {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public DisbandTeamRequest(DisbandTeamRequest other) : this() {
       expectedTeamId_ = other.expectedTeamId_;
+      requestId_ = other.requestId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2532,6 +2836,18 @@ namespace Teampb {
       }
     }
 
+    /// <summary>Field number for the "request_id" field.</summary>
+    public const int RequestIdFieldNumber = 2;
+    private string requestId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RequestId {
+      get { return requestId_; }
+      set {
+        requestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2548,6 +2864,7 @@ namespace Teampb {
         return true;
       }
       if (ExpectedTeamId != other.ExpectedTeamId) return false;
+      if (RequestId != other.RequestId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2556,6 +2873,7 @@ namespace Teampb {
     public override int GetHashCode() {
       int hash = 1;
       if (ExpectedTeamId != 0UL) hash ^= ExpectedTeamId.GetHashCode();
+      if (RequestId.Length != 0) hash ^= RequestId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2578,6 +2896,10 @@ namespace Teampb {
         output.WriteRawTag(8);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2592,6 +2914,10 @@ namespace Teampb {
         output.WriteRawTag(8);
         output.WriteUInt64(ExpectedTeamId);
       }
+      if (RequestId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(RequestId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2604,6 +2930,9 @@ namespace Teampb {
       int size = 0;
       if (ExpectedTeamId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ExpectedTeamId);
+      }
+      if (RequestId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RequestId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2619,6 +2948,9 @@ namespace Teampb {
       }
       if (other.ExpectedTeamId != 0UL) {
         ExpectedTeamId = other.ExpectedTeamId;
+      }
+      if (other.RequestId.Length != 0) {
+        RequestId = other.RequestId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2643,6 +2975,10 @@ namespace Teampb {
             ExpectedTeamId = input.ReadUInt64();
             break;
           }
+          case 18: {
+            RequestId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -2664,6 +3000,10 @@ namespace Teampb {
             break;
           case 8: {
             ExpectedTeamId = input.ReadUInt64();
+            break;
+          }
+          case 18: {
+            RequestId = input.ReadString();
             break;
           }
         }
@@ -7147,7 +7487,7 @@ namespace Teampb {
     public const int MatchLockExpireAtMsFieldNumber = 10;
     private ulong matchLockExpireAtMs_;
     /// <summary>
-    /// 过期视为无锁
+    /// SQL权威中token非空且本值0为持久launch锁，仅确证终态可释放；旧Redis锁仍按正数截止。
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

@@ -397,6 +397,7 @@ namespace MmorpgClient.Game.Battle
                 _joinIntent = req; _joinOutcomeUnknown = true;
             }
             _joinSent = true;
+            _nextQueuePollAt = _now + QueuePollIntervalSeconds;
             var identity = new JoinRequestIdentity { Generation = generation, QueueSession = _queueSession, Player = req.PlayerId };
             _inFlightJoinRequest = identity;
             _net.Call(MessageIds.JoinQueue, req, Match.JoinQueueResponse.Parser,
@@ -560,6 +561,10 @@ namespace MmorpgClient.Game.Battle
 
         private void PollQueueStatus()
         {
+            // 本机新匹配还在做地域探测,尚未提交入队。此时服务端的 NotQueued
+            // 不能撤销这次意图;恢复记录与随队入队仍须照常向服务端求证。
+            if (Phase == BattlePhase.Queued && RegionProbe?.Busy == true && !_joinSent &&
+                !QueueAdopted && _joinIntent == null && !_recoveryBlocked) return;
             // 单在途防止重复轮询；请求代次、玩家和排队会话继续隔离旧结果。
             if (_queuePollInFlightSeq != 0) { _queuePollAgain = true; return; }
             int seq = BeginQueuePoll();

@@ -22,17 +22,17 @@ public static partial class SessionReflection {
   static SessionReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvItQBCg5TZXNzaW9u",
+          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvIuwBCg5TZXNzaW9u",
           "RGV0YWlscxISCgpzZXNzaW9uX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEo",
           "BBIUCgxnYXRlX25vZGVfaWQYAyABKA0SGAoQZ2F0ZV9pbnN0YW5jZV9pZBgE",
           "IAEoCRIYChB0aWNrZXRfcGxheWVyX2lkGAUgASgEEh0KFXRpY2tldF90YXJn",
           "ZXRfem9uZV9pZBgGIAEoDRIbChNzZXNzaW9uX2luY2FybmF0aW9uGAcgASgE",
-          "EhUKDWdhdGVfY2FsbF9zZXEYCCABKARCDVoLY29tbW9uL2Jhc2ViBnByb3Rv",
-          "Mw=="));
+          "EhUKDWdhdGVfY2FsbF9zZXEYCCABKAQSFgoOb3duZXJfcmV2aXNpb24YCSAB",
+          "KARCDVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId", "TicketPlayerId", "TicketTargetZoneId", "SessionIncarnation", "GateCallSeq" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId", "TicketPlayerId", "TicketTargetZoneId", "SessionIncarnation", "GateCallSeq", "OwnerRevision" }, null, null, null, null)
         }));
   }
   #endregion
@@ -82,6 +82,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     ticketTargetZoneId_ = other.ticketTargetZoneId_;
     sessionIncarnation_ = other.sessionIncarnation_;
     gateCallSeq_ = other.gateCallSeq_;
+    ownerRevision_ = other.ownerRevision_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -209,6 +210,21 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
   }
 
+  /// <summary>Field number for the "owner_revision" field.</summary>
+  public const int OwnerRevisionFieldNumber = 9;
+  private ulong ownerRevision_;
+  /// <summary>
+  /// gate绑定角色时确认的原归属修订；换图原样保留，解绑清零。业务提交须与原账号一起复核，禁止反查当前归属补值。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong OwnerRevision {
+    get { return ownerRevision_; }
+    set {
+      ownerRevision_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -232,6 +248,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (TicketTargetZoneId != other.TicketTargetZoneId) return false;
     if (SessionIncarnation != other.SessionIncarnation) return false;
     if (GateCallSeq != other.GateCallSeq) return false;
+    if (OwnerRevision != other.OwnerRevision) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -247,6 +264,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (TicketTargetZoneId != 0) hash ^= TicketTargetZoneId.GetHashCode();
     if (SessionIncarnation != 0UL) hash ^= SessionIncarnation.GetHashCode();
     if (GateCallSeq != 0UL) hash ^= GateCallSeq.GetHashCode();
+    if (OwnerRevision != 0UL) hash ^= OwnerRevision.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -297,6 +315,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(64);
       output.WriteUInt64(GateCallSeq);
     }
+    if (OwnerRevision != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(OwnerRevision);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -339,6 +361,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(64);
       output.WriteUInt64(GateCallSeq);
     }
+    if (OwnerRevision != 0UL) {
+      output.WriteRawTag(72);
+      output.WriteUInt64(OwnerRevision);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -372,6 +398,9 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (GateCallSeq != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(GateCallSeq);
+    }
+    if (OwnerRevision != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(OwnerRevision);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -408,6 +437,9 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (other.GateCallSeq != 0UL) {
       GateCallSeq = other.GateCallSeq;
+    }
+    if (other.OwnerRevision != 0UL) {
+      OwnerRevision = other.OwnerRevision;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -460,6 +492,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
           GateCallSeq = input.ReadUInt64();
           break;
         }
+        case 72: {
+          OwnerRevision = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -509,6 +545,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
         }
         case 64: {
           GateCallSeq = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          OwnerRevision = input.ReadUInt64();
           break;
         }
       }

@@ -52,44 +52,45 @@ public static partial class PlayerBattleReflection {
           "CzIPLlRpcEluZm9NZXNzYWdlIjoKFFNldEF1dG9CYXR0bGVSZXF1ZXN0EhEK",
           "CWJhdHRsZV9pZBgBIAEoBBIPCgdlbmFibGVkGAIgASgIIj8KFVNldEF1dG9C",
           "YXR0bGVSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-          "b01lc3NhZ2UipwEKE0JhdHRsZVRpY2tldFBheWxvYWQSEQoJYmF0dGxlX2lk",
+          "b01lc3NhZ2UixwEKE0JhdHRsZVRpY2tldFBheWxvYWQSEQoJYmF0dGxlX2lk",
           "GAEgASgEEhEKCXBsYXllcl9pZBgCIAEoBBIWCg5iYXR0bGVfbm9kZV9pZBgD",
           "IAEoDRIaChJiYXR0bGVfaW5zdGFuY2VfaWQYBCABKAkSFAoMZXhwaXJlX2F0",
-          "X21zGAUgASgEEiAKBHJvbGUYBiABKA4yEi5lQmF0dGxlVGlja2V0Um9sZSI+",
-          "ChhCYXR0bGVUb2tlblZlcmlmeVJlcXVlc3QSDwoHcGF5bG9hZBgBIAEoDBIR",
-          "CglzaWduYXR1cmUYAiABKAwiTgoZQmF0dGxlVG9rZW5WZXJpZnlSZXNwb25z",
-          "ZRIPCgdzdWNjZXNzGAEgASgIEg0KBWVycm9yGAIgASgJEhEKCWJhdHRsZV9p",
-          "ZBgDIAEoBCKqAQoRQmF0dGxlQXNzaWduZWRTMkMSEQoJYmF0dGxlX2lkGAEg",
-          "ASgEEgwKBGhvc3QYAiABKAkSDAoEcG9ydBgDIAEoDRIVCg10b2tlbl9wYXls",
-          "b2FkGAQgASgMEhcKD3Rva2VuX3NpZ25hdHVyZRgFIAEoDBIUCgxleHBpcmVf",
-          "YXRfbXMYBiABKAQSIAoEcm9sZRgHIAEoDjISLmVCYXR0bGVUaWNrZXRSb2xl",
-          "Ii8KGlJlcXVlc3RCYXR0bGVUaWNrZXRSZXF1ZXN0EhEKCWJhdHRsZV9pZBgB",
-          "IAEoBCJtChtSZXF1ZXN0QmF0dGxlVGlja2V0UmVzcG9uc2USJgoNZXJyb3Jf",
-          "bWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiYKCmFzc2lnbm1lbnQY",
-          "AiABKAsyEi5CYXR0bGVBc3NpZ25lZFMyQyqIAQoSZVNwZWN0YXRlRW5kUmVh",
-          "c29uEhUKEVNQRUNUQVRFX0VORF9OT05FEAASIAocU1BFQ1RBVEVfRU5EX0JB",
-          "VFRMRV9GSU5JU0hFRBABEh8KG1NQRUNUQVRFX0VORF9CQVRUTEVfQUJPUlRF",
-          "RBACEhgKFFNQRUNUQVRFX0VORF9SRU1PVkVEEAMqdQoRZUJhdHRsZVRpY2tl",
-          "dFJvbGUSGwoXQkFUVExFX1RJQ0tFVF9ST0xFX05PTkUQABIiCh5CQVRUTEVf",
-          "VElDS0VUX1JPTEVfUEFSVElDSVBBTlQQARIfChtCQVRUTEVfVElDS0VUX1JP",
-          "TEVfT0JTRVJWRVIQAjLlBQoSQmF0dGxlQ2xpZW50UGxheWVyEk0KElN1Ym1p",
-          "dEJhdHRsZUFjdGlvbhIaLlN1Ym1pdEJhdHRsZUFjdGlvblJlcXVlc3QaGy5T",
-          "dWJtaXRCYXR0bGVBY3Rpb25SZXNwb25zZRI5Cg5HZXRCYXR0bGVTdGF0ZRIW",
-          "LkdldEJhdHRsZVN0YXRlUmVxdWVzdBoPLkJhdHRsZVN0YXRlUzJDEjMKEU5v",
-          "dGlmeUJhdHRsZVN0YXJ0Eg8uQmF0dGxlU3RhcnRTMkMaBi5FbXB0eSIFiJnI",
-          "AQISMQoQTm90aWZ5VHVyblJlc3VsdBIOLlR1cm5SZXN1bHRTMkMaBi5FbXB0",
-          "eSIFiJnIAQISLwoPTm90aWZ5QmF0dGxlRW5kEg0uQmF0dGxlRW5kUzJDGgYu",
-          "RW1wdHkiBYiZyAECEjsKFU5vdGlmeUJhdHRsZVJlY29ubmVjdBITLkJhdHRs",
-          "ZVJlY29ubmVjdFMyQxoGLkVtcHR5IgWImcgBAhJECg9TdG9wV2F0Y2hCYXR0",
-          "bGUSFy5TdG9wV2F0Y2hCYXR0bGVSZXF1ZXN0GhguU3RvcFdhdGNoQmF0dGxl",
-          "UmVzcG9uc2USPgoNU2V0QXV0b0JhdHRsZRIVLlNldEF1dG9CYXR0bGVSZXF1",
-          "ZXN0GhYuU2V0QXV0b0JhdHRsZVJlc3BvbnNlEjcKE05vdGlmeVNwZWN0YXRl",
-          "U3RhdGUSES5TcGVjdGF0ZVN0YXRlUzJDGgYuRW1wdHkiBYiZyAECEjkKGE5v",
-          "dGlmeVNwZWN0YXRlVHVyblJlc3VsdBIOLlR1cm5SZXN1bHRTMkMaBi5FbXB0",
-          "eSIFiJnIAQISMwoRTm90aWZ5U3BlY3RhdGVFbmQSDy5TcGVjdGF0ZUVuZFMy",
-          "QxoGLkVtcHR5IgWImcgBAhI5ChROb3RpZnlCYXR0bGVBc3NpZ25lZBISLkJh",
-          "dHRsZUFzc2lnbmVkUzJDGgYuRW1wdHkiBYiZyAECGgWIqMMBAUIMWgZiYXR0",
-          "bGWY1GEeYgZwcm90bzM="));
+          "X21zGAUgASgEEiAKBHJvbGUYBiABKA4yEi5lQmF0dGxlVGlja2V0Um9sZRIe",
+          "ChZzcGVjdGF0b3Jfb3BlcmF0aW9uX2lkGAcgASgJIj4KGEJhdHRsZVRva2Vu",
+          "VmVyaWZ5UmVxdWVzdBIPCgdwYXlsb2FkGAEgASgMEhEKCXNpZ25hdHVyZRgC",
+          "IAEoDCJOChlCYXR0bGVUb2tlblZlcmlmeVJlc3BvbnNlEg8KB3N1Y2Nlc3MY",
+          "ASABKAgSDQoFZXJyb3IYAiABKAkSEQoJYmF0dGxlX2lkGAMgASgEIqoBChFC",
+          "YXR0bGVBc3NpZ25lZFMyQxIRCgliYXR0bGVfaWQYASABKAQSDAoEaG9zdBgC",
+          "IAEoCRIMCgRwb3J0GAMgASgNEhUKDXRva2VuX3BheWxvYWQYBCABKAwSFwoP",
+          "dG9rZW5fc2lnbmF0dXJlGAUgASgMEhQKDGV4cGlyZV9hdF9tcxgGIAEoBBIg",
+          "CgRyb2xlGAcgASgOMhIuZUJhdHRsZVRpY2tldFJvbGUiLwoaUmVxdWVzdEJh",
+          "dHRsZVRpY2tldFJlcXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEIm0KG1JlcXVl",
+          "c3RCYXR0bGVUaWNrZXRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USJgoKYXNzaWdubWVudBgCIAEoCzISLkJhdHRs",
+          "ZUFzc2lnbmVkUzJDKogBChJlU3BlY3RhdGVFbmRSZWFzb24SFQoRU1BFQ1RB",
+          "VEVfRU5EX05PTkUQABIgChxTUEVDVEFURV9FTkRfQkFUVExFX0ZJTklTSEVE",
+          "EAESHwobU1BFQ1RBVEVfRU5EX0JBVFRMRV9BQk9SVEVEEAISGAoUU1BFQ1RB",
+          "VEVfRU5EX1JFTU9WRUQQAyp1ChFlQmF0dGxlVGlja2V0Um9sZRIbChdCQVRU",
+          "TEVfVElDS0VUX1JPTEVfTk9ORRAAEiIKHkJBVFRMRV9USUNLRVRfUk9MRV9Q",
+          "QVJUSUNJUEFOVBABEh8KG0JBVFRMRV9USUNLRVRfUk9MRV9PQlNFUlZFUhAC",
+          "MuUFChJCYXR0bGVDbGllbnRQbGF5ZXISTQoSU3VibWl0QmF0dGxlQWN0aW9u",
+          "EhouU3VibWl0QmF0dGxlQWN0aW9uUmVxdWVzdBobLlN1Ym1pdEJhdHRsZUFj",
+          "dGlvblJlc3BvbnNlEjkKDkdldEJhdHRsZVN0YXRlEhYuR2V0QmF0dGxlU3Rh",
+          "dGVSZXF1ZXN0Gg8uQmF0dGxlU3RhdGVTMkMSMwoRTm90aWZ5QmF0dGxlU3Rh",
+          "cnQSDy5CYXR0bGVTdGFydFMyQxoGLkVtcHR5IgWImcgBAhIxChBOb3RpZnlU",
+          "dXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVtcHR5IgWImcgBAhIvCg9O",
+          "b3RpZnlCYXR0bGVFbmQSDS5CYXR0bGVFbmRTMkMaBi5FbXB0eSIFiJnIAQIS",
+          "OwoVTm90aWZ5QmF0dGxlUmVjb25uZWN0EhMuQmF0dGxlUmVjb25uZWN0UzJD",
+          "GgYuRW1wdHkiBYiZyAECEkQKD1N0b3BXYXRjaEJhdHRsZRIXLlN0b3BXYXRj",
+          "aEJhdHRsZVJlcXVlc3QaGC5TdG9wV2F0Y2hCYXR0bGVSZXNwb25zZRI+Cg1T",
+          "ZXRBdXRvQmF0dGxlEhUuU2V0QXV0b0JhdHRsZVJlcXVlc3QaFi5TZXRBdXRv",
+          "QmF0dGxlUmVzcG9uc2USNwoTTm90aWZ5U3BlY3RhdGVTdGF0ZRIRLlNwZWN0",
+          "YXRlU3RhdGVTMkMaBi5FbXB0eSIFiJnIAQISOQoYTm90aWZ5U3BlY3RhdGVU",
+          "dXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVtcHR5IgWImcgBAhIzChFO",
+          "b3RpZnlTcGVjdGF0ZUVuZBIPLlNwZWN0YXRlRW5kUzJDGgYuRW1wdHkiBYiZ",
+          "yAECEjkKFE5vdGlmeUJhdHRsZUFzc2lnbmVkEhIuQmF0dGxlQXNzaWduZWRT",
+          "MkMaBi5FbXB0eSIFiJnIAQIaBYiowwEBQgxaBmJhdHRsZZjUYR5iBnByb3Rv",
+          "Mw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::BattleDataReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eSpectateEndReason), typeof(global::eBattleTicketRole), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -107,7 +108,7 @@ public static partial class PlayerBattleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::StopWatchBattleResponse), global::StopWatchBattleResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetAutoBattleRequest), global::SetAutoBattleRequest.Parser, new[]{ "BattleId", "Enabled" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SetAutoBattleResponse), global::SetAutoBattleResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTicketPayload), global::BattleTicketPayload.Parser, new[]{ "BattleId", "PlayerId", "BattleNodeId", "BattleInstanceId", "ExpireAtMs", "Role" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTicketPayload), global::BattleTicketPayload.Parser, new[]{ "BattleId", "PlayerId", "BattleNodeId", "BattleInstanceId", "ExpireAtMs", "Role", "SpectatorOperationId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyRequest), global::BattleTokenVerifyRequest.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyResponse), global::BattleTokenVerifyResponse.Parser, new[]{ "Success", "Error", "BattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleAssignedS2C), global::BattleAssignedS2C.Parser, new[]{ "BattleId", "Host", "Port", "TokenPayload", "TokenSignature", "ExpireAtMs", "Role" }, null, null, null, null),
@@ -3719,6 +3720,7 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
     battleInstanceId_ = other.battleInstanceId_;
     expireAtMs_ = other.expireAtMs_;
     role_ = other.role_;
+    spectatorOperationId_ = other.spectatorOperationId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3809,6 +3811,21 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
     }
   }
 
+  /// <summary>Field number for the "spectator_operation_id" field.</summary>
+  public const int SpectatorOperationIdFieldNumber = 7;
+  private string spectatorOperationId_ = "";
+  /// <summary>
+  /// 观众原准入UUID，验签后仍须与房内当前operation相同。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string SpectatorOperationId {
+    get { return spectatorOperationId_; }
+    set {
+      spectatorOperationId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3830,6 +3847,7 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
     if (BattleInstanceId != other.BattleInstanceId) return false;
     if (ExpireAtMs != other.ExpireAtMs) return false;
     if (Role != other.Role) return false;
+    if (SpectatorOperationId != other.SpectatorOperationId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3843,6 +3861,7 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
     if (BattleInstanceId.Length != 0) hash ^= BattleInstanceId.GetHashCode();
     if (ExpireAtMs != 0UL) hash ^= ExpireAtMs.GetHashCode();
     if (Role != global::eBattleTicketRole.BattleTicketRoleNone) hash ^= Role.GetHashCode();
+    if (SpectatorOperationId.Length != 0) hash ^= SpectatorOperationId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3885,6 +3904,10 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
       output.WriteRawTag(48);
       output.WriteEnum((int) Role);
     }
+    if (SpectatorOperationId.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(SpectatorOperationId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3919,6 +3942,10 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
       output.WriteRawTag(48);
       output.WriteEnum((int) Role);
     }
+    if (SpectatorOperationId.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(SpectatorOperationId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3946,6 +3973,9 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
     }
     if (Role != global::eBattleTicketRole.BattleTicketRoleNone) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Role);
+    }
+    if (SpectatorOperationId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(SpectatorOperationId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3976,6 +4006,9 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
     }
     if (other.Role != global::eBattleTicketRole.BattleTicketRoleNone) {
       Role = other.Role;
+    }
+    if (other.SpectatorOperationId.Length != 0) {
+      SpectatorOperationId = other.SpectatorOperationId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4020,6 +4053,10 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
           Role = (global::eBattleTicketRole) input.ReadEnum();
           break;
         }
+        case 58: {
+          SpectatorOperationId = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -4061,6 +4098,10 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
         }
         case 48: {
           Role = (global::eBattleTicketRole) input.ReadEnum();
+          break;
+        }
+        case 58: {
+          SpectatorOperationId = input.ReadString();
           break;
         }
       }
