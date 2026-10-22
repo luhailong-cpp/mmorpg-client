@@ -617,6 +617,10 @@ namespace MmorpgClient.Game.Team
 
         private void OnTransportError(string error, TeamAction action, IMessage request, bool probe, bool silent)
         {
+            bool definiteRateLimit = error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal)
+                && IsRateLimited(error);
+            if (!definiteRateLimit && _pendingActionRequest != null && _pendingAction == action)
+                _actionHadUncertainAttempt = true;
             if (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal))
             {
                 if (IsRateLimited(error))
@@ -624,6 +628,16 @@ namespace MmorpgClient.Game.Team
                     // gate 限流是对这一包的明确拒绝：回包带原请求 id，由 GameClient 精确匹配，
                     // 请求也没有到达组队服务(照 SocialClient.IsDefiniteRejection)。不停用、不要求重连;
                     // 读请求退避后重排,写请求交给玩家稍后重试。
+                    if (_pendingActionRequest != null && _pendingAction == action && !_actionHadUncertainAttempt)
+                    {
+                        try { ClearActionIntent(); }
+                        catch (Exception)
+                        {
+                            _actionRecoveryBlocked = true;
+                            Status = "已拒绝的组队记录无法清理，请修复本机存储后重新登录。";
+                            return;
+                        }
+                    }
                     if (action == TeamAction.StartMatch && _pendingStart != null && !_startHadUncertainAttempt)
                     {
                         // 首次尝试在 gate 即明确被拒绝，服务端没有执行；不能把它误当成旧补位协议的未知结果。

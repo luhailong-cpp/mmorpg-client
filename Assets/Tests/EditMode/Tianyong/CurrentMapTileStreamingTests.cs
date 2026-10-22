@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using MmorpgClient.World.CurrentMaps;
+using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -96,12 +97,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(manifest.TileWorldRect(1, 1).yMax, Is.EqualTo(300));
             Assert.That(manifest.TileWorldRect(manifest.rows, manifest.columns).xMax, Is.EqualTo(350));
             Assert.That(manifest.TileWorldRect(manifest.rows, manifest.columns).yMin, Is.EqualTo(0));
-            for (int row = 1; row < manifest.rows; row++)
-            for (int column = 1; column < manifest.columns; column++)
+            for (int row = 1; row <= manifest.rows; row++)
+            for (int column = 1; column <= manifest.columns; column++)
             {
                 var rect = manifest.TileWorldRect(row, column);
-                Assert.That(rect.xMax, Is.EqualTo(manifest.TileWorldRect(row, column + 1).xMin));
-                Assert.That(rect.yMin, Is.EqualTo(manifest.TileWorldRect(row + 1, column).yMax));
+                Assert.That(rect.xMin, Is.GreaterThanOrEqualTo(manifest.WorldRect.xMin));
+                Assert.That(rect.xMax, Is.LessThanOrEqualTo(manifest.WorldRect.xMax));
+                Assert.That(rect.yMin, Is.GreaterThanOrEqualTo(manifest.WorldRect.yMin));
+                Assert.That(rect.yMax, Is.LessThanOrEqualTo(manifest.WorldRect.yMax));
+                if (column < manifest.columns)
+                    Assert.That(rect.xMax, Is.EqualTo(manifest.TileWorldRect(row, column + 1).xMin));
+                if (row < manifest.rows)
+                    Assert.That(rect.yMin, Is.EqualTo(manifest.TileWorldRect(row + 1, column).yMax));
             }
         }
 
@@ -255,14 +262,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public IEnumerator NewOwnerKeepsSharedPendingLeaseAfterPreviousMapDisposal()
         {
             const string path = "World/CurrentMaps20261009/__shared_async_fixture";
-            var firstRoot = new GameObject("CurrentTileFirstMapTest");
-            var secondRoot = new GameObject("CurrentTileSecondMapTest");
+            TianyongMapInstance firstMap = null;
+            TianyongMapInstance secondMap = null;
             try
             {
+                firstMap = CurrentMapBuilder.Build(null, CurrentMapCatalog.Find("main"));
+                secondMap = CurrentMapBuilder.Build(null, CurrentMapCatalog.Find("main"));
                 object lease = null;
-                foreach (var root in new[] { firstRoot, secondRoot })
+                foreach (var map in new[] { firstMap, secondMap })
                 {
-                    var stream = root.AddComponent<CurrentMapTileStreaming>();
+                    var stream = map.Root.GetComponent<CurrentMapTileStreaming>();
+                    Assert.That(stream, Is.Not.Null);
+                    stream.ReleaseAll();
                     var manifest = Manifest();
                     manifest.tiles[0].resourcePath = path;
                     Invoke(stream, "Prepare", manifest);
@@ -272,33 +283,46 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     lease = current;
                 }
                 Assert.That(Field(lease, "References"), Is.EqualTo(2));
-                Object.DestroyImmediate(firstRoot);
+                // 正式地图所有者的Dispose先ReleaseAll再销毁root；EditMode不能假定未Awake组件会收到OnDestroy。
+                firstMap.Dispose();
                 Assert.That(Field(lease, "References"), Is.EqualTo(1));
                 float deadline = Time.realtimeSinceStartup + 10f;
                 while (!(bool)Field(lease, "Completed") && Time.realtimeSinceStartup < deadline) yield return null;
                 Assert.That(Field(lease, "Completed"), Is.True);
                 Assert.That(Cache.Contains(path), Is.True, "Completion belongs to the remaining map.");
-                Object.DestroyImmediate(secondRoot);
+                secondMap.Dispose();
                 Assert.That(Cache.Contains(path), Is.False);
             }
-            finally { Object.DestroyImmediate(firstRoot); Object.DestroyImmediate(secondRoot); }
+            finally { firstMap?.Dispose(); secondMap?.Dispose(); }
         }
 
         [UnityTest]
         public IEnumerator DestroyedOwnerKeepsPendingBudgetUntilCompletionAndThenEvicts()
         {
             Assert.That(Cache.Count, Is.Zero);
-            var go = new GameObject("CurrentTilePendingDestroyTest");
-            var stream = go.AddComponent<CurrentMapTileStreaming>();
-            var manifest = Manifest();
-            // 只在隔离测试中使用不可能交付的路径来触发真实异步完成，无需发布伪 4K 图片。
-            manifest.tiles[0].resourcePath = "World/CurrentMaps20261009/__missing_async_fixture";
-            Invoke(stream, "Prepare", manifest);
-            Invoke(stream, "TickView", new Rect(50, 280, 20, 20), 10f);
-            Object.DestroyImmediate(go);
-            float deadline = Time.realtimeSinceStartup + 10f;
-            while (Cache.Count != 0 && Time.realtimeSinceStartup < deadline) yield return null;
-            Assert.That(Cache.Count, Is.Zero);
+            TianyongMapInstance map = null;
+            try
+            {
+                map = CurrentMapBuilder.Build(null, CurrentMapCatalog.Find("main"));
+                var stream = map.Root.GetComponent<CurrentMapTileStreaming>();
+                Assert.That(stream, Is.Not.Null);
+                stream.ReleaseAll();
+                var manifest = Manifest();
+                // 只在隔离测试中使用不可能交付的路径触发真实异步完成，不发布伪4K图片。
+                manifest.tiles[0].resourcePath = "World/CurrentMaps20261009/__missing_async_fixture";
+                Invoke(stream, "Prepare", manifest);
+                Invoke(stream, "TickView", new Rect(50, 280, 20, 20), 10f);
+                var lease = Field(((Array)Field(stream, "_tiles")).GetValue(0), "Lease");
+                Assert.That(lease, Is.Not.Null);
+                map.Dispose();
+                Assert.That(Field(lease, "References"), Is.Zero);
+                Assert.That(Cache.Contains(manifest.tiles[0].resourcePath), Is.EqualTo(!(bool)Field(lease, "Completed")),
+                    "已无引用的真实在途请求直到完成仍占预算，不能因销毁提前取消计数。");
+                float deadline = Time.realtimeSinceStartup + 10f;
+                while (Cache.Count != 0 && Time.realtimeSinceStartup < deadline) yield return null;
+                Assert.That(Cache.Count, Is.Zero);
+            }
+            finally { map?.Dispose(); }
         }
     }
 }

@@ -507,12 +507,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             Loaded();
             Assert.That(_client.Kick(11), Is.True);
+            byte[] originalKick = _net.Calls[_net.Calls.Count - 1].Request.ToByteArray();
             _net.Reply(Response(null, team_error.KTeamInternal));
             Assert.That(_client.Snapshot.TeamId, Is.EqualTo(100UL), "服务端读取失败时不清本地快照");
             Assert.That(_client.Snapshot.Members.Count, Is.EqualTo(3));
             Assert.That(_client.RefreshQueued, Is.True, "无视图靠重拉自愈");
             Assert.That(_client.Status, Is.EqualTo("服务器繁忙，请稍后再试。"));
 
+            _now += 0.5f;
+            Assert.That(_client.Leave(), Is.False, "故障回包不能裁定原写结果，其他写不得覆盖原请求。");
+            Assert.That(_client.Kick(11), Is.True);
+            Assert.That(_net.Calls[_net.Calls.Count - 1].Request.ToByteArray(), Is.EqualTo(originalKick));
+            _net.Reply(Response(LeaderView(2), team_error.KTeamStateChanged));
             _now += 0.5f;
             Assert.That(_client.Leave(), Is.True);
             _net.Reply(Response(new TeamView { MembershipEpoch = 6, ServerTimeMs = 2000 }, team_error.KTeamHasNotTeamId));

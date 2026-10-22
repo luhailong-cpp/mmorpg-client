@@ -806,11 +806,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             return names;
         }
 
-        /// <summary>一个按钮里的全部文字,按层级先后。</summary>
+        /// <summary>一个按钮里启用的文字，按层级先后；禁用的模板占位标签不参与显示。</summary>
         private static List<string> Texts(Button button)
         {
             var texts = new List<string>();
-            foreach (var label in button.GetComponentsInChildren<TMP_Text>(true)) texts.Add(label.text);
+            foreach (var label in button.GetComponentsInChildren<TMP_Text>(true))
+                if (label.enabled) texts.Add(label.text);
             return texts;
         }
 

@@ -987,7 +987,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         private Image RowPaper(string rowName)
         {
             Image paper = FindContainer(rowName).GetComponentsInChildren<Image>()
-                .FirstOrDefault(image => image.name == "member_row");
+                .SingleOrDefault(image => image.name.StartsWith("Exact_member-row-", System.StringComparison.Ordinal));
             Assert.That(paper, Is.Not.Null, "未找到行底图：" + rowName);
             return paper;
         }

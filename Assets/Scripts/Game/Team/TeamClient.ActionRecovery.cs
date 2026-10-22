@@ -25,6 +25,7 @@ namespace MmorpgClient.Game.Team
         private ulong _pendingActionTarget, _actionRecoveryPlayer;
         private string _pendingActionSaved;
         private bool _actionRecoveryBlocked;
+        private bool _actionHadUncertainAttempt;
         private float _actionRetryAt;
 
         // 一个玩家一个原写意图槽；重连、崩溃与UI重建均重放原UUID和完整正文。
@@ -35,6 +36,7 @@ namespace MmorpgClient.Game.Team
             _pendingActionRequest = null;
             _pendingActionSaved = null;
             _actionRecoveryBlocked = false;
+            _actionHadUncertainAttempt = false;
 
             try {
                 string raw = ActionRecovery?.Load(PlayerId) ?? string.Empty;
@@ -50,6 +52,7 @@ namespace MmorpgClient.Game.Team
                     throw new InvalidOperationException();
                 _pendingAction = action; _pendingActionMessage = message; _pendingActionTarget = target;
                 _pendingActionRequest = request; _pendingActionSaved = raw;
+                _actionHadUncertainAttempt = true;
                 RefreshQueued = true;
             } catch (Exception) {
                 _actionRecoveryBlocked = true;
@@ -95,20 +98,28 @@ namespace MmorpgClient.Game.Team
             _pendingActionRequest = request.Descriptor.Parser.ParseFrom(request.ToByteArray());
             _pendingAction = action; _pendingActionMessage = message; _pendingActionTarget = target;
             _pendingActionSaved = raw;
+            _actionHadUncertainAttempt = false;
         }
 
         private void CompleteActionIntent(TeamResponse response)
         {
             if (response.ErrorMessage != null && TipFaults.IsFault(response.ErrorMessage.Id)) {
+                _actionHadUncertainAttempt = true;
                 _actionRetryAt = _clock() + ReadRetryDelaySeconds; return;
             }
             try {
-                ActionRecovery?.Clear(PlayerId, _pendingActionSaved);
-                _pendingActionRequest = null; _pendingActionSaved = null;
+                ClearActionIntent();
             } catch (Exception) {
                 _actionRecoveryBlocked = true;
                 Status = "组队操作已确认，本机原请求尚未清理。";
             }
+        }
+
+        private void ClearActionIntent()
+        {
+            ActionRecovery?.Clear(PlayerId, _pendingActionSaved);
+            _pendingActionRequest = null; _pendingActionSaved = null;
+            _actionHadUncertainAttempt = false;
         }
 
         private bool ReplayActionIntent(float now)
