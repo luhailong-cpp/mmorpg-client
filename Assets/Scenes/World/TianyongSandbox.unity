@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bbb67ab69d8394c817e4cf4f3cf2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MmorpgClient::MmorpgClient.World.Tianyong.TianyongSandboxBootstrap
-  config: {fileID: 11400000, guid: 6aef98b5e7df8384ca8489d3c1247c6f, type: 2}
+  config: {fileID: 0}
   worldCamera: {fileID: 657128860}
   directionalLight: {fileID: 2068498219}
   debugPlayerPrefab: {fileID: 3861543400149562834, guid: 768389ea0895b174eb487d988a01a3c1, type: 3}

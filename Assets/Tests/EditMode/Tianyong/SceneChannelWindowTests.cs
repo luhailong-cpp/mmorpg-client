@@ -82,12 +82,15 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
             var current = FindButton(LineName(1));
             Assert.That(current.interactable, Is.False);
-            Assert.That(Texts(current), Is.EqualTo(new[] { "1线", SceneChannelWindow.CurrentTagText, "流畅" }));
+            Assert.That(Texts(current), Is.EqualTo(new[] { "1线", "流畅" }));
+            AssertCurrentTagRendered(current);
             Assert.That(((Image)current.targetGraphic).sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/row_selected")));
             Assert.That(current.colors.disabledColor, Is.EqualTo(Color.white), "所在线不可点但不置灰");
 
             var other = FindButton(LineName(7));
             Assert.That(Texts(other), Is.EqualTo(new[] { "7线", "流畅" }), "同样流畅、但不是所在线:没有标记");
+            Assert.That(other.transform.Find("current_badge"), Is.Null);
+            Assert.That(other.transform.Find("current_check"), Is.Null);
             Assert.That(((Image)other.targetGraphic).sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/row_normal")));
 
             Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前场景：1线"));
@@ -627,7 +630,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(net.OneWays.Count, Is.EqualTo(2));
                 net.Push(MessageIds.NotifySceneInfo, new SceneInfoS2C { ChannelDirectory = ThreeLineDirectory() });
                 Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前场景：2线"));
-                Assert.That(Texts(FindButton(LineName(2))), Is.EqualTo(new[] { "2线", SceneChannelWindow.CurrentTagText, "繁忙" }));
+                var current = FindButton(LineName(2));
+                Assert.That(Texts(current), Is.EqualTo(new[] { "2线", "繁忙" }));
+                AssertCurrentTagRendered(current);
                 AssertNoRowIsClickable();
                 Assert.That(_window.StatusText, Is.EqualTo("切线冷却中，9秒后可再次切线。"));
 
@@ -813,6 +818,28 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             foreach (var label in button.GetComponentsInChildren<TMP_Text>(true))
                 if (label.enabled) texts.Add(label.text);
             return texts;
+        }
+
+        private static void AssertCurrentTagRendered(Button button)
+        {
+            // 生产用正式图片绘制徽章，保留禁用的语义文字；不能把该文字算成第二次可见绘制。
+            var semantic = button.transform.Find(SceneChannelWindow.CurrentTagName);
+            Assert.That(semantic, Is.Not.Null);
+            var label = semantic.GetComponent<TMP_Text>();
+            Assert.That(label, Is.Not.Null);
+            Assert.That(label.text, Is.EqualTo(SceneChannelWindow.CurrentTagText));
+            Assert.That(label.enabled, Is.False);
+            foreach (var key in new[] { "current_badge", "current_check" })
+            {
+                var badge = button.transform.Find(key);
+                Assert.That(badge, Is.Not.Null, key);
+                var image = badge.GetComponent<Image>();
+                Assert.That(image, Is.Not.Null, key);
+                Assert.That(image.enabled, Is.True, key);
+                Assert.That(image.gameObject.activeInHierarchy, Is.True, key);
+                Assert.That(image.sprite, Is.SameAs(QdaoUguiTheme.RequireSprite(
+                    "UI/Ugui/SceneSelectV1/Fidelity20261016/" + key)), key);
+            }
         }
 
         private Vector2 Position(string buttonName) =>

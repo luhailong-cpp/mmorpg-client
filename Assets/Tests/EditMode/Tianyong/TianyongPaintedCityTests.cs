@@ -1,3 +1,4 @@
+using MmorpgClient.World.CurrentMaps;
 using MmorpgClient.World.Tianyong;
 using MmorpgClient.World;
 using NUnit.Framework;
@@ -11,13 +12,16 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
     public sealed class TianyongPaintedCityTests
     {
         [Test]
-        public void MainCityArtwork_IsAvailableAsRuntimeTexture()
+        public void CurrentMainArtwork_IsTheDeliveredNativeSquareLayout()
         {
-            var texture = Resources.Load<Texture2D>(TianyongPaintedCity.ResourcePath);
-
-            Assert.That(texture, Is.Not.Null);
-            Assert.That((float)texture.width / texture.height,
-                Is.EqualTo(64f / 27f).Within(0.002f));
+            var main = CurrentMapCatalog.Find("main");
+            Assert.That(main.SceneConfigId, Is.EqualTo(1u));
+            Assert.That(main.TexturePath, Is.EqualTo("World/CurrentMaps20261009/main/layout"));
+            var texture = main.LoadTexture();
+            Assert.That(texture.width, Is.EqualTo(1254));
+            Assert.That(texture.height, Is.EqualTo(1254));
+            Assert.That(main.WorldRect, Is.EqualTo(new Rect(50f, 0f, 300f, 300f)));
+            Assert.That(main.Spawn, Is.EqualTo(new Vector3(199f, 0f, 133f)));
         }
 
         [Test]
@@ -40,54 +44,56 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void CityTiles_AreAvailableAsRuntimeTextures()
+        public void AllCurrentLayoutsAndMatchingNavigation_AreDeliveredRuntimeResources()
         {
-            for (var r = 1; r <= TianyongPaintedCity.TileRows; r++)
-            for (var c = 1; c <= TianyongPaintedCity.TileColumns; c++)
+            Assert.That(CurrentMapCatalog.All.Count, Is.EqualTo(3));
+            foreach (var definition in CurrentMapCatalog.All)
             {
-                var tile = Resources.Load<Texture2D>(
-                    $"{TianyongPaintedCity.TileResourceFolder}/tianyong_r{r:00}_c{c:00}");
-                Assert.That(tile, Is.Not.Null, $"tile r{r} c{c} must be in Resources");
-                Assert.That(tile.width, Is.EqualTo(TianyongPaintedCity.TilePixels),
-                    $"tile r{r} c{c} must retain its full source width");
-                Assert.That(tile.height, Is.EqualTo(TianyongPaintedCity.TilePixels),
-                    $"tile r{r} c{c} must retain its full source height");
-                Assert.That(tile.mipmapCount, Is.EqualTo(1), $"tile r{r} c{c} must not use mipmaps");
-                Assert.That(tile.filterMode, Is.EqualTo(FilterMode.Bilinear),
-                    $"tile r{r} c{c} must use clean bilinear sampling");
-                Assert.That(tile.wrapMode, Is.EqualTo(TextureWrapMode.Clamp),
-                    $"tile r{r} c{c} must clamp at seams");
+                Assert.That(Resources.Load<TextAsset>(definition.SourcePath), Is.Not.Null, definition.Key);
+                Assert.That(Resources.Load<TextAsset>(definition.MaskPath), Is.Not.Null, definition.Key);
+                var texture = definition.LoadTexture();
+                Assert.That(texture.width, Is.EqualTo(1254), definition.Key);
+                Assert.That(texture.height, Is.EqualTo(1254), definition.Key);
+                Assert.That(texture.mipmapCount, Is.EqualTo(1), definition.Key);
+                Assert.That(texture.filterMode, Is.EqualTo(FilterMode.Bilinear), definition.Key);
+                Assert.That(texture.wrapMode, Is.EqualTo(TextureWrapMode.Clamp), definition.Key);
+                Assert.That(definition.CreateNavigation().CellSize, Is.EqualTo(2f), definition.Key);
+                Assert.That(definition.CreateNavigation().IsWalkable(definition.Spawn), Is.True, definition.Key);
             }
         }
 
         [Test]
-        public void PlayerSprite_IsReadableAtDefaultZoom_AndKeepsHdSampling()
+        public void PlayerSprite_KeepsNativeScaleUnderCurrentRuntimeCameraDefaults()
         {
             using var run = QdaoActionResources.Acquire("00_reference_topright_boy", "run", "S");
             Assert.That(run, Is.Not.Null);
             var sprite = run.Frames[0];
             var texture = sprite.texture;
-
-            Assert.That(texture, Is.Not.Null);
             Assert.That(texture.width, Is.EqualTo(1024));
             Assert.That(texture.height, Is.EqualTo(1024));
             Assert.That(texture.mipmapCount, Is.EqualTo(1));
             Assert.That(texture.filterMode, Is.EqualTo(FilterMode.Bilinear));
             Assert.That(texture.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
-
             Assert.That(sprite.pixelsPerUnit, Is.EqualTo(104f));
             var frameWorldHeight = sprite.rect.height / sprite.pixelsPerUnit;
-            Assert.That(frameWorldHeight, Is.EqualTo(QdaoBoySpriteAnimator.FrameWorldHeight).Within(0.01f),
-                "1024 px / 104 ppu must preserve the established world height without scaling the actor root");
-
-            var config = TianyongMapConfig.LoadDefault();
-            Assert.That(config, Is.Not.Null);
-            // ortho 27 at 1080p: 9.846 u x 1080 / 54 = 196.9 px per frame.
-            var frameScreenHeight = frameWorldHeight * 1080f / (2f * config.CameraZoomDefault);
-            Assert.That(frameScreenHeight, Is.InRange(185f, 210f),
-                "At the default zoom the full 1024 px frame should preserve the ~197 px screen height at 1080p.");
-            Assert.That(frameScreenHeight, Is.LessThanOrEqualTo(texture.height),
-                "The default camera should downsample the HD character frame, not magnify it");
+            Assert.That(frameWorldHeight, Is.EqualTo(QdaoBoySpriteAnimator.FrameWorldHeight).Within(.01f));
+            var host = new GameObject("CurrentMapCameraContract");
+            var cameraObject = new GameObject("CurrentMapCamera", typeof(Camera));
+            var sunObject = new GameObject("CurrentMapSun", typeof(Light));
+            try
+            {
+                Assert.That(TianyongMapConfig.LoadDefault(), Is.Null, "旧配置已退役，当前地图不恢复旧资源");
+                var camera = cameraObject.GetComponent<Camera>();
+                var runtime = host.AddComponent<TianyongMapRuntime>();
+                runtime.Initialize(null, camera, sunObject.GetComponent<Light>(), null);
+                Assert.That(camera.orthographic, Is.True);
+                Assert.That(camera.orthographicSize, Is.EqualTo(35f));
+                var projectedHeight = frameWorldHeight * 1080f / (2f * camera.orthographicSize);
+                Assert.That(projectedHeight, Is.EqualTo(1024f / 104f * 1080f / 70f).Within(.01f));
+                Assert.That(projectedHeight, Is.LessThanOrEqualTo(texture.height));
+                // 当前约152屏幕像素只验证实际35相机合同，不代表旧27相机约197像素的视觉SLO仍成立。
+            }
+            finally { Object.DestroyImmediate(host); Object.DestroyImmediate(cameraObject); Object.DestroyImmediate(sunObject); }
         }
 
         [Test]
@@ -139,85 +145,33 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void CityBuild_HidesTownRenderers_AndLaysTilesOnPlayArea()
+        public void CurrentMainBuild_UsesOnlyItsOwnGroundColliderAndNavigation()
         {
-            var parent = new GameObject("PaintedCityTestRoot");
+            var parent = new GameObject("CurrentMapGeometryContract");
             TianyongMapInstance map = null;
             try
             {
-                map = TianyongMapBuilder.Build(parent.transform, TianyongTheme.City, null);
-
-                var ground = map.Root.transform.Find(TianyongPaintedCity.RootName);
-                Assert.That(ground, Is.Not.Null, "painted ground root must exist under the map root");
-                var foreground = ground.Find(TianyongPaintedForeground.WestLampObjectName);
-                Assert.That(foreground, Is.Not.Null, "the traced lamp foreground must accompany the painting");
-                Assert.That(foreground.GetComponent<TianyongPaintedForeground>(), Is.Not.Null);
-                Assert.That(foreground.GetComponent<MeshRenderer>().enabled, Is.True);
-                Assert.That(foreground.GetComponent<Collider>(), Is.Null,
-                    "the foreground must not intercept click-to-move rays");
-                foreach (var cutout in TianyongPaintedForeground.Cutouts)
-                    Assert.That(ground.Find(cutout.Name), Is.Not.Null, "cutout missing: " + cutout.Name);
-                Assert.That(ground.childCount,
-                    Is.EqualTo(TianyongPaintedCity.TileColumns * TianyongPaintedCity.TileRows
-                               + TianyongPaintedForeground.Cutouts.Count));
-
-                var tileUnits = TianyongPaintedCity.TilePixels / TianyongPaintedCity.PixelsPerUnit;
-                var bounds = new Bounds();
-                var first = true;
-                var tileCount = 0;
-                foreach (Transform tile in ground)
-                {
-                    if (tile.GetComponent<TianyongPaintedForeground>() != null) continue;
-                    tileCount++;
-                    Assert.That(tile.name, Does.StartWith("Tile_r"));
-                    Assert.That(tile.GetComponent<MeshRenderer>().enabled, Is.True);
-                    Assert.That(tile.GetComponent<Collider>(), Is.Null,
-                        "the painting must not intercept click-to-move rays");
-                    Assert.That(tile.localScale.x, Is.EqualTo(tileUnits).Within(0.01f));
-                    Assert.That(tile.localScale.y, Is.EqualTo(tileUnits).Within(0.01f));
-                    var tileBounds = new Bounds(tile.position, new Vector3(tileUnits, 0f, tileUnits));
-                    if (first) { bounds = tileBounds; first = false; }
-                    else bounds.Encapsulate(tileBounds);
-                }
-
-                Assert.That(tileCount, Is.EqualTo(TianyongPaintedCity.TileColumns * TianyongPaintedCity.TileRows));
-                var rect = TianyongPaintedCity.PaintingWorldRect;
-                Assert.That(bounds.min.x, Is.EqualTo(rect.xMin).Within(0.01f));
-                Assert.That(bounds.max.x, Is.EqualTo(rect.xMax).Within(0.01f));
-                Assert.That(bounds.min.z, Is.EqualTo(rect.yMin).Within(0.01f));
-                Assert.That(bounds.max.z, Is.EqualTo(rect.yMax).Within(0.01f));
-
-                foreach (var renderer in map.Root.GetComponentsInChildren<Renderer>(true))
-                {
-                    if (renderer.transform.parent == ground) continue;
-                    if (renderer.GetComponentInParent<TianyongCityNpcs>() != null) continue;
-                    Assert.That(renderer.enabled, Is.False,
-                        $"town renderer '{renderer.name}' must be hidden in painted mode");
-                }
-
-                // Only the chunk ground colliders survive; the procedural
-                // buildings, roads and bridges do not match the artwork.
-                // (Matched by name: Collider.bounds is stale for colliders
-                // created in the same frame while autoSyncTransforms is off.)
-                var groundColliders = 0;
-                foreach (var collider in map.Root.GetComponentsInChildren<Collider>(true))
-                {
-                    if (!collider.enabled) continue;
-                    Assert.That(collider.gameObject.name, Is.EqualTo(TianyongMapBuilder.GroundColliderName),
-                        $"collider '{collider.name}' must be disabled in painted mode");
-                    groundColliders++;
-                }
-                Assert.That(groundColliders, Is.GreaterThan(0), "the floor must keep its colliders");
-
-                // Movement follows the painted pavement mask.
-                Assert.That(map.Navigation.CellSize, Is.EqualTo(TianyongPaintedCity.NavigationCellSize));
-                Assert.That(map.Navigation.IsWalkable(TianyongMapDefinition.DefaultSpawn), Is.True);
+                var main = CurrentMapCatalog.Find("main");
+                map = CurrentMapBuilder.Build(parent.transform, main);
+                var ground = map.Root.transform.Find(CurrentMapBuilder.GroundName);
+                Assert.That(ground, Is.Not.Null);
+                var renderer = ground.GetComponent<MeshRenderer>();
+                Assert.That(renderer.enabled, Is.True);
+                Assert.That(renderer.sharedMaterial.mainTexture, Is.SameAs(main.LoadTexture()));
+                Assert.That(ground.localScale, Is.EqualTo(new Vector3(300f, 300f, 1f)));
+                Assert.That(ground.localPosition, Is.EqualTo(new Vector3(200f, -.045f, 150f)));
+                Assert.That(ground.GetComponent<Collider>(), Is.Null, "布局图不能截走点击寻路射线");
+                Assert.That(map.Root.GetComponentsInChildren<TianyongPaintedForeground>(true), Is.Empty);
+                Assert.That(map.Root.GetComponentsInChildren<TianyongCityNpcs>(true), Is.Empty);
+                var floors = map.Root.GetComponentsInChildren<Collider>(true);
+                Assert.That(floors.Length, Is.EqualTo(1));
+                Assert.That(floors[0].name, Is.EqualTo(TianyongMapBuilder.GroundColliderName));
+                Assert.That(floors[0].enabled, Is.True);
+                Assert.That(map.Navigation.CellSize, Is.EqualTo(2f));
+                Assert.That(map.Navigation.IsWalkable(main.Spawn), Is.True);
+                Assert.That(map.Navigation.IsWalkable(new Vector3(49f, 0f, 150f)), Is.False);
             }
-            finally
-            {
-                map?.Dispose();
-                Object.DestroyImmediate(parent);
-            }
+            finally { map?.Dispose(); Object.DestroyImmediate(parent); }
         }
 
         [Test]
@@ -266,16 +220,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void DefaultPaintedCityZoom_KeepsNativeTexelDensityAt1080p()
+        public void CurrentMainLayout_KeepsNative1254PixelsAtItsAuthoredWorldScale()
         {
-            var config = TianyongMapConfig.LoadDefault();
-
-            Assert.That(config, Is.Not.Null);
-            var texelsPerPixel = TianyongPaintedCity.CalculateTexelsPerScreenPixel(
-                config.CameraZoomDefault, 1080);
-            Assert.That(texelsPerPixel, Is.GreaterThanOrEqualTo(1f),
-                "The entry camera must not magnify the painted map at 1080p; " +
-                "magnification makes the otherwise full-resolution tiles look blurry.");
+            var main = CurrentMapCatalog.Find("main");
+            var texture = main.LoadTexture();
+            Assert.That(texture.width, Is.EqualTo(1254));
+            Assert.That(texture.height, Is.EqualTo(1254));
+            Assert.That(main.WorldRect.width, Is.EqualTo(300f));
+            Assert.That(main.WorldRect.height, Is.EqualTo(300f));
+            Assert.That(texture.width / main.WorldRect.width, Is.EqualTo(4.18f).Within(.0001f));
+            Assert.That(texture.height / main.WorldRect.height, Is.EqualTo(4.18f).Within(.0001f));
+            Assert.That(main.LoadTexture(), Is.SameAs(texture), "加载原图，不制造假高清上采样副本");
         }
     }
 }
