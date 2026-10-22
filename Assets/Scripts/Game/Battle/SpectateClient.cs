@@ -147,6 +147,7 @@ namespace MmorpgClient.Game.Battle
         /// NotifySpectateState 首帧才算进入观战(设计文档 §10.2);
         /// 服务端会拒绝排队/战斗中的玩家(D11 互斥),错误统一走 OnError。
         /// </summary>
+        private string _watchRequestId;
         public void WatchBattle(ulong battleId)
         {
             if (Phase != SpectatePhase.None)
@@ -165,10 +166,13 @@ namespace MmorpgClient.Game.Battle
             {
                 PlayerId = MyPlayerId,
                 BattleId = battleId,
+                RequestId = Guid.NewGuid().ToString("D"),
             };
+            _watchRequestId = req.RequestId;
             _net.Call(MessageIds.WatchBattle, req, Match.WatchBattleResponse.Parser,
                 resp =>
                 {
+                    if (_watchRequestId != req.RequestId) return;
                     // 用户已在响应回来前退出(随机模式待补退出):拿到 battle_id 立即补发
                     if (_stopPending)
                     {
@@ -191,6 +195,7 @@ namespace MmorpgClient.Game.Battle
                 },
                 err =>
                 {
+                    if (_watchRequestId != req.RequestId) return;
                     if (Phase != SpectatePhase.Requesting) return;
                     OnError?.Invoke($"观战请求失败:{err}");
                     ClearWatchContext();

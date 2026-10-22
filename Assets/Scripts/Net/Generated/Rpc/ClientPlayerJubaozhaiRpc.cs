@@ -140,5 +140,63 @@ namespace MmorpgClient.Net.Generated
         public static void ListTradeMarkets(IRpcChannel channel, global::Trade.ListTradeMarketsRequest request,
             RpcDone<global::Trade.ListTradeMarketsResponse> done)
             => channel.CallMethod(ListTradeMarketsMessageId, request, global::Trade.ListTradeMarketsResponse.Parser, done);
+
+        public const uint CreateRmbConsignmentMessageId = 333;
+        /// <summary>
+        /// 人民币分、原账号订单权及卖家逐单结算；支付/退款/出款原件只来自内部适配器。
+        /// </summary>
+        public static void CreateRmbConsignment(IRpcChannel channel, global::Trade.CreateRmbConsignmentRequest request,
+            RpcDone<global::Trade.RmbConsignmentResponse> done)
+            => channel.CallMethod(CreateRmbConsignmentMessageId, request, global::Trade.RmbConsignmentResponse.Parser, done);
+
+        public const uint GetRmbConsignmentMessageId = 334;
+        public static void GetRmbConsignment(IRpcChannel channel, global::Trade.GetRmbConsignmentRequest request,
+            RpcDone<global::Trade.RmbConsignmentResponse> done)
+            => channel.CallMethod(GetRmbConsignmentMessageId, request, global::Trade.RmbConsignmentResponse.Parser, done);
+
+        public const uint ListRmbConsignmentsMessageId = 335;
+        public static void ListRmbConsignments(IRpcChannel channel, global::Trade.ListRmbConsignmentsRequest request,
+            RpcDone<global::Trade.ListRmbConsignmentsResponse> done)
+            => channel.CallMethod(ListRmbConsignmentsMessageId, request, global::Trade.ListRmbConsignmentsResponse.Parser, done);
+
+        public const uint BuyRmbConsignmentMessageId = 336;
+        public static void BuyRmbConsignment(IRpcChannel channel, global::Trade.BuyRmbConsignmentRequest request,
+            RpcDone<global::Trade.CommerceOrderResponse> done)
+            => channel.CallMethod(BuyRmbConsignmentMessageId, request, global::Trade.CommerceOrderResponse.Parser, done);
+
+        public const uint CancelRmbConsignmentMessageId = 337;
+        public static void CancelRmbConsignment(IRpcChannel channel, global::Trade.CancelRmbConsignmentRequest request,
+            RpcDone<global::Trade.RmbConsignmentResponse> done)
+            => channel.CallMethod(CancelRmbConsignmentMessageId, request, global::Trade.RmbConsignmentResponse.Parser, done);
+
+        public const uint GetRmbOrderMessageId = 338;
+        public static void GetRmbOrder(IRpcChannel channel, global::Trade.GetCommerceOrderRequest request,
+            RpcDone<global::Trade.CommerceOrderResponse> done)
+            => channel.CallMethod(GetRmbOrderMessageId, request, global::Trade.CommerceOrderResponse.Parser, done);
+
+        public const uint ListRmbOrdersMessageId = 339;
+        public static void ListRmbOrders(IRpcChannel channel, global::Trade.ListCommerceOrdersRequest request,
+            RpcDone<global::Trade.ListCommerceOrdersResponse> done)
+            => channel.CallMethod(ListRmbOrdersMessageId, request, global::Trade.ListCommerceOrdersResponse.Parser, done);
+
+        public const uint CancelRmbOrderMessageId = 340;
+        public static void CancelRmbOrder(IRpcChannel channel, global::Trade.CancelCommerceOrderRequest request,
+            RpcDone<global::Trade.CommerceOrderResponse> done)
+            => channel.CallMethod(CancelRmbOrderMessageId, request, global::Trade.CommerceOrderResponse.Parser, done);
+
+        public const uint ListSellerIncomesMessageId = 341;
+        public static void ListSellerIncomes(IRpcChannel channel, global::Trade.ListSellerIncomesRequest request,
+            RpcDone<global::Trade.ListSellerIncomesResponse> done)
+            => channel.CallMethod(ListSellerIncomesMessageId, request, global::Trade.ListSellerIncomesResponse.Parser, done);
+
+        public const uint CreateWithdrawalMessageId = 342;
+        public static void CreateWithdrawal(IRpcChannel channel, global::Trade.CreateWithdrawalRequest request,
+            RpcDone<global::Trade.WithdrawalResponse> done)
+            => channel.CallMethod(CreateWithdrawalMessageId, request, global::Trade.WithdrawalResponse.Parser, done);
+
+        public const uint GetWithdrawalMessageId = 343;
+        public static void GetWithdrawal(IRpcChannel channel, global::Trade.GetWithdrawalRequest request,
+            RpcDone<global::Trade.WithdrawalResponse> done)
+            => channel.CallMethod(GetWithdrawalMessageId, request, global::Trade.WithdrawalResponse.Parser, done);
     }
 }

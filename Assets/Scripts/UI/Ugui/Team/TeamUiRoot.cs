@@ -123,6 +123,7 @@ namespace MmorpgClient.UI.Ugui.Team
                         () => Time.realtimeSinceStartup);
                     _client.PrepareMatchNetwork = (ready, failed) => game.Battle.RegionProbe.Prepare(_ => ready(), failed);
                     _client.MatchRecovery = game.TeamMatchRecovery;
+                    _client.ActionRecovery = game.TeamActionRecovery;
                     _client.Changed += SyncState;
                     if (game.LandingSync != null) _landingSync = LandingSyncBindings.BindTeam(game.LandingSync, _client);
                     _client.BackfillNotice += ShowBackfillNotice;
