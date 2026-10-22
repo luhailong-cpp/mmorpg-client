@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MmorpgClient.UI.Ugui.Battle;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,26 +34,32 @@ namespace MmorpgClient.UI.Ugui
         }
 
         private const float PanelX = 1420f, PanelY = 188f, PanelWidth = 700f;
-        private const float TileWidth = 204f, TileHeight = 148f;
-        private const string NewArt = "UI/Ugui/WorldHud20261021/";
+        private const float TileWidth = 306f, TileHeight = 108f;
+        private const string NewArt = "UI/Ugui/WorldHud20261022/";
+        private static readonly Color Ink = QdaoUguiTheme.Html("#244C3E");
+        private static readonly Color SecondaryInk = QdaoUguiTheme.Html("#80745A");
         private static readonly string[] CategoryNames = { "修行", "历练", "仙友", "交易" };
         private static readonly string[] CategoryDescriptions =
         {
-            "角色养成与灵宠相伴", "任务、活动与论剑切磋", "结伴同游，仙笺传情", "寄售寻宝，互通有无"
+            "灵宠相伴，参悟道法", "云游问道，历练四方", "结伴同游，仙笺传情", "寄售寻宝，互通有无"
         };
         private static readonly string[] CategoryIcons =
         {
-            "UI/Ugui/RefreshV8/round_badge_taiji", "UI/Ugui/RefreshV8/round_badge_sword",
-            NewArt + "team", NewArt + "trade"
+            NewArt + "skills", NewArt + "missions", NewArt + "team", NewArt + "trade"
         };
         private readonly List<Slot> _slots = new();
         private readonly Button[] _tabs = new Button[4];
         private readonly Image[] _tabPlates = new Image[4];
+        private readonly TMP_Text[] _tabNames = new TMP_Text[4];
         private readonly bool[] _categoryAvailable = new bool[4];
+        private readonly Sprite[] _categorySprites = new Sprite[4];
+        private Sprite _normalTab, _selectedTab;
         private GameObject _socialNotice;
-        private RectTransform _chrome, _panel;
+        private RectTransform _chrome, _panel, _close;
         private GameObject _dismiss;
         private TMP_Text _title, _description;
+        private Image _categoryIllustration;
+        private GameObject _locationBoard;
         private Slot _skills;
 
         public static WorldHudNavigation Instance { get; private set; }
@@ -106,6 +111,8 @@ namespace MmorpgClient.UI.Ugui
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             Root = QdaoUguiFactory.CreateCenteredRect("WorldHudDesign", canvasObject.transform, 2560, 1080);
             _chrome = QdaoUguiFactory.CreateStretch("Navigation", Root, Vector4.zero);
+            _normalTab = QdaoUguiTheme.RequireSprite(NewArt + "chrome/tab-normal");
+            _selectedTab = QdaoUguiTheme.RequireSprite(NewArt + "chrome/tab-selected");
 
             var dismiss = QdaoUguiFactory.CreateHitButton("CloseCategoriesOutside", _chrome, 0, 0, 2560, 1080);
             dismiss.onClick.AddListener(() => ShowCategory(null));
@@ -114,53 +121,55 @@ namespace MmorpgClient.UI.Ugui
             _panel = QdaoUguiFactory.CreateRect("SystemCategoryPanel", _chrome,
                 PanelX, PanelY, PanelWidth, 424);
             var paper = _panel.gameObject.AddComponent<Image>();
-            paper.sprite = QdaoUguiTheme.RequireSprite("UI/Ugui/TeamV2/main_frame");
+            paper.sprite = QdaoUguiTheme.RequireSprite(NewArt + "chrome/frame");
             paper.type = Image.Type.Sliced;
-            paper.pixelsPerUnitMultiplier = 2f;
             paper.raycastTarget = true;
-            var titlePlate = QdaoUguiFactory.CreateImage("CategoryTitlePlate", _panel, 24, 18, 590, 58,
-                QdaoUguiTheme.RequireSprite("UI/Ugui/TeamV2/section_plate"));
-            titlePlate.type = Image.Type.Sliced;
-            titlePlate.pixelsPerUnitMultiplier = 2f;
-            _title = QdaoUguiFactory.CreateText("CategoryTitle", _panel, 84, 26, 490, 36,
-                "修行", 31, QdaoUguiTheme.Cream);
-            _title.fontStyle = FontStyles.Bold;
-            _description = QdaoUguiFactory.CreateText("CategoryDescription", _panel, 30, 80, 570, 30,
-                CategoryDescriptions[0], 23, QdaoUguiTheme.MutedBrown);
-            var close = QdaoUguiFactory.CreateArtButton("CloseCategory", _panel, 626, 22, 48, 48,
+            _title = QdaoUguiFactory.CreateText("CategoryTitle", _panel, 112, 26, 320, 48,
+                "修行", 40, Ink);
+            _description = QdaoUguiFactory.CreateText("CategoryDescription", _panel, 44, 77, 500, 30,
+                CategoryDescriptions[0], 23, SecondaryInk);
+            _categoryIllustration = QdaoUguiFactory.CreateImage("CategoryIllustration", _panel,
+                524, 18, 82, 82, EntryIcon(WorldHudEntry.Skills));
+            _categoryIllustration.preserveAspect = true;
+            var close = QdaoUguiFactory.CreateArtButton("CloseCategory", _panel, 626, 28, 44, 44,
                 QdaoUguiTheme.RequireSprite("UI/Ugui/TeamV2/close"), out var closeImage);
             closeImage.preserveAspect = true;
+            _close = (RectTransform)close.transform;
             close.onClick.AddListener(() => ShowCategory(null));
             close.gameObject.name = "CloseCategory_收起";
 
             for (int i = 0; i < 4; i++)
             {
                 int index = i;
-                var tab = QdaoUguiFactory.CreateHitButton("WorldHudCategory_" + (WorldHudCategory)i,
-                    _chrome, 1960 + i * 138, 30, 132, 140);
-                var icon = QdaoUguiFactory.CreateImage("CategoryIcon", tab.transform, 22, 0, 88, 88,
-                    LoadIcon(CategoryIcons[i], "UI/Ugui/RefreshV8/round_badge_taiji"));
+                _categorySprites[i] = LoadIcon(CategoryIcons[i], "UI/Ugui/RefreshV8/round_badge_taiji");
+                var tab = QdaoUguiFactory.CreateArtButton("WorldHudCategory_" + (WorldHudCategory)i,
+                    _chrome, 1512 + i * 154, 64, 146, 88,
+                    _normalTab, out var plate);
+                plate.type = Image.Type.Sliced;
+                var icon = QdaoUguiFactory.CreateImage("CategoryIcon", tab.transform, 10, 15, 58, 58,
+                    _categorySprites[i]);
                 icon.preserveAspect = true;
-                var plate = QdaoUguiFactory.CreateImage("CategoryPlaque", tab.transform, 0, 90, 132, 42,
-                    QdaoUguiTheme.RequireSprite("UI/Ugui/CoreFidelity20261016/hud_button"));
-                plate.preserveAspect = true;
-                var name = QdaoUguiFactory.CreateText("CategoryName", tab.transform, 0, 90, 132, 42,
-                    CategoryNames[i], 29, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
-                name.fontStyle = FontStyles.Bold;
+                var name = QdaoUguiFactory.CreateText("CategoryName", tab.transform, 66, 22, 68, 44,
+                    CategoryNames[i], 31, Ink, TextAlignmentOptions.Center);
                 if (i == (int)WorldHudCategory.Social)
                 {
                     var notice = QdaoUguiFactory.CreateImage("PendingMailOrTeamNotice", tab.transform,
-                        96, 0, 26, 26, QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/status_dot_orange"));
+                        120, 5, 22, 22, QdaoUguiTheme.RequireSprite("UI/Ugui/RefreshV8/status_dot_orange"));
                     notice.preserveAspect = true;
                     _socialNotice = notice.gameObject;
                 }
-                tab.targetGraphic = icon;
                 ConfigureFeedback(tab);
                 tab.onClick.AddListener(() =>
                     ShowCategory(CurrentCategory == (WorldHudCategory)index ? null : (WorldHudCategory)index));
                 _tabs[i] = tab;
                 _tabPlates[i] = plate;
+                _tabNames[i] = name;
             }
+
+            var location = QdaoUguiFactory.CreateImage("LocationPaper", _chrome, 36, 28, 414, 96,
+                QdaoUguiTheme.RequireSprite(NewArt + "chrome/location"));
+            location.type = Image.Type.Sliced;
+            _locationBoard = location.gameObject;
 
             // A direct shortcut to the existing skill book, alongside role and pet.
             var skills = QdaoUguiFactory.CreateHitButton("SkillsEntry", Root, 0, 0, TileWidth, TileHeight);
@@ -194,63 +203,74 @@ namespace MmorpgClient.UI.Ugui
             var buttonRect = (RectTransform)button.transform;
             if (buttonRect != rect) Place(buttonRect, 0, 0, TileWidth, TileHeight);
             var hit = button.GetComponent<Image>();
-            // The approved 04 HUD defines these three persistent text buttons.
-            // Preserve their real listeners/session state; extra systems remain in the category overlay.
-            if (IsReferenceEntry(id))
-            {
-                Place(rect, 0, 0, BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight);
-                if(buttonRect!=rect)Place(buttonRect,0,0,BattleUiStyle.HudEntryWidth,BattleUiStyle.HudEntryHeight);
-                if(hit!=null)
-                {
-                    hit.sprite=QdaoUguiTheme.RequireSprite("UI/Ugui/CoreFidelity20261016/hud_button");
-                    hit.type=Image.Type.Simple;hit.preserveAspect=false;hit.color=Color.white;
-                }
-                Place(label.rectTransform,32,0,BattleUiStyle.HudEntryWidth-64,BattleUiStyle.HudEntryHeight);
-                QdaoUguiTypography.ApplyButton(label);
-                label.fontSize=BattleUiStyle.HudEntryFontSize;label.color=QdaoUguiTheme.Html("#FFF7DE");
-                label.enableAutoSizing=true;label.fontSizeMin=21;label.fontSizeMax=BattleUiStyle.HudEntryFontSize;
-                label.alignment=TextAlignmentOptions.Center;label.raycastTarget=false;
-                button.targetGraphic=hit;ConfigureFeedback(button);
-                return new Slot { Id=id,Source=rect,Container=container,Button=button,Label=label,Visibility=group };
-            }
             // Older feature entries may already contain a decorative icon.
             // Replace its drawing, keeping their labels and action objects intact.
             foreach (var decoration in button.GetComponentsInChildren<Image>(true))
                 if (decoration != hit) decoration.enabled = false;
             if (hit != null)
             {
-                hit.sprite = null;
-                hit.type = Image.Type.Simple;
-                hit.color = new Color(1, 1, 1, .001f);
+                hit.sprite = QdaoUguiTheme.RequireSprite(NewArt + "chrome/entry-card");
+                hit.type = Image.Type.Sliced;
+                hit.color = Color.white;
                 hit.raycastTarget = true;
             }
             var icon = QdaoUguiFactory.CreateImage("SystemIcon_" + id, button.transform,
-                (TileWidth - 86) * .5f, 4, 86, 86, EntryIcon(id));
+                12, 10, 84, 84, EntryIcon(id));
             icon.preserveAspect = true;
             label.transform.SetAsLastSibling();
-            Place(label.rectTransform, 4, 94, TileWidth - 8, 42);
-            label.fontSize = 28;
+            Place(label.rectTransform, 102, 14, TileWidth - 118, 40);
+            label.fontSize = 30;
             label.enableAutoSizing = true;
             label.fontSizeMin = 21;
-            label.fontSizeMax = 28;
-            label.fontStyle = FontStyles.Bold;
-            label.color = QdaoCoreFidelityArt.Ink;
-            label.alignment = TextAlignmentOptions.Center;
+            label.fontSizeMax = 30;
+            label.font = QdaoUguiTheme.ResolveFont();
+            label.fontStyle = FontStyles.Normal;
+            label.fontWeight = FontWeight.Regular;
+            label.color = Ink;
+            label.alignment = TextAlignmentOptions.MidlineLeft;
             label.textWrappingMode = TextWrappingModes.NoWrap;
             label.overflowMode = TextOverflowModes.Ellipsis;
             label.raycastTarget = false;
-            button.targetGraphic = icon;
+            button.targetGraphic = hit;
             ConfigureFeedback(button);
-            // Quick entries float over the world: jade plaques keep their names readable.
-            if (IsQuick(id))
+            if (IsReferenceEntry(id))
             {
-                var plate = QdaoUguiFactory.CreateImage("QuickEntryPlaque", button.transform,
-                    0, 94, TileWidth, 42,
-                    QdaoUguiTheme.RequireSprite("UI/Ugui/CoreFidelity20261016/hud_button"));
-                plate.preserveAspect = true;
-                label.transform.SetAsLastSibling();
-                label.color = QdaoUguiTheme.Cream;
+                // Keep the established right-column targets while sharing the new paper skin.
+                Place(rect, 0, 0, 336, 81.6f);
+                if (buttonRect != rect) Place(buttonRect, 0, 0, 336, 81.6f);
+                Place(icon.rectTransform, 16, 7, 68, 68);
+                Place(label.rectTransform, 96, 0, 218, 81.6f);
+                label.fontSize = label.fontSizeMax = 36;
             }
+            else if (id == WorldHudEntry.Map || id == WorldHudEntry.Channel)
+            {
+                bool map = id == WorldHudEntry.Map;
+                float width = map ? 246 : 156;
+                Place(rect, 0, 0, width, 88);
+                if (buttonRect != rect) Place(buttonRect, 0, 0, width, 88);
+                if (hit != null) { hit.sprite = null; hit.color = new Color(1, 1, 1, .001f); }
+                Place(icon.rectTransform, map ? 12 : 4, map ? 15 : 23, map ? 58 : 42, map ? 58 : 42);
+                Place(label.rectTransform, map ? 78 : 46, 0, map ? 166 : 108, 88);
+                label.fontSize = label.fontSizeMax = map ? 30 : 27;
+                button.targetGraphic = icon;
+            }
+            else if (id == WorldHudEntry.Bag)
+            {
+                Place(rect, 0, 0, 204, 160);
+                if (buttonRect != rect) Place(buttonRect, 0, 0, 204, 160);
+                if (hit != null) { hit.sprite = null; hit.color = new Color(1, 1, 1, .001f); }
+                Place(icon.rectTransform, 38, 0, 128, 128);
+                var plate = QdaoUguiFactory.CreateImage("QuickEntryPlaque", button.transform,
+                    28, 112, 148, 46, QdaoUguiTheme.RequireSprite(NewArt + "chrome/name-tag"));
+                plate.type = Image.Type.Sliced;
+                Place(label.rectTransform, 32, 114, 140, 42);
+                label.alignment = TextAlignmentOptions.Center;
+                label.fontSize = label.fontSizeMax = 29;
+                label.transform.SetAsLastSibling();
+                button.targetGraphic = icon;
+            }
+            else QdaoUguiFactory.CreateText("SystemPurpose", button.transform, 103, 58,
+                TileWidth - 119, 28, Purpose(id), 22, SecondaryInk);
             return new Slot { Id = id, Source = rect, Container = container,
                 Button = button, Label = label, Visibility = group };
         }
@@ -290,7 +310,7 @@ namespace MmorpgClient.UI.Ugui
         {
             if (_chrome == null) return;
             _slots.RemoveAll(slot => slot.Source == null);
-            bool available = false, roleAvailable = false;
+            bool available = false, roleAvailable = false, locationAvailable = false;
             System.Array.Clear(_categoryAvailable, 0, _categoryAvailable.Length);
             bool socialNotice = false;
             foreach (var slot in _slots)
@@ -298,6 +318,7 @@ namespace MmorpgClient.UI.Ugui
                 if (!slot.Available) continue;
                 available = true;
                 if (slot.Id == WorldHudEntry.Role) roleAvailable = true;
+                if (slot.Id == WorldHudEntry.Map || slot.Id == WorldHudEntry.Channel) locationAvailable = true;
                 if (!IsQuick(slot.Id)) _categoryAvailable[(int)Category(slot.Id)] = true;
                 if ((slot.Id == WorldHudEntry.Team || slot.Id == WorldHudEntry.Mail) &&
                     slot.Label != null && slot.Label.text.Contains("·")) socialNotice = true;
@@ -308,11 +329,13 @@ namespace MmorpgClient.UI.Ugui
             _chrome.gameObject.SetActive(available);
             _dismiss.SetActive(available && CurrentCategory.HasValue);
             _panel.gameObject.SetActive(available && CurrentCategory.HasValue);
+            _locationBoard.SetActive(locationAvailable);
             for (int i = 0; i < 4; i++)
             {
                 _tabs[i].interactable = _categoryAvailable[i];
-                _tabPlates[i].color = CurrentCategory == (WorldHudCategory)i
-                    ? new Color(1, .86f, .55f) : Color.white;
+                bool selected = CurrentCategory == (WorldHudCategory)i;
+                _tabPlates[i].sprite = selected ? _selectedTab : _normalTab;
+                _tabNames[i].color = selected ? QdaoUguiTheme.Cream : Ink;
             }
             _socialNotice.SetActive(socialNotice);
             int position = 0;
@@ -335,7 +358,15 @@ namespace MmorpgClient.UI.Ugui
             {
                 _title.text = CategoryNames[(int)CurrentCategory.Value];
                 _description.text = CategoryDescriptions[(int)CurrentCategory.Value];
-                _panel.sizeDelta = new Vector2(PanelWidth, position > 3 ? 450 : 294);
+                _categoryIllustration.sprite = _categorySprites[(int)CurrentCategory.Value];
+                bool compact = CurrentCategory == WorldHudCategory.Trade;
+                float width = compact ? 378 : PanelWidth;
+                Place(_panel, PanelX + PanelWidth - width, PanelY, width,
+                    138 + Mathf.CeilToInt(position / 2f) * 120);
+                _title.rectTransform.sizeDelta = new Vector2(width - 190, 48);
+                _description.rectTransform.sizeDelta = new Vector2(width - 88, 30);
+                _categoryIllustration.gameObject.SetActive(!compact);
+                Place(_close, width - 74, 28, 44, 44);
             }
         }
 
@@ -348,8 +379,8 @@ namespace MmorpgClient.UI.Ugui
         }
 
         private static void LayoutTile(Slot slot, int index)
-            => Place(slot.Container, PanelX + 32 + index % 3 * 216,
-                PanelY + 126 + index / 3 * 156, TileWidth, TileHeight);
+            => Place(slot.Container, PanelX + (slot.Id == WorldHudEntry.Trade ? 322 : 0) + 36 + index % 2 * 322,
+                PanelY + 122 + index / 2 * 120, TileWidth, TileHeight);
 
         private static void LayoutQuick(Slot slot)
         {
@@ -358,9 +389,9 @@ namespace MmorpgClient.UI.Ugui
                 case WorldHudEntry.Battle: Place(slot.Container,2160,176,336,81.6f); break;
                 case WorldHudEntry.Spectate: Place(slot.Container,2160,280,336,81.6f); break;
                 case WorldHudEntry.Role: Place(slot.Container,2160,384,336,81.6f); break;
-                case WorldHudEntry.Map: Place(slot.Container, 36, 28, TileWidth, TileHeight); break;
-                case WorldHudEntry.Channel: Place(slot.Container, 252, 28, TileWidth, TileHeight); break;
-                case WorldHudEntry.Bag: Place(slot.Container, 2308, 880, TileWidth, TileHeight); break;
+                case WorldHudEntry.Map: Place(slot.Container, 40, 32, 246, 88); break;
+                case WorldHudEntry.Channel: Place(slot.Container, 288, 32, 156, 88); break;
+                case WorldHudEntry.Bag: Place(slot.Container, 2308, 864, 204, 160); break;
             }
         }
 
@@ -391,27 +422,19 @@ namespace MmorpgClient.UI.Ugui
 
         private static Sprite EntryIcon(WorldHudEntry id)
         {
-            var path = id switch
-            {
-                WorldHudEntry.Role => "UI/Ugui/RefreshV8/round_badge_taiji",
-                WorldHudEntry.Pet => NewArt + "pet",
-                WorldHudEntry.Bag => NewArt + "bag",
-                WorldHudEntry.Missions => "UI/Ugui/MailV1/icon-talisman",
-                WorldHudEntry.Activities => "UI/Ugui/GameplayV1/icon_lantern",
-                WorldHudEntry.Battle => "UI/Ugui/RefreshV8/round_badge_sword",
-                WorldHudEntry.Spectate => NewArt + "spectate",
-                WorldHudEntry.Rank => NewArt + "rank",
-                WorldHudEntry.Team => NewArt + "team",
-                WorldHudEntry.Guild => "UI/Ugui/GuildV2/round_badge_pagoda",
-                WorldHudEntry.Social => NewArt + "social",
-                WorldHudEntry.Mail => "UI/Ugui/MailV1Fidelity/mail_envelope_read",
-                WorldHudEntry.Trade => NewArt + "trade",
-                WorldHudEntry.Map => "UI/Ugui/RefreshV8/round_badge_compass",
-                WorldHudEntry.Channel => NewArt + "channel",
-                _ => "UI/Ugui/MailV1/icon-scroll"
-            };
+            var path = NewArt + id.ToString().ToLowerInvariant();
             return LoadIcon(path, "UI/Ugui/RefreshV8/round_badge_taiji");
         }
+
+        private static string Purpose(WorldHudEntry id) => id switch
+        {
+            WorldHudEntry.Pet => "灵宠养成", WorldHudEntry.Skills => "道法研习",
+            WorldHudEntry.Missions => "问道寻踪", WorldHudEntry.Activities => "四时雅集",
+            WorldHudEntry.Rank => "论剑题名", WorldHudEntry.Team => "结伴同行",
+            WorldHudEntry.Guild => "同门相聚", WorldHudEntry.Social => "道友往来",
+            WorldHudEntry.Mail => "尺素传情", WorldHudEntry.Trade => "寄售寻宝",
+            _ => string.Empty
+        };
 
         private void OnDestroy()
         {

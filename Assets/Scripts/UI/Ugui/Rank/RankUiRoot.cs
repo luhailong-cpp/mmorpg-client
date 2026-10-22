@@ -142,7 +142,11 @@ namespace MmorpgClient.UI.Ugui.Rank
 
         private static bool IsTyping()
         {
-            var selected = EventSystem.current?.currentSelectedGameObject;
+            var current = EventSystem.current;
+            if (current == null) return false;
+            var selected = current.currentSelectedGameObject;
+            // Unity 已销毁对象需用其重载的空值判断,?. 仍会访问失效的原生对象。
+            if (selected == null) return false;
             return selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true
                 || selected?.GetComponentInParent<InputField>()?.isFocused == true;
         }

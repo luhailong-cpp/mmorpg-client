@@ -18,7 +18,7 @@ using UnityEngine.UI;
 public static class WorldHudVerification
 {
     public static string OutputDirectory { get; set; } = Path.GetFullPath(Path.Combine(
-        Application.dataPath, "../.codex-artifacts/world-hud-20261021"));
+        Application.dataPath, "../.codex-artifacts/world-hud-20261022"));
 
     [Serializable] private sealed class Report
     {
