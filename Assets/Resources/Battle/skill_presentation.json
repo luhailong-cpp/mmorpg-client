@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "skill_id": 1201,
+      "fx_id": "xuanfu_luoyao_impact",
+      "action": "cast",
+      "hit_frame": 3,
+      "projectile_fx_id": "xuanfu_luoyao_projectile",
+      "flight_seconds": 0.5,
+      "target_at_feet": false
+    },
+    {
+      "skill_id": 1202,
+      "fx_id": "zixiao_leizhen_strike",
+      "action": "cast",
+      "hit_frame": 3,
+      "telegraph_fx_id": "zixiao_leizhen_telegraph",
+      "telegraph_seconds": 0.5,
+      "target_at_feet": true
+    }
+  ]
+}

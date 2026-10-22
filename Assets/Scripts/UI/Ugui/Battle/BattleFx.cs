@@ -56,12 +56,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// (缺图时立即触发)。mirror=true 水平镜像(朝向左侧的斩击)。
         /// </summary>
         public float Play(string fxId, Vector2 anchor, float size, float delay = 0f,
-            Action onHitFrame = null, int hitFrame = DefaultHitFrame, bool mirror = false, float fpsOverride = 0f)
+            Action onHitFrame = null, int hitFrame = DefaultHitFrame, bool mirror = false, float fpsOverride = 0f,
+            Action onComplete = null)
         {
             var strip = BattleArtCatalog.LoadFx(fxId);
             if (_layer == null || strip == null || strip.Count == 0)
             {
-                onHitFrame?.Invoke();
+                SafeInvoke(onHitFrame);
+                SafeInvoke(onComplete);
                 return 0f;
             }
 
@@ -110,9 +112,58 @@ namespace MmorpgClient.UI.Ugui.Battle
                 {
                     if (!hitFired) { hitFired = true; SafeInvoke(onHitFrame); }
                     Recycle(image);
+                    SafeInvoke(onComplete);
                 }));
             if (delay > 0f) tween.SetDelay(delay);
             return seconds + Mathf.Max(0f, delay);
+        }
+
+        /// <summary>沿胸口轨迹飞行，循环帧条，到达后才交给命中段；Clear 会取消到达回调。</summary>
+        public float PlayTravel(string fxId, Vector2 from, Vector2 to, float size, float flightSeconds,
+            Action onArrive = null, bool mirror = false)
+        {
+            var strip = BattleArtCatalog.LoadFx(fxId);
+            if (_layer == null || strip == null || strip.Count == 0 || flightSeconds <= 0f)
+            {
+                SafeInvoke(onArrive);
+                return 0f;
+            }
+
+            float fps = strip.Fps > 0f ? strip.Fps : DefaultFps;
+            float seconds = BattleTempo.Scale(flightSeconds);
+            var image = Rent();
+            image.name = $"Fx_{fxId}_{++_serial}";
+            image.sprite = strip.Frames[0];
+            image.color = Color.white;
+            var rt = image.rectTransform;
+            rt.sizeDelta = new Vector2(size, size);
+            rt.localScale = new Vector3(mirror ? -1f : 1f, 1f, 1f);
+            rt.SetAsLastSibling();
+            Action<Vector2> place = anchor =>
+            {
+                var rect = PlacementRect(anchor, size, strip.Pivot);
+                rt.anchoredPosition = new Vector2(rect.x + (mirror ? size : 0f), -rect.y);
+            };
+            place(from);
+            image.gameObject.SetActive(true);
+            _active.Add(image);
+            var go = image.gameObject;
+            RealtimeTween.To(0f, 1f, seconds).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true)
+                .SetTarget(go)
+                .OnUpdate((RealtimeTweenCallback1)(t =>
+                {
+                    if (go == null) { RealtimeTween.Kill(go); return; }
+                    float progress = Mathf.Clamp01(t.Value.x);
+                    place(Vector2.Lerp(from, to, progress));
+                    int frame = Mathf.FloorToInt(progress * flightSeconds * fps) % strip.Count;
+                    image.sprite = strip.Frames[frame];
+                }))
+                .OnComplete((RealtimeTweenCallback)(() =>
+                {
+                    Recycle(image);
+                    SafeInvoke(onArrive);
+                }));
+            return seconds;
         }
 
         /// <summary>立刻回收全部在播特效(观战抢占/关屏)。</summary>
@@ -153,7 +204,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void Recycle(Image image)
         {
-            _active.Remove(image);
+            if (!_active.Remove(image)) return;
             ReturnToPool(image);
         }
 
