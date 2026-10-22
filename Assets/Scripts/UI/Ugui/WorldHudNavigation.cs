@@ -37,7 +37,7 @@ namespace MmorpgClient.UI.Ugui
         private const float TileWidth = 306f, TileHeight = 108f;
         private const string NewArt = "UI/Ugui/WorldHud20261022/";
         private static readonly Color Ink = QdaoUguiTheme.Html("#244C3E");
-        private static readonly Color SecondaryInk = QdaoUguiTheme.Html("#80745A");
+        private static readonly Color SecondaryInk = QdaoUguiTheme.Html("#6B604A");
         private static readonly string[] CategoryNames = { "修行", "历练", "仙友", "交易" };
         private static readonly string[] CategoryDescriptions =
         {
@@ -151,6 +151,7 @@ namespace MmorpgClient.UI.Ugui
                 icon.preserveAspect = true;
                 var name = QdaoUguiFactory.CreateText("CategoryName", tab.transform, 66, 22, 68, 44,
                     CategoryNames[i], 31, Ink, TextAlignmentOptions.Center);
+                name.fontStyle = FontStyles.Bold;
                 if (i == (int)WorldHudCategory.Social)
                 {
                     var notice = QdaoUguiFactory.CreateImage("PendingMailOrTeamNotice", tab.transform,
@@ -224,8 +225,8 @@ namespace MmorpgClient.UI.Ugui
             label.fontSizeMin = 21;
             label.fontSizeMax = 30;
             label.font = QdaoUguiTheme.ResolveFont();
-            label.fontStyle = FontStyles.Normal;
-            label.fontWeight = FontWeight.Regular;
+            label.fontStyle = FontStyles.Bold;
+            label.fontWeight = FontWeight.Bold;
             label.color = Ink;
             label.alignment = TextAlignmentOptions.MidlineLeft;
             label.textWrappingMode = TextWrappingModes.NoWrap;
@@ -362,7 +363,7 @@ namespace MmorpgClient.UI.Ugui
                 bool compact = CurrentCategory == WorldHudCategory.Trade;
                 float width = compact ? 378 : PanelWidth;
                 Place(_panel, PanelX + PanelWidth - width, PanelY, width,
-                    138 + Mathf.CeilToInt(position / 2f) * 120);
+                    174 + Mathf.CeilToInt(position / 2f) * 120);
                 _title.rectTransform.sizeDelta = new Vector2(width - 190, 48);
                 _description.rectTransform.sizeDelta = new Vector2(width - 88, 30);
                 _categoryIllustration.gameObject.SetActive(!compact);
