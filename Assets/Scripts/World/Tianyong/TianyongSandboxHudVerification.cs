@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using MmorpgClient.UI;
+using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Attribute;
 using TMPro;
@@ -24,8 +25,12 @@ namespace MmorpgClient.World.Tianyong
         private const string Tag = "[SandboxHud]";
         private const BindingFlags PrivateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
         private readonly List<UiTextButton> _entries = new();
+        private readonly Dictionary<UiTextButton, WorldHudCategory> _entryCategories = new();
         private readonly List<(MonoBehaviour Root, bool Enabled, GameObject Canvas)> _roots = new();
         private readonly Dictionary<Canvas, (RenderMode Mode, Camera Camera, float Distance, int Order)> _captureCanvasState = new();
+        private readonly Dictionary<GraphicRaycaster, bool> _navigationRaycasters = new();
+        private WorldHudNavigation _navigation, _originalNavigation;
+        private WorldHudCategory? _originalCategory;
         private TianyongSandboxBootstrap _sandbox;
         public bool Ready { get; private set; }
         public bool NameplateVerified { get; private set; }
@@ -49,16 +54,22 @@ namespace MmorpgClient.World.Tianyong
                 // A sandbox preview must never take over a live app's UI state.
                 if (FindAnyObjectByType<AppBootstrap>() != null)
                     throw new InvalidOperationException("HUD preview requires the offline sandbox without AppBootstrap.");
+                _originalNavigation = WorldHudNavigation.Instance;
+                _originalCategory = _originalNavigation != null ? _originalNavigation.CurrentCategory : null;
                 BattleUiRoot.EnsureSpawned();
                 AttributeUiRoot.EnsureSpawned();
-                BuildRoot(BattleUiRoot.Instance, "_entryButton", "_spectateEntryButton");
-                BuildRoot(AttributeUiRoot.Instance, "_entryButton");
+                BuildRoot(BattleUiRoot.Instance, WorldHudCategory.Adventure, "_entryButton", "_spectateEntryButton");
+                BuildRoot(AttributeUiRoot.Instance, WorldHudCategory.Cultivation, "_entryButton");
+                PrepareNavigation();
                 Ready = _entries.Count == 3;
                 Debug.Log($"{Tag} ready={Ready} mode=production_canvas_offline_preview entries={_entries.Count} " +
                           "roots=BattleUiRoot,AttributeUiRoot network_validation=false");
             }
             catch (Exception ex)
             {
+                // Capture partial navigation construction too, so cleanup restores
+                // only the state acquired by this offline preview.
+                if (FindAnyObjectByType<AppBootstrap>() == null) PrepareNavigation();
                 var cause = ex is TargetInvocationException invocation && invocation.InnerException != null
                     ? invocation.InnerException : ex;
                 Failure = cause.Message;
@@ -66,7 +77,20 @@ namespace MmorpgClient.World.Tianyong
             }
         }
 
-        private void BuildRoot(MonoBehaviour root, params string[] entryFields)
+        private void PrepareNavigation()
+        {
+            _navigation = WorldHudNavigation.Instance;
+            if (_navigation == null) return;
+            foreach (var raycaster in _navigation.GetComponentsInChildren<GraphicRaycaster>(true))
+            {
+                if (!_navigationRaycasters.ContainsKey(raycaster))
+                    _navigationRaycasters.Add(raycaster, raycaster.enabled);
+                raycaster.enabled = false;
+            }
+            _navigation.ShowCategory(null);
+        }
+
+        private void BuildRoot(MonoBehaviour root, WorldHudCategory category, params string[] entryFields)
         {
             var type = root.GetType();
             var canvasField = type.GetField("_canvasGo", PrivateInstance)
@@ -103,6 +127,7 @@ namespace MmorpgClient.World.Tianyong
                     throw new InvalidOperationException($"{type.Name}.{fieldName} is incomplete.");
                 entry.SetVisible(true);
                 _entries.Add(entry);
+                _entryCategories.Add(entry, category);
             }
         }
 
@@ -117,12 +142,54 @@ namespace MmorpgClient.World.Tianyong
                 detail = Failure ?? "HUD not ready";
                 return false;
             }
-            Canvas.ForceUpdateCanvases();
             var descriptions = new List<string>();
+            if (_navigation == null)
+            {
+                detail = "categorized navigation missing";
+                return false;
+            }
+            var previousCategory = _navigation.CurrentCategory;
+            try
+            {
+                foreach (WorldHudCategory category in Enum.GetValues(typeof(WorldHudCategory)))
+                {
+                    if (!_entries.Exists(entry => _entryCategories[entry] == category)) continue;
+                    _navigation.ShowCategory(category);
+                    Canvas.ForceUpdateCanvases();
+                    if (_navigation.CurrentCategory != category)
+                    {
+                        detail = $"category unavailable: {category}";
+                        return false;
+                    }
+                    if (!ValidateCategoryLayout(category, descriptions, out detail)) return false;
+                }
+            }
+            finally
+            {
+                _navigation.ShowCategory(previousCategory);
+                Canvas.ForceUpdateCanvases();
+            }
+            detail = string.Join(";", descriptions);
+            Debug.Log($"{Tag} layout=PASS screen={Screen.width}x{Screen.height} {detail}");
+            return true;
+        }
+
+        private bool ValidateCategoryLayout(WorldHudCategory category, List<string> descriptions, out string detail)
+        {
             var rectangles = new List<Rect>();
             var corners = new UnityEngine.Vector3[4];
             foreach (var entry in _entries)
             {
+                var visibility = entry.Rect.GetComponentInParent<CanvasGroup>();
+                if (_entryCategories[entry] != category)
+                {
+                    if (visibility == null || visibility.alpha > 0.01f || visibility.blocksRaycasts || entry.Button.IsInteractable())
+                    {
+                        detail = $"entry from another category remains visible or interactive: {entry.Rect.name}";
+                        return false;
+                    }
+                    continue;
+                }
                 entry.Rect.GetWorldCorners(corners);
                 var canvas = entry.Rect.GetComponentInParent<Canvas>();
                 var canvasCamera = canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay
@@ -131,6 +198,7 @@ namespace MmorpgClient.World.Tianyong
                 var max = RectTransformUtility.WorldToScreenPoint(canvasCamera, corners[2]);
                 var rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
                 if (!entry.Rect.gameObject.activeInHierarchy || !entry.Button.IsInteractable()
+                    || visibility == null || visibility.alpha < 0.99f || !visibility.blocksRaycasts
                     || rect.width <= 0f || rect.height <= 0f || rect.xMin < 0f || rect.yMin < 0f
                     || rect.xMax > Screen.width + 0.5f || rect.yMax > Screen.height + 0.5f)
                 {
@@ -145,10 +213,9 @@ namespace MmorpgClient.World.Tianyong
                 }
                 rectangles.Add(rect);
                 descriptions.Add(string.Format(CultureInfo.InvariantCulture,
-                    "{0}:({1:F1},{2:F1},{3:F1},{4:F1})", entry.Rect.name, rect.x, rect.y, rect.width, rect.height));
+                    "{0}/{1}:({2:F1},{3:F1},{4:F1},{5:F1})", category, entry.Rect.name, rect.x, rect.y, rect.width, rect.height));
             }
-            detail = string.Join(";", descriptions);
-            Debug.Log($"{Tag} layout=PASS screen={Screen.width}x{Screen.height} {detail}");
+            detail = string.Empty;
             return true;
         }
 
@@ -178,14 +245,26 @@ namespace MmorpgClient.World.Tianyong
                 Failure = "HUD capture requires a ready preview and camera RenderTexture with valid clipping planes.";
                 return false;
             }
+            var captureCanvases = new HashSet<Canvas>();
             foreach (var state in _roots)
             {
-                var canvas = state.Canvas != null ? state.Canvas.GetComponent<Canvas>() : null;
-                if (canvas == null || (camera.cullingMask & (1 << canvas.gameObject.layer)) == 0)
+                if (state.Canvas == null)
                 {
-                    Failure = "HUD canvas is missing or excluded by the capture camera culling mask.";
+                    Failure = "HUD canvas is missing.";
                     return false;
                 }
+                foreach (var canvas in state.Canvas.GetComponentsInChildren<Canvas>(true)) captureCanvases.Add(canvas);
+            }
+            if (_navigation != null)
+                foreach (var canvas in _navigation.GetComponentsInChildren<Canvas>(true)) captureCanvases.Add(canvas);
+            foreach (var canvas in captureCanvases)
+            {
+                if ((camera.cullingMask & (1 << canvas.gameObject.layer)) != 0) continue;
+                Failure = "HUD canvas is excluded by the capture camera culling mask.";
+                return false;
+            }
+            foreach (var canvas in captureCanvases)
+            {
                 if (!_captureCanvasState.ContainsKey(canvas))
                     _captureCanvasState.Add(canvas, (canvas.renderMode, canvas.worldCamera, canvas.planeDistance, canvas.sortingOrder));
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;
@@ -211,6 +290,23 @@ namespace MmorpgClient.World.Tianyong
         public IEnumerator VerifyNameplate(Func<string, IEnumerator> capture)
         {
             NameplateVerified = false;
+            // Show each available production group in the existing screenshot
+            // stream without invoking any entry callback or creating a session.
+            if (_navigation != null && capture != null)
+            {
+                var previousCategory = _navigation.CurrentCategory;
+                try
+                {
+                    foreach (WorldHudCategory category in Enum.GetValues(typeof(WorldHudCategory)))
+                    {
+                        if (!_entries.Exists(entry => _entryCategories[entry] == category)) continue;
+                        _navigation.ShowCategory(category);
+                        yield return null;
+                        yield return capture("00_hud_category_" + category.ToString().ToLowerInvariant());
+                    }
+                }
+                finally { if (_navigation != null) _navigation.ShowCategory(previousCategory); }
+            }
             var labelTransform = _sandbox != null && _sandbox.Player != null
                 ? _sandbox.Player.transform.Find(WorldNameplate.ObjectName) : null;
             var label = labelTransform != null ? labelTransform.GetComponent<TextMeshPro>() : null;
@@ -325,6 +421,13 @@ namespace MmorpgClient.World.Tianyong
             {
                 if (state.Canvas != null) Destroy(state.Canvas);
                 if (state.Root != null) state.Root.enabled = state.Enabled;
+            }
+            foreach (var state in _navigationRaycasters)
+                if (state.Key != null) state.Key.enabled = state.Value;
+            if (_navigation != null)
+            {
+                if (_navigation == _originalNavigation) _navigation.ShowCategory(_originalCategory);
+                else Destroy(_navigation.gameObject);
             }
             Ready = false;
         }

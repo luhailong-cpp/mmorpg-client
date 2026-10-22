@@ -43,6 +43,7 @@ public static class AttributePanelV10Verification
         Directory.CreateDirectory(OutputDirectory);
         var checks = new List<string>();
         File.WriteAllText(Path.Combine(OutputDirectory, "bounds-diagnostics.txt"), "Capture started " + DateTime.UtcNow.ToString("O") + "\n\n");
+        File.WriteAllText(Path.Combine(OutputDirectory, "slider-pixel-diagnostics.txt"), "Actual rendered slider rail/fill checks\n");
         File.WriteAllText(Path.Combine(OutputDirectory, "fixture-scope.txt"),
             "Production AttributePanel and PetPanel rendered in temporary additive editor scenes.\n" +
             "Character and pet values are visual fixtures, not live account data or server configuration.\n" +
@@ -146,6 +147,30 @@ public static class AttributePanelV10Verification
                     pixels.EncodeToPNG());
             }
 
+            void CheckRenderedSlider(Component panelRoot, string state)
+            {
+                // Use the last row: it is fully visible in both normal and scrolled-bottom states.
+                var slider = panelRoot.GetComponentsInChildren<Slider>(false).Last();
+                Require(slider.maxValue > slider.minValue, "Pixel fixture requires a non-empty slider range.");
+                float original = slider.value;
+                try
+                {
+                    // Exercise both the fill and the empty rail without invoking allocation listeners.
+                    slider.SetValueWithoutNotify(Mathf.Lerp(slider.minValue, slider.maxValue, .4f));
+                    Prepare();
+                    camera.Render();
+                    RenderTexture.active = target;
+                    pixels.ReadPixels(new Rect(0f, 0f, width, height), 0, 0, false);
+                    pixels.Apply(false, false);
+                    ValidateSliderTrackPixels(slider, camera, pixels, width + "x" + height + " " + state);
+                }
+                finally
+                {
+                    slider.SetValueWithoutNotify(original);
+                    Prepare();
+                }
+            }
+
             var characterRoot = QdaoUguiFactory.CreateRect("CharacterFixture", root, 0f, 0f, 2560f, 1080f);
             var characterOwner = CreateInactiveOwner<AttributeUiRoot>("InactiveAttributeOwner", root);
             Require(characterOwner.Client == null, "Character capture owner must have no game client.");
@@ -162,6 +187,7 @@ public static class AttributePanelV10Verification
             }
             Shoot("01-character-normal");
             ValidateCharacterSliderHandles(characterRoot, 4);
+            CheckRenderedSlider(characterRoot, "character-normal");
 
             attributes.ApplyPanel(CharacterFixture(8));
             Prepare();
@@ -171,8 +197,9 @@ public static class AttributePanelV10Verification
             LogScrollDiagnostics("after-bottom-set", pointScroll, Find<RectTransform>(characterRoot, "Row_定力"));
             Shoot("02-character-eight-rows-bottom");
             ValidateCharacterSliderHandles(characterRoot, 8);
+            CheckRenderedSlider(characterRoot, "character-eight-rows-bottom");
             RequireFullyVisible(pointScroll.viewport, Find<RectTransform>(characterRoot, "Row_定力"));
-            checks.Add("PASS " + width + "x" + height + ": character native painted controls, no affinity tabs, 60x60 handles in four/eight-row states, eighth row fully visible at scroll bottom.");
+            checks.Add("PASS " + width + "x" + height + ": character native painted controls, no affinity tabs, 52.8x52.8 DOM-scaled handles and rendered 20.8px rail/fill coverage in four/eight-row states, eighth row fully visible at scroll bottom.");
             UnityEngine.Object.DestroyImmediate(characterRoot.gameObject);
             UnityEngine.Object.DestroyImmediate(characterOwner.gameObject);
 
@@ -187,6 +214,7 @@ public static class AttributePanelV10Verification
             ValidateLocalPetDraft(petRoot, petData);
             pets.SetStatus(string.Empty);
             Shoot("03-pets-normal");
+            CheckRenderedSlider(petRoot, "pets-normal");
 
             pets.ApplyList(PetFixture(0));
             Shoot("04-pets-empty");
@@ -198,6 +226,7 @@ public static class AttributePanelV10Verification
             var petScroll = Find<ScrollRect>(petRoot, "PetRosterViewport");
             petScroll.verticalNormalizedPosition = 0f;
             Shoot("05-pets-ten-bottom");
+            CheckRenderedSlider(petRoot, "pets-ten-bottom");
             int visibleItems = petRoot.GetComponentsInChildren<Button>(true)
                 .Count(button => button.name.StartsWith("PetItem", StringComparison.Ordinal) && button.gameObject.activeInHierarchy);
             Require(visibleItems == 10, "Ten-pet fixture must create ten active roster cards.");
@@ -249,10 +278,69 @@ public static class AttributePanelV10Verification
         {
             Require(slider.handleRect != null, slider.name + " must have a visible handle.");
             var rect = slider.handleRect.rect;
-            Require(Mathf.Abs(rect.width - 60f) <= .05f && Mathf.Abs(rect.height - 60f) <= .05f,
-                slider.name + " handle must have an actual 60x60 rect, got " + rect.size + ".");
+            Require(Mathf.Abs(rect.width - 52.8f) <= .05f && Mathf.Abs(rect.height - 52.8f) <= .05f,
+                slider.name + " handle must have an actual 52.8x52.8 rect (33 CSS px x 1.6), got " + rect.size + ".");
         }
     }
+    private static void ValidateSliderTrackPixels(Slider slider, Camera camera, Texture2D pixels, string state)
+    {
+        var track = slider.transform.GetChild(0).GetComponent<Image>();
+        var fill = slider.fillRect.GetComponent<Image>();
+        foreach (var image in new[] { track, fill })
+        {
+            Require(image != null && image.sprite != null && image.isActiveAndEnabled,
+                slider.name + " must display both track and fill sprites.");
+            Require(!image.preserveAspect && image.type == Image.Type.Sliced && image.fillCenter,
+                image.name + " must render its complete sliced rail area.");
+            Require(Mathf.Abs(image.rectTransform.rect.height - 20.8f) <= .05f,
+                image.name + " must have an actual 20.8px rect (13 CSS px x 1.6).");
+            // Read the imported PNG independently of its RectTransform. This catches padded source
+            // sprites whose 20.8px rect still renders as the former four-pixel line.
+            var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+            try
+            {
+                Require(source.LoadImage(File.ReadAllBytes(AssetDatabase.GetAssetPath(image.sprite))),
+                    image.name + " PNG must decode for effective alpha coverage checks.");
+                var spriteRect = image.sprite.rect;
+                int column = Mathf.Clamp(Mathf.FloorToInt(spriteRect.center.x), 0, source.width - 1);
+                int first = Mathf.FloorToInt(spriteRect.yMin), last = Mathf.CeilToInt(spriteRect.yMax);
+                int opaque = Enumerable.Range(first, last - first).Count(y => source.GetPixel(column, y).a >= .5f);
+                Require(opaque >= (last - first) * .9f,
+                    image.name + " source must occupy at least 90% of its center column; got " + opaque + "/" + (last - first) + ".");
+            }
+            finally { UnityEngine.Object.DestroyImmediate(source); }
+        }
+
+        var rect = track.rectTransform.rect;
+        var lower = camera.WorldToScreenPoint(track.rectTransform.TransformPoint(new UnityEngine.Vector3(rect.center.x, rect.yMin, 0f)));
+        var upper = camera.WorldToScreenPoint(track.rectTransform.TransformPoint(new UnityEngine.Vector3(rect.center.x, rect.yMax, 0f)));
+        float expectedHeight = Mathf.Abs(upper.y - lower.y);
+        int CountPixels(float normalizedX, bool green)
+        {
+            var point = camera.WorldToScreenPoint(track.rectTransform.TransformPoint(
+                new UnityEngine.Vector3(Mathf.Lerp(rect.xMin, rect.xMax, normalizedX), rect.center.y, 0f)));
+            int x = Mathf.Clamp(Mathf.FloorToInt(point.x), 0, pixels.width - 1);
+            int first = Mathf.Max(0, Mathf.FloorToInt(Mathf.Min(lower.y, upper.y)));
+            int last = Mathf.Min(pixels.height - 1, Mathf.CeilToInt(Mathf.Max(lower.y, upper.y)));
+            int count = 0;
+            for (int y = first; y <= last; y++)
+            {
+                var color = pixels.GetPixel(x, y);
+                bool matches = green
+                    ? color.g > color.r + .1f && color.g > color.b + .04f && color.r < .55f
+                    : color.r >= .55f && color.r < .9f && color.g >= .55f && Mathf.Abs(color.r - color.g) < .15f && color.b < .8f;
+                if (matches) count++;
+            }
+            return count;
+        }
+        int fillPixels = CountPixels(.2f, true), railPixels = CountPixels(.75f, false);
+        string diagnostic = state + " " + slider.name + " expectedHeight=" + expectedHeight.ToString("F2") +
+            " renderedNeutralRailRows=" + railPixels + " renderedGreenFillRows=" + fillPixels;
+        File.AppendAllText(Path.Combine(OutputDirectory, "slider-pixel-diagnostics.txt"), diagnostic + "\n");
+        Require(railPixels >= expectedHeight * .72f, diagnostic + ": empty rail must occupy at least 72% of its rendered height.");
+        Require(fillPixels >= expectedHeight * .65f, diagnostic + ": green fill must occupy at least 65% of its rendered height.");
+    }
+
     private static void ValidateLocalPetDraft(Component root, PetListInfo data)
     {
         var value = Find<TMP_Text>(root, "Row0Value");

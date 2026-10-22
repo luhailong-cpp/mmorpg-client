@@ -77,6 +77,7 @@ namespace MmorpgClient.UI.Ugui.Team
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             _entry.name = "TeamEntry";
             _entryLabel = _entry.GetComponentInChildren<TMP_Text>();
+            WorldHudNavigation.Register(WorldHudEntry.Team, (RectTransform)_entry.transform, _entry, _entryLabel);
             _window = new TeamWindow(design);
             _invitations = new TeamInvitationWindow(design);
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };

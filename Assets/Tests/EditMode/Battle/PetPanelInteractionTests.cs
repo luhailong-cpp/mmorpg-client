@@ -222,8 +222,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         private void OpenGallery(string id)
         {
-            Click("Tab图鉴");
-            _uiRoot.GetComponentInChildren<PetArchivePreview>(true).Select(id);
+            var preview = _uiRoot.GetComponentInChildren<PetArchivePreview>(true);
+            if (!preview.gameObject.activeInHierarchy) Click("Tab图鉴");
+            Assert.That(preview.gameObject.activeInHierarchy, Is.True, "通过更多中的图鉴入口打开实际图鉴");
+            preview.Select(id);
         }
 
         private ulong SelectedPetId() => (ulong)typeof(PetPanel)
@@ -239,6 +241,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private void Click(string name)
         {
             var button = Button(name);
+            if (!button.gameObject.activeInHierarchy && button.transform.parent.name == "ExactMoreMenu")
+            {
+                var more = Button("ExactMoreEntry");
+                Assert.That(more.gameObject.activeInHierarchy, Is.True, "更多入口应可见");
+                Assert.That(more.interactable, Is.True, "更多入口应可点击");
+                more.onClick.Invoke();
+            }
             Assert.That(button.gameObject.activeInHierarchy, Is.True, name + "应可见");
             Assert.That(button.interactable, Is.True, name + "应可点击");
             button.onClick.Invoke();

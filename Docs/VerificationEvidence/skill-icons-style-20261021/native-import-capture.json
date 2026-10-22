@@ -1,0 +1,213 @@
+{
+    "status": "passed",
+    "completedAtUtc": "2026-10-22T06:32:49.6689626Z",
+    "unityVersion": "6000.6.0f1",
+    "layoutPreviewOnly": true,
+    "liveServerVerified": false,
+    "icons": [
+        {
+            "id": 1101,
+            "guid": "63afa0cdb24b468fa0ed7eadd83c1189",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1102,
+            "guid": "001094bc65ee44f88d34ff61bb628e4d",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1103,
+            "guid": "985d2fca7438466d8c9d668e7ea4688f",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1104,
+            "guid": "4966276767194fc99539712ca6ff01be",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1105,
+            "guid": "5f45dbe594ee4a47afc21a5e12286b22",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1106,
+            "guid": "6baaf606834740ccbdfd3af0a2d672a4",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1107,
+            "guid": "aa1c9c36bb934f46af7ebddc0ccc8194",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1108,
+            "guid": "3f582761e2464db6b243bfe43f0b2861",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1201,
+            "guid": "258d9fbfad9c48b19d60b166d094de07",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1202,
+            "guid": "cc742cf0afd341778dc2c369544d69b2",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1203,
+            "guid": "c31f3bf0dc9b4d64a1dca94a7bf6b694",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1204,
+            "guid": "c07cf43e87cd4040b4b3c8f5125d3387",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1205,
+            "guid": "b6f1ee9aaa1b44e9ac09ee0f9e9028a7",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1206,
+            "guid": "faf68777cf2b4fe2bc75bc6c6903a957",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1207,
+            "guid": "bc7f09f8229442eaad2fc1b003ee0417",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1208,
+            "guid": "cc9f7925102a47caa77db458c80e3298",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1301,
+            "guid": "4337efc7b87841fdba10efaa9b83922c",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1302,
+            "guid": "026722ed799e47148b0828edf3a97a3d",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1303,
+            "guid": "dd72929157ed4521ad4d5c7fc0819af9",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1304,
+            "guid": "5b14f7d8a66b447aa8908e935cecc3a4",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1305,
+            "guid": "f8b47c8efd6c44858ca809bcc3dc32cc",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1306,
+            "guid": "5e4860f2d2d04f4eb378208455508754",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1307,
+            "guid": "9fa23fb5950649118a54d57989774058",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1308,
+            "guid": "19d25f38ed5f47afb159ca1a4578e9f2",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1401,
+            "guid": "15fde494ac99443cb68b2a1f47088530",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1402,
+            "guid": "c02e8924f52a4c6fa394db95652f5a95",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1403,
+            "guid": "6dd582974fc94a0d99d88fb6818329f3",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1404,
+            "guid": "49893c82e60044c8abc5b600f8674270",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1405,
+            "guid": "07b64b0ec7064ebb8abbe232193a010e",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1406,
+            "guid": "8fc23edaea624a479b40ea566d3f0289",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1407,
+            "guid": "da1ff1e656594d1aa106a447d4d84ede",
+            "width": 1254.0,
+            "height": 1254.0
+        },
+        {
+            "id": 1408,
+            "guid": "e4ea3d53b12c4c2ebf158838506a16c9",
+            "width": 1254.0,
+            "height": 1254.0
+        }
+    ],
+    "screenshots": [
+        "class1-1920x1080.png",
+        "class2-1920x1080.png",
+        "class3-1920x1080.png",
+        "class4-1920x1080.png",
+        "battle-1920x1080.png",
+        "class1-2560x1080.png",
+        "class2-2560x1080.png",
+        "class3-2560x1080.png",
+        "class4-2560x1080.png",
+        "battle-2560x1080.png"
+    ]
+}

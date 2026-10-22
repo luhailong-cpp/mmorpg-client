@@ -313,7 +313,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             // 在途:按钮置灰,刷新 / 整理也等回包;界面仍是旧快照。
             Assert.That(ActionButton().interactable, Is.False);
             Assert.That(FindButton("刷新").interactable, Is.False);
-            Assert.That(FindButton("整理背包").interactable, Is.False);
+            Assert.That(NamedButton("SortBag").interactable, Is.False);
             AssertText("正在处理装备…");
             Assert.That(OccupiedBagSlots(), Is.EqualTo(new[] { "BagSlot_0", "BagSlot_1" }));
 
@@ -542,7 +542,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
             BagSlot(1).onClick.Invoke();
             _window.SortRequested += () => _client.SortBag();
 
-            Click("整理背包");
+            var sort = NamedButton("SortBag");
+            Assert.That(sort.interactable, Is.True);
+            sort.onClick.Invoke();
 
             Assert.That(_client.BusySort, Is.True);
             Assert.That(ActionButton().interactable, Is.False, "整理与穿脱在数据层互斥,按钮直接置灰");
@@ -847,6 +849,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
             => _fixture.GetComponentsInChildren<TMP_Text>().Any(label => label.text == text);
 
         private void AssertText(string text) => Assert.That(HasText(text), Is.True, "当前页面应显示：" + text);
+
+        private Button NamedButton(string name)
+        {
+            var button = Buttons().Single(b => b.name == name);
+            Assert.That(button.gameObject.activeInHierarchy, Is.True, name + "应可见");
+            return button;
+        }
 
         private Button FindButton(string label)
         {

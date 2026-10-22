@@ -1,0 +1,136 @@
+{
+  "completedAtUtc": "2026-10-22T05:52:05.1862489+00:00",
+  "runner": ".NET 10 console with checked-in SkillFakeTransport; no Unity/native UI/network/server execution",
+  "assembly": "E:/work/mmorpg-client/Builds/play-20261021-ready/client/mmorpg_Data/Managed/MmorpgClient.dll",
+  "assemblySha256": "B2346720FD9B1B20089F0335BCD55E692E43E87E39058E76F6A3FEA3F0A219CE",
+  "pdbGuid": "d9c425c7-a19b-491b-9067-a9154c6d2c23",
+  "codeViewGuid": "d9c425c7-a19b-491b-9067-a9154c6d2c23",
+  "compiledSkillBookClientSha256": "51F78D98593FCDA15BA57BB969D5D2BDBEDC76D785625E65FAB8122F971C0E36",
+  "currentSkillBookClientSha256": "51F78D98593FCDA15BA57BB969D5D2BDBEDC76D785625E65FAB8122F971C0E36",
+  "packageMatchesCurrentSkillBookClient": true,
+  "regressionReproduced": true,
+  "desiredAutomaticRecoveryPassed": false,
+  "manualRefreshSent": true,
+  "manualRefreshRecovered": true,
+  "unityExecuted": false,
+  "serverExecuted": false,
+  "messageIds": {
+    "list": 77,
+    "upgrade": 317
+  },
+  "stages": [
+    {
+      "stage": "01 character book loaded",
+      "calls": [
+        77
+      ],
+      "isPet": false,
+      "petId": 0,
+      "rank": 1,
+      "balance": 100000,
+      "isBusy": false,
+      "isLoading": false,
+      "isReadOnly": false,
+      "message": null,
+      "error": null
+    },
+    {
+      "stage": "02 character upgrade pending",
+      "calls": [
+        77,
+        317
+      ],
+      "isPet": false,
+      "petId": 0,
+      "rank": 1,
+      "balance": 100000,
+      "isBusy": true,
+      "isLoading": false,
+      "isReadOnly": false,
+      "message": "\u6B63\u5728\u4FEE\u4E60\u2026",
+      "error": null
+    },
+    {
+      "stage": "03 switched to pet while upgrade pending",
+      "calls": [
+        77,
+        317
+      ],
+      "isPet": true,
+      "petId": 88,
+      "rank": null,
+      "balance": 0,
+      "isBusy": false,
+      "isLoading": false,
+      "isReadOnly": true,
+      "message": "\u5BA0\u7269\u6280\u80FD\u670D\u52A1\u7AEF\u5C1A\u672A\u5F00\u653E,\u6682\u4E0D\u80FD\u67E5\u770B\u4E0E\u4FEE\u4E60",
+      "error": null
+    },
+    {
+      "stage": "04 returned to character before upgrade response",
+      "calls": [
+        77,
+        317
+      ],
+      "isPet": true,
+      "petId": 88,
+      "rank": null,
+      "balance": 0,
+      "isBusy": false,
+      "isLoading": false,
+      "isReadOnly": true,
+      "message": "\u5BA0\u7269\u6280\u80FD\u670D\u52A1\u7AEF\u5C1A\u672A\u5F00\u653E,\u6682\u4E0D\u80FD\u67E5\u770B\u4E0E\u4FEE\u4E60",
+      "error": null
+    },
+    {
+      "stage": "05 upgrade response received after character was requested",
+      "calls": [
+        77,
+        317
+      ],
+      "isPet": true,
+      "petId": 88,
+      "rank": null,
+      "balance": 0,
+      "isBusy": false,
+      "isLoading": false,
+      "isReadOnly": true,
+      "message": "\u5BA0\u7269\u6280\u80FD\u670D\u52A1\u7AEF\u5C1A\u672A\u5F00\u653E,\u6682\u4E0D\u80FD\u67E5\u770B\u4E0E\u4FEE\u4E60",
+      "error": null
+    },
+    {
+      "stage": "06 manual character refresh after response",
+      "calls": [
+        77,
+        317,
+        77
+      ],
+      "isPet": false,
+      "petId": 0,
+      "rank": null,
+      "balance": null,
+      "isBusy": false,
+      "isLoading": true,
+      "isReadOnly": false,
+      "message": "\u6B63\u5728\u540C\u6B65\u6280\u80FD\u4FE1\u606F\u2026",
+      "error": null
+    },
+    {
+      "stage": "07 authoritative character refresh completed",
+      "calls": [
+        77,
+        317,
+        77
+      ],
+      "isPet": false,
+      "petId": 0,
+      "rank": 2,
+      "balance": 99500,
+      "isBusy": false,
+      "isLoading": false,
+      "isReadOnly": false,
+      "message": null,
+      "error": null
+    }
+  ]
+}

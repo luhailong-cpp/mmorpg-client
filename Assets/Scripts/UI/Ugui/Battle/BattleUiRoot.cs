@@ -341,6 +341,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 BattleUiStyle.HudEntryFrame);
             _entryButton.Button.onClick.AddListener(OnEntryClicked);
             _entryButton.SetVisible(false);
+            WorldHudNavigation.Register(WorldHudEntry.Battle, _entryButton.Rect, _entryButton.Button, _entryButton.Label);
 
             _spectateEntryButton = BattleUiWidgets.CreateFramedTextButton("SpectateEntry", _hudRoot,
                 BattleUiStyle.HudEntryX, BattleUiStyle.HudEntryY(1),
@@ -349,6 +350,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 BattleUiStyle.HudEntryFrame);
             _spectateEntryButton.Button.onClick.AddListener(OnSpectateEntryClicked);
             _spectateEntryButton.SetVisible(false);
+            WorldHudNavigation.Register(WorldHudEntry.Spectate, _spectateEntryButton.Rect, _spectateEntryButton.Button, _spectateEntryButton.Label);
 
             _queuePanel = new BattleQueuePanel(this, windowRoot);
             _spectatePanel = new SpectatePanel(this, windowRoot);

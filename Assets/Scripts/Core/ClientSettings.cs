@@ -25,7 +25,7 @@ namespace MmorpgClient.Core
         public static string GatewayBaseUrl
         {
             // Java gateway_node listens on 8081 (application.yaml server.port).
-            get => PlayerPrefs.GetString(K_Gateway, "http://127.0.0.1:8081");
+            get => ClientLaunchArguments.GatewayOverride ?? PlayerPrefs.GetString(K_Gateway, "http://127.0.0.1:8081");
             set { PlayerPrefs.SetString(K_Gateway, value ?? ""); PlayerPrefs.Save(); }
         }
 

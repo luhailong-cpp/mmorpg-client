@@ -95,6 +95,7 @@ namespace MmorpgClient.World.Tianyong
 
         private static Options ResolveOptions()
         {
+            if (MmorpgClient.Core.ClientLaunchArguments.ManualPlay) return new Options();
             var opt = Parse(Environment.GetCommandLineArgs(), skipFirst: true);
             if (opt.Active) return opt;
             string line = null;

@@ -14,9 +14,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     {
         private const float NativeWidth = 1932, NativeHeight = 814;
         private const string NativeRoot = "UI/Ugui/GameplayFidelity20261016/";
-        private readonly Image _nativeFrame;
+        private readonly Image _nativeFrame, _nativeTitle;
         private float _bagScroll = 1, _missionScroll = 1, _activityScroll = 1;
         private bool _missionFilterMenu, _bagTools, _activityTools;
+        private uint _activityDetails;
         private const int ExactBagPageSize = 20;
         // The approved fourth row is compact (80px); occupied icons fit inside it.
         private static readonly float[] ExactBagY = { 174, 320, 464, 608 };
@@ -275,7 +276,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     () => { _selectedMission = MissionKey(m); Render(); });
                 NativeText(row.transform, "任务", 23, 23, 103, 49, 29, Ink, TextAlignmentOptions.Center);
                 NativeText(row.transform, MissionName(m), 149, 14, 283, 61, 33, selected ? Cream : Ink);
-                NativeText(row.transform, _trackedMission == MissionKey(m) ? "追踪中" : MissionStatus(m.Status), 422, 26, 157, 41, 26, selected ? Cream : Ink, TextAlignmentOptions.MidlineRight);
+                NativeText(row.transform, _trackedMission == MissionKey(m) ? "追踪中" : MissionStatus(m.Status), 422, 26, selected ? 91 : 157, 41, 26, selected ? Cream : Ink, TextAlignmentOptions.MidlineRight);
+                if (selected) NativeArt(row.transform, "mission-selected-circle", 521, 18, 64, 62).name = "MissionSelectionMark";
             }
             NativeText(_body, "任务数量 " + list.Count, 207, 688, 233, 51, 28);
             string[] statuses = { "全部任务", "进行中", "已达成", "待开启" };
@@ -341,7 +343,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     null, false);
                 NativeArt(button.transform, icons[i], 26, 15, 80, 81);
                 NativeText(button.transform, categories[i], 108, 18, 175, 65, 32, selected ? Cream : Ink, TextAlignmentOptions.Center);
-                if (selected) EquipUiSkin.Art(button.transform, "checkbox_on", 278, 31, 32, 32, Gold);
+                if (selected) QdaoUguiFactory.CreateImage("ActivitySelectionMark", button.transform,
+                    258, 30, 48, 48, NativeSprite("activity-selected-circle"), false);
             }
             NativeText(_body, "今日推荐", 539, 91, 807, 63, 44);
             NativeHit(_body, "ActivityTools", "筛选", 1647, 110, 100, 38, () => { _activityTools = !_activityTools; Render(); }, font: 24);
@@ -354,17 +357,37 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var a = list[i]; float x = i * 418;
                 var card = QdaoUguiFactory.CreateRect("Activity_" + a.ActivityId, cards, x, 0, 410, 495);
                 NativeArt(card, "activity-card", 0, 0, 410, 495);
-                // Only draw the optional real activity icon; rewards have no supplied item/count list in this protocol.
-                if (!string.IsNullOrWhiteSpace(a.IconKey)) ItemIcon(card, a.IconKey, 24, 21, 155);
-                NativeText(card, ActivityName(a), 196, 15, 200, 62, 34);
-                NativeText(card, ActivityStatus(a.Status), 200, 80, 115, 40, 22, Cream, TextAlignmentOptions.Center);
-                NativeParagraph(card, string.IsNullOrWhiteSpace(a.Description) ? "具体安排请留意活动公告。" : a.Description, 201, 129, 190, 64, 24, Ink);
-                NativeText(card, "开放安排", 41, 210, 331, 33, 24);
-                NativeParagraph(card, ActivitySchedule(a), 41, 249, 331, 87, 20, Muted);
                 var mission = _missions?.Missions.FirstOrDefault(m => m.Scope == 0 && m.MissionId == a.MissionId && (int)m.Status != 0);
                 string reason = !string.IsNullOrWhiteSpace(_missionError) ? _missionError : _missionActionBusy ? "正在处理任务，请稍候…" :
                     !string.IsNullOrWhiteSpace(a.UnavailableReason) ? a.UnavailableReason : mission != null ? "已加入活动，可查看任务进度" : a.CanParticipate ? "雅集已开启，欢迎道友参与" : "活动暂不可参与";
-                NativeParagraph(card, reason, 40, 344, 335, 62, 23, !string.IsNullOrWhiteSpace(_missionError) ? QdaoUguiTheme.Html("#9A442D") : Muted);
+                if (_activityDetails == a.ActivityId)
+                {
+                    RenderExactActivityDetails(card, a, reason);
+                    continue;
+                }
+                if (!string.IsNullOrWhiteSpace(a.IconKey)) ItemIcon(card, a.IconKey, 24, 21, 155);
+                NativeText(card, ActivityName(a), 196, 15, 200, 62, 34);
+                NativeText(card, ActivityStatus(a.Status), 200, 80, 115, 40, 22, Cream, TextAlignmentOptions.Center);
+                NativeHit(card, "ActivityDetails_" + a.ActivityId, "详情", 330, 80, 64, 40,
+                    () => { _activityDetails = a.ActivityId; Render(); }, font: 22);
+                bool importantReason = !string.IsNullOrWhiteSpace(_missionError) || _missionActionBusy || !string.IsNullOrWhiteSpace(a.UnavailableReason);
+                string summary = importantReason ? reason : string.IsNullOrWhiteSpace(a.Description) ? "具体安排请留意活动公告。" : a.Description;
+                NativeParagraph(card, summary, 201, 129, 190, 64, 24, !string.IsNullOrWhiteSpace(_missionError) ? QdaoUguiTheme.Html("#9A442D") : Ink);
+                var progressLabel = NativeText(card, "进度", 44, 216, 55, 29, 26); progressLabel.enabled = false;
+                NativeArt(card, "activity-progress-label", 44, 216, 55, 29);
+                string progress = mission != null && mission.Objectives.Count > 0
+                    ? $"{mission.Objectives.Sum(g => (long)g.Progress)}/{mission.Objectives.Sum(g => (long)g.Target)}" : "—/—";
+                NativeText(card, progress, 268, 208, 98, 43, 28, Ink, TextAlignmentOptions.MidlineRight).name = "ActivityProgress";
+                var rewardTitle = NativeText(card, "活动奖励", 150, 257, 150, 36, 28); rewardTitle.enabled = false;
+                NativeArt(card, "activity-reward-heading", 26, 257, 359, 36).name = "ActivityRewardHeading";
+                var rewards = QdaoUguiFactory.CreateRect("ActivityRewardsEmpty", card, 72, 297, 268, 112);
+                // The protocol supplies no reward item/count list. Keep genuine empty slots without sample icons or counts.
+                for (int reward = 0; reward < 2; ++reward)
+                {
+                    var empty = NativeArt(rewards, "activity-reward-empty-frame", reward * 148, 0, 120, 112);
+                    empty.name = "ActivityRewardEmptySlot_" + reward;
+                    NativeText(rewards, "—", reward * 148, 34, 120, 44, 25, Muted, TextAlignmentOptions.Center);
+                }
                 NativeButton(card, "ActivityAction_" + a.ActivityId, _missionActionBusy ? "处理中…" : mission != null ? "查看任务" : "前往参与", "activity-button", 41, 412, 327, 66,
                     () => { _selectedActivity = a.ActivityId; if (mission != null) ShowMission(mission); else MissionAcceptRequested?.Invoke(0, a.MissionId); },
                     !_missionActionBusy && !_missionLoading && (mission != null || (a.CanParticipate && a.MissionId != 0)), 32, true);
@@ -388,14 +411,29 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
         }
 
+        private void RenderExactActivityDetails(UnityEngine.Transform card, PlayerActivityInfo activity, string reason)
+        {
+            Art(card, "content_panel", 18, 17, 374, 386);
+            NativeText(card, ActivityName(activity), 38, 34, 334, 51, 32);
+            NativeText(card, "开放安排", 41, 100, 331, 36, 27);
+            NativeParagraph(card, ActivitySchedule(activity), 41, 145, 331, 109, 23, Ink);
+            NativeParagraph(card, reason, 41, 270, 331, 76, 23,
+                !string.IsNullOrWhiteSpace(_missionError) ? QdaoUguiTheme.Html("#9A442D") : Muted);
+            NativeText(card, "奖励资料待公布", 41, 357, 331, 32, 21, Muted);
+            NativeButton(card, "CloseActivityDetails_" + activity.ActivityId, "返回活动", "activity-button", 41, 412, 327, 66,
+                () => { _activityDetails = 0; Render(); }, font: 32, jade: true);
+        }
+
         private void RenderExactActivityFooter()
         {
             NativeText(_body, "今日活跃", 545, 683, 170, 57, 34);
             NativeText(_body, "—/—", 715, 683, 92, 57, 27, Muted);
             // No activity points/threshold/claim contract exists in this protocol.
-            // Show empty native progress and disabled exact-crop chest art, never sample 35/100 or claimed checks.
-            var track = QdaoUguiFactory.CreateImage("ActivityVitalityUnavailableTrack", _body, 802, 700, 643, 24, Load("slider_bg"));
-            track.type = Image.Type.Sliced;
+            // Original empty-slot pixels retain the gold rim; there is no sample fill or claimed state.
+            var track = QdaoUguiFactory.CreateImage("ActivityVitalityUnavailableTrack", _body,
+                799, 697, 650, 29, NativeSprite("activity-vitality-empty-track"), false);
+            track.type = Image.Type.Sliced; track.preserveAspect = false;
+            track.fillCenter = true; track.pixelsPerUnitMultiplier = 1f;
             string[] art = { "activity-chest-inactive-purple", "activity-chest-inactive-purple", "activity-chest-inactive-red", "activity-chest-inactive-red-last" };
             float[] x = { 946, 1094, 1237, 1376 };
             for (int i = 0; i < 4; ++i)

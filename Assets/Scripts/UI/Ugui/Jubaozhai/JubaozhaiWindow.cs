@@ -104,8 +104,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _previous = NativeButton(_frame, "JubaoPreviousPage", "", "page-previous", 985, 718, 47, 48, () => State.SetPage(State.PageNumber - 1));
             _pageLabel = Text(_frame, "1 / 1", 1036, 720, 96, 42, 25, alignment: TextAlignmentOptions.Center);
             _next = NativeButton(_frame, "JubaoNextPage", "", "page-next", 1134, 718, 47, 48, () => State.SetPage(State.PageNumber + 1));
-            _favorite = Button(_frame, "JubaoFavorite", "收藏", 1295, 710, 170, 58, ToggleSelectedFavorite, fontSize: 29);
-            _view = Button(_frame, "JubaoView", "查看", 1475, 704, 249, 67, ShowSelectedDetails, true, fontSize: 36);
+            _favorite = ExactButton(_frame, "JubaoFavorite", "收藏", "footer-favorite", 1294,704,171,64, ToggleSelectedFavorite, fontSize: 29);
+            _view = ExactButton(_frame, "JubaoView", "查看", "footer-view",1474,700,252,71, ShowSelectedDetails, fontSize: 36);
             _selection = Text(_frame, "选择商品后可查看详情", 502, 771, 758, 19, 16, Muted);
             _selection.gameObject.SetActive(false);
             NativeCategoryScroll(_frame, "JubaoStatusScroll", 502, 771, 1224, 26, out var statusContent);
@@ -152,6 +152,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             var button=Button(parent,name,label,x,y,w,h,action,fontSize:fontSize);
             button.image.sprite=QdaoUguiTheme.RequireSprite("UI/Ugui/JubaozhaiExact20261017/"+key);
             button.image.type=Image.Type.Simple;
+            var exactColors=button.colors;exactColors.disabledColor=Color.white;button.colors=exactColors;
             button.GetComponentInChildren<TMP_Text>().color=Color.clear;
             return button;
         }
@@ -384,6 +385,14 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _favorite.interactable = listing != null;
             _view.interactable = listing != null;
             SetButtonLabel(_favorite, listing != null && State.IsFavorite(listing.Id) ? "取消收藏" : "收藏");
+            bool isFavorite=listing!=null&&State.IsFavorite(listing.Id);
+            _favorite.image.sprite=QdaoUguiTheme.RequireSprite("UI/Ugui/JubaozhaiExact20261017/"+(isFavorite?"footer-cancel":"footer-favorite"));
+            var favoriteText=_favorite.GetComponentInChildren<TMP_Text>();
+            favoriteText.color=isFavorite?Ink:Color.clear;
+            favoriteText.rectTransform.anchoredPosition=new Vector2(67,0);
+            favoriteText.rectTransform.sizeDelta=new Vector2(96,64);
+            favoriteText.fontSize=isFavorite?23:29;
+
             if (_modalFavorite != null) SetButtonLabel(_modalFavorite, listing != null && State.IsFavorite(listing.Id) ? "取消收藏" : "收藏");
             if (_modalStatusText != null) _modalStatusText.text = ModalStatusText();
             _selection.text = listing == null ? "选择商品后可查看详情" : "已选择 · " + listing.Name;

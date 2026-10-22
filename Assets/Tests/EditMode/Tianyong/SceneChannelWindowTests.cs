@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.Net;
 using MmorpgClient.UI.Ugui;
@@ -82,7 +83,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
             var current = FindButton(LineName(1));
             Assert.That(current.interactable, Is.False);
-            Assert.That(Texts(current), Is.EqualTo(new[] { "1线", SceneChannelWindow.CurrentTagText, "流畅" }));
+            Assert.That(Texts(current), Is.EqualTo(new[] { "1线", "流畅" }));
+            AssertCurrentArt(current);
             Assert.That(((Image)current.targetGraphic).sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/row_selected")));
             Assert.That(current.colors.disabledColor, Is.EqualTo(Color.white), "所在线不可点但不置灰");
 
@@ -627,7 +629,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(net.OneWays.Count, Is.EqualTo(2));
                 net.Push(MessageIds.NotifySceneInfo, new SceneInfoS2C { ChannelDirectory = ThreeLineDirectory() });
                 Assert.That(Label("SceneChannelCurrent").text, Is.EqualTo("当前场景：2线"));
-                Assert.That(Texts(FindButton(LineName(2))), Is.EqualTo(new[] { "2线", SceneChannelWindow.CurrentTagText, "繁忙" }));
+                Assert.That(Texts(FindButton(LineName(2))), Is.EqualTo(new[] { "2线", "繁忙" }));
+                AssertCurrentArt(FindButton(LineName(2)));
                 AssertNoRowIsClickable();
                 Assert.That(_window.StatusText, Is.EqualTo("切线冷却中，9秒后可再次切线。"));
 
@@ -806,11 +809,27 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             return names;
         }
 
-        /// <summary>一个按钮里的全部文字,按层级先后。</summary>
+        private static void AssertCurrentArt(Button button)
+        {
+            foreach (var key in new[] { "current_badge", "current_check" })
+            {
+                var art = button.GetComponentsInChildren<Image>(true).Single(image => image.name == key);
+                Assert.That(art.isActiveAndEnabled, Is.True, "所在线的原稿标记应可见：" + key);
+                Assert.That(art.sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/" + key)));
+                Assert.That(art.raycastTarget, Is.False, "装饰不拦截线路按钮");
+            }
+            var semanticTag = button.GetComponentsInChildren<TMP_Text>(true)
+                .Single(label => label.name == SceneChannelWindow.CurrentTagName);
+            Assert.That(semanticTag.text, Is.EqualTo(SceneChannelWindow.CurrentTagText));
+            Assert.That(semanticTag.enabled, Is.False, "当前二字已在原稿图标中，不重复绘字");
+        }
+
+        /// <summary>一个按钮里的可见文字,按层级先后；原稿图标由独立断言验证。</summary>
         private static List<string> Texts(Button button)
         {
             var texts = new List<string>();
-            foreach (var label in button.GetComponentsInChildren<TMP_Text>(true)) texts.Add(label.text);
+            foreach (var label in button.GetComponentsInChildren<TMP_Text>(true))
+                if (label.isActiveAndEnabled) texts.Add(label.text);
             return texts;
         }
 

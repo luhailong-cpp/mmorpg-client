@@ -1,0 +1,246 @@
+{
+  "completedAtUtc": "2026-10-21T07:48:30.0920913Z",
+  "runner": "PowerShell/.NET reflection invokes the checked-in NUnit fixture methods and their TestCase arguments",
+  "runtimeAssembly": "check.dll (407 current runtime sources compiled with production Unity references)",
+  "fixture": "MmorpgClient.Tests.EditMode.Battle.BattleSkillTargetRangeTests",
+  "total": 22,
+  "passed": 22,
+  "failed": 0,
+  "unityExecuted": false,
+  "nativeButtonTests": "compiled only; not executed",
+  "results": [
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "enemy",
+        1001,
+        7,
+        false
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "enemy",
+        1002,
+        7,
+        false
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "enemy",
+        1003,
+        7,
+        false
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "enemy",
+        2001,
+        9,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "ally",
+        1001,
+        7,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "ally",
+        1002,
+        7,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "ally",
+        1003,
+        7,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "ally",
+        2001,
+        9,
+        false
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "self",
+        1001,
+        7,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "self",
+        1002,
+        7,
+        false
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "self",
+        1003,
+        7,
+        false
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "self",
+        2001,
+        9,
+        false
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        null,
+        1001,
+        7,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        null,
+        2001,
+        9,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "",
+        1003,
+        7,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "legacy",
+        2001,
+        9,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "MetadataControlsOnlyTheVisibleTargetRange",
+      "arguments": [
+        "ALLY",
+        1003,
+        7,
+        true
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "DeadOrFledUnitsAreNeverHighlighted",
+      "arguments": [
+        "enemy",
+        2001,
+        9
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "DeadOrFledUnitsAreNeverHighlighted",
+      "arguments": [
+        "ally",
+        1003,
+        7
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "DeadOrFledUnitsAreNeverHighlighted",
+      "arguments": [
+        "self",
+        1001,
+        7
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "DeadOrFledUnitsAreNeverHighlighted",
+      "arguments": [
+        null,
+        2001,
+        9
+      ],
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "UnknownActingIdentityCannotSelectSelf",
+      "arguments": [],
+      "passed": true,
+      "error": null
+    }
+  ]
+}

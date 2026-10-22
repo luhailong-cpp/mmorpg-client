@@ -47,7 +47,9 @@ namespace MmorpgClient.UI.Ugui.Mail
             var design=QdaoUguiFactory.CreateCenteredRect("DesignRoot",go.transform,2560,1080);
             _hud=QdaoUguiFactory.CreateStretch("HudRoot",design,Vector4.zero);QdaoUguiFactory.ConfigureHudCanvas(_hud);
             var entry=GameplayUiArt.Button(_hud,"仙笺 [N]",EntryX,EntryY,BattleUiStyle.HudEntryWidth,BattleUiStyle.HudEntryHeight,Toggle,true,fontSize:32);
-            entry.name="MailEntry";_window=new MailWindow(design);_hud.gameObject.SetActive(false);
+            entry.name="MailEntry";
+            WorldHudNavigation.Register(WorldHudEntry.Mail,(RectTransform)entry.transform,entry,entry.GetComponentInChildren<TMP_Text>());
+            _window=new MailWindow(design);_hud.gameObject.SetActive(false);
             _entryText=entry.GetComponentInChildren<TMP_Text>();
         }
         public static void ConfigureScaler(CanvasScaler scaler)

@@ -56,7 +56,8 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
         [Test]
         public void FavoriteWaitsForServerConfirmationAndDetailStatusRefreshPreservesUnknownOutcome()
         {
-            var requests = new List<(string, bool)>(); var details = new List<string>();
+            var requests = new List<(string, bool)>(); var details = new List<string>(); int commerce = 0;
+            _window.CommerceRequested += () => ++commerce;
             _state.FavoriteRequested += (id, favorite) => requests.Add((id, favorite)); _state.DetailRequested += details.Add;
             _state.EnterServerPaging(); _state.ApplyServerPage(_state.QueryVersion, new[] { Listing("a") }, 1, 1, 1, Now);
             Click("JubaoRow_a"); Click("JubaoFavorite");
@@ -70,7 +71,11 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
             Assert.That(_window.ModalVisible, Is.True); Assert.That(HasText("请求超时，结果未知；正在隔离当前操作"), Is.True);
             Click("JubaoModalFavorite"); Assert.That(requests.Last(), Is.EqualTo(("a", false)));
             Assert.That(_state.IsFavorite("a"), Is.True, "取消收藏也必须等待服务端确认");
-            Assert.That(Button("JubaoPurchase").GetComponentInChildren<TMP_Text>().text, Is.EqualTo("购买 · 尚未开放"));
+            Assert.That(Button("JubaoPurchase").GetComponentInChildren<TMP_Text>().text, Is.EqualTo("查看可交易商品"));
+            Click("JubaoPurchase"); Assert.That(commerce, Is.EqualTo(1), "该入口只导航至正式可交易商品窗口");
+            Assert.That(requests, Is.EqualTo(new[] { ("a", true), ("a", false) }), "导航不发送额外收藏写操作");
+            Assert.That(details, Is.EqualTo(new[] { "a" }), "导航不重复请求当前详情");
+            Assert.That(_window.ModalVisible, Is.True, "无宿主导航订阅时仍保留结果未知提示");
         }
 
         [Test]

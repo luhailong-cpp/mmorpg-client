@@ -17,6 +17,9 @@ public static class ClientBattleUiQaCapture
 {
     private const int Width = 2560;
     private const int Height = 1080;
+    // Output pixels are independent of the production 2560x1080 design canvas.
+    public static int OutputWidth { get; set; } = Width;
+    public static int OutputHeight { get; set; } = Height;
     private const int CaptureLayer = 31;
     private static string OutputDirectory => ClientUiRefreshVerification.OutputDirectory;
     private static readonly string[] Names =
@@ -32,6 +35,8 @@ public static class ClientBattleUiQaCapture
     private static Camera s_camera;
     private static RenderTexture s_renderTarget;
     private static Texture2D s_readback;
+    private static int s_outputWidth;
+    private static int s_outputHeight;
     private static BattleScreen s_battle;
     private static BattleQueuePanel s_queue;
     private static SpectatePanel s_spectate;
@@ -51,6 +56,12 @@ public static class ClientBattleUiQaCapture
         if (EditorApplication.isPlayingOrWillChangePlaymode)
             throw new InvalidOperationException("ClientBattleUiQaCapture requires Edit Mode; Play Mode was not changed.");
         if (IsRunning) throw new InvalidOperationException("A battle UI capture is already running.");
+        int width = OutputWidth, height = OutputHeight;
+        if (width <= 0 || height <= 0)
+            throw new ArgumentOutOfRangeException(nameof(OutputWidth), "Capture output dimensions must both be positive.");
+        // Freeze this run: changing the public settings cannot mismatch render/readback/name sizes.
+        s_outputWidth = width;
+        s_outputHeight = height;
         IsRunning = true;
         Status = "starting";
         try
@@ -73,11 +84,11 @@ public static class ClientBattleUiQaCapture
             s_camera.cullingMask = 1 << CaptureLayer;
             s_camera.clearFlags = CameraClearFlags.SolidColor;
             s_camera.backgroundColor = QdaoRefreshArt.Jade;
-            s_renderTarget = new RenderTexture(Width, Height, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
+            s_renderTarget = new RenderTexture(s_outputWidth, s_outputHeight, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
             s_renderTarget.name = "BattleUiQaRenderTarget";
             s_renderTarget.Create();
             s_camera.targetTexture = s_renderTarget;
-            s_readback = new Texture2D(Width, Height, TextureFormat.RGB24, false, false);
+            s_readback = new Texture2D(s_outputWidth, s_outputHeight, TextureFormat.RGB24, false, false);
 
             var canvasObject = new GameObject("CaptureCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -277,9 +288,9 @@ public static class ClientBattleUiQaCapture
         {
             s_camera.Render();
             RenderTexture.active = s_renderTarget;
-            s_readback.ReadPixels(new Rect(0f, 0f, Width, Height), 0, 0, false);
+            s_readback.ReadPixels(new Rect(0f, 0f, s_outputWidth, s_outputHeight), 0, 0, false);
             s_readback.Apply(false, false);
-            string path = Path.Combine(OutputDirectory, Names[s_step] + ".png");
+            string path = Path.Combine(OutputDirectory, Names[s_step] + "_" + s_outputWidth + "x" + s_outputHeight + ".png");
             File.WriteAllBytes(path, s_readback.EncodeToPNG());
             Debug.Log("CAPTURE_OK|" + path);
         }

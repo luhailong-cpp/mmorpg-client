@@ -63,6 +63,7 @@ namespace MmorpgClient.UI.Ugui.Rank
             var entry = GameplayUiArt.Button(_hud, "论剑榜 [K]", EntryX, EntryY,
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             entry.name = "RankEntry";
+            WorldHudNavigation.Register(WorldHudEntry.Rank, (RectTransform)entry.transform, entry, entry.GetComponentInChildren<TMP_Text>());
             _window = new RankWindow(design);
             _window.PageRequested += page => { if (_available) _client?.Load(page); };
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };

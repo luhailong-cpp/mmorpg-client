@@ -64,6 +64,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             var entry = GameplayUiArt.Button(_hud, "帮会 [G]", EntryX, EntryY,
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, Toggle, true, fontSize: 32);
             entry.name = "GuildEntry";
+            WorldHudNavigation.Register(WorldHudEntry.Guild, (RectTransform)entry.transform, entry, entry.GetComponentInChildren<TMP_Text>());
             _window = new GuildWindow(design);
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
             _window.EconomyRecoveryRequested += () => { if (_available) _client?.RecoverEconomyRequest(); };

@@ -66,6 +66,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var entryLabel = b.GetComponentInChildren<TMP_Text>().rectTransform;
                 entryLabel.anchoredPosition = new Vector2(94, 0);
                 entryLabel.sizeDelta = new Vector2(210, 80);
+                var entryId = i == 0 ? WorldHudEntry.Bag : i == 1 ? WorldHudEntry.Missions : WorldHudEntry.Activities;
+                WorldHudNavigation.Register(entryId, (RectTransform)b.transform, b, b.GetComponentInChildren<TMP_Text>());
             }
             _trackedRoot = QdaoUguiFactory.CreateRect("TrackedMission", _hud, 68, 288, 405, 180);
             GameplayUiArt.Art(_trackedRoot, "content_panel", 0, 0, 405, 180);

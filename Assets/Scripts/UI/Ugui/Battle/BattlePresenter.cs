@@ -200,7 +200,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // ── 开场 / 收尾 ──────────────────────────────────────
 
-        /// <summary>开场:入场插画淡出、云层扫过、每个单位脚下出生光环展开。</summary>
+        /// <summary>开场:入场插画淡出、边缘云框淡入淡出、每个单位脚下出生光环展开。</summary>
         public void PlayEntrance(IEnumerable<BattleUnitView> views)
         {
             if (_overlayLayer == null) return;
@@ -228,19 +228,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (clouds != null)
             {
                 float w = QdaoUguiTheme.DesignWidth, h = QdaoUguiTheme.DesignHeight;
-                var image = QdaoUguiFactory.CreateImage("EntryClouds", _overlayLayer, w, 0f, w * 1.2f, h, clouds);
-                image.preserveAspect = false;
+                // Keep the full-viewport edge frame registered to the viewport.
+                var image = QdaoUguiFactory.CreateImage("EntryClouds", _overlayLayer, 0f, 0f, w, h, clouds);
+                image.preserveAspect = true;
+                image.color = new Color(1f, 1f, 1f, 0f);
                 image.raycastTarget = false;
-                var rect = image.rectTransform;
                 var go = image.gameObject;
                 _transient.Add(go);
-                RealtimeTween.To(w, -w * 1.2f, 1.3f).SetEase(RealtimeEase.QuadInOut).SetIgnoreEngineTimeScale(true).SetTarget(go)
+                RealtimeTween.To(0f, 1f, 1.3f).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true).SetTarget(go)
                     .OnUpdate((RealtimeTweenCallback1)(t =>
                     {
                         if (go == null) { RealtimeTween.Kill(go); return; }
-                        rect.anchoredPosition = new Vector2(t.Value.x, 0f);
-                        float p = 1f - Mathf.Abs(t.Value.x + w * 0.1f) / (w * 1.1f);
-                        image.color = new Color(1f, 1f, 1f, Mathf.Clamp01(p * 1.6f));
+                        image.color = new Color(1f, 1f, 1f, Mathf.Clamp01(Mathf.Sin(Mathf.PI * t.Value.x)));
                     }))
                     .OnComplete((RealtimeTweenCallback)(() => DestroyTransient(go)));
             }

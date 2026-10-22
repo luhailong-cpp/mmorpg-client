@@ -1,6 +1,15 @@
 # 技能逻辑接入交接：Claude Code
 
-更新日期：2026-10-09。本文可直接交给 Claude Code 执行。分工已经确定：**Codex 负责技能 UI；Claude Code 负责服务端逻辑、业务客户端、协议、持久化和 UI 数据适配。不要覆盖本轮 UI。**
+更新日期：2026-10-22。分工已经确定：**Codex 负责技能 UI；Claude Code 负责服务端逻辑、业务客户端、协议、持久化和 UI 数据适配。不要覆盖正在修改的 UI 和图标。**
+
+## 当前接入状态（2026-10-22）
+
+- 当前事实源是正式客户端的 `Assets/Scripts/Game/Skills/SkillBookClient.cs`、`SkillBookMapper.cs` 与 `Assets/Scripts/UI/Ugui/Skills/SkillBookModels.cs`、`SkillUiRoot.cs`。角色适配器已经实现 `ISkillBookSource`，由 `GameClient.Skills` 持有、`AppBootstrap` 实际绑定；列表和升级使用生成的类型化 RPC，`UpgradeSkill = 317`。无需重新创建适配器或复制旧 staging。
+- 角色列表、学习/升级请求、整份快照替换、错误和会话隔离已接入。战斗 UI 的 `enemy/ally/self` 高亮、点击与确认过滤也已完成，自身技能仍须玩家确认。已完成接线不等于角色升级持久化或 32 个技能效果已联机验收。
+- `Builds/play-20261021-ready` 已成功构建；其 `assembly-source-verification.json` 和实际 DLL/PDB 一致，`BattleScreen.cs` 编译源 SHA-256 为 `6637AA5D1B63585716A72E94E021C08D7635351DFB16409FACA0EB0A0636E7D9`。`verification/target-ui-fixed-results.xml` 记录真实 Unity EditMode 目标 UI 回归 **15/15 通过**，使用假传输；后续工作区 UI/图标改动不因此自动进入该包。10/22 又实际执行当前技能面板与目标选择 **30/30** 原生 UI 测试通过，见 [本轮结果](VerificationEvidence/skills-ui-20261022/native-ui-summary.json)；409 份运行源码在测试期间未变化。新包状态与当前登录前提以 [测试说明](SKILL_UI_TESTING.md) 为准，原生 UI 测试不替代联网验收。
+- 待做：§5.1 的在途升级切换上下文边界；§6 的宠物技能协议、持久化和实际施法路径；五阶毒、法术吸收、给友方普攻二连击；角色学习升级与战斗的两端联网全流程验收。
+- 10/22 新增独立测试包 `Builds/play-20261022-skills-ui/`，构建零错误且源码稳定；14 份关键运行源已通过 [Player 程序集核验](../Builds/play-20261022-skills-ui/verification/skills-assembly-source-verification.json)。该包带当前 UI 调整，§5.1 已知业务缺口仍存在；未修业务不能因再次编译而标记完成。
+- 第 1 节现状表是 **10/09 历史基线**，第 8 节是 **10/19 分支交接记录**，第 9 节记录 **10/20 合并验证**。保留它们便于追溯；旧的“未合入/待接线/未执行”陈述不能覆盖本摘要及后续更新，也不应据此重复移植旧草稿。
 
 ## 1. 目标、现状与工作边界
 
@@ -115,15 +124,15 @@ public interface ISkillBookSource
 ```
 
 - `SkillBookContext.Character()` 表示当前登录角色；`SkillBookContext.Pet(ulong id, string name)` 表示宠物唯一实例。`Matches` 按 `IsPet + PetId` 比较，不按显示名称。切换角色会话要由业务 generation 隔离，不能只靠 Character context 区分两次登录。
-- `SkillBookViewState`：`Context`、`Snapshot`、`IsLoading`、`IsBusy`、`IsConnected`、`IsReadOnly`、`Message`、`Error`。默认断线；业务必须在真正可用时显式 `IsConnected=true`。`IsReadOnly=true` 只能展示，不能升级。
+- `SkillBookViewState`：`Context`、`Snapshot`、`IsLoading`、`IsBusy`、`IsConnected`、`IsReadOnly`、`Message`、`Error`。默认断线；业务必须在真正可用时显式 `IsConnected=true`。当前 UI 将 `IsReadOnly=true` 用作未同步/未开放图鉴：等级显示“未同步”，余额和费用显示“—”，升级与刷新均禁用。它不能直接表示“权威技能已同步，但这一项不可升级”；这种情况应提供条目的 `LockedReason`，见 §6。
 - `SkillBookSnapshot`：`ClassId`、`PlayerLevel`、`CurrencyBalance`、`Title`、`Entries`、`Find(uint)`。每次响应整体替换快照，不在 UI 中增等级或减金币。
 - `SkillEntryState`：`Id`、`Definition`、`Rank`、`RankLimit`、`NextRankCost`、`LockedReason`。
 - `SkillDefinition` 使用小写元数据字段：`id/classId/className/name/type/category/originLabel/unlockLevel/maxRank/targetTeam/maxTargets/manaPercent/cooldownRounds/durationRounds/description/iconPath/iconResource`。`type="passive"` 为被动；目标用 `enemy/ally/self`。`originLabel` 可显示“天生技能”，不要把宠物技能谎称职业技能。默认图片资源键为 `UI/Skills/{id}`。
 - `Changed` 必须在 Unity 主线程触发。异步回包需校验 context、会话 generation 和请求有效性；旧角色、旧宠物、断线前请求不能覆盖现状态。
 - Root 会防止当前 context 重复 loading/busy，但 adapter 仍须有正确的请求生命周期、错误、超时与取消处理。失败后清 busy/loading；断线清或标记过期权威快照并禁升级；重新登录重新拉取。`Error` 非空时 UI 禁止使用旧快照升级，仍允许刷新；成功响应应清除旧错误，不要一直留下错误导致按钮不可用。
-- `Upgrade` 必须发送 UI 提交的 `expectedRank`，不能悄悄替换成回包后更新的值。旧 staging `SkillClient.Upgrade(id,count)` 的签名不够，需增量改造或由新适配层保留显式 expectedRank。
+- `Upgrade` 必须发送 UI 提交的 `expectedRank`，不能悄悄替换成回包后更新的值；`count` 只允许 1 或 10。正式 `SkillBookClient` 已实现此签名和透传，不能退回旧 staging 的 `SkillClient.Upgrade(id,count)`。
 
-业务接入点示例（`source` 为 Claude 实现并持有的 `ISkillBookSource`，不是 UI 内创建的假网络源）：
+现有业务接入点示意（`source` 已是 `GameClient.Skills`；`AppBootstrap` 已执行绑定和销毁时解绑，不要重复注册）：
 
 ```csharp
 using MmorpgClient.UI.Ugui.Skills;
@@ -140,52 +149,35 @@ SkillUiRoot.OpenPet(petId, petName);
 SkillUiRoot.Instance?.Unbind(source);
 ```
 
-角色协议重生成后，转换可按下列例子实现。这里只示例映射，不包含网络请求/错误/宠物实现；不要把转换函数塞进 UI。
+角色协议到展示模型直接维护正式 `Assets/Scripts/Game/Skills/SkillBookMapper.cs` 的 `ToSnapshot`，不在此复制第二份实现，也不将转换放进 UI。旧示例的 `UpgradeBlockReason` 字段不存在：当前使用 `UpgradeBlockTipId`，非零时经 `DescribeTip` 转成 `LockedReason`。`TargetTeamName` 将 1/2/3 映射为 `enemy/ally/self`，未知值为空串，不能默认成敌方。`NormalizeIconKey` 统一反斜杠、移除 `Assets/Resources/` 前缀及扩展名，空键回落到 `UI/Skills/{id}`。等级、上限、费用和余额均取权威响应；本地图鉴只补展示字段，不能代替服务端目录或已学数据。该 mapper 只保留当前角色职业的行，未来宠物适配不能照搬这一筛选。
 
-```csharp
-using Ui = MmorpgClient.UI.Ugui.Skills;
+当前 HUD“技能”、角色属性窗口“技能”和宠物窗口“技能”已接 `Open` / `OpenPet`，返回入口和窗口互斥已由 Codex 实现。战斗列表仅遍历 `BattleActorState.SkillTableIds`，按 `SkillUiRoot.FindPresentation(id)` 展示名称、图标、耗蓝比例和服务端冷却，并按元数据隐藏被动。正式 `BattleScreen` 已将同一目标显示判定用于高亮、点击和确认：`enemy` 只选敌方，`ally` 包含自己、队友和同队宠物，`self` 预选本人 `actor_id` 并等待确认；死亡/逃跑目标不可选，未知元数据保留任意存活目标的兼容范围。
 
-static Ui.SkillBookSnapshot ToView(ListSkillsResponse response)
-{
-    var next = new Ui.SkillBookSnapshot {
-        ClassId = response.ClassId, PlayerLevel = response.PlayerLevel,
-        CurrencyBalance = response.CurrencyBalance, Title = "角色技能"
-    };
-    foreach (var row in response.Catalog) {
-        if (row.ClassId != response.ClassId) continue;
-        next.Entries.Add(new Ui.SkillEntryState {
-            Id = row.SkillTableId, Rank = row.Rank, RankLimit = row.RankLimit,
-            NextRankCost = row.NextRankCost, LockedReason = row.UpgradeBlockReason,
-            Definition = new Ui.SkillDefinition {
-                id = row.SkillTableId, classId = row.ClassId, name = row.Name,
-                description = row.Description, category = row.Category,
-                type = row.Passive ? "passive" : "active",
-                targetTeam = row.TargetTeam == 3 ? "self" : row.TargetTeam == 2 ? "ally" : "enemy",
-                maxTargets = row.MaxTargets, unlockLevel = row.UnlockLevel,
-                maxRank = row.MaxRank, manaPercent = row.ManaPercent,
-                cooldownRounds = row.CooldownRounds,
-                iconResource = string.IsNullOrEmpty(row.IconKey)
-                    ? "UI/Skills/" + row.SkillTableId : row.IconKey
-            }
-        });
-    }
-    next.Entries.Sort((a, b) => a.Id.CompareTo(b.Id));
-    return next;
-}
-```
-
-须统一 `icon_key` 的服务端约定为 Unity Resources 相对键或在 adapter 显式转换；不带 `.png`，不包含 `Assets/Resources/` 前缀。上述示例假设该约定已统一。空目录、只读目录、未支持服务端版本应显示实际状态，不用本地 32 技能代替权威已学数据。
-
-当前角色属性窗口“技能”和宠物窗口“技能”已接 `Open` / `OpenPet`，返回入口和窗口互斥已由 Codex 实现。战斗选技 UI 仅遍历 `BattleActorState.SkillTableIds`，按 `SkillUiRoot.FindPresentation(id)` 显示图标/名称/静态耗蓝比例及服务端冷却，并按元数据隐藏被动。**敌/友/自身目标选择、MP 可用性、施放校验和宠物指令仍归业务逻辑。** 如当前 BattleScreen 的既有目标控件不能表达友方选择，由 Claude 提供业务目标模型/回调需求并交 Codex 做最小 UI 接线，不在 UI 写战斗规则。
+取消或换技会清空旧选择；本人失去本回合行动能力时收起选择，临时断线只隐藏高亮与确认并保留重试意图，连接恢复不自动发送。**技能归属、MP、冷却、实际目标合法性、效果和宠物指令授权仍由业务与服务端校验**；UI 的显示范围不能授予施放资格。后续若需要新呈现字段或交互，由 Claude 列出窄接口需求交回 Codex，不重做这段 UI。
 
 `FindPresentation` 当前先读已绑定 source 快照，再查本地角色图鉴；打开宠物技能时不能丢掉角色/其他宠物的表现目录。业务可维护独立权威元数据索引，把需要的窄查询接口交 Codex 接入；这个索引仍不授予施放资格。
+
+### 5.1 待 Claude 修复：升级在途时切宠物后提前返回角色
+
+2026-10-22 已使用交付 Player 的真实 `MmorpgClient.dll` 和现有 `SkillFakeTransport` 离线复现，未修改业务。DLL/PDB 匹配，编译时 `SkillBookClient` 源哈希与当前一致。时序为：角色技能已同步 → `Upgrade` 请求在途 → `Refresh(Pet(...))` 发布宠物只读空状态 → 升级回包到达前 `Refresh(Character())`。角色刷新因 `_activeWrite != 0` 直接返回，`State.Context` 仍是宠物；随后 `CompleteUpgrade` 清掉在途标记，却因上下文不匹配而丢弃角色结果且不触发 `Changed`。实际请求保持 `[77,317]`，宠物 88 的只读空状态没有自动恢复；再次手动刷新才发送第三次 `77`，响应后恢复等级 2、余额 99500。见 [离线复现结果](VerificationEvidence/skills-ui-20261022/context-race-repro.json)：`desiredAutomaticRecoveryPassed=false`，不能作为功能通过。现有 `UpgradeReplyAfterSwitchingToPetDoesNotOverwriteThePetView` 只覆盖“收到回包后再返回角色”，未覆盖提前返回。
+
+本地复跑：`pwsh -NoProfile -File E:/work/mmorpg-client/.codex-artifacts/skill-ui-review-20261022/race-repro/run.ps1`。该脚本退出码 0 表示成功复现缺陷并确认手动刷新恢复；它使用 .NET 和假传输，不执行 Unity 或真实服务端。正式回归测试应由 Claude 随修复补入业务测试。
+
+修复归 `Assets/Scripts/Game/Skills/SkillBookClient.cs` 及其业务测试；由 Claude 明确区分当前用户请求显示的上下文与最后发布快照的上下文，或排队执行返回角色后的刷新。必须保留一次读/写在途、请求会话隔离与宠物页不被角色回包覆盖的约束，不通过重发升级或本地猜测等级解决。
+
+验收步骤：
+
+1. 用现有假 RPC 载入角色技能书，发出一次升级并暂不回包；切宠物，确认没有宠物 RPC 或伪造技能。
+2. 在升级回包前切回角色，再送成功/部分成功/拒绝但附完整状态的响应。预期自动呈现当前角色最新权威快照，或只发一次后续列表刷新；不得重复升级、假扣款或永久保留上下文错误。
+3. 分别改成未发送、超时/断线和缺少完整状态的响应：清理 busy/loading，显示与当前角色上下文对应的错误并允许刷新；不得拿旧快照继续升级。若用户仍停在宠物页，角色结果不得覆盖该页。
+4. 在上述过程中切账号或换连接，旧响应必须丢弃；新会话能正常重新拉取。测试同时断言 RPC 数量、`State.Context`、快照内容、错误恢复和 `Changed` 通知。
 
 ## 6. 宠物技能与截图机制：尚需定义并实现
 
 宠物面板入口已经传入真实 `PetId`，**宠物技能查询/升级业务协议尚未定义**，不要伪造“已接好”的 `ListPetSkills/UpgradePetSkill` RPC。先查看当前 `proto/scene/player_pet.proto`、PetSystem 与宠物存档/快照契约，再明确以下内容并落设计：
 
 - 按 pet 实例查询目录、已学/天生技能、来源、等级、目标类型和可升级性；服务端验证宠物归属。宠物不能沿用角色 class_id 筛选而显示错误目录。
-- 天生技能若不可升级，adapter 给只读/锁定原因；若可升级，定义对应余额、消耗、expected_rank、防重放及保存规则，不能复用角色升级而遗漏 pet_id。
+- 当前未开放的宠物上下文使用 `IsReadOnly=true` 和空目录。未来权威数据已同步、但天生技能不可升级时，应设置该项 `LockedReason` 并保留真实等级和刷新能力；不要仅因不可升级就设置整页 `IsReadOnly=true`，否则当前 UI 会把它显示为未同步。若需要整页已同步只读语义，先交 Codex 明确新的状态/交互契约。可升级技能还需定义余额、消耗、expected_rank、防重放及保存规则，不能复用角色升级而遗漏 pet_id。
 - 当前 battle 宠物为主人同队独立单位，现协议注释为默认行动代打。落实本任务要求的宠物施法入口：定义技能 AI 或主人下指令的正式协议/授权/回合归属，避免 UI 有技能却永远只普攻。
 - 宠物真实 `pet_id` 与局内 `actor_id` 不同，列表/持久化按 pet_id，战斗目标按 actor_id，不能混用；战后回写归属到正确主人和宠物。
 
@@ -257,8 +249,7 @@ pwsh -File tools/gen_messageids.ps1 -ProtoRoot E:/work/xuanming-server-mmo
 - 修习结果:成功 / 部分成功 / 被拒但带了新技能书 → 写 `State.Message`(例:「【横戈裂岳】修习成功,提升 2 重(已停止:角色等级不足,暂不能继续修习)」),快照整份替换,不挡下一次修习;
   超时 / 网络失败 → 写 `State.Error`「修习结果未确认…请刷新」,UI 按既有规则禁止修习、只留刷新。现有 `SkillPanel` 在无 Error / 非加载 / 非提交时显示 `Message`,不需要改 UI。
 - 宠物上下文:`IsReadOnly = true`、空目录、`Message = 宠物技能服务端尚未开放,暂不能查看与修习`,不发任何请求。
-- 战斗选技目标:服务端按技能阵营校验,`target_id = 0` 时由服务端按规则选(友方治疗选血量比例最低的存活友方)。当前 `BattleScreen.IsTargetable` 对技能放开任意存活单位,功能上能用;
-  **UI 需求(交 Codex)**:按 `SkillUiRoot.FindPresentation(id).targetTeam` 过滤高亮 —— `enemy` 只亮敌方、`ally` 只亮己方(含自己与宝宝)、`self` 直接以自己为目标或免选目标(提交 `TargetId = 0` 也被服务端接受)。
+- 战斗选技目标:服务端按技能阵营校验,`target_id = 0` 时可由服务端按规则选(友方治疗选血量比例最低的存活友方)。10/19 交接时 UI 尚未按技能阵营过滤；**10/21 已完成** §5 的 `enemy/ally/self` 高亮、点击与确认接线。当前自身技能预选本人 `actor_id`，玩家确认后才提交，不自动发送，也不依赖 `TargetId = 0`。原“交 Codex 待接线”项已关闭。
 - 战斗内被动不显示、不能施放(服务端快照不下发被动的施放 id);职业技能冷却在 `BattleActorState.skill_cooldown_rounds` 里按技能 id 给剩余回合。
 
 ### 8.3 生成与验证命令

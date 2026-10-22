@@ -986,9 +986,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         private Image RowPaper(string rowName)
         {
+            int slot = int.Parse(rowName.Substring("TeamMemberSlot_".Length));
+            string key = "member-row-" + (slot % TeamWindow.MaxMemberCards);
             Image paper = FindContainer(rowName).GetComponentsInChildren<Image>()
-                .FirstOrDefault(image => image.name == "member_row");
-            Assert.That(paper, Is.Not.Null, "未找到行底图：" + rowName);
+                .SingleOrDefault(image => image.name == "Exact_" + key);
+            Assert.That(paper, Is.Not.Null, "未找到原稿行底图：" + rowName);
+            Assert.That(paper.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/TeamExact20261017/" + key)));
             return paper;
         }
     }
