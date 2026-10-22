@@ -4,13 +4,14 @@
   "seed": 20260903,
   "spec": "docs/design/battle-art-prompts.md §3/§4;turn-battle-presentation.md §5",
   "notes": [
-    "Fx 横条:8 帧 × 256×256,左→右时间序,真实 alpha 透明背景(NRGBA,直通 alpha)。",
+    "Fx 横条均为8帧、左→右时间序、直通alpha透明背景;旧资源每帧256×256,2026-10-22接入的6组手绘特效每帧384×384,具体尺寸见各条目。",
     "Fx 建议 pivot 见各条目:范围型(slash/thrust/fire/ice/lightning/hit_star)用 (0.5,0.5) 贴在目标中心;地面型(heal_ring/buff_rise/death_dissolve)用 (0.5,0.1) 贴在脚底。",
     "九宫图的 border_9slice_lbrt 是 Unity Sprite Editor 的 Border(左/下/右/上)。",
     "数字字集为等宽单格,序号 = 字符在 chars_string 中的下标;客户端按下标切图即可。",
     "Buff.json 共 20 行,取前 20 行 id;不足 24 个,用连续 id 补齐 4 个占位图标",
     "Buff.json 无极性字段(buff_type 仅为数值),底色按 distinct buff_type 升序 %3 分配:0→buff, 1→debuff, 13→control, 34→buff, 35→debuff, 36→control, 42→buff, 43→debuff, 100→control",
-    "本目录未生成 .meta,Unity 首次导入时自动生成;导入设置参考 sprite_import_hint。"
+    "2026-10-22接入条目的.meta已显式配置Bilinear、Clamp、无mipmap、无压缩、最大边4096;旧资源导入提示见sprite_import_hint。",
+    "6组手绘特效原样拷贝自已验收美术;fps与pivot见各条目,来源及未披露的实际型号/质量记录于combat_fx_sources.json。"
   ],
   "sprite_import_hint": {
     "buff_icon": {
@@ -48,7 +49,7 @@
       "sprite_mode": "Single"
     }
   },
-  "file_count": 43,
+  "file_count": 48,
   "fx": [
     {
       "path": "Fx/slash_arc_strip.png",
@@ -158,17 +159,18 @@
     {
       "path": "Fx/hit_star_strip.png",
       "kind": "fx_strip",
-      "width": 2048,
-      "height": 256,
+      "width": 3072,
+      "height": 384,
       "frames": 8,
-      "cell_width": 256,
-      "cell_height": 256,
+      "cell_width": 384,
+      "cell_height": 384,
       "fps_hint": 16,
       "pivot": [
         0.5,
         0.5
       ],
-      "desc": "命中星爆:白黄星芒瞬闪,四长四短星角外扩,冲击圆环 + 火星四溅"
+      "loop": false,
+      "desc": "金玉命中火花:目标胸口播放一次,承接人物受击、闪白与后仰"
     },
     {
       "path": "Fx/death_dissolve_strip.png",
@@ -184,6 +186,86 @@
         0.1
       ],
       "desc": "死亡消散:灰紫剪影自下而上碎成粒子飘散,残留一缕紫雾"
+    },
+    {
+      "path": "Fx/cast_charge_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 10,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "loop": false,
+      "desc": "玉青施法聚气:施法者脚底播放一次,释放事件仍由人物动作控制"
+    },
+    {
+      "path": "Fx/xuanfu_luoyao_projectile_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": true,
+      "desc": "玄符落曜星曜飞行:默认向右、尾迹向左,轨迹由运行时控制,飞行不触发结果"
+    },
+    {
+      "path": "Fx/xuanfu_luoyao_impact_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "玄符落曜星曜命中:目标胸口播放一次,零基第3帧应用结果"
+    },
+    {
+      "path": "Fx/zixiao_leizhen_telegraph_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "紫霄雷阵预示:全部实际目标脚底同拍播放,不触发结果"
+    },
+    {
+      "path": "Fx/zixiao_leizhen_strike_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "loop": false,
+      "desc": "紫霄雷阵单落点雷击:全部实际目标脚底同拍播放,零基第3帧共享一次结果应用"
     }
   ],
   "ui": [

@@ -77,8 +77,16 @@ namespace MmorpgClient.UI.Ugui.Battle
         public string FxId = "slash_arc";
         /// <summary>attack | cast。</summary>
         public string Action = "attack";
-        /// <summary>命中帧(0 基):动作帧条播到该帧时触发目标受击。</summary>
+        /// <summary>命中特效帧(0 基):播到该帧时触发本次结果表现。</summary>
         public int HitFrame = 3;
+        /// <summary>可选飞行段;从人物释放事件开始,到达目标后再播 FxId。</summary>
+        public string ProjectileFxId = string.Empty;
+        public float FlightSeconds;
+        /// <summary>可选目标预示段;与飞行段一样不触发结果。</summary>
+        public string TelegraphFxId = string.Empty;
+        public float TelegraphSeconds;
+        /// <summary>目标段贴脚底;旧映射缺省仍贴胸口。</summary>
+        public bool TargetAtFeet;
         public bool IsCast => Action == "cast";
     }
 
@@ -88,7 +96,7 @@ namespace MmorpgClient.UI.Ugui.Battle
     ///  - 角色动作帧条 Battle/Characters/&lt;id&gt;/&lt;action&gt;_{E,W}_strip:缺 W 用 E 镜像,缺动作返回 null(程序化动作);
     ///  - 怪物 Battle/Monsters/&lt;id&gt;/&lt;action&gt;_{E,W}_strip:缺图用程序化剪影;
     ///  - 玩家 idle:World/Characters/QdaoHeadbandBoy/walk_{E,W} 首帧;
-    ///  - 特效 Battle/Fx/&lt;fxId&gt;_strip:8 帧 256,fps/pivot 读 ART_MANIFEST.json;
+    ///  - 特效 Battle/Fx/&lt;fxId&gt;_strip:方格横条,fps/pivot 读 ART_MANIFEST.json;
     ///  - 数字字集 Battle/UI/digits_&lt;variant&gt; + digits_meta.json;缺则 null(飘字退回 TMP 文本);
     ///  - buff 图标 Battle/Buff/&lt;id&gt;:缺则 null(字母块);
     ///  - 贴图按 Texture2D 读入后运行时 Sprite.Create 切格(与 QdaoBoySpriteAnimator 一致,不依赖 Sprite 导入设置)。
@@ -941,6 +949,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             public string fx_id;
             public string action;
             public int hit_frame;
+            public string projectile_fx_id;
+            public float flight_seconds;
+            public string telegraph_fx_id;
+            public float telegraph_seconds;
+            public bool target_at_feet;
         }
 
         [Serializable]
@@ -998,6 +1011,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                         FxId = string.IsNullOrEmpty(row.fx_id) ? "fire_burst" : row.fx_id,
                         Action = row.action == "cast" ? "cast" : "attack",
                         HitFrame = Mathf.Max(0, row.hit_frame),
+                        ProjectileFxId = row.projectile_fx_id ?? string.Empty,
+                        FlightSeconds = Mathf.Max(0f, row.flight_seconds),
+                        TelegraphFxId = row.telegraph_fx_id ?? string.Empty,
+                        TelegraphSeconds = Mathf.Max(0f, row.telegraph_seconds),
+                        TargetAtFeet = row.target_at_feet,
                     };
                 }
             }

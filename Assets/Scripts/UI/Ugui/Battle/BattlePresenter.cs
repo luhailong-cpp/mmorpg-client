@@ -125,10 +125,17 @@ namespace MmorpgClient.UI.Ugui.Battle
                     if (hasDamage)
                     {
                         var presentation = BattleArtCatalog.ResolveSkillFx(beat.SkillId, false);
+                        float lead = !string.IsNullOrEmpty(presentation.ProjectileFxId) ? presentation.FlightSeconds :
+                            !string.IsNullOrEmpty(presentation.TelegraphFxId) ? presentation.TelegraphSeconds : 0f;
+                        impact += Mathf.Max(0f, lead);
                         var fx = BattleArtCatalog.LoadFx(presentation.FxId);
                         if (fx?.Count > 0)
+                        {
+                            // The next beat must also leave room for the authored tail of the impact.
+                            beat.DurationSeconds = Mathf.Max(beat.DurationSeconds, impact + fx.DurationSeconds + .03f);
                             impact += Mathf.Clamp(presentation.HitFrame, 0, fx.Count - 1) /
                                 (fx.Fps > 0f ? fx.Fps : BattleFxPlayer.DefaultFps);
+                        }
                     }
                 }
                 var segments = new Dictionary<ulong, int>();
@@ -424,11 +431,41 @@ namespace MmorpgClient.UI.Ugui.Battle
                     applyOnce();
                     return;
                 }
-                foreach (var view in targets)
+                Action playImpacts = () =>
                 {
-                    Fx.Play(pres.FxId, view.ChestPosition, size * Mathf.Max(0.6f, view.Scale), 0f, applyOnce, pres.HitFrame, mirror);
+                    // All targets enter this stage in one callback and share one result application.
+                    foreach (var view in targets)
+                        Fx.Play(pres.FxId, pres.TargetAtFeet ? view.FootPosition : view.ChestPosition,
+                            size * Mathf.Max(0.6f, view.Scale), 0f, applyOnce, pres.HitFrame, mirror);
+                };
+                if (!string.IsNullOrEmpty(pres.ProjectileFxId))
+                {
+                    var target = targets[0];
+                    Vector2 from = actor.ChestPosition;
+                    Vector2 to = target.ChestPosition;
+                    // E artwork points right; place its core in front of the caster and mirror for left travel.
+                    bool travelsLeft = to.x < from.x;
+                    from.x += (travelsLeft ? -1f : 1f) * 70f * Mathf.Max(0.6f, actor.Scale);
+                    Fx.PlayTravel(pres.ProjectileFxId, from, to, SingleTargetFxSize * Mathf.Max(0.6f, actor.Scale),
+                        pres.FlightSeconds, playImpacts, travelsLeft);
                 }
+                else if (!string.IsNullOrEmpty(pres.TelegraphFxId))
+                {
+                    // One clock starts every telegraph and every strike; target count does not add delay.
+                    foreach (var view in targets)
+                        Fx.Play(pres.TelegraphFxId, view.FootPosition, size * Mathf.Max(0.6f, view.Scale),
+                            0f, null, BattleFxPlayer.DefaultHitFrame, false,
+                            TelegraphFps(pres), null);
+                    Delay(Mathf.Max(0f, pres.TelegraphSeconds), playImpacts);
+                }
+                else playImpacts();
             });
+        }
+
+        private static float TelegraphFps(SkillPresentation presentation)
+        {
+            var strip = BattleArtCatalog.LoadFx(presentation.TelegraphFxId);
+            return strip != null && presentation.TelegraphSeconds > 0f ? strip.Count / presentation.TelegraphSeconds : 0f;
         }
 
         /// <summary>

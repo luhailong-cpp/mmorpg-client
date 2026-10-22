@@ -629,7 +629,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var strip = IsMonster
                 ? BattleArtCatalog.LoadMonsterAction(MonsterTableId, "cast", _facingEast)
                 : BattleArtCatalog.LoadCharacterAction(CharacterId, "cast", _facingEast);
-            SpawnFx("buff_rise", true, 300f);
+            SpawnFx("cast_charge", true, 300f);
 
             if (strip != null && strip.Count > 0)
             {
