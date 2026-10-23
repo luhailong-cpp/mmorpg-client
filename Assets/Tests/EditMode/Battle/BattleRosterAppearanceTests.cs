@@ -11,7 +11,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
             private readonly UnityEngine.GameObject _object = new("BattleIdleLeaseTest");
             public QdaoHdSpriteLeaseOwner Component { get; }
             public IdleLeaseOwner() => Component = _object.AddComponent<QdaoHdSpriteLeaseOwner>();
-            public void Dispose() => UnityEngine.Object.DestroyImmediate(_object);
+            public void Dispose()
+            {
+                // EditMode 不调度运行时 OnDestroy；先走组件的真实释放入口。
+                try { if (Component != null) Component.Clear(); }
+                finally { UnityEngine.Object.DestroyImmediate(_object); }
+            }
         }
 
         [SetUp]
@@ -135,14 +140,27 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 var contactTexture = UnityEngine.Resources.Load<UnityEngine.Texture2D>(entry.IdleResourcePath(east ? "E" : "W"));
                 Assert.That(idle.Frames[0].texture, Is.SameAs(contactTexture), entry.Id);
                 var appearance = entry.ResolveAppearance();
-                Assert.That(idle.Frames[0].texture.width, Is.EqualTo(appearance.FrameWidth), entry.Id);
-                Assert.That(idle.Frames[0].texture.height, Is.EqualTo(appearance.FrameHeight), entry.Id);
-                Assert.That(idle.Frames[0].rect.width, Is.EqualTo((float)appearance.FrameWidth), entry.Id);
-                if (appearance.IsHd) Assert.That(idle.Frames[0].pixelsPerUnit, Is.EqualTo(104f));
+                string direction = east ? "E" : "W";
+                AssertGeometry(idle.Frames[0], appearance.GeometryForResource(appearance.IdleResourcePath(direction)), entry.Id);
+                if (!walk.UseWorldGeometry)
+                    for (int frame = 0; frame < walk.Count; frame++)
+                        AssertGeometry(walk.Frames[frame], appearance.GeometryForResource(appearance.FrameResourcePath(direction, frame)),
+                            entry.Id + "/walk/" + direction + "/" + frame);
             }
             using var first = BattleArtCatalog.LoadCharacterAction("00_reference_topright_boy", "idle", true);
             using var second = BattleArtCatalog.LoadCharacterAction("01_ice_sword_girl", "idle", true);
             Assert.That(first.Frames[0].texture, Is.Not.SameAs(second.Frames[0].texture));
+        }
+
+        private static void AssertGeometry(UnityEngine.Sprite sprite, QdaoMixedResolutionContract.Geometry geometry, string identity)
+        {
+            Assert.That(sprite.texture.width, Is.EqualTo(geometry.Width), identity);
+            Assert.That(sprite.texture.height, Is.EqualTo(geometry.Height), identity);
+            Assert.That(sprite.rect.width, Is.EqualTo((float)geometry.Width), identity);
+            Assert.That(sprite.rect.height, Is.EqualTo((float)geometry.Height), identity);
+            Assert.That(sprite.pixelsPerUnit, Is.EqualTo(geometry.PixelsPerUnit), identity);
+            Assert.That(sprite.pivot.x, Is.EqualTo(geometry.Pivot.x * geometry.Width).Within(.001f), identity);
+            Assert.That(sprite.pivot.y, Is.EqualTo(geometry.Pivot.y * geometry.Height).Within(.001f), identity);
         }
 
         [Test]

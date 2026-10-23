@@ -88,9 +88,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(bootstrapSerialized.FindProperty("mapConfig").objectReferenceValue,
                 Is.EqualTo(config));
             Assert.That(mapRuntime.Config, Is.Null);
-            Assert.That(bootstrapSerialized.FindProperty("mapConfig").objectReferenceInstanceIDValue, Is.Zero);
+            Assert.That(bootstrapSerialized.FindProperty("mapConfig").objectReferenceEntityIdValue, Is.EqualTo(EntityId.None));
             var runtimeSerialized = new SerializedObject(mapRuntime);
-            Assert.That(runtimeSerialized.FindProperty("config").objectReferenceInstanceIDValue, Is.Zero);
+            Assert.That(runtimeSerialized.FindProperty("config").objectReferenceEntityIdValue, Is.EqualTo(EntityId.None));
             StringAssert.DoesNotContain("6aef98b5e7df8384ca8489d3c1247c6f", System.IO.File.ReadAllText(AppRootPrefabPath));
             Assert.That(mapRuntime.WorldCamera, Is.EqualTo(camera));
             Assert.That(mapRuntime.DirectionalSun,

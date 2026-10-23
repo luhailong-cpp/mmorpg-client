@@ -22,6 +22,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
     {
         private const BindingFlags Hidden = BindingFlags.NonPublic | BindingFlags.Instance;
         private static readonly MethodInfo TweenTick = typeof(RealtimeTween).GetMethod("UpdateAll", BindingFlags.NonPublic | BindingFlags.Static);
+        private readonly List<GameObject> _fixtures = new();
         [Serializable] private sealed class DeliveryManifest { public DeliveryClip[] clips; }
         [Serializable] private sealed class DeliveryClip { public string action, direction; }
         private static readonly string[] DeliveredPetIds =
@@ -31,6 +32,63 @@ namespace MmorpgClient.Tests.EditMode.Battle
             "11-xiajiaolu", "12-yuexianshi", "13-yalingtong", "14-feierling", "15-landuoxian",
             "16-luhualing", "legacy-hu-tuan-tuan", "legacy-fu-xiao-hu", "legacy-yun-jiu-jiu", "legacy-ling-yue"
         };
+
+        private GameObject Own(GameObject fixture)
+        {
+            _fixtures.Add(fixture);
+            return fixture;
+        }
+
+        // 这些组件只在运行时接收 Unity 生命周期；EditMode 必须显式驱动同一回调，
+        // 不能把 DestroyImmediate 当成已经验证了运行时 OnDisable/OnDestroy。
+        private static void DriveRuntimeLifecycle(GameObject fixture, string message)
+        {
+            var errors = new List<Exception>();
+            foreach (var component in fixture.GetComponentsInChildren<MonoBehaviour>(true))
+            {
+                if (component == null || !(component is BattleActionSpriteLeaseOwner || component is QdaoHdSpriteLeaseOwner ||
+                    component is PetArchivePreview || component is QdaoPetSpriteAnimator || component is QdaoPetCompanion)) continue;
+                var callback = component.GetType().GetMethod(message, Hidden);
+                if (callback == null) continue;
+                try { callback.Invoke(component, null); }
+                catch (Exception error) { errors.Add(error); }
+            }
+            if (errors.Count != 0) throw new AggregateException("测试夹具生命周期回调失败。", errors);
+        }
+
+        private static void SetFixtureActive(GameObject fixture, bool active)
+        {
+            fixture.SetActive(active);
+            DriveRuntimeLifecycle(fixture, active ? "OnEnable" : "OnDisable");
+        }
+
+        private void DestroyFixture(GameObject fixture)
+        {
+            try
+            {
+                if (fixture == null) return;
+                try { DriveRuntimeLifecycle(fixture, "OnDisable"); }
+                finally
+                {
+                    try { DriveRuntimeLifecycle(fixture, "OnDestroy"); }
+                    finally { if (fixture != null) Object.DestroyImmediate(fixture); }
+                }
+            }
+            finally { _fixtures.Remove(fixture); }
+        }
+
+        [TearDown]
+        public void ReleaseFixturesEvenAfterAssertionFailure()
+        {
+            var errors = new List<Exception>();
+            foreach (var fixture in _fixtures.ToArray())
+            {
+                try { DestroyFixture(fixture); }
+                catch (Exception error) { errors.Add(error); }
+            }
+            _fixtures.Clear();
+            if (errors.Count != 0) throw new AggregateException("测试夹具释放失败。", errors);
+        }
 
         [TestCase("attack", 12, .36f)]
         [TestCase("hit", 6, .24f)]
@@ -96,7 +154,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             int baseline = QdaoActionResources.ResidentClipCount;
             float previousSpeed = BattleTempo.Speed;
-            var layer = new GameObject("PetCombatPlayback", typeof(RectTransform), typeof(Canvas));
+            var layer = Own(new GameObject("PetCombatPlayback", typeof(RectTransform), typeof(Canvas)));
             var view = new BattleUnitView(null, layer.transform, 99, false, !east, 0, null)
             { Fx = new BattleFxPlayer(null), Ghosts = new BattleAfterimagePool(null) };
             try
@@ -145,7 +203,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 BattleTempo.Speed = previousSpeed;
                 view.StopAction();
                 RealtimeTween.Kill(typeof(BattleUnitView).GetField("_idleToken", Hidden).GetValue(view));
-                Object.DestroyImmediate(layer);
+                DestroyFixture(layer);
             }
             Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
         }
@@ -154,12 +212,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void GalleryEnablesOnlyPublishedDirectionsAndCombatCompletionReleasesItsLease()
         {
             int baseline = QdaoActionResources.ResidentClipCount;
-            var go = new GameObject("PetCombatGallery", typeof(RectTransform), typeof(Canvas));
+            var go = Own(new GameObject("PetCombatGallery", typeof(RectTransform), typeof(Canvas)));
             try
             {
                 var preview = go.AddComponent<PetArchivePreview>();
                 preview.Build();
-                go.SetActive(true);
+                SetFixtureActive(go, true);
                 var buttons = go.GetComponentsInChildren<UnityEngine.UI.Button>(true);
                 foreach (var entry in QdaoPetCatalog.Entries)
                 foreach (var direction in new[] { "E", "W" })
@@ -186,10 +244,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
                         Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline + 1));
                     }
                 }
-                go.SetActive(false);
+                SetFixtureActive(go, false);
                 Assert.That(preview.CurrentSprite, Is.Null);
             }
-            finally { Object.DestroyImmediate(go); }
+            finally { DestroyFixture(go); }
             Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
         }
 
@@ -272,7 +330,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void BattleIdleLeaseSurvivesTemporaryStripAndReleasesWithView()
         {
             int baseline = QdaoActionResources.ResidentClipCount;
-            var layer = new GameObject("PetBattle", typeof(RectTransform), typeof(Canvas));
+            var layer = Own(new GameObject("PetBattle", typeof(RectTransform), typeof(Canvas)));
             var view = new BattleUnitView(null, layer.transform, 99, false, true, 0, null);
             try
             {
@@ -289,7 +347,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             {
                 view.StopAction();
                 MmorpgClient.UI.Ugui.Tweening.RealtimeTween.Kill(typeof(BattleUnitView).GetField("_idleToken", Hidden).GetValue(view));
-                Object.DestroyImmediate(layer);
+                DestroyFixture(layer);
             }
             Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
         }
@@ -302,12 +360,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var list = new PetListInfo { ActivePetId = 101 };
             list.Pets.Add(new PetInfo { PetId = 101, PetTableId = 1, ModelId = 1001 });
             net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = list });
-            var go = new GameObject("PetGallery", typeof(RectTransform), typeof(Canvas));
+            var go = Own(new GameObject("PetGallery", typeof(RectTransform), typeof(Canvas)));
             try
             {
                 var preview = go.AddComponent<PetArchivePreview>();
                 preview.Build();
-                go.SetActive(true);
+                SetFixtureActive(go, true);
                 foreach (var entry in QdaoPetCatalog.Entries)
                 {
                     preview.Select(entry.id);
@@ -316,10 +374,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 }
                 Assert.That(net.Calls, Is.Empty);
                 Assert.That(client.Pets.ActivePetId, Is.EqualTo(101UL));
-                go.SetActive(false);
+                SetFixtureActive(go, false);
                 Assert.That(preview.CurrentSprite, Is.Null);
             }
-            finally { Object.DestroyImmediate(go); }
+            finally { DestroyFixture(go); }
         }
 
         [Test]
@@ -328,6 +386,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var net = new FakeBattleTransport();
             var pets = new PetClient(net);
             var world = new ActorWorld("PetCompanionTestWorld");
+            Own(world.Root.gameObject);
             var companion = world.Root.gameObject.AddComponent<QdaoPetCompanion>();
             companion.Bind(world, pets);
             try
@@ -367,7 +426,33 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Tick(companion);
                 Assert.That(companion.ActivePetId, Is.Zero);
             }
-            finally { Object.DestroyImmediate(world.Root.gameObject); }
+            finally { DestroyFixture(world.Root.gameObject); }
+        }
+
+        [Test]
+        public void PetAnimatorCreatesMissingRendererAndReleasesItsClipAcrossDisableAndDestroy()
+        {
+            int baseline = QdaoActionResources.ResidentClipCount;
+            var go = Own(new GameObject("PetAnimatorMissingRenderer"));
+            try
+            {
+                var animator = go.AddComponent<QdaoPetSpriteAnimator>();
+                animator.SetIdentity("legacy-yun-jiu-jiu");
+                Assert.That(go.TryGetComponent<SpriteRenderer>(out var renderer), Is.True);
+                Assert.That(renderer.sprite, Is.SameAs(animator.CurrentSprite));
+                Assert.That(animator.CurrentSprite != null, Is.True);
+                Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline + 1));
+
+                SetFixtureActive(go, false);
+                Assert.That(animator.CurrentSprite, Is.Null);
+                Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
+                SetFixtureActive(go, true);
+                Assert.That(animator.CurrentSprite.name, Does.StartWith("legacy-yun-jiu-jiu_archived_idle_E_"));
+                Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline + 1));
+                DestroyFixture(go);
+                Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(baseline));
+            }
+            finally { DestroyFixture(go); }
         }
 
         [TestCase(512, 512)]
