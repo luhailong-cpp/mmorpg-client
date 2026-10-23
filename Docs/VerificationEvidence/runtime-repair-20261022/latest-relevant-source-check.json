@@ -1,0 +1,302 @@
+[
+  {
+    "path": "Assets/Scripts/Game/GameClient.cs",
+    "sha256": "EB1F35F4C2FF383A77E9770CDEB41227D395EB1055A56EE091218FD52535EB98",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Sync/LandingSyncClient.cs",
+    "sha256": "647903D3BBB81A76A45F9B10E6F73D2D9C71F38EE99B46DBD9B5C8F5F7673E2E",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Sync/SyncDigestStore.cs",
+    "sha256": "B5ED6401E49E2B959794EBE74DC0462B6CBFFCCE028BC9E8E64650237E6AC947",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamAppearanceTransport.cs",
+    "sha256": "A6A1968E49978681E36018988E5E1932ABFDA26A0CB4C3D962F2B4BA02C2E444",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamBackfillQueueSync.cs",
+    "sha256": "96E0F80962EEBB09087870A58E0267DE8DEA60CE67637569B8FA49DA35107B9E",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamClient.ActionRecovery.cs",
+    "sha256": "0F587C71A964C729541EA980436C9CE047D146C56A35D8FE334B3D42635045C8",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamClient.cs",
+    "sha256": "2CC217A941A3B0EC223BA7BC0511372929D774C3B518C20F76C673579A3E2751",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamFollowDriver.cs",
+    "sha256": "A1E0F9A4B2B88B87E0B612EF9FF9ACD9BCD3D764E12FCBF3907238B8E7029547",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamFollowPlanner.cs",
+    "sha256": "247AE8C535E7095E5E14DF8142DC2DD4C757A7A32CE70291A83800247A468510",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamFollowTrail.cs",
+    "sha256": "56E59858F07B27139F7E196B966C315DD106B3B7D38DA98E9E461D0BE2105D12",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamInvitationDirectory.cs",
+    "sha256": "D2E5641AA8E38DDC723BABE00507152240BF9390A7F7EC02C7CFCB1317767438",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamInvitationDirectory.GameClient.cs",
+    "sha256": "BBE902BB29D6A2534987796037786CAB093E30116EACE3F1D6A4666B0A806BA5",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamModels.cs",
+    "sha256": "1C956A6F80B5B1FA670D1D9FFFD6EA23F6B05EE3008A6E458461ABACA34A9952",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamRegroupPolicy.cs",
+    "sha256": "AA0BD428B4BA7CEEAA2BA21F9B500A5A859AA5465CD8EBA59C8DF726F6725493",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamUiState.cs",
+    "sha256": "EF8FDAEB537659D149A7ABDDB2304B3B355690A5F06394B182E6CAFB9BDBB6BA",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Game/Team/TeamViewMapper.cs",
+    "sha256": "D2373F6189382F49F8D229304D150D397FB738C84111E970C43EC47F7B621A92",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Adler32.cs",
+    "sha256": "6C7D960BCD4936987EF4617086B165E8E9E85D38CB4453651BB855417AE10A7A",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/BattleDirectLink.cs",
+    "sha256": "7A5D4FDC972AD345C14E25CDF22F3239FD586C574B617184B5647E887ED24F21",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/DurableRequestFileStore.cs",
+    "sha256": "D0DE7A5289E1063FA9357D0DBF230BA380F0C59DC5EBA7E32245FBBE2B1E2906",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/FileMatchJoinRecovery.cs",
+    "sha256": "968ACDECC59D610A36688680EFFFC8A0E47484D632533640D7FCEB452C917C6F",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/GateTcpClient.cs",
+    "sha256": "5FFC4EAC137F07D8083912F7201E03D676E44484FCBA29E24EC114980C54C7B8",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/GatewayHttpClient.cs",
+    "sha256": "66E148DCF4B8AD42D32C6D104874446BBEB4AB816B4B4D457DAE596D21C7E3A7",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/BattleClientPlayerRpc.cs",
+    "sha256": "888E16C9BA9C6FBAE12A2B03A91452599B37510CE74EF100B1BA971850750261",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerChatRpc.cs",
+    "sha256": "6532126175BEB29EAA97EBA794AD8E8533EE95F91078EC3DDD5F8362B437B5CC",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerFriendRpc.cs",
+    "sha256": "BCA44D37B41CE91A6FD62A2E27CBFF16786FA7ED07334A6A9A96BFE84DC32216",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerJubaozhaiRpc.cs",
+    "sha256": "BAAFD4E7DDFD3B25B15FF86FE56CC8EE031F22D9ABDD60446D003F682215F712",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerLoginRpc.cs",
+    "sha256": "DDF796B2E7019F1723A85BFD2240A0F442AC879900C640BFD0952D2F5BE14FAD",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerMailRpc.cs",
+    "sha256": "6DE156CB5974C5721D24F4542B4A63134AC0251E44CFDA7239F10448BA986EB5",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerRankRpc.cs",
+    "sha256": "F1308FFA25FA549F98F56A896D7FDDEE1301F0EFEB45015655D1E6AD3FFEB8ED",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerTeamRpc.cs",
+    "sha256": "DFE30C59981B53BA5EBFCE7EEA7DF6035DB21965DD6ACE0F0B03FFFA4248F7B1",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/GuildServiceRpc.cs",
+    "sha256": "2E3613E1B3B077A3B46B8D6B29C7457EA21D43CBC51994FA07A9182C30A27577",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/MatchServiceRpc.cs",
+    "sha256": "5E1362640053B171D8338FBAA0F52034E945BDF9A55F8764DB7ED8CBF6F89252",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneActivityClientPlayerRpc.cs",
+    "sha256": "FBF2EA74546C3F175731364A97C1657C618D8F3A052BE43EE0154D81885318DA",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneAttributeClientPlayerRpc.cs",
+    "sha256": "C3B33FB951FD8E7CDED694CCA5C54B2E56F3FF9DC1491DF299532C52459A0FE1",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneBagClientPlayerRpc.cs",
+    "sha256": "4658F026E3F4FA4472F8C12BA490B9AC8FC66DFE60C53D20A119948AD3CE6BDD",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneClientPlayerCommonRpc.cs",
+    "sha256": "B7EC51B84B2AE882E34625A2314D6FBD6DD36CE4DD0AA9E83B9EF1A877F1E3C9",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneCurrencyClientPlayerRpc.cs",
+    "sha256": "EAE135F381151621C262AC71EACFB99BC419CE9D20398B37E1B8A7DBA1CCC561",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneMissionClientPlayerRpc.cs",
+    "sha256": "D1210F607F7AE18C5692790A5E16912F49FF5936DC09BCD6FD86C11D43704FA7",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneMovementClientPlayerRpc.cs",
+    "sha256": "B23040A738AA9D4BB673CC300CA40A469A12EFD2A41FB8EE9BD20467E3E311AB",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneMysteryMerchantClientPlayerRpc.cs",
+    "sha256": "24E874817609240ED657BC46AF85CE866717509A2B2B637940889A17B584DB92",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/ScenePetClientPlayerRpc.cs",
+    "sha256": "EDDEC2072707EADEC2EAD55BB582D279613A2EDC274B38F049017AFB6D41D8D3",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneSceneClientPlayerRpc.cs",
+    "sha256": "D928C46AFD864308D4878B716E50D4C89F8505CBA579D6C0D0DED9C02C732602",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/Rpc/SceneSkillClientPlayerRpc.cs",
+    "sha256": "97F52DF255B97DAA1AA69145905A4C8C61884E37754FFEB2F9991F7FBC137C08",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/Generated/TipFaults.cs",
+    "sha256": "E1C36E1FE40A2ACA74FDBEA383F72E451BCE0DCB36BA208F1B50F580C2EA505C",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/IFramedConnection.cs",
+    "sha256": "490D32C70993E60D0BA747E1DC2C54FF18E728330218529B8AC7DB754C36D940",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/MessageIds.cs",
+    "sha256": "FC5C85E7BC6FAF7334E6ED3E3DFD6FB911793F1EB6231B7B204B41F737A6209F",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/MuduoCodec.cs",
+    "sha256": "3F7F1099C3944D837D4EF5B748305D544F5A6FCDEB14C90FFE02865E595FEB37",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/OutstandingCalls.cs",
+    "sha256": "0DBBFD0F0C7DCD7BF2245A03E3BC0D7DD76110E9C0E284F2715BFD468E31D1BF",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/RegionProbeClient.cs",
+    "sha256": "CD661151F34E1FF475261BA6EC6CEDF353BFF399296677918C6423FDA18DECD7",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Net/RpcStatus.cs",
+    "sha256": "C0D5E8E2D61A062DE9824D956077DD5F51BFAB28E84B0E9304B0BCDD574375CD",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Proto/Generated/Team.cs",
+    "sha256": "DA3D33D864E7538C7948964168DB560F6C243B5E48F895229C816CB6D031B591",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Proto/Generated/TeamErrorTip.cs",
+    "sha256": "744E9162BCBAB668A22EF798F168E310CD2D3B0BF6DAFBDA91AB691C087D024C",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/Proto/TeamBackfillProtocol.cs",
+    "sha256": "67036C727E530A1B79E87C30AAC7AD2480DA62A31E2A92E60AD2519665D2B8A7",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Rank/RankUiRoot.cs",
+    "sha256": "2B1DF41A81F3A3DC4151B03DF56990D2D81FE8930297EBB8F3EA056FDBF67AA2",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Rank/RankWindow.cs",
+    "sha256": "77FED4BDE8D81CABFF56ADA0BE3D4CED20FC7F4922768C3996CA2C8A20B621BA",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Team/TeamFollowUiRoot.cs",
+    "sha256": "E6F41AC6D374D110B55BB012A36E74CE96ABE8C7BF3E5D1A5B2460A300B49DC5",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Team/TeamInvitationWindow.cs",
+    "sha256": "0DF339EDE843DD9B0EB7A84F4DA7C7FBD31B33E6A0C6D79541DD6B797D60EF47",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Team/TeamUiArt.cs",
+    "sha256": "DC247CFDF5DF74BD1D671E819550B83E908BCE702578E9FD13319B82B92D361E",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Team/TeamUiRoot.cs",
+    "sha256": "E9A2CDB2C15573A397FF7179CE200A7A0B54062C04C947B9CB12ED3D9266F8FC",
+    "matches": true
+  },
+  {
+    "path": "Assets/Scripts/UI/Ugui/Team/TeamWindow.cs",
+    "sha256": "3A8C2055B7F3A193F879137159228D51E68C57231A92C4CB5B26BB011E9C743D",
+    "matches": true
+  }
+]

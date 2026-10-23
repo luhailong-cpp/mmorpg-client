@@ -1,0 +1,246 @@
+{
+  "status": "READY_WITH_KNOWN_TEST_FAILURES",
+  "rankFocusFixVerified": true,
+  "clientDirectory": "../combat-fx-20261022/client",
+  "sourceBaseCommit": "da77a149131f3382ff568e798eb0ba593ef8ef85",
+  "unfinishedWorkingTreeChangesIncluded": false,
+  "runtimeSHA256": "CED895EB4134935E6F22A8AEBED4453D91AC0618E11E73A8502D6B62DA876BBE",
+  "builtRankSourceMatchesTestedSource": true,
+  "nativeTests": {
+    "total": 102,
+    "passed": 100,
+    "failed": 2,
+    "result": "Failed(Child)",
+    "rankFocusRegressionPassed": 5
+  },
+  "knownTestFailures": [
+    {
+      "name": "MmorpgClient.Tests.EditMode.Tianyong.TeamClientTests.ErrorReplyWithView_IsAppliedByOrderingRules",
+      "message": "  Expected: True\n  But was:  False\nat MmorpgClient.Tests.EditMode.Tianyong.TeamClientTests.ErrorReplyWithView_IsAppliedByOrderingRules () [0x000d6] in E:\\work\\mmorpg-client\\.codex-artifacts\\runtime-repair-20261022\\source-da77a149\\Assets\\Tests\\EditMode\\Tianyong\\TeamClientTests.cs:517\n"
+    },
+    {
+      "name": "MmorpgClient.Tests.EditMode.Tianyong.TeamClientTests.RateLimited_IsADefiniteRejectionNotASuspension",
+      "message": "  Expected: True\n  But was:  False\nat MmorpgClient.Tests.EditMode.Tianyong.TeamClientTests.RateLimited_IsADefiniteRejectionNotASuspension () [0x000f5] in E:\\work\\mmorpg-client\\.codex-artifacts\\runtime-repair-20261022\\source-da77a149\\Assets\\Tests\\EditMode\\Tianyong\\TeamClientTests.cs:173\n"
+    }
+  ],
+  "knownFailureNote": "2项失败与修复前基线一致，均为待确认组队写操作之后立即离队被恢复保护阻止；未修改、跳过这些测试，也不宣称全套通过。",
+  "playerVerification": {
+    "status": "PASS",
+    "buildSucceeded": true,
+    "unityNullGuardsInBuiltRankMethod": true,
+    "runtimeSHA256": "CED895EB4134935E6F22A8AEBED4453D91AC0618E11E73A8502D6B62DA876BBE",
+    "runtimeUnchangedDuringVerification": true,
+    "startupReachedServerSelect": true,
+    "startupExceptionCount": 0,
+    "startupMode": "独立隐藏无图形进程，等待真实选服初始化最多60秒并观察5秒；未登录、未访问用户游戏会话；只停止本次进程。",
+    "startupObservationSeconds": 12.32,
+    "buildLog": "E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\build-resume-20261023-unity.log",
+    "log": "E:\\work\\mmorpg-client\\.codex-artifacts\\runtime-repair-20261022\\player-startup-20261023-100801039.log",
+    "checkedUtc": "2026-10-23T10:08:13.4960583-04:00"
+  },
+  "teamServiceVerification": {
+    "Result": "PASS",
+    "ProcessId": 36368,
+    "ListenPort": 50500,
+    "PortOwnedByMatch": true,
+    "MatchAndTeamRegistered": true,
+    "ServiceRegistrations": [
+      {
+        "Service": "MatchNodeService",
+        "Endpoint": "127.0.0.1:50500",
+        "NodeUuid": "30a7a341-79ff-4c91-ad70-31ea0495f059",
+        "LiveLease": true
+      },
+      {
+        "Service": "TeamNodeService",
+        "Endpoint": "127.0.0.1:50500",
+        "NodeUuid": "57bb2f03-efa4-4005-b942-8fb0ed0dea94",
+        "LiveLease": true
+      }
+    ],
+    "KafkaGeneration": 2,
+    "KafkaPartitions": 256,
+    "KafkaContractVerified": true,
+    "KafkaRequiredTopicsWereMissing": true,
+    "KafkaRequiredTopicsInitializedBy": "Official start_game.ps1 Initialize-LocalKafkaTopics",
+    "KafkaPriorMessageHistoryVerified": false,
+    "KafkaOffsetsReset": false,
+    "AnonymousRouterProbe": "PASS",
+    "BusinessAccountVerified": false,
+    "RealAccountAccessed": false,
+    "GatewayHealth": "UP",
+    "Zone1Status": "OPEN",
+    "GatewayProcessId": 19836,
+    "LoginStackServices": [
+      {
+        "ProcessId": 43148,
+        "UptimeSeconds": 1066.0,
+        "Port": 6000,
+        "Name": "db",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\db.exe"
+      },
+      {
+        "ProcessId": 8968,
+        "UptimeSeconds": 1051.0,
+        "Port": 9000,
+        "Name": "data_service",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\data_service.exe"
+      },
+      {
+        "ProcessId": 61640,
+        "UptimeSeconds": 961.0,
+        "Port": 50600,
+        "Name": "client_rpc_router",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\client_rpc_router.exe"
+      },
+      {
+        "ProcessId": 69928,
+        "UptimeSeconds": 365.0,
+        "Port": 60324,
+        "Name": "scene_manager",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\scene_manager.exe"
+      },
+      {
+        "ProcessId": 27736,
+        "UptimeSeconds": 355.0,
+        "Port": 53200,
+        "Name": "player_locator",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\player_locator.exe"
+      },
+      {
+        "ProcessId": 6196,
+        "UptimeSeconds": 196.0,
+        "Port": 53000,
+        "Name": "login",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\login.exe"
+      },
+      {
+        "ProcessId": 36368,
+        "UptimeSeconds": 904.0,
+        "Port": 50500,
+        "Name": "match",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\match.exe"
+      },
+      {
+        "ProcessId": 75652,
+        "UptimeSeconds": 1045.0,
+        "Port": 10000,
+        "Name": "gate",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\gate.exe"
+      },
+      {
+        "ProcessId": 37636,
+        "UptimeSeconds": 1040.0,
+        "Port": 20000,
+        "Name": "scene",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\scene.exe"
+      },
+      {
+        "ProcessId": 13812,
+        "UptimeSeconds": 1018.0,
+        "Port": 20010,
+        "Name": "battle",
+        "Path": "E:\\work\\xuanming-server-mmo\\bin\\battle.exe"
+      }
+    ],
+    "HistoricalProfile": {
+      "NotANewTiDBDeployment": true,
+      "Evidence": "10/22 successful local data_service stdout and original testdb schema",
+      "ProfileSHA256": "412281F4D74D80A47E0321D419C03D9A98C6A9725644CE937CD7905EB7C33AD4",
+      "Binary": "E:\\work\\xuanming-server-mmo\\bin\\go_services\\data_service.exe",
+      "BinarySHA256": "0439C7BD0DD2B7244000925DAF6DC3546FF362B003F226EA3090D8DA7A65CE9C",
+      "Purpose": "Restore existing local development runtime only",
+      "Database": "127.0.0.1:3306/testdb",
+      "CurrentGlobalSourceModified": false,
+      "Profile": "E:\\work\\xuanming-server-mmo\\run\\etc\\go_services\\data_service.yaml",
+      "Source": "git:414e7eaa5b64:go/data_service/etc/data_service.yaml"
+    },
+    "HistoricalTables": {
+      "Directory": "E:\\work\\xuanming-server-mmo\\run\\logs\\runtime-repair-20261023\\tables-438c5818fff8\\generated\\tables",
+      "SourceGeneratedTablesModified": false,
+      "FileCount": 92,
+      "Processes": [
+        {
+          "ProcessId": 69928,
+          "SourceConfig": "E:\\work\\xuanming-server-mmo\\go\\scene_manager\\etc\\scene_manager_service.yaml",
+          "Port": 60324,
+          "ConfigChange": "Only top-level TableDir isolation and official local reserved-port relocation",
+          "BinarySHA256": "510AF68315E79488C24290BABD79CD65A9EAEB2272E4993602381BF14EF25039",
+          "RuntimeConfigSHA256": "0DA845504B4C0C869E696E2A3751D638C31292DAD1CA0598AE9B59F3D5B12B46",
+          "Service": "scene_manager",
+          "RuntimeConfig": "E:\\work\\xuanming-server-mmo\\run\\etc\\go_services\\scene_manager.yaml",
+          "TableCommit": "438c5818fff86a8fbaabe07ffd8c0826bbf0adc0",
+          "SourceConfigSHA256": "986C221FAB6C24FB1A7FCF86A024898EF2C44506F5A6EE97E2F5F48BB951FDA2"
+        },
+        {
+          "ProcessId": 27736,
+          "SourceConfig": "E:\\work\\xuanming-server-mmo\\go\\player_locator\\etc\\player_locator.yaml",
+          "Port": 53200,
+          "ConfigChange": "Only top-level TableDir isolation and official local reserved-port relocation",
+          "BinarySHA256": "769C61B41FE091920FD763CD037B9CADFDD0213DB6B13673EF4DEA37C91C4E2F",
+          "RuntimeConfigSHA256": "94506EF6422FB8D8D2A70DC0628E9BA15B6572AEFA1B0229ABC88026682B2132",
+          "Service": "player_locator",
+          "RuntimeConfig": "E:\\work\\xuanming-server-mmo\\run\\etc\\go_services\\player_locator.yaml",
+          "TableCommit": "438c5818fff86a8fbaabe07ffd8c0826bbf0adc0",
+          "SourceConfigSHA256": "D364A0B711D4FEF59E5EEA0E23B6FDA26749639537793017652B2C3D56AF6E27"
+        },
+        {
+          "RuntimeConfig": "E:\\work\\xuanming-server-mmo\\run\\etc\\go_services\\login.yaml",
+          "ProcessId": 6196,
+          "TableCommit": "438c5818fff86a8fbaabe07ffd8c0826bbf0adc0",
+          "Service": "login",
+          "BinarySHA256": "57BCADFCE7A21D8BEAA75C042A7712372B922C2A75C72365B4C0E9235C092CC7",
+          "SourceConfigSHA256": "48FEBBD65123DA3E729CFDF5FDCE44281694B526EBA6E736C17C37C7B6939354",
+          "Port": 53000,
+          "SourceConfig": "E:\\work\\xuanming-server-mmo\\go\\login\\etc\\login.yaml",
+          "ConfigChange": "Only top-level TableDir isolation and official local reserved-port relocation",
+          "RuntimeConfigSHA256": "48036423FC851680E76161C3EB9DFD63F95D9C78F1A3A3AE191213A606D12856"
+        }
+      ],
+      "ManifestSHA256": "7C8E5612E6AA2E810C1554E816AAD306F4BBF475C4313E3AA0021C2A23AA1782",
+      "TableCommit": "438c5818fff86a8fbaabe07ffd8c0826bbf0adc0",
+      "ArchiveSHA256": "3A688AC56A31C4B72A7E7FA7DFE62983DEE82E58BFFA78FCCC5699D932D73B93"
+    },
+    "HistoricalProfilePurpose": "Restore previously working local development runtime only; no current global TiDB migration or source rollback",
+    "CurrentGlobalSourceUnchanged": true,
+    "MySQLExistingTablesVerified": true,
+    "DatabaseResetOrReplacement": false,
+    "OtherRunningServicesStopped": false,
+    "OptionalServicesNotRestored": [
+      "chat",
+      "trade",
+      "friend",
+      "player_inbox",
+      "guild",
+      "mail",
+      "rank"
+    ],
+    "RuntimeErrorCount": 0,
+    "PreviousShutdown": "2026-10-22 05:37 EDT: received terminated; orderly shutdown; sender unknown",
+    "CheckedAtUtc": "2026-10-23T09:58:24.5959416-04:00"
+  },
+  "currentLocalPorts": [
+    {
+      "port": 8081,
+      "reachable": true
+    },
+    {
+      "port": 50500,
+      "reachable": true
+    }
+  ],
+  "servicesCurrentlyReady": true,
+  "realAccountBusinessVerified": false,
+  "accountVerificationNote": "已有角色的直接查询被自动审批拒绝，未执行；采用不访问任何账号的匿名路由验收。用户需从新包重新登录确认组队状态。",
+  "completedUtc": "2026-10-23T10:09:25.962353-04:00",
+  "relevantSourceFilesMatchingNativeTests": 60,
+  "manualLaunchVerification": {
+    "processId": 23264,
+    "processAlive": true,
+    "serverSelectInitialized": true,
+    "exceptionCount": 0,
+    "autoLogin": false,
+    "log": "E:\\work\\mmorpg-client\\Builds\\play-20261022-runtime-repair\\logs\\manual-20261023-100931343\\client.log",
+    "checkedUtc": "2026-10-23T10:11:03.3993653-04:00"
+  }
+}
