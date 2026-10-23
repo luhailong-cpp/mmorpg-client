@@ -53,6 +53,25 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _net.Reply(new GetPlayerGuildResponse { Guild = info });
         }
         private static byte[] SavedBytes(string saved) => Convert.FromBase64String(saved.Split(':')[5]);
+        private void Send(bool donation) { if (donation) _client.Donate(2); else _client.Buy(101, 2); }
+        private ulong LastKey() => _net.Requests.Last() switch
+        {
+            DonateToGuildRequest donation => donation.ClientRequestId,
+            BuyGuildShopGoodsRequest order => order.ClientRequestId,
+            _ => throw new AssertionException("最后一发不是捐献或兑换"),
+        };
+        private void LoadPage(bool donation)
+        {
+            if (donation) { _client.RefreshDonations(); _net.Reply(new GetGuildDonateOptionsResponse()); }
+            else { _client.RefreshShop(); _net.Reply(new GetGuildShopResponse()); }
+        }
+        // 写回包落定后本页可能带着结果文案重拉一次(在途期间发不出新操作):替那一发回一个空快照。
+        private void ReplyPageReload()
+        {
+            uint last = _net.Calls.Last();
+            if (last == MessageIds.GetGuildDonateOptions) _net.Reply(new GetGuildDonateOptionsResponse());
+            else if (last == MessageIds.GetGuildShop) _net.Reply(new GetGuildShopResponse());
+        }
 
         [TestCase(true)] [TestCase(false)]
         public void SavesExactNonzeroRequestBeforeNetworkSend(bool donation)
@@ -151,6 +170,47 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _net.Reply(new DonateToGuildResponse { ErrorMessage = new TipInfoMessage
                 { Id = (uint)guild_error.KGuildCurrencyInsufficient } });
             Assert.That(_files.Load(1), Is.Empty);
+        }
+
+        // 契约:收到订单视图或其它业务拒绝后原键作废,玩家再点一次是新意图、新键。
+        [TestCase(true, false)] [TestCase(true, true)] [TestCase(false, false)] [TestCase(false, true)]
+        public void TheNextOperationAfterAnOrderViewOrABusinessRejectionUsesANewKey(bool donation, bool rejected)
+        {
+            Send(donation); ulong first = LastKey();
+            Assert.That(first, Is.Not.Zero);
+            var tip = new TipInfoMessage { Id = (uint)(donation ? guild_error.KGuildDonateLimit : guild_error.KGuildShopLimit) };
+            if (donation)
+                _net.Reply(rejected ? new DonateToGuildResponse { ErrorMessage = tip } : new DonateToGuildResponse
+                    { Guild = GuildClientTests.Fixture(), Donation = new GuildDonationView { OpId = 9, DonateId = 2, Status = GuildAssetOrderStatus.Applied } });
+            else
+                _net.Reply(rejected ? new BuyGuildShopGoodsResponse { ErrorMessage = tip } : new BuyGuildShopGoodsResponse
+                    { Order = new GuildShopOrderView { OpId = 9, GoodsId = 101, Count = 2, Status = GuildAssetOrderStatus.Applied } });
+            ReplyPageReload();
+            Assert.That(_files.Load(1), Is.Empty);
+
+            Send(donation);
+            Assert.That(LastKey(), Is.Not.Zero.And.Not.EqualTo(first));
+        }
+
+        // 契约:1005 = 这个键已绑定另一笔请求(客户端复用了键)。不得用同一个键重试;刷新本页,由玩家重新操作(新键)。
+        [TestCase(true)] [TestCase(false)]
+        public void InvalidParameterRetiresTheKeyWithoutResendingItAndReloadsThePage(bool donation)
+        {
+            LoadPage(donation);
+            Send(donation); ulong first = LastKey(); uint method = _net.Calls.Last();
+            var conflict = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter };
+            if (donation) _net.Reply(new DonateToGuildResponse { ErrorMessage = conflict });
+            else _net.Reply(new BuyGuildShopGoodsResponse { ErrorMessage = conflict });
+
+            Assert.That(_files.Load(1), Is.Empty);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(donation ? MessageIds.GetGuildDonateOptions : MessageIds.GetGuildShop));
+            ReplyPageReload();
+            Assert.That(_client.Status, Does.Contain("请求编号已失效"));
+
+            _client.RecoverEconomyRequest();
+            Assert.That(_net.Calls.Count(call => call == method), Is.EqualTo(1));
+            Send(donation);
+            Assert.That(LastKey(), Is.Not.Zero.And.Not.EqualTo(first));
         }
 
         [Test] public void WrongOrderIdentityDoesNotConfirmOrApplyTheReply()

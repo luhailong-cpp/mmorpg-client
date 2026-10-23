@@ -794,10 +794,7 @@ namespace MmorpgClient.Game.Guild
                     if (IsValidGuild(response.Guild)) Apply(response.Guild);
                     if (!AcceptWrite(response.ErrorMessage))
                     {
-                        // 未决指令过多 / 资产通道关闭:页面上的待结算列表多半已经过时,重拉一次让它收敛。
-                        // 带着拒绝文案直接重拉(Busy 已复位),不走 DrainQueued —— 那一发不带文案,
-                        // 待结算为空时会把拒绝原因盖成"捐献信息已更新",看着像捐成功了。
-                        if (IsTip(response.ErrorMessage, guild_error.KGuildAssetPending) && Donations != null) RefreshDonations(Status);
+                        AfterEconomyReject(response.ErrorMessage, Donations != null, RefreshDonations);
                         return;
                     }
                     var donation = response.Donation;
@@ -902,8 +899,7 @@ namespace MmorpgClient.Game.Guild
                     if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView)) return;
                     if (!AcceptWrite(response.ErrorMessage))
                     {
-                        // 同 Donate:带着拒绝文案直接重拉本页,不走 DrainQueued(会盖成"帮会商店已更新")。
-                        if (IsTip(response.ErrorMessage, guild_error.KGuildAssetPending) && Shop != null) RefreshShop(Status);
+                        AfterEconomyReject(response.ErrorMessage, Shop != null, RefreshShop);
                         return;
                     }
                     var order = response.Order;
@@ -1007,6 +1003,23 @@ namespace MmorpgClient.Game.Guild
             try { _economyRecovery.Clear(PlayerId, saved); }
             catch (Exception) { Reject("服务端已回复，本机原记录尚未清理；请保留记录并恢复查账。"); return false; }
             return true;
+        }
+
+        private const string EconomyKeyConflictText = "本次请求编号已失效，请刷新页面后重新操作。";
+
+        /// <summary>
+        /// 捐献 / 兑换被业务拒绝之后(拒绝文案已由 AcceptWrite 写好,原键已由 ConfirmEconomyReply 作废):
+        /// 本页快照已知过时就带着这条文案重拉一次。直接重拉(Busy 已复位),不走 DrainQueued —— 那一发不带文案,
+        /// 会把拒绝原因盖成"捐献信息已更新 / 帮会商店已更新",看着像成功了。
+        /// - 未决指令过多 / 资产通道关闭(KGuildAssetPending):待结算列表多半已经过时。
+        /// - 1005(kInvalidParameter):服务端说这个键已绑定另一笔请求(客户端复用了键),或去重记录指向的指令已清理
+        ///   (05-economy.md 顶部「客户端幂等键」)。它是业务拒绝而非故障,原键不再重发;刷新后由玩家重新操作,那是新意图、新键。
+        /// </summary>
+        private void AfterEconomyReject(TipInfoMessage tip, bool pageLoaded, Action<string> reloadKeepingStatus)
+        {
+            bool keyConflict = IsTip(tip, common_error.KInvalidParameter);
+            if (keyConflict) Status = EconomyKeyConflictText;
+            if (pageLoaded && (keyConflict || IsTip(tip, guild_error.KGuildAssetPending))) reloadKeepingStatus(Status);
         }
 
         /// <summary>重连后复核当前帮会，再用原字节和原请求号恢复；不生成第二次扣款。</summary>
@@ -1434,6 +1447,7 @@ namespace MmorpgClient.Game.Guild
             return 0;
         }
         private static bool IsTip(TipInfoMessage tip, guild_error code) => tip != null && tip.Id == (uint)code;
+        private static bool IsTip(TipInfoMessage tip, common_error code) => tip != null && tip.Id == (uint)code;
         /// <summary>
         /// tip 文案里已经写明“列表已刷新”;重拉会把 Status 改成“正在读取帮会…”,玩家就看不到失败原因了。
         /// 这里把 tip 文案同步保回去。**调用方必须传一个 keepStatus = true 的重拉**,否则回包到达时
