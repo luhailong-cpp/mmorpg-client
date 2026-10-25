@@ -137,11 +137,11 @@ class CompletedMapTileTests(unittest.TestCase):
         with patch.object(tiles.base_maps, 'verify') as verify_base:
             with patch.object(tiles, 'inspect_png', wraps=tiles.inspect_png) as inspect:
                 result = tiles.verify(self.project, map_key='main')
-            verify_base.assert_called_once_with(self.project)
+            verify_base.assert_called_once_with(self.project.resolve())
         self.assertEqual([item['key'] for item in result], ['main'])
         self.assertEqual(inspect.call_count, 1)
         self.assertEqual(inspect.call_args.args[0],
-                         self.project / tiles.DELIVERY / 'main/tiles/r01_c01.png')
+                         self.project.resolve() / tiles.DELIVERY / 'main/tiles/r01_c01.png')
         # Omitting the selector still requires every delivered map payload.
         with self.assertRaisesRegex(ValueError, 'image byte count mismatch'):
             tiles.verify(self.project, verify_base=False)

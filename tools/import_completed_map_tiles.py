@@ -267,7 +267,10 @@ def audit_qa(tile, policy, art_root, label):
 
 
 def import_tiles(project, art_root, audit_path):
-    project, art_root = canonical_path(project), canonical_path(art_root)
+    project = canonical_path(project)
+    # Keep the original root spelling for QA references such as RUNNER~1.
+    # source_relative still resolves both paths before checking containment.
+    art_root = Path(art_root).absolute()
     base_maps.verify(project)
     audit_data = access_path(audit_path).read_bytes()
     audit = json.loads(audit_data)
