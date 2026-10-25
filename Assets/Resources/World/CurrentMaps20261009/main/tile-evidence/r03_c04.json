@@ -9,28 +9,50 @@
   "imageSha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
   "imageBytes": 22006960,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/progress.json",
-  "sourceLedgerSha256": "2b57837a9615c7c93cd127f43d1869b98773001f2d6aedb3278ad3b6081886ce",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c04-review.json",
+  "sourceLedgerSha256": "d049125f8a6e0e6d1c7b52ea257a2574153a1a1b8c88b60a5361f8c25172a998",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "coordinate": "r03_c04",
-    "canonicalAdoptedFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
-    "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
-    "sha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
-    "pixels": [
-      4096,
-      4096
+    "tile": "r03_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c04.png",
+    "imageSha256": "d9f811b3adb4f35b3950d4129c8c6c2f9c315bc7cc170d2a405453ef47210ad5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c04-review.json",
+        "sha256": "d049125f8a6e0e6d1c7b52ea257a2574153a1a1b8c88b60a5361f8c25172a998",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
     ],
-    "sourceCandidateAlias": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/candidate/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4.png",
-    "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/r03_c04/candidate/r03_c04-pipeline-fixed-native-contexts-d9f811b3adb4.assembly.json",
-    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c04-review.json",
-    "internalLocalQA": "PASS",
-    "formalAccepted": false
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "internalLocalQA": "PASS",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/progress.json",
+        "record": {
+          "internalLocalQA": "PASS",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/CITYNW_CANONICAL_R03C04_W_ROOF_SCOPE_READONLY_20261023_212737.json",
+        "record": {
+          "canonicalInternallyAcceptedDoesNotProveNewExternalJoin": true,
+          "noNewSourceInvalidationOrAcceptanceIssued": true
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/finish-20261012/final-records/r03_c04-review.json",

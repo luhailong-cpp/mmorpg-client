@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 3,
+  "column": 14,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "0ef01ba433ae4f36ede454c0709cba6c923988c27a9a957406a3b496f64b2d67",
+  "imageBytes": 24958682,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r03_c14.east-candidate-v2-20261016.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/r03_c14.east-candidate-v2-20261016.manifest.json",
+  "sourceLedgerSha256": "1eacce315d96ac627b6d1b383eb455e09e8e92a94186668705b898d72b234f47",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r03_c14.east-candidate-v2-20261016.png",
+    "imageSha256": "0ef01ba433ae4f36ede454c0709cba6c923988c27a9a957406a3b496f64b2d67",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/r03_c14.east-candidate-v2-20261016.manifest.json",
+        "sha256": "1eacce315d96ac627b6d1b383eb455e09e8e92a94186668705b898d72b234f47",
+        "sourceReviewSha256": "1eacce315d96ac627b6d1b383eb455e09e8e92a94186668705b898d72b234f47",
+        "completeness": [
+          "Candidate SHA binds output; sixteen native1024 CORE crops cover full4096."
+        ]
+      }
+    ],
+    "selectionBasis": "hash_bound_native16_assembly",
+    "sourceStatus": {
+      "status": "candidate16_native_16_quick_selected_pending_independent49",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

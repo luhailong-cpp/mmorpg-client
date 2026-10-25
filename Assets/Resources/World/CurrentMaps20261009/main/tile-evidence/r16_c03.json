@@ -1,0 +1,1877 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 16,
+  "column": 3,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "3039ea77e7ca20a1ebe018124c24e75ef16133127032731babd9993cc66ea32a",
+  "imageBytes": 17343944,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/r16_c03.coherent.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/internal-33-accepted-proof-v01.json",
+  "sourceLedgerSha256": "1a2ddb53830de7a406ef05c22d008d26dadc6a23abac426ee6e5d3862b791060",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r16_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/r16_c03.coherent.candidate.png",
+    "imageSha256": "3039ea77e7ca20a1ebe018124c24e75ef16133127032731babd9993cc66ea32a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/internal-33-accepted-proof-v01.json",
+        "sha256": "1a2ddb53830de7a406ef05c22d008d26dadc6a23abac426ee6e5d3862b791060",
+        "sourceReviewSha256": "1a2ddb53830de7a406ef05c22d008d26dadc6a23abac426ee6e5d3862b791060",
+        "completeness": [
+          "Selected output path/SHA bound to this record",
+          "activeNativeCount=16 / coverageSourceCount=16; no missing cores reported"
+        ]
+      }
+    ],
+    "selectionBasis": "Exact candidate identity bound to complete native core record",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/r16_c03.coherent.candidate.png.generation.json",
+        "record": {
+          "newNativeCoreCount": 0,
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/assembly.json",
+        "record": {
+          "newNativeCoreCount": 0,
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/internal-33-accepted-proof-v01.json",
+        "record": {
+          "coverageSourceCount": 16,
+          "externalQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/external-visual-qa-v01.json",
+            "sha256": "c66b84cf80865b05e39dab79f8e36b83a04a0d77b58b72cbc7d80b18eee65bb8"
+          },
+          "externalPassed": false,
+          "externalWindowsPassed": 0,
+          "externalWindowsFailed": 12,
+          "externalCornerFailures": 4,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/external-visual-qa-v01.json",
+    "sourceSha256": "c66b84cf80865b05e39dab79f8e36b83a04a0d77b58b72cbc7d80b18eee65bb8",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "kind": "external_native_actual_visual_qa",
+      "createdAtUtc": "2026-10-23T03:01:01.367443+00:00",
+      "reviewer": "prepare_r16c08_geometry",
+      "tile": "r16_c03",
+      "current": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/r16_c03.coherent.candidate.png",
+        "sha256": "3039ea77e7ca20a1ebe018124c24e75ef16133127032731babd9993cc66ea32a",
+        "bytes": 17343944,
+        "decodedRGBSha256": "89c311a2b5bb39bc0a692a7cb2845b207e004b8f3a3cddcbe25b95ab0757da89",
+        "pixels": [
+          4096,
+          4096
+        ],
+        "tile": "r16_c03"
+      },
+      "currentAssembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/assembly.json",
+        "sha256": "37618210d7f4b829fe74cc2663a003418bbde1ec31e2469bf91927761f791219",
+        "bytes": 6699
+      },
+      "inputManifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/manifest.json",
+        "sha256": "14e5f0f7ba4b4750adda11d6f710380744d49c2e1705f36755ffe8dbc264d091",
+        "bytes": 23839
+      },
+      "catalog": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "sha256": "297d5e74153de729220aa649505036a6cd79a93413287a36b684e93a8f99001d",
+        "bytes": 120123
+      },
+      "catalogBinding": {
+        "north": {
+          "tile": "r15_c03",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+            "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+            "bytes": 19369545,
+            "decodedRGBSha256": "689411172d2316a455f9d89c129674a7033921d126a2ada42431237353439e81",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "assembly": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/assembly.json",
+            "sha256": "6d6ad4266c16576ef12962c5b15686128a58158af689ab62ec7d04fecc09b69a",
+            "bytes": 121531
+          },
+          "catalogEntry": {
+            "schemaVersion": 1,
+            "tile": "r15_c03",
+            "source": "native-full16-newowner-reviewed-candidate",
+            "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/assembly.json",
+            "assemblySha256": "6d6ad4266c16576ef12962c5b15686128a58158af689ab62ec7d04fecc09b69a",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.context.png",
+              "sha256": "450b1121e632b04b672c60f048a986952fd1b8775089a6c3c518f4d347be9742",
+              "width": 4326,
+              "height": 4326,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "verifiedNativeSlots": 16,
+            "sourceResampling": false,
+            "workerReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/worker-review.json",
+            "workerReviewSha256": "1fccf050489db347a8b902067cb21560b88aff9f20651457325f8fb3ca70906e",
+            "internalPassed": false,
+            "externalPassed": false,
+            "formalAccepted": false,
+            "adoptionScope": "Coverage/source proposal only: 4096 candidate quilted from sixteen native1254 contributions, each1024 core+115 halo; not single native4K, no upscaling. All33 internal native windows actually viewed and failed findings retained. External seams held; no acceptance inferred. No shared catalog/progress/Git write."
+          }
+        },
+        "west": {
+          "tile": "r16_c02",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c02/pipeline/output/c3b34d67679fdc95/r16_c02.candidate.png",
+            "sha256": "4557e09b47dfe430180556a5d662f94f42a9aa2c0f4b610955853d3d30b592e5",
+            "bytes": 21240875,
+            "decodedRGBSha256": "754bda770e4f605ba93f5e1a93b27b011bf73eacc71f45634c94dc3d5961772b",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "assembly": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c02/pipeline/output/c3b34d67679fdc95/assembly.json",
+            "sha256": "4cec91514fb9525d5879de07db1d25563be0cecb1f94ec8994488148a8c6152a",
+            "bytes": 164212
+          },
+          "catalogEntry": {
+            "tile": "r16_c02",
+            "source": "native-full16-worker-reviewed-candidate",
+            "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c02/pipeline/output/c3b34d67679fdc95/assembly.json",
+            "assemblySha256": "4cec91514fb9525d5879de07db1d25563be0cecb1f94ec8994488148a8c6152a",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c02/pipeline/output/c3b34d67679fdc95/r16_c02.candidate.png",
+              "sha256": "4557e09b47dfe430180556a5d662f94f42a9aa2c0f4b610955853d3d30b592e5",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c02/pipeline/output/c3b34d67679fdc95/r16_c02.candidate.context.png",
+              "sha256": "4966e16d3020a197c94240bdf99f31806ce4b330f8ceb42f53e5d3ce39664c47",
+              "width": 4326,
+              "height": 4326,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "coreWorldBox": [
+              4096,
+              61440,
+              8192,
+              65536
+            ],
+            "verifiedNativeSlots": 16,
+            "sourceResampling": false,
+            "internalPassed": false,
+            "externalPassed": false,
+            "formalAccepted": false,
+            "workerReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c02/pipeline/output/c3b34d67679fdc95/full-native-qa-20261019a-v01/worker-review.json",
+            "workerReviewSha256": "91274a3384c5e26c344f2eadf5635f80e453375e901ab5d8fa4120fe83d16234",
+            "adoptionScope": "Actual output/context hashes and dimensions checked; actual worker visual QA remains failed. No acceptance inferred."
+          }
+        },
+        "northwest": {
+          "tile": "r15_c02",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/r15_c02.candidate.png",
+            "sha256": "65d188a6b756c3389c1d19456c3610d9bc82bab5f25b02f861650408bd597dc5",
+            "bytes": 22063480,
+            "decodedRGBSha256": "aa8fa594852d7dcd7d66271d0afaec3e28e168290b2f0fd994fcf4b72e97d3ab",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "assembly": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/assembly.json",
+            "sha256": "0f9c62d68afae70522d0db1485dc06403adeab440814f1a1facbcee7cc90241e",
+            "bytes": 169875
+          },
+          "catalogEntry": {
+            "tile": "r15_c02",
+            "source": "native-full16-worker-reviewed-candidate",
+            "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/assembly.json",
+            "assemblySha256": "0f9c62d68afae70522d0db1485dc06403adeab440814f1a1facbcee7cc90241e",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/r15_c02.candidate.png",
+              "sha256": "65d188a6b756c3389c1d19456c3610d9bc82bab5f25b02f861650408bd597dc5",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/r15_c02.candidate.context.png",
+              "sha256": "5a3adeb3c0425c792024efc857e0abbb3e46b2badfe7b8921368738da30e1378",
+              "width": 4326,
+              "height": 4326,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "coreWorldBox": [
+              4096,
+              57344,
+              8192,
+              61440
+            ],
+            "verifiedNativeSlots": 16,
+            "sourceResampling": false,
+            "internalPassed": false,
+            "externalPassed": false,
+            "formalAccepted": false,
+            "workerReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/worker-review.json",
+            "workerReviewSha256": "a052e206b37edd5caf5bd5aa33c03159febcd65161906f2528b5e511970b3694",
+            "adoptionScope": "Actual output/context hashes and dimensions checked; actual worker visual QA remains failed. No acceptance inferred."
+          }
+        },
+        "northeast": {
+          "tile": "r15_c04",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c04/pipeline/output/dea8c952791edcc3/r15_c04.candidate.png",
+            "sha256": "bb819a586a0e1495d718f0775ae2c15791dee17ca039cf6845f6e6ad5555429a",
+            "bytes": 18870609,
+            "decodedRGBSha256": "64c95bb7315627d98cde833efc15f8bb83c1edb48ccfd4aa5df424c689152859",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "assembly": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c04/pipeline/output/dea8c952791edcc3/assembly.json",
+            "sha256": "f91ea597b47fe8b961886d0c2ba996a2df56a3e5efca38787c7006f01c0ff151",
+            "bytes": 121695
+          },
+          "catalogEntry": {
+            "schemaVersion": 1,
+            "tile": "r15_c04",
+            "source": "native-full16-newowner-reviewed-candidate",
+            "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c04/pipeline/output/dea8c952791edcc3/assembly.json",
+            "assemblySha256": "f91ea597b47fe8b961886d0c2ba996a2df56a3e5efca38787c7006f01c0ff151",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c04/pipeline/output/dea8c952791edcc3/r15_c04.candidate.png",
+              "sha256": "bb819a586a0e1495d718f0775ae2c15791dee17ca039cf6845f6e6ad5555429a",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c04/pipeline/output/dea8c952791edcc3/r15_c04.candidate.context.png",
+              "sha256": "8209bc3b63d0c4f9e8dca1db8f3051529a2889da860b6094ab3a0cf22943dcd1",
+              "width": 4326,
+              "height": 4326,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "verifiedNativeSlots": 16,
+            "sourceResampling": false,
+            "workerReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c04/pipeline/qa/full16-newowner-20261020b-v01/worker-review.json",
+            "workerReviewSha256": "5bb1d0cc7455715e6edb67cb53c929d8d3d802a45012502f19b5b2cd44f9dfe5",
+            "internalPassed": false,
+            "externalPassed": false,
+            "formalAccepted": false,
+            "adoptionScope": "Coverage/source proposal only: 4096 candidate quilted from sixteen native1254 contributions, each1024 core+115 halo; not single native4K, no upscaling. All33 internal native windows actually viewed and failed findings retained. External seams held; no acceptance inferred. No shared catalog/progress/Git write."
+          }
+        }
+      },
+      "unselectedTargets": {
+        "currentEntryPresent": false,
+        "currentEntryValue": null,
+        "eastEntryPresent": false,
+        "eastEntryValue": null,
+        "currentRole": "Fixed new v05 prospective, not catalog adopted",
+        "eastRole": "Explicit new complete prospective neighbor only, not catalog selected; internal QA remains failed",
+        "eastExistingQA": [
+          {
+            "file": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/vertical-visual-qa-v01.json",
+              "sha256": "e54f6c514dbc1c49c7eac8fe9d3ae1a22e297d753baacf46bb0b574691a80feb",
+              "bytes": 2946
+            },
+            "counts": null,
+            "localWindowPassCount": 0,
+            "failCount": 12,
+            "internalAccepted": false,
+            "externalAccepted": false,
+            "formalAccepted": false
+          },
+          {
+            "file": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/horizontal-and-corner-visual-qa-v01.json",
+              "sha256": "6abdde9a8192c8f41ff6106f03cd381d8ad3607cf69072a357a50c88a0182cae",
+              "bytes": 44675
+            },
+            "counts": {
+              "local_seam_pass": 0,
+              "fail": 21
+            },
+            "localWindowPassCount": null,
+            "failCount": null,
+            "internalAccepted": false,
+            "externalAccepted": false,
+            "formalAccepted": false
+          }
+        ]
+      },
+      "sources": {
+        "current": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/r16_c03.coherent.candidate.png",
+          "sha256": "3039ea77e7ca20a1ebe018124c24e75ef16133127032731babd9993cc66ea32a",
+          "bytes": 17343944,
+          "decodedRGBSha256": "89c311a2b5bb39bc0a692a7cb2845b207e004b8f3a3cddcbe25b95ab0757da89",
+          "pixels": [
+            4096,
+            4096
+          ],
+          "tile": "r16_c03"
+        },
+        "north": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+          "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+          "bytes": 19369545,
+          "decodedRGBSha256": "689411172d2316a455f9d89c129674a7033921d126a2ada42431237353439e81",
+          "pixels": [
+            4096,
+            4096
+          ],
+          "tile": "r15_c03"
+        },
+        "west": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c02/pipeline/output/c3b34d67679fdc95/r16_c02.candidate.png",
+          "sha256": "4557e09b47dfe430180556a5d662f94f42a9aa2c0f4b610955853d3d30b592e5",
+          "bytes": 21240875,
+          "decodedRGBSha256": "754bda770e4f605ba93f5e1a93b27b011bf73eacc71f45634c94dc3d5961772b",
+          "pixels": [
+            4096,
+            4096
+          ],
+          "tile": "r16_c02"
+        },
+        "east": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/r16_c04.candidate.png",
+          "sha256": "46524eedd83686f481dc956f8caf46b8c64338bb0b5fbe08f6bd016ecee9d8d3",
+          "bytes": 19380722,
+          "decodedRGBSha256": "c7e2d38fad147f975353ab4d82a826b83760e5dbb27c5159dad3f9eca5e738e9",
+          "pixels": [
+            4096,
+            4096
+          ],
+          "tile": "r16_c04"
+        }
+      },
+      "boardsActuallyViewed": [
+        {
+          "side": "north",
+          "file": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-4windows.native-board.png",
+            "sha256": "1e0d6a21ef17e2c7d966a71f6c1e51aa0b959b7474f987424bdc4dc30dea23d8",
+            "bytes": 1658467,
+            "decodedRGBSha256": "4b17694c60579ccebd74b409a50ac0eae037d332d452f89e4fc19737a3c6c912",
+            "pixels": [
+              1024,
+              1554
+            ]
+          },
+          "mapping": [
+            {
+              "name": "north-segment1",
+              "boardBox": [
+                0,
+                0,
+                1024,
+                384
+              ]
+            },
+            {
+              "name": "north-segment2",
+              "boardBox": [
+                0,
+                390,
+                1024,
+                774
+              ]
+            },
+            {
+              "name": "north-segment3",
+              "boardBox": [
+                0,
+                780,
+                1024,
+                1164
+              ]
+            },
+            {
+              "name": "north-segment4",
+              "boardBox": [
+                0,
+                1170,
+                1024,
+                1554
+              ]
+            }
+          ],
+          "scale": "1:1; 6px gaps only; no image scaling"
+        },
+        {
+          "side": "west",
+          "file": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-4windows.native-board.png",
+            "sha256": "e35af0a66994561c720f7c82b3ae066ab85647f3ff19b098506410dd87d79b21",
+            "bytes": 1931985,
+            "decodedRGBSha256": "dba769f7b16e1ea31bdb560aba1e77cf08b2b56e0830e5fe1fac91ec08b02dd2",
+            "pixels": [
+              1554,
+              1024
+            ]
+          },
+          "mapping": [
+            {
+              "name": "west-segment1",
+              "boardBox": [
+                0,
+                0,
+                384,
+                1024
+              ]
+            },
+            {
+              "name": "west-segment2",
+              "boardBox": [
+                390,
+                0,
+                774,
+                1024
+              ]
+            },
+            {
+              "name": "west-segment3",
+              "boardBox": [
+                780,
+                0,
+                1164,
+                1024
+              ]
+            },
+            {
+              "name": "west-segment4",
+              "boardBox": [
+                1170,
+                0,
+                1554,
+                1024
+              ]
+            }
+          ],
+          "scale": "1:1; 6px gaps only; no image scaling"
+        },
+        {
+          "side": "east",
+          "file": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-4windows.native-board.png",
+            "sha256": "2288ae72bebc6d379bd43739973509023d973affc145bbe110b4b220ca2d6ea5",
+            "bytes": 1866479,
+            "decodedRGBSha256": "a23708f9870d749bae11731afad1d26662b234ea3a319a930b0e3ca76f8dbbd7",
+            "pixels": [
+              1554,
+              1024
+            ]
+          },
+          "mapping": [
+            {
+              "name": "east-segment1",
+              "boardBox": [
+                0,
+                0,
+                384,
+                1024
+              ]
+            },
+            {
+              "name": "east-segment2",
+              "boardBox": [
+                390,
+                0,
+                774,
+                1024
+              ]
+            },
+            {
+              "name": "east-segment3",
+              "boardBox": [
+                780,
+                0,
+                1164,
+                1024
+              ]
+            },
+            {
+              "name": "east-segment4",
+              "boardBox": [
+                1170,
+                0,
+                1554,
+                1024
+              ]
+            }
+          ],
+          "scale": "1:1; 6px gaps only; no image scaling"
+        }
+      ],
+      "windows": [
+        {
+          "name": "north-segment1",
+          "worldBox": [
+            8192,
+            61248,
+            9216,
+            61632
+          ],
+          "parts": [
+            {
+              "source": "north",
+              "sourceCoreBox": [
+                0,
+                3904,
+                1024,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                1024,
+                192
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                0,
+                0,
+                1024,
+                192
+              ],
+              "windowBox": [
+                0,
+                192,
+                1024,
+                384
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-segment1.png",
+            "sha256": "185d53a363a5dc0827d19fc565523520d75cda0ba433cd7f55277b933e37a182",
+            "bytes": 428451,
+            "decodedRGBSha256": "19f4415f604876778c899cdb2afd6e7f5e330216af699e4d0fa19a0a3dc1565e",
+            "pixels": [
+              1024,
+              384
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "near-compatible block placement; local edge/shadow contact fails",
+          "geometryAndToneObservation": "A horizontal tone/shadow cut crosses the cream/blue pier near window y192. The blue side edges and lower bright rim change shape at the boundary around window x380..800; this is not a continuous painted contact.",
+          "pendingRepairWorldBoxes": [
+            [
+              8192,
+              61416,
+              9216,
+              61472
+            ],
+            [
+              8560,
+              61408,
+              9008,
+              61488
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "north-segment2",
+          "worldBox": [
+            9216,
+            61248,
+            10240,
+            61632
+          ],
+          "parts": [
+            {
+              "source": "north",
+              "sourceCoreBox": [
+                1024,
+                3904,
+                2048,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                1024,
+                192
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                1024,
+                0,
+                2048,
+                192
+              ],
+              "windowBox": [
+                0,
+                192,
+                1024,
+                384
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-segment2.png",
+            "sha256": "7bbefd09cd3ab831b8702a2e3610815cd26ac05ca570b29fb16a2c67de48b9e9",
+            "bytes": 404371,
+            "decodedRGBSha256": "f692f90d37ae5a34b0bd8419fa829a6a52007fa48b80f2585c6338b1bc0046de",
+            "pixels": [
+              1024,
+              384
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible local pier outline",
+          "geometryAndToneObservation": "The blue pier left edge steps right at the seam near window x425..460; cream/blue face shading and the right-hand trim change abruptly at y192. A straight horizontal texture contact remains through the pier.",
+          "pendingRepairWorldBoxes": [
+            [
+              9600,
+              61400,
+              10192,
+              61496
+            ],
+            [
+              9216,
+              61416,
+              10240,
+              61472
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "north-segment3",
+          "worldBox": [
+            10240,
+            61248,
+            11264,
+            61632
+          ],
+          "parts": [
+            {
+              "source": "north",
+              "sourceCoreBox": [
+                2048,
+                3904,
+                3072,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                1024,
+                192
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                2048,
+                0,
+                3072,
+                192
+              ],
+              "windowBox": [
+                0,
+                192,
+                1024,
+                384
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-segment3.png",
+            "sha256": "f921ed8b3991d853ac5ae1a33c256e330eb3ef5d5decbfb9249bbcdb2187bc5e",
+            "bytes": 396915,
+            "decodedRGBSha256": "a57dab3a60f77f30d427b4832248bcd4b86f579106344df8957aa7e1cc31c27b",
+            "pixels": [
+              1024,
+              384
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "macro outline broadly related; face contact fails",
+          "geometryAndToneObservation": "The long cream ledge and blue pier are broadly related, but there is a visible abrupt lighter/warm face band at the exact horizontal join through window x0..1024. Painted shading and the pier profile contact do not read as one continuous face.",
+          "pendingRepairWorldBoxes": [
+            [
+              10240,
+              61408,
+              11264,
+              61488
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "north-segment4",
+          "worldBox": [
+            11264,
+            61248,
+            12288,
+            61632
+          ],
+          "parts": [
+            {
+              "source": "north",
+              "sourceCoreBox": [
+                3072,
+                3904,
+                4096,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                1024,
+                192
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                3072,
+                0,
+                4096,
+                192
+              ],
+              "windowBox": [
+                0,
+                192,
+                1024,
+                384
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-segment4.png",
+            "sha256": "19e54be670296bb776975f1d13e7fdfa59a3334f12772f493272cb8cf929ac62",
+            "bytes": 428616,
+            "decodedRGBSha256": "d70389a779a779f83d8b5b5c2ae63d4964b2f3a7ae140da8dcff140c0c86f47c",
+            "pixels": [
+              1024,
+              384
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/north-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "macro outline broadly related; tone contact fails",
+          "geometryAndToneObservation": "The ledge/pier placement is close, but the lower cream and blue faces become abruptly lighter at window y192. The broad horizontal tone/brush strip through the ledge and post remains visible; no geometry correction is inferred from color statistics.",
+          "pendingRepairWorldBoxes": [
+            [
+              11264,
+              61408,
+              12288,
+              61488
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "west-segment1",
+          "worldBox": [
+            8000,
+            61440,
+            8384,
+            62464
+          ],
+          "parts": [
+            {
+              "source": "west",
+              "sourceCoreBox": [
+                3904,
+                0,
+                4096,
+                1024
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                0,
+                0,
+                192,
+                1024
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-segment1.png",
+            "sha256": "6ffc83d9015f08dc322fb7f2e041ca13c68755c74118ec0788d386717880d70b",
+            "bytes": 452703,
+            "decodedRGBSha256": "1fc37ab4c5ce8f0c9f92e7947fe3e478a4bc4e3d590126ffcdd3ef9fef43c403",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible course arrangement",
+          "geometryAndToneObservation": "Current cream/broad-brush stone meets the neighboring grey/fine-stroke wall with a hard vertical material/lighting division. Current horizontal profile near local y378..530 starts at the boundary; the west joint near y583 ends there and current joint near y864 starts there.",
+          "pendingRepairWorldBoxes": [
+            [
+              8128,
+              61440,
+              8256,
+              62464
+            ],
+            [
+              8064,
+              61784,
+              8320,
+              62080
+            ],
+            [
+              8064,
+              62272,
+              8320,
+              62352
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "west-segment2",
+          "worldBox": [
+            8000,
+            62464,
+            8384,
+            63488
+          ],
+          "parts": [
+            {
+              "source": "west",
+              "sourceCoreBox": [
+                3904,
+                1024,
+                4096,
+                2048
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                0,
+                1024,
+                192,
+                2048
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-segment2.png",
+            "sha256": "23a276f20c47450e0e0acc87276fa17c1d24a69bb51afa32b5db98827b7362b2",
+            "bytes": 472752,
+            "decodedRGBSha256": "9f5512f7d6e1fc8d84af4f5d9c0fac7db45d7818a2aebdcc88a108b5b83e330e",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible subdivisions and paint scale",
+          "geometryAndToneObservation": "A full-height straight boundary separates fine grey diagonal strokes from cream broad-brush rectangular stones. The horizontal course around current local y650..720 has a different profile/height on the west side, and the cream vertical joint has no compatible wall continuation.",
+          "pendingRepairWorldBoxes": [
+            [
+              8128,
+              62464,
+              8256,
+              63488
+            ],
+            [
+              8064,
+              63072,
+              8320,
+              63232
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "west-segment3",
+          "worldBox": [
+            8000,
+            63488,
+            8384,
+            64512
+          ],
+          "parts": [
+            {
+              "source": "west",
+              "sourceCoreBox": [
+                3904,
+                2048,
+                4096,
+                3072
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                0,
+                2048,
+                192,
+                3072
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-segment3.png",
+            "sha256": "71cfb6a224385ea7e8e5348d3a1733d7fca655ee2b8319ac586383429184fcd7",
+            "bytes": 464730,
+            "decodedRGBSha256": "b2f06eaff41f0d13984e22e1dc8963f98631e8c825dbeacdf6e76760d8325ca1",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible stone joints",
+          "geometryAndToneObservation": "The current cream horizontal joints near local y194 and y915 terminate into a grey wall field. The west lower joint near local y956 has a different level/profile. The full-height tone and brush-scale split is visible.",
+          "pendingRepairWorldBoxes": [
+            [
+              8128,
+              63488,
+              8256,
+              64512
+            ],
+            [
+              8064,
+              63632,
+              8320,
+              63744
+            ],
+            [
+              8064,
+              64352,
+              8320,
+              64512
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "west-segment4",
+          "worldBox": [
+            8000,
+            64512,
+            8384,
+            65536
+          ],
+          "parts": [
+            {
+              "source": "west",
+              "sourceCoreBox": [
+                3904,
+                3072,
+                4096,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                0,
+                3072,
+                192,
+                4096
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-segment4.png",
+            "sha256": "15a3047d8936c5425701594eacc539c4ac0d6ba59c839ea1d972ecb957b1f571",
+            "bytes": 509114,
+            "decodedRGBSha256": "177686564ade9918c59eb3eed0a19c8473f711d129c7a4a16c6c5875315f7996",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/west-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible lower wall and shrub footprint/detail scale",
+          "geometryAndToneObservation": "The west grey courses meet a red/brown recessed panel and a different profile on the current side; several course lines terminate at the boundary. At the bottom, the west small bright yellow leaf cluster is cut directly into much larger rounded green leaves from current; individual silhouettes and plant scale do not connect.",
+          "pendingRepairWorldBoxes": [
+            [
+              8064,
+              64512,
+              8320,
+              65312
+            ],
+            [
+              8000,
+              65216,
+              8384,
+              65536
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "east-segment1",
+          "worldBox": [
+            12096,
+            61440,
+            12480,
+            62464
+          ],
+          "parts": [
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                3904,
+                0,
+                4096,
+                1024
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "east",
+              "sourceCoreBox": [
+                0,
+                0,
+                192,
+                1024
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-segment1.png",
+            "sha256": "16ea942f2da9054407819f0d06848c92570d58949996b7ff386d799bb7de319b",
+            "bytes": 461956,
+            "decodedRGBSha256": "2313342e4aa699ef585650749265a7c38c664692a26c4aa042ed6d6008d7f077",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible profile contacts",
+          "geometryAndToneObservation": "The cream wall planes have an obvious vertical lighting/brush change. The horizontal cream/brown stone profile through roughly local y370..540 does not meet at matching edge heights and shadow thicknesses across the boundary.",
+          "pendingRepairWorldBoxes": [
+            [
+              12224,
+              61440,
+              12352,
+              62464
+            ],
+            [
+              12160,
+              61760,
+              12416,
+              62048
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "east-segment2",
+          "worldBox": [
+            12096,
+            62464,
+            12480,
+            63488
+          ],
+          "parts": [
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                3904,
+                1024,
+                4096,
+                2048
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "east",
+              "sourceCoreBox": [
+                0,
+                1024,
+                192,
+                2048
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-segment2.png",
+            "sha256": "e4abe717c50318635c62687bb7b9c80743389147268bd48f57401b1f6aa6997f",
+            "bytes": 460862,
+            "decodedRGBSha256": "f14d7a7fe99d7d767d134aa15bcb4906608b29d0d4b4d56a77a356c30f926a77",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible horizontal courses",
+          "geometryAndToneObservation": "The current horizontal joint/trim around local y642..720 meets the east profile around y686..774 at different heights; the two shadows do not continue as one course. The remaining plain face has a straight cream-to-grey vertical tonefront.",
+          "pendingRepairWorldBoxes": [
+            [
+              12224,
+              62464,
+              12352,
+              63488
+            ],
+            [
+              12160,
+              63064,
+              12416,
+              63264
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "east-segment3",
+          "worldBox": [
+            12096,
+            63488,
+            12480,
+            64512
+          ],
+          "parts": [
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                3904,
+                2048,
+                4096,
+                3072
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "east",
+              "sourceCoreBox": [
+                0,
+                2048,
+                192,
+                3072
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-segment3.png",
+            "sha256": "a8257111ba428a7e72f9a30d1359ec60b6351199298705053e453670357f4776",
+            "bytes": 417474,
+            "decodedRGBSha256": "52745d53547e113effbbde71077ab1aa644a278f90cc203d02da90964094f0cf",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible wall subdivisions",
+          "geometryAndToneObservation": "Current horizontal stone joints around local y194 and y915 terminate into the east plain grey face, whose lower trim begins at a different height near y949. The long straight color/paint boundary is visible through the unjointed face.",
+          "pendingRepairWorldBoxes": [
+            [
+              12224,
+              63488,
+              12352,
+              64512
+            ],
+            [
+              12160,
+              63624,
+              12416,
+              63744
+            ],
+            [
+              12160,
+              64352,
+              12416,
+              64512
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        },
+        {
+          "name": "east-segment4",
+          "worldBox": [
+            12096,
+            64512,
+            12480,
+            65536
+          ],
+          "parts": [
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                3904,
+                3072,
+                4096,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                1024
+              ]
+            },
+            {
+              "source": "east",
+              "sourceCoreBox": [
+                0,
+                3072,
+                192,
+                4096
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                1024
+              ]
+            }
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-segment4.png",
+            "sha256": "46fd503f51bf9f30bccaba9fa36b62a76301e4e3f24305c9e0f313d89b3c36d7",
+            "bytes": 490709,
+            "decodedRGBSha256": "da76b88265e913a604ce5cad83757cdc8ac6f8d08ec0607f55ccf98d21afd7c3",
+            "pixels": [
+              384,
+              1024
+            ]
+          },
+          "copyEqualityVerified": true,
+          "operation": "Unscaled true4096 core slices, exactly192 pixels each side; integer native pixel copy; no halo/padding, resample, blending or art.",
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "view_image(detail=original) of exact4window native board; north also individually viewed",
+            "boardFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/east-4windows.native-board.png"
+          },
+          "verdict": "fail",
+          "layoutCompatibility": "incompatible plant silhouette and leaf scale",
+          "geometryAndToneObservation": "The current large rounded green leaves end at the boundary and are replaced by many smaller dense yellow-green leaves in the east candidate. Leaf silhouettes are cut at the seam, with a clear shift in scale, cluster structure and lighting; the upper wall/cap contact also changes height/tone.",
+          "pendingRepairWorldBoxes": [
+            [
+              12096,
+              64512,
+              12480,
+              65536
+            ]
+          ],
+          "repairBoxesAre": "Conservative visible issue neighborhoods; not a production edit mask, not a new geometric contract.",
+          "attribution": "Bidirectional pair incompatibility; this review does not assign all defects to current or the neighbor."
+        }
+      ],
+      "corners": [
+        {
+          "name": "northwest-corner",
+          "worldBox": [
+            8000,
+            61248,
+            8384,
+            61632
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/northwest-corner.png",
+            "sha256": "4e97575bdfc71c76d0faefd26eb6a2151b8cf92254342d4e83de71dc101942b9",
+            "bytes": 160905,
+            "decodedRGBSha256": "beda88414b62f56a4ef9c6de18c2b009a432d604765a508295b72d7f75547709",
+            "pixels": [
+              384,
+              384
+            ]
+          },
+          "parts": [
+            {
+              "source": "northwest",
+              "sourceCoreBox": [
+                3904,
+                3904,
+                4096,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                192
+              ]
+            },
+            {
+              "source": "north",
+              "sourceCoreBox": [
+                0,
+                3904,
+                192,
+                4096
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                192
+              ]
+            },
+            {
+              "source": "west",
+              "sourceCoreBox": [
+                3904,
+                0,
+                4096,
+                192
+              ],
+              "windowBox": [
+                0,
+                192,
+                192,
+                384
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                0,
+                0,
+                192,
+                192
+              ],
+              "windowBox": [
+                192,
+                192,
+                384,
+                384
+              ]
+            }
+          ],
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "Individual view_image(detail=original)"
+          },
+          "verdict": "fail",
+          "geometryAndToneObservation": "The NW tile has grey/taupe brick subdivisions against the north cream slab field at the vertical seam. The lower current/west grey-cream tones differ and the horizontal ledge contact near world y61440 changes height/lighting. The four quadrants do not form a coherent junction.",
+          "pendingRepairWorldBoxes": [
+            [
+              8000,
+              61248,
+              8384,
+              61632
+            ]
+          ],
+          "outsideWorldPixels": 0
+        },
+        {
+          "name": "northeast-corner",
+          "worldBox": [
+            12096,
+            61248,
+            12480,
+            61632
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/northeast-corner.png",
+            "sha256": "d7140f16256906e14146c8b1c37f7b244db3c0d36855ced8cfb9a0a6821243db",
+            "bytes": 181137,
+            "decodedRGBSha256": "0fecf35d3f8d2c578c64210a53cfb74354bd84e157dc3cea106604f5eeef4422",
+            "pixels": [
+              384,
+              384
+            ]
+          },
+          "parts": [
+            {
+              "source": "north",
+              "sourceCoreBox": [
+                3904,
+                3904,
+                4096,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                192
+              ]
+            },
+            {
+              "source": "northeast",
+              "sourceCoreBox": [
+                0,
+                3904,
+                192,
+                4096
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                192
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                3904,
+                0,
+                4096,
+                192
+              ],
+              "windowBox": [
+                0,
+                192,
+                192,
+                384
+              ]
+            },
+            {
+              "source": "east",
+              "sourceCoreBox": [
+                0,
+                0,
+                192,
+                192
+              ],
+              "windowBox": [
+                192,
+                192,
+                384,
+                384
+              ]
+            }
+          ],
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "Individual view_image(detail=original)"
+          },
+          "verdict": "fail",
+          "geometryAndToneObservation": "The blue/cream north-to-current pier has a horizontal shading contact; the right-hand ledge/cream block layout from northeast/east does not meet the left arrangement across world x12288. Shadow lips and material transitions reveal the four-way boundary.",
+          "pendingRepairWorldBoxes": [
+            [
+              12096,
+              61248,
+              12480,
+              61632
+            ]
+          ],
+          "outsideWorldPixels": 0
+        },
+        {
+          "name": "southwest-inside-world-halfcorner",
+          "worldBox": [
+            8000,
+            65344,
+            8384,
+            65536
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/southwest-inside-world-halfcorner.png",
+            "sha256": "54a6d8a69d845e9be06f9893d0d952b49078eddecd54797b65f36543a0cfd839",
+            "bytes": 99819,
+            "decodedRGBSha256": "244b85389b4f7410c415f66a73ea699183fced2df34a6ab0c349b7390026c26d",
+            "pixels": [
+              384,
+              192
+            ]
+          },
+          "parts": [
+            {
+              "source": "west",
+              "sourceCoreBox": [
+                3904,
+                3904,
+                4096,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                192
+              ]
+            },
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                0,
+                3904,
+                192,
+                4096
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                192
+              ]
+            }
+          ],
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "Individual view_image(detail=original)"
+          },
+          "verdict": "fail",
+          "geometryAndToneObservation": "Within the real map, dense small bright yellow leaves on the west become large rounded green leaves on the current side at the exact vertical border. The plant silhouettes/scale do not connect.",
+          "pendingRepairWorldBoxes": [
+            [
+              8000,
+              65344,
+              8384,
+              65536
+            ]
+          ],
+          "outsideWorldPixels": 0
+        },
+        {
+          "name": "southeast-inside-world-halfcorner",
+          "worldBox": [
+            12096,
+            65344,
+            12480,
+            65536
+          ],
+          "window": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/coherent-assembled-20261022-v05/external-native-qa-v01/southeast-inside-world-halfcorner.png",
+            "sha256": "011d781a6516e6043e65517de1cd4a52bb54c9053d34ef83d3cb43b3304a3e15",
+            "bytes": 93768,
+            "decodedRGBSha256": "729acedc05796fed3d1735d4c5d4664ad2548b6512a0dc954141e95bc57ce0fd",
+            "pixels": [
+              384,
+              192
+            ]
+          },
+          "parts": [
+            {
+              "source": "current",
+              "sourceCoreBox": [
+                3904,
+                3904,
+                4096,
+                4096
+              ],
+              "windowBox": [
+                0,
+                0,
+                192,
+                192
+              ]
+            },
+            {
+              "source": "east",
+              "sourceCoreBox": [
+                0,
+                3904,
+                192,
+                4096
+              ],
+              "windowBox": [
+                192,
+                0,
+                384,
+                192
+              ]
+            }
+          ],
+          "actualSourceBinding": true,
+          "actualView": {
+            "scale": "1:1",
+            "method": "Individual view_image(detail=original)"
+          },
+          "verdict": "fail",
+          "geometryAndToneObservation": "Within the real map, large rounded current leaves terminate at the vertical border and meet much smaller dense east leaves; the clear shape/scale division remains. No south/outside-world pixels are shown.",
+          "pendingRepairWorldBoxes": [
+            [
+              12096,
+              65344,
+              12480,
+              65536
+            ]
+          ],
+          "outsideWorldPixels": 0
+        }
+      ],
+      "nativePixelChecks": {
+        "allSourcesActual4096": true,
+        "sourcePNGAndDecodedHashBound": true,
+        "all12WindowsExactlyReconstructedFromTrueCore": true,
+        "all4CornersExactlyReconstructedFromTrueCore": true,
+        "allBoardsExactWindowPixels": true,
+        "resampling": false,
+        "warp": false,
+        "painting": false,
+        "haloOrPaddingUsedAsArt": false,
+        "currentCandidateUnchanged": true
+      },
+      "southBoundary": {
+        "worldY": 65536,
+        "status": "outside_map",
+        "paddingUsedAsArt": false,
+        "southSeamWindowsCreated": 0
+      },
+      "summary": {
+        "edgeWindowsReviewed": 12,
+        "edgePass": 0,
+        "edgeFail": 12,
+        "cornerContextsReviewed": 4,
+        "cornerPass": 0,
+        "cornerFail": 4,
+        "externalAccepted": false,
+        "formalAccepted": false,
+        "wholeTilePassed": false,
+        "newAI": 0,
+        "openAIRequests": 0,
+        "sourcesMutated": false,
+        "currentOrCatalogMutated": false,
+        "sharedGitOperations": 0
+      },
+      "reuse": "No hash-bound external QA for this fixed v05+neighbor input set was supplied; these12 windows and4 necessary corner contexts were actually viewed. No failed/unselected neighbor was used to skip visual inspection.",
+      "scopeLimit": "This is external-pair QA only. It does not override the separate33-window internal QA or any neighbor acceptance. Repairs require coordinated sources; no image edits were made."
+    }
+  }
+}

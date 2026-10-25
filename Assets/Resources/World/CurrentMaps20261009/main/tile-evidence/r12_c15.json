@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 12,
+  "column": 15,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "a2894a6e6bb9eb003695cbbf14ac43a6666bc691dab5a124c18864589e5bcc87",
+  "imageBytes": 23018902,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/candidate-component-top-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/progress.json",
+  "sourceLedgerSha256": "d73266fe0dbfcfe2155d6d4376b0ab3d8ed940922408680e74d695d1a4c2665a",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c15",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/candidate-component-top-4096.png",
+    "imageSha256": "a2894a6e6bb9eb003695cbbf14ac43a6666bc691dab5a124c18864589e5bcc87",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/progress.json",
+        "sha256": "d73266fe0dbfcfe2155d6d4376b0ab3d8ed940922408680e74d695d1a4c2665a",
+        "completeness": [
+          "/uniqueCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/forward-manifest.json",
+        "sha256": "fe558c8ab4d1b328aa28ea77e2ee507487dbbf23f814760f228cfc5127bbcb30",
+        "completeness": [
+          "/uniqueCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/progress.json",
+        "sha256": "d73266fe0dbfcfe2155d6d4376b0ab3d8ed940922408680e74d695d1a4c2665a",
+        "completeness": [
+          "/uniqueCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/PATCH-progress.json",
+        "sha256": "d73266fe0dbfcfe2155d6d4376b0ab3d8ed940922408680e74d695d1a4c2665a",
+        "completeness": [
+          "/uniqueCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "output_bound_native_coverage_or_complete_source_assembly",
+    "sourceStatus": {
+      "uniqueCoreCount": 16,
+      "coverage": "complete_16_of_16_unique_native_cores",
+      "internalQA": "failed_4groups_contacts25of33_CORE8of16combined",
+      "baselineInternalReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/qa/native-seam-20261016T145007Z/native-boards/review-v1.json",
+        "sha256": "17903b1434ea90875f8a17e37f11cb0446cdc1ad63f760aae6c44566bfad9a9a"
+      },
+      "externalQA": "pending",
+      "formalAccepted": false,
+      "closedLocalIssues": [
+        "RC15-H3072-FRAME-RIM",
+        "RC15-WEST-ROOF-NOTCH"
+      ],
+      "partiallyResolvedLocalIssues": [
+        "RC15-H2048-DIAGONAL-BEAM: narrow rail passed; background timber tonal seam still pending",
+        "C15-GOLD-BOTTOM-Y2250-LEFT: finite6667 existing timber-face interior only; wholeY2250 stillfailed"
+      ],
+      "currentActual33QAStatus": "25of33_retained_3_changed_full_windows_held_30_exact_conclusions_reused",
+      "currentFull16COREStatus": "combined8_material8_geometry14baseline_retained_2_CORE_held_14_exact_conclusions_reused"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/EXACT-DELTA-AND-DIRTY-SUPPORT-PROOF.json",
+        "record": {
+          "status": "ONE_COMPONENT_CANDIDATE_SAVED_PENDING_COMPLETE_PERIMETER_AND_ALL_DIRTY_NATIVE_QA"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/progress.json",
+        "record": {
+          "uniqueCoreCount": 16,
+          "coverage": "complete_16_of_16_unique_native_cores",
+          "internalQA": "failed_4groups_contacts25of33_CORE8of16combined",
+          "baselineInternalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/qa/native-seam-20261016T145007Z/native-boards/review-v1.json",
+            "sha256": "17903b1434ea90875f8a17e37f11cb0446cdc1ad63f760aae6c44566bfad9a9a"
+          },
+          "externalQA": "pending",
+          "formalAccepted": false,
+          "closedLocalIssues": [
+            "RC15-H3072-FRAME-RIM",
+            "RC15-WEST-ROOF-NOTCH"
+          ],
+          "partiallyResolvedLocalIssues": [
+            "RC15-H2048-DIAGONAL-BEAM: narrow rail passed; background timber tonal seam still pending",
+            "C15-GOLD-BOTTOM-Y2250-LEFT: finite6667 existing timber-face interior only; wholeY2250 stillfailed"
+          ],
+          "currentActual33QAStatus": "25of33_retained_3_changed_full_windows_held_30_exact_conclusions_reused",
+          "currentFull16COREStatus": "combined8_material8_geometry14baseline_retained_2_CORE_held_14_exact_conclusions_reused"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/forward-manifest.json",
+        "record": {
+          "status": "PREPARED_EFFECTIVE_ONLY_WITH_SUCCESS_RECEIPT",
+          "formalAccepted": false,
+          "internalQA": "failed_4groups_contacts25of33_CORE8of16combined",
+          "uniqueCoreCount": 16
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/forward-QA.json",
+        "record": {
+          "status": "ROOT_AUTHORIZED_LOCAL_TOP_PREPARED_EFFECTIVE_ONLY_WITH_SUCCESS_RECEIPT",
+          "adoptedAcceptanceCountsUnchanged": {
+            "unitsTotal": 33,
+            "unitsPassed": 25,
+            "unitsFailedOrHeld": 8,
+            "coresTotal": 16,
+            "coresCombinedPassed": 8,
+            "coresCombinedFailedOrHeld": 8,
+            "coresMaterialPassed": 8,
+            "coresGeometryPassedBaselineRetained": 14,
+            "remainingWholeIssueGroups": 4
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/progress.json",
+        "record": {
+          "uniqueCoreCount": 16,
+          "coverage": "complete_16_of_16_unique_native_cores",
+          "internalQA": "failed_4groups_contacts25of33_CORE8of16combined",
+          "baselineInternalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/qa/native-seam-20261016T145007Z/native-boards/review-v1.json",
+            "sha256": "17903b1434ea90875f8a17e37f11cb0446cdc1ad63f760aae6c44566bfad9a9a"
+          },
+          "externalQA": "pending",
+          "formalAccepted": false,
+          "closedLocalIssues": [
+            "RC15-H3072-FRAME-RIM",
+            "RC15-WEST-ROOF-NOTCH"
+          ],
+          "partiallyResolvedLocalIssues": [
+            "RC15-H2048-DIAGONAL-BEAM: narrow rail passed; background timber tonal seam still pending",
+            "C15-GOLD-BOTTOM-Y2250-LEFT: finite6667 existing timber-face interior only; wholeY2250 stillfailed"
+          ],
+          "currentActual33QAStatus": "25of33_retained_3_changed_full_windows_held_30_exact_conclusions_reused",
+          "currentFull16COREStatus": "combined8_material8_geometry14baseline_retained_2_CORE_held_14_exact_conclusions_reused"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/PATCH-progress.json",
+        "record": {
+          "uniqueCoreCount": 16,
+          "coverage": "complete_16_of_16_unique_native_cores",
+          "internalQA": "failed_4groups_contacts25of33_CORE8of16combined",
+          "baselineInternalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c15/qa/native-seam-20261016T145007Z/native-boards/review-v1.json",
+            "sha256": "17903b1434ea90875f8a17e37f11cb0446cdc1ad63f760aae6c44566bfad9a9a"
+          },
+          "externalQA": "pending",
+          "formalAccepted": false,
+          "closedLocalIssues": [
+            "RC15-H3072-FRAME-RIM",
+            "RC15-WEST-ROOF-NOTCH"
+          ],
+          "partiallyResolvedLocalIssues": [
+            "RC15-H2048-DIAGONAL-BEAM: narrow rail passed; background timber tonal seam still pending",
+            "C15-GOLD-BOTTOM-Y2250-LEFT: finite6667 existing timber-face interior only; wholeY2250 stillfailed"
+          ],
+          "currentActual33QAStatus": "25of33_retained_3_changed_full_windows_held_30_exact_conclusions_reused",
+          "currentFull16COREStatus": "combined8_material8_geometry14baseline_retained_2_CORE_held_14_exact_conclusions_reused"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/forward-manifest.json",
+    "sourceSha256": "fe558c8ab4d1b328aa28ea77e2ee507487dbbf23f814760f228cfc5127bbcb30",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "kind": "A289_COMPLETE_TOP_LOCAL_ADOPTION_SOURCE_MANIFEST",
+      "createdAtUtc": "2026-10-23T20:55:26.010359+00:00",
+      "createdAtNewYork": "2026-10-23T16:55:26.010359-04:00",
+      "status": "PREPARED_EFFECTIVE_ONLY_WITH_SUCCESS_RECEIPT",
+      "tile": "r12_c15",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/candidate-component-top-4096.png",
+        "sha256": "a2894a6e6bb9eb003695cbbf14ac43a6666bc691dab5a124c18864589e5bcc87",
+        "size": [
+          4096,
+          4096
+        ],
+        "generationRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/candidate-component-top-4096.png.generation.json",
+          "sha256": "ef1226d9e4d61ffc6a56e60814ed5218f79459514c8a23804ad161baff5d8fb2"
+        }
+      },
+      "baseCandidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/left-coherent-material-candidate-v1/candidate-left-coherent-4096.png",
+        "sha256": "7df6d868fbc687008bd6ad09f6e7d74cbbe645ec1fd0f495315bece9b937dcf5",
+        "size": [
+          4096,
+          4096
+        ],
+        "generationRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/left-coherent-material-candidate-v1/candidate-left-coherent-4096.png.generation.json",
+          "sha256": "feb859a9af146565eece588fbe726cb45edf179c2c2a90fead4efe9ea06e53d0"
+        }
+      },
+      "parentManifest": {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/c15-left-coherent-root-adoption-prep-v01/root-execution-7df6-v01/forward-manifest.json",
+        "sha256": "35b5f6c8ef9afa7f0e6fc6820b60a9a37bf1a3b692ee5c966cb89ba237274c8b",
+        "bytes": 7428,
+        "mtimeNs": "1792770579203151100"
+      },
+      "parentWholeQA": {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/c15-left-coherent-root-adoption-prep-v01/root-execution-7df6-v01/forward-QA.json",
+        "sha256": "dc7ac188b32b51ec77dd11e6ea6039f23bd6e82bdd014efca48cd61f09496a42",
+        "bytes": 113080,
+        "mtimeNs": "1792770579202574300"
+      },
+      "currentBoundedDeltaQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/forward-QA.json",
+        "sha256": "accf320fef7489ce701ee0cdea1eeb23fecc2ca7ac3b564a418bc9366dbf25a3",
+        "bytes": 275291
+      },
+      "sourceGraph": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/SOURCE-GRAPH.json",
+        "sha256": "884fc6c6a1970c8b47949b2099d08ac95d3be92626b8cb73784e2786ba85cf45",
+        "bytes": 8867
+      },
+      "expectedCASAndSourceGraphProposal": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/ROOT-EXPECTED-CAS-AND-SOURCE-GRAPH-PROPOSAL.json",
+        "sha256": "d4ae1db51fdc76c1c262e5626246b80f75e65de434934bc58557286708a6553f",
+        "bytes": 11517,
+        "mtimeNs": "1792785801290656900"
+      },
+      "rootDecisionEvidence": {
+        "basis": "Root sole coordinator explicitly authorized complete TOP local adoption and delegated only exact executable preparation in this task. Preflight is evidence, not self-authorization.",
+        "rootExplicitLocalAdoptionAuthorized": true,
+        "preflightSelfAuthorizes": false,
+        "preparationAgentCASAuthorized": false,
+        "actualCASByPreparationAgent": false,
+        "preflightEvidence": {
+          "path": "docs/MAP_HUMAN_RESUME_20261022_0210/C15_A289_COMPLETE_TOP_LOCAL_ADOPTION_PREFLIGHT_READONLY_20261023_163810.json",
+          "sha256": "baa2b8a08d6d0d7d58ae7ded18cc71f6bb79a2ff89e861abf1d5f858eee05fa2",
+          "bytes": 50485,
+          "mtimeNs": "1792787890124836100"
+        },
+        "scope": "complete TOP and natural perimeter only",
+        "wholeOrCounterPromotion": false,
+        "newViewsByThisPreparation": 0
+      },
+      "compositionPlan": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/FROZEN-COMPOSITION-PLAN.json",
+        "sha256": "7777a600a0e545c63118495090877f003d01ab9e79c7344a1e67ba8fbc9f7ad5",
+        "bytes": 390553,
+        "mtimeNs": "1792784019776771400"
+      },
+      "exactDeltaProof": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/EXACT-DELTA-AND-DIRTY-SUPPORT-PROOF.json",
+        "sha256": "6a56d7eb029008deab87ff3278f6863e1729b46e1330c6033a0694b88b46c4e9",
+        "bytes": 39580,
+        "mtimeNs": "1792784024953963600"
+      },
+      "parentNativeQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/PARENT-COMPLETE-DIRTY-NATIVE-QA.json",
+        "sha256": "126195a0e8e8698702f680c9b0f7596ebd926014456a3f289cef39f9ae0e99a8",
+        "bytes": 15239,
+        "mtimeNs": "1792785801264531200"
+      },
+      "independentNativeQA": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/INDEPENDENT-LEFT-DIRTY-NATIVE-QA.json",
+          "sha256": "f63eb2b391a3d836631d64cd5b651855a37fec476f93823157115cd6bb0fe1dc",
+          "bytes": 13950,
+          "mtimeNs": "1792784487033805200"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/INDEPENDENT-RIGHT-DIRTY-NATIVE-QA.json",
+          "sha256": "3920c71bbf4095a38a61886d3ec6bce83120fa96b4e93cb398881a08fa71c7eb",
+          "bytes": 8301,
+          "mtimeNs": "1792784512603243100"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/v1254-complete-top-root-execution-v1/uniform1248-component-candidate-v1/INDEPENDENT-PROVENANCE-AND-H-NATIVE-QA.json",
+          "sha256": "684e73a1894b78b61387fc686c5d414c0454540a783092e65b18fddccff21cf2",
+          "bytes": 39470,
+          "mtimeNs": "1792784597156297700"
+        }
+      ],
+      "sourceAncestryDisclosure": "Existing derived4096 a289 over exact7df6, from one existing native1254 e482 uniformly resized once to1248 at208/209; sourceOffset[0,0], fixed mapping[1120,1728,2368,2976], one frozen alpha and one candidate. 711242 pixels change in[1147,1733,2347,2614]. Outside frozen positive scope, outer115, roof/west/prior six left contributions, original contourAA and original front-cap keepout change0 per pinned proof. TOP target material inside frozen selection is superseded. Historical15 repairs and old rootLeftCoherent records stay historical; no blanket claim that every historical micro-material contribution is RGB-identical. No new AI, sourcePhase, image/mask edits, resampling or native4K claim in this metadata adoption. New TOP local PASS coexists with old x976/y2248 FAIL, RIGHT y2310 FAIL, paper-body y2816 uncertain HOLD; whole C15 false and counters unchanged.",
+      "changedPixels": 711242,
+      "changedBBoxC15HalfOpen": [
+        1147,
+        1733,
+        2347,
+        2614
+      ],
+      "outsideFrozenPositiveChangedPixels": 0,
+      "fourOuter115ChangedPixels": 0,
+      "roofWestAndPriorSixLeftContributionsChangedPixels": 0,
+      "wholeFrontCapKeepoutChangedPixels": 0,
+      "originalContourAAChangedPixels": 0,
+      "nonTargetContextChangedPixels": 0,
+      "unaffectedContactConclusionReuse": 25,
+      "unaffectedCOREConclusionReuse": 12,
+      "dirtyContacts": [
+        "x1024-segment2",
+        "x1024-segment3",
+        "x2048-segment2",
+        "x2048-segment3",
+        "y2048-segment2",
+        "y2048-segment3",
+        "x1024-y2048",
+        "x2048-y2048"
+      ],
+      "dirtyCORE": [
+        "r2_c2",
+        "r2_c3",
+        "r3_c2",
+        "r3_c3"
+      ],
+      "historicalAdoptionRecordsRetainedUnchanged": true,
+      "wholeY2250Passed": false,
+      "wholeC15Passed": false,
+      "wholeInternalPassed": false,
+      "formalAccepted": false,
+      "remainingWholeGroups": 4,
+      "internalQA": "failed_4groups_contacts25of33_CORE8of16combined",
+      "uniqueCoreCount": 16,
+      "C16Unchanged": true,
+      "allCountIncrements": 0,
+      "newAI": 0,
+      "PNGEditsDuringAdoption": 0,
+      "maskEditsDuringAdoption": 0,
+      "sourcePhase": null,
+      "selectionEffectiveOnlyWithSuccessReceipt": true,
+      "postCASReceiptPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/finish-c15-20261023T082355Z/a289-root-adoption-prep-v1/CAS-SUCCESS.json"
+    }
+  }
+}

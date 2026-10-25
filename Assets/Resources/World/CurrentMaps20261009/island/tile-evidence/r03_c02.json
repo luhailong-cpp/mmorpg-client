@@ -6,155 +6,431 @@
   "row": 3,
   "column": 2,
   "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
-  "imageSha256": "e6a041b128571484a5ddea09143a0085fc34fc2563891bdb1d4487423deb52f4",
-  "imageBytes": 25540614,
-  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
-  "sourceLedgerSha256": "376053b3ce30f7da7df5c870205f7b08fe1e1fd1e9561cc16503f965efcf406e",
-  "internalQaPassed": true,
+  "imageSha256": "92452a7a003e27adba106c4fe674389232fa16606bf3f6ce4c3925a427ce3048",
+  "imageBytes": 25533206,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-writer-v1/proposals/rightpair-r03c02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-writer-v1/proposals/rightpair-r03c02.json",
+  "sourceLedgerSha256": "5fd8fc68840437672eb4716c981c7412ab7a00d1d9eb7d37fa409ef3b25285d6",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
-  "externalStatus": "pending_or_not_formally_accepted",
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "tileId": "r03_c02",
-    "image": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.png",
-      "sha256": "e6a041b128571484a5ddea09143a0085fc34fc2563891bdb1d4487423deb52f4",
-      "bytes": 25540614,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.png"
-    },
-    "record": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.cross-native-repair.json",
-      "sha256": "8d0cb638f25e32b5951a7de56b750d571aef516f6db24902c37359c73df7d688",
-      "bytes": 2015,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.cross-native-repair.json"
-    },
-    "selectionBasis": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_coast_pair_current-v2_20261017.manifest.json",
-      "sha256": "e57c616303f70f2492887219afc3227fed31812066015836cdd3858929eed2e0",
-      "bytes": 2180,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_coast_pair_current-v2_20261017.manifest.json"
-    },
-    "internalClosurePassedBeforeFreeze": true,
-    "formalAccepted": false,
-    "internalClosurePassed": true,
-    "internalGeometryClosurePassed": true,
-    "internal33GeometryPassed": 33,
-    "internalClosure": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_internal_closure_shared_pending_20261017.json",
-      "sha256": "8714a644121103893b38e420401bdda1ab4c3bfcb1be4cbbaf93885599fba02c",
-      "bytes": 4638,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_internal_closure_shared_pending_20261017.json"
-    },
-    "internalReview": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_delta_20261017/root_review.json",
-      "sha256": "12ef6a4614c82953afdb1bd52e20f2da93f52aef46c521810066afb2f84a534c"
-    },
-    "materialStatus": "SHARED_AND_WHOLE_PENDING",
-    "sharedGeometryAccepted": false,
-    "internalPassScope": "Each tile 33 standard native crops plus full local repair mask; shared and whole-map acceptance separate."
-  },
-  "qa": {
-    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_internal_closure_shared_pending_20261017.json",
-    "sourceSha256": "8714a644121103893b38e420401bdda1ab4c3bfcb1be4cbbaf93885599fba02c",
-    "normalizedDocument": {
-      "createdAtUtc": "2026-10-17T21:06:52.039501+00:00",
-      "manifest": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_coast_pair_current-v2_20261017.manifest.json",
-        "sha256": "e57c616303f70f2492887219afc3227fed31812066015836cdd3858929eed2e0"
+    "tile": "r03_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-writer-v1/proposals/rightpair-r03c02.png",
+    "imageSha256": "92452a7a003e27adba106c4fe674389232fa16606bf3f6ce4c3925a427ce3048",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-writer-v1/proposals/rightpair-r03c02.json",
+        "sha256": "5fd8fc68840437672eb4716c981c7412ab7a00d1d9eb7d37fa409ef3b25285d6",
+        "sourceReviewSha256": "5fd8fc68840437672eb4716c981c7412ab7a00d1d9eb7d37fa409ef3b25285d6",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-writer-v1/proposals/rightpair-r03c02.png",
+            "sha256": "92452a7a003e27adba106c4fe674389232fa16606bf3f6ce4c3925a427ce3048"
+          },
+          "selection": {
+            "verifiedPixelCount": 16777216,
+            "selectedPixelCount": 6392,
+            "selectedDonorMismatchPixels": 0,
+            "outsideBaseMismatchPixels": 0,
+            "changedPixelCount": 6236,
+            "foreignSelectedPixels": 0
+          },
+          "parentLineage": {
+            "image": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/proposals/r03_c02_beam_common_alpha_rim_oct22_a02_lower_proposal_4096.png",
+              "sha256": "c5be3f4fb60d4552d90525a5bc091fe7b3f00a185ab658793d9febd63e578809"
+            },
+            "record": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/proposals/r03_c02_beam_common_alpha_rim_oct22_a02_lower_proposal_4096.owned-shared-native-projection.json",
+              "sha256": "727cf698c7fd558a076f5a155101dd7c13ccefd79fdd5766100c37578b676234"
+            },
+            "actualFull16MProof": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/independent-pixel-verification.json",
+              "sha256": "18e1c8820a43126b18f697632eeda8b16e19b179cd831a706830debb045abe71"
+            },
+            "verifiedPixelCount": 16777216,
+            "unchangedProofReused": true,
+            "oldAncestorGraphsRescanned": false
+          }
+        }
       },
-      "rootVisualReview": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_delta_20261017/root_review.json",
-        "sha256": "12ef6a4614c82953afdb1bd52e20f2da93f52aef46c521810066afb2f84a534c"
-      },
-      "strictNativeReplay": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_strict_20261017.json",
-        "sha256": "92ed8a62b5963bab53b81bd92d0e6342176d387d4683be2b6a473f3839575a9f"
-      },
-      "tiles": [
-        {
-          "tileId": "r03_c01",
-          "image": {
-            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.png",
-            "sha256": "f097c9fb6261a2dd2edbc86725f95e539d68d5187eef77e69e1cb62bbbb50d9a"
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/independent-pixel-verification.json",
+        "sha256": "18e1c8820a43126b18f697632eeda8b16e19b179cd831a706830debb045abe71",
+        "sourceReviewSha256": "18e1c8820a43126b18f697632eeda8b16e19b179cd831a706830debb045abe71",
+        "completeness": {
+          "tileId": "r03_c02",
+          "candidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/proposals/r03_c02_beam_common_alpha_rim_oct22_a02_lower_proposal_4096.png",
+            "sha256": "c5be3f4fb60d4552d90525a5bc091fe7b3f00a185ab658793d9febd63e578809",
+            "bytes": 25533493
           },
           "record": {
-            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.cross-native-repair.json",
-            "sha256": "b66d9841422ef3d80aca910e4b65bfb8532c83f41d1cca5aa654e2c6dbb61223"
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/proposals/r03_c02_beam_common_alpha_rim_oct22_a02_lower_proposal_4096.owned-shared-native-projection.json",
+            "sha256": "727cf698c7fd558a076f5a155101dd7c13ccefd79fdd5766100c37578b676234",
+            "bytes": 7280
           },
-          "internalClosurePassed": true,
-          "internalGeometryClosurePassed": true,
-          "internal33GeometryPassed": 33,
-          "internalMaterialStatus": "PASS_WITHIN_INTERNAL_CROPS",
-          "materialStatus": "SHARED_AND_WHOLE_PENDING",
-          "sharedGeometryAccepted": false,
-          "formalAccepted": false,
-          "outer115Delta": {
-            "north": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "d6ca7db12c9993d2d268c872ea11dc4dc44457c394e9e5d368b659cb215e9f9d"
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "entireOutputPixelsCompared": 16777216,
+          "ownedMaskWhitePixels": 145659,
+          "changedPixels": 145623,
+          "insideRawMismatchPixels": 0,
+          "outsideCurrentMismatchPixels": 0,
+          "standard33Checks": [
+            {
+              "index": 0,
+              "tileBoxHalfOpen": [
+                784,
+                0,
+                1264,
+                1139
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
             },
-            "south": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "b55f259944e337f82f137fa0cdd267987c56d15f5f61b2f1c7c169101a95f1fb"
+            {
+              "index": 1,
+              "tileBoxHalfOpen": [
+                1808,
+                0,
+                2288,
+                1139
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
             },
-            "west": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "8b024e2035a0dbd5d7c0ed9a673ec827216384f3f6f35de5f5ea1b01ed977df2"
+            {
+              "index": 2,
+              "tileBoxHalfOpen": [
+                2832,
+                0,
+                3312,
+                1139
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
             },
-            "east": {
-              "changedPixelCount": 10282,
-              "currentRgbSha256": "0e140345f27985b6377cf866267a9345dbdbfa8270f07db3a981edb958522665"
-            }
+            {
+              "index": 3,
+              "tileBoxHalfOpen": [
+                784,
+                909,
+                1264,
+                2163
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 4,
+              "tileBoxHalfOpen": [
+                1808,
+                909,
+                2288,
+                2163
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 5,
+              "tileBoxHalfOpen": [
+                2832,
+                909,
+                3312,
+                2163
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 6,
+              "tileBoxHalfOpen": [
+                784,
+                1933,
+                1264,
+                3187
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 7,
+              "tileBoxHalfOpen": [
+                1808,
+                1933,
+                2288,
+                3187
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 8,
+              "tileBoxHalfOpen": [
+                2832,
+                1933,
+                3312,
+                3187
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 9,
+              "tileBoxHalfOpen": [
+                784,
+                2957,
+                1264,
+                4096
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 10,
+              "tileBoxHalfOpen": [
+                1808,
+                2957,
+                2288,
+                4096
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 11,
+              "tileBoxHalfOpen": [
+                2832,
+                2957,
+                3312,
+                4096
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 12,
+              "tileBoxHalfOpen": [
+                0,
+                784,
+                1024,
+                1264
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 13,
+              "tileBoxHalfOpen": [
+                1024,
+                784,
+                2048,
+                1264
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 14,
+              "tileBoxHalfOpen": [
+                2048,
+                784,
+                3072,
+                1264
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 15,
+              "tileBoxHalfOpen": [
+                3072,
+                784,
+                4096,
+                1264
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 16,
+              "tileBoxHalfOpen": [
+                0,
+                1808,
+                1024,
+                2288
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 17,
+              "tileBoxHalfOpen": [
+                1024,
+                1808,
+                2048,
+                2288
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 18,
+              "tileBoxHalfOpen": [
+                2048,
+                1808,
+                3072,
+                2288
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            {
+              "index": 19,
+              "tileBoxHalfOpen": [
+                3072,
+                1808,
+                4096,
+                2288
+              ],
+              "maskIntersectionPixels": 0,
+              "candidateVsBaseDifferentPixels": 0
+            },
+            "[additional entries retained in referenced document]"
+          ],
+          "standard33ZeroIntersectionAndPixelExact": 33,
+          "priorQaScopeUpgraded": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/proposals/r03_c02_beam_common_alpha_rim_oct22_a02_lower_proposal_4096.owned-shared-native-projection.json",
+        "sha256": "727cf698c7fd558a076f5a155101dd7c13ccefd79fdd5766100c37578b676234",
+        "sourceReviewSha256": "727cf698c7fd558a076f5a155101dd7c13ccefd79fdd5766100c37578b676234",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/proposals/r03_c02_beam_common_alpha_rim_oct22_a02_lower_proposal_4096.png",
+            "sha256": "c5be3f4fb60d4552d90525a5bc091fe7b3f00a185ab658793d9febd63e578809"
           },
-          "nativePixelCountVerified": 16777216
-        },
-        {
-          "tileId": "r03_c02",
-          "image": {
+          "operation": {
+            "hardSameCoordinateSelection": true,
+            "outsideMaskFrozenToCurrent": true,
+            "resize": false,
+            "warp": false,
+            "feather": false,
+            "alphaBlend": false,
+            "rgbPaint": false,
+            "rimClamp": false,
+            "alternateMask": false,
+            "aiCalls": 0
+          },
+          "pixelQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-common-beam-lower-projection-v01/proposals/r03_c02.projection-pixel-qa.json",
+            "sha256": "d3f70c6abaeba9f51c0aeac61d487b2ed2df80396d91465b85e42b081abf3ba4",
+            "bytes": 12816
+          },
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.png",
+            "sha256": "e6a041b128571484a5ddea09143a0085fc34fc2563891bdb1d4487423deb52f4"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.cross-native-repair.json",
+        "sha256": "8d0cb638f25e32b5951a7de56b750d571aef516f6db24902c37359c73df7d688",
+        "sourceReviewSha256": "8d0cb638f25e32b5951a7de56b750d571aef516f6db24902c37359c73df7d688",
+        "completeness": {
+          "output": {
             "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.png",
             "sha256": "e6a041b128571484a5ddea09143a0085fc34fc2563891bdb1d4487423deb52f4"
           },
-          "record": {
-            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.cross-native-repair.json",
-            "sha256": "8d0cb638f25e32b5951a7de56b750d571aef516f6db24902c37359c73df7d688"
+          "operation": "same-coordinate projection of one cross-tile native repair",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "unassignedPixels": 0,
+            "sameCoordinateRawOrUnchangedBase": true
           },
-          "internalClosurePassed": true,
-          "internalGeometryClosurePassed": true,
-          "internal33GeometryPassed": 33,
-          "internalMaterialStatus": "PASS_WITHIN_INTERNAL_CROPS",
-          "materialStatus": "SHARED_AND_WHOLE_PENDING",
-          "sharedGeometryAccepted": false,
-          "formalAccepted": false,
-          "outer115Delta": {
-            "north": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "12317421015aab58853650d4240cd7fd4e3fc8a85d2c42049356061f79e0abad"
-            },
-            "south": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "280c51307cfc7f6e6d884a09d923affa6e60aacac201a912515741248b6618b7"
-            },
-            "west": {
-              "changedPixelCount": 12066,
-              "currentRgbSha256": "da13f20133ccecc0f22739eb90fa3092fc46ec331ca217ba2fe962e39c8f23c7"
-            },
-            "east": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "68c746e08a6eabc55f0643d570771f08a4cd8658d5683ff06e060e9c6bec479e"
-            }
-          },
-          "nativePixelCountVerified": 16777216
+          "sourceCount": 0
         }
-      ],
-      "status": "internal66_pass_shared_upper_two_segments_pending",
-      "internalPassScope": "Each tile 33 standard native crops plus full local repair mask; shared and whole-map acceptance separate.",
-      "sharedGeometryPassed": 2,
-      "sharedGeometryPending": 2,
-      "formalAccepted": false,
-      "wholeZoneComplete": false
-    }
-  }
+      }
+    ],
+    "selectionBasis": "Own output verifies every pixel as unchanged complete base or exact same-coordinate native donor; pinned full-output proof and zero-gap native base coverage are retained. The 905 pixels described as missing donor coverage are deliberately unchanged base pixels, not gaps in the output.",
+    "sourceStatus": {
+      "status": "CANDIDATE_PENDING_ACTUAL_TWO_OUTPUT_NATIVE_QA",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-writer-v1/proposals/rightpair-r03c02.json",
+        "record": {
+          "status": "CANDIDATE_PENDING_ACTUAL_TWO_OUTPUT_NATIVE_QA",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-adopt-v1/selection.json",
+        "record": {
+          "status": "AUTHORIZED_PRECOMMIT_SELECTION_NOT_CAS_RECEIPT"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-real-output-v1/own-response.json",
+        "record": {
+          "full32CoveragePolicy": {
+            "boxHalfOpen": [
+              640,
+              510,
+              821,
+              747
+            ],
+            "donorCoverageEndsAtContextYHalfOpen": 742,
+            "wholeMInsideDonor": true,
+            "whole32InsideDonor": false,
+            "missingBottomRowsHalfOpen": [
+              742,
+              747
+            ],
+            "frozenCurrentMissingPixelCount": 905,
+            "missingRowsChangedPixels": 0
+          },
+          "wholeShrubOrEdgeOrMaterialAccepted": false,
+          "sharedGeometryAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-real-output-v1/root-actual-finite-PASS-v1.json",
+        "record": {
+          "status": "PASS_FINITE_ACTUAL_TWO_COROLLAS_ONLY_NO_ADOPTION_RELEASE",
+          "wholeEdgeAccepted": false,
+          "wholeTileAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-real-output-v1/validate-base.json",
+        "record": {
+          "status": "PASS"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-rightpair-real-output-v1/mechanical-proof.json",
+        "record": {
+          "status": "PASS_ACTUAL_SAVED_OUTPUT_AND_TWO_SOURCE_RECONSTRUCTION"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
 }

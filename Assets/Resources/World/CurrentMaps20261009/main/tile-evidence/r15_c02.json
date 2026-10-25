@@ -1,0 +1,831 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 2,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "65d188a6b756c3389c1d19456c3610d9bc82bab5f25b02f861650408bd597dc5",
+  "imageBytes": 22063480,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/r15_c02.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/assembly.json",
+  "sourceLedgerSha256": "0f9c62d68afae70522d0db1485dc06403adeab440814f1a1facbcee7cc90241e",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/r15_c02.candidate.png",
+    "imageSha256": "65d188a6b756c3389c1d19456c3610d9bc82bab5f25b02f861650408bd597dc5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/assembly.json",
+        "sha256": "0f9c62d68afae70522d0db1485dc06403adeab440814f1a1facbcee7cc90241e",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/assembly.json",
+        "sha256": "0f9c62d68afae70522d0db1485dc06403adeab440814f1a1facbcee7cc90241e",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/progress.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/worker-review.json",
+        "record": {
+          "externalNativeRegions": [
+            {
+              "name": "left-1",
+              "panel": "left-native-boundary",
+              "actuallyViewed": true,
+              "status": "pass",
+              "observation": "Clipped lantern rim and foliage locally meet original left candidate."
+            },
+            {
+              "name": "left-2",
+              "panel": "left-native-boundary",
+              "actuallyViewed": true,
+              "status": "failed",
+              "observation": "Hard vertical strip through foliage with leaf silhouette/value changes."
+            },
+            {
+              "name": "left-3",
+              "panel": "left-native-boundary",
+              "actuallyViewed": true,
+              "status": "pass",
+              "observation": "Diagonal wallcap/face locally aligns; dense surface texture remains global issue."
+            },
+            {
+              "name": "left-4",
+              "panel": "left-native-boundary",
+              "actuallyViewed": true,
+              "status": "failed",
+              "observation": "Large vertical split with wall/clearwalkway planes at incompatible positions."
+            },
+            {
+              "name": "bottom-1",
+              "panel": "bottom-native-boundary",
+              "actuallyViewed": true,
+              "status": "failed",
+              "observation": "Current brick wall abruptly meets mismatched diagonal/cornice surfaces in r16c02; tone and jointphase incompatible."
+            },
+            {
+              "name": "bottom-2",
+              "panel": "bottom-native-boundary",
+              "actuallyViewed": true,
+              "status": "failed",
+              "observation": "Horizontal wall course meets nonmatching raised ledge and different materialphase."
+            },
+            {
+              "name": "bottom-3",
+              "panel": "bottom-native-boundary",
+              "actuallyViewed": true,
+              "status": "failed",
+              "observation": "Brick course meets unrelated thin cornice with floating ends; sourcephase inconsistent."
+            },
+            {
+              "name": "bottom-4",
+              "panel": "bottom-native-boundary",
+              "actuallyViewed": true,
+              "status": "failed",
+              "observation": "Mortar/cornice width, positions and tonalfield do not match neighbor."
+            }
+          ],
+          "externalNativeRegionCount": 8,
+          "externalLocalPassCount": 2,
+          "externalLocalFailedCount": 6,
+          "globalIssues": [
+            "Paving grayscale/phase changes and diagonal grout dead ends on right half.",
+            "Inner parapet shifts vertically at c03/c04, plus isolated short masonry/return inside canopy.",
+            "Leaf scale varies abruptly between broad 60–100px and dense small clusters.",
+            "Stone faces use dense cellular/diamond brushwork rather than approved quiet restrained stone.",
+            "Left row4 and all four bottom boundaries fail geometry/material continuity."
+          ],
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/CITYSW_R16C03_FINAL16_INTERNAL_ADOPTION_AUDIT_READONLY_20261023_210059.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/worker-review.json",
+    "sourceSha256": "a052e206b37edd5caf5bd5aa33c03159febcd65161906f2528b5e511970b3694",
+    "normalizedDocument": {
+      "tile": "r15_c02",
+      "reviewedAtUtc": "2026-10-19T20:35:13.520889+00:00",
+      "reviewer": "worker actual native visual review",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/assembly.json",
+        "sha256": "0f9c62d68afae70522d0db1485dc06403adeab440814f1a1facbcee7cc90241e"
+      },
+      "core": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/r15_c02.candidate.png",
+        "sha256": "65d188a6b756c3389c1d19456c3610d9bc82bab5f25b02f861650408bd597dc5",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/r15_c02.candidate.context.png",
+        "sha256": "5a3adeb3c0425c792024efc857e0abbb3e46b2badfe7b8921368738da30e1378",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "manifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/manifest.json",
+        "sha256": "33c3a2a987c8be782d6719f3705a860a704509cbb0625b61e00f97e04e448958"
+      },
+      "allNativePanelsActuallyViewed": [
+        {
+          "name": "V-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/V-row1.png",
+          "sha256": "b14664b01150f54c1fb857b414ee3312eb7d71453946e1fb296e47166cb07ef3",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/V-row2.png",
+          "sha256": "eaa85fe3f16c4d7ea203f4ef40e1668d2ddd1dc33db443b9afc31256b7fd1778",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/V-row3.png",
+          "sha256": "b23426fcb3e6c78423850febe15b123c627fda61a29452c89c97058bf3656bb9",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/V-row4.png",
+          "sha256": "bbf7ce645bd8d4229b6db9b2e5390729e2c7bececf6e892ff2f03446beca7df0",
+          "nativeResampling": false
+        },
+        {
+          "name": "H1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/H1.png",
+          "sha256": "884f3457765a229b3aedfba2cb6da1b9ade98a76a04f02f639f93641ceece22a",
+          "nativeResampling": false
+        },
+        {
+          "name": "H2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/H2.png",
+          "sha256": "e4cf6c69a6c2269141a3a4651be2a61fb7b55e2ff38e9212db01f0f7c7177477",
+          "nativeResampling": false
+        },
+        {
+          "name": "H3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/H3.png",
+          "sha256": "31d73ebc186a17d24a1d31881d6ddca73f24e2679cd89c969f85f63318036d2a",
+          "nativeResampling": false
+        },
+        {
+          "name": "nine-corners",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/nine-corners.png",
+          "sha256": "a9efe95516d7b0e7c7481399078387280df2d03b84b54a5940132bec2d8dcc95",
+          "nativeResampling": false
+        },
+        {
+          "name": "left-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/left-native-boundary.png",
+          "sha256": "ee0339839294aef859351a77261ca3d2b023af06e1ea97905dbc99ebe210e247",
+          "nativeResampling": false
+        },
+        {
+          "name": "bottom-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/bottom-native-boundary.png",
+          "sha256": "ee32200570f0e87e9ea8c3d4ba1d2739fa21431cb50690086c6f86a25dcfaa7c",
+          "nativeResampling": false
+        }
+      ],
+      "nativePanelsResampled": false,
+      "internalNativeRegionCount": 33,
+      "internalLocalPassCount": 16,
+      "internalLocalFailedCount": 17,
+      "internalNativeRegions": [
+        {
+          "name": "V1-row1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Leaf/stem intersections continue across native split; no independent local seam defect seen.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V2-row1",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Clipped masonry/foliage transition remains locally continuous; globally wrong small masonry identity is separately held.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V3-row1",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Several diagonal grout lines end inside whole paving faces near lower half; right new horizontal phase disagrees with left diagonal courses.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V1-row2",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Canopy leaf size and value shift abruptly into smaller cluster; lower rock/stone plane changes phase.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V2-row2",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Leaf/stem native split locally coherent; no hard cut seen.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V3-row2",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Paving/band/foliage arrangement changes across split; grout and border lines change course instead of a single approved surface.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V1-row3",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Small dense leaves on left change abruptly to much larger leaves on right; isolated masonry inside canopy needs layout correction.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V2-row3",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Canopy split locally coherent above low parapet.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V3-row3",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Boulder/body-to-tree and bottom parapet/copings disagree in height/phase at split.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V1-row4",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Citywall top coping forms conspicuous sawtooth / duplicate return at split; near-left walkway wall planes do not meet.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V2-row4",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Walkway courses and parapet heights locally continue; global dense diamond material remains unaccepted.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "V3-row4",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Native paving courses and foreground wall top continue locally; global material remains unaccepted.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H1-col1",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Canopy and trunk continue locally without hard horizontal seam.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H1-col2",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Foliage intersections locally coherent; no independent seam defect seen.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H1-col3",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Diagonal road-strip and paving convert to a large irregular trapezoid; multiple grout dead ends / changed joint phase.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H1-col4",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Diagonal joint stub in upperleft and broad blank paving change phase; tonal transition does not restore continuous original paving.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H2-col1",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Large leaves above transition to tiny dense yellow foliage below/right; style/object scale inconsistent.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H2-col2",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Local foliage and clipped stone cap continue across native split; isolated wall identity remains layout issue.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H2-col3",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Rounded boulder and foliage cross seam locally; no hard seam observed in this native window.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H2-col4",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Bluegrey paving course and clipped foliage join locally; no hard horizontal seam observed.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H3-col1",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Wall face and coping have repeated stepped/jagged bevels and dangling grout stubs; incompatible return geometry.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H3-col2",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Left end of parapet/window contains wrong wall-return sawtooth geometry, although straight parapet portion is coherent.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H3-col3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Low flat parapet, cap and walkway locally continuous across seam.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "H3-col4",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Remaining shifted innerparapet and walkway phase, abrupt warm/cool surface transition, new grout stub at lowercenter.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H1-V1",
+          "box": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Leaf and trunk intersections locally coherent.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H1-V2",
+          "box": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Foliage corner locally continuous; no independent joint defect seen.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H1-V3",
+          "box": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Unconnected paving grout ends and incompatible large paving polygon at fourway corner.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H2-V1",
+          "box": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Unwanted isolated stonewall/return within canopy with leaf scale jump; approved identity not recovered.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H2-V2",
+          "box": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Foliage fourway corner locally coherent.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H2-V3",
+          "box": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Brick/post-like masonry behind boulder and foliage needs original layout identity correction; do not propagate.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H3-V1",
+          "box": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Conspicuous repeated sawtooth citywall coping / duplicate stepped return.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H3-V2",
+          "box": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Flat parapet/post/cap local fourway intersection coherent.",
+          "scope": "local native joint only; does not pass global style/layout"
+        },
+        {
+          "name": "corner-H3-V3",
+          "box": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Left cap terminates into right paving and differently phased railing; incompatible height/width.",
+          "scope": "local native joint only; does not pass global style/layout"
+        }
+      ],
+      "externalNativeRegions": [
+        {
+          "name": "left-1",
+          "panel": "left-native-boundary",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Clipped lantern rim and foliage locally meet original left candidate."
+        },
+        {
+          "name": "left-2",
+          "panel": "left-native-boundary",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Hard vertical strip through foliage with leaf silhouette/value changes."
+        },
+        {
+          "name": "left-3",
+          "panel": "left-native-boundary",
+          "actuallyViewed": true,
+          "status": "pass",
+          "observation": "Diagonal wallcap/face locally aligns; dense surface texture remains global issue."
+        },
+        {
+          "name": "left-4",
+          "panel": "left-native-boundary",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Large vertical split with wall/clearwalkway planes at incompatible positions."
+        },
+        {
+          "name": "bottom-1",
+          "panel": "bottom-native-boundary",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Current brick wall abruptly meets mismatched diagonal/cornice surfaces in r16c02; tone and jointphase incompatible."
+        },
+        {
+          "name": "bottom-2",
+          "panel": "bottom-native-boundary",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Horizontal wall course meets nonmatching raised ledge and different materialphase."
+        },
+        {
+          "name": "bottom-3",
+          "panel": "bottom-native-boundary",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Brick course meets unrelated thin cornice with floating ends; sourcephase inconsistent."
+        },
+        {
+          "name": "bottom-4",
+          "panel": "bottom-native-boundary",
+          "actuallyViewed": true,
+          "status": "failed",
+          "observation": "Mortar/cornice width, positions and tonalfield do not match neighbor."
+        }
+      ],
+      "externalNativeRegionCount": 8,
+      "externalLocalPassCount": 2,
+      "externalLocalFailedCount": 6,
+      "topNeighbor": {
+        "tile": "r14_c02",
+        "available": false
+      },
+      "orientationOverviewActuallyViewed": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c02/pipeline/output/b3f2db29d8b8f418/full-native-qa-20261019a-v01/overview-QA-only-1600.png",
+        "sha256": "7dec6bd5a1347b93fcec086c7c0cd4dda449aa6fd0b32921da22217e81337e47",
+        "qaOnly": true,
+        "resized": true,
+        "finalArtwork": false
+      },
+      "overviewIsQAOnlyNotNativeProof": true,
+      "globalIssues": [
+        "Paving grayscale/phase changes and diagonal grout dead ends on right half.",
+        "Inner parapet shifts vertically at c03/c04, plus isolated short masonry/return inside canopy.",
+        "Leaf scale varies abruptly between broad 60–100px and dense small clusters.",
+        "Stone faces use dense cellular/diamond brushwork rather than approved quiet restrained stone.",
+        "Left row4 and all four bottom boundaries fail geometry/material continuity."
+      ],
+      "geometryHeldForFurtherPropagation": [
+        "V3-row1",
+        "H1-col3",
+        "H1-col4",
+        "V1-row3",
+        "V3-row3",
+        "V1-row4",
+        "H3-col1",
+        "H3-col2",
+        "H3-col4",
+        "corner-H2-V1",
+        "corner-H2-V3",
+        "corner-H3-V1",
+        "corner-H3-V3",
+        "left-4",
+        "bottom-1",
+        "bottom-2",
+        "bottom-3",
+        "bottom-4"
+      ],
+      "unchangedLocalPassedHashesMayBeReused": true,
+      "retouchPolicy": "No repeat full QA without changed hashes; repair changed native joins/mask edges only, reuse unaffected true local passes. Two ineffective same-point same-method attempts stop; preserve best and continue independent missing.",
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "actualModel": null,
+      "actualQuality": null
+    }
+  }
+}

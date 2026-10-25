@@ -6,97 +6,1499 @@
   "row": 5,
   "column": 1,
   "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
-  "imageSha256": "18f492e18ff6bc5e523f6ddc6c9a2fbf32d725e0bd235b3ac142518e937c7b1d",
-  "imageBytes": 30973722,
-  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/progress.json",
-  "sourceLedgerSha256": "e1fb3d6dc9f7c775cbb79e0442b3e2232e21e1ca82dce0eac63f5082e2e6fd03",
+  "imageSha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1",
+  "imageBytes": 30973080,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+  "sourceLedgerSha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
-  "externalStatus": "pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
+  "externalStatus": null,
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "requiredCores": 16,
-    "rawVersions": 22,
-    "nativeSlotsWithAnyVersion": 16,
-    "layoutSelectedUniqueCores": 16,
-    "pendingInternalRepairs": [],
-    "candidate4096": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.png",
-    "internalQAPassed": true,
-    "formalAccepted": false,
-    "currentProvenance": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.cross-native-repair.json",
-      "sha256": "180677b2397395098ad3d77f83cdeb94b91719d0a9f6bf79c2451fee5b66b13d"
+    "tile": "r05_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+    "imageSha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+        "sha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+        "sourceReviewSha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+        "completeness": [
+          [
+            "/context/nativeDerived/paddedValidation/coreValidation/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "internalQAPassed": true,
+      "coverageReason": "505 native original raw outside-west115 pixels restored at identical global coordinates. Neighbor core flower was already same source and remains unchanged. All mask0 own pixels and all33 internal crops remain exact.",
+      "formalAccepted": false,
+      "externalQA": "pending",
+      "status": "internal33_and_bounded505_perimeter_pass_exact_adoption_approved"
     },
-    "internal33Passed": 33,
-    "externalQA": "pending"
-  },
-  "qa": {
-    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.cross-native-repair.json",
-    "sourceSha256": "180677b2397395098ad3d77f83cdeb94b91719d0a9f6bf79c2451fee5b66b13d",
-    "normalizedDocument": {
-      "schemaVersion": 1,
-      "operation": "same-coordinate projection of one cross-tile native repair",
-      "isAiGeneration": false,
-      "tileId": "r05_c01",
-      "tileOrigin": [
-        0,
-        16384
-      ],
-      "base": {
-        "image": {
-          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/shared-rock-joint-a02-cut-v2-20261020/r05_c01_shared-rock-a02-cut-v2_4096.png",
-          "sha256": "ecbf1f3d813671ca171dd05ec4f1e26015c77e9f153c9e04f2a1ff76ce117796"
-        },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/strict-result.json",
         "record": {
-          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/shared-rock-joint-a02-cut-v2-20261020/r05_c01_shared-rock-a02-cut-v2_4096.cross-native-repair.json",
-          "sha256": "d93ec71271805fdcbfbd0ff449850ef0870b0ed26ed56a2ee303d885b58bd671"
+          "status": "STRICT_NATIVE_HALO_CANDIDATE_WRITTEN_PENDING_ROOT_VISUAL_REVIEW",
+          "formalAccepted": false,
+          "visualAcceptance": false
         }
       },
-      "operationRecord": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/west-rock-a01.cross-native-operation.json",
-        "sha256": "d11ec8a289dc38d59042d7da58257910206e16b446790a6d043e1d3fa4fbf22f"
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/internal33-unchanged-reuse-proof.json",
+        "record": {
+          "newInternalVisualReviewCount": 0,
+          "externalAndMaskPerimeterPendingRoot": true,
+          "formalAccepted": false
+        }
       },
-      "selection": {
-        "tileId": "r05_c01",
-        "tileBox": [
-          0,
-          0,
-          1254,
-          627
-        ],
-        "repairBox": [
-          0,
-          627,
-          1254,
-          1254
-        ],
-        "selectedPixelCount": 114372
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.internal-closure-v2.json",
+        "record": {
+          "internalQAPassed": true,
+          "coverageReason": "505 native original raw outside-west115 pixels restored at identical global coordinates. Neighbor core flower was already same source and remains unchanged. All mask0 own pixels and all33 internal crops remain exact.",
+          "formalAccepted": false,
+          "externalQA": "pending",
+          "status": "internal33_and_bounded505_perimeter_pass_exact_adoption_approved"
+        }
       },
-      "output": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r05_c01_west-rock-a01_4096.png",
-        "sha256": "18f492e18ff6bc5e523f6ddc6c9a2fbf32d725e0bd235b3ac142518e937c7b1d",
-        "dimensions": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-bounded-native-adoption-readiness.json",
+        "record": {
+          "externalPixelsWritten": 0,
+          "internalQA": {
+            "all33PriorCropsUnchanged": true,
+            "passed33RetainedByPixelEquality": true,
+            "newInternalPassCount": 0
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+        "record": {
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "allUnselectedPixelsUnchanged": true,
+            "selectedPixelsExactOriginalRawAtSameGlobalCoordinates": true,
+            "readonlyNeighborUnmodified": true,
+            "formalNeighborPixelsUsedAsHalo": false,
+            "unassignedPixels": 0
+          },
+          "status": "candidate_pending_native_visual_and_boundary_review",
+          "formalAccepted": false,
+          "visualAcceptance": false
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261025_025820.json",
+        "record": {
+          "wholeTileInternalAcceptanceRetained": true,
+          "formalAccepted": false,
+          "wholeEdgeAccepted": false,
+          "wholeCornerAccepted": false,
+          "acceptanceScope": {
+            "internal33": "33/33 inherited exact unchanged checks retained",
+            "boundedRepair": "505 original-native petal perimeter and full affectedCORE reviewed; actual single-use CAS succeeded",
+            "externalQA": "pending",
+            "wholeSharedEdge": "pending",
+            "wholeCorner": "pending",
+            "wholeMap": "pending",
+            "formalAccepted": false
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "docs/MAP_HUMAN_RESUME_20261022_0210/island-more-505-petal-root-adoption-review.json",
+    "sourceSha256": "d3fbd5c4da7ab1e90cf9d15dfee0abd6858dc22f38aaf18c1674a8512ace13b9",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "kind": "root_independent_finite_505px_same_world_original_raw_halo_adoption_readiness",
+      "reviewer": "/root/human_c13_exact_plan_review",
+      "decision": "TECHNICAL_PASS_BOUNDED_ADOPTION_READY_PENDING_ROOT_DECISION_AND_ORIGINAL_WRITER_CAS",
+      "technicalReady": true,
+      "sourceAdoptionExecuted": false,
+      "sourceSelectionChanged": false,
+      "exactScope": {
+        "onlyWritableTile": "r05_c01",
+        "mask": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/pale-flower-west-halo-505px-L4096.png",
+          "sha256": "85c84db85820e0f24d56c8bb9320037931b9210bf84fdc448460288f9d788912",
+          "bytes": 16587,
+          "mtimeNs": "1792652967291730100",
+          "stableDuringRead": true
+        },
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+          "sha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1",
+          "bytes": 30973080,
+          "mtimeNs": "1792653349503882700",
+          "stableDuringRead": true
+        },
+        "candidateRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+          "sha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+          "bytes": 36239,
+          "mtimeNs": "1792653349542499800",
+          "stableDuringRead": true
+        },
+        "base": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.png",
+          "sha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c",
+          "bytes": 30972855,
+          "mtimeNs": "1792567948924618300",
+          "stableDuringRead": true
+        },
+        "baseRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.cross-native-repair.json",
+          "sha256": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9",
+          "bytes": 2159,
+          "mtimeNs": "1792567948968835700",
+          "stableDuringRead": true
+        },
+        "worldBBox": [
+          4081,
+          16442,
           4096,
-          4096
-        ]
+          16504
+        ],
+        "tileBBox": [
+          4081,
+          58,
+          4096,
+          120
+        ],
+        "selectedPixels": 505,
+        "changedPixels": 505,
+        "outsideMaskChanged": 0,
+        "noCanonicalGeometryCorrectionRequiredForThisPetalRestore": true
       },
-      "method": {
+      "currentSources": {
+        "ownLedger": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/current-adopted-20261020.json",
+          "sha256": "0e448863d65e9a51b56ba6f62a5b210292c0414ae9068ef60ce8f33c2267b9b5",
+          "bytes": 10996,
+          "mtimeNs": "1792642457696331700",
+          "stableDuringRead": true
+        },
+        "ownEntry": {
+          "tileId": "r05_c01",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.png",
+            "sha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.cross-native-repair.json",
+            "sha256": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9"
+          },
+          "internalClosure": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.internal-closure.json",
+            "sha256": "a2eac587a4d6cb0648ad6b6e8ea9852c9bfd61ad561411c5bd458bdc57f51cb4"
+          },
+          "uniqueSelectedCores": 16,
+          "missingCores": [],
+          "internalClosurePassed": true,
+          "formalAccepted": false,
+          "externalQA": "pending",
+          "internal33Passed": 33
+        },
+        "nwLedger": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+          "sha256": "89b40b13bff22938d9b9213e9042b8b1c1e2e7006369df1b73e93534516881bb",
+          "bytes": 852108,
+          "mtimeNs": "1792652998495005600",
+          "stableDuringRead": true
+        },
+        "nwEntry": {
+          "tileId": "r05_c02",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r05_c02_single-flower-bud-preserve-v4-a01_4096.png",
+            "sha256": "3a43be93a22be954319b5d29b01d91fbbddab5c8c51101986d6c3b3344415c5d"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r05_c02_single-flower-bud-preserve-v4-a01_4096.cross-native-repair.json",
+            "sha256": "c44123494d65f81c6fda5cfb1575b030e20773b5dbcd65bf6d07076e09b6cb8e"
+          },
+          "selectionBasis": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/r04_r05_c02_local_flower_current_20261022.json",
+            "sha256": "ba423f3305e29390f72ce1783a08f8e7b3dade01775911f0a708f4946bb58cf2"
+          },
+          "internalGeometryClosurePassed": true,
+          "internalClosurePassed": true,
+          "materialStatus": "SHARED_REPAIR_AND_WHOLE_PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalPassScope": "Geometry and material/full/external acceptance remain separate",
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c02_v5_owner_native33_review_20261013.json",
+            "sha256": "1d6b1a93006ee9f0a1a4d203a36b99648f603a0f594ea76c283719f0852a056a",
+            "bytes": 34674,
+            "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c02_v5_owner_native33_review_20261013.json"
+          },
+          "rootAdoption": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/root-local-adoption-v4.json",
+            "sha256": "09ad76b255d5cd80d8c4ff7855c9d38f718cefe2a9dec44d1c5ca06d9fd889a8"
+          }
+        },
+        "alreadyAdoptedAtRead": false,
+        "neighborWasActualAdoptedV4": true
+      },
+      "mechanicalChecks": {
+        "candidateExactExpected": true,
+        "candidateRecordExactExpected": true,
+        "currentOwnStillBaseNotCandidate": true,
+        "currentNWActualNewImageAndRecord": true,
+        "maskBinary": true,
+        "maskPixels": 505,
+        "changedPixels": 505,
+        "changedOutsideMask": 0,
+        "allMaskPixelsChanged": true,
+        "allSelectedEqualRawAtSameWorld": true,
+        "maskBBoxTile": [
+          4081,
+          58,
+          4096,
+          120
+        ],
+        "maskBBoxWorld": [
+          4081,
+          16442,
+          4096,
+          16504
+        ],
+        "rawCoordinateBBox": [
+          100,
+          173,
+          115,
+          235
+        ],
+        "all505OutsideNWFormalX": true,
+        "fullFlowerSelectedPixels": 16354,
+        "fullFlowerCurrentNWSelectedPixels": 15849,
+        "fullFlowerOwnSelectedPixels": 505,
+        "fullFlowerNW15849ExactRaw": true,
+        "fullFlowerOwn505EqualsMaskXY": true,
+        "internal33AllZeroChanged": true,
+        "internal33Count": 33,
+        "allInputsStableDuringRead": true
+      },
+      "exactSourceQualification": {
+        "originalRaw": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r05_c02_s01_01_a02.png",
+          "sha256": "0178192cf14c44fdc71ac08a7c71528c89cecb30d6de179a5b4d8b98c98ecc0f",
+          "bytes": 3078750,
+          "mtimeNs": "1791836623771981600",
+          "stableDuringRead": true
+        },
+        "globalNativeBox": [
+          3981,
+          16269,
+          5235,
+          17523
+        ],
+        "globalOrigin": [
+          3981,
+          16269
+        ],
+        "rawCoordinatesOfSelectedBBox": [
+          100,
+          173,
+          115,
+          235
+        ],
+        "rootPaddedSourceOwnership": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c02_candidate-v1_4096/source_index_planes.npz",
+          "sha256": "3a9fcd2a4dd1f60f136c6a877886259f278241c6335977a293b7f54ef5a16a3b",
+          "bytes": 180170,
+          "mtimeNs": "1791876392556247100",
+          "stableDuringRead": true
+        },
+        "sourcePlane": "padded_source_id",
+        "sourceIdAtAll505": [
+          0
+        ],
+        "source0PaddedOrigin": [
+          0,
+          0
+        ],
+        "rootManifest": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/r05_c02.candidate-v1.manifest.json",
+          "sha256": "c6bb139e0c3ac8fe206700bff5b26ab04b9361fc5ac0b41f65466ea6d1434c0a",
+          "bytes": 7003,
+          "mtimeNs": "1791876358951266800",
+          "stableDuringRead": true
+        },
+        "rootAssembly": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c02_candidate-v1_4096.assembly.json",
+          "sha256": "bcc92ad72be6eee7dc2e0de50fd8bc7800305718cfa13bc3d906cd868f0118a3",
+          "bytes": 498672,
+          "mtimeNs": "1791876403387017100",
+          "stableDuringRead": true
+        },
+        "source0Snapshot": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r05_c02_s01_01_a02.png",
+          "sha256": "0178192cf14c44fdc71ac08a7c71528c89cecb30d6de179a5b4d8b98c98ecc0f",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "originalMode": "RGB",
+          "kind": "rawNative",
+          "globalNativeBox": [
+            3981,
+            16269,
+            5235,
+            17523
+          ],
+          "generationRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r05_c02_s01_01_a02.png.generation.json",
+            "sha256": "ec9e5a6d1c04ace9a47aa9b0c8dbdb956ccdac6d69e440c0a6a447046d5cac51"
+          },
+          "generationEvidence": {
+            "generatedAt": "2026-10-12T20:38:43.330477+00:00",
+            "tool": "image_gen.imagegen",
+            "route": "builtin",
+            "configSnapshot": null,
+            "submittedParameters": {
+              "model": null,
+              "quality": null,
+              "transparent_background": false
+            },
+            "actualModel": null,
+            "actualQuality": null,
+            "unverifiedReason": "Builtin tool does not disclose model/quality; no global-config claim.",
+            "resizedAfterGeneration": false,
+            "finalArtUpscaled": false,
+            "status": "candidate_pending_native_visual_and_seam_QA"
+          },
+          "prompt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/prompts/r05_c02_s01_01_a02.prompt.txt",
+            "sha256": "92d571a4e9e7dffa1ffa13071d33532bc512218e0d586786dc590188fae2a479"
+          },
+          "receipt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/receipts/r05_c02_s01_01_a02.receipt.json",
+            "sha256": "d1f9466b719919ef9dd3fa65d2eea1fb4b821c105cf249254e39b517e19523a4"
+          },
+          "sourceId": 0,
+          "subrow": 1,
+          "subcolumn": 1,
+          "paddedOrigin": [
+            0,
+            0
+          ]
+        },
+        "independentlyReplayedMask505IntoCurrentCandidate": true,
+        "independentlyVerifiedCurrentNW15849FullFlowerCorePixelsExactSameRaw": true,
+        "fullFlowerControlPixels": 16354,
+        "flowerSplit": {
+          "own505": 505,
+          "NW15849": 15849
+        },
+        "formalNeighborEdgeReplication": false,
         "registration": false,
-        "resizing": false,
-        "feathering": false,
+        "resampling": false,
+        "blending": false,
         "colorCorrection": false,
-        "pixelSynthesis": false
+        "syntheticPixels": false,
+        "priorFullAncestryReplayReused": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/strict-result.json",
+          "sha256": "ba9ca7b84aeb5ede028fe518440df6c471a40207cfd4f73ef050d4ce5efcde05",
+          "bytes": 44933,
+          "mtimeNs": "1792653351359448500",
+          "stableDuringRead": true
+        },
+        "fullAncestryNotReconstructedAgain": true,
+        "reason": "The exact immutable strict proof already binds current NW3a43/c441 and own25a9/d23b; this review verified their current identities and only the explicit raw,505 projection,15849 current flower anchor and source ownership. No historical16-source rebuild."
       },
-      "coverageAssertions": {
-        "fullNativeCoverage": true,
-        "unassignedPixels": 0,
-        "sameCoordinateRawOrUnchangedBase": true
+      "qa": {
+        "priorReadiness": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-bounded-native-adoption-readiness.json",
+          "sha256": "5ec6de3a1a73bec95e6ae1333957eaa7631b8353d95743b7eec167382a53d223",
+          "bytes": 6783,
+          "mtimeNs": "1792654374915937000",
+          "stableDuringRead": true
+        },
+        "priorReadinessAtUtc": "2026-10-22T07:32:54.888279+00:00",
+        "priorReadinessIsTerminalBoundedQa": true,
+        "priorStrictPendingVisualStateSupersededByReadiness": true,
+        "immutableCandidateRecordMayRetainHistoricalPendingState": true,
+        "newAuthoritativeAdoptionDecisionMustBindReviewSeparately": true,
+        "actualExistingNativeViewsViewed": [
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-before-new-current-white-flower-perimeter220x195-NATIVE.png",
+            "sha256": "a2229b7a6cf63379776834da4993c4d7e3c58426af17ed1855855fa86fe13cc3",
+            "bytes": 84677,
+            "mtimeNs": "1792653612462496100",
+            "stableDuringRead": true
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-after-candidate-new-current-white-flower-perimeter220x195-NATIVE.png",
+            "sha256": "a05391aefac1c8d1b8e5df814fa2be8f346039df4d294553cfbbe059ee16c5e9",
+            "bytes": 84784,
+            "mtimeNs": "1792653612687302600",
+            "stableDuringRead": true
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-after-candidate-new-current-center480-NATIVE.png",
+            "sha256": "a15a775d9fbc0eccc39765f9891e705eaa4e8ecc36d1dc983aaf2a2c2b742f7a",
+            "bytes": 460564,
+            "mtimeNs": "1792653612716139800",
+            "stableDuringRead": true
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-candidate-affected-CORE-native1024.png",
+            "sha256": "353becd37a93d9d037081ae7bdd2fa586e1e2a44d3cf2a88a42459c95e1c5d3c",
+            "bytes": 1991293,
+            "mtimeNs": "1792654302854726600",
+            "stableDuringRead": true
+          }
+        ],
+        "existingCropsReusedNoNewCrop": true,
+        "replayChecks": {
+          "root-before-new-current-white-flower-perimeter220x195-NATIVE.png": {
+            "c01Rows5PlusExactlySelected": true,
+            "c02Rows5PlusExactlyCurrentNW": true
+          },
+          "root-after-candidate-new-current-white-flower-perimeter220x195-NATIVE.png": {
+            "c01Rows5PlusExactlySelected": true,
+            "c02Rows5PlusExactlyCurrentNW": true
+          },
+          "root-candidate-affected-CORE-native1024.png": true
+        },
+        "fullFlowerAndItsWholeClosedPerimeter": "PASS_BOUNDED_NATIVE_PETAL_RESTORE",
+        "perimeter4And8Neighborhood": "PASS_FOR_THE_EXACT505_EXTENSION_IN_CURRENT_NEIGHBOR_CONTEXT",
+        "affectedCore": {
+          "box": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "sidecar": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-candidate-affected-CORE-native1024.png.generation.json",
+            "sha256": "b5f8a70a9815ef9e304aae93a893d9ff6dbb81bc052a0072731597ae8592d942",
+            "bytes": 1406,
+            "mtimeNs": "1792654302858879500",
+            "stableDuringRead": true
+          },
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-candidate-affected-CORE-native1024.png",
+            "sha256": "353becd37a93d9d037081ae7bdd2fa586e1e2a44d3cf2a88a42459c95e1c5d3c",
+            "bytes": 1991293,
+            "mtimeNs": "1792654302854726600",
+            "stableDuringRead": true
+          },
+          "exactCandidateReplay": true,
+          "viewedEntire1024": true,
+          "verdict": "PASS_NO_NEW_BLOCKING_ARTIFACT_INTRODUCED_BY505_RESTORE",
+          "scope": "This verdict concerns the505 update and complete affected window; it does not clear unrelated whole edge or four-corner defects."
+        },
+        "findingsZh": [
+          "白花左缘缺少的小花瓣已由同一原图的连续瓣面补齐，瓣端呈自然弧线；505像素没有形成新的直角矩形出口、断瓣或重瓣。",
+          "完整220×195周界与480×480当前四角语境中，白花花心及既有主体均未平移；NW侧15849像素全部保持同一原raw。",
+          "完整受影响1024×1024核心已查看，未见505修补引入新的阻断。正式图块边界处被视图裁切的邻区花朵不据此判为缺片。",
+          "480语境仍可见另一组粉花的L形截断及四角接缝，此次完全保留hold，不能推导整边或整角通过。"
+        ],
+        "internal33": {
+          "proof": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/internal33-unchanged-reuse-proof.json",
+            "sha256": "4ee34b7522f98c88cd3e2d4c016b3c87c6b2636ff12acfba49f1b1d3df8bcd21",
+            "bytes": 22987,
+            "mtimeNs": "1792653351255168900",
+            "stableDuringRead": true
+          },
+          "parentClosure": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.internal-closure.json",
+            "sha256": "a2eac587a4d6cb0648ad6b6e8ea9852c9bfd61ad561411c5bd458bdc57f51cb4",
+            "bytes": 8020,
+            "mtimeNs": "1792570041115400800",
+            "stableDuringRead": true
+          },
+          "parentQaIndex": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/qa/newchat-20261020/assembly_r05_c01_west-rock-a01/qa_index.json",
+            "sha256": "32c3acf562a39b0162e793ad64b48a56bd77691d29ade0cb61f0d95369e0fe46",
+            "bytes": 20400,
+            "mtimeNs": "1792507257281376200",
+            "stableDuringRead": true
+          },
+          "recomputedFromCurrentBaseAndCandidateOnly": [
+            {
+              "index": 0,
+              "box": [
+                784,
+                0,
+                1264,
+                1139
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "6c4ec94d2251c7153726d0f958f99aceed6dd5b1c4f39c6d2df6dde7cd1447a6"
+            },
+            {
+              "index": 1,
+              "box": [
+                1808,
+                0,
+                2288,
+                1139
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "9d087fc00449dd8c8c6f988fa46a5cf3608ace53650fcdcc652239071f71cd95"
+            },
+            {
+              "index": 2,
+              "box": [
+                2832,
+                0,
+                3312,
+                1139
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "8c06ad0fc60527b86e69150bb49268d49695b3a21512e2e7e6f9f99df4767b59"
+            },
+            {
+              "index": 3,
+              "box": [
+                784,
+                909,
+                1264,
+                2163
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "e6530fe4b6d598003e6663ad062095d154982a656715e9cb1e56d40e9c0ac454"
+            },
+            {
+              "index": 4,
+              "box": [
+                1808,
+                909,
+                2288,
+                2163
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "89514098b96f36150b9f79d697b7c95f743893e186c4791264af6279d642e543"
+            },
+            {
+              "index": 5,
+              "box": [
+                2832,
+                909,
+                3312,
+                2163
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "dbf47cb2c6634ce5730001f05f3e640c23e2d7318dade2780d270010b9f904ab"
+            },
+            {
+              "index": 6,
+              "box": [
+                784,
+                1933,
+                1264,
+                3187
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "1e34510fe1f1847f756915008a399cb38eb17452250c814d0cd81d7d06ed9f04"
+            },
+            {
+              "index": 7,
+              "box": [
+                1808,
+                1933,
+                2288,
+                3187
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "5acf659f56f7bad7125bb5d0926887d179c2704868703c099988360c7872a63a"
+            },
+            {
+              "index": 8,
+              "box": [
+                2832,
+                1933,
+                3312,
+                3187
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "bbd3abe39f76d4ffde72d39594e7ecb7ab34d3154c541c11b09c469d1100230c"
+            },
+            {
+              "index": 9,
+              "box": [
+                784,
+                2957,
+                1264,
+                4096
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "a4b815eae0e84796dc9d4662362b0f399e11c438ed0a587d03d9f2330b6136db"
+            },
+            {
+              "index": 10,
+              "box": [
+                1808,
+                2957,
+                2288,
+                4096
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "b0ec08c23328f6e9c1feee55bb1d1ac88e793c58355a210bf0a38c660a4f6c16"
+            },
+            {
+              "index": 11,
+              "box": [
+                2832,
+                2957,
+                3312,
+                4096
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "3bde93590ca9b6626519fb86bd55fe4eea2d10fc8a7d8379848b0e2c9fae1caf"
+            },
+            {
+              "index": 12,
+              "box": [
+                0,
+                784,
+                1024,
+                1264
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "13ef8c915a6fb3c242c7bb382421080617ab86d4398c7d542b04451ac1c4d0bb"
+            },
+            {
+              "index": 13,
+              "box": [
+                1024,
+                784,
+                2048,
+                1264
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "cc5fc56c51953d247829ad48c77173da082961d51ae1a20f50b2d7994f9e43e0"
+            },
+            {
+              "index": 14,
+              "box": [
+                2048,
+                784,
+                3072,
+                1264
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "66fac00593dfb23fda33bd95d8b84428b81fc10e649e1211d7c518a96bcfa25e"
+            },
+            {
+              "index": 15,
+              "box": [
+                3072,
+                784,
+                4096,
+                1264
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "203637207b7b2feb4b8e46da94f28280b1c123411189c806915975fd245fde59"
+            },
+            {
+              "index": 16,
+              "box": [
+                0,
+                1808,
+                1024,
+                2288
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "69014af9080a2162aa9c1259e4923d3c1c28a47256f21a0065f487c7e873cd7c"
+            },
+            {
+              "index": 17,
+              "box": [
+                1024,
+                1808,
+                2048,
+                2288
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "e249456317010b1cb8d94165a63ecdc340ef075c949f0575fef245ee57be4188"
+            },
+            {
+              "index": 18,
+              "box": [
+                2048,
+                1808,
+                3072,
+                2288
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "f623b3b98174430dc91db06e644e7496241a2378124f2dd49390a10b97c579c9"
+            },
+            {
+              "index": 19,
+              "box": [
+                3072,
+                1808,
+                4096,
+                2288
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "1abf3187eb5179c871c8c85d27046187dfeb92adeec6330e87a94b6543c1f006"
+            },
+            {
+              "index": 20,
+              "box": [
+                0,
+                2832,
+                1024,
+                3312
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "e913479f22c405a68be1c6c1f4e7e316f1e7eb19403823fb62c5fc3014343a8c"
+            },
+            {
+              "index": 21,
+              "box": [
+                1024,
+                2832,
+                2048,
+                3312
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "258e6b916581ec22ebef6b5a61cd32fb8d23bdd99994624cf40f8dfa80dd5069"
+            },
+            {
+              "index": 22,
+              "box": [
+                2048,
+                2832,
+                3072,
+                3312
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "3fd8553c8caa1d50940e8f10d59cf219e040c8b694d9baf44b4bdb7a04800500"
+            },
+            {
+              "index": 23,
+              "box": [
+                3072,
+                2832,
+                4096,
+                3312
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "bc6fa69006e876dded2a5785e645e4f1e5eeba9c2cec4d530cfe239f1045391f"
+            },
+            {
+              "index": 24,
+              "box": [
+                784,
+                784,
+                1264,
+                1264
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "4435ea0ef94644f5e088fee9dfe4b3800521c17be48e59dce6d7b1411a8768d2"
+            },
+            {
+              "index": 25,
+              "box": [
+                1808,
+                784,
+                2288,
+                1264
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "b1388243f2e3dc7237e7601602deddf966b58d992d96304860a87198c0c0aca1"
+            },
+            {
+              "index": 26,
+              "box": [
+                2832,
+                784,
+                3312,
+                1264
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "caabcd29fb3d9191de6114162239552eae3d23e505cd3b995ef7c16f4ded37bd"
+            },
+            {
+              "index": 27,
+              "box": [
+                784,
+                1808,
+                1264,
+                2288
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "27cd415505d264aa8769018957fa6332761c2c1d5fcd8edffd46dfb63adbc67b"
+            },
+            {
+              "index": 28,
+              "box": [
+                1808,
+                1808,
+                2288,
+                2288
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "0d33519ae97cd8ec4f5d5316777a16002b70026fc9d70be454ca4cec1e031086"
+            },
+            {
+              "index": 29,
+              "box": [
+                2832,
+                1808,
+                3312,
+                2288
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "fbd14269ff94549b622d98440ace6f3d72da92b1ebd4f3cece25a198d59a7012"
+            },
+            {
+              "index": 30,
+              "box": [
+                784,
+                2832,
+                1264,
+                3312
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "e9090893996d6ae9f588da8f3d3675ab07c5d32f8885ff36c1e50c4e6c3e3df5"
+            },
+            {
+              "index": 31,
+              "box": [
+                1808,
+                2832,
+                2288,
+                3312
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "aaf6ce9dbcd4826ddfe503c9f4851ba06c4f9465d04160db24fe6d9b603c04fe"
+            },
+            {
+              "index": 32,
+              "box": [
+                2832,
+                2832,
+                3312,
+                3312
+              ],
+              "changed": 0,
+              "priorExpectedPassedCropSha": "d55fc26cdb2bfb1e27f65976461309434fbde3553ef7835b4a2267f2207329d7"
+            }
+          ],
+          "all33ExactPixelUnchanged": true,
+          "oldCropPngsNotRead": true,
+          "old33PassesReused": 33,
+          "newInternalPassCount": 0
+        },
+        "missingArtOrVisualQaForExact505": [],
+        "noDuplicateQaTaskStarted": true,
+        "noMissingIndependentQaForExact505": true
       },
-      "formalAcceptedCount": 0,
-      "visualAcceptance": false
+      "casPreparation": {
+        "authorizedWriter": "original logical owner island_more_20261016; root issues decision, original owner performs only own current CAS",
+        "writerDirectory": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016",
+        "ledgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/current-adopted-20261020.json",
+        "expectedLedgerSha256": "0e448863d65e9a51b56ba6f62a5b210292c0414ae9068ef60ce8f33c2267b9b5",
+        "entryPointer": "/tiles/1",
+        "entryIdGuard": "r05_c01",
+        "expectedImage": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.png",
+          "sha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c",
+          "bytes": 30972855,
+          "mtimeNs": "1792567948924618300",
+          "stableDuringRead": true
+        },
+        "expectedRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.cross-native-repair.json",
+          "sha256": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9",
+          "bytes": 2159,
+          "mtimeNs": "1792567948968835700",
+          "stableDuringRead": true
+        },
+        "readonlyNWGuards": {
+          "ledger": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+            "sha256": "89b40b13bff22938d9b9213e9042b8b1c1e2e7006369df1b73e93534516881bb",
+            "bytes": 852108,
+            "mtimeNs": "1792652998495005600",
+            "stableDuringRead": true
+          },
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r05_c02_single-flower-bud-preserve-v4-a01_4096.png",
+            "sha256": "3a43be93a22be954319b5d29b01d91fbbddab5c8c51101986d6c3b3344415c5d",
+            "bytes": 29348735,
+            "mtimeNs": "1792651034590891700",
+            "stableDuringRead": true
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r05_c02_single-flower-bud-preserve-v4-a01_4096.cross-native-repair.json",
+            "sha256": "c44123494d65f81c6fda5cfb1575b030e20773b5dbcd65bf6d07076e09b6cb8e",
+            "bytes": 2116,
+            "mtimeNs": "1792651034635253900",
+            "stableDuringRead": true
+          }
+        },
+        "newImmutableClosureRequiredBeforePointerWrite": {
+          "suggestedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.internal-closure.json",
+          "bindCandidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+            "sha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1",
+            "bytes": 30973080,
+            "mtimeNs": "1792653349503882700",
+            "stableDuringRead": true
+          },
+          "bindRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+            "sha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+            "bytes": 36239,
+            "mtimeNs": "1792653349542499800",
+            "stableDuringRead": true
+          },
+          "bindPriorClosure": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.internal-closure.json",
+            "sha256": "a2eac587a4d6cb0648ad6b6e8ea9852c9bfd61ad561411c5bd458bdc57f51cb4",
+            "bytes": 8020,
+            "mtimeNs": "1792570041115400800",
+            "stableDuringRead": true
+          },
+          "bind33Reuse": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/internal33-unchanged-reuse-proof.json",
+            "sha256": "4ee34b7522f98c88cd3e2d4c016b3c87c6b2636ff12acfba49f1b1d3df8bcd21",
+            "bytes": 22987,
+            "mtimeNs": "1792653351255168900",
+            "stableDuringRead": true
+          },
+          "bindThisNewIndependentReview": "root must use actual saved review path + SHA256",
+          "internal33Passed": 33,
+          "internal33Total": 33,
+          "repair505MaskPerimeterPassed": true,
+          "affectedCoreReviewPassedWithinAboveScope": true,
+          "newInternalPassCount": 0,
+          "formalAccepted": false,
+          "externalQA": "pending",
+          "mustNotLeaveOld25a9BoundClosureAsIfItBound16ee": true
+        },
+        "requiredPointerMutations": [
+          {
+            "pointer": "/tiles/1/image",
+            "expected": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.png",
+              "sha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c"
+            },
+            "replacement": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+              "sha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1"
+            }
+          },
+          {
+            "pointer": "/tiles/1/record",
+            "expected": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.cross-native-repair.json",
+              "sha256": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9"
+            },
+            "replacement": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+              "sha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d"
+            }
+          },
+          {
+            "pointer": "/tiles/1/internalClosure",
+            "expected": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.internal-closure.json",
+              "sha256": "a2eac587a4d6cb0648ad6b6e8ea9852c9bfd61ad561411c5bd458bdc57f51cb4"
+            },
+            "replacement": "new immutable candidate16ee/recordfadf-bound closure; compute actual SHA before CAS"
+          }
+        ],
+        "retainValues": {
+          "/tiles/1/uniqueSelectedCores": 16,
+          "/tiles/1/missingCores": [],
+          "/tiles/1/internalClosurePassed": true,
+          "/tiles/1/internal33Passed": 33,
+          "/tiles/1/formalAccepted": false,
+          "/tiles/1/externalQA": "pending",
+          "/internalPassedTiles": 2,
+          "/formalAcceptedCount": 0,
+          "/allExternalEdgesPassed": false,
+          "/sharedWholeEdgePassed": false,
+          "/regionArchivable": false
+        },
+        "otherLedgerMetadata": "Root decision/adoption receipt and updatedAtUtc are bookkeeping under original owner schema; do not rewrite immutable candidate record or foreign NW pointers.",
+        "sequence": [
+          "Root may issue exact bounded adoption decision for these byte identities after this technical PASS.",
+          "Original owner writes new immutable closure binding16ee/fadf, exact prior33 reuse and this independent review; no new AI or image construction required.",
+          "Recheck exact own image/record and readonly NW image/record guards immediately before CAS. If ledger hash changed only unrelated fields, reread exact entry and compute fresh whole-file CAS; never overwrite concurrent ledger updates.",
+          "Original owner changes only own r05c01 ledger pointers with new-version closure, preserving counts/holds. Save actual pre/post hashes and receipt.",
+          "Recheck only exact505 and affected QA binding after receipt. Do not repeat cached33 visual checks, rebuild maps, or issue second CAS if already adopted."
+        ],
+        "preconditionRootFourViews": "Parent root now reports all four exact native views examined; this report still does not issue the saved adoption decision or execute CAS."
+      },
+      "dependencyInvalidation": {
+        "literalAndTwoReefProposalsMustBeReboundAfterAdoption": true,
+        "newOwnSourceIfAdopted": {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+            "sha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1",
+            "bytes": 30973080,
+            "mtimeNs": "1792653349503882700",
+            "stableDuringRead": true
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+            "sha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+            "bytes": 36239,
+            "mtimeNs": "1792653349542499800",
+            "stableDuringRead": true
+          }
+        },
+        "requiresNewImmutableBindingAndExactOwnerAcknowledgmentBeforeNewCall": true,
+        "pixelNonoverlapIsNotAHashBindingExemption": true,
+        "doNotOverwriteOldProposalBytes": true,
+        "completeRelief": "r04c01/r04c02 art identities are unaffected; refresh relevant ledger metadata only as needed. No invented source change for that separate pair."
+      },
+      "holds": {
+        "otherPinkFanLTruncation": true,
+        "remainingVerticalJoin": true,
+        "horizontalRow627OtherSegments": true,
+        "wholeFourCorner": true,
+        "wholeSharedEdge": true,
+        "finalMapAcceptance": true,
+        "regionArchiveReady": false
+      },
+      "increments": {
+        "newAiCalls": 0,
+        "newRawReturns": 0,
+        "newUniqueCores": 0,
+        "newCompleteCoordinate": 0,
+        "newInternalTile": 0,
+        "newFormalAccepted": 0
+      },
+      "scopeCloseout": {
+        "newImages": 0,
+        "newCrops": 0,
+        "imageGenerationCalls": 0,
+        "productionSourceWrites": 0,
+        "CAS": 0,
+        "foreignWrites": 0,
+        "releaseWrites": 0,
+        "producerMessages": 0,
+        "sharedGitReadsOrWrites": 0,
+        "historicalImageScan": 0,
+        "explicitRequiredOriginalRawImagesRead": 1,
+        "fullHistoricalAncestryRebuild": 0
+      },
+      "inputPins": {
+        "readiness": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-bounded-native-adoption-readiness.json",
+          "sha256": "5ec6de3a1a73bec95e6ae1333957eaa7631b8353d95743b7eec167382a53d223",
+          "bytes": 6783,
+          "mtimeNs": "1792654374915937000",
+          "stableDuringRead": true
+        },
+        "candidateRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+          "sha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+          "bytes": 36239,
+          "mtimeNs": "1792653349542499800",
+          "stableDuringRead": true
+        },
+        "strictProof": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/strict-result.json",
+          "sha256": "ba9ca7b84aeb5ede028fe518440df6c471a40207cfd4f73ef050d4ce5efcde05",
+          "bytes": 44933,
+          "mtimeNs": "1792653351359448500",
+          "stableDuringRead": true
+        },
+        "internalProof": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/internal33-unchanged-reuse-proof.json",
+          "sha256": "4ee34b7522f98c88cd3e2d4c016b3c87c6b2636ff12acfba49f1b1d3df8bcd21",
+          "bytes": 22987,
+          "mtimeNs": "1792653351255168900",
+          "stableDuringRead": true
+        },
+        "draft": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/qa/continue-user-20261022/four-corner-halo-evidence/DRAFT-source-only-complete-pale-flower-candidate.json",
+          "sha256": "29f563dedfb4e35bf796e9c5bf39d5a0244d32d230e5b2837f63fe97f032d511",
+          "bytes": 10358,
+          "mtimeNs": "1792652348694517800",
+          "stableDuringRead": true
+        },
+        "nativeQaDerivation": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-native-qa-derivation.json",
+          "sha256": "a5f4d2751d9b8ad2982173913ab9c02f8125b54c969f5f53dc2400d7ab756793",
+          "bytes": 4259,
+          "mtimeNs": "1792653612754979700",
+          "stableDuringRead": true
+        },
+        "coreSidecar": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-candidate-affected-CORE-native1024.png.generation.json",
+          "sha256": "b5f8a70a9815ef9e304aae93a893d9ff6dbb81bc052a0072731597ae8592d942",
+          "bytes": 1406,
+          "mtimeNs": "1792654302858879500",
+          "stableDuringRead": true
+        },
+        "ownLedger": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/current-adopted-20261020.json",
+          "sha256": "0e448863d65e9a51b56ba6f62a5b210292c0414ae9068ef60ce8f33c2267b9b5",
+          "bytes": 10996,
+          "mtimeNs": "1792642457696331700",
+          "stableDuringRead": true
+        },
+        "nwLedger": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+          "sha256": "89b40b13bff22938d9b9213e9042b8b1c1e2e7006369df1b73e93534516881bb",
+          "bytes": 852108,
+          "mtimeNs": "1792652998495005600",
+          "stableDuringRead": true
+        },
+        "base": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.png",
+          "sha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c",
+          "bytes": 30972855,
+          "mtimeNs": "1792567948924618300",
+          "stableDuringRead": true
+        },
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+          "sha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1",
+          "bytes": 30973080,
+          "mtimeNs": "1792653349503882700",
+          "stableDuringRead": true
+        },
+        "neighbor": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r05_c02_single-flower-bud-preserve-v4-a01_4096.png",
+          "sha256": "3a43be93a22be954319b5d29b01d91fbbddab5c8c51101986d6c3b3344415c5d",
+          "bytes": 29348735,
+          "mtimeNs": "1792651034590891700",
+          "stableDuringRead": true
+        },
+        "neighborRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r05_c02_single-flower-bud-preserve-v4-a01_4096.cross-native-repair.json",
+          "sha256": "c44123494d65f81c6fda5cfb1575b030e20773b5dbcd65bf6d07076e09b6cb8e",
+          "bytes": 2116,
+          "mtimeNs": "1792651034635253900",
+          "stableDuringRead": true
+        },
+        "raw": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r05_c02_s01_01_a02.png",
+          "sha256": "0178192cf14c44fdc71ac08a7c71528c89cecb30d6de179a5b4d8b98c98ecc0f",
+          "bytes": 3078750,
+          "mtimeNs": "1791836623771981600",
+          "stableDuringRead": true
+        },
+        "mask": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/pale-flower-west-halo-505px-L4096.png",
+          "sha256": "85c84db85820e0f24d56c8bb9320037931b9210bf84fdc448460288f9d788912",
+          "bytes": 16587,
+          "mtimeNs": "1792652967291730100",
+          "stableDuringRead": true
+        },
+        "fullFlowerMask": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/qa/continue-user-20261022/four-corner-halo-evidence/DRAFT-complete-pale-flower-control-mask-native1254.png",
+          "sha256": "b7b9be16d2776efb312bf549b0b7777a29eb933c3875df26adb148c4ba3cdd54",
+          "bytes": 2519,
+          "mtimeNs": "1792652348435234000",
+          "stableDuringRead": true
+        },
+        "rootPaddedOwnership": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c02_candidate-v1_4096/source_index_planes.npz",
+          "sha256": "3a9fcd2a4dd1f60f136c6a877886259f278241c6335977a293b7f54ef5a16a3b",
+          "bytes": 180170,
+          "mtimeNs": "1791876392556247100",
+          "stableDuringRead": true
+        },
+        "rootManifest": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/r05_c02.candidate-v1.manifest.json",
+          "sha256": "c6bb139e0c3ac8fe206700bff5b26ab04b9361fc5ac0b41f65466ea6d1434c0a",
+          "bytes": 7003,
+          "mtimeNs": "1791876358951266800",
+          "stableDuringRead": true
+        },
+        "rootAssembly": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c02_candidate-v1_4096.assembly.json",
+          "sha256": "bcc92ad72be6eee7dc2e0de50fd8bc7800305718cfa13bc3d906cd868f0118a3",
+          "bytes": 498672,
+          "mtimeNs": "1791876403387017100",
+          "stableDuringRead": true
+        },
+        "qa_root-before-new-current-white-flower-perimeter220x195-NATIVE.png": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-before-new-current-white-flower-perimeter220x195-NATIVE.png",
+          "sha256": "a2229b7a6cf63379776834da4993c4d7e3c58426af17ed1855855fa86fe13cc3",
+          "bytes": 84677,
+          "mtimeNs": "1792653612462496100",
+          "stableDuringRead": true
+        },
+        "qa_root-after-candidate-new-current-white-flower-perimeter220x195-NATIVE.png": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-after-candidate-new-current-white-flower-perimeter220x195-NATIVE.png",
+          "sha256": "a05391aefac1c8d1b8e5df814fa2be8f346039df4d294553cfbbe059ee16c5e9",
+          "bytes": 84784,
+          "mtimeNs": "1792653612687302600",
+          "stableDuringRead": true
+        },
+        "qa_root-after-candidate-new-current-center480-NATIVE.png": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-after-candidate-new-current-center480-NATIVE.png",
+          "sha256": "a15a775d9fbc0eccc39765f9891e705eaa4e8ecc36d1dc983aaf2a2c2b742f7a",
+          "bytes": 460564,
+          "mtimeNs": "1792653612716139800",
+          "stableDuringRead": true
+        },
+        "qa_root-candidate-affected-CORE-native1024.png": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/root-candidate-affected-CORE-native1024.png",
+          "sha256": "353becd37a93d9d037081ae7bdd2fa586e1e2a44d3cf2a88a42459c95e1c5d3c",
+          "bytes": 1991293,
+          "mtimeNs": "1792654302854726600",
+          "stableDuringRead": true
+        },
+        "baseRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.cross-native-repair.json",
+          "sha256": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9",
+          "bytes": 2159,
+          "mtimeNs": "1792567948968835700",
+          "stableDuringRead": true
+        },
+        "parentInternalClosure": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.internal-closure.json",
+          "sha256": "a2eac587a4d6cb0648ad6b6e8ea9852c9bfd61ad561411c5bd458bdc57f51cb4",
+          "bytes": 8020,
+          "mtimeNs": "1792570041115400800",
+          "stableDuringRead": true
+        },
+        "parentQaIndex": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/qa/newchat-20261020/assembly_r05_c01_west-rock-a01/qa_index.json",
+          "sha256": "32c3acf562a39b0162e793ad64b48a56bd77691d29ade0cb61f0d95369e0fe46",
+          "bytes": 20400,
+          "mtimeNs": "1792507257281376200",
+          "stableDuringRead": true
+        },
+        "split": {
+          "path": "docs/MAP_PARALLEL_SPLIT_20261013.json",
+          "sha256": "e82674eb499ef64f1cf7acdb1dba5c0f63989d9158ce3921a9022d784708d61e",
+          "bytes": 11469,
+          "mtimeNs": "1792343980391628900",
+          "stableDuringRead": true
+        },
+        "AGENTS": {
+          "path": "AGENTS.md",
+          "sha256": "3faeaca723d202c4660a52883360c0f0307cb2997eb5df38d31d11f9844590be",
+          "bytes": 10721,
+          "mtimeNs": "1792406300366903700",
+          "stableDuringRead": true
+        }
+      },
+      "checkedAtUtc": "2026-10-22T07:50:50.421581+00:00",
+      "checkedAtNewYork": "2026-10-22T03:50:50.421581-04:00",
+      "closeGuard": {
+        "ownLedger": {
+          "actualSha256": "0e448863d65e9a51b56ba6f62a5b210292c0414ae9068ef60ce8f33c2267b9b5",
+          "expectedSha256": "0e448863d65e9a51b56ba6f62a5b210292c0414ae9068ef60ce8f33c2267b9b5",
+          "matches": true
+        },
+        "nwLedger": {
+          "actualSha256": "89b40b13bff22938d9b9213e9042b8b1c1e2e7006369df1b73e93534516881bb",
+          "expectedSha256": "89b40b13bff22938d9b9213e9042b8b1c1e2e7006369df1b73e93534516881bb",
+          "matches": true
+        },
+        "candidateRecord": {
+          "actualSha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+          "expectedSha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+          "matches": true
+        },
+        "baseRecord": {
+          "actualSha256": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9",
+          "expectedSha256": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9",
+          "matches": true
+        },
+        "neighborRecord": {
+          "actualSha256": "c44123494d65f81c6fda5cfb1575b030e20773b5dbcd65bf6d07076e09b6cb8e",
+          "expectedSha256": "c44123494d65f81c6fda5cfb1575b030e20773b5dbcd65bf6d07076e09b6cb8e",
+          "matches": true
+        },
+        "readiness": {
+          "actualSha256": "5ec6de3a1a73bec95e6ae1333957eaa7631b8353d95743b7eec167382a53d223",
+          "expectedSha256": "5ec6de3a1a73bec95e6ae1333957eaa7631b8353d95743b7eec167382a53d223",
+          "matches": true
+        },
+        "strictProof": {
+          "actualSha256": "ba9ca7b84aeb5ede028fe518440df6c471a40207cfd4f73ef050d4ce5efcde05",
+          "expectedSha256": "ba9ca7b84aeb5ede028fe518440df6c471a40207cfd4f73ef050d4ce5efcde05",
+          "matches": true
+        },
+        "internalProof": {
+          "actualSha256": "4ee34b7522f98c88cd3e2d4c016b3c87c6b2636ff12acfba49f1b1d3df8bcd21",
+          "expectedSha256": "4ee34b7522f98c88cd3e2d4c016b3c87c6b2636ff12acfba49f1b1d3df8bcd21",
+          "matches": true
+        },
+        "base": {
+          "sameStatSinceContentVerified": true
+        },
+        "candidate": {
+          "sameStatSinceContentVerified": true
+        },
+        "neighbor": {
+          "sameStatSinceContentVerified": true
+        },
+        "raw": {
+          "sameStatSinceContentVerified": true
+        },
+        "mask": {
+          "sameStatSinceContentVerified": true
+        }
+      },
+      "rootCoordinatorViewObservation": {
+        "source": "parent root current-task message",
+        "actualViewed": [
+          "before full flower220x195",
+          "after full flower220x195",
+          "center480",
+          "complete affectedCORE1024"
+        ],
+        "reportedConclusion": "505 petal restore is a visual local improvement; pink-fan L truncation and whole corner remain HOLD",
+        "isSavedAdoptionDecision": false
+      },
+      "statisticsAndPublisherBinding": {
+        "baselineReport": {
+          "path": "docs/MAP_PERIODIC_REPORT_20261022_033634.json",
+          "sha256": "60342e96c2d184c70d3d83355013db67164a5143f3b34ab6b90b02f1f3f59df9",
+          "bytes": 5600870,
+          "mtimeNs": "1792654596872647000"
+        },
+        "baselineReportedAtUtc": "2026-10-22T07:36:34.752820+00:00",
+        "baselineIsland": {
+          "map": "八仙岛",
+          "target": 196,
+          "internalPassed": 66,
+          "remainingToInternalPass": 130,
+          "completeSelectedCandidates": 164,
+          "pendingCompleteCandidates": 98
+        },
+        "acceptedCurrentCandidateImagePinsLength": 36,
+        "acceptedCurrentCandidateImagePinsMatchingR05C01": [],
+        "baselineCompleteCurrent25a9Pin": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.png",
+          "role": "exact current complete candidate",
+          "sha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c",
+          "expectedSha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c",
+          "expectedHashMatches": true,
+          "bytes": 30972855,
+          "mtimeNs": "1792567948924618300",
+          "mtimeUtc": "2026-10-21T07:32:28.9246183Z",
+          "ctimeUtc": "2026-10-21T07:32:26.9840318Z",
+          "stableDuringRead": true,
+          "contentRead": true,
+          "rootSameHashStatReuse": false,
+          "png": true,
+          "width": 4096,
+          "height": 4096,
+          "IHDRValidated": true,
+          "contentReadThisPublication": false,
+          "statReusedAtUtc": "2026-10-22T07:36:34.752820+00:00",
+          "statMatchesPreviouslyVerifiedIdentity": true
+        },
+        "baselineInternalCoordinateIncrementLedger": {
+          "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/ROOT_INTERNAL_ACCEPTED_COORDINATE_INCREMENT_20261021_130534_v2.json",
+          "sha256": "d6062aef38cf89e873a44c294d7a77e4df934d4c807742c3bf912f1ef7303ecd",
+          "bytes": 7504,
+          "mtimeNs": "1792602369816535000"
+        },
+        "baselineLedgerQualification": "incremental_internal_membership_not_full_legacy_membership; inherited island66 retained, full legacy coordinate list explicitly not reconstructed. No explicit new island/r05c01 membership is invented.",
+        "currentOwnerAlreadyInternalAccepted": {
+          "ownerIndex": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/current-adopted-20261020.json",
+            "sha256": "0e448863d65e9a51b56ba6f62a5b210292c0414ae9068ef60ce8f33c2267b9b5",
+            "bytes": 10996,
+            "mtimeNs": "1792642457696331700",
+            "stableDuringRead": true
+          },
+          "entryPointer": "/tiles/1",
+          "tileId": "r05_c01",
+          "currentImageSha": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c",
+          "currentRecordSha": "d23bee3eac24635926d92a867061049787a1f0270ba80a0305643a30266bb3e9",
+          "internalClosure": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.internal-closure.json",
+            "sha256": "a2eac587a4d6cb0648ad6b6e8ea9852c9bfd61ad561411c5bd458bdc57f51cb4",
+            "bytes": 8020,
+            "mtimeNs": "1792570041115400800",
+            "stableDuringRead": true
+          },
+          "internalClosurePassed": true,
+          "internal33Passed": 33,
+          "ownerInternalPassedTiles": 2,
+          "formalAccepted": false,
+          "externalQA": "pending"
+        },
+        "decision": "RETAIN_EXISTING_OWNER_INTERNAL_PASS_AND_MAP66; NEW_IMAGE_VERSION_IS_NOT_A_NEW_COORDINATE_OR_NEW_INTERNAL_PASS",
+        "prospectiveInternalIncrement": 0,
+        "prospectiveCompleteIncrement": 0,
+        "prospectiveFormalIncrement": 0,
+        "acceptedCurrentCandidateVersionReplacementProofNeeded": false,
+        "why": "The accepted-current explicit list has no r05c01 entry. Use a new current-revision observation and post-CAS metadata binding after actual adoption, not a fabricated explicit accepted coordinate addition or new internal pass.",
+        "proposedCurrentRevisionObservationAfterActualReceipt": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.png",
+          "sha256": "16ee28799345ac9251b07d1303cfcc672626a9913e8277d42f990db5cc6c5ca1",
+          "bytes": 30973080,
+          "mtimeNs": "1792653349503882700",
+          "stableDuringRead": true,
+          "map": "island-game-20261009",
+          "tile": "r05_c01",
+          "actualDimensions": [
+            4096,
+            4096
+          ],
+          "isCurrentLocalRevision": "only true after actual own CAS receipt",
+          "currentForCoordinate": "only true after actual own CAS receipt",
+          "sourceRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/pale-flower-native-halo-v1/r05_c01-pale-flower-native-halo-v1-4096.owned-neighbor-halo.json",
+            "sha256": "fadf7b5afbff3d73faa3e9120d88af2f704ce8f3c2dfc7cd31f843141db7be2d",
+            "bytes": 36239,
+            "mtimeNs": "1792653349542499800",
+            "stableDuringRead": true
+          },
+          "acceptanceScope": "Inherited internal33 pass retained by exact equality; bounded505 repair perimeter and full affectedCORE checked; unrelated external whole-edge/four-corner and formal acceptance remain false.",
+          "adoptionProofRequired": "actual root bounded decision plus original-writer CAS receipt, actual post-index SHA and new16ee/fadf-bound closure SHA",
+          "newInternalIncrement": 0,
+          "newCompleteIncrement": 0,
+          "newFormalIncrement": 0
+        },
+        "old25a9AfterAdoption": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-mask-a03-20261021/r05_c01_west-rock-mask-a03_4096.png",
+          "sha256": "25a9e5f71d3fbda0ab996d160d4e86017f2d99bb5043a27049025ae21c3c496c",
+          "cacheRole": "previously_verified_complete_coordinate_base_candidate",
+          "isCurrentLocalRevision": false,
+          "currentForCoordinate": false,
+          "role": "historical exact native-derived base / inherited prior QA evidence; do not continue calling this exact current complete candidate"
+        },
+        "newVersionMetadataProofAfterAdoptionMustBind": [
+          "same map+formal coordinate dedup key island-game-20261009/r05_c01",
+          "old25a9/d23b plus priora2ea closure and unchanged33 proof",
+          "actual new16ee/fadf plus new immutable closure and this review hash",
+          "post-CAS owner index bytes/SHA/exact tiles[1] image+record+closure pointers",
+          "readonly actual NW3a43/c441 source guard and new-root decision/CAS receipt",
+          "zero new coordinate/core/internal/formal increments and explicit old-current role retirement"
+        ],
+        "noPublisherOrParentMetadataChangedByThisTask": true
+      }
     }
   }
 }

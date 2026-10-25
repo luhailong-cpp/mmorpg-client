@@ -18,14 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
-            tools
-            Assets/Scripts/World
-            Assets/Resources/World/Characters/QdaoOriginalRosterV13
-            Assets/Resources/World/Characters/QdaoOriginalRosterV14
-            Assets/Resources/World/Characters/QdaoArchivedActions20261005
-            Assets/Resources/World/Pets/QdaoPets20261005
-            Assets/Resources/World/CurrentMaps20261009
+            /.gitattributes
+            /tools/
+            /Assets/Scripts/World/
+            /Assets/Resources/World/Characters/QdaoOriginalRosterV13/
+            /Assets/Resources/World/Characters/QdaoOriginalRosterV14/
+            /Assets/Resources/World/Characters/QdaoArchivedActions20261005/
+            /Assets/Resources/World/Pets/QdaoPets20261005/
       - name: Install image verification dependency
         run: python -m pip install Pillow
       - name: Verify baseline images and exact delivery hashes
@@ -36,11 +38,37 @@ jobs:
         run: python tools/import_pet_actions.py --verify
       - name: Check Git checkout and archive byte preservation
         run: python -m unittest discover -s tools/tests -p test_character_checkout.py -v
+
+  verify-map-resources:
+    name: Map checkout (${{ matrix.os }}, ${{ matrix.map }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        map: [main, village, island]
+    steps:
+      # Each runner holds one map's PNG objects and worktree, not all 13 GB.
+      # Non-cone patterns include all three small base layouts without their tiles.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.gitattributes
+            /tools/
+            /Assets/Resources/World/CurrentMaps20261009/*/layout.png
+            /Assets/Resources/World/CurrentMaps20261009/*/source.json
+            /Assets/Resources/World/CurrentMaps20261009/*/navigation.json
+            /Assets/Resources/World/CurrentMaps20261009/*/walkmask.txt
+            /Assets/Resources/World/CurrentMaps20261009/${{ matrix.map }}/
+      - name: Install image verification dependency
+        run: python -m pip install Pillow
       - name: Verify current map images, navigation and portable source records
         run: python tools/import_current_maps.py --verify
       - name: Check map navigation geometry and portable delivery
         run: python -m unittest discover -s tools/tests -p test_import_current_maps.py -v
       - name: Verify completed native map tiles and portable provenance
-        run: python tools/import_completed_map_tiles.py --verify
+        run: python tools/import_completed_map_tiles.py --verify --map ${{ matrix.map }}
       - name: Check partial map delivery validation
         run: python -m unittest discover -s tools/tests -p test_import_completed_map_tiles.py -v

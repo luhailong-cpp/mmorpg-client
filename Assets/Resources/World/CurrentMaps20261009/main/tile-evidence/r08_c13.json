@@ -8,28 +8,33 @@
   "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
   "imageSha256": "dd20b4e0d2b73b7ff90ef24be9a8337f8e436a17f46ca0430a6240b75532333a",
   "imageBytes": 28841786,
-  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c13/candidates/r08_c13.candidate.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/qa/central-foliage-20261011/staged/r08_c13.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
   "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
   "sourceLedgerSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r08_c13",
-    "generatedNativeCount": 18,
-    "selectedCoreCount": 16,
-    "missingCoreCount": 0,
-    "fullyCovered4kCount": 1,
-    "internalPassed4kCount": 1,
-    "formalAcceptedCount": 0,
-    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c13/candidates/r08_c13.candidate.png",
-    "candidateSha256": "dd20b4e0d2b73b7ff90ef24be9a8337f8e436a17f46ca0430a6240b75532333a",
-    "workerStatus": "complete_candidate_internal_and_connected_group_seams_reviewed",
-    "nextPatch": null,
-    "fullInternalReview": null
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/qa/central-foliage-20261011/staged/r08_c13.png",
+    "imageSha256": "dd20b4e0d2b73b7ff90ef24be9a8337f8e436a17f46ca0430a6240b75532333a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "sha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
+    ],
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {},
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",

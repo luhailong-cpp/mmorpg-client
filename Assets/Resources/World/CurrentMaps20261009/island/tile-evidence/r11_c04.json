@@ -9,43 +9,155 @@
   "imageSha256": "96628300d5e77e1a700d83e85cbd7fbc493cb83a9ebce9594badb9e80e2857f5",
   "imageBytes": 22969053,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-candidate-4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/progress.json",
-  "sourceLedgerSha256": "c9f4c4aaa3f60e2ba0f7e20bffa2a11bde5c77ac3bd6c1123e3511578bd7214a",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-report.json",
+  "sourceLedgerSha256": "4edfd6bbf2261a9368ba4bab9c82e63e826cda7cdf89b34a7f19ada66811a548",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-candidate-4096.png",
-    "sha256": "96628300d5e77e1a700d83e85cbd7fbc493cb83a9ebce9594badb9e80e2857f5",
-    "dimensions": [
-      4096,
-      4096
+    "tile": "r11_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-candidate-4096.png",
+    "imageSha256": "96628300d5e77e1a700d83e85cbd7fbc493cb83a9ebce9594badb9e80e2857f5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-report.json",
+        "sha256": "4edfd6bbf2261a9368ba4bab9c82e63e826cda7cdf89b34a7f19ada66811a548",
+        "sourceReviewSha256": "4edfd6bbf2261a9368ba4bab9c82e63e826cda7cdf89b34a7f19ada66811a548",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-candidate-4096.png",
+            "sha256": "96628300d5e77e1a700d83e85cbd7fbc493cb83a9ebce9594badb9e80e2857f5",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "candidateGlobalBox": [
+            12288,
+            40960,
+            16384,
+            45056
+          ],
+          "nativeSourceInputCount": 22,
+          "validation": {
+            "pixelCount": 16777216,
+            "mismatchedPixels": 0,
+            "sameGlobalCoordinateExact": true,
+            "sourceIdPixelCounts": {
+              "1": 1132440,
+              "2": 935845,
+              "3": 929603,
+              "4": 722771,
+              "5": 1079033,
+              "6": 999122,
+              "7": 343147,
+              "8": 414808,
+              "9": 929304,
+              "10": 1021564,
+              "11": 958119,
+              "12": 361316,
+              "13": 1069459,
+              "14": 1056045,
+              "15": 984746,
+              "16": 783288,
+              "17": 901641,
+              "18": 599949,
+              "19": 870756,
+              "20": 164431,
+              "21": 137156,
+              "22": 382673
+            },
+            "sourceInputsAndRecordsUnchanged": true,
+            "interpolation": false,
+            "feathering": false,
+            "colorAdjustment": false,
+            "displacement": false,
+            "unchangedOutsideRepairSelection": true,
+            "mandatoryCoreUsesRepairOnly": true,
+            "mandatoryTargetsUseRepairOnly": true,
+            "repairPixelCount": 382673,
+            "diskRoundtripExact": true,
+            "mandatoryCorePatchBoxes": [
+              [
+                850,
+                230,
+                1224,
+                1110
+              ]
+            ],
+            "mandatoryTargetPatchBoxes": [
+              [
+                870,
+                270,
+                1254,
+                1080
+              ]
+            ]
+          },
+          "baseValidation": {
+            "pixelCount": 16777216,
+            "mismatchedPixels": 0,
+            "sameGlobalCoordinateExact": true,
+            "sourceIdPixelCounts": {
+              "1": 1132440,
+              "2": 935845,
+              "3": 929603,
+              "4": 722771,
+              "5": 1079033,
+              "6": 999122,
+              "7": 343147,
+              "8": 414808,
+              "9": 929304,
+              "10": 1021564,
+              "11": 958119,
+              "12": 628596,
+              "13": 1069459,
+              "14": 1056045,
+              "15": 984746,
+              "16": 898681,
+              "17": 901641,
+              "18": 599949,
+              "19": 870756,
+              "20": 164431,
+              "21": 137156
+            },
+            "sourceInputsAndRecordsUnchanged": true,
+            "interpolation": false,
+            "feathering": false,
+            "colorAdjustment": false,
+            "displacement": false
+          }
+        }
+      }
     ],
-    "sourceIdMask": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-source-id-mask.png",
-    "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-report.json",
-    "sourceReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-report.json",
-    "nativeSourceCount": 21,
-    "sourceInputRecordCount": 22,
-    "nativePixelsVerified": true,
-    "internalPassed": true,
-    "internalTileSeamsPassed": true,
-    "allOuterTileEdgesPassed": false,
-    "formalAccepted": false,
-    "mode": "native exact same-global-coordinate binary selection, no interpolation/feathering/painting/warping",
-    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r11c04-pond-right-crisp-v02-west-supplement.json",
-    "pairedNorthReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r11c04-resume-final-west-review.json",
-    "internalStatus": "all24 internal segments reviewed with five localized repair stages; independent right pond supplement passed",
-    "sharedEdges": {
-      "north-r10_c04": "geometry_pass",
-      "west-r11_c03": "geometry_pass"
-    },
-    "pendingDetailReview": {
-      "southBalusterFinial": "check original soft stone sphere detail against new south neighbor when native pair available"
-    },
-    "eastSouthNeighborsPending": true
+    "selectionBasis": "Own-output SHA and all 16,777,216 pixels verified against original native sources; source contribution sum covers the full square. Whole-zone missingCoreCount is not an image gap.",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-manifest.json",
+        "record": {
+          "status": "qa_candidates_written"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/progress.json",
+        "record": {
+          "formalAccepted": false,
+          "internalStatus": "all24 internal segments reviewed with five localized repair stages; independent right pond supplement passed",
+          "pendingDetailReview": {
+            "southBalusterFinial": "check original soft stone sphere detail against new south neighbor when native pair available"
+          },
+          "eastSouthNeighborsPending": true
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-pond-right-crisp-v02-r11_c04-report.json",

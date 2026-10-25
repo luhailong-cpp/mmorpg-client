@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 7,
+  "column": 14,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "a0c91b52fcfffdcdd94dbbbcf0dd12eb513c2e946c81cdfb4c395c87f0434672",
+  "imageBytes": 23105634,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r07_c14.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r07_c14.candidate.png.derived.json",
+  "sourceLedgerSha256": "6b1a2d791ee8534f0966552f759ec83c0764688cc4610b387f3794bc91151bda",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r07_c14.candidate.png",
+    "imageSha256": "a0c91b52fcfffdcdd94dbbbcf0dd12eb513c2e946c81cdfb4c395c87f0434672",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r07_c14.candidate.png.derived.json",
+        "sha256": "6b1a2d791ee8534f0966552f759ec83c0764688cc4610b387f3794bc91151bda",
+        "completeness": [
+          "/mechanicalChecks/missingPixels",
+          0
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r07_c14.candidate.png.derived.json",
+        "record": {
+          "status": "candidate_pending_visual_and_external_seam_review",
+          "formalAccepted": false,
+          "internalVisualReview": "pending; inspect all 24 strips and 9 junctions at 100%",
+          "externalTileEdgesVerified": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/progress.json",
+        "record": {
+          "reviewStatus": "generator_native_full_review_passed_root_independent_not_started"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/progress.json",
+        "record": {
+          "reviewStatus": "generator_native_full_review_passed_root_independent_not_started"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

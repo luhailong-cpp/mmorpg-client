@@ -9,29 +9,50 @@
   "imageSha256": "e06bcb9617305ca4be69b183c3384e47374302beb4007405747a065da7fb57bc",
   "imageBytes": 24832807,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/progress.json",
-  "sourceLedgerSha256": "c9f4c4aaa3f60e2ba0f7e20bffa2a11bde5c77ac3bd6c1123e3511578bd7214a",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png.derivation.json",
+  "sourceLedgerSha256": "235024c6e91840e3f4a6a5ad1d8fb94b00769adfc9c4419e8cd88e9ad6f506f0",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png",
-    "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png.derivation.json",
-    "sourceIdMask": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-source-id-mask.png",
-    "sourceReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-source-report.json",
-    "mode": "native same-coordinate pixel selection; no interpolation, feathering, warping or recoloring",
-    "baseArrayDoesNotFullyDescribeFinalPixels": true,
-    "nativeSourceCount": 27,
-    "internalPassed": true,
-    "connectedGroupEdgesPassed": true,
-    "allOuterTileEdgesPassed": false,
-    "formalAccepted": false,
-    "sharedEdges": {
-      "south-r11_c03": "geometry_pass"
-    }
+    "tile": "r10_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png",
+    "imageSha256": "e06bcb9617305ca4be69b183c3384e47374302beb4007405747a065da7fb57bc",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png.derivation.json",
+        "sha256": "235024c6e91840e3f4a6a5ad1d8fb94b00769adfc9c4419e8cd88e9ad6f506f0",
+        "sourceReviewSha256": "235024c6e91840e3f4a6a5ad1d8fb94b00769adfc9c4419e8cd88e9ad6f506f0",
+        "completeness": [
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-native-4096.png.derivation.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/output/contiguous-r09-r10-c03-c04-v01/r10_c03-source-report.json",

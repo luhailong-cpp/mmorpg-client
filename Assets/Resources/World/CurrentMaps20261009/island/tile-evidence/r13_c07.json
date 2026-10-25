@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 13,
+  "column": 7,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "af24872674be890d47939c83ef7849a7b39f5334f4b1dc55d4b8b925b3a9e427",
+  "imageBytes": 23373840,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/east-finish/qa/c04-hardseam-east-r13c07-finish21-v02-straight-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/east-finish/qa/c04-hardseam-east-r13c07-finish21-v02-report.json",
+  "sourceLedgerSha256": "3107dfd7ce3fd09055ce9fc01ca508d042c9229a07d64e4de82775889e30f413",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/east-finish/qa/c04-hardseam-east-r13c07-finish21-v02-straight-4096.png",
+    "imageSha256": "af24872674be890d47939c83ef7849a7b39f5334f4b1dc55d4b8b925b3a9e427",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/east-finish/qa/c04-hardseam-east-r13c07-finish21-v02-report.json",
+        "sha256": "3107dfd7ce3fd09055ce9fc01ca508d042c9229a07d64e4de82775889e30f413",
+        "sourceReviewSha256": "3107dfd7ce3fd09055ce9fc01ca508d042c9229a07d64e4de82775889e30f413",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "QA native candidate; not production acceptance; cannot repair source geometry"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/east-finish/qa/c04-hardseam-east-r13c07-finish21-v02-report.json",
+        "record": {
+          "status": "QA native candidate; not production acceptance; cannot repair source geometry"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

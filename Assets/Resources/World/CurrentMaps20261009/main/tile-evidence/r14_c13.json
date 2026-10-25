@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 14,
+  "column": 13,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "f1d683133fa23f466621f492375b55848d2a8c5775e039f10c2c86bc3860fda5",
+  "imageBytes": 23527284,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/candidates/r14_c13-f1d683133fa2.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/status-history/progress-11bb1e39ce1c690b.json",
+  "sourceLedgerSha256": "11bb1e39ce1c690b6622231d7a5073686fb07d5b7845a3c353a461a62806115f",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": "pending_root_corner_and_revised_east_neighbor_review",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/candidates/r14_c13-f1d683133fa2.png",
+    "imageSha256": "f1d683133fa23f466621f492375b55848d2a8c5775e039f10c2c86bc3860fda5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/status-history/progress-11bb1e39ce1c690b.json",
+        "sha256": "11bb1e39ce1c690b6622231d7a5073686fb07d5b7845a3c353a461a62806115f",
+        "sourceReviewSha256": "11bb1e39ce1c690b6622231d7a5073686fb07d5b7845a3c353a461a62806115f",
+        "completeness": [
+          "Selected output path/SHA bound to this record",
+          "activeNativeCount=16 / coverageSourceCount=16; no missing cores reported"
+        ]
+      }
+    ],
+    "selectionBasis": "Exact candidate identity bound to complete native core record",
+    "sourceStatus": {
+      "internalArtQA": "passed_local_geometry_with_external_review_pending",
+      "internalSeamQA": "passed_preserved_from_v4",
+      "externalNeighborSeamQA": "pending_root_corner_and_revised_east_neighbor_review",
+      "formalAccepted": false,
+      "status": "4k_candidate_pending_external_or_internal_QA",
+      "externalEdges": [
+        {
+          "direction": "north",
+          "neighbor": "r13_c13",
+          "status": "not_formally_accepted"
+        },
+        {
+          "direction": "east",
+          "neighbor": "r14_c14",
+          "status": "not_formally_accepted"
+        },
+        {
+          "direction": "south",
+          "neighbor": "r15_c13",
+          "status": "not_formally_accepted"
+        },
+        {
+          "direction": "west",
+          "neighbor": "r14_c12",
+          "status": "not_formally_accepted"
+        }
+      ]
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/status-history/progress-11bb1e39ce1c690b.json",
+        "record": {
+          "internalArtQA": "passed_local_geometry_with_external_review_pending",
+          "internalSeamQA": "passed_preserved_from_v4",
+          "externalNeighborSeamQA": "pending_root_corner_and_revised_east_neighbor_review",
+          "formalAccepted": false,
+          "status": "4k_candidate_pending_external_or_internal_QA",
+          "externalEdges": [
+            {
+              "direction": "north",
+              "neighbor": "r13_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "east",
+              "neighbor": "r14_c14",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "south",
+              "neighbor": "r15_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "west",
+              "neighbor": "r14_c12",
+              "status": "not_formally_accepted"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/status-history/progress-7d6c20b405e0a594.json",
+        "record": {
+          "internalArtQA": "passed_local_geometry_with_external_review_pending",
+          "internalSeamQA": "passed_preserved_from_v4",
+          "externalNeighborSeamQA": "pending_root_corner_and_revised_east_neighbor_review",
+          "formalAccepted": false,
+          "status": "4k_candidate_pending_external_or_internal_QA",
+          "externalEdges": [
+            {
+              "direction": "north",
+              "neighbor": "r13_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "east",
+              "neighbor": "r14_c14",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "south",
+              "neighbor": "r15_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "west",
+              "neighbor": "r14_c12",
+              "status": "not_formally_accepted"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/status-history/progress-b6db1bb623ab3915.json",
+        "record": {
+          "internalArtQA": "passed_local_geometry_with_external_review_pending",
+          "internalSeamQA": "passed_preserved_from_v4",
+          "externalNeighborSeamQA": "pending_root_corner_and_revised_east_neighbor_review",
+          "formalAccepted": false,
+          "status": "4k_candidate_pending_external_or_internal_QA",
+          "externalEdges": [
+            {
+              "direction": "north",
+              "neighbor": "r13_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "east",
+              "neighbor": "r14_c14",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "south",
+              "neighbor": "r15_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "west",
+              "neighbor": "r14_c12",
+              "status": "not_formally_accepted"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/delivery-20261012/status-history/progress-ccb795f13e7d17e4.json",
+        "record": {
+          "internalArtQA": "passed_local_geometry_with_external_review_pending",
+          "internalSeamQA": "passed_preserved_from_v4",
+          "externalNeighborSeamQA": "pending_root_corner_and_revised_east_neighbor_review",
+          "formalAccepted": false,
+          "status": "4k_candidate_pending_external_or_internal_QA",
+          "externalEdges": [
+            {
+              "direction": "north",
+              "neighbor": "r13_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "east",
+              "neighbor": "r14_c14",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "south",
+              "neighbor": "r15_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "west",
+              "neighbor": "r14_c12",
+              "status": "not_formally_accepted"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/progress.json",
+        "record": {
+          "internalArtQA": "passed_local_geometry_with_external_review_pending",
+          "internalSeamQA": "passed_preserved_from_v4",
+          "externalNeighborSeamQA": "pending_root_corner_and_revised_east_neighbor_review",
+          "formalAccepted": false,
+          "status": "4k_candidate_pending_external_or_internal_QA",
+          "externalEdges": [
+            {
+              "direction": "north",
+              "neighbor": "r13_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "east",
+              "neighbor": "r14_c14",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "south",
+              "neighbor": "r15_c13",
+              "status": "not_formally_accepted"
+            },
+            {
+              "direction": "west",
+              "neighbor": "r14_c12",
+              "status": "not_formally_accepted"
+            }
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

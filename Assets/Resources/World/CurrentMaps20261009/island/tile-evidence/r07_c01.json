@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 7,
+  "column": 1,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "808ddcc4ae18c1c547d83eebdb0c9b9625c87d85f593a42d259c1e831dd5f6ed",
+  "imageBytes": 29138107,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c01_candidate-v1_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c01_candidate-v1_4096.assembly.json",
+  "sourceLedgerSha256": "5ab06518793860e43d1fd765cef3b0026461a3e59d7ecd7ae127e0e44eb1d716",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c01_candidate-v1_4096.png",
+    "imageSha256": "808ddcc4ae18c1c547d83eebdb0c9b9625c87d85f593a42d259c1e831dd5f6ed",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c01_candidate-v1_4096.assembly.json",
+        "sha256": "5ab06518793860e43d1fd765cef3b0026461a3e59d7ecd7ae127e0e44eb1d716",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "candidate_pending_full_native_visual_and_external_seam_review",
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "paddedPixelCount": 18714276,
+        "tilePixelCount": 16777216,
+        "sourceContributionSum": 16777216,
+        "unassignedPixels": 0,
+        "all16SourcesContribute": true,
+        "allPaddedAndTilePixelsExactlyMatchUnmodifiedRecordedSourceCoordinates": true,
+        "allCompositePixelsExactlyMatchUnmodifiedOriginalRawSourceCoordinates": true,
+        "compositeCellCount": 0,
+        "nestedOriginalContributionSumsVerified": true,
+        "guidePixelsUsed": false
+      },
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c01_candidate-v1_4096.assembly.json",
+        "record": {
+          "status": "candidate_pending_full_native_visual_and_external_seam_review",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "paddedPixelCount": 18714276,
+            "tilePixelCount": 16777216,
+            "sourceContributionSum": 16777216,
+            "unassignedPixels": 0,
+            "all16SourcesContribute": true,
+            "allPaddedAndTilePixelsExactlyMatchUnmodifiedRecordedSourceCoordinates": true,
+            "allCompositePixelsExactlyMatchUnmodifiedOriginalRawSourceCoordinates": true,
+            "compositeCellCount": 0,
+            "nestedOriginalContributionSumsVerified": true,
+            "guidePixelsUsed": false
+          },
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/west-current-selection-20261012.json",
+        "record": {
+          "status": "internal_geometry33_PASS_material_and_external_pending",
+          "northBoundaryStatus": "PENDING_NO_COMPLETED_ANCHOR",
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "materialPending": [
+            "Lower foreground yellow flowers/leaves depth-of-field softness.",
+            "Water pattern density and fine leaf/stone material detail still pending overall material review."
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c01_v1_owner_left_right12_junction9_review_20261018.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "materialPending": [
+            "Lower foreground yellow flowers/leaves depth-of-field softness.",
+            "Water pattern density and fine leaf/stone material detail still pending overall material review."
+          ],
+          "formalAccepted": false,
+          "externalSeamsReviewed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c01_v1_root_top_bottom12_review_20261018.json",
+        "record": {
+          "geometryPending": 0,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+        "record": {
+          "formalAccepted": false,
+          "materialStatus": "PENDING",
+          "materialPending": [
+            "Lower foreground yellow flowers/leaves depth-of-field softness.",
+            "Water pattern density and fine leaf/stone material detail still pending overall material review."
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current-after.json",
+        "record": {
+          "formalAccepted": false,
+          "materialStatus": "PENDING",
+          "materialPending": [
+            "Lower foreground yellow flowers/leaves depth-of-field softness.",
+            "Water pattern density and fine leaf/stone material detail still pending overall material review."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c01_v1_owner_left_right12_junction9_review_20261018.json",
+    "sourceSha256": "a8f3e8d78f001ea930ccf8c6376a8b9e61f34a5817b52927f7e6a547da8000e4",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "reviewer": "west_continuation",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c01_candidate-v1_4096.png",
+        "sha256": "808ddcc4ae18c1c547d83eebdb0c9b9625c87d85f593a42d259c1e831dd5f6ed"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c01_candidate-v1_4096.assembly.json",
+        "sha256": "5ab06518793860e43d1fd765cef3b0026461a3e59d7ecd7ae127e0e44eb1d716"
+      },
+      "qaIndex": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/qa_index.json",
+        "sha256": "8fd8e067f9f1f09fad8b39804ecdad1af1756a8a974760c3d1c87b416c9a7401"
+      },
+      "scope": "Only12 left-right seams indices0-11 and9 junctions indices24-32, viewed actual original pixel size; root separately reviewed12 top-bottom seams.",
+      "items": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r01_c01-c02_100pct.png",
+          "sha256": "54e901fe8c79469e4438087f911ae0c1212d5363d90c9dd852a6225f093d94ea",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            0,
+            1264,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 0,
+          "geometryStatus": "PASS",
+          "note": "Foam and submerged/emerged stone contours continuous through the full seam band.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r01_c02-c03_100pct.png",
+          "sha256": "e601cc7a5547bc6759343b099ba7ee5561808b42f1465b91564bbc1032c904db",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            0,
+            2288,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 1,
+          "geometryStatus": "PASS",
+          "note": "Wave contour and pale boulder surfaces continue without abrupt geometry steps.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r01_c03-c04_100pct.png",
+          "sha256": "d690a8541bc02e61bfe03e304e057bca8be14ff81443da6ec4cc9dd7ec08d23e",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            0,
+            3312,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 2,
+          "geometryStatus": "PASS",
+          "note": "Rocks, green foliage and water perimeter align through band; no visible cut.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r02_c01-c02_100pct.png",
+          "sha256": "1e8553c5dc08dce74e3eab545e97bb2410f11c47b32e748e054e37d9318ec39f",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            909,
+            1264,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 3,
+          "geometryStatus": "PASS",
+          "note": "Water and white foam flow smoothly around right-side rocks; no abrupt join.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r02_c02-c03_100pct.png",
+          "sha256": "424a9ca4c6ca27924f51bbd0887be9f7bd8bfe8973865a62e9888402bbd209eb",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            909,
+            2288,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 4,
+          "geometryStatus": "PASS",
+          "note": "Boulder silhouettes, crevice and submerged stone/wave contacts continuous.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r02_c03-c04_100pct.png",
+          "sha256": "e8c34bed8efc27910b7bd523637509b3115fd26bb774b0de189b74d0a825ebb3",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            909,
+            3312,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 5,
+          "geometryStatus": "PASS",
+          "note": "Large right boulder outlines and incoming water trough are connected at native scale.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r03_c01-c02_100pct.png",
+          "sha256": "10fdd9b2e3fa9a886a82878de4f8dd7b4d6dd4d8e949bf2fb386d2db84ddc3dd",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            1933,
+            1264,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 6,
+          "geometryStatus": "PASS",
+          "note": "Open-water caustics remain connected; no straight cut or missing region.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r03_c02-c03_100pct.png",
+          "sha256": "931d07bbb3ee52fe06524bcbd7cc3a5e1368ce1b57bbab407e6ec8454ee4567b",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1933,
+            2288,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 7,
+          "geometryStatus": "PASS",
+          "note": "Foam arcs and shallow coast continue into lower-right rocks without dislocation.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r03_c03-c04_100pct.png",
+          "sha256": "98fa7a1f08cf2c50d72b07b3e7917e6d4e4e58d313000c83d428c6fe68db2f24",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1933,
+            3312,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 8,
+          "geometryStatus": "PASS",
+          "note": "Gray rock ridges, crevices and interleaved shrubs remain continuous across source join.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r04_c01-c02_100pct.png",
+          "sha256": "f3116e5e6126acb0ed6f640fbf83326f78d0439b116d7c4864cb441ac0143336",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            2957,
+            1264,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 9,
+          "geometryStatus": "PASS",
+          "note": "Water-only join has continuous caustics and foam detail.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r04_c02-c03_100pct.png",
+          "sha256": "532aa8e62773be827ec4a4d076f2849b66b2451e616f72bd7813f733e9fb2b01",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2957,
+            2288,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 10,
+          "geometryStatus": "PASS",
+          "note": "Right rocky edge and submerged stones meet foam continuously, no missing outlines.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/left-right_r04_c03-c04_100pct.png",
+          "sha256": "b3d0106c11c5ada196c3397c6da26f0de60bc1228cd3c004979932cf8b901642",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2957,
+            3312,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 11,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Rock faces and foliage silhouettes connected; leaf scale/detail varies and lower foreground softness is retained as material pending.",
+          "actuallyViewedNativeScale": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r01-r02_c01-c02_100pct.png",
+          "sha256": "df0fd5968bdd76f96ca4e94c6f323abda203300e56c67785f24978dfc0eb911b",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            784,
+            1264,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 24,
+          "geometryStatus": "PASS",
+          "note": "Four-source foam intersection continuous; nearby rocks have intact contours.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r01-r02_c02-c03_100pct.png",
+          "sha256": "196d5d5e17931e86ec1eb103bec64e54edca99b943c6c238678bac6bef0bb711",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            784,
+            2288,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 25,
+          "geometryStatus": "PASS",
+          "note": "Rounded boulder and crevice lines connected at the junction.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r01-r02_c03-c04_100pct.png",
+          "sha256": "1c9fa340c7aad3f1392e5c25f81f05d8b51f7fd4bd211184df07b1ff15b17737",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            784,
+            3312,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 26,
+          "geometryStatus": "PASS",
+          "note": "Large gray boulder contours, small leaves and water corner meet without a step.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r02-r03_c01-c02_100pct.png",
+          "sha256": "6c602ec3b5e7dc30341e2fc254fff6a00dce30cc4da0fe9be34e9b7ebb581d0d",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            1808,
+            1264,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 27,
+          "geometryStatus": "PASS",
+          "note": "Open sea caustic shapes continuous at four-source junction.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r02-r03_c02-c03_100pct.png",
+          "sha256": "da2d0d7c42abb762bbef042b1d084d504112f27791995163301a7c367b9ff3aa",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1808,
+            2288,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 28,
+          "geometryStatus": "PASS",
+          "note": "White foam and turquoise transition traverse junction without truncated edges.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r02-r03_c03-c04_100pct.png",
+          "sha256": "05fdd3c2a350031c2d89af8db6bc596eda939c90b3846297f330650c4002ef2f",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1808,
+            3312,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 29,
+          "geometryStatus": "PASS",
+          "note": "Submerged rock contours and white water around them remain coherent.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r03-r04_c01-c02_100pct.png",
+          "sha256": "a6c6eaec4d2a641844c7aeca92c2471de9bdbc25ca6bf2df713bf62f6d552a16",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            2832,
+            1264,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 30,
+          "geometryStatus": "PASS",
+          "note": "Water ripples cross four-source junction with no hard edge.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r03-r04_c02-c03_100pct.png",
+          "sha256": "f0029060b564995cbf2f65e00485ba1d144dd2f8351c2d7284299b34de9d4be0",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2832,
+            2288,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 31,
+          "geometryStatus": "PASS",
+          "note": "Shore rock base, white foam and submerged stones maintain contour continuity.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c01_candidate-v1_4096/junction_r03-r04_c03-c04_100pct.png",
+          "sha256": "dc25d33ba040a12a55e86399f808433b59107817c14419c241a652887283b059",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2832,
+            3312,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 32,
+          "geometryStatus": "PASS",
+          "note": "Natural boulder fractures and small leaves continue across junction, no pillar or invented architecture.",
+          "actuallyViewedNativeScale": true,
+          "materialStatus": "PENDING_FINAL_MATERIAL_ACCEPTANCE"
+        }
+      ],
+      "geometryPassCount": 21,
+      "materialStatus": "PENDING",
+      "materialPending": [
+        "Lower foreground yellow flowers/leaves depth-of-field softness.",
+        "Water pattern density and fine leaf/stone material detail still pending overall material review."
+      ],
+      "formalAccepted": false,
+      "externalSeamsReviewed": false
+    }
+  }
+}

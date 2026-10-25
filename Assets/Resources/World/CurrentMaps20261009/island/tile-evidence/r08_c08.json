@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 8,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "770b4dfc02da4a75b4c47f11bbff265851881a488a63b60bc8f03791369beabc",
+  "imageBytes": 24198421,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/tiles/r08_c08_h21_round2_v02.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/tiles/r08_c08_h21_round2_v02.candidate.png.generation.json",
+  "sourceLedgerSha256": "ca1c5c0cb387b98e1930da4770514d6883cc43a80ef515cba98af50c4c4f73b4",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/tiles/r08_c08_h21_round2_v02.candidate.png",
+    "imageSha256": "770b4dfc02da4a75b4c47f11bbff265851881a488a63b60bc8f03791369beabc",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/tiles/r08_c08_h21_round2_v02.candidate.png.generation.json",
+        "sha256": "ca1c5c0cb387b98e1930da4770514d6883cc43a80ef515cba98af50c4c4f73b4",
+        "sourceReviewSha256": "ca1c5c0cb387b98e1930da4770514d6883cc43a80ef515cba98af50c4c4f73b4",
+        "completeness": {
+          "outputSha256": "770b4dfc02da4a75b4c47f11bbff265851881a488a63b60bc8f03791369beabc",
+          "operation": "Exact hard rectangle crop/paste at 1:1; all other current source pixels kept. No mask, blur, blend, scaling or procedural drawing.",
+          "sourceProof": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/qa/r08_c08_h21_round2_v02/source-proof.json",
+            "sha256": "e58134fa3d468af15c2d63a8b3ece2713d58b22563495aa97475eb8ef87c721b"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/qa/r08_c08_h21_round2_v02/source-proof.json",
+        "sha256": "e58134fa3d468af15c2d63a8b3ece2713d58b22563495aa97475eb8ef87c721b",
+        "sourceReviewSha256": "e58134fa3d468af15c2d63a8b3ece2713d58b22563495aa97475eb8ef87c721b",
+        "completeness": {
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/tiles/r08_c08_h21_round2_v02.candidate.png",
+            "sha256": "770b4dfc02da4a75b4c47f11bbff265851881a488a63b60bc8f03791369beabc"
+          },
+          "baseCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c08.candidate-paving-best-20261023-v01.png",
+            "sha256": "641d3343729b09ec581777767e6e393087307226b4e98476f97fd3dee313f86a"
+          },
+          "baseSourceCount": 16,
+          "all16CoreDestinationsCover4096": true,
+          "nativeContribution": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c08-concentrated-round2/native/r08_c08_h21_round2_v02.png",
+            "sha256": "05fdb071c6ce857e348badc569f6603394d2e89886628cb6fedba2ee000475a9",
+            "sourceROI": [
+              499,
+              352,
+              755,
+              960
+            ],
+            "destinationBox": [
+              896,
+              1376,
+              1152,
+              1984
+            ]
+          },
+          "sourceReplayMismatchedPixels": 0,
+          "outsideRectangleChangedPixels": 0
+        }
+      }
+    ],
+    "selectionBasis": "Own SHA-bound proof lists sixteen original native base cores covering the full square and exact localized replacement with zero unchanged-area modifications.",
+    "sourceStatus": {},
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

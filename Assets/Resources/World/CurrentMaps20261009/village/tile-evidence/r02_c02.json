@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 2,
+  "column": 2,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "33424c790f388f3fa3fd46ff89b45f45a1770524f019e87fe864bdc9fb09e4a0",
+  "imageBytes": 26629195,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c02/paving-narrow-20261020-v02/r02_c02.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c02/paving-narrow-20261020-v02/r02_c02.assembly.json",
+  "sourceLedgerSha256": "3ab8dd768f5fac4f740c469397cad2fbff450b5d812bbfb3b8ec7e218ce081ff",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c02/paving-narrow-20261020-v02/r02_c02.candidate.png",
+    "imageSha256": "33424c790f388f3fa3fd46ff89b45f45a1770524f019e87fe864bdc9fb09e4a0",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c02/paving-narrow-20261020-v02/r02_c02.assembly.json",
+        "sha256": "3ab8dd768f5fac4f740c469397cad2fbff450b5d812bbfb3b8ec7e218ce081ff",
+        "completeness": [
+          "sourcesCount",
+          53
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "native-patch-candidate-awaiting-visual-review"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c02/paving-narrow-20261020-v02/r02_c02.candidate.png.generation.json",
+        "record": {
+          "status": "unadopted-native-pixel-trial"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r02_c02/paving-narrow-20261020-v02/r02_c02.assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "native-patch-candidate-awaiting-visual-review"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

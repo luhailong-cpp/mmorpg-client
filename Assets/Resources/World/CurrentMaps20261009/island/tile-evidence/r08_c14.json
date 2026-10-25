@@ -9,26 +9,89 @@
   "imageSha256": "085c80f82b605b099db42b874ef0c23fd34c5bb2108ebd0dd8b80fea5524662b",
   "imageBytes": 28621961,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c14.candidate-root-full-20261017-v02.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
-  "sourceLedgerSha256": "6136c0c733ea9bc23155e8144f99b501250137e2fc4ab2db4508c7861100ae0d",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c14-root-full-20261017-v02/root-internal-review-20261017.json",
+  "sourceLedgerSha256": "bc029939b2ba6c81d7ac64ddd3de6f29baae4d815066c5a58ec037b9376cf73c",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": false,
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r08_c14",
-    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c14.candidate-root-full-20261017-v02.png",
-    "sha256": "085c80f82b605b099db42b874ef0c23fd34c5bb2108ebd0dd8b80fea5524662b",
-    "fullyCovered": true,
-    "internalPassed": true,
-    "externalPassed": false,
-    "localArtworkAcceptanceReady": false,
-    "formalAccepted": false,
-    "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c14-root-full-20261017-v02/source-proof.json",
-    "review": "qa/r08_c14-root-full-20261017-v02/root-internal-review-20261017.json",
-    "pending": "Actual north/south neighbors and complete external corner acceptance still pending; E world boundary; W quick patches continuous."
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c14.candidate-root-full-20261017-v02.png",
+    "imageSha256": "085c80f82b605b099db42b874ef0c23fd34c5bb2108ebd0dd8b80fea5524662b",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c14-root-full-20261017-v02/root-internal-review-20261017.json",
+        "sha256": "bc029939b2ba6c81d7ac64ddd3de6f29baae4d815066c5a58ec037b9376cf73c",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
+    ],
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "status": "internal_passed_external_pending",
+      "pendingRepair": {},
+      "externalPassed": false,
+      "pendingNew": []
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c14.candidate-root-full-20261017-v02.png.generation.json",
+        "record": {
+          "fullCoverage": true,
+          "status": "full_candidate_pending_internal_and_external_review"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r08_c14.json",
+        "record": {
+          "status": "internal_passed_external_pending",
+          "pendingRepair": {},
+          "externalPassed": false,
+          "pendingNew": []
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c14-root-full-20261017-v02/root-internal-review-20261017.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "pending": "Actual north/south neighbors and complete external corner acceptance still pending; E world boundary; W quick patches continuous."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "record": {
+          "externalPassed": false,
+          "localArtworkAcceptanceReady": false,
+          "formalAccepted": false,
+          "pending": "Actual north/south neighbors and complete external corner acceptance still pending; E world boundary; W quick patches continuous."
+        }
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "record": {
+          "externalPassed": false,
+          "localArtworkAcceptanceReady": false,
+          "formalAccepted": false,
+          "pending": "Actual north/south neighbors and complete external corner acceptance still pending; E world boundary; W quick patches continuous."
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/island_southeast-execution.json",
+        "record": {
+          "externalPassed": false,
+          "localArtworkAcceptanceReady": false,
+          "formalAccepted": false,
+          "pending": "Actual north/south neighbors and complete external corner acceptance still pending; E world boundary; W quick patches continuous."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c14-root-full-20261017-v02/root-internal-review-20261017.json",

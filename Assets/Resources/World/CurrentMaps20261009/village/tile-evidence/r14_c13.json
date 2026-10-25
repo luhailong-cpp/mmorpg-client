@@ -1,0 +1,3406 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 14,
+  "column": 13,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "ffead788e334a4a77286c175b3b7e7fea3ef70500ae43b5e8e097c620e82a92a",
+  "imageBytes": 25808137,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/manifest.json",
+  "sourceLedgerSha256": "cd37837e2c14dd676ffc12cc5e75e9f805300f32b6c8591d3217acec1ff4b537",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/candidate-4096.png",
+    "imageSha256": "ffead788e334a4a77286c175b3b7e7fea3ef70500ae43b5e8e097c620e82a92a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/manifest.json",
+        "sha256": "cd37837e2c14dd676ffc12cc5e75e9f805300f32b6c8591d3217acec1ff4b537",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/exact-core-audit.json",
+        "sha256": "b2010a3daecb7b8e97d91a8e1e428f9f0f33c7ecc8faa0e836ff9d5cf6bb720d",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "pendingIssues": [
+        {
+          "id": "granite-material",
+          "patches": [
+            "p11",
+            "p12",
+            "p21",
+            "p22",
+            "p13",
+            "p14"
+          ],
+          "observation": "Granite grain, cream flecks and warmth differ across otherwise connected rock geometry."
+        },
+        {
+          "id": "foam-layout-detail",
+          "patches": [
+            "p12",
+            "p13",
+            "p22",
+            "p23"
+          ],
+          "observation": "p13 broad looping foam and submerged pebble-like details are more emphatic than the layout guide; localized review required."
+        },
+        {
+          "id": "top-water-transition",
+          "patches": [
+            "p13",
+            "p14",
+            "p23",
+            "p24"
+          ],
+          "observation": "Top-to-second-row caustic size/density and foam taper vary."
+        },
+        {
+          "id": "middle-conditioning-boundary",
+          "patches": [
+            "p22",
+            "p23",
+            "p24",
+            "p32",
+            "p33",
+            "p34"
+          ],
+          "observation": "Middle horizontal seams and junctions retain brightness/scale changes and quadrant-like texture boundaries."
+        },
+        {
+          "id": "lower-water-material",
+          "patches": [
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "observation": "Lower/right water is finer and brighter with repeated-looking cells; material continuity not accepted."
+        },
+        {
+          "id": "external-boundaries-pending",
+          "patches": [
+            "p11",
+            "p12",
+            "p13",
+            "p14"
+          ],
+          "observation": "North sources were missing during top-row generation. r13_c13 is now complete, but external north final joint QA remains pending. West quick strips used actual selected r14_c12 cores; material differences pending."
+        }
+      ],
+      "externalReady": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+        "record": {
+          "pendingIssues": [
+            {
+              "id": "granite-material",
+              "patches": [
+                "p11",
+                "p12",
+                "p21",
+                "p22",
+                "p13",
+                "p14"
+              ],
+              "observation": "Granite grain, cream flecks and warmth differ across otherwise connected rock geometry."
+            },
+            {
+              "id": "foam-layout-detail",
+              "patches": [
+                "p12",
+                "p13",
+                "p22",
+                "p23"
+              ],
+              "observation": "p13 broad looping foam and submerged pebble-like details are more emphatic than the layout guide; localized review required."
+            },
+            {
+              "id": "top-water-transition",
+              "patches": [
+                "p13",
+                "p14",
+                "p23",
+                "p24"
+              ],
+              "observation": "Top-to-second-row caustic size/density and foam taper vary."
+            },
+            {
+              "id": "middle-conditioning-boundary",
+              "patches": [
+                "p22",
+                "p23",
+                "p24",
+                "p32",
+                "p33",
+                "p34"
+              ],
+              "observation": "Middle horizontal seams and junctions retain brightness/scale changes and quadrant-like texture boundaries."
+            },
+            {
+              "id": "lower-water-material",
+              "patches": [
+                "p31",
+                "p32",
+                "p33",
+                "p34",
+                "p41",
+                "p42",
+                "p43",
+                "p44"
+              ],
+              "observation": "Lower/right water is finer and brighter with repeated-looking cells; material continuity not accepted."
+            },
+            {
+              "id": "external-boundaries-pending",
+              "patches": [
+                "p11",
+                "p12",
+                "p13",
+                "p14"
+              ],
+              "observation": "North sources were missing during top-row generation. r13_c13 is now complete, but external north final joint QA remains pending. West quick strips used actual selected r14_c12 cores; material differences pending."
+            }
+          ],
+          "externalReady": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/exact-core-audit.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/candidate.json",
+        "record": {
+          "externalReady": false,
+          "formalAccepted": false,
+          "pendingIssues": [
+            {
+              "id": "north-r13c13-r14c13-p42-p12-rock-brush-density-step",
+              "category": "external_material",
+              "blockingAcceptance": true,
+              "tilePair": [
+                "r13_c13",
+                "r14_c13"
+              ],
+              "patchPair": [
+                "r13_c13:p42",
+                "r14_c13:p12"
+              ],
+              "geometryStatus": "continuous_no_object_displacement",
+              "materialStatus": "hold",
+              "seamGlobalY": 53248,
+              "evidenceGlobalBox": [
+                50176,
+                52992,
+                51200,
+                53504
+              ],
+              "focusGlobalBox": [
+                50368,
+                53184,
+                51008,
+                53312
+              ],
+              "focusSeamLocalY": 64,
+              "fullEvidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-2-100pct.png",
+                "sha256": "16af71f0ef55ced909beb856c7470d8d0aa7b6b060618259fa7a6beb9528814d"
+              },
+              "focusEvidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/south-segment-2-material-step-focus-100pct.png",
+                "sha256": "32abceb03e0347a0489997ceada8d272a23dcccd413a96ccc3275f574de569c4"
+              },
+              "focusDifferentPixelsFromCurrentNorth2": 0,
+              "detail": "中央同一岩面在world y53248处出现平直笔触密度和对比度跳变：上部宽柔色块，下部细密高对比片粒。几何与裂纹连续，属于一个具体北外缝材质hold。",
+              "sameIssueAsNeighbor": "south-r13c13-r14c13-p42-p12-rock-brush-density-step",
+              "action": "retain selected sources and this concrete hold; no generation or repair in this QA"
+            }
+          ],
+          "supersededGenericPendingBasis": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/result.json",
+            "sha256": "92b86391c30bbc1827fac1f621a22d0c6d032dd85966998425c83a6f6de0c2fe"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/result.json",
+        "record": {
+          "reviewCoverage": {
+            "internalNativeMaterialViewsActuallyViewed": 33,
+            "internalFullSeamBands": 24,
+            "internalIntersections": 9,
+            "oldSameHashActualGeometryReviewsReused": 33,
+            "externalRequiredEvidenceCount": 25,
+            "externalFullSeamBands": 12,
+            "externalIntersections": 13,
+            "externalActualNativePixelViewsThisTask": 16,
+            "externalPriorActualMaterialGeometryReviewsReusedByCurrentSameImageAndSourcePixels": 9,
+            "canonicalExistingExternalPNGsReferenced": 17,
+            "newExternalEvidencePNGsRetained": 8,
+            "worldBottomClippedTerminalEvidenceCount": 2,
+            "materialHoldFocusActuallyViewed": true,
+            "allRequiredEvidenceReviewed": true
+          },
+          "internalReview": {
+            "geometryVerdict": "pass",
+            "materialVerdict": "pass",
+            "evidence": [
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p11--p12.png",
+                  "sha256": "d08c5343bba1ccacc0acbbe597fa15a624bd4a6b693eb16640d7085ceed595c7"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  49920,
+                  53248,
+                  50432,
+                  54272
+                ],
+                "candidateBox": [
+                  768,
+                  0,
+                  1280,
+                  1024
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Viewed native and exact west join. Cropped rock surfaces and narrow channels connect with west geometry; highlight intensity and granular rock scale vary locally. North source still missing at production, external QA remains pending.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "花岗岩裂隙与大曲面在x=256处连续，片粒暖灰变化随不同受光岩面变化，没有竖直纹理密度台阶。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p11--p21.png",
+                  "sha256": "d5d3f26aac32967eff2624e4a72adc5b3c85af892be8da390a3cf269e7a4a599"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  49152,
+                  54016,
+                  50176,
+                  54528
+                ],
+                "candidateBox": [
+                  0,
+                  768,
+                  1024,
+                  1280
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native and north/west core seams viewed. Rock foot continues top source into guide right side; no added object. Foam broadness and water microtexture changes along west/north remain pending material QA.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "右侧岩体曲面及岸脚轮廓延续，左侧泡沫沿水道分枝；y=256处未见横向岩面材质墙。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p12--p13.png",
+                  "sha256": "21d9475ce6f1ee0c33487d8f9763d3131f0452613d951953306b5f2ce9165bf6"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  50944,
+                  53248,
+                  51456,
+                  54272
+                ],
+                "candidateBox": [
+                  1792,
+                  0,
+                  2304,
+                  1024
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and exact west core strip inspected. Right-side boulder footprint broadly follows layout, left neighbor rock fragments connect. New submerged pebble-like shapes inside foamy water and broad white looping foam are more emphatic than guide; record for full QA, do not extend them farther south. West material/foam density varies, north external source unavailable at guide time. InternalReady and formalAccepted remain false.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "岩脚、绿色水下石与泡沫环流相连，白沫虽宽但按弯曲水流成束，并未在x=256齐截。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p12--p22.png",
+                  "sha256": "3ece4a07908569436e5a5ccbfd059155895f7f17c8a41a449891fd72aee0cfde"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  50176,
+                  54016,
+                  51200,
+                  54528
+                ],
+                "candidateBox": [
+                  1024,
+                  768,
+                  2048,
+                  1280
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native and exact north/west joins viewed. Planned rock foot/central indentation preserved; no added isolated land. Local granite grain/warmth changes and white surf width differences remain material issues for full QA.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "多个岩块和中央岩面裂纹穿过y=256，片粒阴阳变化依岩面起伏分布，无平直颗粒密度换挡。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p13--p14.png",
+                  "sha256": "9939dd85ab3ec8d6177e941244dd413fe60645f81bd963b86b5ee82151efc243"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  51968,
+                  53248,
+                  52480,
+                  54272
+                ],
+                "candidateBox": [
+                  2816,
+                  0,
+                  3328,
+                  1024
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and west exact-core strip inspected. Main rock and coastline continue at matching scale and positions, new stone is warmer/brighter with denser cream flecks. Foam extends into lower water as winding broken trail, no submerged stones added. West material difference and foam thickness pending full-tile review; external north source absent at guide time.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "上方岩面裂纹与金灰斑粒越过x=256连续，下方绕岸白沫连接；未见立直材质边或几何偏移。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p13--p23.png",
+                  "sha256": "14db6fcb46c96e48da461ab3a0d0e4f702572a0ca28853171df77b20404ca766"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  51200,
+                  54016,
+                  52224,
+                  54528
+                ],
+                "candidateBox": [
+                  2048,
+                  768,
+                  3072,
+                  1280
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and exact west/north strips inspected. Small west rock edge and top foam connect, interior stays open water; submerged stones are limited to inherited north transition rather than propagated south. West foam terminates unevenly and water caustic scale/brightness changes across the seam; north lower transition slightly changes density. Non-obstructive material/foam review pending full tile, no pass claimed.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "左侧较宽白沫在下方分为细枝并渐散，水下绿色石块延续；y=256无泡沫截断或矩形色块。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p14--p24.png",
+                  "sha256": "43120837a31b6c11e16d380336068f72c3f6b67617fe8fefac932c6644c1eb4c"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  52224,
+                  54016,
+                  53248,
+                  54528
+                ],
+                "candidateBox": [
+                  3072,
+                  768,
+                  4096,
+                  1280
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and exact north/west strips inspected. Foam tail matches top endpoint and fades within upper half; no objects or land added. West caustic cells and brightness have moderate contrast variation, north shows finer and denser new caustics below seam. Material continuity remains pending full tile.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "中央白沫细带穿越y=256向下渐散，左右水网连通；无横向封口或突然添入石块。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p21--p22.png",
+                  "sha256": "b4f2c134979ed7ec503fb38a815ff268b4cd0d7e7389ded0bdb2a48effe9e25f"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  49920,
+                  54272,
+                  50432,
+                  55296
+                ],
+                "candidateBox": [
+                  768,
+                  1024,
+                  1280,
+                  2048
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native and exact north/west joins viewed. Planned rock foot/central indentation preserved; no added isolated land. Local granite grain/warmth changes and white surf width differences remain material issues for full QA.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "岩块底部湿润暗面、细白溅点与水线连续，x=256处既无轮廓错位也无竖直材质墙。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p21--p31.png",
+                  "sha256": "2548cc5b1540311c74b2bba332b85ab6aed82f52ed1467bc7389d8c7051e5d43"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  49152,
+                  55040,
+                  50176,
+                  55552
+                ],
+                "candidateBox": [
+                  0,
+                  1792,
+                  1024,
+                  2304
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native and north/west core joins viewed. Open-water layout continues with no new objects. West pebble-like microtexture transitions to smoother elongated cell reflections; material difference pending. North foam dissipates naturally; no geometry blocker.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "水下绿色颗粒随局部胞体向下渐淡，白沫由左上进入并散开；y=256不构成直线分区。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p22--p23.png",
+                  "sha256": "54c11b43708dbb7b5b33f4649e83eff4b12af1bbcc4abd18add8f3944f95f98a"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  50944,
+                  54272,
+                  51456,
+                  55296
+                ],
+                "candidateBox": [
+                  1792,
+                  1024,
+                  2304,
+                  2048
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and exact west/north strips inspected. Small west rock edge and top foam connect, interior stays open water; submerged stones are limited to inherited north transition rather than propagated south. West foam terminates unevenly and water caustic scale/brightness changes across the seam; north lower transition slightly changes density. Non-obstructive material/foam review pending full tile, no pass claimed.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "上方岩脚外的白沫沿斜向水流延续，下方渐为细网；x=256未出现齐截的白沫边或色阶。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p22--p32.png",
+                  "sha256": "26267d03327cfc33ad428f83df02bfd5e690db2ee7d56ce975524c7e51e78a88"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  50176,
+                  55040,
+                  51200,
+                  55552
+                ],
+                "candidateBox": [
+                  1024,
+                  1792,
+                  2048,
+                  2304
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Viewed native and exact west/north core joins. Foam tail continues and dissipates in upper third, no new objects. Mid/lower caustics have lower contrast and subtle density change relative to neighbors; material QA pending.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "左中白沫弧穿过y=256连为分枝，右侧平滑胞体与细网交错；未见整条水平材质分块。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p23--p24.png",
+                  "sha256": "3625b132b977746e0fb2f6058b06302cac718ac087194ca90103b410c05102ac"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  51968,
+                  54272,
+                  52480,
+                  55296
+                ],
+                "candidateBox": [
+                  2816,
+                  1024,
+                  3328,
+                  2048
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and exact north/west strips inspected. Foam tail matches top endpoint and fades within upper half; no objects or land added. West caustic cells and brightness have moderate contrast variation, north shows finer and denser new caustics below seam. Material continuity remains pending full tile.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "左右焦散尺度略异，但弯曲亮线和内部细网跨x=256相接，无竖直台阶。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p23--p33.png",
+                  "sha256": "bc6783e82cb2f8f458a16af79b9e3c72f5ac28ca651a7ee7a2a46c6223f39105"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  51200,
+                  55040,
+                  52224,
+                  55552
+                ],
+                "candidateBox": [
+                  2048,
+                  1792,
+                  3072,
+                  2304
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and true-core west/north strips inspected. Open-water content matches layout; no foam or objects introduced. Caustic direction connects but density and turquoise brightness change subtly at both seams, with visible corner of conditioning texture top-left in native halo; selected core must be reviewed with junction crop. Keep pending full-tile material QA.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "下方细节较多、上方胞体较宽，但亮线在y=256继续且变化不整线齐截，未见硬接缝。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p24--p34.png",
+                  "sha256": "054cac028957c9a2720172ec3f76c72bc789d84d66b94200f0d9ca8076ba8716"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  52224,
+                  55040,
+                  53248,
+                  55552
+                ],
+                "candidateBox": [
+                  3072,
+                  1792,
+                  4096,
+                  2304
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and north/west exact-core strips inspected. Open-water content correct and no obstacles. New caustics are denser/brighter in lower region with some repeated-looking cell groups; clear west/north scale transition remains pending material QA. No acceptance asserted.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "下方较亮细网与上方宽胞体连接，中心与右侧亮线穿越y=256，没有水平封口。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p31--p32.png",
+                  "sha256": "dbbc6bf8308d46739957b8f2dffb8b2d999e541508b5e6953b56be42eb33cf16"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  49920,
+                  55296,
+                  50432,
+                  56320
+                ],
+                "candidateBox": [
+                  768,
+                  2048,
+                  1280,
+                  3072
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Viewed native and exact west/north core joins. Foam tail continues and dissipates in upper third, no new objects. Mid/lower caustics have lower contrast and subtle density change relative to neighbors; material QA pending.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "胞体大小与亮点密度沿整幅局部变化，中心x=256的焦散线连通；无方形贴片边。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p31--p41.png",
+                  "sha256": "fb22073b9f8c80769fa49c3a1f1f019a221eb79274fb97fda7ac4ce2fb4f2d85"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  49152,
+                  56064,
+                  50176,
+                  56576
+                ],
+                "candidateBox": [
+                  0,
+                  2816,
+                  1024,
+                  3328
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Viewed native and exact west/north joins. No black padding in output, continuous open sea. West water cell texture remains visibly different from smoother new core; north line endpoints and brightness have small changes. Material pending; no added physical objects.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "左侧颗粒更明显、右侧稍平滑，亮网在y=256两侧交错延续；未出现通幅直线材质边。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p32--p33.png",
+                  "sha256": "12431b43eb31e04ab88415c282b7002adbe5af3a62bda668b133928588556b2c"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  50944,
+                  55296,
+                  51456,
+                  56320
+                ],
+                "candidateBox": [
+                  1792,
+                  2048,
+                  2304,
+                  3072
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and true-core west/north strips inspected. Open-water content matches layout; no foam or objects introduced. Caustic direction connects but density and turquoise brightness change subtly at both seams, with visible corner of conditioning texture top-left in native halo; selected core must be reviewed with junction crop. Keep pending full-tile material QA.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "右侧胞体略横长、左侧大小交错，x=256处细亮网穿越连续，没有直立截断。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p32--p42.png",
+                  "sha256": "1dd5376b736affc60845dca882861a61fb5e926f290ad0ba202da94214c10ea5"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  50176,
+                  56064,
+                  51200,
+                  56576
+                ],
+                "candidateBox": [
+                  1024,
+                  2816,
+                  2048,
+                  3328
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 inspected. All-water geometry continues without added objects or black padding. Exact west and north core strips inspected: western caustic cells are smaller and denser on new right half, northern boundary has a brightness/density transition; no obstructive geometry mismatch. Keep selected as production source, material continuity remains pending full-tile QA.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "下方部分胞体更细亮，中心与左右水纹仍连通；密度变化随胞体而非y=256齐整划界。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p33--p34.png",
+                  "sha256": "f6864cf67227f189a7bcf870d5cf11323637d00d9fb69978b4f776696dfbe804"
+                },
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "globalBox": [
+                  51968,
+                  55296,
+                  52480,
+                  56320
+                ],
+                "candidateBox": [
+                  2816,
+                  2048,
+                  3328,
+                  3072
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 and north/west exact-core strips inspected. Open-water content correct and no obstacles. New caustics are denser/brighter in lower region with some repeated-looking cell groups; clear west/north scale transition remains pending material QA. No acceptance asserted.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  224,
+                  0,
+                  288,
+                  1024
+                ],
+                "observation": "右部高光稍强而左部略平滑，弧形焦散跨x=256连续，无竖直色阶和直线分块。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p33--p43.png",
+                  "sha256": "3eedb9c06736954b32c3de6e820aa70ec6adb56fede5f22e58ccd9299c238d5d"
+                },
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "globalBox": [
+                  51200,
+                  56064,
+                  52224,
+                  56576
+                ],
+                "candidateBox": [
+                  2048,
+                  2816,
+                  3072,
+                  3328
+                ],
+                "candidateDifferentPixels": 0,
+                "priorGeometryReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+                  "sha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d"
+                },
+                "priorReviewMethod": "reused_same_pixel_hash_and_source_hashes",
+                "priorObservation": "Native 1254x1254 all-water inspected, black outside-world padding absent. Exact west and north strips show continuous content but new patch has denser smaller caustic cells and a horizontal brightness/density transition below north. This is pending material continuity, not accepted QA.",
+                "oldGeometryReusable": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; existing native PNG, no resampling",
+                "focusPixelBoxInQAImage": [
+                  0,
+                  224,
+                  1024,
+                  288
+                ],
+                "observation": "细网节点在下部较多，但大胞体遍布两侧，y=256无横向断边或明显方形边界。",
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass"
+              },
+              "[additional entries retained in referenced document]"
+            ],
+            "observation": "33张本轮原生实看未见内部直线材质墙、焦散截断、轮廓错位或四象限硬块；岩面片粒/受光随曲面变化，泡沫沿岸渐散，水胞体尺度/亮点局部变化不自动视为接缝。旧笼统internal pending在本轮范围不再保留。"
+          },
+          "externalReview": {
+            "geometryVerdict": "pass",
+            "materialVerdict": "hold",
+            "requiredScopeComplete": true,
+            "directionScope": [
+              "north:r13_c13",
+              "west:r14_c12",
+              "east:r14_c14",
+              "south:world boundary y57344; no r15 source required"
+            ],
+            "evidence": [
+              {
+                "id": "north-segment-1",
+                "kind": "segment",
+                "edge": "north",
+                "requestedGlobalBox": [
+                  49152,
+                  52992,
+                  50176,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  49152,
+                  52992,
+                  50176,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-1-100pct.png",
+                  "sha256": "bc40010c4b191a3b8c63003b13db9489121085957ca9fa8df83c9dddcc336b98"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "south-segment-1",
+                  "priorVerdict": "pass",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "岩面斑粒、裂纹和阴影沿曲面连接，中心岩缝本身为自然几何边，未见与y=256对齐的平直材质台阶。"
+              },
+              {
+                "id": "north-segment-2",
+                "kind": "segment",
+                "edge": "north",
+                "requestedGlobalBox": [
+                  50176,
+                  52992,
+                  51200,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  50176,
+                  52992,
+                  51200,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-2-100pct.png",
+                  "sha256": "16af71f0ef55ced909beb856c7470d8d0aa7b6b060618259fa7a6beb9528814d"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "hold"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "south-segment-2",
+                  "priorVerdict": "hold",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "hold",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "中央同一岩面沿QA y=256（world y=53248）出现水平直线：上方较宽柔的灰暖色块，下方转为细密高对比片粒；可见范围约QA x=224..744。裂纹和轮廓继续，因此geometry pass、material hold。"
+              },
+              {
+                "id": "north-segment-3",
+                "kind": "segment",
+                "edge": "north",
+                "requestedGlobalBox": [
+                  51200,
+                  52992,
+                  52224,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  51200,
+                  52992,
+                  52224,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-3-100pct.png",
+                  "sha256": "c7fa03001a559b9b0b174b32f8d92e4c73838879f1ac957f190e3d3f8a49b01d"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "south-segment-3",
+                  "priorVerdict": "pass",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "绿色水下石、白沫及右侧岩岸随曲线连通，world横缝处没有泡沫截断或直线色阶。"
+              },
+              {
+                "id": "north-segment-4",
+                "kind": "segment",
+                "edge": "north",
+                "requestedGlobalBox": [
+                  52224,
+                  52992,
+                  53248,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  52224,
+                  52992,
+                  53248,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  1024,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-4-100pct.png",
+                  "sha256": "a1a53405cee609637361e791dcfd75297c88a3424d1b1e763872edb9d57512e8"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "south-segment-4",
+                  "priorVerdict": "pass",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "多个独立受光岩面有金灰差异，裂纹与白沫连通；未见如north2中央岩面的通幅同线密度换挡。"
+              },
+              {
+                "id": "west-segment-1",
+                "kind": "segment",
+                "edge": "west",
+                "requestedGlobalBox": [
+                  48896,
+                  53248,
+                  49408,
+                  54272
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  53248,
+                  49408,
+                  54272
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-1-100pct.png",
+                  "sha256": "d2788bf5b17948145db69f4b52f99bef82da3db91b99413f16e24407807b69bd"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "岩体斜面和足部水线、白沫连续越过x=256；片粒/亮度跟随曲面，无竖直材质墙。"
+              },
+              {
+                "id": "west-segment-2",
+                "kind": "segment",
+                "edge": "west",
+                "requestedGlobalBox": [
+                  48896,
+                  54272,
+                  49408,
+                  55296
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  54272,
+                  49408,
+                  55296
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-2-100pct.png",
+                  "sha256": "0db9c5eb3c74edaf83c56604ed5a8073c280ab249f1c4b323a709931ecfc48b0"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "绿色水下颗粒与白沫有密度差，但颗粒和白沫弧跨x=256交错延伸，未见同线硬截断。"
+              },
+              {
+                "id": "west-segment-3",
+                "kind": "segment",
+                "edge": "west",
+                "requestedGlobalBox": [
+                  48896,
+                  55296,
+                  49408,
+                  56320
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  55296,
+                  49408,
+                  56320
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-3-100pct.png",
+                  "sha256": "92eb1fe753446a22ed49fde3d28b6fba8bb74e2976361fb87cd7043e1af5267e"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "左侧水下颗粒和点状焦散明显、右侧逐渐平滑，部分颗粒及胞体越过x=256仍可追踪；变化不是在同一竖线上齐截，光网几何相连，未认定新的硬材质墙。"
+              },
+              {
+                "id": "west-segment-4",
+                "kind": "segment",
+                "edge": "west",
+                "requestedGlobalBox": [
+                  48896,
+                  56320,
+                  49408,
+                  57344
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  56320,
+                  49408,
+                  57344
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-4-100pct.png",
+                  "sha256": "8e8ae7a592d4857e2f28754578019b8d2f9df7da6ce1e8ae395e8d8455f0f1e4"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "左侧水下颗粒和点状焦散明显、右侧逐渐平滑，部分颗粒及胞体越过x=256仍可追踪；变化不是在同一竖线上齐截，光网几何相连，未认定新的硬材质墙。"
+              },
+              {
+                "id": "east-segment-1",
+                "kind": "segment",
+                "edge": "east",
+                "requestedGlobalBox": [
+                  52992,
+                  53248,
+                  53504,
+                  54272
+                ],
+                "validWorldGlobalBox": [
+                  52992,
+                  53248,
+                  53504,
+                  54272
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-1-100pct.png",
+                  "sha256": "a46325808713f9406ae6c8d9e85ca5255798a1eb1e803db6d2d129ac825e502d"
+                },
+                "reuse": {
+                  "image": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "west-segment-1",
+                  "priorVerdict": "pass"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": false,
+                "actualMaterialGeometryReviewReuse": "same image SHA, exact current selected source replay, and reviewer actual r14_c14 v3 view",
+                "observation": "复用本worker刚完成r14_c14西边的同像素实际审阅：泡沫或水纹跨界连续，无具体硬接缝；世界底端已裁有效范围。"
+              },
+              {
+                "id": "east-segment-2",
+                "kind": "segment",
+                "edge": "east",
+                "requestedGlobalBox": [
+                  52992,
+                  54272,
+                  53504,
+                  55296
+                ],
+                "validWorldGlobalBox": [
+                  52992,
+                  54272,
+                  53504,
+                  55296
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-2-100pct.png",
+                  "sha256": "6f861608ebdd489aca5763e267f94847909c961dabee32ee6f0a681ba60ee6da"
+                },
+                "reuse": {
+                  "image": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "west-segment-2",
+                  "priorVerdict": "pass"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": false,
+                "actualMaterialGeometryReviewReuse": "same image SHA, exact current selected source replay, and reviewer actual r14_c14 v3 view",
+                "observation": "复用本worker刚完成r14_c14西边的同像素实际审阅：泡沫或水纹跨界连续，无具体硬接缝；世界底端已裁有效范围。"
+              },
+              {
+                "id": "east-segment-3",
+                "kind": "segment",
+                "edge": "east",
+                "requestedGlobalBox": [
+                  52992,
+                  55296,
+                  53504,
+                  56320
+                ],
+                "validWorldGlobalBox": [
+                  52992,
+                  55296,
+                  53504,
+                  56320
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-3-100pct.png",
+                  "sha256": "a930247e265356232f3b6de213d6c4a14d55c2514588c7ac2807323014a0b16b"
+                },
+                "reuse": {
+                  "image": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "west-segment-3",
+                  "priorVerdict": "pass"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": false,
+                "actualMaterialGeometryReviewReuse": "same image SHA, exact current selected source replay, and reviewer actual r14_c14 v3 view",
+                "observation": "复用本worker刚完成r14_c14西边的同像素实际审阅：泡沫或水纹跨界连续，无具体硬接缝；世界底端已裁有效范围。"
+              },
+              {
+                "id": "east-segment-4",
+                "kind": "segment",
+                "edge": "east",
+                "requestedGlobalBox": [
+                  52992,
+                  56320,
+                  53504,
+                  57344
+                ],
+                "validWorldGlobalBox": [
+                  52992,
+                  56320,
+                  53504,
+                  57344
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  1024
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 524288,
+                "totalPixels": 524288,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-4-100pct.png",
+                  "sha256": "8df9ba0746748a09751724439fdc09fb507d646da0ea9fe936802438fd5b56f8"
+                },
+                "reuse": {
+                  "image": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "west-segment-4",
+                  "priorVerdict": "pass"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": false,
+                "actualMaterialGeometryReviewReuse": "same image SHA, exact current selected source replay, and reviewer actual r14_c14 v3 view",
+                "observation": "复用本worker刚完成r14_c14西边的同像素实际审阅：泡沫或水纹跨界连续，无具体硬接缝；世界底端已裁有效范围。"
+              },
+              {
+                "id": "intersection-x49152-y53248",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  48896,
+                  52992,
+                  49408,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  52992,
+                  49408,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 262144,
+                "totalPixels": 262144,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/intersection-x49152-y53248-100pct.png",
+                  "sha256": "672c6e79af8a93eb97a145690ad26f3a79ff99c570d5aefc12fb0fed8bdea33c"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "intersection-x49152-y53248",
+                  "priorVerdict": "pass",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              {
+                "id": "intersection-x49152-y54272",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  48896,
+                  54016,
+                  49408,
+                  54528
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  54016,
+                  49408,
+                  54528
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 262144,
+                "totalPixels": 262144,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y54272-100pct.png",
+                  "sha256": "57f5a13a653a3cf08f77aa4d61736056469c405b2ca4b41a611f221eb779c399"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              {
+                "id": "intersection-x49152-y55296",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  48896,
+                  55040,
+                  49408,
+                  55552
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  55040,
+                  49408,
+                  55552
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 262144,
+                "totalPixels": 262144,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y55296-100pct.png",
+                  "sha256": "31559e4d08b4a1c76a88836f2ccc602e593e1e4b433e586d64a2f3add4b2d17e"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              {
+                "id": "intersection-x49152-y56320",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  48896,
+                  56064,
+                  49408,
+                  56576
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  56064,
+                  49408,
+                  56576
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 262144,
+                "totalPixels": 262144,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y56320-100pct.png",
+                  "sha256": "3ae4dd704501ffba833746eb7ebd51249dc577b27fabefadd47c70e1ec048f79"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              {
+                "id": "intersection-x49152-y57344",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  48896,
+                  57088,
+                  49408,
+                  57600
+                ],
+                "validWorldGlobalBox": [
+                  48896,
+                  57088,
+                  49408,
+                  57344
+                ],
+                "worldClipped": true,
+                "dimensions": [
+                  512,
+                  256
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 131072,
+                "totalPixels": 131072,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y57344-100pct.png",
+                  "sha256": "2df06d5b25251e7f2e46a2a218bb3c438c42f59adad65f741568651645010d64"
+                },
+                "newPng": true,
+                "visualReview": {
+                  "status": "pending_actual_view"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              {
+                "id": "intersection-x50176-y53248",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  49920,
+                  52992,
+                  50432,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  49920,
+                  52992,
+                  50432,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 262144,
+                "totalPixels": 262144,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-cross-1-100pct.png",
+                  "sha256": "55eeef436b25e0de7cb1652f98e9348ba796ef4cb7b90ad1bccf089a8fd67f84"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "intersection-x50176-y53248",
+                  "priorVerdict": "pass",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              {
+                "id": "intersection-x51200-y53248",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  50944,
+                  52992,
+                  51456,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  50944,
+                  52992,
+                  51456,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 262144,
+                "totalPixels": 262144,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-cross-2-100pct.png",
+                  "sha256": "76a1ec26e5a23c4b4ca12840b0ff1da39bc2ceeb0614cb2f3dd675820d117ff2"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "intersection-x51200-y53248",
+                  "priorVerdict": "pass",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              {
+                "id": "intersection-x52224-y53248",
+                "kind": "intersection",
+                "edge": null,
+                "requestedGlobalBox": [
+                  51968,
+                  52992,
+                  52480,
+                  53504
+                ],
+                "validWorldGlobalBox": [
+                  51968,
+                  52992,
+                  52480,
+                  53504
+                ],
+                "worldClipped": false,
+                "dimensions": [
+                  512,
+                  512
+                ],
+                "missingRequiredSources": [],
+                "coveredExactlyOncePixels": 262144,
+                "totalPixels": 262144,
+                "nativeUnscaled": true,
+                "newImageCalls": 0,
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-cross-3-100pct.png",
+                  "sha256": "64503b0c2b3b7cf9872e642412a72dacbfa75a0584535b3343028fded51938a6"
+                },
+                "newPng": false,
+                "visualReview": {
+                  "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                  "geometry": "pass",
+                  "material": "pass"
+                },
+                "reuse": {
+                  "priorReview": {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "priorId": "intersection-x52224-y53248",
+                  "priorVerdict": "pass",
+                  "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+                },
+                "geometryVerdict": "pass",
+                "materialVerdict": "pass",
+                "requiredReviewComplete": true,
+                "actualViewedInThisTask": true,
+                "method": "view_image detail original; canonical existing PNG or identical exact pixel replay now pointing to canonical PNG",
+                "observation": "交点两轴的岩裂、泡沫或焦散连续，颗粒/受光差异不形成十字直角块；若为y=57344末端，输出仅512×256有效世界像素且水面完整。"
+              },
+              "[additional entries retained in referenced document]"
+            ],
+            "materialHoldFocus": {
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/south-segment-2-material-step-focus-100pct.png",
+                "sha256": "32abceb03e0347a0489997ceada8d272a23dcccd413a96ccc3275f574de569c4"
+              },
+              "derivation": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/south-segment-2-material-step-focus-100pct.png.derivation.json",
+                "sha256": "1c3cb7f4fb172ded48fc10b13e0560d8171caf3f60f6410607a0952dd64b840d"
+              },
+              "actualViewedInThisTask": true,
+              "dimensions": [
+                640,
+                128
+              ],
+              "globalBox": [
+                50368,
+                53184,
+                51008,
+                53312
+              ],
+              "sourceCropPixelDifferenceFromCurrentNorth2": 0,
+              "geometryVerdict": "pass",
+              "materialVerdict": "hold"
+            },
+            "observation": "北第2段一个具体岩面材质台阶保留hold，其余北/西/东段及全部交点未见同等级具体硬接缝；两个南端交点只含有效世界像素，无填充。"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/source-evidence-audit.json",
+        "record": {
+          "externalEvidence": [
+            {
+              "id": "north-segment-1",
+              "kind": "segment",
+              "edge": "north",
+              "requestedGlobalBox": [
+                49152,
+                52992,
+                50176,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                49152,
+                52992,
+                50176,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                1024,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-1-100pct.png",
+                "sha256": "bc40010c4b191a3b8c63003b13db9489121085957ca9fa8df83c9dddcc336b98"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "south-segment-1",
+                "priorVerdict": "pass",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            {
+              "id": "north-segment-2",
+              "kind": "segment",
+              "edge": "north",
+              "requestedGlobalBox": [
+                50176,
+                52992,
+                51200,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                50176,
+                52992,
+                51200,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                1024,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-2-100pct.png",
+                "sha256": "16af71f0ef55ced909beb856c7470d8d0aa7b6b060618259fa7a6beb9528814d"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "hold"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "south-segment-2",
+                "priorVerdict": "hold",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            {
+              "id": "north-segment-3",
+              "kind": "segment",
+              "edge": "north",
+              "requestedGlobalBox": [
+                51200,
+                52992,
+                52224,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                51200,
+                52992,
+                52224,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                1024,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-3-100pct.png",
+                "sha256": "c7fa03001a559b9b0b174b32f8d92e4c73838879f1ac957f190e3d3f8a49b01d"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "south-segment-3",
+                "priorVerdict": "pass",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            {
+              "id": "north-segment-4",
+              "kind": "segment",
+              "edge": "north",
+              "requestedGlobalBox": [
+                52224,
+                52992,
+                53248,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                52224,
+                52992,
+                53248,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                1024,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-4-100pct.png",
+                "sha256": "a1a53405cee609637361e791dcfd75297c88a3424d1b1e763872edb9d57512e8"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "south-segment-4",
+                "priorVerdict": "pass",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            {
+              "id": "west-segment-1",
+              "kind": "segment",
+              "edge": "west",
+              "requestedGlobalBox": [
+                48896,
+                53248,
+                49408,
+                54272
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                53248,
+                49408,
+                54272
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-1-100pct.png",
+                "sha256": "d2788bf5b17948145db69f4b52f99bef82da3db91b99413f16e24407807b69bd"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "west-segment-2",
+              "kind": "segment",
+              "edge": "west",
+              "requestedGlobalBox": [
+                48896,
+                54272,
+                49408,
+                55296
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                54272,
+                49408,
+                55296
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-2-100pct.png",
+                "sha256": "0db9c5eb3c74edaf83c56604ed5a8073c280ab249f1c4b323a709931ecfc48b0"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "west-segment-3",
+              "kind": "segment",
+              "edge": "west",
+              "requestedGlobalBox": [
+                48896,
+                55296,
+                49408,
+                56320
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                55296,
+                49408,
+                56320
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-3-100pct.png",
+                "sha256": "92eb1fe753446a22ed49fde3d28b6fba8bb74e2976361fb87cd7043e1af5267e"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "west-segment-4",
+              "kind": "segment",
+              "edge": "west",
+              "requestedGlobalBox": [
+                48896,
+                56320,
+                49408,
+                57344
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                56320,
+                49408,
+                57344
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/west-segment-4-100pct.png",
+                "sha256": "8e8ae7a592d4857e2f28754578019b8d2f9df7da6ce1e8ae395e8d8455f0f1e4"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "east-segment-1",
+              "kind": "segment",
+              "edge": "east",
+              "requestedGlobalBox": [
+                52992,
+                53248,
+                53504,
+                54272
+              ],
+              "validWorldGlobalBox": [
+                52992,
+                53248,
+                53504,
+                54272
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-1-100pct.png",
+                "sha256": "a46325808713f9406ae6c8d9e85ca5255798a1eb1e803db6d2d129ac825e502d"
+              },
+              "reuse": {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-1-100pct.png",
+                  "sha256": "a46325808713f9406ae6c8d9e85ca5255798a1eb1e803db6d2d129ac825e502d"
+                },
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v3/result.json",
+                  "sha256": "bb86b2fb29a7c1f85f29825d598faf2264ec5f063a4b84aee2e4a49fa37d232c"
+                },
+                "priorId": "west-segment-1",
+                "priorVerdict": "pass"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                "geometry": "pass",
+                "material": "pass"
+              }
+            },
+            {
+              "id": "east-segment-2",
+              "kind": "segment",
+              "edge": "east",
+              "requestedGlobalBox": [
+                52992,
+                54272,
+                53504,
+                55296
+              ],
+              "validWorldGlobalBox": [
+                52992,
+                54272,
+                53504,
+                55296
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-2-100pct.png",
+                "sha256": "6f861608ebdd489aca5763e267f94847909c961dabee32ee6f0a681ba60ee6da"
+              },
+              "reuse": {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-2-100pct.png",
+                  "sha256": "6f861608ebdd489aca5763e267f94847909c961dabee32ee6f0a681ba60ee6da"
+                },
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v3/result.json",
+                  "sha256": "bb86b2fb29a7c1f85f29825d598faf2264ec5f063a4b84aee2e4a49fa37d232c"
+                },
+                "priorId": "west-segment-2",
+                "priorVerdict": "pass"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                "geometry": "pass",
+                "material": "pass"
+              }
+            },
+            {
+              "id": "east-segment-3",
+              "kind": "segment",
+              "edge": "east",
+              "requestedGlobalBox": [
+                52992,
+                55296,
+                53504,
+                56320
+              ],
+              "validWorldGlobalBox": [
+                52992,
+                55296,
+                53504,
+                56320
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-3-100pct.png",
+                "sha256": "a930247e265356232f3b6de213d6c4a14d55c2514588c7ac2807323014a0b16b"
+              },
+              "reuse": {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-3-100pct.png",
+                  "sha256": "a930247e265356232f3b6de213d6c4a14d55c2514588c7ac2807323014a0b16b"
+                },
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v3/result.json",
+                  "sha256": "bb86b2fb29a7c1f85f29825d598faf2264ec5f063a4b84aee2e4a49fa37d232c"
+                },
+                "priorId": "west-segment-3",
+                "priorVerdict": "pass"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                "geometry": "pass",
+                "material": "pass"
+              }
+            },
+            {
+              "id": "east-segment-4",
+              "kind": "segment",
+              "edge": "east",
+              "requestedGlobalBox": [
+                52992,
+                56320,
+                53504,
+                57344
+              ],
+              "validWorldGlobalBox": [
+                52992,
+                56320,
+                53504,
+                57344
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                1024
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 524288,
+              "totalPixels": 524288,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-4-100pct.png",
+                "sha256": "8df9ba0746748a09751724439fdc09fb507d646da0ea9fe936802438fd5b56f8"
+              },
+              "reuse": {
+                "image": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v1/west-segment-4-100pct.png",
+                  "sha256": "8df9ba0746748a09751724439fdc09fb507d646da0ea9fe936802438fd5b56f8"
+                },
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v3/result.json",
+                  "sha256": "bb86b2fb29a7c1f85f29825d598faf2264ec5f063a4b84aee2e4a49fa37d232c"
+                },
+                "priorId": "west-segment-4",
+                "priorVerdict": "pass"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "reused_same_image_pixels_and_current_source_hashes_actual_review",
+                "geometry": "pass",
+                "material": "pass"
+              }
+            },
+            {
+              "id": "intersection-x49152-y53248",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                48896,
+                52992,
+                49408,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                52992,
+                49408,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 262144,
+              "totalPixels": 262144,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/intersection-x49152-y53248-100pct.png",
+                "sha256": "672c6e79af8a93eb97a145690ad26f3a79ff99c570d5aefc12fb0fed8bdea33c"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "intersection-x49152-y53248",
+                "priorVerdict": "pass",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            {
+              "id": "intersection-x49152-y54272",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                48896,
+                54016,
+                49408,
+                54528
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                54016,
+                49408,
+                54528
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 262144,
+              "totalPixels": 262144,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y54272-100pct.png",
+                "sha256": "57f5a13a653a3cf08f77aa4d61736056469c405b2ca4b41a611f221eb779c399"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "intersection-x49152-y55296",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                48896,
+                55040,
+                49408,
+                55552
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                55040,
+                49408,
+                55552
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 262144,
+              "totalPixels": 262144,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y55296-100pct.png",
+                "sha256": "31559e4d08b4a1c76a88836f2ccc602e593e1e4b433e586d64a2f3add4b2d17e"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "intersection-x49152-y56320",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                48896,
+                56064,
+                49408,
+                56576
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                56064,
+                49408,
+                56576
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 262144,
+              "totalPixels": 262144,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y56320-100pct.png",
+                "sha256": "3ae4dd704501ffba833746eb7ebd51249dc577b27fabefadd47c70e1ec048f79"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "intersection-x49152-y57344",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                48896,
+                57088,
+                49408,
+                57600
+              ],
+              "validWorldGlobalBox": [
+                48896,
+                57088,
+                49408,
+                57344
+              ],
+              "worldClipped": true,
+              "dimensions": [
+                512,
+                256
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 131072,
+              "totalPixels": 131072,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/current-material-external-20261022-v1/intersection-x49152-y57344-100pct.png",
+                "sha256": "2df06d5b25251e7f2e46a2a218bb3c438c42f59adad65f741568651645010d64"
+              },
+              "newPng": true,
+              "visualReview": {
+                "status": "pending_actual_view"
+              }
+            },
+            {
+              "id": "intersection-x50176-y53248",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                49920,
+                52992,
+                50432,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                49920,
+                52992,
+                50432,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 262144,
+              "totalPixels": 262144,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-cross-1-100pct.png",
+                "sha256": "55eeef436b25e0de7cb1652f98e9348ba796ef4cb7b90ad1bccf089a8fd67f84"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "intersection-x50176-y53248",
+                "priorVerdict": "pass",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            {
+              "id": "intersection-x51200-y53248",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                50944,
+                52992,
+                51456,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                50944,
+                52992,
+                51456,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 262144,
+              "totalPixels": 262144,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-cross-2-100pct.png",
+                "sha256": "76a1ec26e5a23c4b4ca12840b0ff1da39bc2ceeb0614cb2f3dd675820d117ff2"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "intersection-x51200-y53248",
+                "priorVerdict": "pass",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            {
+              "id": "intersection-x52224-y53248",
+              "kind": "intersection",
+              "edge": null,
+              "requestedGlobalBox": [
+                51968,
+                52992,
+                52480,
+                53504
+              ],
+              "validWorldGlobalBox": [
+                51968,
+                52992,
+                52480,
+                53504
+              ],
+              "worldClipped": false,
+              "dimensions": [
+                512,
+                512
+              ],
+              "missingRequiredSources": [],
+              "coveredExactlyOncePixels": 262144,
+              "totalPixels": 262144,
+              "nativeUnscaled": true,
+              "newImageCalls": 0,
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-cross-3-100pct.png",
+                "sha256": "64503b0c2b3b7cf9872e642412a72dacbfa75a0584535b3343028fded51938a6"
+              },
+              "newPng": false,
+              "visualReview": {
+                "status": "actual_viewed_identical_native_pixels_and_canonical_prior_review_reused",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              "reuse": {
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/result.json",
+                  "sha256": "e2a40f29fad02aca817d4494486141e748baecfdc96561e2c000c2c93ebf6edb"
+                },
+                "priorId": "intersection-x52224-y53248",
+                "priorVerdict": "pass",
+                "reason": "exact same current selected source pixels and canonical existing PNG; previous worker actual material review"
+              }
+            },
+            "[additional entries retained in referenced document]"
+          ]
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261025_025820.json",
+        "record": {
+          "formalAccepted": false,
+          "internalAcceptanceProof": {
+            "path": "docs/MAP_HUMAN_RESUME_20261022_0210/VILLAGE_SE_R14C13_ROOT_INTERNAL_SOURCE_BOUND_REGISTRATION_PROPOSED_20261022_144245.json",
+            "sha256": "63010510c16607cd8bda850342e4b065de2e7736eadf046de89337256902b406",
+            "bytes": 80921,
+            "mtimeNs": "1792694566278433100"
+          },
+          "externalScope": {
+            "ready": false,
+            "hold": [
+              {
+                "id": "north-r13c13-r14c13-p42-p12-rock-brush-density-step",
+                "category": "external_material",
+                "blockingAcceptance": true,
+                "tilePair": [
+                  "r13_c13",
+                  "r14_c13"
+                ],
+                "patchPair": [
+                  "r13_c13:p42",
+                  "r14_c13:p12"
+                ],
+                "geometryStatus": "continuous_no_object_displacement",
+                "materialStatus": "hold",
+                "seamGlobalY": 53248,
+                "evidenceGlobalBox": [
+                  50176,
+                  52992,
+                  51200,
+                  53504
+                ],
+                "focusGlobalBox": [
+                  50368,
+                  53184,
+                  51008,
+                  53312
+                ],
+                "focusSeamLocalY": 64,
+                "fullEvidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/external-full-20261018-v1/south-segment-2-100pct.png",
+                  "sha256": "16af71f0ef55ced909beb856c7470d8d0aa7b6b060618259fa7a6beb9528814d"
+                },
+                "focusEvidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r13_c13/qa/current-material-external-20261022-v1/south-segment-2-material-step-focus-100pct.png",
+                  "sha256": "32abceb03e0347a0489997ceada8d272a23dcccd413a96ccc3275f574de569c4"
+                },
+                "focusDifferentPixelsFromCurrentNorth2": 0,
+                "detail": "中央同一岩面在world y53248处出现平直笔触密度和对比度跳变：上部宽柔色块，下部细密高对比片粒。几何与裂纹连续，属于一个具体北外缝材质hold。",
+                "sameIssueAsNeighbor": "south-r13c13-r14c13-p42-p12-rock-brush-density-step",
+                "action": "retain selected sources and this concrete hold; no generation or repair in this QA"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/visual-review.json",
+    "sourceSha256": "a5a619e03b55930d2ad05b5b3472d91b21ba0437dbe8a0b93cba18d4a1f3b32d",
+    "normalizedDocument": {
+      "tile": "r14_c13",
+      "recordedAtUtc": "2026-10-19T08:54:16.306553+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/candidate-4096.png",
+      "candidateSha256": "ffead788e334a4a77286c175b3b7e7fea3ef70500ae43b5e8e097c620e82a92a",
+      "selectedCount": 16,
+      "QAImageCount": 33,
+      "reusedQuickSeams": 24,
+      "newlyViewedJunctions": 9,
+      "selectionSha256": "751e0185ba12ad34d4da96ff61e36c7695ecb7a870322d54b5e9acdfe8583d19",
+      "sourceSelectionSha256AtAssembly": "75b649671de63092b96828f493835b67b80c6751efd200a101b99eca8f846a85",
+      "selectionBinding": "Only candidate/status metadata added after mechanical audit; all 16 selected patch paths and file hashes unchanged.",
+      "mechanicalAudit": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/exact-core-audit.json",
+      "mechanicalAuditPassed": true,
+      "checks": [
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p11--p12.png",
+          "sha256": "d08c5343bba1ccacc0acbbe597fa15a624bd4a6b693eb16640d7085ceed595c7",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p12-v1/visual-review.json",
+          "observation": "Viewed native and exact west join. Cropped rock surfaces and narrow channels connect with west geometry; highlight intensity and granular rock scale vary locally. North source still missing at production, external QA remains pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p11--p21.png",
+          "sha256": "d5d3f26aac32967eff2624e4a72adc5b3c85af892be8da390a3cf269e7a4a599",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p21-v1/visual-review.json",
+          "observation": "Native and north/west core seams viewed. Rock foot continues top source into guide right side; no added object. Foam broadness and water microtexture changes along west/north remain pending material QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p12--p13.png",
+          "sha256": "21d9475ce6f1ee0c33487d8f9763d3131f0452613d951953306b5f2ce9165bf6",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p13-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west core strip inspected. Right-side boulder footprint broadly follows layout, left neighbor rock fragments connect. New submerged pebble-like shapes inside foamy water and broad white looping foam are more emphatic than guide; record for full QA, do not extend them farther south. West material/foam density varies, north external source unavailable at guide time. InternalReady and formalAccepted remain false.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p12--p22.png",
+          "sha256": "3ece4a07908569436e5a5ccbfd059155895f7f17c8a41a449891fd72aee0cfde",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p22-v1/visual-review.json",
+          "observation": "Native and exact north/west joins viewed. Planned rock foot/central indentation preserved; no added isolated land. Local granite grain/warmth changes and white surf width differences remain material issues for full QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p13--p14.png",
+          "sha256": "9939dd85ab3ec8d6177e941244dd413fe60645f81bd963b86b5ee82151efc243",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p14-v1/visual-review.json",
+          "observation": "Native 1254x1254 and west exact-core strip inspected. Main rock and coastline continue at matching scale and positions, new stone is warmer/brighter with denser cream flecks. Foam extends into lower water as winding broken trail, no submerged stones added. West material difference and foam thickness pending full-tile review; external north source absent at guide time.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p13--p23.png",
+          "sha256": "14db6fcb46c96e48da461ab3a0d0e4f702572a0ca28853171df77b20404ca766",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p23-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west/north strips inspected. Small west rock edge and top foam connect, interior stays open water; submerged stones are limited to inherited north transition rather than propagated south. West foam terminates unevenly and water caustic scale/brightness changes across the seam; north lower transition slightly changes density. Non-obstructive material/foam review pending full tile, no pass claimed.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p14--p24.png",
+          "sha256": "43120837a31b6c11e16d380336068f72c3f6b67617fe8fefac932c6644c1eb4c",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p24-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact north/west strips inspected. Foam tail matches top endpoint and fades within upper half; no objects or land added. West caustic cells and brightness have moderate contrast variation, north shows finer and denser new caustics below seam. Material continuity remains pending full tile.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p21--p22.png",
+          "sha256": "b4f2c134979ed7ec503fb38a815ff268b4cd0d7e7389ded0bdb2a48effe9e25f",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p22-v1/visual-review.json",
+          "observation": "Native and exact north/west joins viewed. Planned rock foot/central indentation preserved; no added isolated land. Local granite grain/warmth changes and white surf width differences remain material issues for full QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p21--p31.png",
+          "sha256": "2548cc5b1540311c74b2bba332b85ab6aed82f52ed1467bc7389d8c7051e5d43",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p31-v1/visual-review.json",
+          "observation": "Native and north/west core joins viewed. Open-water layout continues with no new objects. West pebble-like microtexture transitions to smoother elongated cell reflections; material difference pending. North foam dissipates naturally; no geometry blocker.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p22--p23.png",
+          "sha256": "54c11b43708dbb7b5b33f4649e83eff4b12af1bbcc4abd18add8f3944f95f98a",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p23-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west/north strips inspected. Small west rock edge and top foam connect, interior stays open water; submerged stones are limited to inherited north transition rather than propagated south. West foam terminates unevenly and water caustic scale/brightness changes across the seam; north lower transition slightly changes density. Non-obstructive material/foam review pending full tile, no pass claimed.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p22--p32.png",
+          "sha256": "26267d03327cfc33ad428f83df02bfd5e690db2ee7d56ce975524c7e51e78a88",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p32-v1/visual-review.json",
+          "observation": "Viewed native and exact west/north core joins. Foam tail continues and dissipates in upper third, no new objects. Mid/lower caustics have lower contrast and subtle density change relative to neighbors; material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p23--p24.png",
+          "sha256": "3625b132b977746e0fb2f6058b06302cac718ac087194ca90103b410c05102ac",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p24-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact north/west strips inspected. Foam tail matches top endpoint and fades within upper half; no objects or land added. West caustic cells and brightness have moderate contrast variation, north shows finer and denser new caustics below seam. Material continuity remains pending full tile.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p23--p33.png",
+          "sha256": "bc6783e82cb2f8f458a16af79b9e3c72f5ac28ca651a7ee7a2a46c6223f39105",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p33-v1/visual-review.json",
+          "observation": "Native 1254x1254 and true-core west/north strips inspected. Open-water content matches layout; no foam or objects introduced. Caustic direction connects but density and turquoise brightness change subtly at both seams, with visible corner of conditioning texture top-left in native halo; selected core must be reviewed with junction crop. Keep pending full-tile material QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p24--p34.png",
+          "sha256": "054cac028957c9a2720172ec3f76c72bc789d84d66b94200f0d9ca8076ba8716",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p34-v1/visual-review.json",
+          "observation": "Native 1254x1254 and north/west exact-core strips inspected. Open-water content correct and no obstacles. New caustics are denser/brighter in lower region with some repeated-looking cell groups; clear west/north scale transition remains pending material QA. No acceptance asserted.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p31--p32.png",
+          "sha256": "dbbc6bf8308d46739957b8f2dffb8b2d999e541508b5e6953b56be42eb33cf16",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p32-v1/visual-review.json",
+          "observation": "Viewed native and exact west/north core joins. Foam tail continues and dissipates in upper third, no new objects. Mid/lower caustics have lower contrast and subtle density change relative to neighbors; material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p31--p41.png",
+          "sha256": "fb22073b9f8c80769fa49c3a1f1f019a221eb79274fb97fda7ac4ce2fb4f2d85",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p41-v1/visual-review.json",
+          "observation": "Viewed native and exact west/north joins. No black padding in output, continuous open sea. West water cell texture remains visibly different from smoother new core; north line endpoints and brightness have small changes. Material pending; no added physical objects.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p32--p33.png",
+          "sha256": "12431b43eb31e04ab88415c282b7002adbe5af3a62bda668b133928588556b2c",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p33-v1/visual-review.json",
+          "observation": "Native 1254x1254 and true-core west/north strips inspected. Open-water content matches layout; no foam or objects introduced. Caustic direction connects but density and turquoise brightness change subtly at both seams, with visible corner of conditioning texture top-left in native halo; selected core must be reviewed with junction crop. Keep pending full-tile material QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p32--p42.png",
+          "sha256": "1dd5376b736affc60845dca882861a61fb5e926f290ad0ba202da94214c10ea5",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p42-v1/visual-review.json",
+          "observation": "Native 1254x1254 inspected. All-water geometry continues without added objects or black padding. Exact west and north core strips inspected: western caustic cells are smaller and denser on new right half, northern boundary has a brightness/density transition; no obstructive geometry mismatch. Keep selected as production source, material continuity remains pending full-tile QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p33--p34.png",
+          "sha256": "f6864cf67227f189a7bcf870d5cf11323637d00d9fb69978b4f776696dfbe804",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p34-v1/visual-review.json",
+          "observation": "Native 1254x1254 and north/west exact-core strips inspected. Open-water content correct and no obstacles. New caustics are denser/brighter in lower region with some repeated-looking cell groups; clear west/north scale transition remains pending material QA. No acceptance asserted.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p33--p43.png",
+          "sha256": "3eedb9c06736954b32c3de6e820aa70ec6adb56fede5f22e58ccd9299c238d5d",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p43-v1/visual-review.json",
+          "observation": "Native 1254x1254 all-water inspected, black outside-world padding absent. Exact west and north strips show continuous content but new patch has denser smaller caustic cells and a horizontal brightness/density transition below north. This is pending material continuity, not accepted QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p34--p44.png",
+          "sha256": "4e64bce0403df30f49ab05e5ac4223407deb8459a11361628ac040043ec4c2b0",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p44-v1/visual-review.json",
+          "observation": "Native 1254x1254 all-water inspected, no black padding. Exact north/west core strips show no geometry/content obstruction; brightness, ripple scale and caustic line endpoints vary at both boundaries. Slight rectangular conditioning transition remains near native top edge. Keep material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p41--p42.png",
+          "sha256": "0456011c30b6d5fbc3249d4d576e8217c32c22186b176a45bcf3ee7cf7cbdd98",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p42-v1/visual-review.json",
+          "observation": "Native 1254x1254 inspected. All-water geometry continues without added objects or black padding. Exact west and north core strips inspected: western caustic cells are smaller and denser on new right half, northern boundary has a brightness/density transition; no obstructive geometry mismatch. Keep selected as production source, material continuity remains pending full-tile QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p42--p43.png",
+          "sha256": "02c217c7130ae5d4e9111bef93611f5de425eb42aa350f45dbf0c2a7bfa5ca1c",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p43-v1/visual-review.json",
+          "observation": "Native 1254x1254 all-water inspected, black outside-world padding absent. Exact west and north strips show continuous content but new patch has denser smaller caustic cells and a horizontal brightness/density transition below north. This is pending material continuity, not accepted QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/p43--p44.png",
+          "sha256": "5338bda77f500030c714c8ccbe684317cb78067d329de43c17a71c58ced99395",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/quick-p44-v1/visual-review.json",
+          "observation": "Native 1254x1254 all-water inspected, no black padding. Exact north/west core strips show no geometry/content obstruction; brightness, ripple scale and caustic line endpoints vary at both boundaries. Slight rectangular conditioning transition remains near native top edge. Keep material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r1-c1.png",
+          "sha256": "2d65b93a04d0d46f22e3b2990f5799f2debe73c8c4e5a312575c8deb9ccdd289",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Rock geometry connects; cream fleck density and grain scale vary across quadrants.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r1-c2.png",
+          "sha256": "a86a469abe5737fc73f3ac701799bd49690aa9181d780589ac2425a234ecdebf",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Rock/water intersection connects, but broad bright foam and submerged pebble-like shapes are too emphatic.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r1-c3.png",
+          "sha256": "583c3fed55b2d19beadf527c12046741a373d4e605e0f44efa06e6c9c9058c84",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Water junction has a horizontal change in caustic density and cell size below the top row.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r2-c1.png",
+          "sha256": "31db984f884f68d91e2174ca4475a270eef5981f5c41fad43b2815a1f3b7cc33",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Inherited foam meets open water; foam width and water-cell scale vary between quadrants.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r2-c2.png",
+          "sha256": "657ecef28e812b3a744951fde96d356f570b620e33aeefe965f5e22158ffc7db",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Water brightness and cell size change across the center conditioning boundary.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r2-c3.png",
+          "sha256": "f12559124e4b5a30f574b70934795010f6995bb21e3c086f6f5dc323cc8ebb6a",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Right/lower caustics are smaller, denser and brighter, retaining a quadrant impression.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r3-c1.png",
+          "sha256": "a343f14b9185404659d22da555e226666331097339971e9aa746f7633b165db2",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Continuous water with lower/right cell-density and directional differences.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r3-c2.png",
+          "sha256": "c83b52096c60696a5ea5c2a62042ad59cdacc15f040f8194cab73b61949b8384",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Horizontal water-density transition; smaller brighter cells below.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c13/qa/full-20261018-v1/cross-r3-c3.png",
+          "sha256": "1037c29a4e149fd771e02645cb4a5fe64a68ef78483b7d7a089a9491cddd982e",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Lower/right caustics are finer/brighter with repeated-looking groups and conditioning-boundary impression.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        }
+      ],
+      "pendingIssues": [
+        {
+          "id": "granite-material",
+          "patches": [
+            "p11",
+            "p12",
+            "p21",
+            "p22",
+            "p13",
+            "p14"
+          ],
+          "observation": "Granite grain, cream flecks and warmth differ across otherwise connected rock geometry."
+        },
+        {
+          "id": "foam-layout-detail",
+          "patches": [
+            "p12",
+            "p13",
+            "p22",
+            "p23"
+          ],
+          "observation": "p13 broad looping foam and submerged pebble-like details are more emphatic than the layout guide; localized review required."
+        },
+        {
+          "id": "top-water-transition",
+          "patches": [
+            "p13",
+            "p14",
+            "p23",
+            "p24"
+          ],
+          "observation": "Top-to-second-row caustic size/density and foam taper vary."
+        },
+        {
+          "id": "middle-conditioning-boundary",
+          "patches": [
+            "p22",
+            "p23",
+            "p24",
+            "p32",
+            "p33",
+            "p34"
+          ],
+          "observation": "Middle horizontal seams and junctions retain brightness/scale changes and quadrant-like texture boundaries."
+        },
+        {
+          "id": "lower-water-material",
+          "patches": [
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "observation": "Lower/right water is finer and brighter with repeated-looking cells; material continuity not accepted."
+        },
+        {
+          "id": "external-boundaries-pending",
+          "patches": [
+            "p11",
+            "p12",
+            "p13",
+            "p14"
+          ],
+          "observation": "North sources were missing during top-row generation. r13_c13 is now complete, but external north final joint QA remains pending. West quick strips used actual selected r14_c12 cores; material differences pending."
+        }
+      ],
+      "internalReady": false,
+      "externalReady": false,
+      "formalAccepted": false
+    }
+  }
+}

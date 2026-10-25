@@ -1,0 +1,769 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 3,
+  "column": 10,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "8355e5e210076c06c48d84fbbc19089bbe3486cf546c39b8cf9ae0c3cc6bf6e7",
+  "imageBytes": 30086064,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/r03_c10-core-baseline.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/assembly.json",
+  "sourceLedgerSha256": "97ad7bf411119826329cd6a9dfea2e958731fb4041010ba32dcfd3938032c290",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/r03_c10-core-baseline.candidate.png",
+    "imageSha256": "8355e5e210076c06c48d84fbbc19089bbe3486cf546c39b8cf9ae0c3cc6bf6e7",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/assembly.json",
+        "sha256": "97ad7bf411119826329cd6a9dfea2e958731fb4041010ba32dcfd3938032c290",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/assembly.json",
+        "sha256": "97ad7bf411119826329cd6a9dfea2e958731fb4041010ba32dcfd3938032c290",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/internal-review.json",
+        "sha256": "720d5ca7e6520ad7952d89e64d9b74b08b7bc06267064ee1ad055acf249774a0",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/internal-review.json",
+        "sha256": "720d5ca7e6520ad7952d89e64d9b74b08b7bc06267064ee1ad055acf249774a0",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "nativeCoreCount": 16,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/r03_c10-core-baseline.candidate.png.generation.json",
+        "record": {
+          "status": "candidate-awaiting-internal-QA"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/assembly.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/internal-review.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/internal-review.json",
+    "sourceSha256": "720d5ca7e6520ad7952d89e64d9b74b08b7bc06267064ee1ad055acf249774a0",
+    "normalizedDocument": {
+      "tile": "r03_c10",
+      "createdAtUtc": "2026-10-20T13:05:53.061039+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/r03_c10-core-baseline.candidate.png",
+      "candidateSha256": "8355e5e210076c06c48d84fbbc19089bbe3486cf546c39b8cf9ae0c3cc6bf6e7",
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "nativeCoreCount": 16,
+      "sources": [
+        {
+          "patch": "p11",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p11-v20261019.png",
+          "sha256": "ba1b7a782062b0e6d8241b87c29fb5ec5bf65f12b918c6f6155b1a1af87721f3",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p11-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p12",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p12-v20261019.png",
+          "sha256": "556aa9fd4035dd825f17f2aa01172d1d0ce3e23cae6525796741ed20c2f6c16e",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p12-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p13",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p13-v20261020.png",
+          "sha256": "9e504bc20aca3d4e8387c5de40018d95f37855210343b2dc800a30c5fa6f75ab",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p13-v20261020.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p14",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p14-v20261019-v2.png",
+          "sha256": "82fec3e9c24bc386428213dc1c22178fbfc59f9cbf4c8b63285e0e0562fea38f",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p14-v20261019-v2.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p21",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p21-v20261019.png",
+          "sha256": "49836ade25e999e2aa6ae775757c46f524f7b689707df271250a428f7b8a4c00",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p21-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p22",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p22-v20261019.png",
+          "sha256": "a2ec5cffbd7533dc6384de98ad8216e799a354745e3dbb185f4a3b02dc8cd898",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p22-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p23",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p23-v20261019.png",
+          "sha256": "8cb700e782ac9174015ad79920fdaaf8819b427d03b5ef7df04a918d05823f7e",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p23-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p24",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p24-v20261019.png",
+          "sha256": "87ae6008a753abc8def945f8d406654d9d348570eefb744e354e35749f1b17c1",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p24-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p31-v20261019.png",
+          "sha256": "fcc838d6e01c7caef6eabbecd2cd800c44be508f706ed58347aa4aa3648ff49a",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p31-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p32",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p32-v20261019.png",
+          "sha256": "ecea6b16d27a09baedc5751831462d8cab296eae0fcf3abe5628a733dd6dee73",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p32-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p33",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p33-v20261019.png",
+          "sha256": "c951ae6f1d7dae9e123dae668864ba4ef752c0156eff85d825e701500a9364a3",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p33-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p34",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p34-v20261019.png",
+          "sha256": "0ff3c367b32931942c74c05c7f12dc68196b370e160cf1ee30eebd37627229de",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p34-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p41",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p41-v20261019.png",
+          "sha256": "cd195acf6d002c0b9a60ffbac0ca3588bc0649ad0a54e040affaad51d734cb44",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p41-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p42",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p42-v20261019.png",
+          "sha256": "1d34fc19c037b4d8325036c282e4c367330af6fd302fadc20e82d3203edcb718",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p42-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p43",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p43-v20261019.png",
+          "sha256": "6c9b3922c382d6d600184e26a856e3dfb63018058af96c936c65c20da7c6f022",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p43-v20261019.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        },
+        {
+          "patch": "p44",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p44-v20261019-v2.png",
+          "sha256": "f14db8b588c9c62f477fad3fceae372b0a714f390fb85a5ef6a191315c482bd0",
+          "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/native/p44-v20261019-v2.png.generation.json",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ]
+        }
+      ],
+      "operation": "integer 1024-square source crops and paste; no resizing, blending, painting or resampling; QA sheets add label margins only",
+      "seams": [
+        {
+          "id": "V-r1-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r1-c1.png",
+          "sha256": "2f899d021b92cbba5509077448c3017059a93654858005960f37128d4064da95",
+          "box": [
+            832,
+            0,
+            1216,
+            1024
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Lower blue-gray diagonal accent and pale paving texture show minor kink/scale change."
+        },
+        {
+          "id": "V-r1-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r1-c2.png",
+          "sha256": "edc64851038e7bbed32726f36f739a43c60cec7e0cfb483de3e3fca211006e48",
+          "box": [
+            1856,
+            0,
+            2240,
+            1024
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Large shapes continuous at seam; dense stone crack finish remains excessive."
+        },
+        {
+          "id": "V-r1-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r1-c3.png",
+          "sha256": "99c3311520f7d35ae1dd97eab4ed591e46d1f494f054e639b8879922e4002bd1",
+          "box": [
+            2880,
+            0,
+            3264,
+            1024
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Upper plinth bevels differ on either side; lower pale paving has material-scale edge and inset diagonal grout spur."
+        },
+        {
+          "id": "V-r2-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r2-c1.png",
+          "sha256": "4e7757ffd288d43d3a033315e7ebd1b1dd5311220f900fc84ba205cfc404985f",
+          "box": [
+            832,
+            1024,
+            1216,
+            2048
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Blue-gray band and cream border horizontal lines terminate/offset; baked context rectangle inside neighboring core."
+        },
+        {
+          "id": "V-r2-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r2-c2.png",
+          "sha256": "f9862522376b82be83ace43b3ff0b1d29edcdbe1b0b929b4073e178db409609b",
+          "box": [
+            1856,
+            1024,
+            2240,
+            2048
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Cream-border transition and lower diagonal paving show rectangular retained-context boundary and misaligned lines."
+        },
+        {
+          "id": "V-r2-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r2-c3.png",
+          "sha256": "8c1be00e850e531be4f46b354fbaf02a1cc9a01f4c2611dfb2b88443208fed06",
+          "box": [
+            2880,
+            1024,
+            3264,
+            2048
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Large diagonal slab grid broadly matches, but right texture becomes much smaller and denser."
+        },
+        {
+          "id": "V-r3-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r3-c1.png",
+          "sha256": "43dd2fa7cbe0f65c2b03d84267e8fcd9b8f7a47a4cf01832087e03b4e6692128",
+          "box": [
+            832,
+            2048,
+            1216,
+            3072
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Subtle diagonal joint/texture changes; source finish excessively fractured."
+        },
+        {
+          "id": "V-r3-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r3-c2.png",
+          "sha256": "c54440bd513c16db8cda844afa96222278befeda8f26cd971fa27b6bb5dfe84e",
+          "box": [
+            1856,
+            2048,
+            2240,
+            3072
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Fine grout continuation and stone mottling differ; no new object."
+        },
+        {
+          "id": "V-r3-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r3-c3.png",
+          "sha256": "9d6f7e7dffd2812f38b37fb3a5bb94911a96f942aba1e434e098c6d4904d6b99",
+          "box": [
+            2880,
+            2048,
+            3264,
+            3072
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Blue-gray band and diagonal grout are clipped by retained context strips; abrupt rectangular source edge."
+        },
+        {
+          "id": "V-r4-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r4-c1.png",
+          "sha256": "75eb0b23e997c8c840c5794afe7df224dbf52c959c1aff4e6ef0a05c669bb57d",
+          "box": [
+            832,
+            3072,
+            1216,
+            4096
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Small grout kink and mottling changes."
+        },
+        {
+          "id": "V-r4-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r4-c2.png",
+          "sha256": "cb0eafe16174f0fb1da2793189d2518698081684cafda8f0f2c9832cdd2c8cc2",
+          "box": [
+            1856,
+            3072,
+            2240,
+            4096
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Minor joint kink plus patch-tonal difference."
+        },
+        {
+          "id": "V-r4-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/V-r4-c3.png",
+          "sha256": "ec5aa97fd0097ab994815d75f754234b45d51619cbbddf5d5f289c1ae3d6a032",
+          "box": [
+            2880,
+            3072,
+            3264,
+            4096
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Blue-gray band and paving line segmentation discontinuous through retained native context boundary."
+        },
+        {
+          "id": "H-r1-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r1-c1.png",
+          "sha256": "5a1a174529835c47c2aa34c08173a62210fd408c3e4a19f4a40417db35c3eea7",
+          "box": [
+            0,
+            832,
+            1024,
+            1216
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Paving broadly continuous, but red paper/grooves and texture vary slightly."
+        },
+        {
+          "id": "H-r1-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r1-c2.png",
+          "sha256": "bc25c9a6cfd29e8ddd73fefe6c9132c864ec566a6c9cb6ea65d1ad3d576d9e5c",
+          "box": [
+            1024,
+            832,
+            2048,
+            1216
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Vertical cream edge and blue-gray band shift laterally across/beside seam."
+        },
+        {
+          "id": "H-r1-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r1-c3.png",
+          "sha256": "ce7616855b4b143f40231b24a2beba9ac9d9c4a5ba243ae55702b0f5b3f228e1",
+          "box": [
+            2048,
+            832,
+            3072,
+            1216
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "New p13 bottom continuation contains grout and material changes against p23."
+        },
+        {
+          "id": "H-r1-c4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r1-c4.png",
+          "sha256": "5630ce75ae24f72758d808686bc51f7edbe273957f614911bc46e39bcf93d3e2",
+          "box": [
+            3072,
+            832,
+            4096,
+            1216
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Grid broadly continues; stone surface scale transition remains."
+        },
+        {
+          "id": "H-r2-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r2-c1.png",
+          "sha256": "52b713fc312fb975f62b5856098ddcd4700654d7880e3d010009bcb867088fe2",
+          "box": [
+            0,
+            1856,
+            1024,
+            2240
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Diagonal paving splits into a doubled diamond at seam; grid geometry mismatch."
+        },
+        {
+          "id": "H-r2-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r2-c2.png",
+          "sha256": "db4ed81c0cea42141e4413bb5904094023b35b98262b1d57bc4a84e32ade4f39",
+          "box": [
+            1024,
+            1856,
+            2048,
+            2240
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Doubled diamond/offset grout; retained horizontal source strip near upper crop."
+        },
+        {
+          "id": "H-r2-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r2-c3.png",
+          "sha256": "b3b8119593106374c8b8363f1840e06d3136735d5229d4650e1f4baa0f54b965",
+          "box": [
+            2048,
+            1856,
+            3072,
+            2240
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Baked horizontal source-context edge above seam and material-scale discontinuity."
+        },
+        {
+          "id": "H-r2-c4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r2-c4.png",
+          "sha256": "58bd938514ef9f724cc734317260007170949942e8232ed614fc75fe5e3e57b2",
+          "box": [
+            3072,
+            1856,
+            4096,
+            2240
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Grid mostly continuous; fine grout and surface mottling changes."
+        },
+        {
+          "id": "H-r3-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r3-c1.png",
+          "sha256": "4fea65fd962b895cc75907562a4962a5cba539ea1df3c8544e72e610fefde680",
+          "box": [
+            0,
+            2880,
+            1024,
+            3264
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Offset diagonal joints form doubled diamond at seam."
+        },
+        {
+          "id": "H-r3-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r3-c2.png",
+          "sha256": "7e4f90b490951cd4d2676e24f19f22f7aead1e9d66af53eddd0bd4df604e0885",
+          "box": [
+            1024,
+            2880,
+            2048,
+            3264
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P1",
+          "finding": "Diagonal grout terminates or bends at seam in left part."
+        },
+        {
+          "id": "H-r3-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r3-c3.png",
+          "sha256": "d18927e1a15b61a1fa13ec60f3f242cca6a879b8616f2cd497260f366eb7590f",
+          "box": [
+            2048,
+            2880,
+            3072,
+            3264
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Texture-scale changes and minor diagonal joint mismatch."
+        },
+        {
+          "id": "H-r3-c4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/H-r3-c4.png",
+          "sha256": "8174ed818d61e8c1c13c5d0e90feed0ea480565797fd1c1de332ccde6a154149",
+          "box": [
+            3072,
+            2880,
+            4096,
+            3264
+          ],
+          "status": "reviewed_unpassed",
+          "priority": "P2",
+          "finding": "Rough/broken joint continuity near center and blue-gray band; roof contour unaffected."
+        }
+      ],
+      "intersections": [
+        {
+          "id": "X-r1-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r1-c1.png",
+          "sha256": "15048347d1d8b24dbffe828adbe5e596329a12da47c62c5eecc8a2eac3b244d1",
+          "box": [
+            768,
+            768,
+            1280,
+            1280
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Minor paving joint offset; no missing quadrant."
+        },
+        {
+          "id": "X-r1-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r1-c2.png",
+          "sha256": "e52fd87b56a8a2b5066e720ea5a58a876f75fcd440dfff02e8c82402c7592307",
+          "box": [
+            1792,
+            768,
+            2304,
+            1280
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Cream border/blue-gray band lateral displacement and native context strip edge."
+        },
+        {
+          "id": "X-r1-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r1-c3.png",
+          "sha256": "f48a9d1a418234a5b239a29b1f5ba89d7ba7cf51d3617a670b464f0764cff877",
+          "box": [
+            2816,
+            768,
+            3328,
+            1280
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "P13/p14/p23/p24 differ in surface scale; diagonal grout changes."
+        },
+        {
+          "id": "X-r2-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r2-c1.png",
+          "sha256": "7dfb79a2793c6baf0fbe2176ed435a9570701a2a4eb3f75f8c3b2cf61946dfcc",
+          "box": [
+            768,
+            1792,
+            1280,
+            2304
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Context strip boundary above junction, doubled diagonal lines below."
+        },
+        {
+          "id": "X-r2-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r2-c2.png",
+          "sha256": "87f10931cfa163a362ee746c914c80fb26ea8729fff1cdd1fbc27fef0dd817dc",
+          "box": [
+            1792,
+            1792,
+            2304,
+            2304
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Rectangular source boundary, material transition and diagonal lines mismatch."
+        },
+        {
+          "id": "X-r2-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r2-c3.png",
+          "sha256": "d062c77045aa4774a093820fe27728bf48198d6b965c5acb331c11d651f1fb0a",
+          "box": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Baked horizontal and vertical context edges; diagonal bands displaced."
+        },
+        {
+          "id": "X-r3-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r3-c1.png",
+          "sha256": "417f319b71159f63c60bbc0e40f26c8d8282156b89d8230518ed2cb89ca66e99",
+          "box": [
+            768,
+            2816,
+            1280,
+            3328
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Doubled diagonal corner at cross."
+        },
+        {
+          "id": "X-r3-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r3-c2.png",
+          "sha256": "0b44dd99b970771249dcec502b515ed58190b461cb9879ee9f3db9cd617650a8",
+          "box": [
+            1792,
+            2816,
+            2304,
+            3328
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Abrupt mottling field and a terminated grout segment."
+        },
+        {
+          "id": "X-r3-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c10/qa/core-baseline-20261020/X-r3-c3.png",
+          "sha256": "402f44a2735a3e307a7acdc38f90301b2a35b8867f325a1ca9e782873a14a686",
+          "box": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "status": "reviewed_unpassed",
+          "finding": "Blue-gray band and diagonal joint displacement; excessive material scale difference."
+        }
+      ],
+      "internalPassed": false,
+      "formalAccepted": false,
+      "candidateOnly": true,
+      "selectedNativeUnchanged": true,
+      "reviewedAtUtc": "2026-10-20T13:22:33.878474+00:00",
+      "reviewMethod": "Viewed all 8 seam pages and 3 intersection pages at original pixels. Whole candidate viewed reduced to locate retained-context rectangles; reduced overview not used as native detail acceptance.",
+      "summary": "16 core candidate complete, internal QA failed. Original 15-source selection unchanged; p13 archived candidate awaiting seam repair. No missing image was regenerated twice.",
+      "repairPlan": [
+        "Repair p14 upper-left plinth bevel against actual p13 west edge; original p14 v1/v2 history retained.",
+        "Keep all failed source geometry/material edges unpassed; do not propagate this candidate.",
+        "After two failed repairs of same point retain best and move to another independent missing core."
+      ]
+    }
+  }
+}

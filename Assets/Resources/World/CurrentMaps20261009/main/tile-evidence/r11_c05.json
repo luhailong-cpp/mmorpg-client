@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 11,
+  "column": 5,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "1ed10a43b41faa93c9acd0c846808ad25f5fb51f25e4f815a2636164a02e7bf5",
+  "imageBytes": 20419756,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/r11_c05.private-prospective.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/internal33-chain-review-20261023-v01/source-chain-proof-v01.json",
+  "sourceLedgerSha256": "6d038af8af473914c6baf2515be0ef26f08c2b55baf8399e9e034a399ab154cf",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/r11_c05.private-prospective.png",
+    "imageSha256": "1ed10a43b41faa93c9acd0c846808ad25f5fb51f25e4f815a2636164a02e7bf5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/internal33-chain-review-20261023-v01/source-chain-proof-v01.json",
+        "sha256": "6d038af8af473914c6baf2515be0ef26f08c2b55baf8399e9e034a399ab154cf",
+        "sourceReviewSha256": "6d038af8af473914c6baf2515be0ef26f08c2b55baf8399e9e034a399ab154cf",
+        "completeness": [
+          "16 base source checks bound to baseNative16Assembly; local repair preserves full base coverage",
+          "base image SHA256=1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68"
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/r11_c05.private-prospective.png.generation.json",
+        "sha256": "b9993fdfac24d59f964ad896ec79787d5ab2b6f7981d28b83a2eab27197c15e9",
+        "sourceReviewSha256": "b9993fdfac24d59f964ad896ec79787d5ab2b6f7981d28b83a2eab27197c15e9",
+        "completeness": [
+          "Selected output is a bounded native repair of complete base SHA256=1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68"
+        ]
+      }
+    ],
+    "selectionBasis": "Complete 16-core base plus source-bound local repair",
+    "sourceStatus": {},
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/exact-lease-QA-HOLD.closed-v01.json",
+    "sourceSha256": "1c130394a931815f5c37f02a0876b8f8aebc35b8d64fb6ed5afb034e79bd7626",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "closedAtUtc": "2026-10-24T15:52:40.099203+00:00",
+      "status": "RETURNED_ARCHIVED_QA_HOLD_LEASE_SPENT_NO_RETRY_NO_ADOPTION",
+      "lease": {
+        "file": "docs/MAP_REGION_COORDINATION_20261024/ROOT_SW_P0301_EXACT_ONE_CALL_PRIVATE_TRIAL_20261024_082519.json",
+        "sha256": "505137d074ca29a061922b166b62242e94713f0987d7b260829a2d5d2f8b39f3"
+      },
+      "request": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/request.json",
+        "sha256": "cdc40c795c7fad7189259b7ea8994494fa0f2f83ef9633a41dc60006b42f2916"
+      },
+      "claim": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/exclusive-claim.json",
+        "sha256": "a229ac5275bb57b300de445b2271f23c8da1af9e00f5879aa5d799455c3167c2"
+      },
+      "submissionStart": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/submission-start.json",
+        "sha256": "916e7d5b5550274829e8387a510a5ead0dac0497a205adddc8efabce361194f2"
+      },
+      "receipt": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/receipt.json",
+        "sha256": "2c0e467c996a4b126509fd05a5da7e3935ef0240053928d290f1c660b63b2464"
+      },
+      "native": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/native.png",
+        "sha256": "bceab596aa2a578a155b6f8031e04f10f3ed6e9147cbbb5038ef8b663fc16d27"
+      },
+      "nativeGeneration": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/native.png.generation.json",
+        "sha256": "fb0f129d60bc10e7570fa1a44eb0e0d8141c8deb995a89c67bb0d4f276416a55"
+      },
+      "actualResultId": "exec-d0112300-0928-4106-8ff1-daeed7fb3e2c",
+      "actualNativeSize": [
+        1254,
+        1254
+      ],
+      "hostAndArchiveBytesIdentical": true,
+      "actualModel": null,
+      "actualQuality": null,
+      "unverifiedReason": "Host-managed builtin exposes neither model/quality selector nor result model/quality metadata.",
+      "configSnapshot": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-10-24",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+          "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+        }
+      },
+      "actualSubmittedSelectors": {
+        "model": null,
+        "quality": null
+      },
+      "thisLeaseActualCalls": 1,
+      "thisLeaseRemainingCalls": 0,
+      "knownPriorPhysicalCalls": 2,
+      "knownLifetimeCalls": 3,
+      "automaticRetries": 0,
+      "nativeMaterialVerdict": "HOLD",
+      "privateProspective": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/r11_c05.private-prospective.png",
+        "sha256": "1ed10a43b41faa93c9acd0c846808ad25f5fb51f25e4f815a2636164a02e7bf5"
+      },
+      "privateCompositeCount": 1,
+      "privateMaterialVerdict": "HOLD",
+      "concreteRemainingIssue": "Central texture is calmer but lower and right support still contain interlocking diamond/scaly facets; broad quiet sparse-stroke limestone requirement not met.",
+      "QA": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/root-actual-visual-qa.closed-v01.json",
+          "sha256": "04dcf39ac80d8b6774c178417c78bcfbf01cde3a5f59dc53d05c68e0bf3c1d65"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/independent-raw-visual-qa-v01.json",
+          "sha256": "0114487be3d0a8a85d5b2a756951d7b306470671123f7c0500534198a6506d3b"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/independent-diff-source-qa-v01.json",
+          "sha256": "7853b6a0dbd106641233acce3a4789ac6e2ef5075131fa11d7a19a39d9f873d8"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/fixed-rgb-gate-once.json",
+          "sha256": "f0eb9f445b5e38c7f8ad21a70a1e141450b3d6f30c83dfdca6995bd2d2c02461"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/private-prospective-record.json",
+          "sha256": "899ec733313bc51e252d8e8555bcaa586576d6c53125fd2956a681fa01673633"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c05/pipeline/p0301-stone-interior-native-20261024-v01/derived-qa-crops.provenance-v01.json",
+          "sha256": "743747044f9e55e02451851da93b098ee8d91fd4f237b1e7bfaa9175e0b5ab97"
+        }
+      ],
+      "fixedRGBDelta": [
+        -1,
+        -1,
+        -2
+      ],
+      "exactCompositeReplayMismatchPixels": 0,
+      "actualChangedPixels": 78564,
+      "outsideAlphaChangedPixels": 0,
+      "protectedGMSUnknownChangedPixels": 0,
+      "ordinaryP0401SourcePositivePixels": 106,
+      "notPureP0301Provenance": true,
+      "dirtyCanonical33": [
+        "H3-col1"
+      ],
+      "canonical33UnchangedHashBoundReuse": 32,
+      "canonicalCorner384Unchanged": true,
+      "supplemental512CornerChangedPixels": 10656,
+      "noWhole33OrMaterial16AcceptanceFromLocalTrial": true,
+      "sourceCASStillCurrent": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c05.candidate.png",
+        "sha256": "1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68"
+      },
+      "catalogCASStillCurrent": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "sha256": "297d5e74153de729220aa649505036a6cd79a93413287a36b684e93a8f99001d"
+      },
+      "sourceTop4PartialHOLDUnchanged": true,
+      "material16HOLDUnchanged": true,
+      "newNativeCoreSelections": 0,
+      "new4096CompleteTiles": 0,
+      "newInternalReadyTiles": 0,
+      "newFormalAcceptedTiles": 0,
+      "currentCatalogGitWrites": 0,
+      "wholeMapComplete": false,
+      "productionReleased": false,
+      "oldUnknownSTOPsRetained": true,
+      "nativeInventory": {
+        "file": "docs/MAP_DIRECT_CONTINUE_20261022/citysw-production-checkpoint-v03.native-inventory-supplement-v10.json",
+        "sha256": "cb26ca6dfc0ad4d3c44168ff41b38cd80c2e999fbc394e35b306a5694c2f04c6"
+      },
+      "scriptRecovery": {
+        "firstScript": "integrate_r11_p0301_fixed_once_20261024.py",
+        "error": "dirty-window expectation assertion after sole composite saved; actual cached33 corner is384x384 starting832,2880, not512x512 starting768,2816. No second composite made; resumed only saved image QA and metadata. Added explicit512 corner required by lease."
+      },
+      "preparedRequestHistoricalStatusClarification": "Original prepared request and about-to-submit start are immutable historical evidence; this closure plus actual receipt establishes returned and fully archived, not pending/unsubmitted or UNKNOWN. Never resubmit this claim."
+    }
+  }
+}

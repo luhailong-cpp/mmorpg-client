@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 11,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "487c405348279d981ac8a32aa9c17cb7c0459629616fd213a203057e7f8c59d8",
+  "imageBytes": 19754208,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/r11_c08.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/assembly.json",
+  "sourceLedgerSha256": "375b44e3d9252fa8e6372a14ba3cbc29a6ad75baefe4e97abbb0e73f45f612ef",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/r11_c08.candidate.png",
+    "imageSha256": "487c405348279d981ac8a32aa9c17cb7c0459629616fd213a203057e7f8c59d8",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/assembly.json",
+        "sha256": "375b44e3d9252fa8e6372a14ba3cbc29a6ad75baefe4e97abbb0e73f45f612ef",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/assembly.json",
+        "sha256": "375b44e3d9252fa8e6372a14ba3cbc29a6ad75baefe4e97abbb0e73f45f612ef",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/review.json",
+        "record": {
+          "actualViewedExternalNativeSegments": 12,
+          "missingExternalSources": [
+            {
+              "side": "right",
+              "tile": "r11_c09",
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r11_c09",
+              "directoryExists": false,
+              "status": "no_current_native_right_anchor_claimed"
+            }
+          ],
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false,
+          "fullMapAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/review.json",
+    "sourceSha256": "9f3175bd52f14a175a3457c1e515b143c9e9cc958c89d416fc01a1f4785c7afa",
+    "normalizedDocument": {
+      "createdAtUtc": "2026-10-18T07:05:54.215584+00:00",
+      "tile": "r11_c08",
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/assembly.json",
+      "assemblySha256": "375b44e3d9252fa8e6372a14ba3cbc29a6ad75baefe4e97abbb0e73f45f612ef",
+      "core": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/r11_c08.candidate.png",
+        "sha256": "487c405348279d981ac8a32aa9c17cb7c0459629616fd213a203057e7f8c59d8",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/r11_c08.candidate.context.png",
+        "sha256": "f6a6e8576dab7e076689fc9df9d76207227cc6d1188b699a060453f4b0e88191",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/manifest.json",
+      "manifestSha256": "dd7b62a860bf1492b2e5aee53db63e54c1db0af3d7e91375d72587815b248e71",
+      "actualViewedInternalSeams": 24,
+      "actualViewedIntersections": 9,
+      "actualViewedExternalNativeSegments": 12,
+      "checks": [
+        {
+          "id": "V1-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V1-row1.png",
+          "sha256": "dba35b6d92df040e281d349dc0df4e941f87661724aabbeac0f21b93a765bb7e",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Blue-grey material/tone changes across the diagonal curb region; fine crosshatch/vein texture remains unaccepted."
+        },
+        {
+          "id": "V1-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V1-row2.png",
+          "sha256": "ece55f6d55695eadd96b9e70c8ec0a9d9aa0870370380d69e83a4efc44106975",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Horizontal grey inlay and its ivory bevel end abruptly near the join; upper band heights disagree and a diagonal wedge/cap replaces the intended corner."
+        },
+        {
+          "id": "V1-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V1-row3.png",
+          "sha256": "98d5c04d632a0116d311289443eec5a5a80f2ce691536595fc0dde6de45bce48",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Ivory-rim short horizontal joints terminate at the join with a full-height material step; grey rim has a jagged cap near the top."
+        },
+        {
+          "id": "V1-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V1-row4.png",
+          "sha256": "42a30b304ac5b9fa4fdfe2ddc392157ed17d723edb6e40a1634b37c6e705a5ee",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Ivory short joints truncate at the join around three heights; warm/cool material step remains."
+        },
+        {
+          "id": "V2-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V2-row1.png",
+          "sha256": "7a339ba0be42a4636975758e3e5605f41d7dbe9ae452a06f2eb78902fa74fb03",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Cellular/vein material and strong crosshatch remain; the blue inlay changes tone at the join."
+        },
+        {
+          "id": "V2-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V2-row2.png",
+          "sha256": "b26264f215b4e407295c40005f6b12074c6178fac403f1f476db5d564b1f5fa5",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Left horizontal joint ends at a different height from the right y463-derived joint, producing incompatible T-junction heights; stone texture also changes."
+        },
+        {
+          "id": "V2-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V2-row3.png",
+          "sha256": "b8ee8c08ae872119fadf43f6bcd9f761ce8f443a0988f237aceec201eee73c97",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Full-height surface texture/contrast change alongside the vertical joint; the horizontal T-junction bevel thickens near the join."
+        },
+        {
+          "id": "V2-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V2-row4.png",
+          "sha256": "f52381e59c97a37876e862d14b4bad2c190e5d182dd96d9d96ffdc594bcb3f67",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Full-height surface material/contrast step alongside the vertical joint and a small bevel spur at the horizontal T-junction."
+        },
+        {
+          "id": "V3-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V3-row1.png",
+          "sha256": "2079c0e07b755369cfaad06ee523ad28cecc8ef748c0b795c98db8ecc735cd87",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Blue band has a small stepped cap near the upper curb; crosshatch/vein material remains unaccepted."
+        },
+        {
+          "id": "V3-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V3-row2.png",
+          "sha256": "a520a3f1c62e5ab870808f4b90fb6931c84d260c974fbf7f4ac6c76584b533bb",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Horizontal joint connects, but a visible material scale/contrast change crosses the native join; dense fine cell wash remains."
+        },
+        {
+          "id": "V3-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V3-row3.png",
+          "sha256": "577003701fd61139b427651e1843cadae0bf051c7a28716c2c735366bc6883cd",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Horizontal joint has a small bevel/height jog and material change near the selected seam; source preview coordinate estimates are superseded by this exact candidate crop."
+        },
+        {
+          "id": "V3-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/V3-row4.png",
+          "sha256": "f65608bcd6c316b76d6416c799d65c25089fb1449bfcb01904221d35eb547c27",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            320,
+            1024
+          ],
+          "passed": false,
+          "issue": "Horizontal joint broadly connects; large cellular wash/contrast changes across the surfaces remain unaccepted."
+        },
+        {
+          "id": "H1-col1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H1-col1.png",
+          "sha256": "94abe5ed872fdda040d1a0d93010ba04d3c14e3e3c1d1a37595f24751d7de49d",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Two diagonal paving joints terminate abruptly in the stone surface; top-native geometry was changed by the selected failed p0201, with tone change and a full-width reconstructed curb below."
+        },
+        {
+          "id": "H1-col2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H1-col2.png",
+          "sha256": "aaad44f090eed34bd3522781f5ea18be1df4b097c5150cd3aebebb9fafebdb85",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Vertical blue-grey stem changes width/position across the horizontal join by a visible small step; fine cellular/vein material remains."
+        },
+        {
+          "id": "H1-col3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H1-col3.png",
+          "sha256": "abb777bda4081616991073248a2727af1af5fc7da6c5e6fa9947d979c39075c3",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Joint continuation is broadly coherent after the endpoint repair; surface brush scale/contrast and fine cell wash still change across the native join."
+        },
+        {
+          "id": "H1-col4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H1-col4.png",
+          "sha256": "3406875cb10f57e1e19fabf019936970d6046b9e468f93fcf1c7714d756b35db",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Right vertical joint has a visible sideways jog/trimmed cap near the seam while the left vertical is straighter; crosshatch material remains."
+        },
+        {
+          "id": "H2-col1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H2-col1.png",
+          "sha256": "bf954641f91d596022ecc898884c49ba05b45a212b44f982038144c87cf345d5",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Multiple diagonal joints dead-end inside the paving face because independent candidates disagree; the right grey rim has a pronounced stepped/jagged cap and ivory rim width change."
+        },
+        {
+          "id": "H2-col2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H2-col2.png",
+          "sha256": "e5fd3b4c5e058f3d077d166d2dc9b9b9a08d57baf55d8bf52fce186700c8cec0",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Blue-grey field has dense vein/cell texture and a visible change in wash scale/tone across the join; no new geometric pass is claimed."
+        },
+        {
+          "id": "H2-col3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H2-col3.png",
+          "sha256": "106ac896a50250ed877e32225e89199ef83dd51cc5c9f9a50a36a8b18881e5e1",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Quiet plane remains covered, but fine cellular wash/contrast changes across the join; material does not meet quiet stone reference."
+        },
+        {
+          "id": "H2-col4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H2-col4.png",
+          "sha256": "cf350015627a26e64c8b5e1d2958b7c76b0396ac0e00161bf52afba4ef8d8448",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Fine crosshatch/brush density and a shallow tonal band remain across the otherwise quiet plane; material acceptance is pending."
+        },
+        {
+          "id": "H3-col1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H3-col1.png",
+          "sha256": "12849f6b749f1d423966af1b18c13ca8214adc4ebdbab545354467f11a581bdf",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "A diagonal joint dead-ends in the paving; the vertical grey/ivory rim shifts sideways abruptly with a large diagonal cap and width step."
+        },
+        {
+          "id": "H3-col2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H3-col2.png",
+          "sha256": "9046beb9dfc467f19eb4c8f50a877ab037f019a2d47c39d711d64fb4538c4b71",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "Both blue-field edge bevels have small width/position jogs at the horizontal join, larger on the right; dense fine veins persist."
+        },
+        {
+          "id": "H3-col3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H3-col3.png",
+          "sha256": "9d1a81ea85179fe9d44a0a39d8a1e2d95706ba11274120ea09ef5320b68e7053",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "No sharp geometric break is obvious in the plane, but cellular wash scale/contrast changes remain unaccepted."
+        },
+        {
+          "id": "H3-col4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/H3-col4.png",
+          "sha256": "05191fcabd049752ae866d65c992df3ea4044bad7823b39ffe797c5eacaee109",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            320
+          ],
+          "passed": false,
+          "issue": "No added geometry is obvious in the plane; fine crosshatch/cellular wash remains too dense for the quiet stone requirement."
+        },
+        {
+          "id": "EXT-top-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-top-1.png",
+          "sha256": "793376784deac677c4f7b1abae82a0e62c6dd4d281c15bf4c7ed5fc78715e887",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "Hard horizontal tone/texture boundary remains between neighbor native and candidate; the oblique curb/joint is covered but finish is not continuous."
+        },
+        {
+          "id": "EXT-top-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-top-2.png",
+          "sha256": "322db218c03e653db69fe401d871fc0374bdbc73b8ca0fc609a38ece521e3549",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "Hard tonal boundary and a visible curb bevel offset/cap where the diagonal reaches the seam."
+        },
+        {
+          "id": "EXT-top-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-top-3.png",
+          "sha256": "f440b95dcb098de3116fb2323ee5991d6f9432c68ec320f1ad2b010854bf763d",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "Hard horizontal surface/blue-field tone change; small vertical-joint offset and stepped curb cap remain."
+        },
+        {
+          "id": "EXT-top-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-top-4.png",
+          "sha256": "b51dd219069130b4a0b8fd9d19ae861c2489e7072a6e3e2cfde5a9dcb5e7e69e",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "Hard tone boundary through blue field and pale strips; pale-strip bevel positions vary slightly at the join."
+        },
+        {
+          "id": "EXT-left-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-left-1.png",
+          "sha256": "a8c3b6cd67ad99da5a25c6a330e8c9e35744ce2a242d51b36aeb5a7520114eef",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            230,
+            1024
+          ],
+          "passed": false,
+          "issue": "Hard vertical surface tone boundary; horizontal bevels have small thickness/height steps."
+        },
+        {
+          "id": "EXT-left-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-left-2.png",
+          "sha256": "e56c755fd6c855b35890f1f54f4a33e662831b24f341989a4469f83e522d8eac",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            230,
+            1024
+          ],
+          "passed": false,
+          "issue": "Grey/blue inlay materials and segmentation disagree, with multiple joint-height offsets and unmatched lower diagonal joints."
+        },
+        {
+          "id": "EXT-left-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-left-3.png",
+          "sha256": "086af3ecac15bbe7f0e69ce8b28c6e148fdcefc6670150d395f2e2b0040f170c",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            230,
+            1024
+          ],
+          "passed": false,
+          "issue": "Neighbor brick-rim short joints terminate at the border while candidate paving continues independently; strong texture boundary and unmatched diagonal paving."
+        },
+        {
+          "id": "EXT-left-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-left-4.png",
+          "sha256": "4aab60398089d333b9ac6811e7ec383a44e1859d80083a11369418f4d00d083b",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            230,
+            1024
+          ],
+          "passed": false,
+          "issue": "Neighbor and candidate diagonal paving joints meet at different heights and terminate at the border; strong material/geometry discontinuity."
+        },
+        {
+          "id": "EXT-bottom-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-bottom-1.png",
+          "sha256": "9b8ddaef578cb9d1eb441fcc213ff49454d57e1dd9e819f3fd92b1928a107099",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "Candidate diagonal paving and grey/ivory rim meet unrelated neighbor vertical joints/rim positions; large geometry and tone discontinuity."
+        },
+        {
+          "id": "EXT-bottom-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-bottom-2.png",
+          "sha256": "d781d36f86bb0d12d15f2d8c84aba6ebe2aa954c35237bb2e12a06ff8e4bd0bf",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "Blue-grey band width and left/right border positions differ substantially across the border; hard texture/tone step."
+        },
+        {
+          "id": "EXT-bottom-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-bottom-3.png",
+          "sha256": "678ed95976c8071c9f583ee4f186e5ccb48dace42a996406a4eaa8a9d972e885",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "Neighbor grey rim begins below the border with no candidate continuation; hard tone boundary across the quiet plane."
+        },
+        {
+          "id": "EXT-bottom-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/full16-native-20261018-v01/EXT-bottom-4.png",
+          "sha256": "6b246ba70e7708c7fc60ee04d1604bfd3e8db87bdce635b4617e2928a7c2efae",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            1024,
+            230
+          ],
+          "passed": false,
+          "issue": "No added geometry at the border, but a hard horizontal tone/brush-scale boundary remains across the stone surface."
+        },
+        {
+          "id": "J-1024-1024",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x1024_y1024.png",
+          "sha256": "3f17d6da4606e91c0d3533c04dd5c40fdd10a284e987c7c01c980976a757017c",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "Grey horizontal inlay and ivory bevel terminate abruptly at the junction with a squared grey cap; stone tone/pattern changes."
+        },
+        {
+          "id": "J-2048-1024",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x2048_y1024.png",
+          "sha256": "97b958a9e066bffc9eb24dddcc00dc6faf049cbc2d849b2c0d9f08e9e3a79b8e",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "Paving-course joints and bevel widths differ around the junction; cell wash and material scale change are visible."
+        },
+        {
+          "id": "J-3072-1024",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x3072_y1024.png",
+          "sha256": "341a207e298fd35cefb9ccd500d75076797652a703dff28ba9fd9d9b05d27f9a",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "Vertical joint is broadly continuous, but left/right surface texture and wash contrast differ; fine cell/crosshatch material remains unaccepted."
+        },
+        {
+          "id": "J-1024-2048",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x1024_y2048.png",
+          "sha256": "a3e978359fd7faab4c0561d9f5cbd579954a42058b04bbe275160a3048507334",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "Grey rim has a jagged diagonally cut cap/width shift; ivory rim starts at a different width and short joints stop at the vertical material boundary."
+        },
+        {
+          "id": "J-2048-2048",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x2048_y2048.png",
+          "sha256": "2ee31c8e18572c0bab0bfbf21a2d00c68a599ae8e6d49f71602171720accd84c",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "Vertical bevel has a small offset and surface wash/contrast changes around the intersection; material remains unaccepted."
+        },
+        {
+          "id": "J-3072-2048",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x3072_y2048.png",
+          "sha256": "8dd98bf7992c63aa8ceb48d903edd4cfb93314190771fa15fcee83257d87a46a",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "No obvious geometric hole or new object; fine cell/crosshatch surface and wash scale change remain unaccepted."
+        },
+        {
+          "id": "J-1024-3072",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x1024_y3072.png",
+          "sha256": "8e4a046bb8cece60252610e5ffbc5fc347d3bb04b08df34b6a0f7f50f099119e",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "Large sideways grey/ivory rim step with a diagonal/jagged cap; short ivory joint ends at a material boundary and the blue edge has a small notch."
+        },
+        {
+          "id": "J-2048-3072",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x2048_y3072.png",
+          "sha256": "6dd1df6449a4e2072e3d9857b958c344207dbe5bcda650941f0feac1adfd9a43",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "Vertical line is covered, but warm/cool material and brush-scale contrast differ substantially across the intersection."
+        },
+        {
+          "id": "J-3072-3072",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/qa/8e73a335ec42c44f/intersection_x3072_y3072.png",
+          "sha256": "f3f1b08b70a5323d95ad0521d04d4630fad6a8f77b18345b2853c3abb682f4a8",
+          "actualViewedAtOriginalPixels": true,
+          "size": [
+            512,
+            512
+          ],
+          "exactCandidateCropVerified": true,
+          "passed": false,
+          "issue": "No sharp geometric gap is obvious; crosshatch/cellular texture and local wash-scale changes still fail the quiet stone finish."
+        }
+      ],
+      "missingExternalSources": [
+        {
+          "side": "right",
+          "tile": "r11_c09",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r11_c09",
+          "directoryExists": false,
+          "status": "no_current_native_right_anchor_claimed"
+        }
+      ],
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "fullMapAccepted": false,
+      "overview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c08/pipeline/output/8e73a335ec42c44f/r11_c08.candidate.png",
+        "nativeFilePixels": [
+          4096,
+          4096
+        ],
+        "displayPixels": [
+          1600,
+          1600
+        ],
+        "purpose": "navigation only; native QA is the 45 original-sized bound panels"
+      },
+      "blockingFindings": [
+        "V1 row2 grey inlay/ivory border truncated; H1 col1 and H2 col1 diagonal joints dead-end.",
+        "H2/H3 col1 grey/ivory rim has large lateral step and jagged cap; V1 rows3/4 short ivory joints truncate.",
+        "V2 row2 incompatible joint heights; H1 col2/H3 col2 blue stem width/position jogs.",
+        "Multiple material/brush-scale steps and fine cellular/vein texture.",
+        "Top/left/bottom external joins have tone or geometry breaks; right native neighbor absent."
+      ],
+      "sourceReviewCoordinateEstimateCaveat": "Source preview coordinates were approximate and are not acceptance measurements. Exact assembled candidate crops above supersede earlier source-preview estimates, including the previously estimated31px V3-row3 difference; assembled V3-row3 shows only a small jog.",
+      "reuse": "Old isolated col2 native source hashes are unchanged but all three exact assembled candidate strips changed, so all24 candidate seams were viewed anew.",
+      "next": "No pass inferred from full coverage or preflight; hold failed local anchors, do other independent missing work after this immutable submission."
+    }
+  }
+}

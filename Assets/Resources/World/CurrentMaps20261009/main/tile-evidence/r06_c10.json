@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 6,
+  "column": 10,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "091a89ad567abebaef68b6c12fa308418c1e017538c224ee6454e85a93714fd3",
+  "imageBytes": 27985789,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/r06_c10-lantern-local-v1.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+  "sourceLedgerSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/r06_c10-lantern-local-v1.candidate.png",
+    "imageSha256": "091a89ad567abebaef68b6c12fa308418c1e017538c224ee6454e85a93714fd3",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "sha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "pendingRepairGroups": [
+        {
+          "id": "roof-grain-joints",
+          "priority": "P2",
+          "issue": "p11/p12 native grain and sharpness change; p11/p21 and p12/p22 roof grooves/ornament and material jump at y1024; p21/p31 tile-end horizontal cuts; p22/p32 material line"
+        },
+        {
+          "id": "lantern-ribs",
+          "priority": "P2",
+          "issue": "p31/p41 and p32/p42 gold rib offsets, p33/p43 texture/lionless lantern silhouette change; intersections r3c1/r3c2 clearly discontinuous"
+        },
+        {
+          "id": "platform-border",
+          "priority": "P2",
+          "issue": "p13/p23 innerborder ~60px offset; p33/p43 residual ~40px inneredge step; external p43 south mismatch; p33 and p43 each already two repair attempts"
+        },
+        {
+          "id": "paving-material",
+          "priority": "P2",
+          "issue": "Right ground vertical texture transitions, p24/p34 narrow slab row and grain change; p33/p34 lower grout turn and p34/p44 clipped redpaper; internalcontext rectangular cut"
+        },
+        {
+          "id": "timber-context",
+          "priority": "P2",
+          "issue": "p23/p33 bracket and redwood interface cuts; p41/p42 hard oldcontext rectangle near lowerdoor, p41 south backgroundcut"
+        },
+        {
+          "id": "layout-verification",
+          "priority": "P2",
+          "issue": "p33 added post/clouds removed in v2/v3; p23 extra double curled eave and existing door/column/lantern detailing need approved-layout fullmap review; not formal acceptance"
+        }
+      ]
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/review-checkpoint-v1.json",
+        "record": {
+          "formalAccepted": false,
+          "pendingRepairGroups": [
+            {
+              "id": "roof-grain-joints",
+              "priority": "P2",
+              "issue": "p11/p12 native grain and sharpness change; p11/p21 and p12/p22 roof grooves/ornament and material jump at y1024; p21/p31 tile-end horizontal cuts; p22/p32 material line"
+            },
+            {
+              "id": "lantern-ribs",
+              "priority": "P2",
+              "issue": "p31/p41 and p32/p42 gold rib offsets, p33/p43 texture/lionless lantern silhouette change; intersections r3c1/r3c2 clearly discontinuous"
+            },
+            {
+              "id": "platform-border",
+              "priority": "P2",
+              "issue": "p13/p23 innerborder ~60px offset; p33/p43 residual ~40px inneredge step; external p43 south mismatch; p33 and p43 each already two repair attempts"
+            },
+            {
+              "id": "paving-material",
+              "priority": "P2",
+              "issue": "Right ground vertical texture transitions, p24/p34 narrow slab row and grain change; p33/p34 lower grout turn and p34/p44 clipped redpaper; internalcontext rectangular cut"
+            },
+            {
+              "id": "timber-context",
+              "priority": "P2",
+              "issue": "p23/p33 bracket and redwood interface cuts; p41/p42 hard oldcontext rectangle near lowerdoor, p41 south backgroundcut"
+            },
+            {
+              "id": "layout-verification",
+              "priority": "P2",
+              "issue": "p33 added post/clouds removed in v2/v3; p23 extra double curled eave and existing door/column/lantern detailing need approved-layout fullmap review; not formal acceptance"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "missingCoreCount": 0,
+          "formalAcceptedCount": 0,
+          "workerStatus": "complete_candidate_internal_pending_repairs",
+          "fullInternalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/review-checkpoint-v1.json"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/current-adopted-index-20261012.json",
+        "record": {
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/review-checkpoint-v1.json",
+          "internalReviewSha256": "d13a58e1041e6672af0ea9b6839873344ba24170d4b57adab63999085e3bc423"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/review-checkpoint-v1.json",
+    "sourceSha256": "d13a58e1041e6672af0ea9b6839873344ba24170d4b57adab63999085e3bc423",
+    "normalizedDocument": {
+      "tile": "r06_c10",
+      "createdAt": "2026-10-18T20:54:09.827586+00:00",
+      "candidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/r06_c10-lantern-local-v1.candidate.png",
+      "candidateSha256": "091a89ad567abebaef68b6c12fa308418c1e017538c224ee6454e85a93714fd3",
+      "baseReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/review-20261018/internal-review-v1.json",
+      "baseCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/core-baseline/1fb491604b3e48163088/r06_c10-core-baseline.candidate.png",
+      "baseCandidateSha256": "daaf3c351d70154cb1081aff1863c0e6dd5458a9250e695f5cfb7327c833b493",
+      "reviewScope": "Reuse prior 24 internal joins and 9 intersections outside changed native rectangles. Inspect both complete native repair outputs and all 7 boundary strips at native scale. No historical/full rescan.",
+      "composition": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/qa/local-repair-20261018/trial-composition-v1.json",
+      "changedReview": {
+        "lanternGoldRibs": "Clear improvement: lateral jumps at y3072 now smooth through both lanterns.",
+        "paperMaterial": "Fine grain still changes at repair edges and x2048 context; left x397 boundary retains small red-paper step.",
+        "rightPlatform": "Residual straight brightness/context strip and inherited grout step retained.",
+        "overlap": "x1421 mostly continuous lantern geometry; faint vertical material transition retained.",
+        "status": "improved_unpassed"
+      },
+      "nativeRepairs": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/native/repairs/lantern-left-local-v1-20261018.png",
+          "sha256": "67a3dcf2eab84763dfe2c438353a5472811f67fa24e3cbad146fa3c73f88911f"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c10/native/repairs/lantern-right-local-v1-20261018.png",
+          "sha256": "5126087f9cbd89fe1ebfff3eafcb0700dca008f519f4a7dbe7056ffb2c8aaff0"
+        }
+      ],
+      "repairAttemptsAfterInitial": {
+        "p33-platform": 2,
+        "p43-platform": 2,
+        "lantern-left": 1,
+        "lantern-right": 1
+      },
+      "internalPassed": false,
+      "formalAccepted": false,
+      "pendingRepairGroups": [
+        {
+          "id": "roof-grain-joints",
+          "priority": "P2",
+          "issue": "p11/p12 native grain and sharpness change; p11/p21 and p12/p22 roof grooves/ornament and material jump at y1024; p21/p31 tile-end horizontal cuts; p22/p32 material line"
+        },
+        {
+          "id": "lantern-ribs",
+          "priority": "P2",
+          "issue": "p31/p41 and p32/p42 gold rib offsets, p33/p43 texture/lionless lantern silhouette change; intersections r3c1/r3c2 clearly discontinuous"
+        },
+        {
+          "id": "platform-border",
+          "priority": "P2",
+          "issue": "p13/p23 innerborder ~60px offset; p33/p43 residual ~40px inneredge step; external p43 south mismatch; p33 and p43 each already two repair attempts"
+        },
+        {
+          "id": "paving-material",
+          "priority": "P2",
+          "issue": "Right ground vertical texture transitions, p24/p34 narrow slab row and grain change; p33/p34 lower grout turn and p34/p44 clipped redpaper; internalcontext rectangular cut"
+        },
+        {
+          "id": "timber-context",
+          "priority": "P2",
+          "issue": "p23/p33 bracket and redwood interface cuts; p41/p42 hard oldcontext rectangle near lowerdoor, p41 south backgroundcut"
+        },
+        {
+          "id": "layout-verification",
+          "priority": "P2",
+          "issue": "p33 added post/clouds removed in v2/v3; p23 extra double curled eave and existing door/column/lantern detailing need approved-layout fullmap review; not formal acceptance"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 3,
+  "column": 14,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "a65c4b673701bdadb00ade497ae3c431bdb29ce391f52a8b9f048e9b817f1eed",
+  "imageBytes": 24801199,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/r03_c14-candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/root-handoff-and-checkpoint-v063.json",
+  "sourceLedgerSha256": "5b89cbd1c6be7ebecc629fd4f4cf75cd2eca52bf0e096eda944fafa9dd4219d8",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/r03_c14-candidate.png",
+    "imageSha256": "a65c4b673701bdadb00ade497ae3c431bdb29ce391f52a8b9f048e9b817f1eed",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/root-handoff-and-checkpoint-v063.json",
+        "sha256": "5b89cbd1c6be7ebecc629fd4f4cf75cd2eca52bf0e096eda944fafa9dd4219d8",
+        "sourceReviewSha256": "5b89cbd1c6be7ebecc629fd4f4cf75cd2eca52bf0e096eda944fafa9dd4219d8",
+        "completeness": [
+          "Specific tiles/r03_c14 record binds nativeCoreCount16 and full4096 candidate."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/r03_c14-candidate.png.generation.json",
+        "sha256": "b23942d8679438890531a87ab6e894e1a613d1d790c21e74b9fbfcfacdc20c41",
+        "sourceReviewSha256": "b23942d8679438890531a87ab6e894e1a613d1d790c21e74b9fbfcfacdc20c41",
+        "completeness": [
+          "Output and native-repair/base SHA bind; bounded native replacement preserves full base."
+        ]
+      }
+    ],
+    "selectionBasis": "output_sha_bound_full16_core_candidate_or_native_replacement_on_pinned_full16_base",
+    "sourceStatus": {
+      "nativeCoreCount": 16,
+      "formalAccepted": false,
+      "status": "complete_native_candidate_visual_QA_not_upgraded"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/r03_c14-candidate.png.generation.json",
+        "record": {
+          "unverifiedReason": "Technical exact composition or integer nearest QA only. Actual native model/quality remain undisclosed; source records retain original evidence.",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/integration-and-preserved-scopes-proof.json",
+        "record": {
+          "status": "EXACT_WHOLE_W22_COMPOSITION_PENDING_COMBINED_INDEPENDENT_FINAL_OWNER_QA_AND_CAS",
+          "formalAcceptedAdded": 0
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261025_025820.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "docs/MAP_REGION_COORDINATION_20261024/human-window-recovery-20261024_221111/ROOT_W22_COMBINED_RAW_FINAL_INDEPENDENT_ACTUAL_REVIEW_20261025_0025.json",
+    "sourceSha256": "e22dd36b1f97b32f49b6ed174116765a7174071cda002fb1cc7e2c4c638a2143",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "kind": "INDEPENDENT_COMBINED_RAW_AND_EXACT_FINAL_VISUAL_PLUS_PIXEL_REPLAY",
+      "reviewer": "root external to original Tower owner",
+      "atUtc": "2026-10-25T04:25:12.510720+00:00",
+      "status": "FINITE_PASS_EXACT_W22_ONLY_OWNER_FRESH_CAS_REQUIRED",
+      "actualVisualReads": {
+        "rawNative1254Original": true,
+        "savedComposed1254Original": true,
+        "fourSourceRawFinalTriplesOriginal": [
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-whole-source-native-final-nearest2x-QA.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-top-source-native-final-nearest3x-QA.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-foot-gold-notch-source-native-final-nearest3x-QA.png",
+          "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-cross-y1046-source-native-final-nearest5x-QA.png"
+        ]
+      },
+      "visualFindings": {
+        "wholePost": "Complete stepped top, left dark plane, narrow right edge and lower sloped foot retain natural endpoints and continuous silhouette in raw and final; no visible new cut or compensating translation at the original target boundary.",
+        "topContact": "Stepped top below separate capital and side gold notch stay aligned; final does not truncate or merge adjacent fixed pieces.",
+        "goldAndFoot": "Both gold occlusion contacts and lower left post edge stay connected in source/raw/final comparisons, with no visible new notch or detached strip.",
+        "crossTileLocal1046": "Red plane shading, left dark contour and gold adjacency continue across the tile split without a visible horizontal break.",
+        "material": "Dense repeated closed-loop O8-like pattern replaced by sparse open longitudinal painted wood fibers; red identity and broad dark/light plane separation retained. No exact geometric pixel identity claimed."
+      },
+      "independentPixelReplay": [
+        {
+          "map": "main-city-game-20261009",
+          "coordinate": "r03_c14",
+          "sourceSha256": "2b525467e0992fa2113def63d848a1a841602902cb6bbee10d4d37df54cd4b0c",
+          "candidateSha256": "a65c4b673701bdadb00ade497ae3c431bdb29ce391f52a8b9f048e9b817f1eed",
+          "maskPixels": 61634,
+          "actualChangedPixels": 61618,
+          "independentlyReplayedOutsideSourceMismatch": 0,
+          "independentlyReplayedInsideNativeMismatch": 0,
+          "independentlyReplayedSavedDecodedReconstructionMismatch": 0
+        },
+        {
+          "map": "main-city-game-20261009",
+          "coordinate": "r04_c14",
+          "sourceSha256": "e7b106beab463fb3ba630b2e47e51588957bc0b813e8e14aaab8506d4c3d8dea",
+          "candidateSha256": "4fd3580be01c364767ab6aa144cd4f07f25a891763243f9e62df24be98de2266",
+          "maskPixels": 7248,
+          "actualChangedPixels": 7246,
+          "independentlyReplayedOutsideSourceMismatch": 0,
+          "independentlyReplayedInsideNativeMismatch": 0,
+          "independentlyReplayedSavedDecodedReconstructionMismatch": 0
+        }
+      ],
+      "wholeMaskPixels": 68882,
+      "AAExcludedPixels": 0,
+      "maskShrunk": false,
+      "resizedWarpedBlended": false,
+      "gateAndEvidencePins": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-W22-second-final-root-return-v001/root-raw-complete-gate.json",
+          "sha256": "6260641246a7a55648146767c2e39d7c676ca42e22b115774468f3155517dbc3",
+          "bytes": 7955,
+          "mtimeNs": "1792900958167368600"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/finite-final-QA-index.json",
+          "sha256": "2cbf9db2a8a6c6735702a77e73f48330c555c161fd88e5869196cf05ac523273",
+          "bytes": 7737,
+          "mtimeNs": "1792901813780406000"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/integration-and-preserved-scopes-proof.json",
+          "sha256": "69fdd2f85e5a9136d5e06ed612160a7fe086365cae3755b40f6d3184ad8dba7e",
+          "bytes": 21061,
+          "mtimeNs": "1792901813783516000"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/native-repair.png",
+          "sha256": "7d15062c943b0718d8d2bbab99df7ec07dced5044cfeeeb7b86a2c9b3d34c2f4",
+          "bytes": 2255041,
+          "mtimeNs": "1792862611176294200"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/fixed-two-owned-editcontext-1254.png",
+          "sha256": "8e084f44e3c86f6ea4ca8bd2fac4302cda6eabe90b8b4eb2824f57f65d770d0b",
+          "bytes": 2374311,
+          "mtimeNs": "1792901811199074000"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-whole-source-native-final-nearest2x-QA.png",
+          "sha256": "d65b2d1275084f17472117e0cfe8b3a13015847bd8d4dd0b790616cb7f6c6514",
+          "bytes": 460436,
+          "mtimeNs": "1792901813615862500"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-top-source-native-final-nearest3x-QA.png",
+          "sha256": "fc9d35d3145f98b3942350a1a655240ee6944f3cd8e69f7b4b53d83e8741aac7",
+          "bytes": 91448,
+          "mtimeNs": "1792901813661614800"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-foot-gold-notch-source-native-final-nearest3x-QA.png",
+          "sha256": "f19d41b08858da5a79b9a28460acf0fb57d42ae457c30b7f03e1c88209a8ec6f",
+          "bytes": 288825,
+          "mtimeNs": "1792901813746607700"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/W22-cross-y1046-source-native-final-nearest5x-QA.png",
+          "sha256": "bf1baef76467ccc792e82ee7eda953805f2bb1f909d5b9668db60d0bb11273ac",
+          "bytes": 27124,
+          "mtimeNs": "1792901813776452500"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-W22-wide-corner-redpost-scope-prepare-v001/W22-proposed-complete-physical-mask-1254-v002.png",
+          "sha256": "c42bfcc1002cce04e0ece6fae317e8b80d93cddf92662e27b3e78084e61b60b1",
+          "bytes": 3299,
+          "mtimeNs": "1792837061737496800"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-wood-W21-cross-owned-clean-native-v001/complete-two-owned-scope-v001/r03_c14-candidate.png",
+          "sha256": "2b525467e0992fa2113def63d848a1a841602902cb6bbee10d4d37df54cd4b0c",
+          "bytes": 24809529,
+          "mtimeNs": "1792828129392544400"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/r03_c14-candidate.png",
+          "sha256": "a65c4b673701bdadb00ade497ae3c431bdb29ce391f52a8b9f048e9b817f1eed",
+          "bytes": 24801199,
+          "mtimeNs": "1792901805527825200"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-wood-W21-cross-owned-clean-native-v001/complete-two-owned-scope-v001/r04_c14-candidate.png",
+          "sha256": "e7b106beab463fb3ba630b2e47e51588957bc0b813e8e14aaab8506d4c3d8dea",
+          "bytes": 23206042,
+          "mtimeNs": "1792828132503285100"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-redpost-W22-wide-corner-mask-clean-native-v002/root-complete-two-owned-scope-v001/r04_c14-candidate.png",
+          "sha256": "4fd3580be01c364767ab6aa144cd4f07f25a891763243f9e62df24be98de2266",
+          "bytes": 23205426,
+          "mtimeNs": "1792901809641003800"
+        }
+      ],
+      "scopeLimits": [
+        "Finite W22 visible unit only; other seams/whole tiles are not accepted.",
+        "Raw outside exact original mask changed and is ignored for composition; no broader background preservation claim.",
+        "W19/W20/W21 preservation is bound by outside-source replay and prior scope proof.",
+        "The two4096 candidates are new versions of existing coordinates, not two new complete tiles."
+      ],
+      "ownerAdoptionPermittedByExistingContractAfterFreshCAS": true,
+      "ownerAdoptionPerformedByReviewer": false,
+      "sourceSelectionWrites": 0,
+      "QAIndexWrites": 0,
+      "rootImageCalls": 0,
+      "newCallBudget": 0,
+      "globalCompleteIncrement": 0,
+      "globalInternalIncrement": 0,
+      "globalFormalIncrement": 0,
+      "sharedGitWrites": 0
+    }
+  }
+}

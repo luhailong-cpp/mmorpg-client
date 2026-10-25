@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 6,
+  "column": 9,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "10377a8eafffef55ae2218861ee0295189445038fb22cbcd8569b2ceb6dfdcd6",
+  "imageBytes": 23220135,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c09/candidates/r06_c09.local-repairs-v9-wall-20261020.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c09/tile-progress.json",
+  "sourceLedgerSha256": "b4b3c99e3a7d18e0282dd36c326985f58fcbfea6d842b92c3696babc94657da7",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c09",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c09/candidates/r06_c09.local-repairs-v9-wall-20261020.png",
+    "imageSha256": "10377a8eafffef55ae2218861ee0295189445038fb22cbcd8569b2ceb6dfdcd6",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c09/tile-progress.json",
+        "sha256": "b4b3c99e3a7d18e0282dd36c326985f58fcbfea6d842b92c3696babc94657da7",
+        "sourceReviewSha256": "b4b3c99e3a7d18e0282dd36c326985f58fcbfea6d842b92c3696babc94657da7",
+        "completeness": [
+          "Tile-local selectedCoreCount16; remainingCoreCount0; complete4096 candidate."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c09/candidates/r06_c09.local-repairs-v9-wall-20261020.png.generation.json",
+        "sha256": "5bb57ab513c5262fc5d0c5de5c1750f9f2219e8626e09dfe2fac283929656ade",
+        "sourceReviewSha256": "5bb57ab513c5262fc5d0c5de5c1750f9f2219e8626e09dfe2fac283929656ade",
+        "completeness": [
+          "Output SHA binds complete native candidate or one bounded native overlay on hash-bound complete parent."
+        ]
+      }
+    ],
+    "selectionBasis": "output_sha_bound_full16_core_candidate_or_native_replacement_on_pinned_full16_base",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "remainingCoreCount": 0,
+      "formalAccepted": false,
+      "status": "wall_tone_second_actual_repair_unselected_other_issues_unpassed"
+    },
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c09/qa/wall-boundary-20261020/wall-fix1-composition.review.json",
+    "sourceSha256": "45dccd487ad0dcf822bcb95646300706df4dacf45561f1b429b58b7334b1186c",
+    "normalizedDocument": {
+      "repairs": [
+        {
+          "tile": "r06_c09",
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c09/candidates/r06_c09.local-repairs-v9-wall-20261020.png",
+          "sha256": "10377a8eafffef55ae2218861ee0295189445038fb22cbcd8569b2ceb6dfdcd6",
+          "sourceCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c09/candidates/r06_c09.local-repairs-v8-20261019.png",
+          "sourceSha256": "1a5ee4df4d9786ffb337521c224b6ba699a1a770bfed9932f3ef8236d1a35782",
+          "native": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c09/native/repairs/north-wall-tone-fix1-20261020.png",
+          "nativeSha256": "306d32ebeefa5f80f2967ca81c1517243d8874a40869e15c9457a3a532183b6a",
+          "nativeCrop": [
+            80,
+            450,
+            850,
+            600
+          ],
+          "destination": [
+            1930,
+            3946,
+            2700,
+            4096
+          ],
+          "outsideRoiPixelIdentical": true
+        },
+        {
+          "tile": "r07_c09",
+          "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c09/candidates/r07_c09.local-repairs-v12-wall-20261020.png",
+          "sha256": "8a8f8d3534d42ef860289265f0e7ca564504e7e311b447860071f3e57dcd0d7c",
+          "sourceCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c09/candidates/r07_c09.local-repairs-v11-20261019.png",
+          "sourceSha256": "6b8ce5ade909571a9d34c4cc3aff249e70d900e458e3ac837715e58222ba60a7",
+          "native": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c09/native/repairs/north-wall-tone-fix1-20261020.png",
+          "nativeSha256": "306d32ebeefa5f80f2967ca81c1517243d8874a40869e15c9457a3a532183b6a",
+          "nativeCrop": [
+            80,
+            600,
+            850,
+            740
+          ],
+          "destination": [
+            1930,
+            0,
+            2700,
+            140
+          ],
+          "outsideRoiPixelIdentical": true
+        }
+      ],
+      "qaWindow": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c09/qa/wall-boundary-20261020/wall-fix1-composed-all-edges-native-100pct.png",
+      "qaSha256": "1a9ef4015c93fceecfae812a3181e25fb2796edcf79cf0812c77a51ef41b5ac5",
+      "operation": "integer native crop/paste only, no resizing or blending",
+      "status": "rejected-geometry-change-and-new-perimeter-step",
+      "selected": false,
+      "nativePixelsViewed": true,
+      "allFourRoiEdgesViewed": true,
+      "reviewedAtUtc": "2026-10-20T08:48:36.232434+00:00",
+      "reviewNote": "Brown sill exposure step improved, but red horizontal fascia was extended left over the original vertical panel x80..260,y600..700. Right adoption boundary near source x850 introduces a step on red top lip. Do not adopt either whole candidate; preserve original current candidates and try one geometry-locked tone repair."
+    }
+  }
+}

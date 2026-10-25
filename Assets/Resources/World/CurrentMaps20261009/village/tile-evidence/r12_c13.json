@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 12,
+  "column": 13,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "c735a0d3137b0affb5c901e5d6b166e05e3480f89dddb17099bb325ebe8ab5c6",
+  "imageBytes": 25129239,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/final-source-replay-audit.json",
+  "sourceLedgerSha256": "8c8591b1bfff1bc5758977a77589987934d85e0a2695323bcf478c5da328bd88",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/candidate-4096.png",
+    "imageSha256": "c735a0d3137b0affb5c901e5d6b166e05e3480f89dddb17099bb325ebe8ab5c6",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/final-source-replay-audit.json",
+        "sha256": "8c8591b1bfff1bc5758977a77589987934d85e0a2695323bcf478c5da328bd88",
+        "sourceReviewSha256": "8c8591b1bfff1bc5758977a77589987934d85e0a2695323bcf478c5da328bd88",
+        "completeness": [
+          "all16SourceCoreToCandidateDifferentPixels=0; hash-bound full16CORE replay."
+        ]
+      }
+    ],
+    "selectionBasis": "all16_native_source_core_replay",
+    "sourceStatus": {
+      "status": "C_complete_front_local_pass_recommended_whole_other_faces_4held",
+      "internal33Review": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/internal33-incremental-review.json",
+        "sha256": "b9c8ea9c474b0aad65c92f32732879c30bb55fb55a8ce0a64e9687d892a9cb46"
+      },
+      "externalReadyRecommended": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/result.json",
+        "record": {
+          "status": "C_complete_front_local_pass_recommended_whole_other_faces_4held",
+          "internal33Review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/internal33-incremental-review.json",
+            "sha256": "b9c8ea9c474b0aad65c92f32732879c30bb55fb55a8ce0a64e9687d892a9cb46"
+          },
+          "externalReadyRecommended": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/perimeter-readonly-review.json",
+        "record": {
+          "status": "bounded_C_perimeter_material_geometry_pass_recommendation_only",
+          "externalReadyRecommended": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/internal33-incremental-review.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/independent-review.json",
+        "record": {
+          "wholeCoreStatus": "Only4changed completecores actuallyviewed now; no newCgeometry/material failure. Unaffected12pixelssame, priorchecksretained at theiroriginalscope, no whole16materialpass implied.",
+          "externalReady": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/four-core-actual-review.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/selected-patches.json",
+        "record": {
+          "status": "source_complete_internal_stone_material_hold_external_pending",
+          "formalAccepted": false,
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/current-combined-internal-review.json",
+          "externalReady": false,
+          "materialPending": true,
+          "pendingIssues": [
+            {
+              "id": "stone-horizontal-material-y47104",
+              "status": "pending_repair",
+              "patchBoundaries": [
+                "p23--p33",
+                "p24--p34",
+                "cross-r2-c2",
+                "cross-r2-c3"
+              ],
+              "worldLocation": "y47104, x51200..53248",
+              "review": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/qa/current-native-internal-20261023-v1/review.json",
+                "sha256": "f8449003b66fc4a13fa1e0bd3422ca9acfa1b66e654210aa7249d5a7441b44f7"
+              },
+              "description": "A/B/C whole naturalfaces locally repaired; Dleftfront and fixedrightbevel still materialheld. Not a Cmask failure.",
+              "faceARepair": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-a-20261023/parent-native-local-review.json",
+                "sha256": "930a4d68935dc7a4af44375845ffc207e189458008a480f36f01d7dda87703ca"
+              },
+              "currentRemainingScope": [
+                {
+                  "id": "p23--p33",
+                  "observation": "NewCrightpart removes formerhorizontal reset locally. Old largeleftfront remains straight source texture/density change atworldy47104 outsideC, approximatelyx51200..51810. Wholeobservation remains held.",
+                  "evidence": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  }
+                },
+                {
+                  "id": "p24--p34",
+                  "observation": "NewCleftpart continuous acrossy47104. Old roundedbrightbevel/crevice-side region immediatelyrightofC and otherfixednatural surfaces still contain originalhorizontal texture reset. Not newCmaskrim.",
+                  "evidence": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  }
+                },
+                {
+                  "id": "cross-r2-c2",
+                  "observation": "Priorheldinterpretationreused; exactcandidatepixelsunchanged atcross-r2-c2",
+                  "evidence": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  }
+                },
+                {
+                  "id": "cross-r2-c3",
+                  "observation": "NewCfrontleft/centralpartcontinuous. Rightpart aroundworldx52328..52480,y47104 retains oldhorizontal materialdifference in fixedroundedbevel beside mossgap, outsideC. Other adoptedA/Bpixels retained.",
+                  "evidence": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  }
+                }
+              ],
+              "faceCRepair": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/parent-native-review.json",
+                "sha256": "16d0eaaa29eb42a3ef836fc8b010f554bea3a995201c2d98a68126b97bd318b6"
+              }
+            },
+            {
+              "id": "external-current-native-review",
+              "status": "pending",
+              "description": "Current whole outside geometry/material/dependency is not accepted by this local nail repair."
+            }
+          ],
+          "closedSpecificIssues": [
+            {
+              "id": "double-nail-p31-p41",
+              "worldLocation": [
+                49626,
+                48132
+              ],
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-double-nail-20261023/candidate-qa-v1/review.json",
+                "sha256": "182268fdca85fe8ebec3686bb6f1f129a503ea58c17549e65b671a8d35a651bd"
+              }
+            },
+            {
+              "id": "stone-face-a-interior-material-y47104",
+              "scope": "Only natural front face world[52349,46429,52912,47139]; other faces remain held",
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-a-20261023/parent-native-local-review.json",
+                "sha256": "930a4d68935dc7a4af44375845ffc207e189458008a480f36f01d7dda87703ca"
+              }
+            },
+            {
+              "id": "stone-small-top-plane-B-interior-material-y47104",
+              "scope": "Only complete bright top plane world[52389,47083,52649,47181]; bevel/adjacent faces remain held",
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-b-20261023/parent-native-local-review.json",
+                "sha256": "d19bdb10d64aad2099b66935fd600e8fe686571ae9631636045116616e2b7ca4"
+              }
+            },
+            {
+              "id": "complete-front-C-material-y47104",
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/parent-native-review.json",
+                "sha256": "16d0eaaa29eb42a3ef836fc8b010f554bea3a995201c2d98a68126b97bd318b6"
+              }
+            }
+          ],
+          "currentInternalBoundaryReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/current-combined-internal-review.json",
+            "sha256": "21838e4eb0ece9f6f9728e59a89de6271f88f47ae8c5a40cc59201a8783a9170"
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/perimeter-readonly-review.json",
+    "sourceSha256": "5e285157fbc1feb2df8bc1d5f4c24724a04f40b79397e876720403caaa8ad989",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "atUtc": "2026-10-24T16:01:10.858520+00:00",
+      "tile": "r12_c13",
+      "scope": "Independent readonly Cfront perimeter and7plant/occlusions, no entiretile acceptance",
+      "status": "bounded_C_perimeter_material_geometry_pass_recommendation_only",
+      "actualOriginalImages": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/C-binary-composite-native1254.png",
+          "sha256": "e81305e044e2fb1e6b684d5ea2eac6aa7ba1747daef1af41bb395271f9c13655"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/complete-front-C-candidate-native.png",
+          "sha256": "5b5f0c533826b1af3934edc37f4be3950b1cf89658b98332140b088a1ad68287"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/north-perimeter-source-native.png",
+          "sha256": "235fddb9df0ee27af69301c7eefcebbb2cb79e5d1d952cc6be4c23a1ad7387f0"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/north-perimeter-candidate-native.png",
+          "sha256": "6b20df1182b9848d45de5c5f23de003290a3b69b406b30a380d224628b66b902"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/south-perimeter-source-native.png",
+          "sha256": "38c74011f53e2eac2b5483e728913e31da4752e7c0fea76082d0364737fa1d57"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/south-perimeter-candidate-native.png",
+          "sha256": "1c6d4ee50c527d8658a990ec65584695fd0567a9a1cabb7f744991f7fb8cafac"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/west-perimeter-source-native.png",
+          "sha256": "bd14e4304fd4e610affae208f214185cc42dad66f744bb03b738c888c9459d0e"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/west-perimeter-candidate-native.png",
+          "sha256": "f24fe6b89a6082c1c36b02197ff044f574db9599f85fb066fd0fa04fb125bb08"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/east-perimeter-source-native.png",
+          "sha256": "a5e096622fa88e18a21ddd00a069530c37406417d1ab61f3247a7b841af6b55c"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/east-perimeter-candidate-native.png",
+          "sha256": "cba044e886c4931b2abf7e305641054859f39685524a5b5aaec7804c7a948de9"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-west-source-native.png",
+          "sha256": "ceeb879c571614432ac0544069db119d7fb4556d0471417c91662ab0bb3a0e51"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-west-candidate-native.png",
+          "sha256": "87d79bcd2e44e1edd883086d8471cf777f980b3aea002e019280e3dd559ca151"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-east-source-native.png",
+          "sha256": "22374f466f2bebcb4a5d59703ce91ce69f49f0d392e63f0bdfe1b9d92dd740c3"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-east-candidate-native.png",
+          "sha256": "00f6cd86199ab16ddfea3e0616fd6848562cf73c5b0659eb2128d3a76ae13ee0"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-01-plant-source-native.png",
+          "sha256": "d3c9fb6ad227f8bde129a3de235485bbcfd33ac2a06623d18ae21ecf2172f453"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-01-plant-candidate-native.png",
+          "sha256": "e6a3d8ce42182690ed6cd948806f72f7dca887e78a9acfdb3aad0346b4b3fb74"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-02-plant-source-native.png",
+          "sha256": "0d18d72ed47aa18adf6857dd99e3f5f4a23917b22af0f365dcbae9a544b29b9a"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-02-plant-candidate-native.png",
+          "sha256": "a2b67b9237e33d373c4e9c8e5754778488aed2b01e2bf67f220287963840c351"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-03-plant-source-native.png",
+          "sha256": "7cfca0bc7a9f15ba83bc8c0a8efef0e351fb1b736e78296108602c0e44dce80e"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-03-plant-candidate-native.png",
+          "sha256": "b4a1411a267382c74b93da82e23628f0821d7e25b1f8b92a63400d6c80e27f6b"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-04-plant-source-native.png",
+          "sha256": "345ce1f4b9de9d28714a0fb0153a4e110262ecc7bfdba73eca580213e52d8232"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-04-plant-candidate-native.png",
+          "sha256": "0897d17c35288b1dde671d9ccc37e72ffaeb85d6eca28fad53b0acb1ba226c98"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-05-plant-source-native.png",
+          "sha256": "fb395c6c533a6679050ebcd7c5a9708a414e3fee70cb9af6bdf4e85bdf75c5e4"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-05-plant-candidate-native.png",
+          "sha256": "3415ee7dbcaf104efecda4151bfcd9327702d7b184aeddfbe1161d6af6c9e7cf"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-06-plant-source-native.png",
+          "sha256": "9e44acad9d258b447314e4b704b0fbb00759e102b06b645994837c97dc9d98d7"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-06-plant-candidate-native.png",
+          "sha256": "3e8a0402f24005c730dd6c8a898591c455519a0769847563b342214da6df5751"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/right-01-plant-source-native.png",
+          "sha256": "b16f2939430fde2689f0e4ef2a8facf91a3b5ac4e6b214dc077bd9b4bd9c798f"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/right-01-plant-candidate-native.png",
+          "sha256": "7ef358c5003a72a1eb12d904977e89693369d9e3270ab868e11c02608a3a3f6b"
+        }
+      ],
+      "actualOriginalViewCount": 28,
+      "displayMethod": "tools.view_image detail=original",
+      "candidate4096": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/candidate-4096.png",
+        "sha256": "c735a0d3137b0affb5c901e5d6b166e05e3480f89dddb17099bb325ebe8ab5c6"
+      },
+      "nativeComposite": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/C-binary-composite-native1254.png",
+        "sha256": "e81305e044e2fb1e6b684d5ea2eac6aa7ba1747daef1af41bb395271f9c13655"
+      },
+      "raw": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/output-native-v1.png",
+        "sha256": "cece84f14636fdf0f7d2c7ebc8e72ab372ec2d7d1d839b6171ed54267e4f331f"
+      },
+      "frozenMask": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/qa/stone-face-c-feasibility-20261024-v1/face-preparation-v1/face-binary-mask-0255.png",
+        "sha256": "12c448bba0d4baf822c2be38f3359c8eacafaa6f1785404282b5cb98fffac12f"
+      },
+      "observations": [
+        {
+          "id": "north",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/north-perimeter-source-native.png",
+            "sha256": "235fddb9df0ee27af69301c7eefcebbb2cb79e5d1d952cc6be4c23a1ad7387f0"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/north-perimeter-candidate-native.png",
+            "sha256": "6b20df1182b9848d45de5c5f23de003290a3b69b406b30a380d224628b66b902"
+          },
+          "frameBox": [
+            660,
+            225,
+            1195,
+            445
+          ],
+          "worldBox": [
+            51796,
+            46625,
+            52331,
+            46845
+          ],
+          "status": "pass_bounded_perimeter",
+          "observation": "Pale upper plane and roundedfront ridge join naturally. Newfront facets begin along actualridge; no straight artificial highlight rim or step seen."
+        },
+        {
+          "id": "south",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/south-perimeter-source-native.png",
+            "sha256": "38c74011f53e2eac2b5483e728913e31da4752e7c0fea76082d0364737fa1d57"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/south-perimeter-candidate-native.png",
+            "sha256": "1c6d4ee50c527d8658a990ec65584695fd0567a9a1cabb7f744991f7fb8cafac"
+          },
+          "frameBox": [
+            715,
+            755,
+            1210,
+            940
+          ],
+          "worldBox": [
+            51851,
+            47155,
+            52346,
+            47340
+          ],
+          "status": "pass_bounded_perimeter",
+          "observation": "Slanted lower darkstone/moss gap remains continuous, no source-selection ledge or bare stone tail observed at front edge."
+        },
+        {
+          "id": "west",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/west-perimeter-source-native.png",
+            "sha256": "bd14e4304fd4e610affae208f214185cc42dad66f744bb03b738c888c9459d0e"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/west-perimeter-candidate-native.png",
+            "sha256": "f24fe6b89a6082c1c36b02197ff044f574db9599f85fb066fd0fa04fb125bb08"
+          },
+          "frameBox": [
+            695,
+            350,
+            780,
+            940
+          ],
+          "worldBox": [
+            51831,
+            46750,
+            51916,
+            47340
+          ],
+          "status": "pass_bounded_perimeter",
+          "observation": "Moss crevice and six retained foliage/shadow footprints remain attached naturally to front, no clipped leaf edge or circular bare-stone island observed in final composite."
+        },
+        {
+          "id": "east",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/east-perimeter-source-native.png",
+            "sha256": "a5e096622fa88e18a21ddd00a069530c37406417d1ab61f3247a7b841af6b55c"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/east-perimeter-candidate-native.png",
+            "sha256": "cba044e886c4931b2abf7e305641054859f39685524a5b5aaec7804c7a948de9"
+          },
+          "frameBox": [
+            1135,
+            255,
+            1220,
+            790
+          ],
+          "worldBox": [
+            52271,
+            46655,
+            52356,
+            47190
+          ],
+          "status": "pass_bounded_perimeter",
+          "observation": "Right rounded outline and moss gap continuous; retained sourcefoliage/occlusion has natural edge. Adjacent rightstone remains independent."
+        },
+        {
+          "id": "cut-west",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-west-source-native.png",
+            "sha256": "ceeb879c571614432ac0544069db119d7fb4556d0471417c91662ab0bb3a0e51"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-west-candidate-native.png",
+            "sha256": "87d79bcd2e44e1edd883086d8471cf777f980b3aea002e019280e3dd559ca151"
+          },
+          "frameBox": [
+            690,
+            675,
+            790,
+            735
+          ],
+          "worldBox": [
+            51826,
+            47075,
+            51926,
+            47135
+          ],
+          "status": "pass_bounded_perimeter",
+          "observation": "At old y47104 crossing, new C front texture continues through cut. Old horizontal source difference remains only in unmodified leftneighbor/source context and is not cleared by this local pass."
+        },
+        {
+          "id": "cut-east",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-east-source-native.png",
+            "sha256": "22374f466f2bebcb4a5d59703ce91ce69f49f0d392e63f0bdfe1b9d92dd740c3"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/cut-east-candidate-native.png",
+            "sha256": "00f6cd86199ab16ddfea3e0616fd6848562cf73c5b0659eb2128d3a76ae13ee0"
+          },
+          "frameBox": [
+            1130,
+            675,
+            1225,
+            750
+          ],
+          "worldBox": [
+            52266,
+            47075,
+            52361,
+            47150
+          ],
+          "status": "pass_bounded_perimeter",
+          "observation": "C front is locally continuous through oldcut endpoint; moss/plant pixels outside edit remain fixed, no new maskedge break seen."
+        }
+      ],
+      "plantSourceCandidatePairs": [
+        {
+          "id": "left-01",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-01-plant-source-native.png",
+            "sha256": "d3c9fb6ad227f8bde129a3de235485bbcfd33ac2a06623d18ae21ecf2172f453"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-01-plant-candidate-native.png",
+            "sha256": "e6a3d8ce42182690ed6cd948806f72f7dca887e78a9acfdb3aad0346b4b3fb74"
+          },
+          "actualOriginalViewed": true,
+          "status": "pass_no_new_leaf_shadow_rim_or_displacement_observed"
+        },
+        {
+          "id": "left-02",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-02-plant-source-native.png",
+            "sha256": "0d18d72ed47aa18adf6857dd99e3f5f4a23917b22af0f365dcbae9a544b29b9a"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-02-plant-candidate-native.png",
+            "sha256": "a2b67b9237e33d373c4e9c8e5754778488aed2b01e2bf67f220287963840c351"
+          },
+          "actualOriginalViewed": true,
+          "status": "pass_no_new_leaf_shadow_rim_or_displacement_observed"
+        },
+        {
+          "id": "left-03",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-03-plant-source-native.png",
+            "sha256": "7cfca0bc7a9f15ba83bc8c0a8efef0e351fb1b736e78296108602c0e44dce80e"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-03-plant-candidate-native.png",
+            "sha256": "b4a1411a267382c74b93da82e23628f0821d7e25b1f8b92a63400d6c80e27f6b"
+          },
+          "actualOriginalViewed": true,
+          "status": "pass_no_new_leaf_shadow_rim_or_displacement_observed"
+        },
+        {
+          "id": "left-04",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-04-plant-source-native.png",
+            "sha256": "345ce1f4b9de9d28714a0fb0153a4e110262ecc7bfdba73eca580213e52d8232"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-04-plant-candidate-native.png",
+            "sha256": "0897d17c35288b1dde671d9ccc37e72ffaeb85d6eca28fad53b0acb1ba226c98"
+          },
+          "actualOriginalViewed": true,
+          "status": "pass_no_new_leaf_shadow_rim_or_displacement_observed"
+        },
+        {
+          "id": "left-05",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-05-plant-source-native.png",
+            "sha256": "fb395c6c533a6679050ebcd7c5a9708a414e3fee70cb9af6bdf4e85bdf75c5e4"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-05-plant-candidate-native.png",
+            "sha256": "3415ee7dbcaf104efecda4151bfcd9327702d7b184aeddfbe1161d6af6c9e7cf"
+          },
+          "actualOriginalViewed": true,
+          "status": "pass_no_new_leaf_shadow_rim_or_displacement_observed"
+        },
+        {
+          "id": "left-06",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-06-plant-source-native.png",
+            "sha256": "9e44acad9d258b447314e4b704b0fbb00759e102b06b645994837c97dc9d98d7"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/left-06-plant-candidate-native.png",
+            "sha256": "3e8a0402f24005c730dd6c8a898591c455519a0769847563b342214da6df5751"
+          },
+          "actualOriginalViewed": true,
+          "status": "pass_no_new_leaf_shadow_rim_or_displacement_observed"
+        },
+        {
+          "id": "right-01",
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/right-01-plant-source-native.png",
+            "sha256": "b16f2939430fde2689f0e4ef2a8facf91a3b5ac4e6b214dc077bd9b4bd9c798f"
+          },
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/right-01-plant-candidate-native.png",
+            "sha256": "7ef358c5003a72a1eb12d904977e89693369d9e3270ab868e11c02608a3a3f6b"
+          },
+          "actualOriginalViewed": true,
+          "status": "pass_no_new_leaf_shadow_rim_or_displacement_observed"
+        }
+      ],
+      "completeFrontFinding": "Material now runs naturally over one complete Cfront. Fine facets/crack rendering differs internally, but no new visibly severed crack, displaced silhouette, seamrim, painted foliage or bare-stone source tail observed at the reviewed natural boundaries.",
+      "pixelReplayOnlySupport": {
+        "maskWhite": 235285,
+        "changedPixels": 235208,
+        "compositeOutsideMaskVsCurrentSourceDifferentPixels": 0,
+        "compositeInsideMaskVsRawDifferentPixels": 0
+      },
+      "remainingHolds": "Other left stonefronts and any existing neighboring-face material holds are outside this scope and remain held. This perimeter recommendation does not pass fourfullcores,33internal checks, outside boundaries, or whole tile.",
+      "internalReadyRecommended": false,
+      "externalReadyRecommended": false,
+      "formalAccepted": false,
+      "adoptionPerformed": false,
+      "newAIcalls": 0,
+      "sourceMaskSelectedFlagsGitWrites": 0,
+      "onlyWrittenReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c13/reboot-stone-face-c-20261024/candidate-qa-v1/perimeter-readonly-review.json"
+    }
+  }
+}

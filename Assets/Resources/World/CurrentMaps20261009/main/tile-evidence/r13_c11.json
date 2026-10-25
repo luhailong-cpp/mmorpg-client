@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 13,
+  "column": 11,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "9193bb1aa7b1a57c3c00a53ea4297fdd6a3698311970edf95bbb8ddcbca38a37",
+  "imageBytes": 25960836,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/candidate/r13_c11-4k-S03-foundation-wedge-v1-20261020-release-wide.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/progress.json",
+  "sourceLedgerSha256": "43fc9011ef7e0c6edd201cdbf9592da206d258dfcf7dd82810604c2bd152b3ae",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": "failed_east_q2_others_pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/candidate/r13_c11-4k-S03-foundation-wedge-v1-20261020-release-wide.png",
+    "imageSha256": "9193bb1aa7b1a57c3c00a53ea4297fdd6a3698311970edf95bbb8ddcbca38a37",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/progress.json",
+        "sha256": "43fc9011ef7e0c6edd201cdbf9592da206d258dfcf7dd82810604c2bd152b3ae",
+        "sourceReviewSha256": "43fc9011ef7e0c6edd201cdbf9592da206d258dfcf7dd82810604c2bd152b3ae",
+        "completeness": [
+          "Selected output path/SHA bound to this record",
+          "activeNativeCount=16 / coverageSourceCount=16; no missing cores reported"
+        ]
+      }
+    ],
+    "selectionBasis": "Exact candidate identity bound to complete native core record",
+    "sourceStatus": {
+      "status": "candidate_complete_limited_repairs_pending",
+      "formalAccepted": false,
+      "internalArtQA": "S03_major_wedge_geometry_improved_finish_pending_S04_mask_failed_other_geometry_pending",
+      "externalNeighborSeamQA": "failed_east_q2_others_pending"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/candidate/r13_c11-4k-S03-foundation-wedge-v1-20261020-release-wide.png.generation.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/progress.json",
+        "record": {
+          "status": "candidate_complete_limited_repairs_pending",
+          "formalAccepted": false,
+          "internalArtQA": "S03_major_wedge_geometry_improved_finish_pending_S04_mask_failed_other_geometry_pending",
+          "externalNeighborSeamQA": "failed_east_q2_others_pending"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/actual-qa.json",
+        "record": {
+          "generationTerminalStatus": "completed_native_archived",
+          "localQaStatus": "rejected_fixed_right_endpoint_not_preserved_second_failure",
+          "formalAccepted": false,
+          "pending": [
+            "S04 coping course: two failed returns; preserve best existing source and stop this point",
+            "S03 finish/material remains pending; adopted geometry retained",
+            "F01/F02 lamp-frame previous repeated failures not revisited",
+            "S01/S02 east foundation previous failures not revisited",
+            "M01 material prior rejected attempt not repeated",
+            "W02 still unconfirmed from isolated crop; no call",
+            "Other inherited internal geometry/material and external seam acceptance remain pending"
+          ],
+          "unverifiedReason": "Host-managed built-in tool result/PNG did not disclose actual model/quality."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/actual-qa.json",
+    "sourceSha256": "0a3e7c83f8ae1d4ce18f510486076c33c6056ccff2c45a9f8f93ec7cd855f3c6",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r13_c11",
+      "repairId": "S04-full-coping-v2-20261020-2309",
+      "checkedAtUtc": "2026-10-21T03:26:14.065522+00:00",
+      "generationTerminalStatus": "completed_native_archived",
+      "localQaStatus": "rejected_fixed_right_endpoint_not_preserved_second_failure",
+      "selected": false,
+      "formalAccepted": false,
+      "actualCallCount": 1,
+      "attemptNumberAtS04": 2,
+      "S04FurtherRetryThisContinuation": false,
+      "base": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/candidate/r13_c11-4k-S03-foundation-wedge-v1-20261020-release-wide.png",
+        "sha256": "9193bb1aa7b1a57c3c00a53ea4297fdd6a3698311970edf95bbb8ddcbca38a37",
+        "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/candidate/r13_c11-4k-S03-foundation-wedge-v1-20261020-release-wide.png.generation.json"
+      },
+      "native": {
+        "status": "completed_native_archived",
+        "callId": "exec-f1aedfa1-ccfd-4118-8f6d-ef6bbe6ffa0e",
+        "hostOriginal": "source-host/C/Users/luyua/.codex/generated_images/01a15c3d-1ac1-7343-9fd1-66d12b7c1fa9/exec-f1aedfa1-ccfd-4118-8f6d-ef6bbe6ffa0e.png",
+        "hostOriginalSha256": "46cfa74adcb8223ccf5b95944ed4f748fb073e7511ee932460baffa95f62db8b",
+        "archivedNative": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/native.png",
+        "archivedNativeSha256": "46cfa74adcb8223ccf5b95944ed4f748fb073e7511ee932460baffa95f62db8b",
+        "hostMatchesArchive": true,
+        "nativeSize": [
+          1254,
+          1254
+        ],
+        "format": "PNG",
+        "resultKeys": [
+          "image_url",
+          "output_hint"
+        ],
+        "pngInfoKeys": [],
+        "actualModel": null,
+        "actualQuality": null,
+        "unverifiedReason": "Built-in tool result and PNG metadata disclose no actual model/quality."
+      },
+      "actuallyViewedEvidence": [
+        {
+          "label": "left-endpoint-before",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/left-endpoint-before-100pct.png",
+          "sha256": "16b183c29d8dfbb34f574c10e273a201fa1b390c97f9dcf60358c97e61ccae96",
+          "cropBoxIn4096": [
+            640,
+            2660,
+            840,
+            2840
+          ],
+          "size": [
+            200,
+            180
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        },
+        {
+          "label": "left-endpoint-native",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/left-endpoint-native-100pct.png",
+          "sha256": "4a1a411600b91a9544ba7e9f9007d58e136fae7ce3225320847debb91d0cc9d3",
+          "cropBoxIn4096": [
+            640,
+            2660,
+            840,
+            2840
+          ],
+          "size": [
+            200,
+            180
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        },
+        {
+          "label": "right-endpoint-before",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/right-endpoint-before-100pct.png",
+          "sha256": "4e7f84d7ab0cfac5b3e780bf121fe07dd153ec8c7009789e49a7782809ece2f7",
+          "cropBoxIn4096": [
+            1230,
+            2930,
+            1450,
+            3110
+          ],
+          "size": [
+            220,
+            180
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        },
+        {
+          "label": "right-endpoint-native",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/right-endpoint-native-100pct.png",
+          "sha256": "a9d20eb5e8c0e505d9fe497f2bdd5a203d59853981103d307d98136979282b00",
+          "cropBoxIn4096": [
+            1230,
+            2930,
+            1450,
+            3110
+          ],
+          "size": [
+            220,
+            180
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/edit-target.png",
+          "sha256": "d9b05ec539768d5484cd85e878b57c6021e720ee7940f2db5b33a04558f5d175",
+          "size": [
+            1254,
+            1254
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/before-coping-100pct.png",
+          "sha256": "acbaa7678208dfe00784173eda57af2a43b1f7fb0b4d4c162278ea93e9e26f4f",
+          "size": [
+            780,
+            480
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/native.png",
+          "sha256": "46cfa74adcb8223ccf5b95944ed4f748fb073e7511ee932460baffa95f62db8b",
+          "size": [
+            1254,
+            1254
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/native-coping-100pct.png",
+          "sha256": "9b348b8305aba35169252ef1bc3f87988b3fc99d12004886a791be440de5546b",
+          "size": [
+            780,
+            480
+          ],
+          "actuallyViewed": true,
+          "resized": false
+        }
+      ],
+      "findings": [
+        {
+          "id": "S04",
+          "status": "rejected_no_safe_composition",
+          "description": "The generated complete course removes the original raised shelf at the central mortar joint. The left endpoint remains close to the original, but the existing right endpoint at the next vertical joint is lowered roughly35–40 native pixels. The generated upper and lower coping boundaries therefore cannot reconnect to the fixed original right-hand block at that joint. Selecting the entire segment would introduce a new height step there; selecting a smaller rectangle would repeat the previous failure.",
+          "endpointScope": "Left and right endpoint crops compare identical native-pixel coordinates; the complete780x480 source/return crops also show the whole coping segment.",
+          "compositionDecision": "No pixels composited or published because fixed-endpoint prerequisite fails. No mask extension, geometric warp, scaling, color matching, blur or procedural painted repair attempted."
+        }
+      ],
+      "preserved": {
+        "selectedS03CandidateUnchanged": true,
+        "selectedS03ContextUnchanged": true,
+        "outer384Identical": true,
+        "activeNativeMapUnchanged": true,
+        "noTrialPixelsPublished": true
+      },
+      "W02ReadOnlyReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c11/repairs/S04-full-coping-v2-20261020-2309/W02-readonly-review.json",
+      "pending": [
+        "S04 coping course: two failed returns; preserve best existing source and stop this point",
+        "S03 finish/material remains pending; adopted geometry retained",
+        "F01/F02 lamp-frame previous repeated failures not revisited",
+        "S01/S02 east foundation previous failures not revisited",
+        "M01 material prior rejected attempt not repeated",
+        "W02 still unconfirmed from isolated crop; no call",
+        "Other inherited internal geometry/material and external seam acceptance remain pending"
+      ],
+      "actualModel": null,
+      "actualQuality": null,
+      "unverifiedReason": "Host-managed built-in tool result/PNG did not disclose actual model/quality.",
+      "realCallsInFlight": 0,
+      "successfulReturnsUnarchived": 0,
+      "nextStep": "S04 now has two failed attempts. Retain S03 candidate and move to other independently authorized artwork; do not label this tile accepted."
+    }
+  }
+}

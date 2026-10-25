@@ -1,0 +1,467 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 8,
+  "column": 15,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "5ca6aa3f47a356ae39639eb4cf99a191d68c7a4f9a94e6e249f594a77f71fcc2",
+  "imageBytes": 27803860,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/candidates/r08_c15.roof-layout-repaired-v1-20261017.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+  "sourceLedgerSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c15",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/candidates/r08_c15.roof-layout-repaired-v1-20261017.png",
+    "imageSha256": "5ca6aa3f47a356ae39639eb4cf99a191d68c7a4f9a94e6e249f594a77f71fcc2",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "sha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-review-v1-20261017.json",
+        "sha256": "488293caa019141cad44079d64dc612e3761cedc26512e82829970c76f604f77",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "missingCoreCount": 0,
+      "formalAcceptedCount": 0,
+      "workerStatus": "complete-candidate-unpassed-P2-layout-corrected",
+      "fullInternalReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-review-v1-20261017.json",
+        "candidateSha256": "5ca6aa3f47a356ae39639eb4cf99a191d68c7a4f9a94e6e249f594a77f71fcc2",
+        "reviewedPairs": 24,
+        "reviewedIntersections": 9,
+        "passed": false
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "missingCoreCount": 0,
+          "formalAcceptedCount": 0,
+          "workerStatus": "complete-candidate-unpassed-P2-layout-corrected",
+          "fullInternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-review-v1-20261017.json",
+            "candidateSha256": "5ca6aa3f47a356ae39639eb4cf99a191d68c7a4f9a94e6e249f594a77f71fcc2",
+            "reviewedPairs": 24,
+            "reviewedIntersections": 9,
+            "passed": false
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-review-v1-20261017.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "newInternalPairsReviewed": 21,
+          "internalPairsReviewed": 24,
+          "externalPassed": false,
+          "formalAccepted": false,
+          "status": "unpassed-P2-layout-P1-removed"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/current-adopted-index-20261012.json",
+        "record": {
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-review-v1-20261017.json",
+          "internalReviewSha256": "488293caa019141cad44079d64dc612e3761cedc26512e82829970c76f604f77"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-review-v1-20261017.json",
+    "sourceSha256": "488293caa019141cad44079d64dc612e3761cedc26512e82829970c76f604f77",
+    "normalizedDocument": {
+      "tile": "r08_c15",
+      "createdAt": "2026-10-17T11:13:26.078983+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/candidates/r08_c15.roof-layout-repaired-v1-20261017.png",
+      "candidateSha256": "5ca6aa3f47a356ae39639eb4cf99a191d68c7a4f9a94e6e249f594a77f71fcc2",
+      "selectedCoreCount": 16,
+      "nativeVersionCount": 21,
+      "allReferenceBytesReverified": true,
+      "reusedHashIdenticalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/left-column-v20261012/visual-review.json",
+      "reusedInternalPairCount": 3,
+      "newInternalPairsReviewed": 21,
+      "internalPairsReviewed": 24,
+      "expectedInternalPairs": 24,
+      "intersectionsReviewed": 9,
+      "viewedNewNativeJoinWindows": [
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p12-v20261016-west-join.png",
+          "sha256": "0ab2135b38e4a42f364217a9a5720ae3faaadc2ef3c57cea8c6d389eebed4f74",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p11-v20261012-v2.png",
+          "sourceSha256": "d3eb4808782d63d5a6a69898214696288b6682148ed94574d89dbeca14bd0e9a"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p12-v20261016-north-join.png",
+          "sha256": "3e065afad61c12f019eaeb8a4336565906f30bafe1920597a233e77be5b260d5",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/native/p42-v20261012.png",
+          "sourceSha256": "63a51c8464a939a939940333c3c4833a81428486012b58afe9a470fdbe734324"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p13-v20261016-west-join.png",
+          "sha256": "dbdc00cfa3a78dbc7aa7188da59b6fece6c05d3c279cbeaea914a8c5b2cd1456",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p12-v20261016.png",
+          "sourceSha256": "7c033a45f6d903ff3a37e18a370318f72c45f2d26051892ef27ad1c00cd7b1a9"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p13-v20261016-north-join.png",
+          "sha256": "5f8e9feaa586cb27af751addadaccfb3f772f0ea6ec8a464bb07651583ce2b55",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/native/p43-v20261012.png",
+          "sourceSha256": "3ce2a9f6f65c2b1d373ecaaf7690832a1292d0d8b7fe334ec1b7feba1a227a01"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p22-v20261016-west-join.png",
+          "sha256": "7a6563c6b31718f36a2c3a889a1122dcd50a8905192f7453275c2868f1ea65a1",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p21-v20261012.png",
+          "sourceSha256": "fd8dc09df8edf197e31199dbda41f047cd95d30a82928c7784bb03bae815b525"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p22-v20261016-north-join.png",
+          "sha256": "4641f9919456a64889a75c99427864f35c34a8653279d0fc98e0f6a99d48b16e",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p12-v20261016.png",
+          "sourceSha256": "7c033a45f6d903ff3a37e18a370318f72c45f2d26051892ef27ad1c00cd7b1a9"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p14-v20261016-west-join.png",
+          "sha256": "00535397cd8a5621a816fcf820df2188eb499cb92833d6541c40cb929c36f480",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p13-v20261016.png",
+          "sourceSha256": "1f9541e8d0252b6430c9615d94a0444b07ad868d56eb95883672d6eca53fdda7"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p14-v20261016-north-join.png",
+          "sha256": "6b1d4b4fa68aa96b48eed867d36bd438cbab6156f0af4da49167a75134421a77",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c15/native/p44-v20261012.png",
+          "sourceSha256": "81377171c366528b0a4f75ca2e926f1fa1711a4eb6e8fc43ed1cb156397970bb"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p23-v20261016-west-join.png",
+          "sha256": "77f5ca67dda52720efc2db8d8442e58a4ce4a778685d50ff3f8e22cbd1c1decf",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p22-v20261016.png",
+          "sourceSha256": "a8e6ecec4e8217481ce62658343ea760164d3ec033c92028af80a11ac757a3e9"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p23-v20261016-north-join.png",
+          "sha256": "74f85932eb5bcce4230e0f55c366fe60bc4ea465bfbb4a4390f4b05055a0f32b",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p13-v20261016.png",
+          "sourceSha256": "1f9541e8d0252b6430c9615d94a0444b07ad868d56eb95883672d6eca53fdda7"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p32-v20261016-v2-west-join.png",
+          "sha256": "f2e5255a5afd25cc5b6bf068e4db41408c8550e2406bf07f7eccc053a0c337bb",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p31-v20261012-v3.png",
+          "sourceSha256": "cd7a1935425f44ebac8cdb37670ccba80e224b8ef605043d064b01e85995df70"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p32-v20261016-v2-north-join.png",
+          "sha256": "383aeead22483a8406e3895cc43b9b00dad9d6cc952e162e9a567f2d8ac6b384",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p22-v20261016.png",
+          "sourceSha256": "a8e6ecec4e8217481ce62658343ea760164d3ec033c92028af80a11ac757a3e9"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p24-v20261016-west-join.png",
+          "sha256": "0af3a72284d28241b36546b7100f3a24ceb9f2d56b6191cc61ac9855f9ad331a",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p23-v20261016.png",
+          "sourceSha256": "eae34ac6e6dbe1d42f6ced398879cfc265bd88c126af4fb47ed93315570d41ea"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p24-v20261016-north-join.png",
+          "sha256": "ecfaec902f3517f095a2c1147fbf8a2de40033eecc60148e65f87420cec2d23b",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p14-v20261016.png",
+          "sourceSha256": "728ef2f606d54ab84b7d3f951a7aecb5a5aadb4feb87aaf4946e7819db6a676c"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p33-v20261016-west-join.png",
+          "sha256": "b09b080c49b168627b5a04fc79911aee5c21d7019e0fd7363e2de282b6cf47ef",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p32-v20261016-v2.png",
+          "sourceSha256": "a8b732ab5f73c41e570dd63a9a9222080f605c95e2164018e790f1285fd9b903"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p33-v20261016-north-join.png",
+          "sha256": "81a5c136ebceba3ff8faf7165e4f3b1c5688b5f3673f4a66612bea62bda3b258",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p23-v20261016.png",
+          "sourceSha256": "eae34ac6e6dbe1d42f6ced398879cfc265bd88c126af4fb47ed93315570d41ea"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p42-v20261016-west-join.png",
+          "sha256": "92656018e013f2b8ca27b636f4a0f7bc90525edea335113133a9a67a98808919",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p41-v20261012.png",
+          "sourceSha256": "57536a3bf7849065ef432baf8ead0449b42f08d938604e4d232f594ea73dfd12"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p42-v20261016-north-join.png",
+          "sha256": "c586051d690f97aaf6a22bba5127e6b278a87e4a16acc36e63a0e46cd35d65fe",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p32-v20261016-v2.png",
+          "sourceSha256": "a8b732ab5f73c41e570dd63a9a9222080f605c95e2164018e790f1285fd9b903"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p34-v20261016-west-join.png",
+          "sha256": "79690078bed5fe1a346a53e503462a190f8779bf931168743a14095df23843fc",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p33-v20261016.png",
+          "sourceSha256": "c6979bd2f585b23082ecd6487f2d266bb28d5e022211c0e806f9e81fad6c1a29"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p34-v20261016-north-join.png",
+          "sha256": "dbd2733e15ffe04b83614a3c5d7f4d17998f6d7cf45a9d9b9f1fe300d7ff11a1",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p24-v20261016.png",
+          "sourceSha256": "26a69debed94cf1283b9c6b8aee1e4eb446fa0b07542466beb5c10075d5595a8"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p43-v20261016-v2-west-join.png",
+          "sha256": "e258358fe7997bebc9ab009bd6fbd24d3fc8abc69ab4985475c445ea523cfed0",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p42-v20261016.png",
+          "sourceSha256": "430136c9d0535efd24f4541894b3498954e64858e96e4f226aebaf09cba1cf11"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p43-v20261016-v2-north-join.png",
+          "sha256": "bc705bf2f03453d8e86e53e590697e4fdbd68e89b6ead14090ca0da4561c05cc",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p33-v20261016.png",
+          "sourceSha256": "c6979bd2f585b23082ecd6487f2d266bb28d5e022211c0e806f9e81fad6c1a29"
+        },
+        {
+          "direction": "west",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p44-v20261016-west-join.png",
+          "sha256": "20e1c6b52051aaaa71efd169dcfe1b8fb9f213e0e462a9aa9fc4ca0daec5a708",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p43-v20261016-v2.png",
+          "sourceSha256": "c4837112478114103e4e27420649fc63f4011f9d893bee371c3d81eb95677729"
+        },
+        {
+          "direction": "north",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/p44-v20261016-north-join.png",
+          "sha256": "468922d0bab376710dc2c4f60def349e6c9a9bba946ceb9b18b9a221178e95b0",
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/p34-v20261016.png",
+          "sourceSha256": "0f1ad11efd50348dbf44a171dae8ffc80a9ba5347a399a951f2a75f85a02dc61"
+        }
+      ],
+      "viewedIntersections": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r1-c1-100pct.png",
+          "sha256": "b1d4157b3dc4e9a2e8ea2bea81810ed1580b52799c800936ab6d3f2b9c401bc0"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r1-c2-100pct.png",
+          "sha256": "5ac76132435b5947b774e3a498a574a57fd4f74103399c420fa7459b79849a6d"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r1-c3-100pct.png",
+          "sha256": "4764d1a54cd154999ad8112f1a0899adfbb4fb9bf5fb8227fbcfc462aae2f02e"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r2-c1-100pct.png",
+          "sha256": "9eef828b4c304fe2e18db354148e09118cae9e49bb57bcd0c34735698424a655"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r2-c2-100pct.png",
+          "sha256": "f74f40d6a79b6cfece9ad8ca965f65f0b8bdeabdaaa8af19a74bfba4d42f1418"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r2-c3-100pct.png",
+          "sha256": "9de4dfe61c70401179e4b4b5ddd2799ab91830c863d6cc3e1834eb2b81b3d5b1"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r3-c1-100pct.png",
+          "sha256": "5e49cf58a9244f6c1226b9bd155f3fe69e0e2c2c581e3806cd53609a19d1a4f6"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r3-c2-100pct.png",
+          "sha256": "aae399faaa5c1ed0e6b82f39e623931b6bcda90271b773a9fdc430106aa18774"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/core-baseline/588fc5b6ec5cfe33a86a/intersection-r3-c3-100pct.png",
+          "sha256": "6493aeb95db183dc9d21078eaeb402947a25269ac93ecd3ff990974b72a63379"
+        }
+      ],
+      "findings": [
+        {
+          "priority": "P2",
+          "id": "orphan-grout-p13",
+          "box": [
+            2048,
+            0,
+            2600,
+            1024
+          ],
+          "detail": "Orphan grout segments near west/north context transition inside p13.",
+          "repairAttempts": 0
+        },
+        {
+          "priority": "P2",
+          "id": "orphan-grout-p23",
+          "box": [
+            2048,
+            1024,
+            2600,
+            2048
+          ],
+          "detail": "Short disconnected grout near upper-left p23.",
+          "repairAttempts": 0
+        },
+        {
+          "priority": "P2",
+          "id": "p32-material-leaf-cut",
+          "box": [
+            950,
+            2048,
+            1280,
+            3150
+          ],
+          "detail": "Hard material boundary and vertical cut leaf cluster at x1024 in lower p32; v2 fixed unrequested paving ornaments, remaining boundary.",
+          "repairAttemptsForOrnaments": 1,
+          "repairAttemptsForBoundary": 0
+        },
+        {
+          "priority": "P2",
+          "id": "p33-grout",
+          "box": [
+            1950,
+            1850,
+            2600,
+            2850
+          ],
+          "detail": "Grout phase step at p23/p32/p33 intersection and disconnected seam in upper-left p33.",
+          "repairAttempts": 0
+        },
+        {
+          "priority": "P2",
+          "id": "p34-grout",
+          "box": [
+            2950,
+            2800,
+            3350,
+            3120
+          ],
+          "detail": "Orphan lower-left grout plus phase shift at p33/p34 boundary near y3000.",
+          "repairAttempts": 0
+        },
+        {
+          "priority": "P2",
+          "id": "p44-band-and-grout",
+          "box": [
+            2960,
+            2940,
+            3380,
+            3700
+          ],
+          "detail": "Cool-gray paving strip and grout start at vertical x3072 cut against p43; keep unpassed.",
+          "repairAttempts": 0
+        },
+        {
+          "priority": "P2",
+          "id": "local-repair-material-boundary",
+          "box": [
+            1000,
+            2942,
+            2850,
+            3842
+          ],
+          "detail": "Roof eliminated; local paving material/shadow transitions remain perceptible near outer rectangular repair edges. Geometry generally continuous.",
+          "repairAttempts": 0
+        }
+      ],
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "status": "unpassed-P2-layout-P1-removed",
+      "baselineReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/baseline-review-v1.json",
+      "compositionRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-composition-v1-20261017.json",
+      "reusedOutsideRectanglesByteIdentical": true,
+      "changedRegionNativeWindows": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-left-composed-v1-20261017.png",
+          "sha256": "186d23922e034d1a7ebc321eb3453c81e74b4c3552d6a5e6e22d135c1c481a07"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/qa/resume-20261016/roof-layout-right-composed-v1-20261017.png",
+          "sha256": "0717da2f776b2c429450e34c970bed301cc5586cd8ffc22cfd357d3cee995d30"
+        }
+      ],
+      "resolved": [
+        {
+          "id": "unexpected-roof",
+          "result": "Removed entire erroneous turquoise/gold roof with 2 distinct native local edits, one attempt per left/right region; canopy/ground remain.",
+          "repairs": [
+            {
+              "id": "roof-remove-left-local-v1-20261016",
+              "crop": [
+                100,
+                100,
+                1254,
+                850
+              ],
+              "paste": [
+                1000,
+                2942
+              ],
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/repairs/roof-remove-left-local-v1-20261016.png",
+              "sha256": "7d9752ea4a40e616f3bcd95d1de397b1949b434070c5fccb601cfac3f7363454"
+            },
+            {
+              "id": "roof-remove-right-local-v1-20261017",
+              "crop": [
+                200,
+                180,
+                1000,
+                1000
+              ],
+              "paste": [
+                2050,
+                3022
+              ],
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r08_c15/native/repairs/roof-remove-right-local-v1-20261017.png",
+              "sha256": "5a24e26e0ed8cf46178dc0a600f2bdea5f7210f091c88d67bd1ab42400ce9026"
+            }
+          ]
+        }
+      ],
+      "localNativeRepairCount": 2
+    }
+  }
+}

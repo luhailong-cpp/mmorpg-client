@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 7,
+  "column": 10,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "53ac1eb01a9d5fa9972652690f511a9bb1a9cc891d530b613f823fd2029a192a",
+  "imageBytes": 30471057,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/r07_c10-local-v4.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/review-checkpoint-v4.json",
+  "sourceLedgerSha256": "68bbe2ee1ca16053f8e90723356fe2ad451b36d56717e827b5072eb102976d52",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/r07_c10-local-v4.candidate.png",
+    "imageSha256": "53ac1eb01a9d5fa9972652690f511a9bb1a9cc891d530b613f823fd2029a192a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/review-checkpoint-v4.json",
+        "sha256": "68bbe2ee1ca16053f8e90723356fe2ad451b36d56717e827b5072eb102976d52",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "sha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "improved_candidate_pending_repairs",
+      "selectedCoreCount": 16,
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/review-checkpoint-v4.json",
+        "record": {
+          "status": "improved_candidate_pending_repairs",
+          "selectedCoreCount": 16,
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "missingCoreCount": 0,
+          "formalAcceptedCount": 0,
+          "workerStatus": "improved_candidate_pending_repairs",
+          "fullInternalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/review-checkpoint-v4.json"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/current-adopted-index-20261012.json",
+        "record": {
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/review-checkpoint-v4.json",
+          "internalReviewSha256": "68bbe2ee1ca16053f8e90723356fe2ad451b36d56717e827b5072eb102976d52"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/review-checkpoint-v4.json",
+    "sourceSha256": "68bbe2ee1ca16053f8e90723356fe2ad451b36d56717e827b5072eb102976d52",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r07_c10",
+      "reviewedAt": "2026-10-18T11:04:39.169762+00:00",
+      "status": "improved_candidate_pending_repairs",
+      "candidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/r07_c10-local-v4.candidate.png",
+      "candidateSha256": "53ac1eb01a9d5fa9972652690f511a9bb1a9cc891d530b613f823fd2029a192a",
+      "baseReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/review-20261017/internal-review-v1.json",
+      "baseCandidateSha256": "99ee14901134c91e3529f5bd699cb0909edc7a223fc2b305b4daf6482cab4bd3",
+      "selectedCoreCount": 16,
+      "nativeCount": 23,
+      "internalPassed4kCount": 0,
+      "formalAcceptedCount": 0,
+      "reviewedInternalPairCount": 24,
+      "reviewedIntersectionCount": 9,
+      "reuseBasis": "Previous hash-bound 24 seam / 9 intersection review reused outside byte-identical changed ROI. Only current column ROI boundary is adopted; native boundary views inspected for all three trial ROIs, other two rejected.",
+      "repairResults": [
+        {
+          "patch": "p21",
+          "attempt": 1,
+          "source": "p21-v20261017-v2.png",
+          "sourceSha256": "cae5aa4064c70b4127275f987c044aa8422aee0a3ae6ef4edafdaaff20c3d304",
+          "adoptedROI": [
+            0,
+            1609,
+            1024,
+            2048
+          ],
+          "result": "Chest U-ridge now joins naturally; old hard cutoff removed. Lower/east material cut remains, so issue group remains pending."
+        },
+        {
+          "patch": "p13",
+          "attempt": 1,
+          "source": "p13-v20261017-v2.png",
+          "sourceSha256": "5935dc2badae975d756b01aba959a64bb14edecee271c25379afec88a37ece02",
+          "adopted": false,
+          "result": "Shift grew; retained unselected."
+        },
+        {
+          "patch": "p13",
+          "attempt": 2,
+          "source": "p13-v20261017-v3.png",
+          "sourceSha256": "a9203e44910884edaccac8e5b6163e0f5075e248bf5e4d6fc9a8a687c95979d1",
+          "adoptedROI": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "result": "Inner and outer platform borders now align at south. Paving texture changes/narrow row remain; no formal pass."
+        },
+        {
+          "issue": "column-ring",
+          "attempt": 1,
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/native/repairs/column-ring-local-v1-20261018.png",
+          "sourceSha256": "32f13084b7534fcf508952676631718ed74a343387a29a4a202445921b9ed924",
+          "adoptedROI": [
+            1736,
+            868,
+            2006,
+            942
+          ],
+          "result": "Dark ring removed; faint material band at ROI top/bottom remains. Improvement retained, pending."
+        },
+        {
+          "issue": "plinth-side/vessel-lid",
+          "attempt": 2,
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/native/repairs/plinth-vessel-local-v1-20261018.png",
+          "sourceSha256": "99defdad0122fd164efd75318f67b74053ef32096d1bb41ae80c1395fa1621c9",
+          "adopted": false,
+          "result": "Plinth step improved inside edited area but new lower ROI edge and red lid rectangular texture boundaries worsen integration. Preserve previous pixels; stop repeated local loop and move independent cores. Counter conservatively includes previous p32 repair."
+        }
+      ],
+      "remainingGroups": [
+        "Lion context material transitions including chest lower/east boundary and paw",
+        "Column dark ring removed; faint repair band still pending",
+        "Right paving texture changes and narrow rows; platform geometry offset resolved",
+        "Plinth side edge step at p32/p42",
+        "Red vessel lid vertical texture split",
+        "Red paper/base/paving boundary mismatches"
+      ],
+      "nativePatchSelection": "selected-native.json remains original 16-source baseline; preferred candidate additionally applies two explicitly recorded native repair ROIs. Original and every repair source retained.",
+      "cumulativeRepairAttempts": {
+        "p44": 1,
+        "p34": 1,
+        "p32": 1,
+        "p14": 1,
+        "p21": 1,
+        "p13": 2,
+        "column-ring": 1,
+        "plinth-vessel": 2
+      },
+      "actualModel": null,
+      "inflightGeneration": null,
+      "unsavedSuccessfulOutputs": 0,
+      "nativeRepairCount": 2,
+      "totalNativeFileCount": 25,
+      "previousReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261017/review-checkpoint-v2.json",
+      "previousCandidateSha256": "af5006f1854fe19cab829be4dc88e54d669e62f6a53bfa2364727a525d83f7ab",
+      "outsideChangedROIsByteIdentical": true,
+      "changedROI": [
+        1736,
+        868,
+        2006,
+        942
+      ],
+      "changedReviewImages": [
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/v3-local-1-boundary.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/v3-local-2-boundary.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/v3-local-3-boundary.png"
+      ],
+      "layoutRiskAddendum": {
+        "id": "circular-base-layout-risk",
+        "priority": "P2",
+        "issue": "middle reports p34/p44 large circular stepped base may deviate from approved map; pending verification, not passed",
+        "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c10/qa/local-repair-20261018/layout-risk-addendum.json"
+      }
+    }
+  }
+}

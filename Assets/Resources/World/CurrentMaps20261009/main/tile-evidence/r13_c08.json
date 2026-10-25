@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 13,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "f7570f6d2f522070a41a1910092aad29e64569bb3a8728a1ed8920c699f22511",
+  "imageBytes": 18897244,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/r13_c08.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/assembly.json",
+  "sourceLedgerSha256": "4b91a1622797f02a40c342db373fb3093f6b3fbda8eeb264b492aa8940bd68fe",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/r13_c08.candidate.png",
+    "imageSha256": "f7570f6d2f522070a41a1910092aad29e64569bb3a8728a1ed8920c699f22511",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/assembly.json",
+        "sha256": "4b91a1622797f02a40c342db373fb3093f6b3fbda8eeb264b492aa8940bd68fe",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/assembly.json",
+        "sha256": "4b91a1622797f02a40c342db373fb3093f6b3fbda8eeb264b492aa8940bd68fe",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/qa/full16-native-20261017b-v01/review.json",
+        "record": {
+          "completeTileCoverage": true,
+          "actualViewedExternalNativeCrops": 6,
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false,
+          "missingExternalSources": [
+            "West: r13_c07 all4right native absent.",
+            "Bottom: r14_c08p01_01,p01_02native absent.",
+            "Right cross-zone source unresolved, no anchor fabricated."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/qa/full16-native-20261017b-v01/review.json",
+    "sourceSha256": "a2af8cc3825b285147f10374e92c3432426e558d0d49b88c52f10e2417a47536",
+    "normalizedDocument": {
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/assembly.json",
+      "assemblySha256": "4b91a1622797f02a40c342db373fb3093f6b3fbda8eeb264b492aa8940bd68fe",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/r13_c08.candidate.png",
+        "sha256": "f7570f6d2f522070a41a1910092aad29e64569bb3a8728a1ed8920c699f22511",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/output/a01094c7f75d68d8/r13_c08.candidate.context.png",
+        "sha256": "ba286752e1aac8733724b4703adfb679859a6e23fbac4194096c0fe618290860",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "completeTileCoverage": true,
+      "actualViewedNewInternalNativeCrops": 7,
+      "reusedInternalSeams": 17,
+      "internalSeamsCovered": 24,
+      "unchanged12NativeHashesVerified": true,
+      "reusedReviews": [
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/qa/right-half-native-20261016-v01/review.json",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/qa/column2-native-20261017b-v02/review.json",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c08/pipeline/qa/column2-native-20261017b-v01/review.json"
+      ],
+      "actualViewedExternalNativeCrops": 6,
+      "resampling": false,
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "problems": [
+        {
+          "seam": "V1-row1/2/3",
+          "detail": "Blue-field left bevel and material visibly shift at joins; short wedge/jog at row transitions."
+        },
+        {
+          "seam": "H1-col1 / H2-col1",
+          "detail": "Vertical paver joint shifts about10..20px at native joins; abrupt truncated/wedged end."
+        },
+        {
+          "seam": "H3-col1",
+          "detail": "Horizontal paver divisions double across join and gutter bevel changes; around15px right-edge jog."
+        },
+        {
+          "scope": "col1",
+          "detail": "Paving joint positions approximate versus coarse guide; some50..85px differences retained failed. Fine dense surface marks remain."
+        },
+        {
+          "seam": "EXT-TOP-col1",
+          "detail": "Wrong cloud source above meets different rectangular paving below; major ornamental/layout break and tone cutoff."
+        },
+        {
+          "seam": "EXT-TOP-col2",
+          "detail": "Excluded bad upstream source has extra joint and different wide grey field width; multiple vertical edges do not align."
+        },
+        {
+          "seam": "EXT-TOP-col3",
+          "detail": "Vertical narrow inlay bevel jogs and tone differs."
+        },
+        {
+          "seam": "EXT-TOP-col4 / EXT-BOTTOM-col4",
+          "detail": "Plain stone still has visible horizontal tone/texture boundary."
+        },
+        {
+          "seam": "EXT-BOTTOM-col3",
+          "detail": "Vertical inlay width/edge shifts around8..15px; pale/blue material difference."
+        }
+      ],
+      "priorInternalFailedProblemsRemain": true,
+      "missingExternalSources": [
+        "West: r13_c07 all4right native absent.",
+        "Bottom: r14_c08p01_01,p01_02native absent.",
+        "Right cross-zone source unresolved, no anchor fabricated."
+      ],
+      "nextAction": "Retain best complete candidate and concrete failed checks. No formal pass, no propagation of known wrong top cloud/branches or gold geometry. Remaining neighboring sources not fabricated."
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 6,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "2343d8d25c68826c0ddddc06d7bfa437967fbce24069e9422fdaaa3fbaba1b40",
+  "imageBytes": 25628756,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/r06_c08-provisional-native16-20261020.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/r06_c08-provisional-native16-20261020.png.derivation.json",
+  "sourceLedgerSha256": "177d24b21f84caabf5a3094bad675b30478439d09c5c013b1c621a5d089c57ee",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/r06_c08-provisional-native16-20261020.png",
+    "imageSha256": "2343d8d25c68826c0ddddc06d7bfa437967fbce24069e9422fdaaa3fbaba1b40",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/r06_c08-provisional-native16-20261020.png.derivation.json",
+        "sha256": "177d24b21f84caabf5a3094bad675b30478439d09c5c013b1c621a5d089c57ee",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/candidate49-index.json",
+        "sha256": "287c353fe5e1659b8324c7e7e974dc5ec9a1f35fa94daf4e7c562bc8e94d6e58",
+        "completeness": [
+          "/candidate/uncoveredPixels",
+          0
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "baseCoverageMin": 1,
+      "baseCoverageMax": 1,
+      "selectedCoreCount": 4,
+      "unselectedProvisionalCoreCount": 12,
+      "formalAccepted": false,
+      "layoutAccepted": false,
+      "externalTileEdges": "not reviewed"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/r06_c08-provisional-native16-20261020.png.derivation.json",
+        "record": {
+          "baseCoverageMin": 1,
+          "baseCoverageMax": 1,
+          "selectedCoreCount": 4,
+          "unselectedProvisionalCoreCount": 12,
+          "formalAccepted": false,
+          "layoutAccepted": false,
+          "externalTileEdges": "not reviewed"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/r06_c08-preview-layout-only-20261020.png.derivation.json",
+    "sourceSha256": "46c724ab05920c8a597feb46c635bb08131ed3090bd1d42f53206d44db33ccb5",
+    "normalizedDocument": {
+      "derivedFrom": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c08-resume20/r06_c08-provisional-native16-20261020.png",
+        "sha256": "2343d8d25c68826c0ddddc06d7bfa437967fbce24069e9422fdaaa3fbaba1b40"
+      },
+      "operation": "1536 downsampled layout preview only, not native quality evidence"
+    }
+  }
+}

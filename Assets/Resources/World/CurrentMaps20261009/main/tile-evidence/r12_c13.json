@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 12,
+  "column": 13,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "1b0174ae921a56148b8aa425ec161deb660f7a546a961367a43bd39c25440394",
+  "imageBytes": 23852048,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-southeast-north-extension/r12_c13/repairs/human-20261022-slat-interior-five-ref-v02/proposal-slat-five-ref-v02-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-southeast-north-extension/progress.json",
+  "sourceLedgerSha256": "7427ef345a514b018fd19763b6725c060ee5c34ed14d464bfa08758f63d1fbcb",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-southeast-north-extension/r12_c13/repairs/human-20261022-slat-interior-five-ref-v02/proposal-slat-five-ref-v02-4096.png",
+    "imageSha256": "1b0174ae921a56148b8aa425ec161deb660f7a546a961367a43bd39c25440394",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-southeast-north-extension/progress.json",
+        "sha256": "7427ef345a514b018fd19763b6725c060ee5c34ed14d464bfa08758f63d1fbcb",
+        "sourceReviewSha256": "7427ef345a514b018fd19763b6725c060ee5c34ed14d464bfa08758f63d1fbcb",
+        "completeness": [
+          "Specific tiles/r12_c13=16; currentCandidates/r12_c13 pins complete4096 base."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-southeast-north-extension/r12_c13/repairs/human-20261022-slat-interior-five-ref-v02/proposal-slat-five-ref-v02-4096.png.generation.json",
+        "sha256": "e45f2bb93db1fcca6344d20bfdeab3accca8e3ee5b60ab63579114deac9a3c39",
+        "sourceReviewSha256": "e45f2bb93db1fcca6344d20bfdeab3accca8e3ee5b60ab63579114deac9a3c39",
+        "completeness": [
+          "Exact native bounded binary replacement; no resampling; derivedFrom[0] binds full16 base."
+        ]
+      }
+    ],
+    "selectionBasis": "output_sha_bound_full16_core_candidate_or_native_replacement_on_pinned_full16_base",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "complete_native_proposal_seam_and_material_qa_not_accepted"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-southeast-north-extension/r12_c13/repairs/human-20261022-slat-interior-five-ref-v02/proposal-slat-five-ref-v02-4096.png.generation.json",
+        "record": {
+          "unverifiedReason": "Derived composite; native generated contributor has host-undisclosed actual model/quality. No 4096native-generation claim."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 6,
+  "column": 3,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "71ab1e2c4513401cab1f3d9e337e96d28e44193ecfcdc878ae92bf26ba1879a6",
+  "imageBytes": 29401974,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/r06_c03.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/assembly.json",
+  "sourceLedgerSha256": "77c026e8275182f3d34f30d993a1ca0dd119d462715eaed18813f11fd41e7ca4",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/r06_c03.candidate.png",
+    "imageSha256": "71ab1e2c4513401cab1f3d9e337e96d28e44193ecfcdc878ae92bf26ba1879a6",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/assembly.json",
+        "sha256": "77c026e8275182f3d34f30d993a1ca0dd119d462715eaed18813f11fd41e7ca4",
+        "completeness": [
+          "sourcesCount",
+          20
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/assembly.json",
+        "record": {
+          "internalAccepted": false,
+          "formalAccepted": false,
+          "status": "candidate-pending-narrow-sand-transition-QA"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/qa-crops.manifest.json",
+    "sourceSha256": "ff466b317c01951bec9661ac971bb20e8c7825fc1713a5394fdb4564b17c1a04",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "purpose": "native-resolution diagnostic crops, not additional artwork or acceptance",
+      "images": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/sand-area.100pct.png",
+          "sha256": "c56d3439fa35042f29ee0ca4c45ea4b3c961f28ab544d183f2aaf2389dd3633b",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/r06_c03.candidate.png",
+            "sha256": "71ab1e2c4513401cab1f3d9e337e96d28e44193ecfcdc878ae92bf26ba1879a6"
+          },
+          "operation": "integer crop without resampling; PIL default black padding outside source bounds, for QA only",
+          "sourceBox": [
+            2842,
+            1800,
+            4096,
+            3054
+          ],
+          "outOfBoundsPaddingBottom": 0,
+          "newModelGeneration": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/north-transition.100pct.png",
+          "sha256": "ce04e12666140dd7a10f7caa0f7c0abb3ca2cd6ef0927bcad948df5ebf138d53",
+          "dimensions": [
+            1054,
+            300
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/r06_c03.candidate.png",
+            "sha256": "71ab1e2c4513401cab1f3d9e337e96d28e44193ecfcdc878ae92bf26ba1879a6"
+          },
+          "operation": "integer crop without resampling; PIL default black padding outside source bounds, for QA only",
+          "sourceBox": [
+            2942,
+            1880,
+            3996,
+            2180
+          ],
+          "outOfBoundsPaddingBottom": 0,
+          "newModelGeneration": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/west-transition.100pct.png",
+          "sha256": "d14147c2be884e374fce2ee14b9891f25750ea9a7f1d8fbbec6b84dd66bd7550",
+          "dimensions": [
+            380,
+            800
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c03/sand-transition-v2/r06_c03.candidate.png",
+            "sha256": "71ab1e2c4513401cab1f3d9e337e96d28e44193ecfcdc878ae92bf26ba1879a6"
+          },
+          "operation": "integer crop without resampling; PIL default black padding outside source bounds, for QA only",
+          "sourceBox": [
+            2900,
+            1900,
+            3280,
+            2700
+          ],
+          "outOfBoundsPaddingBottom": 0,
+          "newModelGeneration": false
+        }
+      ]
+    }
+  }
+}

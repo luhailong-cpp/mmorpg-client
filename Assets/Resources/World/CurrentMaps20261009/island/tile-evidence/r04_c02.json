@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 4,
+  "column": 2,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "def1d1e618bd4528cfc8042056653f3563d1fbaf30a24379e90a6317c6390829",
+  "imageBytes": 28637309,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-writer-v2/proposals/r04_c02_bluebarrel-a02_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-writer-v2/proposals/r04_c02_bluebarrel-a02_4096.native-opaque-shared.json",
+  "sourceLedgerSha256": "0d9479bcfdcf958cdd7d3e14a8544f4d9bf37f3571428afc6f8af298bb39e79d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r04_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-writer-v2/proposals/r04_c02_bluebarrel-a02_4096.png",
+    "imageSha256": "def1d1e618bd4528cfc8042056653f3563d1fbaf30a24379e90a6317c6390829",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-writer-v2/proposals/r04_c02_bluebarrel-a02_4096.native-opaque-shared.json",
+        "sha256": "0d9479bcfdcf958cdd7d3e14a8544f4d9bf37f3571428afc6f8af298bb39e79d",
+        "sourceReviewSha256": "0d9479bcfdcf958cdd7d3e14a8544f4d9bf37f3571428afc6f8af298bb39e79d",
+        "completeness": [
+          [
+            "/fullNativeParentProofReused",
+            true
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "baseCoverageRecomputedFromOriginalNatives": false,
+      "formalAccepted": false,
+      "savedOutputValidationPending": true
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-writer-v2/proposals/r04_c02_bluebarrel-a02_4096.native-opaque-shared.json",
+        "record": {
+          "baseCoverageRecomputedFromOriginalNatives": false,
+          "formalAccepted": false,
+          "savedOutputValidationPending": true
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+        "record": {
+          "materialStatus": "SHARED_REPAIR_AND_WHOLE_PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/island-more-relief-response-20261022/nw-writer-preparation-v01/adoption-preparation-v01/r04_c02-fixed-actual-internal33-closure.json",
+            "sha256": "c90306850b752847402e4c077b01094d4fcd821633e52f53a2e2e725203b0c53"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current-after.json",
+        "record": {
+          "materialStatus": "SHARED_REPAIR_AND_WHOLE_PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/island-more-relief-response-20261022/nw-writer-preparation-v01/adoption-preparation-v01/r04_c02-fixed-actual-internal33-closure.json",
+            "sha256": "c90306850b752847402e4c077b01094d4fcd821633e52f53a2e2e725203b0c53"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current.proposed.json",
+        "record": {
+          "materialStatus": "SHARED_REPAIR_AND_WHOLE_PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/island-more-relief-response-20261022/nw-writer-preparation-v01/adoption-preparation-v01/r04_c02-fixed-actual-internal33-closure.json",
+            "sha256": "c90306850b752847402e4c077b01094d4fcd821633e52f53a2e2e725203b0c53"
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

@@ -9,51 +9,110 @@
   "imageSha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
   "imageBytes": 27686918,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261021-v001.json",
-  "sourceLedgerSha256": "7816a6f95592d8ce8c12095dd226a240e79de4efd94eff0cf4e3a51f4fe1e245",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c02/qa/complete-native-20261017-v4/internal-review-20261018-v1.json",
+  "sourceLedgerSha256": "5cebd0396dac8228e8a0ccead402b7fde5da1a36108a2f4adcf55d8fe4c65fd7",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r09_c02",
-    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
-    "sha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
-    "dimensions": [
-      4096,
-      4096
-    ],
-    "nativeCoreCount": 16,
-    "nativeCoreSize": [
-      1024,
-      1024
-    ],
-    "nativeGeneratorOutputs": [
-      1254,
-      1254
-    ],
-    "internalReady": true,
-    "formalAccepted": false,
-    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c02/qa/complete-native-20261017-v4/internal-review-20261018-v1.json",
-    "reviewSha256": "5cebd0396dac8228e8a0ccead402b7fde5da1a36108a2f4adcf55d8fe4c65fd7",
-    "generationRecord": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png.generation.json",
-      "sha256": "15b2ca4ebf09a405f820d3b83167bed9e5625ea6aeb26940942ad2b67e22f415"
-    },
-    "preservedOriginalDelivery": true,
-    "sourceImageUnchanged": true,
-    "actualModel": null,
-    "actualQuality": null,
-    "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata.",
-    "externalReview": [
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
+    "imageSha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
+    "completeNativeCoverage": true,
+    "coverageProof": [
       {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
-        "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c02/qa/complete-native-20261017-v4/internal-review-20261018-v1.json",
+        "sha256": "5cebd0396dac8228e8a0ccead402b7fde5da1a36108a2f4adcf55d8fe4c65fd7",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
       }
     ],
-    "pendingLocalRepairs": []
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "nativeCoreCount": 16,
+      "formalAccepted": false,
+      "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png.generation.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261021-v001.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+              "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+            }
+          ],
+          "pendingLocalRepairs": []
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+        "record": {
+          "pending": [
+            "r08_c02 remains internally pending; this visual seam check cannot confer internal or formal acceptance on that neighbor.",
+            "Original tiles west joins against r09_c01/r10_c01 and affected four-tile crossings are outside this subtask and handled by parent.",
+            "No whole-map or formal-tile acceptance is granted by this review."
+          ],
+          "formalAccepted": false,
+          "wholeMapAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261018-v001.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261020-v001.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+              "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+            }
+          ],
+          "pendingLocalRepairs": []
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261020-v002.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+              "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+            }
+          ],
+          "pendingLocalRepairs": []
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c02/qa/complete-native-20261017-v4/internal-review-20261018-v1.json",

@@ -1,0 +1,828 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 14,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+  "imageBytes": 20272161,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/assembly.json",
+  "sourceLedgerSha256": "6b70e054a9b9ddd844f1a3149a901bd17414c8df0f9b76e8c96633f07485da4e",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+    "imageSha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/assembly.json",
+        "sha256": "6b70e054a9b9ddd844f1a3149a901bd17414c8df0f9b76e8c96633f07485da4e",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/assembly.json",
+        "sha256": "6b70e054a9b9ddd844f1a3149a901bd17414c8df0f9b76e8c96633f07485da4e",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/full16-native-20261019d-v01/worker-review.json",
+        "record": {
+          "externalChecks": [
+            {
+              "name": "left-1",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+              ]
+            },
+            {
+              "name": "left-2",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+              ]
+            },
+            {
+              "name": "left-3",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+              ]
+            },
+            {
+              "name": "left-4",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+              ]
+            },
+            {
+              "name": "top-1",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+              ]
+            },
+            {
+              "name": "top-2",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+              ]
+            },
+            {
+              "name": "top-3",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+              ]
+            },
+            {
+              "name": "top-4",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+              ]
+            },
+            {
+              "name": "right-1",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+              ]
+            },
+            {
+              "name": "right-2",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+              ]
+            },
+            {
+              "name": "right-3",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+              ]
+            },
+            {
+              "name": "right-4",
+              "actualViewed": true,
+              "passed": false,
+              "issues": [
+                "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+              ]
+            }
+          ],
+          "actualNativeExternalChecks": 12,
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false,
+          "pendingRepairs": [
+            "Restore blue courtyard band width and continuous bevels across V2/V3 and H2/H3 with complete native corner references.",
+            "Resolve unsupported thin grout line heads across V2/V3-row4 and H3-col3/4.",
+            "Bind external joins to latest root c06 geometry and current upper/right sources before acceptance.",
+            "Reduce dense fine stone grain after geometry is stable."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/full16-native-20261019d-v01/worker-review.json",
+    "sourceSha256": "59a457c1be69ed4fc350edcda155c2656879eb13bed417de378ddf50643b0f72",
+    "normalizedDocument": {
+      "tile": "r14_c07",
+      "createdAtUtc": "2026-10-19T10:31:43.316962+00:00",
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/assembly.json",
+      "assemblySha256": "6b70e054a9b9ddd844f1a3149a901bd17414c8df0f9b76e8c96633f07485da4e",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+        "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.context.png",
+        "sha256": "755f16397dbc50113ca81e27b13f8b407e0919d6d1f6d9f0798dbb443357a351",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/full16-native-20261019d-v01/manifest.json",
+      "manifestSha256": "f39aee9da2b4b9739828a002e143371f6bb72464248121d68a3e55432e1dbc65",
+      "additionalRightManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/full16-native-20261019d-v01/additional-right-boundary.json",
+      "additionalRightManifestSha256": "d50f6ad64c78ae5e1c94283b3ce29611fdddc618ea9185802dc43bb2f8b84a5a",
+      "selectedNativeCount": 16,
+      "checks": [
+        {
+          "name": "V1-row1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Dense granular/crisscross stone paint and subtle material phase at patch join; red paper folds remain overly hard."
+          ]
+        },
+        {
+          "name": "V2-row1",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Stone paint phase and fine crosshatch remain; joint itself approximately aligned."
+          ]
+        },
+        {
+          "name": "V3-row1",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Lower extra horizontal pale line ends unsupported; material transition visible."
+          ]
+        },
+        {
+          "name": "V1-row2",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Thin diagonal bends to horizontal near input230 rather than original continuation; grey paint phase."
+          ]
+        },
+        {
+          "name": "V2-row2",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Two diagonal joint endpoints displaced and float with squared ends; extra horizontal stub near top."
+          ]
+        },
+        {
+          "name": "V3-row2",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Broad blue diagonal inlay edges/width step, pale bevels create unsupported prongs."
+          ]
+        },
+        {
+          "name": "V1-row3",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Main inlay corner is displaced with floating pale bevel endpoints and incomplete upper diagonal."
+          ]
+        },
+        {
+          "name": "V2-row3",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Blue inlay width/phase jumps; pale edge endpoints project into blue; cold/warm paint shift."
+          ]
+        },
+        {
+          "name": "V3-row3",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Additional thin diagonal ends unsupported on open pale plane; fine grain."
+          ]
+        },
+        {
+          "name": "V1-row4",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Paving joint branches terminate mid-plane; double right vertical joint not original."
+          ]
+        },
+        {
+          "name": "V2-row4",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Long horizontal thin seam ends inside whole slab; paint phase."
+          ]
+        },
+        {
+          "name": "V3-row4",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Multiple horizontal and diagonal seam fragments end unsupported or mismatch by tens of pixels."
+          ]
+        },
+        {
+          "name": "H1-col1",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Fine paint grain and broad cold/warm paint phase remain, no acceptance."
+          ]
+        },
+        {
+          "name": "H1-col2",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Incorrect diagonal-to-horizontal bend near patch input230 and squared tail."
+          ]
+        },
+        {
+          "name": "H1-col3",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Diagonal joint locally continuous, but dense fine paint/grain and tonal phase remain."
+          ]
+        },
+        {
+          "name": "H1-col4",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Lower inlay/bevel top endpoint displaced; coarse-to-native material phase."
+          ]
+        },
+        {
+          "name": "H2-col1",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Fine granular stone texture and tonal phase across join remain."
+          ]
+        },
+        {
+          "name": "H2-col2",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Main diagonal endpoints cross/float and extra shallow joint branch is misregistered."
+          ]
+        },
+        {
+          "name": "H2-col3",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Blue band width/edge alignment visibly stepped; bevel prongs and painterly phase."
+          ]
+        },
+        {
+          "name": "H2-col4",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Several diagonal thin joints terminate in empty stone plane."
+          ]
+        },
+        {
+          "name": "H3-col1",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "New vertical grout stub begins in whole slab below blue strip; lower course arrangement differs guide."
+          ]
+        },
+        {
+          "name": "H3-col2",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Blue vertical band x and width shift with jagged beige masks at top join."
+          ]
+        },
+        {
+          "name": "H3-col3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Horizontal joint ends unsupported inside large plane; second line starts at different height."
+          ]
+        },
+        {
+          "name": "H3-col4",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Thin V joint cusp/horizontal input230 line artifacts and tonal phase remain."
+          ]
+        },
+        {
+          "name": "corner-H1-V1",
+          "box": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Incorrect upper diagonal bend and stone texture phase at four-patch intersection."
+          ]
+        },
+        {
+          "name": "corner-H1-V2",
+          "box": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Fine crisscross grain and patch tone phase remain around intersection."
+          ]
+        },
+        {
+          "name": "corner-H1-V3",
+          "box": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Misregistered upper diagonal/bevel endpoints with unsupported tail."
+          ]
+        },
+        {
+          "name": "corner-H2-V1",
+          "box": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Fine crisscross grain and patch tone phase remain around intersection."
+          ]
+        },
+        {
+          "name": "corner-H2-V2",
+          "box": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Blue inlay/bevel alignment step and extra diagonal segment at intersection."
+          ]
+        },
+        {
+          "name": "corner-H2-V3",
+          "box": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Blue inlay/bevel alignment step and extra diagonal segment at intersection."
+          ]
+        },
+        {
+          "name": "corner-H3-V1",
+          "box": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Displaced inlay corner and unsupported vertical pale stroke."
+          ]
+        },
+        {
+          "name": "corner-H3-V2",
+          "box": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Blue width/edge step at join; extra slab branch."
+          ]
+        },
+        {
+          "name": "corner-H3-V3",
+          "box": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Horizontal line ends unsupported near intersection; displaced incoming join."
+          ]
+        }
+      ],
+      "externalChecks": [
+        {
+          "name": "left-1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+          ]
+        },
+        {
+          "name": "left-2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+          ]
+        },
+        {
+          "name": "left-3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+          ]
+        },
+        {
+          "name": "left-4",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "Current r14c06 repaired geometry differs independent r14c07: incoming true diagonal/horizontal joints do not continue; material shifts from blue-grey native to warm mottled grey."
+          ]
+        },
+        {
+          "name": "top-1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+          ]
+        },
+        {
+          "name": "top-2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+          ]
+        },
+        {
+          "name": "top-3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+          ]
+        },
+        {
+          "name": "top-4",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r13c07 incoming paving seams and red-paper fragments differ in phase, thickness/position and tone across border; no native top anchor was propagated."
+          ]
+        },
+        {
+          "name": "right-1",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+          ]
+        },
+        {
+          "name": "right-2",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+          ]
+        },
+        {
+          "name": "right-3",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+          ]
+        },
+        {
+          "name": "right-4",
+          "actualViewed": true,
+          "passed": false,
+          "issues": [
+            "r14c08 incoming paving joints/blue course thickness and segmentation differ; isolated endpoints at border, tone/grain shift."
+          ]
+        }
+      ],
+      "actualNativeInternalChecks": 33,
+      "actualNativeExternalChecks": 12,
+      "allCurrentPanelsActuallyViewed": true,
+      "overviewOnlyUsedForOrientation": true,
+      "sourceResampling": false,
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "geometryPropagationAllowed": false,
+      "pendingRepairs": [
+        "Restore blue courtyard band width and continuous bevels across V2/V3 and H2/H3 with complete native corner references.",
+        "Resolve unsupported thin grout line heads across V2/V3-row4 and H3-col3/4.",
+        "Bind external joins to latest root c06 geometry and current upper/right sources before acceptance.",
+        "Reduce dense fine stone grain after geometry is stable."
+      ],
+      "bottomNeighborUnavailable": "r15_c07 no current native yet; external bottom remains unreviewed, no acceptance claimed."
+    }
+  }
+}

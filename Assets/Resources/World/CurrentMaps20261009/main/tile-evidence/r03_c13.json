@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 3,
+  "column": 13,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43",
+  "imageBytes": 26294876,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png.generation.json",
+  "sourceLedgerSha256": "090a8e38f58eb33ce5d64432c5ec4231364b66087e95094c9ad67f530d513ac6",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+    "imageSha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png.generation.json",
+        "sha256": "090a8e38f58eb33ce5d64432c5ec4231364b66087e95094c9ad67f530d513ac6",
+        "completeness": [
+          "/baseline/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png.generation.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c12/qa/p34-east-source-safety-20261024/review.json",
+    "sourceSha256": "28475984187ab89ea73879d1ddd52b391aab072e277f99fcc203048f9038f8fa",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "atUtc": "2026-10-24T09:20:07.067686+00:00",
+      "status": "HOLD_P34_REQUIRED_EAST_SOURCE_REAL_ROOF_CUT_AT_CORE_TOP_CORNER",
+      "decision": "P34当前0call且无实际生产冲突，但完整东源带不能作为安全固定锚。本次停在精确源阻塞，不生成或缩减源带豁免。",
+      "sourceProof": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c12/qa/p34-east-source-safety-20261024/source-proof.json",
+        "sha256": "8ad0b9cbe1ccd8763328c63aca96e38b6efce8adaa3ba1441136d3d6486a883f"
+      },
+      "actualEast": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+        "sha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43"
+      },
+      "currentPinBasis": {
+        "checkpoint": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/root-handoff-and-checkpoint-v059.json",
+          "sha256": "73ae301a4dc391c76b59931f8dfde23cc347655b6d45c5e88e35d7099f4fde5e"
+        },
+        "ownerAdoption": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/owner-adoption-receipt.json",
+          "sha256": "b5773cb98ac9a7e97a206f9eea117fbf1aec0dd549f44ed9b71dbe9697868090"
+        }
+      },
+      "actualNativeViews": [
+        {
+          "image": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c12/qa/p34-east-source-safety-20261024/east-native.png",
+            "sha256": "2bf02719a66213338a35e1691cfe20baced4c859a2f56f27519e08c94c0459b5"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+            "sha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43"
+          },
+          "sourceBox": [
+            0,
+            1933,
+            115,
+            3187
+          ],
+          "size": [
+            115,
+            1254
+          ],
+          "actualView": "original/native1x",
+          "differentPixels": 0,
+          "differentRGBchannels": 0,
+          "resampling": false,
+          "colourChange": false
+        },
+        {
+          "image": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c12/qa/p34-east-source-safety-20261024/roof-ground-native.png",
+            "sha256": "50c79bbfbf2c6e5b2f7712671df40bd7d428009991f003856a48084c804eb055"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+            "sha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43"
+          },
+          "sourceBox": [
+            0,
+            1700,
+            1254,
+            2954
+          ],
+          "size": [
+            1254,
+            1254
+          ],
+          "actualView": "original/native1x",
+          "differentPixels": 0,
+          "differentRGBchannels": 0,
+          "resampling": false,
+          "colourChange": false
+        },
+        {
+          "image": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c12/qa/p34-east-source-safety-20261024/cut-native.png",
+            "sha256": "e15ff7560d56efc5920c4d29f161f305a377bb1bdc053cbfcd64a6e15528c88e"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+            "sha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43"
+          },
+          "sourceBox": [
+            0,
+            1950,
+            360,
+            2160
+          ],
+          "size": [
+            360,
+            210
+          ],
+          "actualView": "original/native1x",
+          "differentPixels": 0,
+          "differentRGBchannels": 0,
+          "resampling": false,
+          "colourChange": false
+        }
+      ],
+      "observations": [
+        {
+          "id": "P1-EAST-ROOF-ROUNDREL-CUT",
+          "sourceLineY": 2048,
+          "worldLineY": 10240,
+          "targetNativeLineY": 115,
+          "finding": "Native115x1254 band and360x210 focus show a ruler-straight horizontal cut through red projecting eave/roof blocks and a curved gold roundel. Colour/paint strokes and circular/rounded contour organization change or terminate abruptly at this source core seam. It is not a natural stone grout, occlusion or roof-plane endpoint. The broader1254context shows these are connected red/gold eave members above coherent paving.",
+          "requiredSourceXIntersection": [
+            0,
+            115
+          ],
+          "preciseEvidenceROI": [
+            0,
+            1950,
+            360,
+            2160
+          ],
+          "geometryShiftMagnitudeNotInvented": true
+        },
+        {
+          "id": "CORE-TOP-RIGHT-ASSOCIATION",
+          "finding": "Y2048 maps exactly to P34core top y115. The source right band contains real portions of the same eave that continue west across tile boundaryx49152 into the missing P34 scene. Treating this115px strip as fixed would constrain its cut gold/wood material and contours at the true top-right core corner. Source is in halo spatially but belongs to a real connected object; halo location cannot waive source correctness.",
+          "nativeCorner": [
+            1139,
+            115
+          ],
+          "worldCorner": [
+            49152,
+            10240
+          ]
+        }
+      ],
+      "lowerPavingLimitedReuse": {
+        "finding": "The bottom230rows overlap the separately checked P44source range2957..3187. That unchanged-source paving evidence is reusable only there and does not clear the roof/ornament line at2048.",
+        "P44Review": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c12/qa/p44-source-safety-prep-20261024/review.json",
+          "sha256": "60c56ae61301aea63e23a3ba17151a449d2ef1b15432f78afc520a95a0a7c624"
+        },
+        "noWholeEastPASS": true
+      },
+      "unknownNeighbours": {
+        "northProperSide": "No selected current north source bound; NE115 comes from this unsafe east-source band.",
+        "west": "Unknown/no selected core.",
+        "south": "P44 and P43 raw are held and cannot be fixed actual south anchors. SE115 from current tower east pixels can be actual paving, but does not certify missing south contact."
+      },
+      "notReopened": [
+        "peer curb-joint two-method STOP",
+        "peer old west roof repair STOP/history",
+        "r03c12 p41 two-method STOP",
+        "P43/P44 held source adoption"
+      ],
+      "boundedRecommendation": "Do not prepare a first-call fixed east guide or request under this safety result. The precise2048roof/roundel source contact needs owner resolution or an explicit coordinated whole-object source decision before it can be treated as correct. No repair plan/lease/mask or peer artwork is produced here.",
+      "conflict": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r03_c12/qa/p34-east-source-safety-20261024/conflict.json",
+        "sha256": "21174bee1f0cfb3e9a9d5d230c1673fd3c8eb45d81837ab5d1c4ffe08a2294ee"
+      },
+      "P34ActualCalls": 0,
+      "P34ActualReturns": 0,
+      "P34ActualInflight": 0,
+      "newAI": 0,
+      "newLease": 0,
+      "noSourceSelectedProgressFormal4KGlobalOrPeerWrites": true,
+      "notWhole33OrTileAcceptance": true
+    }
+  }
+}

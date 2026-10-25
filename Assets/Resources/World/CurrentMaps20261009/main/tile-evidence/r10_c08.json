@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 10,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "51afaebb7877b3caf8703638aebcd0284d10c8729cd78d2960be726fa7579633",
+  "imageBytes": 21118243,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/r10_c08.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/assembly.json",
+  "sourceLedgerSha256": "3b197c2b60de61193168aca24f822fea4e6723e2162c6e9b198c266499170d2e",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/r10_c08.candidate.png",
+    "imageSha256": "51afaebb7877b3caf8703638aebcd0284d10c8729cd78d2960be726fa7579633",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/assembly.json",
+        "sha256": "3b197c2b60de61193168aca24f822fea4e6723e2162c6e9b198c266499170d2e",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/assembly.json",
+        "sha256": "3b197c2b60de61193168aca24f822fea4e6723e2162c6e9b198c266499170d2e",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/visual-review.json",
+        "record": {
+          "formalAccepted": false,
+          "externalReviewed": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/visual-review.json",
+    "sourceSha256": "3b2121fa7ea19f4039d0f13ce728489598519ff4e98b4ae505d07206e85383e3",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "reviewedAtUtc": "2026-10-13T13:07:19.665Z",
+      "tile": "r10_c08",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/assembly.json"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/r10_c08.candidate.png",
+        "sha256": "51afaebb7877b3caf8703638aebcd0284d10c8729cd78d2960be726fa7579633",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/r10_c08.candidate.context.png",
+        "sha256": "502e0859f21d63730d56ce5890384fa06ac6aadba4869342b67cf6c34bd4a232",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "verifiedNativeCount": 16,
+      "nativeResampling": false,
+      "internalPassed": false,
+      "formalAccepted": false,
+      "externalReviewed": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "actualViewEvidence": {
+        "overview": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/72f40489f8fbeac8/r10_c08.candidate.png",
+          "purpose": "overview only, tool displayed 1600px version of 4096px art"
+        },
+        "nativePanels": [
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/vertical-1024-segments.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/vertical-2048-segments.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/vertical-3072-segments.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/horizontal-1024-segments.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/horizontal-2048-segments.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/horizontal-3072-segments.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/intersections-1024.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/intersections-2048.png",
+            "actualViewed": true,
+            "resampling": false
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/intersections-3072.png",
+            "actualViewed": true,
+            "resampling": false
+          }
+        ],
+        "nativeInternalSegmentsViewed": 24,
+        "nativeIntersectionsViewed": 9,
+        "sourceManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/72f40489f8fbeac8/recover-review-v01/panels.json"
+      },
+      "findings": [
+        {
+          "id": "R10C08-MATERIAL-01",
+          "status": "open",
+          "locations": [
+            "vertical x1024 segments 1, 3, 4",
+            "horizontal y3072 segments 1, 2",
+            "intersection x1024 y3072"
+          ],
+          "problem": "Blue/grey faces show dense cellular/crosshatched texture and patch-shaped tone fronts. Third/fourth row transition visibly changes surface detail.",
+          "acceptanceBlocking": true,
+          "propagationBlocking": false
+        },
+        {
+          "id": "R10C08-GEOMETRY-02",
+          "status": "open",
+          "locations": [
+            "vertical x1024 segment 3",
+            "intersection x1024 y2048"
+          ],
+          "problem": "Triangular dead-end grout and stepped bevel at annular slab meeting diagonal ornament; invented cap-like junction needs coordinated native repair.",
+          "acceptanceBlocking": true,
+          "propagationBlocking": false
+        },
+        {
+          "id": "R10C08-MATERIAL-03",
+          "status": "open",
+          "locations": [
+            "vertical x2048 segments 1, 2",
+            "vertical x3072 segments 1, 2",
+            "horizontal y2048 segment 3",
+            "intersection x2048 y2048"
+          ],
+          "problem": "Warm ivory material grain/tonal fronts and grey inlay texture phase differences remain visible across joins.",
+          "acceptanceBlocking": true,
+          "propagationBlocking": false
+        },
+        {
+          "id": "R10C08-GEOMETRY-04",
+          "status": "open",
+          "locations": [
+            "p04_03",
+            "p04_04"
+          ],
+          "problem": "Inner pale meander stroke was carried to bottom as an outer squared boundary, whereas authoritative coarse guide contains a lower return. p04_03 x230 blue grout and upper boundary kink also remain. Recovered/edited versions removed major invented ivory frames but have not restored all decorative geometry.",
+          "acceptanceBlocking": true,
+          "propagationBlocking": true,
+          "dependency": "Repair before using r10_c08 lower boundary as r11_c08 top anchor; continue independent r11_c07 meanwhile."
+        }
+      ],
+      "nextIndependentTile": "r11_c07",
+      "sourcePreservation": {
+        "recoveredReturn": "p04_03.restart-20261013-v02",
+        "newRejectedReturn": "p04_04.recover-20261013b-v01",
+        "newProvisionalReturn": "p04_04.recover-20261013b-v02"
+      }
+    }
+  }
+}

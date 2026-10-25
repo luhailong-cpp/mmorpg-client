@@ -1,0 +1,1411 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 2,
+  "column": 6,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "c36dbb4116b072bf5fbf0c845722d0f691c46551029937335f6ae6811d89fdd5",
+  "imageBytes": 23159934,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/r02_c06_complete_roof_plane_A_proposal3_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/connected-east-six-row2-current-selection-20261019.json",
+  "sourceLedgerSha256": "7cea679e331988da55f8a18925b159f31c4a56c3b38cc7fb360fcce4703d4204",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/r02_c06_complete_roof_plane_A_proposal3_4096.png",
+    "imageSha256": "c36dbb4116b072bf5fbf0c845722d0f691c46551029937335f6ae6811d89fdd5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/connected-east-six-row2-current-selection-20261019.json",
+        "sha256": "7cea679e331988da55f8a18925b159f31c4a56c3b38cc7fb360fcce4703d4204",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "geometryPendingCount": 1,
+      "geometryPending": [
+        7
+      ],
+      "materialStatus": "PENDING",
+      "formalAccepted": false,
+      "status": "PARTIAL_GEOMETRY_IMPROVEMENT_32_OF_33_PENDING_ROOT_ADOPTION"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/internal33-review.json",
+        "record": {
+          "geometryPendingCount": 1,
+          "geometryPending": [
+            7
+          ],
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "status": "PARTIAL_GEOMETRY_IMPROVEMENT_32_OF_33_PENDING_ROOT_ADOPTION"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/actual-native-perimeter-review.json",
+        "record": {
+          "status": "LOCAL_GEOMETRY_IMPROVEMENT_PROPOSAL_REQUIRES_ROOT_ADOPTION",
+          "coverageIndex": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/full_mask_perimeter_native480/index.json",
+            "sha256": "40190a12706e3212b3b22b72b615ce6be082a19b519ffa6a441ba56b20b20b87"
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/connected-east-six-row2-current-selection-20261019.json",
+        "record": {
+          "status": "candidate_partial_geometry32_one_pending_material_layout_shared_pending",
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "selectedCoreCount": 16,
+          "successorPendingRepairs": [
+            {
+              "id": "r02_c06_s04_02_a01_vertical_rectangle",
+              "stem": "r02_c06_s04_02_a01",
+              "status": "REPLACED_BY_QUICK_PASS_NATIVE_SOURCE",
+              "evidence": "qa/review_r02_c06_s03_02_a01_successor_20261020.json",
+              "issue": "raw x233 vertical rectangle cuts beam/lantern/background; enters formal core",
+              "blockedReferenceDirections": [],
+              "currentSourceStillSelectedPendingReplacement": false,
+              "replacementStem": "r02_c06_s04_02_a02",
+              "quickEvidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_s04_02_a02.quick-review-successor-20261020.json",
+                "sha256": "d46b79bcf1aeccc4e9aabae508b9ab5a378e06803a8ee89235b8e01c030a5e72"
+              }
+            },
+            {
+              "id": "r02_c06_s03_02_a01_rejected",
+              "stem": "r02_c06_s03_02_a01",
+              "status": "NOT_SELECTED_REPAIR_REQUIRED",
+              "evidence": "qa/review_r02_c06_s03_02_a01_successor_20261020.json",
+              "issue": "vertical rectangle and top core seam incompatible with newly available s02_02"
+            },
+            {
+              "id": "r02_c06_s01_04_a02_local_interface",
+              "stem": "r02_c06_s01_04_a02",
+              "status": "PENDING_NOT_PASSED",
+              "issue": "Left/top corner conflicts from full left230 and external north115. Provisional assembly only, local corner and shared north seam pending; do not propagate north/left-upper corner.",
+              "blockedReferenceDirections": [
+                "top",
+                "left-upper-corner"
+              ],
+              "qa": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_s01_04_a02.assembly-candidate-pending-successor-20261020.json",
+                "sha256": "2271416c9ac20842ab32db8e06a461c669a3c7178fbac1646c09961972708dbf"
+              }
+            },
+            {
+              "id": "r02_c06_s03_02_a02_local_interface",
+              "stem": "r02_c06_s03_02_a02",
+              "status": "PENDING_NOT_PASSED",
+              "issue": "x233 rectangle removed. Top roof phase remains incompatible after two targeted attempts; provisional assembly source only, top blocked.",
+              "blockedReferenceDirections": [
+                "top"
+              ],
+              "qa": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_s03_02_a02.assembly-candidate-pending-successor-20261020.json",
+                "sha256": "25291347bc30ef76bfaa7dd02833ade88876e7b72bce2b6b3c19420265fd12c4"
+              }
+            },
+            {
+              "id": "r02_c06_s02_04_a02_left_cloud_seam",
+              "stem": "r02_c06_s02_04_a02",
+              "status": "WITHDRAWN_SOURCE_REPLACED",
+              "issue": "x243 whole-image rectangle removed and top hardcore blue tile continuity holds. Left hardcore gold cloud motif is cut at seam around core join y320 and thin fascia highlight steps; local left seam remains pending, not a full quick PASS. Bottom/right may support continuation, do not treat left seam as fixed authority.",
+              "qa": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_s02_04_a02.assembly-candidate-pending-successor-20261020.json",
+                "sha256": "12d2592df881fbc8af466978dc084f43a4a468d07ab56412e8f4bdcc4b778964"
+              },
+              "replacementStem": "r02_c06_s02_04_a03"
+            },
+            {
+              "id": "r02_c06_s02_03_a01_macro_layout",
+              "stem": "r02_c06_s02_03_a01",
+              "status": "WITHDRAWN_SOURCE_REPLACED_CURRENT_LAYOUT_CORRECTED",
+              "issue": "Native lower-right courtyard conflicts with downstream s03_03 guide blue roof; hard joins alone did not establish macro layout.",
+              "evidence": "guides/r02_c06_s03_03_a01.layout-with-native.png",
+              "replacementStem": "r02_c06_s02_03_a02"
+            },
+            {
+              "id": "r02_c06_s03_04_a01_unwanted_upper_ornament",
+              "stem": "r02_c06_s03_04_a01",
+              "status": "SOURCE_ARTIFACT_EXCLUDED_BY_CURRENT_ASSEMBLY",
+              "issue": "Native blue lower roof macro intact and left/bottom hardcore continuous, but model added unwanted upper red/gold ornament absent from actual top overlap. Top hardcore FAIL; two mapped center gold accents are not at intended positions. Provisional assembly only; inspect actual selected native seam pixels before repair. No quick/full pass.",
+              "qa": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_s03_04_a01.assembly-candidate-pending-successor-20261020.json",
+                "sha256": "19a2530747c33c137bfd8ae4a2f758fcacf67c31d5bfeec1366c1c212dbd8d21"
+              },
+              "candidateEvidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_v1_internal33_successor_20261020.json",
+                "sha256": "5323932e772067f1a19e155fbafaa5706782a544183cf8a2540825e199ec1ce6"
+              },
+              "selectedArtifactPixelCount": 0
+            }
+          ],
+          "provisionalProblemCoreCount": 3,
+          "geometryPendingCount": 11,
+          "pendingInternalIndices": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            17,
+            18,
+            25,
+            26,
+            27,
+            28
+          ],
+          "activeCandidateIssues": [
+            {
+              "id": "s03_02_top_phase",
+              "indices": [
+                4,
+                6,
+                7,
+                17,
+                27,
+                28
+              ],
+              "status": "PENDING_AFTER_TWO_NONIMPROVING_ATTEMPTS",
+              "tileBoxApprox": [
+                1100,
+                1900,
+                2050,
+                2250
+              ],
+              "doNotBlindRetry": true
+            },
+            {
+              "id": "s03_02_to_s03_03_gold_eave",
+              "indices": [
+                4,
+                7,
+                18,
+                28
+              ],
+              "status": "LOCAL_GEOMETRY_PASS_MATERIAL_PENDING",
+              "tileBoxApprox": [
+                1980,
+                2040,
+                2260,
+                2700
+              ],
+              "possibleNextStep": "可独立取原生1254裁片一次统一连续金檐轮廓与瓦/花交接；不能只模糊锯齿或改色。",
+              "localReview": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_gold_eave_local_review_successor_20261020.json",
+                "sha256": "6a9045bed0ca830ccadd62fd03a739eced5bdea2c0aefee000acaa2ea7ed1515"
+              },
+              "repairAttemptCount": 1,
+              "remainingSameCropIssue": "Adjacent upper blue/flower phase remains PENDING under s03_02_top_phase. Do not reuse this local gold pass as full-crop pass."
+            },
+            {
+              "id": "s01_04_external_north_corner",
+              "status": "PENDING",
+              "scope": "external north/top-left actual anchor continuity"
+            },
+            {
+              "id": "s03_04_two_mapped_gold_accents",
+              "status": "PENDING_LAYOUT_DETAIL",
+              "issue": "r03_04原参考中心两处小金色屋顶点位未在最终蓝瓦区域按原位保留，交owner确认/后续补回；不能由几何PASS推断全部布局细节通过。",
+              "evidence": {
+                "status": "PENDING_LAYOUT_DETAIL_NO_REPAIR",
+                "guide": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r02_c06_s03_04_a01.layout-with-native.png",
+                  "sha256": "e9e486fc189c1fddd08746a9d40d10865f757f8caa2e0222d8018e43e56c8323"
+                },
+                "guideInput": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r02_c06_s03_04_a01.input.json",
+                  "sha256": "7c15d3176129a3453a72dfbc6f2f9d5fe7a83649bb7b758b5c5d52204d3a7d32"
+                },
+                "candidateCore": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_v2_delta_successor_20261020/s03_c04_layout_detail_native.png",
+                  "sha256": "aed3c3dbdb07e0dfa88410e644a36be7c7e67377a7b3c1aceaf82ce22e569324"
+                },
+                "candidateCoreTileBox": [
+                  3072,
+                  2048,
+                  4096,
+                  3072
+                ],
+                "approxGuideLocalCenters": [
+                  [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                ],
+                "approxTileCenters": [
+                  [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                ],
+                "assessment": "Original mapped guide contains two small blurred gold points on the blue roof; current native tile lacks corresponding ornaments at their mapped centers. The low-resolution guide alone does not identify a defensible detailed ornament shape/attachment. Retained as layout-detail PENDING; no guessed ornament drawn, and no layout PASS claimed."
+              },
+              "repairAttemptCount": 0,
+              "actualViewEvidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_two_gold_accents_evidence_successor_20261020.json",
+                "sha256": "87aea4b9db8dc7aec7632cab4c32fab2005a668d27d855ec7eea32d3411c8b03"
+              }
+            }
+          ],
+          "internalGeometryReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/internal33-review.json",
+            "sha256": "c3bfd8a8368f1f97f12942a908d47a90b913baf8ba0ef682f1ae2dbc4f9d393b"
+          },
+          "internalGeometryPending": 1,
+          "internalGeometryPendingIndices": [
+            4,
+            6,
+            7,
+            17,
+            27,
+            28
+          ],
+          "pendingIndices": [
+            7
+          ],
+          "sharedGeometryAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalGeometryReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/internal33-review.json",
+            "sha256": "c3bfd8a8368f1f97f12942a908d47a90b913baf8ba0ef682f1ae2dbc4f9d393b"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current-after.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalGeometryReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/internal33-review.json",
+            "sha256": "c3bfd8a8368f1f97f12942a908d47a90b913baf8ba0ef682f1ae2dbc4f9d393b"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current-before.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalGeometryReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/internal33-review.json",
+            "sha256": "c3bfd8a8368f1f97f12942a908d47a90b913baf8ba0ef682f1ae2dbc4f9d393b"
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/internal33-review.json",
+    "sourceSha256": "c3bfd8a8368f1f97f12942a908d47a90b913baf8ba0ef682f1ae2dbc4f9d393b",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tileId": "r02_c06",
+      "createdAtUtc": "2026-10-22T03:26:28.277681+00:00",
+      "reviewer": "/root/resume_roof_same_raw",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/r02_c06_complete_roof_plane_A_proposal3_4096.png",
+        "sha256": "c36dbb4116b072bf5fbf0c845722d0f691c46551029937335f6ae6811d89fdd5"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/r02_c06_complete_roof_plane_A_proposal3_4096.native-repair.json",
+        "sha256": "b7495b8195acbfa441619754834deffed60745a5ed5f6c6ddb0b6f68866198df"
+      },
+      "priorReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+        "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+      },
+      "items": [
+        {
+          "index": 0,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/00.png",
+            "sha256": "602b383dc4fc80a62e51a64db84addec88517cf054fffe083b12623134f43ed9",
+            "tileCropBoxHalfOpen": [
+              784,
+              0,
+              1264,
+              1139
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 0
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 1,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/01.png",
+            "sha256": "a6a4759ab8c9be9d9235cf7b85fad282bc4db97008f2410eda7b16e2fe005270",
+            "tileCropBoxHalfOpen": [
+              1808,
+              0,
+              2288,
+              1139
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Existing object silhouette and tile/gold/wood joints remain geometrically continuous; painterly/material phase remains pending.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 1
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 2,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/02.png",
+            "sha256": "8703d2093a475dc0979e1f941234c6aa1451bda3aabdd981023e512fd64c34f4",
+            "tileCropBoxHalfOpen": [
+              2832,
+              0,
+              3312,
+              1139
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Upper roof underside no longer has a vertical source cliff; tile ends connect into the established wood ceiling.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 2
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 3,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/03.png",
+            "sha256": "71117d131e75d30ff9c65e683b21746b13a70961f9c2501d69111354d7ef554a",
+            "tileCropBoxHalfOpen": [
+              784,
+              909,
+              1264,
+              2163
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Left red/gold roof border and adjoining blue tile column retain continuous silhouettes. The left-mask contact has a gray/brown shadow-tone patch; it is a material issue, without a new open contour.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 4,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/04.png",
+            "sha256": "318d6d7d708bab92b1863cfa8927bd20cdbcdc443445447d5983e5d4bd84dd1c",
+            "tileCropBoxHalfOpen": [
+              1808,
+              909,
+              2288,
+              2163
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "The old rectangular blue cell phase, serrated transition and unsupported upper-surface petals are absent. Rounded tile columns continue from coherent upper columns to the curved eave; right-side gold/red bracket and real inter-tier wood remain.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 5,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/05.png",
+            "sha256": "37e1d19135b54eb7dda4c562187a7595ad04c4a35c9f3650b6fa2ce2021169d4",
+            "tileCropBoxHalfOpen": [
+              2832,
+              909,
+              3312,
+              2163
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Rafter/blue-underside discontinuity repaired. Existing left gold lip terminates at original hanging bracket; right red lip and restored wood windows preserved.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 5
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 6,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/06.png",
+            "sha256": "ed0b172418d0094e24bde8871754355ba5692d210c6f923e5d6200a9fd1f368d",
+            "tileCropBoxHalfOpen": [
+              784,
+              1933,
+              1264,
+              3187
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Old flipped tile fragments and short extra eaves have been replaced by complete rounded tiles. The left curled/end tile and the gold eave contact are closed. Existing gold/red color-band changes remain material pending.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 7,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/07.png",
+            "sha256": "5d8fd9991ad6be3c44e0c9af12e92f63b26ee8d66845015ca87e14ee27d105c1",
+            "tileCropBoxHalfOpen": [
+              1808,
+              1933,
+              2288,
+              3187
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "Upper blue surface, old rectangular block and false branch are improved. The already-held red inner-fascia step at tile(2085,2523) remains unchanged and this complete crop stays geometry pending. The lower independent blue roof retains unsupported pink petals, outside this mask scope and layout pending.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 8,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/08.png",
+            "sha256": "9dd6f107e4d12079029023b47a34e49236de72a244af30b6e9e44c3e69271e65",
+            "tileCropBoxHalfOpen": [
+              2832,
+              1933,
+              3312,
+              3187
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Restored wood sill above lower blue roof and curved tile columns continue without an obvious gap.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 8
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 9,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/09.png",
+            "sha256": "e7f1fadc97cfcd57fdaaeec6362818a78f76008adafa79ba819a35abc35ee7ff",
+            "tileCropBoxHalfOpen": [
+              784,
+              2957,
+              1264,
+              4096
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 9
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 10,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/10.png",
+            "sha256": "92b10fe049a510f4988c6620d4ab7edc32a5d48efc1f753f05ae21b7e9497058",
+            "tileCropBoxHalfOpen": [
+              1808,
+              2957,
+              2288,
+              4096
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 10
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 11,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/11.png",
+            "sha256": "993ce77faefcff7e1b358e4820a8f350c33255edcd4cf8723f3331a21833391b",
+            "tileCropBoxHalfOpen": [
+              2832,
+              2957,
+              3312,
+              4096
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 11
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 12,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/12.png",
+            "sha256": "05e8a9f34b0df270896fd74876e5c53ba2f8e4c2f2e857efc69487750d172a32",
+            "tileCropBoxHalfOpen": [
+              0,
+              784,
+              1024,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 12
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 13,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/13.png",
+            "sha256": "60c275649cceb7de577beb854d165ca32bd6ed7fba867bb9c28485e878a9a908",
+            "tileCropBoxHalfOpen": [
+              1024,
+              784,
+              2048,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Existing object silhouette and tile/gold/wood joints remain geometrically continuous; painterly/material phase remains pending.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 13
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 14,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/14.png",
+            "sha256": "ce52227edacc97125cefd791b4f6ca0413f128dc3f9242bdacdbe3198d0bd716",
+            "tileCropBoxHalfOpen": [
+              2048,
+              784,
+              3072,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Existing object silhouette and tile/gold/wood joints remain geometrically continuous; painterly/material phase remains pending.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 14
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 15,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/15.png",
+            "sha256": "33bb9cf531b27d53051e5556fd18b4340699af8df06af084fd695155a0dedebf",
+            "tileCropBoxHalfOpen": [
+              3072,
+              784,
+              4096,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Existing object silhouette and tile/gold/wood joints remain geometrically continuous; painterly/material phase remains pending.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 15
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 16,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/16.png",
+            "sha256": "c7b1e6d2012cdd94b22c22a200694bf284678e882206b24e73484c0ff89c0c8b",
+            "tileCropBoxHalfOpen": [
+              0,
+              1808,
+              1024,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 16
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 17,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/17.png",
+            "sha256": "dc06e2d2fc9d31e067ca0eb86183bee69637db0ef258c959cf3b69f2265b1dd6",
+            "tileCropBoxHalfOpen": [
+              1024,
+              1808,
+              2048,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "All visible blue column segments cross the former row2/row3 phase boundary continuously, without flipped fragments or a hard rectangular source block. Texture/color transitions remain material pending.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 18,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/18.png",
+            "sha256": "36fc45645b5dce103e5e7f32087226ec3c7c6a5111685981905b8133bf32f3ce",
+            "tileCropBoxHalfOpen": [
+              2048,
+              1808,
+              3072,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "The diagonal gold rail and cloud relief remain continuous; the real wooden window/sill remains present. No newly clipped contour at the right source-selection endpoint. Existing source/material bands outside this mask remain pending.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 19,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/19.png",
+            "sha256": "bef8501ad064f3a79a01ae79e6cf7228c7599fc888b2485bc9265b423cc3c886",
+            "tileCropBoxHalfOpen": [
+              3072,
+              1808,
+              4096,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Restored wooden lattice/diagonal brace/sill over lower roof matches mapped functional facade and contours continuous.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 19
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 20,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/20.png",
+            "sha256": "3c27849ba06ed5850a8fdf5580b3a04f16aab31a838e165ecc23f19c790baf1c",
+            "tileCropBoxHalfOpen": [
+              0,
+              2832,
+              1024,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 20
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 21,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/21.png",
+            "sha256": "60e70f678d04732a54b0b9de69069771395efe1a3dc478de607ac2aea1568e37",
+            "tileCropBoxHalfOpen": [
+              1024,
+              2832,
+              2048,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Small removed old repair difference does not introduce a definite geometric gap in native roof/beam crop.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 21
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 22,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/22.png",
+            "sha256": "d863b7387012efedb3b272bcb7733ad579bb5769e8c20928e8df85ebad7df24b",
+            "tileCropBoxHalfOpen": [
+              2048,
+              2832,
+              3072,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 22
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 23,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/23.png",
+            "sha256": "0c7dd3ba18c043dcebfa5c8506de398982aa3f5db17e013c355cb1f13a50fed1",
+            "tileCropBoxHalfOpen": [
+              3072,
+              2832,
+              4096,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 23
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 24,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/24.png",
+            "sha256": "93bef88dbff10bd65f9ac930281ffcb12b937c1d19a9cd55e1319fe6680a79ec",
+            "tileCropBoxHalfOpen": [
+              784,
+              784,
+              1264,
+              1264
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 24
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 25,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/25.png",
+            "sha256": "7ed790b5e379060ceb6f18ee70b68eceb6dbb2bb72f0d5eb558f91acf2177dfc",
+            "tileCropBoxHalfOpen": [
+              1808,
+              784,
+              2288,
+              1264
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Existing eave corner and rounded red bracket/gold cloud now have complete outer contours; no vertical collage cutoff at the four-source junction.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 25
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 26,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/26.png",
+            "sha256": "18c3d9e46fdd306a3b7aeb3cbf8c2a9429306c39004a42f837c7e0dd505381a9",
+            "tileCropBoxHalfOpen": [
+              2832,
+              784,
+              3312,
+              1264
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Upper tile underside, wood rafter and narrow lip have coherent physical junction; no vertical source rectangle.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 26
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 27,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/27.png",
+            "sha256": "fda60fa02d9c910f5819cfa3f9d419f986312a0679db0c8d780327161496df63",
+            "tileCropBoxHalfOpen": [
+              784,
+              1808,
+              1264,
+              2288
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "At the left four-source junction the small edge column and larger blue columns now continue across the former row boundary. The gray shadow-tone patch at the left selection edge does not open or offset the roof-border silhouette.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 28,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/28.png",
+            "sha256": "326afa98413ef6df8391a7efffaf73141ef01553fc4db3dd41235b7e2b8420b4",
+            "tileCropBoxHalfOpen": [
+              1808,
+              1808,
+              2288,
+              2288
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "The old straight blue block, jagged phase and false green branch/petal intrusion are removed. Blue ridges end at a clean continuous gold eave contact. Gold-plane texture changes remain material pending.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 29,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/29.png",
+            "sha256": "c42068d8b863a5c0c7f7cf61fba9ff4500364aa09314d56c21b24e20b685fb5f",
+            "tileCropBoxHalfOpen": [
+              2832,
+              1808,
+              3312,
+              2288
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "Restored wood sill and lower roof junction continuous; brush phase remains pending.",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 29
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 30,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/30.png",
+            "sha256": "d504adc848618533fa28ba2bdbdd6956b274d7c69a1a1fb6817b4abd840130b0",
+            "tileCropBoxHalfOpen": [
+              784,
+              2832,
+              1264,
+              3312
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 30
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 31,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/31.png",
+            "sha256": "3db7d5c24113978066e9c995a8cc8ff6c845084b41bf4cd5122322b26a1e4e57",
+            "tileCropBoxHalfOpen": [
+              1808,
+              2832,
+              2288,
+              3312
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 31
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        },
+        {
+          "index": 32,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/fixed33/32.png",
+            "sha256": "b05fc84b5274683309eec4d76178b0ceef50e168dc8cca7bb746553c4237b58a",
+            "tileCropBoxHalfOpen": [
+              2832,
+              2832,
+              3312,
+              3312
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "该原生接缝/交点裁片内屋瓦、红金边框、木梁或灯笼轮廓连续，未见明显断线、错台或新增矩形拼接边。",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_successor_repair_v7_internal33_20261021.json",
+              "sha256": "a27502088aac4b625c5fd535b8714d638e18d402c1e79dd50017b5a8d31a8451"
+            },
+            "itemIndex": 32
+          },
+          "allCurrentPixelsAndHashVerified": true,
+          "material": "PENDING"
+        }
+      ],
+      "actuallyViewedChangedIndices": [
+        3,
+        4,
+        6,
+        7,
+        17,
+        18,
+        27,
+        28
+      ],
+      "actualNewNativeViews": 8,
+      "hashIdenticalReusedCount": 25,
+      "geometryPassCount": 32,
+      "geometryPendingCount": 1,
+      "geometryPending": [
+        7
+      ],
+      "newlyGeometryPassedIndices": [
+        4,
+        6,
+        17,
+        27,
+        28
+      ],
+      "priorGeometryPassCount": 27,
+      "completeMaskPerimeterReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/actual-native-perimeter-review.json",
+        "sha256": "88841cd3d77f693ba1c1f77cc7f5b8cfec7ac4112fb53d921c8d950b10139651"
+      },
+      "strictSourceReplay": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/strict-native-replay.json",
+        "sha256": "491e5a12cb3e05fc5eb820aaf197d8a69bf74fbae84748a669bf940677348c9e"
+      },
+      "pixelContracts": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c06_complete_roof_plane_plan_20261021/execution_a01/mask_v3/pixel-contracts.json",
+        "sha256": "74227f53368e66e1528079668e8c3eb1256abcb4e824af2cd7dbba32da879c19"
+      },
+      "internalGeometryClosurePassed": false,
+      "internalClosurePassed": false,
+      "materialStatus": "PENDING",
+      "sharedEdgeClosurePassed": false,
+      "formalAccepted": false,
+      "status": "PARTIAL_GEOMETRY_IMPROVEMENT_32_OF_33_PENDING_ROOT_ADOPTION"
+    }
+  }
+}

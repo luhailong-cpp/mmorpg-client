@@ -9,32 +9,98 @@
   "imageSha256": "34286c921eafd1cd8cc9dcd0df3d67a34eda3b822bc4c65e12a7f2e9b65c2569",
   "imageBytes": 22606644,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-candidate-4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/progress.json",
-  "sourceLedgerSha256": "c9f4c4aaa3f60e2ba0f7e20bffa2a11bde5c77ac3bd6c1123e3511578bd7214a",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-report.json",
+  "sourceLedgerSha256": "bd5d3278733dff03db70c08ed3269fdda48e26d9fcd8d851b19415ec788a207f",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-candidate-4096.png",
-    "sha256": "34286c921eafd1cd8cc9dcd0df3d67a34eda3b822bc4c65e12a7f2e9b65c2569",
-    "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-report.json",
-    "sourceReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-report.json",
-    "sourceIdMask": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-source-id-mask.png",
-    "nativeSourceCount": 21,
-    "baseArrayDoesNotFullyDescribeFinalPixels": true,
-    "nativePixelsVerified": true,
-    "internalPassed": true,
-    "internalStatus": "pass",
-    "allOuterTileEdgesPassed": false,
-    "formalAccepted": false,
-    "sharedEdges": {
-      "north-r10_c03": "geometry_pass"
+    "tile": "r11_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-candidate-4096.png",
+    "imageSha256": "34286c921eafd1cd8cc9dcd0df3d67a34eda3b822bc4c65e12a7f2e9b65c2569",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-report.json",
+        "sha256": "bd5d3278733dff03db70c08ed3269fdda48e26d9fcd8d851b19415ec788a207f",
+        "sourceReviewSha256": "bd5d3278733dff03db70c08ed3269fdda48e26d9fcd8d851b19415ec788a207f",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r11c03-root-review-v01.json",
+        "sha256": "bdd86049a3b69a73b54b956efbb532981eebd702fb80368c0bc7227c0070e6f5",
+        "sourceReviewSha256": "bdd86049a3b69a73b54b956efbb532981eebd702fb80368c0bc7227c0070e6f5",
+        "completeness": [
+          [
+            "/pixelValidation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "internalGeometryStatus": "pass",
+      "northSharedEdgeGeometryStatus": "pass",
+      "formalAccepted": false
     },
-    "internalTileSeamsPassed": true,
-    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/expansion-west-root-r11c03-review.json"
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-manifest.json",
+        "record": {
+          "status": "qa_candidates_written"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r11c03-root-review-v01.json",
+        "record": {
+          "status": "root visual pass; independent full review pending",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/expansion-west-root-r11c03-review.json",
+        "record": {
+          "internalGeometryStatus": "pass",
+          "northSharedEdgeGeometryStatus": "pass",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/progress.json",
+        "record": {
+          "internalStatus": "pass",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-report.json",
+        "record": {
+          "status": "QA native repair candidate; pending visual review; not formal acceptance"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-fasciaedge-v01-r11_c03-report.json",

@@ -1,0 +1,1223 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 10,
+  "column": 1,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "07a9f14b9c8d953732c74a2f39ab92addc1ab856f9350df9c714f7dc9ccf772a",
+  "imageBytes": 33159731,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png.generation.json",
+  "sourceLedgerSha256": "a28db239ab4298a232f65e16deea2d3e3341299e32fa37dbed3df742a9cc659d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png",
+    "imageSha256": "07a9f14b9c8d953732c74a2f39ab92addc1ab856f9350df9c714f7dc9ccf772a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png.generation.json",
+        "sha256": "a28db239ab4298a232f65e16deea2d3e3341299e32fa37dbed3df742a9cc659d",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261021-v003.json",
+        "sha256": "fef18e3389884b88e1fdec0b4578b5a29b3626deae8035b5f9a0da7009c48ddf",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261021-v3/delivery-index.json",
+        "sha256": "fef18e3389884b88e1fdec0b4578b5a29b3626deae8035b5f9a0da7009c48ddf",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "rawHaloStatus": "FAILED",
+      "rawHaloAccepted": false,
+      "wholeTileAccepted": false,
+      "formalAccepted": false,
+      "visualQaStatus": "PENDING",
+      "nativeCoreCount": 16,
+      "unverifiedReason": "Derived crop/copy has no new generation model/quality. Original actual values are retained only in the cited records; no configuration target is promoted to actual evidence."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png.generation.json",
+        "record": {
+          "rawHaloStatus": "FAILED",
+          "rawHaloAccepted": false,
+          "wholeTileAccepted": false,
+          "formalAccepted": false,
+          "visualQaStatus": "PENDING",
+          "nativeCoreCount": 16,
+          "unverifiedReason": "Derived crop/copy has no new generation model/quality. Original actual values are retained only in the cited records; no configuration target is promoted to actual evidence."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-writer-v1/actual-projection.json",
+        "record": {
+          "rawHaloAccepted": false,
+          "wholeTileAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261021-v003.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Derived existingCORE copy has no new generation model/quality; actual values remain undisclosed in original pinned records.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-south-20261020-v3/review.json",
+              "sha256": "01044f8ee7913af1c6b8ed08783304f4c2b2e8159167121189cd3d12272e35c2"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": [
+            {
+              "id": "r10c01-r11c01-far-east-N5",
+              "status": "not_passed",
+              "sourceA": {
+                "tile": "r10_c01",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png",
+                "sha256": "07a9f14b9c8d953732c74a2f39ab92addc1ab856f9350df9c714f7dc9ccf772a",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "sourceB": {
+                "tile": "r11_c01",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+                "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "globalSeamY": 40960,
+              "globalXRange": [
+                3653,
+                4096
+              ],
+              "finding": "The bounded existingCORE canopy improvement has native actual-candidate QA in N4/N5/N1/central contact scopes. Do not reassert the historical canopy reset as the current newCORE finding. The whole edge gate remains not passed; actual pair-candidate proof does not establish foreign current adoption.",
+              "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+              "ownerAction": "Retain failed whole-edge status. Coordinate separate root-reviewed whole-trunk scope and later real-current-neighbor QA; no unilateral neighbor source write.",
+              "historicalFailureAssessment": {
+                "id": "r10c01-r11c01-far-east-N5",
+                "status": "not_passed",
+                "sourceA": {
+                  "tile": "r10_c01",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/complete-native-20261020-v2/candidate-4096.png",
+                  "sha256": "be8e62e3ebd0ef5ee2bdd73835c2d56d0d7cef657a58c019b0cc80f53b6fc956",
+                  "dimensions": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "sourceB": {
+                  "tile": "r11_c01",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+                  "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+                  "dimensions": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "globalSeamY": 40960,
+                "globalXRange": [
+                  3653,
+                  4096
+                ],
+                "finding": "Current adoptedv3 replaces the former broad western mismatch. Its far-east upper canopy still meets the lower canopy with a visible horizontal change of leaf silhouettes, tone and detail.",
+                "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+                "ownerAction": "Neighbor owns r11_c01 north repair; keep fixed r10_c01 source unchanged unless root explicitly reassigns an own-side repair."
+              },
+              "sourceBRole": "preserved_historical_neighbor_context_not_asserted_current_or_candidate_adoption",
+              "boundedImprovement": {
+                "sourceClosure": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+                  "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+                  "jsonPointer": "/tiles/0"
+                },
+                "actualFourCandidateReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/c4/owner-actual-four-candidate-review.json",
+                  "sha256": "853df7374b1d4a3821137de04b2943a32eb0f839fea23255124ec97f64af6c28"
+                },
+                "wholeGatePending": true,
+                "foreignCurrentAdoptionClaim": false
+              },
+              "remainingWholeEdgeBlockers": {
+                "N2Status": "FAILED_EXISTING_FROZEN_TRUNK_MATERIAL_RESET",
+                "globalTightFailureHalfOpen": [
+                  5328,
+                  40950,
+                  5470,
+                  40977
+                ],
+                "rootSeparateScopeRequired": true,
+                "wholeEdgePassed": false
+              }
+            }
+          ],
+          "wholeExternalEdgePassed": false,
+          "rawHaloAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/village_more-execution.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/village_more-execution.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261021-v3/delivery-index.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Derived existingCORE copy has no new generation model/quality; actual values remain undisclosed in original pinned records.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-south-20261020-v3/review.json",
+              "sha256": "01044f8ee7913af1c6b8ed08783304f4c2b2e8159167121189cd3d12272e35c2"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": [
+            {
+              "id": "r10c01-r11c01-far-east-N5",
+              "status": "not_passed",
+              "sourceA": {
+                "tile": "r10_c01",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png",
+                "sha256": "07a9f14b9c8d953732c74a2f39ab92addc1ab856f9350df9c714f7dc9ccf772a",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "sourceB": {
+                "tile": "r11_c01",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+                "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "globalSeamY": 40960,
+              "globalXRange": [
+                3653,
+                4096
+              ],
+              "finding": "The bounded existingCORE canopy improvement has native actual-candidate QA in N4/N5/N1/central contact scopes. Do not reassert the historical canopy reset as the current newCORE finding. The whole edge gate remains not passed; actual pair-candidate proof does not establish foreign current adoption.",
+              "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+              "ownerAction": "Retain failed whole-edge status. Coordinate separate root-reviewed whole-trunk scope and later real-current-neighbor QA; no unilateral neighbor source write.",
+              "historicalFailureAssessment": {
+                "id": "r10c01-r11c01-far-east-N5",
+                "status": "not_passed",
+                "sourceA": {
+                  "tile": "r10_c01",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/complete-native-20261020-v2/candidate-4096.png",
+                  "sha256": "be8e62e3ebd0ef5ee2bdd73835c2d56d0d7cef657a58c019b0cc80f53b6fc956",
+                  "dimensions": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "sourceB": {
+                  "tile": "r11_c01",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+                  "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+                  "dimensions": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "globalSeamY": 40960,
+                "globalXRange": [
+                  3653,
+                  4096
+                ],
+                "finding": "Current adoptedv3 replaces the former broad western mismatch. Its far-east upper canopy still meets the lower canopy with a visible horizontal change of leaf silhouettes, tone and detail.",
+                "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+                "ownerAction": "Neighbor owns r11_c01 north repair; keep fixed r10_c01 source unchanged unless root explicitly reassigns an own-side repair."
+              },
+              "sourceBRole": "preserved_historical_neighbor_context_not_asserted_current_or_candidate_adoption",
+              "boundedImprovement": {
+                "sourceClosure": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+                  "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+                  "jsonPointer": "/tiles/0"
+                },
+                "actualFourCandidateReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/c4/owner-actual-four-candidate-review.json",
+                  "sha256": "853df7374b1d4a3821137de04b2943a32eb0f839fea23255124ec97f64af6c28"
+                },
+                "wholeGatePending": true,
+                "foreignCurrentAdoptionClaim": false
+              },
+              "remainingWholeEdgeBlockers": {
+                "N2Status": "FAILED_EXISTING_FROZEN_TRUNK_MATERIAL_RESET",
+                "globalTightFailureHalfOpen": [
+                  5328,
+                  40950,
+                  5470,
+                  40977
+                ],
+                "rootSeparateScopeRequired": true,
+                "wholeEdgePassed": false
+              }
+            }
+          ],
+          "wholeExternalEdgePassed": false,
+          "rawHaloAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261021-v3/delivery-index.json",
+    "sourceSha256": "fef18e3389884b88e1fdec0b4578b5a29b3626deae8035b5f9a0da7009c48ddf",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAt": "2026-10-21T12:13:12.097563+00:00",
+      "batch": "village_more_20261016",
+      "map": "fishing-village-game-20261009",
+      "tiles": [
+        {
+          "tile": "r09_c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
+          "sha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "nativeCoreCount": 16,
+          "nativeCoreSize": [
+            1024,
+            1024
+          ],
+          "nativeGeneratorOutputs": [
+            1254,
+            1254
+          ],
+          "internalReady": true,
+          "formalAccepted": false,
+          "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c02/qa/complete-native-20261017-v4/internal-review-20261018-v1.json",
+          "reviewSha256": "5cebd0396dac8228e8a0ccead402b7fde5da1a36108a2f4adcf55d8fe4c65fd7",
+          "generationRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png.generation.json",
+            "sha256": "15b2ca4ebf09a405f820d3b83167bed9e5625ea6aeb26940942ad2b67e22f415"
+          },
+          "preservedOriginalDelivery": true,
+          "sourceImageUnchanged": true,
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Builtin host exposes no model/quality selectors or verifiable returned model/quality metadata.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+              "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "northCurrentAdoptedEdgeReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/north-adoption-binding-20261021-v2/closure.json",
+            "sha256": "75ea1238f7cc8d7100361c1bd12532ec7d85bcafb19eefb54042b8ef76184d92"
+          },
+          "northNeighborInternalPending": false,
+          "northEdgePassed": true
+        },
+        {
+          "tile": "r10_c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c02/qa/j3-v1/tile.png",
+          "sha256": "587128d784e0011179b53fe73a3402c54d3009044b23c068efed1761f93dde44",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "nativeCoreCount": 16,
+          "nativeCoreSize": [
+            1024,
+            1024
+          ],
+          "nativeGeneratorOutputs": [
+            1254,
+            1254
+          ],
+          "internalReady": true,
+          "formalAccepted": false,
+          "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+          "reviewSha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+          "generationRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c02/qa/j3-v1/tile.png.generation.json",
+            "sha256": "72c48f7e547c8a9b329e07355b204f32f92fe2d8f8db525c358959b72bef4a37"
+          },
+          "preservedOriginalDelivery": true,
+          "sourceImageUnchanged": false,
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Derived existingCORE copy has no new generation model/quality; actual values remain undisclosed in original pinned records.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-south-20261020-v3/review.json",
+              "sha256": "01044f8ee7913af1c6b8ed08783304f4c2b2e8159167121189cd3d12272e35c2"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": [
+            {
+              "id": "r10c02-r11c02-corner-tonal-step",
+              "status": "not_passed_requires_joint_owner_resolution",
+              "sourceA": {
+                "tile": "r10_c02",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c02/qa/j3-v1/tile.png",
+                "sha256": "587128d784e0011179b53fe73a3402c54d3009044b23c068efed1761f93dde44",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "sourceB": {
+                "tile": "r11_c02",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c02_v2.png",
+                "sha256": "b7885e43a3e746ceeef75ebbf5264e54d21db22465e3dc84234a108c99f907b2",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "globalSeamY": 40960,
+              "globalXRange": [
+                4096,
+                4546
+              ],
+              "widerDiagnosticGlobalXRange": [
+                4096,
+                5120
+              ],
+              "finding": "The bounded existingCORE canopy improvement has native actual-candidate QA in N4/N5/N1/central contact scopes. Do not reassert the historical canopy reset as the current newCORE finding. The whole edge gate remains not passed; actual pair-candidate proof does not establish foreign current adoption. N2 fixed old trunk still has a bark tone/detail reset at [5328,40950,5470,40977], outside the copied CORE and unchanged.",
+              "correction": "Wider1024x768 native view shows the main brown branch continues toward the right and lower side. The earlier narrow-window claim that it has no corresponding continuation is withdrawn; no wholesale trunk break is asserted.",
+              "existingDefect": true,
+              "introducedByThisRound": false,
+              "previousEdgeQa": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+                "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+              },
+              "previousPassLimit": "Prior narrow-edge reuse does not certify this broader failed corner window. Supersede its blanket-pass interpretation only in this affected global range.",
+              "ownerAction": "Retain failed whole-edge status. Coordinate separate root-reviewed whole-trunk scope and later real-current-neighbor QA; no unilateral neighbor source write.",
+              "historicalFailureAssessment": {
+                "id": "r10c02-r11c02-corner-tonal-step",
+                "status": "not_passed_requires_joint_owner_resolution",
+                "sourceA": {
+                  "tile": "r10_c02",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r10_c02.png",
+                  "sha256": "9f8c347fb27240638c2a352822ad04887e4c3d6882d611ada59b8655ce422f87",
+                  "dimensions": [
+                    4096,
+                    4096
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "sourceB": {
+                  "tile": "r11_c02",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c02_v2.png",
+                  "sha256": "b7885e43a3e746ceeef75ebbf5264e54d21db22465e3dc84234a108c99f907b2",
+                  "dimensions": [
+                    4096,
+                    4096
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "globalSeamY": 40960,
+                "globalXRange": [
+                  4096,
+                  4546
+                ],
+                "widerDiagnosticGlobalXRange": [
+                  4096,
+                  5120
+                ],
+                "finding": "At the c02 side of the900 crossing a horizontal tone/detail transition remains between upper and lower canopy at the current boundary.",
+                "correction": "Wider1024x768 native view shows the main brown branch continues toward the right and lower side. The earlier narrow-window claim that it has no corresponding continuation is withdrawn; no wholesale trunk break is asserted.",
+                "existingDefect": true,
+                "introducedByThisRound": false,
+                "previousEdgeQa": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+                  "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+                },
+                "previousPassLimit": "Prior narrow-edge reuse does not certify this broader failed corner window. Supersede its blanket-pass interpretation only in this affected global range.",
+                "ownerAction": "Root coordinate current r11_c02 north and fixed r10_c02 south context; no unilateral neighbor edit or unverified regeneration."
+              },
+              "sourceBRole": "preserved_historical_neighbor_context_not_asserted_current_or_candidate_adoption",
+              "boundedImprovement": {
+                "sourceClosure": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+                  "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+                  "jsonPointer": "/tiles/1"
+                },
+                "actualFourCandidateReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/c4/owner-actual-four-candidate-review.json",
+                  "sha256": "853df7374b1d4a3821137de04b2943a32eb0f839fea23255124ec97f64af6c28"
+                },
+                "wholeGatePending": true,
+                "foreignCurrentAdoptionClaim": false
+              },
+              "remainingWholeEdgeBlockers": {
+                "N2Status": "FAILED_EXISTING_FROZEN_TRUNK_MATERIAL_RESET",
+                "globalTightFailureHalfOpen": [
+                  5328,
+                  40950,
+                  5470,
+                  40977
+                ],
+                "rootSeparateScopeRequired": true,
+                "wholeEdgePassed": false
+              }
+            }
+          ],
+          "candidateImageUnchanged": false,
+          "projectionRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c02/qa/j3-v1/tile.png.projection.json",
+            "sha256": "ab9b7aa15a960a4a58e9df1b9231df8fadd28324569ae4f521bbfba8f440674b"
+          },
+          "sourceClosure": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+            "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+            "jsonPointer": "/tiles/1"
+          },
+          "historicalSelectedSource": {
+            "source": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r10_c02.png",
+              "sha256": "9f8c347fb27240638c2a352822ad04887e4c3d6882d611ada59b8655ce422f87"
+            },
+            "exactOldRow": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/active-0.before.json",
+              "sha256": "7182ab823eb5980a0f2c365f1861eb414cb7b1d5a7270f662e4edd3d89222551",
+              "jsonPointer": "/tiles/1"
+            },
+            "oldFullInternalReview": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c02/qa/complete-native-20261018-v2/internal-review-20261018-v1.json",
+              "sha256": "228b14093f92900e195ff7a5eb8d0f588f517680453318c57f205444204a90a9"
+            },
+            "historicalFlags": {
+              "sourceImageUnchanged": true,
+              "candidateImageUnchanged": true
+            }
+          },
+          "operation": "Exact existing native CORE crop/copy; selected source lineage and limited QA are in sourceClosure. No new AI or resampling.",
+          "oldSourcePngBytesUnchanged": true,
+          "internalReadyScope": "Historical old16core internalReady retained; exact unchanged relevant-pixel reuse plus bounded actual-window QA. No new whole internal tile pass.",
+          "wholeExternalEdgePassed": false,
+          "rawHaloAccepted": false
+        },
+        {
+          "tile": "r09_c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/candidate-4096.png",
+          "sha256": "bfd32418fc291cd16bccbc6869f746500a1004b87b10dc15a9f266a4ada3ff30",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "nativeCoreCount": 16,
+          "nativeCoreSize": [
+            1024,
+            1024
+          ],
+          "nativeGeneratorOutputs": [
+            1254,
+            1254
+          ],
+          "internalReady": true,
+          "formalAccepted": false,
+          "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/internal-review-20261020-rail-v1.json",
+          "reviewSha256": "f3aac72223be930695b72230c09ada8832f19dec1af35a162522e5a079430ce9",
+          "generationRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/candidate-4096.png.generation.json",
+            "sha256": "73f59d01456c2f136453eab6990a9dc0ab2c52d37d65a27d5ee1377a1ff7b4ae"
+          },
+          "assemblyManifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/manifest.json",
+            "sha256": "9f6f43a875fcf3e0e729d9ef4647ef5468aa06f03c96ebaab5e068575ebc2df3"
+          },
+          "sourceSelection": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/selection-v017.json",
+            "sha256": "1406d4228854cf05f4910b098a0d6378da7224191cdca97a3f0d291006faf00b"
+          },
+          "operation": "Exact native source core assembly plus reviewed opaque integer AI repair copies; no art resampling.",
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Derived assembly. Original per-source builtin generation records disclose no verifiable actual model/quality.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-west-20261020-v1/review.json",
+              "sha256": "5bd5db0336e9e0fd583ec655a23421852ab6e8859b74ca1b5ff22881c66c9a1f"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": []
+        },
+        {
+          "tile": "r10_c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png",
+          "sha256": "07a9f14b9c8d953732c74a2f39ab92addc1ab856f9350df9c714f7dc9ccf772a",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "nativeCoreCount": 16,
+          "nativeCoreSize": [
+            1024,
+            1024
+          ],
+          "nativeGeneratorOutputs": [
+            1254,
+            1254
+          ],
+          "internalReady": true,
+          "formalAccepted": false,
+          "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+          "reviewSha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+          "generationRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png.generation.json",
+            "sha256": "a28db239ab4298a232f65e16deea2d3e3341299e32fa37dbed3df742a9cc659d"
+          },
+          "operation": "Exact existing native CORE crop/copy; selected source lineage and limited QA are in sourceClosure. No new AI or resampling.",
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Derived existingCORE copy has no new generation model/quality; actual values remain undisclosed in original pinned records.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-south-20261020-v3/review.json",
+              "sha256": "01044f8ee7913af1c6b8ed08783304f4c2b2e8159167121189cd3d12272e35c2"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": [
+            {
+              "id": "r10c01-r11c01-far-east-N5",
+              "status": "not_passed",
+              "sourceA": {
+                "tile": "r10_c01",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png",
+                "sha256": "07a9f14b9c8d953732c74a2f39ab92addc1ab856f9350df9c714f7dc9ccf772a",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "sourceB": {
+                "tile": "r11_c01",
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+                "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+                "dimensions": [
+                  4096,
+                  4096
+                ],
+                "internalReady": true,
+                "formalAccepted": false
+              },
+              "globalSeamY": 40960,
+              "globalXRange": [
+                3653,
+                4096
+              ],
+              "finding": "The bounded existingCORE canopy improvement has native actual-candidate QA in N4/N5/N1/central contact scopes. Do not reassert the historical canopy reset as the current newCORE finding. The whole edge gate remains not passed; actual pair-candidate proof does not establish foreign current adoption.",
+              "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+              "ownerAction": "Retain failed whole-edge status. Coordinate separate root-reviewed whole-trunk scope and later real-current-neighbor QA; no unilateral neighbor source write.",
+              "historicalFailureAssessment": {
+                "id": "r10c01-r11c01-far-east-N5",
+                "status": "not_passed",
+                "sourceA": {
+                  "tile": "r10_c01",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/complete-native-20261020-v2/candidate-4096.png",
+                  "sha256": "be8e62e3ebd0ef5ee2bdd73835c2d56d0d7cef657a58c019b0cc80f53b6fc956",
+                  "dimensions": [
+                    4096,
+                    4096
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "sourceB": {
+                  "tile": "r11_c01",
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+                  "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+                  "dimensions": [
+                    4096,
+                    4096
+                  ],
+                  "internalReady": true,
+                  "formalAccepted": false
+                },
+                "globalSeamY": 40960,
+                "globalXRange": [
+                  3653,
+                  4096
+                ],
+                "finding": "Current adoptedv3 replaces the former broad western mismatch. Its far-east upper canopy still meets the lower canopy with a visible horizontal change of leaf silhouettes, tone and detail.",
+                "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+                "ownerAction": "Neighbor owns r11_c01 north repair; keep fixed r10_c01 source unchanged unless root explicitly reassigns an own-side repair."
+              },
+              "sourceBRole": "preserved_historical_neighbor_context_not_asserted_current_or_candidate_adoption",
+              "boundedImprovement": {
+                "sourceClosure": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+                  "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+                  "jsonPointer": "/tiles/0"
+                },
+                "actualFourCandidateReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/c4/owner-actual-four-candidate-review.json",
+                  "sha256": "853df7374b1d4a3821137de04b2943a32eb0f839fea23255124ec97f64af6c28"
+                },
+                "wholeGatePending": true,
+                "foreignCurrentAdoptionClaim": false
+              },
+              "remainingWholeEdgeBlockers": {
+                "N2Status": "FAILED_EXISTING_FROZEN_TRUNK_MATERIAL_RESET",
+                "globalTightFailureHalfOpen": [
+                  5328,
+                  40950,
+                  5470,
+                  40977
+                ],
+                "rootSeparateScopeRequired": true,
+                "wholeEdgePassed": false
+              }
+            }
+          ],
+          "candidateImageUnchanged": false,
+          "projectionRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png.projection.json",
+            "sha256": "3b141d9ed9e7d9fddefc6ec7d743f2189894fd25f4237f5850dddeaa9e6092bc"
+          },
+          "sourceClosure": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+            "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+            "jsonPointer": "/tiles/0"
+          },
+          "historicalSelectedSource": {
+            "source": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/complete-native-20261020-v2/candidate-4096.png",
+              "sha256": "be8e62e3ebd0ef5ee2bdd73835c2d56d0d7cef657a58c019b0cc80f53b6fc956"
+            },
+            "exactOldRow": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/active-0.before.json",
+              "sha256": "7182ab823eb5980a0f2c365f1861eb414cb7b1d5a7270f662e4edd3d89222551",
+              "jsonPointer": "/tiles/3"
+            },
+            "oldFullInternalReview": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/complete-native-20261020-v2/internal-review-20261020-v1.json",
+              "sha256": "c48fbd4ea1c9e497ba30b79327963be7e521310250b1fa140d0b49aae1669824"
+            },
+            "historicalFlags": {
+              "candidateImageUnchanged": true
+            }
+          },
+          "sourceImageUnchanged": false,
+          "oldSourcePngBytesUnchanged": true,
+          "internalReadyScope": "Historical old16core internalReady retained; exact unchanged relevant-pixel reuse plus bounded actual-window QA. No new whole internal tile pass.",
+          "wholeExternalEdgePassed": false,
+          "rawHaloAccepted": false
+        }
+      ],
+      "selectedNativeCoreCount": 64,
+      "completeNativeTiles": 4,
+      "internallyReadyTiles": 4,
+      "internalReadyNewTiles": 0,
+      "missingNativeCoreCount": 0,
+      "newNativeCorePositionsThisRound": 0,
+      "inFlight": [],
+      "unarchivedKnownHostOriginals": [],
+      "pendingLocalRepairs": [],
+      "pendingExternalRepairs": [
+        {
+          "id": "r10c01-r11c01-far-east-N5",
+          "status": "not_passed",
+          "sourceA": {
+            "tile": "r10_c01",
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/j3-v1/tile.png",
+            "sha256": "07a9f14b9c8d953732c74a2f39ab92addc1ab856f9350df9c714f7dc9ccf772a",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "internalReady": true,
+            "formalAccepted": false
+          },
+          "sourceB": {
+            "tile": "r11_c01",
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+            "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "internalReady": true,
+            "formalAccepted": false
+          },
+          "globalSeamY": 40960,
+          "globalXRange": [
+            3653,
+            4096
+          ],
+          "finding": "The bounded existingCORE canopy improvement has native actual-candidate QA in N4/N5/N1/central contact scopes. Do not reassert the historical canopy reset as the current newCORE finding. The whole edge gate remains not passed; actual pair-candidate proof does not establish foreign current adoption.",
+          "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+          "ownerAction": "Retain failed whole-edge status. Coordinate separate root-reviewed whole-trunk scope and later real-current-neighbor QA; no unilateral neighbor source write.",
+          "historicalFailureAssessment": {
+            "id": "r10c01-r11c01-far-east-N5",
+            "status": "not_passed",
+            "sourceA": {
+              "tile": "r10_c01",
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/qa/complete-native-20261020-v2/candidate-4096.png",
+              "sha256": "be8e62e3ebd0ef5ee2bdd73835c2d56d0d7cef657a58c019b0cc80f53b6fc956",
+              "dimensions": [
+                4096,
+                4096
+              ],
+              "internalReady": true,
+              "formalAccepted": false
+            },
+            "sourceB": {
+              "tile": "r11_c01",
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+              "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+              "dimensions": [
+                4096,
+                4096
+              ],
+              "internalReady": true,
+              "formalAccepted": false
+            },
+            "globalSeamY": 40960,
+            "globalXRange": [
+              3653,
+              4096
+            ],
+            "finding": "Current adoptedv3 replaces the former broad western mismatch. Its far-east upper canopy still meets the lower canopy with a visible horizontal change of leaf silhouettes, tone and detail.",
+            "reviewAuthority": "Parent directly viewed four full-width native segments and900 crossing; current neighbor N1..N4 passes are also hash-bound in its manual review.",
+            "ownerAction": "Neighbor owns r11_c01 north repair; keep fixed r10_c01 source unchanged unless root explicitly reassigns an own-side repair."
+          },
+          "sourceBRole": "preserved_historical_neighbor_context_not_asserted_current_or_candidate_adoption",
+          "boundedImprovement": {
+            "sourceClosure": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+              "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+              "jsonPointer": "/tiles/0"
+            },
+            "actualFourCandidateReview": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/c4/owner-actual-four-candidate-review.json",
+              "sha256": "853df7374b1d4a3821137de04b2943a32eb0f839fea23255124ec97f64af6c28"
+            },
+            "wholeGatePending": true,
+            "foreignCurrentAdoptionClaim": false
+          },
+          "remainingWholeEdgeBlockers": {
+            "N2Status": "FAILED_EXISTING_FROZEN_TRUNK_MATERIAL_RESET",
+            "globalTightFailureHalfOpen": [
+              5328,
+              40950,
+              5470,
+              40977
+            ],
+            "rootSeparateScopeRequired": true,
+            "wholeEdgePassed": false
+          }
+        },
+        {
+          "id": "r10c02-r11c02-corner-tonal-step",
+          "status": "not_passed_requires_joint_owner_resolution",
+          "sourceA": {
+            "tile": "r10_c02",
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c02/qa/j3-v1/tile.png",
+            "sha256": "587128d784e0011179b53fe73a3402c54d3009044b23c068efed1761f93dde44",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "internalReady": true,
+            "formalAccepted": false
+          },
+          "sourceB": {
+            "tile": "r11_c02",
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c02_v2.png",
+            "sha256": "b7885e43a3e746ceeef75ebbf5264e54d21db22465e3dc84234a108c99f907b2",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "internalReady": true,
+            "formalAccepted": false
+          },
+          "globalSeamY": 40960,
+          "globalXRange": [
+            4096,
+            4546
+          ],
+          "widerDiagnosticGlobalXRange": [
+            4096,
+            5120
+          ],
+          "finding": "The bounded existingCORE canopy improvement has native actual-candidate QA in N4/N5/N1/central contact scopes. Do not reassert the historical canopy reset as the current newCORE finding. The whole edge gate remains not passed; actual pair-candidate proof does not establish foreign current adoption. N2 fixed old trunk still has a bark tone/detail reset at [5328,40950,5470,40977], outside the copied CORE and unchanged.",
+          "correction": "Wider1024x768 native view shows the main brown branch continues toward the right and lower side. The earlier narrow-window claim that it has no corresponding continuation is withdrawn; no wholesale trunk break is asserted.",
+          "existingDefect": true,
+          "introducedByThisRound": false,
+          "previousEdgeQa": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+            "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+          },
+          "previousPassLimit": "Prior narrow-edge reuse does not certify this broader failed corner window. Supersede its blanket-pass interpretation only in this affected global range.",
+          "ownerAction": "Retain failed whole-edge status. Coordinate separate root-reviewed whole-trunk scope and later real-current-neighbor QA; no unilateral neighbor source write.",
+          "historicalFailureAssessment": {
+            "id": "r10c02-r11c02-corner-tonal-step",
+            "status": "not_passed_requires_joint_owner_resolution",
+            "sourceA": {
+              "tile": "r10_c02",
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r10_c02.png",
+              "sha256": "9f8c347fb27240638c2a352822ad04887e4c3d6882d611ada59b8655ce422f87",
+              "dimensions": [
+                4096,
+                4096
+              ],
+              "internalReady": true,
+              "formalAccepted": false
+            },
+            "sourceB": {
+              "tile": "r11_c02",
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c02_v2.png",
+              "sha256": "b7885e43a3e746ceeef75ebbf5264e54d21db22465e3dc84234a108c99f907b2",
+              "dimensions": [
+                4096,
+                4096
+              ],
+              "internalReady": true,
+              "formalAccepted": false
+            },
+            "globalSeamY": 40960,
+            "globalXRange": [
+              4096,
+              4546
+            ],
+            "widerDiagnosticGlobalXRange": [
+              4096,
+              5120
+            ],
+            "finding": "At the c02 side of the900 crossing a horizontal tone/detail transition remains between upper and lower canopy at the current boundary.",
+            "correction": "Wider1024x768 native view shows the main brown branch continues toward the right and lower side. The earlier narrow-window claim that it has no corresponding continuation is withdrawn; no wholesale trunk break is asserted.",
+            "existingDefect": true,
+            "introducedByThisRound": false,
+            "previousEdgeQa": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+              "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+            },
+            "previousPassLimit": "Prior narrow-edge reuse does not certify this broader failed corner window. Supersede its blanket-pass interpretation only in this affected global range.",
+            "ownerAction": "Root coordinate current r11_c02 north and fixed r10_c02 south context; no unilateral neighbor edit or unverified regeneration."
+          },
+          "sourceBRole": "preserved_historical_neighbor_context_not_asserted_current_or_candidate_adoption",
+          "boundedImprovement": {
+            "sourceClosure": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+              "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61",
+              "jsonPointer": "/tiles/1"
+            },
+            "actualFourCandidateReview": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/c4/owner-actual-four-candidate-review.json",
+              "sha256": "853df7374b1d4a3821137de04b2943a32eb0f839fea23255124ec97f64af6c28"
+            },
+            "wholeGatePending": true,
+            "foreignCurrentAdoptionClaim": false
+          },
+          "remainingWholeEdgeBlockers": {
+            "N2Status": "FAILED_EXISTING_FROZEN_TRUNK_MATERIAL_RESET",
+            "globalTightFailureHalfOpen": [
+              5328,
+              40950,
+              5470,
+              40977
+            ],
+            "rootSeparateScopeRequired": true,
+            "wholeEdgePassed": false
+          }
+        }
+      ],
+      "externalUnavailableNeighbors": [],
+      "availableEdgeReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-south-20261020-v3/review.json",
+      "additionalExternalReviews": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+          "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-west-20261020-v1/review.json",
+          "sha256": "5bd5db0336e9e0fd583ec655a23421852ab6e8859b74ca1b5ff22881c66c9a1f"
+        }
+      ],
+      "priorUnchangedOwnSharedEdge": {
+        "pair": [
+          "r09_c02",
+          "r10_c02"
+        ],
+        "review": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/available-edge-review.json",
+          "sha256": "b5f39d134f07bc2f63079f58f74a0bf4a22c4ef4b3b5ba0d2fed9532382d0514"
+        },
+        "reason": "Both original candidate hashes unchanged; prior valid shared-edgeQA reused."
+      },
+      "generationRecordIndex": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/generation-record-index.json",
+      "nativeCoreScopeComplete": true,
+      "internalQaScopeComplete": true,
+      "externalJointQaAllPassed": false,
+      "productionScopeComplete": false,
+      "wholeMapAccepted": false,
+      "formalAccepted": false,
+      "formalAcceptedTileCount": 0,
+      "releaseEvidence": {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/release/village_more.json",
+        "sha256": "81e83e51eafb6448b4cb3bcddd7c6ff73be04ddb9c741bbebefd41b2e5385248"
+      },
+      "splitEvidence": {
+        "path": "docs/MAP_PARALLEL_SPLIT_20261013.json",
+        "sha256": "e82674eb499ef64f1cf7acdb1dba5c0f63989d9158ce3921a9022d784708d61e"
+      },
+      "priorDeliveryPreserved": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/delivery-index.json",
+        "sha256": "8336b60e4e4f6557f7e74f84f6e0e4f1868bc54e34b87eb7ab8b57ffb3083ef4"
+      },
+      "deliveryIndex": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261021-v3/delivery-index.json",
+      "sharedGitModified": false,
+      "otherOwnerFilesWritten": false,
+      "imagesDeleted": false,
+      "paidRouteAdded": false,
+      "coordinatorStatisticsModified": false,
+      "sourceArtResampled": false,
+      "status": "north_shared_edge_gate_closed_common_joint_plan_pending_neighbor_confirmation",
+      "nextStep": "Root forward exact common-native plan to southwest owner. Wait for written both-owner no-conflict and source/edit-envelope confirmation before newAI or candidate adoption. Preserve4internal-ready tiles and all failed joint flags.",
+      "toolingEvidence": {
+        "parentBuiltinExactCallsSucceeded": 2,
+        "actualNewPermissionFailure": false,
+        "previousErrorScope": "Read-only subagent only; no inference of parentimage_gen failure.",
+        "allKnownCallsReturnedArchived": true
+      },
+      "currentSouthNeighborSelection": {
+        "state": "adopted_current_export_internal_passed",
+        "ledger": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/current-tile-ledger.json",
+          "sha256": "278d7945dd3e07444d720232274feaad597828585a951b4e1a5cf04f8a650e80"
+        },
+        "currentSource": {
+          "tile": "r11_c01",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r11_c01_v3_resume1020.png",
+          "sha256": "331ad42cb06c463d0b8eff326cc4cfd28428a772bdba7c1bfb34970ba1f8977d",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "internalReady": true,
+          "formalAccepted": false
+        },
+        "adoptionAudit": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-root/adopt-r11c01-v3-output/adoption-audit.json",
+          "sha256": "174af08042293946bd257835b3078981a3103eccbacc656cded04cd2e941d9c1"
+        },
+        "internalPassedWindows": 39,
+        "formalAccepted": false
+      },
+      "previousState": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261021-v002.json",
+        "sha256": "b9e0de332f9d97f9b1aa610de6a4e90e598a991c6ab70033ec411bf6c96d54bd"
+      },
+      "internalReadyCountDeltaThisRound": 0,
+      "newImagegenCallsThisRound": 0,
+      "existingFourInternalTilesAlreadyCountedByCoordinator": true,
+      "parentDirectClosure": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/parent-direct-closure-20261021-v2/closure.json",
+        "sha256": "d64a3b5a847b4fa849f4d995de58bfa2a45c076172d88bd9a52b371ab93d4901"
+      },
+      "unselectedAttemptGenerationRecordIndex": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/parent-direct-closure-20261021-v1/generation-record-index.json",
+        "sha256": "9762b657ff8cd1e34b8237119dae9edfb00a28747250048407dfe049328c6f5b"
+      },
+      "unselectedReturnedRepairs": [
+        {
+          "version": 1,
+          "request": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v1/request.json",
+            "sha256": "5e835d51e1524c3fbe56509d32387ab8f05e27b433316215480f130cbb626108"
+          },
+          "submission": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v1/submitted.json",
+            "sha256": "278bf5b5f46c84337d9ec2c2204b9700d79d64d96768c131f7c5ac7373dc9456"
+          },
+          "receipt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v1/receipt.json",
+            "sha256": "87627b5693b370438544749450707130079af5e777a3c3e7b14a415e3a71d86c"
+          },
+          "toolResult": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v1/tool-result.json",
+            "sha256": "610d0c569ced32b35dc7fef12fa67d350c70f1ceb5c4c4fc52466fd4b77bbfb2"
+          },
+          "nativeOutput": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v1/native-1254.png",
+            "sha256": "18c2ee7654d393e899ab76e0e1735ab53bb0c8008a27a383745ac07c7dba71e3"
+          },
+          "hostOriginal": {
+            "path": "source-host/C/Users/luyua/.codex/generated_images/01a158d4-adcc-73f2-84ec-c695e356f504/exec-d9479ef4-8ab1-41b9-aa7e-317dda387fd2.png",
+            "sha256": "18c2ee7654d393e899ab76e0e1735ab53bb0c8008a27a383745ac07c7dba71e3"
+          },
+          "decision": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v1/decision.json",
+            "sha256": "c6ceae69de92f0d17df851fb1ebe8f6916fd2290e13d21150e28d5e9afac0769"
+          },
+          "qaManifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/far-east-parent-20261020-v1/manifest.json",
+            "sha256": "b3a6181342a96caf2bf4bb486726f2a92695cc069efbc5a98cb1ed1018f15a53"
+          },
+          "review": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/far-east-parent-20261020-v1/final-review.json",
+            "sha256": "867e217fe058747eea692b1d8b45ee797d4f08d550bc7ab12fb9f6127ef01353"
+          },
+          "selected": false
+        },
+        {
+          "version": 2,
+          "request": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v2/request.json",
+            "sha256": "cdc2992aa5ffb04d44c5c971a9eb7af54415ef4f95025984a93115daee41d9d9"
+          },
+          "submission": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v2/submitted.json",
+            "sha256": "ac57ae6091c5eb27b361640b5439bb531d5d3185468a60611fb00fb93ba1f8ee"
+          },
+          "receipt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v2/receipt.json",
+            "sha256": "735f3e666cdcc134815883e349475530c4cb61a9ded2c611ad4ba54442139b54"
+          },
+          "toolResult": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v2/tool-result.json",
+            "sha256": "22b91f09417cfabe2c119f042d5d7785a1da17f2632f85cc95fed3f9c24559bd"
+          },
+          "nativeOutput": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v2/native-1254.png",
+            "sha256": "0617447cd578240b8a96ef3a9b0804520b2ea5ebd9439afcecd1b8d03b3ab21d"
+          },
+          "hostOriginal": {
+            "path": "source-host/C/Users/luyua/.codex/generated_images/01a158d4-adcc-73f2-84ec-c695e356f504/exec-a576ba78-1349-42e3-b6cc-cbc6919989ab.png",
+            "sha256": "0617447cd578240b8a96ef3a9b0804520b2ea5ebd9439afcecd1b8d03b3ab21d"
+          },
+          "decision": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/far-east-four-tile-v2/decision.json",
+            "sha256": "d42c8be1a86f248fd9f8e105c1d6de19031a72a8cf49f35f58eb8d899082eaac"
+          },
+          "qaManifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/far-east-parent-20261020-v2/manifest.json",
+            "sha256": "025c88cfa4ec9d57918151932ddafae087cbc85caa87c1d9dcd84faa95b02205"
+          },
+          "review": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/far-east-parent-20261020-v2/final-review.json",
+            "sha256": "29045d927eacc9a91e739185808cb0c6ad9bb0722f4f075d6baccb663e70929e"
+          },
+          "selected": false
+        }
+      ],
+      "samePointRepairLimitReached": true,
+      "northNeighborAcceptanceGate": "closed for r08_c02 south/r09_c02 north current adopted sources",
+      "northNeighborBinding": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/north-adoption-binding-20261021-v2/closure.json",
+        "sha256": "75ea1238f7cc8d7100361c1bd12532ec7d85bcafb19eefb54042b8ef76184d92"
+      },
+      "jointRepairPlan": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/plans/joint-common-native-20261021-v1/plan.json",
+        "sha256": "fec489e0580e1c78869a3249948bbc02f45affadd74ae5ee2a7b87cdef9e0ed7"
+      },
+      "rootForwardRequest": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/plans/joint-common-native-20261021-v1/root-forward-request.json",
+        "sha256": "3b1f3f251aa4ae3fe1c1188697e894347abf61635ae61afa334758f819a44de9"
+      },
+      "sharedJointReadyToGenerate": false,
+      "rebootReturnAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/reboot-20261021-v1/return-audit.json",
+        "sha256": "f50df41cef0a85460f023eb7bdf58d1201568cbd08c6a3b161065f2d874a8de0"
+      },
+      "boundedCoreSourceAdoption": {
+        "sourceClosure": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/scoped-source-closure.json",
+          "sha256": "086a6234964e3f19063d3104ac6579ef26cc9256d55c73a71fd11c4273044b61"
+        },
+        "generationRecordIndex": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r10_c01/repairs/joint-whole-object-20261022-v3/B/qa/upper-adopt-v1/revision-2/generation-record-index.json",
+          "sha256": "29e8076c579c0142d41d3c895247699111067706a1dff1402c4d545d5aec9984"
+        },
+        "rootBoundedArtDecision": {
+          "path": "docs/MAP_HUMAN_RESUME_20261022_0210/VILLAGE-four-CORE-local-improvement-root-art-decision-and-prep-20261022_140728.json",
+          "sha256": "b884f3c0f054b4170ea60da4294c642e9537a5367c910a1dade729372d1aa4b6"
+        },
+        "actionScope": "Source selection of these two existingCORE-only derived candidates, conditional on separately released successful original-writer CAS. This immutable plan is not the actual adoption receipt.",
+        "preserveOldInternalTruth": true,
+        "historicalTopLevelContextDefinedInClosure": true,
+        "foreignCurrentAdoptionClaim": false,
+        "N2Passed": false,
+        "rawHaloPassed": false,
+        "wholeExternalEdgePassed": false,
+        "newWholeInternalPassed": false,
+        "newCounters": {
+          "CORE": 0,
+          "internal": 0,
+          "complete": 0,
+          "formal": 0
+        }
+      }
+    }
+  }
+}

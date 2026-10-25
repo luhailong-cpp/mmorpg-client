@@ -1,0 +1,374 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 8,
+  "column": 2,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "b7bf88376e01182069dda5b0a1712483038acc7dbf7456c884ab41a8b9d6206a",
+  "imageBytes": 27315506,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-report.json",
+  "sourceLedgerSha256": "6e97736e172b3ff860e16e60d014903873feb01a0a14d960964633bce9feb46e",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-candidate-4096.png",
+    "imageSha256": "b7bf88376e01182069dda5b0a1712483038acc7dbf7456c884ab41a8b9d6206a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-report.json",
+        "sha256": "6e97736e172b3ff860e16e60d014903873feb01a0a14d960964633bce9feb46e",
+        "sourceReviewSha256": "6e97736e172b3ff860e16e60d014903873feb01a0a14d960964633bce9feb46e",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "QA native repair candidate; pending visual review; not formal acceptance"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-manifest.json",
+        "record": {
+          "status": "qa_candidates_written"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "internalStatus": "Post outline fixed; paving joint endpoints, bottom bamboo anchor bands and paired outer edges pending",
+          "formalAccepted": false,
+          "status": "complete 4096 candidate, pending localized repair and outer edge QA"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/production-resume-20261012.json",
+        "record": {
+          "internalStatus": "Post outline fixed; paving joint endpoints, bottom bamboo anchor bands and paired outer edges pending",
+          "formalAccepted": false,
+          "status": "complete 4096 candidate, pending localized repair and outer edge QA"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "internalStatus": "Post outline fixed; paving joint endpoints, bottom bamboo anchor bands and paired outer edges pending",
+          "formalAccepted": false,
+          "status": "complete 4096 candidate, pending localized repair and outer edge QA"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/production-resume-20261012.json",
+        "record": {
+          "internalStatus": "Post outline fixed; paving joint endpoints, bottom bamboo anchor bands and paired outer edges pending",
+          "formalAccepted": false,
+          "status": "complete 4096 candidate, pending localized repair and outer edge QA"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-report.json",
+        "record": {
+          "status": "QA native repair candidate; pending visual review; not formal acceptance"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-manifest.json",
+    "sourceSha256": "bbdb4514b9084346af379d8641c4c07cd350a89a2fca80f71bc2fe35019c6251",
+    "normalizedDocument": {
+      "status": "qa_candidates_written",
+      "createdAtUtc": "2026-10-16T05:58:30.856815+00:00",
+      "artworkWritten": true,
+      "repairGlobalBox": [
+        5700,
+        29000,
+        6954,
+        30254
+      ],
+      "selectedPixels": 293596,
+      "repairRois": [
+        [
+          570,
+          350,
+          930,
+          1230
+        ]
+      ],
+      "mandatoryTargets": [
+        [
+          610,
+          610,
+          690,
+          1110
+        ],
+        [
+          800,
+          620,
+          850,
+          1110
+        ]
+      ],
+      "flushOuterEdges": [],
+      "sharedSelectionMask": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-repair-local-selection-mask.png",
+        "sha256": "e74c474b8a5603cd5724dbec5c3fdf40d4c1520ae1921874b835fd63dde23cfb",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "binaryValues": [
+          0,
+          255
+        ],
+        "nativeGlobalBox": [
+          5700,
+          29000,
+          6954,
+          30254
+        ],
+        "scale": "1:1"
+      },
+      "allInputsUnchanged": true,
+      "distributedSelectedPixelsExact": true,
+      "tiles": [
+        {
+          "tile": "r08_c02",
+          "candidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-candidate-4096.png",
+            "sha256": "b7bf88376e01182069dda5b0a1712483038acc7dbf7456c884ab41a8b9d6206a",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "sourceIdMask": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-source-id-mask.png",
+            "sha256": "75d9bb9bed28d35b7710ab32e8a57fd6fa3236c8b34881ca4ab0d053c234a636",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "report": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-report.json",
+            "sha256": "6e97736e172b3ff860e16e60d014903873feb01a0a14d960964633bce9feb46e"
+          },
+          "repairSourceId": 17,
+          "validation": {
+            "pixelCount": 16777216,
+            "mismatchedPixels": 0,
+            "sameGlobalCoordinateExact": true,
+            "sourceIdPixelCounts": {
+              "1": 1167611,
+              "2": 1047152,
+              "3": 838197,
+              "4": 1087558,
+              "5": 1014313,
+              "6": 1111192,
+              "7": 795979,
+              "8": 929361,
+              "9": 1081106,
+              "10": 996592,
+              "11": 1210042,
+              "12": 1046281,
+              "13": 994077,
+              "14": 1169804,
+              "15": 886565,
+              "16": 1107790,
+              "17": 293596
+            },
+            "sourceInputsAndRecordsUnchanged": true,
+            "interpolation": false,
+            "feathering": false,
+            "colorAdjustment": false,
+            "displacement": false,
+            "unchangedOutsideRepairSelection": true,
+            "mandatoryCoreUsesRepairOnly": true,
+            "mandatoryTargetsUseRepairOnly": true,
+            "repairPixelCount": 293596,
+            "diskRoundtripExact": true,
+            "mandatoryCorePatchBoxes": [
+              [
+                590,
+                370,
+                910,
+                1210
+              ]
+            ],
+            "mandatoryTargetPatchBoxes": [
+              [
+                610,
+                610,
+                690,
+                1110
+              ],
+              [
+                800,
+                620,
+                850,
+                1110
+              ]
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-repair-local-selection-mask.png",
+          "sha256": "e74c474b8a5603cd5724dbec5c3fdf40d4c1520ae1921874b835fd63dde23cfb",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "binaryValues": [
+            0,
+            255
+          ],
+          "nativeGlobalBox": [
+            5700,
+            29000,
+            6954,
+            30254
+          ],
+          "scale": "1:1"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-repair-area-base-left-candidate-right-100pct.png",
+          "sha256": "72c577c1356d44f6939e84cbbaa93e13360bba7417ba9081092cfc64cd381854",
+          "dimensions": [
+            2508,
+            1254
+          ],
+          "nativeGlobalBox": [
+            5700,
+            29000,
+            6954,
+            30254
+          ],
+          "scale": "1:1",
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-roi1-top-base-first-candidate-second-100pct.png",
+          "sha256": "0b1897bb9f73ca1272bf18eddbb7021690e60f982217e0195c8288fe46bac570",
+          "dimensions": [
+            560,
+            440
+          ],
+          "nativeGlobalBox": [
+            6170,
+            29250,
+            6730,
+            29470
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-roi1-bottom-base-first-candidate-second-100pct.png",
+          "sha256": "c75ada67cceeaf53cf72e7e6a046a9f807e89f585aa9fe05814dc7092554f914",
+          "dimensions": [
+            560,
+            440
+          ],
+          "nativeGlobalBox": [
+            6170,
+            30110,
+            6730,
+            30330
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-roi1-left-base-first-candidate-second-100pct.png",
+          "sha256": "2429613a122e3fc5abef8b2e736913dc51efa93acd57c1d884e1a1fd46053df1",
+          "dimensions": [
+            440,
+            1080
+          ],
+          "nativeGlobalBox": [
+            6170,
+            29250,
+            6390,
+            30330
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-roi1-right-base-first-candidate-second-100pct.png",
+          "sha256": "fc1783c74f7f7b1a92f947614cfc0231a186a4d26052e4a1c2a6c17d9b5d4971",
+          "dimensions": [
+            440,
+            1080
+          ],
+          "nativeGlobalBox": [
+            6510,
+            29250,
+            6730,
+            30330
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-candidate-4096.png",
+          "sha256": "b7bf88376e01182069dda5b0a1712483038acc7dbf7456c884ab41a8b9d6206a",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-source-id-mask.png",
+          "sha256": "75d9bb9bed28d35b7710ab32e8a57fd6fa3236c8b34881ca4ab0d053c234a636",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c02-postedge-v02-r08_c02-repair-selection-mask.png",
+          "sha256": "cc6d80af102929792766df3fd898b62f23cee1d640a2b16b8b4d45bc50840739",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "binaryValues": [
+            0,
+            255
+          ]
+        }
+      ]
+    }
+  }
+}

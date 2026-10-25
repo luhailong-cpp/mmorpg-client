@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 3,
+  "column": 6,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "17ef3873d77a8861bc86b77d8370dbb925a3a3d0406de0c4b9ef0a9e3f7b2b96",
+  "imageBytes": 26469074,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_c06_candidate-v6_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_c06_candidate-v6_4096.native-repair.json",
+  "sourceLedgerSha256": "9cba73ccc4292b5168d3dd8979308d4e0e37b72578f1be6ebb89c3aec6f8a821",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_c06_candidate-v6_4096.png",
+    "imageSha256": "17ef3873d77a8861bc86b77d8370dbb925a3a3d0406de0c4b9ef0a9e3f7b2b96",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_c06_candidate-v6_4096.native-repair.json",
+        "sha256": "9cba73ccc4292b5168d3dd8979308d4e0e37b72578f1be6ebb89c3aec6f8a821",
+        "sourceReviewSha256": "9cba73ccc4292b5168d3dd8979308d4e0e37b72578f1be6ebb89c3aec6f8a821",
+        "completeness": [
+          [
+            "/base/reverifiedProvenance/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "candidate_pending_native_visual_and_boundary_review",
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "tilePixelCount": 16777216,
+        "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+        "baseCoverageRecomputedFromOriginalNatives": true,
+        "editTargetExactlyEqualsBaseCrop": true,
+        "editTargetExactlyEqualsRecordedAncestorCrop": true,
+        "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+        "applicationBaseDifferencesConfinedOutsideMask": true,
+        "guidePixelsUsedAsFinalArt": false,
+        "unassignedPixels": 0
+      },
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_c06_candidate-v6_4096.native-repair.json",
+        "record": {
+          "status": "candidate_pending_native_visual_and_boundary_review",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "tilePixelCount": 16777216,
+            "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+            "baseCoverageRecomputedFromOriginalNatives": true,
+            "editTargetExactlyEqualsBaseCrop": true,
+            "editTargetExactlyEqualsRecordedAncestorCrop": true,
+            "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+            "applicationBaseDifferencesConfinedOutsideMask": true,
+            "guidePixelsUsedAsFinalArt": false,
+            "unassignedPixels": 0
+          },
+          "formalAcceptedCount": 0
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

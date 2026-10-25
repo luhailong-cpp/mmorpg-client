@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 2,
+  "column": 7,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "6b3edeaaf4ea22dc5b9379ccca14433dac3a083057a76780cebff21d7fee7ecb",
+  "imageBytes": 21331446,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02_c07_successor-repair-v5_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "docs/MAP_HUMAN_RESUME_20261021_221439/island-complete-proof/northwest-successors/r02_c07.proof.json",
+  "sourceLedgerSha256": "075e267ba08e017004dad50de23c500c4dc98934bd6b35d8682ee9aa34698760",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02_c07_successor-repair-v5_4096.png",
+    "imageSha256": "6b3edeaaf4ea22dc5b9379ccca14433dac3a083057a76780cebff21d7fee7ecb",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/island-complete-proof/northwest-successors/r02_c07.proof.json",
+        "sha256": "075e267ba08e017004dad50de23c500c4dc98934bd6b35d8682ee9aa34698760",
+        "completeness": [
+          "/completeCandidateProofPassed",
+          true
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "declaredCurrentStatus": {
+        "status": "candidate_geometry33_material_and_external_pending",
+        "selectedCount": 16,
+        "requiredCount": 16,
+        "assembled4k": true,
+        "internalGeometryClosurePassed": true,
+        "internalClosurePassed": false,
+        "internalGeometryPass": 33,
+        "internalGeometryPending": 0,
+        "geometryPassCount": null,
+        "geometryPendingCount": null,
+        "pendingIndices": null,
+        "materialStatus": "PENDING",
+        "sharedEdgeClosurePassed": null,
+        "formalAccepted": false,
+        "externalPassed": false
+      },
+      "rootFormalCoreCount": 16,
+      "fullNativeCoverage": true,
+      "proofStatus": "passed_complete_native_identity_and_coverage",
+      "remainingAcceptanceObligations": [
+        "Internal material/layout acceptance remains pending; this proof does not visually accept artwork.",
+        "Shared edge/external acceptance and formal whole-map acceptance remain pending.",
+        "Bound current v5 geometry is 33/33, but gold/red hard color seam, upper blue hard-mask paint phase, coarse/faceted blue paint and specular/material phase issues remain pending."
+      ],
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/island-complete-proof/northwest-successors/r02_c07.proof.json",
+        "record": {
+          "declaredCurrentStatus": {
+            "status": "candidate_geometry33_material_and_external_pending",
+            "selectedCount": 16,
+            "requiredCount": 16,
+            "assembled4k": true,
+            "internalGeometryClosurePassed": true,
+            "internalClosurePassed": false,
+            "internalGeometryPass": 33,
+            "internalGeometryPending": 0,
+            "geometryPassCount": null,
+            "geometryPendingCount": null,
+            "pendingIndices": null,
+            "materialStatus": "PENDING",
+            "sharedEdgeClosurePassed": null,
+            "formalAccepted": false,
+            "externalPassed": false
+          },
+          "rootFormalCoreCount": 16,
+          "fullNativeCoverage": true,
+          "proofStatus": "passed_complete_native_identity_and_coverage",
+          "remainingAcceptanceObligations": [
+            "Internal material/layout acceptance remains pending; this proof does not visually accept artwork.",
+            "Shared edge/external acceptance and formal whole-map acceptance remain pending.",
+            "Bound current v5 geometry is 33/33, but gold/red hard color seam, upper blue hard-mask paint phase, coarse/faceted blue paint and specular/material phase issues remain pending."
+          ],
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c07_r02_c07_successor-repair-v5_4096_reboot_20261021/index.json",
+        "record": {
+          "notVisuallyAcceptedByScript": true
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c07_successor_repair_v5_internal33_20261021.json",
+        "record": {
+          "geometryPending": [],
+          "unverifiedReason": "Host managed builtin; tool exposes no model/quality selector and no returned model/quality metadata.",
+          "materialIssues": [
+            {
+              "tileBox": [
+                1022,
+                1005,
+                1027,
+                1110
+              ],
+              "note": "Gold front face abruptly changes to red at vertical source boundary with continuous silhouette; color/material seam pending."
+            },
+            {
+              "tileBox": [
+                115,
+                115,
+                3981,
+                3981
+              ],
+              "note": "Strong white specular highlights, coarse faceted blue tile paint and paint/shading phase changes remain pending; geometry pass does not approve material."
+            },
+            {
+              "tileBox": [
+                1010,
+                215,
+                1186,
+                216
+              ],
+              "note": "Upper hard-mask boundary has visible blue paint phase; continuous channel geometry only is accepted."
+            },
+            {
+              "tileBox": [
+                1910,
+                2810,
+                2361,
+                3111
+              ],
+              "note": "Local blue paint/specular phases remain pending after geometry repair; no global material acceptance."
+            }
+          ],
+          "external": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02_c07_root_geometry_adoption_reboot_20261021.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

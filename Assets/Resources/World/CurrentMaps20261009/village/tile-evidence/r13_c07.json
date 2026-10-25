@@ -1,0 +1,433 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 13,
+  "column": 7,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "06c2349545de79f5f533725e5b04d92e983df29aed7989f8b6c0bdd3b4e46296",
+  "imageBytes": 20446165,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/delivery-oct18c-v1/main/r13_c07.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/delivery-oct18c-v1/manifest.json",
+  "sourceLedgerSha256": "768f38265e0a2f4696002a59afd30a5a0456bd3d3ac480d044ac01228370bb43",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/delivery-oct18c-v1/main/r13_c07.png",
+    "imageSha256": "06c2349545de79f5f533725e5b04d92e983df29aed7989f8b6c0bdd3b4e46296",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/delivery-oct18c-v1/manifest.json",
+        "sha256": "768f38265e0a2f4696002a59afd30a5a0456bd3d3ac480d044ac01228370bb43",
+        "sourceReviewSha256": "768f38265e0a2f4696002a59afd30a5a0456bd3d3ac480d044ac01228370bb43",
+        "completeness": [
+          "Hash-bound full4096 delivery file; byte-identical original native tile or required synchronized neighbor.",
+          "Main tile group64/64 native CORE coverage; group acceptance remains conditional on its pinned neighbors."
+        ]
+      }
+    ],
+    "selectionBasis": "native_complete_delivery_export_or_required_full_neighbor",
+    "sourceStatus": {
+      "formalAccepted": true,
+      "acceptance": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json",
+        "sha256": "6d1027cd758b7f51267501cca51fc041e70fc50b85f5b6d69f3cf93c336efbaa",
+        "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/delivery-oct18c-v1/manifest.json",
+        "record": {
+          "formalAccepted": true,
+          "acceptance": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json",
+            "sha256": "6d1027cd758b7f51267501cca51fc041e70fc50b85f5b6d69f3cf93c336efbaa",
+            "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json"
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/delivery-oct18c-v1/manifest.json",
+    "sourceSha256": "768f38265e0a2f4696002a59afd30a5a0456bd3d3ac480d044ac01228370bb43",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-18T20:00:44.843552+00:00",
+      "batch": "village-west-courtyard",
+      "status": "accepted_complete_for_all_four_reserved_tiles",
+      "formalCompletion": true,
+      "formalAcceptedTiles": 4,
+      "nativeCoreCoverage": {
+        "required": 64,
+        "present": 64
+      },
+      "mainTiles": [
+        "r12_c06",
+        "r12_c07",
+        "r13_c06",
+        "r13_c07"
+      ],
+      "qaCountsPerMainTile": {
+        "internalSeams": 24,
+        "internalJunctions": 9,
+        "actualEdgeSegments": 16,
+        "actualCornerNeighborhoods": 4
+      },
+      "mainAcceptanceRecords": {
+        "r13_c06": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c06-final-seams-oct18b-v1/r13c06-acceptance-v1.json",
+          "sha256": "c503e25b45ac1a8a44928ad9cc8f1bd829cf8fde3e783fa01f7c775580539f8b",
+          "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c06-final-seams-oct18b-v1/r13c06-acceptance-v1.json"
+        },
+        "r13_c07": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json",
+          "sha256": "6d1027cd758b7f51267501cca51fc041e70fc50b85f5b6d69f3cf93c336efbaa",
+          "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json"
+        },
+        "r12_c06": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c06-final-oct18c-v1/r12c06-acceptance-oct18c-v1.json",
+          "sha256": "5f674340ad84f067b0bac1e1278817c42110f854b163a18c79d5ef9fa342cdee",
+          "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c06-final-oct18c-v1/r12c06-acceptance-oct18c-v1.json"
+        },
+        "r12_c07": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c07-final-oct18c-v1/delivery-manifest-v1.json",
+          "sha256": "1ad226010add002d26aa9e75d86bc2bd7f667d028903af9925fd9f70a6ba0ff9",
+          "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c07-final-oct18c-v1/delivery-manifest-v1.json"
+        }
+      },
+      "files": {
+        "r12_c06": {
+          "tile": "r12_c06",
+          "role": "main",
+          "file": "main/r12_c06.png",
+          "sha256": "f14a4e7f5ebd11799ce7d8e04e7af991c46edc871763236690c50545eaa4b1e6",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-c07-W03-upper-port-oct18c-v1/joint-candidate-oct18c-v1/r12_c06-candidate-4096.png",
+              "sha256": "f14a4e7f5ebd11799ce7d8e04e7af991c46edc871763236690c50545eaa4b1e6",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-c07-W03-upper-port-oct18c-v1/joint-candidate-oct18c-v1/r12_c06-candidate-4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalAccepted": true,
+          "acceptance": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c06-final-oct18c-v1/r12c06-acceptance-oct18c-v1.json",
+            "sha256": "5f674340ad84f067b0bac1e1278817c42110f854b163a18c79d5ef9fa342cdee",
+            "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c06-final-oct18c-v1/r12c06-acceptance-oct18c-v1.json"
+          }
+        },
+        "r12_c07": {
+          "tile": "r12_c07",
+          "role": "main",
+          "file": "main/r12_c07.png",
+          "sha256": "814d6d0f1c0993c2e6ab5bcef134303abdb975eb8b199a6374300d89088d398c",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-c07-W03-upper-port-oct18c-v1/joint-candidate-oct18c-v1/r12_c07-candidate-4096.png",
+              "sha256": "814d6d0f1c0993c2e6ab5bcef134303abdb975eb8b199a6374300d89088d398c",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-c07-W03-upper-port-oct18c-v1/joint-candidate-oct18c-v1/r12_c07-candidate-4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalAccepted": true,
+          "acceptance": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c07-final-oct18c-v1/delivery-manifest-v1.json",
+            "sha256": "1ad226010add002d26aa9e75d86bc2bd7f667d028903af9925fd9f70a6ba0ff9",
+            "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/r12c07-final-oct18c-v1/delivery-manifest-v1.json"
+          }
+        },
+        "r13_c06": {
+          "tile": "r13_c06",
+          "role": "main",
+          "file": "main/r13_c06.png",
+          "sha256": "56bf5acec880706804c88f8afebcd4d03229289fe31096c079d1409b8fb41c48",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c06-final-seams-oct18b-v1/I13-centered-second-v1/joint-candidate-v1/south-candidate-4096.png",
+              "sha256": "56bf5acec880706804c88f8afebcd4d03229289fe31096c079d1409b8fb41c48",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c06-final-seams-oct18b-v1/I13-centered-second-v1/joint-candidate-v1/south-candidate-4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalAccepted": true,
+          "acceptance": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c06-final-seams-oct18b-v1/r13c06-acceptance-v1.json",
+            "sha256": "c503e25b45ac1a8a44928ad9cc8f1bd829cf8fde3e783fa01f7c775580539f8b",
+            "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c06-final-seams-oct18b-v1/r13c06-acceptance-v1.json"
+          }
+        },
+        "r13_c07": {
+          "tile": "r13_c07",
+          "role": "main",
+          "file": "main/r13_c07.png",
+          "sha256": "06c2349545de79f5f533725e5b04d92e983df29aed7989f8b6c0bdd3b4e46296",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/r13_c07-core4096.png",
+              "sha256": "06c2349545de79f5f533725e5b04d92e983df29aed7989f8b6c0bdd3b4e46296",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/r13_c07-core4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalAccepted": true,
+          "acceptance": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json",
+            "sha256": "6d1027cd758b7f51267501cca51fc041e70fc50b85f5b6d69f3cf93c336efbaa",
+            "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/delivery-manifest-v2.json"
+          }
+        },
+        "r11_c05": {
+          "tile": "r11_c05",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r11_c05.png",
+          "sha256": "555c2b2b0cb3c6062b607d62270c1731b392ce43cc63dd1449f943b2bd50cb4b",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-concentrated-oct18b-v1/NW-source-selection-independent-v1/joint-source-v1/NW-core4096.png",
+              "sha256": "555c2b2b0cb3c6062b607d62270c1731b392ce43cc63dd1449f943b2bd50cb4b",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-concentrated-oct18b-v1/NW-source-selection-independent-v1/joint-source-v1/NW-core4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r11_c06": {
+          "tile": "r11_c06",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r11_c06.png",
+          "sha256": "79145cf9548ad3851884e68c3f93313b15e7b5894df3c3d5615e16d53f615702",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-concentrated-oct18b-v1/NW-source-selection-independent-v1/joint-source-v1/N-core4096.png",
+              "sha256": "79145cf9548ad3851884e68c3f93313b15e7b5894df3c3d5615e16d53f615702",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-concentrated-oct18b-v1/NW-source-selection-independent-v1/joint-source-v1/N-core4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r12_c05": {
+          "tile": "r12_c05",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r12_c05.png",
+          "sha256": "78be1d8bc96a9ca54c1c242d8e710f94a971f6fdbc3b943c6cf3a5d0a9893484",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-concentrated-oct18b-v1/NW-source-selection-independent-v1/joint-source-v1/W-core4096.png",
+              "sha256": "78be1d8bc96a9ca54c1c242d8e710f94a971f6fdbc3b943c6cf3a5d0a9893484",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c06-concentrated-oct18b-v1/NW-source-selection-independent-v1/joint-source-v1/W-core4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r12_c08": {
+          "tile": "r12_c08",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r12_c08.png",
+          "sha256": "e40d80e42cf448ce7d52fbe3bbcb9b730a3c7a50cd7daa43ee6fe10c0d718aba",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c07-east-sync-staging-oct18b-v5/r12c08-synchronized-candidate4096.png",
+              "sha256": "e40d80e42cf448ce7d52fbe3bbcb9b730a3c7a50cd7daa43ee6fe10c0d718aba",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c07-east-sync-staging-oct18b-v5/r12c08-synchronized-candidate4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r11_c07": {
+          "tile": "r11_c07",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r11_c07.png",
+          "sha256": "50ddd2eff7d5dd5e5fd9a1a7dd5adba92c8b3e7f7e81b8ac363f63c26f016ee7",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c07-east-sync-staging-oct18b-v5/r11c07-synchronized-context-native.png",
+              "sha256": "2fb1b28ea3209b2d744b19cb29779b73e192326068d953e6897b48b3431c321a",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c07-east-sync-staging-oct18b-v5/r11c07-synchronized-context-native.png"
+            }
+          ],
+          "operation": "exact crop [115,115,4211,4211] of synchronized native context",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r11_c08": {
+          "tile": "r11_c08",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r11_c08.png",
+          "sha256": "011a92699a0353f835e4b70d9767b1e4fe5cf00078e804fcc8f2e331968cd2e9",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c07-east-sync-staging-oct18b-v4/r11c08-synchronized-core4096.png",
+              "sha256": "011a92699a0353f835e4b70d9767b1e4fe5cf00078e804fcc8f2e331968cd2e9",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r12c07-east-sync-staging-oct18b-v4/r11c08-synchronized-core4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r13_c08": {
+          "tile": "r13_c08",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r13_c08.png",
+          "sha256": "746b488e1e728572c5d4186427f7296f35a403e1f3ba46be560d4d03343aaf78",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/r13_c08-sync-core4096.png",
+              "sha256": "746b488e1e728572c5d4186427f7296f35a403e1f3ba46be560d4d03343aaf78",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/synchronized-final-v2/r13_c08-sync-core4096.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r14_c07": {
+          "tile": "r14_c07",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r14_c07.png",
+          "sha256": "b37fa70d73761d8800d346785adb3e1cb08942259af43110f23cc265cd620e95",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/joint-proposal-v1/r14_c07-core.png",
+              "sha256": "b37fa70d73761d8800d346785adb3e1cb08942259af43110f23cc265cd620e95",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/joint-proposal-v1/r14_c07-core.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        },
+        "r14_c08": {
+          "tile": "r14_c08",
+          "role": "required-contact-neighbor",
+          "file": "required-neighbors/r14_c08.png",
+          "sha256": "1157460d421cb56fc707e196f33f437376889c4e23146e376c16354228aa5cb4",
+          "width": 4096,
+          "height": 4096,
+          "format": "PNG",
+          "derivedFrom": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/joint-proposal-v1/r14_c08-core.png",
+              "sha256": "1157460d421cb56fc707e196f33f437376889c4e23146e376c16354228aa5cb4",
+              "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/repairs/r13c07-concentrated-oct18b-v1/joint-proposal-v1/r14_c08-core.png"
+            }
+          ],
+          "operation": "byte-identical copy of accepted core",
+          "modelEvidence": "Follow referenced source assembly and per-native generation records; export is not a new AI generation.",
+          "formalWholeNeighborAccepted": false,
+          "acceptedScope": "Required repaired contact/corner area and new source selection boundaries only."
+        }
+      },
+      "requiredSynchronizedNeighborCount": 9,
+      "dependencyRule": "Use all four main outputs together with all nine required-neighbors outputs. These local alternative versions preserve accepted shared contacts; owner selections have not been modified.",
+      "unchangedNeighborAnchors": {
+        "r13_c05": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-r13_c05-context-native.png",
+          "sha256": "98b7123aca88cf9e39c9edc91e7bf94ebcd5cdfb3e78e95a7f8def045deebf3b",
+          "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-r13_c05-context-native.png"
+        },
+        "r14_c06": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r14c05-r14c06-v3-r14_c06-context-native.png",
+          "sha256": "ee27d0e7f5fa286c783a0d0d1be267c6b04d4547ffbd884d90f820531a299c67",
+          "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/pair-r14c05-r14c06-v3-r14_c06-context-native.png"
+        },
+        "r14_c05": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-r14_c05-context-native.png",
+          "sha256": "01c38eb1fc2d93535435e8859622d1fb5f9c7d58050f843fce52b1f1996aebb7",
+          "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/sea-c05-west-cut-repair-1017-v1-r14_c05-context-native.png"
+        }
+      },
+      "scopeLimit": "This acceptance covers the four reserved tiles, their actual shared edges/corners, and all new patch return boundaries. Other areas of neighboring whole tiles retain their separate QA status.",
+      "dependencyAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/final-delivery-dependency-independent-oct18c-v1/dependency-receipt-v2.json",
+        "sha256": "95f7b447880dc790c18715b6baf6768a71323aebee467dd99062507002315392",
+        "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/qa/final-delivery-dependency-independent-oct18c-v1/dependency-receipt-v2.json"
+      },
+      "sourceIndex": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/delivery-oct18c-v1/image-source-index.json",
+        "sha256": "eabcb2c91c4cba43ac768c93990637b311df78aaa056645400489b5a7ea7096c"
+      },
+      "pendingWithinScope": [],
+      "latestNativeRoute": "builtin image_gen",
+      "actualModel": null,
+      "actualQuality": null,
+      "unverifiedReason": "Host tool did not disclose actual model/quality. Configured target is recorded per image and is not an actual returned-model claim.",
+      "ownerDirectoriesModified": false,
+      "sharedGitModified": false,
+      "imagesDeletedOrOverwritten": false,
+      "resamplingOrBlendingUsedInFinalExport": false,
+      "exportScript": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/records/export-final-oct18c.py",
+        "sha256": "b74460eee0340fe26f2296d9d11c213ef4742c3437119aabd64bc8f1ef61ae82",
+        "projectRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-west-courtyard/records/export-final-oct18c.py"
+      }
+    }
+  }
+}

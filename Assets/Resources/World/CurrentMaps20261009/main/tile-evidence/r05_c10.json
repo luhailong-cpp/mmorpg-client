@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 5,
+  "column": 10,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "06d1b922ababe15ae3d4ec38e66ba6c21a3114a23d6bdbb3666b845375644cc5",
+  "imageBytes": 26822542,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/r05_c10-local-v2.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+  "sourceLedgerSha256": "cb505e1167aefce679c763f4338685251937d08623d10f688ff19ac0197f39f6",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r05_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/r05_c10-local-v2.candidate.png",
+    "imageSha256": "06d1b922ababe15ae3d4ec38e66ba6c21a3114a23d6bdbb3666b845375644cc5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+        "sha256": "cb505e1167aefce679c763f4338685251937d08623d10f688ff19ac0197f39f6",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "complete_candidate_internal_pending_repairs",
+      "selectedCoreCount": 16,
+      "formalAcceptedCount": 0,
+      "pendingRepairGroups": [
+        {
+          "id": "blue-road-context",
+          "priority": "P2",
+          "issue": "First r1c2 rectangular context tears and extra thin row removed by local v2. Outer south paste boundary y1651 still has 30..40px lane shift, grain/vein change; r2c2 context group remains. Two local calls completed; pending, no automatic retry loop."
+        },
+        {
+          "id": "roof-interface",
+          "priority": "P2",
+          "issue": "Local v2 makes y3072 barrel rows and gold cuff continuous in repair interior. Left ridge/south boundary y3699 still have small ring/row/highlight phase shifts and grain cuts; p21/p31 ridge material/width group remains. Two local calls completed; pending, no automatic retry loop."
+        },
+        {
+          "id": "ivory-grout-material",
+          "priority": "P2",
+          "issue": "Ivory diagonal lattice joins along x3072 and y1024/2048/3072 have 20..40px displaced ends and square grain changes; left rectangular slab region has visible changes of grain and thin rows."
+        },
+        {
+          "id": "external-south",
+          "priority": "P2",
+          "issue": "r06_c10 north-to-this-south interface remains unpassed: roofing sharpness/rows, background silhouette, p43 platform and p44 band phases. Earlier quick native boundary crops retained."
+        },
+        {
+          "id": "layout-fidelity",
+          "priority": "P2",
+          "issue": "Top p11/p21 gold edge rendered as two layered rails and lower small gold scroll: compare approved full map layout during final review. Added p32 stone cloud motifs were removed by v2; this is not formal map acceptance."
+        }
+      ],
+      "externalTileSeams": "not passed",
+      "changedRegionQaStatus": "Both v1 and v2 native interiors and eight paste edges visually inspected at 100%. V2 retained as improved but unpassed. No scaling or blending."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+        "record": {
+          "status": "complete_candidate_internal_pending_repairs",
+          "selectedCoreCount": 16,
+          "formalAcceptedCount": 0,
+          "pendingRepairGroups": [
+            {
+              "id": "blue-road-context",
+              "priority": "P2",
+              "issue": "First r1c2 rectangular context tears and extra thin row removed by local v2. Outer south paste boundary y1651 still has 30..40px lane shift, grain/vein change; r2c2 context group remains. Two local calls completed; pending, no automatic retry loop."
+            },
+            {
+              "id": "roof-interface",
+              "priority": "P2",
+              "issue": "Local v2 makes y3072 barrel rows and gold cuff continuous in repair interior. Left ridge/south boundary y3699 still have small ring/row/highlight phase shifts and grain cuts; p21/p31 ridge material/width group remains. Two local calls completed; pending, no automatic retry loop."
+            },
+            {
+              "id": "ivory-grout-material",
+              "priority": "P2",
+              "issue": "Ivory diagonal lattice joins along x3072 and y1024/2048/3072 have 20..40px displaced ends and square grain changes; left rectangular slab region has visible changes of grain and thin rows."
+            },
+            {
+              "id": "external-south",
+              "priority": "P2",
+              "issue": "r06_c10 north-to-this-south interface remains unpassed: roofing sharpness/rows, background silhouette, p43 platform and p44 band phases. Earlier quick native boundary crops retained."
+            },
+            {
+              "id": "layout-fidelity",
+              "priority": "P2",
+              "issue": "Top p11/p21 gold edge rendered as two layered rails and lower small gold scroll: compare approved full map layout during final review. Added p32 stone cloud motifs were removed by v2; this is not formal map acceptance."
+            }
+          ],
+          "externalTileSeams": "not passed",
+          "changedRegionQaStatus": "Both v1 and v2 native interiors and eight paste edges visually inspected at 100%. V2 retained as improved but unpassed. No scaling or blending."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+    "sourceSha256": "cb505e1167aefce679c763f4338685251937d08623d10f688ff19ac0197f39f6",
+    "normalizedDocument": {
+      "schemaVersion": 2,
+      "tile": "r05_c10",
+      "reviewedAt": "2026-10-19T12:59:57.333058+00:00",
+      "status": "complete_candidate_internal_pending_repairs",
+      "candidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/r05_c10-local-v2.candidate.png",
+      "candidateSha256": "06d1b922ababe15ae3d4ec38e66ba6c21a3114a23d6bdbb3666b845375644cc5",
+      "assemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/assembly.json",
+      "nativeCount": 21,
+      "selectedCoreCount": 16,
+      "completeCandidateCount": 1,
+      "internalPassed4kCount": 0,
+      "formalAcceptedCount": 0,
+      "reviewedInternalPairCount": 24,
+      "reviewedIntersectionCount": 9,
+      "reviewSheetManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/review-20261019/review-sheets.json",
+      "reviewedIntersections": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r1-c1-100pct.png",
+          "sha256": "903de3b6a8b9b130833333c103fd67a74466490c0f9bc33ed8fcbfa84f092afe"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r1-c2-100pct.png",
+          "sha256": "83c36d9c98b52d5fd826a69a7ec5fd25a96615c45446a193fda1a0c299dfc4ae"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r1-c3-100pct.png",
+          "sha256": "2a3999cb349cf4b6a0d0110e5a843d65cde8fb0c3e35649a2f42cbf838b2015f"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r2-c1-100pct.png",
+          "sha256": "7ccf81e15c7975c3b1cd2744e4080868c656b24cd2759a6830ecefa7d0bf9c63"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r2-c2-100pct.png",
+          "sha256": "3005a6c6c3363fbc6aa563c273685941bf650c3dbbc4f1d69bb9fab0a6f5cb44"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r2-c3-100pct.png",
+          "sha256": "77daf2c06309700c9ca7c0e913695fd8d41e558637da9079ba54935adb6d9ddb"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r3-c1-100pct.png",
+          "sha256": "7e6d7e980213f31a4097e8126b2729196cef4ffeda55e7d5d2229eab4673d7c8"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r3-c2-100pct.png",
+          "sha256": "6183ca1f57e7a0d51bdb934d3827881721361a143b3ef030654c0897bbdf73e5"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/intersection-r3-c3-100pct.png",
+          "sha256": "02b04ce4ab63f2f4c7f6357521da6d6d25932b81e2bdb908577add39bebaaab9"
+        }
+      ],
+      "pendingRepairGroups": [
+        {
+          "id": "blue-road-context",
+          "priority": "P2",
+          "issue": "First r1c2 rectangular context tears and extra thin row removed by local v2. Outer south paste boundary y1651 still has 30..40px lane shift, grain/vein change; r2c2 context group remains. Two local calls completed; pending, no automatic retry loop."
+        },
+        {
+          "id": "roof-interface",
+          "priority": "P2",
+          "issue": "Local v2 makes y3072 barrel rows and gold cuff continuous in repair interior. Left ridge/south boundary y3699 still have small ring/row/highlight phase shifts and grain cuts; p21/p31 ridge material/width group remains. Two local calls completed; pending, no automatic retry loop."
+        },
+        {
+          "id": "ivory-grout-material",
+          "priority": "P2",
+          "issue": "Ivory diagonal lattice joins along x3072 and y1024/2048/3072 have 20..40px displaced ends and square grain changes; left rectangular slab region has visible changes of grain and thin rows."
+        },
+        {
+          "id": "external-south",
+          "priority": "P2",
+          "issue": "r06_c10 north-to-this-south interface remains unpassed: roofing sharpness/rows, background silhouette, p43 platform and p44 band phases. Earlier quick native boundary crops retained."
+        },
+        {
+          "id": "layout-fidelity",
+          "priority": "P2",
+          "issue": "Top p11/p21 gold edge rendered as two layered rails and lower small gold scroll: compare approved full map layout during final review. Added p32 stone cloud motifs were removed by v2; this is not formal map acceptance."
+        }
+      ],
+      "cumulativeRepairAttempts": {
+        "p32-added-clouds": 1,
+        "blue-road-context-local": 2,
+        "roof-interface-local": 2
+      },
+      "sourceAudit": {
+        "validSelectedNativeCount": 16,
+        "invalidSelectedSources": [],
+        "allReferenceBytesReverified": true
+      },
+      "actualModel": null,
+      "actualQuality": null,
+      "inflightGeneration": null,
+      "unsavedSuccessfulOutputs": 0,
+      "externalTileSeams": "not passed",
+      "baseReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/review-20261019/internal-review-v1.json",
+      "baseReviewSha256": "4534a89bdd46899e438fde44b358d287d097cfd1d1857940fb6152c42403479b",
+      "baseCandidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/core-baseline/329dfd4633428afb77f9/r05_c10-core-baseline.candidate.png",
+      "baseCandidateSha256": "e165f92d875b9a2a20ee9dcaf77b55560f03a96d62e7d9a5abb7d57fc4a4f8a2",
+      "coreNativeCount": 17,
+      "localRepairNativeCount": 4,
+      "localAssemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/local-v2-assembly.json",
+      "selectedRepairs": [
+        {
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/native/repairs/blue-road-local-v2-20261019.png",
+          "sha256": "065166f4a4d8030d88381e25af8033dc00e9f2eae216c2a2b2b6724fd87eb137",
+          "paste": [
+            1421,
+            397
+          ],
+          "crop": [
+            0,
+            0,
+            1254,
+            1254
+          ]
+        },
+        {
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/native/repairs/roof-join-local-v2-20261019.png",
+          "sha256": "0742c2209e4dbe30a6f6ee69b7ea4bf1daed7de0a855600ad10b0f7fb50aeb30",
+          "paste": [
+            397,
+            2445
+          ],
+          "crop": [
+            0,
+            0,
+            1254,
+            1254
+          ]
+        }
+      ],
+      "changedRegionQa": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/blue-road-local-v2-20261019-north-100pct.png",
+          "crop": [
+            1321,
+            297,
+            2775,
+            497
+          ],
+          "sha256": "499e585d6dceb344daf28850b36f66a96732260bc677975300b1b23a793ba05d"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/blue-road-local-v2-20261019-south-100pct.png",
+          "crop": [
+            1321,
+            1551,
+            2775,
+            1751
+          ],
+          "sha256": "f20eb69d8f76d7a40912b7044d5602bebcf1491851d12fb6c060c381ed317b64"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/blue-road-local-v2-20261019-west-100pct.png",
+          "crop": [
+            1321,
+            397,
+            1521,
+            1651
+          ],
+          "sha256": "6a9a385fea09779329af2a3908d064c41633ec221ceb12d875b34698c2f2fb92"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/blue-road-local-v2-20261019-east-100pct.png",
+          "crop": [
+            2575,
+            397,
+            2775,
+            1651
+          ],
+          "sha256": "7cde44b3ab945b0e005c3a1f3854b08235fa2d338733e0780357fd7972e64de5"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/roof-join-local-v2-20261019-north-100pct.png",
+          "crop": [
+            297,
+            2345,
+            1751,
+            2545
+          ],
+          "sha256": "f593764b0d7f9e425b4c5c42369590d773e08c58ad890cd9ef105384c291733e"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/roof-join-local-v2-20261019-south-100pct.png",
+          "crop": [
+            297,
+            3599,
+            1751,
+            3799
+          ],
+          "sha256": "487d0d7373b71fca3217d6aacdfac79af17300670ecec90ba061b2e138d543ff"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/roof-join-local-v2-20261019-west-100pct.png",
+          "crop": [
+            297,
+            2445,
+            497,
+            3699
+          ],
+          "sha256": "d758e945fa971386cc6e3e73cb723e7bfeb433bef8aa67977d3242e74d564595"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r05_c10/qa/local-repair-20261019/roof-join-local-v2-20261019-east-100pct.png",
+          "crop": [
+            1551,
+            2445,
+            1751,
+            3699
+          ],
+          "sha256": "a56c8e765fdfb6deaaee8374d3076bed3891d373e3653114183fd9422537b699"
+        }
+      ],
+      "changedRegionQaStatus": "Both v1 and v2 native interiors and eight paste edges visually inspected at 100%. V2 retained as improved but unpassed. No scaling or blending.",
+      "unchangedReviewReuse": "Reuse baseline 24 joins and 9 intersections outside changed rectangles; changed rectangles reviewed through native local returns plus all four surrounding edges each."
+    }
+  }
+}

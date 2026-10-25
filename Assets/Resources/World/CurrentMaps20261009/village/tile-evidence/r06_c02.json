@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 6,
+  "column": 2,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "742ef2fe7d0546100ce32d3840602be72337e863af302f7a75e63ce9b54f2615",
+  "imageBytes": 25354765,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/r06_c02.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/assembly.json",
+  "sourceLedgerSha256": "fffce92892908e7bceccc962798a954c73d0575ab1b4679be8dec150abd3cb26",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/r06_c02.candidate.png",
+    "imageSha256": "742ef2fe7d0546100ce32d3840602be72337e863af302f7a75e63ce9b54f2615",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/assembly.json",
+        "sha256": "fffce92892908e7bceccc962798a954c73d0575ab1b4679be8dec150abd3cb26",
+        "completeness": [
+          "sourcesCount",
+          24
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate-pending-roof-top-and-patch-edge-repair"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+        "record": {
+          "internalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/local-qa.json",
+        "record": {
+          "wholeTileAccepted": false,
+          "pending": [
+            "upper roof ridge join",
+            "remaining complete tile seam review"
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/local-qa.json",
+    "sourceSha256": "ab21ab042461a4b34012b7c0ab9b919672fd8f05e6c1b6344ab82ec5f61d4072",
+    "normalizedDocument": {
+      "reviewedAt": "2026-10-16T19:21:45.909357+00:00",
+      "localGroundTransition": "passed",
+      "reviewedEdges": [
+        "n-1",
+        "n-2",
+        "w-1",
+        "w-2",
+        "e-1",
+        "e-2",
+        "s-1",
+        "s-2"
+      ],
+      "nativeSourceSha256": "f8f9c4b56fad9a284659a30627939cadfc8954f160c78cc924383f5d08ef1e46",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r06_c02/ground-v1/r06_c02.candidate.png",
+        "sha256": "742ef2fe7d0546100ce32d3840602be72337e863af302f7a75e63ce9b54f2615"
+      },
+      "pixelReplayMismatches": 0,
+      "wholeTileAccepted": false,
+      "pending": [
+        "upper roof ridge join",
+        "remaining complete tile seam review"
+      ],
+      "actualModel": null
+    }
+  }
+}

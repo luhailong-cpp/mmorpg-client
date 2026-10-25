@@ -9,39 +9,61 @@
   "imageSha256": "576429802200fe40bd49a486fedfea9832803d33069802af10ee93d42d0ad661",
   "imageBytes": 23362889,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-candidate-4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/progress.json",
-  "sourceLedgerSha256": "c9f4c4aaa3f60e2ba0f7e20bffa2a11bde5c77ac3bd6c1123e3511578bd7214a",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-report.json",
+  "sourceLedgerSha256": "e671abeac6cbffc38d7e7cd36328dd66ace757ba9a3db46b2bd4be8e10384fc1",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-candidate-4096.png",
-    "sha256": "576429802200fe40bd49a486fedfea9832803d33069802af10ee93d42d0ad661",
-    "dimensions": [
-      4096,
-      4096
+    "tile": "r10_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-candidate-4096.png",
+    "imageSha256": "576429802200fe40bd49a486fedfea9832803d33069802af10ee93d42d0ad661",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-report.json",
+        "sha256": "e671abeac6cbffc38d7e7cd36328dd66ace757ba9a3db46b2bd4be8e10384fc1",
+        "sourceReviewSha256": "e671abeac6cbffc38d7e7cd36328dd66ace757ba9a3db46b2bd4be8e10384fc1",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
     ],
-    "sourceIdMask": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-source-id-mask.png",
-    "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-report.json",
-    "sourceReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-report.json",
-    "nativeSourceCount": 28,
-    "sourceInputRecordCount": 29,
-    "nativePixelsVerified": true,
-    "internalPassed": true,
-    "internalTileSeamsPassed": true,
-    "allOuterTileEdgesPassed": false,
-    "formalAccepted": false,
-    "mode": "native exact same-global-coordinate binary selection, no interpolation/feathering/painting/warping",
-    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r11c04-pond-right-crisp-v02-west-supplement.json",
-    "pairedNorthReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-r11c04-resume-final-west-review.json",
-    "connectedGroupEdgesPassed": true,
-    "internalStatus": "previously passed internal/group edges unchanged outside lower north-roof paired repair; repair perimeter independently passed",
-    "sharedEdges": {
-      "south-r11_c04": "geometry_pass"
-    }
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "QA native repair candidate; pending visual review; not formal acceptance"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/progress.json",
+        "record": {
+          "formalAccepted": false,
+          "internalStatus": "previously passed internal/group edges unchanged outside lower north-roof paired repair; repair perimeter independently passed"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-report.json",
+        "record": {
+          "status": "QA native repair candidate; pending visual review; not formal acceptance"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-north-roof-reselect-v01-r10_c04-report.json",

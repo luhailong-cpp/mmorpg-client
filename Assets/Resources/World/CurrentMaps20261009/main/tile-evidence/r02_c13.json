@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 2,
+  "column": 13,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "3e8f685163a5c833543f80b523139f27a51c4e931cf091396ba526f1d5f6044d",
+  "imageBytes": 27422755,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c13/candidates/r02_c13.n2-single-cap-v4-20261021.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-current-remaining-qa-rebind-v001/current-own-and-eight-neighbor-source-snapshot.json",
+  "sourceLedgerSha256": "13e31232794a50a14906eba9bcae8a132e120e12de01b93f8eff522c62388da0",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c13/candidates/r02_c13.n2-single-cap-v4-20261021.png",
+    "imageSha256": "3e8f685163a5c833543f80b523139f27a51c4e931cf091396ba526f1d5f6044d",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-current-remaining-qa-rebind-v001/current-own-and-eight-neighbor-source-snapshot.json",
+        "sha256": "13e31232794a50a14906eba9bcae8a132e120e12de01b93f8eff522c62388da0",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-current-remaining-qa-rebind-v001/current-own-and-eight-neighbor-source-snapshot.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "formalAcceptedCount": 0,
+          "status": "single_N2_cap_owner_adopted_other_internal_external_defects_pending"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-N2-singlecap-current-source-rebind-v001/review.json",
+    "sourceSha256": "98cbcca87c2776e8ff922896a32d85a24d7193d6c78881e45ba7d2007be297a9",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-23T13:41:57.727693+00:00",
+      "status": "PASS_LOCAL_SINGLE_CAP_CURRENT_SOURCES_REBOUND_REMAINING_LINE_STALE",
+      "scope": "N2 singlebluecap full22992mask plus existing300x210perimeter/physicaltile seam only. NotwholeN2/layout/globalglaze/northedge.",
+      "checkpoint": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/root-handoff-and-checkpoint-v050.json",
+        "sha256": "8bc717d3a79420914958898c6783a34a603804dc27a5e0f92a8eecc361828986"
+      },
+      "currentSelectedSourcePins": {
+        "tower": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+          "sha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "towerGeneration": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png.generation.json",
+          "sha256": "090a8e38f58eb33ce5d64432c5ec4231364b66087e95094c9ad67f530d513ac6"
+        },
+        "north": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c13/candidates/r02_c13.n2-single-cap-v4-20261021.png",
+          "sha256": "3e8f685163a5c833543f80b523139f27a51c4e931cf091396ba526f1d5f6044d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "northCandidateSelectionIndex": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c13/tile-progress.json",
+          "sha256AtRead": "f4fed2e299160d845d29459c19fadc5a115dfd98e65889fe9fac9686085d38b7",
+          "candidateField": "candidate",
+          "candidateSHAField": "candidateSha256",
+          "status": "single_N2_cap_owner_adopted_other_internal_external_defects_pending",
+          "sameSelectionIndexSHAAsPassedQa": true
+        },
+        "northOwnerAdoptionMetadata": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c13/qa/n2-single-cap-adoption-20261021/adoption-receipt.json",
+          "sha256": "e9ee1baa7ac431ee394d791bfdf4b3aa619d867833335045cf6074faa6da6039"
+        },
+        "note": "northlastSavedp42isnotusedas selected source; authoritativecandidate/candidateSha256+ownerreceipt select3e8f."
+      },
+      "previousActualBilateralLocalPass": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-n2-bilateral-actual-adoption-v001/review.json",
+        "sha256": "87581a7467b45cb4702f1ff30e028a0bbc46a9bfdbdcf07a03ef2fe85cbbc91a"
+      },
+      "previousQaStatus": "pass-local-single-cap-actual-bilateral-adoption-only",
+      "previousOwnPin": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-n2-own-adoption-v001/r03_c13-candidate.png",
+        "sha256": "fc304f13241350f77c3a112d5e7b03aad3af71fc30f1015e37e0e2a263b278c3",
+        "pixels": [
+          4096,
+          4096
+        ]
+      },
+      "previousNorthPin": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c13/candidates/r02_c13.n2-single-cap-v4-20261021.png",
+        "sha256": "3e8f685163a5c833543f80b523139f27a51c4e931cf091396ba526f1d5f6044d",
+        "pixels": [
+          4096,
+          4096
+        ]
+      },
+      "sharedNative": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-n2-single-blue-cap-shared-native-resume11-v002/native-repair.png",
+        "sha256": "43cee111c70ea05a736df5851c58d30254c42f988d272f2e0d4dc0dd62b43c68",
+        "pixels": [
+          1254,
+          1254
+        ]
+      },
+      "sharedFullCapMask": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-n2-single-blue-cap-shared-native-resume11-v002/shared-full-cap-mask-source-1254.png",
+        "sha256": "53e83a18b3f295e17847015458fbb01d9d230e3474f33a38d1aa73dd38c8c5bb",
+        "pixels": [
+          1254,
+          1254
+        ]
+      },
+      "commonMaskPixels": 22992,
+      "northMaskPixels": 10038,
+      "towerMaskPixels": 12954,
+      "wholeMaskBBoxCommonXYXY": [
+        620,
+        331,
+        852,
+        479
+      ],
+      "finiteCompleteCapPerimeterCommonXYXY": [
+        590,
+        300,
+        890,
+        510
+      ],
+      "finiteCompleteCapPerimeterWorldXYXY": [
+        51052,
+        8092,
+        51352,
+        8302
+      ],
+      "sourceMappingReplayed": {
+        "northTileXYXY": [
+          1900,
+          3996,
+          2200,
+          4096
+        ],
+        "northLocalCropXYXY": [
+          0,
+          0,
+          300,
+          100
+        ],
+        "towerTileXYXY": [
+          1900,
+          0,
+          2200,
+          110
+        ],
+        "towerLocalCropXYXY": [
+          0,
+          100,
+          300,
+          210
+        ],
+        "physicalSeamCommonY": 400,
+        "physicalSeamFiniteCropY": 100,
+        "operation": "Directintegercrop/concatenateonly in memory, no resampling/blend/retouch or outputartimage."
+      },
+      "pixelChecks": {
+        "currentVsExistingPassedCapAndPerimeterDifferentPixels": 0,
+        "inside22992VsSharedNativeMismatchPixels": 0,
+        "inside22992VsPassedActualQaMismatchPixels": 0,
+        "outsideCapWithinFinitePerimeterVsPassedQaMismatchPixels": 0,
+        "north10038VsNativeMismatchPixels": 0,
+        "tower12954VsNativeMismatchPixels": 0,
+        "physicalSeam2RowsVsPassedQaMismatchPixels": 0
+      },
+      "currentChangedBBoxCommonXYXY": null,
+      "savedPassedQaCropReused": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-n2-bilateral-actual-adoption-v001/actual-cap-and-perimeter-300x210.png",
+        "sha256": "2a86bf6e1a4f0240c4b27ecf28703de8c5d41938eaaedb347b3704dc520ed065",
+        "pixels": [
+          300,
+          210
+        ],
+        "source": "actual-common-context-1254 from northSelected + towerSelected",
+        "commonCropXYXY": [
+          590,
+          300,
+          890,
+          510
+        ],
+        "annotationOnly": false,
+        "aiGenerated": false
+      },
+      "oldSameHashQAReferencesFreshlyVerified": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-n2-bilateral-actual-adoption-v001/source-index.json",
+          "sha256": "32f302f3db3d4ca9ee5542596a656797bfd4a2e497a67b7bcb4f7a9fbfd038f1"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-n2-bilateral-actual-adoption-v001/pixel-verification.json",
+          "sha256": "d21fe6c1f621d41d9ee68cfa51f414d28553fe40c131a04987031cf47a7e1a89"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-n2-single-blue-cap-shared-native-resume11-v002/native-repair.png",
+          "sha256": "43cee111c70ea05a736df5851c58d30254c42f988d272f2e0d4dc0dd62b43c68"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-n2-single-blue-cap-shared-native-resume11-v002/shared-full-cap-mask-source-1254.png",
+          "sha256": "53e83a18b3f295e17847015458fbb01d9d230e3474f33a38d1aa73dd38c8c5bb"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c13/qa/n2-single-cap-adoption-20261021/adoption-receipt.json",
+          "sha256": "e9ee1baa7ac431ee394d791bfdf4b3aa619d867833335045cf6074faa6da6039"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-n2-bilateral-actual-adoption-v001/actual-cap-and-perimeter-300x210.png",
+          "sha256": "2a86bf6e1a4f0240c4b27ecf28703de8c5d41938eaaedb347b3704dc520ed065"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-n2-bilateral-actual-adoption-v001/actual-common-context-1254.png",
+          "sha256": "3a23ac369d3a38e2001e5d84bf9c0a745a00d5095a29d151e99464f49e979f4f"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/qa-v001/resume13-n2-bilateral-actual-adoption-v001/mask-perimeter-and-physical-seam-300x210.png",
+          "sha256": "7050eaa7733afadeb2cf2fce173ff75051de9eac32e88a6a49a1f291720a3bf6"
+        }
+      ],
+      "visualReviewPolicy": "Existing actualbilateral completecap/perimeter nativevisualPASS reused because its exact300x210current-sourcecrop pixels are unchanged. No newvisualclaim or broadnorthedge rescan.",
+      "remainingTextAudit": {
+        "currentCP50Line": "Single blue cap now both owners adopted identical native43cee111/mask53e83a18: ownfc304 andnorth3e8f. Final actual-source local-cap QA pending; wholeN2 layout/material and global glaze texture acceptance remain open.",
+        "cp50AlreadyRecordedPassedStatus": "passed-single-cap-full-mask-perimeter-and-physical-seam-only",
+        "conclusion": "The finalactualsource localcapQApending phrase is stale. The exactN2 bilateralQA was alreadylocalPASS and remains0diff on currenta5d735/3e8f sources.",
+        "suggestedRootOnlyReplacement": "N2 singlebluecap actualbilateral localPASS remains valid on currentowna5d735/north3e8f, sharednative43cee111/fullmask53e83a18; full22992cap, finiteperimeter and physicalseam0delta. OtherN2 layout/material and globalnorth-edge acceptance remainopen.",
+        "checkpointEdited": false
+      },
+      "acceptance": {
+        "singleCapJoinContourAndLocalMaterialPassReused": true,
+        "wholeN2Passed": false,
+        "globalGlazeF01Passed": false,
+        "wholeNorthEdgePassed": false,
+        "wholeTileInternalPassed": false,
+        "formalAcceptedAdded": 0
+      },
+      "liveOwnSourceObservation": {
+        "executionFile": "docs/MAP_HUMAN_RESUME_20261021_221439/city_tower-execution.json",
+        "sha256AtRead": "8c4799c036031688ce76c6f721ccadb25108b642fdfd64335d633c7cf001be86",
+        "selectedR03C13": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/resume13-WT-WL-W03-two-owned-adopted-v001/r03_c13-candidate.png",
+          "sha256": "a5d735948d48ac5f7935fa130be5840d74b44602748539bc1f5da625114f4a43",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "mutations": {
+        "newAiCalls": 0,
+        "newCandidate": false,
+        "sourceSelectionWrites": 0,
+        "neighborWrites": 0,
+        "NEWrites": 0,
+        "checkpointWrites": 0,
+        "ledgerWrites": 0,
+        "gitMutations": 0,
+        "newImageFiles": 0,
+        "qaOwnDirectoryOnly": true
+      }
+    }
+  }
+}

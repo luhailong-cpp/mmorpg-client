@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 16,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "4062eda4e7b2fb073448b86f3ac3cc23d4e5f77c298e215b8f6bb4cea88105b7",
+  "imageBytes": 18686808,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/r16_c08.whole-base-v01.prospective-v02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/output/newowner-20261020-v01/assembly.json",
+  "sourceLedgerSha256": "2cbf47aa4151edf534cf02e3cca3b70bb76687b43e01f1e6b6b57e0a8fa6179b",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r16_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/r16_c08.whole-base-v01.prospective-v02.png",
+    "imageSha256": "4062eda4e7b2fb073448b86f3ac3cc23d4e5f77c298e215b8f6bb4cea88105b7",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/output/newowner-20261020-v01/assembly.json",
+        "sha256": "2cbf47aa4151edf534cf02e3cca3b70bb76687b43e01f1e6b6b57e0a8fa6179b",
+        "sourceReviewSha256": "2cbf47aa4151edf534cf02e3cca3b70bb76687b43e01f1e6b6b57e0a8fa6179b",
+        "completeness": [
+          "verifiedNativeCount=16; complete 4x4 native core grid",
+          "base image SHA256=3b582442cd6462cb3346b2552a491911a751f9055211645b0279383f25fdf63a"
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/r16_c08.whole-base-v01.prospective-v02.png.generation.json",
+        "sha256": "cd6ba4cc70e010ecf8de51fdf931a68d4649140e9eec835cf6323106cad2135d",
+        "sourceReviewSha256": "cd6ba4cc70e010ecf8de51fdf931a68d4649140e9eec835cf6323106cad2135d",
+        "completeness": [
+          "Selected output is a bounded native repair of complete base SHA256=3b582442cd6462cb3346b2552a491911a751f9055211645b0279383f25fdf63a"
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/completion-and-local-QA-v01.json",
+        "sha256": "45e1027143563f76fea4c4dd657a0b3e01cddf21975c5c858e063ef952a4ba47",
+        "sourceReviewSha256": "45e1027143563f76fea4c4dd657a0b3e01cddf21975c5c858e063ef952a4ba47",
+        "completeness": [
+          "Selected output is a bounded native repair of complete base SHA256=3b582442cd6462cb3346b2552a491911a751f9055211645b0279383f25fdf63a"
+        ]
+      }
+    ],
+    "selectionBasis": "Complete 16-core base plus source-bound local repair",
+    "sourceStatus": {
+      "status": "one_native_edit_improved_local_base_prospective_staged_pending_owner_adoption",
+      "unverifiedReason": "Host-managed builtin route; tool disclosed neither actual model nor quality. Configuration target and official product availability do not prove this call used a specific API branch.",
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/r16_c08.whole-base-v01.prospective-v02.png.generation.json",
+        "record": {
+          "unverifiedReason": "Derived image, not another model call; trace the constituent native generation records.",
+          "productionAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/completion-and-local-QA-v01.json",
+        "record": {
+          "status": "one_native_edit_improved_local_base_prospective_staged_pending_owner_adoption",
+          "unverifiedReason": "Host-managed builtin route; tool disclosed neither actual model nor quality. Configuration target and official product availability do not prove this call used a specific API branch.",
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/delta-qa-v02/manifest.json",
+        "record": {
+          "sourceGameAcceptance": false,
+          "internalTileAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/completion-and-local-QA-v01.json",
+    "sourceSha256": "45e1027143563f76fea4c4dd657a0b3e01cddf21975c5c858e063ef952a4ba47",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "kind": "completed_bounded_native_object_repair_with_delta_QA",
+      "coordinate": "r16_c08",
+      "logicalOwner": "city_southwest",
+      "executor": "/root/prepare_r16c08_geometry",
+      "completedAtUtc": "2026-10-22T04:42:57.643575+00:00",
+      "scopeComplete": true,
+      "parentMapScopeComplete": false,
+      "status": "one_native_edit_improved_local_base_prospective_staged_pending_owner_adoption",
+      "selectedProspective": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/r16_c08.whole-base-v01.prospective-v02.png",
+        "sha256": "4062eda4e7b2fb073448b86f3ac3cc23d4e5f77c298e215b8f6bb4cea88105b7",
+        "bytes": 18686808
+      },
+      "selectedProspectivePixels": [
+        4096,
+        4096
+      ],
+      "nativeReturn": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/whole-base-v01.returned-native.png",
+        "sha256": "e4b281be3c4b0512ec55feb96cfbd5d70732c02d8b0ca7e608d7052e000b76ef",
+        "bytes": 1729338
+      },
+      "nativeReturnPixels": [
+        1254,
+        1254
+      ],
+      "toolResultId": "exec-cb76a006-8d4c-4b75-9469-5a9d5fbd7a4c",
+      "request": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/whole-base-v01.request.json",
+        "sha256": "dabe5d23d0ff0f18cfbf8c4a4249e1d6379a8b81aab57696ee80db35abb5db7c",
+        "bytes": 13417
+      },
+      "receipt": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/whole-base-v01.receipt.json",
+        "sha256": "b6a921601338f35f76c7079bdb2269b924da86d624cd4b363eb27727dbb8f60f",
+        "bytes": 1923
+      },
+      "actualModel": null,
+      "actualQuality": null,
+      "unverifiedReason": "Host-managed builtin route; tool disclosed neither actual model nor quality. Configuration target and official product availability do not prove this call used a specific API branch.",
+      "configSnapshot": {
+        "schema_version": 1,
+        "model": "gpt-image-2.5-sunburst",
+        "quality": "max",
+        "builtin_product": "ChatGPT Images 2.5",
+        "selection": "latest_verified",
+        "preferred_route": "builtin",
+        "verified_on": "2026-10-21",
+        "sources": {
+          "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+          "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+          "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+        }
+      },
+      "semanticMask": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/whole-base-v01.semantic-mask-v02.png",
+        "sha256": "ac87ecc2a0f0dcf5f178ec8e9aaa4eb11bcb68d224273112eac5e914fe8d8e9d",
+        "bytes": 4052
+      },
+      "integratedContext": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/whole-base-v01.integrated-context-v02.png",
+        "sha256": "9693c1f086abea67325d95f1f5ba693eae6cc6002b2f511f13a0d3f5674645c6",
+        "bytes": 1630322
+      },
+      "protectionValidation": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/whole-base-v01.protection-validation-v02.json",
+        "sha256": "ff0e965498d44dcacbcfe0e178f8534710f147008e2e47698eaa86d9518c2219",
+        "bytes": 3806
+      },
+      "localVisualVerdict": {
+        "wholeGoldBase": "passed_local_feature_visual_QA",
+        "redShaftBottom": "passed_continuous_contact_arc",
+        "woodOcclusion": "passed_old_pixels_restored_and_shape_visually_reviewed",
+        "outerFoot": "passed_local_rounded_contour_after_semantic_support_correction",
+        "approvedLayoutComparison": "Same column center/width, same broad stepped gold-base placement and massing. Actual 1254 same-world guide was viewed: its coarse gold/dark-foot block footprint extends broadly to local x~949 and y~931. The final continuous foot sits within that broad region; the broken original candidate outline was not treated as accepted fine geometry. No object was moved or replaced.",
+        "numericBezierProposal": "Actual new curves are about 25-45 px above the newly proposed descriptive numeric construction. Those numbers were this child's internal design choice, not a pre-existing user contract or approved fine contour. Parent explicitly directed not to elevate arbitrary 8px corridors into a user requirement. This difference is recorded and did not trigger unnecessary generation.",
+        "residuals": "Three changed windows still fail due old floor/wall/plinth boundaries outside the base semantic scope; exact failing windows are retained below. This is not a whole-tile pass."
+      },
+      "deltaQA": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/delta-qa-v02/manifest.json",
+        "sha256": "d38c48db8458537cfd71822b5d959797094bf905530d81bae441a3a3b3942352",
+        "bytes": 5173
+      },
+      "deltaWindowVerdicts": {
+        "V2-row3": {
+          "status": "passed_local_window_visual_QA",
+          "finding": "Red shaft material crosses the old V2 join without a structural offset, and red-to-gold contact plus upper/middle gold rims are now continuous throughout the inspected 256x1024 window. Normal red brush grain remains; no center step, duplicate band or missing gold notch seen."
+        },
+        "V2-row4": {
+          "status": "failed_remaining_old_floor_seam",
+          "finding": "The base foot segment is continuous, but the floor below the edited footprint still has a large zigzag tonal/paint boundary. Do not count this full window passed."
+        },
+        "H3-col2": {
+          "status": "failed_remaining_old_wall_floor_join",
+          "finding": "The changed left gold step is coherent; unchanged wall/floor area toward x1024..1576 still has an obvious angular pale/dark contour. Do not count this full window passed."
+        },
+        "H3-col3": {
+          "status": "failed_remaining_old_stone_floor_join",
+          "finding": "Gold rims and protected wood occlusion meet coherently. The unchanged grey plinth bottom toward x2400..3072 still has a ragged horizontal ground boundary; do not count the full window passed."
+        },
+        "corner-H3-V2": {
+          "status": "passed_local_window_visual_QA",
+          "finding": "All intersecting gold body planes and recess/highlight rims in this 384x384 window are continuous at the four-way join; no old center zipper, cut-out or staggered band remains."
+        }
+      },
+      "unaffectedQAReuse": {
+        "internalWindowCount": 28,
+        "externalWindowCount": 8,
+        "basis": "Actual edits confined to the new same-object semantic mask. All outside-mask pixels equal the prior candidate exactly. Prior verdicts remain unchanged; no scan or reclassification of unaffected windows."
+      },
+      "sourceCASAfter": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/output/newowner-20261020-v01/r16_c08.candidate.png",
+          "sha256": "3b582442cd6462cb3346b2552a491911a751f9055211645b0279383f25fdf63a",
+          "bytes": 18680487,
+          "expectedSha256": "3b582442cd6462cb3346b2552a491911a751f9055211645b0279383f25fdf63a",
+          "matches": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/output/newowner-20261020-v01/assembly.json",
+          "sha256": "2cbf47aa4151edf534cf02e3cca3b70bb76687b43e01f1e6b6b57e0a8fa6179b",
+          "bytes": 20938,
+          "expectedSha256": "2cbf47aa4151edf534cf02e3cca3b70bb76687b43e01f1e6b6b57e0a8fa6179b",
+          "matches": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/continuation-20261020-newowner-v01.json",
+          "sha256": "5c614495b47eaae635356e5a421603dda8c8e37f28883212a9ca5d6b09ded01d",
+          "bytes": 45807,
+          "expectedSha256": "5c614495b47eaae635356e5a421603dda8c8e37f28883212a9ca5d6b09ded01d",
+          "matches": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+          "sha256": "297d5e74153de729220aa649505036a6cd79a93413287a36b684e93a8f99001d",
+          "bytes": 120123,
+          "expectedSha256": "297d5e74153de729220aa649505036a6cd79a93413287a36b684e93a8f99001d",
+          "matches": true
+        }
+      ],
+      "independentSourceAudit": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/audit-lower-base-returns-v01.json",
+        "sha256": "db4d2c76a8f1c6b9cf37bd4cd539c7cd5be4b93a26fea0ec20e72ee48da47bbd",
+        "bytes": 16066
+      },
+      "independentRawQA": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c08/pipeline/direct-continue-20261022-v01/whole-base-v01.independent-raw-QA.json",
+        "sha256": "83028532a507860a8b0fe9d26b5944b0f5296595fa3fd812179d2cbb6b38d765",
+        "bytes": 6443
+      },
+      "independentIntegratedQA": "A follow-up independent child turn was unavailable due agent thread limit; final context and all five delta windows were actually reviewed by this executor. Raw output had separate independent review.",
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "catalogUpdated": false,
+      "currentOrNativeSelectedUpdated": false,
+      "counts": {
+        "newBuiltinAIRequests": 1,
+        "newNativeCoreContributions": 1,
+        "derived4KProspectiveCandidates": 2,
+        "activeProspectiveVersion": "v02",
+        "imageRegenerations": 0,
+        "deltaWindowsActuallyViewed": 5,
+        "deltaWindowsPassed": 2,
+        "deltaWindowsStillFailed": 3,
+        "globalStatisticsWrites": 0,
+        "sharedGitWrites": 0,
+        "externalMessages": 0,
+        "oldExecutorAppQueries": 0
+      },
+      "processing": "Native-size semantic copying only; no resizing, warping, procedural repaint or feather. Native AI pixels replace only the bounded object matte. Manual masks are instructions, not AI-generated artwork.",
+      "followup": "Owner may compare/adopt prospective v02 by CAS while preserving remaining failed windows. Next production should address independent old floor/wall boundaries, not regenerate this improved base for arbitrary numeric conformity."
+    }
+  }
+}

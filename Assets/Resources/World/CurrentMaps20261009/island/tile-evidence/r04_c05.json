@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 4,
+  "column": 5,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "58ce9d2ec325df8282accf873aada7ad51da54371542bd0f3ee85c888353208c",
+  "imageBytes": 25909469,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-northwest-east-extension/tiles/r04_c05_candidate-v4_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-northwest-east-extension/tiles/r04_c05_candidate-v4_4096.json",
+  "sourceLedgerSha256": "dc641066815b5b085c3406a2c2533f737395b1960333e4548659e0dd085efc08",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r04_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-northwest-east-extension/tiles/r04_c05_candidate-v4_4096.png",
+    "imageSha256": "58ce9d2ec325df8282accf873aada7ad51da54371542bd0f3ee85c888353208c",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-northwest-east-extension/tiles/r04_c05_candidate-v4_4096.json",
+        "sha256": "dc641066815b5b085c3406a2c2533f737395b1960333e4548659e0dd085efc08",
+        "sourceReviewSha256": "dc641066815b5b085c3406a2c2533f737395b1960333e4548659e0dd085efc08",
+        "completeness": [
+          [
+            "/sources",
+            "all sixteen native 1024 destinations present"
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {},
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

@@ -6,97 +6,394 @@
   "row": 4,
   "column": 1,
   "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
-  "imageSha256": "dd1a868238436ee70fd1e64c8a2da0889cd2b068d02c47fb1967cd0f29d2e4db",
-  "imageBytes": 31357787,
-  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r04_c01_west-rock-a01_4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/progress.json",
-  "sourceLedgerSha256": "e1fb3d6dc9f7c775cbb79e0442b3e2232e21e1ca82dce0eac63f5082e2e6fd03",
+  "imageSha256": "ab24e0c663d836ed297197ae4ba958ac4c5f8b0924a4cbbcad335a2892dfc7d2",
+  "imageBytes": 31335424,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.owned-shared-native.json",
+  "sourceLedgerSha256": "2edafd50bfc794681a79e7668e6ad1b02438895fe9363a8a8ba30aec58c22831",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
-  "externalStatus": "pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
+  "externalStatus": null,
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "requiredCores": 16,
-    "rawVersions": 23,
-    "nativeSlotsWithAnyVersion": 16,
-    "layoutSelectedUniqueCores": 16,
-    "pendingInternalRepairs": [],
-    "candidate4096": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r04_c01_west-rock-a01_4096.png",
-    "internalQAPassed": true,
-    "formalAccepted": false,
-    "currentProvenance": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r04_c01_west-rock-a01_4096.cross-native-repair.json",
-      "sha256": "15fc6f983046e79d20ea54b20d2a8299043c79bb206ee42bb8d9f3814541d8c3"
+    "tile": "r04_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.png",
+    "imageSha256": "ab24e0c663d836ed297197ae4ba958ac4c5f8b0924a4cbbcad335a2892dfc7d2",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.owned-shared-native.json",
+        "sha256": "2edafd50bfc794681a79e7668e6ad1b02438895fe9363a8a8ba30aec58c22831",
+        "sourceReviewSha256": "2edafd50bfc794681a79e7668e6ad1b02438895fe9363a8a8ba30aec58c22831",
+        "completeness": [
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "internalQAPassed": true,
+      "newCoreCount": 0,
+      "externalQA": "pending",
+      "formalAccepted": false
     },
-    "internal33Passed": 33,
-    "externalQA": "pending"
-  },
-  "qa": {
-    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r04_c01_west-rock-a01_4096.cross-native-repair.json",
-    "sourceSha256": "15fc6f983046e79d20ea54b20d2a8299043c79bb206ee42bb8d9f3814541d8c3",
-    "normalizedDocument": {
-      "schemaVersion": 1,
-      "operation": "same-coordinate projection of one cross-tile native repair",
-      "isAiGeneration": false,
-      "tileId": "r04_c01",
-      "tileOrigin": [
-        0,
-        12288
-      ],
-      "base": {
-        "image": {
-          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/shared-rock-joint-a02-cut-v2-20261020/r04_c01_shared-rock-a02-cut-v2_4096.png",
-          "sha256": "d78df390c7f182297d99776b0fe112cdcc4d57c4b0c7b4eda0fc8f3427a4a650"
-        },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/root-own-candidate-ready-PENDING-NW.json",
         "record": {
-          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/shared-rock-joint-a02-cut-v2-20261020/r04_c01_shared-rock-a02-cut-v2_4096.cross-native-repair.json",
-          "sha256": "67cd24df723d0b823e5021d2f8d2e8eac492e6722c740868e6fd212335581fa5"
+          "formalAccepted": 0
         }
       },
-      "operationRecord": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/west-rock-a01.cross-native-operation.json",
-        "sha256": "d11ec8a289dc38d59042d7da58257910206e16b446790a6d043e1d3fa4fbf22f"
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/internal33-exact-unchanged-reuse-proof.json",
+        "record": {
+          "formalAccepted": false
+        }
       },
-      "selection": {
-        "tileId": "r04_c01",
-        "tileBox": [
-          0,
-          3469,
-          1254,
-          4096
-        ],
-        "repairBox": [
-          0,
-          0,
-          1254,
-          627
-        ],
-        "selectedPixelCount": 134005
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/actual-apply-and-independent-replay-result.json",
+        "record": {
+          "NW8613StillPendingItsOwnRelease": true
+        }
       },
-      "output": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/tiles/west-rock-joint-a01-20261020/r04_c01_west-rock-a01_4096.png",
-        "sha256": "dd1a868238436ee70fd1e64c8a2da0889cd2b068d02c47fb1967cd0f29d2e4db",
-        "dimensions": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.internal-closure.json",
+        "record": {
+          "internalQAPassed": true,
+          "newCoreCount": 0,
+          "externalQA": "pending",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/independent-owned-candidate-review.json",
+        "record": {
+          "status": "READY_PENDING_NW_OWN14735_NATIVE_CANDIDATE_ONLY"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.owned-shared-native.json",
+        "record": {
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "sameWorldRawOrUnchangedParent": true,
+            "allUnselectedPixelsUnchanged": true,
+            "readonlyNeighborsUnmodified": true,
+            "unassignedPixels": 0
+          },
+          "status": "candidate_pending_native_visual_and_boundary_review",
+          "formalAccepted": false,
+          "visualAcceptance": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/independent-owned-candidate-review.json",
+    "sourceSha256": "bee4111b515f5fe95a2c871d2ca224d204ae597fe329513a3bdd6558942af6ff",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "reviewedAtUtc": "2026-10-22T13:49:46.057512+00:00",
+      "status": "READY_PENDING_NW_OWN14735_NATIVE_CANDIDATE_ONLY",
+      "reviewer": "/root/joint_blossom_literal_mask independent bounded actual candidate review",
+      "scope": "Own r04_c01 candidate three-lobed relief/groove/narrow stone collar and its immediate fixed context only. No shared-seam or whole-east-edge acceptance.",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.png",
+        "sha256": "ab24e0c663d836ed297197ae4ba958ac4c5f8b0924a4cbbcad335a2892dfc7d2",
+        "bytes": 31335424,
+        "mtimeNs": "1792675446328113400"
+      },
+      "candidateRecord": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/r04_c01-complete-relief-joint-v1-4096.owned-shared-native.json",
+        "sha256": "2edafd50bfc794681a79e7668e6ad1b02438895fe9363a8a8ba30aec58c22831",
+        "bytes": 35056,
+        "mtimeNs": "1792675447210458400"
+      },
+      "rootActualApplyAndExplicitFullReplay": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/actual-apply-and-independent-replay-result.json",
+        "sha256": "d6b6ab93565d3147261b63910854ce5546db1afb3e3d7f4957b294c1ef425cdc",
+        "bytes": 6961,
+        "mtimeNs": "1792675450466814000"
+      },
+      "actualProjectionRelease": {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/island-relief-own14735-exact-candidate-only-projection-release-20261022.json",
+        "sha256": "60a56ce7fe30ff305d5ed0e5fdcb10536625ac14158f01b446974ade0a152b1e",
+        "bytes": 11460,
+        "mtimeNs": "1792675009827193100"
+      },
+      "exactPlan": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/root-qa/owned14735-root-exact-candidate-projection-plan-v1.json",
+        "sha256": "c9a364a53c6737780532593534492d5e241960a668eb89a34d8a942fcb59e6f4",
+        "bytes": 5765,
+        "mtimeNs": "1792675009830644300"
+      },
+      "frozenHelper": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/owned_shared_native_projection_20261022.py",
+        "sha256": "61b08c28c70a50aad1f53c60b008488b0cdbd720de8a74ddbe4ea8f60ee8dd2f",
+        "bytes": 44724,
+        "mtimeNs": "1792673796665058500"
+      },
+      "priorExactCompleteComponentPassReused": {
+        "review": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/independent-qa/independent-native-final-review.json",
+          "sha256": "55a207335f8996a42a786a334426b3fbd3a91670ee9e956408524a475227e09c",
+          "bytes": 14521,
+          "mtimeNs": "1792668587770715300"
+        },
+        "full23348SelectedDiagnostic": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/independent-qa/literal23348-selected-diagnostic-native1254.png",
+          "sha256": "d1080b937fd2b00a01f4b3e8ffa64534f39f708ca09d4ec0806c5336186ee402",
+          "bytes": 2778010,
+          "mtimeNs": "1792664486948044100"
+        },
+        "priorStatus": "PASS_BOUNDED_COMPLETE_THREE_LOBED_RELIEF_LITERAL23348_NATIVE_QA",
+        "reuseBasis": "Fresh native all-pixel comparison: all627x1254=786258 candidate-owned context RGB pixels equal the already passed full23348 selected diagnostic at the same world positions. No changed source identity is inferred from similar appearance. Existing eight-sector complete outer-collar native opinion is reused on these exact pixels; old image scans/crops were not repeated.",
+        "ownedPartDifferentPixels": 0,
+        "noExtensionOfPriorPassToCurrentUnprojectedNW": true
+      },
+      "actuallyViewedExistingNativeImages": [
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/DIAGNOSTIC-ONLY-affected-core-native1024.png",
+            "sha256": "289cc507e7c6795836ddbc40247fe3f432958f630e339d7931711b8f718f8e54",
+            "bytes": 1919574,
+            "mtimeNs": "1792675450158680700"
+          },
+          "role": "affectedCore",
+          "actuallyViewedAtOriginalSize": true
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/actual-own-candidate-with-UNCHANGED-NW-current-native1254.png",
+            "sha256": "ce9e8644d322b067b66fd941776504c02a20fda8a8bb93a4dc88e89a77d6dfc7",
+            "bytes": 2776246,
+            "mtimeNs": "1792675450368429000"
+          },
+          "role": "actualMixedWriterContext",
+          "actuallyViewedAtOriginalSize": true
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/whole-own-relief-with-NW-pending-NATIVE.png",
+            "sha256": "1d5b3d095bf6169bcbada986745fae8ad4f66667b4d7ae737b70a563e419a609",
+            "bytes": 106021,
+            "mtimeNs": "1792675450378884800"
+          },
+          "contextBoxHalfOpen": [
+            520,
+            110,
+            745,
+            410
+          ],
+          "actuallyViewedAtOriginalSize": true
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/own-top-arc-NATIVE.png",
+            "sha256": "bce0c21fb03c41753e073746dfebb8763e76266343a6a0f7551e75def6f11cff",
+            "bytes": 12414,
+            "mtimeNs": "1792675450382047100"
+          },
+          "contextBoxHalfOpen": [
+            525,
+            120,
+            627,
+            190
+          ],
+          "actuallyViewedAtOriginalSize": true
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/own-left-return-NATIVE.png",
+            "sha256": "4994cdfa5fbe89a7300422b8f7018ff12da94b5cade1ca432ad7fed7770c5476",
+            "bytes": 18912,
+            "mtimeNs": "1792675450385037900"
+          },
+          "contextBoxHalfOpen": [
+            520,
+            175,
+            585,
+            350
+          ],
+          "actuallyViewedAtOriginalSize": true
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/own-lower-neck-NATIVE.png",
+            "sha256": "58b9d4a6b03ba8faeff31d0a6ceb752fb1ab2c8ec9df1576fbb71623c35327b5",
+            "bytes": 9186,
+            "mtimeNs": "1792675450387123900"
+          },
+          "contextBoxHalfOpen": [
+            560,
+            305,
+            627,
+            385
+          ],
+          "actuallyViewedAtOriginalSize": true
+        }
+      ],
+      "nativeDerivationChecks": {
+        "allFourDetailViewsExactlyCropActualMixedContext": true,
+        "whole225x300ContextBoxHalfOpen": [
+          520,
+          110,
+          745,
+          410
+        ],
+        "affectedCoreTileBoxHalfOpen": [
+          3072,
+          0,
           4096,
-          4096
-        ]
+          1024
+        ],
+        "affectedCorePixelsExactlyActualCandidateCrop": true,
+        "ownContextPixelsExactlyActualCandidateTileCrop": [
+          3469,
+          180,
+          4096,
+          1434
+        ],
+        "newImagesCreated": 0
       },
-      "method": {
-        "registration": false,
-        "resizing": false,
-        "feathering": false,
-        "colorCorrection": false,
-        "pixelSynthesis": false
+      "nativeVisualDecision": {
+        "boundedOwnCandidatePass": true,
+        "topArc": {
+          "frameBoxHalfOpen": [
+            525,
+            120,
+            627,
+            190
+          ],
+          "finding": "The existing upper lobe keeps its round carved crown and single inset groove. The narrow light inner rim transitions into the original stone collar without a second dark patch outline, bright wedge or angular stop on the owned outer arc."
+        },
+        "leftReturn": {
+          "frameBoxHalfOpen": [
+            520,
+            175,
+            585,
+            350
+          ],
+          "finding": "The upper-left return and full owned left lower lobe read as one concave carved groove with the same relief face. The stone collar outside the groove follows the existing panel texture; no separate pasted dark curve or bright sliver is observed. The neighboring green leaf tips remain complete at the visible left edge."
+        },
+        "lowerNeck": {
+          "frameBoxHalfOpen": [
+            560,
+            305,
+            627,
+            385
+          ],
+          "finding": "The owned lower-neck return is rounded and coherent with the left lower lobe. Its narrow lit rim and outer stone continue into fixed material without a new dark ledge, duplicated contour or cut leaf. The right cut of this view is the explicit writer domain ending at627, not a newly accepted complete shared return."
+        },
+        "wholeAndAffectedCore": {
+          "finding": "The full225x300 view retains the same three-lobed object in its existing panel and perspective. The actual affected1024 core keeps surrounding rock shapes, complete white/yellow flower identities, foliage silhouettes and wall border; no new leaf truncation or foreign object was observed from this bounded application.",
+          "doesNotGrantInternal33Closure": true
+        },
+        "actualNewOwnedDefects": [],
+        "pixelCountsDoNotSubstituteForVisualDecision": true
       },
-      "coverageAssertions": {
-        "fullNativeCoverage": true,
-        "unassignedPixels": 0,
-        "sameCoordinateRawOrUnchangedBase": true
+      "freshMechanicalChecks": {
+        "selectedPixelCount": 14735,
+        "changedPixelCount": 14733,
+        "outsideApplicationChangedRGBPixels": 0,
+        "northTileYBelow235ChangedRGBPixels": 0,
+        "allSelectedExactlySameWorldRaw": true,
+        "unselectedExactlyParent": true,
+        "independentPixelReadPerformedThisReview": true,
+        "rootNewModule16777216ReplayReusedByExactCandidateAndRecordPins": true,
+        "repeatedFullAncestryReplay": false
       },
-      "formalAcceptedCount": 0,
-      "visualAcceptance": false
+      "mixedWriterQualification": {
+        "trueJoinCanvasX": 627,
+        "actualMixedDiagnostic": "owned ab24 candidate left + unchanged bound/current NW ba9fa3/58ff right",
+        "currentNWPartAllPixelsEqualOriginalBoundTarget": true,
+        "currentNWPartPixelsDifferentFromFutureComplete23348Selection": 8613,
+        "visualFinding": "A remaining vertical relief/material transition is visible at realx627 through the upper/right lobe and lower return because NW still supplies its old8613 controlled pixels. It is an expected unprojected writer half, not evidence that both owners are staged/adopted or that the present mixed seam passes.",
+        "NW8613ProjectionOrAdoptionClaimed": false,
+        "bothWriterJointPass": false,
+        "neededNext": "Original NW writer stages its separately released exact8613 candidate, then the two fixed-baseline candidates require joint native review and independent adoption decisions. This report supplies no NW or CAS authority."
+      },
+      "actualCurrentReadObservations": [
+        {
+          "ledgerAsOf": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/current-adopted-20261020.json",
+            "sha256": "94220ed76308ca678542590bf37d5f19a30a9abc72eaebd169f7fb424d3e3238",
+            "bytes": 11668,
+            "mtimeNs": "1792656346564804900"
+          },
+          "tileId": "r04_c01",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/reboot-20261021/north-wall-interior/r04_c01-north-wall-interior-dp-v1-4096.png",
+            "sha256": "d50ddb75e2831c2e461a5a4a349309d966d51cce3534d9defe1a591f8174b477",
+            "bytes": 31334481,
+            "mtimeNs": "1792587422621365000"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/reboot-20261021/north-wall-interior/r04_c01-north-wall-interior-dp-v1-4096.owned-interior-native-repair.json",
+            "sha256": "dc1e2e59974a539cf407d97f05b8d91b886b31e467640bb91ca992a2bdea2f4d",
+            "bytes": 10387,
+            "mtimeNs": "1792587422671620800"
+          },
+          "currentEntryStillExactBoundBase": true
+        },
+        {
+          "ledgerAsOf": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+            "sha256": "0c1127c9f9dcfb60f31ec64994b87898d5b75b84528af7f51913a435aa3ed4ee",
+            "bytes": 855276,
+            "mtimeNs": "1792665946177173200"
+          },
+          "tileId": "r04_c02",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r04_c02_single-flower-bud-preserve-v4-a01_4096.png",
+            "sha256": "ba9fa3a966654207586c47f060d2bcbe9e84ef5d6f12fcb99b522a3f8707a617",
+            "bytes": 28635427,
+            "mtimeNs": "1792651032073051500"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/human-resume-c02-flower-joint-v1/application-mask-v4/proposals/r04_c02_single-flower-bud-preserve-v4-a01_4096.cross-native-repair.json",
+            "sha256": "58fffb2cbf6c4e4bde11e02eb7cad442d0b3e586f8b825c8627e58e7d1472fe5",
+            "bytes": 2117,
+            "mtimeNs": "1792651034634185100"
+          },
+          "currentEntryStillExactBoundBase": true
+        }
+      ],
+      "limits": {
+        "ownCandidateReadyPendingNW": true,
+        "ownAdopted": false,
+        "NWAdoptedFromThisOperation": false,
+        "wholeReliefInActualMixedCurrentPassed": false,
+        "wholeEastEdgePassed": false,
+        "wholeMapPassed": false,
+        "internalClosureWritten": false,
+        "formalAcceptanceGranted": false,
+        "frozenHelperChanged": false
+      },
+      "actions": {
+        "onlyWrittenFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/island_more_20261016/continue-20261022/complete-relief-joint-v1/owned-candidate-projection-v1/native-qa/independent-owned-candidate-review.json",
+        "newPNG": 0,
+        "newAI": 0,
+        "newProduction4096": 0,
+        "newCandidateOrProjection": 0,
+        "closureCurrentProgressOrCountsWrites": 0,
+        "NWDirectoryWrites": 0,
+        "hDispatcherWrites": 0,
+        "gitWrites": 0
+      },
+      "allReadPinsStableUntilFinalReport": true
     }
   }
 }

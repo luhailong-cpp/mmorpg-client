@@ -1,0 +1,2163 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 3,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+  "imageBytes": 19369545,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/assembly.json",
+  "sourceLedgerSha256": "6d6ad4266c16576ef12962c5b15686128a58158af689ab62ec7d04fecc09b69a",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+    "imageSha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/assembly.json",
+        "sha256": "6d6ad4266c16576ef12962c5b15686128a58158af689ab62ec7d04fecc09b69a",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/assembly.json",
+        "sha256": "6d6ad4266c16576ef12962c5b15686128a58158af689ab62ec7d04fecc09b69a",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/manifest.json",
+        "sha256": "80fd7c3dfc7b2a52e867281469f30e14e26fd8025e112f5a310965557f8c205c",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/manifest.json",
+        "record": {
+          "externalBoundaryStatus": "held: neighboring sources unavailable or failed, no stable anchor/acceptance inferred",
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/manifest.json",
+    "sourceSha256": "80fd7c3dfc7b2a52e867281469f30e14e26fd8025e112f5a310965557f8c205c",
+    "normalizedDocument": {
+      "tile": "r15_c03",
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/assembly.json",
+      "assemblySha256": "6d6ad4266c16576ef12962c5b15686128a58158af689ab62ec7d04fecc09b69a",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+        "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.context.png",
+        "sha256": "450b1121e632b04b672c60f048a986952fd1b8775089a6c3c518f4d347be9742",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "nativeSources": [
+        {
+          "id": "p01_01",
+          "row": 1,
+          "column": 1,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_01.png",
+          "nativeSha256": "4ec9dd782d819929ef08f0deb57bcff6ccf4e6fcdff0095fd3f5fb3225f7a817",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_01.png.generation.json",
+          "recordSha256": "930bb75e385aa69630b9b3ed7b3f47e0514fdf967f418e8531deab492a9612e1",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_01.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "d945c132f21eb44e4ca29f6746e43d2d238e96240ec6274fb6b24a480d06c8fb",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p01_01.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "0cf05e7889bbc62c4a566a057bf6e45d1e28e68f76639faf2295e4ea9891c9d8",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_01.newowner-20261020b-v01.request.json",
+            "sha256": "7a372f3d85dd484859334cc8c77bd543d57693a9bec192292815dfc82ba84ee8"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p01_01.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "937cfd62daff0f302ed64bee3eb80ae15303e61299e1d2e39c5d42c161058105"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p01_01",
+            "row": 1,
+            "column": 1,
+            "coreWorldBox": [
+              8192,
+              57344,
+              9216,
+              58368
+            ],
+            "contextWorldBox": [
+              8077,
+              57229,
+              9331,
+              58483
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T15:41:23.554796+00:00"
+        },
+        {
+          "id": "p01_02",
+          "row": 1,
+          "column": 2,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_02.png",
+          "nativeSha256": "b8aafb4b356cfde78597e9cd0dcb0399bc424deed900b20e607e7a91b14fb34d",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_02.png.generation.json",
+          "recordSha256": "34c04efbccfa44df3b4780fd6b43a219d075005f16bf1dcc1d896711d7112f08",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_02.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "54785c4e1377d201b9393a5920a68113ca3450fad5d16bef7597242aa10418dc",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p01_02.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "dab293b9d25c05ba602241695d3fa4a0ac740abedab6ac1224418deb0b7e8df3",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_02.newowner-20261020b-v01.request.json",
+            "sha256": "75fc872da8017c8de7941d393b043052451cb6e43f8ffb6008ed55de477197fe"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p01_02.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "dcb754b6cf1c5502e700b6039e97964d0870a810f0316cf228e7a8ffafd3d22d"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p01_02",
+            "row": 1,
+            "column": 2,
+            "coreWorldBox": [
+              9216,
+              57344,
+              10240,
+              58368
+            ],
+            "contextWorldBox": [
+              9101,
+              57229,
+              10355,
+              58483
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T16:00:27.749463+00:00"
+        },
+        {
+          "id": "p01_03",
+          "row": 1,
+          "column": 3,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_03.png",
+          "nativeSha256": "d9a150041ea45a842f7b9f505254e2e007213b13b94991573949fb7eab77e565",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_03.png.generation.json",
+          "recordSha256": "a74973bbe1e366e3ad8194f25f44040025d2a9d3f511b1de669b3af412a2d7c5",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_03.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "a3ccb6bb6b97175b27244531108724bf7238ea2f13d3aa12c703fa3157b80564",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p01_03.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "8197f4c7f587c4eef92a2ae55ea938cf884a3e5660983b67eddaf2229982ab1b",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_03.newowner-20261020b-v01.request.json",
+            "sha256": "23dbadf6507630987cc53d760179838ca0773228ba0bbf6800725f44ffe8e1ba"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p01_03.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "2742aef7801c90eba3b22d153805d66a53679c1480665e1c7355e04d8378277e"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p01_03",
+            "row": 1,
+            "column": 3,
+            "coreWorldBox": [
+              10240,
+              57344,
+              11264,
+              58368
+            ],
+            "contextWorldBox": [
+              10125,
+              57229,
+              11379,
+              58483
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T16:00:28.208403+00:00"
+        },
+        {
+          "id": "p01_04",
+          "row": 1,
+          "column": 4,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_04.png",
+          "nativeSha256": "9e606838850f9b0807af2dcc03a1f8fdb0c1cebcb9be7a3e0a486921863c3d2d",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p01_04.png.generation.json",
+          "recordSha256": "650769990affdfc9c300af7226653eb927d5c1f5c58da076a785c1b81d6baf96",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_04.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "6e2cb821297f024ac2843d6735a32759b727b62eee556e72fa387aa120de5277",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p01_04.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "446a655f9904a122c0cdedb21f2fdac9fb0700bc56dda457fbed66839a855e29",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p01_04.newowner-20261020b-v01.request.json",
+            "sha256": "5f05c111e9b6ede7aa12b339f67087b607722b24b9b466775e804a1536ab868d"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p01_04.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "5bbeb6e3ff1879c2b0ab7cdfb8ecb83a51ed6e79e28c8ccef0ae513202fabbe7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p01_04",
+            "row": 1,
+            "column": 4,
+            "coreWorldBox": [
+              11264,
+              57344,
+              12288,
+              58368
+            ],
+            "contextWorldBox": [
+              11149,
+              57229,
+              12403,
+              58483
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T16:00:28.537203+00:00"
+        },
+        {
+          "id": "p02_01",
+          "row": 2,
+          "column": 1,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_01.png",
+          "nativeSha256": "89075140d1933ba08e439c91eb666231f0fb86c4a72113d2f21427c70bd5dbf4",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_01.png.generation.json",
+          "recordSha256": "94f6a1450bceb993a52050f01b565f950b4c4d16ba99f860c09cb15cbc264d3a",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_01.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "dc61c16aadc43106b030532cb62eacb5dfc95975b369d6629e648b3153210d90",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p02_01.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "179a93c470195f3ad27dcb8222e2c0b6a1950e1d4aa5b2cff51aa685079bca6e",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_01.newowner-20261020b-v01.request.json",
+            "sha256": "bf2fd93daef9296b4bbd9a5f47c80853b757960530ed2c7f3cc42f7f241d425b"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p02_01.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "85f977e3f5301daffc876a203ac661a63b6fbb8c06e342937069f1a25fb30c7c"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p02_01",
+            "row": 2,
+            "column": 1,
+            "coreWorldBox": [
+              8192,
+              58368,
+              9216,
+              59392
+            ],
+            "contextWorldBox": [
+              8077,
+              58253,
+              9331,
+              59507
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T16:22:04.741015+00:00"
+        },
+        {
+          "id": "p02_02",
+          "row": 2,
+          "column": 2,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_02.png",
+          "nativeSha256": "45e69520921e88c16aaa3b6ed9046dd6cd3a4fc56a1f7e5a53822c0cdd72fbd6",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_02.png.generation.json",
+          "recordSha256": "2681a1e8819106b3fb2fecba12eaa83569b66a228d8a152dea20920363cb32ba",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_02.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "3002f7c0988159cff9a49228f16f92e88d5fae6190b036a4ce96141f3aa14a35",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p02_02.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "4a40f1a0a30f3c90134569ddd265bed7b8e256e8f5b825452315e947e65db713",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_02.newowner-20261020b-v01.request.json",
+            "sha256": "be56bf99a4b07db7e265e7b08176f0022d3aac2047358ed0afe496bcf9702dfb"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p02_02.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "c39703a70f13b752b4e17f95b6675be04d0bebd0d6e68f57d495eebfc9932839"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p02_02",
+            "row": 2,
+            "column": 2,
+            "coreWorldBox": [
+              9216,
+              58368,
+              10240,
+              59392
+            ],
+            "contextWorldBox": [
+              9101,
+              58253,
+              10355,
+              59507
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T16:22:05.174022+00:00"
+        },
+        {
+          "id": "p02_03",
+          "row": 2,
+          "column": 3,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_03.png",
+          "nativeSha256": "57a5a45e1866b2b86400c7147dcc27c947568357fa2fa37069aa5ea3bde12685",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_03.png.generation.json",
+          "recordSha256": "5611b5a31a680fc49776467e16c9987bd1d663360abb35dc3e9d0d741e5ceed9",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_03.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "6f765d1f98d97688d3a613fa85d1703ddb90d80cbd837f1dbd89a2bdc78c22d7",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p02_03.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "b64dbcafad2c75291cead1e87c95805de744a1099c4c0bec27d9d00dc21db5ca",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_03.newowner-20261020b-v01.request.json",
+            "sha256": "eada2968c8ca43024fca9285307432748bcb53d84e0a3667135c3af5b15ccbdb"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p02_03.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "45d04d4a6efc347d1b400f2873fdc2ad58dc1dcf8ec277f37f09f943a6226345"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p02_03",
+            "row": 2,
+            "column": 3,
+            "coreWorldBox": [
+              10240,
+              58368,
+              11264,
+              59392
+            ],
+            "contextWorldBox": [
+              10125,
+              58253,
+              11379,
+              59507
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T16:22:05.514759+00:00"
+        },
+        {
+          "id": "p02_04",
+          "row": 2,
+          "column": 4,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_04.png",
+          "nativeSha256": "fbdab0923a5aadc92bbe91ebb8370aca14ac400982f0696d2cb8db4bdd7d1342",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p02_04.png.generation.json",
+          "recordSha256": "b5f01b6c6f870bb15b10d2602b477ff64196496c8b04bc35e0eb54f920423a15",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_04.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "667d0de191a7fd0ea917f7dd2a9922cf2dd721b542a819f6cb7c65df5e910590",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p02_04.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "8bf5f9eeeb4c2603d2041b636fa49d21c94c1c45b4e1cba71572ee85e74aab0e",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p02_04.newowner-20261020b-v01.request.json",
+            "sha256": "1af2155bedf2c65591d5b373e9aef6bea414da1cf5c17e3e1bfa7f60ddf61006"
+          },
+          "references": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p02_04.layout-only.png",
+              "role": "edit target; exact approved local layout only",
+              "sha256": "5c7078455a86eee91ba89daea3dce9e879ede5fd065609f3f5db484ff9c6864b"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "role": "approved whole-city geometry context only",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "role": "daylight and clean material finish only",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "role": "Daoist chibi style only",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p02_04",
+            "row": 2,
+            "column": 4,
+            "coreWorldBox": [
+              11264,
+              58368,
+              12288,
+              59392
+            ],
+            "contextWorldBox": [
+              11149,
+              58253,
+              12403,
+              59507
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T16:22:05.840391+00:00"
+        },
+        {
+          "id": "p03_01",
+          "row": 3,
+          "column": 1,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_01.png",
+          "nativeSha256": "d4b695bad280079885537bd85c8289f657dbe38d5b8b210acb92e4ff91c5ff43",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_01.png.generation.json",
+          "recordSha256": "b33966344246e6a783e40bb823d188076ce8d79ee0ab234ec59d3726ad2f9c94",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_01.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "57db1c6dca5f8c3a315a558fb55e4f2894431358404988d34cb202b87046109d",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p03_01.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "1b483a07bb363d704dc66babbad297658f1888dd9afdb4d407ae43e5422ec2f7",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_01.newowner-20261020b-v01.request.json",
+            "sha256": "152398bc3093bc4e40c2f785c699f8c254c1b5d7a6b2a3fb52719e24089cc493"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p03_01.layout-only.png",
+              "sha256": "24edadf256ee63df3bf41e7b6321381b4e4dda9f15f7278e907b567354007ccb"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p03_01",
+            "row": 3,
+            "column": 1,
+            "coreWorldBox": [
+              8192,
+              59392,
+              9216,
+              60416
+            ],
+            "contextWorldBox": [
+              8077,
+              59277,
+              9331,
+              60531
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:16:38.833981+00:00"
+        },
+        {
+          "id": "p03_02",
+          "row": 3,
+          "column": 2,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_02.png",
+          "nativeSha256": "22e7593ade4f662c07e69c69d21eea20172e1e80adc1666beb65c507a1d52cac",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_02.png.generation.json",
+          "recordSha256": "80eba489eb8982d7040fc41b1877f81d1e5a5596b499edfa03a941286ff61bfc",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_02.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "2f2f18156872fc0de1db96c37ac41544692abe6403dd44f9351b1db87eb45544",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p03_02.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "9ecc8d9a5965e266e8f2e94dfb4689b7a743e57fdb7dbb65d4b758a7717f4458",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_02.newowner-20261020b-v01.request.json",
+            "sha256": "a570bdde7bb0cad90296abad087efddc15769eb8e2f41188ea6bd423f08f4c41"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p03_02.layout-only.png",
+              "sha256": "2ae08191ab2ef6468a7b69ee4445b26c33508519b9b507042c41f67a880f9f95"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p03_02",
+            "row": 3,
+            "column": 2,
+            "coreWorldBox": [
+              9216,
+              59392,
+              10240,
+              60416
+            ],
+            "contextWorldBox": [
+              9101,
+              59277,
+              10355,
+              60531
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:16:39.319919+00:00"
+        },
+        {
+          "id": "p03_03",
+          "row": 3,
+          "column": 3,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_03.png",
+          "nativeSha256": "0a60c8c024b6cb0c99a888e4b64f8ebadbd71a8fada8aa8a0877f6c2550752c7",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_03.png.generation.json",
+          "recordSha256": "7b413d2fe43de13c439a23f78d5e651d32191c0eecbb0b54eb905fbc6c0c0a1b",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_03.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "be2a2ec7559d9bfc170b862d23d37477f2fd1cbfd23e32a3118e19237fb223cb",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p03_03.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "f31e9c662fdb606bc051f364c5b0b563432911022e61b817e9514b4d225f9f5a",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_03.newowner-20261020b-v01.request.json",
+            "sha256": "065b6cc81018024476f8d01467dd59c1edf93b9fb91cb93c5de3e37875d3dab3"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p03_03.layout-only.png",
+              "sha256": "6905cdbb5101d9247df6dcff5e45cdc764a7c6308070581c25dd9a5c6e49af41"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p03_03",
+            "row": 3,
+            "column": 3,
+            "coreWorldBox": [
+              10240,
+              59392,
+              11264,
+              60416
+            ],
+            "contextWorldBox": [
+              10125,
+              59277,
+              11379,
+              60531
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:16:39.629911+00:00"
+        },
+        {
+          "id": "p03_04",
+          "row": 3,
+          "column": 4,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_04.png",
+          "nativeSha256": "97d81f5d80aab59dc3cff1c2f57b48ab19b204af71734c3b8f9df2bd02a7a797",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p03_04.png.generation.json",
+          "recordSha256": "fe9be8b92e0324cfec20d35f02cf3e8da2dd020997631ee46fd48ce6a0bc8e05",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_04.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "bac3e8bd726724471bfa974dfb45e244fa60599c16a7436e30a37ecfd80792fb",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p03_04.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "72d899f9ed12a2751201c4402b301a6e56ae06372a2a1c18c878a090fed21e16",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p03_04.newowner-20261020b-v01.request.json",
+            "sha256": "59b24677c53803776ead12c242001d7c3bd50f61fb7e46e8d021f21becd90b8e"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p03_04.layout-only.png",
+              "sha256": "4ae61647f55b759c7c836c48fa50f3dff2fbad4cd583033ffae5ec53b2afc8e5"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p03_04",
+            "row": 3,
+            "column": 4,
+            "coreWorldBox": [
+              11264,
+              59392,
+              12288,
+              60416
+            ],
+            "contextWorldBox": [
+              11149,
+              59277,
+              12403,
+              60531
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:16:39.949609+00:00"
+        },
+        {
+          "id": "p04_01",
+          "row": 4,
+          "column": 1,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_01.png",
+          "nativeSha256": "fb5e1c6ee42b9252123c92ce7187eab997bc48751cd34d5053298416f534d2f2",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_01.png.generation.json",
+          "recordSha256": "ca0437ec7c35adf82f69f851882b9f7d84880b892b335dbf31c030b1e74c8063",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_01.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "d38887699dfd3041f3fa42acdf1d3498dccb8d9983f1a4578324ede70197804a",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p04_01.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "1d846aad5b7622e63b3d433ffd80d430ff657336e76c547350b58bd3dd97b54f",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_01.newowner-20261020b-v01.request.json",
+            "sha256": "f93631826ad48ab92f8bc985ca57379433a6e13b774df3ba9eb28f27234c7562"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p04_01.layout-only.png",
+              "sha256": "8ce16efc05e619a4df108ac07cbfcf4a9ad1fb6b9ed1fd3c70b1b04584fc10cc"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p04_01",
+            "row": 4,
+            "column": 1,
+            "coreWorldBox": [
+              8192,
+              60416,
+              9216,
+              61440
+            ],
+            "contextWorldBox": [
+              8077,
+              60301,
+              9331,
+              61555
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:55:04.100391+00:00"
+        },
+        {
+          "id": "p04_02",
+          "row": 4,
+          "column": 2,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_02.png",
+          "nativeSha256": "641cc1d783bba871bd59141341d8340070b1504529be2c6703a621467422df7c",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_02.png.generation.json",
+          "recordSha256": "d95b423cfabf553ed22808c371614ffb3f50d2c6633dfc90171983ce0c054a4d",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_02.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "c9c060f929e836d28c389e2c599861d7629fcca25ce7db9fd72b783c474451e4",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p04_02.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "66d7e6cc67704d6ed6ca475de95fa082f3e543e2f6fff405ec2b2bb9ed7cf574",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_02.newowner-20261020b-v01.request.json",
+            "sha256": "a000f296abcedcd3055404f71d78c28db16471cd2937010602dcbefd0dd28af3"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p04_02.layout-only.png",
+              "sha256": "05777ac278b6f6afa85deba4b4133e1c3ceba296d10dd6f4d018cdf74251ad98"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p04_02",
+            "row": 4,
+            "column": 2,
+            "coreWorldBox": [
+              9216,
+              60416,
+              10240,
+              61440
+            ],
+            "contextWorldBox": [
+              9101,
+              60301,
+              10355,
+              61555
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:55:04.465575+00:00"
+        },
+        {
+          "id": "p04_03",
+          "row": 4,
+          "column": 3,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_03.png",
+          "nativeSha256": "8f3d1992646761ed3025b0eea4c95ac785f2152047700fb6e845dc9788c0054d",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_03.png.generation.json",
+          "recordSha256": "db30283cd59e6a0ff52c1e28ab8234ebe9ba2cbf7b22ec4c9a8b7a6c962a7ed4",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_03.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "216eeac200763d58b8fad322ca39f157c9c4ccd6d265f306186ad641cfcb1104",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p04_03.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "e859b6ea9a4efa27d75311b17df08e0cb0e6733f4b1437f618902afd8f99d502",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_03.newowner-20261020b-v01.request.json",
+            "sha256": "ba305fc2b79c871d4f964e48745e39812307d7590f3596acc919ad6128991553"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p04_03.layout-only.png",
+              "sha256": "41e18603681aef112c0b63f0016ca52e7dbe73317b2a5fc3455bb78481f84fcf"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p04_03",
+            "row": 4,
+            "column": 3,
+            "coreWorldBox": [
+              10240,
+              60416,
+              11264,
+              61440
+            ],
+            "contextWorldBox": [
+              10125,
+              60301,
+              11379,
+              61555
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:55:04.755371+00:00"
+        },
+        {
+          "id": "p04_04",
+          "row": 4,
+          "column": 4,
+          "sourceTile": "r15_c03",
+          "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_04.png",
+          "nativeSha256": "45206d2e65d9ea1271475489701486d1c4e2f0064e6b48e0de5e82280d1f1a90",
+          "actualNativePixels": [
+            1254,
+            1254
+          ],
+          "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/native/p04_04.png.generation.json",
+          "recordSha256": "7d3437556ff5b7271376a2dfa25b0915371f47ee2ffc41fc8ea771ad9e7ae4bc",
+          "selectionEvidence": null,
+          "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_04.newowner-20261020b-v01.prompt.txt",
+          "promptSha256": "9b498827c201eba59882ceedf37b9013a86d735d60b81f8a5b24de1e263550e2",
+          "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/receipts/p04_04.newowner-20261020b-v01.receipt.json",
+          "receiptSha256": "41be605ac12b8bdb6137d454da6aa608d6dc020e9a87f9937a8be068cf74dc34",
+          "requestEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/prompts/p04_04.newowner-20261020b-v01.request.json",
+            "sha256": "6c9dcebc1311952caa4bc6044e77d8af2fc6a2791c98d9269fe87e8ed38f7e84"
+          },
+          "references": [
+            {
+              "role": "edit target; exact local layout only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/guides/p04_04.layout-only.png",
+              "sha256": "17a31563ee587fb229d369585fa045892c0694ad266f77546f70c59f8815db6a"
+            },
+            {
+              "role": "whole-city geometry context only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+              "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+            },
+            {
+              "role": "daylight/material only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+              "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809"
+            },
+            {
+              "role": "Daoist chibi style only",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "neighborSources": [],
+          "cornerTreatment": {
+            "bothSourcesPresent": false,
+            "blendingOrResampling": false
+          },
+          "coordinates": {
+            "id": "p04_04",
+            "row": 4,
+            "column": 4,
+            "coreWorldBox": [
+              11264,
+              60416,
+              12288,
+              61440
+            ],
+            "contextWorldBox": [
+              11149,
+              60301,
+              12403,
+              61555
+            ],
+            "nativeCoreBox": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "configSnapshot": {
+            "schema_version": 1,
+            "model": "gpt-image-2.5-sunburst",
+            "quality": "max",
+            "builtin_product": "ChatGPT Images 2.5",
+            "selection": "latest_verified",
+            "preferred_route": "builtin",
+            "verified_on": "2026-10-20",
+            "sources": {
+              "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+              "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+              "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+            }
+          },
+          "submittedParameters": {
+            "model": null,
+            "quality": null,
+            "transparent_background": false
+          },
+          "actualModel": null,
+          "actualQuality": null,
+          "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+          "formalAccepted": false,
+          "sourceResampling": false,
+          "generatedAt": "2026-10-20T17:55:05.048076+00:00"
+        }
+      ],
+      "internalNativeRegionCount": 33,
+      "internalNativeRegions": [
+        {
+          "name": "V1-row1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "panel": "V-row1"
+        },
+        {
+          "name": "V2-row1",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "panel": "V-row1"
+        },
+        {
+          "name": "V3-row1",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "panel": "V-row1"
+        },
+        {
+          "name": "V1-row2",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "panel": "V-row2"
+        },
+        {
+          "name": "V2-row2",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "panel": "V-row2"
+        },
+        {
+          "name": "V3-row2",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "panel": "V-row2"
+        },
+        {
+          "name": "V1-row3",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "panel": "V-row3"
+        },
+        {
+          "name": "V2-row3",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "panel": "V-row3"
+        },
+        {
+          "name": "V3-row3",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "panel": "V-row3"
+        },
+        {
+          "name": "V1-row4",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "panel": "V-row4"
+        },
+        {
+          "name": "V2-row4",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "panel": "V-row4"
+        },
+        {
+          "name": "V3-row4",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "panel": "V-row4"
+        },
+        {
+          "name": "H1-col1",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "panel": "H1"
+        },
+        {
+          "name": "H1-col2",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "panel": "H1"
+        },
+        {
+          "name": "H1-col3",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "panel": "H1"
+        },
+        {
+          "name": "H1-col4",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "panel": "H1"
+        },
+        {
+          "name": "H2-col1",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "panel": "H2"
+        },
+        {
+          "name": "H2-col2",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "panel": "H2"
+        },
+        {
+          "name": "H2-col3",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "panel": "H2"
+        },
+        {
+          "name": "H2-col4",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "panel": "H2"
+        },
+        {
+          "name": "H3-col1",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "panel": "H3"
+        },
+        {
+          "name": "H3-col2",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "panel": "H3"
+        },
+        {
+          "name": "H3-col3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "panel": "H3"
+        },
+        {
+          "name": "H3-col4",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "panel": "H3"
+        },
+        {
+          "name": "corner-H1-V1",
+          "box": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H1-V2",
+          "box": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H1-V3",
+          "box": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H2-V1",
+          "box": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H2-V2",
+          "box": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H2-V3",
+          "box": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H3-V1",
+          "box": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H3-V2",
+          "box": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "panel": "nine-corners"
+        },
+        {
+          "name": "corner-H3-V3",
+          "box": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "panel": "nine-corners"
+        }
+      ],
+      "panels": [
+        {
+          "name": "V-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/V-row1.png",
+          "sha256": "3a9cd40e7ee12120a541ce9987877830071ac0ecd401c70de7a3cdbe0f62c95a",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        },
+        {
+          "name": "V-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/V-row2.png",
+          "sha256": "9b6d7acb675e2f02ed420d4c653212d1ca7ea791962b52d26c55d9669348ed20",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        },
+        {
+          "name": "V-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/V-row3.png",
+          "sha256": "99f0b2dc7bbc9ba9d0c914d7143a425cc8d091354e32043c08d6b5c4e07d1127",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        },
+        {
+          "name": "V-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/V-row4.png",
+          "sha256": "85cc436988237f992e9fdfa6bda383ae3e498e1dcec3d86ccca42812accbec9f",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        },
+        {
+          "name": "H1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/H1.png",
+          "sha256": "144be14358b19765f8484774268335e081c89035e4a99bb249205b70a139d47f",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        },
+        {
+          "name": "H2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/H2.png",
+          "sha256": "0a727bce76c389bd7477e8e92a28558ef2f3d6f1ba326f34ba0d6d36c4fe99ee",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        },
+        {
+          "name": "H3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/H3.png",
+          "sha256": "057a806b0f72de0f00d9143456052d2766c64c15c12636fc8c6083db439a2e1e",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        },
+        {
+          "name": "nine-corners",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/qa/full16-newowner-20261020b-v01/nine-corners.png",
+          "sha256": "e92f078baf3c85cd4ac532dfc415bd9989ea652a52ce4b58de73176c0513a918",
+          "sourceResampling": false,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c03/pipeline/output/badff51ae29e72f5/r15_c03.candidate.png",
+              "sha256": "c2c9f232edc46cbde1a3da6be76d53f38a0cd1593e436dbd656539aaad205a70",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            }
+          ],
+          "operation": "native crop and labeled diagnostic paste; no resampling"
+        }
+      ],
+      "overviewCreated": false,
+      "sourceResampling": false,
+      "actualVisualReview": "pending",
+      "externalBoundaryStatus": "held: neighboring sources unavailable or failed, no stable anchor/acceptance inferred",
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false
+    }
+  }
+}

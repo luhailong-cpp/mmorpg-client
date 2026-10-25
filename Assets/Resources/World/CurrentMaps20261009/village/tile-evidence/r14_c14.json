@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 14,
+  "column": 14,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "607a32906761e1cee64b9255f489ffcf5bac0b34f83bd578ebfd9fc6044182bd",
+  "imageBytes": 21221038,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/manifest.json",
+  "sourceLedgerSha256": "5ae28bfa1f054da2364904b44b182176da476b85bf08f7e5ae92d9d67866e747",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/candidate-4096.png",
+    "imageSha256": "607a32906761e1cee64b9255f489ffcf5bac0b34f83bd578ebfd9fc6044182bd",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/manifest.json",
+        "sha256": "5ae28bfa1f054da2364904b44b182176da476b85bf08f7e5ae92d9d67866e747",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/exact-core-audit.json",
+        "sha256": "ca3bfd439121d40a0860b0cba540744dcc2a12f6bed82eb0db82d9b08b410617",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v3/result.json",
+        "sha256": "bb86b2fb29a7c1f85f29825d598faf2264ec5f063a4b84aee2e4a49fa37d232c",
+        "completeness": [
+          "/sourceAndPixelBinding/audit/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/VILLAGE_SE_R14C14_COMPLETE_HISTORICAL_SUPPLEMENT_20261022_130514.json",
+        "sha256": "04c4633c9a1ac09e3522117810b7b879e8cb794a334210e4da9524ffe140be01",
+        "completeness": [
+          "/uniqueFormalNativeCORECount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "pendingIssues": [
+        {
+          "id": "north-inherited-water-facets",
+          "patches": [
+            "p11",
+            "p13",
+            "p14"
+          ],
+          "observation": "Selected north sources contain green pebble-like underwater facets. New top-row water transitions from those facets to smoother cyan cells; external north material transition remains unaccepted."
+        },
+        {
+          "id": "northwest-foam-detail",
+          "patches": [
+            "p11",
+            "p12",
+            "p21"
+          ],
+          "observation": "Broad bright looping foam in p11 and small foam specks in p12 are emphatic; their width/taper and relationship to the west shoreline require local material review."
+        },
+        {
+          "id": "internal-water-conditioning-boundaries",
+          "patches": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "observation": "Several horizontal and vertical transitions show caustic cell-size, brightness, and fine-facet density changes. Junction crops show connected contours but remaining quadrant impressions."
+        },
+        {
+          "id": "water-cell-repetition",
+          "patches": [
+            "p22",
+            "p23",
+            "p24",
+            "p32",
+            "p33",
+            "p34",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "observation": "Repeated-looking rounded and elongated water cells remain too regular in parts of the middle/lower/right field; native detail is present but material acceptance is pending."
+        },
+        {
+          "id": "external-joint-qa-pending",
+          "patches": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p31",
+            "p41"
+          ],
+          "observation": "West quick checks used selected r14_c13 cores; north p11/p13/p14 quick checks used actual r13_c14 cores. p12 was generated while north p42 was missing, and final fixed north joint QA is assigned to ROOT. External boundaries are not accepted by this completion record."
+        }
+      ],
+      "externalReady": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/visual-review.json",
+        "record": {
+          "pendingIssues": [
+            {
+              "id": "north-inherited-water-facets",
+              "patches": [
+                "p11",
+                "p13",
+                "p14"
+              ],
+              "observation": "Selected north sources contain green pebble-like underwater facets. New top-row water transitions from those facets to smoother cyan cells; external north material transition remains unaccepted."
+            },
+            {
+              "id": "northwest-foam-detail",
+              "patches": [
+                "p11",
+                "p12",
+                "p21"
+              ],
+              "observation": "Broad bright looping foam in p11 and small foam specks in p12 are emphatic; their width/taper and relationship to the west shoreline require local material review."
+            },
+            {
+              "id": "internal-water-conditioning-boundaries",
+              "patches": [
+                "p11",
+                "p12",
+                "p13",
+                "p14",
+                "p21",
+                "p22",
+                "p23",
+                "p24",
+                "p31",
+                "p32",
+                "p33",
+                "p34",
+                "p41",
+                "p42",
+                "p43",
+                "p44"
+              ],
+              "observation": "Several horizontal and vertical transitions show caustic cell-size, brightness, and fine-facet density changes. Junction crops show connected contours but remaining quadrant impressions."
+            },
+            {
+              "id": "water-cell-repetition",
+              "patches": [
+                "p22",
+                "p23",
+                "p24",
+                "p32",
+                "p33",
+                "p34",
+                "p42",
+                "p43",
+                "p44"
+              ],
+              "observation": "Repeated-looking rounded and elongated water cells remain too regular in parts of the middle/lower/right field; native detail is present but material acceptance is pending."
+            },
+            {
+              "id": "external-joint-qa-pending",
+              "patches": [
+                "p11",
+                "p12",
+                "p13",
+                "p14",
+                "p21",
+                "p31",
+                "p41"
+              ],
+              "observation": "West quick checks used selected r14_c13 cores; north p11/p13/p14 quick checks used actual r13_c14 cores. p12 was generated while north p42 was missing, and final fixed north joint QA is assigned to ROOT. External boundaries are not accepted by this completion record."
+            }
+          ],
+          "externalReady": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/exact-core-audit.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/candidate.json",
+        "record": {
+          "externalReady": true,
+          "formalAccepted": false,
+          "pendingIssues": [],
+          "supersededGenericPendingBasis": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/water-material-review-20261022-v3/result.json",
+            "sha256": "bb86b2fb29a7c1f85f29825d598faf2264ec5f063a4b84aee2e4a49fa37d232c"
+          }
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/VILLAGE_SE_R14C14_COMPLETE_HISTORICAL_SUPPLEMENT_20261022_130514.json",
+        "record": {
+          "status": "SUPPORTED_ROOT_MAY_REGISTER_ONE_HISTORICALLY_OMITTED_COMPLETE_COORDINATE",
+          "uniqueFormalNativeCORECount": 16,
+          "coveragePixels": 16777216
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/visual-review.json",
+    "sourceSha256": "4d30fd01d8c23a6c58171e70ab395eec06fe7db69b92fbb9caa9caf0accffc4e",
+    "normalizedDocument": {
+      "tile": "r14_c14",
+      "recordedAtUtc": "2026-10-19T13:53:05.249389+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/candidate-4096.png",
+      "candidateSha256": "607a32906761e1cee64b9255f489ffcf5bac0b34f83bd578ebfd9fc6044182bd",
+      "selectedCount": 16,
+      "QAImageCount": 33,
+      "reusedQuickSeams": 24,
+      "newlyViewedJunctions": 9,
+      "selectionSha256": "d3c9e412e3bc7798f203b599268193ef8b25bc08e8d118b28ab89079be59d549",
+      "sourceSelectionSha256AtAssembly": "97b1174cc51279240d9961503b252527062f0005931b148132684cf4064e02e1",
+      "selectionBinding": "Only candidate/status metadata added after mechanical audit; all 16 selected patch paths and file hashes unchanged.",
+      "mechanicalAudit": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/exact-core-audit.json",
+      "mechanicalAuditPassed": true,
+      "checks": [
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p11--p12.png",
+          "sha256": "b265bcf08d5d76caad629342ccb2392b9fd3747b0ee9015a5ded6fdf1c16369d",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p12-v1/visual-review.json",
+          "observation": "Native 1254x1254 and west true-core strip inspected. Foam from west fades as small bubbles, central guide spots rendered as tiny flecks not objects. Water remains open; cells are relatively large/darker with subtle west density shift. External north p42 unavailable during guide and quick check; acceptance pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p11--p21.png",
+          "sha256": "c5811a184ab10f268863d06d4611c1db8ccf72578fd03b4bc2feb9e53184c52e",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p21-v1/visual-review.json",
+          "observation": "1254x1254 native and west/north exact strips inspected. Foam fades near top and no new rocks/land; clear-water layout maintained. New caustics slightly smaller, darker and less bright than external west; north material density varies. Keep pending full-tile material review.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p12--p13.png",
+          "sha256": "e908d76ff39db0dddab68e7087a5757dbdf4c4e089b39e60501111d518fcd6a1",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p13-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west/north strips inspected. Clear-water layout with no new land; northern inherited green pebble-like facets taper within upper transition but remain visible across north seam. West water size mostly matches; north material changes strongly to smoother core, pending external repair/joint review.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p12--p22.png",
+          "sha256": "cbdde90cddfa590e627e15e3465878c2e9af0fd2e44342fd14fc7c7aa5dc075b",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p22-v1/visual-review.json",
+          "observation": "1254x1254 native and exact west/north strips inspected. Pure water layout correct; no added foam/objects. Top row p12 cells larger and darker than p22; west p21 water has different lower broad-cell rhythm. Mild line/scale discontinuity and repeated-looking cells pending full QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p13--p14.png",
+          "sha256": "45a52f1c853c7032f144c026fdbaf965dfb226f0259f3315a6c0a79e38521c86",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p14-v1/visual-review.json",
+          "observation": "Exact west and current north selected-core strips inspected. Full open water and no black right bar. West water mostly joins, with p14 slightly more faceted and bright. North inherited green pebble-like underwater facets transition toward smoother cyan cells below, creating a material-density shift; no new exposed land. Keep northern material transition pending for external joint QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p13--p23.png",
+          "sha256": "a5ba918ea06b8a875ea75e1b5f8cf13709d58162a90d338f2e5164609085235c",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p23-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact north/west strips inspected. No foam, land or added objects. Water broadly aligns; new caustic cells become larger and brighter at lower/right with mild straight density transitions. Keep pending full-tile material QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p14--p24.png",
+          "sha256": "3cc11264903234f21585cf2365f94fb652959a8123260b3f5e80224657c7279c",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p24-v1/visual-review.json",
+          "observation": "West and north exact-core strips inspected. Open water only, no objects or right black padding. Most broad water contours connect; p24 has slightly larger, lighter cell interiors and stronger narrow highlights than p23 west, with recurring oval forms. Retain density and brightness variation for full-tile material QA; no blocking geometry introduced.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p21--p22.png",
+          "sha256": "163c95f11a928b102e163a78170825aa7f3ee4f9ddbee336f8c3a0ac391aa462",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p22-v1/visual-review.json",
+          "observation": "1254x1254 native and exact west/north strips inspected. Pure water layout correct; no added foam/objects. Top row p12 cells larger and darker than p22; west p21 water has different lower broad-cell rhythm. Mild line/scale discontinuity and repeated-looking cells pending full QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p21--p31.png",
+          "sha256": "097eb3352721e2a87bd1b7f7b6a5cb08a13eb4ac4f0351730794cfc8522cb927",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p31-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west/north strips inspected. All-water composition correct, no foam or objects. Caustic network is finer/brighter below north and slightly denser than west; non-obstructive material transition remains pending full tile.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p22--p23.png",
+          "sha256": "14c8bbda5b7cb1b25582e733de6bcddf36445dd1fd72a8523c2c49bc75483138",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p23-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact north/west strips inspected. No foam, land or added objects. Water broadly aligns; new caustic cells become larger and brighter at lower/right with mild straight density transitions. Keep pending full-tile material QA.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p22--p32.png",
+          "sha256": "4cc9ba59aa55ea5d8286b463271426cbb371ccda3f9ae240e361ba961a67b283",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p32-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact north/west strips inspected. Pure water composition without objects. West continuation largely aligns at similar scale; north below seam slightly brighter/denser, with small repetitive-looking cell rhythm. Material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p23--p24.png",
+          "sha256": "5e4c9f3b1468599f962bd01e6f7c2a8795bbf4cf1bbd16edd8fcd3814715416c",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p24-v1/visual-review.json",
+          "observation": "West and north exact-core strips inspected. Open water only, no objects or right black padding. Most broad water contours connect; p24 has slightly larger, lighter cell interiors and stronger narrow highlights than p23 west, with recurring oval forms. Retain density and brightness variation for full-tile material QA; no blocking geometry introduced.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p23--p33.png",
+          "sha256": "83702ea9e12b6f664a27a12c6a16669840e1993bc0ccc0e225a7b5ffa1895604",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p33-v1/visual-review.json",
+          "observation": "1254x1254 native and exact west/north strips inspected. Open-water geometry correct. New water cells have finer subfacets and brighter thin edge lines, with mild top/west contrast change and repeated oval rhythms; keep material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p24--p34.png",
+          "sha256": "4a5c25134ca549c2794b05f832147cf5940fe2bb35e392b916b92e89f7f64cbc",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p34-v1/visual-review.json",
+          "observation": "West and north exact-core strips inspected. Open water only, right edge correctly filled. West p33 and p34 are similar density but p34 forms slightly stronger white highlights and more regular elongated cells. North p24-to-p34 changes from larger smoother cells into a somewhat denser texture. Retain material density and repetition issues for full-tile QA; no new geometry blockers.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p31--p32.png",
+          "sha256": "93bcef779a0a5f40331397f083c2c2f2ef547eb36216ec5382b177cc12d10134",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p32-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact north/west strips inspected. Pure water composition without objects. West continuation largely aligns at similar scale; north below seam slightly brighter/denser, with small repetitive-looking cell rhythm. Material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p31--p41.png",
+          "sha256": "70f41ecea2ff1dff495d473cd5ba4807007d7ff3dd0d8f8f13b467a76e83b2a4",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p41-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west/north strips inspected. No black bottom padding and no objects; open-water composition correct. New patch is smoother and slightly darker in broad areas with cell density changes across north/west; keep material continuity pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p32--p33.png",
+          "sha256": "0d4df4de195a489acbf5a116158d382b88bccf2493e018900dea2c1996d7e3f4",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p33-v1/visual-review.json",
+          "observation": "1254x1254 native and exact west/north strips inspected. Open-water geometry correct. New water cells have finer subfacets and brighter thin edge lines, with mild top/west contrast change and repeated oval rhythms; keep material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p32--p42.png",
+          "sha256": "903b1c04d69010adebe50ba4546c7bfcbffb13de79eda81ed8b1eddb6a0d6218",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p42-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west/north strips inspected. Bottom water complete without black padding. Broad cell shapes are larger/smoother and highlights differ from north/west; mild material transitions pending full QA, no added objects or geometry.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p33--p34.png",
+          "sha256": "5932b9db0c46cbd824d7eed8f4de489073814996647d0ef3c884ef30bf6d662c",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p34-v1/visual-review.json",
+          "observation": "West and north exact-core strips inspected. Open water only, right edge correctly filled. West p33 and p34 are similar density but p34 forms slightly stronger white highlights and more regular elongated cells. North p24-to-p34 changes from larger smoother cells into a somewhat denser texture. Retain material density and repetition issues for full-tile QA; no new geometry blockers.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p33--p43.png",
+          "sha256": "4e341f8e5865262244af8317862249073fe28594fb24f2d8192c454378d1cfb9",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p43-v1/visual-review.json",
+          "observation": "Exact west/north core strips inspected. Open water continues with no new land or black bottom padding. Western caustic contours mostly connect; p43 uses larger and smoother blue cells than p33 above, with a visible density/brightness change and repeated oval rhythm to retain as material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p34--p44.png",
+          "sha256": "3fe03ebd5b4cc2019c02c520fa2e66e867114b5ce73c7703f7ddcea615f1ace0",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p44-v1/visual-review.json",
+          "observation": "Exact west and north strips inspected. Both outside-world padding bands removed; entire native canvas is continuous water. West p43/p44 contours mostly join but the new patch has more dense fine highlights; north p34-to-p44 water changes to slightly larger smoother interiors. Repeated oval rhythm and local density shifts remain material QA pending. No geometry blockers.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p41--p42.png",
+          "sha256": "46467a0cb4b4d34d2bfcade95f5389124638ce6e6c169c44979f4d0d07e2d746",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p42-v1/visual-review.json",
+          "observation": "Native 1254x1254 and exact west/north strips inspected. Bottom water complete without black padding. Broad cell shapes are larger/smoother and highlights differ from north/west; mild material transitions pending full QA, no added objects or geometry.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p42--p43.png",
+          "sha256": "ffd3422d86d08ab52c87851bd2a430ffe1d744dc6ac986de57b67d38bac23f61",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p43-v1/visual-review.json",
+          "observation": "Exact west/north core strips inspected. Open water continues with no new land or black bottom padding. Western caustic contours mostly connect; p43 uses larger and smoother blue cells than p33 above, with a visible density/brightness change and repeated oval rhythm to retain as material QA pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/p43--p44.png",
+          "sha256": "83455b92c2a5aaf2236906c0a55b2b1a744a0393475ee52c781ec40152dc0f5e",
+          "reviewMethod": "reused_same_pixel_hash_and_source_hashes",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/quick-p44-v1/visual-review.json",
+          "observation": "Exact west and north strips inspected. Both outside-world padding bands removed; entire native canvas is continuous water. West p43/p44 contours mostly join but the new patch has more dense fine highlights; north p34-to-p44 water changes to slightly larger smoother interiors. Repeated oval rhythm and local density shifts remain material QA pending. No geometry blockers.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r1-c1.png",
+          "sha256": "6c605b2d639f8799ff5075d6281beecbd81db57848671efee8f20a6d218bc52b",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Continuous open-water junction. The lower half has slightly denser fine caustics, while the upper-right has smoother large cells; local texture-density change remains.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r1-c2.png",
+          "sha256": "f4944866aaaa118b0dbea6321d97d022a6814a0d5ecca4ebdc92b514384bd986",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Continuous water contours, with the right and lower quadrants slightly brighter and more finely faceted than the upper-left; a subtle conditioning-boundary impression remains.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r1-c3.png",
+          "sha256": "8f109506330d7ae0d092f184f0b78d30514fc2abbcbba5ee38272a4efdbe45d8",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "The upper half has larger smoother cells and the lower half has smaller, denser caustics; individual contours connect but material scale changes across the horizontal junction.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r2-c1.png",
+          "sha256": "3eb8578934b5647e931e0a5b7f20768047136b2497f5494aa75295831f304749",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Open water connects. Lower quadrants show denser fine light facets, with a mild contrast change and repeated oval rhythm.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r2-c2.png",
+          "sha256": "420977664e9535ffa669cdd3583d6535b29a825578869a8c26314eb2711a6546",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "The lower half has smaller and more elongated caustic cells; local highlight density is greater toward the right. Material continuity remains pending.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r2-c3.png",
+          "sha256": "e47f9ff89fc68859ba1f02d7a2e0db745aa6fc2ff09a1db653a7b904b219015a",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Upper cells are broad and smoother, while lower quadrants become finer and brighter; a visible density change remains across the horizontal boundary.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r3-c1.png",
+          "sha256": "dbb8e52a8367698ed5ff774f4d3c86502fae69922ed0aab95c956f17a1c81b43",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Water contours connect without new objects. Lower cells are somewhat smoother and dimmer, with different internal facet scale.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r3-c2.png",
+          "sha256": "ac2042fd2ef2d40ed3ce29d03cc83aab1817c8175077b282fc24876516aa9eae",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Strongest issue is larger smooth oval interiors below and finer bright details above, with a horizontal density transition.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        },
+        {
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c14/qa/full-native-20261019-v1/cross-r3-c3.png",
+          "sha256": "c1fa51f0765230ac68e603d2959506ca3836440f0635ddf102c395894a4c9ee3",
+          "reviewMethod": "100_percent_exact_core_crop_inspected",
+          "observation": "Top quadrants have denser smaller cells, bottom quadrants have larger and smoother interiors; local highlight balance and repeating oval rhythm remain.",
+          "status": "reviewed_material_pending",
+          "accepted": false
+        }
+      ],
+      "pendingIssues": [
+        {
+          "id": "north-inherited-water-facets",
+          "patches": [
+            "p11",
+            "p13",
+            "p14"
+          ],
+          "observation": "Selected north sources contain green pebble-like underwater facets. New top-row water transitions from those facets to smoother cyan cells; external north material transition remains unaccepted."
+        },
+        {
+          "id": "northwest-foam-detail",
+          "patches": [
+            "p11",
+            "p12",
+            "p21"
+          ],
+          "observation": "Broad bright looping foam in p11 and small foam specks in p12 are emphatic; their width/taper and relationship to the west shoreline require local material review."
+        },
+        {
+          "id": "internal-water-conditioning-boundaries",
+          "patches": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "observation": "Several horizontal and vertical transitions show caustic cell-size, brightness, and fine-facet density changes. Junction crops show connected contours but remaining quadrant impressions."
+        },
+        {
+          "id": "water-cell-repetition",
+          "patches": [
+            "p22",
+            "p23",
+            "p24",
+            "p32",
+            "p33",
+            "p34",
+            "p42",
+            "p43",
+            "p44"
+          ],
+          "observation": "Repeated-looking rounded and elongated water cells remain too regular in parts of the middle/lower/right field; native detail is present but material acceptance is pending."
+        },
+        {
+          "id": "external-joint-qa-pending",
+          "patches": [
+            "p11",
+            "p12",
+            "p13",
+            "p14",
+            "p21",
+            "p31",
+            "p41"
+          ],
+          "observation": "West quick checks used selected r14_c13 cores; north p11/p13/p14 quick checks used actual r13_c14 cores. p12 was generated while north p42 was missing, and final fixed north joint QA is assigned to ROOT. External boundaries are not accepted by this completion record."
+        }
+      ],
+      "internalReady": false,
+      "externalReady": false,
+      "formalAccepted": false
+    }
+  }
+}

@@ -1,0 +1,739 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 12,
+  "column": 16,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "29c94e8ce17d3d1453472356a9f54d0ecf44fa549b46d96d21bb38e77a67521d",
+  "imageBytes": 26892158,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/candidate-objects-v1.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c16/candidate/c16-internal-pass-20261021T132845000432Z.manifest.json",
+  "sourceLedgerSha256": "2eb73107127f43a92bbb0dbeeb1bd48c0ad6e2b9bf231449058afc20f231222c",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c16",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/candidate-objects-v1.png",
+    "imageSha256": "29c94e8ce17d3d1453472356a9f54d0ecf44fa549b46d96d21bb38e77a67521d",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c16/candidate/c16-internal-pass-20261021T132845000432Z.manifest.json",
+        "sha256": "2eb73107127f43a92bbb0dbeeb1bd48c0ad6e2b9bf231449058afc20f231222c",
+        "completeness": [
+          "/uniqueCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c16/candidate/c16-internal-pass-20261021T132845000432Z.manifest.json",
+        "sha256": "2eb73107127f43a92bbb0dbeeb1bd48c0ad6e2b9bf231449058afc20f231222c",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "output_bound_native_coverage_or_complete_source_assembly",
+    "sourceStatus": {
+      "independentWholeInternalQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/q16-final-20261021T112226Z/c16-objects-v1-review.json",
+        "sha256": "2ccda8990c1496847d2d55a1472e0b8d63fe2f48faa5d8d58dcd98e2eab51ebd"
+      },
+      "uniqueCoreCount": 16,
+      "internalQA": "passed_independent_33of33_and16of16CORE_geometry_layout_material",
+      "externalQA": "pending_separate_changed_east115",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/candidate-objects-v1.png.generation.json",
+        "record": {
+          "unverifiedReason": "Derived current/source images; historical builtin source did not disclose actual model/quality; no new AI call"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/review-v1.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c16/candidate/c16-internal-pass-20261021T132845000432Z.manifest.json",
+        "record": {
+          "independentWholeInternalQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/q16-final-20261021T112226Z/c16-objects-v1-review.json",
+            "sha256": "2ccda8990c1496847d2d55a1472e0b8d63fe2f48faa5d8d58dcd98e2eab51ebd"
+          },
+          "uniqueCoreCount": 16,
+          "internalQA": "passed_independent_33of33_and16of16CORE_geometry_layout_material",
+          "externalQA": "pending_separate_changed_east115",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/q16-final-20261021T112226Z/c16-objects-v1-review.json",
+        "record": {
+          "status": "complete_current_candidate_internal_QA_pass_recommended_for_root_sole_adoption",
+          "issues": [],
+          "internalTileAccepted": false,
+          "ownerAcceptanceStatus": "pending_root_sole_adoption",
+          "rootAdoptionPending": true,
+          "formalAccepted": false,
+          "externalQA": {
+            "status": "pending_separate_prior_east115_exposure",
+            "currentDeltaOuter115ChangedPixels": 0,
+            "externalNeighborComparisonPerformed": false,
+            "separateFromInternalQaRecommendation": true
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/review-v1.json",
+    "sourceSha256": "305668c119975bb27f8ddad0ee3e20974eaaf9c1dc03d75b81cd9887cec904e6",
+    "normalizedDocument": {
+      "createdAtUtc": "2026-10-21T13:08:49.413017+00:00",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/candidate-objects-v1.png",
+        "sha256": "29c94e8ce17d3d1453472356a9f54d0ecf44fa549b46d96d21bb38e77a67521d",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "source": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/water16-1021-local/candidate-water16-v3.png",
+        "sha256": "3b05687f2c68849b43160598144af4d9d248b2ce4c775814e46b8351bab85ef8",
+        "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/water16-1021-local/candidate-water16-v3.png.generation.json"
+      },
+      "nativeSource": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c16/repairs/c16-pond-joint-20261017T234115568907Z/native-1254.png",
+        "sha256": "d4e278931929199c005f895306fad4f09baf101beb324c3e16b849df2e22ea4f",
+        "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c16/repairs/c16-pond-joint-20261017T234115568907Z/request.json",
+        "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/r12_c16/repairs/c16-pond-joint-20261017T234115568907Z/receipt.json",
+        "actualModel": null,
+        "actualQuality": null
+      },
+      "composition": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/composition-v1.json",
+        "sha256": "b8dc5ef0b01d3f123990549915ad6bec0591f6db5579b2a406845b04f27452d8"
+      },
+      "changedBox": [
+        159,
+        3260,
+        1145,
+        3272
+      ],
+      "changedPixels": 3630,
+      "delta": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/delta-v1.png",
+        "sha256": "8d5bb314ea95fb5297be4d58cff3dc5129255c952a17a67d410da7d0a0c947e1",
+        "offset": [
+          159,
+          3260
+        ],
+        "size": [
+          986,
+          12
+        ]
+      },
+      "producerLocalMaterialPassed": true,
+      "independentPassed": null,
+      "wholeTileInternalPassed": false,
+      "formalAccepted": false,
+      "selected": false,
+      "AIRequests": 0,
+      "AIInFlight": false,
+      "sameCoordinateNativeReuse": true,
+      "phaseGate": {
+        "visualCurrentRawCropsActuallyViewed": true,
+        "macroContourAndCrackEndpointsSamePosition": true,
+        "phaseDiagnostic": {
+          "rail": {
+            "commonMaterialPixels": 3913,
+            "sameCoordinateHorizontalGradientCorrelation": 0.8983779573791248,
+            "RGB_RMSE": 8.209155722076872,
+            "horizontalStructureGuardPixels": 143
+          },
+          "trunk": {
+            "commonMaterialPixels": 2975,
+            "sameCoordinateHorizontalGradientCorrelation": 0.9026311966177772,
+            "RGB_RMSE": 5.83569620011666,
+            "horizontalStructureGuardPixels": 149
+          }
+        },
+        "strongStructureGradientGuard": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/structure-guard24.png",
+          "sha256": "0137a26782c3ec12c6f7d66552dadd20832c42df0484d163f6b06e2a4160cc52",
+          "size": [
+            1254,
+            24
+          ]
+        },
+        "alphaMaximumSupportRows": 24,
+        "structureGuardActuallyPreserved": true,
+        "geometryWarp": false
+      },
+      "nativeQA": [
+        {
+          "role": "rail-context",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/rail-context-v1.png",
+          "sha256": "f193827e7280f4e9f880e90440cb693d34530403ff9454252bc13543404d0929",
+          "box": [
+            70,
+            3190,
+            440,
+            3340
+          ],
+          "size": [
+            370,
+            150
+          ],
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            370,
+            150
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Complete rail context viewed at native370x150. Former y3260 straight brightness cut across pale face no longer visually distinct; stone grain, cap line, diagonal outer contour and existing shadows remain sharp.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "rail-focus",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/rail-focus-v1.png",
+          "sha256": "a0e0337996ff0e462ec0fd75458f1fc3a857e124b900a370193e297ec529aa5e",
+          "box": [
+            70,
+            3230,
+            440,
+            3290
+          ],
+          "size": [
+            370,
+            60
+          ],
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            370,
+            60
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Complete rail focus370x60 viewed. Material joins across former line without broad blur or doubled diagonal edge.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "trunk-context",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/trunk-context-v1.png",
+          "sha256": "3ae2ddb04117b11557d17fe1ad903f3597d3c39d4748a304175f27c9fbfb050e",
+          "box": [
+            940,
+            3180,
+            1254,
+            3350
+          ],
+          "size": [
+            314,
+            170
+          ],
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            314,
+            170
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Complete trunk/adjoining context304x170 viewed. Former y3260 transverse dark step across brown bark no longer distinct; long vertical grain, crack fork and tree contour remain sharp. Adjoining rock was compared to same-coordinate raw and not edited.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "trunk-focus",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/trunk-focus-v1.png",
+          "sha256": "74e3402a608aae81c8a7d030081bd91c5b1742a9c343149c4cc6bc4bf09c112a",
+          "box": [
+            950,
+            3230,
+            1254,
+            3290
+          ],
+          "size": [
+            304,
+            60
+          ],
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            304,
+            60
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Native304x60 focus viewed. No straight same-row bark material stripe observed; protected deep cracks remain actual current pixels.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "r4c1-core",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/r4c1-core-v1.png",
+          "sha256": "00b6adcb5f7ca1cac0e168f27094fc2db6d773de93ef369dd60ec7c2a879178b",
+          "box": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "size": [
+            1024,
+            1024
+          ],
+          "RGBSha256": "613ce64ae6518f5ce5383edb45e6a94672701a5703654ebcf56694a18dcf204d",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            1024,
+            1024
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Complete1024x1024 r4c1 viewed native. Water-v3 repair remains exactly unchanged, stone and left trunk transitions appear locally continuous. No whole-tile pass claimed.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "r4c2-core",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/r4c2-core-v1.png",
+          "sha256": "f70fe336e602db8a6e6482b3621ebdf88a59f7f170a8e09c4d30fa3a01aaff8c",
+          "box": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "size": [
+            1024,
+            1024
+          ],
+          "RGBSha256": "efe66bd9fcc15e373844e11938f0a3bf064628e7937b033b2ce2e9fc2bd6877a",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            1024,
+            1024
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Complete1024x1024 r4c2 viewed native. Narrow trunk change is locally consistent; rocks and foliage remain sharp/current.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "rail-north",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/rail-north-v1.png",
+          "sha256": "9e99aafe5ef0f280bda195f61c5ffbdce54752f2454f7f525faa3fcfeec8a6f3",
+          "box": [
+            100,
+            3225,
+            400,
+            3260
+          ],
+          "size": [
+            300,
+            35
+          ],
+          "RGBSha256": "005e9bcc1c8064cb3870de19708df873cf9e74d351ec8b062d091ce32c3861a7",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            300,
+            35
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full north rail perimeter viewed; exact parent above y3260, no new top line.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "rail-south",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/rail-south-v1.png",
+          "sha256": "42c8803be49881bad3cbc532122c105fca0fcba06fb6d39b9f27fa55578dbacd",
+          "box": [
+            100,
+            3260,
+            400,
+            3300
+          ],
+          "size": [
+            300,
+            40
+          ],
+          "RGBSha256": "7bad231e856f17484a4555fc195f05e7ace7fe7f1a79d7b7772249e6b2297f35",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            300,
+            40
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full south rail perimeter including y3272 endpoint viewed; no distinct new horizontal ending of correction.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "rail-west",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/rail-west-v1.png",
+          "sha256": "3b7e5037205f81b93ead6428b154afebc1899b95ccecd53d7dc4331399e96b7e",
+          "box": [
+            100,
+            3225,
+            200,
+            3300
+          ],
+          "size": [
+            100,
+            75
+          ],
+          "RGBSha256": "8e7d8ac6aaddc7f47d0756e661dd157807f8671b42fff1ff011b8a3c6e2f17a1",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            100,
+            75
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full west rail perimeter viewed; common stone-face alpha stays inside fixed contour and leaves surrounding water unchanged.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "rail-east",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/rail-east-v1.png",
+          "sha256": "e7e6e205ea2322b53039384b01cd9d8adf282502ab433314feefde1cc957dc00",
+          "box": [
+            300,
+            3225,
+            410,
+            3300
+          ],
+          "size": [
+            110,
+            75
+          ],
+          "RGBSha256": "e14a998e7504ffef5b0f94ef655513f9008cc24e22a7efc676f0dc7e35cce4bb",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            110,
+            75
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full east rail perimeter viewed; cap edge and adjacent accepted water remain unchanged.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "trunk-north",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/trunk-north-v1.png",
+          "sha256": "7bb7c258560a32b85a3f60793082dcedf4c0a90cafaba63f2752dce2eb566c2a",
+          "box": [
+            950,
+            3220,
+            1235,
+            3260
+          ],
+          "size": [
+            285,
+            40
+          ],
+          "RGBSha256": "28cfbf9087afb6e997d611fbf49fc66da88775b3e6653d01dc106b03c61bfb65",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            285,
+            40
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full north trunk perimeter viewed; same bark grain flows into edited face.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "trunk-south",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/trunk-south-v1.png",
+          "sha256": "e9aa9f0d453ae85f09275eb5f0366a1c794d5d44cfe5445643311c9b57561938",
+          "box": [
+            950,
+            3260,
+            1235,
+            3310
+          ],
+          "size": [
+            285,
+            50
+          ],
+          "RGBSha256": "308112f759855aece0dc7a0e4bb2966286edda9329d30b79ba7ea6694dbf5d3f",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            285,
+            50
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full south trunk perimeter including y3272 endpoint viewed; no distinct new cutoff.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "trunk-west",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/trunk-west-v1.png",
+          "sha256": "81e77d17f802444c201527843faf40582873fc28707b51279ba7ea9d43e5fbd6",
+          "box": [
+            945,
+            3220,
+            1010,
+            3310
+          ],
+          "size": [
+            65,
+            90
+          ],
+          "RGBSha256": "247afb10c060f590533a5c49cb97fe72aa6064102da084914da832a5e294e8b6",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            65,
+            90
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full west trunk perimeter viewed; foliage/water edge stays sharp and exactly source.",
+          "producerLocalMaterialPassed": true
+        },
+        {
+          "role": "trunk-east",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/city_more_20261016/obj16-1021-local/trunk-east-v1.png",
+          "sha256": "d87bc98aa93a7e740a80deb69c68ccc820895109b2a6a0468c03f31869d2764b",
+          "box": [
+            1100,
+            3220,
+            1240,
+            3310
+          ],
+          "size": [
+            140,
+            90
+          ],
+          "RGBSha256": "273d0e36736ca2625559510a61f2afa1a20a53925586f45b867a1e761e28f43a",
+          "actuallyViewed": true,
+          "displayedAtOriginalPixels": true,
+          "displayedDimensions": [
+            140,
+            90
+          ],
+          "method": "view_image detail original; no resize",
+          "observation": "Full east trunk perimeter viewed; trunk/rock contour and adjoining rock remain exactly source outside the material face.",
+          "producerLocalMaterialPassed": true
+        }
+      ],
+      "allLocalPerimetersActuallyViewed": true,
+      "bothChangedFullCoresActuallyViewed": true,
+      "other14CoresExactlyParent": true,
+      "coreProof": [
+        {
+          "core": "r1_c1",
+          "box": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "39ab14318d5e672140388019efa4ea32f91893b4eee8e75266bd254a256044cd"
+        },
+        {
+          "core": "r1_c2",
+          "box": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "b6c0dd69e73c0cbcdc38f456d7e0a0b4c102207b3c4efb8dbecf090a0ffc2856"
+        },
+        {
+          "core": "r1_c3",
+          "box": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "eb0d5a1d74e2e8c3438194483f0789353655b84f6cf86bb6b9f98e87bd6d25c2"
+        },
+        {
+          "core": "r1_c4",
+          "box": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "628db4528f790f90488e3279d84c7df59e13e5b7fc5e79b5030e9de6a4090afb"
+        },
+        {
+          "core": "r2_c1",
+          "box": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "d71a302e1fcf89262eb819d801b50a5718be8aa276a41da36c315cb96680efaa"
+        },
+        {
+          "core": "r2_c2",
+          "box": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "b0586e3b66ae022ad4c2c2088b8a1fc61b2e1512536e58335f31d18615b81cb9"
+        },
+        {
+          "core": "r2_c3",
+          "box": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "79f54edd83aff8b36c73e196478c9ebfcc069fceefa4af068189644088b9a3a3"
+        },
+        {
+          "core": "r2_c4",
+          "box": [
+            3072,
+            1024,
+            4096,
+            2048
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "d2901fb4b1f1aae16189185717e61d0c754001875285e5187c7cc750f30f2b98"
+        },
+        {
+          "core": "r3_c1",
+          "box": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "c98d0304d727a3e710992930666d21df80d8402923d2ee818e35dfa713bef86c"
+        },
+        {
+          "core": "r3_c2",
+          "box": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "429cd9fcea900ac9e81e4173b9febced62413a24ecda6dfc137fc3bcab619ca3"
+        },
+        {
+          "core": "r3_c3",
+          "box": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "15d9b1bd39f039b6aa4916625ccc8bd00f5bd4ed23c36496f02a2a913333a0ab"
+        },
+        {
+          "core": "r3_c4",
+          "box": [
+            3072,
+            2048,
+            4096,
+            3072
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "b56bc9c0a771a80b8e7e78ce5b53fee9a18cf88fca1bba5c3ada4a2529c7f9e9"
+        },
+        {
+          "core": "r4_c1",
+          "box": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "exactRGBUnchanged": false,
+          "candidateRGBSha256": "613ce64ae6518f5ce5383edb45e6a94672701a5703654ebcf56694a18dcf204d"
+        },
+        {
+          "core": "r4_c2",
+          "box": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "exactRGBUnchanged": false,
+          "candidateRGBSha256": "efe66bd9fcc15e373844e11938f0a3bf064628e7937b033b2ce2e9fc2bd6877a"
+        },
+        {
+          "core": "r4_c3",
+          "box": [
+            2048,
+            3072,
+            3072,
+            4096
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "34b159f1cfddbef5a3bd1113a047504bc6f38d836fa80e9c73f4be3d76768e62"
+        },
+        {
+          "core": "r4_c4",
+          "box": [
+            3072,
+            3072,
+            4096,
+            4096
+          ],
+          "exactRGBUnchanged": true,
+          "candidateRGBSha256": "1c469c6ec0859631f6e9cc805384bd474e52caa326ebed7a0278e81159a086b9"
+        }
+      ],
+      "previousWaterV3ChangedPixelsExactlyUnchanged": true,
+      "formalOuter115ExactlyParent": true,
+      "allX1700PlusExactlyParent": true,
+      "outsideExactAlphaSupportExactlyParent": true,
+      "diagnosticOnly": {
+        "railOldStep": 10.707692307692307,
+        "railNewStep": 3.253846153846154,
+        "trunkOldStep": 5.985232067510548,
+        "trunkNewStep": 1.9746835443037976,
+        "acceptanceNotBasedOnNumbers": true
+      },
+      "limits": [
+        "Producer-only bounded object material acceptance; root independent review/adoption still required.",
+        "No tile/internal/formal increment granted here.",
+        "Existing adjoining rock compared in same-coordinate native views; no distinct extra material cut established, rock preserved.",
+        "External east115 remains separate pending gate.",
+        "Old builtin source actual model/quality unconfirmed; no new AI call."
+      ],
+      "sharedPointersTouched": false,
+      "sharedGitTouched": false
+    }
+  }
+}

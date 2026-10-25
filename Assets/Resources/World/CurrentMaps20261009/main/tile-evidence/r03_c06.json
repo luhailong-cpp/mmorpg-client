@@ -1,0 +1,2112 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 3,
+  "column": 6,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b",
+  "imageBytes": 27125654,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/current-source-pointer.json",
+  "sourceLedgerSha256": "178d8b317f6e92831ffbb68d042ef36b4b5ba20d8ee0c014e94a74cadf3ba0d8",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+    "imageSha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/current-source-pointer.json",
+        "sha256": "178d8b317f6e92831ffbb68d042ef36b4b5ba20d8ee0c014e94a74cadf3ba0d8",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedAvailable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedUsable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/completeCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/currentCompleteCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "missingNativePatches",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/resume-checkpoint-20261018-night-native16-v01.json",
+        "sha256": "73235827f6e66a90be1a9c1ba4338d3b6fbbb4de1e783fcaa46336400f851bf1",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/human-resume-20261022-next-batch/execution.json",
+        "sha256": "d118a0656c26bcfc0955f2928b6dbed566f0be7b8f8c1725256bad86f679a611",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_082005.json",
+        "sha256": "2cf09220afc2b6c1bf2d4ce8c53f11a9db2dfe5e21a8c9207e3b1b778d9d59aa",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_101158.json",
+        "sha256": "5e1ae9b6a3df8398def28ed087bb391e42eb4408255853d31680493e1952e217",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_111715.json",
+        "sha256": "e2c8107575b9bf84c2ae62f8bca8b927b5b7a6b5fd23742b55ba6b8b73ab96d8",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_125849.json",
+        "sha256": "a59851a7d589882be16b0a74adbf29217226e990aee945d1273d174c35069f4b",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_131818.json",
+        "sha256": "7693e511543707c1adcd4cfd052d998821cf3df1fa5749e831fcddc0163a190e",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "internalQA": {
+        "status": "needs_repair",
+        "total": 33,
+        "passed": 25,
+        "needsRepair": 8,
+        "report": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/internal33-reused.json",
+          "sha256": "ddfdb6b316f7c8ec0649579f78bf5891d21c6ab7779996fd984336251aa9fb09",
+          "bytes": 75024
+        },
+        "newActualViews": 0
+      },
+      "externalQA": {
+        "status": "needs_repair",
+        "total": 28,
+        "passed": 22,
+        "needsRepair": 6,
+        "unknown": 0,
+        "sides": {
+          "N": {
+            "total": 7,
+            "passed": 3,
+            "needsRepair": 4,
+            "newActuallyViewed": 0,
+            "reused": 7
+          },
+          "E": {
+            "total": 7,
+            "passed": 5,
+            "needsRepair": 2,
+            "newActuallyViewed": 0,
+            "reused": 7
+          },
+          "S": {
+            "total": 7,
+            "passed": 7,
+            "needsRepair": 0,
+            "newActuallyViewed": 0,
+            "reused": 7
+          },
+          "W": {
+            "total": 7,
+            "passed": 7,
+            "needsRepair": 0,
+            "newActuallyViewed": 7,
+            "reused": 0
+          }
+        },
+        "report": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/root-adopted-external-review.json",
+          "sha256": "8fcbd589699484c129ec8220a34510370155ea3230c175f04cb755cab19c1fd5",
+          "bytes": 83386,
+          "mtimeNs": 1792667068679166900
+        }
+      },
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/current-source-pointer.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "internalQA": {
+            "status": "needs_repair",
+            "total": 33,
+            "passed": 25,
+            "needsRepair": 8,
+            "report": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/internal33-reused.json",
+              "sha256": "ddfdb6b316f7c8ec0649579f78bf5891d21c6ab7779996fd984336251aa9fb09",
+              "bytes": 75024
+            },
+            "newActualViews": 0
+          },
+          "externalQA": {
+            "status": "needs_repair",
+            "total": 28,
+            "passed": 22,
+            "needsRepair": 6,
+            "unknown": 0,
+            "sides": {
+              "N": {
+                "total": 7,
+                "passed": 3,
+                "needsRepair": 4,
+                "newActuallyViewed": 0,
+                "reused": 7
+              },
+              "E": {
+                "total": 7,
+                "passed": 5,
+                "needsRepair": 2,
+                "newActuallyViewed": 0,
+                "reused": 7
+              },
+              "S": {
+                "total": 7,
+                "passed": 7,
+                "needsRepair": 0,
+                "newActuallyViewed": 0,
+                "reused": 7
+              },
+              "W": {
+                "total": 7,
+                "passed": 7,
+                "needsRepair": 0,
+                "newActuallyViewed": 7,
+                "reused": 0
+              }
+            },
+            "report": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/root-adopted-external-review.json",
+              "sha256": "8fcbd589699484c129ec8220a34510370155ea3230c175f04cb755cab19c1fd5",
+              "bytes": 83386,
+              "mtimeNs": 1792667068679166900
+            }
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/root-adopted-external-review.json",
+        "record": {
+          "wholeTileExternalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/internal33-reused.json",
+        "record": {
+          "pending": [
+            {
+              "name": "v1024_r4",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v1024_r4.png",
+                "sha256": "478d2cc8ca3f91daf7259149fe72c6a5c6ec4bb8eef855eab253b3676da1399c"
+              },
+              "finding": "s04_01/s04_02横木梁端帽。两次AI返修改善几何后分别引入S或E色差；二值原位采用测试仍有掩膜左侧色差，均拒用，保留native01。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "v2048_r1",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v2048_r1.png",
+                "sha256": "f1e6a04bc36cd236b00244410580bce5aa9ec2dc3ea44e51fbf9329ebda5b6ec"
+              },
+              "finding": "s01_02/s01_03上段石缝位置不一致。s01_03既有两次返修仍未通过，保留旧排除锚点，不再传播不良金边。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "v3072_r1",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v3072_r1.png",
+                "sha256": "00bcaaa85f0885a14b25ecb7a6a51b7434791780ff619929d4707cae72d16631"
+              },
+              "finding": "s01_03/s01_04石板缝旧断头/角度不连续；保留此前两次返修后的最佳已选源与needs。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "v3072_r2",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v3072_r2.png",
+                "sha256": "855be139cbb8dd8acdd8efde48ce8b590af999f27b024c429b97791e77ed05bd"
+              },
+              "finding": "s02_03/s02_04上段斜石缝断头。两次局修后保留较好的fix01；fix02增加中段断头未选入。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h1024_c1",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h1024_c1.png",
+                "sha256": "64d15fc381f6a2283f3075c624430489a28c655a39a55074c057f50394cf6126"
+              },
+              "finding": "s01_01/s02_01左蓝色脊线虽已连接，转向仍过急；两次局修后保留fix01，fix02未改善未选入。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h1024_c3",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h1024_c3.png",
+                "sha256": "37cb8098dfc8ac47866a7f7779a73115a81fa903c77a7e3a21dfe8ef7dfa760c"
+              },
+              "finding": "s01_03/s02_03北侧斜石缝在核心边界断头；两次s02_03返修后仍needs。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h1024_c4",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h1024_c4.png",
+                "sha256": "36be8cd7da80a683c32cd1ef7ac35ca2c6b1e859698803695eff594c5771baed"
+              },
+              "finding": "s01_04/s02_04既有石板内部断头线，未通过状态沿用，不作为合格锚传播。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h2048_c4",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h2048_c4.png",
+                "sha256": "5e85d3d36d5f0d44fdbfe39984ab000b04a4e154b89770858e88e9296d03196e"
+              },
+              "finding": "s02_04/s03_04旧石缝小菱形/角度问题；既有两次修复失败保留native01。",
+              "status": "needs_repair"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "record": {
+          "internalQAPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/resume-checkpoint-20261018-night-native16-v01.json",
+        "record": {
+          "status": "native16_coverage_complete_QA_pending_local_repairs",
+          "selectedCoreCount": 16,
+          "totalCoreCount": 16,
+          "missingCoreCount": 0,
+          "pending": [
+            {
+              "name": "v1024_r4",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v1024_r4.png",
+                "sha256": "478d2cc8ca3f91daf7259149fe72c6a5c6ec4bb8eef855eab253b3676da1399c"
+              },
+              "finding": "s04_01/s04_02横木梁端帽。两次AI返修改善几何后分别引入S或E色差；二值原位采用测试仍有掩膜左侧色差，均拒用，保留native01。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "v2048_r1",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v2048_r1.png",
+                "sha256": "f1e6a04bc36cd236b00244410580bce5aa9ec2dc3ea44e51fbf9329ebda5b6ec"
+              },
+              "finding": "s01_02/s01_03上段石缝位置不一致。s01_03既有两次返修仍未通过，保留旧排除锚点，不再传播不良金边。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "v3072_r1",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v3072_r1.png",
+                "sha256": "00bcaaa85f0885a14b25ecb7a6a51b7434791780ff619929d4707cae72d16631"
+              },
+              "finding": "s01_03/s01_04石板缝旧断头/角度不连续；保留此前两次返修后的最佳已选源与needs。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "v3072_r2",
+              "kind": "internal_vertical",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/v3072_r2.png",
+                "sha256": "855be139cbb8dd8acdd8efde48ce8b590af999f27b024c429b97791e77ed05bd"
+              },
+              "finding": "s02_03/s02_04上段斜石缝断头。两次局修后保留较好的fix01；fix02增加中段断头未选入。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h1024_c1",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h1024_c1.png",
+                "sha256": "64d15fc381f6a2283f3075c624430489a28c655a39a55074c057f50394cf6126"
+              },
+              "finding": "s01_01/s02_01左蓝色脊线虽已连接，转向仍过急；两次局修后保留fix01，fix02未改善未选入。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h1024_c3",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h1024_c3.png",
+                "sha256": "37cb8098dfc8ac47866a7f7779a73115a81fa903c77a7e3a21dfe8ef7dfa760c"
+              },
+              "finding": "s01_03/s02_03北侧斜石缝在核心边界断头；两次s02_03返修后仍needs。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h1024_c4",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h1024_c4.png",
+                "sha256": "36be8cd7da80a683c32cd1ef7ac35ca2c6b1e859698803695eff594c5771baed"
+              },
+              "finding": "s01_04/s02_04既有石板内部断头线，未通过状态沿用，不作为合格锚传播。",
+              "status": "needs_repair"
+            },
+            {
+              "name": "h2048_c4",
+              "kind": "internal_horizontal",
+              "crop": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/h2048_c4.png",
+                "sha256": "5e85d3d36d5f0d44fdbfe39984ab000b04a4e154b89770858e88e9296d03196e"
+              },
+              "finding": "s02_04/s03_04旧石缝小菱形/角度问题；既有两次修复失败保留native01。",
+              "status": "needs_repair"
+            }
+          ],
+          "unknownExternalSides": [
+            "north",
+            "west",
+            "east"
+          ],
+          "formalAccepted": false,
+          "fullTileInternalQAPassed": false,
+          "retainedSourceReason": "Still current selected sources or required QA/failed-repair evidence; final acceptance and current-reference completeness not reached"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/human-resume-20261022-next-batch/execution.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "internalQA": {
+            "status": "needs_repair",
+            "total": 33,
+            "passed": 25,
+            "needsRepair": 8,
+            "report": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/internal33-reused.json",
+              "sha256": "ddfdb6b316f7c8ec0649579f78bf5891d21c6ab7779996fd984336251aa9fb09",
+              "bytes": 75024
+            },
+            "newActualViews": 0
+          },
+          "externalQA": {
+            "status": "needs_repair",
+            "total": 28,
+            "passed": 22,
+            "needsRepair": 6,
+            "unknown": 0,
+            "sides": {
+              "N": {
+                "total": 7,
+                "passed": 3,
+                "needsRepair": 4,
+                "newActuallyViewed": 0,
+                "reused": 7
+              },
+              "E": {
+                "total": 7,
+                "passed": 5,
+                "needsRepair": 2,
+                "newActuallyViewed": 0,
+                "reused": 7
+              },
+              "S": {
+                "total": 7,
+                "passed": 7,
+                "needsRepair": 0,
+                "newActuallyViewed": 0,
+                "reused": 7
+              },
+              "W": {
+                "total": 7,
+                "passed": 7,
+                "needsRepair": 0,
+                "newActuallyViewed": 7,
+                "reused": 0
+              }
+            },
+            "report": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/root-adopted-external-review.json",
+              "sha256": "8fcbd589699484c129ec8220a34510370155ea3230c175f04cb755cab19c1fd5",
+              "bytes": 83386,
+              "mtimeNs": 1792667068679166900
+            }
+          },
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/root-adopted-external-review.json",
+    "sourceSha256": "8fcbd589699484c129ec8220a34510370155ea3230c175f04cb755cab19c1fd5",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "atUtc": "2026-10-22T11:04:28.674475+00:00",
+      "tile": "r03_c06",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+        "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+      },
+      "neighbors": {
+        "N": {
+          "tile": "r02_c06",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/repair-batches/north-wall-20261020/trial-north-wall-fix01-rectangle/candidate.png",
+            "sha256": "dd178df9588cc885310bcbd25da16ad361b603f5be4a52f390ed4d04e837f90f"
+          },
+          "authority": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/continuation-status-20261020.json",
+            "sha256": "b2857a5b24d59c09a9902e8e5883c8835461840d36e1eca8573f07e249937a33",
+            "bytes": 2551
+          },
+          "sourceCount": 17,
+          "overlayCount": 1
+        },
+        "E": {
+          "tile": "r03_c07",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/candidate.png",
+            "sha256": "2f82835491c5ea8c12d191a5a3f7d11cbdd9c3c40a128cfc1eaf9b4eeca127ec"
+          },
+          "authority": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/resume-checkpoint-20261020-native25-v11.json",
+            "sha256": "301693a117bf99fc51af8c5c47f19fa6fc0fd7f422173d81b341816080e92fa2",
+            "bytes": 61408
+          },
+          "sourceCount": 25,
+          "overlayCount": 9
+        },
+        "S": {
+          "tile": "r04_c06",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate.png",
+            "sha256": "f1688a2dd16baaaffe5f114a92aa06ae19cae6c7d83795792888e7da05811d25"
+          },
+          "authority": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/resume-checkpoint-20261017-native20-root.json",
+            "sha256": "876110398e27eb96d53a196924c2633ecad9e2ca90b10c23beb668122ecd2f6f",
+            "bytes": 1524
+          },
+          "sourceCount": 20,
+          "overlayCount": "canonical includes adopted footprint sources"
+        },
+        "W": {
+          "tile": "r03_c05",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+            "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+            "bytes": 22957446,
+            "mtimeNs": "1791843510288685100",
+            "stableDuringRead": true,
+            "actuallyComputedThisReview": true,
+            "pixels": [
+              4096,
+              4096
+            ],
+            "mode": "RGB",
+            "worldOrigin": [
+              16384,
+              8192
+            ],
+            "canonical": true,
+            "actuallyViewed": true,
+            "fullViewDisplayPixels": [
+              1600,
+              1600
+            ],
+            "fullViewIs100PercentPixelQA": false
+          },
+          "authority": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/continuation-20261021-successor-1146/continuation-checkpoint-20261021-2306-v002.json",
+            "sha256": "0ecf443feb6aa369ca97c8888c5daedc1c31b3d75de5f06dbf117bd709f0a799",
+            "bytes": 5144
+          },
+          "canonicalSourceCheckpoint": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/continuation-20261021-successor-1146/continuation-checkpoint-v001.json",
+            "sha256": "4bccef239ce4bd780fa789e4094ff0dde56efb108938b3a4941b4ff17a13edf5",
+            "bytes": 175610
+          },
+          "sourceCount": "canonical delivery multi-source",
+          "readOnlyOtherOwner": true,
+          "wholeOwnerInflightNotAsserted": true
+        }
+      },
+      "counts": {
+        "total": 28,
+        "passed": 22,
+        "needsRepair": 6,
+        "unknown": 0,
+        "newActuallyViewed": 7,
+        "reusedExactCurrentPixels": 21
+      },
+      "sides": {
+        "N": {
+          "total": 7,
+          "passed": 3,
+          "needsRepair": 4,
+          "newActuallyViewed": 0,
+          "reused": 7
+        },
+        "E": {
+          "total": 7,
+          "passed": 5,
+          "needsRepair": 2,
+          "newActuallyViewed": 0,
+          "reused": 7
+        },
+        "S": {
+          "total": 7,
+          "passed": 7,
+          "needsRepair": 0,
+          "newActuallyViewed": 0,
+          "reused": 7
+        },
+        "W": {
+          "total": 7,
+          "passed": 7,
+          "needsRepair": 0,
+          "newActuallyViewed": 7,
+          "reused": 0
+        }
+      },
+      "checks": [
+        {
+          "side": "N",
+          "name": "N_seg1",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg1.png",
+            "sha256": "319d5e6231390d34066d758b90e8c9cfde5df2edf1cf50062703be4b4a492c56",
+            "bytes": 500859
+          },
+          "pixelSha256": "be3235af54017116d3e2ce28edae4d885d70cc2ac5965e528e42267704911c35",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            0,
+            1024
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/review.json",
+            "sha256": "05854f5172e03ecb74c6a1c1f820903ce426fc5271e3d21464fde34a3627361d",
+            "bytes": 85691
+          },
+          "priorCheck": {
+            "name": "south_seg1",
+            "kind": "external_south",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg1.png",
+            "sha256": "319d5e6231390d34066d758b90e8c9cfde5df2edf1cf50062703be4b4a492c56",
+            "status": "passed",
+            "actuallyViewed": true,
+            "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_01_native01/south-seam.png",
+                  "sha256": "319d5e6231390d34066d758b90e8c9cfde5df2edf1cf50062703be4b4a492c56"
+                },
+                "status": "passed",
+                "finding": "Viewed native source and 3 native QA crops. South jade roof edge, leaf mass and brown twig continuous; E branch and leaf shapes join; SE junction continuous. Gold curled eave remains in approved lower-left footprint. Available local neighbors passed; full-tile QA pending.",
+                "actuallyViewed": true
+              }
+            ],
+            "finding": "Viewed native source and 3 native QA crops. South jade roof edge, leaf mass and brown twig continuous; E branch and leaf shapes join; SE junction continuous. Gold curled eave remains in approved lower-left footprint. Available local neighbors passed; full-tile QA pending."
+          }
+        },
+        {
+          "side": "N",
+          "name": "N_seg2",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg2.png",
+            "sha256": "658d2c7a4ad95b4db8f833b49af3e528e9b1ae30d4324fd2bf7f147af0c44ae4",
+            "bytes": 529610
+          },
+          "pixelSha256": "754438588e98b22dbbc86516ee25f834c4b0e18f02e066c556baec221fee07dd",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            1024,
+            2048
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/review.json",
+            "sha256": "05854f5172e03ecb74c6a1c1f820903ce426fc5271e3d21464fde34a3627361d",
+            "bytes": 85691
+          },
+          "priorCheck": {
+            "name": "south_seg2",
+            "kind": "external_south",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg2.png",
+            "sha256": "658d2c7a4ad95b4db8f833b49af3e528e9b1ae30d4324fd2bf7f147af0c44ae4",
+            "status": "passed",
+            "actuallyViewed": true,
+            "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_02_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_02_native01/south-seam.png",
+                  "sha256": "658d2c7a4ad95b4db8f833b49af3e528e9b1ae30d4324fd2bf7f147af0c44ae4"
+                },
+                "status": "passed",
+                "finding": null,
+                "actuallyViewed": true
+              }
+            ],
+            "finding": "See linked actual native source review for the per-crop finding."
+          }
+        },
+        {
+          "side": "N",
+          "name": "N_seg3",
+          "status": "needs_repair",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg3.png",
+            "sha256": "d223a74f7acb2d13c6f12e0a47e331d35f406584ec3b063d07cad2b8bec4dc9f",
+            "bytes": 546410
+          },
+          "pixelSha256": "c5b00e09bae36bc25f961c24756b13a43434d5634559906aa8ee447c957c3729",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            2048,
+            3072
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/review.json",
+            "sha256": "05854f5172e03ecb74c6a1c1f820903ce426fc5271e3d21464fde34a3627361d",
+            "bytes": 85691
+          },
+          "priorCheck": {
+            "name": "south_seg3",
+            "kind": "external_south",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg3.png",
+            "sha256": "d223a74f7acb2d13c6f12e0a47e331d35f406584ec3b063d07cad2b8bec4dc9f",
+            "status": "needs_repair",
+            "actuallyViewed": true,
+            "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_03_fix01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_03_fix01/south-seam.png",
+                  "sha256": "d223a74f7acb2d13c6f12e0a47e331d35f406584ec3b063d07cad2b8bec4dc9f"
+                },
+                "status": "needs_repair",
+                "finding": "Canopy now tapers naturally, but lower-left diagonal grout moved ~320 pixels from frozen southern anchor. Do not propagate.",
+                "actuallyViewed": true
+              }
+            ],
+            "finding": "Canopy now tapers naturally, but lower-left diagonal grout moved ~320 pixels from frozen southern anchor. Do not propagate."
+          }
+        },
+        {
+          "side": "N",
+          "name": "N_seg4",
+          "status": "needs_repair",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg4.png",
+            "sha256": "879ee887a091964a7cef876030818675fde44582a4c6df1c3b7a421ac3282f2e",
+            "bytes": 573271
+          },
+          "pixelSha256": "9095dfd7d4fb3c3eb71e282c6755c0dffe140667a12a747ee3449faae6dde2ad",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            3072,
+            4096
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/review.json",
+            "sha256": "05854f5172e03ecb74c6a1c1f820903ce426fc5271e3d21464fde34a3627361d",
+            "bytes": 85691
+          },
+          "priorCheck": {
+            "name": "south_seg4",
+            "kind": "external_south",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_seg4.png",
+            "sha256": "879ee887a091964a7cef876030818675fde44582a4c6df1c3b7a421ac3282f2e",
+            "status": "needs_repair",
+            "actuallyViewed": true,
+            "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_04_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_04_native01/south-seam.png",
+                  "sha256": "879ee887a091964a7cef876030818675fde44582a4c6df1c3b7a421ac3282f2e"
+                },
+                "status": "needs_repair",
+                "finding": null,
+                "actuallyViewed": true
+              }
+            ],
+            "finding": "See linked actual native source review for the per-crop finding."
+          }
+        },
+        {
+          "side": "N",
+          "name": "N_joint1024",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_joint1024.png",
+            "sha256": "73ea40ba9d5993c2baa26357e968203c904be7cab39ca54553453a191399841a",
+            "bytes": 163557
+          },
+          "pixelSha256": "7f3228b05a4abd53a2c4723aa0e661a196795b44bc9a06e3ec3b3ffc9b109df1",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            864,
+            1184
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/review.json",
+            "sha256": "05854f5172e03ecb74c6a1c1f820903ce426fc5271e3d21464fde34a3627361d",
+            "bytes": 85691
+          },
+          "priorCheck": {
+            "name": "south_joint1024",
+            "kind": "external_south_junction",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_joint1024.png",
+            "sha256": "73ea40ba9d5993c2baa26357e968203c904be7cab39ca54553453a191399841a",
+            "status": "passed",
+            "actuallyViewed": true,
+            "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_01_native01/southeast-junction.png",
+                  "sha256": "73ea40ba9d5993c2baa26357e968203c904be7cab39ca54553453a191399841a"
+                },
+                "status": "passed",
+                "finding": "Viewed native source and 3 native QA crops. South jade roof edge, leaf mass and brown twig continuous; E branch and leaf shapes join; SE junction continuous. Gold curled eave remains in approved lower-left footprint. Available local neighbors passed; full-tile QA pending.",
+                "actuallyViewed": true
+              }
+            ],
+            "finding": "Viewed native source and 3 native QA crops. South jade roof edge, leaf mass and brown twig continuous; E branch and leaf shapes join; SE junction continuous. Gold curled eave remains in approved lower-left footprint. Available local neighbors passed; full-tile QA pending."
+          }
+        },
+        {
+          "side": "N",
+          "name": "N_joint2048",
+          "status": "needs_repair",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_joint2048.png",
+            "sha256": "44ab53a5228066b2875fe6a2ff7451cba47c52192a280d14c9125e0e13ac5124",
+            "bytes": 170052
+          },
+          "pixelSha256": "773a14bc35d0edf022ee8c5b43b3a37682444a9b3e335954271e8caab2cebee6",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            1888,
+            2208
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/review.json",
+            "sha256": "05854f5172e03ecb74c6a1c1f820903ce426fc5271e3d21464fde34a3627361d",
+            "bytes": 85691
+          },
+          "priorCheck": {
+            "name": "south_joint2048",
+            "kind": "external_south_junction",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_joint2048.png",
+            "sha256": "44ab53a5228066b2875fe6a2ff7451cba47c52192a280d14c9125e0e13ac5124",
+            "status": "needs_repair",
+            "actuallyViewed": true,
+            "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_02_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_02_native01/southeast-junction.png",
+                  "sha256": "44ab53a5228066b2875fe6a2ff7451cba47c52192a280d14c9125e0e13ac5124"
+                },
+                "status": "needs_repair",
+                "finding": null,
+                "actuallyViewed": true
+              }
+            ],
+            "finding": "See linked actual native source review for the per-crop finding."
+          }
+        },
+        {
+          "side": "N",
+          "name": "N_joint3072",
+          "status": "needs_repair",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_joint3072.png",
+            "sha256": "1edda1a900532813eab380b0b9fe52bf6703b82dc559600e5f1584a717bb92b8",
+            "bytes": 182631
+          },
+          "pixelSha256": "26bc299cbc5bfbec88869c55f19c87c2880cb47df073310387cfff0c6487df56",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            2912,
+            3232
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/review.json",
+            "sha256": "05854f5172e03ecb74c6a1c1f820903ce426fc5271e3d21464fde34a3627361d",
+            "bytes": 85691
+          },
+          "priorCheck": {
+            "name": "south_joint3072",
+            "kind": "external_south_junction",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/native16-20261019-9df886c5a8d8f848/south_joint3072.png",
+            "sha256": "1edda1a900532813eab380b0b9fe52bf6703b82dc559600e5f1584a717bb92b8",
+            "status": "needs_repair",
+            "actuallyViewed": true,
+            "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_03_fix01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/qa/source-review/s04_03_fix01/southeast-junction.png",
+                  "sha256": "1edda1a900532813eab380b0b9fe52bf6703b82dc559600e5f1584a717bb92b8"
+                },
+                "status": "needs_repair",
+                "finding": "Canopy now tapers naturally, but lower-left diagonal grout moved ~320 pixels from frozen southern anchor. Do not propagate.",
+                "actuallyViewed": true
+              }
+            ],
+            "finding": "Canopy now tapers naturally, but lower-left diagonal grout moved ~320 pixels from frozen southern anchor. Do not propagate."
+          }
+        },
+        {
+          "side": "S",
+          "name": "S_seg1",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg1.png",
+            "sha256": "b7710f1f9716f5a20bbc68177a53fda03076779db308465faf83d5ae4f444122",
+            "bytes": 401392
+          },
+          "pixelSha256": "69350e929970107421d6cb52b418546c8fcee8e7c18a418454fef0ded2b73622",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            0,
+            1024
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/review.json",
+            "sha256": "41dde1947c91eb5741eac597a74c9125c3a86e6f07fef09773316cca275e99f1"
+          },
+          "priorCheck": {
+            "name": "south_seg1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg1.png",
+            "sha256": "b7710f1f9716f5a20bbc68177a53fda03076779db308465faf83d5ae4f444122",
+            "status": "passed",
+            "reviewMethod": "Exact pixel hash reuse of previously actually viewed crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_01_native01/south-seam.png",
+                  "sha256": "b7710f1f9716f5a20bbc68177a53fda03076779db308465faf83d5ae4f444122"
+                },
+                "status": "passed",
+                "finding": "Viewed native E/S/SE. S column/plaster/lantern and SE lantern continuous. E roof tiles connect, but lower red crossbeam ends in a cap at the east join near native y=800..940 instead of a fully resolved join to east sloping timber. Keep east local timber issue pending; upper roof edge is usable for next row.",
+                "actuallyViewed": true
+              }
+            ]
+          }
+        },
+        {
+          "side": "S",
+          "name": "S_seg2",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg2.png",
+            "sha256": "a5309779e21dcc7a70d4581532c13e15a074fe28707434e8b91c2b187628d0f7",
+            "bytes": 427466
+          },
+          "pixelSha256": "9727a4e01dac3333334dcc41d1c992520f0027806aa392f3d35c77f45c9079ea",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            1024,
+            2048
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/review.json",
+            "sha256": "41dde1947c91eb5741eac597a74c9125c3a86e6f07fef09773316cca275e99f1"
+          },
+          "priorCheck": {
+            "name": "south_seg2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg2.png",
+            "sha256": "a5309779e21dcc7a70d4581532c13e15a074fe28707434e8b91c2b187628d0f7",
+            "status": "passed",
+            "reviewMethod": "Exact pixel hash reuse of previously actually viewed crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_02_fix01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_02_fix01/south-seam.png",
+                  "sha256": "a5309779e21dcc7a70d4581532c13e15a074fe28707434e8b91c2b187628d0f7"
+                },
+                "status": "passed",
+                "finding": "Viewed native E/S/SE crops: removed square gold terminal, gold rim curves continuously into east upturn; wood/lantern and south ribs continuous. Local available edges passed; full-tile QA remains pending.",
+                "actuallyViewed": true
+              }
+            ]
+          }
+        },
+        {
+          "side": "S",
+          "name": "S_seg3",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg3.png",
+            "sha256": "a404bdb56a51bf86189ff35f8f66b326402cb2d7f26bdb94ed8a02eaa7f202e0",
+            "bytes": 552764
+          },
+          "pixelSha256": "e105ba5b1dbb7e54acba494bfd29d35cecc895625b185f8616ebf1dd25746802",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            2048,
+            3072
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/review.json",
+            "sha256": "41dde1947c91eb5741eac597a74c9125c3a86e6f07fef09773316cca275e99f1"
+          },
+          "priorCheck": {
+            "name": "south_seg3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg3.png",
+            "sha256": "a404bdb56a51bf86189ff35f8f66b326402cb2d7f26bdb94ed8a02eaa7f202e0",
+            "status": "passed",
+            "reviewMethod": "Exact pixel hash reuse of previously actually viewed crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_03_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_03_native01/south-seam.png",
+                  "sha256": "a404bdb56a51bf86189ff35f8f66b326402cb2d7f26bdb94ed8a02eaa7f202e0"
+                },
+                "status": "passed",
+                "finding": "原生以及N/E/NE/S/SE五处1:1均实际查看：金檐线、叶簇、枝干、路带、红灯笼肋线与灰石台面跨边连续，无可定位直切或错位。局部通过；总块未验收。",
+                "actuallyViewed": true
+              }
+            ]
+          }
+        },
+        {
+          "side": "S",
+          "name": "S_seg4",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg4.png",
+            "sha256": "057b1b0ab0bf9b582c4df2313cb19d628e5b5a106156a30bb783555cc7faa7ef",
+            "bytes": 614823
+          },
+          "pixelSha256": "2be44ff6f3b5b706cbaad762077577f8f69d0af5cbecc0f38b68a9e83389cd58",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            3072,
+            4096
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/review.json",
+            "sha256": "41dde1947c91eb5741eac597a74c9125c3a86e6f07fef09773316cca275e99f1"
+          },
+          "priorCheck": {
+            "name": "south_seg4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_seg4.png",
+            "sha256": "057b1b0ab0bf9b582c4df2313cb19d628e5b5a106156a30bb783555cc7faa7ef",
+            "status": "passed",
+            "reviewMethod": "Exact pixel hash reuse of previously actually viewed crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_04_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_04_native01/south-seam.png",
+                  "sha256": "057b1b0ab0bf9b582c4df2313cb19d628e5b5a106156a30bb783555cc7faa7ef"
+                },
+                "status": "passed",
+                "finding": "已实际查看1254原生图及南侧1:1接缝。绿叶与叶影、米白石沿、青灰宽路带及石缝跨当前world y12288连续。大布局符合宽路带斜向穿过、树靠现有建筑边缘；只授当前可用南邻局部通过，不代表全块或全图验收。",
+                "actuallyViewed": true
+              }
+            ]
+          }
+        },
+        {
+          "side": "S",
+          "name": "S_joint1024",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_joint1024.png",
+            "sha256": "12b057bf44c6aa67a80d0c43d3fea5f6b30d46b51b07f85b92b644b85a5b6574",
+            "bytes": 139888
+          },
+          "pixelSha256": "c87ddbf38e1c694c9fe9982f996a3f1e9bcd05b8001cd74b2e8c3c0f6fa1143d",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            864,
+            1184
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/review.json",
+            "sha256": "41dde1947c91eb5741eac597a74c9125c3a86e6f07fef09773316cca275e99f1"
+          },
+          "priorCheck": {
+            "name": "south_joint1024",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_joint1024.png",
+            "sha256": "12b057bf44c6aa67a80d0c43d3fea5f6b30d46b51b07f85b92b644b85a5b6574",
+            "status": "passed",
+            "reviewMethod": "Exact pixel hash reuse of previously actually viewed crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_01_native01/southeast-junction.png",
+                  "sha256": "12b057bf44c6aa67a80d0c43d3fea5f6b30d46b51b07f85b92b644b85a5b6574"
+                },
+                "status": "passed",
+                "finding": "Viewed native E/S/SE. S column/plaster/lantern and SE lantern continuous. E roof tiles connect, but lower red crossbeam ends in a cap at the east join near native y=800..940 instead of a fully resolved join to east sloping timber. Keep east local timber issue pending; upper roof edge is usable for next row.",
+                "actuallyViewed": true
+              }
+            ]
+          }
+        },
+        {
+          "side": "S",
+          "name": "S_joint2048",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_joint2048.png",
+            "sha256": "839cc3109860c244d2e8d6f7d6b1abe878a22b104818de74c694752de884fb1c",
+            "bytes": 151406
+          },
+          "pixelSha256": "83eca94a40d5da92ceb2187913d038be85afac4527ff53a1d393dda44ef9cc69",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            1888,
+            2208
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/review.json",
+            "sha256": "41dde1947c91eb5741eac597a74c9125c3a86e6f07fef09773316cca275e99f1"
+          },
+          "priorCheck": {
+            "name": "south_joint2048",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_joint2048.png",
+            "sha256": "839cc3109860c244d2e8d6f7d6b1abe878a22b104818de74c694752de884fb1c",
+            "status": "passed",
+            "reviewMethod": "Exact pixel hash reuse of previously actually viewed crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_02_fix01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_02_fix01/southeast-junction.png",
+                  "sha256": "839cc3109860c244d2e8d6f7d6b1abe878a22b104818de74c694752de884fb1c"
+                },
+                "status": "passed",
+                "finding": "Viewed native E/S/SE crops: removed square gold terminal, gold rim curves continuously into east upturn; wood/lantern and south ribs continuous. Local available edges passed; full-tile QA remains pending.",
+                "actuallyViewed": true
+              }
+            ]
+          }
+        },
+        {
+          "side": "S",
+          "name": "S_joint3072",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_joint3072.png",
+            "sha256": "b50c814b970a54e41cf4303e488454bb622360ca447223d83719e19c7dbce6fb",
+            "bytes": 184782
+          },
+          "pixelSha256": "7b1a498bca780ebcac293b537001a340472e2f1e10568a2c3c92f868ee646606",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            2912,
+            3232
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/review.json",
+            "sha256": "41dde1947c91eb5741eac597a74c9125c3a86e6f07fef09773316cca275e99f1"
+          },
+          "priorCheck": {
+            "name": "south_joint3072",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/native16-20261018-night-dcaffd0997370086/south_joint3072.png",
+            "sha256": "b50c814b970a54e41cf4303e488454bb622360ca447223d83719e19c7dbce6fb",
+            "status": "passed",
+            "reviewMethod": "Exact pixel hash reuse of previously actually viewed crop",
+            "reviewEvidence": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_03_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/qa/source-review/s04_03_native01/southeast-junction.png",
+                  "sha256": "b50c814b970a54e41cf4303e488454bb622360ca447223d83719e19c7dbce6fb"
+                },
+                "status": "passed",
+                "finding": "原生以及N/E/NE/S/SE五处1:1均实际查看：金檐线、叶簇、枝干、路带、红灯笼肋线与灰石台面跨边连续，无可定位直切或错位。局部通过；总块未验收。",
+                "actuallyViewed": true
+              }
+            ]
+          }
+        },
+        {
+          "side": "E",
+          "name": "E_seg1",
+          "status": "needs_repair",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg1.png",
+            "sha256": "52f5b072d1d214062a27e70848dd3fafbce9a51467a40c26031f99f5751532e9",
+            "bytes": 570382
+          },
+          "pixelSha256": "c3c7676a2732ac7243ff1a4b76bfc20bf635e12a95cb23b30377c476c812394e",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            0,
+            1024
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/qa/review.json",
+            "sha256": "91c11b08cf9f035b3dc614eb09bd098e99fdd073401c53f3f8beb3e0e98ccc4c"
+          },
+          "priorCheck": {
+            "name": "west_seg1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg1.png",
+            "sha256": "52f5b072d1d214062a27e70848dd3fafbce9a51467a40c26031f99f5751532e9",
+            "pixelSha256": "c3c7676a2732ac7243ff1a4b76bfc20bf635e12a95cb23b30377c476c812394e",
+            "kind": "external_west",
+            "tileBox": null,
+            "nativePixelScale": 1,
+            "matchingPriorReviews": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s01_01_native02/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s01_01_native02/west-seam.png",
+                  "sha256": "52f5b072d1d214062a27e70848dd3fafbce9a51467a40c26031f99f5751532e9"
+                },
+                "status": "needs_repair",
+                "finding": "Correct 1/16 field of view restored using only exact guide. Cropped gray footing stays upper-right and red debris positions follow guide. S firecracker/paving join and SW surface pass. W multiple diagonal grout endpoints mismatch, stays needs; exclude west border from future anchors.",
+                "actuallyViewed": true
+              }
+            ],
+            "status": "needs_repair",
+            "baseCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg1.png",
+              "sha256": "52f5b072d1d214062a27e70848dd3fafbce9a51467a40c26031f99f5751532e9",
+              "pixelSha256": "c3c7676a2732ac7243ff1a4b76bfc20bf635e12a95cb23b30377c476c812394e",
+              "status": "needs_repair"
+            },
+            "reviewMethod": "Exact unchanged pixel hash reused from prior actual review"
+          }
+        },
+        {
+          "side": "E",
+          "name": "E_seg2",
+          "status": "needs_repair",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg2.png",
+            "sha256": "df3579666fac1a7e89cea373eadfccb292744889b2dee8a16a31ae6269c2afa3",
+            "bytes": 537515
+          },
+          "pixelSha256": "92d0bb75418d58e343baf50a5825e949c289b94d40f294b67e4c95843898f7f9",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            1024,
+            2048
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/qa/review.json",
+            "sha256": "91c11b08cf9f035b3dc614eb09bd098e99fdd073401c53f3f8beb3e0e98ccc4c"
+          },
+          "priorCheck": {
+            "name": "west_seg2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg2.png",
+            "sha256": "df3579666fac1a7e89cea373eadfccb292744889b2dee8a16a31ae6269c2afa3",
+            "pixelSha256": "92d0bb75418d58e343baf50a5825e949c289b94d40f294b67e4c95843898f7f9",
+            "kind": "external_west",
+            "tileBox": null,
+            "nativePixelScale": 1,
+            "matchingPriorReviews": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s02_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s02_01_native01/west-seam.png",
+                  "sha256": "df3579666fac1a7e89cea373eadfccb292744889b2dee8a16a31ae6269c2afa3"
+                },
+                "status": "needs_repair",
+                "finding": "Native1254 and firecracker footprint match approved guide. W one extra rising grout ends at join around lower-middle; S falling diagonal shifts about70px and texture seam. These local join defects stay needs; N/E geometry remain usable. SW clean surface continuity passes. Do not propagate W/S damaged local strip.",
+                "actuallyViewed": true
+              }
+            ],
+            "status": "needs_repair",
+            "baseCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg2.png",
+              "sha256": "df3579666fac1a7e89cea373eadfccb292744889b2dee8a16a31ae6269c2afa3",
+              "pixelSha256": "92d0bb75418d58e343baf50a5825e949c289b94d40f294b67e4c95843898f7f9",
+              "status": "needs_repair"
+            },
+            "reviewMethod": "Exact unchanged pixel hash reused from prior actual review"
+          }
+        },
+        {
+          "side": "E",
+          "name": "E_seg3",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg3.png",
+            "sha256": "14960c80de15bd0a20d02b4f71a421c5bb39877b2464c348868db6cc9ccff83c",
+            "bytes": 519117
+          },
+          "pixelSha256": "ad7616b0f848238b7ced70a95243b8b9fa533c05162011ce22b11c6a77c9663c",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            2048,
+            3072
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/qa/review.json",
+            "sha256": "91c11b08cf9f035b3dc614eb09bd098e99fdd073401c53f3f8beb3e0e98ccc4c"
+          },
+          "priorCheck": {
+            "name": "west_seg3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg3.png",
+            "sha256": "14960c80de15bd0a20d02b4f71a421c5bb39877b2464c348868db6cc9ccff83c",
+            "pixelSha256": "ad7616b0f848238b7ced70a95243b8b9fa533c05162011ce22b11c6a77c9663c",
+            "kind": "external_west",
+            "tileBox": null,
+            "nativePixelScale": 1,
+            "matchingPriorReviews": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s03_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s03_01_native01/west-seam.png",
+                  "sha256": "14960c80de15bd0a20d02b4f71a421c5bb39877b2464c348868db6cc9ccff83c"
+                },
+                "status": "passed",
+                "finding": "Native1254, approved plain large-slab paving. Full output and 100% west-seam actually viewed: grout and material continue without blocking cutoff. Other edges await own native cores; no formal acceptance.",
+                "actuallyViewed": true
+              }
+            ],
+            "status": "passed",
+            "baseCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg3.png",
+              "sha256": "14960c80de15bd0a20d02b4f71a421c5bb39877b2464c348868db6cc9ccff83c",
+              "pixelSha256": "ad7616b0f848238b7ced70a95243b8b9fa533c05162011ce22b11c6a77c9663c",
+              "status": "passed"
+            },
+            "reviewMethod": "Exact unchanged pixel hash reused from prior actual review"
+          }
+        },
+        {
+          "side": "E",
+          "name": "E_seg4",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg4.png",
+            "sha256": "85c419a3b934edc6356d2bbd79f8331bdbb30954ed8c5efb50f1b053d87c4ac3",
+            "bytes": 574721
+          },
+          "pixelSha256": "5c568fca2023da4e8a73745a04e80eada9099d94f321d9659a8b81a971f43a70",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            3072,
+            4096
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/qa/review.json",
+            "sha256": "91c11b08cf9f035b3dc614eb09bd098e99fdd073401c53f3f8beb3e0e98ccc4c"
+          },
+          "priorCheck": {
+            "name": "west_seg4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg4.png",
+            "sha256": "85c419a3b934edc6356d2bbd79f8331bdbb30954ed8c5efb50f1b053d87c4ac3",
+            "pixelSha256": "5c568fca2023da4e8a73745a04e80eada9099d94f321d9659a8b81a971f43a70",
+            "kind": "external_west",
+            "tileBox": null,
+            "nativePixelScale": 1,
+            "matchingPriorReviews": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s04_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s04_01_native01/west-seam.png",
+                  "sha256": "85c419a3b934edc6356d2bbd79f8331bdbb30954ed8c5efb50f1b053d87c4ac3"
+                },
+                "status": "passed",
+                "finding": "Native1254. Blue inset footprint continues only lower-left, matching fixed west source. N/W/NW three native crops actually viewed: main gray grout, ivory rows and blue joints continuous; no new blocking seam. Formal status pending.",
+                "actuallyViewed": true
+              }
+            ],
+            "status": "passed",
+            "baseCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_seg4.png",
+              "sha256": "85c419a3b934edc6356d2bbd79f8331bdbb30954ed8c5efb50f1b053d87c4ac3",
+              "pixelSha256": "5c568fca2023da4e8a73745a04e80eada9099d94f321d9659a8b81a971f43a70",
+              "status": "passed"
+            },
+            "reviewMethod": "Exact unchanged pixel hash reused from prior actual review"
+          }
+        },
+        {
+          "side": "E",
+          "name": "E_joint1024",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint1024.png",
+            "sha256": "fca15f6e2716e9cc6a04f900bbcc51c5e29fb7ce18d7d50f829a9769fe241bbf",
+            "bytes": 172789
+          },
+          "pixelSha256": "893749d2014f6a3836b603cee34045e5dae4874071193e9972bfeac5998fe0a5",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            864,
+            1184
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/qa/review.json",
+            "sha256": "91c11b08cf9f035b3dc614eb09bd098e99fdd073401c53f3f8beb3e0e98ccc4c"
+          },
+          "priorCheck": {
+            "name": "west_joint1024",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint1024.png",
+            "sha256": "fca15f6e2716e9cc6a04f900bbcc51c5e29fb7ce18d7d50f829a9769fe241bbf",
+            "pixelSha256": "893749d2014f6a3836b603cee34045e5dae4874071193e9972bfeac5998fe0a5",
+            "kind": "external_west_junction",
+            "tileBox": null,
+            "nativePixelScale": 1,
+            "matchingPriorReviews": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s01_01_native02/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s01_01_native02/southwest-junction.png",
+                  "sha256": "fca15f6e2716e9cc6a04f900bbcc51c5e29fb7ce18d7d50f829a9769fe241bbf"
+                },
+                "status": "passed",
+                "finding": "Correct 1/16 field of view restored using only exact guide. Cropped gray footing stays upper-right and red debris positions follow guide. S firecracker/paving join and SW surface pass. W multiple diagonal grout endpoints mismatch, stays needs; exclude west border from future anchors.",
+                "actuallyViewed": true
+              }
+            ],
+            "status": "passed",
+            "baseCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint1024.png",
+              "sha256": "fca15f6e2716e9cc6a04f900bbcc51c5e29fb7ce18d7d50f829a9769fe241bbf",
+              "pixelSha256": "893749d2014f6a3836b603cee34045e5dae4874071193e9972bfeac5998fe0a5",
+              "status": "passed"
+            },
+            "reviewMethod": "Exact unchanged pixel hash reused from prior actual review"
+          }
+        },
+        {
+          "side": "E",
+          "name": "E_joint2048",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint2048.png",
+            "sha256": "b9dc7c3d901d3f93e16e173af2e4bbafdaff93379b520ebb302464c0cd9ffe38",
+            "bytes": 162933
+          },
+          "pixelSha256": "c5ebb9c953ae465daa3e7c436bc8967d95afbb88fc2da4f2e67cfc03e4319d0e",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            1888,
+            2208
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/qa/review.json",
+            "sha256": "91c11b08cf9f035b3dc614eb09bd098e99fdd073401c53f3f8beb3e0e98ccc4c"
+          },
+          "priorCheck": {
+            "name": "west_joint2048",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint2048.png",
+            "sha256": "b9dc7c3d901d3f93e16e173af2e4bbafdaff93379b520ebb302464c0cd9ffe38",
+            "pixelSha256": "c5ebb9c953ae465daa3e7c436bc8967d95afbb88fc2da4f2e67cfc03e4319d0e",
+            "kind": "external_west_junction",
+            "tileBox": null,
+            "nativePixelScale": 1,
+            "matchingPriorReviews": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s02_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s02_01_native01/southwest-junction.png",
+                  "sha256": "b9dc7c3d901d3f93e16e173af2e4bbafdaff93379b520ebb302464c0cd9ffe38"
+                },
+                "status": "passed",
+                "finding": "Native1254 and firecracker footprint match approved guide. W one extra rising grout ends at join around lower-middle; S falling diagonal shifts about70px and texture seam. These local join defects stay needs; N/E geometry remain usable. SW clean surface continuity passes. Do not propagate W/S damaged local strip.",
+                "actuallyViewed": true
+              }
+            ],
+            "status": "passed",
+            "baseCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint2048.png",
+              "sha256": "b9dc7c3d901d3f93e16e173af2e4bbafdaff93379b520ebb302464c0cd9ffe38",
+              "pixelSha256": "c5ebb9c953ae465daa3e7c436bc8967d95afbb88fc2da4f2e67cfc03e4319d0e",
+              "status": "passed"
+            },
+            "reviewMethod": "Exact unchanged pixel hash reused from prior actual review"
+          }
+        },
+        {
+          "side": "E",
+          "name": "E_joint3072",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint3072.png",
+            "sha256": "1a9d98714dd6395aa3c94d1a81e04a3130884c2bf91be816464054ba734dd57e",
+            "bytes": 169068
+          },
+          "pixelSha256": "c5dc3a6b91193b4d5c7709670ad7661f5654491b359d2b9d65c0beb555c621dc",
+          "rotationCCW90Count": 0,
+          "pairLongAxisRange": [
+            2912,
+            3232
+          ],
+          "reused": true,
+          "actuallyViewedThisContinuation": false,
+          "exactCurrentBilateralPixelsVerified": true,
+          "priorReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/repair-batches/v3072-r1-joint-network-20261020/fix01/proposal-v1/qa/review.json",
+            "sha256": "91c11b08cf9f035b3dc614eb09bd098e99fdd073401c53f3f8beb3e0e98ccc4c"
+          },
+          "priorCheck": {
+            "name": "west_joint3072",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint3072.png",
+            "sha256": "1a9d98714dd6395aa3c94d1a81e04a3130884c2bf91be816464054ba734dd57e",
+            "pixelSha256": "c5dc3a6b91193b4d5c7709670ad7661f5654491b359d2b9d65c0beb555c621dc",
+            "kind": "external_west_junction",
+            "tileBox": null,
+            "nativePixelScale": 1,
+            "matchingPriorReviews": [
+              {
+                "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s04_01_native01/review.json",
+                "crop": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/source-review/s04_01_native01/northwest-junction.png",
+                  "sha256": "1a9d98714dd6395aa3c94d1a81e04a3130884c2bf91be816464054ba734dd57e"
+                },
+                "status": "passed",
+                "finding": "Native1254. Blue inset footprint continues only lower-left, matching fixed west source. N/W/NW three native crops actually viewed: main gray grout, ivory rows and blue joints continuous; no new blocking seam. Formal status pending.",
+                "actuallyViewed": true
+              }
+            ],
+            "status": "passed",
+            "baseCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c07/qa/native16-20261019-334e510242a5de40/west_joint3072.png",
+              "sha256": "1a9d98714dd6395aa3c94d1a81e04a3130884c2bf91be816464054ba734dd57e",
+              "pixelSha256": "c5dc3a6b91193b4d5c7709670ad7661f5654491b359d2b9d65c0beb555c621dc",
+              "status": "passed"
+            },
+            "reviewMethod": "Exact unchanged pixel hash reused from prior actual review"
+          }
+        },
+        {
+          "side": "W",
+          "name": "W_seg1",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg1.png",
+            "sha256": "a1c46a317798fd29b4197cce1b3314a9b5adf8266d324a585362b4a7433b750c",
+            "bytes": 454956
+          },
+          "pixelSha256": "a7bd868867e789e040770b09447a3efcd2c8631978e02cdb3a2ce91385926509",
+          "rotationCCW90Count": 1,
+          "pairLongAxisRange": [
+            0,
+            1024
+          ],
+          "reused": false,
+          "actuallyViewedThisContinuation": true,
+          "exactCurrentBilateralPixelsVerified": true,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+              "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+              "bytes": 22957446,
+              "mtimeNs": "1791843510288685100",
+              "stableDuringRead": true,
+              "actuallyComputedThisReview": true,
+              "pixels": [
+                4096,
+                4096
+              ],
+              "mode": "RGB",
+              "worldOrigin": [
+                16384,
+                8192
+              ],
+              "canonical": true,
+              "actuallyViewed": true,
+              "fullViewDisplayPixels": [
+                1600,
+                1600
+              ],
+              "fullViewIs100PercentPixelQA": false
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+              "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+            }
+          ],
+          "worldBoundaryX": 20480,
+          "worldYRange": [
+            8192,
+            9216
+          ],
+          "composition": "left160 current W canonical + right160 current r03_c06 canonical; then lossless CCW90 for viewing",
+          "reviewer": "/root/r06_c05_material_right_20261022",
+          "finding": "实际原像素查看：玉蓝筒瓦大脊、瓦缝、下方斜瓦列在配对边连续，金构件和叶簇未见裁断；仅本外边段局部通过。",
+          "fullCropActuallyViewed": true,
+          "independentRootActuallyViewed": true,
+          "independentRootFinding": "Root viewed the entire unscaled paired crop: retained roof, gold beam, red timber and joint silhouettes remain connected."
+        },
+        {
+          "side": "W",
+          "name": "W_seg2",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg2.png",
+            "sha256": "782380cb1c2267cb3e735a096684b740a02480c857e7b9b116308b6f0fece417",
+            "bytes": 497120
+          },
+          "pixelSha256": "f7ba93d3c1060caa42d2b7926ea5c641f6ad332919c96b97b037e6b79846e89c",
+          "rotationCCW90Count": 1,
+          "pairLongAxisRange": [
+            1024,
+            2048
+          ],
+          "reused": false,
+          "actuallyViewedThisContinuation": true,
+          "exactCurrentBilateralPixelsVerified": true,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+              "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+              "bytes": 22957446,
+              "mtimeNs": "1791843510288685100",
+              "stableDuringRead": true,
+              "actuallyComputedThisReview": true,
+              "pixels": [
+                4096,
+                4096
+              ],
+              "mode": "RGB",
+              "worldOrigin": [
+                16384,
+                8192
+              ],
+              "canonical": true,
+              "actuallyViewed": true,
+              "fullViewDisplayPixels": [
+                1600,
+                1600
+              ],
+              "fullViewIs100PercentPixelQA": false
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+              "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+            }
+          ],
+          "worldBoundaryX": 20480,
+          "worldYRange": [
+            9216,
+            10240
+          ],
+          "composition": "left160 current W canonical + right160 current r03_c06 canonical; then lossless CCW90 for viewing",
+          "reviewer": "/root/r06_c05_material_right_20261022",
+          "finding": "实际原像素查看：筒瓦轮廓、搭接暗线与高光经过真实配对边连续，斜排瓦没有突变相位或新增孤立端头；局部通过。",
+          "fullCropActuallyViewed": true,
+          "independentRootActuallyViewed": true,
+          "independentRootFinding": "Root viewed the entire unscaled paired crop: retained roof, gold beam, red timber and joint silhouettes remain connected."
+        },
+        {
+          "side": "W",
+          "name": "W_seg3",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg3.png",
+            "sha256": "f7d613c8f89daa523b13aa44db8116d713f3838e72f55cf3a0f9ab36119f50fc",
+            "bytes": 465913
+          },
+          "pixelSha256": "f17b6c2ffbf9f25a03e611281794a29339643c8e05170dda855d83c615fef802",
+          "rotationCCW90Count": 1,
+          "pairLongAxisRange": [
+            2048,
+            3072
+          ],
+          "reused": false,
+          "actuallyViewedThisContinuation": true,
+          "exactCurrentBilateralPixelsVerified": true,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+              "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+              "bytes": 22957446,
+              "mtimeNs": "1791843510288685100",
+              "stableDuringRead": true,
+              "actuallyComputedThisReview": true,
+              "pixels": [
+                4096,
+                4096
+              ],
+              "mode": "RGB",
+              "worldOrigin": [
+                16384,
+                8192
+              ],
+              "canonical": true,
+              "actuallyViewed": true,
+              "fullViewDisplayPixels": [
+                1600,
+                1600
+              ],
+              "fullViewIs100PercentPixelQA": false
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+              "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+            }
+          ],
+          "worldBoundaryX": 20480,
+          "worldYRange": [
+            10240,
+            11264
+          ],
+          "composition": "left160 current W canonical + right160 current r03_c06 canonical; then lossless CCW90 for viewing",
+          "reviewer": "/root/r06_c05_material_right_20261022",
+          "finding": "实际原像素查看：金色大梁轮廓、暗边和圆端饰与玉蓝瓦列接合完整，接合处未见错位或切带；局部通过。",
+          "fullCropActuallyViewed": true,
+          "independentRootActuallyViewed": true,
+          "independentRootFinding": "Root viewed the entire unscaled paired crop: retained roof, gold beam, red timber and joint silhouettes remain connected."
+        },
+        {
+          "side": "W",
+          "name": "W_seg4",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg4.png",
+            "sha256": "3b9275392c925cbd7783fd1aad0db63ffb67f2d56e47d1724abb960c040d6ad3",
+            "bytes": 411187
+          },
+          "pixelSha256": "d942ac0f160cd590f5f5f944e2b5506a20ac9527cceab85496026197913f8ea7",
+          "rotationCCW90Count": 1,
+          "pairLongAxisRange": [
+            3072,
+            4096
+          ],
+          "reused": false,
+          "actuallyViewedThisContinuation": true,
+          "exactCurrentBilateralPixelsVerified": true,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+              "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+              "bytes": 22957446,
+              "mtimeNs": "1791843510288685100",
+              "stableDuringRead": true,
+              "actuallyComputedThisReview": true,
+              "pixels": [
+                4096,
+                4096
+              ],
+              "mode": "RGB",
+              "worldOrigin": [
+                16384,
+                8192
+              ],
+              "canonical": true,
+              "actuallyViewed": true,
+              "fullViewDisplayPixels": [
+                1600,
+                1600
+              ],
+              "fullViewIs100PercentPixelQA": false
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+              "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+            }
+          ],
+          "worldBoundaryX": 20480,
+          "worldYRange": [
+            11264,
+            12288
+          ],
+          "composition": "left160 current W canonical + right160 current r03_c06 canonical; then lossless CCW90 for viewing",
+          "reviewer": "/root/r06_c05_material_right_20261022",
+          "finding": "实际原像素查看：玉蓝檐瓦端饰、红木立面和暗部边界连续，未见双边轮廓、突跳色阶或水平裁切痕；局部通过。",
+          "fullCropActuallyViewed": true,
+          "independentRootActuallyViewed": true,
+          "independentRootFinding": "Root viewed the entire unscaled paired crop: retained roof, gold beam, red timber and joint silhouettes remain connected."
+        },
+        {
+          "side": "W",
+          "name": "W_joint1024",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_joint1024.png",
+            "sha256": "68ac6754e34e0cd5af3b8b718aa5879a18616937ec7a6c021d44d67cdfb154d1",
+            "bytes": 154832
+          },
+          "pixelSha256": "f46774d258eeaf61c920f4c9573563cb452b385d86bf3d799ee345efb327e85c",
+          "rotationCCW90Count": 1,
+          "pairLongAxisRange": [
+            864,
+            1184
+          ],
+          "reused": false,
+          "actuallyViewedThisContinuation": true,
+          "exactCurrentBilateralPixelsVerified": true,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+              "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+              "bytes": 22957446,
+              "mtimeNs": "1791843510288685100",
+              "stableDuringRead": true,
+              "actuallyComputedThisReview": true,
+              "pixels": [
+                4096,
+                4096
+              ],
+              "mode": "RGB",
+              "worldOrigin": [
+                16384,
+                8192
+              ],
+              "canonical": true,
+              "actuallyViewed": true,
+              "fullViewDisplayPixels": [
+                1600,
+                1600
+              ],
+              "fullViewIs100PercentPixelQA": false
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+              "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+            }
+          ],
+          "worldBoundaryX": 20480,
+          "worldYRange": [
+            9056,
+            9376
+          ],
+          "composition": "left160 current W canonical + right160 current r03_c06 canonical; then lossless CCW90 for viewing",
+          "reviewer": "/root/r06_c05_material_right_20261022",
+          "finding": "实际原像素查看：交点处筒瓦圆边及下方斜瓦黑缝连续，未见十字断口或重复边；局部通过。",
+          "fullCropActuallyViewed": true,
+          "independentRootActuallyViewed": true,
+          "independentRootFinding": "Root viewed the entire unscaled paired crop: retained roof, gold beam, red timber and joint silhouettes remain connected."
+        },
+        {
+          "side": "W",
+          "name": "W_joint2048",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_joint2048.png",
+            "sha256": "b841059f432599471e2ef07afd92afecfcc98b6ca6003d2cfd1cfe03c8a7e35f",
+            "bytes": 158631
+          },
+          "pixelSha256": "cf3192f93ededdca296af00bfb601bcaf5d22885338a8a1386fdf0442bc06fc1",
+          "rotationCCW90Count": 1,
+          "pairLongAxisRange": [
+            1888,
+            2208
+          ],
+          "reused": false,
+          "actuallyViewedThisContinuation": true,
+          "exactCurrentBilateralPixelsVerified": true,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+              "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+              "bytes": 22957446,
+              "mtimeNs": "1791843510288685100",
+              "stableDuringRead": true,
+              "actuallyComputedThisReview": true,
+              "pixels": [
+                4096,
+                4096
+              ],
+              "mode": "RGB",
+              "worldOrigin": [
+                16384,
+                8192
+              ],
+              "canonical": true,
+              "actuallyViewed": true,
+              "fullViewDisplayPixels": [
+                1600,
+                1600
+              ],
+              "fullViewIs100PercentPixelQA": false
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+              "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+            }
+          ],
+          "worldBoundaryX": 20480,
+          "worldYRange": [
+            10080,
+            10400
+          ],
+          "composition": "left160 current W canonical + right160 current r03_c06 canonical; then lossless CCW90 for viewing",
+          "reviewer": "/root/r06_c05_material_right_20261022",
+          "finding": "实际原像素查看：交点处金梁边线、蓝瓦轮廓和瓦件暗部交接连续，未见分叉断头或位置跳变；局部通过。",
+          "fullCropActuallyViewed": true,
+          "independentRootActuallyViewed": true,
+          "independentRootFinding": "Root viewed the entire unscaled paired crop: retained roof, gold beam, red timber and joint silhouettes remain connected."
+        },
+        {
+          "side": "W",
+          "name": "W_joint3072",
+          "status": "passed",
+          "crop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_joint3072.png",
+            "sha256": "75cc1ef0b950d0d7aaff0dae537aea9a6a1969fce35d399921e6f1f423851b18",
+            "bytes": 138242
+          },
+          "pixelSha256": "88a1a6d5a4cbf8c12f420f6cd837736bb718952b32851392ee1b21dcbe8264c7",
+          "rotationCCW90Count": 1,
+          "pairLongAxisRange": [
+            2912,
+            3232
+          ],
+          "reused": false,
+          "actuallyViewedThisContinuation": true,
+          "exactCurrentBilateralPixelsVerified": true,
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/accelerated-yamen-north/delivery-20261012-v1/r03_c05.png",
+              "sha256": "9e876e7effe2e12e7f716cd5480a617a84656f46e9896a6b35cadfb99b4cc438",
+              "bytes": 22957446,
+              "mtimeNs": "1791843510288685100",
+              "stableDuringRead": true,
+              "actuallyComputedThisReview": true,
+              "pixels": [
+                4096,
+                4096
+              ],
+              "mode": "RGB",
+              "worldOrigin": [
+                16384,
+                8192
+              ],
+              "canonical": true,
+              "actuallyViewed": true,
+              "fullViewDisplayPixels": [
+                1600,
+                1600
+              ],
+              "fullViewIs100PercentPixelQA": false
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/candidate/native16-20261018-night-dcaffd0997370086/candidate.png",
+              "sha256": "c563b578350d00be4e4a877f45bd25c7f66857f63b34b40b64f82ea695d9193b"
+            }
+          ],
+          "worldBoundaryX": 20480,
+          "worldYRange": [
+            11104,
+            11424
+          ],
+          "composition": "left160 current W canonical + right160 current r03_c06 canonical; then lossless CCW90 for viewing",
+          "reviewer": "/root/r06_c05_material_right_20261022",
+          "finding": "实际原像素查看：交点处横向筒瓦与竖排瓦轮廓、高光均连续，未见十字色带或错位；局部通过。",
+          "fullCropActuallyViewed": true,
+          "independentRootActuallyViewed": true,
+          "independentRootFinding": "Root viewed the entire unscaled paired crop: retained roof, gold beam, red timber and joint silhouettes remain connected."
+        }
+      ],
+      "sourcePixelMappingVerified": true,
+      "allCanonicalInputPinsStableAtCompletion": true,
+      "wholeTileExternalPassed": false,
+      "formalAccepted": false,
+      "geometryHoldsNotAltered": true,
+      "newImageCalls": 0,
+      "newNativeReturns": 0,
+      "reviewer": "/root",
+      "independentRootReview": true,
+      "rootActuallyViewed": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg1.png",
+          "sha256": "a1c46a317798fd29b4197cce1b3314a9b5adf8266d324a585362b4a7433b750c",
+          "bytes": 454956
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg2.png",
+          "sha256": "782380cb1c2267cb3e735a096684b740a02480c857e7b9b116308b6f0fece417",
+          "bytes": 497120
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg3.png",
+          "sha256": "f7d613c8f89daa523b13aa44db8116d713f3838e72f55cf3a0f9ab36119f50fc",
+          "bytes": 465913
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_seg4.png",
+          "sha256": "3b9275392c925cbd7783fd1aad0db63ffb67f2d56e47d1724abb960c040d6ad3",
+          "bytes": 411187
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_joint1024.png",
+          "sha256": "68ac6754e34e0cd5af3b8b718aa5879a18616937ec7a6c021d44d67cdfb154d1",
+          "bytes": 154832
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_joint2048.png",
+          "sha256": "b841059f432599471e2ef07afd92afecfcc98b6ca6003d2cfd1cfe03c8a7e35f",
+          "bytes": 158631
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external-W/W_joint3072.png",
+          "sha256": "75cc1ef0b950d0d7aaff0dae537aea9a6a1969fce35d399921e6f1f423851b18",
+          "bytes": 138242
+        }
+      ],
+      "priorProducerReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c06/continuation-20261022-062639/external28-review.json",
+        "sha256": "61b1ede34946f130a5585c0a61a831235988dc77f24425d5d5cf1136256d4993",
+        "bytes": 79166
+      },
+      "adoptedMetadataOnly": true,
+      "artworkChanged": false,
+      "decision": "Adopt the seven new W local passes and exact N/E/S caches. Six paired N/E failures and eight internal geometry holds remain."
+    }
+  }
+}

@@ -1,0 +1,1006 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 10,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "4c30e0e8d2252856edf86eaba3ae1519a8c51240445a015a062e569828c45b16",
+  "imageBytes": 27429364,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c08.candidate-reboot-p22-boundaryfix-20261023-v01.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c08.candidate-reboot-p22-boundaryfix-20261023-v01.png.generation.json",
+  "sourceLedgerSha256": "89e6e4739086bc5b47961d8b74f54487042a84c464b04ac205759c37860c7d30",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c08.candidate-reboot-p22-boundaryfix-20261023-v01.png",
+    "imageSha256": "4c30e0e8d2252856edf86eaba3ae1519a8c51240445a015a062e569828c45b16",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c08.candidate-reboot-p22-boundaryfix-20261023-v01.png.generation.json",
+        "sha256": "89e6e4739086bc5b47961d8b74f54487042a84c464b04ac205759c37860c7d30",
+        "completeness": [
+          "/fullCoverage",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c08.candidate-reboot-p22-boundaryfix-20261023-v01.png.generation.json",
+        "sha256": "89e6e4739086bc5b47961d8b74f54487042a84c464b04ac205759c37860c7d30",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "sha256": "a6fcbeb17fea19f12f9c91241d9e5d9a0a1f3c3782854da01f054242c33270cd",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c08-reboot-p22-boundaryfix-20261023-v01/source-proof.json",
+        "sha256": "f7d4269557f34d6e8ee4150ed3963c308c1bfb404c3e00982254423b6402c49b",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "sha256": "3fb8dd9f1428422d04529bc6fd134304452f60c1f3b5dc2a9972e3170871ff9b",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/island_southeast-execution.json",
+        "sha256": "b6a6750dff93543d5325c66a20ce2552e3f722eeec504acffdeee5a5a41beae4",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "full_candidate_internal_review_pending",
+      "pendingRepair": {
+        "p42-S-material": {
+          "status": "not_passed",
+          "reason": "Gold base silhouette continuous, but slight horizontal tonal band at S exact core cut center remains pending.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p42-external-S.png",
+            "sha256": "8b3c7616ba66410fc6519830c4a56036fdc35605fdb0f5755fcbd65b4a86d70a"
+          }
+        },
+        "p42-neck-band-layout": {
+          "status": "pending_whole_layout",
+          "reason": "Thin raised neck band around globe base near native y900 was not distinct in blurry guide; compare approved silhouette at full context.",
+          "targetedRepairs": 0
+        },
+        "p32-E-joints": {
+          "status": "not_passed",
+          "reason": "Ivory right-side horizontal joints terminate at x256 within exact E core cut; material/shadow step pending.",
+          "targetedRepairs": 1,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-E-p33.png",
+            "sha256": "127f89d3af6b8fcd37155cbb8fa65ae33b9a9d2cc8b971017f10f9c5b71c7c9b"
+          },
+          "lastRepair": "reboot_v02",
+          "lastImproved": false,
+          "bestRetained": "reboot_v01"
+        },
+        "p32-S-division": {
+          "status": "not_passed",
+          "reason": "Flat gray/ivory division jogs approximately15-20px at S core join.",
+          "targetedRepairs": 1,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-S-p42.png",
+            "sha256": "d58237db05614d690d4f183d866e73d0febb060d88d57269803c83022b382b27"
+          },
+          "lastRepair": "reboot_v02",
+          "lastImproved": false,
+          "bestRetained": "reboot_v01"
+        },
+        "p22-W-material": {
+          "status": "not_passed",
+          "reason": "Current W course geometry continuous but paint/texture changes at x256.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "id": "W",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/W.png",
+            "sha256": "e4de1db77b5900529ad76765cae87ec86eac6b54e4e49f519146d488b9d663d2",
+            "sourceCrop": [
+              768,
+              1024,
+              1280,
+              2048
+            ],
+            "contact": "h21",
+            "status": "inherited_material_not_passed",
+            "geometryPassed": true,
+            "materialPassed": false,
+            "note": "Gray stone-row endpoints remain continuous, paintdensity changes atcut.",
+            "actualNativeViewed": true
+          },
+          "historicalEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-W-p21.png",
+            "sha256": "39454774c88e2342d7d8484034864fc11171f1deac6407d4fc9d0715857cdd27"
+          },
+          "sourceCurrentVersion": "reboot_boundaryfix_v02"
+        },
+        "p22-E-joints": {
+          "status": "not_passed",
+          "reason": "Current E right joints stop at x256, notably y185/y750; hue/texture step pending.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "id": "E",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/E.png",
+            "sha256": "4c999a66443448c5dd8a732b8a1f5b1f9e2362948bba662129c8cabb0c0733ff",
+            "sourceCrop": [
+              1792,
+              1024,
+              2304,
+              2048
+            ],
+            "contact": "h22",
+            "status": "inherited_joints_not_passed",
+            "geometryPassed": false,
+            "materialPassed": false,
+            "note": "Ivory horizontaljoints terminate atcorecut ratherthancontinue fixedE23phase; untouched by boundeddivideredit.",
+            "actualNativeViewed": true
+          },
+          "historicalEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-E-p23.png",
+            "sha256": "5dda24401ba615e90adfbbe89a45b265dea3d13c3669b11433fc540c093a07de"
+          },
+          "sourceCurrentVersion": "reboot_boundaryfix_v02"
+        },
+        "p22-S-division": {
+          "status": "locally_improved_material_and_S32_phase_pending",
+          "reason": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+          "targetedRepairs": 2,
+          "evidence": {
+            "id": "S",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/S.png",
+            "sha256": "8fa20a6017b72962105e737f9ed5255b8383aef0fb6e8aa22545a6e3582412b9",
+            "sourceCrop": [
+              1024,
+              1792,
+              2048,
+              2304
+            ],
+            "contact": "v22",
+            "status": "improved_geometry_material_pending",
+            "geometryPassed": true,
+            "materialPassed": false,
+            "note": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+            "actualNativeViewed": true
+          }
+        },
+        "p12-S-division": {
+          "status": "not_passed_separate_N12_internal_jog_and_new7px_p22_step",
+          "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "id": "N",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+            "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+            "sourceCrop": [
+              1024,
+              768,
+              2048,
+              1280
+            ],
+            "contact": "v12",
+            "status": "not_passed_new_residual_step",
+            "geometryPassed": false,
+            "materialPassed": false,
+            "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+            "actualNativeViewed": true
+          }
+        },
+        "p12-W-material": {
+          "status": "not_passed",
+          "reason": "Gray course endpoints continuous, different paint texture/detail at core join.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p12-W-p11.png",
+            "sha256": "e233b69919129bee378dc2741262fe2f62f8302fa92a47e4204a78261c45375d"
+          }
+        },
+        "junction11-narrow-course": {
+          "status": "not_passed",
+          "targetedRepairs": 0,
+          "reason": "Native512 junction viewed: lower-right narrow stone row starts at the central x256 join while the lower-left face remains a full course; gray texture also changes. Preserve unpassed joint/material status.",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/junction_11.png",
+            "sha256": "b9433a1a81b1d1a39ad4a3b1ad4d4fc161f98a4d316e6abba20513d78a75b83e"
+          }
+        },
+        "external-p24-E-upstream-grass-blur": {
+          "status": "not_passed_material",
+          "targetedRepairs": 0,
+          "reason": "Native512x1024 cut viewed against current462f lampfix candidate: right ivory pedestal silhouette/courses continue, but E-source grass/background above the pedestal is visibly blurred with a rectangular change near x256. Extra lamp is resolved; this separate material defect remains unpassed.",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/p24-external-E.png",
+            "sha256": "7b469f3cc9bfe493d5e6e2ec244d2742334d0bd8b14d7a76f6e5e4545170b517"
+          },
+          "upstreamCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c09.candidate-reboot-lampfix-20261022-v01.png",
+            "sha256": "462f3333ad012bce2730074e0a1c492a1135070ed0d9aef53d21200ec1fdf3a9",
+            "nativeGlobalBox": [
+              32768,
+              36864,
+              36864,
+              40960
+            ],
+            "allowedRows": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "internalPassed": false,
+            "rootApprovedLocalLampPair": true,
+            "thirdYellowBodyRemoved": true
+          },
+          "rootCoordinationRequiredForUpstreamEdit": true
+        },
+        "p22-N-exactcut-residual": {
+          "status": "not_passed",
+          "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+          "targetedRepairs": 2,
+          "bestTrial": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/native/r10_c08_p22_boundaryfix_v02.png",
+          "evidence": {
+            "id": "N",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+            "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+            "sourceCrop": [
+              1024,
+              768,
+              2048,
+              1280
+            ],
+            "contact": "v12",
+            "status": "not_passed_new_residual_step",
+            "geometryPassed": false,
+            "materialPassed": false,
+            "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+            "actualNativeViewed": true
+          },
+          "noThirdCall": true,
+          "rootAcceptedWorkingTradeoff": true
+        }
+      },
+      "externalPassed": false,
+      "formalAccepted": false,
+      "currentInternalReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c08-reboot-p22-boundaryfix-20261023-v01/internal-review.json",
+        "sha256": "aad78d5ca044c5ccd307d73d003fcb79a925b7ca17780b295f7c8080e7bc7b88"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c08.candidate-reboot-p22-boundaryfix-20261023-v01.png.generation.json",
+        "record": {
+          "fullCoverage": true,
+          "status": "full_candidate_pending_internal_and_external_review"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r10_c08.json",
+        "record": {
+          "status": "full_candidate_internal_review_pending",
+          "pendingRepair": {
+            "p42-S-material": {
+              "status": "not_passed",
+              "reason": "Gold base silhouette continuous, but slight horizontal tonal band at S exact core cut center remains pending.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p42-external-S.png",
+                "sha256": "8b3c7616ba66410fc6519830c4a56036fdc35605fdb0f5755fcbd65b4a86d70a"
+              }
+            },
+            "p42-neck-band-layout": {
+              "status": "pending_whole_layout",
+              "reason": "Thin raised neck band around globe base near native y900 was not distinct in blurry guide; compare approved silhouette at full context.",
+              "targetedRepairs": 0
+            },
+            "p32-E-joints": {
+              "status": "not_passed",
+              "reason": "Ivory right-side horizontal joints terminate at x256 within exact E core cut; material/shadow step pending.",
+              "targetedRepairs": 1,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-E-p33.png",
+                "sha256": "127f89d3af6b8fcd37155cbb8fa65ae33b9a9d2cc8b971017f10f9c5b71c7c9b"
+              },
+              "lastRepair": "reboot_v02",
+              "lastImproved": false,
+              "bestRetained": "reboot_v01"
+            },
+            "p32-S-division": {
+              "status": "not_passed",
+              "reason": "Flat gray/ivory division jogs approximately15-20px at S core join.",
+              "targetedRepairs": 1,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-S-p42.png",
+                "sha256": "d58237db05614d690d4f183d866e73d0febb060d88d57269803c83022b382b27"
+              },
+              "lastRepair": "reboot_v02",
+              "lastImproved": false,
+              "bestRetained": "reboot_v01"
+            },
+            "p22-W-material": {
+              "status": "not_passed",
+              "reason": "Current W course geometry continuous but paint/texture changes at x256.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "id": "W",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/W.png",
+                "sha256": "e4de1db77b5900529ad76765cae87ec86eac6b54e4e49f519146d488b9d663d2",
+                "sourceCrop": [
+                  768,
+                  1024,
+                  1280,
+                  2048
+                ],
+                "contact": "h21",
+                "status": "inherited_material_not_passed",
+                "geometryPassed": true,
+                "materialPassed": false,
+                "note": "Gray stone-row endpoints remain continuous, paintdensity changes atcut.",
+                "actualNativeViewed": true
+              },
+              "historicalEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-W-p21.png",
+                "sha256": "39454774c88e2342d7d8484034864fc11171f1deac6407d4fc9d0715857cdd27"
+              },
+              "sourceCurrentVersion": "reboot_boundaryfix_v02"
+            },
+            "p22-E-joints": {
+              "status": "not_passed",
+              "reason": "Current E right joints stop at x256, notably y185/y750; hue/texture step pending.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "id": "E",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/E.png",
+                "sha256": "4c999a66443448c5dd8a732b8a1f5b1f9e2362948bba662129c8cabb0c0733ff",
+                "sourceCrop": [
+                  1792,
+                  1024,
+                  2304,
+                  2048
+                ],
+                "contact": "h22",
+                "status": "inherited_joints_not_passed",
+                "geometryPassed": false,
+                "materialPassed": false,
+                "note": "Ivory horizontaljoints terminate atcorecut ratherthancontinue fixedE23phase; untouched by boundeddivideredit.",
+                "actualNativeViewed": true
+              },
+              "historicalEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-E-p23.png",
+                "sha256": "5dda24401ba615e90adfbbe89a45b265dea3d13c3669b11433fc540c093a07de"
+              },
+              "sourceCurrentVersion": "reboot_boundaryfix_v02"
+            },
+            "p22-S-division": {
+              "status": "locally_improved_material_and_S32_phase_pending",
+              "reason": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+              "targetedRepairs": 2,
+              "evidence": {
+                "id": "S",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/S.png",
+                "sha256": "8fa20a6017b72962105e737f9ed5255b8383aef0fb6e8aa22545a6e3582412b9",
+                "sourceCrop": [
+                  1024,
+                  1792,
+                  2048,
+                  2304
+                ],
+                "contact": "v22",
+                "status": "improved_geometry_material_pending",
+                "geometryPassed": true,
+                "materialPassed": false,
+                "note": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+                "actualNativeViewed": true
+              }
+            },
+            "p12-S-division": {
+              "status": "not_passed_separate_N12_internal_jog_and_new7px_p22_step",
+              "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "id": "N",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+                "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+                "sourceCrop": [
+                  1024,
+                  768,
+                  2048,
+                  1280
+                ],
+                "contact": "v12",
+                "status": "not_passed_new_residual_step",
+                "geometryPassed": false,
+                "materialPassed": false,
+                "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+                "actualNativeViewed": true
+              }
+            },
+            "p12-W-material": {
+              "status": "not_passed",
+              "reason": "Gray course endpoints continuous, different paint texture/detail at core join.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p12-W-p11.png",
+                "sha256": "e233b69919129bee378dc2741262fe2f62f8302fa92a47e4204a78261c45375d"
+              }
+            },
+            "junction11-narrow-course": {
+              "status": "not_passed",
+              "targetedRepairs": 0,
+              "reason": "Native512 junction viewed: lower-right narrow stone row starts at the central x256 join while the lower-left face remains a full course; gray texture also changes. Preserve unpassed joint/material status.",
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/junction_11.png",
+                "sha256": "b9433a1a81b1d1a39ad4a3b1ad4d4fc161f98a4d316e6abba20513d78a75b83e"
+              }
+            },
+            "external-p24-E-upstream-grass-blur": {
+              "status": "not_passed_material",
+              "targetedRepairs": 0,
+              "reason": "Native512x1024 cut viewed against current462f lampfix candidate: right ivory pedestal silhouette/courses continue, but E-source grass/background above the pedestal is visibly blurred with a rectangular change near x256. Extra lamp is resolved; this separate material defect remains unpassed.",
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/p24-external-E.png",
+                "sha256": "7b469f3cc9bfe493d5e6e2ec244d2742334d0bd8b14d7a76f6e5e4545170b517"
+              },
+              "upstreamCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c09.candidate-reboot-lampfix-20261022-v01.png",
+                "sha256": "462f3333ad012bce2730074e0a1c492a1135070ed0d9aef53d21200ec1fdf3a9",
+                "nativeGlobalBox": [
+                  32768,
+                  36864,
+                  36864,
+                  40960
+                ],
+                "allowedRows": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "internalPassed": false,
+                "rootApprovedLocalLampPair": true,
+                "thirdYellowBodyRemoved": true
+              },
+              "rootCoordinationRequiredForUpstreamEdit": true
+            },
+            "p22-N-exactcut-residual": {
+              "status": "not_passed",
+              "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+              "targetedRepairs": 2,
+              "bestTrial": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/native/r10_c08_p22_boundaryfix_v02.png",
+              "evidence": {
+                "id": "N",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+                "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+                "sourceCrop": [
+                  1024,
+                  768,
+                  2048,
+                  1280
+                ],
+                "contact": "v12",
+                "status": "not_passed_new_residual_step",
+                "geometryPassed": false,
+                "materialPassed": false,
+                "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+                "actualNativeViewed": true
+              },
+              "noThirdCall": true,
+              "rootAcceptedWorkingTradeoff": true
+            }
+          },
+          "externalPassed": false,
+          "formalAccepted": false,
+          "currentInternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c08-reboot-p22-boundaryfix-20261023-v01/internal-review.json",
+            "sha256": "aad78d5ca044c5ccd307d73d003fcb79a925b7ca17780b295f7c8080e7bc7b88"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c08-reboot-p22-boundaryfix-20261023-v01/internal-review.json",
+        "record": {
+          "rootTradeoffAccepted": "Dominant S39px discontinuity reduced to1px; small new N7-9px residual explicitly unpassed. Original N12/S32 internal thin-course artifacts are separately retained. No third call.",
+          "remainingIssues": {
+            "p42-S-material": {
+              "status": "not_passed",
+              "reason": "Gold base silhouette continuous, but slight horizontal tonal band at S exact core cut center remains pending.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p42-external-S.png",
+                "sha256": "8b3c7616ba66410fc6519830c4a56036fdc35605fdb0f5755fcbd65b4a86d70a"
+              }
+            },
+            "p42-neck-band-layout": {
+              "status": "pending_whole_layout",
+              "reason": "Thin raised neck band around globe base near native y900 was not distinct in blurry guide; compare approved silhouette at full context.",
+              "targetedRepairs": 0
+            },
+            "p32-E-joints": {
+              "status": "not_passed",
+              "reason": "Ivory right-side horizontal joints terminate at x256 within exact E core cut; material/shadow step pending.",
+              "targetedRepairs": 1,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-E-p33.png",
+                "sha256": "127f89d3af6b8fcd37155cbb8fa65ae33b9a9d2cc8b971017f10f9c5b71c7c9b"
+              },
+              "lastRepair": "reboot_v02",
+              "lastImproved": false,
+              "bestRetained": "reboot_v01"
+            },
+            "p32-S-division": {
+              "status": "not_passed",
+              "reason": "Flat gray/ivory division jogs approximately15-20px at S core join.",
+              "targetedRepairs": 1,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-S-p42.png",
+                "sha256": "d58237db05614d690d4f183d866e73d0febb060d88d57269803c83022b382b27"
+              },
+              "lastRepair": "reboot_v02",
+              "lastImproved": false,
+              "bestRetained": "reboot_v01"
+            },
+            "p22-W-material": {
+              "status": "not_passed",
+              "reason": "Current W course geometry continuous but paint/texture changes at x256.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "id": "W",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/W.png",
+                "sha256": "e4de1db77b5900529ad76765cae87ec86eac6b54e4e49f519146d488b9d663d2",
+                "sourceCrop": [
+                  768,
+                  1024,
+                  1280,
+                  2048
+                ],
+                "contact": "h21",
+                "status": "inherited_material_not_passed",
+                "geometryPassed": true,
+                "materialPassed": false,
+                "note": "Gray stone-row endpoints remain continuous, paintdensity changes atcut.",
+                "actualNativeViewed": true
+              },
+              "historicalEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-W-p21.png",
+                "sha256": "39454774c88e2342d7d8484034864fc11171f1deac6407d4fc9d0715857cdd27"
+              },
+              "sourceCurrentVersion": "reboot_boundaryfix_v02"
+            },
+            "p22-E-joints": {
+              "status": "not_passed",
+              "reason": "Current E right joints stop at x256, notably y185/y750; hue/texture step pending.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "id": "E",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/E.png",
+                "sha256": "4c999a66443448c5dd8a732b8a1f5b1f9e2362948bba662129c8cabb0c0733ff",
+                "sourceCrop": [
+                  1792,
+                  1024,
+                  2304,
+                  2048
+                ],
+                "contact": "h22",
+                "status": "inherited_joints_not_passed",
+                "geometryPassed": false,
+                "materialPassed": false,
+                "note": "Ivory horizontaljoints terminate atcorecut ratherthancontinue fixedE23phase; untouched by boundeddivideredit.",
+                "actualNativeViewed": true
+              },
+              "historicalEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-E-p23.png",
+                "sha256": "5dda24401ba615e90adfbbe89a45b265dea3d13c3669b11433fc540c093a07de"
+              },
+              "sourceCurrentVersion": "reboot_boundaryfix_v02"
+            },
+            "p22-S-division": {
+              "status": "locally_improved_material_and_S32_phase_pending",
+              "reason": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+              "targetedRepairs": 2,
+              "evidence": {
+                "id": "S",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/S.png",
+                "sha256": "8fa20a6017b72962105e737f9ed5255b8383aef0fb6e8aa22545a6e3582412b9",
+                "sourceCrop": [
+                  1024,
+                  1792,
+                  2048,
+                  2304
+                ],
+                "contact": "v22",
+                "status": "improved_geometry_material_pending",
+                "geometryPassed": true,
+                "materialPassed": false,
+                "note": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+                "actualNativeViewed": true
+              }
+            },
+            "p12-S-division": {
+              "status": "not_passed_separate_N12_internal_jog_and_new7px_p22_step",
+              "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "id": "N",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+                "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+                "sourceCrop": [
+                  1024,
+                  768,
+                  2048,
+                  1280
+                ],
+                "contact": "v12",
+                "status": "not_passed_new_residual_step",
+                "geometryPassed": false,
+                "materialPassed": false,
+                "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+                "actualNativeViewed": true
+              }
+            },
+            "p12-W-material": {
+              "status": "not_passed",
+              "reason": "Gray course endpoints continuous, different paint texture/detail at core join.",
+              "targetedRepairs": 0,
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p12-W-p11.png",
+                "sha256": "e233b69919129bee378dc2741262fe2f62f8302fa92a47e4204a78261c45375d"
+              }
+            },
+            "junction11-narrow-course": {
+              "status": "not_passed",
+              "targetedRepairs": 0,
+              "reason": "Native512 junction viewed: lower-right narrow stone row starts at the central x256 join while the lower-left face remains a full course; gray texture also changes. Preserve unpassed joint/material status.",
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/junction_11.png",
+                "sha256": "b9433a1a81b1d1a39ad4a3b1ad4d4fc161f98a4d316e6abba20513d78a75b83e"
+              }
+            },
+            "external-p24-E-upstream-grass-blur": {
+              "status": "not_passed_material",
+              "targetedRepairs": 0,
+              "reason": "Native512x1024 cut viewed against current462f lampfix candidate: right ivory pedestal silhouette/courses continue, but E-source grass/background above the pedestal is visibly blurred with a rectangular change near x256. Extra lamp is resolved; this separate material defect remains unpassed.",
+              "evidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/p24-external-E.png",
+                "sha256": "7b469f3cc9bfe493d5e6e2ec244d2742334d0bd8b14d7a76f6e5e4545170b517"
+              },
+              "upstreamCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c09.candidate-reboot-lampfix-20261022-v01.png",
+                "sha256": "462f3333ad012bce2730074e0a1c492a1135070ed0d9aef53d21200ec1fdf3a9",
+                "nativeGlobalBox": [
+                  32768,
+                  36864,
+                  36864,
+                  40960
+                ],
+                "allowedRows": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "internalPassed": false,
+                "rootApprovedLocalLampPair": true,
+                "thirdYellowBodyRemoved": true
+              },
+              "rootCoordinationRequiredForUpstreamEdit": true
+            },
+            "p22-N-exactcut-residual": {
+              "status": "not_passed",
+              "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+              "targetedRepairs": 2,
+              "bestTrial": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/native/r10_c08_p22_boundaryfix_v02.png",
+              "evidence": {
+                "id": "N",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+                "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+                "sourceCrop": [
+                  1024,
+                  768,
+                  2048,
+                  1280
+                ],
+                "contact": "v12",
+                "status": "not_passed_new_residual_step",
+                "geometryPassed": false,
+                "materialPassed": false,
+                "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+                "actualNativeViewed": true
+              },
+              "noThirdCall": true,
+              "rootAcceptedWorkingTradeoff": true
+            }
+          },
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c08-reboot-p22-boundaryfix-20261023-v01/current-hash-review-map-20261019.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "status": "full_candidate_pending_local_repair_or_review"
+        }
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "status": "full_candidate_pending_local_repair_or_review"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c08-reboot-p22-boundaryfix-20261023-v01/internal-review.json",
+    "sourceSha256": "aad78d5ca044c5ccd307d73d003fcb79a925b7ca17780b295f7c8080e7bc7b88",
+    "normalizedDocument": {
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c08.candidate-reboot-p22-boundaryfix-20261023-v01.png",
+      "candidateSha256": "4c30e0e8d2252856edf86eaba3ae1519a8c51240445a015a062e569828c45b16",
+      "sourceCount": 16,
+      "rootReplayMismatchedPixels": 0,
+      "delegatedReceipt": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/receipt.json",
+        "sha256": "276c310faf692c27af09ba42da599b39a42110ac8b3465a449f1151a33aebdac"
+      },
+      "localReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/review.json",
+        "sha256": "b60df76b429d2b0869c26e1ef1f73f536450f05f8582e1ea831cd83e59184b6f"
+      },
+      "rootTradeoffAccepted": "Dominant S39px discontinuity reduced to1px; small new N7-9px residual explicitly unpassed. Original N12/S32 internal thin-course artifacts are separately retained. No third call.",
+      "wholeContactReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c08-reboot-p22-boundaryfix-20261023-v01/whole-contact-review.json",
+        "sha256": "75fb5254d4e70dbc995a2ed3dfd8218fd43e811c84f215a5bf7345806511e6da"
+      },
+      "remainingIssues": {
+        "p42-S-material": {
+          "status": "not_passed",
+          "reason": "Gold base silhouette continuous, but slight horizontal tonal band at S exact core cut center remains pending.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p42-external-S.png",
+            "sha256": "8b3c7616ba66410fc6519830c4a56036fdc35605fdb0f5755fcbd65b4a86d70a"
+          }
+        },
+        "p42-neck-band-layout": {
+          "status": "pending_whole_layout",
+          "reason": "Thin raised neck band around globe base near native y900 was not distinct in blurry guide; compare approved silhouette at full context.",
+          "targetedRepairs": 0
+        },
+        "p32-E-joints": {
+          "status": "not_passed",
+          "reason": "Ivory right-side horizontal joints terminate at x256 within exact E core cut; material/shadow step pending.",
+          "targetedRepairs": 1,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-E-p33.png",
+            "sha256": "127f89d3af6b8fcd37155cbb8fa65ae33b9a9d2cc8b971017f10f9c5b71c7c9b"
+          },
+          "lastRepair": "reboot_v02",
+          "lastImproved": false,
+          "bestRetained": "reboot_v01"
+        },
+        "p32-S-division": {
+          "status": "not_passed",
+          "reason": "Flat gray/ivory division jogs approximately15-20px at S core join.",
+          "targetedRepairs": 1,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p32-S-p42.png",
+            "sha256": "d58237db05614d690d4f183d866e73d0febb060d88d57269803c83022b382b27"
+          },
+          "lastRepair": "reboot_v02",
+          "lastImproved": false,
+          "bestRetained": "reboot_v01"
+        },
+        "p22-W-material": {
+          "status": "not_passed",
+          "reason": "Current W course geometry continuous but paint/texture changes at x256.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "id": "W",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/W.png",
+            "sha256": "e4de1db77b5900529ad76765cae87ec86eac6b54e4e49f519146d488b9d663d2",
+            "sourceCrop": [
+              768,
+              1024,
+              1280,
+              2048
+            ],
+            "contact": "h21",
+            "status": "inherited_material_not_passed",
+            "geometryPassed": true,
+            "materialPassed": false,
+            "note": "Gray stone-row endpoints remain continuous, paintdensity changes atcut.",
+            "actualNativeViewed": true
+          },
+          "historicalEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-W-p21.png",
+            "sha256": "39454774c88e2342d7d8484034864fc11171f1deac6407d4fc9d0715857cdd27"
+          },
+          "sourceCurrentVersion": "reboot_boundaryfix_v02"
+        },
+        "p22-E-joints": {
+          "status": "not_passed",
+          "reason": "Current E right joints stop at x256, notably y185/y750; hue/texture step pending.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "id": "E",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/E.png",
+            "sha256": "4c999a66443448c5dd8a732b8a1f5b1f9e2362948bba662129c8cabb0c0733ff",
+            "sourceCrop": [
+              1792,
+              1024,
+              2304,
+              2048
+            ],
+            "contact": "h22",
+            "status": "inherited_joints_not_passed",
+            "geometryPassed": false,
+            "materialPassed": false,
+            "note": "Ivory horizontaljoints terminate atcorecut ratherthancontinue fixedE23phase; untouched by boundeddivideredit.",
+            "actualNativeViewed": true
+          },
+          "historicalEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p22-E-p23.png",
+            "sha256": "5dda24401ba615e90adfbbe89a45b265dea3d13c3669b11433fc540c093a07de"
+          },
+          "sourceCurrentVersion": "reboot_boundaryfix_v02"
+        },
+        "p22-S-division": {
+          "status": "locally_improved_material_and_S32_phase_pending",
+          "reason": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+          "targetedRepairs": 2,
+          "evidence": {
+            "id": "S",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/S.png",
+            "sha256": "8fa20a6017b72962105e737f9ed5255b8383aef0fb6e8aa22545a6e3582412b9",
+            "sourceCrop": [
+              1024,
+              1792,
+              2048,
+              2304
+            ],
+            "contact": "v22",
+            "status": "improved_geometry_material_pending",
+            "geometryPassed": true,
+            "materialPassed": false,
+            "note": "S coredivision uppercutx609 vslowercourse~610, oldupper571 vslower610, ~38pxmajoroutline improvement. FixedS32 initialthin-course/internalphase is outsidep22 and remains pending.",
+            "actualNativeViewed": true
+          }
+        },
+        "p12-S-division": {
+          "status": "not_passed_separate_N12_internal_jog_and_new7px_p22_step",
+          "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "id": "N",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+            "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+            "sourceCrop": [
+              1024,
+              768,
+              2048,
+              1280
+            ],
+            "contact": "v12",
+            "status": "not_passed_new_residual_step",
+            "geometryPassed": false,
+            "materialPassed": false,
+            "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+            "actualNativeViewed": true
+          }
+        },
+        "p12-W-material": {
+          "status": "not_passed",
+          "reason": "Gray course endpoints continuous, different paint texture/detail at core join.",
+          "targetedRepairs": 0,
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/p12-W-p11.png",
+            "sha256": "e233b69919129bee378dc2741262fe2f62f8302fa92a47e4204a78261c45375d"
+          }
+        },
+        "junction11-narrow-course": {
+          "status": "not_passed",
+          "targetedRepairs": 0,
+          "reason": "Native512 junction viewed: lower-right narrow stone row starts at the central x256 join while the lower-left face remains a full course; gray texture also changes. Preserve unpassed joint/material status.",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/junction_11.png",
+            "sha256": "b9433a1a81b1d1a39ad4a3b1ad4d4fc161f98a4d316e6abba20513d78a75b83e"
+          }
+        },
+        "external-p24-E-upstream-grass-blur": {
+          "status": "not_passed_material",
+          "targetedRepairs": 0,
+          "reason": "Native512x1024 cut viewed against current462f lampfix candidate: right ivory pedestal silhouette/courses continue, but E-source grass/background above the pedestal is visibly blurred with a rectangular change near x256. Extra lamp is resolved; this separate material defect remains unpassed.",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08/qa/full-native-20261022-v01/p24-external-E.png",
+            "sha256": "7b469f3cc9bfe493d5e6e2ec244d2742334d0bd8b14d7a76f6e5e4545170b517"
+          },
+          "upstreamCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c09.candidate-reboot-lampfix-20261022-v01.png",
+            "sha256": "462f3333ad012bce2730074e0a1c492a1135070ed0d9aef53d21200ec1fdf3a9",
+            "nativeGlobalBox": [
+              32768,
+              36864,
+              36864,
+              40960
+            ],
+            "allowedRows": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "internalPassed": false,
+            "rootApprovedLocalLampPair": true,
+            "thirdYellowBodyRemoved": true
+          },
+          "rootCoordinationRequiredForUpstreamEdit": true
+        },
+        "p22-N-exactcut-residual": {
+          "status": "not_passed",
+          "reason": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+          "targetedRepairs": 2,
+          "bestTrial": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/native/r10_c08_p22_boundaryfix_v02.png",
+          "evidence": {
+            "id": "N",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c08-p22-boundary-repair-20261022/qa/v02/N.png",
+            "sha256": "ac576b2ad7de4cacca1f10d65250532ab2e7d32fea0d16950aeb96e85555f1ac",
+            "sourceCrop": [
+              1024,
+              768,
+              2048,
+              1280
+            ],
+            "contact": "v12",
+            "status": "not_passed_new_residual_step",
+            "geometryPassed": false,
+            "materialPassed": false,
+            "note": "N truecut divider fixeduppercutx562 vs lower555 (~7px), bodybelow~553 (~9px). v01was~19px. Oldoriginal matchedatcut; earlier50pxjog at30px abovecut belongsfixedN12, notthiscore.",
+            "actualNativeViewed": true
+          },
+          "noThirdCall": true,
+          "rootAcceptedWorkingTradeoff": true
+        }
+      },
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false
+    }
+  }
+}

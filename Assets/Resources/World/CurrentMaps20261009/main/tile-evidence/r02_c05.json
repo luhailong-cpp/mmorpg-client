@@ -1,0 +1,1359 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 2,
+  "column": 5,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "5f5a0786e9a9cfca85acb982463278f78520f6d986b404e87a587efdf6546509",
+  "imageBytes": 25986935,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/r02_c05-selected-native4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/assembly.json",
+  "sourceLedgerSha256": "c900a6e9a1c15eac26a32126cfdb407ca92ff18904ad7b790b53374aa73e520d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/r02_c05-selected-native4096.png",
+    "imageSha256": "5f5a0786e9a9cfca85acb982463278f78520f6d986b404e87a587efdf6546509",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/assembly.json",
+        "sha256": "c900a6e9a1c15eac26a32126cfdb407ca92ff18904ad7b790b53374aa73e520d",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/assembly.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/incremental-evidence-manifest.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/incremental-actual-review-v001.json",
+        "record": {
+          "coverage": {
+            "totalSeams": 24,
+            "totalJunctions": 9,
+            "oldPassesReusedWithUnchangedHashesAndExactPixels": 23,
+            "recentExactSourceNearEdgeEvidenceReused": 6,
+            "newJunctionsActuallyViewed": 4,
+            "all33HaveSourceBoundVisualEvidence": true
+          },
+          "pending": [
+            {
+              "id": "r02c05-y3072-horizontal-band",
+              "coordinates": "tile-local y3072, x0..2048 blue roof; focus x0..1980 before gold vertical beam",
+              "status": "PENDING_REPAIR",
+              "note": "整块横带仍在；两条南边和两个相关交点均不宣告完整通过。可见局部相接改善不等于整边连续。"
+            },
+            {
+              "id": "material-gold-blue",
+              "coordinates": "gold beam and blue roof changed regions, especially right vertical gold beam",
+              "status": "PENDING_MATERIAL_REVIEW",
+              "note": "保留金脊纹理/亮度块与蓝瓦局部材质差异；未以几何快速选源关闭材质问题。"
+            },
+            {
+              "id": "roof-axis-cross-owner",
+              "status": "PENDING_GLOBAL_LAYOUT",
+              "note": "当前倾斜屋瓦与上游批准布局轴向有冲突，真实南侧 canonical r03_c05 同样倾斜；本次不改轴、不跨owner。"
+            }
+          ],
+          "geometryOrPhasePendingEvidenceCount": 4,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/incremental-evidence-manifest.json",
+    "sourceSha256": "a8366d9719a07cd818b4e0122e865286f8a13b40fae5e8b9a6df7d8d68890487",
+    "normalizedDocument": {
+      "createdAtUTC": "2026-10-18T07:55:14.828522+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/r02_c05-selected-native4096.png",
+      "candidateSHA256": "5f5a0786e9a9cfca85acb982463278f78520f6d986b404e87a587efdf6546509",
+      "oldActualReviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/reviews/internal-qa-native100-v001.json",
+      "oldActualReviewSHA256": "ec4d19d7b99f4dcae288c224ea910a3945cc26e25f99372a945407ac85319140",
+      "selectionFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/selection/selection-v020.json",
+      "selectionSHA256": "d2e6616cd9a3c5773e7449e066a43c3e0e639286a8ede9ec8b5e2863880f639f",
+      "changedPatches": [
+        "s03_01",
+        "s03_02"
+      ],
+      "counts": {
+        "oldUnchangedReused": 23,
+        "recentActualViewedReused": 6,
+        "newJunctions": 4
+      },
+      "evidence": [
+        {
+          "name": "internal-x1024-segment1.png",
+          "cropLTRB": [
+            864,
+            0,
+            1184,
+            1024
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_01",
+              "sha256": "4da73bfd4073fffb93ad6aba2fb5bc32062b8b8b3823e7d4628b0808b9f47c43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_01-v001.png"
+            },
+            {
+              "patch": "s01_02",
+              "sha256": "dbc68e3dc97c2c929c67262b60faf48ca0bb0ccd9eb6a61663302056cc19ce63",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_02-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x1024-segment1.png",
+          "oldEvidenceSHA256": "b32a2c98fac603b4336490db20e05b944cb1dc4c6bcb0814e5c03922b4e941c8",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x1024-segment1.png",
+          "sha256": "b32a2c98fac603b4336490db20e05b944cb1dc4c6bcb0814e5c03922b4e941c8",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x1024-segment2.png",
+          "cropLTRB": [
+            864,
+            1024,
+            1184,
+            2048
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_01",
+              "sha256": "2bfa98f26f6710e9dd5208fef271a7225a89ddad36eeb13047732ca658e8544b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_01-v001.png"
+            },
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x1024-segment2.png",
+          "oldEvidenceSHA256": "5c6cce9510c5f191a0db2f12fdc7c9c3e6350b4bb5ae90a7694f50db40d69fca",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x1024-segment2.png",
+          "sha256": "5c6cce9510c5f191a0db2f12fdc7c9c3e6350b4bb5ae90a7694f50db40d69fca",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x1024-segment3.png",
+          "cropLTRB": [
+            864,
+            2048,
+            1184,
+            3072
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_01",
+              "sha256": "2053c127e294ed6ac731b8c245ec444a2bf0ae0cbf515c2303c32ab20daebf34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_01-v012.png"
+            },
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x1024-segment3.png",
+          "oldEvidenceSHA256": "7a05cd2d19890a3cb5951eb633b818867e0ee2a84f20c53458f8b014923697ed",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/s03_01-v012-new-east-v001.png",
+          "sha256": "ca7f817d6911d52c3830bdd7aad1d16d610c355786813d6c05c68b7f950a9ba7",
+          "evidenceMode": "REUSED_THIS_SESSION_EXACT_SOURCE_ACTUAL_VIEW",
+          "actualViewedPreviously": true,
+          "majorGeometryVerdict": "PASS_LOCAL_GEOMETRY",
+          "visualVerdict": "MATERIAL_REVIEW_PENDING",
+          "sourceHashesMatchCurrent": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x1024-segment4.png",
+          "cropLTRB": [
+            864,
+            3072,
+            1184,
+            4096
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s04_01",
+              "sha256": "39c5eb97a39af69e9d3afa0d48f581af40467f9cd0f7b1002ec74ff8d0b74ceb",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_01-v001.png"
+            },
+            {
+              "patch": "s04_02",
+              "sha256": "41fa74d0005d9ff95fc2062d173add7c0e53f25f1c32c94f97bc67966aa8282a",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_02-v003.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x1024-segment4.png",
+          "oldEvidenceSHA256": "f9b31c5a21a1b201fb08b3ade1087c57563647fc02aae7600948718e5829bc6c",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x1024-segment4.png",
+          "sha256": "f9b31c5a21a1b201fb08b3ade1087c57563647fc02aae7600948718e5829bc6c",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x2048-segment1.png",
+          "cropLTRB": [
+            1888,
+            0,
+            2208,
+            1024
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_02",
+              "sha256": "dbc68e3dc97c2c929c67262b60faf48ca0bb0ccd9eb6a61663302056cc19ce63",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_02-v001.png"
+            },
+            {
+              "patch": "s01_03",
+              "sha256": "ec274b0fec886d86c1678aead12aa4f3fed0c8fbc4b44e68acf6e41fcc341838",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_03-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x2048-segment1.png",
+          "oldEvidenceSHA256": "f922861ec41ecf38b0dd05006eb72e0d71f56f30615668e44ec7f88559cb924d",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x2048-segment1.png",
+          "sha256": "f922861ec41ecf38b0dd05006eb72e0d71f56f30615668e44ec7f88559cb924d",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x2048-segment2.png",
+          "cropLTRB": [
+            1888,
+            1024,
+            2208,
+            2048
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            },
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x2048-segment2.png",
+          "oldEvidenceSHA256": "9c639928de686e5f613aacaaff2cca6c699c302de40643ff1b61ca8e848ec148",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x2048-segment2.png",
+          "sha256": "9c639928de686e5f613aacaaff2cca6c699c302de40643ff1b61ca8e848ec148",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x2048-segment3.png",
+          "cropLTRB": [
+            1888,
+            2048,
+            2208,
+            3072
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            },
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x2048-segment3.png",
+          "oldEvidenceSHA256": "c12e6b6fc7f38b2f59d0307464ccb48e3544d8959bd20bb74bc2ab3dca0298ca",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/s03_02-v007-east-native100-v001.png",
+          "sha256": "7543fa47d097afb937f14c911263daa829d24cb4d0e8e37737e880ae1e54405e",
+          "evidenceMode": "REUSED_THIS_SESSION_EXACT_SOURCE_ACTUAL_VIEW",
+          "actualViewedPreviously": true,
+          "majorGeometryVerdict": "PASS_LOCAL_GEOMETRY",
+          "visualVerdict": "MATERIAL_REVIEW_PENDING",
+          "sourceHashesMatchCurrent": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x2048-segment4.png",
+          "cropLTRB": [
+            1888,
+            3072,
+            2208,
+            4096
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s04_02",
+              "sha256": "41fa74d0005d9ff95fc2062d173add7c0e53f25f1c32c94f97bc67966aa8282a",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_02-v003.png"
+            },
+            {
+              "patch": "s04_03",
+              "sha256": "f2d5787d3a746d80f48208388ecb273538b36d615adf99b45b6bcf845d4010ab",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_03-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x2048-segment4.png",
+          "oldEvidenceSHA256": "dcf51ce429c162839179ffab764ed8bb543fb38953cd9cd26f876566dee5d755",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x2048-segment4.png",
+          "sha256": "dcf51ce429c162839179ffab764ed8bb543fb38953cd9cd26f876566dee5d755",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x3072-segment1.png",
+          "cropLTRB": [
+            2912,
+            0,
+            3232,
+            1024
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_03",
+              "sha256": "ec274b0fec886d86c1678aead12aa4f3fed0c8fbc4b44e68acf6e41fcc341838",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_03-v001.png"
+            },
+            {
+              "patch": "s01_04",
+              "sha256": "68e1789a82057987f0ed9b60b8d01059e11b115b675981cdc8a2f8a4c5eed725",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_04-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment1.png",
+          "oldEvidenceSHA256": "41bcab7be2d5390793b8d700233a953cf2783dc21c73489cc47ed9c53167e0a1",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment1.png",
+          "sha256": "41bcab7be2d5390793b8d700233a953cf2783dc21c73489cc47ed9c53167e0a1",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x3072-segment2.png",
+          "cropLTRB": [
+            2912,
+            1024,
+            3232,
+            2048
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            },
+            {
+              "patch": "s02_04",
+              "sha256": "4d09e006e9851f03e567c1e453a3db823722f813c98e596aa6bcfe4e7f7f29c2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_04-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment2.png",
+          "oldEvidenceSHA256": "9d7ac5ce3ee4a59f4df62e9c1e2d088d0da532abe07c75467b3d807f1d97e88b",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment2.png",
+          "sha256": "9d7ac5ce3ee4a59f4df62e9c1e2d088d0da532abe07c75467b3d807f1d97e88b",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x3072-segment3.png",
+          "cropLTRB": [
+            2912,
+            2048,
+            3232,
+            3072
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            },
+            {
+              "patch": "s03_04",
+              "sha256": "1283d3878c88545308eb6361ed8ab8eef57e6fb865c70d2cb125688079ce75db",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_04-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment3.png",
+          "oldEvidenceSHA256": "e8b90bcd879064195adc0de877dfb7d986b07c8a8b0071a07592d63dd9c8da5e",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment3.png",
+          "sha256": "e8b90bcd879064195adc0de877dfb7d986b07c8a8b0071a07592d63dd9c8da5e",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-x3072-segment4.png",
+          "cropLTRB": [
+            2912,
+            3072,
+            3232,
+            4096
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s04_03",
+              "sha256": "f2d5787d3a746d80f48208388ecb273538b36d615adf99b45b6bcf845d4010ab",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_03-v002.png"
+            },
+            {
+              "patch": "s04_04",
+              "sha256": "c38803777ca2ce4d8b3d1e434cc7cfb4f27b3b1d6a43f864490467c2ede8c2fb",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_04-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment4.png",
+          "oldEvidenceSHA256": "b6c9e8204f90375be9a481384912ec753444510bc7b5582b305ec7de41edf193",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-x3072-segment4.png",
+          "sha256": "b6c9e8204f90375be9a481384912ec753444510bc7b5582b305ec7de41edf193",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y1024-segment1.png",
+          "cropLTRB": [
+            0,
+            864,
+            1024,
+            1184
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_01",
+              "sha256": "4da73bfd4073fffb93ad6aba2fb5bc32062b8b8b3823e7d4628b0808b9f47c43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_01-v001.png"
+            },
+            {
+              "patch": "s02_01",
+              "sha256": "2bfa98f26f6710e9dd5208fef271a7225a89ddad36eeb13047732ca658e8544b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_01-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment1.png",
+          "oldEvidenceSHA256": "b7b7b74db838f9b8d7069954bc3b571a9afd96f8e08d8251da408c07d489f3ac",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment1.png",
+          "sha256": "b7b7b74db838f9b8d7069954bc3b571a9afd96f8e08d8251da408c07d489f3ac",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y1024-segment2.png",
+          "cropLTRB": [
+            1024,
+            864,
+            2048,
+            1184
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_02",
+              "sha256": "dbc68e3dc97c2c929c67262b60faf48ca0bb0ccd9eb6a61663302056cc19ce63",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_02-v001.png"
+            },
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment2.png",
+          "oldEvidenceSHA256": "6ff5b1baec653065fb419d6067e1a7aed87197626605763fd2a8322fd0496b43",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment2.png",
+          "sha256": "6ff5b1baec653065fb419d6067e1a7aed87197626605763fd2a8322fd0496b43",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y1024-segment3.png",
+          "cropLTRB": [
+            2048,
+            864,
+            3072,
+            1184
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_03",
+              "sha256": "ec274b0fec886d86c1678aead12aa4f3fed0c8fbc4b44e68acf6e41fcc341838",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_03-v001.png"
+            },
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment3.png",
+          "oldEvidenceSHA256": "041e24b46a43c066342f002a43c406cb33844ea9e2497e09ae161a941646ac55",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment3.png",
+          "sha256": "041e24b46a43c066342f002a43c406cb33844ea9e2497e09ae161a941646ac55",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y1024-segment4.png",
+          "cropLTRB": [
+            3072,
+            864,
+            4096,
+            1184
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_04",
+              "sha256": "68e1789a82057987f0ed9b60b8d01059e11b115b675981cdc8a2f8a4c5eed725",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_04-v001.png"
+            },
+            {
+              "patch": "s02_04",
+              "sha256": "4d09e006e9851f03e567c1e453a3db823722f813c98e596aa6bcfe4e7f7f29c2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_04-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment4.png",
+          "oldEvidenceSHA256": "f34ff5f97493350ce5daf839406608065355023ade62f7a5fe3edc9004b5f081",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y1024-segment4.png",
+          "sha256": "f34ff5f97493350ce5daf839406608065355023ade62f7a5fe3edc9004b5f081",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y2048-segment1.png",
+          "cropLTRB": [
+            0,
+            1888,
+            1024,
+            2208
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_01",
+              "sha256": "2bfa98f26f6710e9dd5208fef271a7225a89ddad36eeb13047732ca658e8544b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_01-v001.png"
+            },
+            {
+              "patch": "s03_01",
+              "sha256": "2053c127e294ed6ac731b8c245ec444a2bf0ae0cbf515c2303c32ab20daebf34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_01-v012.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y2048-segment1.png",
+          "oldEvidenceSHA256": "94dd99b44256a321e97ce7f278b8d8f58ec1ca80f75dc343e2c3024536b24e06",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/s03_01-v012-north-native100-v001.png",
+          "sha256": "60ddb3a470493dc2ff159278b896b88181115761f47434ac7ec46a191a13045a",
+          "evidenceMode": "REUSED_THIS_SESSION_EXACT_SOURCE_ACTUAL_VIEW",
+          "actualViewedPreviously": true,
+          "majorGeometryVerdict": "PASS_LOCAL_GEOMETRY",
+          "visualVerdict": "MATERIAL_REVIEW_PENDING",
+          "sourceHashesMatchCurrent": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y2048-segment2.png",
+          "cropLTRB": [
+            1024,
+            1888,
+            2048,
+            2208
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            },
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y2048-segment2.png",
+          "oldEvidenceSHA256": "da2c0b5c2e63c32bcb02c99fe6003d23b98756080804030f42955bd097ea308b",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/s03_02-v007-north-native100-v001.png",
+          "sha256": "ddf3c48a417733523c81828b027e42d56fb49440a7e52e5c29e696b345d5750b",
+          "evidenceMode": "REUSED_THIS_SESSION_EXACT_SOURCE_ACTUAL_VIEW",
+          "actualViewedPreviously": true,
+          "majorGeometryVerdict": "PASS_LOCAL_GEOMETRY",
+          "visualVerdict": "MATERIAL_REVIEW_PENDING",
+          "sourceHashesMatchCurrent": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y2048-segment3.png",
+          "cropLTRB": [
+            2048,
+            1888,
+            3072,
+            2208
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            },
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y2048-segment3.png",
+          "oldEvidenceSHA256": "fff7276f1c81f3898e1c652df3d7093c41f3a97986a82ff7a76a3f5f8b273588",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y2048-segment3.png",
+          "sha256": "fff7276f1c81f3898e1c652df3d7093c41f3a97986a82ff7a76a3f5f8b273588",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y2048-segment4.png",
+          "cropLTRB": [
+            3072,
+            1888,
+            4096,
+            2208
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_04",
+              "sha256": "4d09e006e9851f03e567c1e453a3db823722f813c98e596aa6bcfe4e7f7f29c2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_04-v001.png"
+            },
+            {
+              "patch": "s03_04",
+              "sha256": "1283d3878c88545308eb6361ed8ab8eef57e6fb865c70d2cb125688079ce75db",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_04-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y2048-segment4.png",
+          "oldEvidenceSHA256": "2dd8fc2bd85eccf752172323b6fb2c0399bf2d75eff05a393702802f069ba095",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y2048-segment4.png",
+          "sha256": "2dd8fc2bd85eccf752172323b6fb2c0399bf2d75eff05a393702802f069ba095",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y3072-segment1.png",
+          "cropLTRB": [
+            0,
+            2912,
+            1024,
+            3232
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_01",
+              "sha256": "2053c127e294ed6ac731b8c245ec444a2bf0ae0cbf515c2303c32ab20daebf34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_01-v012.png"
+            },
+            {
+              "patch": "s04_01",
+              "sha256": "39c5eb97a39af69e9d3afa0d48f581af40467f9cd0f7b1002ec74ff8d0b74ceb",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_01-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PENDING_REPAIR",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y3072-segment1.png",
+          "oldEvidenceSHA256": "42680a53a93808ef6466ae0e96530c90dcbbed52b3694c91f807d33a81ff8103",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/s03_01-v012-south-native100-v001.png",
+          "sha256": "ce794fc053aea6aedcdb6c2b37fdc665682716ce7d8081156d22c492ac743581",
+          "evidenceMode": "REUSED_THIS_SESSION_EXACT_SOURCE_ACTUAL_VIEW",
+          "actualViewedPreviously": true,
+          "majorGeometryVerdict": "PASS_LOCAL_GEOMETRY",
+          "visualVerdict": "MATERIAL_REVIEW_PENDING",
+          "sourceHashesMatchCurrent": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y3072-segment2.png",
+          "cropLTRB": [
+            1024,
+            2912,
+            2048,
+            3232
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            },
+            {
+              "patch": "s04_02",
+              "sha256": "41fa74d0005d9ff95fc2062d173add7c0e53f25f1c32c94f97bc67966aa8282a",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_02-v003.png"
+            }
+          ],
+          "oldVisualVerdict": "PENDING_REPAIR",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y3072-segment2.png",
+          "oldEvidenceSHA256": "1b3fea625ea84c6d9b336895157eef681804b1dbe8f24ad39d8b7a792a020aac",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/s03_02-v007-south-native100-v001.png",
+          "sha256": "e75bbc48d8e3b6c9bda230c31a529d08ff4c413251fb9dcbc7f3950d31b1785d",
+          "evidenceMode": "REUSED_THIS_SESSION_EXACT_SOURCE_ACTUAL_VIEW",
+          "actualViewedPreviously": true,
+          "majorGeometryVerdict": "PASS_LOCAL_GEOMETRY",
+          "visualVerdict": "MATERIAL_REVIEW_PENDING",
+          "sourceHashesMatchCurrent": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y3072-segment3.png",
+          "cropLTRB": [
+            2048,
+            2912,
+            3072,
+            3232
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            },
+            {
+              "patch": "s04_03",
+              "sha256": "f2d5787d3a746d80f48208388ecb273538b36d615adf99b45b6bcf845d4010ab",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_03-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y3072-segment3.png",
+          "oldEvidenceSHA256": "e82e13bfc3b1fad91b8afc9da668fab0fafaaf8bf62291c105b46644d313b04b",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y3072-segment3.png",
+          "sha256": "e82e13bfc3b1fad91b8afc9da668fab0fafaaf8bf62291c105b46644d313b04b",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "internal-y3072-segment4.png",
+          "cropLTRB": [
+            3072,
+            2912,
+            4096,
+            3232
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_04",
+              "sha256": "1283d3878c88545308eb6361ed8ab8eef57e6fb865c70d2cb125688079ce75db",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_04-v002.png"
+            },
+            {
+              "patch": "s04_04",
+              "sha256": "c38803777ca2ce4d8b3d1e434cc7cfb4f27b3b1d6a43f864490467c2ede8c2fb",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_04-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y3072-segment4.png",
+          "oldEvidenceSHA256": "f0d3c57b575e03aa81ab5eb9b80483b0303f7750f6b36a333883293ddae7c5a2",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/internal-y3072-segment4.png",
+          "sha256": "f0d3c57b575e03aa81ab5eb9b80483b0303f7750f6b36a333883293ddae7c5a2",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "junction-1024-1024.png",
+          "cropLTRB": [
+            864,
+            864,
+            1184,
+            1184
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_01",
+              "sha256": "4da73bfd4073fffb93ad6aba2fb5bc32062b8b8b3823e7d4628b0808b9f47c43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_01-v001.png"
+            },
+            {
+              "patch": "s01_02",
+              "sha256": "dbc68e3dc97c2c929c67262b60faf48ca0bb0ccd9eb6a61663302056cc19ce63",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_02-v001.png"
+            },
+            {
+              "patch": "s02_01",
+              "sha256": "2bfa98f26f6710e9dd5208fef271a7225a89ddad36eeb13047732ca658e8544b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_01-v001.png"
+            },
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-1024-1024.png",
+          "oldEvidenceSHA256": "f3ed1597ce5b35c4fad6e8ffec32ec76aedf7bf2e192e3e2a0d48b236061dab6",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-1024-1024.png",
+          "sha256": "f3ed1597ce5b35c4fad6e8ffec32ec76aedf7bf2e192e3e2a0d48b236061dab6",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "junction-1024-2048.png",
+          "cropLTRB": [
+            864,
+            1888,
+            1184,
+            2208
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_01",
+              "sha256": "2bfa98f26f6710e9dd5208fef271a7225a89ddad36eeb13047732ca658e8544b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_01-v001.png"
+            },
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            },
+            {
+              "patch": "s03_01",
+              "sha256": "2053c127e294ed6ac731b8c245ec444a2bf0ae0cbf515c2303c32ab20daebf34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_01-v012.png"
+            },
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-1024-2048.png",
+          "oldEvidenceSHA256": "019d464a575a413e23626b2e69b7cd828bc73f44b401af4340c302678f767967",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/junction-1024-2048.png",
+          "sha256": "e5e0edb74beb56c9200ee1c892162fbf21429dbcb434f6239196986cdf81e035",
+          "evidenceMode": "NEW_CHANGED_INPUT_JUNCTION",
+          "actualViewed": false,
+          "visualVerdict": "PENDING_ACTUAL_VIEW"
+        },
+        {
+          "name": "junction-1024-3072.png",
+          "cropLTRB": [
+            864,
+            2912,
+            1184,
+            3232
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_01",
+              "sha256": "2053c127e294ed6ac731b8c245ec444a2bf0ae0cbf515c2303c32ab20daebf34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_01-v012.png"
+            },
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            },
+            {
+              "patch": "s04_01",
+              "sha256": "39c5eb97a39af69e9d3afa0d48f581af40467f9cd0f7b1002ec74ff8d0b74ceb",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_01-v001.png"
+            },
+            {
+              "patch": "s04_02",
+              "sha256": "41fa74d0005d9ff95fc2062d173add7c0e53f25f1c32c94f97bc67966aa8282a",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_02-v003.png"
+            }
+          ],
+          "oldVisualVerdict": "PENDING_REPAIR",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-1024-3072.png",
+          "oldEvidenceSHA256": "f13d1ceddc2e3481dcf8e8169acdc861d41c18e20921f422b099ec2d2fc997e6",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/junction-1024-3072.png",
+          "sha256": "79473a6118f4c6d580d529ca0019ba7d8373f896ae7fdfbbea88ecda54481438",
+          "evidenceMode": "NEW_CHANGED_INPUT_JUNCTION",
+          "actualViewed": false,
+          "visualVerdict": "PENDING_ACTUAL_VIEW"
+        },
+        {
+          "name": "junction-2048-1024.png",
+          "cropLTRB": [
+            1888,
+            864,
+            2208,
+            1184
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_02",
+              "sha256": "dbc68e3dc97c2c929c67262b60faf48ca0bb0ccd9eb6a61663302056cc19ce63",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_02-v001.png"
+            },
+            {
+              "patch": "s01_03",
+              "sha256": "ec274b0fec886d86c1678aead12aa4f3fed0c8fbc4b44e68acf6e41fcc341838",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_03-v001.png"
+            },
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            },
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-2048-1024.png",
+          "oldEvidenceSHA256": "0cd5cd59bc65d04899181815d665e8533fc74dc60747456ba93c1a931d37c476",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-2048-1024.png",
+          "sha256": "0cd5cd59bc65d04899181815d665e8533fc74dc60747456ba93c1a931d37c476",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "junction-2048-2048.png",
+          "cropLTRB": [
+            1888,
+            1888,
+            2208,
+            2208
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_02",
+              "sha256": "2fbc61fc7f7f60b26e5ee6b456d36de760d4e575684d42450c1339c00a1cc0c5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_02-v001.png"
+            },
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            },
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            },
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-2048-2048.png",
+          "oldEvidenceSHA256": "cf61b50efe74e591675fa988420fae00d0e6a86bb29a79f5274fa7a5b9cfc623",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/junction-2048-2048.png",
+          "sha256": "60c0bba730b7823892b6dac589286627c2cb94e0d5734f2c4d8b0ab12a8a16e1",
+          "evidenceMode": "NEW_CHANGED_INPUT_JUNCTION",
+          "actualViewed": false,
+          "visualVerdict": "PENDING_ACTUAL_VIEW"
+        },
+        {
+          "name": "junction-2048-3072.png",
+          "cropLTRB": [
+            1888,
+            2912,
+            2208,
+            3232
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_02",
+              "sha256": "ee01e55ec7dc7aeb6e5e8e793edd88661d1421ce787ddcfb2008c95d1c6d27f5",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_02-v007.png"
+            },
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            },
+            {
+              "patch": "s04_02",
+              "sha256": "41fa74d0005d9ff95fc2062d173add7c0e53f25f1c32c94f97bc67966aa8282a",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_02-v003.png"
+            },
+            {
+              "patch": "s04_03",
+              "sha256": "f2d5787d3a746d80f48208388ecb273538b36d615adf99b45b6bcf845d4010ab",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_03-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-2048-3072.png",
+          "oldEvidenceSHA256": "88500f2838db786983f8d17a0bb8c668a802be368f6127890ff00ede3512530f",
+          "changedInput": true,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/qa/selected-native4096-v002/junction-2048-3072.png",
+          "sha256": "21335dd49a5a0fe4e771c2cc3938e7c48208db308608c4d4039ddf6a9f50e1ec",
+          "evidenceMode": "NEW_CHANGED_INPUT_JUNCTION",
+          "actualViewed": false,
+          "visualVerdict": "PENDING_ACTUAL_VIEW"
+        },
+        {
+          "name": "junction-3072-1024.png",
+          "cropLTRB": [
+            2912,
+            864,
+            3232,
+            1184
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s01_03",
+              "sha256": "ec274b0fec886d86c1678aead12aa4f3fed0c8fbc4b44e68acf6e41fcc341838",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_03-v001.png"
+            },
+            {
+              "patch": "s01_04",
+              "sha256": "68e1789a82057987f0ed9b60b8d01059e11b115b675981cdc8a2f8a4c5eed725",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s01_04-v001.png"
+            },
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            },
+            {
+              "patch": "s02_04",
+              "sha256": "4d09e006e9851f03e567c1e453a3db823722f813c98e596aa6bcfe4e7f7f29c2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_04-v001.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-3072-1024.png",
+          "oldEvidenceSHA256": "832da7dd9218ccb386823479503a5fec3074abda5213cba045e23431dd4d6575",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-3072-1024.png",
+          "sha256": "832da7dd9218ccb386823479503a5fec3074abda5213cba045e23431dd4d6575",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "junction-3072-2048.png",
+          "cropLTRB": [
+            2912,
+            1888,
+            3232,
+            2208
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s02_03",
+              "sha256": "744dc956f7b510c1cb7421e9c809881872aa82d53d6195af055ba8cd582183fc",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_03-v001.png"
+            },
+            {
+              "patch": "s02_04",
+              "sha256": "4d09e006e9851f03e567c1e453a3db823722f813c98e596aa6bcfe4e7f7f29c2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s02_04-v001.png"
+            },
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            },
+            {
+              "patch": "s03_04",
+              "sha256": "1283d3878c88545308eb6361ed8ab8eef57e6fb865c70d2cb125688079ce75db",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_04-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-3072-2048.png",
+          "oldEvidenceSHA256": "fc262202dccb446dee21a76b43d36ce7b2733a851c37342b8ceb8a1dbd6c5931",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-3072-2048.png",
+          "sha256": "fc262202dccb446dee21a76b43d36ce7b2733a851c37342b8ceb8a1dbd6c5931",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        },
+        {
+          "name": "junction-3072-3072.png",
+          "cropLTRB": [
+            2912,
+            2912,
+            3232,
+            3232
+          ],
+          "nativePixelScale": 1,
+          "contributors": [
+            {
+              "patch": "s03_03",
+              "sha256": "3063cc87ff94095edf37f97c5a713c2ba5b22587394f89c88692d8fe43555a9b",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_03-v006.png"
+            },
+            {
+              "patch": "s03_04",
+              "sha256": "1283d3878c88545308eb6361ed8ab8eef57e6fb865c70d2cb125688079ce75db",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s03_04-v002.png"
+            },
+            {
+              "patch": "s04_03",
+              "sha256": "f2d5787d3a746d80f48208388ecb273538b36d615adf99b45b6bcf845d4010ab",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_03-v002.png"
+            },
+            {
+              "patch": "s04_04",
+              "sha256": "c38803777ca2ce4d8b3d1e434cc7cfb4f27b3b1d6a43f864490467c2ede8c2fb",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/native/s04_04-v002.png"
+            }
+          ],
+          "oldVisualVerdict": "PASS_NATIVE100",
+          "oldActualViewed": true,
+          "oldEvidenceFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-3072-3072.png",
+          "oldEvidenceSHA256": "5e7f43d0cd3608b9a196ca3b4690639ee926a75078fb020ec34cd54e58287ea2",
+          "changedInput": false,
+          "formalAccepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r02_c05/candidate/r02_c05-native-cores-v001-qa-native100/junction-3072-3072.png",
+          "sha256": "5e7f43d0cd3608b9a196ca3b4690639ee926a75078fb020ec34cd54e58287ea2",
+          "evidenceMode": "REUSED_UNCHANGED_OLD_NATIVE100_PASS",
+          "actualViewedPreviously": true,
+          "visualVerdict": "PASS_NATIVE100_REUSED",
+          "sourceHashesUnchanged": true,
+          "pixelIdenticalToCurrentCandidateCrop": true
+        }
+      ],
+      "fullInternalVisualPassed": false,
+      "formalAccepted": false,
+      "selectionModified": false
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 16,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "410a4d21041e155101848ed62738e47aa2130bced98c2269cad9e8605046a73a",
+  "imageBytes": 23719701,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-4k-I01-grout-repaired-20261016-root-reviewed.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-assembly-I01-grout-repaired-20261016-root-reviewed.json",
+  "sourceLedgerSha256": "06107b314d7eafa9cb5863cb1f200af8923438e0dd8c269790da15057ffa88e1",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c16",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-4k-I01-grout-repaired-20261016-root-reviewed.png",
+    "imageSha256": "410a4d21041e155101848ed62738e47aa2130bced98c2269cad9e8605046a73a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-assembly-I01-grout-repaired-20261016-root-reviewed.json",
+        "sha256": "06107b314d7eafa9cb5863cb1f200af8923438e0dd8c269790da15057ffa88e1",
+        "completeness": "Individually reviewed full native source assembly or full-base repair chain."
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/latest-assembly.json",
+        "sha256": "e46ced22e15ce94a28865b45aa870f8f8802b12a4c157aff2d074bcdef6f97d6",
+        "completeness": "Individually reviewed full native source assembly or full-base repair chain."
+      }
+    ],
+    "selectionBasis": "previous_complete_candidate_audit",
+    "sourceStatus": {
+      "status": "candidate_internal_passed_west_W01_pending",
+      "internalArtQA": "passed",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-assembly-I01-grout-repaired-20261016-root-reviewed.json",
+        "record": {
+          "status": "candidate_internal_passed_west_W01_pending",
+          "internalArtQA": "passed",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/latest-assembly.json",
+        "record": {
+          "status": "internal_pass_west_pair_failed_north_south_local_pass",
+          "internalArtQA": "passed",
+          "externalNeighborSeamQA": {
+            "north": "passed_previous_QA",
+            "west": "failed_W01_deferred_after_two_native_attempts",
+            "south": "local_pass_after_N02_final_core_pair_review"
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/progress.json",
+        "record": {
+          "status": "internal_pass_west_pair_failed_north_south_local_pass",
+          "formalAccepted": false,
+          "internalArtQA": "passed",
+          "externalNeighborSeamQA": {
+            "north": "passed_previous_QA",
+            "west": "failed_W01_deferred_after_two_native_attempts",
+            "south": "local_pass_after_N02_final_core_pair_review"
+          },
+          "pendingRepairRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/repairs/independent-seam-fixes-20261013-v1/repair-review-20261016.json"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/batch-checkpoints/four-tile-final-20261016T120406Z/before/r15_c16/progress.json",
+        "record": {
+          "status": "candidate_internal_passed_west_W01_pending",
+          "formalAccepted": false,
+          "internalArtQA": "passed",
+          "externalNeighborSeamQA": "west_W01_pending_north_passed_south_join_separate",
+          "pendingRepairRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/repairs/independent-seam-fixes-20261013-v1/repair-review-20261016.json"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-assembly-I01-grout-repaired-20261016-root-reviewed.json",
+    "sourceSha256": "06107b314d7eafa9cb5863cb1f200af8923438e0dd8c269790da15057ffa88e1",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r15_c16",
+      "status": "candidate_internal_passed_west_W01_pending",
+      "baseAssembly": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-assembly-7783279d21b0e091e554.json",
+        "sha256": "39d55cc6f0426b006b18f0a3a601feb2cd3c1e96c69596317fb118e0e2a5df20"
+      },
+      "baseAssemblyIdentitySha256": "7783279d21b0e091e554a1c75e1df5bb9be36694d933f63316cf674daf39a0b4",
+      "operation": "Actual native local I01 repair via stored integer crop, minimum-error paths and alpha; no resize or procedural detail generation",
+      "repairComposition": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/repairs/independent-seam-fixes-20261013-v1/I01-only-reviewed-20261016/composition.json",
+        "sha256": "8b1d7fb42b23a05b7508cb1c9c9c8db477fd05ce3109a288582b58140177d0cd"
+      },
+      "localQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/repairs/independent-seam-fixes-20261013-v1/I01-only-reviewed-20261016/visual-qa.json",
+        "sha256": "e0a23e92645eb6472ab55c8c8f1e4c95f553d2feb1598f284cdf1758120d9ae5"
+      },
+      "rootIndependentQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/repairs/independent-seam-fixes-20261013-v1/I01-only-reviewed-20261016/root-independent-qa-20261016.json",
+        "sha256": "02916c320a1fd71a0e627b348853bbad72992f9f698fbe4ffa2ac94f19915960"
+      },
+      "repairReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/repairs/independent-seam-fixes-20261013-v1/repair-review-20261016.json",
+        "sha256": "f13dac1a7884c1a8c406cd3fd2eeb4f7f5a0d4f871599b224ac77d66b723a595"
+      },
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-4k-I01-grout-repaired-20261016-root-reviewed.png",
+        "sha256": "410a4d21041e155101848ed62738e47aa2130bced98c2269cad9e8605046a73a",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "context": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c16/candidate/r15_c16-context-4326-I01-grout-repaired-20261016-root-reviewed.png",
+        "sha256": "07f8c5743f9c9053d4aa8094fda063c47cce6e9daa86f82f1804fc68a5d1036a",
+        "size": [
+          4326,
+          4326
+        ]
+      },
+      "internalArtQA": "passed",
+      "northSeamQA": "passed_reused_unchanged",
+      "westSeamQA": "failed_W01_q3_other_quarters_passed",
+      "south384PixelsExact": true,
+      "west384PixelsExact": true,
+      "activeNativeSourcesUnchanged": true,
+      "formalAccepted": false
+    }
+  }
+}

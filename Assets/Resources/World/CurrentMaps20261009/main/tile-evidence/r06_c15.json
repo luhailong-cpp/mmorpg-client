@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 6,
+  "column": 15,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "8adbdce867bdb8c3c3ccb529af0cc2bd3be5796a4259b6b0d34f79f9a1dec61e",
+  "imageBytes": 24629363,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c15/candidates/r06_c15.closeout-upperroof-v3-20261021.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c15/tile-progress.json",
+  "sourceLedgerSha256": "d8ed0095908003e499fdf3d5f1f242304a4027e08e20ac77fccb77b401539584",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c15",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c15/candidates/r06_c15.closeout-upperroof-v3-20261021.png",
+    "imageSha256": "8adbdce867bdb8c3c3ccb529af0cc2bd3be5796a4259b6b0d34f79f9a1dec61e",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c15/tile-progress.json",
+        "sha256": "d8ed0095908003e499fdf3d5f1f242304a4027e08e20ac77fccb77b401539584",
+        "sourceReviewSha256": "d8ed0095908003e499fdf3d5f1f242304a4027e08e20ac77fccb77b401539584",
+        "completeness": [
+          "Tile-local selectedCoreCount16; remainingCoreCount0; complete4096 candidate."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c15/candidates/r06_c15.closeout-upperroof-v3-20261021.png.generation.json",
+        "sha256": "0d4a352269cb775bdf4b8c96fdeb40b221360e5fa629457e273f27e570227cc5",
+        "sourceReviewSha256": "0d4a352269cb775bdf4b8c96fdeb40b221360e5fa629457e273f27e570227cc5",
+        "completeness": [
+          "Output SHA binds complete native candidate or one bounded native overlay on hash-bound complete parent."
+        ]
+      }
+    ],
+    "selectionBasis": "output_sha_bound_full16_core_candidate_or_native_replacement_on_pinned_full16_base",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "remainingCoreCount": 0,
+      "formalAccepted": false,
+      "status": "partial-closeout-three-improvements-adopted-two-held-defects",
+      "internalQaPassed": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c15/candidates/r06_c15.closeout-upperroof-v3-20261021.png.generation.json",
+        "record": {
+          "status": "unpassed-provisional-upperroof-three-layer-candidate; independent-root-review-required"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

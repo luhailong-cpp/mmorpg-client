@@ -9,59 +9,331 @@
   "imageSha256": "bfd32418fc291cd16bccbc6869f746500a1004b87b10dc15a9f266a4ada3ff30",
   "imageBytes": 30918589,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/candidate-4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261021-v001.json",
-  "sourceLedgerSha256": "7816a6f95592d8ce8c12095dd226a240e79de4efd94eff0cf4e3a51f4fe1e245",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/internal-review-20261020-rail-v1.json",
+  "sourceLedgerSha256": "f3aac72223be930695b72230c09ada8832f19dec1af35a162522e5a079430ce9",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r09_c01",
-    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/candidate-4096.png",
-    "sha256": "bfd32418fc291cd16bccbc6869f746500a1004b87b10dc15a9f266a4ada3ff30",
-    "dimensions": [
-      4096,
-      4096
-    ],
-    "nativeCoreCount": 16,
-    "nativeCoreSize": [
-      1024,
-      1024
-    ],
-    "nativeGeneratorOutputs": [
-      1254,
-      1254
-    ],
-    "internalReady": true,
-    "formalAccepted": false,
-    "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/internal-review-20261020-rail-v1.json",
-    "reviewSha256": "f3aac72223be930695b72230c09ada8832f19dec1af35a162522e5a079430ce9",
-    "generationRecord": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/candidate-4096.png.generation.json",
-      "sha256": "73f59d01456c2f136453eab6990a9dc0ab2c52d37d65a27d5ee1377a1ff7b4ae"
-    },
-    "assemblyManifest": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/manifest.json",
-      "sha256": "9f6f43a875fcf3e0e729d9ef4647ef5468aa06f03c96ebaab5e068575ebc2df3"
-    },
-    "sourceSelection": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/selection-v017.json",
-      "sha256": "1406d4228854cf05f4910b098a0d6378da7224191cdca97a3f0d291006faf00b"
-    },
-    "operation": "Exact native source core assembly plus reviewed opaque integer AI repair copies; no art resampling.",
-    "actualModel": null,
-    "actualQuality": null,
-    "unverifiedReason": "Derived assembly. Original per-source builtin generation records disclose no verifiable actual model/quality.",
-    "externalReview": [
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/candidate-4096.png",
+    "imageSha256": "bfd32418fc291cd16bccbc6869f746500a1004b87b10dc15a9f266a4ada3ff30",
+    "completeNativeCoverage": true,
+    "coverageProof": [
       {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-west-20261020-v1/review.json",
-        "sha256": "5bd5db0336e9e0fd583ec655a23421852ab6e8859b74ca1b5ff22881c66c9a1f"
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/internal-review-20261020-rail-v1.json",
+        "sha256": "f3aac72223be930695b72230c09ada8832f19dec1af35a162522e5a079430ce9",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
       }
     ],
-    "pendingLocalRepairs": [],
-    "pendingExternalIssues": []
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "native_rail_repair_internal_ready_external_QA_pending",
+      "externalBoundaryPixelsUnchanged": {
+        "north": {
+          "tileBox": [
+            0,
+            0,
+            4096,
+            128
+          ],
+          "baseAndCandidatePixelSha256": "46581b8ef477f42b814a19886ae1a2f820f5af1ece13575fdd2302cad4a0d4ea",
+          "unchanged": true
+        },
+        "south": {
+          "tileBox": [
+            0,
+            3968,
+            4096,
+            4096
+          ],
+          "baseAndCandidatePixelSha256": "e586f11ddadfa23627a8284a48d025c7c6df2a22886d8226f29a4957f5384340",
+          "unchanged": true
+        },
+        "west": {
+          "tileBox": [
+            0,
+            0,
+            128,
+            4096
+          ],
+          "baseAndCandidatePixelSha256": "1adeabe0ee49ef1deb10b3128e2416003d4943a0e38dd5fc5a060593723e355c",
+          "unchanged": true
+        },
+        "east": {
+          "tileBox": [
+            3968,
+            0,
+            4096,
+            4096
+          ],
+          "baseAndCandidatePixelSha256": "fe1d1871204881a0aea7fda3a7b1a7698526bd12cef1cc4f5bb1af6b063b8fe6",
+          "unchanged": true
+        }
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/manifest.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "native_rail_repair_internal_ready_external_QA_pending",
+          "externalBoundaryPixelsUnchanged": {
+            "north": {
+              "tileBox": [
+                0,
+                0,
+                4096,
+                128
+              ],
+              "baseAndCandidatePixelSha256": "46581b8ef477f42b814a19886ae1a2f820f5af1ece13575fdd2302cad4a0d4ea",
+              "unchanged": true
+            },
+            "south": {
+              "tileBox": [
+                0,
+                3968,
+                4096,
+                4096
+              ],
+              "baseAndCandidatePixelSha256": "e586f11ddadfa23627a8284a48d025c7c6df2a22886d8226f29a4957f5384340",
+              "unchanged": true
+            },
+            "west": {
+              "tileBox": [
+                0,
+                0,
+                128,
+                4096
+              ],
+              "baseAndCandidatePixelSha256": "1adeabe0ee49ef1deb10b3128e2416003d4943a0e38dd5fc5a060593723e355c",
+              "unchanged": true
+            },
+            "east": {
+              "tileBox": [
+                3968,
+                0,
+                4096,
+                4096
+              ],
+              "baseAndCandidatePixelSha256": "fe1d1871204881a0aea7fda3a7b1a7698526bd12cef1cc4f5bb1af6b063b8fe6",
+              "unchanged": true
+            }
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/internal-review-20261020-rail-v1.json",
+        "record": {
+          "internalEvidenceReview": [
+            {
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261019-v1/vertical-1-native.png",
+                "sha256": "064be655c205d6163a500748f9e5a3bd532784f3e0d6b7b794a8b82b21d94a52"
+              },
+              "nativeScale": true,
+              "resampled": false,
+              "viewedThisReview": true,
+              "status": "passed_native_visual_review",
+              "notes": "Viewed all four native strips at x1024: peach flowers/branches, boulder surface and lower stone coping retain continuous silhouettes and shading. No visible hard cut at seam centers.",
+              "reusedUnchangedPixels": true,
+              "previousSignedPass": false
+            },
+            {
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/vertical-2-native.png",
+                "sha256": "9630631923ed4769426b22d4581febc860e968c153955f0b7e5f6008c2e1363c"
+              },
+              "nativeScale": true,
+              "resampled": false,
+              "viewedThisReview": true,
+              "status": "passed_native_visual_review",
+              "notes": "Viewed all four native strips at x2048: peach trunk and foliage, stone coping and lower timber post continuous. The rail overlay begins x2080, beyond the seam center; no visible new line at its left perimeter.",
+              "reusedUnchangedPixels": false,
+              "previousSignedPass": false
+            },
+            {
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261019-v1/vertical-3-native.png",
+                "sha256": "caada74feaa1a1c071c60d29e3277301cfdf047781141d186974381bf5696314"
+              },
+              "nativeScale": true,
+              "resampled": false,
+              "viewedThisReview": true,
+              "status": "passed_native_visual_review",
+              "notes": "Viewed all four native strips at x3072: peach canopy, stone wall courses, sandy path and fence post preserve continuous contours and lighting.",
+              "reusedUnchangedPixels": true,
+              "previousSignedPass": false
+            },
+            {
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261019-v1/horizontal-1-native.png",
+                "sha256": "e0fdd3aca9106142ff03a81921ec553cc555bb89dcfe316215d695ea5d75f680"
+              },
+              "nativeScale": true,
+              "resampled": false,
+              "viewedThisReview": true,
+              "status": "passed_native_visual_review",
+              "notes": "Viewed all four native strips at y1024: flowering canopy, branches and leaves connect across the seam centers without visible straight cuts.",
+              "reusedUnchangedPixels": true,
+              "previousSignedPass": false
+            },
+            {
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261019-v1/horizontal-2-native.png",
+                "sha256": "0313667be6dcf459b0618ffeb999a8dfd8296c173dc13545a05ed0fb86c74f2a"
+              },
+              "nativeScale": true,
+              "resampled": false,
+              "viewedThisReview": true,
+              "status": "passed_native_visual_review",
+              "notes": "Viewed all four native strips at y2048: rounded boulders, shaded foliage, tree trunk and stone path/post connect without visible offset.",
+              "reusedUnchangedPixels": true,
+              "previousSignedPass": false
+            },
+            {
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/horizontal-3-native.png",
+                "sha256": "5d32cedd4dec02ed7ac6ffcc3af657ef6ce85ec99c969c4596444cd860c504c0"
+              },
+              "nativeScale": true,
+              "resampled": false,
+              "viewedThisReview": true,
+              "status": "passed_native_visual_review",
+              "notes": "Viewed all four native strips at y3072: boulders and stone coping, shrubs, repaired wood post/rail and sandy route connect. Rail attaches directly to the tall post; protruding block removed.",
+              "reusedUnchangedPixels": false,
+              "previousSignedPass": false
+            },
+            {
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/crossings-native.png",
+                "sha256": "b15001f7959e4a560f6cff07a78e69a3d63a7207fbb31527d2d219e5ce85942e"
+              },
+              "nativeScale": true,
+              "resampled": false,
+              "viewedThisReview": true,
+              "status": "passed_native_visual_review",
+              "notes": "Viewed all nine native 320px crossings: flowers, branches, foliage, boulders, coping and post outlines remain continuous. Crossing (3,2), whose east side intersects the new overlay, shows no new join.",
+              "reusedUnchangedPixels": false,
+              "previousSignedPass": false
+            }
+          ],
+          "internalSeamSegmentsReviewed": 24,
+          "internalCrossingsReviewed": 9,
+          "externalBoundaryPixelsUnchanged": {
+            "north": {
+              "tileBox": [
+                0,
+                0,
+                4096,
+                128
+              ],
+              "baseAndCandidatePixelSha256": "46581b8ef477f42b814a19886ae1a2f820f5af1ece13575fdd2302cad4a0d4ea",
+              "unchanged": true
+            },
+            "south": {
+              "tileBox": [
+                0,
+                3968,
+                4096,
+                4096
+              ],
+              "baseAndCandidatePixelSha256": "e586f11ddadfa23627a8284a48d025c7c6df2a22886d8226f29a4957f5384340",
+              "unchanged": true
+            },
+            "west": {
+              "tileBox": [
+                0,
+                0,
+                128,
+                4096
+              ],
+              "baseAndCandidatePixelSha256": "1adeabe0ee49ef1deb10b3128e2416003d4943a0e38dd5fc5a060593723e355c",
+              "unchanged": true
+            },
+            "east": {
+              "tileBox": [
+                3968,
+                0,
+                4096,
+                4096
+              ],
+              "baseAndCandidatePixelSha256": "fe1d1871204881a0aea7fda3a7b1a7698526bd12cef1cc4f5bb1af6b063b8fe6",
+              "unchanged": true
+            }
+          },
+          "formalAccepted": false,
+          "externalJoinReview": "pending_coordinator_review",
+          "scopeLimitation": "This is tile-internal art QA. It does not sign external tile joins, map completion, collision, navigation or client integration."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/selection-v017.json",
+        "record": {
+          "formalAccepted": false,
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/internal-review-20261020-rail-v1.json",
+            "sha256": "f3aac72223be930695b72230c09ada8832f19dec1af35a162522e5a079430ce9"
+          },
+          "nativeCoreCount": 16,
+          "additionalNativeCoreCount": 0,
+          "externalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-west-20261020-v1/review.json",
+            "sha256": "5bd5db0336e9e0fd583ec655a23421852ab6e8859b74ca1b5ff22881c66c9a1f"
+          },
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": [],
+          "wholeMapAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-west-20261020-v1/review.json",
+        "record": {
+          "status": "four_edges_visual_pass_one_south_edge_not_passed",
+          "formalAccepted": false,
+          "wholeMapAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261021-v001.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Derived assembly. Original per-source builtin generation records disclose no verifiable actual model/quality.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-west-20261020-v1/review.json",
+              "sha256": "5bd5db0336e9e0fd583ec655a23421852ab6e8859b74ca1b5ff22881c66c9a1f"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": []
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/progress-20261020-v001.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false,
+          "unverifiedReason": "Derived assembly. Original per-source builtin generation records disclose no verifiable actual model/quality.",
+          "externalReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-west-20261020-v1/review.json",
+              "sha256": "5bd5db0336e9e0fd583ec655a23421852ab6e8859b74ca1b5ff22881c66c9a1f"
+            }
+          ],
+          "pendingLocalRepairs": [],
+          "pendingExternalIssues": []
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/r09_c01/qa/complete-native-20261020-rail-v1/internal-review-20261020-rail-v1.json",

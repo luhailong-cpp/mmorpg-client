@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 8,
+  "column": 3,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "6bab6bc02b7cd9f0b0a1e859538d30586912a24acb02162be433962d3c55425a",
+  "imageBytes": 29029476,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/candidate.png",
+    "imageSha256": "6bab6bc02b7cd9f0b0a1e859538d30586912a24acb02162be433962d3c55425a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedAvailable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedUsable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/completeCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/currentCompleteCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "missingNativePatches",
+          0
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "internalQAPassed": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/review-20261019.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/qa-manifest.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/pixelproof.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "record": {
+          "internalQAPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/resume-checkpoint-20261019-native18-v6.json",
+        "record": {
+          "status": "16_native_cores_complete_with_unpassed_visual_QA",
+          "externalKnownPassed": 0,
+          "externalKnownNeedsRepair": 7,
+          "unknownExternalEdges": [
+            "N",
+            "W",
+            "S"
+          ],
+          "fullTileInternalQAPassed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/review-20261019.json",
+    "sourceSha256": "06f38cf183eb4cd6129bc14c0d60c24ffd2a723bdb31621c77d952012b5f9067",
+    "normalizedDocument": {
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/candidate.png",
+        "sha256": "6bab6bc02b7cd9f0b0a1e859538d30586912a24acb02162be433962d3c55425a"
+      },
+      "reviews": [
+        {
+          "name": "top-perimeter",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/qa/top-perimeter.png",
+          "sha256": "77769c0c2ddbd9f6118c8e60c485b8fc0a0d95b3fc4879124a13540d1dce366d",
+          "candidateLocalBox": [
+            2213,
+            2715,
+            2833,
+            3035
+          ],
+          "nativePixelScale": 1,
+          "status": "passed",
+          "actuallyViewed": true,
+          "finding": "100% native-scale boundary inspected. Main grout endpoints remain connected; no new blocking cutoff introduced by this restricted adoption."
+        },
+        {
+          "name": "bottom-perimeter",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/qa/bottom-perimeter.png",
+          "sha256": "80d398c1447c75313e386848192064bc80a1c87556bd9078c2c9532f3757638b",
+          "candidateLocalBox": [
+            2213,
+            3185,
+            2833,
+            3505
+          ],
+          "nativePixelScale": 1,
+          "status": "passed",
+          "actuallyViewed": true,
+          "finding": "100% native-scale boundary inspected. Main grout endpoints remain connected; no new blocking cutoff introduced by this restricted adoption."
+        },
+        {
+          "name": "left-perimeter",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/qa/left-perimeter.png",
+          "sha256": "ab4715bd281da8730543a3e07338a8a2eae6973dac220907c30b640d01535139",
+          "candidateLocalBox": [
+            2053,
+            2875,
+            2373,
+            3345
+          ],
+          "nativePixelScale": 1,
+          "status": "passed",
+          "actuallyViewed": true,
+          "finding": "100% native-scale boundary inspected. Main grout endpoints remain connected; no new blocking cutoff introduced by this restricted adoption."
+        },
+        {
+          "name": "right-perimeter",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c03/repair-batches/h3072-c3-20261019/fix02/localmask-v2/qa/right-perimeter.png",
+          "sha256": "d2b3ba8328cbd2d1f71544b5542739731db3d6f68f242929f9cd1d846a3363c0",
+          "candidateLocalBox": [
+            2673,
+            2875,
+            2993,
+            3345
+          ],
+          "nativePixelScale": 1,
+          "status": "passed",
+          "actuallyViewed": true,
+          "finding": "100% native-scale boundary inspected. Main grout endpoints remain connected; no new blocking cutoff introduced by this restricted adoption."
+        }
+      ],
+      "adoptedAsCurrentBest": true,
+      "targetFullyPassed": false,
+      "remainingTargetNeeds": "Unchanged right spur and original varied slab-scale transition beyond restricted patch.",
+      "formalAccepted": false
+    }
+  }
+}

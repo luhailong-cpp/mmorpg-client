@@ -1,0 +1,859 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 10,
+  "column": 13,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "18368557f223f7d1b0cd675f2d46706bc4a455679eef9134c896f42e4f0bbba8",
+  "imageBytes": 22142588,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/manifest.json",
+  "sourceLedgerSha256": "73f57903dc61c11b2665d3df5b561ea2b7db3b9b08f607497914d0bfccb174a9",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/candidate-4096.png",
+    "imageSha256": "18368557f223f7d1b0cd675f2d46706bc4a455679eef9134c896f42e4f0bbba8",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/manifest.json",
+        "sha256": "73f57903dc61c11b2665d3df5b561ea2b7db3b9b08f607497914d0bfccb174a9",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/visual-review.json",
+        "sha256": "50985d78d7be7418541faab7dfb4712f4d4fe2a3a272431bd0c4f25549620c75",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/exact-core-audit.json",
+        "sha256": "952ffdc3ff55c298189214e8471c9122b8120b3defce0787ce893af5964259ca",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "mechanicalNativeCoverageComplete": true,
+      "nativeCoreCount": 16,
+      "pendingRepairs": [
+        {
+          "id": "water-material-density",
+          "status": "pending",
+          "patches": "all 16 water-bearing cores, especially p13/p14/p24/p34/p43/p44",
+          "seams": [
+            "north-3",
+            "north-4",
+            "north-junction-3",
+            "east-junction-1",
+            "west-junction-1",
+            "west-junction-2",
+            "south-junction-1",
+            "south-junction-3",
+            "southeast-corner"
+          ],
+          "action": "在原生AI修图中统一水格尺度、白色细纹与高光密度；外邻源只读锁定，不能用模糊或缩放代替。"
+        },
+        {
+          "id": "timber-highlight-grain",
+          "status": "pending",
+          "patches": [
+            "p12",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43"
+          ],
+          "seams": [
+            "west-junction-3",
+            "south-junction-2",
+            "southwest-corner"
+          ],
+          "action": "保持船沿、横梁、甲板、柱轴和绳圈几何，降低碎亮木纹和亮金高光，衔接保留区细长木纹。"
+        },
+        {
+          "id": "boat-wake-shadow",
+          "status": "pending",
+          "patches": [
+            "p34",
+            "p44"
+          ],
+          "seams": [
+            "east-3",
+            "east-4",
+            "east-junction-3"
+          ],
+          "action": "收敛船头外白色水花宽度/亮度及船底深影对比；保持现有船头轮廓和邻船柱位置。"
+        },
+        {
+          "id": "unavailable-north-boundaries",
+          "status": "pending",
+          "patches": [
+            "p11",
+            "p12"
+          ],
+          "seams": [
+            "north-1",
+            "north-2",
+            "north-junction-1",
+            "north-junction-2",
+            "northwest-corner"
+          ],
+          "action": "待 r09_c13/p41,p42 与 r09_c12/p44 实际选源就绪后补原生外边检查，不以当前缺源作通过。"
+        }
+      ],
+      "status": "review_complete_material_repair_pending",
+      "formalAccepted": false,
+      "acceptanceWarning": "Reviewed does not mean passed; all prior pending material conclusions preserved. No full-resolution overview was newly generated or reviewed."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/visual-review.json",
+        "record": {
+          "mechanicalNativeCoverageComplete": true,
+          "nativeCoreCount": 16,
+          "pendingRepairs": [
+            {
+              "id": "water-material-density",
+              "status": "pending",
+              "patches": "all 16 water-bearing cores, especially p13/p14/p24/p34/p43/p44",
+              "seams": [
+                "north-3",
+                "north-4",
+                "north-junction-3",
+                "east-junction-1",
+                "west-junction-1",
+                "west-junction-2",
+                "south-junction-1",
+                "south-junction-3",
+                "southeast-corner"
+              ],
+              "action": "在原生AI修图中统一水格尺度、白色细纹与高光密度；外邻源只读锁定，不能用模糊或缩放代替。"
+            },
+            {
+              "id": "timber-highlight-grain",
+              "status": "pending",
+              "patches": [
+                "p12",
+                "p21",
+                "p22",
+                "p23",
+                "p24",
+                "p31",
+                "p32",
+                "p33",
+                "p34",
+                "p41",
+                "p42",
+                "p43"
+              ],
+              "seams": [
+                "west-junction-3",
+                "south-junction-2",
+                "southwest-corner"
+              ],
+              "action": "保持船沿、横梁、甲板、柱轴和绳圈几何，降低碎亮木纹和亮金高光，衔接保留区细长木纹。"
+            },
+            {
+              "id": "boat-wake-shadow",
+              "status": "pending",
+              "patches": [
+                "p34",
+                "p44"
+              ],
+              "seams": [
+                "east-3",
+                "east-4",
+                "east-junction-3"
+              ],
+              "action": "收敛船头外白色水花宽度/亮度及船底深影对比；保持现有船头轮廓和邻船柱位置。"
+            },
+            {
+              "id": "unavailable-north-boundaries",
+              "status": "pending",
+              "patches": [
+                "p11",
+                "p12"
+              ],
+              "seams": [
+                "north-1",
+                "north-2",
+                "north-junction-1",
+                "north-junction-2",
+                "northwest-corner"
+              ],
+              "action": "待 r09_c13/p41,p42 与 r09_c12/p44 实际选源就绪后补原生外边检查，不以当前缺源作通过。"
+            }
+          ],
+          "status": "review_complete_material_repair_pending",
+          "formalAccepted": false,
+          "acceptanceWarning": "Reviewed does not mean passed; all prior pending material conclusions preserved. No full-resolution overview was newly generated or reviewed."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/exact-core-audit.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/visual-review.json",
+    "sourceSha256": "50985d78d7be7418541faab7dfb4712f4d4fe2a3a272431bd0c4f25549620c75",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r10_c13",
+      "reviewedAtUtc": "2026-10-20T11:26:24.5970040Z",
+      "reviewer": "/root/r10c13_qa",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/candidate-4096.png",
+      "candidateSha256": "18368557f223f7d1b0cd675f2d46706bc4a455679eef9134c896f42e4f0bbba8",
+      "selectionSha256": "70a9d6f3da6f2439fb6c637dc96cbce47abde93f210f5d739f34bdcb81b6a040",
+      "inputVerification": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/takeover-input-verification-20261020-v1.json",
+      "inputVerificationSha256": "ec8530d66a881b40e170d5d6b7c001ff6171e5c4991d5a6a589ff1a4a058f72e",
+      "mechanicalNativeCoverageComplete": true,
+      "nativeCoreCount": 16,
+      "internalEvidenceCount": 33,
+      "reusedExactQuickSeams": 24,
+      "reusedPreviouslyViewedJunctions": 9,
+      "newInternalImagesViewedThisTakeover": 0,
+      "evidence": [
+        {
+          "id": "p11--p12",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p11--p12.png",
+          "sha256": "89181d613b998a0123319a339c743ee7fdc6d6da367af0f3a793fc7874b34e5d",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p11-v1/visual-review.json",
+              "sha256": "21d026083b210d8492936067af16405bfd4ba76d0d2b493fdbbff1b8e6dc10e9",
+              "status": "pending_full_tile_material_review",
+              "observation": "右下船尾横木、舷沿与东南真实核心接上，未新增船体。三处水面边快检无硬几何断裂；水纹单元与高光密度变化仍待整块材质修整，保持未通过。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p11--p21",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p11--p21.png",
+          "sha256": "448a50e4fe264b6f0b6cd00d11f110cd66233e7d3e7684fed87659920c908c33",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p11-v1/visual-review.json",
+              "sha256": "21d026083b210d8492936067af16405bfd4ba76d0d2b493fdbbff1b8e6dc10e9",
+              "status": "pending_full_tile_material_review",
+              "observation": "右下船尾横木、舷沿与东南真实核心接上，未新增船体。三处水面边快检无硬几何断裂；水纹单元与高光密度变化仍待整块材质修整，保持未通过。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p12--p13",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p12--p13.png",
+          "sha256": "114ede04210cc4a0cf1acc97a652817032653fb47a51a5668537d878cefa94e6",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p12-v1/visual-review.json",
+              "sha256": "6cab103edc7202a251c8eaa0e01a090ac3b297c00805b8bb25dd9ebe2b36e27b",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧水面与舷沿连续，南侧船尾边框、内壁/板面和斜支木接上，没有独立第二只船。船尾尖端稍圆润，木面偏亮及水面高光密度待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p12--p22",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p12--p22.png",
+          "sha256": "d7fe05e0d511cf048b00c06c7dd2db004958e4f4cac9a43cd20ec44b644ac69b",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p12-v1/visual-review.json",
+              "sha256": "6cab103edc7202a251c8eaa0e01a090ac3b297c00805b8bb25dd9ebe2b36e27b",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧水面与舷沿连续，南侧船尾边框、内壁/板面和斜支木接上，没有独立第二只船。船尾尖端稍圆润，木面偏亮及水面高光密度待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p13--p14",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p13--p14.png",
+          "sha256": "dedfdcd0de392d777cd5540621f7eb862f18c2681181b65c610f148d93b38e3c",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p13-v1/visual-review.json",
+              "sha256": "63c88faea175f77f077bff3e1e09573267703fd6488d6eb0e6c1ddce903e3f4a",
+              "status": "pending_full_tile_material_review",
+              "observation": "海面和左下细窄船沿布局正确，南侧舷沿、上方水纹连续，右侧海面无物体错接。水纹密度较细且白色交织点略强，继续材质待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p13--p23",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p13--p23.png",
+          "sha256": "eb88563266c28d913d17eb327f859fa3d3c2b6fc2e683c3c086379af9f6a6f33",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p13-v1/visual-review.json",
+              "sha256": "63c88faea175f77f077bff3e1e09573267703fd6488d6eb0e6c1ddce903e3f4a",
+              "status": "pending_full_tile_material_review",
+              "observation": "海面和左下细窄船沿布局正确，南侧舷沿、上方水纹连续，右侧海面无物体错接。水纹密度较细且白色交织点略强，继续材质待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p14--p24",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p14--p24.png",
+          "sha256": "d77bc0ab7490348a22a3cf595bf63eb2809f432a18a64a1cd2514eaea7ae78da",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p14-v1/visual-review.json",
+              "sha256": "9b1045287ff5d97e89e1432c19d3a71e3f3cafbbcef8004215916609fa187748",
+              "status": "pending_full_tile_material_review",
+              "observation": "全海面正确，东、南接线未见硬断口；核心比邻片水格更密且局部青蓝色值变化，条件边界仍略可辨，保留材质未通过。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p21--p22",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p21--p22.png",
+          "sha256": "52996bbf27d7062e620f8f5c6b9dae250821aadd652c0cd7c418e0933dbace44",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p21-v1/visual-review.json",
+              "sha256": "a47d24c124e3e7b72a23c168dd36caa3ca380d70323af2a30d5e1a8e74baedfd",
+              "status": "pending_full_tile_material_review",
+              "observation": "三边均以真实核心查看。东侧船外板、金色舷沿和阴影持续，南侧水面连接，西侧水波几何可接；波纹尺度和亮白密度略有分区，保持材质待修，未新增船只或陆地。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p21--p31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p21--p31.png",
+          "sha256": "96363cec3aa2f9fb2e427199fb5713b8c93c4f90e64ec24f844a912b1721b7c3",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p21-v1/visual-review.json",
+              "sha256": "a47d24c124e3e7b72a23c168dd36caa3ca380d70323af2a30d5e1a8e74baedfd",
+              "status": "pending_full_tile_material_review",
+              "observation": "三边均以真实核心查看。东侧船外板、金色舷沿和阴影持续，南侧水面连接，西侧水波几何可接；波纹尺度和亮白密度略有分区，保持材质待修，未新增船只或陆地。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p22--p23",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p22--p23.png",
+          "sha256": "fb64807c96788096562c0c6769faba5c1311f16dd7ba60a1d4bfb7c897522349",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p22-v1/visual-review.json",
+              "sha256": "bca2f8b960c06d2ab0d3226638c9d4c0be5a83b05360fccce0faa128a429119e",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧座板、支撑与舷沿连接，南侧青色船壳板缝/水线无硬断裂。船内斜支木与座板关系可辨，整体木色偏金、纹理细碎及水纹重复保留未通过。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p22--p32",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p22--p32.png",
+          "sha256": "7ad20104e0061e9d008112b2616ec1c1017a8928989d181fc98fb2d9c06322aa",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p22-v1/visual-review.json",
+              "sha256": "bca2f8b960c06d2ab0d3226638c9d4c0be5a83b05360fccce0faa128a429119e",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧座板、支撑与舷沿连接，南侧青色船壳板缝/水线无硬断裂。船内斜支木与座板关系可辨，整体木色偏金、纹理细碎及水纹重复保留未通过。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p23--p24",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p23--p24.png",
+          "sha256": "a2673cfa7fe9c038963a2287e2aec8dbba848e1886e8e2c356941d99d3db6a50",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p23-v1/visual-review.json",
+              "sha256": "527362247908896e2874eb59953aa84201a76efae1fc62f384cdfd91cf91142e",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧后舷沿、艇内壁和底部板条线连通，南侧前舷沿、甲板缝接上。座板与支撑符合布局；木面偏金黄、高光略强，水纹小尺度重复保留待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p23--p33",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p23--p33.png",
+          "sha256": "839195df5181fc65ce071a6953d8e6fb10dbd5591945a60ec58ea2de671f7fdf",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p23-v1/visual-review.json",
+              "sha256": "527362247908896e2874eb59953aa84201a76efae1fc62f384cdfd91cf91142e",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧后舷沿、艇内壁和底部板条线连通，南侧前舷沿、甲板缝接上。座板与支撑符合布局；木面偏金黄、高光略强，水纹小尺度重复保留待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p24--p34",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p24--p34.png",
+          "sha256": "f4bb80c07be467bb189a132d784393eb127d81348aaf3050feba5c89959d0f4c",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p24-v1/visual-review.json",
+              "sha256": "579e4e4a086edb89dcfde59f0ec9359624711b51951afba03e83246034a64a0f",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧为连续海面，南侧甲板缝、舷沿及艇内板条能接上既有船头，未见硬几何错台。木材高光偏黄、海面水格偏密且重复，保留材质待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p31--p32",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p31--p32.png",
+          "sha256": "63ff04601afef0cd2136f38e1faa45f128dd73aa8d1c32a36c1361dae0af375b",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p31-v1/visual-review.json",
+              "sha256": "1713b478cc028f91fc7d78b336034a0607c761dede611fb6766d081fc581fe82",
+              "status": "pending_full_tile_material_review",
+              "observation": "三处快检：西侧绳柱圆端、绳圈和柱身连续；东侧后缘横木与小桩相接；南侧甲板和厚板前缘连续。未见新增几何断裂。木面细碎亮纹和水面白色高光仍偏密，留待统一材质修整，未计正式通过。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p31--p41",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p31--p41.png",
+          "sha256": "054717fbbc0032830bab9d4bb0a98b0856112f20a2e9560320335d6a3a4115dd",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p31-v1/visual-review.json",
+              "sha256": "1713b478cc028f91fc7d78b336034a0607c761dede611fb6766d081fc581fe82",
+              "status": "pending_full_tile_material_review",
+              "observation": "三处快检：西侧绳柱圆端、绳圈和柱身连续；东侧后缘横木与小桩相接；南侧甲板和厚板前缘连续。未见新增几何断裂。木面细碎亮纹和水面白色高光仍偏密，留待统一材质修整，未计正式通过。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p32--p33",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p32--p33.png",
+          "sha256": "7b28b9ff4d78e1d7e89c84744b6a178ea08f2ce41a8cc14fbb359d8748141cc1",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p32-v1/visual-review.json",
+              "sha256": "a20eeb7b50866540bb2c7955ae822ea0f68eead6602ade0659ffead9272811df",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧艇壳、海面与南方柱帽/甲板对应接上，水道保持开放，未出现物体碰接。柱帽细纹、白色水光偏强，南方木板明暗和海面密度仍待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p32--p42",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p32--p42.png",
+          "sha256": "889d2f1c170804fd55206e89f01f09416eecf9a938ba845b04238e0164b86125",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p32-v1/visual-review.json",
+              "sha256": "a20eeb7b50866540bb2c7955ae822ea0f68eead6602ade0659ffead9272811df",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧艇壳、海面与南方柱帽/甲板对应接上，水道保持开放，未出现物体碰接。柱帽细纹、白色水光偏强，南方木板明暗和海面密度仍待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p33--p34",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p33--p34.png",
+          "sha256": "660e57b6967cb4fd9ff763936d7e3ed50d200a6888fc85de05c0b966240458be",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p33-v1/visual-review.json",
+              "sha256": "07d7f6eff4b09c382f135b800670e98c2ac5c9140128434603569ad9e3ae38ba",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧金色舷沿、青色船壳及木板缝连续；南侧柱帽与蓝色带连续，没有重复帽或柱。船壳纹理偏细碎、深蓝阴影和高光较强，水纹密度差记待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p33--p43",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p33--p43.png",
+          "sha256": "ae46b188e13f188beb743f4f05040ceb43f85435657c687d6fc6c4b6a5adb556",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p33-v1/visual-review.json",
+              "sha256": "07d7f6eff4b09c382f135b800670e98c2ac5c9140128434603569ad9e3ae38ba",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧金色舷沿、青色船壳及木板缝连续；南侧柱帽与蓝色带连续，没有重复帽或柱。船壳纹理偏细碎、深蓝阴影和高光较强，水纹密度差记待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p34--p44",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p34--p44.png",
+          "sha256": "005ef0e1250696f0e4902d8cb70b8b5f41607e272793ac74694f526153fbdce8",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p34-v1/visual-review.json",
+              "sha256": "11df7165399cbbd684d969bee32365bf302fae65ee56eef6e8ccab66e885a738",
+              "status": "pending_full_tile_material_review",
+              "observation": "船头与东邻既有柱、船沿和艇壳连续，无重复柱、独立船或明显硬错台；南水光连续。木纹偏碎、船体高光偏金黄、船下泡沫偏白偏宽及水纹密度差保留待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p41--p42",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p41--p42.png",
+          "sha256": "c6c2c4ad0e88d52cfa98e09620507feaac2491d691f25416c69be1f9eb022989",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p41-v1/visual-review.json",
+              "sha256": "fa9acb1df371bc581b20c8cfe618ea191cff761e74adac6812e4d013684ed0f0",
+              "status": "pending_full_tile_material_review",
+              "observation": "东侧甲板边和横梁连续，南侧柱身与基部连接，西侧保留区真实甲板斜线可接。西侧木纹较细长而本片偏块状、亮度有差异，材质待修；未发现阻止独立补片的新增几何断裂。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p42--p43",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p42--p43.png",
+          "sha256": "b133e3b2fc0b528d745cba97be7a6a2e707cd67bdf482e85d703453bc4f3ebe3",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p42-v1/visual-review.json",
+              "sha256": "55729020cc3dd5a68cbbb138822904c6a429002fd3a2dca00affd579a304ff30",
+              "status": "pending_full_tile_material_review",
+              "observation": "蓝箍柱身和横梁与东片连续，南侧木柱和平台下梁接上，未见新增封顶或柱轴硬错位。木纹偏碎、板面偏亮，蓝色水影纹理密度较高，材质待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "p43--p44",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/p43--p44.png",
+          "sha256": "b60d18cb24ec1af74fd0276f3f5c77134269270df7765dfe76e381917728f863",
+          "method": "reused_unchanged_exact_seam_and_prior_visual_review",
+          "priorReview": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/quick-p43-v1/visual-review.json",
+              "sha256": "5fed286a8a969e478a71e2d8d42213ed15280a126d43d5c19c6d56bff8047ca3",
+              "status": "pending_full_tile_material_review",
+              "observation": "南侧木柱同宽连续，端面没有重复封顶；东侧水纹接上。木柱小碎纹较多、上方与南邻木色轻变，水格重复密度仍待修。",
+              "internalReady": false,
+              "formalAccepted": false
+            }
+          ],
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r1-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r1-c1.png",
+          "sha256": "6d3a09d3e551665bfa41d9da0cf6149ac6e88f0f7c1f2d559d9a8558353cfc67",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "船尾舷沿和横梁轮廓连续；高光略亮，邻近水纹尺度有差别，材质待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r1-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r1-c2.png",
+          "sha256": "f633db6b4b848be91317331fd2aa0e73a042c63698f3d18f19d8c71f2deab9e0",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "后舷沿跨四片保持弧线，内板缝连通。木面高光和细纹仍偏亮密。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r1-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r1-c3.png",
+          "sha256": "10a735ab8087a761f66153dc1d0bfe9bd3d8f36463e97403a3256055560f43e3",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "水面交点没有物体断裂；左下既有船上构件边缘完整，水波尺度不均待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r2-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r2-c1.png",
+          "sha256": "3841079e4fb25267036d177737887e2a1d031e0fc5db44b61590ce8b9fb59677",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "船边阴影向码头水道渐变连通，亮纹密度上下有差异，保留待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r2-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r2-c2.png",
+          "sha256": "c58eacad50e0fbadff6650a6252344f2f4f8c341de2e2a3e7bc9d899643da7b8",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "青蓝船外板与金色舷沿连续，板缝没有硬跳位；木纹噪点和舷沿高光待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r2-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r2-c3.png",
+          "sha256": "cc351108d31c7ba8307add9179a3ae029bf3dc779753a1b089149c31e1e64f15",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "船内甲板边与内板连续，没有错位支架；亮木纹和板缝对比偏强待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r3-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r3-c1.png",
+          "sha256": "2204f688ef1118543d6f0f3cffd80bb2e655fa66590e0f1687235c50d67aadac",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "码头甲板板缝与钉头方向自然接续，细碎亮纹偏密待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r3-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r3-c2.png",
+          "sha256": "e275f0d54f03c1d38ed84263a34718df7bd7e178e71264f4874222ce24cbe5b9",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "圆柱端面、蓝色圈箍和柱身跨四片连续，未见重复帽；端面亮度/水纹密度待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        },
+        {
+          "id": "cross-r3-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa/full-native-20261020-v1/cross-r3-c3.png",
+          "sha256": "aa1241ad0db9c541c9e9b194721e33a51f20b50c9407049ccdc7ebc46b2a53ce",
+          "method": "reused_unchanged_junction_viewed_by_previous_owner",
+          "priorReviewNotes": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/qa-review-notes-20261020-v1.json",
+          "priorReviewNotesSha256": "95604fef1dc4b9962ad118395724afccd27edd345cae3cecf3418c359c000f4c",
+          "observation": "船阴影下方水面连续，局部大波纹与密集白色细纹共存，材质尺度待修。",
+          "status": "pending_material_repair",
+          "passed": false
+        }
+      ],
+      "pendingRepairs": [
+        {
+          "id": "water-material-density",
+          "status": "pending",
+          "patches": "all 16 water-bearing cores, especially p13/p14/p24/p34/p43/p44",
+          "seams": [
+            "north-3",
+            "north-4",
+            "north-junction-3",
+            "east-junction-1",
+            "west-junction-1",
+            "west-junction-2",
+            "south-junction-1",
+            "south-junction-3",
+            "southeast-corner"
+          ],
+          "action": "在原生AI修图中统一水格尺度、白色细纹与高光密度；外邻源只读锁定，不能用模糊或缩放代替。"
+        },
+        {
+          "id": "timber-highlight-grain",
+          "status": "pending",
+          "patches": [
+            "p12",
+            "p21",
+            "p22",
+            "p23",
+            "p24",
+            "p31",
+            "p32",
+            "p33",
+            "p34",
+            "p41",
+            "p42",
+            "p43"
+          ],
+          "seams": [
+            "west-junction-3",
+            "south-junction-2",
+            "southwest-corner"
+          ],
+          "action": "保持船沿、横梁、甲板、柱轴和绳圈几何，降低碎亮木纹和亮金高光，衔接保留区细长木纹。"
+        },
+        {
+          "id": "boat-wake-shadow",
+          "status": "pending",
+          "patches": [
+            "p34",
+            "p44"
+          ],
+          "seams": [
+            "east-3",
+            "east-4",
+            "east-junction-3"
+          ],
+          "action": "收敛船头外白色水花宽度/亮度及船底深影对比；保持现有船头轮廓和邻船柱位置。"
+        },
+        {
+          "id": "unavailable-north-boundaries",
+          "status": "pending",
+          "patches": [
+            "p11",
+            "p12"
+          ],
+          "seams": [
+            "north-1",
+            "north-2",
+            "north-junction-1",
+            "north-junction-2",
+            "northwest-corner"
+          ],
+          "action": "待 r09_c13/p41,p42 与 r09_c12/p44 实际选源就绪后补原生外边检查，不以当前缺源作通过。"
+        }
+      ],
+      "status": "review_complete_material_repair_pending",
+      "internalReady": false,
+      "formalAccepted": false,
+      "acceptanceWarning": "Reviewed does not mean passed; all prior pending material conclusions preserved. No full-resolution overview was newly generated or reviewed."
+    }
+  }
+}

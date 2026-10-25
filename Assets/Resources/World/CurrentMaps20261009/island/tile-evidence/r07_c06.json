@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 7,
+  "column": 6,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "e0d123b2243d66e5b1e6aafa2dec9a0c9aaf511a82afbf1a248647837fc4e2ab",
+  "imageBytes": 27989638,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/r07c06-ivory.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/r07c06-ivory.native-repair.json",
+  "sourceLedgerSha256": "d7b92d8017dba591a1c0a3c549882af026796ac43fc78d4092d10147e90bd30f",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/r07c06-ivory.png",
+    "imageSha256": "e0d123b2243d66e5b1e6aafa2dec9a0c9aaf511a82afbf1a248647837fc4e2ab",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/r07c06-ivory.native-repair.json",
+        "sha256": "d7b92d8017dba591a1c0a3c549882af026796ac43fc78d4092d10147e90bd30f",
+        "sourceReviewSha256": "d7b92d8017dba591a1c0a3c549882af026796ac43fc78d4092d10147e90bd30f",
+        "completeness": [
+          [
+            "/base/reverifiedProvenance/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "materialStatus": "PENDING",
+      "sharedAccepted": false,
+      "formalAccepted": false,
+      "status": "AUTHORIZED_NOT_COMMITTED"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/strict-native-proof.json",
+        "record": {
+          "status": "PASS_SAVED_LEGACY_READER_FULL16M_REPLAY",
+          "artAcceptance": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/mechanical-proof.json",
+        "record": {
+          "status": "PASS_ACTUAL_SAVED_FULL16M_SOURCE_EQUATION",
+          "materialStatus": "PENDING",
+          "internalAccepted": false,
+          "sharedAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-adopt-v1/selection.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "sharedAccepted": false,
+          "formalAccepted": false,
+          "status": "AUTHORIZED_NOT_COMMITTED"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/root-saved-review.json",
+        "record": {
+          "geometryPendingCount": 0,
+          "materialStatus": "PENDING",
+          "sharedAccepted": false,
+          "formalAccepted": false,
+          "status": "ROOT_PASS_SAVED_R7_FINITE_IVORY_AND_RETAINED33_GEOMETRY_ONLY"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/independent-saved-review.json",
+        "record": {
+          "status": "PASS_SAVED_R7_FINITE_IVORY_AND_RETAINED33_GEOMETRY_ONLY",
+          "wholeTileMaterialStatus": "PENDING",
+          "materialStatus": "PENDING",
+          "internalAccepted": false,
+          "formalAccepted": false,
+          "formalStatus": "PENDING",
+          "sharedAccepted": false,
+          "sharedStatus": "PENDING",
+          "geometryPendingCount": 0
+        }
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_northwest-receipt.json",
+        "record": {
+          "status": "FINITE_ONE_COMPLETE_IVORY_PAVER_SAVED_NATIVE_PASS_AND_TARGETED_ADOPTION",
+          "priorPendingIssuesPreserved": true,
+          "materialStatus": "PENDING",
+          "internalAccepted": false,
+          "sharedAccepted": false,
+          "formalAccepted": false,
+          "archiveQAPendingNotRewritten": true
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/root-saved-review.json",
+    "sourceSha256": "b9b69c6e4d1ff5b3379373ecccc8bdaaf37936fcfa267ca643362eca11a045fc",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-24T03:43:24.952738+00:00",
+      "tileId": "r07_c06",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/r07c06-ivory.png",
+        "sha256": "e0d123b2243d66e5b1e6aafa2dec9a0c9aaf511a82afbf1a248647837fc4e2ab"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/r07c06-ivory.native-repair.json",
+        "sha256": "d7b92d8017dba591a1c0a3c549882af026796ac43fc78d4092d10147e90bd30f"
+      },
+      "changedIndices": [
+        0,
+        3,
+        12,
+        13,
+        24
+      ],
+      "geometryPassCount": 33,
+      "geometryPendingCount": 0,
+      "freshChangedNativeGeometryPassCount": 5,
+      "unchangedParentGeometryReusedCount": 28,
+      "finiteOnePaverMaterialPassed": true,
+      "wholeTileMaterialPassed": false,
+      "internalGeometryClosurePassed": true,
+      "internalClosurePassed": false,
+      "materialStatus": "PENDING",
+      "sharedAccepted": false,
+      "formalAccepted": false,
+      "strictNativeValidation": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/strict-native-proof.json",
+        "sha256": "fb0b4e512c179d3a13bf487ba08e9f6b4b277574ae2d13b67d2a4d4267d0c9b2"
+      },
+      "mechanicalProof": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/mechanical-proof.json",
+        "sha256": "c74e209b406a41190e0c0a5c4642fcc063fdd54cd430675fd33d5166ae3cec9a"
+      },
+      "rangeDelta": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-ivory-writer-v1/cand/range-delta-index.json",
+        "sha256": "bf4ed4e7f67a6f4938dec073912376500cf99d482df2d8a0c6f048651234a7de"
+      },
+      "priorIndex": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c06_v2_delta_root_20261019/qa_index.json",
+        "sha256": "2b552660564f6dca5132d491391765d69820767bcdf59b2c0aca0a76b2691b04",
+        "bytes": 27189
+      },
+      "priorClosure": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c06_v2_internal33_closure_root_20261019.json",
+        "sha256": "be40750b42ad690c3313e845a7a716b3ada52239e323ff99e73b17988d50a6f6",
+        "bytes": 2495
+      },
+      "rootActualVisualNotes": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/root-visual-notes.json",
+        "sha256": "6b43cda1019384965eb8610db1f56790bc1c511c4f93feb3100b1fc590ba5d6e"
+      },
+      "independentSavedReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/independent-saved-review.json",
+        "sha256": "e466c1ab8ee05a1133941480139a0268c4f4483f8a2121c923c6d20f5dded0fa"
+      },
+      "newAI": 0,
+      "newPNG": 0,
+      "readerInvocations": 0,
+      "currentWrites": 0,
+      "adoptionPerformed": false,
+      "status": "ROOT_PASS_SAVED_R7_FINITE_IVORY_AND_RETAINED33_GEOMETRY_ONLY",
+      "reviewer": "/root",
+      "qaIndex": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/qa-index-final.json",
+        "sha256": "ebf54ffc3d2ef7557bc58cfed41063ae16b7ee58e0fc58072add73a8760734c2"
+      },
+      "closure": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/retained33-closure.json",
+        "sha256": "4abd5206aabf1bb7109931e2e11a8e892b841d0a1f4b70fe075a82abda7d7b94"
+      },
+      "qaPreparationIndex": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/qa-index.json",
+        "sha256": "f02dcb7bcf55e6e833545a080ed4f6756b26f6c3aa8e73f477a73bd90b222d2f"
+      },
+      "actualViewed": [
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/saved-native1254.png",
+            "sha256": "d9feb3c557f6816fbb4379204b942c837cbe6c166611a5b771da24b8e9252f8a"
+          },
+          "sourceSidecar": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/saved-native1254.png.source.json",
+            "sha256": "f8089e1f0e3bdadbf41b370a6150974f7e028d58333ae1317377d32fd810d55b"
+          },
+          "detail": "original",
+          "nativeScale": 1,
+          "rangeIndex": null
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-00.png",
+            "sha256": "ef38481d8a1fa5f0a4566c19e297f6675e5b542fdbc73fed921db5979b99f150"
+          },
+          "sourceSidecar": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-00.png.source.json",
+            "sha256": "7cdc9831391bef7639e2a066e2476a6a9f54756722c7b3adcefe3bd9914706f3"
+          },
+          "detail": "original",
+          "nativeScale": 1,
+          "rangeIndex": 0
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-03.png",
+            "sha256": "5ceda987eb31a6bd5ac715221a4fd2bbd8447b465d679c2933a8df025003b183"
+          },
+          "sourceSidecar": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-03.png.source.json",
+            "sha256": "a87f772f9a7947ade93ffecfb79ad64f6683443198dff5ccb0292f1a7485c765"
+          },
+          "detail": "original",
+          "nativeScale": 1,
+          "rangeIndex": 3
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-12.png",
+            "sha256": "9f56e7248c9ba199699415c8bb236050508bb339d41847ab2e55115d8083c1d6"
+          },
+          "sourceSidecar": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-12.png.source.json",
+            "sha256": "ced6f6090b1d8097214c0a91d8182d9c34c341b8c1ff68809f323a31796f7f05"
+          },
+          "detail": "original",
+          "nativeScale": 1,
+          "rangeIndex": 12
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-13.png",
+            "sha256": "b4899c928c1ffb4a701b4959c9ad2a06073ad6b652e56ca3cdacbae803d672cd"
+          },
+          "sourceSidecar": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-13.png.source.json",
+            "sha256": "65b4b97f967b7294fca81af8010eee1bade2c616b688a10af19c5362287fd703"
+          },
+          "detail": "original",
+          "nativeScale": 1,
+          "rangeIndex": 13
+        },
+        {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-24.png",
+            "sha256": "54d0fbf3282b261316d00f878f143d08ef138235193402bf6bc4076b222411df"
+          },
+          "sourceSidecar": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r07c06-saved-native-v1/range-24.png.source.json",
+            "sha256": "262b77b0fb0afbfb80c8cd5a5a8ee5a05ab5d4bee354c803b929fd79c4eb9b3b"
+          },
+          "detail": "original",
+          "nativeScale": 1,
+          "rangeIndex": 24
+        }
+      ],
+      "rangeObservations": [
+        {
+          "index": 0,
+          "geometry": "PASS",
+          "observation": "Only1754 changed pixels at the bottom of the native strip. The upper paver corner, adjacent grass and rim continue without a cut; the remainder retains prior geometry."
+        },
+        {
+          "index": 3,
+          "geometry": "PASS",
+          "observation": "The complete ivory paver is visible. Four outer sides and corner junctions remain coherent; interior gray wedge is corrected to warm ivory. Right narrow triangular neighbor, thin rim, grout and grass stay distinct."
+        },
+        {
+          "index": 12,
+          "geometry": "PASS",
+          "observation": "Changed upper-left paver fragment at lower-right edge continues its diagonal border and top weathering/cracks; no new seam is visible in this actual saved strip."
+        },
+        {
+          "index": 13,
+          "geometry": "PASS",
+          "observation": "Changed right/top fragment at the lower-left edge retains the shared grass corner, right rim and adjacent triangular slab; no double edge or disconnected grout."
+        },
+        {
+          "index": 24,
+          "geometry": "PASS",
+          "observation": "The four-source junction strip shows a coherent upper ivory paver corner and preserved grass/grout; no rectangular source boundary or gray inset appears."
+        }
+      ],
+      "separateOneCASRequired": true,
+      "savedNative1254BytesEqualPassedLiteral": true,
+      "wholeZoneComplete": false
+    }
+  }
+}

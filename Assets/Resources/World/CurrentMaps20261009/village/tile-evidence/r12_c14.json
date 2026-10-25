@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 12,
+  "column": 14,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "4af16980afa04e8c73be3400b1ed8a9f30ed1d679b56b0fbca4b0bd0f7b66bde",
+  "imageBytes": 21334396,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/manifest.json",
+  "sourceLedgerSha256": "3c1dfdfd6a3a12bcab84c06ee7f84567c3580547b87775492e3d928da2e67a0d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": "West available quick boundaries reviewed. North unavailable at production time; south root r13_c14 still in production, not claimed accepted. East is map outer limit.",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/candidate-4096.png",
+    "imageSha256": "4af16980afa04e8c73be3400b1ed8a9f30ed1d679b56b0fbca4b0bd0f7b66bde",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/manifest.json",
+        "sha256": "3c1dfdfd6a3a12bcab84c06ee7f84567c3580547b87775492e3d928da2e67a0d",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/exact-core-audit.json",
+        "sha256": "340904cf748275643a8d1eed4b441c4b791dcc9266916c7352f2e4bb3a781fd0",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/delivery-index-20261019-v1.json",
+        "sha256": "6c4f2232c778e4736c6d9e93925992a6534bdaacaf55f322b2a1afeb53e5152b",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/delivery-index-20261019-v2.json",
+        "sha256": "2e904781e706bb2afe045ffc288125c62b9532de7e2f5c45680b625792bd6f8d",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "pendingIssues": [
+        {
+          "id": "G1",
+          "kind": "geometry_pending",
+          "joint": "p32--p33",
+          "finding": "p33-v2 removes about 95px half-boulder jump; residual about 20-30px lip/foam transition remains for native review, not accepted.",
+          "repairCount": 1,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/p32--p33.png"
+        },
+        {
+          "id": "M1",
+          "kind": "material_pending",
+          "joints": [
+            "p12--p22",
+            "p23--p33",
+            "cross-r2-c2"
+          ],
+          "finding": "Horizontal water-tone bands and abrupt wave/highlight scale changes, most visible at y1024/y2048."
+        },
+        {
+          "id": "M2",
+          "kind": "material_pending",
+          "joints": [
+            "p34--p44",
+            "p43--p44"
+          ],
+          "finding": "Wave cell size, density and foam intensity change at southeast joins; visible inherited rectangular edge."
+        },
+        {
+          "id": "M3",
+          "kind": "material_pending",
+          "joints": [
+            "p32--p42",
+            "p41--p42",
+            "p33--p43"
+          ],
+          "finding": "Minor stone highlight/crack or texture transitions; no large silhouette block found in quick native evidence."
+        }
+      ],
+      "externalStatus": "West available quick boundaries reviewed. North unavailable at production time; south root r13_c14 still in production, not claimed accepted. East is map outer limit.",
+      "externalReady": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/review.json",
+        "record": {
+          "pendingIssues": [
+            {
+              "id": "G1",
+              "kind": "geometry_pending",
+              "joint": "p32--p33",
+              "finding": "p33-v2 removes about 95px half-boulder jump; residual about 20-30px lip/foam transition remains for native review, not accepted.",
+              "repairCount": 1,
+              "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/p32--p33.png"
+            },
+            {
+              "id": "M1",
+              "kind": "material_pending",
+              "joints": [
+                "p12--p22",
+                "p23--p33",
+                "cross-r2-c2"
+              ],
+              "finding": "Horizontal water-tone bands and abrupt wave/highlight scale changes, most visible at y1024/y2048."
+            },
+            {
+              "id": "M2",
+              "kind": "material_pending",
+              "joints": [
+                "p34--p44",
+                "p43--p44"
+              ],
+              "finding": "Wave cell size, density and foam intensity change at southeast joins; visible inherited rectangular edge."
+            },
+            {
+              "id": "M3",
+              "kind": "material_pending",
+              "joints": [
+                "p32--p42",
+                "p41--p42",
+                "p33--p43"
+              ],
+              "finding": "Minor stone highlight/crack or texture transitions; no large silhouette block found in quick native evidence."
+            }
+          ],
+          "externalStatus": "West available quick boundaries reviewed. North unavailable at production time; south root r13_c14 still in production, not claimed accepted. East is map outer limit.",
+          "externalReady": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/exact-core-audit.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "internalQAImageCount": 33,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/progress.json",
+        "record": {
+          "internalQAImageCount": 33,
+          "externalReady": false,
+          "formalAccepted": false,
+          "status": "full_candidate_geometry_and_material_pending"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/delivery-index-20261019-v1.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "full_candidate_internal_QA_or_repairs_pending",
+          "canonicalStatus": "full_candidate_geometry_and_material_pending",
+          "canonicalFormalAccepted": false,
+          "reviewStatusBasis": "current canonical owner selection; no new visual approval by indexer"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/delivery-index-20261019-v2.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "full_candidate_internal_QA_or_repairs_pending",
+          "canonicalStatus": "full_candidate_geometry_and_material_pending",
+          "canonicalFormalAccepted": false,
+          "reviewStatusBasis": "current canonical owner selection; no new visual approval by indexer"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/review.json",
+    "sourceSha256": "cf39c205972bad2680eea3a207efa4f4cc8d3bb8b68097b1c06109b35aa5b4f0",
+    "normalizedDocument": {
+      "tile": "r12_c14",
+      "reviewedAt": "2026-10-19T11:24:25.840341+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/candidate-4096.png",
+      "candidateSha256": "4af16980afa04e8c73be3400b1ed8a9f30ed1d679b56b0fbca4b0bd0f7b66bde",
+      "nativeEvidenceCount": 33,
+      "reviewMethod": "33 exact current native images match prior actually viewed quick evidence by SHA256 and global box; results carried forward, not claimed as new views",
+      "audit": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/exact-core-audit.json",
+      "overviewActuallyViewed": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/preview-QA-1024.png",
+        "sha256": "1878cd35f3144cd73e4ce407db0c7a6d8ec579615fd1439e28ac73aa3387756a",
+        "use": "layout only, not native acceptance"
+      },
+      "layoutFinding": "Large shoreline rocks left and lower-left; narrow inlet and open sea east follow approved composition. Rock segmentation and water lattice stronger than guide.",
+      "pendingIssues": [
+        {
+          "id": "G1",
+          "kind": "geometry_pending",
+          "joint": "p32--p33",
+          "finding": "p33-v2 removes about 95px half-boulder jump; residual about 20-30px lip/foam transition remains for native review, not accepted.",
+          "repairCount": 1,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c14/qa/full-native-20261019-v1/p32--p33.png"
+        },
+        {
+          "id": "M1",
+          "kind": "material_pending",
+          "joints": [
+            "p12--p22",
+            "p23--p33",
+            "cross-r2-c2"
+          ],
+          "finding": "Horizontal water-tone bands and abrupt wave/highlight scale changes, most visible at y1024/y2048."
+        },
+        {
+          "id": "M2",
+          "kind": "material_pending",
+          "joints": [
+            "p34--p44",
+            "p43--p44"
+          ],
+          "finding": "Wave cell size, density and foam intensity change at southeast joins; visible inherited rectangular edge."
+        },
+        {
+          "id": "M3",
+          "kind": "material_pending",
+          "joints": [
+            "p32--p42",
+            "p41--p42",
+            "p33--p43"
+          ],
+          "finding": "Minor stone highlight/crack or texture transitions; no large silhouette block found in quick native evidence."
+        }
+      ],
+      "rankedWorstJoints": [
+        {
+          "rank": 1,
+          "joint": "p32--p33",
+          "reason": "Remaining local rock-lip geometry uncertainty after repair."
+        },
+        {
+          "rank": 2,
+          "joint": "p23--p33",
+          "reason": "Strong straight water-tone and highlight-density boundary."
+        }
+      ],
+      "externalStatus": "West available quick boundaries reviewed. North unavailable at production time; south root r13_c14 still in production, not claimed accepted. East is map outer limit.",
+      "internalReady": false,
+      "externalReady": false,
+      "formalAccepted": false,
+      "verdict": "complete_native_candidate_not_accepted"
+    }
+  }
+}

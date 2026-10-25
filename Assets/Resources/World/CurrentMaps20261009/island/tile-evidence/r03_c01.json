@@ -6,155 +6,66 @@
   "row": 3,
   "column": 1,
   "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
-  "imageSha256": "f097c9fb6261a2dd2edbc86725f95e539d68d5187eef77e69e1cb62bbbb50d9a",
-  "imageBytes": 26755009,
-  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
-  "sourceLedgerSha256": "376053b3ce30f7da7df5c870205f7b08fe1e1fd1e9561cc16503f965efcf406e",
-  "internalQaPassed": true,
+  "imageSha256": "014ec4235a0ee9e17966dce903c241294be286a814c71cb6731ade242322de6f",
+  "imageBytes": 26786342,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r03_c01_water-v2_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r03_c01_water-v2_4096.cross-native-repair.json",
+  "sourceLedgerSha256": "6cabf91270a0109e3ff88d26953bc70b092d725d30998287512919d1fa60bd0b",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
-  "externalStatus": "pending_or_not_formally_accepted",
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "tileId": "r03_c01",
-    "image": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.png",
-      "sha256": "f097c9fb6261a2dd2edbc86725f95e539d68d5187eef77e69e1cb62bbbb50d9a",
-      "bytes": 26755009,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.png"
-    },
-    "record": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.cross-native-repair.json",
-      "sha256": "b66d9841422ef3d80aca910e4b65bfb8532c83f41d1cca5aa654e2c6dbb61223",
-      "bytes": 2015,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.cross-native-repair.json"
-    },
-    "selectionBasis": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_coast_pair_current-v2_20261017.manifest.json",
-      "sha256": "e57c616303f70f2492887219afc3227fed31812066015836cdd3858929eed2e0",
-      "bytes": 2180,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_coast_pair_current-v2_20261017.manifest.json"
-    },
-    "internalClosurePassed": true,
-    "formalAccepted": false,
-    "repairStatus": "33/33 internal native crops and strict 16777216 pixel provenance PASS. Cross-tile and whole-zone acceptance pending.",
-    "internalReview": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_delta_20261017/root_review.json",
-      "sha256": "12ef6a4614c82953afdb1bd52e20f2da93f52aef46c521810066afb2f84a534c"
-    },
-    "internalClosure": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_internal_closure_shared_pending_20261017.json",
-      "sha256": "8714a644121103893b38e420401bdda1ab4c3bfcb1be4cbbaf93885599fba02c",
-      "bytes": 4638,
-      "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_internal_closure_shared_pending_20261017.json"
-    },
-    "internalGeometryClosurePassed": true,
-    "materialStatus": "SHARED_AND_WHOLE_PENDING",
-    "internalPassScope": "Each tile 33 standard native crops plus full local repair mask; shared and whole-map acceptance separate.",
-    "internal33GeometryPassed": 33,
-    "sharedGeometryAccepted": false
-  },
-  "qa": {
-    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_internal_closure_shared_pending_20261017.json",
-    "sourceSha256": "8714a644121103893b38e420401bdda1ab4c3bfcb1be4cbbaf93885599fba02c",
-    "normalizedDocument": {
-      "createdAtUtc": "2026-10-17T21:06:52.039501+00:00",
-      "manifest": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_coast_pair_current-v2_20261017.manifest.json",
-        "sha256": "e57c616303f70f2492887219afc3227fed31812066015836cdd3858929eed2e0"
+    "tile": "r03_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r03_c01_water-v2_4096.png",
+    "imageSha256": "014ec4235a0ee9e17966dce903c241294be286a814c71cb6731ade242322de6f",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r03_c01_water-v2_4096.cross-native-repair.json",
+        "sha256": "6cabf91270a0109e3ff88d26953bc70b092d725d30998287512919d1fa60bd0b",
+        "sourceReviewSha256": "6cabf91270a0109e3ff88d26953bc70b092d725d30998287512919d1fa60bd0b",
+        "completeness": [
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "unassignedPixels": 0,
+        "sameCoordinateRawOrUnchangedBase": true
       },
-      "rootVisualReview": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_delta_20261017/root_review.json",
-        "sha256": "12ef6a4614c82953afdb1bd52e20f2da93f52aef46c521810066afb2f84a534c"
-      },
-      "strictNativeReplay": {
-        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_pair_paving_v1_strict_20261017.json",
-        "sha256": "92ed8a62b5963bab53b81bd92d0e6342176d387d4683be2b6a473f3839575a9f"
-      },
-      "tiles": [
-        {
-          "tileId": "r03_c01",
-          "image": {
-            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.png",
-            "sha256": "f097c9fb6261a2dd2edbc86725f95e539d68d5187eef77e69e1cb62bbbb50d9a"
+      "formalAcceptedCount": 0,
+      "visualAcceptance": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r03_c01_water-v2_4096.cross-native-repair.json",
+        "record": {
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "unassignedPixels": 0,
+            "sameCoordinateRawOrUnchangedBase": true
           },
-          "record": {
-            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c01_paving-v1_4096.cross-native-repair.json",
-            "sha256": "b66d9841422ef3d80aca910e4b65bfb8532c83f41d1cca5aa654e2c6dbb61223"
-          },
-          "internalClosurePassed": true,
-          "internalGeometryClosurePassed": true,
-          "internal33GeometryPassed": 33,
-          "internalMaterialStatus": "PASS_WITHIN_INTERNAL_CROPS",
-          "materialStatus": "SHARED_AND_WHOLE_PENDING",
-          "sharedGeometryAccepted": false,
-          "formalAccepted": false,
-          "outer115Delta": {
-            "north": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "d6ca7db12c9993d2d268c872ea11dc4dc44457c394e9e5d368b659cb215e9f9d"
-            },
-            "south": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "b55f259944e337f82f137fa0cdd267987c56d15f5f61b2f1c7c169101a95f1fb"
-            },
-            "west": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "8b024e2035a0dbd5d7c0ed9a673ec827216384f3f6f35de5f5ea1b01ed977df2"
-            },
-            "east": {
-              "changedPixelCount": 10282,
-              "currentRgbSha256": "0e140345f27985b6377cf866267a9345dbdbfa8270f07db3a981edb958522665"
-            }
-          },
-          "nativePixelCountVerified": 16777216
-        },
-        {
-          "tileId": "r03_c02",
-          "image": {
-            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.png",
-            "sha256": "e6a041b128571484a5ddea09143a0085fc34fc2563891bdb1d4487423deb52f4"
-          },
-          "record": {
-            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r03_coast_pair_paving-v1_20261017/r03_c02_paving-v1_4096.cross-native-repair.json",
-            "sha256": "8d0cb638f25e32b5951a7de56b750d571aef516f6db24902c37359c73df7d688"
-          },
-          "internalClosurePassed": true,
-          "internalGeometryClosurePassed": true,
-          "internal33GeometryPassed": 33,
-          "internalMaterialStatus": "PASS_WITHIN_INTERNAL_CROPS",
-          "materialStatus": "SHARED_AND_WHOLE_PENDING",
-          "sharedGeometryAccepted": false,
-          "formalAccepted": false,
-          "outer115Delta": {
-            "north": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "12317421015aab58853650d4240cd7fd4e3fc8a85d2c42049356061f79e0abad"
-            },
-            "south": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "280c51307cfc7f6e6d884a09d923affa6e60aacac201a912515741248b6618b7"
-            },
-            "west": {
-              "changedPixelCount": 12066,
-              "currentRgbSha256": "da13f20133ccecc0f22739eb90fa3092fc46ec331ca217ba2fe962e39c8f23c7"
-            },
-            "east": {
-              "changedPixelCount": 0,
-              "currentRgbSha256": "68c746e08a6eabc55f0643d570771f08a4cd8658d5683ff06e060e9c6bec479e"
-            }
-          },
-          "nativePixelCountVerified": 16777216
+          "formalAcceptedCount": 0,
+          "visualAcceptance": false
         }
-      ],
-      "status": "internal66_pass_shared_upper_two_segments_pending",
-      "internalPassScope": "Each tile 33 standard native crops plus full local repair mask; shared and whole-map acceptance separate.",
-      "sharedGeometryPassed": 2,
-      "sharedGeometryPending": 2,
-      "formalAccepted": false,
-      "wholeZoneComplete": false
-    }
-  }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
 }

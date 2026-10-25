@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 16,
+  "column": 12,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "fda156b30b3358b5323d47bd3eaaf5de20260a15b42be21b7f73dfa5e806887a",
+  "imageBytes": 28646598,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/candidate/r16_c12-4k-blind-repair-v1-20261016.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/report.json",
+  "sourceLedgerSha256": "e021e01fe01694b1e287494e6eb977683a9b581c9511af208117229a93e70182",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": "east_q0_failed_after2_retries_north_pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r16_c12",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/candidate/r16_c12-4k-blind-repair-v1-20261016.png",
+    "imageSha256": "fda156b30b3358b5323d47bd3eaaf5de20260a15b42be21b7f73dfa5e806887a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/report.json",
+        "sha256": "e021e01fe01694b1e287494e6eb977683a9b581c9511af208117229a93e70182",
+        "completeness": [
+          "/coverage/coreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "output_bound_native_coverage_or_complete_source_assembly",
+    "sourceStatus": {
+      "status": "current_geometry_evidence_preserved_material_failed_r16_c12",
+      "formalAccepted": false,
+      "internalArtQA": "current_full16core_material_failed_geometry_QA_reused_not_formal",
+      "externalNeighborSeamQA": "east_q0_failed_after2_retries_north_pending",
+      "materialAccepted": false,
+      "wholeTileAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/progress.json",
+        "record": {
+          "status": "current_geometry_evidence_preserved_material_failed_r16_c12",
+          "formalAccepted": false,
+          "internalArtQA": "current_full16core_material_failed_geometry_QA_reused_not_formal",
+          "externalNeighborSeamQA": "east_q0_failed_after2_retries_north_pending",
+          "materialAccepted": false,
+          "wholeTileAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/repairs/blind-grout-20261016-v1/manifest.json",
+        "record": {
+          "status": "pending_local_visual_review",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/report.json",
+        "record": {
+          "externalHold": {
+            "eastQ0": "existing7–8px mismatch after2 failed retries; STOP preserved; no retry or alteration",
+            "north": "actual neighbor review pending",
+            "formalAccepted": false
+          },
+          "coverage": {
+            "viewedAt100Percent": true,
+            "coreCount": 16,
+            "corePixels": [
+              1024,
+              1024
+            ],
+            "all16CoreAreasCovered": true,
+            "reviewedCores": [
+              {
+                "core": "p01_01",
+                "box": [
+                  0,
+                  0,
+                  1024,
+                  1024
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_01-current-100pct.png",
+                  "sha256": "c9dab501bc46c4592ecc884edb97488188d57f0060fd7860a9bbac4bc97ac8bd",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_01-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Pale wall and bevel clear; dense cell/diamond surface pattern."
+              },
+              {
+                "core": "p01_02",
+                "box": [
+                  1024,
+                  0,
+                  2048,
+                  1024
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_02-current-100pct.png",
+                  "sha256": "4f3fc4fe535de0f043a083145da1adcf3e81e76fc7db5ae092146f08ff778302",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_02-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Pale wall and ledge clear; dense regular stipple dominates quiet slab faces."
+              },
+              {
+                "core": "p01_03",
+                "box": [
+                  2048,
+                  0,
+                  3072,
+                  1024
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_03-current-100pct.png",
+                  "sha256": "9c2f0a409bb59c86b0e1b580085ef403235c8216f32c32e3a5b87a6526a4d7c5",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_03-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Pale wall; dense repeating cell pattern and diagonal mottled patches."
+              },
+              {
+                "core": "p01_04",
+                "box": [
+                  3072,
+                  0,
+                  4096,
+                  1024
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_04-current-100pct.png",
+                  "sha256": "4d5132432fb1d3e755933cdf720f99596107a10db33f84599ea4cbf447e9f80e",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p01_04-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Pale wall; finer diagonal lattice/craquelure still too busy."
+              },
+              {
+                "core": "p02_01",
+                "box": [
+                  0,
+                  1024,
+                  1024,
+                  2048
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_01-current-100pct.png",
+                  "sha256": "5e21651244f9c24c806cdaa152432234fb4359d18850bb0cb4a6063110989f32",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_01-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Pale slab; prominent repeated cells across broad face."
+              },
+              {
+                "core": "p02_02",
+                "box": [
+                  1024,
+                  1024,
+                  2048,
+                  2048
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_02-current-100pct.png",
+                  "sha256": "2f4997a74151652385da88eb02c3641eb06fae8569ef806be7fe6f47d747362d",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_02-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Pale slab; dense cellular stipple."
+              },
+              {
+                "core": "p02_03",
+                "box": [
+                  2048,
+                  1024,
+                  3072,
+                  2048
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_03-current-100pct.png",
+                  "sha256": "693af6fbb7087475e9b3d7ba468aab0babb9f72864345abe6784874821fafc97",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_03-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Pale slab; repeated diamond/cell motif."
+              },
+              {
+                "core": "p02_04",
+                "box": [
+                  3072,
+                  1024,
+                  4096,
+                  2048
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_04-current-100pct.png",
+                  "sha256": "fa697c4b03f2e324655edd7b620a941d258fda3c4dd8e12a6bf0ec714a6afd64",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p02_04-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Repaired false vertical groove absent; broad slab still has dense diagonal cellular mineral motif."
+              },
+              {
+                "core": "p03_01",
+                "box": [
+                  0,
+                  2048,
+                  1024,
+                  3072
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_01-current-100pct.png",
+                  "sha256": "e5b0a8ffbcfbbdfd85c2089684a637c5719c74a888f37aeb9b4c8eda70aa8d78",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_01-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Wall texture busy; wall-side leaves have clean rounded silhouettes and shading."
+              },
+              {
+                "core": "p03_02",
+                "box": [
+                  1024,
+                  2048,
+                  2048,
+                  3072
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_02-current-100pct.png",
+                  "sha256": "e236485fdf253b15026d58a4ee05b2b282d8cada681d361a9711dee661a7557e",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_02-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Wall texture busy; coping/bevel remains clear."
+              },
+              {
+                "core": "p03_03",
+                "box": [
+                  2048,
+                  2048,
+                  3072,
+                  3072
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_03-current-100pct.png",
+                  "sha256": "b5c43806cebeeebbdc976ceb1fa71f3761a7b90777c057dcc4e3c3b19acc829e",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_03-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Wall texture busy; coherent broad courses."
+              },
+              {
+                "core": "p03_04",
+                "box": [
+                  3072,
+                  2048,
+                  4096,
+                  3072
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_04-current-100pct.png",
+                  "sha256": "7bc1f7c0eaba2f688f45472b90adaab6ae3864ca759b3d08718b0b00b2f0b633",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p03_04-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Wall texture busy; long diagonal surface veins/craquelure prominent."
+              },
+              {
+                "core": "p04_01",
+                "box": [
+                  0,
+                  3072,
+                  1024,
+                  4096
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_01-current-100pct.png",
+                  "sha256": "9e6f265cb9d4afef4b9d83f20a6b1476177c46369f46bf742dc3485053329e04",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_01-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Foliage/lantern paper clear; exposed dark foundation has repeated pale cells. Lantern/support layout interpretation remains pending."
+              },
+              {
+                "core": "p04_02",
+                "box": [
+                  1024,
+                  3072,
+                  2048,
+                  4096
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_02-current-100pct.png",
+                  "sha256": "64b255bd7b42c4ce5f3f6487bb79bffc7e80c8e03779d8f6a2172281475154f0",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_02-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Strong pale circle/diamond repeat on dark slate; highest distracting contrast."
+              },
+              {
+                "core": "p04_03",
+                "box": [
+                  2048,
+                  3072,
+                  3072,
+                  4096
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_03-current-100pct.png",
+                  "sha256": "31e177a1d6082e900ef172fcb2d74efe30d159e90ec1366159178568644ceacc",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_03-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Dense fine mineral repeat and diagonal scratches; rounded leaves clear."
+              },
+              {
+                "core": "p04_04",
+                "box": [
+                  3072,
+                  3072,
+                  4096,
+                  4096
+                ],
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_04-current-100pct.png",
+                  "sha256": "7973b65a0f831de1abc31ddbc3408dc2b1feb97c31cb873fbe9c09669712caa3",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "lineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/p04_04-current-100pct.png.generation.json",
+                "stoneMaterial": "fail",
+                "observation": "Dense lattice and diagonal crack-like lines across dark slabs; rounded leaves clear."
+              }
+            ],
+            "reviewedMaterialSeamCrops": [
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/review/native-qa-20261016/v1024-q3.png",
+                "sha256": "8e09d06cc7b794c74704eec250fdbaf071c88dcd6d68fdb61e31a1a4d636b689",
+                "cropBox": [
+                  768,
+                  3072,
+                  1280,
+                  4096
+                ],
+                "exactCurrentPixels": true
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/review/native-qa-20261016/v2048-q3.png",
+                "sha256": "8bc2c776dd329d3209d57d871ca78738c1060faef1fe08acea68abf92c747f06",
+                "cropBox": [
+                  1792,
+                  3072,
+                  2304,
+                  4096
+                ],
+                "exactCurrentPixels": true
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/review/native-qa-20261016/v3072-q0.png",
+                "sha256": "d6a1b254acd0dacf83fe023da146236a4262ab2700fd3e0b08448fdeb3ed033d",
+                "cropBox": [
+                  2816,
+                  0,
+                  3328,
+                  1024
+                ],
+                "exactCurrentPixels": true
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/review/native-qa-20261016/v3072-q2.png",
+                "sha256": "4f30edb1012c57680c79123ef2fbd18b847a407c7e55a7b0791acd668b274d40",
+                "cropBox": [
+                  2816,
+                  2048,
+                  3328,
+                  3072
+                ],
+                "exactCurrentPixels": true
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/review/native-qa-20261016/v3072-q3.png",
+                "sha256": "1edab474582255481e68d61ca95dae0d4602b5b0f14acc52ebe248bea45c6beb",
+                "cropBox": [
+                  2816,
+                  3072,
+                  3328,
+                  4096
+                ],
+                "exactCurrentPixels": true
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/review/native-qa-20261016/h3072-q0.png",
+                "sha256": "db9e8aa6260caa6098bf98d3de365473842837fe3889be8c8382cdfe6e0bb255",
+                "cropBox": [
+                  0,
+                  2816,
+                  1024,
+                  3328
+                ],
+                "exactCurrentPixels": true
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/current-v3072-q1.png",
+                "sha256": "3b4a3a05db20d13dcf68c6ff28fe4eb902df377849b4b419522d11101fd57f04",
+                "cropBox": [
+                  2816,
+                  1024,
+                  3328,
+                  2048
+                ],
+                "exactCurrentPixels": true,
+                "derivedLineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/current-v3072-q1.png.generation.json"
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/current-h2048-q3.png",
+                "sha256": "8309192f8c198c901c4c7aefc6fdf08faf50095c70cc24c189fbcca7c949e4fe",
+                "cropBox": [
+                  3072,
+                  1792,
+                  4096,
+                  2304
+                ],
+                "exactCurrentPixels": true,
+                "derivedLineage": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/r16_c12-material-qa/current-h2048-q3.png.generation.json"
+              }
+            ],
+            "existingSeamDerivativesValidated": {
+              "exactCurrent": 22,
+              "total": 24,
+              "replacedForCurrentPixels": 2,
+              "note": "Validation is pixel equivalence, not an acceptance. Only8 listed seam crops were visually reviewed in this bounded material task."
+            }
+          }
+        }
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261023_152824.json",
+        "record": {
+          "status": "current_geometry_evidence_preserved_material_failed_r16_c12",
+          "formalAccepted": false,
+          "internalArtQA": "current_full16core_material_failed_geometry_QA_reused_not_formal",
+          "externalNeighborSeamQA": "east_q0_failed_after2_retries_north_pending",
+          "materialAccepted": false,
+          "wholeTileAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/repairs/blind-grout-20261016-v1/manifest.json",
+    "sourceSha256": "9ccbfb4626cf81e936ec3772ca1660bcdfb1b53fb336f146ca59413ee1a48ebd",
+    "normalizedDocument": {
+      "base": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/candidate/r16_c12-4k-candidate-d0ca8b7af2f9fed720da.png",
+        "sha256": "84b84d6472f77305389c117194086b496ebe0a5ea188aed7cf4baa978015e25f"
+      },
+      "baseContext": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/candidate/r16_c12-context-4326-d0ca8b7af2f9fed720da.png",
+        "sha256": "a43ca239e1bfdcf79fdaea4b130374166815fc4b88836661070d0f8bf5bbabef"
+      },
+      "native": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/repairs/blind-grout-20261016-v1/I01-native.png",
+        "sha256": "4ca1bab6dda9ba6bdc6dc57f3696d91b8e1a6cae3b2a6f1166edd3ffd2c8d113",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/candidate/r16_c12-4k-blind-repair-v1-20261016.png",
+        "sha256": "fda156b30b3358b5323d47bd3eaaf5de20260a15b42be21b7f73dfa5e806887a",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "context": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/candidate/r16_c12-context-blind-repair-v1-20261016.png",
+        "sha256": "a6bba87ba9aa3a4e560056c464e5f1ba46006e5dacdb94548049d38b05f42812",
+        "size": [
+          4326,
+          4326
+        ]
+      },
+      "mask": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c12/repairs/blind-grout-20261016-v1/I01-alpha.npy",
+        "sha256": "c2fed578b0715236c77687011cff7a366dafb6be79ca426f8d7fbb359a49fd5c",
+        "box": [
+          3320,
+          1420,
+          3415,
+          1890
+        ],
+        "feather": 12
+      },
+      "outsideMaskUnchanged": true,
+      "allFour384EdgesUnchanged": true,
+      "resized": false,
+      "actualModel": null,
+      "status": "pending_local_visual_review",
+      "formalAccepted": false
+    }
+  }
+}

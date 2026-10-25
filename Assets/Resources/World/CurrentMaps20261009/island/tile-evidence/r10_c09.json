@@ -1,0 +1,853 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 10,
+  "column": 9,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "3890e80426cb12a35724e76ffacb996b2ec8268ea8ec7664885e3991a2d1d0f9",
+  "imageBytes": 28053928,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c09.candidate-p21-grassdetail-20261023-v02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+  "sourceLedgerSha256": "a6fcbeb17fea19f12f9c91241d9e5d9a0a1f3c3782854da01f054242c33270cd",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c09",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r10_c09.candidate-p21-grassdetail-20261023-v02.png",
+    "imageSha256": "3890e80426cb12a35724e76ffacb996b2ec8268ea8ec7664885e3991a2d1d0f9",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "sha256": "a6fcbeb17fea19f12f9c91241d9e5d9a0a1f3c3782854da01f054242c33270cd",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "sha256": "3fb8dd9f1428422d04529bc6fd134304452f60c1f3b5dc2a9972e3170871ff9b",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/island_southeast-execution.json",
+        "sha256": "b6a6750dff93543d5325c66a20ce2552e3f722eeec504acffdeee5a5a41beae4",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/current-zone-counts-20261013.json",
+        "sha256": "244a433deccc168110af117f5dc1df9109599f2eae0104c5cf295b0b1935df2d",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "full_candidate_partial_grass_detail_improved_geometry_material_pending",
+      "pendingRepair": {
+        "p23-E-course-phase": {
+          "status": "not_passed_geometry",
+          "imageRepairAttempts": 0,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/v23.png",
+          "finding": "Stone-course diagonal joint ends at true core boundary instead of continuing. Native full candidate shows visible right-column transition."
+        },
+        "right-column-material-phase": {
+          "status": "pending_material_review",
+          "imageRepairAttempts": 0,
+          "evidence": [
+            "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/v33.png",
+            "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/v43.png"
+          ],
+          "finding": "Full candidate exposes vertical material/course change at x3072. Main local geometry continues in lower cuts; no full material acceptance."
+        },
+        "p24-p34-external-E-joints": {
+          "status": "not_passed_external_geometry",
+          "imageRepairAttempts": 0,
+          "evidence": [
+            "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/p24-external-E.png",
+            "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/p34-external-E.png"
+          ],
+          "finding": "Diagonal stone joint termination/raised-edge phase at true E core boundary against frozen r10_c10. No external pass."
+        },
+        "p43-carton-scale": {
+          "status": "pending_exact_layout_and_scale",
+          "imageRepairAttempts": 1,
+          "best": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/native/r10_c09_p43_reboot_v02.png",
+            "sha256": "fe20259c262fddd082f22d7119a16bf0cdc4f50e0b1657175a7ffb2e9189b958",
+            "version": "reboot_v02",
+            "origin": "private working native pending root adoption"
+          },
+          "rejected": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/native/r10_c09_p43_reboot_v01.png",
+            "sha256": "134e632c592642c6a5ba2bfc7bc06692a1154f0d2288f2c7df6dadfbb3fb0d88"
+          },
+          "finding": "First return misplaced a miniature carton. Native v02 restores it to grass but object remains smaller than broad orange rectangle in approved coordinate guide; retain best pending whole-layout review."
+        },
+        "p32-side-gold-ornament": {
+          "status": "pending_approved_ornament_geometry",
+          "imageRepairAttempts": 0,
+          "evidence": [
+            "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/native/r10_c09_p32_reboot_v01.png",
+            "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/j21.png"
+          ],
+          "finding": "Large curling gold side ornament has propagated into p31; approved overview primarily shows front rosette and a small clipped side detail. Local joining does not prove ornament identity/extent. No deferred relief repair attempted."
+        },
+        "p42-stepping-stone-layout": {
+          "status": "pending_exact_layout",
+          "imageRepairAttempts": 0,
+          "finding": "Lower-left oval is locally continued by p41 and may correspond to approved lower stones; exact whole-map stone positions/sizes remain unresolved, not passed."
+        },
+        "grass-material-density": {
+          "status": "pending_material_review",
+          "imageRepairAttempts": 0,
+          "finding": "Native grass has dense tiny flowers compared with simple layout overview. No material repair attempted; full material remains unpassed."
+        },
+        "p21-upper-left-grass-detail": {
+          "id": "p21-upper-left-grass-detail",
+          "status": "partially_improved_not_passed_stopped_after_two",
+          "repairAttempts": 2,
+          "best": "reboot_grassdetail_v02",
+          "targetNativeBox": [
+            115,
+            115,
+            390,
+            470
+          ],
+          "reason": "Flower/leaf detail improved; upper grass remains partly soft. Old N redshaft phase and W grass/pale stone layout remain unpassed. No third same-point call.",
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/review.json",
+            "sha256": "fc5d7742bdef6abb5e9ff16f6aa149f7f8433ff07a8f8c1112030cb05f66cad8"
+          }
+        }
+      },
+      "externalPassed": false,
+      "formalAccepted": false,
+      "currentInternalReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c09-p21-grassdetail-20261023-v02/internal-review.json",
+        "sha256": "49f11158411e98d732570da429120f7a1062c31bcdb64f2282112443f3836fd7"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r10_c09.json",
+        "record": {
+          "status": "full_candidate_partial_grass_detail_improved_geometry_material_pending",
+          "pendingRepair": {
+            "p23-E-course-phase": {
+              "status": "not_passed_geometry",
+              "imageRepairAttempts": 0,
+              "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/v23.png",
+              "finding": "Stone-course diagonal joint ends at true core boundary instead of continuing. Native full candidate shows visible right-column transition."
+            },
+            "right-column-material-phase": {
+              "status": "pending_material_review",
+              "imageRepairAttempts": 0,
+              "evidence": [
+                "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/v33.png",
+                "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/v43.png"
+              ],
+              "finding": "Full candidate exposes vertical material/course change at x3072. Main local geometry continues in lower cuts; no full material acceptance."
+            },
+            "p24-p34-external-E-joints": {
+              "status": "not_passed_external_geometry",
+              "imageRepairAttempts": 0,
+              "evidence": [
+                "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/p24-external-E.png",
+                "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/p34-external-E.png"
+              ],
+              "finding": "Diagonal stone joint termination/raised-edge phase at true E core boundary against frozen r10_c10. No external pass."
+            },
+            "p43-carton-scale": {
+              "status": "pending_exact_layout_and_scale",
+              "imageRepairAttempts": 1,
+              "best": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/native/r10_c09_p43_reboot_v02.png",
+                "sha256": "fe20259c262fddd082f22d7119a16bf0cdc4f50e0b1657175a7ffb2e9189b958",
+                "version": "reboot_v02",
+                "origin": "private working native pending root adoption"
+              },
+              "rejected": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/native/r10_c09_p43_reboot_v01.png",
+                "sha256": "134e632c592642c6a5ba2bfc7bc06692a1154f0d2288f2c7df6dadfbb3fb0d88"
+              },
+              "finding": "First return misplaced a miniature carton. Native v02 restores it to grass but object remains smaller than broad orange rectangle in approved coordinate guide; retain best pending whole-layout review."
+            },
+            "p32-side-gold-ornament": {
+              "status": "pending_approved_ornament_geometry",
+              "imageRepairAttempts": 0,
+              "evidence": [
+                "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/native/r10_c09_p32_reboot_v01.png",
+                "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r10_c09/qa/full-v01/j21.png"
+              ],
+              "finding": "Large curling gold side ornament has propagated into p31; approved overview primarily shows front rosette and a small clipped side detail. Local joining does not prove ornament identity/extent. No deferred relief repair attempted."
+            },
+            "p42-stepping-stone-layout": {
+              "status": "pending_exact_layout",
+              "imageRepairAttempts": 0,
+              "finding": "Lower-left oval is locally continued by p41 and may correspond to approved lower stones; exact whole-map stone positions/sizes remain unresolved, not passed."
+            },
+            "grass-material-density": {
+              "status": "pending_material_review",
+              "imageRepairAttempts": 0,
+              "finding": "Native grass has dense tiny flowers compared with simple layout overview. No material repair attempted; full material remains unpassed."
+            },
+            "p21-upper-left-grass-detail": {
+              "id": "p21-upper-left-grass-detail",
+              "status": "partially_improved_not_passed_stopped_after_two",
+              "repairAttempts": 2,
+              "best": "reboot_grassdetail_v02",
+              "targetNativeBox": [
+                115,
+                115,
+                390,
+                470
+              ],
+              "reason": "Flower/leaf detail improved; upper grass remains partly soft. Old N redshaft phase and W grass/pale stone layout remain unpassed. No third same-point call.",
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/review.json",
+                "sha256": "fc5d7742bdef6abb5e9ff16f6aa149f7f8433ff07a8f8c1112030cb05f66cad8"
+              }
+            }
+          },
+          "externalPassed": false,
+          "formalAccepted": false,
+          "currentInternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c09-p21-grassdetail-20261023-v02/internal-review.json",
+            "sha256": "49f11158411e98d732570da429120f7a1062c31bcdb64f2282112443f3836fd7"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/review.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "remainingIssues": {
+            "N11-21-redshaft-phase": "Inherited approximately29px boundary discontinuity; protected original21 cannot move during grass-only edit.",
+            "externalW24-21-layout": "Existing gray/pale stone footprint meets grass-only neighbor; retained unpassed.",
+            "upper-left-grass": "Fine green seams retain softness even after improved flower/leaf detail.",
+            "right-column-geometry-material": "Historical unpassed native contacts retained through28 unchanged source/hash reuse."
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c09-p21-grassdetail-20261023-v02/source-proof.json",
+        "record": {
+          "coreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r10_c09-p21-grassdetail-20261023-v02/internal-review.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "remainingIssues": {
+            "N11-21-redshaft-phase": "Inherited approximately29px boundary discontinuity; protected original21 cannot move during grass-only edit.",
+            "externalW24-21-layout": "Existing gray/pale stone footprint meets grass-only neighbor; retained unpassed.",
+            "upper-left-grass": "Fine green seams retain softness even after improved flower/leaf detail.",
+            "right-column-geometry-material": "Historical unpassed native contacts retained through28 unchanged source/hash reuse."
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "status": "full_candidate_pending_local_repair_or_review"
+        }
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "status": "full_candidate_pending_local_repair_or_review"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/review.json",
+    "sourceSha256": "fc5d7742bdef6abb5e9ff16f6aa149f7f8433ff07a8f8c1112030cb05f66cad8",
+    "normalizedDocument": {
+      "at": "2026-10-23T17:35:58.061064+00:00",
+      "decision": "propose_v02_local_grass_detail_improvement_only",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/tiles/r10_c09.candidate-p21-grassdetail-20261023-v02.png",
+        "sha256": "3890e80426cb12a35724e76ffacb996b2ec8268ea8ec7664885e3991a2d1d0f9",
+        "dimensions": [
+          4096,
+          4096
+        ]
+      },
+      "native": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+        "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09"
+      },
+      "originalSource": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p21_reboot_lampfix_v01.png",
+        "sha256": "70818cb9d4201b25f864b01ab8f4abb9c4815f051666089ccb7268fd93177ec7"
+      },
+      "nativeTargetBox": [
+        115,
+        115,
+        390,
+        470
+      ],
+      "protectedRedshaftMetrics": {
+        "native": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+        "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+        "method": "Redshaftpixelhue thresholdleftboundary diagnostic only, no pixeledits",
+        "rows": [
+          {
+            "nativeRow": 150,
+            "oldRedLeft": 387,
+            "newRedLeft": 387,
+            "delta": 0
+          },
+          {
+            "nativeRow": 200,
+            "oldRedLeft": 387,
+            "newRedLeft": 389,
+            "delta": 2
+          },
+          {
+            "nativeRow": 250,
+            "oldRedLeft": 387,
+            "newRedLeft": 387,
+            "delta": 0
+          },
+          {
+            "nativeRow": 300,
+            "oldRedLeft": 387,
+            "newRedLeft": 388,
+            "delta": 1
+          }
+        ],
+        "rootAdopted": false
+      },
+      "grassDetailImproved": true,
+      "allTargetSoftnessEliminated": false,
+      "grassFootprintPreserved": true,
+      "pavingFootprintsPreserved": true,
+      "protectedColumnBasePedestalContoursPreserved": true,
+      "extraLampBodyRestored": false,
+      "newPlantIslandOrOval": false,
+      "actualChangedCutsViewed": [
+        {
+          "id": "N",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/N.png",
+          "sha256": "a45d5b01a931ce4d16760d5ed178c5dcba2f3e03c0f3c796e8a851faf539215f",
+          "derivedFrom": [
+            {
+              "coordinate": "11",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p11_reboot_lampfix_v01.png",
+              "sha256": "8de012b2334124d1c1089d528054d65d882ced95c26edf4661a4a4f427b2a50b",
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "note": "Internalv11 truecuty256",
+          "canonicalContact": "v11",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": false,
+          "materialPassed": true,
+          "passed": false,
+          "finding": "Inherited fixedN11 redshaft left edge is about29px to right of original21; v02 keeps original21 rather than shifting protectedshaft. True y256 cut remains a visible rod-outline step. No new geometry pass."
+        },
+        {
+          "id": "S",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/S.png",
+          "sha256": "66097673bbf8b581faeb765ae582e634e38c2a0217d8843eabb764656465defa",
+          "derivedFrom": [
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "31",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p31_reboot_v01.png",
+              "sha256": "13119d6c7689b0ebfc705fe22040f595fed92aec7a22c6163ceaac303c908cf8",
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "note": "Internalv21 truecuty256",
+          "canonicalContact": "v21",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": true,
+          "passed": true,
+          "finding": "Existing pedestal ring course and thin joint continue at true y256; no scope regression seen."
+        },
+        {
+          "id": "W",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/W.png",
+          "sha256": "2bc2201840ad0e21510fd6b8c22797dd6bde2be18bf9eb9a76897e5ce69e557e",
+          "derivedFrom": [
+            {
+              "coordinate": "W24",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c08_p24_reboot_v01.png",
+              "sha256": "03c499e72feceaf7ab07c2e6bce846bf83f74130f4a32c0fd126ff4f36366039",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "note": "Externalr10c08p24-to-r10c09p21 truecutx256",
+          "canonicalContact": "external-W24-21",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "passed": false,
+          "finding": "Grass blades/flower centers improve on right, but existing pale paver footprints on right do not match uninterrupted left grass; upper right green seams remain soft. ExternalW remains unpassed."
+        },
+        {
+          "id": "E",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/E.png",
+          "sha256": "baff34ce6fbf93a05a6414e6d39e92e6b5c94aa8ef3bcc7cb720ab0882d4fe89",
+          "derivedFrom": [
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "22",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p22_reboot_v01.png",
+              "sha256": "ba07e52a9ce811b665aead8c3edd45039011b1c512925b3a84c65760c19c3ed6",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "note": "Internalh21 truecutx256",
+          "canonicalContact": "h21",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": true,
+          "passed": true,
+          "finding": "Paver, narrow raised rim, flowers and pedestal continue across true x256; no new island or oval introduced."
+        },
+        {
+          "id": "NW",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/NW.png",
+          "sha256": "1a995444902a8986f8b94505f615e379b487856087abd88c76222b1fb2c777d2",
+          "derivedFrom": [
+            {
+              "coordinate": "W14",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c08_p14_reboot_v02.png",
+              "sha256": "fe663717c296977ad2389126a9d3eb8a3db5de393ed694c821a43c7e1e3ac7c2",
+              "sourceCrop": [
+                883,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "11",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p11_reboot_lampfix_v01.png",
+              "sha256": "8de012b2334124d1c1089d528054d65d882ced95c26edf4661a4a4f427b2a50b",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            },
+            {
+              "coordinate": "W24",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c08_p24_reboot_v01.png",
+              "sha256": "03c499e72feceaf7ab07c2e6bce846bf83f74130f4a32c0fd126ff4f36366039",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            },
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256
+              ]
+            }
+          ],
+          "note": "External4sourceW14/11/W24/new21",
+          "canonicalContact": "external-NW",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "passed": false,
+          "finding": "Existing pale paving footprint/grass layout discrepancy and soft upper right blades remain across west cut; no external corner pass."
+        },
+        {
+          "id": "NE",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/NE.png",
+          "sha256": "25846bca86a99745b28b9fdbf14699c07ae757ae367adc710b47c6d3bf403d81",
+          "derivedFrom": [
+            {
+              "coordinate": "11",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p11_reboot_lampfix_v01.png",
+              "sha256": "8de012b2334124d1c1089d528054d65d882ced95c26edf4661a4a4f427b2a50b",
+              "sourceCrop": [
+                883,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "12",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p12_reboot_v01.png",
+              "sha256": "167ea5fe1258deebe1363ff5bf6ca0d57aa1148d27c8015ae094eb5c72cbae74",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            },
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            },
+            {
+              "coordinate": "22",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p22_reboot_v01.png",
+              "sha256": "ba07e52a9ce811b665aead8c3edd45039011b1c512925b3a84c65760c19c3ed6",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256
+              ]
+            }
+          ],
+          "note": "Internalj11",
+          "canonicalContact": "j11",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": true,
+          "passed": true,
+          "finding": "Four selected paving corners retain diagonal stone joints; no grass transplant/extra decoration. Local junction only."
+        },
+        {
+          "id": "SW",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/SW.png",
+          "sha256": "fe3dd0bb196a941bb075d219609a69213d113da12902de967952d202d0e9508e",
+          "derivedFrom": [
+            {
+              "coordinate": "W24",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c08_p24_reboot_v01.png",
+              "sha256": "03c499e72feceaf7ab07c2e6bce846bf83f74130f4a32c0fd126ff4f36366039",
+              "sourceCrop": [
+                883,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            },
+            {
+              "coordinate": "W34",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c08_p34_reboot_v02.png",
+              "sha256": "87446539042bc589ceaaab2b342a590dff26bff4973cb23591ceaef249d99e5c",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            },
+            {
+              "coordinate": "31",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p31_reboot_v01.png",
+              "sha256": "13119d6c7689b0ebfc705fe22040f595fed92aec7a22c6163ceaac303c908cf8",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256
+              ]
+            }
+          ],
+          "note": "External4sourceW24/new21/W34/31",
+          "canonicalContact": "external-SW",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": null,
+          "materialPassed": null,
+          "passed": false,
+          "finding": "Pedestal/grass scene retains same contour family, but externalW and inherited layout remain unresolved; no complete corner pass."
+        },
+        {
+          "id": "SE",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/qa/v02/SE.png",
+          "sha256": "2c508d72a5bb364787952c1ffaf4d0d691f24fa223c13eda1312fb5373d55b24",
+          "derivedFrom": [
+            {
+              "coordinate": "21",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c09-p24-grass-final/native/r10_c09_p21_grassdetail_v02.png",
+              "sha256": "c66439ebdc7f5eda7ae2c4ba4b0400a33e3952a9eef7665f218f6183d7a36f09",
+              "sourceCrop": [
+                883,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "coordinate": "22",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p22_reboot_v01.png",
+              "sha256": "ba07e52a9ce811b665aead8c3edd45039011b1c512925b3a84c65760c19c3ed6",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            },
+            {
+              "coordinate": "31",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p31_reboot_v01.png",
+              "sha256": "13119d6c7689b0ebfc705fe22040f595fed92aec7a22c6163ceaac303c908cf8",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            },
+            {
+              "coordinate": "32",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r10_c09_p32_reboot_v01.png",
+              "sha256": "d997ba7fe3eeb012141a24ad31ef90f829a3aec7c593699744b3e1c7c8019300",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256
+              ]
+            }
+          ],
+          "note": "Internalj21",
+          "canonicalContact": "j21",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": true,
+          "passed": true,
+          "finding": "Pedestal profile and adjacent flower strip continue across two true core cuts. Local junction only."
+        }
+      ],
+      "changedInternalContactCount": 5,
+      "unchangedInternalContactsReused": 28,
+      "localPassedSeamCount": 20,
+      "localPassedJunctionCount": 9,
+      "wholeInternalPassed": false,
+      "wholeLayoutPassed": false,
+      "wholeMaterialPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "rootOnlyAdopts": true,
+      "sameGrassPointAttempts": 2,
+      "furtherSamePointGenerationAllowed": false,
+      "remainingIssues": {
+        "N11-21-redshaft-phase": "Inherited approximately29px boundary discontinuity; protected original21 cannot move during grass-only edit.",
+        "externalW24-21-layout": "Existing gray/pale stone footprint meets grass-only neighbor; retained unpassed.",
+        "upper-left-grass": "Fine green seams retain softness even after improved flower/leaf detail.",
+        "right-column-geometry-material": "Historical unpassed native contacts retained through28 unchanged source/hash reuse."
+      },
+      "fullCandidateViewed": true,
+      "fullCandidateViewPurpose": "4096native assembly displayed1600 overview for whole-object context only; not native4K acceptance. Native1254 and8 actual contacts separately viewed."
+    }
+  }
+}

@@ -1,0 +1,1179 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+  "imageBytes": 19225445,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/assembly.json",
+  "sourceLedgerSha256": "55b8659b1c10b2e7695bd8b688acd3828f732bea51a20d4ea8d8c30abac9d3cc",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+    "imageSha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/assembly.json",
+        "sha256": "55b8659b1c10b2e7695bd8b688acd3828f732bea51a20d4ea8d8c30abac9d3cc",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/assembly.json",
+        "sha256": "55b8659b1c10b2e7695bd8b688acd3828f732bea51a20d4ea8d8c30abac9d3cc",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/worker-review.json",
+        "record": {
+          "externalNativeRegionCount": 8,
+          "internalRegionReviews": [
+            {
+              "name": "V1-row1",
+              "box": [
+                896,
+                0,
+                1152,
+                1024
+              ],
+              "panel": "V-row1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Vertical grout and unsupported horizontal heads plus stone texture/quilt phase remain."
+            },
+            {
+              "name": "V2-row1",
+              "box": [
+                1920,
+                0,
+                2176,
+                1024
+              ],
+              "panel": "V-row1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Horizontal stone joint steps and terminates across boundary; fine grain phase remains."
+            },
+            {
+              "name": "V3-row1",
+              "box": [
+                2944,
+                0,
+                3200,
+                1024
+              ],
+              "panel": "V-row1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Unsupported angled and horizontal ground lines terminate at boundary."
+            },
+            {
+              "name": "V1-row2",
+              "box": [
+                896,
+                1024,
+                1152,
+                2048
+              ],
+              "panel": "V-row2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Blue strip lower/upper border steps; material/quilt edge visible."
+            },
+            {
+              "name": "V2-row2",
+              "box": [
+                1920,
+                1024,
+                2176,
+                2048
+              ],
+              "panel": "V-row2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Ground horizontal joint heads offset and stop; gold fragment identity differs."
+            },
+            {
+              "name": "V3-row2",
+              "box": [
+                2944,
+                1024,
+                3200,
+                2048
+              ],
+              "panel": "V-row2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Ground diagonal and horizontal grout heads unsupported; roof ornament interruption."
+            },
+            {
+              "name": "V1-row3",
+              "box": [
+                896,
+                2048,
+                1152,
+                3072
+              ],
+              "panel": "V-row3",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Stair tread/riser heights and pillar side profiles change across boundary."
+            },
+            {
+              "name": "V2-row3",
+              "box": [
+                1920,
+                2048,
+                2176,
+                3072
+              ],
+              "panel": "V-row3",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Stone stair changes into roof fragment without consistent shared plane; tile phase differs."
+            },
+            {
+              "name": "V3-row3",
+              "box": [
+                2944,
+                2048,
+                3200,
+                3072
+              ],
+              "panel": "V-row3",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof gold ornament and teal row width/phase break; color frontier visible."
+            },
+            {
+              "name": "V1-row4",
+              "box": [
+                896,
+                3072,
+                1152,
+                4096
+              ],
+              "panel": "V-row4",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Stair/stone tread courses step at jagged quilt boundary."
+            },
+            {
+              "name": "V2-row4",
+              "box": [
+                1920,
+                3072,
+                2176,
+                4096
+              ],
+              "panel": "V-row4",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Teal tile thickness and row/end phase differ; stone ground course steps."
+            },
+            {
+              "name": "V3-row4",
+              "box": [
+                2944,
+                3072,
+                3200,
+                4096
+              ],
+              "panel": "V-row4",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Teal roof to beam/red post identity changes abruptly; roof row phase not continuous."
+            },
+            {
+              "name": "H1-col1",
+              "box": [
+                0,
+                896,
+                1024,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Blue border exists but ground fine grain/material phase is unresolved; conditional geometry only."
+            },
+            {
+              "name": "H1-col2",
+              "box": [
+                1024,
+                896,
+                2048,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Broad blue L border shifts with irregular material boundary; additional inset joints."
+            },
+            {
+              "name": "H1-col3",
+              "box": [
+                2048,
+                896,
+                3072,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Unsupported offset grout head and changed diagonal ground courses."
+            },
+            {
+              "name": "H1-col4",
+              "box": [
+                3072,
+                896,
+                4096,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold curl/eave and teal tile identity/row changes across join."
+            },
+            {
+              "name": "H2-col1",
+              "box": [
+                0,
+                1920,
+                1024,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Clipped gold/stone structures and stair course endpoints differ across join."
+            },
+            {
+              "name": "H2-col2",
+              "box": [
+                1024,
+                1920,
+                2048,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Upper ground/stair lip and new round pillar cap do not share original profile."
+            },
+            {
+              "name": "H2-col3",
+              "box": [
+                2048,
+                1920,
+                3072,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold horizontal/vertical ridge joints and roof tile phase break."
+            },
+            {
+              "name": "H2-col4",
+              "box": [
+                3072,
+                1920,
+                4096,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold eave/teal row ends shift and split at boundary."
+            },
+            "[additional entries retained in referenced document]"
+          ],
+          "externalRegionReviews": [
+            {
+              "side": "left",
+              "segment": 1,
+              "neighbor": "r15_c06",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+                "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Ground diagonal missing continuation and new horizontal head/texture change."
+            },
+            {
+              "side": "left",
+              "segment": 2,
+              "neighbor": "r15_c06",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+                "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold curl and blue strip border offset across edge."
+            },
+            {
+              "side": "left",
+              "segment": 3,
+              "neighbor": "r15_c06",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+                "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold/roof piece ends at incompatible stone/stair plane."
+            },
+            {
+              "side": "left",
+              "segment": 4,
+              "neighbor": "r15_c06",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+                "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Lantern and stair/wall geometry break, older neighbor blurred material also held."
+            },
+            {
+              "side": "top",
+              "segment": 1,
+              "neighbor": "r14_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+                "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Diagonal ground grout offset and new unsupported vertical joint."
+            },
+            {
+              "side": "top",
+              "segment": 2,
+              "neighbor": "r14_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+                "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Blue band width/inset border changes and fine material phase."
+            },
+            {
+              "side": "top",
+              "segment": 3,
+              "neighbor": "r14_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+                "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Ground vertical grout offset and changed diagonal support."
+            },
+            {
+              "side": "top",
+              "segment": 4,
+              "neighbor": "r14_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+                "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Diagonal grout and roof-fragment geometry do not connect."
+            }
+          ],
+          "selectedCoverageOnly": true,
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false,
+          "pendingRepairGroups": [
+            "Blue L lower border and courtyard grout offsets/orphan heads.",
+            "Gold curls/ridges/collars and stair/pillar geometry do not yet match approved exact close layout.",
+            "Teal roof tile rows and warm/cool stone material fronts discontinuous.",
+            "External current top/left boundary grout/roof/lantern mismatches."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/worker-review.json",
+    "sourceSha256": "08539487d3ccf1979764b561486cdf7dea89ab3ffa05663e7c520ce96046345d",
+    "normalizedDocument": {
+      "tile": "r15_c07",
+      "atUtc": "2026-10-19T15:16:50.041033+00:00",
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/assembly.json",
+      "assemblySha256": "55b8659b1c10b2e7695bd8b688acd3828f732bea51a20d4ea8d8c30abac9d3cc",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+        "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.context.png",
+        "sha256": "4cc3b99b593c9133abd4b94bd1838d82e7715ba25e770ff7caed4d754bae225f",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "qaManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/manifest.json",
+      "qaManifestSha256": "b6897ce3df3348757ac9f618b47b602bdd313848ed80b84fc31a93a4a447f9be",
+      "actualViewedNativePanels": [
+        {
+          "name": "V-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/V-row1.png",
+          "sha256": "4f21a80ab8d34e73522835282cc8334a0bdacb908f40f95ccc3149eaa96b78d9",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/V-row2.png",
+          "sha256": "27a83a15282019a42b0d2f2e7bc7b8e3559c88a9486db24f9c6cb6e2e3516d5a",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/V-row3.png",
+          "sha256": "4002f9498691ab9f5ec69999109915bf78606ce5e0bbfc2c02169182173f6377",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/V-row4.png",
+          "sha256": "db18506b8a8abcc9ad3a23e49b1464b6dc251c6d113c4895a5ccf1049c2f07d6",
+          "nativeResampling": false
+        },
+        {
+          "name": "H1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/H1.png",
+          "sha256": "2fcf6b21d73ac592273b71e6f66a97ae22571d5eedc2dbf66bf0a88d04bdcbef",
+          "nativeResampling": false
+        },
+        {
+          "name": "H2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/H2.png",
+          "sha256": "c224ca64d93aa8d3dcb91d063c13c76af8ec35adb364b0f1a796ad5a4706f5cc",
+          "nativeResampling": false
+        },
+        {
+          "name": "H3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/H3.png",
+          "sha256": "c585d82f27e843072668c762b5615a60594d9bf7ac218b85e653924607461c27",
+          "nativeResampling": false
+        },
+        {
+          "name": "nine-corners",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/nine-corners.png",
+          "sha256": "9a0635d50f757a4620276744afbd01e8c6b6d6ea9107149fd0d64f4d9212074c",
+          "nativeResampling": false
+        },
+        {
+          "name": "left-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/left-native-boundary.png",
+          "sha256": "d6b86834c4d722d96f530342713ef806e72f721b912d3a22a1695e7c021557df",
+          "nativeResampling": false
+        },
+        {
+          "name": "top-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/top-native-boundary.png",
+          "sha256": "ca8a234c116aba148f43040e5ae7992f5310837eb1547596d8368de4fc7d9dd7",
+          "nativeResampling": false
+        }
+      ],
+      "internalNativeRegionCount": 33,
+      "externalNativeRegionCount": 8,
+      "actualNativeResolutionViewed": true,
+      "nativePanelsResampled": false,
+      "overviewViewedForLayoutOnly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/full16-native-20261019d-v01/overview-QA-only-1600.png",
+        "sha256": "1abe201837ae31ca46fceb2026c6b1e2380437af5171ffb641b255e31b1acf0e",
+        "qaOnly": true,
+        "resized": true,
+        "finalArtwork": false
+      },
+      "internalRegionReviews": [
+        {
+          "name": "V1-row1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Vertical grout and unsupported horizontal heads plus stone texture/quilt phase remain."
+        },
+        {
+          "name": "V2-row1",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Horizontal stone joint steps and terminates across boundary; fine grain phase remains."
+        },
+        {
+          "name": "V3-row1",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Unsupported angled and horizontal ground lines terminate at boundary."
+        },
+        {
+          "name": "V1-row2",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Blue strip lower/upper border steps; material/quilt edge visible."
+        },
+        {
+          "name": "V2-row2",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Ground horizontal joint heads offset and stop; gold fragment identity differs."
+        },
+        {
+          "name": "V3-row2",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Ground diagonal and horizontal grout heads unsupported; roof ornament interruption."
+        },
+        {
+          "name": "V1-row3",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Stair tread/riser heights and pillar side profiles change across boundary."
+        },
+        {
+          "name": "V2-row3",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Stone stair changes into roof fragment without consistent shared plane; tile phase differs."
+        },
+        {
+          "name": "V3-row3",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof gold ornament and teal row width/phase break; color frontier visible."
+        },
+        {
+          "name": "V1-row4",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Stair/stone tread courses step at jagged quilt boundary."
+        },
+        {
+          "name": "V2-row4",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Teal tile thickness and row/end phase differ; stone ground course steps."
+        },
+        {
+          "name": "V3-row4",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Teal roof to beam/red post identity changes abruptly; roof row phase not continuous."
+        },
+        {
+          "name": "H1-col1",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Blue border exists but ground fine grain/material phase is unresolved; conditional geometry only."
+        },
+        {
+          "name": "H1-col2",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Broad blue L border shifts with irregular material boundary; additional inset joints."
+        },
+        {
+          "name": "H1-col3",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Unsupported offset grout head and changed diagonal ground courses."
+        },
+        {
+          "name": "H1-col4",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold curl/eave and teal tile identity/row changes across join."
+        },
+        {
+          "name": "H2-col1",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Clipped gold/stone structures and stair course endpoints differ across join."
+        },
+        {
+          "name": "H2-col2",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Upper ground/stair lip and new round pillar cap do not share original profile."
+        },
+        {
+          "name": "H2-col3",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold horizontal/vertical ridge joints and roof tile phase break."
+        },
+        {
+          "name": "H2-col4",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold eave/teal row ends shift and split at boundary."
+        },
+        {
+          "name": "H3-col1",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Stair riser/tread geometry and material bands change across join."
+        },
+        {
+          "name": "H3-col2",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Pillar profile/tread joint heights and teal row phase differ."
+        },
+        {
+          "name": "H3-col3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold ridge collar thickens and teal rows form discontinuous material front."
+        },
+        {
+          "name": "H3-col4",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Curl/eave appears at new scale; teal roof row texture boundary remains."
+        },
+        {
+          "name": "corner-H1-V1",
+          "box": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Blue edge stair-step/material front with orphan ground joint."
+        },
+        {
+          "name": "corner-H1-V2",
+          "box": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Ground horizontal grout stops and texture phase changes."
+        },
+        {
+          "name": "corner-H1-V3",
+          "box": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Two offset unsupported grout heads."
+        },
+        {
+          "name": "corner-H2-V1",
+          "box": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Offset ground line ends and pillar/stair profile mismatch."
+        },
+        {
+          "name": "corner-H2-V2",
+          "box": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Stone panel/stair/roof junction does not maintain consistent profiles."
+        },
+        {
+          "name": "corner-H2-V3",
+          "box": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold ornament profile changes across both joins."
+        },
+        {
+          "name": "corner-H3-V1",
+          "box": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Stair/pillar profiles and tread spacing mismatch."
+        },
+        {
+          "name": "corner-H3-V2",
+          "box": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof rows/endcaps and angle change at junction."
+        },
+        {
+          "name": "corner-H3-V3",
+          "box": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Teal row and material front discontinuity."
+        }
+      ],
+      "externalRegionReviews": [
+        {
+          "side": "left",
+          "segment": 1,
+          "neighbor": "r15_c06",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+            "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Ground diagonal missing continuation and new horizontal head/texture change."
+        },
+        {
+          "side": "left",
+          "segment": 2,
+          "neighbor": "r15_c06",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+            "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold curl and blue strip border offset across edge."
+        },
+        {
+          "side": "left",
+          "segment": 3,
+          "neighbor": "r15_c06",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+            "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold/roof piece ends at incompatible stone/stair plane."
+        },
+        {
+          "side": "left",
+          "segment": 4,
+          "neighbor": "r15_c06",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c06/repairs-resume-20261012/gold-rib-tip-20261018-v01/integrated-masked-20261018-v03/r15_c06.candidate.png",
+            "sha256": "853d76e4dfdb96a5d2253ce64a57dc17613b3d88e79ee64031b68fd9545087c5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Lantern and stair/wall geometry break, older neighbor blurred material also held."
+        },
+        {
+          "side": "top",
+          "segment": 1,
+          "neighbor": "r14_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+            "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Diagonal ground grout offset and new unsupported vertical joint."
+        },
+        {
+          "side": "top",
+          "segment": 2,
+          "neighbor": "r14_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+            "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Blue band width/inset border changes and fine material phase."
+        },
+        {
+          "side": "top",
+          "segment": 3,
+          "neighbor": "r14_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+            "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Ground vertical grout offset and changed diagonal support."
+        },
+        {
+          "side": "top",
+          "segment": 4,
+          "neighbor": "r14_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c07/pipeline/output/8fd125c609343563/r14_c07.candidate.png",
+            "sha256": "b70e554d15e7c3ebd56c47bcdcf2f935e81ce83ea57736263adffaed8faf71f5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Diagonal grout and roof-fragment geometry do not connect."
+        }
+      ],
+      "unavailableSides": [
+        "right r15_c08",
+        "bottom r16_c07"
+      ],
+      "selectedCoverageOnly": true,
+      "geometryPropagationAllowed": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "pendingRepairGroups": [
+        "Blue L lower border and courtyard grout offsets/orphan heads.",
+        "Gold curls/ridges/collars and stair/pillar geometry do not yet match approved exact close layout.",
+        "Teal roof tile rows and warm/cool stone material fronts discontinuous.",
+        "External current top/left boundary grout/roof/lantern mismatches."
+      ],
+      "noImageDeleted": true,
+      "rootCatalogModified": false
+    }
+  }
+}

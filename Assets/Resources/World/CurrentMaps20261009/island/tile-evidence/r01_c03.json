@@ -1,0 +1,1977 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 1,
+  "column": 3,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "53eacdd53af43b04492daaf1db01e87c019f2ab7ae3a8229a5100fb68a1390fb",
+  "imageBytes": 24663927,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c03_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+  "sourceLedgerSha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c03_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+    "imageSha256": "53eacdd53af43b04492daaf1db01e87c019f2ab7ae3a8229a5100fb68a1390fb",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "sha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+        "completeness": [
+          "/nativeCoreCoverage/selectedPositions",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "sha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+        "completeness": [
+          "/nativeCoreCoverage/expectedPositions",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "sha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+        "completeness": [
+          "/nativeCoreCoverage/nativePixels",
+          1254
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "sha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+        "completeness": [
+          "/nativeCoreCoverage/corePixels",
+          1024
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "sha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+        "completeness": [
+          "/nativeCoreCoverage/haloPixels",
+          115
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "sha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+        "completeness": [
+          "/nativeCoreCoverage/assemblyEvidence/bytes",
+          542261
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "sha256": "b406b33324af6666cdae798e603de74ca8e3c68bd8ea7d5fe3ea1a172f07e9e7",
+        "completeness": [
+          "/nativeCoreCoverage/lineageSelectionEvidence/bytes",
+          6905
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "nativeCoreCoverage": {
+        "selectedPositions": 16,
+        "expectedPositions": 16,
+        "display": "16/16",
+        "nativePixels": 1254,
+        "corePixels": 1024,
+        "haloPixels": 115,
+        "newUniqueCorePositionsAddedByLocalRepairs": 0,
+        "verificationScope": "Existing selected-lineage coverage metadata; no rescan of historical raw images or complete package.",
+        "assemblyEvidence": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c03_candidate-v2_4096.assembly.json",
+          "sha256": "825d24053f11b8822dd59839b862ba796b03054252b527012928653f0f45c832",
+          "bytes": 542261
+        },
+        "coverageAssertions": {
+          "fullNativeCoverage": true,
+          "unassignedPixels": 0,
+          "all16SourcesContribute": true
+        },
+        "lineageSelectionEvidence": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct18-top-pair-shared-selected-v01.json",
+          "sha256": "903af32c1233f10fea305fd642b2a97dfc8a8260ab2329d95ff31378df795958",
+          "bytes": 6905
+        }
+      },
+      "internalQA": {
+        "status": "PASS_standard33_current_scope",
+        "standardCheckCount": 33,
+        "unchangedChecksReused": 30,
+        "changedChecksRechecked": 3,
+        "evidence": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/review.json",
+          "sha256": "bcdfe17d8dc5df735ed3387dc2b4e4b5ce3c8cb671a4391117cfcd13bc1bead1",
+          "bytes": 78386
+        },
+        "method": "Current exact source replay and current 100% checks; unchanged pixel/hash-bound checks reused"
+      },
+      "pendingIssues": [
+        {
+          "scope": "other external edges beyond validated four-corner/shared-left footprint",
+          "state": "not_formally_closed"
+        },
+        {
+          "scope": "upper c03/c04 s04 far-east groove/source fit",
+          "state": "HOLD_two_actual_wallfit_attempts_stopped",
+          "detail": "Original groove outside tree mask remains. wallfit_a01/a02 unselected because east source-fit molding deadend persists.",
+          "evidence": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/wallfit-independent-v01.json",
+            "sha256": "efe2de9fc73b1f839956d070db27214c3e5d25df342594672c540f7a4f0ba575",
+            "bytes": 11943
+          }
+        },
+        {
+          "scope": "east shared edge with r01_c04",
+          "state": "PARTIAL_PASS_y0_3699_s04_groove_and_bottom_fourcorner_HOLD",
+          "passedGlobalBox": [
+            11661,
+            0,
+            12915,
+            3699
+          ],
+          "holdOriginalGrooveGlobalBox": [
+            12801,
+            3842,
+            12871,
+            3922
+          ],
+          "holdBottomFourcornerGlobalBox": [
+            11661,
+            3976,
+            12915,
+            4211
+          ],
+          "evidence": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-upper-current-shared-v01/review.json",
+            "sha256": "c251f4c04a20a9b728d2788d7adf0ea2ac6761a9a8edccffc9de9f1079410f83",
+            "bytes": 19799
+          }
+        }
+      ],
+      "formalAccepted": false,
+      "wholeTileAccepted": false,
+      "selectionReason": "Tree/rock source discontinuity improved and bounded source/fit/internal33 QA passed; unresolved groove/external joints retained."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct21-six-tile-checkpoint-v01.json",
+        "record": {
+          "nativeCoreCoverage": {
+            "selectedPositions": 16,
+            "expectedPositions": 16,
+            "display": "16/16",
+            "nativePixels": 1254,
+            "corePixels": 1024,
+            "haloPixels": 115,
+            "newUniqueCorePositionsAddedByLocalRepairs": 0,
+            "verificationScope": "Existing selected-lineage coverage metadata; no rescan of historical raw images or complete package.",
+            "assemblyEvidence": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c03_candidate-v2_4096.assembly.json",
+              "sha256": "825d24053f11b8822dd59839b862ba796b03054252b527012928653f0f45c832",
+              "bytes": 542261
+            },
+            "coverageAssertions": {
+              "fullNativeCoverage": true,
+              "unassignedPixels": 0,
+              "all16SourcesContribute": true
+            },
+            "lineageSelectionEvidence": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/selection/oct18-top-pair-shared-selected-v01.json",
+              "sha256": "903af32c1233f10fea305fd642b2a97dfc8a8260ab2329d95ff31378df795958",
+              "bytes": 6905
+            }
+          },
+          "internalQA": {
+            "status": "PASS_standard33_current_scope",
+            "standardCheckCount": 33,
+            "unchangedChecksReused": 30,
+            "changedChecksRechecked": 3,
+            "evidence": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/review.json",
+              "sha256": "bcdfe17d8dc5df735ed3387dc2b4e4b5ce3c8cb671a4391117cfcd13bc1bead1",
+              "bytes": 78386
+            },
+            "method": "Current exact source replay and current 100% checks; unchanged pixel/hash-bound checks reused"
+          },
+          "pendingIssues": [
+            {
+              "scope": "other external edges beyond validated four-corner/shared-left footprint",
+              "state": "not_formally_closed"
+            },
+            {
+              "scope": "upper c03/c04 s04 far-east groove/source fit",
+              "state": "HOLD_two_actual_wallfit_attempts_stopped",
+              "detail": "Original groove outside tree mask remains. wallfit_a01/a02 unselected because east source-fit molding deadend persists.",
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/wallfit-independent-v01.json",
+                "sha256": "efe2de9fc73b1f839956d070db27214c3e5d25df342594672c540f7a4f0ba575",
+                "bytes": 11943
+              }
+            },
+            {
+              "scope": "east shared edge with r01_c04",
+              "state": "PARTIAL_PASS_y0_3699_s04_groove_and_bottom_fourcorner_HOLD",
+              "passedGlobalBox": [
+                11661,
+                0,
+                12915,
+                3699
+              ],
+              "holdOriginalGrooveGlobalBox": [
+                12801,
+                3842,
+                12871,
+                3922
+              ],
+              "holdBottomFourcornerGlobalBox": [
+                11661,
+                3976,
+                12915,
+                4211
+              ],
+              "evidence": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-upper-current-shared-v01/review.json",
+                "sha256": "c251f4c04a20a9b728d2788d7adf0ea2ac6761a9a8edccffc9de9f1079410f83",
+                "bytes": 19799
+              }
+            }
+          ],
+          "formalAccepted": false,
+          "wholeTileAccepted": false,
+          "selectionReason": "Tree/rock source discontinuity improved and bounded source/fit/internal33 QA passed; unresolved groove/external joints retained."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/review.json",
+        "record": {
+          "status": "treejunction_bounded_source_and_fit_PASS_current_standard33_scope_PASS_external_HOLD_preserved",
+          "formalAccepted": false,
+          "wholeTileAccepted": false,
+          "wholeMapAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/review.json",
+    "sourceSha256": "bcdfe17d8dc5df735ed3387dc2b4e4b5ce3c8cb671a4391117cfcd13bc1bead1",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "reviewedAtUtc": "2026-10-20T12:24:06.626587+00:00",
+      "reviewer": "successor_internal_agent_verify_island_boundary",
+      "scope": "Only archived treejunction a01 current cumulative candidates: source replay, four actual local-mask fits and standard33 delta. Wallfit_oct20 source/projected candidates excluded.",
+      "sourceReplayEvidence": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/source-replay.json",
+        "sha256": "82ca6ed674bcadeb2fee8b209f1b04abf3988307a95fce5ccfec9d612402ae75",
+        "bytes": 8178
+      },
+      "preparedEvidence": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/prepared.json",
+        "sha256": "e7dcfb7b489b10f36b3eae99c0954b2c3f7ad72608d670ce9045ee23086dd5a4",
+        "bytes": 44899
+      },
+      "release": {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/release/island_west.json",
+        "sha256": "2c4c88e8ddc82f640f9fe548e3220688cb7ad6c2a5f183b054bf26e164d44098",
+        "bytes": 3532
+      },
+      "ownerCheckpoint": {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/owner_checkpoint/island_west.json",
+        "sha256": "c0100c341363e581aca9060514981d4243d4d5ddd671c088ca488634be34da4d",
+        "bytes": 30594
+      },
+      "targets": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c03_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+          "sha256": "53eacdd53af43b04492daaf1db01e87c019f2ab7ae3a8229a5100fb68a1390fb",
+          "bytes": 24663927
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+          "sha256": "31a63033f14a513a9d61650cab288c0fea3239b8b26db61d0828f77e34f2ce5c",
+          "bytes": 25662862
+        }
+      ],
+      "sourceReplayDecision": "PASS_both_binary_native_source_replays",
+      "nativeGlobalBoxHalfOpen": [
+        11661,
+        2445,
+        12915,
+        3699
+      ],
+      "actualJointNativeMaskBoundsHalfOpen": [
+        307,
+        306,
+        917,
+        1036
+      ],
+      "actualJointMaskGlobalBoundsHalfOpen": [
+        11968,
+        2751,
+        12578,
+        3481
+      ],
+      "sourcePixelCount": 339907,
+      "fourFitChecks": [
+        {
+          "side": "north",
+          "nativeCropBoxHalfOpen": [
+            220,
+            220,
+            1040,
+            535
+          ],
+          "globalCropBoxHalfOpen": [
+            11881,
+            2665,
+            12701,
+            2980
+          ],
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_north_100pct.png",
+            "sha256": "594698a1214c887ecb89b028443e930278e6572832c1587c921d782fb374e7dd",
+            "bytes": 412642
+          },
+          "decision": "PASS_bounded_local_mask_fit",
+          "observation": "Leaf clusters and trunk junction retain coherent overlap along the local mask north transition; no straight cut, clipped leaf or displaced branch seen.",
+          "actuallyViewedAtNativeScale": true
+        },
+        {
+          "side": "south",
+          "nativeCropBoxHalfOpen": [
+            220,
+            815,
+            1040,
+            1130
+          ],
+          "globalCropBoxHalfOpen": [
+            11881,
+            3260,
+            12701,
+            3575
+          ],
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_south_100pct.png",
+            "sha256": "df1d56eda7643e330af248bb278a09650c0639ef2d140ffe85648afdca0968f8",
+            "bytes": 402731
+          },
+          "decision": "PASS_bounded_local_mask_fit",
+          "observation": "Leaves and dark trunk continue through the local mask south transition; no rectangular material/brightness band or clipped contour seen.",
+          "actuallyViewedAtNativeScale": true
+        },
+        {
+          "side": "west",
+          "nativeCropBoxHalfOpen": [
+            220,
+            220,
+            535,
+            1130
+          ],
+          "globalCropBoxHalfOpen": [
+            11881,
+            2665,
+            12196,
+            3575
+          ],
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_west_100pct.png",
+            "sha256": "651aa8c70769f606c57854b4049948ed54f95a57d7d77b8d92e6470b7baaec9f",
+            "bytes": 452189
+          },
+          "decision": "PASS_bounded_local_mask_fit",
+          "observation": "Leaf clusters and lit stone behind the leaves remain connected through the local west transition; no explicit pasted source edge seen.",
+          "actuallyViewedAtNativeScale": true
+        },
+        {
+          "side": "east",
+          "nativeCropBoxHalfOpen": [
+            725,
+            220,
+            1040,
+            1130
+          ],
+          "globalCropBoxHalfOpen": [
+            12386,
+            2665,
+            12701,
+            3575
+          ],
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_east_100pct.png",
+            "sha256": "193f518e99fcf023a49d4d46592cd236f26d4c1e4172a9b8499817b2da812dc9",
+            "bytes": 439151
+          },
+          "decision": "PASS_bounded_local_mask_fit",
+          "observation": "Trunk and foreground leaf forms remain connected through the local east transition; no old vertical tree/rock cutoff seen.",
+          "actuallyViewedAtNativeScale": true
+        }
+      ],
+      "treeRockCross": {
+        "nativeCropBoxHalfOpen": [
+          240,
+          387,
+          1014,
+          867
+        ],
+        "globalCropBoxHalfOpen": [
+          11901,
+          2832,
+          12675,
+          3312
+        ],
+        "crop": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/current_tree_rock_cross_y3072_100pct.png",
+          "sha256": "380a59e43ed4bfbf16f8d5962f5d3bbd8d52b8531627d8aaaa310545ce87cd30",
+          "bytes": 580423
+        },
+        "decision": "PASS_current_tree_rock_continuity",
+        "observation": "The actual current cross-y3072 crop shows connected trunk, foliage and shaded stone. The earlier pre-treejunction x627 vertical cut is not used as a current defect.",
+        "actuallyViewedAtNativeScale": true
+      },
+      "standard33ByTile": [
+        {
+          "tileId": "r01_c03",
+          "current": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c03_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+            "sha256": "53eacdd53af43b04492daaf1db01e87c019f2ab7ae3a8229a5100fb68a1390fb",
+            "bytes": 24663927
+          },
+          "reviewedBaseline": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c03_four-corner-wall-a01_4096.png",
+            "sha256": "1d4b863e1a605557dcef7b430034e239fd3bff368b88f7cec0a1bcf331d9105e",
+            "bytes": 24680345
+          },
+          "priorReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/four-corner-wall-a01/review-v01.json",
+            "sha256": "4e3cfdc0a23f7844cd5772dc7016268a3c9de3992c7f4f79c4e9fc44118fd8d1",
+            "bytes": 33877
+          },
+          "standard33": [
+            {
+              "name": "lr-r01-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                0,
+                1264,
+                1139
+              ],
+              "currentPixelsSha256": "33f6d193f245a3615f0dbdd84075add5527262ae1a28207fb87dc415f9ad7d6b",
+              "baselinePixelsSha256": "33f6d193f245a3615f0dbdd84075add5527262ae1a28207fb87dc415f9ad7d6b",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r01-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                0,
+                2288,
+                1139
+              ],
+              "currentPixelsSha256": "f49a1f21e2a4822e68f671e097fc64adbc8b344901edd40d5641daa98309496b",
+              "baselinePixelsSha256": "f49a1f21e2a4822e68f671e097fc64adbc8b344901edd40d5641daa98309496b",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r01-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                0,
+                3312,
+                1139
+              ],
+              "currentPixelsSha256": "e772b5f364556a65d36f309ab788bccf5c4a3ba2400ccca9108444d5540ef881",
+              "baselinePixelsSha256": "e772b5f364556a65d36f309ab788bccf5c4a3ba2400ccca9108444d5540ef881",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r02-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                909,
+                1264,
+                2163
+              ],
+              "currentPixelsSha256": "70425d3c1b59013bb8ab3de9e842a3b0fadd1b07700076fd2b03c8e3f9fba01b",
+              "baselinePixelsSha256": "70425d3c1b59013bb8ab3de9e842a3b0fadd1b07700076fd2b03c8e3f9fba01b",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r02-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                909,
+                2288,
+                2163
+              ],
+              "currentPixelsSha256": "05861ef6d0d01bc254ed4909f27fe0cd1b4ce47dbdb03b532256b48c2b546525",
+              "baselinePixelsSha256": "05861ef6d0d01bc254ed4909f27fe0cd1b4ce47dbdb03b532256b48c2b546525",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r02-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                909,
+                3312,
+                2163
+              ],
+              "currentPixelsSha256": "4def2cc85afaa634488738336603e8dc27696368d67805b854c9e051121360d7",
+              "baselinePixelsSha256": "4def2cc85afaa634488738336603e8dc27696368d67805b854c9e051121360d7",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r03-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                1933,
+                1264,
+                3187
+              ],
+              "currentPixelsSha256": "f108688891bdc3249bca298c537d301db386698a1f8b6d1e6e3d4ddab37460c8",
+              "baselinePixelsSha256": "f108688891bdc3249bca298c537d301db386698a1f8b6d1e6e3d4ddab37460c8",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r03-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                1933,
+                2288,
+                3187
+              ],
+              "currentPixelsSha256": "dd216fb5b1589508928a834487d50f83942a9a741bb520959439ac6358361da6",
+              "baselinePixelsSha256": "dd216fb5b1589508928a834487d50f83942a9a741bb520959439ac6358361da6",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r03-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                1933,
+                3312,
+                3187
+              ],
+              "currentPixelsSha256": "80ea638397a0e4078521bb49565d1332df8b73aa435a340a9359c0c4131e33c7",
+              "baselinePixelsSha256": "80ea638397a0e4078521bb49565d1332df8b73aa435a340a9359c0c4131e33c7",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r04-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                2957,
+                1264,
+                4096
+              ],
+              "currentPixelsSha256": "2dcd51efc6172030b1ad7c33efae3f366e3dd400e825f3961a95bf4623138991",
+              "baselinePixelsSha256": "2dcd51efc6172030b1ad7c33efae3f366e3dd400e825f3961a95bf4623138991",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r04-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                2957,
+                2288,
+                4096
+              ],
+              "currentPixelsSha256": "ed58270276b60e249f58785c25acac6b8df64eda4706a66e6ac38b4fb2d175b9",
+              "baselinePixelsSha256": "ed58270276b60e249f58785c25acac6b8df64eda4706a66e6ac38b4fb2d175b9",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r04-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                2957,
+                3312,
+                4096
+              ],
+              "currentPixelsSha256": "9f1297bc4db47fbef1bd02db6ca74316d3df9679e9e83b7debab655d2be9ea81",
+              "baselinePixelsSha256": "9f1297bc4db47fbef1bd02db6ca74316d3df9679e9e83b7debab655d2be9ea81",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r01-c01",
+              "tileCropBoxHalfOpen": [
+                0,
+                784,
+                1024,
+                1264
+              ],
+              "currentPixelsSha256": "3c16be5aded50db8b51a81451da6ad34d92bef74cf31ca8fbdbe3417b3b915eb",
+              "baselinePixelsSha256": "3c16be5aded50db8b51a81451da6ad34d92bef74cf31ca8fbdbe3417b3b915eb",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r01-c02",
+              "tileCropBoxHalfOpen": [
+                1024,
+                784,
+                2048,
+                1264
+              ],
+              "currentPixelsSha256": "889d5134f6cdb7dfbccca7fb90dd6fee0353cb450fd7fd5c6524406b5981dab7",
+              "baselinePixelsSha256": "889d5134f6cdb7dfbccca7fb90dd6fee0353cb450fd7fd5c6524406b5981dab7",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r01-c03",
+              "tileCropBoxHalfOpen": [
+                2048,
+                784,
+                3072,
+                1264
+              ],
+              "currentPixelsSha256": "37e744553f25af918670ec8d5d03ce7cb1d1a6c66c80d171d9522ba23670d55f",
+              "baselinePixelsSha256": "37e744553f25af918670ec8d5d03ce7cb1d1a6c66c80d171d9522ba23670d55f",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r01-c04",
+              "tileCropBoxHalfOpen": [
+                3072,
+                784,
+                4096,
+                1264
+              ],
+              "currentPixelsSha256": "f5d1b66b3fc0953d537d6e8f28935f26d0339ec6df198375a4fd50141a4b4761",
+              "baselinePixelsSha256": "59c97e0302e63176f796869c713ea1c0a1a902566be536816e5007f2b53abd55",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c03_tb-r01-c04_100pct.png",
+                "sha256": "9d1c63cdadfc9072e1e8499c16367639153a74c725800a16ad5d3de99eb70cb2",
+                "bytes": 652115
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Water ripple and brightness shapes continue through the y1024 strip; no explicit straight source cutoff in this current crop."
+            },
+            {
+              "name": "tb-r02-c01",
+              "tileCropBoxHalfOpen": [
+                0,
+                1808,
+                1024,
+                2288
+              ],
+              "currentPixelsSha256": "874e0a495ce351633a325a9714f27cabf04176d994e61ffa424de7386365f0a7",
+              "baselinePixelsSha256": "874e0a495ce351633a325a9714f27cabf04176d994e61ffa424de7386365f0a7",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r02-c02",
+              "tileCropBoxHalfOpen": [
+                1024,
+                1808,
+                2048,
+                2288
+              ],
+              "currentPixelsSha256": "bd75b36f0399d1d29b084b286f743c5ffb6c9baffb188754431666c06fd5c6d5",
+              "baselinePixelsSha256": "bd75b36f0399d1d29b084b286f743c5ffb6c9baffb188754431666c06fd5c6d5",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r02-c03",
+              "tileCropBoxHalfOpen": [
+                2048,
+                1808,
+                3072,
+                2288
+              ],
+              "currentPixelsSha256": "54bce2ec391b2002e1106a7029223b8ceae47b589acbc2a35bdee1382833bfa7",
+              "baselinePixelsSha256": "54bce2ec391b2002e1106a7029223b8ceae47b589acbc2a35bdee1382833bfa7",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r02-c04",
+              "tileCropBoxHalfOpen": [
+                3072,
+                1808,
+                4096,
+                2288
+              ],
+              "currentPixelsSha256": "c1158c761d67f575cdd2eeec010b2a443c8b1c8af5b14279d34f46442c514b18",
+              "baselinePixelsSha256": "38d67f790320a1e989388b286deae9142d5e072d7e886b50bbd4f0b9f83ea95f",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c03_tb-r02-c04_100pct.png",
+                "sha256": "c429ae2d27075d18886813e8f814d42d7aa8615939e6b6b7ab386c4b1928e1d4",
+                "bytes": 826992
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Coastal rock planes and foliage stay joined across y2048; no clipped shoreline or detached branch in this strip."
+            },
+            {
+              "name": "tb-r03-c01",
+              "tileCropBoxHalfOpen": [
+                0,
+                2832,
+                1024,
+                3312
+              ],
+              "currentPixelsSha256": "2aa075471db154828794228d69d454a401ce1c5d992d8943c64263aedf713969",
+              "baselinePixelsSha256": "2aa075471db154828794228d69d454a401ce1c5d992d8943c64263aedf713969",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r03-c02",
+              "tileCropBoxHalfOpen": [
+                1024,
+                2832,
+                2048,
+                3312
+              ],
+              "currentPixelsSha256": "6b5a27b5204efc415d7cc826f1ae9b8ec1ae45bfa732cacabcaa216972b38928",
+              "baselinePixelsSha256": "6b5a27b5204efc415d7cc826f1ae9b8ec1ae45bfa732cacabcaa216972b38928",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r03-c03",
+              "tileCropBoxHalfOpen": [
+                2048,
+                2832,
+                3072,
+                3312
+              ],
+              "currentPixelsSha256": "e3c23ba13eaf0cf5c74fe48deb30bd02ab30116eed053714de4a0f48df840671",
+              "baselinePixelsSha256": "e3c23ba13eaf0cf5c74fe48deb30bd02ab30116eed053714de4a0f48df840671",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r03-c04",
+              "tileCropBoxHalfOpen": [
+                3072,
+                2832,
+                4096,
+                3312
+              ],
+              "currentPixelsSha256": "d8e81bbd244df7e033a011933ca0edb10079ccd2e75a4f6f125464669780893e",
+              "baselinePixelsSha256": "c59e87384b95f6707d07c69edcc03c6fd5f8a30c902933b29c05d26e0090a339",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": false,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c03_tb-r03-c04_100pct.png",
+                "sha256": "b2aa873d025c0062230f0e881d5636fd3d4c2645ff88a2a3b3d66e3822c8100f",
+                "bytes": 782882
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Foliage, trunk and lit stone remain connected at y3072; this is the actual post-treejunction crop, not old prepared s04."
+            },
+            {
+              "name": "junction-r01-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                784,
+                1264,
+                1264
+              ],
+              "currentPixelsSha256": "d2fea4793324c42826607c9d86f65f5a244b2266b8405b05a78969a5a58a710c",
+              "baselinePixelsSha256": "d2fea4793324c42826607c9d86f65f5a244b2266b8405b05a78969a5a58a710c",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r01-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                784,
+                2288,
+                1264
+              ],
+              "currentPixelsSha256": "6541f793868d2ae895435ad3e53a7590687b443e85dece89e0d4969d8278bbd3",
+              "baselinePixelsSha256": "6541f793868d2ae895435ad3e53a7590687b443e85dece89e0d4969d8278bbd3",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r01-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                784,
+                3312,
+                1264
+              ],
+              "currentPixelsSha256": "c215a00ea019f64e67d937f3518c8239a22e71e5cee9cfdceadb409663bf1a4c",
+              "baselinePixelsSha256": "c215a00ea019f64e67d937f3518c8239a22e71e5cee9cfdceadb409663bf1a4c",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r02-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                1808,
+                1264,
+                2288
+              ],
+              "currentPixelsSha256": "3dbe4bd19b39e97f328a98cd6dae6901725ee9558b64926a3aec87bb0860aacd",
+              "baselinePixelsSha256": "3dbe4bd19b39e97f328a98cd6dae6901725ee9558b64926a3aec87bb0860aacd",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r02-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                1808,
+                2288,
+                2288
+              ],
+              "currentPixelsSha256": "4660e54e6a680737003d2fadaba9f1ed1ba45c46d864eae8f249bacd7b6409b6",
+              "baselinePixelsSha256": "4660e54e6a680737003d2fadaba9f1ed1ba45c46d864eae8f249bacd7b6409b6",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r02-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                1808,
+                3312,
+                2288
+              ],
+              "currentPixelsSha256": "5b83931a2ce5e0b334150cf18fc788299160bb0aab2ab325a71c06d04790f81d",
+              "baselinePixelsSha256": "5b83931a2ce5e0b334150cf18fc788299160bb0aab2ab325a71c06d04790f81d",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r03-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                2832,
+                1264,
+                3312
+              ],
+              "currentPixelsSha256": "2628d618d79752b064c63989c6bbc8b8d2f7fa7f0ca22b7b175ffb036c440dd0",
+              "baselinePixelsSha256": "2628d618d79752b064c63989c6bbc8b8d2f7fa7f0ca22b7b175ffb036c440dd0",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r03-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                2832,
+                2288,
+                3312
+              ],
+              "currentPixelsSha256": "93d472c865c54fa6b25db373444238a06934f7c140e2f626ccfb38f88eaafb13",
+              "baselinePixelsSha256": "93d472c865c54fa6b25db373444238a06934f7c140e2f626ccfb38f88eaafb13",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r03-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                2832,
+                3312,
+                3312
+              ],
+              "currentPixelsSha256": "62178877e60ae84c6a2498875b341645961f0c0657e61f4ed4ba1ab02a295c2b",
+              "baselinePixelsSha256": "62178877e60ae84c6a2498875b341645961f0c0657e61f4ed4ba1ab02a295c2b",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            }
+          ],
+          "standard33ScopeDecision": "PASS_exact_reuse_plus_current_changed_crop_review",
+          "reusedPassCount": 30,
+          "currentVisuallyCheckedPassCount": 3,
+          "treeOnlyChangedCount": 1,
+          "wholeTileAccepted": false,
+          "formalAccepted": false
+        },
+        {
+          "tileId": "r01_c04",
+          "current": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+            "sha256": "31a63033f14a513a9d61650cab288c0fea3239b8b26db61d0828f77e34f2ce5c",
+            "bytes": 25662862
+          },
+          "reviewedBaseline": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_candidate-v1_4096.png",
+            "sha256": "8b50007e8982e0b1055e7fb5f6699bc3071334fbe121112bf823bcced296316f",
+            "bytes": 25703431
+          },
+          "priorReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/c04-r01-internal-review-v02-20261017.json",
+            "sha256": "8ae87789b340b43c0bb4a169ed27d5710ac542042f16e48f73c37877feb311f5",
+            "bytes": 16691
+          },
+          "standard33": [
+            {
+              "name": "lr-r01-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                0,
+                1264,
+                1139
+              ],
+              "currentPixelsSha256": "9576cdec14f63b5d280c6faf8ed30fa7ec9f6dce9f81585de50b7ade4bd5e926",
+              "baselinePixelsSha256": "9576cdec14f63b5d280c6faf8ed30fa7ec9f6dce9f81585de50b7ade4bd5e926",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r01-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                0,
+                2288,
+                1139
+              ],
+              "currentPixelsSha256": "8ac1e725d79f249a4b229ac3cbc424b6887f33e376dc3e6a1007408d1c9dc7ae",
+              "baselinePixelsSha256": "8ac1e725d79f249a4b229ac3cbc424b6887f33e376dc3e6a1007408d1c9dc7ae",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r01-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                0,
+                3312,
+                1139
+              ],
+              "currentPixelsSha256": "8bb30b680ec1511454c19805c2fa66897b2139fcf733b08648c0fb6572863333",
+              "baselinePixelsSha256": "8bb30b680ec1511454c19805c2fa66897b2139fcf733b08648c0fb6572863333",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r02-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                909,
+                1264,
+                2163
+              ],
+              "currentPixelsSha256": "59c0d95b70feb692c607e369e4484714bf17b9cc370da43081b495e42272e45b",
+              "baselinePixelsSha256": "59c0d95b70feb692c607e369e4484714bf17b9cc370da43081b495e42272e45b",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r02-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                909,
+                2288,
+                2163
+              ],
+              "currentPixelsSha256": "80db601156627c35731fa87b4531e9c17f97f5d482ebe894cb7772fd379af493",
+              "baselinePixelsSha256": "80db601156627c35731fa87b4531e9c17f97f5d482ebe894cb7772fd379af493",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r02-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                909,
+                3312,
+                2163
+              ],
+              "currentPixelsSha256": "b2e9005282abd578dce5abf2305e2b48fda7c155ba5985bd3d053f306ad007f3",
+              "baselinePixelsSha256": "b2e9005282abd578dce5abf2305e2b48fda7c155ba5985bd3d053f306ad007f3",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r03-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                1933,
+                1264,
+                3187
+              ],
+              "currentPixelsSha256": "aa4f684635cee7bb9a8f5a97172ac3aada7a368d852d339bf50361418b5e2985",
+              "baselinePixelsSha256": "aa4f684635cee7bb9a8f5a97172ac3aada7a368d852d339bf50361418b5e2985",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r03-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                1933,
+                2288,
+                3187
+              ],
+              "currentPixelsSha256": "36957c1471ca6cebffa6dac44501db92a1e2284dd0b616c87f814a14e379adc6",
+              "baselinePixelsSha256": "36957c1471ca6cebffa6dac44501db92a1e2284dd0b616c87f814a14e379adc6",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r03-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                1933,
+                3312,
+                3187
+              ],
+              "currentPixelsSha256": "4c785843e7a6850b49a57923e370a0e46b07c42ce195aee5ea4438c580d513f9",
+              "baselinePixelsSha256": "4c785843e7a6850b49a57923e370a0e46b07c42ce195aee5ea4438c580d513f9",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "lr-r04-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                2957,
+                1264,
+                4096
+              ],
+              "currentPixelsSha256": "edd897503d2a039363edba362c3c7756159d753d4db0ee05655e49bc62c5e1f4",
+              "baselinePixelsSha256": "3197c575c852036e03fbeebfdc1b35b3450c6eab8876d051b57e9e34ae33ddee",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_lr-r04-c01_100pct.png",
+                "sha256": "741a088e6148bb74f63e92506b542f4805e8dded4d449386a9a3fcb7eaee751d",
+                "bytes": 860971
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Column cap, molding and surrounding leaves continue across the internal x1024 seam. This does not close the external horizontal wallfit notch."
+            },
+            {
+              "name": "lr-r04-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                2957,
+                2288,
+                4096
+              ],
+              "currentPixelsSha256": "44cb811abbff803b7e8090d1fb31df2811479a6ac56c3f1bdc7c774e63eb60ce",
+              "baselinePixelsSha256": "6adad27bf9f591c0c91a213fd256aa5d40390469d3950304d33f6ebb0a69a61d",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_lr-r04-c02_100pct.png",
+                "sha256": "2b78e0f910ac408b87c6c933cb5573d37cff4a05d7a4bf59c53f58f4e687fa1b",
+                "bytes": 934647
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Foliage and visible stems continue across the x2048 strip without a hard source band or clipped leaf edge."
+            },
+            {
+              "name": "lr-r04-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                2957,
+                3312,
+                4096
+              ],
+              "currentPixelsSha256": "89858b9c5d14aa4dce8385cd75883e1cb545d9bb01273bec69cfd35a98e48a3f",
+              "baselinePixelsSha256": "bad11ff7261c3a9bd7c616b222d91500574cf279b86b4084e7403b1c43971411",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_lr-r04-c03_100pct.png",
+                "sha256": "8191294b2c9eece60ce0db7dc9ff4d5f434a252260966f1eb9452297d53ee418",
+                "bytes": 900498
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Large tree branch and surrounding leaves remain connected across x3072; no source-edge interruption found."
+            },
+            {
+              "name": "tb-r01-c01",
+              "tileCropBoxHalfOpen": [
+                0,
+                784,
+                1024,
+                1264
+              ],
+              "currentPixelsSha256": "6ad7f05e4a0749f75e73018a43718f7a92a37512461bbf6e6b98d3580d4453ea",
+              "baselinePixelsSha256": "9ed419fbf5ba645dfaeac14f067fee9cd0ad67ef63cd06af25c8e4f20e839805",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_tb-r01-c01_100pct.png",
+                "sha256": "a1dea6b96d1a9faf4f88f706047817c1fe88ccefde231e7050c5e518e2e96081",
+                "bytes": 670050
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Sea and coastal rock contour continue across y1024 without a hard source/exposure line in this crop."
+            },
+            {
+              "name": "tb-r01-c02",
+              "tileCropBoxHalfOpen": [
+                1024,
+                784,
+                2048,
+                1264
+              ],
+              "currentPixelsSha256": "5cdbb465c5a792611cd7fad10e50301b0121683f1d04fb25a3bd5a0788d12a1a",
+              "baselinePixelsSha256": "5cdbb465c5a792611cd7fad10e50301b0121683f1d04fb25a3bd5a0788d12a1a",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r01-c03",
+              "tileCropBoxHalfOpen": [
+                2048,
+                784,
+                3072,
+                1264
+              ],
+              "currentPixelsSha256": "240e40c20233d2baf1fa5a9c45d48daa9dafeacc75e73406dcc419dd3f6deb54",
+              "baselinePixelsSha256": "240e40c20233d2baf1fa5a9c45d48daa9dafeacc75e73406dcc419dd3f6deb54",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r01-c04",
+              "tileCropBoxHalfOpen": [
+                3072,
+                784,
+                4096,
+                1264
+              ],
+              "currentPixelsSha256": "815fca02bd8b10c5d0587374ff7487c9f8373e5103214147f119b4be6d98da3e",
+              "baselinePixelsSha256": "815fca02bd8b10c5d0587374ff7487c9f8373e5103214147f119b4be6d98da3e",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r02-c01",
+              "tileCropBoxHalfOpen": [
+                0,
+                1808,
+                1024,
+                2288
+              ],
+              "currentPixelsSha256": "c55baa9bd90dffe6090d68dac435f9cfc037cb89d62fd828f53c9a7dc70c0a51",
+              "baselinePixelsSha256": "615a15081775f30d9c97218f6870181cb377d91849e787160e862469c613019a",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_tb-r02-c01_100pct.png",
+                "sha256": "089ccecb7ce3d024821111d4619a568fbfb2eaf0ca4dccdd2476aef7820d25a1",
+                "bytes": 677059
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Natural rock planes and crevices continue across y2048; no new straight join or displaced rock edge found."
+            },
+            {
+              "name": "tb-r02-c02",
+              "tileCropBoxHalfOpen": [
+                1024,
+                1808,
+                2048,
+                2288
+              ],
+              "currentPixelsSha256": "24fea6cc48cdc3b086af1ddc5a3c9f19c9c45cb119b6d25008426a92e8cf1044",
+              "baselinePixelsSha256": "24fea6cc48cdc3b086af1ddc5a3c9f19c9c45cb119b6d25008426a92e8cf1044",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r02-c03",
+              "tileCropBoxHalfOpen": [
+                2048,
+                1808,
+                3072,
+                2288
+              ],
+              "currentPixelsSha256": "170e45fdebd18fc8d7a94c405aceaf18b51e283e7f1cbf573549128df37e9d32",
+              "baselinePixelsSha256": "170e45fdebd18fc8d7a94c405aceaf18b51e283e7f1cbf573549128df37e9d32",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r02-c04",
+              "tileCropBoxHalfOpen": [
+                3072,
+                1808,
+                4096,
+                2288
+              ],
+              "currentPixelsSha256": "e6d90567533407e5e8cc8fb8733624ac72ab1f214d748c0ac249cd2974f6dbfe",
+              "baselinePixelsSha256": "e6d90567533407e5e8cc8fb8733624ac72ab1f214d748c0ac249cd2974f6dbfe",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r03-c01",
+              "tileCropBoxHalfOpen": [
+                0,
+                2832,
+                1024,
+                3312
+              ],
+              "currentPixelsSha256": "f79ec7b79035411c10c05f250f0e993ed19bb51440cc055b7d44f49296a2f074",
+              "baselinePixelsSha256": "2e12080086c0a6cebc2383f469e1a0fc076175ea7a39dd0b524ad938974a94d2",
+              "pixelsIdenticalToReviewedBaseline": false,
+              "pixelsIdenticalToPreTreeBase": false,
+              "decision": "PASS_current_native_crop",
+              "crop": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_tb-r03-c01_100pct.png",
+                "sha256": "c8ec62ce8cfe43f55fc5de6a03fb5dcae3156629a1cf4c50780b541e920d2b2d",
+                "bytes": 769494
+              },
+              "actualViewedInThisReview": true,
+              "observation": "Current tree trunk, foliage and rock remain connected across y3072; no old vertical tree/stone split found."
+            },
+            {
+              "name": "tb-r03-c02",
+              "tileCropBoxHalfOpen": [
+                1024,
+                2832,
+                2048,
+                3312
+              ],
+              "currentPixelsSha256": "88469b195d6e6db79045228516a23227dea523831c8e1a529d7e914d4bb32c09",
+              "baselinePixelsSha256": "88469b195d6e6db79045228516a23227dea523831c8e1a529d7e914d4bb32c09",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r03-c03",
+              "tileCropBoxHalfOpen": [
+                2048,
+                2832,
+                3072,
+                3312
+              ],
+              "currentPixelsSha256": "122c8c1a1990bf494d6eb26080fc5d76b698571f79337a8d1bf89539141b87dc",
+              "baselinePixelsSha256": "122c8c1a1990bf494d6eb26080fc5d76b698571f79337a8d1bf89539141b87dc",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "tb-r03-c04",
+              "tileCropBoxHalfOpen": [
+                3072,
+                2832,
+                4096,
+                3312
+              ],
+              "currentPixelsSha256": "b3877ed192cd637aeaa5257d97b68cc94e625eb0df63f9ce32e3e22b3d77e2de",
+              "baselinePixelsSha256": "b3877ed192cd637aeaa5257d97b68cc94e625eb0df63f9ce32e3e22b3d77e2de",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r01-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                784,
+                1264,
+                1264
+              ],
+              "currentPixelsSha256": "107e5838f636fb374459ef4aa6c8348999d35802fc1d62ffa081d81df6ffd2f5",
+              "baselinePixelsSha256": "107e5838f636fb374459ef4aa6c8348999d35802fc1d62ffa081d81df6ffd2f5",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r01-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                784,
+                2288,
+                1264
+              ],
+              "currentPixelsSha256": "1226811bb1623c7707cd2b35cf44f58aae3668f7826d06f3eedcb00ba8a7739a",
+              "baselinePixelsSha256": "1226811bb1623c7707cd2b35cf44f58aae3668f7826d06f3eedcb00ba8a7739a",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r01-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                784,
+                3312,
+                1264
+              ],
+              "currentPixelsSha256": "9d4eca37f255a308d3f493792f4818ccbe9c29746e9d7e9da5e1981e6cbfcad2",
+              "baselinePixelsSha256": "9d4eca37f255a308d3f493792f4818ccbe9c29746e9d7e9da5e1981e6cbfcad2",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r02-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                1808,
+                1264,
+                2288
+              ],
+              "currentPixelsSha256": "61abc0fd52225c2a82e9c6ba313d0abf9eb6f808cc06e4a7b2ace0a6b3f02d08",
+              "baselinePixelsSha256": "61abc0fd52225c2a82e9c6ba313d0abf9eb6f808cc06e4a7b2ace0a6b3f02d08",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r02-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                1808,
+                2288,
+                2288
+              ],
+              "currentPixelsSha256": "1e2ae4eece633a87b1204425c464201877ad0a4d995cb568ce6efc9a2c0145ef",
+              "baselinePixelsSha256": "1e2ae4eece633a87b1204425c464201877ad0a4d995cb568ce6efc9a2c0145ef",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r02-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                1808,
+                3312,
+                2288
+              ],
+              "currentPixelsSha256": "5ba4538d0b306e1de416944a2fc283e5f36a7dae0f8d25553e3dc34064fca9a0",
+              "baselinePixelsSha256": "5ba4538d0b306e1de416944a2fc283e5f36a7dae0f8d25553e3dc34064fca9a0",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r03-c01",
+              "tileCropBoxHalfOpen": [
+                784,
+                2832,
+                1264,
+                3312
+              ],
+              "currentPixelsSha256": "3f64d792f1818e42e39f334ae0fb2a5faef6d5319311b7facd4035d0abab9ac9",
+              "baselinePixelsSha256": "3f64d792f1818e42e39f334ae0fb2a5faef6d5319311b7facd4035d0abab9ac9",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r03-c02",
+              "tileCropBoxHalfOpen": [
+                1808,
+                2832,
+                2288,
+                3312
+              ],
+              "currentPixelsSha256": "ee6f1d791a0daf2b6381159022c8805773f688dd5df1d7c1e4756b6085484b30",
+              "baselinePixelsSha256": "ee6f1d791a0daf2b6381159022c8805773f688dd5df1d7c1e4756b6085484b30",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            },
+            {
+              "name": "junction-r03-c03",
+              "tileCropBoxHalfOpen": [
+                2832,
+                2832,
+                3312,
+                3312
+              ],
+              "currentPixelsSha256": "3f1f80788a33cae4f0c37e5c114301b42e89c9fd809c9c007c4572a28884a545",
+              "baselinePixelsSha256": "3f1f80788a33cae4f0c37e5c114301b42e89c9fd809c9c007c4572a28884a545",
+              "pixelsIdenticalToReviewedBaseline": true,
+              "pixelsIdenticalToPreTreeBase": true,
+              "decision": "PASS_reused_exact_pixels_from_explicit_prior_review",
+              "actualViewedInThisReview": false
+            }
+          ],
+          "standard33ScopeDecision": "PASS_exact_reuse_plus_current_changed_crop_review",
+          "reusedPassCount": 27,
+          "currentVisuallyCheckedPassCount": 6,
+          "treeOnlyChangedCount": 1,
+          "wholeTileAccepted": false,
+          "formalAccepted": false
+        }
+      ],
+      "c04Prior33CropHashAndPixelProof": [
+        {
+          "name": "lr-r01-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r01_c01-c02_100pct.png",
+            "sha256": "1f6f30c437c9ebe82f1b433f8745e8be780f3a2898c76d04c8719cc65341f33a"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r01-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r01_c02-c03_100pct.png",
+            "sha256": "9e1c7dda8e10c6e05f6b1fe0a24790a272744d2aa1841a28c13e575ab21d1e10"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r01-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r01_c03-c04_100pct.png",
+            "sha256": "6960715bb0fec1ce7858b3dc91901ba50a8265cbf6e221743beab20f509386bc"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r02-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r02_c01-c02_100pct.png",
+            "sha256": "2bd4d36bb360973e2f8791f1ae60b702a1a94e0fb9b1eb3b7f9b22399f8070e7"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r02-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r02_c02-c03_100pct.png",
+            "sha256": "2ef861611751a8ac7204769388a8cd7973791da296e5f81467b5dfa91fc6c5a7"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r02-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r02_c03-c04_100pct.png",
+            "sha256": "f076a78502c79b959d878fd5ca8c770997b92a6f53ef334208cf11b1164fd1f7"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r03-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r03_c01-c02_100pct.png",
+            "sha256": "93c9b88d009fdba6bf6abe05759a6f44b89d0ef3c933d9dc6daa101589b583f1"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r03-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r03_c02-c03_100pct.png",
+            "sha256": "0bb0f01f1095543528b5c430f729421b2c48f3054174a1537b1a82861fe6bb9b"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r03-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r03_c03-c04_100pct.png",
+            "sha256": "339691afcdc4cdd3ef3b1a5e13c254cd6122f3550b82dbad7bcfd601c048e7d0"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r04-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r04_c01-c02_100pct.png",
+            "sha256": "ab1d43caacc654bbf1b9374f4443efa60a84eb6db30b83723cabe0bb5a5e85c5"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r04-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r04_c02-c03_100pct.png",
+            "sha256": "56483f2765018dd89b81fe5e8b9c4d17811a96d72f084f6ffc608c469f7c15e7"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "lr-r04-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/left-right_r04_c03-c04_100pct.png",
+            "sha256": "6b175e248c1aca2a9326fe537ba25c6ce57c08c524c43a488a65661726907e50"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r01-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r01-r02_x0000-1024_100pct.png",
+            "sha256": "5f938366b8e3da29b326243a6623cc87b7c195068dcc77006f9754e78b10d197"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r01-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r01-r02_x1024-2048_100pct.png",
+            "sha256": "15a7685d0beddf08d994ec021641b52aaa990174e7feb24373ff0c951f106fb4"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r01-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r01-r02_x2048-3072_100pct.png",
+            "sha256": "05b3b104a31dabc76e27802686c0079cc2eebe7249c287c71ceadcf66b6f6c63"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r01-c04",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r01-r02_x3072-4096_100pct.png",
+            "sha256": "c737cf078ae1760d1d1acaf88cadd4ef202e31e0238b4544081c05ac0868c83b"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r02-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r02-r03_x0000-1024_100pct.png",
+            "sha256": "5003b3e78e8a5de36b2550ba1ccbbf3f4d70efbbaa257cec9473ddc7f6329ead"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r02-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r02-r03_x1024-2048_100pct.png",
+            "sha256": "b8301b5a3848bda4d0653bd229433e4fad349ec5b41038fe7d47864213fea1f8"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r02-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r02-r03_x2048-3072_100pct.png",
+            "sha256": "2398efa0e3bd3ec9f6c736de796be3e0f3592bb5ccf466225333743382731431"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r02-c04",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r02-r03_x3072-4096_100pct.png",
+            "sha256": "a785a10329c60d2d6914b36d534fa71111400062e9f0579face7a59fb12ca91e"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r03-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r03-r04_x0000-1024_100pct.png",
+            "sha256": "4ac9a5e69607bbf66599b40b3f8da6a3bda8d8fc0b1899c2dcd82389599576c0"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r03-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r03-r04_x1024-2048_100pct.png",
+            "sha256": "4d05d7fb2f56777d50f1f61d66c922780d04ce6c8180973a292e7ee1c6ea30f7"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r03-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r03-r04_x2048-3072_100pct.png",
+            "sha256": "aeed6aa575d429b99da6168907ef3a4412ef8b36597bb9aa3a0f7cf51a7bc043"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "tb-r03-c04",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/top-bottom_r03-r04_x3072-4096_100pct.png",
+            "sha256": "99782baed73bef488018981933e74f11ecc9ef7d3d674f1f441d1b98788b4eca"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r01-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r01-r02_c01-c02_100pct.png",
+            "sha256": "ebddb755d1431d80d234a5534e9e34a91f31c3f902e4d44877ccbcc41e17735b"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r01-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r01-r02_c02-c03_100pct.png",
+            "sha256": "15c1c765f2c5c045eba60440b62001306bae8012b1f87728f5e803ad48224cfe"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r01-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r01-r02_c03-c04_100pct.png",
+            "sha256": "4077eba1e3f9548bd2a8a518ab9e4bcbdf1dc6d9268f9d97e2c9cef3b13ae76e"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r02-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r02-r03_c01-c02_100pct.png",
+            "sha256": "bb6bc6943f30f74e47d9d2796c15d1ff8083a99acc32cde2f957ad3b6bfa8b0a"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r02-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r02-r03_c02-c03_100pct.png",
+            "sha256": "1042980c47cbe89e330b0eab73e21ed3db1d79007697b18b50d8913be97db9fe"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r02-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r02-r03_c03-c04_100pct.png",
+            "sha256": "57cae5f17e1b221a105ac40d627899de4f06abe4350ee8e800a08876940ff316"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r03-c01",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r03-r04_c01-c02_100pct.png",
+            "sha256": "4ffc8bc96a9b2ebc1f51e8347d0827de87877d66ad9624881a70aec89d81561b"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r03-c02",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r03-r04_c02-c03_100pct.png",
+            "sha256": "f31a753c7de2b6bdd7640bfbbc26cdd7b05d0ba5be06f0b717fd244d1762caff"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        },
+        {
+          "name": "junction-r03-c03",
+          "oldReviewedCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/assembly_r01_c04_candidate-v1_4096/junction_r03-r04_c03-c04_100pct.png",
+            "sha256": "acf7b8d767e4dd33a7d522fe10602b805522c8d315a5ff6b92ef0f5948764fd9"
+          },
+          "oldReviewedCropExactlyBaselineWindow": true,
+          "oldVisualResult": "pass_no_obvious_internal_structural_discontinuity"
+        }
+      ],
+      "actuallyViewedCurrentArtifacts": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c03_tb-r01-c04_100pct.png",
+          "sha256": "9d1c63cdadfc9072e1e8499c16367639153a74c725800a16ad5d3de99eb70cb2",
+          "bytes": 652115
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c03_tb-r02-c04_100pct.png",
+          "sha256": "c429ae2d27075d18886813e8f814d42d7aa8615939e6b6b7ab386c4b1928e1d4",
+          "bytes": 826992
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c03_tb-r03-c04_100pct.png",
+          "sha256": "b2aa873d025c0062230f0e881d5636fd3d4c2645ff88a2a3b3d66e3822c8100f",
+          "bytes": 782882
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_lr-r04-c01_100pct.png",
+          "sha256": "741a088e6148bb74f63e92506b542f4805e8dded4d449386a9a3fcb7eaee751d",
+          "bytes": 860971
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_lr-r04-c02_100pct.png",
+          "sha256": "2b78e0f910ac408b87c6c933cb5573d37cff4a05d7a4bf59c53f58f4e687fa1b",
+          "bytes": 934647
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_lr-r04-c03_100pct.png",
+          "sha256": "8191294b2c9eece60ce0db7dc9ff4d5f434a252260966f1eb9452297d53ee418",
+          "bytes": 900498
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_tb-r01-c01_100pct.png",
+          "sha256": "a1dea6b96d1a9faf4f88f706047817c1fe88ccefde231e7050c5e518e2e96081",
+          "bytes": 670050
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_tb-r02-c01_100pct.png",
+          "sha256": "089ccecb7ce3d024821111d4619a568fbfb2eaf0ca4dccdd2476aef7820d25a1",
+          "bytes": 677059
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/r01_c04_tb-r03-c01_100pct.png",
+          "sha256": "c8ec62ce8cfe43f55fc5de6a03fb5dcae3156629a1cf4c50780b541e920d2b2d",
+          "bytes": 769494
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_north_100pct.png",
+          "sha256": "594698a1214c887ecb89b028443e930278e6572832c1587c921d782fb374e7dd",
+          "bytes": 412642
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_south_100pct.png",
+          "sha256": "df1d56eda7643e330af248bb278a09650c0639ef2d140ffe85648afdca0968f8",
+          "bytes": 402731
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_west_100pct.png",
+          "sha256": "651aa8c70769f606c57854b4049948ed54f95a57d7d77b8d92e6470b7baaec9f",
+          "bytes": 452189
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/fit_east_100pct.png",
+          "sha256": "193f518e99fcf023a49d4d46592cd236f26d4c1e4172a9b8499817b2da812dc9",
+          "bytes": 439151
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/treejunction_current_context_100pct.png",
+          "sha256": "6aee7e07113eba5975240412c30c17fab8baa5682fffd41e34b7fe9fa4416ab7",
+          "bytes": 2501126
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct20-treejunction-successor-v01/current_tree_rock_cross_y3072_100pct.png",
+          "sha256": "380a59e43ed4bfbf16f8d5962f5d3bbd8d52b8531627d8aaaa310545ce87cd30",
+          "bytes": 580423
+        }
+      ],
+      "actuallyViewedCurrentArtifactCount": 15,
+      "nativeScale": true,
+      "resizedForInspection": false,
+      "decisions": {
+        "sourceReplay": "PASS",
+        "treejunctionCenter": "PASS_bounded_native_context",
+        "fourLocalMaskFits": "PASS",
+        "c03CurrentStandard33Scope": "PASS_30_reused_plus_3_current",
+        "c04CurrentStandard33Scope": "PASS_27_reused_plus_6_current"
+      },
+      "preservedHolds": [
+        {
+          "id": "upper-c03c04-s04-east-double-groove-deadend",
+          "state": "HOLD_unmodified_by_treejunction",
+          "globalBoxApproxHalfOpen": [
+            12801,
+            3842,
+            12871,
+            3922
+          ],
+          "c04TileBoxApproxHalfOpen": [
+            513,
+            3842,
+            583,
+            3922
+          ],
+          "pixelsExactlyPreTreeBase": true,
+          "evidence": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct19-c03c04-upper-stage-independent-v01.json",
+            "sha256": "2dbb685cfbf9e422aafcae5d94a5419ab47e3333a89693b45182cdbb3b3624ad",
+            "bytes": 28277
+          },
+          "note": "Outside treejunction footprint. Wallfit is being checked separately by root; this review neither includes it nor claims its result."
+        },
+        {
+          "state": "not_closed_by_this_scope",
+          "scope": "Other external tile/zone seams and all lower-row roof/eave/four-corner HOLDs remain at their recorded status."
+        }
+      ],
+      "status": "treejunction_bounded_source_and_fit_PASS_current_standard33_scope_PASS_external_HOLD_preserved",
+      "selectionChanged": false,
+      "tilesChanged": false,
+      "ledgerChanged": false,
+      "newGeneratedImageCount": 0,
+      "projectionPerformed": false,
+      "formalAccepted": false,
+      "wholeTileAccepted": false,
+      "wholeMapAccepted": false,
+      "limits": [
+        "The 33 seam/junction windows do not constitute complete image or external-border acceptance.",
+        "Existing v22/v32 selection stays unchanged; these two cumulative treejunction images remain working candidates.",
+        "No previous prepared s04 tree/stone cut was asserted against the current patched image."
+      ]
+    }
+  }
+}

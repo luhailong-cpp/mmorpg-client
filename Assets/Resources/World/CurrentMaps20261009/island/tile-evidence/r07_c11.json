@@ -1,0 +1,1283 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 7,
+  "column": 11,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "27dd52c9492058098483a51a2eb11e486604af52335d0b6ba8430302cb88c8b3",
+  "imageBytes": 25792614,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c11-native-v14-rootfinish21-resume20-20261021.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c11-native-v14-rootfinish21-resume20-20261021.png.derivation.json",
+  "sourceLedgerSha256": "26a3e5ae0f5bd30b4aa0df23b8bd1e9f6fd5439d67c70c6d39c0bbccc7566249",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c11-native-v14-rootfinish21-resume20-20261021.png",
+    "imageSha256": "27dd52c9492058098483a51a2eb11e486604af52335d0b6ba8430302cb88c8b3",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c11-native-v14-rootfinish21-resume20-20261021.png.derivation.json",
+        "sha256": "26a3e5ae0f5bd30b4aa0df23b8bd1e9f6fd5439d67c70c6d39c0bbccc7566249",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c11-native-v14-rootfinish21-resume20-20261021.png.derivation.json",
+        "sha256": "26a3e5ae0f5bd30b4aa0df23b8bd1e9f6fd5439d67c70c6d39c0bbccc7566249",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "baseCoverageMin": 1,
+      "baseCoverageMax": 1,
+      "status": "complete_native_coverage_46_local_pass_3_pending",
+      "internalReview": "pending_original_layout_details",
+      "externalSeams": "pending adjacent4k tiles",
+      "formalAccepted": false,
+      "internalReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v14-rootfinish21.json",
+      "externalSeamsStatus": "failed_material_north_west"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c11-native-v14-rootfinish21-resume20-20261021.png.derivation.json",
+        "record": {
+          "baseCoverageMin": 1,
+          "baseCoverageMax": 1,
+          "status": "complete_native_coverage_46_local_pass_3_pending",
+          "internalReview": "pending_original_layout_details",
+          "externalSeams": "pending adjacent4k tiles",
+          "formalAccepted": false,
+          "internalReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v14-rootfinish21.json",
+          "externalSeamsStatus": "failed_material_north_west"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r07_c11.json",
+        "record": {
+          "formalAccepted": false,
+          "layoutAccepted": false,
+          "status": "native16_complete_internal_pending_original_details_external_material_failed",
+          "pendingIssues": [
+            "core1-3: original pink/green canopy distribution pending",
+            "core2-4: original orange object identity unresolved, do not invent gourd/rope",
+            "core3-1: original gold finial detail identity pending",
+            "North/west exterior stone texture differs from noisy neighbor selected sources; actual-core material failed"
+          ],
+          "internalSeamsStatus": "failed",
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v14-rootfinish21.json",
+          "recentResolvedLocalIssues": [
+            "p0201 false parallel curb removed by archived v2",
+            "p0303 false fence removed by archived v2",
+            "p0303 L-shaped foliage boundary removed by native v3_resume20;4 local full49 failures improved",
+            "p0203 flat upper trunk cut repaired by native v2_resume20;4 more failed local QA cells improve",
+            "p0202 blurred gold finial sharpened in v2; upper-left pasted cutoff removed in v3;4 local failures improve",
+            "Native gold_joint_v1 expanded1024 region unifies pointed finial, ivory post cap and leaves; gold full49 cells now local pass",
+            "p0102 upper-right L-shaped leaf boundary removed by native v2_resume20",
+            "p0104 invented multi-row gold cylinders replaced with one smooth curved fascia in nativev2",
+            "p0304 duplicate tassel removed and lower-right crop boundary redrawn with sharp native foliage",
+            "Central native vertical_joint_v1 overlay repairs flower/trunk seam and top/bottom intersections; independent cross2-1 local pass adopted",
+            "r07_c11_p04_04_v2_rootfinish21 narrows expanded rabbit right torso; affected4 native QA cells reviewed, torso local pass, background seam still failed",
+            "Native rightrow2 joint overlay removes horizontal2 wall/shrub discontinuity;6 affected full49 and4 extra actual-core edges viewed; adjacent r07_c12 east boundary locally continuous",
+            "Native rightrow3 joint overlay repairs upper-right background cutoff beside rabbit head;6 affected full49 and4 actual-core edges viewed, narrowed torso retained",
+            "Geometry-guide-led p0101v4 repaint removes dense stone scales/crack web;4 affected internal crops pass; north/west actual-core material discontinuity recorded, not accepted"
+          ],
+          "externalSeamsPassed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v14-rootfinish21.json",
+        "record": {
+          "internalAccepted": false,
+          "layoutAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v14-rootfinish21.json",
+    "sourceSha256": "d4f9641edb7893f675b5287627a5d998af1cacfca847f4916c01984e8b14be3e",
+    "normalizedDocument": {
+      "tileId": "r07_c11",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c11-native-v14-rootfinish21-resume20-20261021.png",
+      "candidateSha256": "27dd52c9492058098483a51a2eb11e486604af52335d0b6ba8430302cb88c8b3",
+      "reviewedAtUtc": "2026-10-21T07:44:07.536332+00:00",
+      "reviewer": "root island_northeast successor",
+      "items": [
+        {
+          "id": "core-1-1",
+          "status": "passed_local",
+          "note": "Dense tiny square scales and crack web removed; quiet broad palegray slabs with soft large strokes now match approved calm material reference. Exact single curb, slab network and pink-white flowers retained. Native repaint is crisp, not guide blur.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v14-rootfinish21/core-1-1-100pct.png",
+          "evidenceSha256": "41f877768c1ba7aeabec35cb84e5f29a339fc021ddb863871ade2cb3bfb52005",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_01_v4_rootfinish21": "c85266d3858545e408c125035182c3cc8cf8b6dd809a0f2857f403c717fd78df"
+          },
+          "priorPendingStatus": "pending",
+          "independentCategory": "failed_material",
+          "independentReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c10-resume20/neighbour-r07c11-independent-review.json",
+            "sha256": "519871802edf43b82988144120b4a8f6a3199e63842fb96777fc3ed7307e2249",
+            "reviewer": "/root/ne_r07c10_resume20"
+          },
+          "priorReview": {
+            "status": "failed",
+            "note": "实际1024原生图中，整片浅灰石板表面由密集重复浅色小片构成，裂缝及接缝有持续亮暖边和较深描边。比已确认自然浅灰/青灰石参考更碎、更繁密；不能用局部接缝连续替代材质验收。斜向单一路沿与右下粉花的粗位置符合原布局，未见第二条平行路沿。",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json"
+          },
+          "inspectedAtUtc": "2026-10-21T07:44:07.525555+00:00"
+        },
+        {
+          "id": "core-1-2",
+          "status": "passed_local",
+          "note": "Native upper-right x1024/y230 L cut removed; natural overlapping leaves and continuous branch replace rectangular patch. Original layout acceptance remains false.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v7/core-1-2-100pct.png",
+          "evidenceSha256": "2396ca350e4304985a5a045a000a1dbe10652a9bc379085713ae4d7a356f524e",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_02_v2_resume20": "3365b7a111df689a2d015377069719e6f14df41eddb91b0785de9bc06348d2bb"
+          },
+          "priorReview": {
+            "status": "failed",
+            "note": "Visible L-shaped anchor boundary near tile (1933,115), corresponding native (1024,230); flowers/leaves cut across reference corner.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v6b.json"
+          },
+          "inspectedAtUtc": "2026-10-20T18:01:15.053157+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-1-3",
+          "status": "pending",
+          "note": "已看原生1024图：枝叶清晰，没有明显矩形源边或截断树干；右下主干粗位置相符。原布局在上部/右侧和左下有更连片的粉白花冠、深色开口与枝干结构；当前源以大面积深绿小叶填充，粉花成为分散的大朵。原参考本核仅约22.4px宽，无法确证每片叶形，但粉/绿覆盖与冠层开口仍不足以确认，继续待核。",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/core-1-3-100pct.png",
+          "evidenceSha256": "89efaa6f372355a631d978a522029f93692f5262e9627336dbacf5d7dbe2fff4",
+          "inspectionScale": 1,
+          "inspectionMode": "independent actual native review reused; current candidate crop pixel-identical and all input hashes verified",
+          "sourceHashes": {
+            "r07_c11_p01_03_v3": "53c8428b264f8857ba774ea246cb9c2a77cd979279b73d1fd83849f8619ec804"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          },
+          "priorPendingStatus": "pending",
+          "independentCategory": "pending_layout_material",
+          "independentReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c10-resume20/neighbour-r07c11-independent-review.json",
+            "sha256": "519871802edf43b82988144120b4a8f6a3199e63842fb96777fc3ed7307e2249",
+            "reviewer": "/root/ne_r07c10_resume20"
+          }
+        },
+        {
+          "id": "core-1-4",
+          "status": "passed_local",
+          "note": "Invented row of stacked gold cylinders/flower disks removed. Roof now has one smooth swept gold fascia with one curled end, following original single-trim structure. Red support/lantern/peach tree remain in approximate original footprints; entire-layout acceptance remains false.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v8/core-1-4-100pct.png",
+          "evidenceSha256": "fd00a489ee1fa692bcc34f2fb83068e495798266acea3123438f718b9da642f1",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_04_v2_resume20": "43eefa6c5d5953dbca9865c3bf693c635593ecdf20f271e065a1ebf07a7ab2bd"
+          },
+          "priorReview": {
+            "status": "failed",
+            "note": "Upper-right roof grew multiple rows of gold tile ends beyond original single trim; exclude roof from anchors.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v7.json"
+          },
+          "inspectedAtUtc": "2026-10-20T18:44:43.549170+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-2-1",
+          "status": "passed_local",
+          "note": "Previously invented parallel ivory curb is removed. Native core locally continuous, retained single upper-left ledge and blossom/branch footprint approximately follow the original low-resolution layout. Full layout acceptance remains false.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed15/core-2-1-100pct.png",
+          "evidenceSha256": "484f8ddd53f4819b96bbe770cf5aebf74cb1095a04f8e45c85436ca85bd121e1",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at 100 percent during resume20; two archived originals and original layout also inspected",
+          "sourceHashes": {
+            "r07_c11_p02_01_v2": "82493603bde102e6071953036f8dad303e487557a68fe418baeb6dc68f6ff8ae"
+          },
+          "priorReview": {
+            "status": "failed",
+            "note": "Extra parallel ivory curb absent original, native x0..530 y250..700, tile roughly x0..415 y1159..1609.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-full49-review.json"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-2-2",
+          "status": "passed_local",
+          "note": "Native vertical-joint overlay unifies eastern flowers/shrubs without changing repaired gold tip/stone cap. New overlay left edge actually viewed in an extra native strip, no ruler-straight paste artifact.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/core-2-2-100pct.png",
+          "evidenceSha256": "5bbe266bddef28f18ffe034ea6eb5ce461c40cb9d45df4f276b3beec263194a6",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "passed_local",
+            "note": "Native gold-joint overlay retains sharpened finial tip and continuous foliage. Expanded overlay top edge checked separately at100 percent; no new pasted boundary visible."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-2-3",
+          "status": "passed_local",
+          "note": "Existing trunk, peach flowers and foliage now continue across former western cutoff. Right overlay boundary separately inspected at100 percent; existing orange props stay outside edit region.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/core-2-3-100pct.png",
+          "evidenceSha256": "0e24cb8af74b88ec7e861710184879fa666c9c39f6b2ffc3b98e9119f0ac3e3d",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "passed_local",
+            "note": "Flat upper trunk cutoff native y230 removed. Existing tree now runs continuously through original brown footprint behind retained blossoms; orange prop identity remains separate pending review."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-2-4",
+          "status": "pending",
+          "note": "Tree/orange original props and lantern retain prior footprints; row-centered wall/shrub repair is locally coherent. Orange prop identity remains unresolved from original low-resolution layout; not accepted.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v12/core-2-4-100pct.png",
+          "evidenceSha256": "bc7a2b77e95d7cb5cb5a89f25f6c3ff5a99d2e54765cb8ac31c20c2fde2daaee",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus overlay top/bottom/left and external east actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p02_04": "fc673426163990624ed76a4e645fe800cfd603b170b2e72b6e9a0beb6ba6f666",
+            "r07_c11_cross_rightrow2_v1_rootfinish21": "2d12153468f1653a62901fe4d2613609e07f3e59f3bbf6e3eb653928f5768382"
+          },
+          "priorPendingStatus": "pending",
+          "independentCategory": "pending_object_identity",
+          "independentReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c10-resume20/neighbour-r07c11-independent-review.json",
+            "sha256": "519871802edf43b82988144120b4a8f6a3199e63842fb96777fc3ed7307e2249",
+            "reviewer": "/root/ne_r07c10_resume20"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v11-rootfinish21.json",
+            "status": "pending",
+            "note": "已看原生1024图和原1254布局。左侧树干、右侧红灯笼及下口/流苏的主位置相符；灯笼纸面与地面有实际细节。左下橙色团块原图过小，只能辨颜色/粗轮廓，无法确认其身份、瓣数或是否附属于树干。当前源把它绘成多颗/多瓣堆叠形，但证据不足，不能通过身份验收。"
+          },
+          "inspectedAtUtc": "2026-10-21T06:29:35.999364+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-3-1",
+          "status": "pending",
+          "note": "实际1024原生图内，两处米白台帽/柱块的高低、前后、粗位置及中间绿叶区，与精确115裁切后的原布局相符；石材柔和浅暖、叶片有清楚手绘明暗，无矩形硬边。原布局的前下亮黄点和右上橙棕点存在，但其原始分辨率不足以确认当前两枚瓣状顶饰的形状及其是否均为柱顶构件，因此不把局部材质通过升级为完整拓扑通过。",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/core-3-1-100pct.png",
+          "evidenceSha256": "a23a1c06b2f2405b96b0222fbd723ea1cad0e1fd86f717ef5d7de2424112e226",
+          "inspectionScale": 1,
+          "inspectionMode": "independent actual native review reused; current candidate crop pixel-identical and all input hashes verified",
+          "sourceHashes": {
+            "r07_c11_p03_01": "928ebc6dee6c9b3adc0cc636fa7681393f0942dcb57ad567ff203eff0bdb04f6"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          },
+          "priorPendingStatus": "pending",
+          "independentCategory": "pending_layout_detail",
+          "independentReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c10-resume20/neighbour-r07c11-independent-review.json",
+            "sha256": "519871802edf43b82988144120b4a8f6a3199e63842fb96777fc3ed7307e2249",
+            "reviewer": "/root/ne_r07c10_resume20"
+          }
+        },
+        {
+          "id": "core-3-2",
+          "status": "passed_local",
+          "note": "Oversized lower globe replaced by compact pointed lotus-bud finial matching upper half; nearby ivory cap continuous. Expanded overlay bottom white-column edge checked at100 percent. Local material/shape pass; original full layout remains unaccepted.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v6b/core-3-2-100pct.png",
+          "evidenceSha256": "257b485026880c58fb18dbd81109b0ea8a13245a67eabc17f2b44092af4a9b6c",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native expanded-overlay crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v5.json",
+            "status": "failed",
+            "note": "Gold finial shape enlarged and north gold/stone caps mismatch at tile y2048; lower sides locally continuous."
+          },
+          "inspectedAtUtc": "2026-10-20T16:26:55.568414+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-3-3",
+          "status": "passed_local",
+          "note": "False fence stays removed. The previous native x1024/y230 L-shaped foliage boundary is replaced by natural overlapping small leaves into the retained broad-leaf shrub. Tree trunk, pastry silhouettes, rabbit eye and grey ground remain approximately positioned. Local patch review only; original layout and block acceptance remain false.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed9-v3/core-3-3-100pct.png",
+          "evidenceSha256": "44ad81ca427f150a7ddf301d82e88acd0cc75efca15008a4cec3a71d30c895b7",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native v3 crop viewed at 100 percent; no resampling",
+          "sourceHashes": {
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04"
+          },
+          "priorReview": {
+            "status": "failed",
+            "note": "Invented small ivory fence is removed; exact native inspection still shows L-shaped leaf cutoff at native x1024/y230 (tile x2957/y2163). Fence correction does not resolve seam acceptance.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v2.json"
+          },
+          "inspectedAtUtc": "2026-10-20T12:07:12.243975+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-3-4",
+          "status": "passed_local",
+          "note": "Rabbit ears/face, original shrub and wooden structure positions retained. New leaf edge overlaps gray courtyard naturally instead of stopping at a row.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v13/core-3-4-100pct.png",
+          "evidenceSha256": "6c36ae4c44f04a70af3ab350485f7b4d813854dce260f98bb635dba8b2d699e0",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus4 overlay/exterior actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p03_04_v2_resume20": "8ece9c4ee02689cd6587e364a507e50d83754f5d2c4ffc2bb17dc3de1c7cae5c",
+            "r07_c11_cross_rightrow2_v1_rootfinish21": "2d12153468f1653a62901fe4d2613609e07f3e59f3bbf6e3eb653928f5768382",
+            "r07_c11_cross_rightrow3_v1_rootfinish21": "e90b5969b4628f28ed22ff965d371f9836578a690089ce884d582dc71d6e97c4"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v12-rootfinish21.json",
+            "status": "passed_local",
+            "note": "Wall now visible through natural foliage gaps above ear, no horizontal row rectangle; bunny ears, lantern tassel and wooden upright retain position."
+          },
+          "inspectedAtUtc": "2026-10-21T07:00:03.846055+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-4-1",
+          "status": "passed_local",
+          "note": "Native core reviewed: red blocks, ivory ledge, cropped greenery follow original footprints approximately; local material continuous.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/core-4-1-100pct.png",
+          "evidenceSha256": "b0fdc3ea966d00eb1802e4a95e382af2634f7f1100dae8356778f6d8f09570d5",
+          "inspectionScale": 1,
+          "inspectionMode": "reuse actual full-native pixel inspection; current exact core is unchanged subset verified during assembly",
+          "sourceHashes": {
+            "r07_c11_p04_01": "c574d8ee5a97901d2d9cc4b375ec2e3b02adfba5f8789b63adb8752e5cb4c7e1"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-4-2",
+          "status": "passed_local",
+          "note": "Native core reviewed: original food count/overlap and table silhouette approximately retained; no visible internal anchor cut.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/core-4-2-100pct.png",
+          "evidenceSha256": "31846e6adb2b67420a76a949b69258e8bc062e00aee04b82e35e93e9eafdf26c",
+          "inspectionScale": 1,
+          "inspectionMode": "reuse actual full-native pixel inspection; current exact core is unchanged subset verified during assembly",
+          "sourceHashes": {
+            "r07_c11_p04_02": "a9f7dcb9fbdd5e18c383d4ca55e47a9ecf57cafa076e49e1e43d444ec51f47da"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-4-3",
+          "status": "passed_local",
+          "note": "Native core reviewed: pastry relief, curved table, rabbit-side boundary continuous; no visible internal anchor cut.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/core-4-3-100pct.png",
+          "evidenceSha256": "7ed87f2717fa53cc79e8753976a47d31eb9775b99d77ccc4b2602624aca8c12d",
+          "inspectionScale": 1,
+          "inspectionMode": "reuse actual full-native pixel inspection; current exact core is unchanged subset verified during assembly",
+          "sourceHashes": {
+            "r07_c11_p04_03": "03898a146078522372373ca60682cfc9988359ece6df6e249b0a2545feca1962"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "core-4-4",
+          "status": "passed_local",
+          "note": "Existing narrowed torso, foot/seat geometry and eyes preserved; background paving is coherent and no new prop added.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v13/core-4-4-100pct.png",
+          "evidenceSha256": "e19c1c8375a9687d165bc926cc28351d823aae14745a06535374323f1725ae4e",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus4 overlay/exterior actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p04_04_v2_rootfinish21": "86c2779466c13c6425e01040fa086dbbfac57d28f439b8e509e9669ab55286df",
+            "r07_c11_cross_rightrow3_v1_rootfinish21": "e90b5969b4628f28ed22ff965d371f9836578a690089ce884d582dc71d6e97c4"
+          },
+          "priorPendingStatus": "pending",
+          "independentCategory": "failed_layout",
+          "independentReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c10-resume20/neighbour-r07c11-independent-review.json",
+            "sha256": "519871802edf43b82988144120b4a8f6a3199e63842fb96777fc3ed7307e2249",
+            "reviewer": "/root/ne_r07c10_resume20"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v12-rootfinish21.json",
+            "status": "passed_local",
+            "note": "Right torso pulled inward about80..100px with a compact rounded silhouette closer to original coarse layout. Eyes, left paw, both feet and stool preserved; newly revealed orange seat and gray paving coherent. Original low-resolution guide cannot prove fine fur/stroke detail; full layout approval remains false."
+          },
+          "inspectedAtUtc": "2026-10-21T07:00:03.967258+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-1-segment-1",
+          "status": "passed_local",
+          "note": "Pink petals, green leaves and branch contours continue across actual right core edge after stone material repaint.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v14-rootfinish21/vertical-1-segment-1-100pct.png",
+          "evidenceSha256": "696e13639b4dcff05458786b87c3a238f600ee90176e89e634b0e91381a27cda",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_01_v4_rootfinish21": "c85266d3858545e408c125035182c3cc8cf8b6dd809a0f2857f403c717fd78df",
+            "r07_c11_p01_02_v2_resume20": "3365b7a111df689a2d015377069719e6f14df41eddb91b0785de9bc06348d2bb"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p01_01_v2__r07_c11_p01_02.join-100pct.png",
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Pink blossom/branch/native leaf edges remain locally continuous after p0102 edit.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json"
+          },
+          "inspectedAtUtc": "2026-10-21T07:44:07.529916+00:00"
+        },
+        {
+          "id": "vertical-1-segment-2",
+          "status": "passed_local",
+          "note": "Blossom/branch geometry still locally continuous after expanded joint overlay.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v6b/vertical-1-segment-2-100pct.png",
+          "evidenceSha256": "83047fd9c0744d63acda5262c245b6184432fbe6d46a9bbdcdcf9907e5ea3394",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native expanded-overlay crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p02_01_v2": "82493603bde102e6071953036f8dad303e487557a68fe418baeb6dc68f6ff8ae",
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v5.json",
+            "status": "passed_local",
+            "note": "Previous internal p0202 y230 horizontal petal cut is removed; local branch/flower/leaf silhouettes now continue without the former straight pasted edge."
+          },
+          "inspectedAtUtc": "2026-10-20T16:26:55.568414+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-1-segment-3",
+          "status": "passed_local",
+          "note": "Leaf stems and ivory rail stay continuous at local native source join.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v6b/vertical-1-segment-3-100pct.png",
+          "evidenceSha256": "1e6d11addc812742e693c54662d112ab2b1c6302109b1800a9ee21dd4e69e78c",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native expanded-overlay crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p03_01": "928ebc6dee6c9b3adc0cc636fa7681393f0942dcb57ad567ff203eff0bdb04f6",
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p03_01__r07_c11_p03_02.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v5.json",
+            "status": "passed_local",
+            "note": "Ivory rail beam and leaves continuous."
+          },
+          "inspectedAtUtc": "2026-10-20T16:26:55.568414+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-1-segment-4",
+          "status": "passed_local",
+          "note": "Stone ledge and table border continuous.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/vertical-1-segment-4-100pct.png",
+          "evidenceSha256": "e5780df4a1833c77c57c10e7c2de2b849241edaefcf1e6fc990fae928560d2c1",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current exact core join image inspected; final256-wide strip is unchanged subset of512-wide quick join",
+          "sourceHashes": {
+            "r07_c11_p04_01": "c574d8ee5a97901d2d9cc4b375ec2e3b02adfba5f8789b63adb8752e5cb4c7e1",
+            "r07_c11_p04_02": "a9f7dcb9fbdd5e18c383d4ca55e47a9ecf57cafa076e49e1e43d444ec51f47da"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p04_01__r07_c11_p04_02.join-100pct.png",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-2-segment-1",
+          "status": "passed_local",
+          "note": "Previous upper-right reference corner no longer cuts leaves on a hard rectangular boundary; native leaves and blossoms flow across actual join.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v7/vertical-2-segment-1-100pct.png",
+          "evidenceSha256": "341646a7f4aee0d25aa91b5fc0ea671d033557c88705d941aa37115999f8220f",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_02_v2_resume20": "3365b7a111df689a2d015377069719e6f14df41eddb91b0785de9bc06348d2bb",
+            "r07_c11_p01_03_v3": "53c8428b264f8857ba774ea246cb9c2a77cd979279b73d1fd83849f8619ec804"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p01_02__r07_c11_p01_03_v3.join-100pct.png",
+          "priorReview": {
+            "status": "failed",
+            "note": "Top reference corner near tile (1933,115) enters strip with hard leaf boundary.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v6b.json"
+          },
+          "inspectedAtUtc": "2026-10-20T18:01:15.053157+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-2-segment-2",
+          "status": "passed_local",
+          "note": "Former vertical pink-flower/leaf/trunk split at x2048 is removed. Existing lower forked trunk now continuous, with natural leaf overlap and no straight cut.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/vertical-2-segment-2-100pct.png",
+          "evidenceSha256": "75b681b2042dcc5727a6510311d66eb4dbde30fbb4744e453d0205d4f54e361a",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p02_02__r07_c11_p02_03.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "failed",
+            "note": "Eastern flower/trunk/foliage switch at x2048 remains independently failed; gold-joint overlay did not address this vertical seam."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-2-segment-3",
+          "status": "passed_local",
+          "note": "Trunk, yellow-flowered bushes and pastry boundary remain locally continuous after overlay.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v6b/vertical-2-segment-3-100pct.png",
+          "evidenceSha256": "4685e04110bf6da8abd34919f6e66369567223ce254bbaf74ae2f14cf3c4e38a",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native expanded-overlay crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v5.json",
+            "status": "passed_local",
+            "note": "Tree/bush outlines and pastry relief remain visually continuous at the native join after local edit."
+          },
+          "inspectedAtUtc": "2026-10-20T16:26:55.568414+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-2-segment-4",
+          "status": "passed_local",
+          "note": "Cream pastry and wood rim align.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/vertical-2-segment-4-100pct.png",
+          "evidenceSha256": "1e374f4ff92ec26bf278d9f5891adea2e7bb961bae062976480da0089fd68515",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current exact core join image inspected; final256-wide strip is unchanged subset of512-wide quick join",
+          "sourceHashes": {
+            "r07_c11_p04_02": "a9f7dcb9fbdd5e18c383d4ca55e47a9ecf57cafa076e49e1e43d444ec51f47da",
+            "r07_c11_p04_03": "03898a146078522372373ca60682cfc9988359ece6df6e249b0a2545feca1962"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p04_02__r07_c11_p04_03.join-100pct.png",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-3-segment-1",
+          "status": "passed_local",
+          "note": "Peach blossom/branch and lower trunk edges stay locally continuous after roof correction.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v8/vertical-3-segment-1-100pct.png",
+          "evidenceSha256": "8f8a1d099639f2e0081cc9aae43452a92b1152a80e90c0839c42cbcca961f3fe",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_03_v3": "53c8428b264f8857ba774ea246cb9c2a77cd979279b73d1fd83849f8619ec804",
+            "r07_c11_p01_04_v2_resume20": "43eefa6c5d5953dbca9865c3bf693c635593ecdf20f271e065a1ebf07a7ab2bd"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p01_03_v3__r07_c11_p01_04.join-100pct.png",
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Pink blossoms and upper trunk continuous.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v7.json"
+          },
+          "inspectedAtUtc": "2026-10-20T18:44:43.549170+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-3-segment-2",
+          "status": "passed_local",
+          "note": "Orange clustered prop outlines and green leaves remain continuous across retained actual core join. Identity acceptance remains a separate pending issue.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v12/vertical-3-segment-2-100pct.png",
+          "evidenceSha256": "330e20ae0f03689563253598a3170a8dea43dc6455ed31d59bca77fb0d998bc7",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus overlay top/bottom/left and external east actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_p02_04": "fc673426163990624ed76a4e645fe800cfd603b170b2e72b6e9a0beb6ba6f666",
+            "r07_c11_cross_rightrow2_v1_rootfinish21": "2d12153468f1653a62901fe4d2613609e07f3e59f3bbf6e3eb653928f5768382"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p02_03__r07_c11_p02_04.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v11-rootfinish21.json",
+            "status": "passed_local",
+            "note": "Upper trunk, lower small leaves and irregular orange forms now flow locally across actual native join, without previous internal y230 trunk cut. Exact orange identity remains unaccepted in its own core."
+          },
+          "inspectedAtUtc": "2026-10-21T06:29:36.009494+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-3-segment-3",
+          "status": "passed_local",
+          "note": "Large leaves, flower stalks and ivory ear/head remain continuous at actual retained core boundary.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v13/vertical-3-segment-3-100pct.png",
+          "evidenceSha256": "fa98f9db9423f89698b2693d271238e5cd299ec7e9e4d02d9c894e8e13cc5316",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus4 overlay/exterior actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_p03_04_v2_resume20": "8ece9c4ee02689cd6587e364a507e50d83754f5d2c4ffc2bb17dc3de1c7cae5c",
+            "r07_c11_cross_rightrow2_v1_rootfinish21": "2d12153468f1653a62901fe4d2613609e07f3e59f3bbf6e3eb653928f5768382",
+            "r07_c11_cross_rightrow3_v1_rootfinish21": "e90b5969b4628f28ed22ff965d371f9836578a690089ce884d582dc71d6e97c4"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v12-rootfinish21.json",
+            "status": "passed_local",
+            "note": "Leaf stalks, large leaves, flowers and bunny head remain locally continuous across actual native join."
+          },
+          "inspectedAtUtc": "2026-10-21T07:00:03.984168+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "vertical-3-segment-4",
+          "status": "passed_local",
+          "note": "Ivory cheek, forepaw, torso, feet and wooden seat retain prior alignment after background-only repair.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v13/vertical-3-segment-4-100pct.png",
+          "evidenceSha256": "618bfb7a9e97ab19e2d8102c81308a66e216c45b3d3bc442256c65e2deb178d2",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus4 overlay/exterior actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p04_03": "03898a146078522372373ca60682cfc9988359ece6df6e249b0a2545feca1962",
+            "r07_c11_p04_04_v2_rootfinish21": "86c2779466c13c6425e01040fa086dbbfac57d28f439b8e509e9669ab55286df",
+            "r07_c11_cross_rightrow3_v1_rootfinish21": "e90b5969b4628f28ed22ff965d371f9836578a690089ce884d582dc71d6e97c4"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p04_03__r07_c11_p04_04.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v12-rootfinish21.json",
+            "status": "passed_local",
+            "note": "Existing rabbit left forepaw, torso, foot and wooden seat remain continuous across actual retained native core boundary after silhouette edit."
+          },
+          "inspectedAtUtc": "2026-10-21T07:00:03.994621+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-1-segment-1",
+          "status": "passed_local",
+          "note": "Diagonal single ivory curb and lower foliage continue across actual bottom core edge without new rectangle.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v14-rootfinish21/horizontal-1-segment-1-100pct.png",
+          "evidenceSha256": "fe8d2b6b5c119509b68d531d98c0c6b9a54603df38a4423324aee6a8e47161f0",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_01_v4_rootfinish21": "c85266d3858545e408c125035182c3cc8cf8b6dd809a0f2857f403c717fd78df",
+            "r07_c11_p02_01_v2": "82493603bde102e6071953036f8dad303e487557a68fe418baeb6dc68f6ff8ae"
+          },
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Single ivory ledge, pink blossoms and branches remain locally continuous after p0201 edit.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json"
+          },
+          "inspectedAtUtc": "2026-10-21T07:44:07.533334+00:00"
+        },
+        {
+          "id": "horizontal-1-segment-2",
+          "status": "passed_local",
+          "note": "Top row petal/branch junction now continuous after joint edit. Additional native close crop of the left remainder (1360,896,1648,1216) confirms natural overlapping petals rather than a horizontal cutoff; reopened issue locally resolved.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/horizontal-1-segment-2-100pct.png",
+          "evidenceSha256": "01f76bea5538681f525c72ed1a0e9ca1d7486b7721ae806845be426523ab12e0",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p01_02_v2_resume20": "3365b7a111df689a2d015377069719e6f14df41eddb91b0785de9bc06348d2bb",
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p01_02__r07_c11_p02_02.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "failed",
+            "note": "Later wider native joint crop exposed horizontal petal/branch clipping at row1/row2 in left half near cross1-2, not recognized in earlier narrow review; reopened and included in vertical joint repair."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "previousLocalStatus": "passed_local",
+          "additionalEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/vertical-joint-v1-target-native.png",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-1-segment-3",
+          "status": "passed_local",
+          "note": "Peach canopy and trunk remain continuous across actual top native join after central joint edit.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/horizontal-1-segment-3-100pct.png",
+          "evidenceSha256": "6659ce66414d4e1d7aa1c94aac564ec6584846017331e305892931dee79a84d9",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p01_03_v3": "53c8428b264f8857ba774ea246cb9c2a77cd979279b73d1fd83849f8619ec804",
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p01_03_v3__r07_c11_p02_03.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "passed_local",
+            "note": "Registered top tree/leaf continuation no longer ends on a flat pasted strip; native horizontal join and nearby trunk continuous."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-1-segment-4",
+          "status": "passed_local",
+          "note": "Trunk, shrub and red lantern curve stay continuous across native row join.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v8/horizontal-1-segment-4-100pct.png",
+          "evidenceSha256": "6bbf7321f809e2364c8f3dddf673aa5fbb77cde1fcd2a62e9035d86c247aafe6",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_04_v2_resume20": "43eefa6c5d5953dbca9865c3bf693c635593ecdf20f271e065a1ebf07a7ab2bd",
+            "r07_c11_p02_04": "fc673426163990624ed76a4e645fe800cfd603b170b2e72b6e9a0beb6ba6f666"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p01_04__r07_c11_p02_04.join-100pct.png",
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Lantern shoulder/ribs and trunk align locally.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v7.json"
+          },
+          "inspectedAtUtc": "2026-10-20T18:44:43.549170+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-2-segment-1",
+          "status": "passed_local",
+          "note": "Branch, yellow-green foliage and blossom edges remain locally continuous at exact join.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed15/horizontal-2-segment-1-100pct.png",
+          "evidenceSha256": "b97e832c3383599734d68058bfde07b645a5be41b50526f9564dd41117746c2b",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at 100 percent during resume20; two archived originals and original layout also inspected",
+          "sourceHashes": {
+            "r07_c11_p02_01_v2": "82493603bde102e6071953036f8dad303e487557a68fe418baeb6dc68f6ff8ae",
+            "r07_c11_p03_01": "928ebc6dee6c9b3adc0cc636fa7681393f0942dcb57ad567ff203eff0bdb04f6"
+          },
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Foliage locally continuous.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-full49-review.json"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-2-segment-2",
+          "status": "passed_local",
+          "note": "Previously repaired lotus-bud finial and ivory cap remain continuous through current bottom native join.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/horizontal-2-segment-2-100pct.png",
+          "evidenceSha256": "089f793cf7ea09bb7ae793d279df12025faa093b10fc4f5d7ff2d17ed82aec56",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p02_02__r07_c11_p03_02.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "passed_local",
+            "note": "One sharp lotus-bud gold finial and one continuous ivory post ellipse now cross old horizontal seam; leaves transition through natural overlaps without y2048 cutoff."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-2-segment-3",
+          "status": "passed_local",
+          "note": "Forked brown trunk and leaves now continue naturally into selected p0303_v3 across bottom native join.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/horizontal-2-segment-3-100pct.png",
+          "evidenceSha256": "3d93f78a2a2a0258cfb38d25054e9e393283ab27bbafc22be84211d4d60f0670",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "passed_local",
+            "note": "Lower trunk and bushes remain continuous with selected p0303_v3; no return of its L-shaped foliage cut."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-2-segment-4",
+          "status": "passed_local",
+          "note": "Former ruler-straight wall/shrub divide removed. Broad gray wall continues behind irregular overlapping leaves/branches; single lantern tassel remains continuous.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v12/horizontal-2-segment-4-100pct.png",
+          "evidenceSha256": "0780638570d9bd62e322c7bd4509d94b25d11b7425aa4e8bd340d09e30e3a2ca",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus overlay top/bottom/left and external east actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p02_04": "fc673426163990624ed76a4e645fe800cfd603b170b2e72b6e9a0beb6ba6f666",
+            "r07_c11_p03_04_v2_resume20": "8ece9c4ee02689cd6587e364a507e50d83754f5d2c4ffc2bb17dc3de1c7cae5c",
+            "r07_c11_cross_rightrow2_v1_rootfinish21": "2d12153468f1653a62901fe4d2613609e07f3e59f3bbf6e3eb653928f5768382"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p02_04__r07_c11_p03_04.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v11-rootfinish21.json",
+            "status": "failed",
+            "note": "Duplicate tassel removed and material scale improved, but northern grey stone wall/shrub footprint still changes abruptly across p0204/p0304 row seam; not accepted."
+          },
+          "inspectedAtUtc": "2026-10-21T06:29:36.013149+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-3-segment-1",
+          "status": "passed_local",
+          "note": "Ivory post planes and nearby trunk align.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/horizontal-3-segment-1-100pct.png",
+          "evidenceSha256": "df31338d0bd0e2cbc6366e813f950477938bf4ea8084a6149fc58081f817fb76",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current exact core join image inspected; final256-high strip is unchanged subset of512-high quick join",
+          "sourceHashes": {
+            "r07_c11_p03_01": "928ebc6dee6c9b3adc0cc636fa7681393f0942dcb57ad567ff203eff0bdb04f6",
+            "r07_c11_p04_01": "c574d8ee5a97901d2d9cc4b375ec2e3b02adfba5f8789b63adb8752e5cb4c7e1"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p03_01__r07_c11_p04_01.join-100pct.png",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-3-segment-2",
+          "status": "passed_local",
+          "note": "Stone beam, mooncake surface and wood align.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/horizontal-3-segment-2-100pct.png",
+          "evidenceSha256": "0c0072e159a0807acd3c3e59de2f1b1b49885ddeb57b082082d23d0489ed3a9f",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current exact core join image inspected; final256-high strip is unchanged subset of512-high quick join",
+          "sourceHashes": {
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_p04_02": "a9f7dcb9fbdd5e18c383d4ca55e47a9ecf57cafa076e49e1e43d444ec51f47da"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p03_02__r07_c11_p04_02.join-100pct.png",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-3-segment-3",
+          "status": "passed_local",
+          "note": "Pastry top/side and partial rabbit eye align locally across native join.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed9-v3/horizontal-3-segment-3-100pct.png",
+          "evidenceSha256": "98cf19e359406f8d6a8f5324852f69a2ff2374e5e5722b3d65b1b72e1bccdb5c",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native v3 crop viewed at 100 percent; no resampling",
+          "sourceHashes": {
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_p04_03": "03898a146078522372373ca60682cfc9988359ece6df6e249b0a2545feca1962"
+          },
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Mooncake relief/side and rabbit eye remain locally continuous after fence removal.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v2.json"
+          },
+          "inspectedAtUtc": "2026-10-20T12:07:12.243975+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "horizontal-3-segment-4",
+          "status": "passed_local",
+          "note": "Former straight shrub/paving cutoff to the right of rabbit head removed; leaf contour and angled gray slab joints now continuous through actual row seam.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v13/horizontal-3-segment-4-100pct.png",
+          "evidenceSha256": "50d89b2e273cee95437caf1d8f821337884aeec9bd82dd9a6fbf75bedcee0c4a",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus4 overlay/exterior actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p03_04_v2_resume20": "8ece9c4ee02689cd6587e364a507e50d83754f5d2c4ffc2bb17dc3de1c7cae5c",
+            "r07_c11_p04_04_v2_rootfinish21": "86c2779466c13c6425e01040fa086dbbfac57d28f439b8e509e9669ab55286df",
+            "r07_c11_cross_rightrow3_v1_rootfinish21": "e90b5969b4628f28ed22ff965d371f9836578a690089ce884d582dc71d6e97c4"
+          },
+          "quickEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11_p03_04__r07_c11_p04_04.join-100pct.png",
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v12-rootfinish21.json",
+            "status": "failed",
+            "note": "Rabbit eye/head join remains aligned, but upper-right background still switches abruptly between bush/stone/paving at horizontal seam. Independent pre-existing background failure is not fixed by torso edit."
+          },
+          "inspectedAtUtc": "2026-10-21T07:00:04.007026+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "cross-1-1",
+          "status": "passed_local",
+          "note": "Existing branch fork, pink blossoms and leaves remain aligned through actual four-source corner.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v14-rootfinish21/cross-1-1-100pct.png",
+          "evidenceSha256": "81798a8448e369121633dcbb9ce0e72a1cc81f4b88ae385351c04f5e5482815b",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_01_v4_rootfinish21": "c85266d3858545e408c125035182c3cc8cf8b6dd809a0f2857f403c717fd78df",
+            "r07_c11_p01_02_v2_resume20": "3365b7a111df689a2d015377069719e6f14df41eddb91b0785de9bc06348d2bb",
+            "r07_c11_p02_01_v2": "82493603bde102e6071953036f8dad303e487557a68fe418baeb6dc68f6ff8ae",
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b"
+          },
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Branches and flowers remain locally continuous across current four-source corner.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json"
+          },
+          "inspectedAtUtc": "2026-10-21T07:44:07.535828+00:00"
+        },
+        {
+          "id": "cross-1-2",
+          "status": "passed_local",
+          "note": "Upper/lower blossoms and branches now overlap naturally through four-source corner, without prior clipped flower rectangle.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/cross-1-2-100pct.png",
+          "evidenceSha256": "69127a565345c4e863008e720895932f258e286633a0b1816a55f5bffbf9959e",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p01_02_v2_resume20": "3365b7a111df689a2d015377069719e6f14df41eddb91b0785de9bc06348d2bb",
+            "r07_c11_p01_03_v3": "53c8428b264f8857ba774ea246cb9c2a77cd979279b73d1fd83849f8619ec804",
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "failed",
+            "note": "Unchanged row2 p0202/p0203 western blossom/leaf mismatch persists; top-row L repair does not resolve it."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "cross-1-3",
+          "status": "passed_local",
+          "note": "Thick trunk and surrounding foliage remain continuous through four-source corner.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v8/cross-1-3-100pct.png",
+          "evidenceSha256": "f655467c0920a41eeb06444a232e67142321d919a580a9256f91b3b689fd46ba",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent",
+          "sourceHashes": {
+            "r07_c11_p01_03_v3": "53c8428b264f8857ba774ea246cb9c2a77cd979279b73d1fd83849f8619ec804",
+            "r07_c11_p01_04_v2_resume20": "43eefa6c5d5953dbca9865c3bf693c635593ecdf20f271e065a1ebf07a7ab2bd",
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_p02_04": "fc673426163990624ed76a4e645fe800cfd603b170b2e72b6e9a0beb6ba6f666"
+          },
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Thick brown trunk and surrounding leaves are continuous through four-source corner; previous flat trunk cutoff is removed.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v7.json"
+          },
+          "inspectedAtUtc": "2026-10-20T18:44:43.549170+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "cross-2-1",
+          "status": "passed_local",
+          "note": "实际看512×512当前候选交角：左上粉花、中央绿叶团、右下米白圆角，与原布局同坐标粗色块及白角位置相符。枝条与叶片走向连续，中央横/竖线无矩形裁切边；主叶有柔和明暗且边缘清楚，未见用模糊遮缝。此处原图仅约11.2px宽，结论覆盖枝叶团/白角宏观布局及当前材质连续性，不声称逐片叶形等同原图。",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v6b/cross-2-1-100pct.png",
+          "evidenceSha256": "dde6c6959b7c2a6c9b00bf1360e8654c0c63878e03f58b83250bd16931456772",
+          "inspectionScale": 1,
+          "inspectionMode": "independent actual native review reused; current candidate crop pixel-identical and all input hashes verified",
+          "sourceHashes": {
+            "r07_c11_p02_01_v2": "82493603bde102e6071953036f8dad303e487557a68fe418baeb6dc68f6ff8ae",
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_p03_01": "928ebc6dee6c9b3adc0cc636fa7681393f0942dcb57ad567ff203eff0bdb04f6",
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v5.json",
+            "status": "pending",
+            "note": "No new major geometric break after finial/top-corner edits, but original foliage material scale remains pending at corner."
+          },
+          "inspectedAtUtc": "2026-10-20T16:26:55.568414+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          },
+          "priorPendingStatus": "pending",
+          "independentCategory": "passed_local",
+          "independentReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c10-resume20/neighbour-r07c11-independent-review.json",
+            "sha256": "519871802edf43b82988144120b4a8f6a3199e63842fb96777fc3ed7307e2249",
+            "reviewer": "/root/ne_r07c10_resume20"
+          }
+        },
+        {
+          "id": "cross-2-2",
+          "status": "passed_local",
+          "note": "Former abrupt upper-left soft bush to upper-right trunk switch removed; existing forked trunk and shrubs are locally continuous through current corner.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed-v10/cross-2-2-100pct.png",
+          "evidenceSha256": "7fedff9b4eb02eff501e9c97e19cc12917f64e3a503b80061042145e04632611",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native crop viewed at100 percent; additional overlay side strips/top remainder inspected",
+          "sourceHashes": {
+            "r07_c11_p02_02_v3_resume20": "17344912beb0028995de84da1aca415e161fd5960640b1ac2c81af365fe2548b",
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_gold_joint_v1_resume20": "f062511852dccf7afd96dd2525dff4f400db3eb5829227a5fc945ae35b4d06b3",
+            "r07_c11_vertical_joint_v1_resume20": "42afbdd4119a5eb4fb274f69883fd4bffeb2b15518cedf35886169a7d54341e8"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v9.json",
+            "status": "failed",
+            "note": "Upper-left soft bush layer still cuts against upper-right trunk at x2048; this separate vertical boundary remains failed."
+          },
+          "inspectedAtUtc": "2026-10-20T23:10:48.867923+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "cross-2-3",
+          "status": "passed_local",
+          "note": "Four-source corner now has natural overlapping leaf/stalk contour instead of the former lower-row cut.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v12/cross-2-3-100pct.png",
+          "evidenceSha256": "5a796704a678cb3a60da85925d6c2f628e7d7500c9f4b43954b22ed45abf79f8",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus overlay top/bottom/left and external east actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p02_03_v2_resume20": "dfdce688614be10105b1c4714f3f3dd3931fba7d4527148baa85ce3568afbef1",
+            "r07_c11_p02_04": "fc673426163990624ed76a4e645fe800cfd603b170b2e72b6e9a0beb6ba6f666",
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_p03_04_v2_resume20": "8ece9c4ee02689cd6587e364a507e50d83754f5d2c4ffc2bb17dc3de1c7cae5c",
+            "r07_c11_cross_rightrow2_v1_rootfinish21": "2d12153468f1653a62901fe4d2613609e07f3e59f3bbf6e3eb653928f5768382"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v11-rootfinish21.json",
+            "status": "passed_local",
+            "note": "Irregular orange props, small shrubs and existing broad-leaf overlap remain locally continuous; identity of orange props still pending separately."
+          },
+          "inspectedAtUtc": "2026-10-21T06:29:36.015265+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "cross-3-1",
+          "status": "passed_local",
+          "note": "Ivory beam/post/ledge planes locally continuous.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-native-v1-rootqa18b-20261019-final/cross-3-1-100pct.png",
+          "evidenceSha256": "c972c7d1a16ac35b2a4e533cf2e98ed96d6c0835230f1ffce255805d36007e05",
+          "inspectionScale": 1,
+          "inspectionMode": "actual new final512x512 cross viewed at100pct",
+          "sourceHashes": {
+            "r07_c11_p03_01": "928ebc6dee6c9b3adc0cc636fa7681393f0942dcb57ad567ff203eff0bdb04f6",
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_p04_01": "c574d8ee5a97901d2d9cc4b375ec2e3b02adfba5f8789b63adb8752e5cb4c7e1",
+            "r07_c11_p04_02": "a9f7dcb9fbdd5e18c383d4ca55e47a9ecf57cafa076e49e1e43d444ec51f47da"
+          },
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "cross-3-2",
+          "status": "passed_local",
+          "note": "Golden pastry outline and relief remain continuous across exact four-source corner.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/changed9-v3/cross-3-2-100pct.png",
+          "evidenceSha256": "5c0f5430392ba6164e76f8eabb00eb0b336abfd1512bcf49736d550474e10678",
+          "inspectionScale": 1,
+          "inspectionMode": "actual current native v3 crop viewed at 100 percent; no resampling",
+          "sourceHashes": {
+            "r07_c11_p03_02": "60c457930a3e15c5308d1435fe1a88c6f02fdda93eaaf26f796e005227d83b46",
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_p04_02": "a9f7dcb9fbdd5e18c383d4ca55e47a9ecf57cafa076e49e1e43d444ec51f47da",
+            "r07_c11_p04_03": "03898a146078522372373ca60682cfc9988359ece6df6e249b0a2545feca1962"
+          },
+          "priorReview": {
+            "status": "passed_local",
+            "note": "Golden pastry outline/relief locally continuous across exact four-source corner.",
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-resume20/full49-review-v2.json"
+          },
+          "inspectedAtUtc": "2026-10-20T12:07:12.243975+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        },
+        {
+          "id": "cross-3-3",
+          "status": "passed_local",
+          "note": "Actual four-source rabbit eye/cheek and wood corner remains aligned, no new geometric cutoff.",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/changed-v13/cross-3-3-100pct.png",
+          "evidenceSha256": "4376ba37044bb2d96f3419258a2dbe558e7b3bfa9ecdcfd77566b33122a20b66",
+          "inspectionScale": 1,
+          "inspectionMode": "root actual native crop visually inspected at100 percent plus4 overlay/exterior actual-core edges",
+          "sourceHashes": {
+            "r07_c11_p03_03_v3_resume20": "1df1e2f34067e66a3592e39aaca84cd27b0ec89af7f0142b35e522d332697f04",
+            "r07_c11_p03_04_v2_resume20": "8ece9c4ee02689cd6587e364a507e50d83754f5d2c4ffc2bb17dc3de1c7cae5c",
+            "r07_c11_p04_03": "03898a146078522372373ca60682cfc9988359ece6df6e249b0a2545feca1962",
+            "r07_c11_p04_04_v2_rootfinish21": "86c2779466c13c6425e01040fa086dbbfac57d28f439b8e509e9669ab55286df",
+            "r07_c11_cross_rightrow3_v1_rootfinish21": "e90b5969b4628f28ed22ff965d371f9836578a690089ce884d582dc71d6e97c4"
+          },
+          "priorReview": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v12-rootfinish21.json",
+            "status": "passed_local",
+            "note": "Rabbit eye, ivory cheek, wooden left object and soft highlights remain continuous through actual four-source corner. No new rectangle introduced."
+          },
+          "inspectedAtUtc": "2026-10-21T07:00:04.018383+00:00",
+          "reuse": {
+            "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c11-production-rootfinish20/full49-review-v13-rootfinish21.json",
+            "unchangedSourceHashes": true
+          }
+        }
+      ],
+      "counts": {
+        "passed_local": 46,
+        "pending": 3,
+        "failed": 0
+      },
+      "internalAccepted": false,
+      "layoutAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "notes": "45 unchanged-source checks reused after source hashes verified;4 affected actual native crops viewed.46 passed_local,0 failed,3 original-layout details pending. North/west exterior geometry locally continuous but texture differs from still-noisy neighbor sources; exterior material not accepted.",
+      "reusedUnchangedSourceItems": 45,
+      "newlyInspectedChangedSourceItems": 4,
+      "independentReusedUnchangedItems": 6
+    }
+  }
+}

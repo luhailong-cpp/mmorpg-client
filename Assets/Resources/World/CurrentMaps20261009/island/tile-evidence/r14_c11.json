@@ -1,0 +1,743 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 11,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+  "imageBytes": 22426700,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/source-proof.json",
+  "sourceLedgerSha256": "b9718c7fe11ccdf3bfa2c4d3b13b599032aa474a7569bb69d6542b601b11f855",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+    "imageSha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/source-proof.json",
+        "sha256": "b9718c7fe11ccdf3bfa2c4d3b13b599032aa474a7569bb69d6542b601b11f855",
+        "completeness": [
+          "sourcesCount",
+          17
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/source-proof.json",
+        "record": {
+          "coverageMin": 1,
+          "coverageMax": 1,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/worker-visual-review.json",
+        "record": {
+          "newRectangularContributionAccepted": false,
+          "externalPassed": false,
+          "formalAccepted": false,
+          "sourceReplayDoesNotProveVisualSeamAcceptance": true
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/worker-visual-review.json",
+    "sourceSha256": "ade2b2527702cc4ccebf8e0597fbfdc2c181f0411be3b9ac19237fb9346be897",
+    "normalizedDocument": {
+      "reviewedAt": "2026-10-24T17:29:31.826226+00:00",
+      "reviewer": "/root/resume_r14_water",
+      "native": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/native/r14_c11_p13_water_concentrated_round2_v02.png",
+        "sha256": "1e87fecc2a2593e5e58670d78d85210ef2917b8e92a40e110828e02a624266bf"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+        "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b"
+      },
+      "sourceProof": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/source-proof.json",
+        "sha256": "b9718c7fe11ccdf3bfa2c4d3b13b599032aa474a7569bb69d6542b601b11f855"
+      },
+      "nativeWholeViewed": true,
+      "all14OriginalPixelCutsViewed": true,
+      "cutCount": 14,
+      "cutViews": [
+        {
+          "id": "N-true-external",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/N-true-external.png",
+          "sha256": "e5a18dcdc25d6faac461ca4610e3bce9a5a43400f651d999e31a4b45d9317db2",
+          "worldBox": [
+            2048,
+            -256,
+            3072,
+            256
+          ],
+          "dimensions": [
+            1024,
+            512
+          ],
+          "cutAxis": {
+            "y": 256
+          },
+          "kind": "new N boundary",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r13_c11.candidate-resume-20261013-v01.png",
+              "sha256": "cf16eda1dce6eadfe51e6d98f02203d92475474aaac662894078566b2c21eaf1",
+              "sourceCrop": [
+                2048,
+                3840,
+                3072,
+                4096
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2048,
+                0,
+                3072,
+                256
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "At actual cut y256 a straight horizontal transition remains from larger pale/turquoise upper caustic cells to smaller brighter lower cells. Open-water coverage continues, but material/caustic phase is not seamless."
+        },
+        {
+          "id": "W-new",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/W-new.png",
+          "sha256": "9e5ddccf2bfc6f922aabbb3dce51d7bbb6df244827b13f9dde3e0d7a4d74a4e7",
+          "worldBox": [
+            1792,
+            0,
+            2304,
+            768
+          ],
+          "dimensions": [
+            512,
+            768
+          ],
+          "cutAxis": {
+            "x": 256
+          },
+          "kind": "new W boundary",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                1792,
+                0,
+                2304,
+                768
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "The actual x256 boundary and diagonal foam paths were inspected. Major water topology remains continuous; consistent brush/color/cell phase at the full boundary is not established sufficiently to accept it."
+        },
+        {
+          "id": "E-new",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/E-new.png",
+          "sha256": "cbe67e388c845feebc47a0b4b55add9a69f317d54ea7b7be237bfdba3575820c",
+          "worldBox": [
+            2816,
+            0,
+            3328,
+            768
+          ],
+          "dimensions": [
+            512,
+            768
+          ],
+          "cutAxis": {
+            "x": 256
+          },
+          "kind": "new E boundary",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2816,
+                0,
+                3328,
+                768
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "At actual x256 a subtle vertical hue/cell-phase transition remains, including the blue cells near the glint neighborhood. No accepted full-length material join."
+        },
+        {
+          "id": "S-new-y768",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/S-new-y768.png",
+          "sha256": "ef055ed19809df95f5dfd90325d6468e2e13a45ee554a7f6c3b25055c24328fb",
+          "worldBox": [
+            2048,
+            512,
+            3072,
+            1024
+          ],
+          "dimensions": [
+            1024,
+            512
+          ],
+          "cutAxis": {
+            "y": 256
+          },
+          "kind": "new S internal boundary",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2048,
+                512,
+                3072,
+                1024
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "The newly introduced cut y256 (tile y768) was inspected over its full1024px width. Foam paths remain recognizable, but the new/retained source material phase is not established as seamlessly matched; this new edge remains unpassed."
+        },
+        {
+          "id": "NW-new",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/NW-new.png",
+          "sha256": "c26d703cc4b8f70c15d34c18207adb3aec8fb951424f026ab6b0605731d9b3bb",
+          "worldBox": [
+            1792,
+            -256,
+            2304,
+            256
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "cutAxis": {
+            "x": 256,
+            "y": 256
+          },
+          "kind": "new NW corner true external",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r13_c11.candidate-resume-20261013-v01.png",
+              "sha256": "cf16eda1dce6eadfe51e6d98f02203d92475474aaac662894078566b2c21eaf1",
+              "sourceCrop": [
+                1792,
+                3840,
+                2304,
+                4096
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                1792,
+                0,
+                2304,
+                256
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "True north y256 material scale transition reaches the northwest junction. Water topology is continuous; corner material acceptance fails."
+        },
+        {
+          "id": "NE-new",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/NE-new.png",
+          "sha256": "9fd2a5b1991a39ced07b8bf3d406febf56ad33fcb7e3fd0af9cdacdfa6ad72aa",
+          "worldBox": [
+            2816,
+            -256,
+            3328,
+            256
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "cutAxis": {
+            "x": 256,
+            "y": 256
+          },
+          "kind": "new NE corner true external",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r13_c11.candidate-resume-20261013-v01.png",
+              "sha256": "cf16eda1dce6eadfe51e6d98f02203d92475474aaac662894078566b2c21eaf1",
+              "sourceCrop": [
+                2816,
+                3840,
+                3328,
+                4096
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2816,
+                0,
+                3328,
+                256
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "True north y256 phase transition reaches the northeast junction and meets the eastern material change. Corner remains unpassed."
+        },
+        {
+          "id": "SW-new-y768",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/SW-new-y768.png",
+          "sha256": "46eec11f663e904c2a71ed73c45076da14386143aaf5496792a8c5dc58ed09d5",
+          "worldBox": [
+            1792,
+            512,
+            2304,
+            1024
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "cutAxis": {
+            "x": 256,
+            "y": 256
+          },
+          "kind": "new SW corner",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                1792,
+                512,
+                2304,
+                1024
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "Existing rock/foam layout remains in its fixed west source. The new x256/y256 corner was viewed; consistent water material around the full new corner is not demonstrated. No corner pass claimed."
+        },
+        {
+          "id": "SE-new-y768",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/SE-new-y768.png",
+          "sha256": "4c31851f7c404553687767cebd7f554b4d0a9cc960ac0e6f6c6bc0481e9f3eba",
+          "worldBox": [
+            2816,
+            512,
+            3328,
+            1024
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "cutAxis": {
+            "x": 256,
+            "y": 256
+          },
+          "kind": "new SE corner",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2816,
+                512,
+                3328,
+                1024
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "Actual new east/south corner at x256/y256 was viewed. The water network is recognizable, but seamless material phase around the four quadrants is not proven."
+        },
+        {
+          "id": "old-guide-x2163",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/old-guide-x2163.png",
+          "sha256": "9e2b290210763849a10ed1d242376f34851bc6bd3dbb0d0f8e8a7e89e5e43213",
+          "worldBox": [
+            2035,
+            0,
+            2291,
+            1024
+          ],
+          "dimensions": [
+            256,
+            1024
+          ],
+          "cutAxis": {
+            "x": 128
+          },
+          "kind": "old vertical guide including retained lower256",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2035,
+                0,
+                2291,
+                1024
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "The complete original vertical guide axis was inspected through upper new768 and retained lower256. Some interior water is smooth, but this axis is not promoted to passed while full perimeter/retained-source transitions remain unresolved."
+        },
+        {
+          "id": "old-guide-x2957",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/old-guide-x2957.png",
+          "sha256": "418afdb6608e38b8d420dc66683d4bf1f6dd1e527b565e99964c6516b1313ab2",
+          "worldBox": [
+            2829,
+            0,
+            3085,
+            1024
+          ],
+          "dimensions": [
+            256,
+            1024
+          ],
+          "cutAxis": {
+            "x": 128
+          },
+          "kind": "old vertical guide including retained lower256",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2829,
+                0,
+                3085,
+                1024
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "The complete original vertical guide axis and glint neighborhood were inspected through new and retained portions. The combined source/material continuity remains unaccepted; no whole-axis repair claimed."
+        },
+        {
+          "id": "old-guide-y115",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/old-guide-y115.png",
+          "sha256": "07b14894ff89e0c4390084eaf50a30573a57bdb923071a27fab1e928d26acd00",
+          "worldBox": [
+            2048,
+            -13,
+            3072,
+            243
+          ],
+          "dimensions": [
+            1024,
+            256
+          ],
+          "cutAxis": {
+            "y": 128
+          },
+          "kind": "old upper internal horizontal guide",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r13_c11.candidate-resume-20261013-v01.png",
+              "sha256": "cf16eda1dce6eadfe51e6d98f02203d92475474aaac662894078566b2c21eaf1",
+              "sourceCrop": [
+                2048,
+                4083,
+                3072,
+                4096
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2048,
+                0,
+                3072,
+                243
+              ],
+              "destination": [
+                0,
+                13
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "The old horizontal guide axis is at cut y128. No strong whole-width scar is asserted at that axis; the true north interface visible at cut y13 still has the clear straight material transition. This local view cannot establish whole-p13 acceptance."
+        },
+        {
+          "id": "old-guide-y909",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/old-guide-y909.png",
+          "sha256": "27a0629d3e86a210e3a7bce62d3d1242e55c540f53d9e7aac7b31f7e8d2ca9a0",
+          "worldBox": [
+            2048,
+            781,
+            3072,
+            1037
+          ],
+          "dimensions": [
+            1024,
+            256
+          ],
+          "cutAxis": {
+            "y": 128
+          },
+          "kind": "unchanged lower internal guide must stay unpassed",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2048,
+                781,
+                3072,
+                1037
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "This lower original-source guide axis is retained unchanged. Its cut y128 is locally smooth in places; the original core boundary at tile y1024 lies at cut y243 and remains unpassed. Retained pixels are not counted as a successful repair."
+        },
+        {
+          "id": "S-original-v13",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/S-original-v13.png",
+          "sha256": "6f0cd37b4b66ccf50fede662a9783d35282de2ea7eeed21f6ca94b0e20984897",
+          "worldBox": [
+            2048,
+            768,
+            3072,
+            1280
+          ],
+          "dimensions": [
+            1024,
+            512
+          ],
+          "cutAxis": {
+            "y": 256
+          },
+          "kind": "original S core boundary unchanged",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2048,
+                768,
+                3072,
+                1280
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "The original core boundary at cut y256 (tile y1024) retains its material/cell-scale phase transition. Both sides are original current pixels; it remains unpassed and was not removed by truncating contribution."
+        },
+        {
+          "id": "material-contribution",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/material-contribution.png",
+          "sha256": "0209371bba048544149151c4ff6042f7465ff038cfdfaeccf80b552cbc95805f",
+          "worldBox": [
+            2048,
+            0,
+            3072,
+            768
+          ],
+          "dimensions": [
+            1024,
+            768
+          ],
+          "cutAxis": {},
+          "kind": "entire actual new material rectangle",
+          "derivedFrom": [
+            {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c11-water-concentrated-round2/qa/v02/r14_c11.candidate-p13-water-round2-v02.png",
+              "sha256": "4ee3a8a5362c2c11a660dce7cde9b8b9a69db917513129188fb8334b7303661b",
+              "sourceCrop": [
+                2048,
+                0,
+                3072,
+                768
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "actualOriginalPixelViewCompleted": true,
+          "openWaterTopologyPassed": true,
+          "geometryDefinition": "Major open-water coverage, object identity and map layout only; wave cell/caustic endpoints are judged as material phase, not excused by geometry.",
+          "finding": "Whole actual native contribution1024x768 viewed. Pure sea identity and overall wave layout remain, but complete water material continuity with fixed actual north/east/south/west pixels is not achieved."
+        }
+      ],
+      "layoutPassed": true,
+      "waterIdentityPassed": true,
+      "newRectangularContributionAccepted": false,
+      "materialPassed": false,
+      "wholeP13Passed": false,
+      "wholeInternalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "recommendation": "Reject trial; retain original current candidate. No fifth cumulative generation at this point.",
+      "sourceReplayMismatch": 0,
+      "sourceReplayDoesNotProveVisualSeamAcceptance": true
+    }
+  }
+}

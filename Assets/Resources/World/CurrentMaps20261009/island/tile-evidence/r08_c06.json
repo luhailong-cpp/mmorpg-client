@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 8,
+  "column": 6,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "e97445c8948ab2818173e86697415d3ffd593c59eff6a080bf1da4ebdae38238",
+  "imageBytes": 31083566,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-report.json",
+  "sourceLedgerSha256": "cd47ca143ca500d29c3de598a05edfe56258e0a3df397ace88bcda4e5702d4d4",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-candidate-4096.png",
+    "imageSha256": "e97445c8948ab2818173e86697415d3ffd593c59eff6a080bf1da4ebdae38238",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-report.json",
+        "sha256": "cd47ca143ca500d29c3de598a05edfe56258e0a3df397ace88bcda4e5702d4d4",
+        "sourceReviewSha256": "cd47ca143ca500d29c3de598a05edfe56258e0a3df397ace88bcda4e5702d4d4",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/pixelValidation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-review.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native 4K candidate; 24 segments and 9 junctions viewed; 2 segments/1 junction geometry pending, material/layout/outer pending",
+          "externalTileSeamsPassed": false,
+          "pendingRepairs": [
+            "whole-tile brush/plant material consistency",
+            "right edge post cap layout extent versus overview, paired external review",
+            "all outer tile edges not yet fully accepted"
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native 4K candidate; 24 segments and 9 junctions viewed; 2 segments/1 junction geometry pending, material/layout/outer pending",
+          "externalTileSeamsPassed": false,
+          "pendingRepairs": [
+            "whole-tile brush/plant material consistency",
+            "right edge post cap layout extent versus overview, paired external review",
+            "all outer tile edges not yet fully accepted"
+          ]
+        }
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261023_175150.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native 4K candidate; 24 segments and 9 junctions viewed; 2 segments/1 junction geometry pending, material/layout/outer pending",
+          "externalTileSeamsPassed": false,
+          "pendingRepairs": [
+            "whole-tile brush/plant material consistency",
+            "right edge post cap layout extent versus overview, paired external review",
+            "all outer tile edges not yet fully accepted"
+          ]
+        }
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_LATE_ASSET_RECONCILED_20261022_162742.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native 4K candidate; 24 segments and 9 junctions viewed; 2 segments/1 junction geometry pending, material/layout/outer pending",
+          "externalTileSeamsPassed": false,
+          "pendingRepairs": [
+            "whole-tile brush/plant material consistency",
+            "right edge post cap layout extent versus overview, paired external review",
+            "all outer tile edges not yet fully accepted"
+          ]
+        }
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_042240.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native 4K candidate; 24 segments and 9 junctions viewed; 2 segments/1 junction geometry pending, material/layout/outer pending",
+          "externalTileSeamsPassed": false,
+          "pendingRepairs": [
+            "whole-tile brush/plant material consistency",
+            "right edge post cap layout extent versus overview, paired external review",
+            "all outer tile edges not yet fully accepted"
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-review.json",
+    "sourceSha256": "1438309a4bffa71cb3870f8b5d56453c61bae538cf2f701e77e04c11ec80332b",
+    "normalizedDocument": {
+      "tile": "r08_c06",
+      "reviewedAtUtc": "2026-10-22T01:59:57.125476+00:00",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-candidate-4096.png",
+        "sha256": "e97445c8948ab2818173e86697415d3ffd593c59eff6a080bf1da4ebdae38238",
+        "dimensions": [
+          4096,
+          4096
+        ]
+      },
+      "sourceReport": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-report.json",
+      "sourceReportSha256": "cd47ca143ca500d29c3de598a05edfe56258e0a3df397ace88bcda4e5702d4d4",
+      "sourcePixelsVerified": {
+        "pixelCount": 16777216,
+        "mismatchedPixels": 0,
+        "sameGlobalCoordinate": true,
+        "changedPixelCount": 1002100,
+        "outsideRepairIdentical": true,
+        "allFourTileEdgesIdentical": true
+      },
+      "newNativeSource": "r08_c06_topjoints_nf21_v01",
+      "allFourRepairPerimetersActuallyViewed": true,
+      "repairPerimeterGeometryPassed": true,
+      "changedViewsActuallyInspected": [
+        {
+          "label": "V2R1",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-V2R1-native100.png",
+          "sha256": "dc58b9547eb85ba6fa94d7f5bd842623ddcd0ab237891c1ae2dd9138cdfd3ab4",
+          "crop": [
+            1748,
+            0,
+            2348,
+            1024
+          ],
+          "actuallyViewedNative100percent": true,
+          "geometryPassed": true
+        },
+        {
+          "label": "V2R2",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-V2R2-native100.png",
+          "sha256": "80a18d1ecf5fc820b7e2a606578ada5a085fb456e202cf4e204f0a3385189dcd",
+          "crop": [
+            1748,
+            1024,
+            2348,
+            2048
+          ],
+          "actuallyViewedNative100percent": true,
+          "geometryPassed": true
+        },
+        {
+          "label": "H1C2",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-H1C2-native100.png",
+          "sha256": "6ade68ebd3b80f014a25cc172b439d5ae02e32a5564265ca4fc851ce106cbcf9",
+          "crop": [
+            1024,
+            724,
+            2048,
+            1324
+          ],
+          "actuallyViewedNative100percent": true,
+          "geometryPassed": true
+        },
+        {
+          "label": "H1C3",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-H1C3-native100.png",
+          "sha256": "dd3f4f16c2598f53c99e00215310378f398d0b21cab092b61a099d213bb3a923",
+          "crop": [
+            2048,
+            724,
+            3072,
+            1324
+          ],
+          "actuallyViewedNative100percent": true,
+          "geometryPassed": true
+        },
+        {
+          "label": "J2048_1024",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/north-finish/qa/c04-hardseam-north-r08c06-nf21-v02-J2048_1024-native100.png",
+          "sha256": "171b9b346b0f3f847371452b41bd6982d76851a9e8ffe9ce9967523a536dab25",
+          "crop": [
+            1748,
+            724,
+            2348,
+            1324
+          ],
+          "actuallyViewedNative100percent": true,
+          "geometryPassed": true
+        }
+      ],
+      "inheritedReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/c04-hardseam-north-r08c06-newchat-v01-review.json",
+        "sha256": "65ccf2e0003926e35ed04e202e764ce4e0c958db35fe75bcd2c5e0636f26e1f6",
+        "reuseBasis": "All art pixels outside explicit repair mask unchanged; all 17 source and record hashes validated. Twenty unchanged segments and eight unchanged junctions reuse prior geometry QA."
+      },
+      "all24SegmentsGeometryPassed": true,
+      "all9JunctionsGeometryPassed": true,
+      "materialPassed": false,
+      "internalPassed": false,
+      "allOuterTileEdgesPassed": false,
+      "formalAccepted": false,
+      "localRepairAdoptable": true,
+      "finding": "Repaired top-middle stone course now has one continuous joint network, removed doubled bevel and cut polygon. All four changed native seam views and the changed junction actually viewed; no new discontinuity seen at four complete repair perimeters. Whole-tile material/layout and external checks remain unresolved.",
+      "remaining": [
+        "whole-tile brush/plant material consistency",
+        "right edge post cap layout extent versus overview, paired external review",
+        "all outer tile edges not yet fully accepted"
+      ]
+    }
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 1,
+  "column": 6,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "644022ca4ed94109a6ea991296b4b4b4af935a19baa3a3875d5d217e42436c3e",
+  "imageBytes": 25402026,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/r01_c06.provisional.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/verification.json",
+  "sourceLedgerSha256": "6916325be87e809e57a0fb66cddd473ffb3cd29b514dbd6a7b0a254f3706a443",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/r01_c06.provisional.png",
+    "imageSha256": "644022ca4ed94109a6ea991296b4b4b4af935a19baa3a3875d5d217e42436c3e",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/verification.json",
+        "sha256": "6916325be87e809e57a0fb66cddd473ffb3cd29b514dbd6a7b0a254f3706a443",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/r01_c06.assembly.json",
+        "sha256": "3352c7d81575b0fbb495280f5e4073b760dbaa52ae1eb24053cb8f77aa42f3c0",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/r01_c06.assembly.json",
+        "sha256": "3352c7d81575b0fbb495280f5e4073b760dbaa52ae1eb24053cb8f77aa42f3c0",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/r01_c06.assembly.json",
+        "sha256": "3352c7d81575b0fbb495280f5e4073b760dbaa52ae1eb24053cb8f77aa42f3c0",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/working-source-selection.json",
+        "sha256": "82e54188ed81c82ca07106010e96f72b9b755c404a5d13837a09bef0bf9ffc91",
+        "completeness": [
+          "/workingSelectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/concentrated-qa.json",
+        "sha256": "e3b11fc92566f7c20f0536e3e8d8d47836ff50ff4141b7a3664d13768a549137",
+        "completeness": [
+          "/workingSelectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/qa/working-source-sixteen-20261024/audit.json",
+        "sha256": "59ef586573c5105acccad8178f825accaac0ff5003e4ef369ca07d1d811cfeac",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "nativeCoreCount": 16,
+      "rootSelectedCoreCount": 0,
+      "internalAccepted": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/verification.json",
+        "record": {
+          "visualReviewPending": true,
+          "internalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/r01_c06.assembly.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "rootSelectedCoreCount": 0,
+          "internalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/working-source-selection.json",
+        "record": {
+          "workingSelectedCoreCount": 16,
+          "pendingCoreDecisions": [],
+          "externalQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/external/external-qa.json",
+            "sha256": "795eaf86d30998d2241f1bec17f681cf45d3f3e95d471036d17c0faedda0931b"
+          },
+          "wholeTileInternalAccepted": false,
+          "wholeTileExternalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/external/external-qa.json",
+        "record": {
+          "wholeTileExternalAccepted": false,
+          "wholeTileInternalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/concentrated-qa.json",
+        "record": {
+          "externalQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/external/external-qa.json",
+            "sha256": "795eaf86d30998d2241f1bec17f681cf45d3f3e95d471036d17c0faedda0931b"
+          },
+          "externalPairedCount": 4,
+          "externalPairedHoldCount": 4,
+          "externalUnpairedPendingSegments": 8,
+          "workingSourceReviewStatus": "complete",
+          "workingSelectedCoreCount": 16,
+          "wholeTileInternalAccepted": false,
+          "wholeTileExternalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/qa/working-source-sixteen-20261024/audit.json",
+        "record": {
+          "visualReviewPending": true,
+          "wholeTileAccepted": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/external/external-qa.json",
+    "sourceSha256": "795eaf86d30998d2241f1bec17f681cf45d3f3e95d471036d17c0faedda0931b",
+    "normalizedDocument": {
+      "atUtc": "2026-10-24T04:55:17.052185+00:00",
+      "tile": "r01_c06",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/assembly/native16-v01/r01_c06.provisional.png",
+        "sha256": "644022ca4ed94109a6ea991296b4b4b4af935a19baa3a3875d5d217e42436c3e"
+      },
+      "pairedWestSegments": [
+        {
+          "edge": "west",
+          "row": 1,
+          "globalBoundaryX": 20480,
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s01_s01_v01/west-boundary.100pct.png",
+            "sha256": "3d1c92b76a9c0882c58c519050a90d1c0eea4a211469eff77d5b3e47990e428f"
+          },
+          "derivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s01_s01_v01/west-boundary.100pct.png.derivation.json",
+            "sha256": "c6d39c55936e35371ada4c5f05cb616bdf6b17f44f25dab61e253579d0af6525"
+          },
+          "currentNativeSha256": "32c7196506e1e479795c9db20115e7357d7f8d78530679c4b97d0c7064706a14",
+          "westernOwnedCoreSource": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c05/parent-native-20261022/native/r01_c05_s01_s04_v01.png",
+            "sha256": "6881aad07d1dd92120be1073be1a6c56ba6670b4b30aaef09888f92d9ad360d2"
+          },
+          "pixelReplayMismatch": 0,
+          "candidateVsOwnedCoreSampleMismatch": 0,
+          "actualVisualQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s01_s01_v01/quick-qa.json",
+            "sha256": "40b8b8e5b09d51c826e9a5587f80a817324953f32ab9c8412fa2a3b0efb8a99d"
+          },
+          "status": "HOLD",
+          "observation": "Complete actual1254 viewed versus exact guide: majority jade/teal canopy with yellow-green highlights and one original exposed pale warm-gray rock mass retained at lower-left, continuous with bottom rock anchor; no exposed grassy ground or scattered new boulders, no internal pasted strip or blocking blur. CORE layout/detail locally usable. Full west1024 globalx20480: rock exposed contour height/facets and upper leaf/trunk phases step along x200, geometry/material HOLD. Full south1024 globaly1024: rock/leaf light and facet phases differ at y200 despite broad footprint continuation, material HOLD. Full east1024 globalx21504: leaf scale/cluster endpoints and lower branch phase jump at x200, HOLD. Only north intrinsic endpoint eligible, physical map north no neighbor. No source selection or whole/formal pass.\n",
+          "wholeNeighborAccepted": false
+        },
+        {
+          "edge": "west",
+          "row": 2,
+          "globalBoundaryX": 20480,
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s02_s01_v02/west-boundary.100pct.png",
+            "sha256": "e3aa7651e86ad54be8484c5c41cdf1aa891719befc6bc04153ed1a31a1219226"
+          },
+          "derivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s02_s01_v02/west-boundary.100pct.png.derivation.json",
+            "sha256": "aa02ea34a6192c1906e0b8767150959d60928d5583402b8dc0d8e4e391f0a135"
+          },
+          "currentNativeSha256": "e3ec572bea8cc88f8c64deacb5fa8800207a8901e2811e6a5dbc6714dd5b15b8",
+          "westernOwnedCoreSource": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c05/parent-native-20261022/native/r01_c05_s02_s04_v01.png",
+            "sha256": "7127d9036a46bbc8a8d0ed3d50186f7119eaaae707add5c528ef501fe2dafe89"
+          },
+          "pixelReplayMismatch": 0,
+          "candidateVsOwnedCoreSampleMismatch": 0,
+          "actualVisualQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s02_s01_v02/quick-qa.json",
+            "sha256": "2c615b12f403e166959b724f8950e6cc5bf55777043f90cf814e7155b1b3e277"
+          },
+          "status": "HOLD",
+          "observation": "Complete actual1254 viewed versus exact guide, with full west/south/east1024 hardcuts. Upper-left continuous pale warm-gray rock wedge restored, occupying the guide rock mass rather than a narrow edge stripe; remaining CORE is overlapping sharp jade/teal/yellow canopy, no exposed grass, scattered new boulders or internal rectangle. Independent layout audit confirms CORE usable and north intrinsic endpoint usable. W globalx20480 existing rock facet/light/leaf discontinuity remains; S globaly2048 leaf/branch shading phase remains; E globalx21504 large change in leaf scale and cluster endpoints remains. All3 paired joins HOLD, no local passes. Current best v02, no third same-method; use only north ownedCORE endpoint for subsequent top row. Source selection/whole/formal false.\n",
+          "wholeNeighborAccepted": false
+        },
+        {
+          "edge": "west",
+          "row": 3,
+          "globalBoundaryX": 20480,
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s03_s01_v01/west-boundary.100pct.png",
+            "sha256": "5d1317522bd36607ee707ea1cf7153fbfb61b2ca8b8af81aaeb3de46ec8c03b1"
+          },
+          "derivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s03_s01_v01/west-boundary.100pct.png.derivation.json",
+            "sha256": "75e6ec60dc9493647b21b2805c4f022c858c8d3e9eba6cad44df9bc8a127682d"
+          },
+          "currentNativeSha256": "f529d554f4e9d8067a77e16617c943c2eaf97abd3b2ac93c2cf0141b3022b3dd",
+          "westernOwnedCoreSource": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c05/parent-native-20261022/native/r01_c05_s03_s04_v01.png",
+            "sha256": "feec9ea6d274e2802e88832afdc42455d3dfbd7061825e323249d51a175ded62"
+          },
+          "pixelReplayMismatch": 0,
+          "candidateVsOwnedCoreSampleMismatch": 0,
+          "actualVisualQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s03_s01_v01/quick-qa.json",
+            "sha256": "01e66d3d1e14e55fa0ced440db141d38c172b3e0b1e19ec1490b0ac107213900"
+          },
+          "status": "HOLD",
+          "observation": "Actual full1254 and complete central1024 viewed against exact canopy guide/leaf-only style plus complete1024 west/south/east native hardcuts. Correct continuous jade/teal/yellow canopy, small existing upper-right brown trunk/branch crop and bottom stem hints; no ground clearing, grass, rock field, whole structure, blur or interior strip. West globalx20480 leaf/branch phase changes remain along the straight cut. South globaly3072 trunk broadly continues but leaf/light phase line remains, pending. East globalx21504 upper brown branch/canopy and yellow leaf endpoints change across the cut, geometry/material hold, no pass. Intrinsic north endpoint eligible for independent upper missing cell, no joined side promoted. selected0/whole0/formal0.\n",
+          "wholeNeighborAccepted": false
+        },
+        {
+          "edge": "west",
+          "row": 4,
+          "globalBoundaryX": 20480,
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s04_s01_v01/west-boundary.100pct.png",
+            "sha256": "966e42b6499f0c2822baa36b29319340a46beb96cd8b92409f4b4fa223a7a92e"
+          },
+          "derivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s04_s01_v01/west-boundary.100pct.png.derivation.json",
+            "sha256": "8abf832f4a09f4ce353b20db69555017dea6a431a255deb7c6661a495a0f9b90"
+          },
+          "currentNativeSha256": "5ea8a5904cb60a61bad0aa008b0c8dc66a0b232b915d0266aff4868c938c9c72",
+          "westernOwnedCoreSource": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c05/parent-native-20261022/native/r01_c05_s04_s04_v01.png",
+            "sha256": "a70279e5e4ee6d243a2840505e910c6c1af99fb5365e058633f47fdfd43ab15d"
+          },
+          "pixelReplayMismatch": 0,
+          "candidateVsOwnedCoreSampleMismatch": 0,
+          "actualVisualQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c06/parent-native-20261023/qa/r01_c06_s04_s01_v01/quick-qa.json",
+            "sha256": "2701065fd90520efc187e5e0a02b491082fec9d9e2737eb983804a81865c54e7"
+          },
+          "status": "HOLD",
+          "observation": "Actual full1254 and entire central1024 viewed against exact local guide and complete1024 west hardcut. Correct broad cropped pale-gray stone lower-left, warm brown central trunk with right fork, dark jade upper/right canopy and yellow-green foliage accents; no wider scene, water, props, sky or blur. Small five-lobed yellow blossom-like accents are nonblocking art-detail review pending because guide is low resolution; not a passed detail claim. West globalx20480 broad stone silhouette continues but stone facet/light/grain and upper leaf/branch phase show a straight material line; remains pending, no pass. Intrinsic north/east/south endpoints usable for independent missing cores. selected0/whole0/formal0.\n",
+          "wholeNeighborAccepted": false
+        }
+      ],
+      "pairedCount": 4,
+      "pairedPassCount": 0,
+      "pairedHoldCount": 4,
+      "north": "physical map boundary, no external neighbor",
+      "east": {
+        "status": "unpaired-pending",
+        "segments": 4,
+        "reason": "No frozen eligible eastern source supplied to this finite QA batch; no paired pass claimed"
+      },
+      "south": {
+        "status": "unpaired-pending",
+        "segments": 4,
+        "reason": "No frozen eligible southern source supplied to this finite QA batch; no paired pass claimed"
+      },
+      "newImagesGenerated": false,
+      "previousActualComplete1024ViewsReused": 4,
+      "wholeTileExternalAccepted": false,
+      "wholeTileInternalAccepted": false,
+      "formalAccepted": false
+    }
+  }
+}

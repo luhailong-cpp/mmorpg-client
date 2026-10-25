@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 13,
+  "column": 1,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "25a90b417f30abd9023d6c9d3618d9c81877b868d62062cdd4dd30222cfdf7f9",
+  "imageBytes": 24289496,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/c04-hardseam-west-r13c01-flow22-v04water3-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+  "sourceLedgerSha256": "2605eaf88df0650308d2a35c4b338e213507d78aca39fc5e081325e19d5686e0",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/c04-hardseam-west-r13c01-flow22-v04water3-candidate-4096.png",
+    "imageSha256": "25a90b417f30abd9023d6c9d3618d9c81877b868d62062cdd4dd30222cfdf7f9",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "sha256": "2605eaf88df0650308d2a35c4b338e213507d78aca39fc5e081325e19d5686e0",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "sha256": "2605eaf88df0650308d2a35c4b338e213507d78aca39fc5e081325e19d5686e0",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "fullCoreCoveragePassed": true,
+      "externalTileSeamsPassed": false,
+      "formalAccepted": false,
+      "pendingExternal": [
+        {
+          "edge": "north",
+          "segments": [
+            1,
+            3,
+            4
+          ],
+          "issue": "Visible water/stone horizontal material cutoff; geometry continuous, segment2 visually continuous"
+        },
+        {
+          "edge": "east",
+          "issue": "r13c02 fullcandidate unavailable"
+        },
+        {
+          "edge": "south",
+          "issue": "r14c01 fullcandidate unavailable"
+        }
+      ],
+      "unverifiedReason": "Host managed; builtin did not expose model/quality selectors or return verifiable model/quality metadata"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/r13c01-native-complete-review-flow22.json",
+        "record": {
+          "fullCoreCoveragePassed": true,
+          "externalTileSeamsPassed": false,
+          "formalAccepted": false,
+          "pendingExternal": [
+            {
+              "edge": "north",
+              "segments": [
+                1,
+                3,
+                4
+              ],
+              "issue": "Visible water/stone horizontal material cutoff; geometry continuous, segment2 visually continuous"
+            },
+            {
+              "edge": "east",
+              "issue": "r13c02 fullcandidate unavailable"
+            },
+            {
+              "edge": "south",
+              "issue": "r14c01 fullcandidate unavailable"
+            }
+          ],
+          "unverifiedReason": "Host managed; builtin did not expose model/quality selectors or return verifiable model/quality metadata"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "internalStatus": "16 full cores/24seams/9junctions plus3 repairs full perimeter and corner delta QA passed",
+          "externalTileSeamsPassed": false,
+          "formalAccepted": false,
+          "pendingExternal": [
+            {
+              "edge": "north",
+              "segments": [
+                1,
+                3,
+                4
+              ],
+              "issue": "Visible water/stone horizontal material cutoff; geometry continuous, segment2 visually continuous"
+            },
+            {
+              "edge": "east",
+              "issue": "r13c02 fullcandidate unavailable"
+            },
+            {
+              "edge": "south",
+              "issue": "r14c01 fullcandidate unavailable"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "internalStatus": "16 full cores/24seams/9junctions plus3 repairs full perimeter and corner delta QA passed",
+          "externalTileSeamsPassed": false,
+          "formalAccepted": false,
+          "pendingExternal": [
+            {
+              "edge": "north",
+              "segments": [
+                1,
+                3,
+                4
+              ],
+              "issue": "Visible water/stone horizontal material cutoff; geometry continuous, segment2 visually continuous"
+            },
+            {
+              "edge": "east",
+              "issue": "r13c02 fullcandidate unavailable"
+            },
+            {
+              "edge": "south",
+              "issue": "r14c01 fullcandidate unavailable"
+            }
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/r13c01-native-complete-review-flow22.json",
+    "sourceSha256": "b8f13fa350b0f927a4fb1ee351447b80984189ac21fdbb7b5bf2711fd0af94e3",
+    "normalizedDocument": {
+      "tile": "r13_c01",
+      "reviewedAtUtc": "2026-10-23T02:53:22.470882+00:00",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/c04-hardseam-west-r13c01-flow22-v04water3-candidate-4096.png",
+        "role": "complete16-native-CORE C04 with3 native AI local water repairs",
+        "sha256": "25a90b417f30abd9023d6c9d3618d9c81877b868d62062cdd4dd30222cfdf7f9",
+        "dimensions": [
+          4096,
+          4096
+        ]
+      },
+      "sourceReport": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/c04-hardseam-west-r13c01-flow22-v04water3-report.json",
+        "sha256": "7f6eec98c2a2296435c5534e9c8fb1441ccee81e6a455794fab026f2d565b357"
+      },
+      "initialFullReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/c04-hardseam-west-r13c01-flow22-v01-visual-review.json",
+        "sha256": "bd9f51a8db313ac28a493c4f913e9299b214fcb14c74b96205700c0ba9cb7257",
+        "actuallyViewedFull1024Cores": 16,
+        "actuallyViewedNativeSeamSegments": 24,
+        "actuallyViewedNativeSeamMontages": 8,
+        "actuallyViewed600Junctions": 9,
+        "actuallyViewedNorthPairs": 4
+      },
+      "repairDeltaReview": {
+        "completeNative1254PatchesActuallyViewed": 3,
+        "allFourPerimetersPerRepairActuallyViewed": true,
+        "perimeterSidesViewed": 12,
+        "allFourCornersPerRepairActuallyViewed": true,
+        "cornerPairsViewed": 12,
+        "affectedJunctionsActuallyViewed": [
+          [
+            2048,
+            1024
+          ],
+          [
+            1024,
+            3072
+          ],
+          [
+            2048,
+            3072
+          ]
+        ],
+        "deltaViewDerivation": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west-flow22/qa/c04-hardseam-west-r13c01-flow22-v04water3-delta-junctions.json",
+        "findings": [
+          "All3 rectangular water texture discontinuities removed with continuous original sea and caustic detail",
+          "All12 complete repair sides and12 corner pairs visually continuous",
+          "Final3 affected junctions visually continuous; unaffected initial QA reused without rescan"
+        ]
+      },
+      "unchangedQAReuseProof": {
+        "outsideRepairMasksByteExact": true,
+        "newSourceIds": [
+          17,
+          18,
+          19
+        ],
+        "allFour300pxOuterStripsUnchanged": {
+          "west": true,
+          "east": true,
+          "north": true,
+          "south": true
+        },
+        "source13InvalidRightHaloExcluded": true,
+        "validation": {
+          "pixelCount": 16777216,
+          "mismatchedPixels": 0,
+          "sameGlobalCoordinateExact": true,
+          "sourceIdPixelCounts": {
+            "1": 1166899,
+            "2": 1042891,
+            "3": 895190,
+            "4": 986325,
+            "5": 960110,
+            "6": 1048322,
+            "7": 791075,
+            "8": 1066235,
+            "9": 973429,
+            "10": 831323,
+            "11": 1031247,
+            "12": 1108916,
+            "13": 980146,
+            "14": 913492,
+            "15": 1025145,
+            "16": 935312,
+            "17": 375037,
+            "18": 249359,
+            "19": 396763
+          },
+          "unchangedOutsideRepairSelection": true,
+          "sourceInputsUnchanged": true,
+          "mandatoryCorePatchBoxes": [
+            [
+              300,
+              450,
+              850,
+              950
+            ]
+          ],
+          "mandatoryCoreUsesRepairOnly": true,
+          "mandatoryTargetPatchBoxes": [
+            [
+              450,
+              550,
+              750,
+              850
+            ]
+          ],
+          "mandatoryTargetsUseRepairOnly": true,
+          "diskRoundtripExact": true,
+          "interpolation": false,
+          "feathering": false,
+          "colorAdjustment": false,
+          "displacement": false
+        }
+      },
+      "fullCoreCoveragePassed": true,
+      "internalGeometryPassed": true,
+      "internalMaterialPassed": true,
+      "internalPassed": true,
+      "internalTileSeamsPassed": true,
+      "externalTileSeamsPassed": false,
+      "formalAccepted": false,
+      "pendingExternal": [
+        {
+          "edge": "north",
+          "segments": [
+            1,
+            3,
+            4
+          ],
+          "issue": "Visible water/stone horizontal material cutoff; geometry continuous, segment2 visually continuous"
+        },
+        {
+          "edge": "east",
+          "issue": "r13c02 fullcandidate unavailable"
+        },
+        {
+          "edge": "south",
+          "issue": "r14c01 fullcandidate unavailable"
+        }
+      ],
+      "northSegment2": "current native geometry and material continuous",
+      "actualModel": null,
+      "actualQuality": null,
+      "unverifiedReason": "Host managed; builtin did not expose model/quality selectors or return verifiable model/quality metadata"
+    }
+  }
+}

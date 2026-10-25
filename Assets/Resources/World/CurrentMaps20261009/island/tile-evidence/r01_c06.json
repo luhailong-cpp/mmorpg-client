@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 1,
+  "column": 6,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "e02bef39aadc7883436722395b4f3cb979f92b4cbc31ba273c10d0d39c9cfa34",
+  "imageBytes": 28737113,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r01_c06_candidate-v2_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/connected-east-six-current-selection-20261019.json",
+  "sourceLedgerSha256": "001c0b74df771a24b571baf20e4fa7aaf98d177c97849ca7aead071c6a922cd0",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r01_c06_candidate-v2_4096.png",
+    "imageSha256": "e02bef39aadc7883436722395b4f3cb979f92b4cbc31ba273c10d0d39c9cfa34",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/connected-east-six-current-selection-20261019.json",
+        "sha256": "001c0b74df771a24b571baf20e4fa7aaf98d177c97849ca7aead071c6a922cd0",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "candidate_pending_native_visual_and_boundary_review",
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "tilePixelCount": 16777216,
+        "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+        "baseCoverageRecomputedFromOriginalNatives": true,
+        "editTargetExactlyEqualsBaseCrop": true,
+        "editTargetExactlyEqualsRecordedAncestorCrop": true,
+        "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+        "applicationBaseDifferencesConfinedOutsideMask": true,
+        "guidePixelsUsedAsFinalArt": false,
+        "unassignedPixels": 0
+      },
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r01_c06_candidate-v2_4096.native-repair.json",
+        "record": {
+          "status": "candidate_pending_native_visual_and_boundary_review",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "tilePixelCount": 16777216,
+            "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+            "baseCoverageRecomputedFromOriginalNatives": true,
+            "editTargetExactlyEqualsBaseCrop": true,
+            "editTargetExactlyEqualsRecordedAncestorCrop": true,
+            "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+            "applicationBaseDifferencesConfinedOutsideMask": true,
+            "guidePixelsUsedAsFinalArt": false,
+            "unassignedPixels": 0
+          },
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/connected-east-six-current-selection-20261019.json",
+        "record": {
+          "status": "16_native_plus1_repair_v2_internal33_geometry_pass_material_and_shared_pending",
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "selectedCoreCount": 16,
+          "pendingIssues": [
+            {
+              "location": "west subrow1",
+              "issue": "water phase and small rock contour continuity remain pending"
+            },
+            {
+              "location": "west subrow2",
+              "issue": "material/focus phase pending"
+            },
+            {
+              "location": "west subrow3 lower join",
+              "issue": "small finial contour phase pending"
+            },
+            {
+              "location": "south/east boundaries",
+              "issue": "await adjacent tiles and joint native review"
+            }
+          ],
+          "resolvedLocalIssues": [
+            {
+              "issue": "red roof beam contour small steps at source seam",
+              "repair": "r01_c06_roofbeam_20261019_a01",
+              "mask": "v2",
+              "review": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_roofbeam_20261019_a01_mask_v2/connected_finish2_owner_review_20261019.json",
+                "sha256": "fd426339eff430b2a6fd5aef4a4877c5366947cb2a9eaa103037749f33e1322b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v2_delta_finish2_20261019/qa_index.json",
+        "record": {
+          "status": "awaiting_native_delta_view"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+        "record": {
+          "formalAccepted": false,
+          "materialStatus": "PENDING"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current-after.json",
+        "record": {
+          "formalAccepted": false,
+          "materialStatus": "PENDING"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v2_delta_finish2_20261019/qa_index.json",
+    "sourceSha256": "e8144fd7c28a5d82c07a5ee3f9d978ba2d30c3c922e4919685d8a1e28fe6f931",
+    "normalizedDocument": {
+      "image": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r01_c06_candidate-v2_4096.png",
+        "sha256": "e02bef39aadc7883436722395b4f3cb979f92b4cbc31ba273c10d0d39c9cfa34"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r01_c06_candidate-v2_4096.native-repair.json",
+        "sha256": "bb0d971a5c19de99df2146bc91a7305b558c8b48c6a71b7298372c41a62f8b60"
+      },
+      "previousReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+        "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+      },
+      "entries": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r01_c01-c02_100pct.png",
+          "sha256": "5f9fe31c9deb2dd2ea31c9c73e72e0dd9a010aada2eb468bf377acc94716db4c",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            0,
+            1264,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 0,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r01_c02-c03_100pct.png",
+          "sha256": "2df0e468ec78b935a0afb54164e9ffd36ce3433481d9472e9aac1b8750a48d39",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            0,
+            2288,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 1,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r01_c03-c04_100pct.png",
+          "sha256": "28e2d7be6933b58052d29fa8965fe1a0ef69ac3fbcf038165fdc9993ce23a4d2",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            0,
+            3312,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 2,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending. Water texture/tone phase remains a material issue.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r02_c01-c02_100pct.png",
+          "sha256": "80c143386d63066e03eb0dc88e6417d348d3901227a530f3947e4847d1ec7232",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            909,
+            1264,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 3,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r02_c02-c03_100pct.png",
+          "sha256": "1a1e48ee1c702d507d9a5aa0d899fb67eaecb4c567660727cbe43c8e0da14350",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            909,
+            2288,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 4,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r02_c03-c04_100pct.png",
+          "sha256": "a2a7d8291ef6dac888a0ee1e2082cc19d79be27f1bc194ad64e04df83577e847",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            909,
+            3312,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 5,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r03_c01-c02_100pct.png",
+          "sha256": "a78f820599d4ffe19ea5786113bf825fcfc69702b10876beca93983fdf0b1f32",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            1933,
+            1264,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 6,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r03_c02-c03_100pct.png",
+          "sha256": "fa3e003b663b064010320aa8c59d6fdaf77b4cd691c5a3807bc4640451d44be1",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1933,
+            2288,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 7,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v2_delta_finish2_20261019/left-right_r03_c03-c04_100pct.png",
+          "sha256": "3fca508ac65edd88c7a6f301b589f492df07d59c5278785f27dd453e1d277dcb",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1933,
+            3312,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 8,
+          "viewedAtNativeScale": false,
+          "geometryStatus": "PENDING_review",
+          "materialStatus": "PENDING",
+          "note": "One local red roof beam near tile x2967..2985,y2988..3032 has small steps across source cut in its parallel lower contours. Same issue overlaps four crops; local repair pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r04_c01-c02_100pct.png",
+          "sha256": "24837220f7d681d84ceb28077f08c5d743498c4f3719f1ebe1f6420dd072744a",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            2957,
+            1264,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 9,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/left-right_r04_c02-c03_100pct.png",
+          "sha256": "c7038ceca16ed33992a326e0420a4a553eb9e10f1768ce86648c874ec5b9abfb",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2957,
+            2288,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 10,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v2_delta_finish2_20261019/left-right_r04_c03-c04_100pct.png",
+          "sha256": "a9a34aef9f0f22beb894d3c6b269ea5298a14db4ca84384d0fbd7119f81a7541",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2957,
+            3312,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 11,
+          "viewedAtNativeScale": false,
+          "geometryStatus": "PENDING_review",
+          "materialStatus": "PENDING",
+          "note": "One local red roof beam near tile x2967..2985,y2988..3032 has small steps across source cut in its parallel lower contours. Same issue overlaps four crops; local repair pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r01-r02_x0000-1024_100pct.png",
+          "sha256": "21cb8a0502860d2b52cb0edf332a58892c200334a608a7fa3c840c5bc962c777",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            784,
+            1024,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 12,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r01-r02_x1024-2048_100pct.png",
+          "sha256": "aa87fbe671bf91f123cc97516484e4d9b6e34626e8ced3f2596d517179477ad4",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            784,
+            2048,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 13,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r01-r02_x2048-3072_100pct.png",
+          "sha256": "c114af45a20b4ce42addbf0166c0be3f687ca4455fec214cc953c493ad5cc98a",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            784,
+            3072,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 14,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r01-r02_x3072-4096_100pct.png",
+          "sha256": "765a991d0ccf8e431cd07867500b7b5bd7fd8467e94323009b4a8d3220fb9e76",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            784,
+            4096,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 15,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r02-r03_x0000-1024_100pct.png",
+          "sha256": "3fd13a473a251ba8b0264e3ab05607a0edd54a7ab98b0ed73cc3b1f4bb86d8d8",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            1808,
+            1024,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 16,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r02-r03_x1024-2048_100pct.png",
+          "sha256": "6604f15ad30a8bbdf8350866bbc5b426fe3e3bc47866b008a4bb854af92bac83",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            1808,
+            2048,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 17,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r02-r03_x2048-3072_100pct.png",
+          "sha256": "9ec6ff87b742439d373b9294c217ce68277d56284adc562ef9ffa530d1ed9990",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            1808,
+            3072,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 18,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r02-r03_x3072-4096_100pct.png",
+          "sha256": "226ac9ba333689a3c37f5407fc3fcd595a492f7df40f7f0e6ea22c7ffc997c90",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            1808,
+            4096,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 19,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r03-r04_x0000-1024_100pct.png",
+          "sha256": "1bd3ec38c145a9965d48fbd3882b7f1538fbb2bcd8b1c5fba94573b04655690e",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            2832,
+            1024,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 20,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/top-bottom_r03-r04_x1024-2048_100pct.png",
+          "sha256": "4e128124da48f8186194a7e798b375c0a9ab3d2918eca926e3f0d3ffacddce35",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            2832,
+            2048,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 21,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v2_delta_finish2_20261019/top-bottom_r03-r04_x2048-3072_100pct.png",
+          "sha256": "a92b22cb9a10fff58b5c9d6d35048d8432d0f71a774e7a18360ad16c6c4f7684",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            2832,
+            3072,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 22,
+          "viewedAtNativeScale": false,
+          "geometryStatus": "PENDING_review",
+          "materialStatus": "PENDING",
+          "note": "One local red roof beam near tile x2967..2985,y2988..3032 has small steps across source cut in its parallel lower contours. Same issue overlaps four crops; local repair pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v2_delta_finish2_20261019/top-bottom_r03-r04_x3072-4096_100pct.png",
+          "sha256": "b8c9ec8214ceea6b7e2b11a3097d34d3b34687074069fd57c88ebeebe2db2c1e",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            2832,
+            4096,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 23,
+          "viewedAtNativeScale": false,
+          "geometryStatus": "PENDING_review",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r01-r02_c01-c02_100pct.png",
+          "sha256": "110db83ba1cab63ce581e8fc398ddbcfba127de7605ec0db098d07613e350eeb",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            784,
+            1264,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 24,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r01-r02_c02-c03_100pct.png",
+          "sha256": "d4813050a9b5542ac9e97d4bf9e9408c2dc7b7236bd473940f3546279dfd267c",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            784,
+            2288,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 25,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r01-r02_c03-c04_100pct.png",
+          "sha256": "ececd320658dbf34a096fd954825aff714fc35f753d2fc5e9270ec59f33b2c2d",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            784,
+            3312,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 26,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r02-r03_c01-c02_100pct.png",
+          "sha256": "3be6b5042dc97fcd1b9ee027668d48b75b0efc854e75e72e623d0e3195f47a66",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            1808,
+            1264,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 27,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r02-r03_c02-c03_100pct.png",
+          "sha256": "caa30dbdd2c61b0a079628bd3928f1235e540428b482fbdc7ccdc030cddd25fd",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1808,
+            2288,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 28,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r02-r03_c03-c04_100pct.png",
+          "sha256": "f5ab31bfba18453f2f486e5a92768c290bed924dc813a8536db61740d373dbb0",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1808,
+            3312,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 29,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r03-r04_c01-c02_100pct.png",
+          "sha256": "0de815e8fe2130233b7df16f6359ec78daee144536ba989797773996a1a60071",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            2832,
+            1264,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 30,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r01_c06_candidate-v1_4096/junction_r03-r04_c02-c03_100pct.png",
+          "sha256": "bb059ba0bf8a91927d593313de070df5b52f7c380c0689af59259ca8313dc4b1",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2832,
+            2288,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 31,
+          "viewedAtNativeScale": true,
+          "geometryStatus": "PASS",
+          "materialStatus": "PENDING",
+          "note": "Actually viewed native-scale crop: principal rock, foliage, wall and roof contours continuous. Material evaluation remains pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": true,
+          "reusedReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v1_internal33_pending_finish2_20261019.json",
+            "sha256": "0fafe09b71b07f93241e6b4a6e8a51093355b417eab26d865197b46b02f13ae6"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r01_c06_v2_delta_finish2_20261019/junction_r03-r04_c03-c04_100pct.png",
+          "sha256": "ed6c4f044e8a8adf07939f3aebf9dae7e63e442157c7c10483364aaea0192f1e",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2832,
+            3312,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 32,
+          "viewedAtNativeScale": false,
+          "geometryStatus": "PENDING_review",
+          "materialStatus": "PENDING",
+          "note": "One local red roof beam near tile x2967..2985,y2988..3032 has small steps across source cut in its parallel lower contours. Same issue overlaps four crops; local repair pending.",
+          "exactCurrentCropPixelIdentity": true,
+          "unchangedFromV1ReviewedCrop": false
+        }
+      ],
+      "changedIndices": [
+        8,
+        11,
+        22,
+        23,
+        32
+      ],
+      "reusedCount": 28,
+      "status": "awaiting_native_delta_view"
+    }
+  }
+}

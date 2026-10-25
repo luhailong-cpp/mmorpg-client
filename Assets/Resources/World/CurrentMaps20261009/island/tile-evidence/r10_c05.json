@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 10,
+  "column": 5,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "04e1b5439a7dc4a38c2712ccec6121329870ae9db9719e39884281bc512223e1",
+  "imageBytes": 25348460,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-manifest.json",
+  "sourceLedgerSha256": "4e7e2d9086d45b0980464ed422d6f64649596aa83a6e501f243f36f8e29cbe4b",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-candidate-4096.png",
+    "imageSha256": "04e1b5439a7dc4a38c2712ccec6121329870ae9db9719e39884281bc512223e1",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-manifest.json",
+        "sha256": "4e7e2d9086d45b0980464ed422d6f64649596aa83a6e501f243f36f8e29cbe4b",
+        "sourceReviewSha256": "4e7e2d9086d45b0980464ed422d6f64649596aa83a6e501f243f36f8e29cbe4b",
+        "completeness": [
+          [
+            "/tiles/0/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-report.json",
+        "sha256": "49d8dc1ff6ad54cc62ad111680fe2582043553ab7576fe61efcdda1fbd2b1bb6",
+        "sourceReviewSha256": "49d8dc1ff6ad54cc62ad111680fe2582043553ab7576fe61efcdda1fbd2b1bb6",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "QA native repair candidate; pending visual review; not formal acceptance"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-manifest.json",
+        "record": {
+          "status": "qa_candidates_written"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-report.json",
+        "record": {
+          "status": "QA native repair candidate; pending visual review; not formal acceptance"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-manifest.json",
+    "sourceSha256": "4e7e2d9086d45b0980464ed422d6f64649596aa83a6e501f243f36f8e29cbe4b",
+    "normalizedDocument": {
+      "status": "qa_candidates_written",
+      "createdAtUtc": "2026-10-13T00:59:59.162787+00:00",
+      "artworkWritten": true,
+      "repairGlobalBox": [
+        17084,
+        37864,
+        18338,
+        39118
+      ],
+      "selectedPixels": 166939,
+      "repairRois": [
+        [
+          270,
+          340,
+          950,
+          600
+        ]
+      ],
+      "mandatoryTargets": [
+        [
+          287,
+          360,
+          926,
+          579
+        ]
+      ],
+      "flushOuterEdges": [],
+      "sharedSelectionMask": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-repair-local-selection-mask.png",
+        "sha256": "bc53ee056878bd12008534d67e2a58952786a39457b9490dac80f54a651a6bd7",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "binaryValues": [
+          0,
+          255
+        ],
+        "nativeGlobalBox": [
+          17084,
+          37864,
+          18338,
+          39118
+        ],
+        "scale": "1:1"
+      },
+      "allInputsUnchanged": true,
+      "distributedSelectedPixelsExact": true,
+      "tiles": [
+        {
+          "tile": "r10_c05",
+          "candidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-candidate-4096.png",
+            "sha256": "04e1b5439a7dc4a38c2712ccec6121329870ae9db9719e39884281bc512223e1",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "sourceIdMask": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-source-id-mask.png",
+            "sha256": "d34e5f15628119817c416fed1241196b750eb24a777c026556eab08b32989511",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "report": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-report.json",
+            "sha256": "49d8dc1ff6ad54cc62ad111680fe2582043553ab7576fe61efcdda1fbd2b1bb6"
+          },
+          "repairSourceId": 19,
+          "validation": {
+            "pixelCount": 16777216,
+            "mismatchedPixels": 0,
+            "sameGlobalCoordinateExact": true,
+            "sourceIdPixelCounts": {
+              "1": 825370,
+              "2": 1070294,
+              "3": 916532,
+              "4": 953880,
+              "5": 1076188,
+              "6": 852239,
+              "7": 921212,
+              "8": 1066609,
+              "9": 980665,
+              "10": 954665,
+              "11": 1160137,
+              "12": 1003247,
+              "13": 1190207,
+              "14": 1097482,
+              "15": 1017836,
+              "16": 1182765,
+              "17": 195468,
+              "18": 145481,
+              "19": 166939
+            },
+            "sourceInputsAndRecordsUnchanged": true,
+            "interpolation": false,
+            "feathering": false,
+            "colorAdjustment": false,
+            "displacement": false,
+            "unchangedOutsideRepairSelection": true,
+            "mandatoryCoreUsesRepairOnly": true,
+            "mandatoryTargetsUseRepairOnly": true,
+            "repairPixelCount": 166939,
+            "diskRoundtripExact": true,
+            "mandatoryCorePatchBoxes": [
+              [
+                282,
+                352,
+                938,
+                588
+              ]
+            ],
+            "mandatoryTargetPatchBoxes": [
+              [
+                287,
+                360,
+                926,
+                579
+              ]
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-repair-local-selection-mask.png",
+          "sha256": "bc53ee056878bd12008534d67e2a58952786a39457b9490dac80f54a651a6bd7",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "binaryValues": [
+            0,
+            255
+          ],
+          "nativeGlobalBox": [
+            17084,
+            37864,
+            18338,
+            39118
+          ],
+          "scale": "1:1"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-repair-area-base-left-candidate-right-100pct.png",
+          "sha256": "75f2344a6c8c3d07293077a1696885cce7a24267d932725f714f6622c10bb653",
+          "dimensions": [
+            2508,
+            1254
+          ],
+          "nativeGlobalBox": [
+            17084,
+            37864,
+            18338,
+            39118
+          ],
+          "scale": "1:1",
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-roi1-top-base-first-candidate-second-100pct.png",
+          "sha256": "f10a3f8f30e65de07c72c3029d62258a4f1e2d867d23d7ae6a365429ea64f6eb",
+          "dimensions": [
+            880,
+            424
+          ],
+          "nativeGlobalBox": [
+            17254,
+            38104,
+            18134,
+            38316
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-roi1-bottom-base-first-candidate-second-100pct.png",
+          "sha256": "43cb1388e89f5eb748278e3d7a2d1e04e0baf844f0504909db5ba074814ce807",
+          "dimensions": [
+            880,
+            424
+          ],
+          "nativeGlobalBox": [
+            17254,
+            38352,
+            18134,
+            38564
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-roi1-left-base-first-candidate-second-100pct.png",
+          "sha256": "14322bf1c81385a520281601ffe3cfe1de692c2c43ab022869c4df93577d7ca6",
+          "dimensions": [
+            424,
+            460
+          ],
+          "nativeGlobalBox": [
+            17254,
+            38104,
+            17466,
+            38564
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-roi1-right-base-first-candidate-second-100pct.png",
+          "sha256": "d3c8d2243bd59f94320b9435652feda7149659f10c1399f353877e3fe2784b7f",
+          "dimensions": [
+            424,
+            460
+          ],
+          "nativeGlobalBox": [
+            17922,
+            38104,
+            18134,
+            38564
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-candidate-4096.png",
+          "sha256": "04e1b5439a7dc4a38c2712ccec6121329870ae9db9719e39884281bc512223e1",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-source-id-mask.png",
+          "sha256": "d34e5f15628119817c416fed1241196b750eb24a777c026556eab08b32989511",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/east-r10c05-panelbevel-v02-r10_c05-repair-selection-mask.png",
+          "sha256": "6a60b0afc6be53fe1a2ee9cbfc6ae51431bdfb50820f984315dd86b1432c6d4d",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "binaryValues": [
+            0,
+            255
+          ]
+        }
+      ]
+    }
+  }
+}

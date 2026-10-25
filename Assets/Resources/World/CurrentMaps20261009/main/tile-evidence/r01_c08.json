@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 1,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "1a534863205b48e4732c2452beaa13fbd0fb27aabf4ad37f156f191770208324",
+  "imageBytes": 24870596,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c08/repair-batches/roof-cap-x2048-y3072-fix02/proposal-binary-v1/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c08/repair-batches/roof-cap-x2048-y3072-fix02/proposal-binary-v1/provenance.json",
+  "sourceLedgerSha256": "237f28a22058adf92880b4ce46420f16c3b085187a984d42882f755d48184b09",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c08/repair-batches/roof-cap-x2048-y3072-fix02/proposal-binary-v1/candidate.png",
+    "imageSha256": "1a534863205b48e4732c2452beaa13fbd0fb27aabf4ad37f156f191770208324",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c08/repair-batches/roof-cap-x2048-y3072-fix02/proposal-binary-v1/provenance.json",
+        "sha256": "237f28a22058adf92880b4ce46420f16c3b085187a984d42882f755d48184b09",
+        "sourceReviewSha256": "237f28a22058adf92880b4ce46420f16c3b085187a984d42882f755d48184b09",
+        "completeness": [
+          "Output SHA binds original16 regular native cores plus exact repair overlays."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c08/repair-batches/roof-cap-x2048-y3072-fix02/proposal-binary-v1/pixelproof.json",
+        "sha256": "d2e0ca63cdd4c11cafe7d35a3a0a35ce3f75e2f75e10ef529bf13e6dafdf8ace",
+        "sourceReviewSha256": "d2e0ca63cdd4c11cafe7d35a3a0a35ce3f75e2f75e10ef529bf13e6dafdf8ace",
+        "completeness": [
+          "All output pixels exactly accounted for by base/native; no resampling."
+        ]
+      }
+    ],
+    "selectionBasis": "output_sha_bound_full16_core_candidate_or_native_replacement_on_pinned_full16_base",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "complete_native_repair_candidate_unaccepted"
+    },
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

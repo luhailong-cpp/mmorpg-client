@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 9,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "a2ad10f57414591095b9d4f9816b51e8b27f00e3ee36e233aa7dc6d16812a533",
+  "imageBytes": 24558434,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c08.candidate-reboot-pathfix-20261022-v01.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c08.candidate-reboot-pathfix-20261022-v01.png.generation.json",
+  "sourceLedgerSha256": "7b70c5299391a7a5c364cbf6f95dd1b7aa586200ae9b0bc17cb49d237dd26a4f",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r09_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c08.candidate-reboot-pathfix-20261022-v01.png",
+    "imageSha256": "a2ad10f57414591095b9d4f9816b51e8b27f00e3ee36e233aa7dc6d16812a533",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c08.candidate-reboot-pathfix-20261022-v01.png.generation.json",
+        "sha256": "7b70c5299391a7a5c364cbf6f95dd1b7aa586200ae9b0bc17cb49d237dd26a4f",
+        "completeness": [
+          "/fullCoverage",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c08.candidate-reboot-pathfix-20261022-v01.png.generation.json",
+        "sha256": "7b70c5299391a7a5c364cbf6f95dd1b7aa586200ae9b0bc17cb49d237dd26a4f",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/source-proof.json",
+        "sha256": "023df14306327b55918b0504857fcf171ea275bdfbb7be34a700020f768a2cf6",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "full_candidate_internal_review_pending",
+      "pendingRepair": [
+        {
+          "point": "14-upper-right-oval-E-cut",
+          "repairAttempts": 2,
+          "best": "v03",
+          "status": "deferred_unpassed_after_two_repairs",
+          "finding": "Missing approved upperrightoval restored; E truecore silhouette still needsboundedapprovedshape check. Do notpropagate Edefect; continueindependentmissing."
+        },
+        {
+          "point": "32S-narrow-ivory-inner-joint",
+          "repairAttempts": 2,
+          "status": "deferred_unpassed_after_two_repairs",
+          "best": "reboot_pathfix_v02",
+          "finding": "South narrow ivory strip inner grout still steps approx15–20px at truecore join. No third repetition.",
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r09_c08-path-seam-repair-20261022/qa/v02/review.json",
+            "sha256": "6b787d7f7fe372841e5aa31af085dd60a9fb1a1278678b6edf8c1e897397fa0c"
+          }
+        }
+      ],
+      "externalPassed": false,
+      "formalAccepted": false,
+      "currentInternalReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/internal-review.json",
+        "sha256": "3dfd16ecfe91d94d27dccc74ad559a0160fe7da5694600a201b648c2bb26594c"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c08.candidate-reboot-pathfix-20261022-v01.png.generation.json",
+        "record": {
+          "fullCoverage": true,
+          "status": "full_candidate_pending_internal_and_external_review"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r09_c08.json",
+        "record": {
+          "status": "full_candidate_internal_review_pending",
+          "pendingRepair": [
+            {
+              "point": "14-upper-right-oval-E-cut",
+              "repairAttempts": 2,
+              "best": "v03",
+              "status": "deferred_unpassed_after_two_repairs",
+              "finding": "Missing approved upperrightoval restored; E truecore silhouette still needsboundedapprovedshape check. Do notpropagate Edefect; continueindependentmissing."
+            },
+            {
+              "point": "32S-narrow-ivory-inner-joint",
+              "repairAttempts": 2,
+              "status": "deferred_unpassed_after_two_repairs",
+              "best": "reboot_pathfix_v02",
+              "finding": "South narrow ivory strip inner grout still steps approx15–20px at truecore join. No third repetition.",
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r09_c08-path-seam-repair-20261022/qa/v02/review.json",
+                "sha256": "6b787d7f7fe372841e5aa31af085dd60a9fb1a1278678b6edf8c1e897397fa0c"
+              }
+            }
+          ],
+          "externalPassed": false,
+          "formalAccepted": false,
+          "currentInternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/internal-review.json",
+            "sha256": "3dfd16ecfe91d94d27dccc74ad559a0160fe7da5694600a201b648c2bb26594c"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/internal-review.json",
+        "record": {
+          "remainingIssues": [
+            {
+              "point": "14-upper-right-oval-E-cut",
+              "repairAttempts": 2,
+              "best": "v03",
+              "status": "deferred_unpassed_after_two_repairs",
+              "finding": "Missing approved upperrightoval restored; E truecore silhouette still needsboundedapprovedshape check. Do notpropagate Edefect; continueindependentmissing."
+            },
+            {
+              "point": "32S-narrow-ivory-inner-joint",
+              "repairAttempts": 2,
+              "status": "deferred_unpassed_after_two_repairs",
+              "best": "reboot_pathfix_v02",
+              "finding": "South narrow ivory strip inner grout still steps approx15–20px at truecore join. No third repetition.",
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r09_c08-path-seam-repair-20261022/qa/v02/review.json",
+                "sha256": "6b787d7f7fe372841e5aa31af085dd60a9fb1a1278678b6edf8c1e897397fa0c"
+              }
+            }
+          ],
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/current-contact-review.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/current-hash-review-map-20261019.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/internal-review.json",
+    "sourceSha256": "3dfd16ecfe91d94d27dccc74ad559a0160fe7da5694600a201b648c2bb26594c",
+    "normalizedDocument": {
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r09_c08.candidate-reboot-pathfix-20261022-v01.png",
+      "candidateSha256": "a2ad10f57414591095b9d4f9816b51e8b27f00e3ee36e233aa7dc6d16812a533",
+      "rootReplayMismatchedPixels": 0,
+      "delegatedRepairReceipt": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r09_c08-path-seam-repair-20261022/receipt.json",
+        "sha256": "95b74cc0e1020c65dbf8f4e604d466f3dbb594e14395e3d72fa732faf7704ca3"
+      },
+      "currentContactReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r09_c08-reboot-pathfix-20261022-v01/current-contact-review.json",
+      "seamsLocallyPassed": 10,
+      "junctionsLocallyPassed": 2,
+      "outerBoundaryLocalImprovement": true,
+      "samePointRepairAttempts": 2,
+      "remainingIssues": [
+        {
+          "point": "14-upper-right-oval-E-cut",
+          "repairAttempts": 2,
+          "best": "v03",
+          "status": "deferred_unpassed_after_two_repairs",
+          "finding": "Missing approved upperrightoval restored; E truecore silhouette still needsboundedapprovedshape check. Do notpropagate Edefect; continueindependentmissing."
+        },
+        {
+          "point": "32S-narrow-ivory-inner-joint",
+          "repairAttempts": 2,
+          "status": "deferred_unpassed_after_two_repairs",
+          "best": "reboot_pathfix_v02",
+          "finding": "South narrow ivory strip inner grout still steps approx15–20px at truecore join. No third repetition.",
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r09_c08-path-seam-repair-20261022/qa/v02/review.json",
+            "sha256": "6b787d7f7fe372841e5aa31af085dd60a9fb1a1278678b6edf8c1e897397fa0c"
+          }
+        }
+      ],
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false
+    }
+  }
+}

@@ -1,0 +1,1150 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 13,
+  "column": 1,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+  "imageBytes": 22021539,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/assembly.json",
+  "sourceLedgerSha256": "cdbd5cb46842b2ff50e30bf63addfb328c570a370110611fad5a216284c4f58b",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+    "imageSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/assembly.json",
+        "sha256": "cdbd5cb46842b2ff50e30bf63addfb328c570a370110611fad5a216284c4f58b",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/assembly.json",
+        "sha256": "cdbd5cb46842b2ff50e30bf63addfb328c570a370110611fad5a216284c4f58b",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/review.json",
+        "record": {
+          "status": "full16_native_candidate_failed_internal_QA",
+          "preflightIsVisualAcceptance": false,
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false,
+          "issues": [
+            {
+              "id": "floor-dangling-grooves",
+              "severity": "blocking_geometry",
+              "crops": [
+                "V1-1",
+                "V3-2",
+                "V3-3",
+                "V3-4",
+                "X1-1",
+                "X1-3",
+                "X3-3",
+                "H3-3"
+              ],
+              "description": "Several diagonal grooves stop with cut straight or angled deadends on unbroken grey slab faces. At upper third join an extra short line/jog interrupts the diagonal rhythm; lower-right pair of grooves floats. Requires native reconstruction, no blur or numeric-only pass."
+            },
+            {
+              "id": "blue-material-fronts",
+              "severity": "blocking_material",
+              "crops": [
+                "V2-2",
+                "V2-3",
+                "H2-2",
+                "H3-2",
+                "X2-2",
+                "X3-2"
+              ],
+              "description": "Dense cellular blue pigment and scalloped/jagged vertical tone fronts persist through row2/3/4 wide blue band. Grey also varies from flaky faces to fine repeated diamond crosshatching. These are unresolved actual visual failures."
+            },
+            {
+              "id": "blue-width-and-extra-bend",
+              "severity": "blocking_layout_review",
+              "crops": [
+                "V1-2",
+                "V2-2",
+                "X1-2",
+                "X2-1",
+                "X2-2"
+              ],
+              "description": "Earlier p02_02 wide-blue restoration is retained rather than bad narrow version; approximately50px guide discrepancy and extra local blue boundary jog remain. Wide vs narrow approved road geometry must be restored jointly when repaired."
+            },
+            {
+              "id": "row4-invented-vertical-margin",
+              "severity": "blocking_geometry",
+              "crops": [
+                "V2-4",
+                "X3-2",
+                "bottom3"
+              ],
+              "description": "Recovered p04_03 extends the left grey rectangular margin into a long vertical divider around native x333 (tile core x2266), instead of the coarse sparse diagonal road interior. Do not propagate that interior divider into below tile; right-edge grey continuation is independent."
+            },
+            {
+              "id": "foliage-and-paper-detail-review",
+              "severity": "blocking_layout_review",
+              "crops": [
+                "V1-4",
+                "H3-1",
+                "H3-2",
+                "X3-1",
+                "X2-3"
+              ],
+              "description": "Approved left shrubs and yellow leaves retain approximate placement, but native yellow star-shaped clusters with center buds need identity correction/review against approved crop. Flat red spent paper identity is correct; several added small detached red fragments and dense creased pigment remain unaccepted."
+            },
+            {
+              "id": "right-base-fragment-unpaired",
+              "severity": "external_pending",
+              "crops": [
+                "right4",
+                "bottom4"
+              ],
+              "description": "Last p04_04 retains only clipped pale tower stone base/rail and large grey ground. No complete tower or new foliage. Adjacent r13_c02 and r14_c01 are absent, so profile/seam continuation and base detail are not externally accepted."
+            }
+          ],
+          "external": {
+            "top": {
+              "tile": "r12_c01",
+              "nativeRecordCount": 0,
+              "rootCandidate": null,
+              "accepted": false
+            },
+            "right": {
+              "tile": "r13_c02",
+              "nativeRecordCount": 0,
+              "rootCandidate": null,
+              "accepted": false
+            },
+            "bottom": {
+              "tile": "r14_c01",
+              "nativeRecordCount": 0,
+              "rootCandidate": null,
+              "accepted": false
+            }
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/review.json",
+    "sourceSha256": "d84366f8047b40597226c95aef0ee88e1e47218904bb827a215374b3fdffbc73",
+    "normalizedDocument": {
+      "tile": "r13_c01",
+      "reviewedAtUtc": "2026-10-17T09:13:32.272460+00:00",
+      "source": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+        "sha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+        "pixels": [
+          4096,
+          4096
+        ]
+      },
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/assembly.json",
+        "sha256": "cdbd5cb46842b2ff50e30bf63addfb328c570a370110611fad5a216284c4f58b"
+      },
+      "status": "full16_native_candidate_failed_internal_QA",
+      "inspection": {
+        "overviewActuallyViewed": true,
+        "overviewNativeProof": false,
+        "internalNativeCropsActuallyViewed": 33,
+        "internalNativePanelsActuallyViewed": 9,
+        "outerOwnEdgeNativeSegmentsActuallyViewed": 16,
+        "outerNativePanelsActuallyViewed": 4,
+        "panelResampling": false,
+        "panelEvidence": [
+          {
+            "id": "V1-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V1-panel.png",
+            "sha256": "a4556b1c475859901d5446fe98036059856b3618f86d96b08da8beb5c2378363",
+            "cropIds": [
+              "V1-1",
+              "V1-2",
+              "V1-3",
+              "V1-4"
+            ],
+            "pixels": [
+              920,
+              1044
+            ],
+            "resampling": false
+          },
+          {
+            "id": "V2-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V2-panel.png",
+            "sha256": "01564e0a8fc18e37e287662c5c39c18bcfabc1e7a6650d0bbef00856da1a7aca",
+            "cropIds": [
+              "V2-1",
+              "V2-2",
+              "V2-3",
+              "V2-4"
+            ],
+            "pixels": [
+              920,
+              1044
+            ],
+            "resampling": false
+          },
+          {
+            "id": "V3-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V3-panel.png",
+            "sha256": "cdc84f5d740fb275495d4b86860b317132dca77769fd1b556483ddf57400b9cc",
+            "cropIds": [
+              "V3-1",
+              "V3-2",
+              "V3-3",
+              "V3-4"
+            ],
+            "pixels": [
+              920,
+              1044
+            ],
+            "resampling": false
+          },
+          {
+            "id": "H1-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H1-panel.png",
+            "sha256": "2e133c4568a35ef98d1e91895fee7a261564183bd69a2b17e9037a603baca030",
+            "cropIds": [
+              "H1-1",
+              "H1-2",
+              "H1-3",
+              "H1-4"
+            ],
+            "pixels": [
+              1024,
+              1000
+            ],
+            "resampling": false
+          },
+          {
+            "id": "H2-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H2-panel.png",
+            "sha256": "0f65d0d25d1994e59d0cc0c70f706c8d53ddc6eda251d21afd877b7b82f8adcb",
+            "cropIds": [
+              "H2-1",
+              "H2-2",
+              "H2-3",
+              "H2-4"
+            ],
+            "pixels": [
+              1024,
+              1000
+            ],
+            "resampling": false
+          },
+          {
+            "id": "H3-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H3-panel.png",
+            "sha256": "690a1d70a4eeb4eeeaae1337bd83280d811e4f0df2183afbe2b631544bd99282",
+            "cropIds": [
+              "H3-1",
+              "H3-2",
+              "H3-3",
+              "H3-4"
+            ],
+            "pixels": [
+              1024,
+              1000
+            ],
+            "resampling": false
+          },
+          {
+            "id": "X1-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X1-panel.png",
+            "sha256": "27d8a516d44992a2eb010c4e0140ee9a564a7737c7ff8930e1a4815dd170cbf2",
+            "cropIds": [
+              "X1-1",
+              "X1-2",
+              "X1-3"
+            ],
+            "pixels": [
+              1536,
+              532
+            ],
+            "resampling": false
+          },
+          {
+            "id": "X2-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X2-panel.png",
+            "sha256": "4493d09aec1ac86678f25abf301ae9a21b3d8c382064514409340ee0c7650fc9",
+            "cropIds": [
+              "X2-1",
+              "X2-2",
+              "X2-3"
+            ],
+            "pixels": [
+              1536,
+              532
+            ],
+            "resampling": false
+          },
+          {
+            "id": "X3-panel",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X3-panel.png",
+            "sha256": "ea6f8b0ded06db3efe337e4a58b0a3ee277b7684022c11cb43cd899ceae8b9ef",
+            "cropIds": [
+              "X3-1",
+              "X3-2",
+              "X3-3"
+            ],
+            "pixels": [
+              1536,
+              532
+            ],
+            "resampling": false
+          }
+        ],
+        "cropEvidence": [
+          {
+            "id": "V1-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V1-1.png",
+            "sha256": "dd8d53c418b4b509be41c7670656a67e3d733676f7eac039cca4e7b1c8ef434a",
+            "cropBox": [
+              909,
+              0,
+              1139,
+              1024
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V1-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V1-2.png",
+            "sha256": "d09e006e94667525d65e80e3bd73a084f57a9da7317530d8df7aa764daea88b9",
+            "cropBox": [
+              909,
+              1024,
+              1139,
+              2048
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V1-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V1-3.png",
+            "sha256": "f0938a4d9257397c5290a47d4708126de89677e46e3e7f9b128b31d1e088e3a1",
+            "cropBox": [
+              909,
+              2048,
+              1139,
+              3072
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V1-4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V1-4.png",
+            "sha256": "857fb20808cfb7c9072dee1a3e9da3db50c9a258c4ca3b7e6578b5ab654b8118",
+            "cropBox": [
+              909,
+              3072,
+              1139,
+              4096
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V2-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V2-1.png",
+            "sha256": "5f0fa8e2420bd9e582174419b20217f5c339a9d4ccd9caf5fd9a323faba784aa",
+            "cropBox": [
+              1933,
+              0,
+              2163,
+              1024
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V2-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V2-2.png",
+            "sha256": "1c13b91dd556448ce41349efb40836439f4405dc10836632a6755a602137ad96",
+            "cropBox": [
+              1933,
+              1024,
+              2163,
+              2048
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V2-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V2-3.png",
+            "sha256": "07936a27ef3057beaf067191ba8d221bba1f7b351f88d24a65eb8abfc19d1ede",
+            "cropBox": [
+              1933,
+              2048,
+              2163,
+              3072
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V2-4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V2-4.png",
+            "sha256": "877fd00b193a56ff823e89e72eb8bfb5814b1eaffed42aac3a3a88638524902a",
+            "cropBox": [
+              1933,
+              3072,
+              2163,
+              4096
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V3-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V3-1.png",
+            "sha256": "5ce9bfca48d2ec529e67eb53b9f986a69177a4d12ff3b635115bd30f61611ad6",
+            "cropBox": [
+              2957,
+              0,
+              3187,
+              1024
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V3-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V3-2.png",
+            "sha256": "c5da044da8db1167e549b09b7fceb8fd1ae15b67c94c2f6d6147beeaf2be6db7",
+            "cropBox": [
+              2957,
+              1024,
+              3187,
+              2048
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V3-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V3-3.png",
+            "sha256": "b273d43c848adcc32a2f199b03f7d14489fda561bacc56b5acffc3cc222c63de",
+            "cropBox": [
+              2957,
+              2048,
+              3187,
+              3072
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "V3-4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/V3-4.png",
+            "sha256": "84d940a0cb149ec3a04e17c31b0444041651eeabc5018802eefac5ca656573e4",
+            "cropBox": [
+              2957,
+              3072,
+              3187,
+              4096
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H1-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H1-1.png",
+            "sha256": "264c007ca56f25306f4f11657d169c3d00adac7a44fc8fccdbbd70a0c6f992ec",
+            "cropBox": [
+              0,
+              909,
+              1024,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H1-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H1-2.png",
+            "sha256": "6c860ac9d9a0c0c3cc64b54441911fa1670c013bb52dfac116fb3d722c87e61e",
+            "cropBox": [
+              1024,
+              909,
+              2048,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H1-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H1-3.png",
+            "sha256": "e46d2e00b55a73e588fcfecf9b5585b6a2b7d39e4cdc858a19925f44a2bbab59",
+            "cropBox": [
+              2048,
+              909,
+              3072,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H1-4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H1-4.png",
+            "sha256": "0a6e331e0d77c06fb3b7cb786e12c385ff43daa381d7476417ae61dfa95e9f6c",
+            "cropBox": [
+              3072,
+              909,
+              4096,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H2-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H2-1.png",
+            "sha256": "41e45e1ba2c8cf7a09021367b3b224274d12e488c0c1729aeb6c535047e7bc2f",
+            "cropBox": [
+              0,
+              1933,
+              1024,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H2-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H2-2.png",
+            "sha256": "c3d8dca468fcc0c1f08f30c999a78df29c51cacee0cfa538642abdd9d1e26a9a",
+            "cropBox": [
+              1024,
+              1933,
+              2048,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H2-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H2-3.png",
+            "sha256": "75c47a2a56d2475b77bca0c8b93cf2aa9ce6ac959ea0e5951e4c570ce3855f06",
+            "cropBox": [
+              2048,
+              1933,
+              3072,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H2-4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H2-4.png",
+            "sha256": "5a82737cd97b2989dd8c5fcdc3eb63b560989af01d95def79e85e633a766a684",
+            "cropBox": [
+              3072,
+              1933,
+              4096,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H3-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H3-1.png",
+            "sha256": "3b61834c68bbd3a12b92fe2ef299ed42ad25a9f807ecdc9646c51e5f6bbca500",
+            "cropBox": [
+              0,
+              2957,
+              1024,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H3-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H3-2.png",
+            "sha256": "4e11a91c20f9b0a2d7b3aba861d4a2db43b69e01e3056b8c5da2428dc014e268",
+            "cropBox": [
+              1024,
+              2957,
+              2048,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H3-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H3-3.png",
+            "sha256": "4228e558f5ba9c8e0eb455b5f505bb78974db4bf7579d673905e3306f249e16d",
+            "cropBox": [
+              2048,
+              2957,
+              3072,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "H3-4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/H3-4.png",
+            "sha256": "cf9adee9e0b07fcb0b3e85eece3dbc648132c5258ee31d025426a224c4d322ab",
+            "cropBox": [
+              3072,
+              2957,
+              4096,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X1-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X1-1.png",
+            "sha256": "64e5a5c89489edffdf7b5e86463066fa1a342cfe07331b0ed99f645a924ed01f",
+            "cropBox": [
+              768,
+              768,
+              1280,
+              1280
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X1-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X1-2.png",
+            "sha256": "cfd7c4d8b5eca55d7bd48828f01411a76652005862cdfe41ec67a82223fbd738",
+            "cropBox": [
+              1792,
+              768,
+              2304,
+              1280
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X1-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X1-3.png",
+            "sha256": "0016918ba62a8536657baaade0f475f2b0fc36b5262012a95388d5e6c08e9c9a",
+            "cropBox": [
+              2816,
+              768,
+              3328,
+              1280
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X2-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X2-1.png",
+            "sha256": "eb07c254604feb841897c2988f4b23d2478f52ffe193b614a75b2c95165a9699",
+            "cropBox": [
+              768,
+              1792,
+              1280,
+              2304
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X2-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X2-2.png",
+            "sha256": "eff669ff62599e6d07533d5ad1514b409bb4b51d062f63ad98ec89be0624bbae",
+            "cropBox": [
+              1792,
+              1792,
+              2304,
+              2304
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X2-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X2-3.png",
+            "sha256": "62a8c7dca572787c2747bb450fb72510d5e0f93c00e883c7a48a7e639cdc94f1",
+            "cropBox": [
+              2816,
+              1792,
+              3328,
+              2304
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X3-1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X3-1.png",
+            "sha256": "f73891216c3ea5dad9e8f61b063040589097a7aebfe501c6844ba531e6cb5e0b",
+            "cropBox": [
+              768,
+              2816,
+              1280,
+              3328
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X3-2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X3-2.png",
+            "sha256": "282753958c188a7035a97e474f0074f5bc5e6ebf46eeb3c7676aa8f8cfbf7aa4",
+            "cropBox": [
+              1792,
+              2816,
+              2304,
+              3328
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          },
+          {
+            "id": "X3-3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/X3-3.png",
+            "sha256": "ab3cec80c83e31813d26d9badc3cca8044d08f209f7a5ce74039b491084c4092",
+            "cropBox": [
+              2816,
+              2816,
+              3328,
+              3328
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "sourceSha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51"
+          }
+        ],
+        "outerEvidence": [
+          {
+            "side": "left",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/left-outer230-native.png",
+            "sha256": "5c248d490e708eada91a59ec03895c1fc50bc88b9846bc4ac6780786be860db5",
+            "sourceBoxes": [
+              [
+                0,
+                0,
+                230,
+                1024
+              ],
+              [
+                0,
+                1024,
+                230,
+                2048
+              ],
+              [
+                0,
+                2048,
+                230,
+                3072
+              ],
+              [
+                0,
+                3072,
+                230,
+                4096
+              ]
+            ],
+            "source": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+              "sha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "resampling": false,
+            "pairedNeighborReviewed": false
+          },
+          {
+            "side": "top",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/top-outer230-native.png",
+            "sha256": "8bacd5a496a298225fd88572cb008e91391132206bd29b8add57696373c28199",
+            "sourceBoxes": [
+              [
+                0,
+                0,
+                1024,
+                230
+              ],
+              [
+                1024,
+                0,
+                2048,
+                230
+              ],
+              [
+                2048,
+                0,
+                3072,
+                230
+              ],
+              [
+                3072,
+                0,
+                4096,
+                230
+              ]
+            ],
+            "source": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+              "sha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "resampling": false,
+            "pairedNeighborReviewed": false
+          },
+          {
+            "side": "right",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/right-outer230-native.png",
+            "sha256": "a096a42f28f0ce1583c32961344fac50401dba7e01076a2b472e8708e76a1510",
+            "sourceBoxes": [
+              [
+                3866,
+                0,
+                4096,
+                1024
+              ],
+              [
+                3866,
+                1024,
+                4096,
+                2048
+              ],
+              [
+                3866,
+                2048,
+                4096,
+                3072
+              ],
+              [
+                3866,
+                3072,
+                4096,
+                4096
+              ]
+            ],
+            "source": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+              "sha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "resampling": false,
+            "pairedNeighborReviewed": false
+          },
+          {
+            "side": "bottom",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/qa/restart-20261017b-v01/bottom-outer230-native.png",
+            "sha256": "a5ee94673e4efec539dbbccaa810cffd9c752cef8e7a15b6e996189f20096aac",
+            "sourceBoxes": [
+              [
+                0,
+                3866,
+                1024,
+                4096
+              ],
+              [
+                1024,
+                3866,
+                2048,
+                4096
+              ],
+              [
+                2048,
+                3866,
+                3072,
+                4096
+              ],
+              [
+                3072,
+                3866,
+                4096,
+                4096
+              ]
+            ],
+            "source": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+              "sha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "resampling": false,
+            "pairedNeighborReviewed": false
+          }
+        ]
+      },
+      "nativeProvenanceVerified": true,
+      "preflightPassed": true,
+      "preflightIsVisualAcceptance": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "issues": [
+        {
+          "id": "floor-dangling-grooves",
+          "severity": "blocking_geometry",
+          "crops": [
+            "V1-1",
+            "V3-2",
+            "V3-3",
+            "V3-4",
+            "X1-1",
+            "X1-3",
+            "X3-3",
+            "H3-3"
+          ],
+          "description": "Several diagonal grooves stop with cut straight or angled deadends on unbroken grey slab faces. At upper third join an extra short line/jog interrupts the diagonal rhythm; lower-right pair of grooves floats. Requires native reconstruction, no blur or numeric-only pass."
+        },
+        {
+          "id": "blue-material-fronts",
+          "severity": "blocking_material",
+          "crops": [
+            "V2-2",
+            "V2-3",
+            "H2-2",
+            "H3-2",
+            "X2-2",
+            "X3-2"
+          ],
+          "description": "Dense cellular blue pigment and scalloped/jagged vertical tone fronts persist through row2/3/4 wide blue band. Grey also varies from flaky faces to fine repeated diamond crosshatching. These are unresolved actual visual failures."
+        },
+        {
+          "id": "blue-width-and-extra-bend",
+          "severity": "blocking_layout_review",
+          "crops": [
+            "V1-2",
+            "V2-2",
+            "X1-2",
+            "X2-1",
+            "X2-2"
+          ],
+          "description": "Earlier p02_02 wide-blue restoration is retained rather than bad narrow version; approximately50px guide discrepancy and extra local blue boundary jog remain. Wide vs narrow approved road geometry must be restored jointly when repaired."
+        },
+        {
+          "id": "row4-invented-vertical-margin",
+          "severity": "blocking_geometry",
+          "crops": [
+            "V2-4",
+            "X3-2",
+            "bottom3"
+          ],
+          "description": "Recovered p04_03 extends the left grey rectangular margin into a long vertical divider around native x333 (tile core x2266), instead of the coarse sparse diagonal road interior. Do not propagate that interior divider into below tile; right-edge grey continuation is independent."
+        },
+        {
+          "id": "foliage-and-paper-detail-review",
+          "severity": "blocking_layout_review",
+          "crops": [
+            "V1-4",
+            "H3-1",
+            "H3-2",
+            "X3-1",
+            "X2-3"
+          ],
+          "description": "Approved left shrubs and yellow leaves retain approximate placement, but native yellow star-shaped clusters with center buds need identity correction/review against approved crop. Flat red spent paper identity is correct; several added small detached red fragments and dense creased pigment remain unaccepted."
+        },
+        {
+          "id": "right-base-fragment-unpaired",
+          "severity": "external_pending",
+          "crops": [
+            "right4",
+            "bottom4"
+          ],
+          "description": "Last p04_04 retains only clipped pale tower stone base/rail and large grey ground. No complete tower or new foliage. Adjacent r13_c02 and r14_c01 are absent, so profile/seam continuation and base detail are not externally accepted."
+        }
+      ],
+      "external": {
+        "top": {
+          "tile": "r12_c01",
+          "nativeRecordCount": 0,
+          "rootCandidate": null,
+          "accepted": false
+        },
+        "right": {
+          "tile": "r13_c02",
+          "nativeRecordCount": 0,
+          "rootCandidate": null,
+          "accepted": false
+        },
+        "bottom": {
+          "tile": "r14_c01",
+          "nativeRecordCount": 0,
+          "rootCandidate": null,
+          "accepted": false
+        }
+      },
+      "leftArtworkEdge": "outside col1 map boundary; own230 pixels viewed, not a paired tile seam",
+      "next": "Do not repeat whole QA for these unchanged hashes. Preserve full candidate and exact repair queue. Continue an independent stable outward grey/tower-base edge, excluding the faulty internal blue band/divider from new anchors."
+    }
+  }
+}
