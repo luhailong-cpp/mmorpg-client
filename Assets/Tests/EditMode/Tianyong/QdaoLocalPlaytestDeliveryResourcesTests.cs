@@ -84,23 +84,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         [TestCase("07_moon_shadow_assassin_girl")]
         [TestCase("15_water_dragon_scholar_boy")]
-        public void PendingCandidateRejectsReleaseWrongIdentityAndAnyChangedEvidence(string id)
+        public void PinnedCandidateAllowsAllBuildsAndRejectsWrongIdentityOrChangedEvidence(string id)
         {
             var folder = QdaoCharacterCatalog.OriginalV14Root + "/" + id;
             var manifest = Resources.Load<TextAsset>(folder + "/manifest");
             var activation = Resources.Load<TextAsset>(folder + "/appearance");
             Assert.That(manifest, Is.Not.Null);
             Assert.That(activation, Is.Not.Null);
-            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 14, activation.text, manifest.bytes, true), Is.True);
-            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 14, activation.text, manifest.bytes, false), Is.False);
-            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 13, activation.text, manifest.bytes, true), Is.False);
+            Assert.That(QdaoLocalPlaytestContract.Allows(id, 14, activation.text, manifest.bytes), Is.True,
+                "用户指定的完整固定交付必须在普通发行版也可用，不能退回旧职业图");
+            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 14, activation.text, manifest.bytes), Is.True);
+            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 13, activation.text, manifest.bytes), Is.False);
             Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery("11_jade_fist_flat_top_boy", 14,
-                activation.text, manifest.bytes, true), Is.False);
+                activation.text, manifest.bytes), Is.False);
             var changed = (byte[])manifest.bytes.Clone();
             changed[changed.Length - 1] ^= 1;
-            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 14, activation.text, changed, true), Is.False);
+            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 14, activation.text, changed), Is.False);
             var fakeApproval = activation.text.Replace(QdaoLocalPlaytestContract.PendingReview, "passed");
-            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 14, fakeApproval, manifest.bytes, true), Is.False);
+            Assert.That(QdaoLocalPlaytestContract.MatchesPinnedDelivery(id, 14, fakeApproval, manifest.bytes), Is.False);
             Assert.That(QdaoCharacterCatalog.SelectOriginalHdAppearance(QdaoCharacterCatalog.Find(id),
                 fakeApproval, manifest.bytes, (_, _, _) => true), Is.Null,
                 "不能通过单改activation中的审批字段绕过来源manifest仍pending的合同");
