@@ -113,7 +113,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void SelectionCapsWideViewAtEightAndPrioritizesVisibleCenter()
+        public void SelectionCapsWideViewAtSixAndPrioritizesVisibleCenter()
         {
             var go = new GameObject("CurrentTileSelectionTest");
             try
@@ -125,7 +125,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 var selected = new List<int>();
                 foreach (var tile in (Array)Field(stream, "_tiles"))
                     if ((bool)Field(tile, "Wanted")) selected.Add(((CurrentMapTilesManifest.Entry)Field(tile, "Entry")).column);
-                Assert.That(selected, Is.EqualTo(new[] { 5, 6, 7, 8, 9, 10, 11, 12 }));
+                Assert.That(selected, Is.EqualTo(new[] { 6, 7, 8, 9, 10, 11 }));
                 Invoke(stream, "SelectTiles", new Rect(70, 283, 10, 10), 101f);
                 var ranked = (IList)Field(stream, "_ranked");
                 Assert.That(((CurrentMapTilesManifest.Entry)Field(ranked[0], "Entry")).column, Is.EqualTo(2));
@@ -145,29 +145,133 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void StreamingCandidatesUseHexNeighborhoodBeyondOneSquareTilePadding()
+        {
+            var go = new GameObject("CurrentTileHexCandidateTest");
+            try
+            {
+                var stream = go.AddComponent<CurrentMapTileStreaming>();
+                var manifest = Manifest();
+                manifest.tiles[0].row = 8;
+                manifest.tiles[0].column = 10;
+                manifest.tiles[0].resourcePath = "World/CurrentMaps20261009/main/tiles/r08_c10";
+                Invoke(stream, "Prepare", manifest);
+                Invoke(stream, "SelectTiles", new Rect(189, 158, 2, 2), 100f);
+                var tile = ((Array)Field(stream, "_tiles")).GetValue(0);
+                Assert.That(Field(tile, "Visible"), Is.False);
+                Assert.That(Field(tile, "Wanted"), Is.True, "The rectangular tile overlaps a neighboring server hex and is a prefetch candidate.");
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [TestCase(184f, 6f, 9)]
+        [TestCase(190f, -6f, 7)]
+        public void NeighbourPrefetchFollowsMovementWithoutDisplacingVisibleTile(float startX, float movement, int nextColumn)
+        {
+            var go = new GameObject("CurrentTileDirectionalPrefetchTest");
+            try
+            {
+                var stream = go.AddComponent<CurrentMapTileStreaming>();
+                Invoke(stream, "Prepare", Manifest(count: 256));
+                Invoke(stream, "SelectTiles", new Rect(startX - 1, 158, 2, 2), 100f);
+                Invoke(stream, "SelectTiles", new Rect(startX + movement - 1, 158, 2, 2), 101f);
+                // 微小反向抖动不改变预取方向。
+                Invoke(stream, "SelectTiles", new Rect(startX + movement - Math.Sign(movement) * .1f - 1, 158, 2, 2), 102f);
+                var ranked = (IList)Field(stream, "_ranked");
+                var visible = (CurrentMapTilesManifest.Entry)Field(ranked[0], "Entry");
+                var neighbour = (CurrentMapTilesManifest.Entry)Field(ranked[1], "Entry");
+                Assert.That((visible.row, visible.column), Is.EqualTo((8, 8)));
+                Assert.That((neighbour.row, neighbour.column), Is.EqualTo((8, nextColumn)));
+                int wanted = 0;
+                foreach (var tile in (Array)Field(stream, "_tiles")) if ((bool)Field(tile, "Wanted")) wanted++;
+                Assert.That(wanted, Is.EqualTo(6));
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test]
+        public void ResidentHysteresisPreventsChurnButYieldsToDistantView()
+        {
+            Assert.That(Cache.Count, Is.Zero);
+            var go = new GameObject("CurrentTileHysteresisTest");
+            CurrentMapTileStreaming stream = null;
+            try
+            {
+                stream = go.AddComponent<CurrentMapTileStreaming>();
+                Invoke(stream, "Prepare", Manifest(count: 16));
+                Invoke(stream, "SelectTiles", new Rect(50, 280, 300, 20), 100f);
+                var tiles = (Array)Field(stream, "_tiles");
+                foreach (var tile in tiles)
+                    if ((bool)Field(tile, "Wanted"))
+                        Set(tile, "Lease", FakeLease(((CurrentMapTilesManifest.Entry)Field(tile, "Entry")).resourcePath, true));
+                Invoke(stream, "SelectTiles", new Rect(60, 280, 300, 20), 101f);
+                for (int i = 0; i < tiles.Length; i++)
+                    Assert.That(Field(tiles.GetValue(i), "Wanted"), Is.EqualTo(i >= 5 && i <= 10), "Resident boundary should not churn.");
+                Invoke(stream, "SelectTiles", new Rect(125, 280, 300, 20), 102f);
+                Assert.That(Field(tiles.GetValue(5), "Wanted"), Is.False);
+                Assert.That(Field(tiles.GetValue(14), "Wanted"), Is.True);
+            }
+            finally { stream?.ReleaseAll(); Object.DestroyImmediate(go); }
+        }
+
+        [UnityTest]
+        public IEnumerator FullBudgetStartsNewVisibleLoadBeforeReleaseDelay()
+        {
+            Assert.That(Cache.Count, Is.Zero);
+            var go = new GameObject("CurrentTilePressureTest");
+            var stream = go.AddComponent<CurrentMapTileStreaming>();
+            try
+            {
+                var manifest = Manifest(count: 7);
+                manifest.tiles[6].resourcePath = "World/CurrentMaps20261009/__pressure_async_fixture";
+                Invoke(stream, "Prepare", manifest);
+                var tiles = (Array)Field(stream, "_tiles");
+                for (int i = 0; i < 6; i++)
+                {
+                    var tile = tiles.GetValue(i);
+                    Set(tile, "Lease", FakeLease(manifest.tiles[i].resourcePath, true));
+                    // 已显示的完成块夹具，无需为预算测试分配六张 4K 纹理。
+                    Set(tile, "Quad", new GameObject("CompletedTile" + i));
+                    Set(tile, "LastWanted", 100f);
+                }
+                Invoke(stream, "TickView", new Rect(163, 282, 16, 16), 100.1f);
+                Assert.That(Field(tiles.GetValue(6), "Lease"), Is.Not.Null, "The new visible load starts before the two-second delay.");
+                Assert.That(Field(tiles.GetValue(0), "Lease"), Is.Null, "The farthest unwanted completed tile yields its slot.");
+                Assert.That(Field(tiles.GetValue(1), "Lease"), Is.Not.Null, "Only the slot needed for the visible request is evicted.");
+                Assert.That(CurrentMapTileStreaming.GlobalLeaseCount, Is.EqualTo(6));
+                Assert.That(CurrentMapTileStreaming.GlobalPendingCount, Is.LessThanOrEqualTo(2));
+                stream.ReleaseAll();
+                float deadline = Time.realtimeSinceStartup + 10f;
+                while (Cache.Count != 0 && Time.realtimeSinceStartup < deadline) yield return null;
+                Assert.That(Cache.Count, Is.Zero);
+            }
+            finally { stream.ReleaseAll(); Object.DestroyImmediate(go); }
+        }
+
+        [Test]
         public void GlobalBudgetIncludesAbandonedInFlightRequestsAndSharedOwners()
         {
             Assert.That(Cache.Count, Is.Zero);
             var leases = new List<object>();
             try
             {
-                for (int i = 0; i < 8; i++) leases.Add(FakeLease("__budget_" + i, i >= 2, i == 0 ? 0 : 1));
-                Assert.That(CurrentMapTileStreaming.GlobalLeaseCount, Is.EqualTo(8));
+                for (int i = 0; i < 6; i++) leases.Add(FakeLease("__budget_" + i, i >= 2, i == 0 ? 0 : 1));
+                Assert.That(CurrentMapTileStreaming.GlobalLeaseCount, Is.EqualTo(6));
                 Assert.That(CurrentMapTileStreaming.GlobalPendingCount, Is.EqualTo(2));
                 Assert.That(Static("Acquire", "__blocked_budget"), Is.Null);
                 var shared = Static("Acquire", "__budget_1");
                 Assert.That(shared, Is.SameAs(leases[1]));
                 Assert.That(Field(shared, "References"), Is.EqualTo(2));
                 Static("Evict", leases[0]);
-                Assert.That(Cache.Count, Is.EqualTo(8), "An abandoned request cannot be cancelled or stop counting early.");
+                Assert.That(Cache.Count, Is.EqualTo(6), "An abandoned request cannot be cancelled or stop counting early.");
                 Set(leases[0], "Completed", true);
                 Static("Evict", leases[0]);
-                Assert.That(Cache.Count, Is.EqualTo(7));
-                // 即使未达到 8 块，总并发仍不能超过 2。
+                Assert.That(Cache.Count, Is.EqualTo(5));
+                // 即使未达到 6 块，总并发仍不能超过 2。
                 var extra = FakeLease("__pending_extra", false);
                 leases.Add(extra);
-                Set(leases[7], "References", 0); Static("Evict", leases[7]);
-                Assert.That(Cache.Count, Is.EqualTo(7));
+                Set(leases[5], "References", 0); Static("Evict", leases[5]);
+                Assert.That(Cache.Count, Is.EqualTo(5));
                 Assert.That(Static("Acquire", "__blocked_concurrency"), Is.Null);
             }
             finally

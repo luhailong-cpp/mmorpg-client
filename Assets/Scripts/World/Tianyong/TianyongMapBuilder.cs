@@ -39,10 +39,10 @@ namespace MmorpgClient.World.Tianyong
             _cityTiles.Configure(CityTileStreaming.ManifestPath(city, variant), activate);
         }
 
-        public void UpdateCityTiles(Camera camera)
+        public void UpdateCityTiles(Camera camera, Vector3? worldFocus = null)
         {
             _cityTiles?.Tick(camera);
-            _currentMapTiles?.Tick(camera);
+            _currentMapTiles?.Tick(camera, worldFocus);
         }
 
         public void UpdateVisibleChunks(Vector3 focus, int radius = 3)

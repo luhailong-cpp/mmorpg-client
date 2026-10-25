@@ -10,7 +10,8 @@ namespace MmorpgClient.World.CurrentMaps
     [DisallowMultipleComponent]
     public sealed class CurrentMapTileStreaming : MonoBehaviour
     {
-        public const int MaxResidentAndPendingTiles = 8;
+        // 六片共享预算包含尚未完成的请求，不能在换图时额外叠加一组预加载。
+        public const int MaxResidentAndPendingTiles = 6;
         public const int MaxConcurrentLoads = 2;
         private const float GroundHeight = -.04f;
         private const float ReleaseDelay = 2f;
@@ -35,6 +36,7 @@ namespace MmorpgClient.World.CurrentMaps
             public float LastWanted;
             public float RetryAfter;
             public bool Wanted;
+            public bool Visible;
             public float Score;
         }
 
@@ -42,6 +44,13 @@ namespace MmorpgClient.World.CurrentMaps
         private static readonly Dictionary<string, Lease> Cache = new(StringComparer.Ordinal);
         private Tile[] _tiles = Array.Empty<Tile>();
         private readonly List<Tile> _ranked = new();
+        private readonly List<int> _candidates = new();
+        private CurrentMapHexTileIndex _hexIndex;
+        private Matrix4x4 _hexIndexTransform;
+        private Vector2? _focusPoint;
+        private Vector2 _prefetchAnchor;
+        private Vector2 _prefetchDirection;
+        private bool _hasPrefetchAnchor;
         public CurrentMapTilesManifest Manifest { get; private set; }
         public int ResidentTileCount { get; private set; }
         public int PendingTileCount { get; private set; }
@@ -70,14 +79,35 @@ namespace MmorpgClient.World.CurrentMaps
         private void Prepare(CurrentMapTilesManifest manifest)
         {
             Manifest = manifest;
+            _hasPrefetchAnchor = false;
+            _prefetchDirection = Vector2.zero;
+            _focusPoint = null;
             _tiles = new Tile[manifest.tiles.Length];
             for (int i = 0; i < _tiles.Length; i++)
                 _tiles[i] = new Tile { Entry = manifest.tiles[i], Rect = manifest.TileWorldRect(manifest.tiles[i].row, manifest.tiles[i].column) };
+            RebuildHexIndex(Matrix4x4.identity);
         }
 
-        public void Tick(Camera camera)
+        private void RebuildHexIndex(Matrix4x4 localToWorld)
+        {
+            // 只索引原有 16×16 / 14×14 分片的矩形元数据，不加载图片或重切整张地图。
+            var rectangles = new Rect[_tiles.Length];
+            for (int i = 0; i < _tiles.Length; i++) rectangles[i] = _tiles[i].Rect;
+            _hexIndex = new CurrentMapHexTileIndex(rectangles, localToWorld);
+            _hexIndexTransform = localToWorld;
+        }
+
+        public void Tick(Camera camera, Vector3? worldFocus = null)
         {
             if (Manifest == null || camera == null || !isActiveAndEnabled || !TryGetView(camera, out var view)) return;
+            var localToWorld = transform.localToWorldMatrix;
+            if (_hexIndexTransform != localToWorld) RebuildHexIndex(localToWorld);
+            if (worldFocus.HasValue)
+            {
+                var local = transform.InverseTransformPoint(worldFocus.Value);
+                _focusPoint = new Vector2(local.x, local.z);
+            }
+            else _focusPoint = null;
             TickView(view, Time.unscaledTime);
         }
 
@@ -92,6 +122,7 @@ namespace MmorpgClient.World.CurrentMaps
                 if (!tile.Wanted || tile.Lease != null) continue;
                 try
                 {
+                    MakeRoomForVisibleTile(tile, view.center);
                     var lease = Acquire(tile.Entry.resourcePath);
                     if (lease == null) continue;
                     tile.Lease = lease;
@@ -116,13 +147,21 @@ namespace MmorpgClient.World.CurrentMaps
             _ranked.Clear();
             float width = Manifest.worldRect.width / Manifest.columns;
             float height = Manifest.worldRect.height / Manifest.rows;
-            var neighbours = Rect.MinMaxRect(view.xMin - width, view.yMin - height, view.xMax + width, view.yMax + height);
+            UpdatePrefetchDirection(view.center, Math.Min(width, height));
+            var prefetchCenter = view.center + new Vector2(_prefetchDirection.x * width, _prefetchDirection.y * height) * .75f;
             foreach (var tile in _tiles)
             {
                 tile.Wanted = false;
-                if (!tile.Rect.Overlaps(neighbours) || tile.RetryAfter > now) continue;
-                bool visible = tile.Rect.Overlaps(view);
-                float distance = (tile.Rect.center - view.center).sqrMagnitude;
+                tile.Visible = tile.Rect.Overlaps(view);
+            }
+            _hexIndex.Query(view, _focusPoint ?? view.center, _candidates);
+            foreach (int index in _candidates)
+            {
+                var tile = _tiles[index];
+                if (tile.RetryAfter > now) continue;
+                bool visible = tile.Visible;
+                // 六边形确定候选区域，纹理预算独立计数；可见块优先，再预取前进方向的邻片。
+                float distance = (tile.Rect.center - (visible ? view.center : prefetchCenter)).sqrMagnitude;
                 // 同优先级已驻留块有小幅滞回，避免相机在排名分界附近抖动时反复卸载。
                 tile.Score = distance * (tile.Lease == null ? 1f : .85f) + (visible ? 0f : 100000000f);
                 _ranked.Add(tile);
@@ -134,6 +173,43 @@ namespace MmorpgClient.World.CurrentMaps
             });
             for (int i = 0; i < Math.Min(MaxResidentAndPendingTiles, _ranked.Count); i++)
             { _ranked[i].Wanted = true; _ranked[i].LastWanted = now; }
+        }
+
+        private bool MakeRoomForVisibleTile(Tile requested, Vector2 viewCenter)
+        {
+            if (!requested.Visible || Cache.Count < MaxResidentAndPendingTiles ||
+                GlobalPendingCount >= MaxConcurrentLoads || Cache.ContainsKey(requested.Entry.resourcePath)) return false;
+            Tile victim = null;
+            float farthest = float.NegativeInfinity;
+            foreach (var tile in _tiles)
+            {
+                // 只有真正能释放预算的独占完成块可以提前让位；在途请求和其它地图引用继续计数。
+                if (tile.Wanted || tile.Lease == null || !tile.Lease.Completed || tile.Lease.References != 1) continue;
+                float score = (tile.Rect.center - viewCenter).sqrMagnitude + (tile.Visible ? 0f : 100000000f);
+                if (score <= farthest) continue;
+                victim = tile;
+                farthest = score;
+            }
+            if (victim == null) return false;
+            // 无压力时仍保留两秒滞后；满额时新可见块不应被已不需要的完成块挡住。
+            Release(victim);
+            return true;
+        }
+
+        private void UpdatePrefetchDirection(Vector2 center, float tileSpan)
+        {
+            if (!_hasPrefetchAnchor)
+            {
+                _prefetchAnchor = center;
+                _hasPrefetchAnchor = true;
+                return;
+            }
+            var delta = center - _prefetchAnchor;
+            // 累积移动超过一小段格宽才换方向，避免相机微抖导致邻片反复替换。
+            if (delta.sqrMagnitude < tileSpan * tileSpan * .0025f) return;
+            // 传送不代表持续前进方向，落点先按距离预取。
+            _prefetchDirection = delta.sqrMagnitude > tileSpan * tileSpan * 4f ? Vector2.zero : delta.normalized;
+            _prefetchAnchor = center;
         }
 
         private void UpdateCompleted(float now)
@@ -248,6 +324,9 @@ namespace MmorpgClient.World.CurrentMaps
             foreach (var tile in _tiles) Release(tile);
             _tiles = Array.Empty<Tile>();
             _ranked.Clear();
+            _candidates.Clear();
+            _hexIndex = null;
+            _focusPoint = null;
             Manifest = null;
             ResidentTileCount = PendingTileCount = 0;
         }

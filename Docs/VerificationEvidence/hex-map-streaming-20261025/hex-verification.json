@@ -1,0 +1,120 @@
+{
+  "observedAtUtc": "2026-10-25T08:50:32.087183+00:00",
+  "status": "passed_managed_math_and_compilation_only",
+  "sourceHashes": {
+    "Assets/Scripts/World/CurrentMaps/CurrentMapTileStreaming.cs": "ee195bf2e2e8ed2a102517638adc96cf93eeea2b0419d47c6cb30fd19efb3a4b",
+    "Assets/Scripts/World/CurrentMaps/CurrentMapHexGrid.cs": "bb6750ee31bd4d0e261bf7a702b2aae9ea421796fbc772a456838b8ebe615e8c",
+    "Assets/Scripts/World/CurrentMaps/RedBlobHexGrid.cs": "1f97fc9d84bc2ebe9d09bac7fb0700da9f9b29c77148ccba59649ff2f15fa2dc",
+    "Assets/Scripts/World/CurrentMaps/RedBlobHexGrid.NOTICE.txt": "1f5efa2de58fe9b7fe25c1697a7752bcb1d0f88e75cf6732906a8c39d94d5e7c",
+    "Assets/Scripts/World/Tianyong/TianyongMapBuilder.cs": "6dc923b6283b8987816de8021e066886ff01dc1b4b41e8b4eb0a16e6f36866aa",
+    "Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs": "aeffbd943b916954368014bc6f54bdc1517e09a043fbea33b8ca3b71bb3d9f4f",
+    "Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs": "e4331e216f45659cde229f9c311fb72206dbcd5a8510c6b506799e7ccc0dd9c4",
+    "Assets/Tests/EditMode/Tianyong/CurrentMapHexGridTests.cs": "db86a493a32e3face58b30df0751c2cbd146cc6548a586c443013a2d5ae32b4a",
+    "Assets/Tests/EditMode/Tianyong/CurrentMapTileStreamingTests.cs": "ab1b99a47d70be640bd50ec55da02e27030ef4163e49e04de0433389296c8df9"
+  },
+  "productionDllSha256": "52d66562442ed3da3a8ced492d221bc48a9852a89d3eaaf096e7a0efe0298b91",
+  "upstream": {
+    "author": "Amit Patel / Red Blob Games",
+    "sourceUrl": "https://www.redblobgames.com/grids/hexagons/codegen/output/lib.cs",
+    "sourceSha256": "255b0d3ba9bd222c35e7db8cdb4c20f979a9537f4271b6b0ba4e6e95b40069dc",
+    "license": "CC0",
+    "serverSubmoduleCommit": "683e59e88465500640a5b08acf2cffa74d6d51b4",
+    "documentationUrl": "https://www.redblobgames.com/grids/hexagons/implementation.html",
+    "serverRepository": "https://github.com/luyuan-cpp/xuanming-server-mmo",
+    "serverGridPath": "cpp/libs/services/scene/spatial/system/grid.cpp",
+    "serverLibraryRepository": "https://github.com/luyuan-cpp/game_hexagons_grids"
+  },
+  "compilation": [
+    {
+      "kind": "runtime",
+      "sourceCount": 413,
+      "exitCode": 0,
+      "errors": []
+    },
+    {
+      "kind": "release",
+      "sourceCount": 413,
+      "exitCode": 0,
+      "errors": []
+    },
+    {
+      "kind": "tests",
+      "sourceCount": 2,
+      "exitCode": 0,
+      "errors": []
+    }
+  ],
+  "pureMath": {
+    "assertions": 32018,
+    "exitCode": 0,
+    "coverage": [
+      "server coordinate goldens",
+      "positive and negative midpoint rounding",
+      "Unity/server axis conversion",
+      "hex center roundtrips",
+      "center plus six neighbor order",
+      "large rectangle intersecting multiple hex cells",
+      "camera-visible cells beyond player neighborhood",
+      "separate player and camera centers",
+      "sparse 14x14 and 16x16 maps",
+      "translated map index",
+      "query deduplication",
+      "all actually visible rectangles included"
+    ]
+  },
+  "textureBudget": {
+    "residentAndPending": 6,
+    "concurrent": 2,
+    "independentFromHexNeighborhood": true
+  },
+  "unityEngineLifecycleExecuted": false,
+  "resourceLoadingExecuted": false,
+  "renderingAndVramMeasured": false,
+  "schemaVersion": 1,
+  "resourceDeliveryInScope": false,
+  "sourceHashNormalization": "UTF-8 bytes with CRLF replaced by LF; upstream source and compiled DLL hashes use unmodified bytes.",
+  "gridContract": {
+    "orientation": "flat-top",
+    "size": [
+      20,
+      20
+    ],
+    "origin": [
+      0,
+      0
+    ],
+    "serverPlane": "XY",
+    "unityToServerPlane": {
+      "serverX": "unityZ",
+      "serverY": "unityX"
+    },
+    "rounding": "MidpointRounding.AwayFromZero",
+    "playerNeighborhoodCells": 7,
+    "additionalVisibleHexCellsIncluded": true,
+    "rectanglesIndexedByPolygonIntersection": true,
+    "initializationLoadsPngImages": false,
+    "pngGridShapeUnchanged": true,
+    "metadataIndexIsIndependentOfTextureBudget": true
+  },
+  "unityValidation": {
+    "status": "blocked_missing_license",
+    "missingEntitlement": "com.unity.editor.headless",
+    "nativeImportExecuted": false,
+    "editModeTestsExecuted": false,
+    "resourcesLifecycleExecuted": false,
+    "inGameRenderingExecuted": false,
+    "vramMeasured": false
+  },
+  "streamingPressureSmoke": {
+    "status": "not_executed_application_control_block",
+    "windowsError": "0x800711C7",
+    "addedPressureAssertionsExecuted": false,
+    "securityPolicyBypassed": false,
+    "earlierSmokeBeforePressureAndHexChanges": {
+      "assertions": 24,
+      "exitCode": 0,
+      "verifiesCurrentHexIntegration": false
+    },
+    "independentHexMathPassDoesNotReplacePressureOrEngineTests": true
+  }
+}

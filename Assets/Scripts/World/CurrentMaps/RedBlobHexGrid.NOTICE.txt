@@ -1,0 +1,18 @@
+Red Blob Games 六边形参考实现
+
+原作者：Amit Patel / Red Blob Games
+原始代码：https://www.redblobgames.com/grids/hexagons/codegen/output/lib.cs
+说明页面：https://www.redblobgames.com/grids/hexagons/implementation.html
+下载日期：2026-10-25
+原始完整 lib.cs SHA-256：255b0d3ba9bd222c35e7db8cdb4c20f979a9537f4271b6b0ba4e6e95b40069dc
+许可：原作者源码首行标注 CC0 -- No Rights Reserved。
+
+本地改动：
+- 只保留 Point、Hex、FractionalHex、Orientation、Layout；移除未用的 offset/doubled 坐标和示例测试。
+- 添加 MmorpgClient.ThirdParty.RedBlobGames 命名空间及本说明链接。
+- FractionalHex 的 Math.Round 显式采用 MidpointRounding.AwayFromZero，匹配当前服务器 C++ round 的半值舍入语义（官方 C# 默认 ToEven）。
+
+服务器对应实现：
+https://github.com/luyuan-cpp/game_hexagons_grids/tree/683e59e88465500640a5b08acf2cffa74d6d51b4
+服务器 GridSystem 使用 flat 布局、size=(20,20)、origin=(0,0)，中心加六邻格共七格。
+此空间分区算法与客户端纹理驻留上限是独立概念。
