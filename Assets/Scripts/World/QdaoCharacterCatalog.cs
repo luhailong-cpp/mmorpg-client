@@ -17,6 +17,7 @@ namespace MmorpgClient.World
         public const string OriginalV13Root = "World/Characters/QdaoOriginalRosterV13";
         public const string OriginalV14Root = "World/Characters/QdaoOriginalRosterV14";
         private static int _resourceRevision;
+        public static int ResourceRevision => _resourceRevision;
         private static readonly string[] Directions = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
 
         /// <summary>A complete, immutable visual contract, selected before loading any animation.</summary>

@@ -197,5 +197,70 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(QdaoOriginalHdResourceIndex.TextureMatches(QdaoCharacterCatalog.OriginalV14Root + "/not-a-character/walk/N/01", 1024, 1024), Is.False);
             Assert.That(QdaoOriginalHdResourceIndex.RequiredRelativePaths().Count(), Is.EqualTo(137));
         }
+
+        [Test]
+        public void DeliveredIndexChecksRealFilesWithoutRequiringProducerTimestamps()
+        {
+            const string folder = QdaoCharacterCatalog.OriginalV14Root + "/06_thunder_caster_boy";
+            var delivered = Resources.Load<QdaoOriginalHdResourceIndex>(folder + "/runtime-index");
+            Assert.That(delivered, Is.Not.Null, "Requires the committed HD inventory and its real PNG files.");
+            var index = UnityEngine.Object.Instantiate(delivered);
+            try
+            {
+                // Use a private copy. Do not change timestamps or bytes in the delivered resources.
+                index.entries = delivered.entries.Select(entry => new QdaoOriginalHdResourceIndex.Entry
+                {
+                    path = entry.path, assetGuid = entry.assetGuid, sha256 = entry.sha256,
+                    width = entry.width, height = entry.height, pixelsPerUnit = entry.pixelsPerUnit,
+                    sourceBytes = entry.sourceBytes, sourceWriteUtcTicks = 1
+                }).ToArray();
+                QdaoOriginalHdResourceIndex.ClearCache();
+                Assert.That(index.Validate(folder, index.manifestSha256, index.activationSha256), Is.True,
+                    "The default Editor file provider must verify bytes after an unrelated machine's checkout.");
+                var first = index.entries[0];
+                var guid = first.assetGuid;
+                first.assetGuid = new string('f', 32);
+                Assert.That(index.Validate(folder, index.manifestSha256, index.activationSha256), Is.False);
+                first.assetGuid = guid;
+                first.sourceBytes++;
+                Assert.That(index.Validate(folder, index.manifestSha256, index.activationSha256), Is.False);
+                first.sourceBytes--;
+                first.sha256 = new string('0', 64);
+                QdaoOriginalHdResourceIndex.ClearCache();
+                Assert.That(index.Validate(folder, index.manifestSha256, index.activationSha256), Is.False,
+                    "The default provider must compare the real file hash, not just its GUID/header/length.");
+            }
+            finally { UnityEngine.Object.DestroyImmediate(index); }
+        }
+
+        [Test]
+        public void BuilderKeepsPortableIndexWhenOnlyProducerTimestampsDiffer()
+        {
+            var builder = AppDomain.CurrentDomain.GetAssemblies()
+                .Select(assembly => assembly.GetType("MmorpgClient.Editor.Tianyong.QdaoOriginalHdResourceIndexBuilder"))
+                .FirstOrDefault(type => type != null);
+            Assert.That(builder, Is.Not.Null);
+            var equivalent = builder.GetMethod("Equivalent",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            Assert.That(equivalent, Is.Not.Null);
+            var index = ScriptableObject.CreateInstance<QdaoOriginalHdResourceIndex>();
+            try
+            {
+                var folder = QdaoCharacterCatalog.OriginalV14Root + "/" + Id;
+                index.resourceFolder = folder;
+                index.manifestSha256 = index.activationSha256 = index.validationSha256 = Sha;
+                index.entries = new[] { new QdaoOriginalHdResourceIndex.Entry
+                { path = "portrait.png", assetGuid = new string('b', 32), sha256 = Sha,
+                    width = 1024, height = 1024, pixelsPerUnit = 100f, sourceBytes = 123, sourceWriteUtcTicks = 1 } };
+                var rows = new[] { new QdaoOriginalHdResourceIndex.Entry
+                { path = "portrait.png", assetGuid = new string('b', 32), sha256 = Sha,
+                    width = 1024, height = 1024, pixelsPerUnit = 100f, sourceBytes = 123, sourceWriteUtcTicks = 2 } };
+                bool Equivalent() => (bool)equivalent.Invoke(null, new object[] { index, folder, Sha, Sha, Sha, rows });
+                Assert.That(Equivalent(), Is.True, "A fresh checkout must not dirty a committed portable index.");
+                rows[0].sha256 = new string('c', 64);
+                Assert.That(Equivalent(), Is.False, "Content changes must still rebuild the index.");
+            }
+            finally { UnityEngine.Object.DestroyImmediate(index); }
+        }
     }
 }

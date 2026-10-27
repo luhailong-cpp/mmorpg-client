@@ -19,6 +19,7 @@ namespace MmorpgClient.World
             public int height;
             public float pixelsPerUnit;
             public long sourceBytes;
+            // Legacy local build metadata; Git checkouts do not preserve this timestamp.
             public long sourceWriteUtcTicks;
         }
 
@@ -65,7 +66,9 @@ namespace MmorpgClient.World
             using var sha = SHA256.Create();
             var digest = BitConverter.ToString(sha.ComputeHash(validation.bytes)).Replace("-", "").ToLowerInvariant();
             if (digest != index.validationSha256) return false;
-            Validated[folder] = revision; // Import/delete notifications call ClearCache before the next selection.
+            // Cache only within the current Unity import revision. ClearCache invalidates this
+            // after source changes, so even same-length/same-timestamp edits are hashed again.
+            Validated[folder] = revision;
             return true;
         }
 
@@ -95,13 +98,12 @@ namespace MmorpgClient.World
 #if UNITY_EDITOR
                 else
                 {
-                    // isBroken on LazyLoadReference can load the texture. Use GUID/path/header checks instead.
+                    // isBroken on LazyLoadReference can load the texture. Verify the signed source bytes instead.
                     var assetPath = "Assets/Resources/" + folder + "/" + entry.path;
                     if (UnityEditor.AssetDatabase.GUIDToAssetPath(entry.assetGuid) != assetPath) return false;
                     var fullPath = Path.Combine(Application.dataPath, "Resources", folder, entry.path);
-                    var file = new FileInfo(fullPath);
-                    if (!file.Exists || file.Length != entry.sourceBytes || file.LastWriteTimeUtc.Ticks != entry.sourceWriteUtcTicks ||
-                        !PngSize(fullPath, out var width, out var height) || width != entry.width || height != entry.height) return false;
+                    if (!QdaoHdSourceFileVerifier.Matches(fullPath, entry.sourceBytes, entry.width, entry.height,
+                        entry.sha256)) return false;
                 }
 #endif
             }

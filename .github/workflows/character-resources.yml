@@ -30,6 +30,11 @@ jobs:
             /Assets/Resources/World/Pets/QdaoPets20261005/
       - name: Install image verification dependency
         run: python -m pip install Pillow
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Verify portable character source identity after a fresh checkout
+        run: dotnet run --project tools/tests/character_availability/CharacterAvailability.csproj --configuration Release -- .
       - name: Verify baseline images and exact delivery hashes
         run: python tools/verify_character_checkout.py --hash-images
       - name: Verify all archived character actions

@@ -23,6 +23,122 @@ namespace MmorpgClient.Tests.PlayMode
         private const string First = "00_reference_topright_boy";
         private const string Second = "01_ice_sword_girl";
 
+        [UnityTest]
+        public IEnumerator CreationResources_LateImportRecoversOpenPageWithoutChangingSelectedIdentity()
+        {
+            using var fixture = new CreationResourceFixture();
+            var choice = new GameClient.PlayerChoice();
+            var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), choice);
+            Assert.That(choose.MoveNext(), Is.True);
+            yield return null;
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+            Assert.That(fixture.Button("NextAppearance").IsInteractable(), Is.False);
+            Assert.That(ReadText(fixture.Host, "PreviewHint"), Does.Contain("人物图片正在准备"));
+            fixture.Button("ConfirmCreate").onClick.Invoke();
+            Assert.That(choice.CreateNew, Is.False, "Direct callbacks cannot create while the preview is unavailable.");
+
+            // The profession default is absent; a first successful import must select
+            // the actual available identity instead of leaving the creation page empty.
+            fixture.Add(Second);
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[Second]));
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("1/1"));
+
+            fixture.Add(First);
+            fixture.Add("08_alchemy_prodigy_boy"); // Inserts before the existing selection.
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[Second]));
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("3/3"));
+
+            fixture.Available.Remove(Second);
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("冰剑少女"));
+            Assert.That(ReadText(fixture.Host, "PreviewHint"), Does.Contain("所选人物图片正在准备"));
+            fixture.Button("ConfirmCreate").onClick.Invoke();
+            Assert.That(choice.CreateNew, Is.False);
+
+            fixture.Available[Second] = QdaoHdResourceLifetimePlayModeTests.Hd(Second);
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
+            Click(fixture.Host, "ConfirmCreate");
+            Assert.That(choose.MoveNext(), Is.False);
+            Assert.That(choice.AppearanceId, Is.EqualTo(Second));
+        }
+
+        [UnityTest]
+        public IEnumerator CreationResources_ExplicitProfessionDefaultWaitsForItsOwnResources()
+        {
+            using var fixture = new CreationResourceFixture();
+            fixture.Add(First);
+            var choice = new GameClient.PlayerChoice();
+            var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), choice);
+            Assert.That(choose.MoveNext(), Is.True);
+            yield return null;
+            Click(fixture.Host, "PreviousAppearance"); // Explicit profession default.
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("职业默认"));
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+
+            fixture.Add("08_alchemy_prodigy_boy");
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("职业默认"),
+                "A new preferred import must not replace an explicit profession-default choice.");
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+
+            const string professionDefault = "04_mountain_guardian_boy";
+            fixture.Add(professionDefault);
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[professionDefault]));
+            Click(fixture.Host, "ConfirmCreate");
+            Assert.That(choose.MoveNext(), Is.False);
+            Assert.That(choice.AppearanceId, Is.Empty);
+        }
+
+        [UnityTest]
+        public IEnumerator CreationResources_MissingPortraitRetriesWithoutResettingNameOrRescanningReadyPage()
+        {
+            using var fixture = new CreationResourceFixture();
+            fixture.Add(First);
+            var portrait = fixture.Portraits[First];
+            fixture.Portraits.Remove(First);
+            var choice = new GameClient.PlayerChoice();
+            var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), choice);
+            Assert.That(choose.MoveNext(), Is.True);
+            yield return null;
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+            var input = fixture.Host.GetComponentsInChildren<TMPro.TMP_InputField>(true).Single();
+            input.text = "云行客";
+            var revision = QdaoCharacterCatalog.ResourceRevision;
+
+            // Becoming loadable is enough: no synthetic import notification is sent.
+            fixture.Portraits[First] = portrait;
+            yield return new WaitForSecondsRealtime(1.1f);
+            yield return null;
+            Assert.That(QdaoCharacterCatalog.ResourceRevision, Is.EqualTo(revision));
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
+            Assert.That(input.text, Is.EqualTo("云行客"));
+            Assert.That(fixture.Host.GetComponentsInChildren<TMPro.TMP_InputField>(true).Single(), Is.SameAs(input));
+            int probes = fixture.AppearanceProbeCount;
+            yield return new WaitForSecondsRealtime(1.1f);
+            yield return null;
+            Assert.That(fixture.AppearanceProbeCount, Is.EqualTo(probes),
+                "A ready page must wait for a resource revision instead of rescanning the roster periodically.");
+        }
+
         [Test]
         public void AllRetainedCharactersAreSelectableWithElevenV14AndFourV13Appearances()
         {
@@ -395,6 +511,50 @@ namespace MmorpgClient.Tests.PlayMode
             }
             finally { ghosts.Dispose(); view.Destroy(); UnityEngine.Object.Destroy(host); }
             yield return null;
+        }
+
+        private sealed class CreationResourceFixture : IDisposable
+        {
+            public readonly GameObject Host = new("LateImportedCreationResources");
+            public readonly RoleFlowUi Ui;
+            public readonly Dictionary<string, QdaoCharacterCatalog.Appearance> Available = new();
+            public readonly Dictionary<string, Sprite> Portraits = new();
+            public int AppearanceProbeCount;
+
+            public CreationResourceFixture()
+            {
+                Ui = Host.AddComponent<RoleFlowUi>();
+                Func<QdaoCharacterCatalog.Definition, QdaoCharacterCatalog.Appearance> appearance =
+                    entry =>
+                    {
+                        AppearanceProbeCount++;
+                        return entry != null && Available.TryGetValue(entry.Id, out var value) ? value : null;
+                    };
+                Func<string, Sprite> portrait = id => Available.ContainsKey(id) && Portraits.TryGetValue(id, out var value) ? value : null;
+                typeof(RoleFlowUi).GetField("_appearanceResolver", Hidden)?.SetValue(Ui, appearance);
+                typeof(RoleFlowUi).GetField("_portraitResolver", Hidden)?.SetValue(Ui, portrait);
+                typeof(RoleFlowUi).GetMethod("BuildCanvas", Hidden)?.Invoke(Ui, null);
+            }
+
+            public void Add(string id)
+            {
+                Available[id] = QdaoHdResourceLifetimePlayModeTests.Hd(id);
+                var texture = new Texture2D(4, 4);
+                Portraits[id] = Sprite.Create(texture, new Rect(0, 0, 4, 4), new Vector2(.5f, .5f));
+            }
+
+            public Button Button(string name) => Host.GetComponentsInChildren<Button>(true).Single(button => button.name == name);
+
+            public void Dispose()
+            {
+                UnityEngine.Object.Destroy(Host);
+                foreach (var sprite in Portraits.Values)
+                {
+                    UnityEngine.Object.Destroy(sprite.texture);
+                    UnityEngine.Object.Destroy(sprite);
+                }
+                QdaoCharacterCatalog.RefreshAppearances();
+            }
         }
 
         private static IEnumerator Choose(RoleFlowUi ui, IReadOnlyList<AccountSimplePlayer> roles, GameClient.PlayerChoice choice)
