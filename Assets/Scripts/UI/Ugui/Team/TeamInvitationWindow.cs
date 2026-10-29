@@ -22,6 +22,8 @@ namespace MmorpgClient.UI.Ugui.Team
         public event Action CreateRequested;
         public event Action Closed;
         public bool IsVisible => _root.gameObject.activeSelf;
+        /// <summary>生产宿主提供队伍视图新鲜度；只读候选查询不受影响，离线预览可省略。</summary>
+        public Func<bool> FreshViewAvailable { get; set; }
         public TeamInvitationSource Source { get; private set; }
         public string Query => _search.text.Trim();
         public int PageIndex { get; private set; }
@@ -154,8 +156,12 @@ namespace MmorpgClient.UI.Ugui.Team
             if (IsVisible) Render();
         }
 
-        private bool CanCreate => _state != null && _state.ServiceAvailable && _state.HasLoaded &&
+        private bool HasFreshView => FreshViewAvailable?.Invoke() != false;
+        private bool CanCreate => HasFreshView && _state != null && _state.ServiceAvailable && _state.HasLoaded &&
             !_state.HasTeam && !_state.IsBusy && !_state.CreationCoolingDown;
+
+        // 列表、编号邀请与最终点击复核共用此入口，不能只把按钮置灰。
+        private string InvitationBlockReason(TeamRole role) => HasFreshView ? BlockReason(_state, role) : "等待同步";
 
         /// <summary>Never infer success from a click: authoritative pending invitations alone show “已邀请”.</summary>
         public static string BlockReason(TeamUiState state, TeamRole role)
@@ -233,10 +239,11 @@ namespace MmorpgClient.UI.Ugui.Team
             _create.gameObject.SetActive(_state?.HasLoaded == true && !_state.HasTeam);
             _create.interactable = CanCreate;
             var manual = new TeamRole { PlayerId = ulong.MaxValue, IsOnline = true };
-            _manualInvite.interactable = BlockReason(_state, manual) == null;
+            _manualInvite.interactable = InvitationBlockReason(manual) == null;
             _status.text = !string.IsNullOrEmpty(_localStatus) ? _localStatus
                 : !string.IsNullOrEmpty(_state?.Status) ? _state.Status
                 : _state?.HasLoaded != true ? "正在同步队伍信息…"
+                : !HasFreshView ? "队伍信息待确认，正在等待重新同步。"
                 : !_state.HasTeam ? "先创建队伍，再邀请道友同行。"
                 : !_state.IsLeader ? "只有队长可以邀请道友入队。"
                 : _state.IsFull ? "队伍已满，暂时无法邀请。" : "邀请成功后显示“已邀请”，请等候道友答复。";
@@ -263,7 +270,7 @@ namespace MmorpgClient.UI.Ugui.Team
                     (!role.OnlineStatusKnown ? "  近期发言 · 状态待确认" : role.IsOnline ? "  在线" : "  离线");
                 Label(row, details.Trim(), 142, 50, 568, 42, 23, Muted);
                 Label(row, "编号 " + role.PlayerId, 142, 87, 568, 37, 22, Muted);
-                string reason = BlockReason(_state, role);
+                string reason = InvitationBlockReason(role);
                 ulong id = role.PlayerId;
                 Control(row, "InviteCandidate_" + id, reason ?? "邀请", 736, 33, 232, 66,
                     () => InviteCandidate(id), reason == null, enabled: reason == null, size: 26);
@@ -278,7 +285,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private void InviteCandidate(ulong id)
         {
             var role = _candidates.Find(candidate => candidate.PlayerId == id);
-            string reason = BlockReason(_state, role);
+            string reason = InvitationBlockReason(role);
             if (reason != null) { _localStatus = reason; Render(); return; }
             _localStatus = "";
             InviteRequested?.Invoke(id);
@@ -289,7 +296,7 @@ namespace MmorpgClient.UI.Ugui.Team
             if (!ulong.TryParse(_manualId.text.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out ulong id) || id == 0)
             { _localStatus = "请输入正确的玩家编号（纯数字）。"; Render(); return; }
             var role = _candidates.Find(candidate => candidate.PlayerId == id) ?? new TeamRole { PlayerId = id, OnlineStatusKnown = false };
-            string reason = BlockReason(_state, role);
+            string reason = InvitationBlockReason(role);
             if (reason != null) { _localStatus = reason; Render(); return; }
             _localStatus = "";
             InviteRequested?.Invoke(id);

@@ -73,6 +73,13 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly List<GameObject> _transient = new List<GameObject>();
         private readonly object _token = new object();
         private bool _fastForward;
+        private CastPresentation _pendingCast;
+
+        private sealed class CastPresentation
+        {
+            public Beat Beat;
+            public int RemainingImpacts;
+        }
 
         public BattlePresenter(MonoBehaviour runner, RectTransform stageRoot, RectTransform fxLayer,
             RectTransform numberLayer, RectTransform overlayLayer,
@@ -94,6 +101,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _sequencer.OnBeatEnd += HandleBeatEnd;
             _sequencer.OnFinished += () => OnFinished?.Invoke();
             _sequencer.OnAborted += () => OnAborted?.Invoke();
+            _sequencer.CanEndBeat = beat => _pendingCast == null || !ReferenceEquals(_pendingCast.Beat, beat);
         }
 
         // ── 播放控制 ─────────────────────────────────────────
@@ -184,6 +192,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>只清演出残留(特效/数字/残影/一次性覆盖层/震屏),不动单位状态。</summary>
         public void ClearTransient()
         {
+            _pendingCast = null;
             RealtimeTween.Kill(_token);
             Fx.Clear();
             Numbers.Clear();
@@ -431,12 +440,21 @@ namespace MmorpgClient.UI.Ugui.Battle
                     applyOnce();
                     return;
                 }
+                // Count the entire batch before starting any FX: missing strips may complete synchronously.
+                var pending = new CastPresentation { Beat = beat, RemainingImpacts = targets.Count };
+                _pendingCast = pending;
+                Action impactComplete = () =>
+                {
+                    if (!ReferenceEquals(_pendingCast, pending)) return;
+                    if (--pending.RemainingImpacts == 0) _pendingCast = null;
+                };
                 Action playImpacts = () =>
                 {
                     // All targets enter this stage in one callback and share one result application.
                     foreach (var view in targets)
                         Fx.Play(pres.FxId, pres.TargetAtFeet ? view.FootPosition : view.ChestPosition,
-                            size * Mathf.Max(0.6f, view.Scale), 0f, applyOnce, pres.HitFrame, mirror);
+                            size * Mathf.Max(0.6f, view.Scale), 0f, applyOnce, pres.HitFrame, mirror,
+                            onComplete: impactComplete);
                 };
                 if (!string.IsNullOrEmpty(pres.ProjectileFxId))
                 {
@@ -445,9 +463,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                     Vector2 to = target.ChestPosition;
                     // E artwork points right; place its core in front of the caster and mirror for left travel.
                     bool travelsLeft = to.x < from.x;
-                    from.x += (travelsLeft ? -1f : 1f) * 70f * Mathf.Max(0.6f, actor.Scale);
+                    float frontOffset = 70f * Mathf.Max(0.6f, actor.Scale);
+                    if (pres.AlignProjectileToPath)
+                        from += (to - from).normalized * frontOffset;
+                    else
+                        from.x += (travelsLeft ? -1f : 1f) * frontOffset;
                     Fx.PlayTravel(pres.ProjectileFxId, from, to, SingleTargetFxSize * Mathf.Max(0.6f, actor.Scale),
-                        pres.FlightSeconds, playImpacts, travelsLeft);
+                        pres.FlightSeconds, playImpacts, travelsLeft, pres.AlignProjectileToPath);
                 }
                 else if (!string.IsNullOrEmpty(pres.TelegraphFxId))
                 {

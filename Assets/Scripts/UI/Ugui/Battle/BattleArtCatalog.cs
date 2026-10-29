@@ -82,6 +82,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>可选飞行段;从人物释放事件开始,到达目标后再播 FxId。</summary>
         public string ProjectileFxId = string.Empty;
         public float FlightSeconds;
+        /// <summary>可选：以图条pivot为旋转中心对齐实际轨迹；旧技能默认保持水平镜像。</summary>
+        public bool AlignProjectileToPath;
         /// <summary>可选目标预示段;与飞行段一样不触发结果。</summary>
         public string TelegraphFxId = string.Empty;
         public float TelegraphSeconds;
@@ -951,6 +953,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             public int hit_frame;
             public string projectile_fx_id;
             public float flight_seconds;
+            public bool align_projectile_to_path;
             public string telegraph_fx_id;
             public float telegraph_seconds;
             public bool target_at_feet;
@@ -1013,6 +1016,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                         HitFrame = Mathf.Max(0, row.hit_frame),
                         ProjectileFxId = row.projectile_fx_id ?? string.Empty,
                         FlightSeconds = Mathf.Max(0f, row.flight_seconds),
+                        AlignProjectileToPath = row.align_projectile_to_path,
                         TelegraphFxId = row.telegraph_fx_id ?? string.Empty,
                         TelegraphSeconds = Mathf.Max(0f, row.telegraph_seconds),
                         TargetAtFeet = row.target_at_feet,

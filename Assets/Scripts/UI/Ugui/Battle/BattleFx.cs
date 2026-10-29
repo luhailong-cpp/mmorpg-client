@@ -120,7 +120,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>沿胸口轨迹飞行，循环帧条，到达后才交给命中段；Clear 会取消到达回调。</summary>
         public float PlayTravel(string fxId, Vector2 from, Vector2 to, float size, float flightSeconds,
-            Action onArrive = null, bool mirror = false)
+            Action onArrive = null, bool mirror = false, bool alignToPath = false)
         {
             var strip = BattleArtCatalog.LoadFx(fxId);
             if (_layer == null || strip == null || strip.Count == 0 || flightSeconds <= 0f)
@@ -137,10 +137,22 @@ namespace MmorpgClient.UI.Ugui.Battle
             image.color = Color.white;
             var rt = image.rectTransform;
             rt.sizeDelta = new Vector2(size, size);
-            rt.localScale = new Vector3(mirror ? -1f : 1f, 1f, 1f);
+            rt.localScale = new Vector3(!alignToPath && mirror ? -1f : 1f, 1f, 1f);
+            if (alignToPath)
+            {
+                // The authored core is the rotation centre; UGUI's Y axis is opposite the design coordinates.
+                rt.pivot = strip.Pivot;
+                var direction = to - from;
+                rt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-direction.y, direction.x) * Mathf.Rad2Deg);
+            }
             rt.SetAsLastSibling();
             Action<Vector2> place = anchor =>
             {
+                if (alignToPath)
+                {
+                    rt.anchoredPosition = new Vector2(anchor.x, -anchor.y);
+                    return;
+                }
                 var rect = PlacementRect(anchor, size, strip.Pivot);
                 rt.anchoredPosition = new Vector2(rect.x + (mirror ? size : 0f), -rect.y);
             };
@@ -213,6 +225,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (image == null) return;
             image.sprite = null;
             image.rectTransform.localScale = Vector3.one;
+            image.rectTransform.localRotation = Quaternion.identity;
+            image.rectTransform.pivot = new Vector2(0f, 1f);
             image.gameObject.SetActive(false);
             _pool.Push(image);
         }

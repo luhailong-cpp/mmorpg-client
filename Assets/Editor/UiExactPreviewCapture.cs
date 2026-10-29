@@ -69,6 +69,19 @@ public static class UiExactPreviewCapture
         Run("skills",p=>{SkillUiVerification.OutputDirectory=p;SkillUiVerification.CaptureAll();});
         Debug.Log("UI_EXACT_SKILLS_CAPTURE_FINISHED");
     }
+    public static void ActivitiesOnly()
+    {
+        Batch="activities";Prepare();
+        Run("gameplay",p=>{GameplayUiVerification.OutputDirectory=p;GameplayUiVerification.CaptureAll();});
+        Run("activity-center",p=>{ActivityCenterUiVerification.OutputDirectory=p;ActivityCenterUiVerification.CaptureAll();});
+        Debug.Log("UI_EXACT_ACTIVITIES_CAPTURE_FINISHED");
+    }
+    public static void HudOnly()
+    {
+        Batch="hud";Prepare();
+        Run("hud",p=>{WorldHudVerification.OutputDirectory=p;WorldHudVerification.CaptureAll();});
+        Debug.Log("UI_EXACT_HUD_CAPTURE_FINISHED");
+    }
     public static void FinalRemaining()
     {
         PhaseTwo();

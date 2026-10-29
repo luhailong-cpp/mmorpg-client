@@ -23,6 +23,12 @@
 
 ## 复查
 
+本版原生验收覆盖 2560×1080、1920×1080、1600×900、1280×720，共 20 张截图、32 组检查通过；正式 Root 的画布排序和射线层级测试 1/1 通过。
+
+- [本版原生验收报告](VerificationEvidence/world-hud-20261022/verification.json)
+- [本版窗口层级测试](VerificationEvidence/world-hud-20261022/hud-layering-tests.xml)
+- [常驻入口](VerificationEvidence/world-hud-20261022/00-closed_2560x1080.png)、[修行](VerificationEvidence/world-hud-20261022/01-cultivation_2560x1080.png)、[历练](VerificationEvidence/world-hud-20261022/02-adventure_2560x1080.png)、[仙友](VerificationEvidence/world-hud-20261022/03-social_2560x1080.png)、[交易](VerificationEvidence/world-hud-20261022/04-trade_2560x1080.png)
+
 Unity 编辑器入口：`MMORPG/UI/Capture categorized world HUD`。本版结果输出到 `.codex-artifacts/world-hud-20261022/`，覆盖四个分辨率及收起／四分类状态。运行 `MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests` 检查正式 Root 的排序与射线层级。
 
 本版已留存[原生验证结果](VerificationEvidence/world-hud-20261022/verification.json)：32 项检查通过，包含四个分辨率下的 20 张原生截图。可查看[收起布局](VerificationEvidence/world-hud-20261022/00-closed_2560x1080.png)和[修行分类](VerificationEvidence/world-hud-20261022/01-cultivation_2560x1080.png)。验证范围为隔离的编辑器原生 UI 样例，无网络或在线账号。

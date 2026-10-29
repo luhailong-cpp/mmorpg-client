@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.9473038">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="2659" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.947304" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2036" name="MmorpgClient.Tests.EditMode.Battle.dll" fullname="E:/work/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Battle.dll" runstate="Runnable" testcasecount="943" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.813848" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="72432" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2037" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="943" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.759984" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2038" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="943" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.708273" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2039" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="943" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.649283" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="2040" name="Battle" fullname="MmorpgClient.Tests.EditMode.Battle" runstate="Runnable" testcasecount="943" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.604661" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1817" name="HudCanvasLayeringTests" fullname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests" classname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.553211" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1818" name="NativeHudCanvasesStayBelowWindowsAndKeepRaycastTargets" fullname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests.NativeHudCanvasesStayBelowWindowsAndKeepRaycastTargets" methodname="NativeHudCanvasesStayBelowWindowsAndKeepRaycastTargets" classname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests" runstate="Runnable" seed="876370248" result="Passed" start-time="2026-10-22 08:08:11Z" end-time="2026-10-22 08:08:14Z" duration="2.510542" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 namespace MmorpgClient.UI.Ugui.Battle
@@ -19,6 +20,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private const float PanelW = 900f;
         private const float PanelH = 720f;
         private const float RowStartY = 236f;
+        private const float RowsViewportHeight = 360f;
         private const float RowHeight = 44f;
         private const float RowDelay = 0.12f;
 
@@ -27,6 +29,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly TMP_Text _titleText;
         private readonly TMP_Text _roundsText;
         private readonly RectTransform _rows;
+        private readonly ScrollRect _rewardScroll;
         private readonly UiTextButton _confirmButton;
         private readonly CanvasGroup _confirmGroup;
         private readonly List<GameObject> _rowObjects = new List<GameObject>();
@@ -59,8 +62,20 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             _roundsText = QdaoUguiFactory.CreateText("Rounds", _root, 0f, 156f, PanelW, 36f,
                 string.Empty, 24f, QdaoUguiTheme.MutedBrown, TextAlignmentOptions.Center);
-            _rows = QdaoUguiFactory.CreateRect("Rows", _root, 120f, RowStartY, PanelW - 240f, 360f);
-            _rows.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+            var viewport = QdaoUguiFactory.CreateRect("RowsViewport", _root, 120f, RowStartY, PanelW - 240f, RowsViewportHeight);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var surface = viewport.gameObject.AddComponent<Image>();
+            surface.color = new Color(1f, 1f, 1f, 0.001f);
+            surface.raycastTarget = true;
+            _rows = QdaoUguiFactory.CreateRect("Rows", viewport, 0f, 0f, PanelW - 240f, RowsViewportHeight);
+            _rewardScroll = viewport.gameObject.AddComponent<ScrollRect>();
+            _rewardScroll.viewport = viewport;
+            _rewardScroll.content = _rows;
+            _rewardScroll.horizontal = false;
+            _rewardScroll.vertical = true;
+            _rewardScroll.movementType = ScrollRect.MovementType.Clamped;
+            _rewardScroll.scrollSensitivity = RowHeight;
+            _rewardScroll.inertia = false;
 
             _confirmButton = BattleUiWidgets.CreateTextButton("Confirm", _root,
                 (PanelW - 260f) * 0.5f, PanelH - 116f, 260f, 76f,
@@ -114,6 +129,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             _root.gameObject.SetActive(true);
             _root.SetAsLastSibling();
             _group.alpha = 1f;
+            // 奖励数量可配置：内容增长后仍能滚动查看末行，每次展示从顶部开始。
+            _rows.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(RowsViewportHeight, lines.Count * RowHeight));
+            _rewardScroll.StopMovement();
+            _rows.anchoredPosition = Vector2.zero;
+            _rewardScroll.verticalNormalizedPosition = 1f;
 
             // 大字弹入
             var titleRect = _titleText.rectTransform;
@@ -182,8 +202,25 @@ namespace MmorpgClient.UI.Ugui.Battle
                 return lines;
             }
             lines.Add($"经验  +{settlement.ExpGain}");
-            // GoldGain 入的是 kCurrencyGold,契约 §0-1 叫"银两"。
-            lines.Add($"银两  +{settlement.GoldGain}");
+            if (settlement.CurrencyGains.Count > 0)
+            {
+                foreach (var currency in settlement.CurrencyGains)
+                {
+                    string name = currency.CurrencyType switch
+                    {
+                        0 => "银两",
+                        1 => "灵石",
+                        2 => "绑定灵石",
+                        _ => $"货币{currency.CurrencyType}"
+                    };
+                    lines.Add($"{name}  +{currency.Amount}");
+                }
+            }
+            else
+            {
+                // 兼容旧结算：GoldGain 入的是 kCurrencyGold，契约 §0-1 叫“银两”。
+                lines.Add($"银两  +{settlement.GoldGain}");
+            }
             if (settlement.ItemsGained != null && settlement.ItemsGained.Count > 0)
             {
                 foreach (var item in settlement.ItemsGained)

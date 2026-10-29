@@ -73,7 +73,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string.IsNullOrWhiteSpace(item.Name) ? $"物品 · {item.ConfigId}" : item.Name;
         public static string MissionStatus(PlayerMissionStatus status) => (int)status switch
         {
-            1 => "进行中", 2 => "已完成", 3 => "目标已达成", 4 => "未完成", _ => "待开启"
+            1 => "进行中", 2 => "已完成", 3 => "可领取", 4 => "已失败", _ => "待开启"
         };
         public static string ActivityStatus(PlayerActivityStatus status) => (int)status switch
         {

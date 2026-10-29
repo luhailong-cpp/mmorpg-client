@@ -1,0 +1,52 @@
+{
+  "reviewedUtc": "2026-10-23T13:39:26.1188219+00:00",
+  "passed": true,
+  "method": "Visual inspection of actual native-final Unity player PNGs, checked against the final receipt and accepted transparent frame artwork.",
+  "selectedScreenshots": [
+    "003-1201-west-flight-mid.png",
+    "009-1201-east-flight-mid.png",
+    "012-1201-east-reaction.png",
+    "017-1202-one-reaction.png",
+    "019-1202-three-lead-in.png",
+    "021-1202-three-hit.png",
+    "022-1202-three-reaction.png"
+  ],
+  "checks": [
+    {
+      "name": "Caster-foot charge",
+      "passed": true,
+      "detail": "East-flight capture shows the teal/gold charge around the caster feet while the approved character cast action runs."
+    },
+    {
+      "name": "Directional travel",
+      "passed": true,
+      "detail": "West and east flight captures show the core between caster and target; left travel has its tail on the right and right travel has its tail on the left."
+    },
+    {
+      "name": "Telegraph and strike feet",
+      "passed": true,
+      "detail": "All three actual target positions carry their own synchronized foot rings and purple strike instances; the strike tips remain within their image rectangles."
+    },
+    {
+      "name": "Chest reaction and number layer",
+      "passed": true,
+      "detail": "Single and three-target reaction captures show gold hit stars on the upper body, with one legible -100 number above each actual target and overhead bars still visible."
+    },
+    {
+      "name": "Alpha and clipping",
+      "passed": true,
+      "detail": "No opaque strip rectangles, magenta key color, missing sprite cells or visible frame-edge clipping in the inspected captures."
+    },
+    {
+      "name": "Unique results and cleanup",
+      "passed": true,
+      "detail": "Final receipt has one damage event per actual target, one shared damage frame, one number per target, and zero active FX after cleanup; aborted/skipped flight and telegraph cases have no late result."
+    }
+  ],
+  "scope": "Offline production-presenter acceptance with synthetic 100 damage outcomes; no server settlement claim.",
+  "timingNotes": [
+    "flight-mid is a phase label and is not an assertion of an exact 50 percent trajectory position.",
+    "At 6x and target 15fps the short hit pose can be skipped by frame quantization; visual reaction inspection uses the normal 1x captures.",
+    "GPU frame readback and initial resource loading still introduce some frame spikes. The first cold 1201-west case peaked at about 1.10 seconds per frame; warm normal cases first hit at about 1.16-1.17 seconds and 6x/15fps cases at about .33 seconds. These captures are not a frame-rate performance benchmark; the deterministic 15/30fps checks are in the passing specialized tests."
+  ]
+}

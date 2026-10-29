@@ -41,7 +41,7 @@ namespace MmorpgClient.Game.PlayerFeatures
     /// (服务端 docs/design/equipment-enhance-inlay.md §6.1):回包同样带两份全量;强化掷骰没过不是失败
     /// (没有 tip,快照照常覆盖),结果经 <see cref="OnEnhanceResult"/> 单独通知。
     /// </summary>
-    public sealed class PlayerFeaturesClient : IDisposable
+    public sealed partial class PlayerFeaturesClient : IDisposable
     {
         public static PlayerFeaturesClient Instance { get; private set; }
 
@@ -72,6 +72,8 @@ namespace MmorpgClient.Game.PlayerFeatures
         private static readonly System.Diagnostics.Stopwatch MonotonicClock = System.Diagnostics.Stopwatch.StartNew();
 
         private readonly IBattleTransport _net;
+        private readonly Func<object> _connectionIdentity;
+        private object _observedConnection;
         private readonly BagInfo[] _bags = new BagInfo[MaxBagType + 1];
         private ulong _snapshotPlayerId;
         private int _epoch;
@@ -103,7 +105,11 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// <summary>装备栏(bag_type = 2)快照:槽位定义在 Layout.EquipSlots(含空槽),占用关系在 Layout.Slots。</summary>
         public BagInfo Equipment => _bags[EquipmentBagType];
         public GetMissionListResponse Missions { get; private set; }
+        /// <summary>随当前角色连接清理的任务展示偏好，不保存任务进度。</summary>
+        public MissionTrackingState MissionTracking { get; } = new MissionTrackingState();
         public GetActivityListResponse Activities { get; private set; }
+        /// <summary>快照绑定角色；断线或换角清理后为0，供活动个人偏好隔离。</summary>
+        public ulong SnapshotPlayerId => _snapshotPlayerId;
         public bool HasBag => Bag != null;
         public bool HasEquipment => Equipment != null;
         public bool HasMissions => Missions != null;
@@ -168,15 +174,17 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// </summary>
         public event Action<EquipEnhanceOutcome> OnEnhanceResult;
 
-        public PlayerFeaturesClient(IBattleTransport transport)
+        public PlayerFeaturesClient(IBattleTransport transport, Func<object> connectionIdentity = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
+            _connectionIdentity = connectionIdentity ?? (() => _net);
+            _observedConnection = _connectionIdentity();
             _net.Disconnected += HandleDisconnected;
         }
 
-        public static PlayerFeaturesClient Attach(IBattleTransport transport)
+        public static PlayerFeaturesClient Attach(IBattleTransport transport, Func<object> connectionIdentity = null)
         {
-            var client = new PlayerFeaturesClient(transport);
+            var client = new PlayerFeaturesClient(transport, connectionIdentity);
             Instance = client;
             return client;
         }
@@ -402,6 +410,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (!PrepareRequest(out var playerId)) return;
             if (BusyEquip) return; // 连点:上一次还没回包,不发第二个包也不报错
+            if (BusyActivityReward) { FailEquipAction("活跃奖励正在处理中，请稍候"); return; }
             // 连点的另一种形态:上一包已经回来,但离它发出还不到最小间隔。同样不发、不报错。
             // 差值为负 = 时钟被换过:放行(宁可多发一包,不能把人永久锁在间隔里)。
             long now = forge ? _nowMs() : 0;
@@ -492,6 +501,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public void SortBag()
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (BusyActivityReward) { FailBag("活跃奖励正在处理中，请稍候"); return; }
             if (BusyMissionAction) { FailBag("任务正在处理中，请稍候"); return; }
             if (BusyEquip) { FailBag("装备正在更换，请稍候"); return; }
             if (BusySort || BagLoading) { FailBag("背包正在处理中，请稍候"); return; }
@@ -533,6 +543,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             MissionsLoading = true;
             MissionsError = string.Empty;
             OnChanged?.Invoke();
+            // 加载通知可重入换角、换连接、释放或更新读取；不能把外层旧意图发到新主体。
+            if (!IsCurrent(epoch, playerId) || request != _missionRequest) return;
             _net.Call(SceneMissionClientPlayerRpc.GetMissionListMessageId,
                 new GetMissionListRequest(), GetMissionListResponse.Parser,
                 response =>
@@ -541,6 +553,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                     MissionsLoading = false;
                     if (HasTip(response.ErrorMessage)) { FailMissions(DescribeTip("读取任务失败", response.ErrorMessage)); return; }
                     Missions = response;
+                    MissionTracking.UpdateSnapshot(response);
                     MissionsError = string.Empty;
                     OnChanged?.Invoke();
                 },
@@ -556,6 +569,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (!PrepareRequest(out var playerId)) return;
             if (BusyMissionAction) return;
+            if (BusyActivityReward) return;
             int epoch = _epoch;
             int request = ++_activityRequest;
             ActivitiesLoading = true;
@@ -571,6 +585,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                     Activities = response;
                     ActivitiesError = string.Empty;
                     OnChanged?.Invoke();
+                    if (IsCurrent(epoch, playerId)) RecoverActivityReward();
                 },
                 error =>
                 {
@@ -588,6 +603,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (!PrepareRequest(out var playerId)) return;
             if (BusyMissionAction) return;
+            if (BusyActivityReward) { FailMissions("活跃奖励正在处理中，请稍候"); return; }
             if (BusySort) { FailMissions("背包正在整理，请稍候"); return; }
             if (BusyEquip) { FailMissions("装备正在更换，请稍候"); return; }
             PlayerMissionInfo mission = null;
@@ -595,9 +611,9 @@ namespace MmorpgClient.Game.PlayerFeatures
                 foreach (var entry in Missions.Missions)
                     if (entry.Scope == scope && entry.MissionId == missionId) { mission = entry; break; }
             bool allowed = mission != null && (claim ? mission.CanClaim : mission.CanAccept);
-            if (!claim && mission == null && scope == 0 && Activities != null)
+            if (!claim && mission == null && Activities != null)
                 foreach (var activity in Activities.Activities)
-                    if (activity.MissionId == missionId && activity.CanParticipate) { allowed = true; break; }
+                    if (activity.MissionScope == scope && activity.MissionId == missionId && activity.CanParticipate) { allowed = true; break; }
             if (missionId == 0 || !allowed)
             {
                 FailMissions(!string.IsNullOrWhiteSpace(mission?.UnavailableReason) ? mission.UnavailableReason :
@@ -623,6 +639,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                     if (HasTip(response.ErrorMessage))
                     { FailMissions(DescribeTip(claim ? "领取奖励失败" : "接取任务失败", response.ErrorMessage)); return; }
                     Missions = response;
+                    MissionTracking.UpdateSnapshot(response);
                     MissionsError = string.Empty;
                     OnChanged?.Invoke();
                     if (!IsCurrent(epoch, playerId)) return;
@@ -640,6 +657,11 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             playerId = _net.PlayerId;
             if (_disposed) return false;
+            if (!ReferenceEquals(_observedConnection, _connectionIdentity()))
+            {
+                _observedConnection = _connectionIdentity();
+                ClearSnapshots();
+            }
             if (_snapshotPlayerId != 0 && _snapshotPlayerId != playerId) ClearSnapshots();
             if (!_net.IsReady || playerId == 0)
             {
@@ -655,7 +677,8 @@ namespace MmorpgClient.Game.PlayerFeatures
         }
 
         private bool IsCurrent(int epoch, ulong playerId)
-            => !_disposed && _epoch == epoch && _net.IsReady && _net.PlayerId == playerId;
+            => !_disposed && _epoch == epoch && _net.IsReady && _net.PlayerId == playerId
+                && ReferenceEquals(_observedConnection, _connectionIdentity());
 
         private static bool ValidBag(BagInfo bag, uint bagType)
             => bag?.Layout != null && bag.Layout.BagType == bagType;
@@ -813,9 +836,11 @@ namespace MmorpgClient.Game.PlayerFeatures
         private void ClearSnapshots()
         {
             ++_epoch;
+            ResetActivityRewardSession();
             _snapshotPlayerId = 0;
             Array.Clear(_bags, 0, _bags.Length);
             Missions = null;
+            MissionTracking.Clear();
             Activities = null;
             BagLoading = EquipmentLoading = MissionsLoading = ActivitiesLoading = false;
             BusySort = BusyEquip = BusyMissionAction = false;
@@ -836,6 +861,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             OnChanged = null;
             OnError = null;
             OnEnhanceResult = null;
+            OnActivityRewardClaimed = null;
         }
     }
 }

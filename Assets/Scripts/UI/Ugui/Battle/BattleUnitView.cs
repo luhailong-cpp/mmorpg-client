@@ -620,7 +620,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             }, () => { if (revision == _actionRevision) EndAction(); });
         }
 
-        /// <summary>施法:原地抬手聚气(缩放 1.06 + 金色脉冲 + buff_rise 光柱),释放时刻回调 onRelease。</summary>
+        /// <summary>施法:已验收人物动作与脚底 cast_charge 聚气，人物释放事件回调 onRelease。</summary>
         public void PlayCast(Action onRelease = null)
         {
             if (_root == null || IsDead) return;

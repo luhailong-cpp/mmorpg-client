@@ -1,0 +1,371 @@
+{
+  "finalizedUtc": "2026-10-23T13:39:29.6861695+00:00",
+  "status": "Dedicated combat-FX implementation and presentation acceptance passed; full battle assembly remains failing.",
+  "scope": "Six accepted FX families integrated into the client; server skill rules and numeric balance unchanged.",
+  "assetContracts": [
+    {
+      "id": "hit_star",
+      "skillId": null,
+      "frames": 8,
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 3072,
+      "height": 384,
+      "loop": false,
+      "sha256": "3ff89c5ac517fe6f4dde37e99a10dd182329b984e8fdafe924fb12269a483a30",
+      "actualModel": null,
+      "actualQuality": null
+    },
+    {
+      "id": "cast_charge",
+      "skillId": null,
+      "frames": 8,
+      "fps": 10,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "width": 3072,
+      "height": 384,
+      "loop": false,
+      "sha256": "97d0e2f7d2142f9873eee810c8dbb364f5fb1efe9334bcea11485b9efb5c9080",
+      "actualModel": null,
+      "actualQuality": null
+    },
+    {
+      "id": "xuanfu_luoyao_projectile",
+      "skillId": 1201,
+      "frames": 8,
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 3072,
+      "height": 384,
+      "loop": true,
+      "sha256": "a66fc96664ba3cc334c6856434845a636e1c6709ffa54b4eebec9d9cb584c8b8",
+      "actualModel": null,
+      "actualQuality": null
+    },
+    {
+      "id": "xuanfu_luoyao_impact",
+      "skillId": 1201,
+      "frames": 8,
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 3072,
+      "height": 384,
+      "loop": false,
+      "sha256": "a07f3163c2bd641601f6bc6c5ae5bbead1ab3a9ad9eef7bfd69a82d436629737",
+      "actualModel": null,
+      "actualQuality": null
+    },
+    {
+      "id": "zixiao_leizhen_telegraph",
+      "skillId": 1202,
+      "frames": 8,
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "width": 3072,
+      "height": 384,
+      "loop": false,
+      "sha256": "37be8d9578a796f9299205580fbb136318f2d08072308a1054bb126067d624d6",
+      "actualModel": null,
+      "actualQuality": null
+    },
+    {
+      "id": "zixiao_leizhen_strike",
+      "skillId": 1202,
+      "frames": 8,
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "width": 3072,
+      "height": 384,
+      "loop": false,
+      "sha256": "fecbbba82ef862f7795eec1233dc9aa4db4117fc0a334904751062e35c6a204c",
+      "actualModel": null,
+      "actualQuality": null
+    }
+  ],
+  "skillMappings": [
+    {
+      "skill_id": 1201,
+      "fx_id": "xuanfu_luoyao_impact",
+      "action": "cast",
+      "hit_frame": 3,
+      "projectile_fx_id": "xuanfu_luoyao_projectile",
+      "flight_seconds": 0.5,
+      "target_at_feet": false
+    },
+    {
+      "skill_id": 1202,
+      "fx_id": "zixiao_leizhen_strike",
+      "action": "cast",
+      "hit_frame": 3,
+      "telegraph_fx_id": "zixiao_leizhen_telegraph",
+      "telegraph_seconds": 0.5,
+      "target_at_feet": true
+    }
+  ],
+  "runtimeBehavior": [
+    "hit_star attaches to target chest and retains existing hit action, white flash and recoil; cast_charge attaches to caster feet and the character action still owns release timing.",
+    "1201 travels from the caster chest/front to target chest, mirrors leftward, loops frames in flight and applies no result until impact zero-based frame 3.",
+    "1202 starts all actual 1-3 targets on one shared telegraph/strike clock at the feet; zero-based strike frame 3 applies one result batch and one damage/number per actual target.",
+    "BattleSequencer.CanEndBeat and BattlePresenter pending-cast completion gate defer terminal HP/next beat until the actual impact tail completes. This fixes coarse-frame/high-speed timer quantization; Abort/Skip cancel pending callbacks and recycle transients."
+  ],
+  "importerContract": {
+    "filter": "Bilinear",
+    "wrap": "Clamp",
+    "mipmaps": false,
+    "compression": "None",
+    "maxTextureSize": 4096
+  },
+  "alpha": "straight",
+  "sourceEvidence": "Actual model and quality remain null because the built-in generation tool did not disclose them. Source records were read, not rewritten.",
+  "tests": {
+    "focused": {
+      "file": "focused-results.xml",
+      "total": 131,
+      "passed": 131,
+      "failed": 0,
+      "combatFxSpecializedPassed": 26,
+      "sha256": "DCB1ABFA4BD29D3782D43796EEA9F5D91745DB7D4E4E0A200C345ED0DD9E7A71"
+    },
+    "broad": {
+      "file": "broad-results.xml",
+      "total": 965,
+      "passed": 920,
+      "failed": 45,
+      "green": false,
+      "sha256": "927165E0FCC9B5187D45F6B56DAD7CE6C0DA421E8CA395BE84D18E831505EF0D",
+      "triage": "broad-suite-failure-triage.json",
+      "limitation": "These 45 failures remain real. Triage is not a pre-patch runtime comparison and does not prove a historically green baseline."
+    },
+    "inputRevision": {
+      "tested": "tests-inputs.json",
+      "builtAndNativeVerified": "verified-inputs.json",
+      "changedSinceTests": [
+        {
+          "path": "Assets/Scripts/App/CombatFxVerification.cs",
+          "testsSHA256": "AD0E4B45324932D009DD2FDCE936CE6DAA6D6BC3DD0559724F48AF501432B294",
+          "verifiedSHA256": "D420257B1E02F49D740300D1FE5FA48339B8375C8AEF3CD6014186650354B55B"
+        }
+      ],
+      "limitation": "Only CombatFxVerification.cs changed after the focused test run, for native capture/probe handling. The final build/native run verifies the updated driver; the 131-test suite was not rerun against that final whole package."
+    }
+  },
+  "native": {
+    "receipt": "combat-fx-verification.json",
+    "passed": true,
+    "cases": 12,
+    "exitCode": 0,
+    "scope": "Native Unity player, offline synthetic outcomes through production BattlePresenter/BattleUnitView/BattleFxPlayer/DamageNumberPool; damage is a synthetic 100 per target. This is presentation acceptance, not server battle integration.",
+    "coverage": "Generic cast/hit; 1201 east/west flight and impact; 1202 one/three target synchronized impacts; 6x15fps and 1.5x30fps; flight and telegraph Abort/Skip; no early HP or duplicate result/number; natural pooling and full impact tail.",
+    "selectedScreenshots": [
+      {
+        "filename": "003-1201-west-flight-mid.png",
+        "bytes": 5279866,
+        "sha256": "39C4853870754FF21848A261BAB9B7DD759DF1C15F5903B50F20535BB8EC5AAD"
+      },
+      {
+        "filename": "009-1201-east-flight-mid.png",
+        "bytes": 5272882,
+        "sha256": "775BE912B5BC47B6C3E229F23D80D8B3C023417B5F203AD276680AD3FFDFFA48"
+      },
+      {
+        "filename": "012-1201-east-reaction.png",
+        "bytes": 5262146,
+        "sha256": "1736F39233D8FBED3887FD690D104F0DF4A9999DC95BF3A5307C56EE7B238233"
+      },
+      {
+        "filename": "017-1202-one-reaction.png",
+        "bytes": 5279522,
+        "sha256": "D101677D4440749D331ED598539025C57CA9C9CCE64A68C86363FDEA17AD7095"
+      },
+      {
+        "filename": "019-1202-three-lead-in.png",
+        "bytes": 5308337,
+        "sha256": "B25A4523549A9011F4ABE9E47A6706447BE83079BE8FBAF2227EEA3AA6B6E8B1"
+      },
+      {
+        "filename": "021-1202-three-hit.png",
+        "bytes": 5273126,
+        "sha256": "162595E3F230A3C1EC672E05ACBD762E30579ABFD6F8978EE9374C122FD1E7BC"
+      },
+      {
+        "filename": "022-1202-three-reaction.png",
+        "bytes": 5294453,
+        "sha256": "276F47FD04C95399F7692B5A4230F1BAAEFF29D9D3F9234F7C5D5F667DB6B59A"
+      }
+    ],
+    "allReceiptPngsPresent": true,
+    "fullScreenshotCount": 47,
+    "rawEvidenceDirectory": "E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\native-final",
+    "visualReview": "visual-review.json"
+  },
+  "build": {
+    "summary": "build-summary.json",
+    "passed": true,
+    "exitCode": 0,
+    "artifacts": [
+      {
+        "path": "mmorpg.exe",
+        "bytes": 667136,
+        "sha256": "718444F6A718FA668DA96EB0A58445B009673310E6129152A63DBF7A92B8DE00"
+      },
+      {
+        "path": "mmorpg_Data\\Managed\\MmorpgClient.dll",
+        "bytes": 3930112,
+        "sha256": "CED895EB4134935E6F22A8AEBED4453D91AC0618E11E73A8502D6B62DA876BBE"
+      },
+      {
+        "path": "mmorpg_Data\\resources.assets",
+        "bytes": 46904936,
+        "sha256": "B122C20A5FB4FCAC1764FD335968EB95E1B8BA53C5E3D3C22572241F131BF2C9"
+      }
+    ],
+    "rawLog": "E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\build-resume-20261023-unity.log"
+  },
+  "currentMainRuntimeCompile": {
+    "evidence": "main-runtime-compile-20261023.txt",
+    "date": "2026-10-23",
+    "passed": true,
+    "files": 424,
+    "errors": 0,
+    "exitCode": 0,
+    "detail": "9:28:45 AM exit=0 files=424 errors=0 refs=csproj (MmorpgClient.csproj, 277 refs) unity=C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1 csc=C:\\Program Files\\dotnet\\sdk\\10.0.400\\Roslyn\\bincore\\csc.dll",
+    "scope": "Offline Roslyn compile of the current shared main runtime sources. This is not a complete Unity player build of the shared main project."
+  },
+  "isolation": {
+    "baseCommit": "da77a149131f3382ff568e798eb0ba593ef8ef85",
+    "project": "E:\\work\\mmorpg-client\\.codex-artifacts\\combat-fx-20261022\\isolated-project",
+    "scope": "Fixed da77a149 committed client baseline plus the exact 16 task files, copied resources and an independent Library. Concurrent main-project activity/team work was not included or overwritten.",
+    "reason": "On 2026-10-22 concurrent in-progress activity functionality had compile errors, so dedicated Unity tests/build used an isolated project. On 2026-10-23 the current shared main runtime offline compile passed; a complete current-main Unity player build was not performed in this acceptance run.",
+    "verifiedInputCount": 16,
+    "currentMainAndIsolatedMatchRebuild": true,
+    "currentHashes": [
+      {
+        "path": "Assets/Scripts/App/CombatFxVerification.cs",
+        "mainSHA256": "D420257B1E02F49D740300D1FE5FA48339B8375C8AEF3CD6014186650354B55B",
+        "isolatedSHA256": "D420257B1E02F49D740300D1FE5FA48339B8375C8AEF3CD6014186650354B55B",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Scripts/Game/Battle/Presentation/BattleSequencer.cs",
+        "mainSHA256": "BDE967A8E50D67787B385ECF65BB67B2077A898E4CE54E5044B122880E8B785A",
+        "isolatedSHA256": "BDE967A8E50D67787B385ECF65BB67B2077A898E4CE54E5044B122880E8B785A",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Scripts/UI/Ugui/Battle/BattlePresenter.cs",
+        "mainSHA256": "2F0F9CB00DFED318EB88E01CC58869663C75D1ABE6BC6964600EC0D169C8A9A8",
+        "isolatedSHA256": "2F0F9CB00DFED318EB88E01CC58869663C75D1ABE6BC6964600EC0D169C8A9A8",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Scripts/UI/Ugui/Battle/BattleFx.cs",
+        "mainSHA256": "5CDB9DA47395ADC574369EA7F0271AE605163831D07F14FA0845B69BF59820BE",
+        "isolatedSHA256": "5CDB9DA47395ADC574369EA7F0271AE605163831D07F14FA0845B69BF59820BE",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Scripts/UI/Ugui/Battle/BattleUnitView.cs",
+        "mainSHA256": "D35A7921340CDACA0D478A943DEA75CC8EA5C82C18B220952D889412F5042675",
+        "isolatedSHA256": "D35A7921340CDACA0D478A943DEA75CC8EA5C82C18B220952D889412F5042675",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Scripts/UI/Ugui/Battle/BattleArtCatalog.cs",
+        "mainSHA256": "6D334B80D073AD1306F3A35CD37892484CB7F48653547EB9ABEDFCD0C1FEB75E",
+        "isolatedSHA256": "6D334B80D073AD1306F3A35CD37892484CB7F48653547EB9ABEDFCD0C1FEB75E",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Tests/EditMode/Battle/BattleCombatFxIntegrationTests.cs",
+        "mainSHA256": "B6FD1F3652F1B9CE03252CF24A2D508B758BCF244D98F59DF54D9984CF71A064",
+        "isolatedSHA256": "B6FD1F3652F1B9CE03252CF24A2D508B758BCF244D98F59DF54D9984CF71A064",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/skill_presentation.json",
+        "mainSHA256": "367D009020544AFDF1681A58AE7B421346E9F17C37F02AA61A0273A6752109B1",
+        "isolatedSHA256": "367D009020544AFDF1681A58AE7B421346E9F17C37F02AA61A0273A6752109B1",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/ART_MANIFEST.json",
+        "mainSHA256": "33921E588DFD7A1626BFFC2751416FA25B6FEFF8D9B52CFCC72B5613BBDFF8ED",
+        "isolatedSHA256": "33921E588DFD7A1626BFFC2751416FA25B6FEFF8D9B52CFCC72B5613BBDFF8ED",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/combat_fx_sources.json",
+        "mainSHA256": "4172C2A6EC8BAFAF6B5E34FCFA9F53F8EFCB5AC67E1B6F5E4CD6BDF1CA612FC3",
+        "isolatedSHA256": "4172C2A6EC8BAFAF6B5E34FCFA9F53F8EFCB5AC67E1B6F5E4CD6BDF1CA612FC3",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/Fx/cast_charge_strip.png",
+        "mainSHA256": "97D0E2F7D2142F9873EEE810C8DBB364F5FB1EFE9334BCEA11485B9EFB5C9080",
+        "isolatedSHA256": "97D0E2F7D2142F9873EEE810C8DBB364F5FB1EFE9334BCEA11485B9EFB5C9080",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/Fx/hit_star_strip.png",
+        "mainSHA256": "3FF89C5AC517FE6F4DDE37E99A10DD182329B984E8FDAFE924FB12269A483A30",
+        "isolatedSHA256": "3FF89C5AC517FE6F4DDE37E99A10DD182329B984E8FDAFE924FB12269A483A30",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/Fx/xuanfu_luoyao_impact_strip.png",
+        "mainSHA256": "A07F3163C2BD641601F6BC6C5AE5BBEAD1AB3A9AD9EEF7BFD69A82D436629737",
+        "isolatedSHA256": "A07F3163C2BD641601F6BC6C5AE5BBEAD1AB3A9AD9EEF7BFD69A82D436629737",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/Fx/xuanfu_luoyao_projectile_strip.png",
+        "mainSHA256": "A66FC96664BA3CC334C6856434845A636E1C6709FFA54B4EEBEC9D9CB584C8B8",
+        "isolatedSHA256": "A66FC96664BA3CC334C6856434845A636E1C6709FFA54B4EEBEC9D9CB584C8B8",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/Fx/zixiao_leizhen_strike_strip.png",
+        "mainSHA256": "FECBBBA82EF862F7795EEC1233DC9AA4DB4117FC0A334904751062E35C6A204C",
+        "isolatedSHA256": "FECBBBA82EF862F7795EEC1233DC9AA4DB4117FC0A334904751062E35C6A204C",
+        "matchesRebuildInputs": true
+      },
+      {
+        "path": "Assets/Resources/Battle/Fx/zixiao_leizhen_telegraph_strip.png",
+        "mainSHA256": "37BE8D9578A796F9299205580FBB136318F2D08072308A1054BB126067D624D6",
+        "isolatedSHA256": "37BE8D9578A796F9299205580FBB136318F2D08072308A1054BB126067D624D6",
+        "matchesRebuildInputs": true
+      }
+    ],
+    "packageDifference": {
+      "removedOnlyInIsolated": "com.unity.ai.assistant",
+      "mainVersion": "file:../tools/unity-packages/com.unity.ai.assistant-2.17.0-pre.1.tgz",
+      "reason": "Editor AI Assistant is not needed by this presentation/player verification.",
+      "otherManifestDifferences": false,
+      "note": "This is an isolated verification environment difference, not a main-project package edit."
+    }
+  },
+  "captureNote": {
+    "description": "Texture read/capture remains on the Unity main thread; thread-safe EncodeArrayToPNG may encode copied pixel data on a background task. Receipt creation waits for capture writes.",
+    "documentation": "https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/imageconversion/encodearraytopng"
+  },
+  "rawArtifacts": "Raw Unity build log, player log and the complete native screenshot set remain in the client Logs directory; selected durable evidence is archived here.",
+  "git": "Finalization did not commit, stage, switch branches or push."
+}

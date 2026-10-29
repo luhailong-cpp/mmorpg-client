@@ -113,5 +113,33 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var none = BattleResultPanel.BuildRewardLines(null);
             Assert.AreEqual(1, none.Count);
         }
+
+        [Test]
+        public void ResultRewardLines_ListAllCurrencies_WithoutDuplicatingLegacyGold()
+        {
+            var settlement = new BattleSettlementData { GoldGain = 999 };
+            settlement.CurrencyGains.Add(new BattleCurrencyGain { CurrencyType = 0, Amount = 30 });
+            settlement.CurrencyGains.Add(new BattleCurrencyGain { CurrencyType = 1, Amount = 5 });
+            settlement.CurrencyGains.Add(new BattleCurrencyGain { CurrencyType = 2, Amount = ulong.MaxValue });
+
+            var lines = BattleResultPanel.BuildRewardLines(settlement);
+
+            Assert.AreEqual(6, lines.Count);
+            Assert.AreEqual("银两  +30", lines[1]);
+            Assert.AreEqual("灵石  +5", lines[2]);
+            Assert.AreEqual("绑定灵石  +18446744073709551615", lines[3]);
+            Assert.That(lines, Has.None.Contains("999"), "新集合存在时不再显示旧 GoldGain");
+        }
+
+        [Test]
+        public void ResultRewardLines_PreservesUnknownCurrencyTypeAndAmount()
+        {
+            var settlement = new BattleSettlementData();
+            settlement.CurrencyGains.Add(new BattleCurrencyGain { CurrencyType = 8, Amount = 16 });
+
+            var lines = BattleResultPanel.BuildRewardLines(settlement);
+
+            Assert.AreEqual("货币8  +16", lines[1]);
+        }
     }
 }

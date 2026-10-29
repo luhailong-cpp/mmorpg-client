@@ -266,6 +266,38 @@
       ],
       "loop": false,
       "desc": "紫霄雷阵单落点雷击:全部实际目标脚底同拍播放,零基第3帧共享一次结果应用"
+    },
+    {
+      "path": "Fx/hanxing_ningpo_projectile_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": true,
+      "desc": "寒星凝魄星晶飞行:默认向右、霜尾向左,由运行时移动至目标胸口,不触发结果"
+    },
+    {
+      "path": "Fx/hanxing_ningpo_impact_strip.png",
+      "kind": "fx_strip",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "cell_width": 384,
+      "cell_height": 384,
+      "fps_hint": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "desc": "寒星凝魄短霜纹命中:目标胸口播放一次,零基第3帧唯一结果表现事件,不承载持续减速Buff"
     }
   ],
   "ui": [

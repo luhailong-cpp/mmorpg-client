@@ -32,6 +32,9 @@ namespace MmorpgClient.Game.Battle.Presentation
         /// <summary>被 Abort 终止。</summary>
         public event Action OnAborted;
 
+        /// <summary>可选的演出完成门闩；正常拍结束等待它，Skip/Abort 仍立即执行。</summary>
+        public Func<Beat, bool> CanEndBeat { get; set; }
+
         public bool IsRunning { get; private set; }
         public Beat CurrentBeat { get; private set; }
         public int CurrentIndex { get; private set; } = -1;
@@ -142,14 +145,23 @@ namespace MmorpgClient.Game.Battle.Presentation
             _timer = RealtimeTween.DelayedCall(seconds)
                 .SetIgnoreEngineTimeScale(true)
                 .SetTarget(this)
-                .OnComplete(() =>
-                {
-                    if (runId != _runId) return;
-                    _timer = null;
-                    CurrentBeat = null;
-                    Invoke(OnBeatEnd, beat, index);
-                    Advance(runId);
-                });
+                .OnComplete(() => EndWhenPresented(runId, beat, index));
+        }
+
+        private void EndWhenPresented(int runId, Beat beat, int index)
+        {
+            if (runId != _runId || !IsRunning || !ReferenceEquals(CurrentBeat, beat)) return;
+            // 串联动画在下一帧才开始计时。低帧率/高倍率下，预算到期不能抢先落 HP 或开下一拍。
+            if (CanEndBeat != null && !CanEndBeat(beat))
+            {
+                _timer = RealtimeTween.DelayedCall(0f).SetIgnoreEngineTimeScale(true).SetTarget(this)
+                    .OnComplete(() => EndWhenPresented(runId, beat, index));
+                return;
+            }
+            _timer = null;
+            CurrentBeat = null;
+            Invoke(OnBeatEnd, beat, index);
+            Advance(runId);
         }
 
         private void Finish(int runId)

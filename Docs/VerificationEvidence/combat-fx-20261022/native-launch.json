@@ -1,0 +1,7 @@
+{
+  "pid": 11520,
+  "startedUtc": "2026-10-23T13:32:19.0012335+00:00",
+  "exe": "E:\\work\\mmorpg-client\\Builds\\combat-fx-20261022\\client\\mmorpg.exe",
+  "exeSHA256": "718444F6A718FA668DA96EB0A58445B009673310E6129152A63DBF7A92B8DE00",
+  "arguments": "-combatFxVerify -combatFxOut \"E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\native-final\" -screen-width 2560 -screen-height 1080 -screen-fullscreen 0 -logFile \"E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\native-final\\player.log\""
+}

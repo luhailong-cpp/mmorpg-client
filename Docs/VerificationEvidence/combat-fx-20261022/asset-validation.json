@@ -1,0 +1,163 @@
+{
+  "validatedAtUtc": "2026-10-22T08:29:34.1214890Z",
+  "status": "passed",
+  "scope": "Existing imported assets reused without overwriting resources or meta files. Asset validation only; engine/runtime validation is separate.",
+  "assets": [
+    {
+      "id": "hit_star",
+      "sha256": "3ff89c5ac517fe6f4dde37e99a10dd182329b984e8fdafe924fb12269a483a30",
+      "dimensions": [
+        3072,
+        384
+      ],
+      "pngMode": "RGBA8",
+      "frameCount": 8,
+      "frameOrder": "01..08 exact decoded pixel match",
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "metaGuid": "b1f2e4e3e0ac2024d8c7e6ef375e5fbd",
+      "importerContract": "Bilinear/Clamp/no mipmaps/no compression/max4096/no NPOT scaling/alpha",
+      "alphaPixels": {
+        "partial": 58029,
+        "opaque": 53432,
+        "transparent": 1068187
+      },
+      "provenance": "Source/derivative/index SHA256 matched; actual model and quality remain null",
+      "status": "passed"
+    },
+    {
+      "id": "cast_charge",
+      "sha256": "97d0e2f7d2142f9873eee810c8dbb364f5fb1efe9334bcea11485b9efb5c9080",
+      "dimensions": [
+        3072,
+        384
+      ],
+      "pngMode": "RGBA8",
+      "frameCount": 8,
+      "frameOrder": "01..08 exact decoded pixel match",
+      "fps": 10,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "loop": false,
+      "metaGuid": "653fcf0035d44799903b42564e367f1f",
+      "importerContract": "Bilinear/Clamp/no mipmaps/no compression/max4096/no NPOT scaling/alpha",
+      "alphaPixels": {
+        "partial": 55439,
+        "opaque": 67568,
+        "transparent": 1056641
+      },
+      "provenance": "Source/derivative/index SHA256 matched; actual model and quality remain null",
+      "status": "passed"
+    },
+    {
+      "id": "xuanfu_luoyao_projectile",
+      "sha256": "a66fc96664ba3cc334c6856434845a636e1c6709ffa54b4eebec9d9cb584c8b8",
+      "dimensions": [
+        3072,
+        384
+      ],
+      "pngMode": "RGBA8",
+      "frameCount": 8,
+      "frameOrder": "01..08 exact decoded pixel match",
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": true,
+      "metaGuid": "2c2a35c755eb47ba9f2656c3f49b974b",
+      "importerContract": "Bilinear/Clamp/no mipmaps/no compression/max4096/no NPOT scaling/alpha",
+      "alphaPixels": {
+        "partial": 46389,
+        "opaque": 66429,
+        "transparent": 1066830
+      },
+      "provenance": "Source/derivative/index SHA256 matched; actual model and quality remain null",
+      "status": "passed"
+    },
+    {
+      "id": "xuanfu_luoyao_impact",
+      "sha256": "a07f3163c2bd641601f6bc6c5ae5bbead1ab3a9ad9eef7bfd69a82d436629737",
+      "dimensions": [
+        3072,
+        384
+      ],
+      "pngMode": "RGBA8",
+      "frameCount": 8,
+      "frameOrder": "01..08 exact decoded pixel match",
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "metaGuid": "e7841a3631654a9bad8cdd136d64ffa8",
+      "importerContract": "Bilinear/Clamp/no mipmaps/no compression/max4096/no NPOT scaling/alpha",
+      "alphaPixels": {
+        "partial": 74690,
+        "opaque": 35562,
+        "transparent": 1069396
+      },
+      "provenance": "Source/derivative/index SHA256 matched; actual model and quality remain null",
+      "status": "passed"
+    },
+    {
+      "id": "zixiao_leizhen_telegraph",
+      "sha256": "37be8d9578a796f9299205580fbb136318f2d08072308a1054bb126067d624d6",
+      "dimensions": [
+        3072,
+        384
+      ],
+      "pngMode": "RGBA8",
+      "frameCount": 8,
+      "frameOrder": "01..08 exact decoded pixel match",
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "metaGuid": "4ac69cf25c9e47c89dcaa7a62ddebc2a",
+      "importerContract": "Bilinear/Clamp/no mipmaps/no compression/max4096/no NPOT scaling/alpha",
+      "alphaPixels": {
+        "partial": 54304,
+        "opaque": 9235,
+        "transparent": 1116109
+      },
+      "provenance": "Source/derivative/index SHA256 matched; actual model and quality remain null",
+      "status": "passed"
+    },
+    {
+      "id": "zixiao_leizhen_strike",
+      "sha256": "fecbbba82ef862f7795eec1233dc9aa4db4117fc0a334904751062e35c6a204c",
+      "dimensions": [
+        3072,
+        384
+      ],
+      "pngMode": "RGBA8",
+      "frameCount": 8,
+      "frameOrder": "01..08 exact decoded pixel match",
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.1
+      ],
+      "loop": false,
+      "metaGuid": "3afc4ab451da4b428e34a003ccb247d0",
+      "importerContract": "Bilinear/Clamp/no mipmaps/no compression/max4096/no NPOT scaling/alpha",
+      "alphaPixels": {
+        "partial": 63837,
+        "opaque": 6015,
+        "transparent": 1109796
+      },
+      "provenance": "Source/derivative/index SHA256 matched; actual model and quality remain null",
+      "status": "passed"
+    }
+  ]
+}

@@ -38,6 +38,8 @@ namespace MmorpgClient.UI.Ugui.Team
         public event Action Closed;
         public bool IsVisible => _root.gameObject.activeSelf;
         public bool IsModalOpen => _modal != null;
+        /// <summary>生产宿主提供队伍视图新鲜度；离线预览可省略，不影响只读刷新与浏览。</summary>
+        public Func<bool> FreshViewAvailable { get; set; }
         // Kept for callers that open a particular list. Both lists remain visible.
         public TeamPage Page { get; private set; }
         public int MemberPageIndex { get; private set; }
@@ -185,16 +187,17 @@ namespace MmorpgClient.UI.Ugui.Team
         }
 
         private bool CanAct => _state != null && _state.ServiceAvailable && (_ignoreBusy || !_state.IsBusy);
-        private bool CanJoin => CanAct && _state.HasLoaded && !_state.HasTeam;
+        private bool CanWrite => CanAct && FreshViewAvailable?.Invoke() != false;
+        private bool CanJoin => CanWrite && _state.HasLoaded && !_state.HasTeam;
         private bool CanCreate => CanJoin && !_state.CreationCoolingDown;
-        private bool CanManage => CanAct && _state.IsLeader && !_state.MatchStarting;
+        private bool CanManage => CanWrite && _state.IsLeader && !_state.MatchStarting;
         // 补位匹配中不锁名单(名单一变服务端就让全队退出匹配),只是不能再发起一次开战。
         private bool CanStartMatch => CanManage && !_state.MatchQueued;
-        private bool CanLeave => CanAct && _state.HasTeam && !_state.MatchStarting;
+        private bool CanLeave => CanWrite && _state.HasTeam && !_state.MatchStarting;
         // Invitations and rejections stay open while the roster is locked for a match.
-        private bool CanInvite => CanAct && _state.IsLeader && !_state.IsFull;
-        private bool CanApprove => CanAct && _state.IsLeader && !_state.IsFull && !_state.MatchStarting;
-        private bool CanReject => CanAct && _state.IsLeader;
+        private bool CanInvite => CanWrite && _state.IsLeader && !_state.IsFull;
+        private bool CanApprove => CanWrite && _state.IsLeader && !_state.IsFull && !_state.MatchStarting;
+        private bool CanReject => CanWrite && _state.IsLeader;
         private bool NoTeam => _state != null && _state.HasLoaded && !_state.HasTeam;
 
         private void MovePage(TeamPage page, int delta)
@@ -511,11 +514,18 @@ namespace MmorpgClient.UI.Ugui.Team
                 () => CanInvite, id => InviteRequested?.Invoke(id));
         }
 
-        private void ConfirmLeave()
+        private void ConfirmLeave() => RequestLeaveConfirmation();
+
+        /// <summary>轻量HUD复用原有离队确认；确认意图只属于打开弹窗时的那一支队伍。</summary>
+        public void RequestLeaveConfirmation(Func<bool> permission = null)
         {
-            if (!CanLeave) return;
+            if (!CanLeave || permission?.Invoke() == false) return;
+            ulong expectedTeamId = _state.Snapshot.TeamId;
+            ulong expectedMembershipEpoch = _state.Snapshot.MembershipEpoch;
             Confirm("离开队伍", _state.IsLeader ? "你是队长，离队后队长将自动转给在线队员。确定离开吗？" : "确定离开当前队伍吗？",
-                () => CanLeave, () => LeaveRequested?.Invoke());
+                () => CanLeave && _state.Snapshot.TeamId == expectedTeamId &&
+                    _state.Snapshot.MembershipEpoch == expectedMembershipEpoch && permission?.Invoke() != false,
+                () => LeaveRequested?.Invoke());
         }
 
         private void ConfirmDisband()

@@ -314,7 +314,9 @@ namespace MmorpgClient.Game
             Skills = SkillBookClient.Attach(new GameClientBattleTransport(this), this, () => GateConnectionIdentity);
             var companion = World.Root.GetComponent<QdaoPetCompanion>() ?? World.Root.gameObject.AddComponent<QdaoPetCompanion>();
             companion.Bind(World, Pets);
-            Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this));
+            Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
+            Features.ActivityRewardRecovery = DurableRequestFileStore.ForOrigin(
+                System.IO.Path.Combine(Application.persistentDataPath, "activity-reward-intents"), gatewayBaseUrl);
             ZoneTravel = new ZoneTravelClient(this);
             // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按 (gateway 地址哈希, 玩家) 分键存 PlayerPrefs。
             LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
@@ -384,6 +386,7 @@ namespace MmorpgClient.Game
             }
             // 落地判定 / 取摘要 / 超时退避 / 通知各域消费者。Call 的等待循环会重入这里,在途标志防重复发送。
             LandingSync?.Tick();
+            if (InGame) Features?.TickActivityRewardRecovery();
             MaybeRefreshToken();
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动

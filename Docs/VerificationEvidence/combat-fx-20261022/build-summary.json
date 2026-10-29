@@ -1,0 +1,38 @@
+{
+  "completedUtc": "2026-10-23T13:39:29.6682997+00:00",
+  "success": true,
+  "exitCode": 0,
+  "buildReport": "[CrossZoneVerifyBuild] result=Succeeded errors=0 warnings=497 size=34236009468 time=00:10:32.5758290 out=E:/work/mmorpg-client/Builds/combat-fx-20261022/client/mmorpg.exe",
+  "launch": {
+    "pid": 27544,
+    "startedUtc": "2026-10-23T09:21:07.5195145-04:00",
+    "arguments": "-batchmode -nographics -job-worker-count 1 -gc-helper-count 1 -refreshImportMode InProcess -projectPath \"E:\\work\\mmorpg-client\\.codex-artifacts\\combat-fx-20261022\\isolated-project\" -logFile \"E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\build-resume-20261023-unity.log\" -quit -executeMethod MmorpgClient.Editor.CrossZoneVerifyBuild.Build -crossZoneOut \"E:\\work\\mmorpg-client\\Builds\\combat-fx-20261022\\client\"",
+    "resumes": "build-capture-unity.log",
+    "sourceInputs": "rebuild-inputs.json"
+  },
+  "exit": {
+    "exitCode": 0,
+    "finishedUtc": "2026-10-23T09:32:18.2876952-04:00"
+  },
+  "rawLog": "E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\build-resume-20261023-unity.log",
+  "rawLogSha256": "7D061F676BFEE1AB5B79E05CFA3D7554F9F5C5C842EA7D0DCF2569F99160CA8C",
+  "artifactRoot": "E:\\work\\mmorpg-client\\Builds\\combat-fx-20261022\\client",
+  "artifacts": [
+    {
+      "path": "mmorpg.exe",
+      "bytes": 667136,
+      "sha256": "718444F6A718FA668DA96EB0A58445B009673310E6129152A63DBF7A92B8DE00"
+    },
+    {
+      "path": "mmorpg_Data\\Managed\\MmorpgClient.dll",
+      "bytes": 3930112,
+      "sha256": "CED895EB4134935E6F22A8AEBED4453D91AC0618E11E73A8502D6B62DA876BBE"
+    },
+    {
+      "path": "mmorpg_Data\\resources.assets",
+      "bytes": 46904936,
+      "sha256": "B122C20A5FB4FCAC1764FD335968EB95E1B8BA53C5E3D3C22572241F131BF2C9"
+    }
+  ],
+  "hashScope": "Executable, production managed assembly and resources.assets only; large .resS payloads intentionally not hashed."
+}

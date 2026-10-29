@@ -1,5 +1,21 @@
 # 背包、任务、活动 UI
 
+## 2026-10-22 任务追踪栏
+
+任务内容由独立 `QuestHudRoot` 挂入07的 `WorldSideHudRoot.QuestMount`，共用壳负责页签、折叠、世界可见性和层级；旧单任务HUD已由07移除。`QuestHudContent`显示当前快照中的进行中、可领取及服务器仍保留的失败任务，超过四条或文字较长时滚动。多目标按显式`objective_index`显示，默认首个未完成目标及完成摘要，可展开全部；未知目标量明确显示待确认。没有把名称、示例文案当作地图坐标。
+
+任务大窗、活动入口与HUD使用同一`PlayerFeaturesClient.Missions`和`MissionTrackingState`。手动追踪可多选，取消只移除指定任务的显示偏好；失败、终结或快照移除清掉引用。CLAIMABLE继续显示可领取，只有权威COMPLETED才终结。偏好仅当前角色会话，断线/换角/换连接清理，没有跨设备保存。自动策略尚未确认，自动入口明确禁用；当前正式类型只有主线/活动，其余用类型编号兜底。目标操作只打开同scope和任务ID的大窗详情，HUD不接取、领奖、寻路或传送。
+
+由于现协议没有任务推送，宿主每10秒通过同一Client刷新，战斗归来立即读取；页签隐藏不停止同步，在途读取/任务动作不重复周期发包。主体包含Client、playerId和GateConnectionIdentity；静默换连接也先让Client清旧快照再读，旧回包不能恢复旧角色内容。加载通知可重入换主体或更新请求，因此任务读取在真正发包前再核验会话与请求代次。大窗任务详情列表按当前已接/可接筛选定位，多行目标用真实文字高度，并保留目标滚动位置。
+
+验证命令：`pwsh -NoProfile -File tools/run_quest_tests.ps1`；Unity EditMode筛选`MissionTrackingStateTests;PlayerFeaturesClientTests;QuestHudRootSessionTests;QuestHudContentTests;QuestHudIntegrationTests;GameplayWindowTests`；截图入口`QuestHudVerification.CaptureAll`。2026-10-23实际完成426份运行时源码编译、55/55纯逻辑回归（任务追踪24、原任务/背包客户端31），执行期间源码SHA稳定。冻结425份真实运行时的隔离Unity原生回归118/118通过，0失败/跳过；两种分辨率2560×1080、1920×1080共32图，包括22张独立内容和10张正式07壳/08宿主装配。测试与截图exit均为0，DLL及测试/截图源码无漂移。最终证据位于`.codex-artifacts/quest-hud-20261022/final-20261023/`，含原生XML、运行收据、逐源与逐图指纹；旧失败及修复过程另行保留。
+
+任务卡改用细边纸色面板，避免大窗装饰缩小后遮住卡片标题和按钮；状态文字在共用壳底部留出角花空间。原生结果覆盖四卡、长名单、多目标末项、隐藏同步、折叠恢复、壳销毁重挂及订阅释放。冻结快照后其他页面的活动工具/布局、背包选中光效与战斗结果页有独立改动，详见同目录源码差异报告；上述118项不作为这些后续页面的原生验收。历史结果不等同于在线任务生命周期验证。
+
+2026-10-29完成保存证据的完整性、源码和独立视觉复核：32张原图SHA全部匹配，双分辨率四卡、长目标末项、页脚、折叠恢复与重挂均通过；当前426份运行时源码及共430个记录输入与已通过55项回归的版本一致。报告为最终目录的`visual-qa-20261029.json`、`current-source-check-20261029.json`；本日未重新启动Unity或渲染截图。主工程预约已释放，旧预约记录仅作历史保留。
+
+08没有修改服务端任务协议或规则。当前C++/Go仓已核实任务真值与目标合同；另一整套Java仓按AGENTS指定位置本机不可达，未核对其PARITY。没有部署、登录真实账号或执行在线任务生命周期验收。
+
 ## 2026-10-09 装备 UI 接入
 
 当前装备界面从主城「背包」（B）进入，也可从「角色 → 装备」直接打开装备分类。保留现有人物、背包与装备切片风格，复用服务器下发的物品、栏位、基础属性和词条；本次没有新增装备数值规则。
@@ -95,3 +111,31 @@ Docker 首次启动受遗留 engine.sock 阻塞，已备份并恢复通信目录
 客户端包已在 9 月 11 日 11:04、11:37 被后续登录界面构建更新，因此不能再用 09:16 的旧安装清单判断当前包。最终 prelogin-hero-center 构建直接输出 showcase_player，Succeeded、0 errors、503 条既有图形/推理着色器警告。本次只读核对其构建源工程 citymove_verify_project 与正式客户端中三页 UI、数据客户端及资源共 60 文件，哈希全部一致；未恢复旧包。构建来源与逐文件比对见同目录 client-build-provenance.json。旧 96 项 Unity 与 323 项 C++ 结果仍属于既有验证，本次没有重新运行这些测试。
 
 功能实施与本地启动完成，真实账号的接取、战斗、领奖、拒绝重复领取及重登验收仍等待用户指定已有测试账号名，未自行选择账号或读取登录凭据。活动 15/16/17 仍未收到正式日期，保持未排期。
+
+## 2026-10-22 活动中心真实逻辑续作
+
+本次06活动中心与07共用HUD、08任务追踪并行实施。活动页仍消费唯一 `PlayerFeaturesClient.Missions`，任务接取/查看保持 `(scope,mission_id)` 身份；08的 `MissionTracking` 承接活动查看任务后的统一追踪。07单写 `GameplayUiRoot` 装配，具体接缝为 `../image/designs/ui-completion-20261021/requirements/coordination/06-activity-contract.md`。
+
+- 双列可滚动活动卡、六个分类入口、复合奖励筛选、稳定排序、详情、次数统计与正式绝对排期日历；缺分类归未分类，缺奖励元数据不猜经验/道行。次数为当前任务域真实支持的“每角色一次”，没有擅自增加每日重置或循环任务。
+- 角色本机收藏保存稳定活动ID与不可复用 `definition_key`；下架/同ID换内容后保留可移除失效收藏，不串新活动。筛选与收藏只影响显示，不存进度或领取资格。
+- 活跃进度与任意配置档数取正式快照，确认弹层绑定规则/版本/周期/阈值；旧确认跨周期失效。`claimed && !durable` 显示确认中，不能冒称持久领取成功。
+- `PlayerFeaturesClient.Activities.cs` 使用现有 `DurableRequestFileStore` 按网关来源和角色先落盘原UUID，再调用正式 `ClaimActivityVitalityReward`。同一RPC重放兼作查询；超时、断线、窗口关闭或客户端重启保留原身份，2/4/8秒有限自动退避最多3次，之后刷新仍只重放原意图。
+- 匹配原请求且服务端确认 `claimed && durable` 后才清本机记录、发布成功并刷新资产；当前周期快照与原周期收据分别解释。恢复记录损坏/无法保存时关闭资产提交，不换UUID绕过。新增连接身份检查可拒绝同角色静默换连接后的旧回包。
+
+实际正式配置仍仅活动15/16/17且未排期，未确认活跃周期、贡献、阈值奖励或分类。新增权威能力在未配置时明确显示未开放，不使用参考图六活动、05:00、10/100或五个宝箱作为业务规则。没有正式场景/NPC/副本目标、提醒、推送、挑战/赛事导航合同的入口明确禁用；本次未新增战斗玩法或部署运行服务。
+
+2026-10-23客户端最终全量426份运行时与测试编译通过，领取恢复专项29项、既有PlayerFeatures背包/任务回归31项，共60/60通过；429份源码哈希在运行期间无变化。证据为 `.codex-artifacts/activity-center-20261022/client-claims-final-20261023/{results,source-hashes,final-receipt}.json` 与编译日志。新增五项验证查看仓库时领取仍刷新实际人物包、迟回包不污染新查询/新角色、库存同步失败不撤销已确认收据、穿脱装备成功后旧补读不覆盖、任务领奖结果未知后不恢复旧库存；补读同时绑定背包查询、装备操作与任务请求代次。保持当前选包；未知人物库存不显示成旧值，不在客户端推算奖励加法。初轮CS0111重复活动入口与系统TEMP沙箱原子移动失败均保留日志，测试临时文件现限定在所属证据目录。
+
+最终与60项客户端回归使用同一D8F7E2联合DLL，原生37/37通过，0失败/跳过，生成2560×1080与1920×1080共20图，包含长文滚动末字与工具菜单。证据 `.codex-artifacts/activity-ui-20261022/final-20261023/post-asset-refresh-final60/`，最终XML为 `native-ui-resource-synced-results.xml`。426份运行源码、原生测试输入及126份正式资源运行中无漂移；首轮隔离工程缺新资源的失败保留，仅同步正式PNG/shader及meta后通过。当前承接并行视觉还原的三张竖卡横向滚动，本需求两列横卡仍待用户选择，未回滚其他聊天改动。旧36项/18图及59项快照漂移证据保留为历史。服务端与未覆盖项详见 `../image/designs/ui-completion-20261021/requirements/coordination/06-activity-delivery.md`；2026-10-29续核不把10月23日实跑改记为今日重跑，也不使用9月结果代替本轮依据。
+
+## 2026-10-23 战斗结算多货币显示
+
+使用 `tools/gen_proto.ps1 -ProtoRoot E:/work/xuanming-server-mmo -Protoc E:/work/xuanming-server-mmo/third_party/grpc/install_vs2026/bin/protoc.exe` 从当前服务端权威协议生成 `BattleData.cs`，接入 `BattleSettlementData.currency_gains = 16`，未手改生成文件。结算面板按集合逐项显示银两、灵石、绑定灵石；未知货币保留类型编号与完整金额。集合存在时不再重复显示旧 `gold_gain`，只有集合为空时兼容旧结算的银两字段。奖励数量与随机结果由服务端决定，客户端仅展示权威结果。
+
+`DamageNumberLayoutTests` 补充三种货币、完整 uint64 金额、旧字段不重复、未知货币保留回归测试；原有旧结算测试保留。`git diff --check` 通过。初次编译因缺少 `Temp/obj` 的 NuGet 资产文件报 `NETSDK1004`；使用本地 `Library/PackageCache` 作为唯一来源完成 `dotnet restore --force` 后，`dotnet build MmorpgClient.Tests.EditMode.Battle.csproj --no-restore --nologo -v:minimal -m:1` 成功，客户端与战斗测试程序集均生成，0 错误、127 条既有源码警告。没有下载或安装新依赖及工具。
+
+本轮验证为本地 C# 编译与差异检查，新增测试尚未在 Unity Test Runner 执行；没有启动 Unity、进行真实联机或原生界面验收，也没有重新打包客户端。
+
+同日结算列表补充：原 360 高区域仅裁切，三种货币加两项掉落、两项消耗与战后状态时已有 9 行，底部会被隐藏。现将固定 `RowsViewport` 与独立 `Rows` 内容分开，保留原面板尺寸、44 行高和逐行动画；内容高度取 `max(360, 行数 × 44)`，使用纵向、夹紧边界的 `ScrollRect` 及透明射线表面接收滚轮和拖动。每次展示先停止滚动并回到顶部。`BattleUiLayoutTests` 补充 9 行与较长配置列表两种场景，检查视口/内容分离、底部状态可达、顶部与速度重置。
+
+滚动版编译再次遇到 `Temp/obj` 资产消失，合并离线恢复与编译后，发现并行背包改动新增的真实源码 `InventorySelectedLightControl.cs` 尚未进入 Unity 生成工程，导致原工程 `CS0103`。本轮未修改生成工程或背包源码；通过忽略目录内的临时 `IncludePendingUnitySource.targets` 仅补入这份现有源码后，运行时与战斗测试程序集重新编译成功，0 错误、128 条警告，本次修改文件无编译警告。初次失败及最终日志分别保存在 `.codex-artifacts/battle-rewards-20261023/client-scroll-{missing-assets,build,compile}.log`。最终差异检查通过；布局测试已编译，仍未启动 Unity 运行测试、截图、联机或重新打包。

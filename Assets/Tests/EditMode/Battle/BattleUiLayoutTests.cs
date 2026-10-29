@@ -113,6 +113,62 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 BattleScreen.ChannelBannerRect), "直连横幅超出设计面");
         }
 
+        [TestCase(2, 2)]
+        [TestCase(24, 4)]
+        public void ResultRewards_OverflowCanReachLastRow_AndShowStartsAtTop(int gainedCount, int consumedCount)
+        {
+            var fixture = new GameObject("BattleResultScrollTest", typeof(RectTransform), typeof(Canvas), typeof(GraphicRaycaster));
+            BattleResultPanel panel = null;
+            try
+            {
+                var canvas = fixture.GetComponent<Canvas>();
+                canvas.renderMode = RenderMode.WorldSpace;
+                ((RectTransform)fixture.transform).sizeDelta = new Vector2(QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
+                panel = new BattleResultPanel(fixture.transform, null);
+                var root = fixture.transform.Find("BattleResultPanel");
+                var viewport = (RectTransform)root.Find("RowsViewport");
+                var scroll = viewport.GetComponent<ScrollRect>();
+                Assert.NotNull(viewport.GetComponent<RectMask2D>());
+                Assert.IsTrue(viewport.GetComponent<Graphic>().raycastTarget, "空白区域也能接收滚轮和拖动");
+                Assert.AreNotSame(viewport, scroll.content, "固定视口与可增长内容必须分离");
+                Assert.AreEqual(360f, viewport.rect.height);
+                Assert.IsTrue(scroll.vertical);
+                Assert.IsFalse(scroll.horizontal);
+                Assert.AreEqual(ScrollRect.MovementType.Clamped, scroll.movementType);
+
+                // 模拟上一场留下的滚动位置，展示新结算时必须回到顶部。
+                scroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 1000f);
+                scroll.content.anchoredPosition = new Vector2(0f, 200f);
+                scroll.velocity = new Vector2(0f, 100f);
+                var settlement = new BattleSettlementData();
+                for (uint currency = 0; currency < 3; currency++)
+                    settlement.CurrencyGains.Add(new BattleCurrencyGain { CurrencyType = currency, Amount = 1 });
+                for (uint item = 0; item < gainedCount; item++)
+                    settlement.ItemsGained.Add(new BattleItemEntry { ItemTableId = 1000 + item, Count = 1 });
+                for (uint item = 0; item < consumedCount; item++)
+                    settlement.ItemsConsumed.Add(new BattleItemEntry { ItemTableId = 2000 + item, Count = 1 });
+                panel.Show(new BattleEndS2C { Settlement = settlement }, 0);
+                Canvas.ForceUpdateCanvases();
+
+                int rowCount = BattleResultPanel.BuildRewardLines(settlement).Count;
+                Assert.AreEqual(rowCount * 44f, scroll.content.rect.height);
+                Assert.Greater(scroll.content.rect.height, viewport.rect.height);
+                Assert.AreEqual(Vector2.zero, scroll.content.anchoredPosition);
+                Assert.AreEqual(Vector2.zero, scroll.velocity);
+                Assert.AreEqual(1f, scroll.verticalNormalizedPosition, 0.001f);
+
+                scroll.verticalNormalizedPosition = 0f;
+                var lastRow = (RectTransform)scroll.content.Find("Row" + (rowCount - 1));
+                var bottom = viewport.InverseTransformPoint(lastRow.TransformPoint(lastRow.rect.min));
+                Assert.AreEqual(viewport.rect.yMin, bottom.y, 0.01f, "滚到底部能完整看到最后一行战后状态");
+            }
+            finally
+            {
+                panel?.Hide();
+                UnityEngine.Object.DestroyImmediate(fixture);
+            }
+        }
+
         [Test]
         public void ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios()
         {

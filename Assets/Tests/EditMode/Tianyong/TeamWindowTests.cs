@@ -857,6 +857,71 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(ActiveText(Members), Does.Not.Contain("无名道友"));
         }
 
+        [Test]
+        public void LeaveConfirmation_DoesNotFollowPlayerIntoAnotherTeam()
+        {
+            int leaves = 0;
+            _window.LeaveRequested += () => leaves++;
+            _window.Show();
+            _window.RequestLeaveConfirmation();
+            Assert.That(_window.IsModalOpen, Is.True);
+            var oldConfirm = FindButton("TeamModalConfirm");
+            var nextTeam = _snapshot.Clone();
+            nextTeam.TeamId = 2002;
+            nextTeam.MembershipEpoch++;
+            Mirror(nextTeam, null);
+            Assert.That(_window.IsModalOpen, Is.False);
+            // 保留原按钮引用也不能把上一队确认转成新队离队意图。
+            if (oldConfirm != null) oldConfirm.onClick.Invoke();
+            Assert.That(leaves, Is.Zero);
+        }
+
+        [Test]
+        public void HudLeaveConfirmation_RechecksFreshPermissionOnConfirm()
+        {
+            bool fresh = true;
+            int leaves = 0;
+            _window.LeaveRequested += () => leaves++;
+            _window.Show();
+            _window.RequestLeaveConfirmation(() => fresh);
+            fresh = false;
+            Click("TeamModalConfirm");
+            Assert.That(leaves, Is.Zero);
+            Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void LeaveConfirmation_RejoiningSameTeamInvalidatesOriginalMembershipIntent()
+        {
+            int leaves = 0;
+            _window.LeaveRequested += () => leaves++;
+            _window.Show();
+            _window.RequestLeaveConfirmation();
+            var rejoined = _snapshot.Clone();
+            rejoined.MembershipEpoch++;
+            Mirror(rejoined, null);
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(leaves, Is.Zero);
+        }
+
+        [Test]
+        public void StaleView_DisablesOriginalWindowWritesButKeepsRefresh()
+        {
+            _window.FreshViewAvailable = () => false;
+            int leaves = 0, refreshes = 0;
+            _window.LeaveRequested += () => leaves++;
+            _window.RefreshRequested += () => refreshes++;
+            _window.Show();
+            Assert.That(FindButton("LeaveTeam").interactable, Is.False);
+            Assert.That(FindButton("StartTeamMatch").interactable, Is.False);
+            Assert.That(FindButton("Approve_21").interactable, Is.False);
+            Click("LeaveTeam");
+            Assert.That(_window.IsModalOpen, Is.False);
+            Assert.That(leaves, Is.Zero);
+            Click("RefreshTeam");
+            Assert.That(refreshes, Is.EqualTo(1));
+        }
+
         private void Apply()
         {
             _state.SetSnapshot(_snapshot);

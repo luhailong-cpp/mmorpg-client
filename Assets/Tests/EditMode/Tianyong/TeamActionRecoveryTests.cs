@@ -19,6 +19,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [SetUp]
         public void SetUp()
         {
+            _now = 0;
             _directory = Path.Combine(Path.GetTempPath(), "team-action-test-" + Guid.NewGuid().ToString("N"));
             _store = new DurableRequestFileStore(_directory);
             Recreate();
@@ -82,5 +83,188 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_store.Load(10), Is.EqualTo("damaged-original"));
             Assert.That(_net.Calls.Count, Is.EqualTo(1));
         }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FirstDefiniteRateLimitClearsTheDurableSlotAndAllowsADifferentWrite(bool doubleClick)
+        {
+            byte[] original = BeginApplication(out string saved);
+            if (doubleClick)
+            {
+                int calls = _net.Calls.Count;
+                Assert.That(_client.ApplyJoin(99), Is.False, "在途期间的同意图连点仅在本地被拒绝");
+                Assert.That(_net.Calls.Count, Is.EqualTo(calls));
+            }
+
+            _net.Fail(RateLimitError);
+            Assert.That(_store.Load(10), Is.Empty, "首次明确拒绝不能留下假未知意图");
+            Assert.That(_client.RequiresReconnect || _client.Suspended, Is.False);
+            Assert.That(_client.HasFreshView, Is.True, "gate明确拒绝没有使已知权威视图过期");
+            _now += TeamClient.MessageWindowSeconds + 1;
+
+            Assert.That(_client.Create(), Is.True, _client.Status);
+            Assert.That(LastId, Is.EqualTo(MessageIds.CreateTeam));
+            Assert.That(((CreateTeamRequest)LastRequest).RequestId,
+                Is.Not.EqualTo(ApplyJoinTeamRequest.Parser.ParseFrom(original).RequestId));
+            Assert.That(_store.Load(10), Is.Not.Empty.And.Not.EqualTo(saved));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void RateLimitAfterTimeoutPreservesOriginalUuidAndPayloadAcrossRecovery(bool reconstruct)
+        {
+            byte[] original = BeginApplication(out string saved);
+            _net.Fail("rpc timeout");
+            Assert.That(_store.Load(10), Is.EqualTo(saved));
+            if (reconstruct) Recreate();
+            else ReadAfterReconnect();
+
+            AssertApplicationReplay(original);
+            AssertRateLimitPreservesIntentUntilTerminalReply(original, saved, false);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void InterruptedInFlightWriteRemainsUnknownWhenItsReplayIsRateLimited(bool reset)
+        {
+            byte[] original = BeginApplication(out string saved);
+            // 原请求没有回调；不能因为下一次重发被gate拒绝就断言第一次没有执行。
+            if (reset) _client.Reset();
+            else _net.Disconnect();
+            ReadAfterReconnect();
+
+            AssertApplicationReplay(original);
+            AssertRateLimitPreservesIntentUntilTerminalReply(original, saved, false);
+        }
+
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(false, true)]
+        [TestCase(true, true)]
+        public void FaultThenRateLimitPreservesIntentUntilOriginalGetsTerminalReply(
+            bool faultHasView, bool terminalBusinessRejection)
+        {
+            byte[] original = BeginApplication(out string saved);
+            _net.Reply(new TeamResponse
+            {
+                Team = faultHasView ? NoTeamReply().Team : null,
+                ErrorMessage = new TipInfoMessage { Id = (uint)team_error.KTeamInternal }
+            });
+            Assert.That(_store.Load(10), Is.EqualTo(saved), "fault即使附带权威视图也不是原写操作终态");
+            _now += TeamClient.ReadRetryDelaySeconds + 1;
+            Assert.That(_client.Refresh(), Is.True);
+            _net.Reply(NoTeamReply());
+            _now += 1;
+
+            AssertApplicationReplay(original);
+            AssertRateLimitPreservesIntentUntilTerminalReply(original, saved, terminalBusinessRejection);
+        }
+
+        [Test]
+        public void RateLimitedGetMyTeamDoesNotClearAnUnknownWrite()
+        {
+            byte[] original = BeginApplication(out string saved);
+            _net.Fail("rpc timeout");
+            _net.Identity = new object();
+            _client.ObserveConnection();
+            _now += 1;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Fail(RateLimitError);
+            Assert.That(_store.Load(10), Is.EqualTo(saved), "只读探针的明确拒绝不能结算之前的写意图");
+
+            _now += TeamClient.ReadRetryDelaySeconds + 1;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(NoTeamReply());
+            _now += 1;
+            Assert.That(_client.Create(), Is.False);
+            AssertApplicationReplay(original);
+            _net.Reply(NoTeamReply());
+            Assert.That(_store.Load(10), Is.Empty);
+        }
+
+        [Test]
+        public void RateLimitCleanupLockFailurePreservesTheRecordAndBlocksNewWrites()
+        {
+            byte[] original = BeginApplication(out string saved);
+            string lockPath = Path.Combine(_directory, "10.pending.lock");
+            using (var guard = new FileStream(lockPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
+                Assert.DoesNotThrow(() => _net.Fail(RateLimitError), "真实持久锁冲突必须保留为可恢复状态");
+
+            Assert.That(_store.Load(10), Is.EqualTo(saved));
+            _now += TeamClient.MessageWindowSeconds + 1;
+            int calls = _net.Calls.Count;
+            Assert.That(_client.Create(), Is.False, "锁已释放也不能用新意图覆盖尚未清理的旧记录");
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls));
+            Assert.That(_store.Load(10), Is.EqualTo(saved));
+
+            Recreate();
+            AssertApplicationReplay(original);
+            _net.Reply(NoTeamReply());
+            Assert.That(_store.Load(10), Is.Empty, "恢复原UUID取得终态后才释放持久槽");
+        }
+
+        private string RateLimitError => "server tip=" + (uint)common_error.KRateLimitExceeded;
+        private uint LastId => _net.Calls[_net.Calls.Count - 1].Id;
+        private IMessage LastRequest => _net.Calls[_net.Calls.Count - 1].Request;
+
+        private byte[] BeginApplication(out string saved)
+        {
+            Assert.That(_client.ApplyJoin(99), Is.True, _client.Status);
+            var request = (ApplyJoinTeamRequest)LastRequest;
+            Assert.That(Guid.TryParseExact(request.RequestId, "D", out var id) && id != Guid.Empty, Is.True);
+            Assert.That(request.TargetPlayerId, Is.EqualTo(99UL));
+            saved = _store.Load(10);
+            Assert.That(saved, Is.Not.Empty);
+            return request.ToByteArray();
+        }
+
+        private void ReadAfterReconnect()
+        {
+            _net.IsReady = true;
+            _net.Identity = new object();
+            _client.ObserveConnection();
+            _now += 1;
+            _client.DrainQueued(false);
+            Assert.That(LastId, Is.EqualTo(MessageIds.GetMyTeam));
+            _net.Reply(NoTeamReply());
+            _now += 1;
+        }
+
+        private void AssertApplicationReplay(byte[] original)
+        {
+            int calls = _net.Calls.Count;
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1));
+            Assert.That(LastId, Is.EqualTo(MessageIds.ApplyJoinTeam));
+            Assert.That(LastRequest.ToByteArray(), Is.EqualTo(original), "恢复始终重放原UUID及完整申请正文");
+        }
+
+        private void AssertRateLimitPreservesIntentUntilTerminalReply(
+            byte[] original, string saved, bool terminalBusinessRejection)
+        {
+            _net.Fail(RateLimitError);
+            Assert.That(_store.Load(10), Is.EqualTo(saved), "本次重发的明确拒绝不能撤销此前的不确定尝试");
+            _now += TeamClient.MessageWindowSeconds + TeamClient.ReadRetryDelaySeconds + 1;
+            int calls = _net.Calls.Count;
+            Assert.That(_client.Create(), Is.False);
+            Assert.That(_client.ApplyJoin(100), Is.False, "同动作换目标也不能替换未知原正文");
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls));
+            AssertApplicationReplay(original);
+
+            var reply = NoTeamReply();
+            if (terminalBusinessRejection)
+                reply.ErrorMessage = new TipInfoMessage { Id = (uint)team_error.KTeamPlayerNotFound };
+            _net.Reply(reply);
+            Assert.That(_store.Load(10), Is.Empty, "原请求取得成功或业务拒绝终态后必须释放持久槽");
+            _now += TeamClient.MessageWindowSeconds + 1;
+            Assert.That(_client.Create(), Is.True, _client.Status);
+        }
+
+        private static TeamResponse NoTeamReply() => new TeamResponse
+        {
+            Team = new TeamView { MembershipEpoch = 1, ServerTimeMs = 1000 }
+        };
     }
 }

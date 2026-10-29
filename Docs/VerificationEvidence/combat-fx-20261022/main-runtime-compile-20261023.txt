@@ -1,0 +1,1 @@
+9:28:45 AM exit=0 files=424 errors=0 refs=csproj (MmorpgClient.csproj, 277 refs) unity=C:\Program Files\Unity\Hub\Editor\6000.6.0f1 csc=C:\Program Files\dotnet\sdk\10.0.400\Roslyn\bincore\csc.dll

@@ -28,7 +28,13 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(scroll.viewport.rect.height,Is.EqualTo(714));Assert.That(scroll.content.rect.height,Is.GreaterThan(scroll.viewport.rect.height));
                 scroll.verticalNormalizedPosition=0;Canvas.ForceUpdateCanvases();
                 var last=(RectTransform)cards.Single(b=>b.name=="Role_105").transform;
-                var bounds=RectTransformUtility.CalculateRelativeRectTransformBounds(scroll.viewport,last);
+                // Card reachability uses its own visible rectangle; the circular portrait Mask
+                // clips an intentionally oversized image whose hidden quad is not a scroll target.
+                Assert.That(scroll.content.anchoredPosition.y,Is.EqualTo(scroll.content.rect.height-scroll.viewport.rect.height).Within(1f),"ScrollRect must reach the actual bottom extent");
+                var corners=new UnityEngine.Vector3[4];last.GetWorldCorners(corners);
+                var bounds=new UnityEngine.Bounds(scroll.viewport.InverseTransformPoint(corners[0]),UnityEngine.Vector3.zero);
+                for(int i=1;i<corners.Length;i++)bounds.Encapsulate(scroll.viewport.InverseTransformPoint(corners[i]));
+                Assert.That(bounds.min.x,Is.GreaterThanOrEqualTo(-1f));Assert.That(bounds.max.x,Is.LessThanOrEqualTo(scroll.viewport.rect.width+1f),"Fifth card must also fit horizontally");
                 Assert.That(bounds.min.y,Is.GreaterThanOrEqualTo(-scroll.viewport.rect.height-1));Assert.That(bounds.max.y,Is.LessThanOrEqualTo(1),"第五角色可完整滚入视口");
                 Click(host,"Role_105");
                 Assert.That(FindImage(host,"CharacterArtwork").sprite,Is.SameAs(QdaoCharacterCatalog.LoadPortrait(First)));

@@ -202,6 +202,75 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(requests, Is.Zero);
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void StaleViewBlocksCandidateAndManualInvitesIncludingChangesAfterRender(bool renderStaleState)
+        {
+            bool fresh = true;
+            _window.FreshViewAvailable = () => fresh;
+            _window.SetState(_state);
+            int invites = 0, refreshes = 0;
+            _window.InviteRequested += _ => invites++;
+            _window.RefreshRequested += (_, _) => refreshes++;
+            Input("TeamInvitationPlayerId").SetTextWithoutNotify("21");
+            Assert.That(Button("InviteCandidate_21").interactable, Is.True);
+            Assert.That(Button("InviteTeamById").interactable, Is.True);
+
+            fresh = false;
+            if (renderStaleState)
+            {
+                _window.SetState(_state);
+                Assert.That(Button("InviteCandidate_21").interactable, Is.False);
+                Assert.That(Button("InviteTeamById").interactable, Is.False);
+                Assert.That(ActiveText(), Does.Contain("队伍信息待确认"));
+            }
+            // 也覆盖上次渲染后才失效：直接Invoke仍须复核当前委托。
+            Button("InviteCandidate_21").onClick.Invoke();
+            Button("InviteTeamById").onClick.Invoke();
+            Assert.That(invites, Is.Zero);
+            Assert.That(_state.Snapshot.PendingInvites, Is.Empty);
+            Assert.That(Button("RefreshTeamInvitations").interactable, Is.True);
+            Button("RefreshTeamInvitations").onClick.Invoke();
+            Assert.That(refreshes, Is.EqualTo(1), "队伍权限过期不封死只读候选刷新");
+
+            fresh = true;
+            _window.SetState(_state);
+            Assert.That(Button("InviteCandidate_21").interactable, Is.True);
+            Assert.That(Button("InviteTeamById").interactable, Is.True);
+            Button("InviteCandidate_21").onClick.Invoke();
+            Button("InviteTeamById").onClick.Invoke();
+            Assert.That(invites, Is.EqualTo(2));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void StaleViewBlocksCreationIncludingChangesAfterRenderAndRecovers(bool renderStaleState)
+        {
+            _snapshot.TeamId = 0; _snapshot.LeaderId = 0; _snapshot.Members.Clear(); Sync();
+            bool fresh = true;
+            _window.FreshViewAvailable = () => fresh;
+            _window.SetState(_state);
+            int creates = 0;
+            _window.CreateRequested += () => creates++;
+            Assert.That(Button("CreateTeamForInvitation").interactable, Is.True);
+
+            fresh = false;
+            if (renderStaleState)
+            {
+                _window.SetState(_state);
+                Assert.That(Button("CreateTeamForInvitation").interactable, Is.False);
+            }
+            Button("CreateTeamForInvitation").onClick.Invoke();
+            Assert.That(creates, Is.Zero);
+            Assert.That(_state.HasTeam, Is.False);
+
+            fresh = true;
+            _window.SetState(_state);
+            Assert.That(Button("CreateTeamForInvitation").interactable, Is.True);
+            Button("CreateTeamForInvitation").onClick.Invoke();
+            Assert.That(creates, Is.EqualTo(1));
+        }
+
         [Test]
         public void UnknownChatPresenceIsLabelledAndServerMayDecideTheInvitation()
         {

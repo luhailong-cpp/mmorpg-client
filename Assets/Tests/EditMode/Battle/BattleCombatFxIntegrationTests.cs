@@ -196,6 +196,112 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(plan.TotalSeconds, Is.GreaterThanOrEqualTo(release + lead + 3f / 16f + _views[2].ActionDurationSeconds("hit")));
         }
 
+        [TestCase(1201u, 1.5f, 30)]
+        [TestCase(1201u, 1.5f, 15)]
+        [TestCase(1201u, 6f, 30)]
+        [TestCase(1201u, 6f, 15)]
+        [TestCase(1202u, 1.5f, 30)]
+        [TestCase(1202u, 1.5f, 15)]
+        [TestCase(1202u, 6f, 30)]
+        [TestCase(1202u, 6f, 15)]
+        public void CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(uint skill, float speed, int framesPerSecond)
+        {
+            int targetCount = skill == 1202 ? 3 : 1;
+            var plan = Plan(skill, targetCount);
+            var presentation = BattleArtCatalog.ResolveSkillFx(skill, false);
+            string leadId = skill == 1201 ? presentation.ProjectileFxId : presentation.TelegraphFxId;
+            _presenter.SpeedScale = speed;
+            bool finished = false;
+            bool impactActiveAtFinish = false;
+            bool healthChangedBeforeDamage = false;
+            bool sawLead = false;
+            bool sawImpact = false;
+            int peakNumbers = 0;
+            float elapsed = 0f;
+            float firstDamage = -1f;
+            float step = 1f / framesPerSecond;
+            _presenter.OnHealthChanged += (id, health) =>
+            {
+                // Also catch a beat-end HP write that precedes the hit within the same coarse tick.
+                if (id > 1 && health != 1000 && _damageTicks.Count == 0) healthChangedBeforeDamage = true;
+            };
+            _presenter.OnFinished += () =>
+            {
+                finished = true;
+                impactActiveAtFinish = ActiveFx.Any(image => image.name.Contains(presentation.FxId));
+            };
+            _presenter.Play(plan);
+            while (!finished && elapsed < 5f)
+            {
+                Advance(step, step);
+                elapsed += step;
+                sawLead |= ActiveFx.Any(image => image.name.Contains(leadId));
+                sawImpact |= ActiveFx.Any(image => image.name.Contains(presentation.FxId));
+                peakNumbers = Math.Max(peakNumbers, _presenter.Numbers.ActiveCount);
+                Assert.That(_damageTicks.Count, Is.EqualTo(0).Or.EqualTo(targetCount), "All actual targets must settle in one tick, once.");
+                if (_damageTicks.Count == 0)
+                {
+                    for (ulong id = 2; id <= (ulong)targetCount + 1; id++)
+                        Assert.That(_views[id].CurrentHealth, Is.EqualTo(1000), "A beat timer must not write terminal HP before the impact event.");
+                    Assert.That(_presenter.Numbers.ActiveCount, Is.Zero);
+                }
+                else
+                {
+                    if (firstDamage < 0f) firstDamage = elapsed;
+                    for (ulong id = 2; id <= (ulong)targetCount + 1; id++)
+                        Assert.That(_views[id].CurrentHealth, Is.EqualTo(900));
+                }
+            }
+            float lead = presentation.FlightSeconds + presentation.TelegraphSeconds;
+            float earliestHit = (_views[1].ActionEventDelaySeconds("cast") + lead + presentation.HitFrame / 16f) / speed;
+            Assert.That(finished, Is.True, "The production sequencer must finish under coarse updates.");
+            Assert.That(healthChangedBeforeDamage, Is.False, "Terminal HP must never precede the actual damage event.");
+            Assert.That(firstDamage, Is.GreaterThanOrEqualTo(earliestHit - .001f));
+            Assert.That(sawLead && sawImpact, Is.True);
+            Assert.That(impactActiveAtFinish, Is.False, "The full impact strip must finish before the beat acknowledges completion.");
+            Assert.That(_damageTicks.Count, Is.EqualTo(targetCount));
+            Assert.That(_damageTicks.Distinct().Count(), Is.EqualTo(1));
+            Assert.That(peakNumbers, Is.EqualTo(targetCount));
+            Advance(1f, step);
+            Assert.That(_damageTicks.Count, Is.EqualTo(targetCount), "No late duplicate damage is allowed after completion.");
+            Assert.That(_presenter.Fx.ActiveCount, Is.Zero);
+        }
+
+        [Test]
+        public void CastChargeAndEveryLeizhenTelegraphAreRegisteredAtTheFeet()
+        {
+            _presenter.Play(Plan(1202, 3));
+            var charge = ActiveFx.Single(image => image.name.Contains("cast_charge"));
+            Assert.That(Vector2.Distance(VisualAnchor(charge, new Vector2(.5f, .1f)), _views[1].FootPosition), Is.LessThan(.02f));
+            Advance(_views[1].ActionEventDelaySeconds("cast") + .1f);
+            var telegraphs = ActiveFx.Where(image => image.name.Contains("zixiao_leizhen_telegraph")).ToArray();
+            Assert.That(telegraphs.Length, Is.EqualTo(3));
+            Assert.That(telegraphs.Select(image => image.sprite).Distinct().Count(), Is.EqualTo(1));
+            for (ulong id = 2; id <= 4; id++)
+                Assert.That(telegraphs.Any(image => Vector2.Distance(VisualAnchor(image, new Vector2(.5f, .5f)), _views[id].FootPosition) < .02f), Is.True);
+            Assert.That(_damageTicks, Is.Empty);
+            Assert.That(_presenter.Numbers.ActiveCount, Is.Zero);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes(bool skip)
+        {
+            _presenter.Play(Plan(1202, 3));
+            Advance(_views[1].ActionEventDelaySeconds("cast") + .2f);
+            Assert.That(ActiveFx.Count(image => image.name.Contains("zixiao_leizhen_telegraph")), Is.EqualTo(3));
+            Assert.That(_damageTicks, Is.Empty);
+            if (skip) _presenter.Skip(); else _presenter.Abort();
+            Assert.That(_presenter.Fx.ActiveCount, Is.Zero);
+            Assert.That(_presenter.Numbers.ActiveCount, Is.Zero);
+            for (ulong id = 2; id <= 4; id++) Assert.That(_views[id].CurrentHealth, Is.EqualTo(skip ? 900 : 1000));
+            Advance(3f, 1f / 15f);
+            Assert.That(_damageTicks, Is.Empty, "A cancelled shared telegraph delay must not spawn any strike, damage or number.");
+            Assert.That(_presenter.Fx.ActiveCount, Is.Zero);
+            Assert.That(_presenter.Numbers.ActiveCount, Is.Zero);
+            for (ulong id = 2; id <= 4; id++) Assert.That(_views[id].CurrentHealth, Is.EqualTo(skip ? 900 : 1000));
+        }
+
         [TestCase(false)]
         [TestCase(true)]
         public void AbortAndSkipDoNotDeliverLateImpactCallbacks(bool skip)
@@ -212,6 +318,61 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_damageTicks, Is.Empty, "Skip lands the terminal HP without spawning a second hit or number.");
             Assert.That(_presenter.Fx.ActiveCount, Is.Zero);
             Assert.That(_presenter.Numbers.ActiveCount, Is.Zero);
+        }
+
+        [TestCase(1201u, false)]
+        [TestCase(1201u, true)]
+        [TestCase(1202u, false)]
+        [TestCase(1202u, true)]
+        public void CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(uint skill, bool skip)
+        {
+            int targets = skill == 1202 ? 3 : 1;
+            var plan = Plan(skill, targets);
+            _presenter.SpeedScale = 6f;
+            int finished = 0, aborted = 0;
+            _presenter.OnFinished += () => finished++;
+            _presenter.OnAborted += () => aborted++;
+            _presenter.Play(plan);
+            float budget = plan.TotalSeconds / _presenter.SpeedScale;
+            const float step = 1f / 15f;
+            float elapsed = 0f;
+            while (elapsed < budget)
+            {
+                Advance(step, step);
+                elapsed += step;
+            }
+
+            var sequencer = (BattleSequencer)typeof(BattlePresenter).GetField("_sequencer", Hidden).GetValue(_presenter);
+            var presentation = BattleArtCatalog.ResolveSkillFx(skill, false);
+            var impacts = ActiveFx.Where(image => image.name.Contains(presentation.FxId)).ToArray();
+            Assert.That(elapsed, Is.GreaterThanOrEqualTo(budget));
+            Assert.That(_presenter.IsPlaying, Is.True, "The expired beat must still be waiting for its unfinished impact.");
+            Assert.That(RealtimeTween.IsTweening(sequencer), Is.True, "The sequencer must have scheduled its completion retry.");
+            Assert.That(impacts.Length, Is.EqualTo(targets));
+            Assert.That(impacts.All(image => Array.IndexOf(BattleArtCatalog.LoadFx(presentation.FxId).Frames, image.sprite) < presentation.HitFrame), Is.True);
+            Assert.That(_damageTicks, Is.Empty);
+            Assert.That(finished, Is.Zero);
+
+            if (skip) _presenter.Skip(); else _presenter.Abort();
+            Assert.That(_presenter.IsPlaying, Is.False);
+            Assert.That(RealtimeTween.IsTweening(sequencer), Is.False, "Cancellation must kill the outstanding completion retry immediately.");
+            Assert.That(_presenter.Fx.ActiveCount, Is.Zero);
+            Assert.That(_presenter.Numbers.ActiveCount, Is.Zero);
+            Assert.That(finished, Is.EqualTo(skip ? 1 : 0));
+            Assert.That(aborted, Is.EqualTo(skip ? 0 : 1));
+            for (ulong id = 2; id <= (ulong)targets + 1; id++)
+                Assert.That(_views[id].CurrentHealth, Is.EqualTo(skip ? 900 : 1000));
+
+            Advance(3f, step);
+            Assert.That(_presenter.IsPlaying, Is.False);
+            Assert.That(RealtimeTween.IsTweening(sequencer), Is.False);
+            Assert.That(_damageTicks, Is.Empty, "A cancelled impact or retry must not deliver a late result.");
+            Assert.That(_presenter.Fx.ActiveCount, Is.Zero);
+            Assert.That(_presenter.Numbers.ActiveCount, Is.Zero);
+            Assert.That(finished, Is.EqualTo(skip ? 1 : 0), "A killed retry must not finish the plan again.");
+            Assert.That(aborted, Is.EqualTo(skip ? 0 : 1));
+            for (ulong id = 2; id <= (ulong)targets + 1; id++)
+                Assert.That(_views[id].CurrentHealth, Is.EqualTo(skip ? 900 : 1000));
         }
 
         private RectTransform Layer(string name)
@@ -240,11 +401,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
             return new Vector2(left + rt.sizeDelta.x * pivot.x, -rt.anchoredPosition.y + rt.sizeDelta.y * (1f - pivot.y));
         }
 
-        private void Advance(float seconds)
+        private void Advance(float seconds, float maxStep = .002f)
         {
             while (seconds > .000001f)
             {
-                float step = Mathf.Min(seconds, .002f);
+                float step = Mathf.Min(seconds, maxStep);
                 _tick++;
                 Tick.Invoke(null, new object[] { step, step });
                 seconds -= step;

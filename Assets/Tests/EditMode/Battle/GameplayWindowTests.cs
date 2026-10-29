@@ -22,7 +22,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             _fixture = new GameObject("GameplayWindowTests", typeof(RectTransform), typeof(Canvas));
             ((RectTransform)_fixture.transform).sizeDelta = new Vector2(2560, 1080);
-            _window = new GameplayWindow(_fixture.transform);
+            var preferences = new Dictionary<string, string>();
+            _window = new GameplayWindow(_fixture.transform, activityPreferences: new ActivityPreferences(
+                key => preferences.TryGetValue(key, out var value) ? value : string.Empty, (key, value) => preferences[key] = value));
             _bagReads = _missionReads = _activityReads = _sorts = 0;
             _tracking.Clear(); _accepts.Clear(); _claims.Clear();
             _window.BagRequested += _ => ++_bagReads;
@@ -157,15 +159,28 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void LongActivityListUsesHorizontalScrollingWithoutHiddenFixedPageLimits()
+        public void LongActivityListKeepsApprovedCardsAndScrollsHorizontallyWithoutFixedBusinessLimits()
         {
-            _window.SetActivities(MakeActivities(5), false, null); _window.Show(GameplayPage.Activities);
-            for (int i = 1; i <= 5; ++i) AssertText("雅集说明" + i);
+            _window.SetActivities(MakeActivities(7), false, null); _window.Show(GameplayPage.Activities);
+            for (int i = 0; i < 7; ++i) AssertText("雅集" + Numbers[i]);
             var scroll = Scroll("ActivityCardsScroll");
             Assert.That(scroll.horizontal, Is.True); Assert.That(scroll.vertical, Is.False);
             Assert.That(scroll.content.rect.width, Is.GreaterThan(scroll.viewport.rect.width));
             scroll.horizontalNormalizedPosition = 1; scroll.onValueChanged.Invoke(new Vector2(1, 0)); Canvas.ForceUpdateCanvases();
-            Assert.That(scroll.content.anchoredPosition.x, Is.LessThan(0), "第五张真实活动卡必须可滚入可视区");
+            Assert.That(scroll.content.anchoredPosition.x, Is.LessThan(0), "第七项活动必须可滚入可视区");
+            var first = _fixture.GetComponentsInChildren<RectTransform>().Single(r => r.name == "Activity_1");
+            var second = _fixture.GetComponentsInChildren<RectTransform>().Single(r => r.name == "Activity_2");
+            var last = _fixture.GetComponentsInChildren<RectTransform>().Single(r => r.name == "Activity_7");
+            Assert.That(first.sizeDelta, Is.EqualTo(new Vector2(410,495)), "批准的完整竖卡不得改成压缩列表");
+            Assert.That(first.anchoredPosition.y, Is.EqualTo(second.anchoredPosition.y));
+            Assert.That(second.anchoredPosition.x - first.anchoredPosition.x, Is.EqualTo(418));
+            var corners = new UnityEngine.Vector3[4]; last.GetWorldCorners(corners);
+            foreach (var corner in corners)
+            {
+                var point = scroll.viewport.InverseTransformPoint(corner);
+                Assert.That(point.x, Is.InRange(scroll.viewport.rect.xMin - 1, scroll.viewport.rect.xMax + 1));
+                Assert.That(point.y, Is.InRange(scroll.viewport.rect.yMin - 1, scroll.viewport.rect.yMax + 1));
+            }
             Assert.That(_activityReads, Is.EqualTo(1)); Assert.That(_accepts, Is.Empty);
         }
 
@@ -247,7 +262,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(Scroll(_window.Page == GameplayPage.Missions ? "MissionListScroll" : "ActivityCardsScroll").content.childCount, Is.Zero);
             _window.SetActivities(new GetActivityListResponse(), false, null);
             _window.Show(GameplayPage.Activities);
-            AssertText("此时暂无活动，静候下一场相聚");
+            AssertText("没有符合筛选的活动，可清除筛选查看");
             Assert.That(Scroll(_window.Page == GameplayPage.Missions ? "MissionListScroll" : "ActivityCardsScroll").content.childCount, Is.Zero);
         }
 
@@ -351,14 +366,14 @@ namespace MmorpgClient.Tests.EditMode.Battle
             AssertText("即将开启");
             AssertText("尚未到开放时间");
             ClickNamed("ActivityDetails_1");
-            AssertText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）");
+            Assert.That(_fixture.GetComponentsInChildren<TMP_Text>().Any(t => t.text.Contains("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）")), Is.True);
             AssertText("尚未到开放时间");
             ClickNamed("CloseActivityDetails_1");
             Assert.That(FindButton("前往参与").interactable, Is.False, "不因系统日期晚于排期而自行开放");
             activity.Status = (PlayerActivityStatus)0;
             _window.SetActivities(activities, false, null);
             ClickNamed("ActivityDetails_1");
-            AssertText("尚未排期");
+            Assert.That(_fixture.GetComponentsInChildren<TMP_Text>().Any(t => t.text.Contains("尚未排期")), Is.True);
             Assert.That(HasText("开始 1970/01/02 08:00\n结束 1970/01/03 08:00 北京时间（UTC+8）"), Is.False);
         }
 
@@ -371,7 +386,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _window.SetActivities(activities, false, null);
             _window.Show(GameplayPage.Activities);
             ClickNamed("ActivityDetails_1");
-            AssertText("开始 待公布\n结束 待公布 北京时间（UTC+8）");
+            Assert.That(_fixture.GetComponentsInChildren<TMP_Text>().Any(t => t.text.Contains("开始 待公布\n结束 待公布 北京时间（UTC+8）")), Is.True);
             _window.SetMissions(new GetMissionListResponse(), false, null, true);
             _window.ResetSession();
             var missions = MakeMissions(1);
@@ -430,7 +445,12 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(FindButton("材料").interactable, Is.False);
             Assert.That(FindButton("出售").interactable, Is.False, "出售不得借用装备回调");
             _window.SetMissions(MakeMissions(1), false, null); _window.Show(GameplayPage.Missions);
-            foreach (string label in new[] { "已接任务", "可接任务", "自动追踪", "查看地图" }) AssertText(label);
+            // 任务开关是手动展示偏好；自动策略未确认时不得沿用误导性的自动文案。
+            foreach (string label in new[] { "已接任务", "可接任务", "追踪任务", "查看地图" }) AssertText(label);
+            Assert.That(HasText("自动追踪"), Is.False);
+            var tracking = new MmorpgClient.Game.PlayerFeatures.MissionTrackingState();
+            Assert.That(tracking.AutoTrackingAvailable, Is.False, "自动策略未开放不能伪造为启用状态");
+            Assert.That(tracking.AutoTrackingUnavailableReason, Is.EqualTo("自动追踪规则尚未开放，可手动选择任务"));
             Assert.That(FindButton("查看地图").interactable, Is.False, "没有目标地点合同不能伪造传送");
             Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
         }
@@ -453,13 +473,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void ActivityFooterKeepsFourDisabledMilestonesWithoutBakingSamplePointsOrClaimState()
+        public void ActivityFooterHasNoInventedThresholdsWhenAuthoritativeRulesAreUnavailable()
         {
             _window.SetActivities(MakeActivities(1), false, null); _window.Show(GameplayPage.Activities);
-            foreach (string label in new[] { "今日推荐", "每日活动", "限时活动", "节庆活动", "今日活跃", "—/—", "活动日历" }) AssertText(label);
+            foreach (string label in new[] { "今日推荐", "每日活动", "限时活动", "节庆活动", "本期活跃", "—/—", "活动日历" }) AssertText(label);
+            Assert.That(_fixture.GetComponentsInChildren<Image>().Count(i => i.name.StartsWith("ActivityVitalityUnavailableChest_")), Is.EqualTo(4));
+            var track = _fixture.GetComponentsInChildren<Image>().Single(i => i.name == "ActivityVitalityTrack");
+            Assert.That(track.sprite, Is.SameAs(MmorpgClient.UI.Ugui.QdaoUguiTheme.RequireSprite("UI/Ugui/GameplayFidelity20261016/activity-vitality-empty-track")));
+            Assert.That(track.rectTransform.sizeDelta, Is.EqualTo(new Vector2(650,29)));
+            Assert.That(track.type, Is.EqualTo(Image.Type.Sliced));
+            ClickNamed("ActivityTools");
+            foreach (string label in new[] { "我的收藏", "日常活动", "限时活动", "福利活动", "即将开启", "其他活动" }) AssertText(label);
             var chests = _fixture.GetComponentsInChildren<Button>().Where(b => b.name.StartsWith("ActivityVitalityChest_")).ToArray();
-            Assert.That(chests.Length, Is.EqualTo(4)); Assert.That(chests.All(b => !b.interactable), Is.True);
-            Assert.That(FindButton("活动日历").interactable, Is.False);
+            Assert.That(chests, Is.Empty);
+            Assert.That(FindButton("提醒").interactable, Is.False);
+            Assert.That(FindButton("推送").interactable, Is.False);
             Assert.That(HasText("35/100"), Is.False); Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
         }
 
@@ -486,22 +514,183 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void ActivityRewardAreaRetainsEmptyNativeSlotsAndUsesOnlyRealMissionProgress()
+        public void ActivityCountsUseActivityCompletionSnapshotAndNeverTaskObjectiveProgress()
         {
             _window.SetMissions(MakeMissions(1), false, null);
-            _window.SetActivities(MakeActivities(2), false, null); _window.Show(GameplayPage.Activities);
-            var emptyRewards = _fixture.GetComponentsInChildren<RectTransform>().Where(r => r.name == "ActivityRewardsEmpty").ToArray();
-            Assert.That(emptyRewards.Length, Is.EqualTo(2));
-            foreach (var rewards in emptyRewards)
-            {
-                Assert.That(rewards.GetComponentsInChildren<Image>().Count(i => i.name.StartsWith("ActivityRewardEmptySlot_")), Is.EqualTo(2));
-                Assert.That(rewards.GetComponentsInChildren<Image>().Any(i => i.name == "ItemIcon"), Is.False, "奖励协议未提供图标或数量，不能残留原稿示例奖励");
-            }
-            CollectionAssert.AreEquivalent(new[] { "1/3", "—/—" }, _fixture.GetComponentsInChildren<TMP_Text>().Where(t => t.name == "ActivityProgress").Select(t => t.text));
-            Assert.That(_fixture.GetComponentsInChildren<Image>().Count(i => i.name == "ActivityRewardHeading"), Is.EqualTo(2));
-            ClickNamed("ActivityDetails_2"); AssertText("尚未排期"); AssertText("奖励资料待公布");
+            var activities = MakeActivities(2);
+            activities.Activities[0].CompletionCountKnown = true; activities.Activities[0].CompletedCount = 2; activities.Activities[0].CompletionLimit = 7;
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            CollectionAssert.AreEquivalent(new[] { "次数 2/7", "次数 未提供" }, _fixture.GetComponentsInChildren<TMP_Text>().Where(t => t.name == "ActivityCompletionCount").Select(t => t.text));
+            Assert.That(HasText("1/3"), Is.False, "任务目标计数不得冒充活动次数");
+            ClickNamed("ActivityDetails_2");
+            Assert.That(_fixture.GetComponentsInChildren<TMP_Text>().Any(t => t.text.Contains("尚未排期") && t.text.Contains("奖励明细未提供")), Is.True);
             ClickNamed("CloseActivityDetails_2");
             Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
+        [Test]
+        public void ActivityCategoryAndCompoundRewardFiltersUseOnlyAuthoritativeMetadata()
+        {
+            var activities = MakeActivities(3);
+            activities.Activities[0].Category = (PlayerActivityCategory)1;
+            activities.Activities[0].RewardTypes.Add((PlayerActivityRewardType)3);
+            activities.Activities[0].RewardTypes.Add((PlayerActivityRewardType)4);
+            activities.Activities[1].Category = (PlayerActivityCategory)2;
+            activities.Activities[1].RewardTypes.Add((PlayerActivityRewardType)1);
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            ChooseActivityTool("ActivityCategory_1"); AssertText("雅集一");
+            Assert.That(HasText("雅集二") || HasText("雅集三"), Is.False);
+            ChooseActivityTool("ActivityRewardFilter_4"); AssertText("雅集一");
+            ChooseActivityTool("ActivityRewardFilter_1");
+            Assert.That(HasText("雅集一"), Is.False);
+            AssertText("没有符合筛选的活动，可清除筛选查看");
+            ChooseActivityTool("ClearActivityFilters");
+            AssertText("雅集一"); AssertText("雅集二"); AssertText("雅集三");
+            ChooseActivityTool("ActivityCategory_5"); AssertText("雅集三");
+            Assert.That(HasText("雅集一") || HasText("雅集二"), Is.False, "未知分类只进入其他，不猜成日常");
+            Assert.That(_accepts, Is.Empty); Assert.That(_activityReads, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void FavoritesAreRoleIsolatedAndReusedIdsKeepAnExplainableUnavailableEntry()
+        {
+            var activities = MakeActivities(1);
+            _window.SetActivityContext(100);
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            ClickNamed("ActivityDetails_1"); ClickNamed("FavoriteActivity_1"); ClickNamed("CloseActivityDetails_1");
+            ChooseActivityTool("ActivityCategory_0"); AssertText("雅集一");
+            _window.SetActivityContext(101); _window.SetActivities(activities, false, null); ChooseActivityTool("ActivityCategory_0");
+            AssertText("暂无收藏，可在活动详情中收藏");
+            _window.SetActivityContext(100); _window.SetActivities(activities, false, null); AssertText("雅集一");
+            activities.Activities[0].DefinitionKey = "a-different-content-incarnation";
+            _window.SetActivities(activities, false, null);
+            AssertText("已下架或配置身份已更新");
+            Assert.That(_fixture.GetComponentsInChildren<Button>().Any(b => b.name == "ActivityAction_1"), Is.False);
+            ClickNamed("RemoveFavorite_1"); AssertText("暂无收藏，可在活动详情中收藏");
+            Assert.That(_accepts, Is.Empty);
+        }
+
+        [Test]
+        public void ActivityRewardThresholdCountRatioAndIntentComeFromTheSnapshot()
+        {
+            var activities = MakeActivities(1);
+            activities.Vitality = new PlayerActivityVitalitySnapshot { Available = true, RuleId = 9,
+                ConfigurationRevision = 2, PeriodId = 100, Points = 7, PointsLimit = 20, PeriodEndsAtMs = 86400000 };
+            activities.Vitality.Rewards.Add(new PlayerActivityVitalityReward { ThresholdId = 17, RequiredPoints = 3, CanClaim = true });
+            activities.Vitality.Rewards.Add(new PlayerActivityVitalityReward { ThresholdId = 31, RequiredPoints = 11 });
+            activities.Vitality.Rewards.Add(new PlayerActivityVitalityReward { ThresholdId = 44, RequiredPoints = 19 });
+            var before = activities.Clone();
+            var requests = new List<(uint, ulong, uint, ulong)>();
+            _window.ActivityRewardClaimRequested += (rule, period, threshold, version) => requests.Add((rule, period, threshold, version));
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            AssertText("7/20");
+            Assert.That(_fixture.GetComponentsInChildren<Button>().Count(b => b.name.StartsWith("ActivityVitalityChest_")), Is.EqualTo(3));
+            var fill = _fixture.GetComponentsInChildren<RectTransform>().Single(r => r.name == "ActivityVitalityFill");
+            Assert.That(fill.rect.width, Is.EqualTo(650f * 7 / 20).Within(.01f));
+            ClickNamed("ActivityVitalityChest_17"); ClickNamed("ConfirmActivityReward");
+            Assert.That(requests.Single(), Is.EqualTo((9u, 100ul, 17u, 2ul)));
+            Assert.That(activities.Equals(before), Is.True, "点击不本地加分、置已领或发物");
+            _window.SetActivities(activities, false, null, true);
+            Assert.That(_fixture.GetComponentsInChildren<Button>().Where(b => b.name.StartsWith("ActivityVitalityChest_")).All(b => !b.interactable), Is.True);
+        }
+
+        [Test]
+        public void RemovingSelectedActivityInvalidatesItsOldActionAndDetails()
+        {
+            var activities = MakeActivities(1);
+            activities.Activities[0].Status = (PlayerActivityStatus)2; activities.Activities[0].CanParticipate = true;
+            _window.SetMissions(new GetMissionListResponse(), false, null);
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            var action = _fixture.GetComponentsInChildren<Button>().Single(b => b.name == "ActivityAction_1").onClick;
+            ClickNamed("ActivityDetails_1");
+            _window.SetActivities(new GetActivityListResponse(), false, null);
+            action.Invoke();
+            Assert.That(_accepts, Is.Empty);
+            Assert.That(_fixture.GetComponentsInChildren<RectTransform>().Any(r => r.name == "ActivityDetailsPanel"), Is.False);
+        }
+
+        [Test]
+        public void CommittedActivityRewardRemainsPendingUntilDurableAndCannotSubmitAnotherClaim()
+        {
+            var activities = MakeActivities(1);
+            activities.Vitality = new PlayerActivityVitalitySnapshot { Available = true, RuleId = 9, ConfigurationRevision = 2, PeriodId = 100, Points = 7, PointsLimit = 20 };
+            activities.Vitality.Rewards.Add(new PlayerActivityVitalityReward { ThresholdId = 17, RequiredPoints = 3, Claimed = true, Durable = false });
+            var claims = 0; _window.ActivityRewardClaimRequested += (_, _, _, _) => ++claims;
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            AssertText("3活跃\n确认中"); ClickNamed("ActivityVitalityChest_17");
+            AssertText("领取确认中，请刷新恢复原请求");
+            var confirm = _fixture.GetComponentsInChildren<Button>().Single(b => b.name == "ConfirmActivityReward");
+            Assert.That(confirm.interactable, Is.False); confirm.onClick.Invoke(); Assert.That(claims, Is.Zero);
+        }
+
+        [Test]
+        public void LongActivityDescriptionScrollsUntilItsFinalCharacterIsInsideTheViewport()
+        {
+            var activities = MakeActivities(1);
+            activities.Activities[0].Description = string.Concat(Enumerable.Repeat("活动说明与奖励条件必须完整可读。", 80)) + "\n长说明末";
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            ClickNamed("ActivityDetails_1");
+            var scroll = Scroll("DescriptionScroll");
+            Assert.That(scroll.vertical, Is.True); Assert.That(scroll.horizontal, Is.False);
+            Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height));
+            scroll.verticalNormalizedPosition = 0; Canvas.ForceUpdateCanvases();
+            var label = scroll.content.GetComponentInChildren<TMP_Text>(); label.ForceMeshUpdate(true, true);
+            Assert.That(label.text, Does.EndWith("长说明末"));
+            Assert.That(label.textWrappingMode, Is.EqualTo(TextWrappingModes.Normal), "正文必须按可用宽度真实换行");
+            Assert.That(label.textInfo.lineCount, Is.GreaterThan(10));
+            foreach (var character in label.textInfo.characterInfo.Take(label.textInfo.characterCount).Where(c => c.isVisible))
+            {
+                var left = scroll.viewport.InverseTransformPoint(label.transform.TransformPoint(character.bottomLeft));
+                var right = scroll.viewport.InverseTransformPoint(label.transform.TransformPoint(character.topRight));
+                Assert.That(left.x, Is.GreaterThanOrEqualTo(scroll.viewport.rect.xMin - 1), "正文不得从左侧横向溢出");
+                Assert.That(right.x, Is.LessThanOrEqualTo(scroll.viewport.rect.xMax + 1), "正文不得从右侧横向裁断");
+            }
+            var last = label.textInfo.characterInfo[label.textInfo.characterCount - 1];
+            Assert.That(last.isVisible, Is.True, "正文末字必须有可绘制字形");
+            var lower = scroll.viewport.InverseTransformPoint(label.transform.TransformPoint(last.bottomLeft));
+            var upper = scroll.viewport.InverseTransformPoint(label.transform.TransformPoint(last.topRight));
+            Assert.That(lower.y, Is.GreaterThanOrEqualTo(scroll.viewport.rect.yMin - 1), "正文末字不能被下边界裁掉");
+            Assert.That(upper.y, Is.LessThanOrEqualTo(scroll.viewport.rect.yMax + 1), "正文末字必须滚入可视区");
+            Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
+        [Test]
+        public void ChangingActivityPeriodClosesOldConfirmationAndCannotClaimTheNewPeriod()
+        {
+            var activities = MakeActivities(1);
+            activities.Vitality = new PlayerActivityVitalitySnapshot { Available = true, RuleId = 9, ConfigurationRevision = 2, PeriodId = 100, Points = 7, PointsLimit = 20 };
+            activities.Vitality.Rewards.Add(new PlayerActivityVitalityReward { ThresholdId = 17, RequiredPoints = 3, CanClaim = true });
+            var claims = 0; _window.ActivityRewardClaimRequested += (_, _, _, _) => ++claims;
+            _window.SetActivities(activities, false, null); _window.Show(GameplayPage.Activities);
+            ClickNamed("ActivityVitalityChest_17");
+            var action = _fixture.GetComponentsInChildren<Button>().Single(b => b.name == "ConfirmActivityReward").onClick;
+            activities.Vitality.PeriodId = 200;
+            _window.SetActivities(activities, false, null);
+            Assert.That(_fixture.GetComponentsInChildren<Button>().Any(b => b.name == "ConfirmActivityReward"), Is.False);
+            action.Invoke(); Assert.That(claims, Is.Zero);
+            activities.Vitality.Available = false; activities.Vitality.UnavailableReason = "新周期规则未配置";
+            _window.SetActivities(activities, false, null, false, "旧周期领取结果待确认，请刷新");
+            AssertText("旧周期领取结果待确认，请刷新"); AssertText("新周期规则未配置");
+            Assert.That(FindButton("刷新").interactable, Is.True);
+        }
+
+        [Test]
+        public void ActivityToolsBackReturnsToOriginalCardsWithoutReadingOrSendingActions()
+        {
+            _window.SetActivities(MakeActivities(3), false, null); _window.Show(GameplayPage.Activities);
+            ClickNamed("ActivityTools");
+            Assert.That(_fixture.GetComponentsInChildren<RectTransform>().Any(r => r.name == "ActivityToolsPanel"), Is.True);
+            _window.Back();
+            Assert.That(_window.IsVisible, Is.True);
+            Assert.That(_fixture.GetComponentsInChildren<RectTransform>().Any(r => r.name == "ActivityToolsPanel"), Is.False);
+            Assert.That(_fixture.GetComponentsInChildren<RectTransform>().Count(r => r.name.StartsWith("Activity_") && r.sizeDelta == new Vector2(410,495)), Is.EqualTo(3));
+            Assert.That(_activityReads, Is.EqualTo(1)); Assert.That(_accepts, Is.Empty); Assert.That(_claims, Is.Empty);
+        }
+
+        private void ChooseActivityTool(string name)
+        {
+            if (!_fixture.GetComponentsInChildren<Button>().Any(b => b.name == name)) ClickNamed("ActivityTools");
+            ClickNamed(name);
         }
 
         private void ClickNamed(string name)
@@ -584,7 +773,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 response.Activities.Add(new PlayerActivityInfo
                 {
                     ActivityId = (uint)(i + 1), MissionId = (uint)(i + 1), Name = "雅集" + Numbers[i],
-                    Description = "雅集说明" + (i + 1), Status = (PlayerActivityStatus)0,
+                    Description = "雅集说明" + (i + 1), Status = (PlayerActivityStatus)0, EntryKind = (PlayerActivityEntryKind)1,
+                    DefinitionKey = "fixture-activity-" + (i + 1),
                 });
             return response;
         }

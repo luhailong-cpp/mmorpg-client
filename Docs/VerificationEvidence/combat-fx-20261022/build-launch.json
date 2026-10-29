@@ -1,0 +1,7 @@
+{
+  "pid": 27544,
+  "startedUtc": "2026-10-23T13:21:07.5195145+00:00",
+  "arguments": "-batchmode -nographics -job-worker-count 1 -gc-helper-count 1 -refreshImportMode InProcess -projectPath \"E:\\work\\mmorpg-client\\.codex-artifacts\\combat-fx-20261022\\isolated-project\" -logFile \"E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\build-resume-20261023-unity.log\" -quit -executeMethod MmorpgClient.Editor.CrossZoneVerifyBuild.Build -crossZoneOut \"E:\\work\\mmorpg-client\\Builds\\combat-fx-20261022\\client\"",
+  "resumes": "build-capture-unity.log",
+  "sourceInputs": "rebuild-inputs.json"
+}

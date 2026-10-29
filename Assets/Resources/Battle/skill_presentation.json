@@ -17,6 +17,16 @@
       "telegraph_fx_id": "zixiao_leizhen_telegraph",
       "telegraph_seconds": 0.5,
       "target_at_feet": true
+    },
+    {
+      "skill_id": 1203,
+      "fx_id": "hanxing_ningpo_impact",
+      "action": "cast",
+      "hit_frame": 3,
+      "projectile_fx_id": "hanxing_ningpo_projectile",
+      "flight_seconds": 0.5,
+      "align_projectile_to_path": true,
+      "target_at_feet": false
     }
   ]
 }

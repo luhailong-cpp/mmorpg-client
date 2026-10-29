@@ -27,10 +27,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool _forgeNoticeShown;
         private PlayerFeaturesClient _client;
         private GameplayWindow _window;
-        private RectTransform _hud, _trackedRoot;
-        private TMP_Text _trackedText;
+        private RectTransform _hud;
         private ulong _playerId;
-        private ulong _trackedMission;
         private bool _available;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -69,14 +67,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var entryId = i == 0 ? WorldHudEntry.Bag : i == 1 ? WorldHudEntry.Missions : WorldHudEntry.Activities;
                 WorldHudNavigation.Register(entryId, (RectTransform)b.transform, b, b.GetComponentInChildren<TMP_Text>());
             }
-            _trackedRoot = QdaoUguiFactory.CreateRect("TrackedMission", _hud, 68, 288, 405, 180);
-            GameplayUiArt.Art(_trackedRoot, "content_panel", 0, 0, 405, 180);
-            _trackedText = GameplayUiArt.Text(_trackedRoot, "", 26, 20, 355, 140, 27, wrap: true);
-            var hit = _trackedRoot.gameObject.AddComponent<Button>();
-            hit.targetGraphic = _trackedRoot.GetComponentInChildren<Image>();
-            hit.targetGraphic.raycastTarget = true;
-            hit.onClick.AddListener(() => Open(GameplayPage.Missions));
-            _trackedRoot.gameObject.SetActive(false);
             _window = new GameplayWindow(design, _forge);
             _window.BagRequested += type => _client?.RequestBag(type);
             _window.SortRequested += () => _client?.SortBag();
@@ -96,7 +86,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.ActivitiesRequested += () => _client?.RequestActivities();
             _window.MissionAcceptRequested += (scope, id) => _client?.AcceptMission(scope, id);
             _window.MissionClaimRequested += (scope, id) => _client?.ClaimMissionReward(scope, id);
-            _window.TrackingChanged += Track;
+            _window.TrackingChanged += mission => { if (mission != null) _client?.MissionTracking.Track(mission); };
+            _window.ActivityRewardClaimRequested += (ruleId, periodId, thresholdId, revision) =>
+                _client?.ClaimActivityVitalityReward(ruleId, periodId, thresholdId, revision);
             // 面板长在背包窗口里:窗口关掉(含换角色 / 断线时的 ResetSession)它跟着关。
             _window.Closed += _forge.Close;
             // 强化结果的兜底提示(面板关了也照样来)。背包页正在屏幕上:写进它的状态行,下一次装备操作开始时由 Changed 收起;
@@ -120,6 +112,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 if (_client != null) _client.OnChanged -= Changed;
                 _window.ResetSession();
                 _client = game?.Features;
+                _window.SetMissionTracking(_client?.MissionTracking);
                 if (_client != null) _client.OnChanged += Changed;
                 _forge.Bind(_client);
             }
@@ -154,6 +147,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 #endif
         }
         public void HidePanel() => _window?.Hide();
+        public void OpenMissions() => Open(GameplayPage.Missions);
+
+        public void OpenMission(uint scope, uint missionId)
+        {
+            if (!_available || _client?.Missions == null) return;
+            bool found = false;
+            foreach (var mission in _client.Missions.Missions)
+                if (mission.Scope == scope && mission.MissionId == missionId) { found = true; break; }
+            if (!found) return;
+            PrepareOpen();
+            Changed();
+            _window.ShowMission(scope, missionId);
+        }
         public void OpenEquipment()
         {
             if (!_available) return;
@@ -195,27 +201,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.SetBagPage(_client.Bag, _client.BagLoading, _client.BagError, _client.BusySort,
                 _client.Equipment, _client.EquipmentLoading, _client.EquipmentError, _client.BusyEquip);
             _window.SetMissions(_client.Missions, _client.MissionsLoading, _client.MissionsError, _client.BusyMissionAction);
-            _window.SetActivities(_client.Activities, _client.ActivitiesLoading, _client.ActivitiesError);
-            if (_trackedMission != 0 && _client.Missions != null)
-            {
-                PlayerMissionInfo current = null;
-                foreach (var m in _client.Missions.Missions) if (GameplayUiArt.MissionKey(m) == _trackedMission) { current = m; break; }
-                Track(current);
-            }
-        }
-        private void Track(PlayerMissionInfo mission)
-        {
-            _trackedMission = mission == null ? 0 : GameplayUiArt.MissionKey(mission);
-            _trackedRoot.gameObject.SetActive(mission != null);
-            if (mission == null) return;
-            string text = GameplayUiArt.MissionName(mission) + "\n";
-            if (mission.Objectives.Count > 0)
-            {
-                var goal = mission.Objectives[0];
-                text += (string.IsNullOrWhiteSpace(goal.Description) ? "当前目标" : goal.Description) + $"\n{goal.Progress} / {goal.Target}";
-            }
-            else text += GameplayUiArt.MissionStatus(mission.Status);
-            _trackedText.text = text;
+            _window.SetMissionTracking(_client.MissionTracking);
+            _window.SetActivityContext(_client.SnapshotPlayerId);
+            _window.SetActivities(_client.Activities, _client.ActivitiesLoading, _client.ActivitiesError,
+                _client.BusyActivityReward, _client.ActivityRewardError);
         }
         private void OnDestroy()
         {

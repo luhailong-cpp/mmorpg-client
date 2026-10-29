@@ -54,14 +54,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool _equipLoading, _equipBusy;
         private string _bagError, _missionError, _activityError, _equipError, _query = "";
         private int _objectivePage;
+        private float _missionObjectiveScroll = 1;
         private int _bagFilter, _missionFilter, _activityFilter, _bagPage, _missionPage, _activityPage, _equipPage;
         private uint _bagType, _selectedActivity, _characterLevel;
-        private ulong _selectedMission, _trackedMission;
+        private ulong _selectedMission;
+        private MissionTrackingState _missionTracking = new MissionTrackingState();
+        private bool _externalMissionTracking;
         // 玩家点过的物品实例 id(人物背包或装备栏里的都算);它此刻在哪个包里每次重画现查。
         private ulong _selectedItem;
 
-        public GameplayWindow(UnityEngine.Transform parent, EquipForgeUiState forge = null)
+        public GameplayWindow(UnityEngine.Transform parent, EquipForgeUiState forge = null, ActivityPreferences activityPreferences = null)
         {
+            _activityPreferences = activityPreferences ?? ActivityPreferences.CreateLocal();
             _root = QdaoUguiFactory.CreateStretch("PlayerFeaturesWindow", parent, Vector4.zero);
             var shade = _root.gameObject.AddComponent<Image>();
             shade.color = new Color(.025f, .10f, .08f, .68f); shade.raycastTarget = true;
@@ -103,8 +107,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         public void Hide() { CloseEquipmentModals(); _tooltip.Hide(); _root.gameObject.SetActive(false); Closed?.Invoke(); }
-        public void Dispose() { if (_root != null) CloseEquipmentModals(); _forgeDialog?.Dispose(); }
-        public void Back() { if (HasEquipmentModal) CloseEquipmentModals(); else Hide(); }
+        public void Dispose() { _missionTracking.OnChanged -= MissionTrackingChanged; if (_root != null) CloseEquipmentModals(); _forgeDialog?.Dispose(); }
+        public void Back()
+        {
+            if (HasEquipmentModal) CloseEquipmentModals();
+            else if (Page == GameplayPage.Activities && (_activityClaimConfirmation != 0 || _activityUtility != 0 || _activityDetails != 0 || _activityTools))
+            { _activityClaimConfirmation = _activityDetails = 0; _activityUtility = 0; _activityTools = false; Render(); }
+            else Hide();
+        }
         /// <summary>从人物面板进入时直接筛选装备，仍由正式背包读接口提供数据。</summary>
         public void ShowEquipment()
         {
@@ -142,20 +152,52 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void SetMissions(GetMissionListResponse missions, bool loading, string error, bool actionBusy = false)
         {
             _missions = missions;
-            if (_trackedMission != 0 && missions != null && !missions.Missions.Any(m => MissionKey(m) == _trackedMission))
-            { _trackedMission = 0; TrackingChanged?.Invoke(null); }
+            if (!_externalMissionTracking)
+            {
+                ulong previous = _missionTracking.CurrentKey;
+                _missionTracking.UpdateSnapshot(missions);
+                // 保留独立大窗原有清理通知；null是通知，07不再把它当作再次取消另一项的意图。
+                if (previous != 0 && !_missionTracking.IsTracked(previous)) TrackingChanged?.Invoke(null);
+            }
             _missionLoading = loading; _missionError = error; _missionActionBusy = actionBusy;
             if (IsVisible && (Page == GameplayPage.Missions || Page == GameplayPage.Activities)) Render();
         }
-        public void SetActivities(GetActivityListResponse activities, bool loading, string error)
-        { _activities = activities; _activityLoading = loading; _activityError = error; if (IsVisible && Page == GameplayPage.Activities) Render(); }
+        /// <summary>大窗、活动与HUD共用当前Client的显示偏好；换绑前解除旧订阅。</summary>
+        public void SetMissionTracking(MissionTrackingState tracking)
+        {
+            if (ReferenceEquals(_missionTracking, tracking)) return;
+            _missionTracking.OnChanged -= MissionTrackingChanged;
+            _externalMissionTracking = tracking != null;
+            _missionTracking = tracking ?? new MissionTrackingState();
+            if (!_externalMissionTracking) _missionTracking.UpdateSnapshot(_missions);
+            _missionTracking.OnChanged += MissionTrackingChanged;
+            MissionTrackingChanged();
+        }
+        private void MissionTrackingChanged()
+        { if (IsVisible && Page == GameplayPage.Missions) Render(); }
+        public void TrackMissionFromEntry(PlayerMissionInfo mission)
+        { if (mission != null) { _missionTracking.Track(mission); TrackingChanged?.Invoke(mission); } }
+        public void SetActivities(GetActivityListResponse activities, bool loading, string error,
+            bool rewardBusy = false, string rewardError = null)
+        {
+            _activities = activities; _activityLoading = loading; _activityError = error;
+            _activityRewardBusy = rewardBusy; _activityRewardError = rewardError ?? string.Empty;
+            if (_activityDetails != 0 && (activities == null || !activities.Activities.Any(a => a.ActivityId == _activityDetails)))
+                _activityDetails = 0;
+            if (IsVisible && Page == GameplayPage.Activities) Render();
+        }
         public void ResetSession()
         {
-            _bag = null; _equipment = null; _missions = null; _activities = null; _trackedMission = 0;
+            SetActivityContext(0);
+            _activityCategory = -1; _activityRewardFilter = 0; _activityClaimConfirmation = 0; _activityUtility = 0;
+            _activityRewardBusy = false; _activityRewardError = string.Empty;
+            _bag = null; _equipment = null; _missions = null; _activities = null;
+            if (!_externalMissionTracking) _missionTracking.UpdateSnapshot(null);
             _selectedItem = 0; _selectedMission = 0; _selectedActivity = 0;
             _bagPage = _missionPage = _activityPage = _objectivePage = _equipPage = 0;
             _bagFilter = _missionFilter = _activityFilter = 0; _query = string.Empty; _bagTools = _activityTools = false;
             _bagScroll = _missionScroll = _activityScroll = 1;
+            _missionObjectiveScroll = 1;
             _search.SetTextWithoutNotify(string.Empty); _search.DeactivateInputField();
             _bagLoading = _missionLoading = _activityLoading = _sorting = _missionActionBusy = false;
             _equipLoading = _equipBusy = false; _characterLevel = 0;
@@ -269,12 +311,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void ShowMission(PlayerMissionInfo mission)
         {
-            _missionFilter = 0; _objectivePage = 0; _selectedMission = MissionKey(mission);
-            var ordered = _missions.Missions.OrderBy(m => m.MissionId).ToList();
+            if (mission == null || _missions == null) return;
+            _missionFilter = (int)mission.Status == 0 ? 3 : 0; _objectivePage = 0; _missionObjectiveScroll = 1; _selectedMission = MissionKey(mission);
+            var ordered = _missions.Missions.Where(m => ((int)m.Status == 0) == (_missionFilter == 3)).OrderBy(m => m.MissionId).ToList();
             int index = Math.Max(0, ordered.FindIndex(m => MissionKey(m) == _selectedMission));
             _missionScroll = ordered.Count <= 5 ? 1 : 1f - Mathf.Clamp01(index * 101f / Math.Max(1, ordered.Count * 101f - 492));
             Show(GameplayPage.Missions);
         }
+        /// <summary>只定位当前快照的同一scope和任务ID，不把旧卡片当成任务状态。</summary>
+        public void ShowMission(uint scope, uint missionId)
+        { ShowMission(_missions?.Missions.FirstOrDefault(m => m.Scope == scope && m.MissionId == missionId)); }
 
         private static string ActivitySchedule(PlayerActivityInfo activity)
         {

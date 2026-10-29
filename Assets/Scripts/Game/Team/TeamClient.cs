@@ -104,6 +104,11 @@ namespace MmorpgClient.Game.Team
         /// 而 HasView 为假,Snapshot 仍是占位的"无队",界面不能据此判定玩家不在队伍里。
         /// </summary>
         public bool HasView => _hasView;
+        /// <summary>
+        /// 已知名单可用于新动作的权限预检。读取失败会保留 Snapshot，但将它标成过期；
+        /// 新的权威视图（包括同版本的在线态刷新）才恢复此标记。调用方还须检查连接可用与忙态。
+        /// </summary>
+        public bool HasFreshView { get; private set; }
         /// <summary>传输层单飞:有 Call 在途。</summary>
         public bool Busy { get; private set; }
         public TeamAction PendingAction { get; private set; }
@@ -203,7 +208,7 @@ namespace MmorpgClient.Game.Team
             if (Busy) RequiresReconnect = true;
             ++_generation;
             Busy = false; PendingAction = TeamAction.None; PendingTarget = 0; _syncReadAck = null;
-            Snapshot = TeamViewMapper.ToSnapshot(null, PlayerId); _hasView = false; HasLoaded = false; ViewSerial++;
+            Snapshot = TeamViewMapper.ToSnapshot(null, PlayerId); _hasView = false; HasFreshView = false; HasLoaded = false; ViewSerial++;
             // 新会话重新相信服务端视图:断线重连后若仍在排,要能恢复「匹配中」。
             _consumedQueueTeamId = 0; _consumedQueueAtMs = 0;
             _queueViewVerifyLeft = 0; _queueViewVerifyAt = float.PositiveInfinity;
@@ -617,6 +622,7 @@ namespace MmorpgClient.Game.Team
 
         private void OnTransportError(string error, TeamAction action, IMessage request, bool probe, bool silent)
         {
+            if (!ObserveActionTransportError(action, error)) return;
             if (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal))
             {
                 if (IsRateLimited(error))
@@ -650,6 +656,7 @@ namespace MmorpgClient.Game.Team
                 }
                 // 其余外层信封错误(路由服 / gate 拒绝、非法消息):本连接内不再发 team 消息。
                 Suspended = true;
+                HasFreshView = false;
                 Status = SuspendedMessage;
                 return;
             }
@@ -658,12 +665,14 @@ namespace MmorpgClient.Game.Team
                 // 探针超时:组队服务很可能未上线(灰度),本连接停用,等真实断线后再探。
                 Suspended = true;
                 RequiresReconnect = true;
+                HasFreshView = false;
                 Status = SuspendedMessage;
                 return;
             }
             // 写请求可能已在服务端生效；重连后按原意图与权威状态恢复，避免重复副作用。
             if (action == TeamAction.StartMatch && _pendingStart != null) _startHadUncertainAttempt = true;
             RequiresReconnect = true;
+            HasFreshView = false;
             Status = RecoveryMessage;
         }
 
@@ -796,8 +805,12 @@ namespace MmorpgClient.Game.Team
             var incoming = TeamViewMapper.ToSnapshot(view, PlayerId);
             var order = TeamViewMapper.Compare(_hasView ? Snapshot : null, incoming);
             StripConsumedQueue(incoming);
-            if (order == TeamSnapshotOrder.Accept) { Snapshot = incoming; _hasView = true; ViewSerial++; }
-            else if (order == TeamSnapshotOrder.Conflict) RefreshQueued = true;   // epoch 相等但 TeamId 不同:丢弃并尽快重拉
+            if (order == TeamSnapshotOrder.Accept) { Snapshot = incoming; _hasView = true; HasFreshView = true; ViewSerial++; }
+            else if (order == TeamSnapshotOrder.Conflict)
+            {
+                HasFreshView = false;
+                RefreshQueued = true;   // epoch 相等但 TeamId 不同:丢弃并尽快重拉
+            }
             if (hadTeam && !HasTeam) InvitesQueued = true;                         // 刚离队 / 被踢 / 解散:重拉邀请
             return order;
         }
@@ -877,7 +890,8 @@ namespace MmorpgClient.Game.Team
         /// </summary>
         public void RequestRegroup()
         {
-            if (_disposed || !HasTeam || IsLeader) return;
+            // 仅限制新的归队意图；已发送请求因限流或缺视图而排队的恢复仍沿用原读重试。
+            if (_disposed || !HasFreshView || !ServiceAvailable || !HasTeam || IsLeader) return;
             _regroupQueued = true;
             RefreshQueued = true;
         }
@@ -1050,6 +1064,9 @@ namespace MmorpgClient.Game.Team
             int generation = ++_generation;
             ulong player = PlayerId;
             bool probe = !HasLoaded;
+            // ApplyView 接受权威视图时总是替换对象；本地匹配态修正只改原对象。
+            // 缺视图的旧回包不能把请求在途期间已收到的新推送误标为过期。
+            var snapshotAtSend = Snapshot;
             Busy = true; PendingAction = action; PendingTarget = target;
             _lastSendAt = now;
             RecordSend(messageId, read, now);
@@ -1080,6 +1097,8 @@ namespace MmorpgClient.Game.Team
                 if (settled || !Current(generation, player)) return;
                 settled = true;
                 Busy = false; PendingAction = TeamAction.None; PendingTarget = 0;
+                if (reply is TeamResponse teamReply && teamReply.Team == null && ReferenceEquals(Snapshot, snapshotAtSend))
+                    HasFreshView = false;
                 if (!read && action != TeamAction.StartMatch && reply is TeamResponse actionReply)
                     CompleteActionIntent(actionReply);
                 onReply(reply);

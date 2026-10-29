@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "batch": "combat-fx-frost-20261023",
+  "skillId": 1203,
+  "integratedAtUtc": "2026-10-23T14:02:31.2860683Z",
+  "sourceManifest": "designs/combat-fx-20261023-frost/asset-manifest.json",
+  "sourceManifestSha256": "a0d8d53711e075ea882a174fe37553258737a231039d431fabdc2724e343a45d",
+  "contracts": [
+    {
+      "path": "designs/combat-fx-20261023-frost/README.md",
+      "sha256": "19f65ba83eb4bee2a389d7c18d4c260ec2973aa4e5965d816954f348532bed3e"
+    },
+    {
+      "path": "designs/combat-fx-20261023-frost/asset-manifest.json",
+      "sha256": "a0d8d53711e075ea882a174fe37553258737a231039d431fabdc2724e343a45d"
+    },
+    {
+      "path": "designs/combat-fx-20261023-frost/validation.json",
+      "sha256": "6f07d2214018100069ce50d7729a117a4d03c225b3c7f24f7dd6b4001cceaf43"
+    },
+    {
+      "path": "designs/combat-fx-20261023-frost/records/independent-qa.json",
+      "sha256": "2c7cef9f5e49c6c59b046d281e9288cf505f654787cc0cb5492e675597a18f65"
+    }
+  ],
+  "alpha": "straight",
+  "importSettings": {
+    "alpha": "straight",
+    "filter": "Bilinear",
+    "wrap": "Clamp",
+    "mipmaps": false,
+    "compression": "None",
+    "maxTextureSize": 4096
+  },
+  "generatorEvidence": "The built-in image tool did not disclose actual model or quality. Configuration targets are not confirmed returned values. Source actualModel/actualQuality and undisclosed submitted parameters remain null.",
+  "scope": "New independent short projectile and impact assets only. Existing six-family collection, provenance and acceptance evidence are unchanged. Runtime and server validation are separate.",
+  "assets": [
+    {
+      "id": "hanxing_ningpo_projectile",
+      "skillId": 1203,
+      "destination": "Assets/Resources/Battle/Fx/hanxing_ningpo_projectile_strip.png",
+      "sha256": "dcf0f69e06bc8b4ea8c2f39efb58a97e026f6ee794121736e1377fe6c27f6a81",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": true,
+      "anchor": "moving_crystal_core",
+      "event": "none",
+      "hitFrame": -1,
+      "sourceRepository": "image",
+      "sourcePath": "designs/combat-fx-20261023-frost/Fx-HD/hanxing_ningpo_projectile_strip.png",
+      "generationRecord": "designs/combat-fx-20261023-frost/records/hanxing_ningpo_projectile.raw.generation.json",
+      "generationRecordSha256": "cb67b80fd81fceeaba317555e82d7d226f316b7fb2f8733dfcd51db0df5a43f6",
+      "derivativeRecord": "designs/combat-fx-20261023-frost/Fx-HD/hanxing_ningpo_projectile_strip.png.generation.json",
+      "derivativeRecordSha256": "2780f4698f577ca7c3f1ec4863fbc65994d340ecbd9549730b1165227bc50b5f",
+      "tool": "image_gen.imagegen",
+      "route": "builtin",
+      "generatedAt": "2026-10-23T13:31:47+00:00",
+      "observedReturnAt": "2026-10-23T13:32:22+00:00",
+      "timeBasis": "Observed tool call boundaries using client clock, not generation-server metadata",
+      "nativeSourceWidth": 1774,
+      "nativeSourceHeight": 887,
+      "actualModel": null,
+      "actualQuality": null,
+      "submittedModel": null,
+      "submittedQuality": null,
+      "unverifiedReason": "宿主管理，工具未披露型号/质量；原PNG没有可核实的型号/质量元数据。",
+      "metaGuid": "048b32f3f42b431cab323bb2679bbb76",
+      "existingMetaPreserved": false,
+      "operation": "Byte-for-byte copy of approved 384 HD strip; no image generation, resizing or pixel editing in client integration.",
+      "qaSourceRecordSnapshotSha256": "3ec832e30a1f5a3a074578088405969463d07cc97490fd910fe471c8b56b3f14",
+      "qaSourceRecordMatchesCurrentMetadataFile": false,
+      "qaRawImageSha256": "b5730ed8216734db9b401121f5296a6c03f77b877b3d44e8f97e959c4cef7c2f",
+      "qaRawImageHashMatchesCurrentRecord": true,
+      "qaSnapshotNote": "Independent QA records an earlier raw generation metadata-file hash; current metadata includes visualReview and retention fields. The original image hash and every delivered PNG hash match QA. The art metadata snapshot was not overwritten."
+    },
+    {
+      "id": "hanxing_ningpo_impact",
+      "skillId": 1203,
+      "destination": "Assets/Resources/Battle/Fx/hanxing_ningpo_impact_strip.png",
+      "sha256": "cc3ef182d2cbc4d5b6b3c2347483d073ecab1eb2bd694e6e3172f5e70006cbaa",
+      "width": 3072,
+      "height": 384,
+      "frames": 8,
+      "fps": 16,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "loop": false,
+      "anchor": "target_chest",
+      "event": "one_result_presentation_on_zero_based_frame_3_no_new_server_settlement",
+      "hitFrame": 3,
+      "sourceRepository": "image",
+      "sourcePath": "designs/combat-fx-20261023-frost/Fx-HD/hanxing_ningpo_impact_strip.png",
+      "generationRecord": "designs/combat-fx-20261023-frost/records/hanxing_ningpo_impact.raw.generation.json",
+      "generationRecordSha256": "54a87ad43e92b381ff926d346f3f09676facb9694ea75771c050d7978dbbed29",
+      "derivativeRecord": "designs/combat-fx-20261023-frost/Fx-HD/hanxing_ningpo_impact_strip.png.generation.json",
+      "derivativeRecordSha256": "b47135aae88f8b2cd0b104a799305ca31c70043513b2e6e6272e286ddbfc0b4d",
+      "tool": "image_gen.imagegen",
+      "route": "builtin",
+      "generatedAt": "2026-10-23T13:32:58+00:00",
+      "observedReturnAt": "2026-10-23T13:33:55+00:00",
+      "timeBasis": "Observed tool call boundaries using client clock, not generation-server metadata",
+      "nativeSourceWidth": 1774,
+      "nativeSourceHeight": 887,
+      "actualModel": null,
+      "actualQuality": null,
+      "submittedModel": null,
+      "submittedQuality": null,
+      "unverifiedReason": "宿主管理，工具未披露型号/质量；原PNG没有可核实的型号/质量元数据。",
+      "metaGuid": "b310e604cf574838bdeadcdd0fac416e",
+      "existingMetaPreserved": false,
+      "operation": "Byte-for-byte copy of approved 384 HD strip; no image generation, resizing or pixel editing in client integration.",
+      "qaSourceRecordSnapshotSha256": "ce0cbc78529555e2c58d08897baffa423f3e7ac028ab1035844126065f5bb1e6",
+      "qaSourceRecordMatchesCurrentMetadataFile": false,
+      "qaRawImageSha256": "e236c5ad3aaadeffb49988f2d38bfdfc71f54a7035baf70ff9cf70ca00f1be26",
+      "qaRawImageHashMatchesCurrentRecord": true,
+      "qaSnapshotNote": "Independent QA records an earlier raw generation metadata-file hash; current metadata includes visualReview and retention fields. The original image hash and every delivered PNG hash match QA. The art metadata snapshot was not overwritten."
+    }
+  ],
+  "independentQaDeliveryPngHashesVerified": 20
+}

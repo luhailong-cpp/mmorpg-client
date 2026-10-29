@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="131" result="Passed" total="131" passed="131" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-22 08:52:22Z" end-time="2026-10-22 08:52:39Z" duration="17.5318016">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="2685" result="Passed" start-time="2026-10-22 08:52:22Z" end-time="2026-10-22 08:52:39Z" duration="17.531802" total="131" passed="131" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2070" name="MmorpgClient.Tests.EditMode.Battle.dll" fullname="E:/work/mmorpg-client/.codex-artifacts/combat-fx-20261022/isolated-project/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Battle.dll" runstate="Runnable" testcasecount="969" result="Passed" start-time="2026-10-22 08:52:22Z" end-time="2026-10-22 08:52:39Z" duration="17.073910" total="131" passed="131" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="19996" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2071" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="969" result="Passed" start-time="2026-10-22 08:52:22Z" end-time="2026-10-22 08:52:39Z" duration="17.052570" total="131" passed="131" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2072" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="969" result="Passed" start-time="2026-10-22 08:52:22Z" end-time="2026-10-22 08:52:39Z" duration="17.020995" total="131" passed="131" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2073" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="969" result="Passed" start-time="2026-10-22 08:52:22Z" end-time="2026-10-22 08:52:39Z" duration="16.997147" total="131" passed="131" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="2074" name="Battle" fullname="MmorpgClient.Tests.EditMode.Battle" runstate="Runnable" testcasecount="969" result="Passed" start-time="2026-10-22 08:52:22Z" end-time="2026-10-22 08:52:39Z" duration="16.978315" total="131" passed="131" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1046" name="BattleArchivedActionPlaybackTests" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-10-22 08:52:23Z" end-time="2026-10-22 08:52:36Z" duration="13.838890" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="ParameterizedMethod" id="1059" name="AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-22 08:52:23Z" end-time="2026-10-22 08:52:24Z" duration="0.924417" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1056" name="AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps(1.0f)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps(1.0f)" methodname="AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="834373451" result="Passed" start-time="2026-10-22 08:52:23Z" end-time="2026-10-22 08:52:24Z" duration="0.874266" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1057" name="AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps(2.0f)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps(2.0f)" methodname="AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="816996209" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.015324" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1058" name="AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps(6.0f)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps(6.0f)" methodname="AcceleratedAttackFinishesItsReturnWithinItsBudgetAtThirtyFps" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="763219242" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.012706" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1047" name="ActionFramesKeepWorldScaleAndFeetThenRestoreIdleFacingAndGeometry" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.ActionFramesKeepWorldScaleAndFeetThenRestoreIdleFacingAndGeometry" methodname="ActionFramesKeepWorldScaleAndFeetThenRestoreIdleFacingAndGeometry" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="980363097" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.013947" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1066" name="AfterimageRetainsArchivedFramesAfterTheActorClipIsReleased" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AfterimageRetainsArchivedFramesAfterTheActorClipIsReleased" methodname="AfterimageRetainsArchivedFramesAfterTheActorClipIsReleased" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1528440940" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.149535" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1060" name="AnImpactCallbackCanStartANewActionWithoutTheOldReturnCancellingIt" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AnImpactCallbackCanStartANewActionWithoutTheOldReturnCancellingIt" methodname="AnImpactCallbackCanStartANewActionWithoutTheOldReturnCancellingIt" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1891464708" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.291154" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1054" name="AuthoredImpactFiresExactlyOnceAtItsManifestFrame" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AuthoredImpactFiresExactlyOnceAtItsManifestFrame" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.095463" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1052" name="AuthoredImpactFiresExactlyOnceAtItsManifestFrame(&quot;attack&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AuthoredImpactFiresExactlyOnceAtItsManifestFrame(&quot;attack&quot;)" methodname="AuthoredImpactFiresExactlyOnceAtItsManifestFrame" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="950771046" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.057690" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1053" name="AuthoredImpactFiresExactlyOnceAtItsManifestFrame(&quot;cast&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.AuthoredImpactFiresExactlyOnceAtItsManifestFrame(&quot;cast&quot;)" methodname="AuthoredImpactFiresExactlyOnceAtItsManifestFrame" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="2051230636" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.023887" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1049" name="BattleTempoScalesTheWholeAuthoredClipWithoutChangingItsFrameOrder" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.BattleTempoScalesTheWholeAuthoredClipWithoutChangingItsFrameOrder" methodname="BattleTempoScalesTheWholeAuthoredClipWithoutChangingItsFrameOrder" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="167323369" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.009590" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1051" name="BeatBudgetIncludesTheLastRepeatedTargetReaction" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.BeatBudgetIncludesTheLastRepeatedTargetReaction" methodname="BeatBudgetIncludesTheLastRepeatedTargetReaction" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="182854531" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.079731" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1055" name="CancellingApproachReleasesThePendingAttackWithoutDeliveringItsImpact" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.CancellingApproachReleasesThePendingAttackWithoutDeliveringItsImpact" methodname="CancellingApproachReleasesThePendingAttackWithoutDeliveringItsImpact" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="449438764" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.030812" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1065" name="CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:25Z" duration="0.248052" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1063" name="CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame(&quot;00_reference_topright_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame(&quot;00_reference_topright_boy&quot;)" methodname="CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="402127350" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:24Z" duration="0.120379" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1064" name="CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame(&quot;01_ice_sword_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame(&quot;01_ice_sword_girl&quot;)" methodname="CharactersWithoutAnEventMarkerDoNotReleaseAtTheFirstCastFrame" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1979511302" result="Passed" start-time="2026-10-22 08:52:24Z" end-time="2026-10-22 08:52:25Z" duration="0.125218" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1083" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-22 08:52:25Z" end-time="2026-10-22 08:52:36Z" duration="11.920602" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1068" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;00_reference_topright_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;00_reference_topright_boy&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1539296940" result="Passed" start-time="2026-10-22 08:52:25Z" end-time="2026-10-22 08:52:25Z" duration="0.424046" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1069" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;01_ice_sword_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;01_ice_sword_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="378604175" result="Passed" start-time="2026-10-22 08:52:25Z" end-time="2026-10-22 08:52:25Z" duration="0.514011" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1070" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;02_fire_talisman_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;02_fire_talisman_boy&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="247668432" result="Passed" start-time="2026-10-22 08:52:25Z" end-time="2026-10-22 08:52:26Z" duration="0.606811" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1071" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;03_lotus_healer_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;03_lotus_healer_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1903507230" result="Passed" start-time="2026-10-22 08:52:26Z" end-time="2026-10-22 08:52:27Z" duration="0.876090" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1072" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;04_mountain_guardian_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;04_mountain_guardian_boy&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1131754224" result="Passed" start-time="2026-10-22 08:52:27Z" end-time="2026-10-22 08:52:28Z" duration="1.122644" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1073" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;05_celestial_musician_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;05_celestial_musician_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="501703502" result="Passed" start-time="2026-10-22 08:52:28Z" end-time="2026-10-22 08:52:29Z" duration="0.850560" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1074" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;06_thunder_caster_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;06_thunder_caster_boy&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="253774839" result="Passed" start-time="2026-10-22 08:52:29Z" end-time="2026-10-22 08:52:30Z" duration="0.868628" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1075" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;07_moon_shadow_assassin_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;07_moon_shadow_assassin_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="914274816" result="Passed" start-time="2026-10-22 08:52:30Z" end-time="2026-10-22 08:52:31Z" duration="0.750276" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1076" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;08_alchemy_prodigy_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;08_alchemy_prodigy_boy&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="304760727" result="Passed" start-time="2026-10-22 08:52:31Z" end-time="2026-10-22 08:52:31Z" duration="0.784827" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1077" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;09_bamboo_archer_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;09_bamboo_archer_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1715000043" result="Passed" start-time="2026-10-22 08:52:31Z" end-time="2026-10-22 08:52:32Z" duration="1.033785" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1078" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;10_crimson_spear_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;10_crimson_spear_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="926138388" result="Passed" start-time="2026-10-22 08:52:32Z" end-time="2026-10-22 08:52:33Z" duration="0.843230" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1079" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;14_short_hair_snow_summoner_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;14_short_hair_snow_summoner_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1732742716" result="Passed" start-time="2026-10-22 08:52:33Z" end-time="2026-10-22 08:52:34Z" duration="0.801552" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1080" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;15_water_dragon_scholar_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;15_water_dragon_scholar_boy&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1860552086" result="Passed" start-time="2026-10-22 08:52:34Z" end-time="2026-10-22 08:52:35Z" duration="0.860294" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1081" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;17_ghost_script_calligrapher_boy&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;17_ghost_script_calligrapher_boy&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1801434502" result="Passed" start-time="2026-10-22 08:52:35Z" end-time="2026-10-22 08:52:36Z" duration="0.864283" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1082" name="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;20_star_formation_master_girl&quot;)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence(&quot;20_star_formation_master_girl&quot;)" methodname="DeliveredActionsUseOwnEAndWFramesAndAuthoredCadence" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1654109869" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:36Z" duration="0.707465" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1061" name="EndingAClipWithoutAnIdleClearsBothImageReferences" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.EndingAClipWithoutAnIdleClearsBothImageReferences" methodname="EndingAClipWithoutAnIdleClearsBothImageReferences" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="179525361" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:36Z" duration="0.005153" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1048" name="InterruptedActionNeverFiresItsRemainingFramesOrCompletion" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.InterruptedActionNeverFiresItsRemainingFramesOrCompletion" methodname="InterruptedActionNeverFiresItsRemainingFramesOrCompletion" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="978478488" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:36Z" duration="0.005820" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1050" name="ItemBeatBudgetIncludesItsCastAndAttackReturnWaitsForTheSwing" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.ItemBeatBudgetIncludesItsCastAndAttackReturnWaitsForTheSwing" methodname="ItemBeatBudgetIncludesItsCastAndAttackReturnWaitsForTheSwing" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1869892228" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:36Z" duration="0.010718" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1062" name="MissingAuthoredEventUsesTheExistingReleaseDelayInsteadOfFrameZero" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.MissingAuthoredEventUsesTheExistingReleaseDelayInsteadOfFrameZero" methodname="MissingAuthoredEventUsesTheExistingReleaseDelayInsteadOfFrameZero" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="1569623086" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:36Z" duration="0.005845" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1067" name="RetainedRosterRequiresAllFifteenDeliveredCombatIdentities" fullname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests.RetainedRosterRequiresAllFifteenDeliveredCombatIdentities" methodname="RetainedRosterRequiresAllFifteenDeliveredCombatIdentities" classname="MmorpgClient.Tests.EditMode.Battle.BattleArchivedActionPlaybackTests" runstate="Runnable" seed="2091887630" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:36Z" duration="0.007674" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1194" name="BattleCombatFxIntegrationTests" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:39Z" duration="2.592141" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="ParameterizedMethod" id="1222" name="AbortAndSkipDoNotDeliverLateImpactCallbacks" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.AbortAndSkipDoNotDeliverLateImpactCallbacks" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:37Z" duration="0.930648" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1220" name="AbortAndSkipDoNotDeliverLateImpactCallbacks(False)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.AbortAndSkipDoNotDeliverLateImpactCallbacks(False)" methodname="AbortAndSkipDoNotDeliverLateImpactCallbacks" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1477251696" result="Passed" start-time="2026-10-22 08:52:36Z" end-time="2026-10-22 08:52:37Z" duration="0.879118" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1221" name="AbortAndSkipDoNotDeliverLateImpactCallbacks(True)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.AbortAndSkipDoNotDeliverLateImpactCallbacks(True)" methodname="AbortAndSkipDoNotDeliverLateImpactCallbacks" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1588403354" result="Passed" start-time="2026-10-22 08:52:37Z" end-time="2026-10-22 08:52:37Z" duration="0.050109" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1206" name="BudgetIncludesTheLeadInAndTheCompleteImpactStrip" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.BudgetIncludesTheLeadInAndTheCompleteImpactStrip" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 08:52:37Z" end-time="2026-10-22 08:52:38Z" duration="0.119002" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1204" name="BudgetIncludesTheLeadInAndTheCompleteImpactStrip(1201)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.BudgetIncludesTheLeadInAndTheCompleteImpactStrip(1201)" methodname="BudgetIncludesTheLeadInAndTheCompleteImpactStrip" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="842267515" result="Passed" start-time="2026-10-22 08:52:37Z" end-time="2026-10-22 08:52:37Z" duration="0.021381" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1205" name="BudgetIncludesTheLeadInAndTheCompleteImpactStrip(1202)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.BudgetIncludesTheLeadInAndTheCompleteImpactStrip(1202)" methodname="BudgetIncludesTheLeadInAndTheCompleteImpactStrip" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="2108979970" result="Passed" start-time="2026-10-22 08:52:37Z" end-time="2026-10-22 08:52:38Z" duration="0.094136" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1227" name="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.331610" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1223" name="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1201,False)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1201,False)" methodname="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="678580698" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.083739" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1224" name="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1201,True)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1201,True)" methodname="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="87555312" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.094515" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1225" name="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1202,False)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1202,False)" methodname="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1102374197" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.042353" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1226" name="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1202,True)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry(1202,True)" methodname="CancellingAnExpiredBeatWaitingForItsImpactKillsTheRetry" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="630791542" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.047144" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1216" name="CastChargeAndEveryLeizhenTelegraphAreRegisteredAtTheFeet" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CastChargeAndEveryLeizhenTelegraphAreRegisteredAtTheFeet" methodname="CastChargeAndEveryLeizhenTelegraphAreRegisteredAtTheFeet" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="500325465" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.065271" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1199" name="ClearingAFlightCancelsItsArrivalAndRecyclesTheImage" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.ClearingAFlightCancelsItsArrivalAndRecyclesTheImage" methodname="ClearingAFlightCancelsItsArrivalAndRecyclesTheImage" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1146837179" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.025155" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1215" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:39Z" duration="0.638579" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1207" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,1.5f,30)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,1.5f,30)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1956128351" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.164338" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1208" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,1.5f,15)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,1.5f,15)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1227508881" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.074499" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1209" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,6.0f,30)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,6.0f,30)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="508486555" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.086002" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1210" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,6.0f,15)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1201,6.0f,15)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1774163250" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.043660" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1211" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,1.5f,30)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,1.5f,30)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="2030677" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.049887" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1212" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,1.5f,15)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,1.5f,15)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1825559703" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:38Z" duration="0.096763" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1213" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,6.0f,30)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,6.0f,30)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="946862336" result="Passed" start-time="2026-10-22 08:52:38Z" end-time="2026-10-22 08:52:39Z" duration="0.050593" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1214" name="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,6.0f,15)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail(1202,6.0f,15)" methodname="CoarseFramesKeepResultsBehindTheImpactAndFinishItsTail" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1335518213" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.064943" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1195" name="DedicatedMappingsAndImportedStripsMatchTheAcceptedContracts" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.DedicatedMappingsAndImportedStripsMatchTheAcceptedContracts" methodname="DedicatedMappingsAndImportedStripsMatchTheAcceptedContracts" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="739400319" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.041712" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="1219" name="InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.125408" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1217" name="InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes(False)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes(False)" methodname="InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1021884439" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.049874" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1218" name="InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes(True)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes(True)" methodname="InterruptingLeizhenTelegraphCancelsAllThreeDelayedStrikes" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="565991362" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.067840" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1203" name="LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.164217" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1201" name="LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult(1)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult(1)" methodname="LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="412311364" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.067928" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1202" name="LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult(3)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult(3)" methodname="LeizhenTargetsHitOnOneClockAtFeetAndEachReceiveOneResult" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1637612904" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.092171" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="1198" name="ProjectileMovesAndLoopsThenArrivesOnlyOnce" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.ProjectileMovesAndLoopsThenArrivesOnlyOnce" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.063297" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1196" name="ProjectileMovesAndLoopsThenArrivesOnlyOnce(False)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.ProjectileMovesAndLoopsThenArrivesOnlyOnce(False)" methodname="ProjectileMovesAndLoopsThenArrivesOnlyOnce" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1063023125" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.027485" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1197" name="ProjectileMovesAndLoopsThenArrivesOnlyOnce(True)" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.ProjectileMovesAndLoopsThenArrivesOnlyOnce(True)" methodname="ProjectileMovesAndLoopsThenArrivesOnlyOnce" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="378092972" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.025303" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="1200" name="XuanfuFlightCannotApplyDamageOrNumbersBeforeItsImpactFrame" fullname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests.XuanfuFlightCannotApplyDamageOrNumbersBeforeItsImpactFrame" methodname="XuanfuFlightCannotApplyDamageOrNumbersBeforeItsImpactFrame" classname="MmorpgClient.Tests.EditMode.Battle.BattleCombatFxIntegrationTests" runstate="Runnable" seed="1163492114" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.076784" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1382" name="BattleStageTests" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.150340" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1395" name="AllSlotsAndPetShadows_StayInsidePaintedStonePlatforms" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AllSlotsAndPetShadows_StayInsidePaintedStonePlatforms" methodname="AllSlotsAndPetShadows_StayInsidePaintedStonePlatforms" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1665081531" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.022138" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1393" name="AllSlotsAndPetSlots_AreInsideScreen_AndBetweenHudBands" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AllSlotsAndPetSlots_AreInsideScreen_AndBetweenHudBands" methodname="AllSlotsAndPetSlots_AreInsideScreen_AndBetweenHudBands" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="956598352" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.004425" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1394" name="AllSlotsAndPetSlots_KeepClearOfCommandRing_AndPartyCards" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AllSlotsAndPetSlots_KeepClearOfCommandRing_AndPartyCards" methodname="AllSlotsAndPetSlots_KeepClearOfCommandRing_AndPartyCards" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1051583403" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.004524" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1399" name="AssignSlots_FallsBackToActorOrder_AndSeparatesTeams" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AssignSlots_FallsBackToActorOrder_AndSeparatesTeams" methodname="AssignSlots_FallsBackToActorOrder_AndSeparatesTeams" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1211715400" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.017829" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1400" name="AssignSlots_HonorsFormationSlot_AndResolvesConflicts" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AssignSlots_HonorsFormationSlot_AndResolvesConflicts" methodname="AssignSlots_HonorsFormationSlot_AndResolvesConflicts" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="937180502" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003742" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1401" name="AssignSlots_MoreThanTenActors_WrapsWithoutThrowing" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.AssignSlots_MoreThanTenActors_WrapsWithoutThrowing" methodname="AssignSlots_MoreThanTenActors_WrapsWithoutThrowing" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1163256367" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003604" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1390" name="BackRow_IsFartherFromCenterLine_AndScaleFollowsDepth_SameColumn" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.BackRow_IsFartherFromCenterLine_AndScaleFollowsDepth_SameColumn" methodname="BackRow_IsFartherFromCenterLine_AndScaleFollowsDepth_SameColumn" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="786298631" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003817" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1385" name="BackRowPets_StandOnSameColumnFrontRowSpots" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.BackRowPets_StandOnSameColumnFrontRowSpots" methodname="BackRowPets_StandOnSameColumnFrontRowSpots" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1546182945" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001207" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1398" name="DepthOrder_SortsByFootY" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.DepthOrder_SortsByFootY" methodname="DepthOrder_SortsByFootY" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="2032786096" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001251" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1388" name="Enemy_UpperLeft_Ally_LowerRight" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Enemy_UpperLeft_Ally_LowerRight" methodname="Enemy_UpperLeft_Ally_LowerRight" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="642738771" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001435" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1384" name="FrontRows_AreCloserToOpposingTeam_ThanBackRows" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.FrontRows_AreCloserToOpposingTeam_ThanBackRows" methodname="FrontRows_AreCloserToOpposingTeam_ThanBackRows" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1067323747" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001016" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1396" name="PetOffset_FromOwner_FacesOpponent_AndFitsItsRow" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetOffset_FromOwner_FacesOpponent_AndFitsItsRow" methodname="PetOffset_FromOwner_FacesOpponent_AndFitsItsRow" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1964549447" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001941" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1403" name="PetOwnerResolver_Throwing_IsTreatedAsNoPet" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetOwnerResolver_Throwing_IsTreatedAsNoPet" methodname="PetOwnerResolver_Throwing_IsTreatedAsNoPet" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1594026639" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.009083" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[BattleStage] PetOwnerResolver 异常 actor=7:boom
+[BattleStage] PetOwnerResolver 异常 actor=7:boom
+]]></output>
+                </test-case>
+                <test-case id="1402" name="Pets_DoNotConsumeSlots_AndFollowOwnerPlacement" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Pets_DoNotConsumeSlots_AndFollowOwnerPlacement" methodname="Pets_DoNotConsumeSlots_AndFollowOwnerPlacement" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1078828616" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.019216" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1392" name="PetScale_IsSmallerThanOwner_ByFixedRatio" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetScale_IsSmallerThanOwner_ByFixedRatio" methodname="PetScale_IsSmallerThanOwner_ByFixedRatio" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="959307615" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.004082" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1387" name="PetSlots_DoNotOverlap_EachOther_OrForeignSlots" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.PetSlots_DoNotOverlap_EachOther_OrForeignSlots" methodname="PetSlots_DoNotOverlap_EachOther_OrForeignSlots" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="249261226" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.007723" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1389" name="Rows_AreDiagonalBands_LowerLeftToUpperRight" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Rows_AreDiagonalBands_LowerLeftToUpperRight" methodname="Rows_AreDiagonalBands_LowerLeftToUpperRight" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="508649294" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003249" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1391" name="Scale_IsWeakLinearDepth_NoRowOrTeamScaling" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Scale_IsWeakLinearDepth_NoRowOrTeamScaling" methodname="Scale_IsWeakLinearDepth_NoRowOrTeamScaling" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1519867757" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.004059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1397" name="SlotIndex_ColumnOrder_LeftToRight" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.SlotIndex_ColumnOrder_LeftToRight" methodname="SlotIndex_ColumnOrder_LeftToRight" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="181240886" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001057" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1386" name="Slots_DoNotOverlap_AcrossBothTeams" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Slots_DoNotOverlap_AcrossBothTeams" methodname="Slots_DoNotOverlap_AcrossBothTeams" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="2082045468" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003188" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1383" name="Slots_KeepTenProtocolIndices_AndTwoFiveSlotRows" fullname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests.Slots_KeepTenProtocolIndices_AndTwoFiveSlotRows" methodname="Slots_KeepTenProtocolIndices_AndTwoFiveSlotRows" classname="MmorpgClient.Tests.EditMode.Battle.BattleStageTests" runstate="Runnable" seed="1848672998" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.002613" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1534" name="EquipCombatEventsPlanTests" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.118029" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1536" name="Combo_KillingBlowOnTheSecondSegment_DefersDeathUntilAfterTheWholeAttackBeat" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Combo_KillingBlowOnTheSecondSegment_DefersDeathUntilAfterTheWholeAttackBeat" methodname="Combo_KillingBlowOnTheSecondSegment_DefersDeathUntilAfterTheWholeAttackBeat" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="2067796386" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.050920" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1535" name="Combo_SecondDamageOnTheSameTarget_IsASecondSegmentOfTheSameAttackBeat" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Combo_SecondDamageOnTheSameTarget_IsASecondSegmentOfTheSameAttackBeat" methodname="Combo_SecondDamageOnTheSameTarget_IsASecondSegmentOfTheSameAttackBeat" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1557015124" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.005661" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1543" name="ComboReflectAndCounter_InOneRound_GiveThreeBeats_AndHealthLandsOnTheRightUnits" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.ComboReflectAndCounter_InOneRound_GiveThreeBeats_AndHealthLandsOnTheRightUnits" methodname="ComboReflectAndCounter_InOneRound_GiveThreeBeats_AndHealthLandsOnTheRightUnits" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1057626527" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.004660" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1541" name="Counter_IsItsOwnAttackBeat_ByTheDefender_AndIsNotTiedToActionOrder" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Counter_IsItsOwnAttackBeat_ByTheDefender_AndIsNotTiedToActionOrder" methodname="Counter_IsItsOwnAttackBeat_ByTheDefender_AndIsNotTiedToActionOrder" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="613297685" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003234" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1542" name="Counter_KillsTheOriginalAttacker_DeathFollowsTheCounterBeat" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Counter_KillsTheOriginalAttacker_DeathFollowsTheCounterBeat" methodname="Counter_KillsTheOriginalAttacker_DeathFollowsTheCounterBeat" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1466130682" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001036" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1550" name="CounterBeats_CountTowardThePlaybackBudget_WhichCompressesOrSkipsInsteadOfOverrunning" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.CounterBeats_CountTowardThePlaybackBudget_WhichCompressesOrSkipsInsteadOfOverrunning" methodname="CounterBeats_CountTowardThePlaybackBudget_WhichCompressesOrSkipsInsteadOfOverrunning" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="160705561" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.002523" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1548" name="HitKind_DoesNotChangeThePlan_AndUnknownEnumValuesSurviveTheWire" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.HitKind_DoesNotChangeThePlan_AndUnknownEnumValuesSurviveTheWire" methodname="HitKind_DoesNotChangeThePlan_AndUnknownEnumValuesSurviveTheWire" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="119204702" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.006786" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1549" name="Miss_OnAComboOrCounterSegment_StaysInItsOwnBeat" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Miss_OnAComboOrCounterSegment_StaysInItsOwnBeat" methodname="Miss_OnAComboOrCounterSegment_StaysInItsOwnBeat" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1319235218" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001350" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1537" name="Reflect_IsOneMoreDamageEntryOnTheAttacker_InsideItsOwnAttackBeat" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Reflect_IsOneMoreDamageEntryOnTheAttacker_InsideItsOwnAttackBeat" methodname="Reflect_IsOneMoreDamageEntryOnTheAttacker_InsideItsOwnAttackBeat" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="191250587" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001067" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1539" name="Reflect_KillsTheAttacker_DeathFollowsItsOwnAttackBeat_AndTheNextActionIsIntact" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Reflect_KillsTheAttacker_DeathFollowsItsOwnAttackBeat_AndTheNextActionIsIntact" methodname="Reflect_KillsTheAttacker_DeathFollowsItsOwnAttackBeat_AndTheNextActionIsIntact" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1577280316" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001325" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1538" name="Reflect_OnBothComboSegments_KeepsEachUnitsSegmentsInOrder" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Reflect_OnBothComboSegments_KeepsEachUnitsSegmentsInOrder" methodname="Reflect_OnBothComboSegments_KeepsEachUnitsSegmentsInOrder" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="890821349" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001034" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1540" name="Reflect_OnTheComboSegment_KillsTheAttacker_AfterBothSegmentsLanded" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Reflect_OnTheComboSegment_KillsTheAttacker_AfterBothSegmentsLanded" methodname="Reflect_OnTheComboSegment_KillsTheAttacker_AfterBothSegmentsLanded" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1597435471" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001033" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1546" name="Resist_AloneYieldsNoBeat_AndDoesNotBreakAdjacencyWithoutGroupIds" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Resist_AloneYieldsNoBeat_AndDoesNotBreakAdjacencyWithoutGroupIds" methodname="Resist_AloneYieldsNoBeat_AndDoesNotBreakAdjacencyWithoutGroupIds" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="153543477" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001380" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1545" name="Resist_AsTheOnlyOutcomeOfASkill_LeavesACastBeatWithoutTargets" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Resist_AsTheOnlyOutcomeOfASkill_LeavesACastBeatWithoutTargets" methodname="Resist_AsTheOnlyOutcomeOfASkill_LeavesACastBeatWithoutTargets" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1787991031" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.002723" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1544" name="Resist_InsideASkillGroup_MakesNoBeat_AndDoesNotSwallowItsNeighbours" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.Resist_InsideASkillGroup_MakesNoBeat_AndDoesNotSwallowItsNeighbours" methodname="Resist_InsideASkillGroup_MakesNoBeat_AndDoesNotSwallowItsNeighbours" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="1710751834" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.002330" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1547" name="ResistCode_IsFifteen_AndOutsideTheCodesThePlanKnows" fullname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests.ResistCode_IsFifteen_AndOutsideTheCodesThePlanKnows" methodname="ResistCode_IsFifteen_AndOutsideTheCodesThePlanKnows" classname="MmorpgClient.Tests.EditMode.Battle.EquipCombatEventsPlanTests" runstate="Runnable" seed="813669256" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000606" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1941" name="PlaybackBudgetTests" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.012472" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1945" name="Auto_10v10_In2sWindow_ExceedsMaxSpeed_Skips" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.Auto_10v10_In2sWindow_ExceedsMaxSpeed_Skips" methodname="Auto_10v10_In2sWindow_ExceedsMaxSpeed_Skips" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="1359136426" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000972" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1944" name="Auto_5v5_In2sWindow_CompressesWithinMaxSpeed_NoSkip" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.Auto_5v5_In2sWindow_CompressesWithinMaxSpeed_NoSkip" methodname="Auto_5v5_In2sWindow_CompressesWithinMaxSpeed_NoSkip" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="1519479430" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000497" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1948" name="DeadlineAlreadyPassed_OrTinyBudget_Skips" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.DeadlineAlreadyPassed_OrTinyBudget_Skips" methodname="DeadlineAlreadyPassed_OrTinyBudget_Skips" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="517910199" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000500" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1949" name="EmptyPlan_NeverSkips_AndBaseSpeedIsAtLeastOne" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.EmptyPlan_NeverSkips_AndBaseSpeedIsAtLeastOne" methodname="EmptyPlan_NeverSkips_AndBaseSpeedIsAtLeastOne" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="587482829" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000350" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1943" name="Manual_3v3_WithTwoSkills_6p4s_AlsoFits" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.Manual_3v3_WithTwoSkills_6p4s_AlsoFits" methodname="Manual_3v3_WithTwoSkills_6p4s_AlsoFits" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="1085176125" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000416" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1942" name="Manual_5v5_AllAttacks_9s_In6sWindow_CompressesToFitWithInputReserve" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.Manual_5v5_AllAttacks_9s_In6sWindow_CompressesToFitWithInputReserve" methodname="Manual_5v5_AllAttacks_9s_In6sWindow_CompressesToFitWithInputReserve" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="1500393574" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000614" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1947" name="NoDeadline_OrBattleEnded_IsUnbounded" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.NoDeadline_OrBattleEnded_IsUnbounded" methodname="NoDeadline_OrBattleEnded_IsUnbounded" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="1309789463" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000458" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1946" name="PlentyOfBudget_KeepsBaseSpeed" fullname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests.PlentyOfBudget_KeepsBaseSpeed" methodname="PlentyOfBudget_KeepsBaseSpeed" classname="MmorpgClient.Tests.EditMode.Battle.PlaybackBudgetTests" runstate="Runnable" seed="971255994" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000405" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="2042" name="TurnPlanTests" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.083803" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="2067" name="ActorIsMine_FollowsTeamLookup" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.ActorIsMine_FollowsTeamLookup" methodname="ActorIsMine_FollowsTeamLookup" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="649475511" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.002084" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2053" name="Aoe_FirstTargetDies_AllTargetsStayInOneCastBeat_DeathsAfter" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.Aoe_FirstTargetDies_AllTargetsStayInOneCastBeat_DeathsAfter" methodname="Aoe_FirstTargetDies_AllTargetsStayInOneCastBeat_DeathsAfter" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1298610668" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003909" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2043" name="AttackAndDamage_SameGroup_MergeIntoOneAttackBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.AttackAndDamage_SameGroup_MergeIntoOneAttackBeat" methodname="AttackAndDamage_SameGroup_MergeIntoOneAttackBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1903176355" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001842" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2059" name="BattleTempo_ScalesSecondsByCurrentSpeed" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.BattleTempo_ScalesSecondsByCurrentSpeed" methodname="BattleTempo_ScalesSecondsByCurrentSpeed" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="2065809448" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000664" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2060" name="BuffTick_Defend_Item_Flee_HaveSpecDurations" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.BuffTick_Defend_Item_Flee_HaveSpecDurations" methodname="BuffTick_Defend_Item_Flee_HaveSpecDurations" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="636409481" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.002361" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2057" name="BuffTick_IsTickEffect_AndHealVsDamageIsDecidedByHealthAfter" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.BuffTick_IsTickEffect_AndHealVsDamageIsDecidedByHealthAfter" methodname="BuffTick_IsTickEffect_AndHealVsDamageIsDecidedByHealthAfter" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="761052658" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001919" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2069" name="BuildFromProto_NoGroupIds_UsesFallbackMerging" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.BuildFromProto_NoGroupIds_UsesFallbackMerging" methodname="BuildFromProto_NoGroupIds_UsesFallbackMerging" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1469965596" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001749" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2068" name="BuildFromProto_WithGroupIds_ActionOrder_AndManaAfter" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.BuildFromProto_WithGroupIds_ActionOrder_AndManaAfter" methodname="BuildFromProto_WithGroupIds_ActionOrder_AndManaAfter" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="855259504" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.003980" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2052" name="Death_OfBeatTarget_IsDeferredAfterTheWholeActionBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.Death_OfBeatTarget_IsDeferredAfterTheWholeActionBeat" methodname="Death_OfBeatTarget_IsDeferredAfterTheWholeActionBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1405193396" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001886" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2055" name="Death_OfNonTarget_ClosesCurrentBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.Death_OfNonTarget_ClosesCurrentBeat" methodname="Death_OfNonTarget_ClosesCurrentBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1123860995" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001520" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2045" name="DifferentGroup_DamageAfterSkill_BecomesSeparateHitBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.DifferentGroup_DamageAfterSkill_BecomesSeparateHitBeat" methodname="DifferentGroup_DamageAfterSkill_BecomesSeparateHitBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1183859811" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001354" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2065" name="EmptyEvents_ProduceEmptyPlan" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.EmptyEvents_ProduceEmptyPlan" methodname="EmptyEvents_ProduceEmptyPlan" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1792731955" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000918" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2046" name="GroupedMode_UngroupedDamage_DoesNotMergeIntoOpenBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.GroupedMode_UngroupedDamage_DoesNotMergeIntoOpenBeat" methodname="GroupedMode_UngroupedDamage_DoesNotMergeIntoOpenBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1066374184" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001344" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2062" name="Mana_CasterCost_MergesIntoCastBeat_WithoutExtraBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.Mana_CasterCost_MergesIntoCastBeat_WithoutExtraBeat" methodname="Mana_CasterCost_MergesIntoCastBeat_WithoutExtraBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="287235221" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001304" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2063" name="Mana_OnTarget_AttachesToExistingTargetEntry" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.Mana_OnTarget_AttachesToExistingTargetEntry" methodname="Mana_OnTarget_AttachesToExistingTargetEntry" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1092545425" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001110" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2064" name="Mana_WithoutOpenBeat_IsItsOwnShortBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.Mana_WithoutOpenBeat_IsItsOwnShortBeat" methodname="Mana_WithoutOpenBeat_IsItsOwnShortBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="342183463" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000976" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2054" name="MultipleDeaths_InOneAction_AreEmittedInOrder_BeforeNextAction" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.MultipleDeaths_InOneAction_AreEmittedInOrder_BeforeNextAction" methodname="MultipleDeaths_InOneAction_AreEmittedInOrder_BeforeNextAction" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1744904508" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001909" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2047" name="NoGroupId_ConsecutiveDamage_MergesIntoPrecedingAttack" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.NoGroupId_ConsecutiveDamage_MergesIntoPrecedingAttack" methodname="NoGroupId_ConsecutiveDamage_MergesIntoPrecedingAttack" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1830938719" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001500" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2049" name="NoGroupId_DamageNotAdjacentToAttack_StandsAlone" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.NoGroupId_DamageNotAdjacentToAttack_StandsAlone" methodname="NoGroupId_DamageNotAdjacentToAttack_StandsAlone" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1912712427" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001466" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2056" name="NoGroupId_DeathOfTarget_IsAlsoDeferred" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.NoGroupId_DeathOfTarget_IsAlsoDeferred" methodname="NoGroupId_DeathOfTarget_IsAlsoDeferred" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="807570510" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001339" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2050" name="NoGroupId_HealFromOtherSource_DoesNotMergeIntoAttack" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.NoGroupId_HealFromOtherSource_DoesNotMergeIntoAttack" methodname="NoGroupId_HealFromOtherSource_DoesNotMergeIntoAttack" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1107067000" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000929" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2048" name="NoGroupId_MultipleConsecutiveDamage_AllMergeAsMultiHit" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.NoGroupId_MultipleConsecutiveDamage_AllMergeAsMultiHit" methodname="NoGroupId_MultipleConsecutiveDamage_AllMergeAsMultiHit" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="299188964" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001003" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2051" name="NoGroupId_SelfBuffAfterSkill_Merges" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.NoGroupId_SelfBuffAfterSkill_Merges" methodname="NoGroupId_SelfBuffAfterSkill_Merges" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1995994642" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001399" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2044" name="Skill_MultiTargetSameGroup_ParallelInOneCastBeat" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.Skill_MultiTargetSameGroup_ParallelInOneCastBeat" methodname="Skill_MultiTargetSameGroup_ParallelInOneCastBeat" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1456396605" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001822" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2061" name="TotalSeconds_IsSumOfBeatDurations_MinusNonLastOverlaps" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.TotalSeconds_IsSumOfBeatDurations_MinusNonLastOverlaps" methodname="TotalSeconds_IsSumOfBeatDurations_MinusNonLastOverlaps" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="353570875" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001596" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2058" name="UnitActionLengths_FitInsideBeatDurations_SoNextBeatCannotCutTheReturn" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.UnitActionLengths_FitInsideBeatDurations_SoNextBeatCannotCutTheReturn" methodname="UnitActionLengths_FitInsideBeatDurations_SoNextBeatCannotCutTheReturn" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1694692133" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.000378" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="2066" name="UnknownEventType_IsIgnored_AndDoesNotBreakAdjacency" fullname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests.UnknownEventType_IsIgnored_AndDoesNotBreakAdjacency" methodname="UnknownEventType_IsIgnored_AndDoesNotBreakAdjacency" classname="MmorpgClient.Tests.EditMode.Battle.TurnPlanTests" runstate="Runnable" seed="1072023025" result="Passed" start-time="2026-10-22 08:52:39Z" end-time="2026-10-22 08:52:39Z" duration="0.001059" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

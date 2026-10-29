@@ -7,6 +7,7 @@ using System.Reflection;
 using MmorpgClient.Game;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Role;
+using MmorpgClient.UI.Ugui.Tweening;
 using MmorpgClient.World;
 using NUnit.Framework;
 using UnityEngine;
@@ -373,9 +374,16 @@ namespace MmorpgClient.Tests.PlayMode
                 idle.Dispose();
                 view.PlayAttackLunge(new Vector2(700, 470));
                 typeof(BattleUnitView).GetMethod("StopMovementWalk", Hidden)?.Invoke(view, null);
-                typeof(BattleUnitView).GetField("_movementStrip", Hidden)?.SetValue(view, resources.Battle(hd, true, false));
-                yield return null;
+                var movement = resources.Battle(hd, true, false);
+                Assert.That(movement, Is.Not.Null);
+                typeof(BattleUnitView).GetField("_movementStrip", Hidden)?.SetValue(view, movement);
+                // This synthetic lifetime fixture owns its phase: a long real frame may already enter
+                // the authored attack clip. Advance the production tween clock inside its 0.22s approach.
+                var tick = typeof(RealtimeTween).GetMethod("UpdateAll", BindingFlags.Static | BindingFlags.NonPublic);
+                Assert.That(tick, Is.Not.Null);
+                tick.Invoke(null, new object[] { .02f, .02f });
                 var moving = FindImage(host, "Body").sprite;
+                Assert.That(movement.Frames, Does.Contain(moving), "The lunge must render its leased HD movement frame.");
                 Assert.That(moving.texture.name, Does.StartWith(QdaoCharacterCatalog.OriginalV14Root));
                 ghosts.Spawn(moving, Vector2.zero, new Vector2(230, 230), false, 0, 30f);
                 var ghost = host.GetComponentsInChildren<Image>().First(image => image.name == "Afterimage" && image.sprite == moving);

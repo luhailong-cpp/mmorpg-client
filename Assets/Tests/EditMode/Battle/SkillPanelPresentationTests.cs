@@ -121,6 +121,68 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void FilterChangingSelectedSkillStartsItsDescriptionAtTheTop()
+        {
+            var scroll = ScrollLongDescriptionToBottom();
+            Click("Filter2Plate");
+
+            Assert.That(SelectedName(), Is.EqualTo("被动长说明"));
+            Assert.That(scroll.content.anchoredPosition.y, Is.EqualTo(0f).Within(.01f));
+            Assert.That(scroll.velocity.sqrMagnitude, Is.EqualTo(0f).Within(.01f));
+        }
+
+        [Test]
+        public void SnapshotRemovingSelectedSkillStartsReplacementDescriptionAtTheTop()
+        {
+            var scroll = ScrollLongDescriptionToBottom();
+            var replacement = Ready();
+            replacement.Snapshot.Entries.Clear();
+            replacement.Snapshot.Entries.Add(_source.State.Snapshot.Entries[1]);
+            _source.Replace(replacement);
+
+            Assert.That(SelectedName(), Is.EqualTo("被动长说明"));
+            Assert.That(scroll.content.anchoredPosition.y, Is.EqualTo(0f).Within(.01f));
+            Assert.That(scroll.velocity.sqrMagnitude, Is.EqualTo(0f).Within(.01f));
+        }
+
+        [Test]
+        public void SnapshotKeepingSelectedSkillPreservesDescriptionReadingPosition()
+        {
+            var scroll = ScrollLongDescriptionToBottom();
+            float readingPosition = scroll.content.anchoredPosition.y;
+            _source.State.Snapshot.Entries[0].Rank++;
+            Apply();
+
+            Assert.That(SelectedName(), Is.EqualTo("主动长说明"));
+            Assert.That(scroll.content.anchoredPosition.y, Is.EqualTo(readingPosition).Within(.01f));
+        }
+
+        private string SelectedName() => _canvas.GetComponentsInChildren<TMPro.TMP_Text>(true)
+            .Single(item => item.name == "SelectedName").text;
+
+        private ScrollRect ScrollLongDescriptionToBottom()
+        {
+            var active = _source.State.Snapshot.Entries[0];
+            active.Definition.name = "主动长说明";
+            active.Definition.description = string.Join("\n", Enumerable.Repeat("主动技能的长说明。", 20));
+            _source.State.Snapshot.Entries.Add(new SkillEntryState
+            {
+                Id = 1102, Rank = 1, RankLimit = 10, NextRankCost = 1600,
+                Definition = new SkillDefinition { id = 1102, classId = 1, name = "被动长说明", type = "passive",
+                    maxRank = 10, unlockLevel = 1, targetTeam = "self",
+                    description = string.Join("\n", Enumerable.Repeat("被动技能的长说明。", 20)) },
+            });
+            Apply();
+            Canvas.ForceUpdateCanvases();
+            var scroll = _canvas.GetComponentsInChildren<ScrollRect>(true)
+                .Single(item => item.name == "DescriptionViewport");
+            scroll.verticalNormalizedPosition = 0f;
+            scroll.velocity = Vector2.up * 120f;
+            Assert.That(scroll.content.anchoredPosition.y, Is.GreaterThan(0f), "The initial description must be scrolled.");
+            return scroll;
+        }
+
+        [Test]
         public void ClosingPanelHidesTheActualWindow()
         {
             Assert.That(_panel.IsVisible, Is.True);

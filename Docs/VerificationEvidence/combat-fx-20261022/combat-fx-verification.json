@@ -1,0 +1,1139 @@
+{
+    "scope": "Native Unity player; offline synthetic outcomes through production BattlePresenter, BattleUnitView, BattleFxPlayer and DamageNumberPool. This is presentation acceptance, not server battle validation.",
+    "startedUtc": "2026-10-23T13:32:47.8939125Z",
+    "finishedUtc": "2026-10-23T13:33:22.0638087Z",
+    "unityVersion": "6000.6.0f1",
+    "screenWidth": 2560,
+    "screenHeight": 1080,
+    "passed": true,
+    "cases": [
+        {
+            "name": "1201-west",
+            "skillId": 1201,
+            "targets": 1,
+            "casterFacesEast": false,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 117,
+            "minimumFrameSeconds": 0.003225198481231928,
+            "maximumFrameSeconds": 1.102341651916504,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 1.4800000190734863,
+            "finishedSeconds": 2.1782116889953613,
+            "firstDamageSeconds": 1.80595064163208,
+            "damageEvents": 1,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 1,
+            "peakLeadInstances": 1,
+            "peakImpactInstances": 1,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "001-1201-west-cast-charge.png",
+                "002-1201-west-lead-in.png",
+                "003-1201-west-flight-mid.png",
+                "004-1201-west-pre-hit.png",
+                "005-1201-west-hit.png",
+                "006-1201-west-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=1.805951 expected>=1.1375"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1201-east",
+            "skillId": 1201,
+            "targets": 1,
+            "casterFacesEast": true,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 147,
+            "minimumFrameSeconds": 0.006394905038177967,
+            "maximumFrameSeconds": 0.24290770292282104,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 1.4800000190734863,
+            "finishedSeconds": 1.4886503219604492,
+            "firstDamageSeconds": 1.1697626113891602,
+            "damageEvents": 1,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 1,
+            "peakLeadInstances": 1,
+            "peakImpactInstances": 1,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "007-1201-east-cast-charge.png",
+                "008-1201-east-lead-in.png",
+                "009-1201-east-flight-mid.png",
+                "010-1201-east-pre-hit.png",
+                "011-1201-east-hit.png",
+                "012-1201-east-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=1.169763 expected>=1.1375"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1202-one",
+            "skillId": 1202,
+            "targets": 1,
+            "casterFacesEast": false,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 156,
+            "minimumFrameSeconds": 0.0036606008652597666,
+            "maximumFrameSeconds": 0.1298094093799591,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 1.4800000190734863,
+            "finishedSeconds": 1.499455451965332,
+            "firstDamageSeconds": 1.1671371459960938,
+            "damageEvents": 1,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 1,
+            "peakLeadInstances": 1,
+            "peakImpactInstances": 1,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "013-1202-one-cast-charge.png",
+                "014-1202-one-lead-in.png",
+                "015-1202-one-pre-hit.png",
+                "016-1202-one-hit.png",
+                "017-1202-one-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=1.167137 expected>=1.1375"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1202-three",
+            "skillId": 1202,
+            "targets": 3,
+            "casterFacesEast": false,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 158,
+            "minimumFrameSeconds": 0.016390299424529076,
+            "maximumFrameSeconds": 0.1254177987575531,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 1.4800000190734863,
+            "finishedSeconds": 1.4905223846435547,
+            "firstDamageSeconds": 1.1583290100097656,
+            "damageEvents": 3,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 3,
+            "peakLeadInstances": 3,
+            "peakImpactInstances": 3,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "018-1202-three-cast-charge.png",
+                "019-1202-three-lead-in.png",
+                "020-1202-three-pre-hit.png",
+                "021-1202-three-hit.png",
+                "022-1202-three-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=1.158329 expected>=1.1375"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1201-abort-flight",
+            "skillId": 1201,
+            "targets": 1,
+            "casterFacesEast": false,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 35,
+            "minimumFrameSeconds": 0.016657793894410133,
+            "maximumFrameSeconds": 0.08498120307922363,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 0.0,
+            "finishedSeconds": -1.0,
+            "firstDamageSeconds": -1.0,
+            "damageEvents": 0,
+            "distinctDamageFrames": 0,
+            "peakNumbers": 0,
+            "peakLeadInstances": 1,
+            "peakImpactInstances": 0,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": false,
+            "sawHitStar": false,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "023-1201-abort-flight-interrupted.png"
+            ],
+            "checks": [
+                {
+                    "name": "interrupt during visible lead-in",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result before interruption",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "immediate pool cleanup",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no late outcome or number",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "correct terminal state",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1201-skip-flight",
+            "skillId": 1201,
+            "targets": 1,
+            "casterFacesEast": false,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 35,
+            "minimumFrameSeconds": 0.012360296212136745,
+            "maximumFrameSeconds": 0.08394719660282135,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 0.0,
+            "finishedSeconds": -1.0,
+            "firstDamageSeconds": -1.0,
+            "damageEvents": 0,
+            "distinctDamageFrames": 0,
+            "peakNumbers": 0,
+            "peakLeadInstances": 1,
+            "peakImpactInstances": 0,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": false,
+            "sawHitStar": false,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "024-1201-skip-flight-interrupted.png"
+            ],
+            "checks": [
+                {
+                    "name": "interrupt during visible lead-in",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result before interruption",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "immediate pool cleanup",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no late outcome or number",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "correct terminal state",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1201-speed6-fps15",
+            "skillId": 1201,
+            "targets": 1,
+            "casterFacesEast": false,
+            "speed": 6.0,
+            "targetFramesPerSecond": 15,
+            "observedFrames": 29,
+            "minimumFrameSeconds": 0.06666119396686554,
+            "maximumFrameSeconds": 0.11950100213289261,
+            "releaseSeconds": 0.07499999552965164,
+            "plannedSeconds": 0.24666666984558105,
+            "finishedSeconds": 0.4164237976074219,
+            "firstDamageSeconds": 0.3329582214355469,
+            "damageEvents": 1,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 1,
+            "peakLeadInstances": 1,
+            "peakImpactInstances": 1,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "025-1201-speed6-fps15-cast-charge.png",
+                "026-1201-speed6-fps15-lead-in.png",
+                "027-1201-speed6-fps15-flight-mid.png",
+                "028-1201-speed6-fps15-pre-hit.png",
+                "029-1201-speed6-fps15-hit.png",
+                "030-1201-speed6-fps15-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=0.3329582 expected>=0.1895833"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1202-speed6-fps15",
+            "skillId": 1202,
+            "targets": 3,
+            "casterFacesEast": false,
+            "speed": 6.0,
+            "targetFramesPerSecond": 15,
+            "observedFrames": 29,
+            "minimumFrameSeconds": 0.06666400283575058,
+            "maximumFrameSeconds": 0.1256164014339447,
+            "releaseSeconds": 0.07499999552965164,
+            "plannedSeconds": 0.24666666984558105,
+            "finishedSeconds": 0.3922863006591797,
+            "firstDamageSeconds": 0.3256206512451172,
+            "damageEvents": 3,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 3,
+            "peakLeadInstances": 3,
+            "peakImpactInstances": 3,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "031-1202-speed6-fps15-cast-charge.png",
+                "032-1202-speed6-fps15-lead-in.png",
+                "033-1202-speed6-fps15-hit.png",
+                "034-1202-speed6-fps15-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=0.3256207 expected>=0.1895833"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1201-speed1.5-fps30",
+            "skillId": 1201,
+            "targets": 1,
+            "casterFacesEast": true,
+            "speed": 1.5,
+            "targetFramesPerSecond": 30,
+            "observedFrames": 70,
+            "minimumFrameSeconds": 0.03330210596323013,
+            "maximumFrameSeconds": 0.11060339957475662,
+            "releaseSeconds": 0.29999998211860657,
+            "plannedSeconds": 0.9866666793823242,
+            "finishedSeconds": 1.0149383544921875,
+            "firstDamageSeconds": 0.7772808074951172,
+            "damageEvents": 1,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 1,
+            "peakLeadInstances": 1,
+            "peakImpactInstances": 1,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "035-1201-speed1.5-fps30-cast-charge.png",
+                "036-1201-speed1.5-fps30-lead-in.png",
+                "037-1201-speed1.5-fps30-flight-mid.png",
+                "038-1201-speed1.5-fps30-pre-hit.png",
+                "039-1201-speed1.5-fps30-hit.png",
+                "040-1201-speed1.5-fps30-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=0.7772808 expected>=0.7583333"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1202-speed1.5-fps30",
+            "skillId": 1202,
+            "targets": 3,
+            "casterFacesEast": false,
+            "speed": 1.5,
+            "targetFramesPerSecond": 30,
+            "observedFrames": 69,
+            "minimumFrameSeconds": 0.03331080824136734,
+            "maximumFrameSeconds": 0.132476806640625,
+            "releaseSeconds": 0.29999998211860657,
+            "plannedSeconds": 0.9866666793823242,
+            "finishedSeconds": 1.0387001037597656,
+            "firstDamageSeconds": 0.7997894287109375,
+            "damageEvents": 3,
+            "distinctDamageFrames": 1,
+            "peakNumbers": 3,
+            "peakLeadInstances": 3,
+            "peakImpactInstances": 3,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": true,
+            "sawHitStar": true,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "041-1202-speed1.5-fps30-cast-charge.png",
+                "042-1202-speed1.5-fps30-lead-in.png",
+                "043-1202-speed1.5-fps30-pre-hit.png",
+                "044-1202-speed1.5-fps30-hit.png",
+                "045-1202-speed1.5-fps30-reaction.png"
+            ],
+            "checks": [
+                {
+                    "name": "production presenter finished",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "cast charge visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "lead-in and impact visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one synchronized effect instance per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit-star and target reaction visible",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result or number before hit frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "hit delayed through lead-in",
+                    "passed": true,
+                    "detail": "actual=0.7997894 expected>=0.7583333"
+                },
+                {
+                    "name": "one result per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one shared impact frame",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "one number per actual target",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "feet/chest registration",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "projectile direction",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "complete impact tail before presenter finishes",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "all transient effects recycled",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1202-abort-telegraph",
+            "skillId": 1202,
+            "targets": 3,
+            "casterFacesEast": false,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 34,
+            "minimumFrameSeconds": 0.016651701182127,
+            "maximumFrameSeconds": 0.10549020022153854,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 0.0,
+            "finishedSeconds": -1.0,
+            "firstDamageSeconds": -1.0,
+            "damageEvents": 0,
+            "distinctDamageFrames": 0,
+            "peakNumbers": 0,
+            "peakLeadInstances": 3,
+            "peakImpactInstances": 0,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": false,
+            "sawHitStar": false,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "046-1202-abort-telegraph-interrupted.png"
+            ],
+            "checks": [
+                {
+                    "name": "interrupt during visible lead-in",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result before interruption",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "immediate pool cleanup",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no late outcome or number",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "correct terminal state",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        },
+        {
+            "name": "1202-skip-telegraph",
+            "skillId": 1202,
+            "targets": 3,
+            "casterFacesEast": false,
+            "speed": 1.0,
+            "targetFramesPerSecond": 60,
+            "observedFrames": 34,
+            "minimumFrameSeconds": 0.015433099120855331,
+            "maximumFrameSeconds": 0.10576119273900986,
+            "releaseSeconds": 0.44999998807907104,
+            "plannedSeconds": 0.0,
+            "finishedSeconds": -1.0,
+            "firstDamageSeconds": -1.0,
+            "damageEvents": 0,
+            "distinctDamageFrames": 0,
+            "peakNumbers": 0,
+            "peakLeadInstances": 3,
+            "peakImpactInstances": 0,
+            "sawCastCharge": true,
+            "sawLeadIn": true,
+            "sawImpact": false,
+            "sawHitStar": false,
+            "resultBeforeImpact": false,
+            "targetFramesSynchronized": true,
+            "correctAnchor": true,
+            "correctProjectileMirror": true,
+            "impactActiveAtFinish": false,
+            "activeFxBeforeCleanup": 0,
+            "activeFxAfterCleanup": 0,
+            "captures": [
+                "047-1202-skip-telegraph-interrupted.png"
+            ],
+            "checks": [
+                {
+                    "name": "interrupt during visible lead-in",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no result before interruption",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "immediate pool cleanup",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "no late outcome or number",
+                    "passed": true,
+                    "detail": ""
+                },
+                {
+                    "name": "correct terminal state",
+                    "passed": true,
+                    "detail": ""
+                }
+            ]
+        }
+    ],
+    "errors": []
+}

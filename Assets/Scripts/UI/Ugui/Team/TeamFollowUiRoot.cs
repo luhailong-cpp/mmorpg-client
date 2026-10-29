@@ -23,6 +23,10 @@ namespace MmorpgClient.UI.Ugui.Team
         /// <summary>组队跟随的本地驱动;界面只读它的状态,开关走 <see cref="ToggleAway"/>。</summary>
         public TeamFollowDriver Follow => _follow;
 
+        /// <summary>新旧入口共用同一权限；暂离释放本地控制，归队须先确认当前队伍。</summary>
+        public bool CanToggleAway => _available && TeamHudPanel.CanToggleFollow(_follow.Status,
+            TeamUiRoot.Instance?.Client?.HasFreshView == true, TeamUiRoot.Instance?.Client?.ServiceAvailable == true);
+
         /// <summary>与组队画布同层(TeamUiRoot 用 186)。</summary>
         public const int CanvasSortingOrder = 186;
         public const string ToggleName = "TeamFollowToggle";
@@ -98,6 +102,7 @@ namespace MmorpgClient.UI.Ugui.Team
             _follow.Tick(game, trusted ? client.Snapshot : null, _available && trusted, Time.realtimeSinceStartup);
 
             var status = _follow.Status;
+            _toggle.interactable = CanToggleAway;
             if (status == _shownStatus) return;
             _shownStatus = status;
             _toggle.gameObject.SetActive(status != TeamFollowStatus.None);
@@ -112,7 +117,7 @@ namespace MmorpgClient.UI.Ugui.Team
         /// <summary>暂离 / 归队。暂离是纯本地开关;归队时驱动另外请求服务端把人带到队长身边(见 TeamRegroupPolicy)。</summary>
         public void ToggleAway()
         {
-            if (!_available) return;
+            if (!CanToggleAway) return;
             _follow.SetAway(!_follow.Away);
             // 点完之后按钮还是界面的"当前选中项":紧接着用键盘走路时,空格 / 回车会被当成再点一次,
             // 刚暂离就又被接管回去。

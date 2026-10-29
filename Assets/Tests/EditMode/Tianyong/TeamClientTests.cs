@@ -514,7 +514,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.Status, Is.EqualTo("服务器繁忙，请稍后再试。"));
 
             _now += 0.5f;
-            Assert.That(_client.Leave(), Is.True);
+            int calls = _net.Calls.Count;
+            var originalKick = (KickMemberRequest)_net.Calls[calls - 1].Request;
+            Assert.That(_client.Leave(), Is.False, "fault 没有确认原操作结果，不能换成另一笔写请求");
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls));
+            Assert.That(_client.Kick(11), Is.True, "允许使用原请求号核实结果");
+            Assert.That(LastRequest<KickMemberRequest>().ToByteArray(), Is.EqualTo(originalKick.ToByteArray()));
             _net.Reply(Response(new TeamView { MembershipEpoch = 6, ServerTimeMs = 2000 }, team_error.KTeamHasNotTeamId));
             Assert.That(_client.HasTeam, Is.False);
             Assert.That(_client.Snapshot.MembershipEpoch, Is.EqualTo(6UL));

@@ -1,0 +1,753 @@
+{
+  "createdAtUtc": "2026-10-22T08:44:48.5447111Z",
+  "mode": "Read-only triage of existing XML, local source and asset headers. No Unity launch and no source/resource changes.",
+  "sourceXml": "E:\\work\\mmorpg-client\\Logs\\combat-fx-dedicated-20261022\\editmode-results.xml",
+  "sourceXmlSha256": "927165e0fcc9b5187d45f6b56dad7ce6c0da421e8ca395be84d18e831505ef0d",
+  "run": {
+    "assembly": "MmorpgClient.Tests.EditMode.Battle.dll",
+    "startTime": "2026-10-22 08:38:34Z",
+    "endTime": "2026-10-22 08:40:25Z",
+    "total": 965,
+    "passed": 920,
+    "failed": 45,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "countClarification": "The specified XML contains 22/22 BattleCombatFxIntegrationTests, not 24. Do not attribute later-added test cases to this run.",
+  "attributionLimitations": [
+    "No current pre-patch rerun exists in this triage. Earlier 2026-09-13 roster report has only9 cases and does not prove current30-case suite historical pass.",
+    "Static call paths and current diff support no direct dependency on the new Presenter/Sequencer timing patch, but 45 failures remain real and the assembly is not green.",
+    "Exact callback execution and cache contents were not instrumented; lifecycle/cache mechanisms are marked as inference."
+  ],
+  "categories": [
+    {
+      "id": "roster_mixed_geometry_assertion",
+      "count": 1,
+      "observed": "04_mountain_guardian_boy: expected width 1024, actual 512 at BattleRosterAppearanceTests.cs:138.",
+      "cause": "The test compares all idle textures with Appearance.FrameWidth (maximum/reference 1024), whereas the V14 mixed delivery declares preserved idle/W.png as 512 and GeometryForResource provides per-resource dimensions. PNG header is 512x512.",
+      "confidence": "high for contract mismatch",
+      "timingPatchRelation": "No direct path found: test loads catalog/resources, not BattlePresenter or BattleSequencer."
+    },
+    {
+      "id": "pet_idle_cleanup_resident_count",
+      "count": 40,
+      "observed": "BattleIdleLease... and 39 BoundPets cases fail final ResidentClipCount == baseline after DestroyImmediate(layer). Each leaves one additional resident clip.",
+      "cause": "Observed cleanup/lifecycle failure: tests StopAction and kill idle tween, then DestroyImmediate(layer); idle clip ownership is released by BattleActionSpriteLeaseOwner.OnDestroy/Clear or BattleUnitView.Destroy. Tests do not explicitly call view.Destroy. Runtime callback execution in this EditMode context was not independently instrumented.",
+      "confidence": "high observation; medium inferred lifecycle mechanism",
+      "timingPatchRelation": "Current BattleUnitView diff is XML documentation only. Pet tests call view directly and do not use the changed Presenter/Sequencer. No direct timing-patch dependency found; no pre-patch runtime comparison performed."
+    },
+    {
+      "id": "pet_shared_cache_baseline_assumption",
+      "count": 2,
+      "observed": "BoundPets(1,False) at line132: expected3 actual2; Gallery... at line186: expected41 actual40.",
+      "cause": "Tests require baseline + 1 distinct Shared entries, but ResidentClipCount counts distinct clips, not lease users. Earlier failed cleanup has already retained the exact idle direction being requested; cache reuse does not add an entry. This is supported by monotonic resident counts across the preceding cases.",
+      "confidence": "high observation; medium-to-high inferred cross-test cache contamination",
+      "timingPatchRelation": "No direct timing-patch path found; do not claim historical pass or independence proven by rerun."
+    },
+    {
+      "id": "pet_missing_sprite_renderer",
+      "count": 1,
+      "observed": "Companion... throws TargetInvocationException -> MissingComponentException: no SpriteRenderer on LocalActivePet; QdaoPetSpriteAnimator.Play:43, SetIdentity:23, QdaoPetCompanion.LateUpdate:60.",
+      "cause": "Renderer acquisition line28 uses GetComponent<SpriteRenderer>() ?? AddComponent<SpriteRenderer>(); stack proves renderer is missing at set_sprite. An editor missing-component/fake-null interaction with null coalescing is a suspected mechanism, not independently reproduced.",
+      "confidence": "high for missing component and stack; medium for null-coalescing mechanism",
+      "timingPatchRelation": "World companion direct calls do not use Presenter/Sequencer; files untouched by new timing patch."
+    },
+    {
+      "id": "pet_preview_disable_cleanup",
+      "count": 1,
+      "observed": "PreviewSelection... line320 expects null after go.SetActive(false), but CurrentSprite remains legacy-ling-yue_archived_idle_E_01.",
+      "cause": "PetArchivePreview.Clear nulls sprite and is called by OnDisable. Observed state indicates this EditMode disable path did not perform expected cleanup; callback mechanism not independently instrumented.",
+      "confidence": "high observation; medium inferred EditMode lifecycle cause",
+      "timingPatchRelation": "PetArchivePreview is outside changed timing path; no baseline rerun."
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "AttributeClientTests",
+      "total": 24,
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "AttributePanelDisplayTests",
+      "total": 17,
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleArchivedActionPlaybackTests",
+      "total": 33,
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleArtCatalogCacheTests",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleClientAdoptQueueTests",
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleClientAutoBattleTests",
+      "total": 18,
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleClientLateJoinDiagnosticTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleClientStateMachineTests",
+      "total": 56,
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleCombatFxIntegrationTests",
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleDirectLinkTests",
+      "total": 62,
+      "passed": 62,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleHudLogicTests",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleRosterAppearanceTests",
+      "total": 30,
+      "passed": 29,
+      "failed": 1,
+      "skipped": 0
+    },
+    {
+      "name": "BattleSkillTargetRangeTests",
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleSkillTargetSelectionTests",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleStageTests",
+      "total": 21,
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "BattleUiLayoutTests",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "DamageNumberLayoutTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "DirectRoutingBattleTransportTests",
+      "total": 21,
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipBagModelTests",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipClientTests",
+      "total": 70,
+      "passed": 70,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipCombatEventsPlanTests",
+      "total": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipForgeClientTests",
+      "total": 96,
+      "passed": 96,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipForgeModelTests",
+      "total": 35,
+      "passed": 35,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipForgeUiStateTests",
+      "total": 63,
+      "passed": 63,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipForgeWindowTests",
+      "total": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipWindowTests",
+      "total": 30,
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "EquipWishSelectionTests",
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "FileMatchJoinRecoveryTests",
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "GameplayWindowTests",
+      "total": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "HudCanvasLayeringTests",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "ManaDeltaPlanTests",
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "PetAppearanceIntegrationTests",
+      "total": 53,
+      "passed": 9,
+      "failed": 44,
+      "skipped": 0
+    },
+    {
+      "name": "PetClientTests",
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "PetPanelInteractionTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "PlaybackBudgetTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "PlayerFeaturesClientTests",
+      "total": 31,
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "RegionProbeClientTests",
+      "total": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "SkillPanelPresentationTests",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "SpectateClientStateMachineTests",
+      "total": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "TurnPlanTests",
+      "total": 27,
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "failures": [
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.EveryCharacterUsesItsOwnUnmirroredDirectionalIdleAndDeclaredWalkFrames",
+      "result": "Failed",
+      "message": "  04_mountain_guardian_boy\n  Expected: 1024\n  But was:  512\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.BattleRosterAppearanceTests.EveryCharacterUsesItsOwnUnmirroredDirectionalIdleAndDeclaredWalkFrames () [0x002ab] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\BattleRosterAppearanceTests.cs:138\n",
+      "category": "roster_mixed_geometry_assertion",
+      "startTime": "2026-10-22 08:39:03Z",
+      "durationSeconds": "2.097288"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BattleIdleLeaseSurvivesTemporaryStripAndReleasesWithView",
+      "result": "Failed",
+      "message": "  Expected: 0\n  But was:  1\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BattleIdleLeaseSurvivesTemporaryStripAndReleasesWithView () [0x0014d] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:294\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:49Z",
+      "durationSeconds": "0.032965"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(1,True)",
+      "result": "Failed",
+      "message": "  Expected: 1\n  But was:  2\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:49Z",
+      "durationSeconds": "0.255390"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(1,False)",
+      "result": "Failed",
+      "message": "  Expected: 3\n  But was:  2\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x00341] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:132\n",
+      "category": "pet_shared_cache_baseline_assumption",
+      "startTime": "2026-10-22 08:39:49Z",
+      "durationSeconds": "0.078301"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(4,True)",
+      "result": "Failed",
+      "message": "  Expected: 2\n  But was:  3\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:49Z",
+      "durationSeconds": "0.231705"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(4,False)",
+      "result": "Failed",
+      "message": "  Expected: 3\n  But was:  4\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:49Z",
+      "durationSeconds": "0.252103"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(5,True)",
+      "result": "Failed",
+      "message": "  Expected: 4\n  But was:  5\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:49Z",
+      "durationSeconds": "0.247398"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(5,False)",
+      "result": "Failed",
+      "message": "  Expected: 5\n  But was:  6\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:50Z",
+      "durationSeconds": "0.282374"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(6,True)",
+      "result": "Failed",
+      "message": "  Expected: 6\n  But was:  7\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:50Z",
+      "durationSeconds": "0.330181"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(6,False)",
+      "result": "Failed",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:50Z",
+      "durationSeconds": "0.386066"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(7,True)",
+      "result": "Failed",
+      "message": "  Expected: 8\n  But was:  9\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:51Z",
+      "durationSeconds": "0.347316"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(7,False)",
+      "result": "Failed",
+      "message": "  Expected: 9\n  But was:  10\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:51Z",
+      "durationSeconds": "0.419177"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(8,True)",
+      "result": "Failed",
+      "message": "  Expected: 10\n  But was:  11\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:51Z",
+      "durationSeconds": "0.491927"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(8,False)",
+      "result": "Failed",
+      "message": "  Expected: 11\n  But was:  12\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:52Z",
+      "durationSeconds": "0.490670"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(9,True)",
+      "result": "Failed",
+      "message": "  Expected: 12\n  But was:  13\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:52Z",
+      "durationSeconds": "0.429555"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(9,False)",
+      "result": "Failed",
+      "message": "  Expected: 13\n  But was:  14\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:53Z",
+      "durationSeconds": "0.487568"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(10,True)",
+      "result": "Failed",
+      "message": "  Expected: 14\n  But was:  15\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:53Z",
+      "durationSeconds": "0.409769"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(10,False)",
+      "result": "Failed",
+      "message": "  Expected: 15\n  But was:  16\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:54Z",
+      "durationSeconds": "0.324668"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(11,True)",
+      "result": "Failed",
+      "message": "  Expected: 16\n  But was:  17\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:54Z",
+      "durationSeconds": "0.287618"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(11,False)",
+      "result": "Failed",
+      "message": "  Expected: 17\n  But was:  18\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:54Z",
+      "durationSeconds": "0.371008"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(12,True)",
+      "result": "Failed",
+      "message": "  Expected: 18\n  But was:  19\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:55Z",
+      "durationSeconds": "0.310469"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(12,False)",
+      "result": "Failed",
+      "message": "  Expected: 19\n  But was:  20\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:55Z",
+      "durationSeconds": "0.305771"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(13,True)",
+      "result": "Failed",
+      "message": "  Expected: 20\n  But was:  21\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:55Z",
+      "durationSeconds": "0.398398"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(13,False)",
+      "result": "Failed",
+      "message": "  Expected: 21\n  But was:  22\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:56Z",
+      "durationSeconds": "0.361760"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(14,True)",
+      "result": "Failed",
+      "message": "  Expected: 22\n  But was:  23\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:56Z",
+      "durationSeconds": "0.523412"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(14,False)",
+      "result": "Failed",
+      "message": "  Expected: 23\n  But was:  24\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:57Z",
+      "durationSeconds": "0.309950"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(15,True)",
+      "result": "Failed",
+      "message": "  Expected: 24\n  But was:  25\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:57Z",
+      "durationSeconds": "0.435575"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(15,False)",
+      "result": "Failed",
+      "message": "  Expected: 25\n  But was:  26\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:57Z",
+      "durationSeconds": "0.421641"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(16,True)",
+      "result": "Failed",
+      "message": "  Expected: 26\n  But was:  27\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:58Z",
+      "durationSeconds": "0.324422"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(16,False)",
+      "result": "Failed",
+      "message": "  Expected: 27\n  But was:  28\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:58Z",
+      "durationSeconds": "0.471430"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(17,True)",
+      "result": "Failed",
+      "message": "  Expected: 28\n  But was:  29\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:59Z",
+      "durationSeconds": "0.478668"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(17,False)",
+      "result": "Failed",
+      "message": "  Expected: 29\n  But was:  30\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:59Z",
+      "durationSeconds": "0.293556"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(18,True)",
+      "result": "Failed",
+      "message": "  Expected: 30\n  But was:  31\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:39:59Z",
+      "durationSeconds": "0.376141"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(18,False)",
+      "result": "Failed",
+      "message": "  Expected: 31\n  But was:  32\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:00Z",
+      "durationSeconds": "0.258366"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(19,True)",
+      "result": "Failed",
+      "message": "  Expected: 32\n  But was:  33\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:00Z",
+      "durationSeconds": "0.337600"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(19,False)",
+      "result": "Failed",
+      "message": "  Expected: 33\n  But was:  34\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:00Z",
+      "durationSeconds": "0.390579"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(20,True)",
+      "result": "Failed",
+      "message": "  Expected: 34\n  But was:  35\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:01Z",
+      "durationSeconds": "0.328627"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(20,False)",
+      "result": "Failed",
+      "message": "  Expected: 35\n  But was:  36\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:01Z",
+      "durationSeconds": "0.387172"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(21,True)",
+      "result": "Failed",
+      "message": "  Expected: 36\n  But was:  37\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:01Z",
+      "durationSeconds": "0.424993"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(21,False)",
+      "result": "Failed",
+      "message": "  Expected: 37\n  But was:  38\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:02Z",
+      "durationSeconds": "0.336458"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(22,True)",
+      "result": "Failed",
+      "message": "  Expected: 38\n  But was:  39\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:02Z",
+      "durationSeconds": "0.427744"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle(22,False)",
+      "result": "Failed",
+      "message": "  Expected: 39\n  But was:  40\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.BoundPetsPlayCombatFramesFireOnceAndReturnToTheirOwnIdle (System.UInt32 tableId, System.Boolean east) [0x0040e] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:150\n",
+      "category": "pet_idle_cleanup_resident_count",
+      "startTime": "2026-10-22 08:40:03Z",
+      "durationSeconds": "0.396095"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.CompanionTracksSummonRecallDisconnectAndWorldResetWithoutCreatingAnEntity",
+      "result": "Failed",
+      "message": "System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.\n  ----> UnityEngine.MissingComponentException : There is no 'SpriteRenderer' attached to the \"LocalActivePet\" game object, but a script is trying to access it.\nYou probably need to add a SpriteRenderer to the game object \"LocalActivePet\". Or your script needs to check if the component is attached before using it.",
+      "stackTrace": "  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <c5ae8a4eeb824526b5df2932bc2395e0>:0 \n  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <c5ae8a4eeb824526b5df2932bc2395e0>:0 \n  at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.Tick (MmorpgClient.World.QdaoPetCompanion companion) [0x00000] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:402 \n  at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.CompanionTracksSummonRecallDisconnectAndWorldResetWithoutCreatingAnEntity () [0x000ad] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:341 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <c5ae8a4eeb824526b5df2932bc2395e0>:0 \n--MissingComponentException\n  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x000b4] in <d5ea965f39d74501b56f4006ef80da34>:0 \n  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x0000a] in <d5ea965f39d74501b56f4006ef80da34>:0 \n  at UnityEngine.SpriteRenderer.set_sprite (UnityEngine.Sprite value) [0x00006] in <d5ea965f39d74501b56f4006ef80da34>:0 \n  at MmorpgClient.World.QdaoPetSpriteAnimator.Play (System.String action, System.String direction) [0x000e1] in E:\\work\\mmorpg-client\\Assets\\Scripts\\World\\QdaoPetSpriteAnimator.cs:43 \n  at MmorpgClient.World.QdaoPetSpriteAnimator.SetIdentity (System.String id) [0x00024] in E:\\work\\mmorpg-client\\Assets\\Scripts\\World\\QdaoPetSpriteAnimator.cs:23 \n  at MmorpgClient.World.QdaoPetCompanion.LateUpdate () [0x00173] in E:\\work\\mmorpg-client\\Assets\\Scripts\\World\\QdaoPetCompanion.cs:60 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <c5ae8a4eeb824526b5df2932bc2395e0>:0 ",
+      "category": "pet_missing_sprite_renderer",
+      "startTime": "2026-10-22 08:40:03Z",
+      "durationSeconds": "0.235727"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.GalleryEnablesOnlyPublishedDirectionsAndCombatCompletionReleasesItsLease",
+      "result": "Failed",
+      "message": "  Expected: 41\n  But was:  40\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.GalleryEnablesOnlyPublishedDirectionsAndCombatCompletionReleasesItsLease () [0x00338] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:186\n",
+      "category": "pet_shared_cache_baseline_assumption",
+      "startTime": "2026-10-22 08:40:03Z",
+      "durationSeconds": "0.217657"
+    },
+    {
+      "fullname": "MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.PreviewSelectionDoesNotChangeAuthoritativePetOrSendRequests",
+      "result": "Failed",
+      "message": "  Expected: null\n  But was:  <legacy-ling-yue_archived_idle_E_01 (UnityEngine.Sprite)>\n",
+      "stackTrace": "at MmorpgClient.Tests.EditMode.Battle.PetAppearanceIntegrationTests.PreviewSelectionDoesNotChangeAuthoritativePetOrSendRequests () [0x0014d] in E:\\work\\mmorpg-client\\Assets\\Tests\\EditMode\\Battle\\PetAppearanceIntegrationTests.cs:320\n",
+      "category": "pet_preview_disable_cleanup",
+      "startTime": "2026-10-22 08:40:04Z",
+      "durationSeconds": "0.048145"
+    }
+  ]
+}

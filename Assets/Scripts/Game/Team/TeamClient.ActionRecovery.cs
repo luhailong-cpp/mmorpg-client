@@ -25,6 +25,8 @@ namespace MmorpgClient.Game.Team
         private ulong _pendingActionTarget, _actionRecoveryPlayer;
         private string _pendingActionSaved;
         private bool _actionRecoveryBlocked;
+        // 只要有过结果不明的尝试，后续限流只能证明这次未执行，不能抹掉原意图。
+        private bool _actionHadUncertainAttempt;
         private float _actionRetryAt;
 
         // 一个玩家一个原写意图槽；重连、崩溃与UI重建均重放原UUID和完整正文。
@@ -35,6 +37,7 @@ namespace MmorpgClient.Game.Team
             _pendingActionRequest = null;
             _pendingActionSaved = null;
             _actionRecoveryBlocked = false;
+            _actionHadUncertainAttempt = false;
 
             try {
                 string raw = ActionRecovery?.Load(PlayerId) ?? string.Empty;
@@ -50,6 +53,8 @@ namespace MmorpgClient.Game.Team
                     throw new InvalidOperationException();
                 _pendingAction = action; _pendingActionMessage = message; _pendingActionTarget = target;
                 _pendingActionRequest = request; _pendingActionSaved = raw;
+                // 跨进程留下的记录无法证明之前未执行，必须保守地恢复原请求。
+                _actionHadUncertainAttempt = true;
                 RefreshQueued = true;
             } catch (Exception) {
                 _actionRecoveryBlocked = true;
@@ -95,19 +100,43 @@ namespace MmorpgClient.Game.Team
             _pendingActionRequest = request.Descriptor.Parser.ParseFrom(request.ToByteArray());
             _pendingAction = action; _pendingActionMessage = message; _pendingActionTarget = target;
             _pendingActionSaved = raw;
+            _actionHadUncertainAttempt = false;
         }
 
         private void CompleteActionIntent(TeamResponse response)
         {
             if (response.ErrorMessage != null && TipFaults.IsFault(response.ErrorMessage.Id)) {
+                _actionHadUncertainAttempt = true;
                 _actionRetryAt = _clock() + ReadRetryDelaySeconds; return;
             }
+            ClearActionIntent("组队操作已确认，本机原请求尚未清理。");
+        }
+
+        private bool ObserveActionTransportError(TeamAction action, string error)
+        {
+            // 后台读的限流不能清除另一笔尚未确认的写操作。
+            if (_pendingActionRequest == null || _pendingAction != action) return true;
+            if (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal) && IsRateLimited(error))
+            {
+                if (_actionHadUncertainAttempt) return true;
+                return ClearActionIntent("组队请求已被拒绝，本机原请求无法清理，请修复存储后重试。");
+            }
+            _actionHadUncertainAttempt = true;
+            return true;
+        }
+
+        private bool ClearActionIntent(string failureMessage)
+        {
+            if (_pendingActionRequest == null) return true;
             try {
                 ActionRecovery?.Clear(PlayerId, _pendingActionSaved);
                 _pendingActionRequest = null; _pendingActionSaved = null;
+                _actionHadUncertainAttempt = false;
+                return true;
             } catch (Exception) {
                 _actionRecoveryBlocked = true;
-                Status = "组队操作已确认，本机原请求尚未清理。";
+                Status = failureMessage;
+                return false;
             }
         }
 

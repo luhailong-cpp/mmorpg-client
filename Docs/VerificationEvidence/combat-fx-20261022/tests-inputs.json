@@ -1,0 +1,102 @@
+{
+  "baseCommit": "da77a149131f3382ff568e798eb0ba593ef8ef85",
+  "scope": "Fixed committed client sources plus exact task modifications; copied current resources; independent Library. Shared in-progress activity/team changes remain untouched in the main project.",
+  "files": [
+    {
+      "path": "Assets/Scripts/App/CombatFxVerification.cs",
+      "sourceSHA256": "AD0E4B45324932D009DD2FDCE936CE6DAA6D6BC3DD0559724F48AF501432B294",
+      "isolatedSHA256": "AD0E4B45324932D009DD2FDCE936CE6DAA6D6BC3DD0559724F48AF501432B294",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/Game/Battle/Presentation/BattleSequencer.cs",
+      "sourceSHA256": "BDE967A8E50D67787B385ECF65BB67B2077A898E4CE54E5044B122880E8B785A",
+      "isolatedSHA256": "BDE967A8E50D67787B385ECF65BB67B2077A898E4CE54E5044B122880E8B785A",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattlePresenter.cs",
+      "sourceSHA256": "2F0F9CB00DFED318EB88E01CC58869663C75D1ABE6BC6964600EC0D169C8A9A8",
+      "isolatedSHA256": "2F0F9CB00DFED318EB88E01CC58869663C75D1ABE6BC6964600EC0D169C8A9A8",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleFx.cs",
+      "sourceSHA256": "5CDB9DA47395ADC574369EA7F0271AE605163831D07F14FA0845B69BF59820BE",
+      "isolatedSHA256": "5CDB9DA47395ADC574369EA7F0271AE605163831D07F14FA0845B69BF59820BE",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleUnitView.cs",
+      "sourceSHA256": "D35A7921340CDACA0D478A943DEA75CC8EA5C82C18B220952D889412F5042675",
+      "isolatedSHA256": "D35A7921340CDACA0D478A943DEA75CC8EA5C82C18B220952D889412F5042675",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Battle/BattleArtCatalog.cs",
+      "sourceSHA256": "6D334B80D073AD1306F3A35CD37892484CB7F48653547EB9ABEDFCD0C1FEB75E",
+      "isolatedSHA256": "6D334B80D073AD1306F3A35CD37892484CB7F48653547EB9ABEDFCD0C1FEB75E",
+      "equal": true
+    },
+    {
+      "path": "Assets/Tests/EditMode/Battle/BattleCombatFxIntegrationTests.cs",
+      "sourceSHA256": "B6FD1F3652F1B9CE03252CF24A2D508B758BCF244D98F59DF54D9984CF71A064",
+      "isolatedSHA256": "B6FD1F3652F1B9CE03252CF24A2D508B758BCF244D98F59DF54D9984CF71A064",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/skill_presentation.json",
+      "sourceSHA256": "367D009020544AFDF1681A58AE7B421346E9F17C37F02AA61A0273A6752109B1",
+      "isolatedSHA256": "367D009020544AFDF1681A58AE7B421346E9F17C37F02AA61A0273A6752109B1",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/ART_MANIFEST.json",
+      "sourceSHA256": "33921E588DFD7A1626BFFC2751416FA25B6FEFF8D9B52CFCC72B5613BBDFF8ED",
+      "isolatedSHA256": "33921E588DFD7A1626BFFC2751416FA25B6FEFF8D9B52CFCC72B5613BBDFF8ED",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/combat_fx_sources.json",
+      "sourceSHA256": "4172C2A6EC8BAFAF6B5E34FCFA9F53F8EFCB5AC67E1B6F5E4CD6BDF1CA612FC3",
+      "isolatedSHA256": "4172C2A6EC8BAFAF6B5E34FCFA9F53F8EFCB5AC67E1B6F5E4CD6BDF1CA612FC3",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/Fx/cast_charge_strip.png",
+      "sourceSHA256": "97D0E2F7D2142F9873EEE810C8DBB364F5FB1EFE9334BCEA11485B9EFB5C9080",
+      "isolatedSHA256": "97D0E2F7D2142F9873EEE810C8DBB364F5FB1EFE9334BCEA11485B9EFB5C9080",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/Fx/hit_star_strip.png",
+      "sourceSHA256": "3FF89C5AC517FE6F4DDE37E99A10DD182329B984E8FDAFE924FB12269A483A30",
+      "isolatedSHA256": "3FF89C5AC517FE6F4DDE37E99A10DD182329B984E8FDAFE924FB12269A483A30",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/Fx/xuanfu_luoyao_impact_strip.png",
+      "sourceSHA256": "A07F3163C2BD641601F6BC6C5AE5BBEAD1AB3A9AD9EEF7BFD69A82D436629737",
+      "isolatedSHA256": "A07F3163C2BD641601F6BC6C5AE5BBEAD1AB3A9AD9EEF7BFD69A82D436629737",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/Fx/xuanfu_luoyao_projectile_strip.png",
+      "sourceSHA256": "A66FC96664BA3CC334C6856434845A636E1C6709FFA54B4EEBEC9D9CB584C8B8",
+      "isolatedSHA256": "A66FC96664BA3CC334C6856434845A636E1C6709FFA54B4EEBEC9D9CB584C8B8",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/Fx/zixiao_leizhen_strike_strip.png",
+      "sourceSHA256": "FECBBBA82EF862F7795EEC1233DC9AA4DB4117FC0A334904751062E35C6A204C",
+      "isolatedSHA256": "FECBBBA82EF862F7795EEC1233DC9AA4DB4117FC0A334904751062E35C6A204C",
+      "equal": true
+    },
+    {
+      "path": "Assets/Resources/Battle/Fx/zixiao_leizhen_telegraph_strip.png",
+      "sourceSHA256": "37BE8D9578A796F9299205580FBB136318F2D08072308A1054BB126067D624D6",
+      "isolatedSHA256": "37BE8D9578A796F9299205580FBB136318F2D08072308A1054BB126067D624D6",
+      "equal": true
+    }
+  ]
+}

@@ -79,7 +79,9 @@ namespace MmorpgClient.UI.Ugui.Team
             _entryLabel = _entry.GetComponentInChildren<TMP_Text>();
             WorldHudNavigation.Register(WorldHudEntry.Team, (RectTransform)_entry.transform, _entry, _entryLabel);
             _window = new TeamWindow(design);
+            _window.FreshViewAvailable = () => _client?.HasFreshView == true;
             _invitations = new TeamInvitationWindow(design);
+            _invitations.FreshViewAvailable = () => _client?.HasFreshView == true;
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
             _window.DecisionRequested += (id, ok) => { if (_available) _client?.HandleApplication(id, ok); };
             _window.CreateRequested += () => { if (_available) _client?.Create(); };
@@ -89,8 +91,8 @@ namespace MmorpgClient.UI.Ugui.Team
             _window.Closed += () => _invitations.Hide();
             _invitations.RefreshRequested += (source, query) => { if (_available) _directory?.Refresh(source, query); };
             _invitations.LoadMoreRequested += () => { if (_available) _directory?.LoadMore(); };
-            _invitations.InviteRequested += id => { if (_available) _client?.Invite(id); };
-            _invitations.CreateRequested += () => { if (_available) _client?.Create(); };
+            _invitations.InviteRequested += id => { if (_available && _client?.HasFreshView == true) _client.Invite(id); };
+            _invitations.CreateRequested += () => { if (_available && _client?.HasFreshView == true) _client.Create(); };
             _invitations.Closed += () => _window.SetCovered(false);
             _window.InviteResponseRequested += (teamId, ok) => { if (_available) _client?.RespondInvite(teamId, ok); };
             _window.LeaveRequested += () => { if (_available) _client?.Leave(); };
@@ -157,7 +159,8 @@ namespace MmorpgClient.UI.Ugui.Team
             State.Tick(Time.realtimeSinceStartup);
             if (!_available) { HidePanel(); return; }
             // Probe, invites, conflict re-pulls and the 30s panel refresh all go out here, one per frame.
-            _client?.DrainQueued(_window.IsVisible || _invitations.IsVisible);
+            _client?.DrainQueued(_window.IsVisible || _invitations.IsVisible ||
+                (WorldSideHudRoot.Instance?.IsPageVisible(WorldSideHudPage.Team) ?? false));
             // A completed background read can still occupy the shared send interval. Re-enable
             // controls when that interval (or their own per-message quota) expires.
             if (_client != null && (State.InvitationCoolingDown != _client.InvitationCoolingDown ||
@@ -178,6 +181,11 @@ namespace MmorpgClient.UI.Ugui.Team
         public void Toggle()
         {
             if (_window.IsVisible) { HidePanel(); return; }
+            OpenPanel();
+        }
+
+        private void OpenPanel(bool refresh = true)
+        {
             if (!_available) return;
             MysteryMerchantUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
@@ -193,13 +201,33 @@ namespace MmorpgClient.UI.Ugui.Team
             RenderState();
             _window.Show();
             // Opening the panel asks for GetMyTeam; the client queues it when busy or too soon.
-            _client?.Refresh();
+            if (refresh) _client?.Refresh();
         }
 
         public void HidePanel()
         {
             _invitations?.Hide();
             _window?.Hide();
+        }
+
+        /// <summary>组队HUD的列表入口；已经打开时保留大窗，不使用Toggle把它关闭。</summary>
+        public void OpenTeamList()
+        {
+            if (!_available) return;
+            if (!_window.IsVisible) OpenPanel();
+            else _window.Show(TeamPage.Members);
+        }
+
+        /// <summary>复用大窗确认与唯一TeamClient；过期视图不能发起依赖成员关系的写操作。</summary>
+        public void RequestLeaveConfirmation()
+        {
+            bool Permitted() => _available && _client != null && _client.HasFreshView &&
+                _client.ServiceAvailable && !State.MatchStarting;
+            if (!Permitted() || State.IsBusy || !State.HasLoaded || !State.HasTeam) return;
+            // 已有可信视图，先显示确认。此处若用普通列表入口同步刷新，会立即变忙而吞掉本次确认。
+            if (!_window.IsVisible) OpenPanel(refresh: false);
+            else _window.Show(TeamPage.Members);
+            _window.RequestLeaveConfirmation(Permitted);
         }
 
         public void OpenInviteForPlayer(ulong playerId)
